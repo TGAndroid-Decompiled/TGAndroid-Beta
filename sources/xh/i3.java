@@ -2,7 +2,7 @@ package xh;
 
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class i3 extends org.telegram.ui.ActionBar.f1 {
+public final class i3 extends org.telegram.ui.ActionBar.g1 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);

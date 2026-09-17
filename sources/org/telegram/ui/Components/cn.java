@@ -4,8 +4,8 @@ import android.content.Context;
 public final class cn extends vi {
     public final Runnable P2;
 
-    public cn(Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var, Runnable runnable) {
-        super(context, n2Var, false, false, true, e6Var);
+    public cn(Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.f6 f6Var, Runnable runnable) {
+        super(context, o2Var, false, false, true, f6Var);
         this.P2 = runnable;
     }
 

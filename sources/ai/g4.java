@@ -6,15 +6,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.vi;
 import org.telegram.ui.bo;
-import org.telegram.ui.mk;
+import org.telegram.ui.nk;
 public final class g4 extends vi {
     public final int P2;
     public final NotificationCenter.NotificationCenterDelegate Q2;
 
-    public g4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(activity, n2Var2, false, false, true, e6Var);
+    public g4(org.telegram.ui.ActionBar.o2 o2Var, Activity activity, org.telegram.ui.ActionBar.o2 o2Var2, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(activity, o2Var2, false, false, true, f6Var);
         this.P2 = i10;
-        this.Q2 = (NotificationCenter.NotificationCenterDelegate) n2Var;
+        this.Q2 = (NotificationCenter.NotificationCenterDelegate) o2Var;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class g4 extends vi {
                 g4 g4Var2 = boVar.J1;
                 if (g4Var2 != null && g4Var2.isShowing()) {
                     Activity parentActivity = boVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) boVar).classGuid;
+                    i10 = ((org.telegram.ui.ActionBar.o2) boVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
@@ -56,9 +56,9 @@ public final class g4 extends vi {
                 if (g4Var != null) {
                     g4Var.setFocusable(false);
                 }
-                a4 a4Var = f6Var.f795b2;
+                a4 a4Var = f6Var.f800b2;
                 if (a4Var != null && a4Var.getEditField() != null) {
-                    f6Var.f795b2.getEditField().requestFocus();
+                    f6Var.f800b2.getEditField().requestFocus();
                     return;
                 }
                 return;
@@ -80,14 +80,14 @@ public final class g4 extends vi {
                 if (g4Var4 != null) {
                     g4Var4.setFocusable(false);
                 }
-                mk mkVar = boVar.Y;
-                if (mkVar != null && mkVar.getEditField() != null) {
+                nk nkVar = boVar.Y;
+                if (nkVar != null && nkVar.getEditField() != null) {
                     boVar.Y.getEditField().requestFocus();
                 }
                 g4 g4Var5 = boVar.J1;
                 if (g4Var5 != null && g4Var5.isShowing()) {
                     Activity parentActivity = boVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) boVar).classGuid;
+                    i10 = ((org.telegram.ui.ActionBar.o2) boVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 boVar.T9(false, false);
@@ -95,8 +95,8 @@ public final class g4 extends vi {
         }
     }
 
-    public g4(f6 f6Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, false, false, true, e6Var);
+    public g4(f6 f6Var, Context context, org.telegram.ui.ActionBar.f6 f6Var2) {
+        super(context, null, false, false, true, f6Var2);
         this.P2 = 0;
         this.Q2 = f6Var;
     }

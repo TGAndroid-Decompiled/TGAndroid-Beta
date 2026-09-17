@@ -4,24 +4,24 @@ import android.content.Context;
 import android.os.Looper;
 import java.nio.ByteBuffer;
 public final class k0 {
-    public final int f3781a;
-    public boolean f3782b;
+    public final int f3786a;
+    public boolean f3787b;
 
     public k0() {
-        this.f3781a = 4;
+        this.f3786a = 4;
     }
 
     public void a(boolean z10) {
-        switch (this.f3781a) {
+        switch (this.f3786a) {
             case 2:
-                if (this.f3782b != z10) {
-                    this.f3782b = z10;
+                if (this.f3787b != z10) {
+                    this.f3787b = z10;
                     return;
                 }
                 return;
             default:
-                if (this.f3782b != z10) {
-                    this.f3782b = z10;
+                if (this.f3787b != z10) {
+                    this.f3787b = z10;
                     return;
                 }
                 return;
@@ -29,7 +29,7 @@ public final class k0 {
     }
 
     public k0(Context context, Looper looper, e2.x xVar, int i10) {
-        this.f3781a = i10;
+        this.f3786a = i10;
         switch (i10) {
             case 3:
                 new na.d(context.getApplicationContext());
@@ -43,14 +43,14 @@ public final class k0 {
     }
 
     public k0(boolean z10) {
-        this.f3781a = 0;
-        this.f3782b = z10;
+        this.f3786a = 0;
+        this.f3787b = z10;
     }
 
     public k0(f2.o oVar, f2.q qVar) {
-        this.f3781a = 1;
-        int i10 = qVar.f8848a;
-        ByteBuffer byteBuffer = qVar.f8849b;
+        this.f3786a = 1;
+        int i10 = qVar.f8853a;
+        ByteBuffer byteBuffer = qVar.f8854b;
         e2.d.b(i10 == 6 || i10 == 3);
         int min = Math.min(4, byteBuffer.remaining());
         byte[] bArr = new byte[min];
@@ -58,12 +58,12 @@ public final class k0 {
         a4.h hVar = new a4.h(bArr, min);
         oVar.getClass();
         if (hVar.h()) {
-            this.f3782b = false;
+            this.f3787b = false;
             return;
         }
         int i11 = hVar.i(2);
         if (!hVar.h()) {
-            this.f3782b = true;
+            this.f3787b = true;
             return;
         }
         if (i11 != 3 && i11 != 0) {

@@ -4,9 +4,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 public final class q1 implements s0 {
-    public long f10863a;
-    public long f10864b;
-    public boolean f10865c;
+    public long f10866a;
+    public long f10867b;
+    public boolean f10868c;
     public final Object d;
     public Object e;
 
@@ -18,15 +18,15 @@ public final class q1 implements s0 {
     @Override
     public long a() {
         long j3;
-        long j10 = this.f10863a;
-        if (this.f10865c) {
+        long j10 = this.f10866a;
+        if (this.f10868c) {
             ((e2.x) this.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f10864b;
+            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f10867b;
             b2.v0 v0Var = (b2.v0) this.e;
-            if (v0Var.f3331a == 1.0f) {
+            if (v0Var.f3336a == 1.0f) {
                 j3 = e2.d0.Q(elapsedRealtime);
             } else {
-                j3 = elapsedRealtime * v0Var.f3333c;
+                j3 = elapsedRealtime * v0Var.f3338c;
             }
             return j3 + j10;
         }
@@ -39,24 +39,24 @@ public final class q1 implements s0 {
     }
 
     public void c(long j3) {
-        this.f10863a = j3;
-        if (this.f10865c) {
+        this.f10866a = j3;
+        if (this.f10868c) {
             ((e2.x) this.d).getClass();
-            this.f10864b = SystemClock.elapsedRealtime();
+            this.f10867b = SystemClock.elapsedRealtime();
         }
     }
 
     public void d() {
-        if (!this.f10865c) {
+        if (!this.f10868c) {
             ((e2.x) this.d).getClass();
-            this.f10864b = SystemClock.elapsedRealtime();
-            this.f10865c = true;
+            this.f10867b = SystemClock.elapsedRealtime();
+            this.f10868c = true;
         }
     }
 
     @Override
     public void f(b2.v0 v0Var) {
-        if (this.f10865c) {
+        if (this.f10868c) {
             c(a());
         }
         this.e = v0Var;

@@ -2,34 +2,34 @@ package ei;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
-public final class h extends h51 {
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
+public final class h extends i51 {
     static {
-        h51.setup(new h51());
+        i51.setup(new i51());
     }
 
-    public static i51 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
-        i51 J = i51.J(h.class);
+    public static j51 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
+        j51 J = j51.J(h.class);
         J.d = i10;
-        J.f24907z = i11;
-        J.f24893k = i12;
-        J.f24894l = charSequence;
-        J.f24895m = str;
+        J.f25137z = i11;
+        J.f25123k = i12;
+        J.f25124l = charSequence;
+        J.f25125m = str;
         return J;
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
-        ((i) view).a(i51Var.f24907z, i51Var.f24893k, i51Var.f24894l, i51Var.f24895m);
+    public final void bindView(View view, j51 j51Var, boolean z10, x51 x51Var, f61 f61Var) {
+        ((i) view).a(j51Var.f25137z, j51Var.f25123k, j51Var.f25124l, j51Var.f25125m);
     }
 
     @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, e6 e6Var) {
-        return new i(context, e6Var);
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, f6 f6Var) {
+        return new i(context, f6Var);
     }
 }

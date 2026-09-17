@@ -4,8 +4,8 @@ import android.database.DataSetObservable;
 import android.database.DataSetObserver;
 import android.view.View;
 public abstract class a {
-    public final DataSetObservable f48111a = new DataSetObservable();
-    public DataSetObserver f48112b;
+    public final DataSetObservable f48134a = new DataSetObservable();
+    public DataSetObserver f48135b;
 
     public abstract void a(g gVar, Object obj);
 
@@ -26,7 +26,7 @@ public abstract class a {
     public void g() {
         synchronized (this) {
             try {
-                DataSetObserver dataSetObserver = this.f48112b;
+                DataSetObserver dataSetObserver = this.f48135b;
                 if (dataSetObserver != null) {
                     dataSetObserver.onChanged();
                 }
@@ -34,12 +34,12 @@ public abstract class a {
                 throw th2;
             }
         }
-        this.f48111a.notifyChanged();
+        this.f48134a.notifyChanged();
     }
 
     public final void i(DataSetObserver dataSetObserver) {
         synchronized (this) {
-            this.f48112b = dataSetObserver;
+            this.f48135b = dataSetObserver;
         }
     }
 

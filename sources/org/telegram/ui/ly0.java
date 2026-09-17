@@ -1,41 +1,106 @@
 package org.telegram.ui;
 
-import java.util.List;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
+import android.os.Bundle;
+import android.view.View;
+import java.util.HashSet;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ly0 implements MessagesStorage.BooleanCallback, rs {
-    public final ProfileActivity f35577a;
-    public final TLRPC.User f35578b;
+public final class ly0 implements View.OnClickListener {
+    public final int f35648a;
+    public final ProfileActivity f35649b;
 
-    public ly0(ProfileActivity profileActivity, TLRPC.User user) {
-        this.f35577a = profileActivity;
-        this.f35578b = user;
+    public ly0(ProfileActivity profileActivity, int i10) {
+        this.f35648a = i10;
+        this.f35649b = profileActivity;
     }
 
     @Override
-    public void b() {
-        ProfileActivity.j0(this.f35577a, this.f35578b);
-    }
-
-    @Override
-    public void run(boolean z10) {
-        org.telegram.ui.ActionBar.n2 n2Var;
-        ProfileActivity profileActivity = this.f35577a;
-        if (profileActivity.getParentLayout() != null) {
-            List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
-            if (fragmentStack != null && fragmentStack.size() >= 2) {
-                n2Var = (org.telegram.ui.ActionBar.n2) org.telegram.ui.Cells.p6.g(2, fragmentStack);
-            } else {
-                n2Var = null;
-            }
-            if (n2Var instanceof bo) {
-                ((ActionBarLayout) profileActivity.getParentLayout()).Y(fragmentStack.size() - 2);
-            }
+    public final void onClick(View view) {
+        int i10 = this.f35648a;
+        ProfileActivity profileActivity = this.f35649b;
+        switch (i10) {
+            case 0:
+                ProfileActivity.i0(profileActivity);
+                return;
+            case 1:
+                if (profileActivity.v.getTag() == null) {
+                    profileActivity.u4();
+                    return;
+                }
+                return;
+            case 2:
+                profileActivity.finishPreviewFragment();
+                return;
+            case 3:
+                profileActivity.R4();
+                return;
+            case 4:
+                ProfileActivity.g0(profileActivity);
+                return;
+            case 5:
+                ProfileActivity.a0(profileActivity);
+                return;
+            case 6:
+                profileActivity.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", profileActivity.f31290f1);
+                bundle.putLong("user_id", profileActivity.f31282e1);
+                profileActivity.presentFragment(new g31(bundle));
+                return;
+            case 7:
+                ProfileActivity.h0(profileActivity);
+                return;
+            case 8:
+                profileActivity.Q4();
+                return;
+            case 9:
+                profileActivity.Q4();
+                return;
+            case 10:
+                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
+                    int i11 = 0;
+                    while (i11 < profileActivity.getParentLayout().getFragmentStack().size()) {
+                        org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) profileActivity.getParentLayout().getFragmentStack().get(i11);
+                        if (o2Var instanceof wy) {
+                            wy wyVar = (wy) o2Var;
+                            qx qxVar = wyVar.F3;
+                            if (qxVar != null) {
+                                org.telegram.ui.ActionBar.o2 fragment = qxVar.getFragment();
+                                if ((fragment instanceof fg1) && (-((fg1) fragment).f33636a) == profileActivity.a()) {
+                                    wyVar.F3.a();
+                                }
+                            }
+                        } else if (o2Var instanceof bo) {
+                            if (((bo) o2Var).a() == profileActivity.a()) {
+                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(o2Var, false);
+                                i11--;
+                            }
+                        } else if (o2Var instanceof fg1) {
+                            if ((-((fg1) o2Var).f33636a) == profileActivity.a()) {
+                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(o2Var, false);
+                                i11--;
+                            }
+                        } else if ((o2Var instanceof ProfileActivity) && o2Var != profileActivity) {
+                            ProfileActivity profileActivity2 = (ProfileActivity) o2Var;
+                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f31363q1) {
+                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(o2Var, false);
+                                i11--;
+                            }
+                        }
+                        i11++;
+                    }
+                }
+                profileActivity.J1 = 0;
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("chat_id", profileActivity.f31290f1);
+                HashSet hashSet = fg1.f33635n1;
+                profileActivity.presentFragment(fg1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
+                return;
+            case 11:
+                profileActivity.t4(view);
+                return;
+            default:
+                profileActivity.t4(view);
+                return;
         }
-        profileActivity.N1 = true;
-        profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f31298i1), this.f35578b, profileActivity.E2, Boolean.valueOf(z10));
     }
 }

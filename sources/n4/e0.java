@@ -4,9 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class e0 implements Parcelable {
     public static final Parcelable.Creator<e0> CREATOR = new m8.h(8);
-    public int f14937a;
-    public int f14938b;
-    public int f14939c;
+    public int f14947a;
+    public int f14948b;
+    public int f14949c;
     public int d;
     public int e;
 
@@ -17,10 +17,10 @@ public final class e0 implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f14937a);
-        parcel.writeInt(this.f14939c);
+        parcel.writeInt(this.f14947a);
+        parcel.writeInt(this.f14949c);
         parcel.writeInt(this.d);
         parcel.writeInt(this.e);
-        parcel.writeInt(this.f14938b);
+        parcel.writeInt(this.f14948b);
     }
 }

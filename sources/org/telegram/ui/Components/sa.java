@@ -8,8 +8,8 @@ public abstract class sa extends za {
     public FrameLayout Y;
     public ci.d Z;
 
-    public sa(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, false, false, e6Var);
+    public sa(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null, false, false, f6Var);
         LinearLayout linearLayout = new LinearLayout(context);
         this.X = linearLayout;
         linearLayout.setOrientation(1);
@@ -21,7 +21,7 @@ public abstract class sa extends za {
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
+    public final ll0 v(ml0 ml0Var) {
         return new gg.n0(this, 1);
     }
 

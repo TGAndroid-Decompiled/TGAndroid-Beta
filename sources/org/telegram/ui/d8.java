@@ -1,45 +1,20 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.util.SparseArray;
-public final class d8 extends AnimatorListenerAdapter {
-    public final g8 f32946a;
-    public final float f32947b;
-    public final float f32948c;
-    public final float d;
-    public final int e;
-    public final boolean f32949f;
-    public final e8 h;
+import org.telegram.messenger.MessagesStorage;
+public final class d8 implements MessagesStorage.BooleanCallback {
+    public final bo f33034a;
+    public final e8 f33035b;
 
-    public d8(e8 e8Var, g8 g8Var, float f7, float f10, float f11, int i10, boolean z10) {
-        this.h = e8Var;
-        this.f32946a = g8Var;
-        this.f32947b = f7;
-        this.f32948c = f10;
-        this.d = f11;
-        this.e = i10;
-        this.f32949f = z10;
+    public d8(e8 e8Var, bo boVar) {
+        this.f33035b = e8Var;
+        this.f33034a = boVar;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        float f7 = this.f32947b;
-        g8 g8Var = this.f32946a;
-        g8Var.f33838a = f7;
-        g8Var.f33839b = this.f32948c;
-        g8Var.f33840c = this.d;
-        this.h.invalidate();
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        e8 e8Var = this.h;
-        SparseArray sparseArray = e8Var.v;
-        int i10 = this.e;
-        sparseArray.remove(i10);
-        if (!this.f32949f) {
-            e8Var.f33268w.remove(i10);
-        }
+    public final void run(boolean z10) {
+        g8 g8Var = this.f33035b.f33322b;
+        g8Var.f33905x.finishFragment();
+        j8 j8Var = g8Var.f33905x;
+        this.f33034a.S7(j8Var.P, j8Var.Q + 86400, z10);
     }
 }

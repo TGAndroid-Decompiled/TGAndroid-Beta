@@ -3,47 +3,47 @@ package org.telegram.ui.Components.voip;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class y0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29360a;
-    public final d1 f29361b;
+    public final int f29337a;
+    public final d1 f29338b;
 
     public y0(d1 d1Var, int i10) {
-        this.f29360a = i10;
-        this.f29361b = d1Var;
+        this.f29337a = i10;
+        this.f29338b = d1Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29360a) {
+        switch (this.f29337a) {
             case 0:
-                d1 d1Var = this.f29361b;
+                d1 d1Var = this.f29338b;
                 d1Var.getClass();
                 d1Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 d1Var.invalidate();
                 return;
             case 1:
-                d1 d1Var2 = this.f29361b;
+                d1 d1Var2 = this.f29338b;
                 d1Var2.getClass();
-                d1Var2.f28914y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d1Var2.f28891y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float dp = d1Var2.I + AndroidUtilities.dp(28.0f);
                 float dp2 = d1Var2.J + AndroidUtilities.dp(52.0f);
-                float f7 = d1Var2.f28914y;
+                float f7 = d1Var2.f28891y;
                 d1Var2.G = dp - (dp * f7);
                 d1Var2.H = dp2 - (f7 * dp2);
                 d1Var2.invalidate();
                 return;
             case 2:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d1 d1Var3 = this.f29361b;
+                d1 d1Var3 = this.f29338b;
                 d1Var3.E = floatValue;
                 int dp3 = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
-                b1 b1Var = d1Var3.f28907c;
+                b1 b1Var = d1Var3.f28884c;
                 b1Var.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp3 * d1Var3.E));
                 b1Var.requestLayout();
                 return;
             default:
-                d1 d1Var4 = this.f29361b;
+                d1 d1Var4 = this.f29338b;
                 d1Var4.getClass();
-                d1Var4.f28911s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d1Var4.f28888s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 d1Var4.e();
                 return;
         }

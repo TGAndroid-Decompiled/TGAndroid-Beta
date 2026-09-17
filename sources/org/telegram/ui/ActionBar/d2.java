@@ -1,52 +1,37 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.animation.Animation;
-public final class d2 implements Animation.AnimationListener {
-    public final int f18577a;
-    public final Object f18578b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.DialogInterface;
+public final class d2 extends AnimatorListenerAdapter {
+    public final int f18570a;
+    public final g2 f18571b;
 
-    public d2(Object obj, int i10) {
-        this.f18577a = i10;
-        this.f18578b = obj;
+    public d2(g2 g2Var, int i10) {
+        this.f18570a = i10;
+        this.f18571b = g2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animation animation) {
-        switch (this.f18577a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f18570a) {
             case 0:
-                ((f2) this.f18578b).f18637g1.setAlpha(0.0f);
+                g2 g2Var = this.f18571b;
+                DialogInterface.OnShowListener onShowListener = g2Var.f18668i1;
+                if (onShowListener != null) {
+                    onShowListener.onShow(g2Var);
+                    return;
+                }
                 return;
             default:
-                ((v4) this.f18578b).f19613f.post(new q(this, 12));
+                g2 g2Var2 = this.f18571b;
+                g2Var2.s().removeView(g2Var2.f18665f1);
+                DialogInterface.OnDismissListener onDismissListener = g2Var2.f18669j1;
+                if (onDismissListener != null) {
+                    onDismissListener.onDismiss(g2Var2);
+                    return;
+                }
                 return;
         }
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animation animation) {
-        int i10 = this.f18577a;
-    }
-
-    @Override
-    public final void onAnimationStart(Animation animation) {
-        switch (this.f18577a) {
-            case 0:
-                return;
-            default:
-                v4 v4Var = (v4) this.f18578b;
-                v4Var.f19615i.setEnabled(false);
-                v4Var.f19614g.setVisibility(0);
-                v4Var.h.setVisibility(0);
-                return;
-        }
-    }
-
-    private final void a(Animation animation) {
-    }
-
-    private final void b(Animation animation) {
-    }
-
-    private final void c(Animation animation) {
     }
 }

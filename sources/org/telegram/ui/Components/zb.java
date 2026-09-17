@@ -9,17 +9,17 @@ import org.telegram.messenger.support.SparseLongArray;
 public final class zb extends wb implements NotificationCenter.NotificationCenterDelegate {
     public final xb d;
     public SparseLongArray e;
-    public final org.telegram.ui.ActionBar.n2 f30537f;
+    public final org.telegram.ui.ActionBar.o2 f30460f;
     public final int h;
-    public oc f30538n;
+    public oc f30461n;
 
-    public zb(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(n2Var.getContext(), n2Var.getResourceProvider());
-        this.f30537f = n2Var;
+    public zb(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        super(o2Var.getContext(), o2Var.getResourceProvider());
+        this.f30460f = o2Var;
         this.h = i10;
-        this.f29682b.setLayoutParams(w7.x5.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.f29681a.setLayoutParams(w7.x5.h(56.0f, 48.0f, 8388659));
-        xb xbVar = new xb(this, n2Var, getContext(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
+        this.f29623b.setLayoutParams(w7.x5.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+        this.f29622a.setLayoutParams(w7.x5.h(56.0f, 48.0f, 8388659));
+        xb xbVar = new xb(this, o2Var, getContext(), o2Var.getCurrentAccount(), o2Var.getResourceProvider());
         this.d = xbVar;
         xbVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(0.0f));
         this.d.setDelegate(new yb(this));
@@ -43,15 +43,15 @@ public final class zb extends wb implements NotificationCenter.NotificationCente
     public final void f() {
         if (this.d.getReactionsWindow() != null) {
             this.d.e();
-            if (this.d.getReactionsWindow().f48983a != null) {
-                this.d.getReactionsWindow().f48983a.animate().alpha(0.0f).setDuration(180L).start();
+            if (this.d.getReactionsWindow().f49006a != null) {
+                this.d.getReactionsWindow().f49006a.animate().alpha(0.0f).setDuration(180L).start();
             }
         }
     }
 
     @Override
     public int getMeasuredBackgroundHeight() {
-        return AndroidUtilities.dp(30.0f) + this.f29682b.getMeasuredHeight();
+        return AndroidUtilities.dp(30.0f) + this.f29623b.getMeasuredHeight();
     }
 
     @Override
@@ -67,6 +67,6 @@ public final class zb extends wb implements NotificationCenter.NotificationCente
     }
 
     public void setBulletin(oc ocVar) {
-        this.f30538n = ocVar;
+        this.f30461n = ocVar;
     }
 }

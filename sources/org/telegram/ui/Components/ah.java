@@ -25,5 +25,5 @@ public interface ah {
 
     void o();
 
-    pv0 y();
+    qv0 y();
 }

@@ -1,9 +1,9 @@
 package p0;
 public final class a {
     public static final byte[] e = new byte[1792];
-    public final CharSequence f40379a;
-    public final int f40380b;
-    public int f40381c;
+    public final CharSequence f40401a;
+    public final int f40402b;
+    public int f40403c;
     public char d;
 
     static {
@@ -13,20 +13,20 @@ public final class a {
     }
 
     public a(CharSequence charSequence) {
-        this.f40379a = charSequence;
-        this.f40380b = charSequence.length();
+        this.f40401a = charSequence;
+        this.f40402b = charSequence.length();
     }
 
     public final byte a() {
-        CharSequence charSequence = this.f40379a;
-        char charAt = charSequence.charAt(this.f40381c - 1);
+        CharSequence charSequence = this.f40401a;
+        char charAt = charSequence.charAt(this.f40403c - 1);
         this.d = charAt;
         if (Character.isLowSurrogate(charAt)) {
-            int codePointBefore = Character.codePointBefore(charSequence, this.f40381c);
-            this.f40381c -= Character.charCount(codePointBefore);
+            int codePointBefore = Character.codePointBefore(charSequence, this.f40403c);
+            this.f40403c -= Character.charCount(codePointBefore);
             return Character.getDirectionality(codePointBefore);
         }
-        this.f40381c--;
+        this.f40403c--;
         char c10 = this.d;
         if (c10 < 1792) {
             return e[c10];

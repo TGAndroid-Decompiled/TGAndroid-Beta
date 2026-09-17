@@ -8,35 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 public final class i extends l {
     public final v h = new v();
-    public final h f256i = new h();
-    public int f257j = -1;
-    public final int f258k;
-    public final g[] f259l;
-    public g f260m;
-    public List f261n;
-    public List f262o;
-    public h f263p;
-    public int f264q;
+    public final h f258i = new h();
+    public int f259j = -1;
+    public final int f260k;
+    public final g[] f261l;
+    public g f262m;
+    public List f263n;
+    public List f264o;
+    public h f265p;
+    public int f266q;
 
     public i(int i10, List list) {
-        this.f258k = i10 == -1 ? 1 : i10;
+        this.f260k = i10 == -1 ? 1 : i10;
         if (list != null) {
-            byte[] bArr = e2.e.f7892a;
+            byte[] bArr = e2.e.f7897a;
             if (list.size() == 1 && ((byte[]) list.get(0)).length == 1) {
                 byte b10 = ((byte[]) list.get(0))[0];
             }
         }
-        this.f259l = new g[8];
+        this.f261l = new g[8];
         for (int i11 = 0; i11 < 8; i11++) {
-            this.f259l[i11] = new g();
+            this.f261l[i11] = new g();
         }
-        this.f260m = this.f259l[0];
+        this.f262m = this.f261l[0];
     }
 
     @Override
     public final m f() {
-        List list = this.f261n;
-        this.f262o = list;
+        List list = this.f263n;
+        this.f264o = list;
         list.getClass();
         return new m(list, 0);
     }
@@ -44,18 +44,18 @@ public final class i extends l {
     @Override
     public final void flush() {
         super.flush();
-        this.f261n = null;
-        this.f262o = null;
-        this.f264q = 0;
-        this.f260m = this.f259l[0];
+        this.f263n = null;
+        this.f264o = null;
+        this.f266q = 0;
+        this.f262m = this.f261l[0];
         l();
-        this.f263p = null;
+        this.f265p = null;
     }
 
     @Override
     public final void g(j jVar) {
         boolean z10;
-        ByteBuffer byteBuffer = jVar.f10092c;
+        ByteBuffer byteBuffer = jVar.f10097c;
         byteBuffer.getClass();
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
@@ -77,19 +77,19 @@ public final class i extends l {
                     if (i10 == 3) {
                         j();
                         int i11 = (x11 & 192) >> 6;
-                        int i12 = this.f257j;
+                        int i12 = this.f259j;
                         if (i12 != -1 && i11 != (i12 + 1) % 4) {
                             l();
-                            e2.a.n("Cea708Decoder", "Sequence number discontinuity. previous=" + this.f257j + " current=" + i11);
+                            e2.a.n("Cea708Decoder", "Sequence number discontinuity. previous=" + this.f259j + " current=" + i11);
                         }
-                        this.f257j = i11;
+                        this.f259j = i11;
                         int i13 = x11 & 63;
                         if (i13 == 0) {
                             i13 = 64;
                         }
                         h hVar = new h(i11, i13);
-                        this.f263p = hVar;
-                        byte[] bArr = hVar.f254b;
+                        this.f265p = hVar;
+                        byte[] bArr = hVar.f256b;
                         hVar.e = 1;
                         bArr[0] = x12;
                     } else {
@@ -97,11 +97,11 @@ public final class i extends l {
                             z11 = true;
                         }
                         e2.d.b(z11);
-                        h hVar2 = this.f263p;
+                        h hVar2 = this.f265p;
                         if (hVar2 == null) {
                             e2.a.e("Cea708Decoder", "Encountered DTVCC_PACKET_DATA before DTVCC_PACKET_START");
                         } else {
-                            byte[] bArr2 = hVar2.f254b;
+                            byte[] bArr2 = hVar2.f256b;
                             int i14 = hVar2.e;
                             int i15 = i14 + 1;
                             hVar2.e = i15;
@@ -110,7 +110,7 @@ public final class i extends l {
                             bArr2[i15] = x12;
                         }
                     }
-                    h hVar3 = this.f263p;
+                    h hVar3 = this.f265p;
                     if (hVar3.e == (hVar3.d * 2) - 1) {
                         j();
                     }
@@ -126,7 +126,7 @@ public final class i extends l {
 
     @Override
     public final boolean i() {
-        if (this.f261n != this.f262o) {
+        if (this.f263n != this.f264o) {
             return true;
         }
         return false;
@@ -134,18 +134,18 @@ public final class i extends l {
 
     public final void j() {
         g gVar;
-        h hVar = this.f263p;
+        h hVar = this.f265p;
         if (hVar == null) {
             return;
         }
         int i10 = 2;
         if (hVar.e != (hVar.d * 2) - 1) {
-            e2.a.d("Cea708Decoder", "DtvCcPacket ended prematurely; size is " + ((this.f263p.d * 2) - 1) + ", but current index is " + this.f263p.e + " (sequence number " + this.f263p.f255c + ");");
+            e2.a.d("Cea708Decoder", "DtvCcPacket ended prematurely; size is " + ((this.f265p.d * 2) - 1) + ", but current index is " + this.f265p.e + " (sequence number " + this.f265p.f257c + ");");
         }
-        h hVar2 = this.f263p;
-        byte[] bArr = hVar2.f254b;
+        h hVar2 = this.f265p;
+        byte[] bArr = hVar2.f256b;
         int i11 = hVar2.e;
-        h hVar3 = this.f256i;
+        h hVar3 = this.f258i;
         hVar3.o(i11, bArr);
         boolean z10 = false;
         while (true) {
@@ -164,7 +164,7 @@ public final class i extends l {
                     if (i13 != 0) {
                         e2.a.n("Cea708Decoder", "serviceNumber is non-zero (" + i13 + ") when blockSize is 0");
                     }
-                } else if (i13 != this.f258k) {
+                } else if (i13 != this.f260k) {
                     hVar3.u(i14);
                 } else {
                     int g10 = (i14 * 8) + hVar3.g();
@@ -180,7 +180,7 @@ public final class i extends l {
                                                     l();
                                                     break;
                                                 case 13:
-                                                    this.f260m.a('\n');
+                                                    this.f262m.a('\n');
                                                     break;
                                                 case 14:
                                                     break;
@@ -199,26 +199,26 @@ public final class i extends l {
                                                     }
                                             }
                                         } else {
-                                            SpannableStringBuilder spannableStringBuilder = this.f260m.f236b;
+                                            SpannableStringBuilder spannableStringBuilder = this.f262m.f238b;
                                             int length = spannableStringBuilder.length();
                                             if (length > 0) {
                                                 spannableStringBuilder.delete(length - 1, length);
                                             }
                                         }
                                     } else {
-                                        this.f261n = k();
+                                        this.f263n = k();
                                     }
                                 }
                             } else if (i15 <= 127) {
                                 if (i15 == 127) {
-                                    this.f260m.a((char) 9835);
+                                    this.f262m.a((char) 9835);
                                 } else {
-                                    this.f260m.a((char) (i15 & 255));
+                                    this.f262m.a((char) (i15 & 255));
                                 }
                                 z10 = true;
                             } else {
                                 if (i15 <= 159) {
-                                    g[] gVarArr = this.f259l;
+                                    g[] gVarArr = this.f261l;
                                     switch (i15) {
                                         case 128:
                                         case 129:
@@ -229,9 +229,9 @@ public final class i extends l {
                                         case 134:
                                         case 135:
                                             int i16 = i15 - 128;
-                                            if (this.f264q != i16) {
-                                                this.f264q = i16;
-                                                this.f260m = gVarArr[i16];
+                                            if (this.f266q != i16) {
+                                                this.f266q = i16;
+                                                this.f262m = gVarArr[i16];
                                                 break;
                                             }
                                             break;
@@ -239,13 +239,13 @@ public final class i extends l {
                                             for (int i17 = 1; i17 <= 8; i17++) {
                                                 if (hVar3.h()) {
                                                     g gVar2 = gVarArr[8 - i17];
-                                                    gVar2.f235a.clear();
-                                                    gVar2.f236b.clear();
-                                                    gVar2.f246o = -1;
-                                                    gVar2.f247p = -1;
-                                                    gVar2.f248q = -1;
-                                                    gVar2.f250s = -1;
-                                                    gVar2.f252u = 0;
+                                                    gVar2.f237a.clear();
+                                                    gVar2.f238b.clear();
+                                                    gVar2.f248o = -1;
+                                                    gVar2.f249p = -1;
+                                                    gVar2.f250q = -1;
+                                                    gVar2.f252s = -1;
+                                                    gVar2.f254u = 0;
                                                 }
                                             }
                                             break;
@@ -286,7 +286,7 @@ public final class i extends l {
                                             l();
                                             break;
                                         case 144:
-                                            if (!this.f260m.f237c) {
+                                            if (!this.f262m.f239c) {
                                                 hVar3.t(16);
                                                 i12 = 3;
                                                 break;
@@ -299,33 +299,33 @@ public final class i extends l {
                                                 i12 = 3;
                                                 hVar3.i(3);
                                                 hVar3.i(3);
-                                                this.f260m.e(h, h10);
+                                                this.f262m.e(h, h10);
                                             }
                                         case 145:
-                                            if (!this.f260m.f237c) {
+                                            if (!this.f262m.f239c) {
                                                 hVar3.t(24);
                                             } else {
                                                 int c10 = g.c(hVar3.i(2), hVar3.i(2), hVar3.i(2), hVar3.i(2));
                                                 int c11 = g.c(hVar3.i(2), hVar3.i(2), hVar3.i(2), hVar3.i(2));
                                                 hVar3.t(2);
                                                 g.c(hVar3.i(2), hVar3.i(2), hVar3.i(2), 0);
-                                                this.f260m.f(c10, c11);
+                                                this.f262m.f(c10, c11);
                                             }
                                             i12 = 3;
                                             break;
                                         case 146:
-                                            if (!this.f260m.f237c) {
+                                            if (!this.f262m.f239c) {
                                                 hVar3.t(16);
                                             } else {
                                                 hVar3.t(4);
                                                 int i22 = hVar3.i(4);
                                                 hVar3.t(2);
                                                 hVar3.i(6);
-                                                g gVar3 = this.f260m;
-                                                if (gVar3.f252u != i22) {
+                                                g gVar3 = this.f262m;
+                                                if (gVar3.f254u != i22) {
                                                     gVar3.a('\n');
                                                 }
-                                                gVar3.f252u = i22;
+                                                gVar3.f254u = i22;
                                             }
                                             i12 = 3;
                                             break;
@@ -337,7 +337,7 @@ public final class i extends l {
                                             e2.m(i15, "Invalid C1 command: ", "Cea708Decoder");
                                             break;
                                         case 151:
-                                            if (!this.f260m.f237c) {
+                                            if (!this.f262m.f239c) {
                                                 hVar3.t(32);
                                             } else {
                                                 int c12 = g.c(hVar3.i(2), hVar3.i(2), hVar3.i(2), hVar3.i(2));
@@ -349,9 +349,9 @@ public final class i extends l {
                                                 hVar3.i(2);
                                                 int i23 = hVar3.i(2);
                                                 hVar3.t(8);
-                                                g gVar4 = this.f260m;
-                                                gVar4.f245n = c12;
-                                                gVar4.f242k = i23;
+                                                g gVar4 = this.f262m;
+                                                gVar4.f247n = c12;
+                                                gVar4.f244k = i23;
                                             }
                                             i12 = 3;
                                             break;
@@ -379,51 +379,51 @@ public final class i extends l {
                                             hVar3.t(i10);
                                             int i30 = hVar3.i(3);
                                             int i31 = hVar3.i(3);
-                                            ArrayList arrayList = gVar5.f235a;
-                                            gVar5.f237c = true;
+                                            ArrayList arrayList = gVar5.f237a;
+                                            gVar5.f239c = true;
                                             gVar5.d = h11;
                                             gVar5.e = i25;
-                                            gVar5.f238f = h12;
-                                            gVar5.f239g = i26;
+                                            gVar5.f240f = h12;
+                                            gVar5.f241g = i26;
                                             gVar5.h = i27;
-                                            gVar5.f240i = i28;
+                                            gVar5.f242i = i28;
                                             int i32 = i29 + 1;
-                                            if (gVar5.f241j != i32) {
-                                                gVar5.f241j = i32;
+                                            if (gVar5.f243j != i32) {
+                                                gVar5.f243j = i32;
                                                 while (true) {
-                                                    if (arrayList.size() >= gVar5.f241j || arrayList.size() >= 15) {
+                                                    if (arrayList.size() >= gVar5.f243j || arrayList.size() >= 15) {
                                                         arrayList.remove(0);
                                                     }
                                                 }
                                             }
-                                            if (i30 != 0 && gVar5.f243l != i30) {
-                                                gVar5.f243l = i30;
+                                            if (i30 != 0 && gVar5.f245l != i30) {
+                                                gVar5.f245l = i30;
                                                 int i33 = i30 - 1;
                                                 int i34 = g.B[i33];
                                                 boolean z11 = g.A[i33];
-                                                int i35 = g.f233y[i33];
-                                                int i36 = g.f234z[i33];
-                                                int i37 = g.f232x[i33];
-                                                gVar5.f245n = i34;
-                                                gVar5.f242k = i37;
+                                                int i35 = g.f235y[i33];
+                                                int i36 = g.f236z[i33];
+                                                int i37 = g.f234x[i33];
+                                                gVar5.f247n = i34;
+                                                gVar5.f244k = i37;
                                             }
-                                            if (i31 != 0 && gVar5.f244m != i31) {
-                                                gVar5.f244m = i31;
+                                            if (i31 != 0 && gVar5.f246m != i31) {
+                                                gVar5.f246m = i31;
                                                 int i38 = i31 - 1;
                                                 int i39 = g.D[i38];
                                                 int i40 = g.C[i38];
                                                 gVar5.e(false, false);
                                                 gVar5.f(g.v, g.E[i38]);
                                             }
-                                            if (this.f264q != i24) {
-                                                this.f264q = i24;
-                                                this.f260m = gVarArr[i24];
+                                            if (this.f266q != i24) {
+                                                this.f266q = i24;
+                                                this.f262m = gVarArr[i24];
                                             }
                                             i12 = 3;
                                             break;
                                     }
                                 } else if (i15 <= 255) {
-                                    this.f260m.a((char) (i15 & 255));
+                                    this.f262m.a((char) (i15 & 255));
                                 } else {
                                     e2.m(i15, "Invalid base command: ", "Cea708Decoder");
                                 }
@@ -454,54 +454,54 @@ public final class i extends l {
                                                                     if (i41 != 61) {
                                                                         switch (i41) {
                                                                             case 48:
-                                                                                this.f260m.a((char) 9608);
+                                                                                this.f262m.a((char) 9608);
                                                                                 break;
                                                                             case 49:
-                                                                                this.f260m.a((char) 8216);
+                                                                                this.f262m.a((char) 8216);
                                                                                 break;
                                                                             case 50:
-                                                                                this.f260m.a((char) 8217);
+                                                                                this.f262m.a((char) 8217);
                                                                                 break;
                                                                             case 51:
-                                                                                this.f260m.a((char) 8220);
+                                                                                this.f262m.a((char) 8220);
                                                                                 break;
                                                                             case 52:
-                                                                                this.f260m.a((char) 8221);
+                                                                                this.f262m.a((char) 8221);
                                                                                 break;
                                                                             case 53:
-                                                                                this.f260m.a((char) 8226);
+                                                                                this.f262m.a((char) 8226);
                                                                                 break;
                                                                             default:
                                                                                 switch (i41) {
                                                                                     case 118:
-                                                                                        this.f260m.a((char) 8539);
+                                                                                        this.f262m.a((char) 8539);
                                                                                         break;
                                                                                     case 119:
-                                                                                        this.f260m.a((char) 8540);
+                                                                                        this.f262m.a((char) 8540);
                                                                                         break;
                                                                                     case 120:
-                                                                                        this.f260m.a((char) 8541);
+                                                                                        this.f262m.a((char) 8541);
                                                                                         break;
                                                                                     case 121:
-                                                                                        this.f260m.a((char) 8542);
+                                                                                        this.f262m.a((char) 8542);
                                                                                         break;
                                                                                     case 122:
-                                                                                        this.f260m.a((char) 9474);
+                                                                                        this.f262m.a((char) 9474);
                                                                                         break;
                                                                                     case 123:
-                                                                                        this.f260m.a((char) 9488);
+                                                                                        this.f262m.a((char) 9488);
                                                                                         break;
                                                                                     case 124:
-                                                                                        this.f260m.a((char) 9492);
+                                                                                        this.f262m.a((char) 9492);
                                                                                         break;
                                                                                     case 125:
-                                                                                        this.f260m.a((char) 9472);
+                                                                                        this.f262m.a((char) 9472);
                                                                                         break;
                                                                                     case 126:
-                                                                                        this.f260m.a((char) 9496);
+                                                                                        this.f262m.a((char) 9496);
                                                                                         break;
                                                                                     case 127:
-                                                                                        this.f260m.a((char) 9484);
+                                                                                        this.f262m.a((char) 9484);
                                                                                         break;
                                                                                     default:
                                                                                         e2.m(i41, "Invalid G2 character: ", "Cea708Decoder");
@@ -509,34 +509,34 @@ public final class i extends l {
                                                                                 }
                                                                         }
                                                                     } else {
-                                                                        this.f260m.a((char) 8480);
+                                                                        this.f262m.a((char) 8480);
                                                                     }
                                                                 } else {
-                                                                    this.f260m.a((char) 339);
+                                                                    this.f262m.a((char) 339);
                                                                 }
                                                             } else {
-                                                                this.f260m.a((char) 353);
+                                                                this.f262m.a((char) 353);
                                                             }
                                                         } else {
-                                                            this.f260m.a((char) 8482);
+                                                            this.f262m.a((char) 8482);
                                                         }
                                                     } else {
-                                                        this.f260m.a((char) 376);
+                                                        this.f262m.a((char) 376);
                                                     }
                                                 } else {
-                                                    this.f260m.a((char) 338);
+                                                    this.f262m.a((char) 338);
                                                 }
                                             } else {
-                                                this.f260m.a((char) 352);
+                                                this.f262m.a((char) 352);
                                             }
                                         } else {
-                                            this.f260m.a((char) 8230);
+                                            this.f262m.a((char) 8230);
                                         }
                                     } else {
-                                        this.f260m.a((char) 160);
+                                        this.f262m.a((char) 160);
                                     }
                                 } else {
-                                    this.f260m.a(' ');
+                                    this.f262m.a(' ');
                                 }
                                 z10 = true;
                             } else if (i41 <= 159) {
@@ -550,10 +550,10 @@ public final class i extends l {
                                 }
                             } else if (i41 <= 255) {
                                 if (i41 == 160) {
-                                    this.f260m.a((char) 13252);
+                                    this.f262m.a((char) 13252);
                                 } else {
                                     e2.m(i41, "Invalid G3 character: ", "Cea708Decoder");
-                                    this.f260m.a('_');
+                                    this.f262m.a('_');
                                 }
                                 z10 = true;
                             } else {
@@ -566,9 +566,9 @@ public final class i extends l {
             }
         }
         if (z10) {
-            this.f261n = k();
+            this.f263n = k();
         }
-        this.f263p = null;
+        this.f265p = null;
     }
 
     public final java.util.List k() {
@@ -577,7 +577,7 @@ public final class i extends l {
 
     public final void l() {
         for (int i10 = 0; i10 < 8; i10++) {
-            this.f259l[i10].d();
+            this.f261l[i10].d();
         }
     }
 }

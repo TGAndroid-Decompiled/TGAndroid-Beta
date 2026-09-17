@@ -1,49 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class ew0 extends za {
-    public rs X;
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class ew0 extends TimeAnimator {
+    public int f23677a;
+    public int f23678b;
+    public ValueAnimator.AnimatorUpdateListener f23679c;
+    public Float d;
+    public float[] e;
 
-    public ew0(Context context) {
-        super(context, null, true, false, null);
-        fixNavigationBar();
-        this.E = true;
-        this.f30533y = true;
-        K();
-        ll0 ll0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        ll0Var.setPadding(i10, 0, i10, 0);
-        this.d.j(new kb0(this, 6));
-        this.d.setOnItemClickListener(new j(this, 14));
-    }
-
-    public static void P(ew0 ew0Var, int i10) {
-        Object obj;
-        i51 G = ew0Var.X.G(i10 - 1);
-        if (G != null) {
-            obj = G.G;
-        } else {
-            obj = null;
-        }
-        if (obj instanceof TLRPC.User) {
-            MessagesController.getInstance(ew0Var.currentAccount).openApp(ew0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
-        }
+    @Override
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+        this.f23679c = animatorUpdateListener;
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
-        rs rsVar = new rs(ll0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
-        this.X = rsVar;
-        rsVar.f29613r = false;
-        return rsVar;
+    public final void end() {
+        this.f23679c = null;
+        super.end();
     }
 
     @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.SearchAppsExamples);
+    public final Object getAnimatedValue() {
+        return this.d;
+    }
+
+    @Override
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.e = fArr;
+    }
+
+    @Override
+    public final void start() {
+        setTimeListener(new TimeAnimator.TimeListener() {
+            @Override
+            public final void onTimeUpdate(TimeAnimator timeAnimator, long j3, long j10) {
+                int i10;
+                ew0 ew0Var = ew0.this;
+                int i11 = ew0Var.f23677a;
+                if (i11 > 0 && (i10 = ew0Var.f23678b) > 0) {
+                    int i12 = i11 - 1;
+                    ew0Var.f23677a = i12;
+                    if (ew0Var.f23679c != null) {
+                        float[] fArr = ew0Var.e;
+                        if (fArr != null && fArr.length == 2) {
+                            float interpolation = ew0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
+                            float[] fArr2 = ew0Var.e;
+                            float f7 = fArr2[0];
+                            ew0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
+                            ew0Var.f23679c.onAnimationUpdate(ew0Var);
+                            return;
+                        }
+                        ew0Var.end();
+                        return;
+                    }
+                    return;
+                }
+                ew0Var.end();
+            }
+        });
+        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
+        this.f23677a = duration;
+        this.f23678b = duration;
+        super.start();
     }
 }

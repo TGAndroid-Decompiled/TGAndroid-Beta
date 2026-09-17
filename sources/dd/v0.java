@@ -7,20 +7,20 @@ public enum v0 extends b2 {
     @Override
     public final void d(l lVar, a aVar) {
         char d = aVar.d();
-        w wVar = b2.f7644a;
+        w wVar = b2.f7649a;
         if (d != '>') {
             if (d != 65535) {
                 lVar.m(this);
                 aVar.q();
-                lVar.f7694c = b2.W;
+                lVar.f7699c = b2.W;
                 return;
             }
             lVar.l(this);
-            lVar.f7694c = wVar;
+            lVar.f7699c = wVar;
             return;
         }
-        lVar.f7697i.f7686j = true;
+        lVar.f7702i.f7691j = true;
         lVar.k();
-        lVar.f7694c = wVar;
+        lVar.f7699c = wVar;
     }
 }

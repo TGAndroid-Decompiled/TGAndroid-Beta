@@ -1,30 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class iz0 implements RequestDelegate {
-    public final int f34751a;
-    public final lz0 f34752b;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class iz0 extends s4.j {
+    public int F = -1;
+    public final ProfileActivity G;
 
-    public iz0(lz0 lz0Var, int i10) {
-        this.f34751a = i10;
-        this.f34752b = lz0Var;
+    public iz0(ProfileActivity profileActivity) {
+        this.G = profileActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f34751a) {
-            case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                lz0 lz0Var = this.f34752b;
-                lz0Var.f35587c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new iz0(lz0Var, 1));
-                return;
-            default:
-                this.f34752b.f35587c.getMessagesController().loadAppConfig();
-                return;
+    public final long K(long j3, long j10, long j11) {
+        return 0L;
+    }
+
+    @Override
+    public final void N() {
+        AndroidUtilities.runOnUIThread(new sl0(this, 28));
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.G.U4();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f42755p.isEmpty();
+        boolean isEmpty2 = this.f42757r.isEmpty();
+        boolean isEmpty3 = this.f42758s.isEmpty();
+        boolean isEmpty4 = this.f42756q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new b3(this, 25));
+            ofFloat.setDuration(this.e);
+            ofFloat.start();
+            this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
         }
+        super.m();
     }
 }

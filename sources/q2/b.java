@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import v7.l7;
 public final class b extends l {
-    public final Context f41099o;
-    public final int f41100p;
+    public final Context f41121o;
+    public final int f41122p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f41099o = context;
-        this.f41100p = -1;
+        this.f41121o = context;
+        this.f41122p = -1;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class b extends l {
     public final h2.f i(h hVar, j jVar, boolean z10) {
         boolean z11;
         a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f10092c;
+        ByteBuffer byteBuffer = hVar.f10097c;
         byteBuffer.getClass();
         e2.d.g(byteBuffer.hasArray());
         if (byteBuffer.arrayOffset() == 0) {
@@ -55,14 +55,14 @@ public final class b extends l {
         }
         e2.d.b(z11);
         try {
-            int i10 = this.f41100p;
+            int i10 = this.f41122p;
             if (i10 == -1) {
-                Context context = this.f41099o;
+                Context context = this.f41121o;
                 if (context != null) {
                     Point w10 = d0.w(context);
                     int i11 = w10.x;
                     int i12 = w10.y;
-                    s sVar = hVar.f10090a;
+                    s sVar = hVar.f10095a;
                     if (sVar != null) {
                         int i13 = sVar.Q;
                         if (i13 != -1) {
@@ -78,7 +78,7 @@ public final class b extends l {
                     i10 = 4096;
                 }
             }
-            aVar.f41097a = l7.a(byteBuffer.remaining(), i10, byteBuffer.array());
+            aVar.f41119a = l7.a(byteBuffer.remaining(), i10, byteBuffer.array());
             aVar.timeUs = hVar.e;
             return null;
         } catch (s0 e) {

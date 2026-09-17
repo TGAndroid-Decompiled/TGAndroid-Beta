@@ -7,30 +7,30 @@ import java.util.concurrent.Executor;
 import v0.i;
 import v0.p;
 public final class b implements rd.a {
-    public final int f2882a;
-    public final Executor f2883b;
-    public final i f2884c;
+    public final int f2887a;
+    public final Executor f2888b;
+    public final i f2889c;
     public final Object d;
 
     public b(e1.d dVar, Exception exc, Executor executor, i iVar) {
-        this.f2882a = 3;
+        this.f2887a = 3;
         this.d = exc;
-        this.f2883b = executor;
-        this.f2884c = iVar;
+        this.f2888b = executor;
+        this.f2889c = iVar;
     }
 
     @Override
     public final Object invoke() {
         Object cVar;
-        switch (this.f2882a) {
+        switch (this.f2887a) {
             case 0:
-                this.f2883b.execute(new ba(5, this.f2884c, this.d));
+                this.f2888b.execute(new ba(5, this.f2889c, this.d));
                 break;
             case 1:
-                this.f2883b.execute(new ba(6, this.f2884c, (p) this.d));
+                this.f2888b.execute(new ba(6, this.f2889c, (p) this.d));
                 break;
             case 2:
-                this.f2883b.execute(new h(this.f2884c, (w0.i) this.d, 0));
+                this.f2888b.execute(new h(this.f2889c, (w0.i) this.d, 0));
                 break;
             default:
                 Exception exc = (Exception) this.d;
@@ -42,7 +42,7 @@ public final class b implements rd.a {
                         cVar = new w0.c("API is not supported: " + exc.getMessage(), 3);
                     } else if (statusCode == 8) {
                         cVar = new w0.f(exc.getMessage());
-                    } else if (d.f2889b.contains(Integer.valueOf(statusCode))) {
+                    } else if (d.f2894b.contains(Integer.valueOf(statusCode))) {
                         cVar = new w0.e(exc.getMessage());
                     } else {
                         cVar = new w0.c("Conditional create failed, failure: " + exc.getMessage(), 2);
@@ -52,16 +52,16 @@ public final class b implements rd.a {
                 } else {
                     cVar = new w0.c("Conditional create failed, failure: " + exc, 2);
                 }
-                this.f2883b.execute(new b9(8, this.f2884c, cVar));
+                this.f2888b.execute(new b9(8, this.f2889c, cVar));
                 break;
         }
-        return gd.i.f9616a;
+        return gd.i.f9621a;
     }
 
     public b(Executor executor, i iVar, Object obj, int i10) {
-        this.f2882a = i10;
-        this.f2883b = executor;
-        this.f2884c = iVar;
+        this.f2887a = i10;
+        this.f2888b = executor;
+        this.f2889c = iVar;
         this.d = obj;
     }
 }

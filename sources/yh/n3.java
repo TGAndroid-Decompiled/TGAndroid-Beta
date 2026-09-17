@@ -7,13 +7,13 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class n3 extends Drawable {
-    public final float f47485a;
-    public final Paint f47486b;
+    public final float f47508a;
+    public final Paint f47509b;
 
     public n3(float f7, int i10) {
         Paint paint = new Paint(1);
-        this.f47486b = paint;
-        this.f47485a = f7;
+        this.f47509b = paint;
+        this.f47508a = f7;
         paint.setColor(i10);
     }
 
@@ -21,8 +21,8 @@ public final class n3 extends Drawable {
     public final void draw(Canvas canvas) {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getBounds());
-        Paint paint = this.f47486b;
-        float f7 = this.f47485a;
+        Paint paint = this.f47509b;
+        float f7 = this.f47508a;
         canvas.drawRoundRect(rectF, f7, f7, paint);
         AndroidUtilities.drawStroke(canvas, rectF, f7);
     }

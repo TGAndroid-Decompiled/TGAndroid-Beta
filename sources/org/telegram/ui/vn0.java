@@ -1,62 +1,50 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 public final class vn0 implements Runnable {
-    public final int f38657a;
-    public final wo0 f38658b;
-    public final TLRPC.TL_error f38659c;
-    public final TLObject d;
+    public final int f38479a;
+    public final yo0 f38480b;
 
-    public vn0(wo0 wo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f38657a = i10;
-        this.f38658b = wo0Var;
-        this.f38659c = tL_error;
-        this.d = tLObject;
+    public vn0(yo0 yo0Var, int i10) {
+        this.f38479a = i10;
+        this.f38480b = yo0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f38657a) {
+        switch (this.f38479a) {
             case 0:
-                wo0 wo0Var = this.f38658b;
-                wo0Var.f39317e0 = false;
-                if (this.f38659c == null) {
-                    TL_account.Password password = (TL_account.Password) this.d;
-                    wo0Var.f39307a0 = password;
-                    if (!TwoStepVerificationActivity.i0(password, false)) {
-                        org.telegram.ui.Components.c5.x0(wo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                        return;
-                    }
-                    TLRPC.PaymentForm paymentForm = wo0Var.C0;
-                    if (paymentForm != null && wo0Var.f39307a0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        wo0Var.K0();
-                    }
-                    TwoStepVerificationActivity.m0(wo0Var.f39307a0);
-                    wo0 wo0Var2 = wo0Var.f39320f0;
-                    if (wo0Var2 != null) {
-                        wo0Var2.C0(wo0Var.f39307a0);
-                    }
-                    if (!wo0Var.f39307a0.has_password && wo0Var.f39315d0 == null) {
-                        tn0 tn0Var = new tn0(wo0Var, 3);
-                        wo0Var.f39315d0 = tn0Var;
-                        AndroidUtilities.runOnUIThread(tn0Var, 5000L);
-                        return;
-                    }
-                    return;
-                }
+                yo0 yo0Var = this.f38480b;
+                yo0Var.f39957f[0].requestFocus();
+                AndroidUtilities.showKeyboard(yo0Var.f39957f[0]);
                 return;
             case 1:
-                wo0.V(this.f38658b, this.f38659c, this.d);
+                this.f38480b.t0();
                 return;
+            case 2:
+                yo0 yo0Var2 = this.f38480b;
+                yo0Var2.getMessagesController().newMessageCallback = null;
+                if (yo0Var2.f39959f1 == 3 && !yo0Var2.isFinishing()) {
+                    yo0Var2.f39959f1 = 4;
+                    xo0 xo0Var = yo0Var2.Z0;
+                    if (xo0Var != null) {
+                        xo0Var.a(4);
+                    }
+                    yo0Var2.finishFragment();
+                    return;
+                } else if (yo0Var2.f39959f1 == 1 && !yo0Var2.isFinishing()) {
+                    yo0Var2.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
             default:
-                wo0.X(this.f38658b, this.f38659c, this.d);
+                yo0 yo0Var3 = this.f38480b;
+                if (yo0Var3.f39953d0 != null) {
+                    yo0Var3.w0();
+                    yo0Var3.f39953d0 = null;
+                    return;
+                }
                 return;
         }
     }

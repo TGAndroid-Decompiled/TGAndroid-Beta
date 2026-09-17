@@ -10,33 +10,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.w1;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.qn;
 import org.telegram.ui.Components.r2;
 import w7.x5;
 public final class v extends FrameLayout {
-    public final TextView f41018a;
-    public final r f41019b;
-    public final EditTextBoldCursor f41020c;
+    public final TextView f41040a;
+    public final r f41041b;
+    public final EditTextBoldCursor f41042c;
     public int d;
     public boolean e;
-    public final x f41021f;
+    public final x f41043f;
 
     public v(x xVar, Context context) {
         super(context);
-        this.f41021f = xVar;
+        this.f41043f = xVar;
         TextView textView = new TextView(context);
-        this.f41018a = textView;
+        this.f41040a = textView;
         w1.q(textView, -1711276033, 1, 14.0f);
         addView(textView, x5.d(-2, -2.0f, 3, 8.0f, 0.0f, 8.0f, 0.0f));
         r rVar = new r(xVar, context);
-        this.f41019b = rVar;
+        this.f41041b = rVar;
         addView(rVar, x5.d(-1, -1.0f, 3, 0.0f, 16.0f, 78.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f41020c = editTextBoldCursor;
+        this.f41042c = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 16.0f);
-        editTextBoldCursor.setBackground(i6.b0(AndroidUtilities.dp(10.0f), 436207615));
+        editTextBoldCursor.setBackground(j6.b0(AndroidUtilities.dp(10.0f), 436207615));
         editTextBoldCursor.setPadding(0, 0, 0, 0);
         editTextBoldCursor.setTextColor(-1);
         editTextBoldCursor.setGravity(17);
@@ -53,8 +53,8 @@ public final class v extends FrameLayout {
 
     public final void a(int i10) {
         this.d = i10;
-        this.f41019b.f40975c = i10;
-        TextView textView = this.f41018a;
+        this.f41041b.f40997c = i10;
+        TextView textView = this.f41040a;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
@@ -71,25 +71,25 @@ public final class v extends FrameLayout {
 
     public final void b() {
         this.e = true;
-        r rVar = this.f41019b;
-        rVar.d = i0.a.k(rVar.e.f41038f, 255);
+        r rVar = this.f41041b;
+        rVar.d = i0.a.k(rVar.e.f41060f, 255);
         rVar.a();
         rVar.invalidate();
-        EditTextBoldCursor editTextBoldCursor = this.f41020c;
+        EditTextBoldCursor editTextBoldCursor = this.f41042c;
         int selectionStart = editTextBoldCursor.getSelectionStart();
         int selectionEnd = editTextBoldCursor.getSelectionEnd();
         int i10 = this.d;
-        x xVar = this.f41021f;
+        x xVar = this.f41043f;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    editTextBoldCursor.setText(String.valueOf(Color.blue(xVar.f41038f)));
+                    editTextBoldCursor.setText(String.valueOf(Color.blue(xVar.f41060f)));
                 }
             } else {
-                editTextBoldCursor.setText(String.valueOf(Color.green(xVar.f41038f)));
+                editTextBoldCursor.setText(String.valueOf(Color.green(xVar.f41060f)));
             }
         } else {
-            editTextBoldCursor.setText(String.valueOf(Color.red(xVar.f41038f)));
+            editTextBoldCursor.setText(String.valueOf(Color.red(xVar.f41060f)));
         }
         editTextBoldCursor.setSelection(selectionStart, selectionEnd);
         this.e = false;

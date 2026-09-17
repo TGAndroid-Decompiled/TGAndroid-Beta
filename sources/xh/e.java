@@ -12,26 +12,26 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.za;
 import w7.x5;
 public final class e extends za implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final i51 X;
+    public final j51 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f45831a0;
-    public w51 f45832b0;
+    public boolean f45854a0;
+    public x51 f45855b0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        setBackgroundColor(i6.w0(null, i6.f18780a7, false));
+        setBackgroundColor(j6.w0(null, j6.f18806a7, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
@@ -41,10 +41,10 @@ public final class e extends za implements GiftAuctionController.OnActiveAuction
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.X = i51.j(-1, linearLayout);
+        this.X = j51.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f45832b0.N(false);
+        this.f45855b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,7 +52,7 @@ public final class e extends za implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f45821a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            dVar.f45844a.setOnClickListener(new xg.e(this, context, auction2, 1));
             linearLayout.addView(dVar, x5.n(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
@@ -81,10 +81,10 @@ public final class e extends za implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f45831a0);
+                dVar.b(this.f45854a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f45831a0);
-                dVar.f45824f.a(max);
+                dVar.a(max, this.f45854a0);
+                dVar.f45847f.a(max);
             }
         }
     }
@@ -92,15 +92,15 @@ public final class e extends za implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f45831a0 = true;
+        this.f45854a0 = true;
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
-        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f45832b0 = w51Var;
-        w51Var.f29613r = false;
-        return w51Var;
+    public final ll0 v(ml0 ml0Var) {
+        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
+        this.f45855b0 = x51Var;
+        x51Var.f29851r = false;
+        return x51Var;
     }
 
     @Override

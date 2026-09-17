@@ -1,35 +1,58 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ha0 implements RequestDelegate {
-    public final int f34223a;
-    public final LaunchActivity f34224b;
+public final class ha0 implements Utilities.Callback {
+    public final int f34220a;
+    public final LaunchActivity f34221b;
 
     public ha0(LaunchActivity launchActivity, int i10) {
-        this.f34223a = i10;
-        this.f34224b = launchActivity;
+        this.f34220a = i10;
+        this.f34221b = launchActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f34223a;
-        LaunchActivity launchActivity = this.f34224b;
+    public final void run(Object obj) {
+        org.telegram.ui.ActionBar.o2 lastFragment;
+        int i10 = this.f34220a;
+        LaunchActivity launchActivity = this.f34221b;
         switch (i10) {
             case 0:
-                Pattern pattern = LaunchActivity.B1;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new ma0(0, launchActivity, (TL_account.Password) tLObject));
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                if (launchActivity.f30858q0 != null && booleanValue && LiteMode.getPowerSaverLevel() < 100 && (lastFragment = launchActivity.f30858q0.getLastFragment()) != null && !(lastFragment instanceof pc0)) {
+                    int batteryLevel = LiteMode.getBatteryLevel();
+                    org.telegram.ui.Components.vc a02 = org.telegram.ui.Components.vc.a0(lastFragment);
+                    org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(batteryLevel / 100.0f, lastFragment.getThemedColor(org.telegram.ui.ActionBar.j6.Y5));
+                    String string = LocaleController.getString(R.string.LowPowerEnabledTitle);
+                    String formatString = LocaleController.formatString("LowPowerEnabledSubtitle", R.string.LowPowerEnabledSubtitle, String.format("%d%%", Integer.valueOf(batteryLevel)));
+                    String string2 = LocaleController.getString(R.string.Disable);
+                    h90 h90Var = new h90(launchActivity, 8);
+                    a02.getClass();
+                    Context W = a02.W();
+                    org.telegram.ui.ActionBar.f6 f6Var = a02.f28683c;
+                    org.telegram.ui.Components.lc lcVar = new org.telegram.ui.Components.lc(W, f6Var);
+                    lcVar.f25887a.setImageDrawable(w9Var);
+                    lcVar.f25888b.setText(string);
+                    lcVar.f25889c.setText(formatString);
+                    org.telegram.ui.Components.mc mcVar = new org.telegram.ui.Components.mc(a02.W(), f6Var, true);
+                    mcVar.e(string2);
+                    mcVar.f26122a = h90Var;
+                    lcVar.setButton(mcVar);
+                    org.telegram.ui.Components.oc b10 = a02.b(lcVar, 2750);
+                    b10.f26702j = 5000;
+                    b10.j();
                     return;
                 }
                 return;
             default:
-                Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new kw(26, launchActivity, tLObject));
+                Pattern pattern = LaunchActivity.B1;
+                MessagesController.getInstance(launchActivity.O).openApp((TLRPC.User) obj, 0);
                 return;
         }
     }

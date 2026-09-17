@@ -1,95 +1,58 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class k11 extends Drawable implements org.telegram.ui.ActionBar.i5 {
-    public final org.telegram.ui.Components.m6 f35007a;
-    public final Paint f35008b;
-    public int f35009c;
-    public float d;
-    public float e;
-    public final org.telegram.ui.Cells.l0 f35010f;
-    public org.telegram.ui.Cells.w0 h;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+public final class k11 {
+    public final String f34971a;
+    public final Runnable f34972b;
+    public final String f34973c;
+    public final String[] d;
+    public final int e;
+    public final int f34974f;
+    public int f34975g;
+    public String h;
 
-    public k11(String str) {
-        Paint paint = new Paint(1);
-        this.f35008b = paint;
-        this.d = 1.0f;
-        this.e = 1.0f;
-        this.f35010f = new org.telegram.ui.Cells.l0(this);
-        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, false, false, false);
-        this.f35007a = m6Var;
-        m6Var.setCallback(new xr(1, this));
-        m6Var.q(str, true, true);
-        m6Var.t(AndroidUtilities.dp(11.0f));
-        m6Var.f26086b = 17;
-        paint.setColor(520093696);
+    public k11(String str, int i10, int i11, Runnable runnable) {
+        this(i10, str, null, null, null, i11, runnable);
     }
 
-    public final void a(int i10) {
-        Paint paint = this.f35008b;
-        if (paint.getColor() != i10) {
-            paint.setColor(i10);
-            invalidateSelf();
+    public final void a(String str) {
+        this.h = str;
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof k11) && this.f34974f == ((k11) obj).f34974f) {
+            return true;
         }
+        return false;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7 = this.d * this.e;
-        if (f7 <= 0.0f) {
-            return;
+    public final String toString() {
+        SerializedData serializedData = new SerializedData();
+        serializedData.writeInt32(this.f34975g);
+        serializedData.writeInt32(1);
+        serializedData.writeInt32(this.f34974f);
+        return Utilities.bytesToHex(serializedData.toByteArray());
+    }
+
+    public k11(int i10, String str, String str2, int i11, Runnable runnable) {
+        this(i10, str, null, str2, null, i11, runnable);
+    }
+
+    public k11(int i10, String str, String str2, String str3, int i11, Runnable runnable) {
+        this(i10, str, str2, str3, null, i11, runnable);
+    }
+
+    public k11(int i10, String str, String str2, String str3, String str4, int i11, Runnable runnable) {
+        this.f34974f = i10;
+        this.f34971a = str;
+        this.f34973c = str2;
+        this.f34972b = runnable;
+        this.e = i11;
+        if (str3 != null && str4 != null) {
+            this.d = new String[]{str3, str4};
+        } else if (str3 != null) {
+            this.d = new String[]{str3};
         }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getBounds());
-        canvas.save();
-        float a2 = this.f35010f.a(0.1f);
-        canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        Paint paint = this.f35008b;
-        int alpha = paint.getAlpha();
-        paint.setAlpha((int) (alpha * f7));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), paint);
-        paint.setAlpha(alpha);
-        int i10 = this.f35009c;
-        org.telegram.ui.Components.m6 m6Var = this.f35007a;
-        m6Var.r(i10);
-        m6Var.f26103w = (int) (f7 * 255.0f);
-        m6Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        m6Var.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getAlpha() {
-        return (int) (this.d * 255.0f);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(17.33f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f35007a.d + AndroidUtilities.dp(11.0f));
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10 / 255.0f;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

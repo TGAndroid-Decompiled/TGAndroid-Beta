@@ -2,18 +2,18 @@ package hh;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.uj;
+import org.telegram.ui.vj;
 public final class a {
-    public RecyclerView f10492a;
-    public int f10493b;
-    public long f10494c;
+    public RecyclerView f10497a;
+    public int f10498b;
+    public long f10499c;
     public int d;
     public boolean e;
 
     public final boolean a(MessageObject messageObject) {
         if (messageObject != null) {
-            if (messageObject.getId() != this.f10493b) {
-                if (this.f10494c != 0 && messageObject.getGroupId() == this.f10494c) {
+            if (messageObject.getId() != this.f10498b) {
+                if (this.f10499c != 0 && messageObject.getGroupId() == this.f10499c) {
                     return true;
                 }
                 return false;
@@ -28,11 +28,11 @@ public final class a {
     }
 
     public final boolean c(int i10, long j3) {
-        if (this.f10493b == i10 && this.f10494c == j3) {
+        if (this.f10498b == i10 && this.f10499c == j3) {
             return false;
         }
-        this.f10493b = i10;
-        this.f10494c = j3;
+        this.f10498b = i10;
+        this.f10499c = j3;
         if (i10 == 0) {
             this.e = false;
             return true;
@@ -44,7 +44,7 @@ public final class a {
         this.d = i10;
     }
 
-    public final void e(uj ujVar) {
-        this.f10492a = ujVar;
+    public final void e(vj vjVar) {
+        this.f10497a = vjVar;
     }
 }

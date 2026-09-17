@@ -18,12 +18,12 @@ import org.json.JSONException;
 import v7.g5;
 import w7.d9;
 public final class l extends b8.b {
-    public final int f302b = 0;
-    public final Object f303c;
+    public final int f304b = 0;
+    public final Object f305c;
 
     public l(RevocationBoundService revocationBoundService) {
         super("com.google.android.gms.auth.api.signin.internal.IRevocationService", 5);
-        this.f303c = revocationBoundService;
+        this.f305c = revocationBoundService;
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class l extends b8.b {
         boolean z10;
         BasePendingResult basePendingResult;
         String d;
-        int i11 = this.f302b;
-        Object obj = this.f303c;
+        int i11 = this.f304b;
+        Object obj = this.f305c;
         switch (i11) {
             case 0:
                 RevocationBoundService revocationBoundService = (RevocationBoundService) obj;
@@ -60,18 +60,18 @@ public final class l extends b8.b {
                     v0 a10 = d9.a(revocationBoundService, googleSignInOptions);
                     if (b10 != null) {
                         t0 t0Var = a10.h;
-                        Context context = a10.f6204a;
+                        Context context = a10.f6209a;
                         if (a10.h() == 3) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        h.f298a.i("Revoking access", new Object[0]);
+                        h.f300a.i("Revoking access", new Object[0]);
                         String d11 = b.a(context).d("refreshToken");
                         h.b(context);
                         if (z10) {
                             if (d11 == null) {
-                                a5.a aVar = c.f285c;
+                                a5.a aVar = c.f287c;
                                 Status status = new Status(4, null, null, null);
                                 n6.l.a("Status code must not be SUCCESS", !status.b());
                                 basePendingResult = new s(status);
@@ -79,11 +79,11 @@ public final class l extends b8.b {
                             } else {
                                 c cVar = new c(d11);
                                 new Thread(cVar).start();
-                                basePendingResult = cVar.f287b;
+                                basePendingResult = cVar.f289b;
                             }
                         } else {
                             g gVar = new g(t0Var, 1);
-                            t0Var.f6172b.d(1, gVar);
+                            t0Var.f6177b.d(1, gVar);
                             basePendingResult = gVar;
                         }
                         n6.l.n(basePendingResult, new Object());
@@ -103,7 +103,7 @@ public final class l extends b8.b {
     }
 
     public void L0() {
-        if (u6.b.e((RevocationBoundService) this.f303c, Binder.getCallingUid())) {
+        if (u6.b.e((RevocationBoundService) this.f305c, Binder.getCallingUid())) {
             return;
         }
         throw new SecurityException(k0.j(Binder.getCallingUid(), "Calling UID ", " is not Google Play services."));
@@ -111,6 +111,6 @@ public final class l extends b8.b {
 
     public l(TaskCompletionSource taskCompletionSource) {
         super("com.google.android.gms.auth.api.identity.internal.IBeginSignInCallback", 5);
-        this.f303c = taskCompletionSource;
+        this.f305c = taskCompletionSource;
     }
 }

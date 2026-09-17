@@ -5,41 +5,41 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jj extends ni {
-    public ai.w0 f25354n;
-    public int f25355r;
-    public bi.l f25356s;
+    public ai.w0 f25303n;
+    public int f25304r;
+    public bi.l f25305s;
     public xa v;
-    public int f25357w;
-    public q0.a f25358x;
+    public int f25306w;
+    public q0.a f25307x;
 
     @Override
     public final void E(ni niVar) {
-        vi viVar = this.f26462b;
+        vi viVar = this.f26460b;
         try {
             viVar.X0.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
         viVar.X0.setTitle(LocaleController.getString(R.string.SelectColor));
-        this.f25356s.h1(0, 0);
+        this.f25305s.h1(0, 0);
     }
 
     @Override
     public final void G() {
-        this.f25354n.x0(0);
+        this.f25303n.y0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        ai.w0 w0Var = this.f25354n;
+        ai.w0 w0Var = this.f25303n;
         if (w0Var.getChildCount() <= 0) {
             w0Var.setTopGlowOffset(w0Var.getPaddingTop());
             return Integer.MAX_VALUE;
         }
         View childAt = w0Var.getChildAt(0);
-        vk0 vk0Var = (vk0) w0Var.G(childAt);
+        wk0 wk0Var = (wk0) w0Var.H(childAt);
         int top = childAt.getTop();
         int dp = AndroidUtilities.dp(7.0f);
-        if (top < AndroidUtilities.dp(7.0f) || vk0Var == null || vk0Var.b() != 0) {
+        if (top < AndroidUtilities.dp(7.0f) || wk0Var == null || wk0Var.b() != 0) {
             top = dp;
         }
         w0Var.setTopGlowOffset(top);
@@ -53,7 +53,7 @@ public final class jj extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f25354n.getPaddingTop();
+        return this.f25303n.getPaddingTop();
     }
 
     @Override
@@ -62,13 +62,13 @@ public final class jj extends ni {
     }
 
     public void setDelegate(q0.a aVar) {
-        this.f25358x = aVar;
+        this.f25307x = aVar;
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f26462b.getSheetContainer().invalidate();
+        this.f26460b.getSheetContainer().invalidate();
         invalidate();
     }
 

@@ -1,72 +1,33 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class zz implements TextWatcher {
-    public final int f40337a;
-    public boolean f40338b;
-    public final EditTextBoldCursor f40339c;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class zz implements TextView.OnEditorActionListener {
+    public final int f40358a;
+    public final AlertDialog$Builder f40359b;
 
-    public zz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f40337a = i10;
-        this.f40339c = editTextBoldCursor;
+    public zz(AlertDialog$Builder alertDialog$Builder, int i10) {
+        this.f40358a = i10;
+        this.f40359b = alertDialog$Builder;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f40337a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f40358a) {
             case 0:
-                if (!this.f40338b && editable.length() > 32) {
-                    this.f40338b = true;
-                    editable.delete(32, editable.length());
-                    EditTextBoldCursor editTextBoldCursor = this.f40339c;
-                    AndroidUtilities.shakeView(editTextBoldCursor);
-                    try {
-                        editTextBoldCursor.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
-                    }
-                    this.f40338b = false;
-                    return;
-                }
-                return;
+                AndroidUtilities.hideKeyboard(textView);
+                this.f40359b.f18446a.d(-1).callOnClick();
+                return false;
+            case 1:
+                AndroidUtilities.hideKeyboard(textView);
+                this.f40359b.f18446a.d(-1).callOnClick();
+                return false;
             default:
-                if (!this.f40338b && editable.length() > 40) {
-                    this.f40338b = true;
-                    editable.delete(40, editable.length());
-                    EditTextBoldCursor editTextBoldCursor2 = this.f40339c;
-                    AndroidUtilities.shakeView(editTextBoldCursor2);
-                    try {
-                        editTextBoldCursor2.performHapticFeedback(3, 2);
-                    } catch (Exception unused2) {
-                    }
-                    this.f40338b = false;
-                    return;
-                }
-                return;
+                AndroidUtilities.hideKeyboard(textView);
+                this.f40359b.f18446a.d(-1).callOnClick();
+                return false;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40337a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40337a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

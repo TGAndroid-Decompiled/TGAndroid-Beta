@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.f51;
 import org.telegram.ui.Components.ky;
 public final class p implements ky {
-    public final r f11545a;
+    public final r f11548a;
 
     public p(r rVar) {
-        this.f11545a = rVar;
+        this.f11548a = rVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class p implements ky {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f11545a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11588r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f11548a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11591r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f11592y = z10;
+        rVar.f11595y = z10;
         rVar.S();
     }
 
@@ -69,7 +69,7 @@ public final class p implements ky {
 
     @Override
     public final boolean k() {
-        i1 M = r.M(this.f11545a);
+        i1 M = r.M(this.f11548a);
         if (M == null || M.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class p implements ky {
 
     @Override
     public final void l(String str) {
-        r rVar = this.f11545a;
+        r rVar = this.f11548a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -104,7 +104,7 @@ public final class p implements ky {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.x5 x5Var;
-        r rVar = this.f11545a;
+        r rVar = this.f11548a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -133,7 +133,7 @@ public final class p implements ky {
 
     @Override
     public final boolean z() {
-        return this.f11545a.f11592y;
+        return this.f11548a.f11595y;
     }
 
     @Override
@@ -145,7 +145,7 @@ public final class p implements ky {
     }
 
     @Override
-    public final void o(e51 e51Var) {
+    public final void o(f51 f51Var) {
     }
 
     @Override

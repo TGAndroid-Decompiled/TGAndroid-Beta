@@ -3,25 +3,25 @@ package r7;
 import w7.b7;
 public final class u extends t {
     public static final u e = new u(0, new Object[0]);
-    public final transient Object[] f42093c;
+    public final transient Object[] f42115c;
     public final transient int d;
 
     public u(int i10, Object[] objArr) {
-        this.f42093c = objArr;
+        this.f42115c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         b7.a(i10, this.d);
-        Object obj = this.f42093c[i10];
+        Object obj = this.f42115c[i10];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f42093c;
+        Object[] objArr2 = this.f42115c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -44,7 +44,7 @@ public final class u extends t {
 
     @Override
     public final Object[] q() {
-        return this.f42093c;
+        return this.f42115c;
     }
 
     @Override

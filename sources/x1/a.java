@@ -10,12 +10,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import u4.e;
 public final class a implements Runnable {
-    public static Handler f45134f;
+    public static Handler f45157f;
     public final d e;
-    public volatile int f45136b = 1;
-    public final AtomicBoolean f45137c = new AtomicBoolean();
+    public volatile int f45159b = 1;
+    public final AtomicBoolean f45160c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f45135a = new b(this, new x(this, 8));
+    public final b f45158a = new b(this, new x(this, 8));
 
     public a(d dVar) {
         this.e = dVar;
@@ -24,13 +24,13 @@ public final class a implements Runnable {
     public final void a() {
         d dVar = this.e;
         int i10 = 0;
-        for (m mVar : dVar.f294j) {
+        for (m mVar : dVar.f296j) {
             if (mVar.d(dVar)) {
                 i10++;
             }
         }
         try {
-            dVar.f293i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
+            dVar.f295i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
             Thread.currentThread().interrupt();
@@ -41,10 +41,10 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f45134f == null) {
-                    f45134f = new Handler(Looper.getMainLooper());
+                if (f45157f == null) {
+                    f45157f = new Handler(Looper.getMainLooper());
                 }
-                handler = f45134f;
+                handler = f45157f;
             } catch (Throwable th2) {
                 throw th2;
             }

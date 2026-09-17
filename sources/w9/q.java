@@ -5,16 +5,16 @@ import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.Cells.ia;
 public final class q implements Thread.UncaughtExceptionHandler {
-    public final ia f44969a;
-    public final da.b f44970b;
-    public final Thread.UncaughtExceptionHandler f44971c;
+    public final ia f44992a;
+    public final da.b f44993b;
+    public final Thread.UncaughtExceptionHandler f44994c;
     public final t9.a d;
     public final AtomicBoolean e = new AtomicBoolean(false);
 
     public q(ia iaVar, da.b bVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, t9.a aVar) {
-        this.f44969a = iaVar;
-        this.f44970b = bVar;
-        this.f44971c = uncaughtExceptionHandler;
+        this.f44992a = iaVar;
+        this.f44993b = bVar;
+        this.f44994c = uncaughtExceptionHandler;
         this.d = aVar;
     }
 

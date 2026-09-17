@@ -19,30 +19,30 @@ import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 import org.telegram.ui.Components.wg;
 public final class g implements Closeable {
-    public final f f46689a;
-    public final String f46690b;
-    public final InputStream f46691c;
+    public final f f46712a;
+    public final String f46713b;
+    public final InputStream f46714c;
     public final long d;
     public final wg e = new wg(this, 1);
-    public final HashMap f46692f = new HashMap();
+    public final HashMap f46715f = new HashMap();
     public int h;
-    public boolean f46693n;
-    public boolean f46694r;
-    public boolean f46695s;
+    public boolean f46716n;
+    public boolean f46717r;
+    public boolean f46718s;
 
     public g(f fVar, String str, InputStream inputStream, long j3) {
         boolean z10;
-        this.f46689a = fVar;
-        this.f46690b = str;
-        this.f46691c = inputStream;
+        this.f46712a = fVar;
+        this.f46713b = str;
+        this.f46714c = inputStream;
         this.d = j3;
         if (j3 < 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f46693n = z10;
-        this.f46695s = true;
+        this.f46716n = z10;
+        this.f46718s = true;
     }
 
     public static void c(PrintWriter printWriter, String str, String str2) {
@@ -50,7 +50,7 @@ public final class g implements Closeable {
     }
 
     public final String a(String str) {
-        return (String) this.f46692f.get(str.toLowerCase());
+        return (String) this.f46715f.get(str.toLowerCase());
     }
 
     public final boolean b() {
@@ -59,7 +59,7 @@ public final class g implements Closeable {
 
     @Override
     public final void close() {
-        InputStream inputStream = this.f46691c;
+        InputStream inputStream = this.f46714c;
         if (inputStream != null) {
             inputStream.close();
         }
@@ -68,19 +68,19 @@ public final class g implements Closeable {
     public final void d(OutputStream outputStream) {
         long j3;
         String str;
-        String str2 = this.f46690b;
+        String str2 = this.f46713b;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss 'GMT'", Locale.US);
         simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("GMT"));
-        f fVar = this.f46689a;
+        f fVar = this.f46712a;
         try {
             if (fVar != null) {
-                String str3 = new b(str2).f46670c;
+                String str3 = new b(str2).f46693c;
                 if (str3 == null) {
                     str3 = "US-ASCII";
                 }
                 PrintWriter printWriter = new PrintWriter((Writer) new BufferedWriter(new OutputStreamWriter(outputStream, str3)), false);
                 PrintWriter append = printWriter.append((CharSequence) "HTTP/1.1 ");
-                append.append((CharSequence) ("" + fVar.f46687a + " " + fVar.f46688b)).append((CharSequence) " \r\n");
+                append.append((CharSequence) ("" + fVar.f46710a + " " + fVar.f46711b)).append((CharSequence) " \r\n");
                 if (str2 != null) {
                     c(printWriter, "Content-Type", str2);
                 }
@@ -91,7 +91,7 @@ public final class g implements Closeable {
                     c(printWriter, (String) entry.getKey(), (String) entry.getValue());
                 }
                 if (a("connection") == null) {
-                    if (this.f46695s) {
+                    if (this.f46718s) {
                         str = "keep-alive";
                     } else {
                         str = "close";
@@ -99,28 +99,28 @@ public final class g implements Closeable {
                     c(printWriter, "Connection", str);
                 }
                 if (a("content-length") != null) {
-                    this.f46694r = false;
+                    this.f46717r = false;
                 }
-                if (this.f46694r) {
+                if (this.f46717r) {
                     c(printWriter, "Content-Encoding", "gzip");
-                    this.f46693n = true;
+                    this.f46716n = true;
                 }
-                InputStream inputStream = this.f46691c;
+                InputStream inputStream = this.f46714c;
                 if (inputStream != null) {
                     j3 = this.d;
                 } else {
                     j3 = 0;
                 }
-                if (this.h != 5 && this.f46693n) {
+                if (this.h != 5 && this.f46716n) {
                     c(printWriter, "Transfer-Encoding", "chunked");
-                } else if (!this.f46694r) {
+                } else if (!this.f46717r) {
                     j3 = f(printWriter, j3);
                 }
                 printWriter.append((CharSequence) "\r\n");
                 printWriter.flush();
-                if (this.h != 5 && this.f46693n) {
+                if (this.h != 5 && this.f46716n) {
                     ?? filterOutputStream = new FilterOutputStream(outputStream);
-                    if (this.f46694r) {
+                    if (this.f46717r) {
                         GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(filterOutputStream);
                         e(gZIPOutputStream, -1L);
                         gZIPOutputStream.finish();
@@ -128,7 +128,7 @@ public final class g implements Closeable {
                         e(filterOutputStream, -1L);
                     }
                     filterOutputStream.a();
-                } else if (this.f46694r) {
+                } else if (this.f46717r) {
                     GZIPOutputStream gZIPOutputStream2 = new GZIPOutputStream(outputStream);
                     e(gZIPOutputStream2, -1L);
                     gZIPOutputStream2.finish();
@@ -161,7 +161,7 @@ public final class g implements Closeable {
                 } else {
                     min = Math.min(j3, 16384L);
                 }
-                int read = this.f46691c.read(bArr, 0, (int) min);
+                int read = this.f46714c.read(bArr, 0, (int) min);
                 if (read <= 0) {
                     return;
                 }
@@ -189,11 +189,11 @@ public final class g implements Closeable {
     }
 
     public final void g(boolean z10) {
-        this.f46694r = z10;
+        this.f46717r = z10;
     }
 
     public final void h(boolean z10) {
-        this.f46695s = z10;
+        this.f46718s = z10;
     }
 
     public final void i(int i10) {

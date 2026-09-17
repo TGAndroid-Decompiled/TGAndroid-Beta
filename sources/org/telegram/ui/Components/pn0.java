@@ -1,22 +1,13 @@
 package org.telegram.ui.Components;
+public final class pn0 extends s4.j {
+    public final org.telegram.ui.gy F;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class pn0 extends e40 {
-    public final org.telegram.ui.ey f27098c0;
-
-    public pn0(org.telegram.ui.ey eyVar, ll0 ll0Var, Context context, int i10) {
-        super(ll0Var, context, i10);
-        this.f27098c0 = eyVar;
+    public pn0(org.telegram.ui.gy gyVar) {
+        this.F = gyVar;
     }
 
     @Override
-    public final void N(boolean z10) {
-        super.N(z10);
-        ln0 ln0Var = this.f27098c0.f30303s0;
-        ln0Var.e(false, z10);
-        ln0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        ln0Var.e.setVisibility(8);
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

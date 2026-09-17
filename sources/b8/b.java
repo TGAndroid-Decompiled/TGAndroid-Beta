@@ -6,14 +6,14 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public abstract class b extends Binder implements IInterface {
-    public final int f3427a;
+    public final int f3432a;
 
     public b(int i10) {
-        this.f3427a = i10;
+        this.f3432a = i10;
     }
 
     public static void G0(Parcel parcel) {
-        int i10 = q7.a.f41167a;
+        int i10 = q7.a.f41189a;
         int dataAvail = parcel.dataAvail();
         if (dataAvail <= 0) {
             return;
@@ -36,7 +36,7 @@ public abstract class b extends Binder implements IInterface {
 
     @Override
     public IBinder asBinder() {
-        int i10 = this.f3427a;
+        int i10 = this.f3432a;
         return this;
     }
 
@@ -46,7 +46,7 @@ public abstract class b extends Binder implements IInterface {
     }
 
     public b(String str, int i10) {
-        this.f3427a = i10;
+        this.f3432a = i10;
         switch (i10) {
             case 4:
                 attachInterface(this, str);

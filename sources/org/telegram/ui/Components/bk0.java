@@ -1,32 +1,33 @@
 package org.telegram.ui.Components;
+public final class bk0 implements Runnable {
+    public final int f22760a;
+    public final ek0 f22761b;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class bk0 extends ImageReceiver {
-    public final int f22822a;
-
-    public bk0(int i10, View view) {
-        super(view);
-        this.f22822a = i10;
+    public bk0(ek0 ek0Var, int i10) {
+        this.f22760a = i10;
+        this.f22761b = ek0Var;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f22822a) {
+    public final void run() {
+        switch (this.f22760a) {
             case 0:
-                if (drawable instanceof xi0) {
-                    ((xi0) drawable).N(0, false, true);
+                if (this.f22761b.f23580a.getImageReceiver().getLottieAnimation() != null && !this.f22761b.f23580a.getImageReceiver().getLottieAnimation().f30233l0 && !this.f22761b.f23580a.getImageReceiver().getLottieAnimation().y()) {
+                    this.f22761b.f23580a.getImageReceiver().getLottieAnimation().start();
                 }
-                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                this.f22761b.E = false;
+                return;
             default:
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (imageBitmapByKey && (drawable instanceof xi0)) {
-                    xi0 xi0Var = (xi0) drawable;
-                    xi0Var.N(0, false, true);
-                    xi0Var.stop();
+                ek0 ek0Var = this.f22761b;
+                gk0 gk0Var = ek0Var.P;
+                try {
+                    ek0Var.performHapticFeedback(0);
+                } catch (Exception unused) {
                 }
-                return imageBitmapByKey;
+                gk0Var.m0 = gk0Var.T.indexOf(ek0Var.e);
+                gk0Var.f24290l0 = ek0Var.e;
+                gk0Var.invalidate();
+                return;
         }
     }
 }

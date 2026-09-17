@@ -17,22 +17,22 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
-import org.telegram.ui.Components.g01;
+import org.telegram.ui.Components.h01;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.l20;
+import org.telegram.ui.n20;
 public class BotFullscreenButtons extends View {
     private final org.telegram.ui.Components.c6 animatedBack;
     private final org.telegram.ui.Components.c6 animatedDownloading;
     private final org.telegram.ui.Components.c6 animatedPreview;
     private boolean back;
-    private final g01 backText;
+    private final h01 backText;
     private final Paint backgroundPaint;
     private final Path backgroundPath;
     private RenderNode blurNode;
     private final org.telegram.ui.Components.wc closeBounce;
     private final RectF closeRect;
     private final RectF closeRectArea;
-    private final g01 closeText;
+    private final h01 closeText;
     private final org.telegram.ui.Components.wc collapseBounce;
     private final RectF collapseClickRect;
     private final RectF collapseRect;
@@ -54,8 +54,8 @@ public class BotFullscreenButtons extends View {
     public Object parentRenderNode;
     int pressed;
     private boolean preview;
-    private final l20 previewClip;
-    private g01 previewText;
+    private final n20 previewClip;
+    private h01 previewText;
     private final RectF rightMenu;
     private final long start;
     private Drawable verifiedBackground;
@@ -102,19 +102,19 @@ public class BotFullscreenButtons extends View {
                 canvas.translate(-AndroidUtilities.dpf2(8.166f), AndroidUtilities.dpf2(5.0f));
                 float f7 = (e * 0.5f) + 0.5f;
                 canvas.scale(f7, f7);
-                this.downloadPaint.setColor(org.telegram.ui.ActionBar.i6.l1(0.4f, -1));
+                this.downloadPaint.setColor(org.telegram.ui.ActionBar.j6.l1(0.4f, -1));
                 canvas.drawPath(this.downloadPath, this.downloadPaint);
                 float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.start) % 450)) / 450.0f;
                 float f10 = 0.5f + currentTimeMillis;
                 canvas.save();
                 canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), currentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f10));
-                this.downloadPaint.setColor(org.telegram.ui.ActionBar.i6.l1(1.0f, -1));
+                this.downloadPaint.setColor(org.telegram.ui.ActionBar.j6.l1(1.0f, -1));
                 canvas.drawPath(this.downloadPath, this.downloadPaint);
                 canvas.restore();
                 if (f10 > 1.0f) {
                     canvas.save();
                     canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), 0.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f10 - 1.0f));
-                    this.downloadPaint.setColor(org.telegram.ui.ActionBar.i6.l1(1.0f, -1));
+                    this.downloadPaint.setColor(org.telegram.ui.ActionBar.j6.l1(1.0f, -1));
                     canvas.drawPath(this.downloadPath, this.downloadPaint);
                     canvas.restore();
                 }
@@ -188,14 +188,14 @@ public class BotFullscreenButtons extends View {
         this.animatedPreview = new org.telegram.ui.Components.c6(this, 0L, 420L, qrVar);
         this.downloading = false;
         this.animatedDownloading = new org.telegram.ui.Components.c6(this, 0L, 420L, qrVar);
-        this.previewClip = new l20();
+        this.previewClip = new n20();
         this.hidePreview = new d1(this, 13);
         this.start = System.currentTimeMillis();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.backText = new g01(LocaleController.getString(R.string.BotFullscreenBack), 13.0f, AndroidUtilities.bold());
-        this.closeText = new g01(LocaleController.getString(R.string.BotFullscreenClose), 13.0f, AndroidUtilities.bold());
+        this.backText = new h01(LocaleController.getString(R.string.BotFullscreenBack), 13.0f, AndroidUtilities.bold());
+        this.closeText = new h01(LocaleController.getString(R.string.BotFullscreenClose), 13.0f, AndroidUtilities.bold());
         paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
         path.rewind();
         path.moveTo(-AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(0.16f));
@@ -279,12 +279,12 @@ public class BotFullscreenButtons extends View {
         float e = this.animatedBack.e(this.back);
         float e7 = this.animatedPreview.e(this.preview);
         float dp4 = (this.rightMenu.left - AndroidUtilities.dp(18.0f)) - (this.insets.left + AndroidUtilities.dp(38.0f));
-        g01 g01Var = this.previewText;
-        if (g01Var == null) {
+        h01 h01Var = this.previewText;
+        if (h01Var == null) {
             dp = 0.0f;
             f7 = 18.0f;
         } else {
-            float f16 = g01Var.f24149c;
+            float f16 = h01Var.f24439c;
             f7 = 18.0f;
             if (this.verifiedBackground != null) {
                 f10 = 30.0f;
@@ -294,7 +294,7 @@ public class BotFullscreenButtons extends View {
             dp = f16 + AndroidUtilities.dp(f10);
         }
         float min = Math.min(dp4, dp);
-        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f24149c, this.backText.f24149c, e) + AndroidUtilities.dp(12.0f), min, e7), this.insets.top + AndroidUtilities.dp(38.0f));
+        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f24439c, this.backText.f24439c, e) + AndroidUtilities.dp(12.0f), min, e7), this.insets.top + AndroidUtilities.dp(38.0f));
         RectF rectF9 = this.closeRect;
         RectF rectF10 = this.leftMenu;
         float f17 = rectF10.left;
@@ -306,7 +306,7 @@ public class BotFullscreenButtons extends View {
         if (this.parentRenderNode == null || Build.VERSION.SDK_INT < 31 || !canvas.isHardwareAccelerated() || ((webView = this.webView) != null && webView.getLayerType() != 2)) {
             f11 = 12.0f;
             f12 = 16.0f;
-            this.backgroundPaint.setColor(org.telegram.ui.ActionBar.i6.l1(0.35f, -16777216));
+            this.backgroundPaint.setColor(org.telegram.ui.ActionBar.j6.l1(0.35f, -16777216));
             canvas.drawPath(this.backgroundPath, this.backgroundPaint);
         } else {
             if (this.blurNode == null) {
@@ -330,7 +330,7 @@ public class BotFullscreenButtons extends View {
             canvas.translate(AndroidUtilities.dp(8.0f), 0.0f);
             canvas.drawRenderNode(this.blurNode);
             canvas.restore();
-            this.backgroundPaint.setColor(org.telegram.ui.ActionBar.i6.l1(0.22f, -16777216));
+            this.backgroundPaint.setColor(org.telegram.ui.ActionBar.j6.l1(0.22f, -16777216));
             canvas.drawPaint(this.backgroundPaint);
             canvas.restore();
         }
@@ -358,16 +358,16 @@ public class BotFullscreenButtons extends View {
         if (e7 > 0.0f && this.previewText != null) {
             canvas2.save();
             canvas2.translate(com.google.android.gms.internal.vision.e2.b(1.0f, e7, min, this.leftMenu.left + AndroidUtilities.dp(30.0f)), this.leftMenu.centerY());
-            g01 g01Var2 = this.previewText;
+            h01 h01Var2 = this.previewText;
             float f22 = this.leftMenu.right;
             if (this.verifiedBackground != null) {
                 f15 = 30.0f;
             } else {
                 f15 = 12.0f;
             }
-            g01Var2.f24159p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
+            h01Var2.f24449p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
             f14 = 1.0f;
-            g01Var2.c(0.0f, 0.0f, e7, -1, canvas);
+            h01Var2.c(0.0f, 0.0f, e7, -1, canvas);
             f13 = e7;
             canvas2 = canvas;
             canvas2.translate(this.previewText.l() + AndroidUtilities.dp(5.0f), 0.0f);
@@ -433,19 +433,19 @@ public class BotFullscreenButtons extends View {
             canvas.translate(-AndroidUtilities.dpf2(8.166f), AndroidUtilities.dpf2(3.5f));
             float f25 = (e10 * 0.5f) + 0.5f;
             canvas.scale(f25, f25);
-            this.downloadPaint.setColor(org.telegram.ui.ActionBar.i6.l1(0.4f, -1));
+            this.downloadPaint.setColor(org.telegram.ui.ActionBar.j6.l1(0.4f, -1));
             canvas.drawPath(this.downloadPath, this.downloadPaint);
             float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.start) % 450)) / 450.0f;
             float f26 = 0.5f + currentTimeMillis;
             canvas.save();
             canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), currentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f26));
-            this.downloadPaint.setColor(org.telegram.ui.ActionBar.i6.l1(f14, -1));
+            this.downloadPaint.setColor(org.telegram.ui.ActionBar.j6.l1(f14, -1));
             canvas.drawPath(this.downloadPath, this.downloadPaint);
             canvas.restore();
             if (f26 > f14) {
                 canvas.save();
                 canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), 0.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f26 - f14));
-                this.downloadPaint.setColor(org.telegram.ui.ActionBar.i6.l1(f14, -1));
+                this.downloadPaint.setColor(org.telegram.ui.ActionBar.j6.l1(f14, -1));
                 canvas.drawPath(this.downloadPath, this.downloadPaint);
                 canvas.restore();
             }
@@ -507,7 +507,7 @@ public class BotFullscreenButtons extends View {
     }
 
     public void setName(String str, boolean z10) {
-        this.previewText = new g01(str, 13.0f, AndroidUtilities.bold());
+        this.previewText = new h01(str, 13.0f, AndroidUtilities.bold());
         if (!z10) {
             this.verifiedBackground = null;
             this.verifiedForeground = null;

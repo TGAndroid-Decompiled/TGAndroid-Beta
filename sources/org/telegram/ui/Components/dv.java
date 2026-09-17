@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public final class dv extends sv {
     public final sv W;
 
-    public dv(sv svVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, ArrayList arrayList) {
-        super(n2Var, context, e6Var, arrayList);
+    public dv(sv svVar, org.telegram.ui.ActionBar.o2 o2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList) {
+        super(o2Var, context, f6Var, arrayList);
         this.W = svVar;
     }
 

@@ -1,38 +1,57 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class ko0 implements uo0 {
-    public final wo0 f35209a;
+public final class ko0 implements wo0 {
+    public final Runnable f35315a;
+    public final yo0 f35316b;
 
-    public ko0(wo0 wo0Var) {
-        this.f35209a = wo0Var;
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-        this.f35209a.f39307a0 = password;
-    }
-
-    @Override
-    public final void b() {
-        this.f35209a.f39320f0 = null;
+    public ko0(yo0 yo0Var, Runnable runnable) {
+        this.f35316b = yo0Var;
+        this.f35315a = runnable;
     }
 
     @Override
     public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        wo0 wo0Var = this.f35209a;
-        uo0 uo0Var = wo0Var.T;
-        if (uo0Var != null) {
-            uo0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
+        String str3;
+        yo0 yo0Var = this.f35316b;
+        yo0Var.f39983y0 = tL_paymentSavedCredentialsCard;
+        yo0Var.f39979w0 = str;
+        yo0Var.U0 = z10;
+        yo0Var.f39981x0 = str2;
+        yo0Var.J0 = tL_inputPaymentCredentialsGooglePay;
+        org.telegram.ui.Cells.d9[] d9VarArr = yo0Var.Y;
+        org.telegram.ui.Cells.d9 d9Var = d9VarArr[0];
+        if (d9Var != null) {
+            d9Var.setVisibility(0);
+            org.telegram.ui.Cells.d9 d9Var2 = d9VarArr[0];
+            String str4 = yo0Var.f39981x0;
+            if (str4 != null && str4.length() > 1) {
+                str3 = yo0Var.f39981x0.substring(0, 1).toUpperCase() + yo0Var.f39981x0.substring(1);
+            } else {
+                str3 = yo0Var.f39981x0;
+            }
+            d9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
+            org.telegram.ui.Cells.d9 d9Var3 = d9VarArr[1];
+            if (d9Var3 != null) {
+                d9Var3.setVisibility(0);
+            }
         }
-        if (wo0Var.S0) {
-            wo0Var.removeSelfFromStack();
-        }
-        if (wo0Var.T != null) {
-            return true;
+        Runnable runnable = this.f35315a;
+        if (runnable != null) {
+            runnable.run();
         }
         return false;
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 
     @Override

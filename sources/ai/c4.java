@@ -10,8 +10,8 @@ import org.telegram.ui.Components.na0;
 public final class c4 extends na0 {
     public final f6 V;
 
-    public c4(f6 f6Var, Context context, long j3, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, j3, 0L, n2Var, e6Var);
+    public c4(f6 f6Var, Context context, long j3, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.f6 f6Var2) {
+        super(context, j3, 0L, o2Var, f6Var2);
         this.V = f6Var;
     }
 
@@ -23,8 +23,8 @@ public final class c4 extends na0 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7331a);
-        canvas.drawRoundRect(rectF, f7, f7, f6Var.f832n2);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7336a);
+        canvas.drawRoundRect(rectF, f7, f7, f6Var.f837n2);
         if (rectF.top < getMeasuredHeight() - 1) {
             canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, f6Var.B0.G("paintDivider"));
         }

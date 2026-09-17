@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class q5 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27250a;
-    public final float f27251b;
-    public final float f27252c;
+    public final int f27213a;
+    public final float f27214b;
+    public final float f27215c;
     public final float d;
     public final float e;
-    public final Object f27253f;
+    public final Object f27216f;
 
     public q5(Object obj, float f7, float f10, float f11, float f12, int i10) {
-        this.f27250a = i10;
-        this.f27253f = obj;
-        this.f27251b = f7;
-        this.f27252c = f10;
+        this.f27213a = i10;
+        this.f27216f = obj;
+        this.f27214b = f7;
+        this.f27215c = f10;
         this.d = f11;
         this.e = f12;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f27250a;
+        int i10 = this.f27213a;
         float f7 = this.e;
         float f10 = this.d;
-        float f11 = this.f27252c;
-        float f12 = this.f27251b;
-        Object obj = this.f27253f;
+        float f11 = this.f27215c;
+        float f12 = this.f27214b;
+        Object obj = this.f27216f;
         switch (i10) {
             case 0:
                 x5 x5Var = (x5) obj;
@@ -37,13 +37,13 @@ public final class q5 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
-                int i11 = ChatActivityEnterView.f21731m5;
+                int i11 = ChatActivityEnterView.f21741m5;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float z10 = com.google.android.gms.internal.vision.e2.z(f11, f12, floatValue2, f12);
-                wo0 wo0Var = chatActivityEnterView.f21819p0;
-                if (wo0Var != null) {
-                    wo0Var.setAlpha(((f7 - f10) * floatValue2) + f10);
-                    chatActivityEnterView.f21819p0.setTranslationX(z10);
+                xo0 xo0Var = chatActivityEnterView.f21829p0;
+                if (xo0Var != null) {
+                    xo0Var.setAlpha(((f7 - f10) * floatValue2) + f10);
+                    chatActivityEnterView.f21829p0.setTranslationX(z10);
                 }
                 chatActivityEnterView.Q0.setTranslationX(z10);
                 chatActivityEnterView.G = z10;

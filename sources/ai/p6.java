@@ -3,8 +3,8 @@ package ai;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ll0;
-public final class p6 extends ll0 implements s9 {
+import org.telegram.ui.Components.ml0;
+public final class p6 extends ml0 implements s9 {
     public final j7 X2;
     public final j7 Y2;
 
@@ -22,7 +22,7 @@ public final class p6 extends ll0 implements s9 {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.Y2.f1046n = View.MeasureSpec.getSize(i11);
+        this.Y2.f1051n = View.MeasureSpec.getSize(i11);
         super.onMeasure(i10, i11);
     }
 }

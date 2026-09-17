@@ -16,20 +16,20 @@ public final class hr extends s4.j {
 
     @Override
     public final void O() {
-        this.G.f38099c.invalidate();
+        this.G.f38123c.invalidate();
     }
 
     @Override
     public final void P(s4.c1 c1Var) {
-        this.G.f38099c.invalidate();
+        this.G.f38123c.invalidate();
     }
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f42733p.isEmpty();
-        boolean isEmpty2 = this.f42735r.isEmpty();
-        boolean isEmpty3 = this.f42736s.isEmpty();
-        boolean isEmpty4 = this.f42734q.isEmpty();
+        boolean isEmpty = this.f42755p.isEmpty();
+        boolean isEmpty2 = this.f42757r.isEmpty();
+        boolean isEmpty3 = this.f42758s.isEmpty();
+        boolean isEmpty4 = this.f42756q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             this.F.lock();
         }

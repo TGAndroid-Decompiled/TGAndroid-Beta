@@ -1,43 +1,82 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class op0 extends s4.s0 {
-    public final int f36317a;
-    public final up0 f36318b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class op0 implements Utilities.Callback {
+    public final int f36396a;
+    public final pp0 f36397b;
 
-    public op0(up0 up0Var, int i10) {
-        this.f36318b = up0Var;
-        this.f36317a = i10;
+    public op0(pp0 pp0Var, int i10) {
+        this.f36396a = i10;
+        this.f36397b = pp0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        yh.n5 n5Var;
-        ah.h hVar;
-        up0 up0Var = this.f36318b;
-        aq0 aq0Var = up0Var.f38083p0;
-        if (i11 != 0) {
-            aq0Var.D0(1);
-        }
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = aq0Var.f31894f0) != null) {
-            hVar.f(i10, i11);
-        }
-        up0Var.h();
-        if (up0Var.K != null) {
-            if (up0Var.J != null && up0Var.c()) {
-                up0Var.J.g(false);
+    public final void run(Object obj) {
+        TL_stars.StarGift starGift;
+        int i10;
+        wp0 wp0Var;
+        aq0 aq0Var;
+        wp0 wp0Var2;
+        switch (this.f36396a) {
+            case 0:
+                Integer num = (Integer) obj;
+                pp0 pp0Var = this.f36397b;
+                wp0 wp0Var3 = pp0Var.e;
+                if (num.intValue() == 0) {
+                    starGift = null;
+                } else {
+                    starGift = (TL_stars.StarGift) wp0Var3.M.get(num);
+                }
+                wp0Var3.K = starGift;
+                cq0 cq0Var = wp0Var3.f39147p0;
+                if (starGift == null) {
+                    xh.u3 u3Var = wp0Var3.J;
+                    if (u3Var != null) {
+                        u3Var.f();
+                        wp0Var3.J = null;
+                    }
+                } else {
+                    xh.u3 u3Var2 = wp0Var3.J;
+                    if (u3Var2 == null || u3Var2.f46167b != starGift.f18347id) {
+                        i10 = ((org.telegram.ui.ActionBar.o2) cq0Var).currentAccount;
+                        xh.u3 u3Var3 = new xh.u3(wp0Var3.K.f18347id, i10, new op0(pp0Var, 2));
+                        wp0Var3.J = u3Var3;
+                        u3Var3.g(false);
+                    }
+                }
+                wp0.a(wp0Var3);
+                if (cq0Var.I.getCurrentPosition() == 1) {
+                    wp0Var = cq0Var.f32862n;
+                } else {
+                    wp0Var = cq0Var.h;
+                }
+                wp0Var.e();
                 return;
-            }
-            return;
-        }
-        if (this.f36317a == 1) {
-            n5Var = aq0Var.f31889c;
-        } else {
-            n5Var = aq0Var.f31887b;
-        }
-        if (n5Var != null && up0Var.c()) {
-            n5Var.a();
+            case 1:
+                wp0 wp0Var4 = this.f36397b.e;
+                wp0Var4.h = ((Integer) obj).intValue();
+                wp0Var4.f39148r = null;
+                wp0Var4.f39149s = null;
+                wp0Var4.I = null;
+                wp0Var4.j(true);
+                wp0Var4.i();
+                wp0Var4.f(true);
+                vp0 vp0Var = wp0Var4.f39152y;
+                if (vp0Var != null) {
+                    vp0Var.invalidate();
+                }
+                cq0 cq0Var2 = wp0Var4.f39147p0;
+                wp0 wp0Var5 = cq0Var2.f32862n;
+                if (wp0Var5 != null && (aq0Var = wp0Var5.f39128a) != null && (wp0Var2 = cq0Var2.h) != null) {
+                    aq0Var.a(wp0Var2.h);
+                    return;
+                }
+                return;
+            default:
+                Boolean bool = (Boolean) obj;
+                this.f36397b.e.e();
+                return;
         }
     }
 }

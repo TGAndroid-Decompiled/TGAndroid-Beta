@@ -26,29 +26,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Cells.a0;
 import org.telegram.ui.Cells.f5;
 import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Cells.w0;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.nr0;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.oh0;
+import org.telegram.ui.Components.or0;
+import org.telegram.ui.Components.ph0;
 import org.telegram.ui.Components.u9;
 import org.telegram.ui.Components.vc;
 import org.telegram.ui.Components.x5;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bo;
-import org.telegram.ui.mj0;
+import org.telegram.ui.oj0;
 import org.telegram.ui.web.b1;
 import wh.m;
 import wh.n;
 import xh.i1;
+import xh.n2;
 import yh.a4;
 import yh.e4;
 import yh.l;
@@ -63,14 +64,14 @@ import zg.p;
 import zg.q;
 import zg.r0;
 public final class i implements Runnable {
-    public final int f43802a;
-    public final Object f43803b;
-    public final Object f43804c;
+    public final int f43825a;
+    public final Object f43826b;
+    public final Object f43827c;
 
     public i(int i10, Object obj, Object obj2) {
-        this.f43802a = i10;
-        this.f43803b = obj;
-        this.f43804c = obj2;
+        this.f43825a = i10;
+        this.f43826b = obj;
+        this.f43827c = obj2;
     }
 
     @Override
@@ -86,15 +87,15 @@ public final class i implements Runnable {
         TLRPC.TL_messageReactions tL_messageReactions;
         boolean z13;
         TLRPC.TL_messageReactions tL_messageReactions2;
-        int i13 = this.f43802a;
+        int i13 = this.f43825a;
         ArrayList<TLRPC.MessageReactor> arrayList = null;
         int i14 = 0;
-        Object obj = this.f43804c;
-        Object obj2 = this.f43803b;
+        Object obj = this.f43827c;
+        Object obj2 = this.f43826b;
         switch (i13) {
             case 0:
                 j jVar = (j) obj2;
-                jVar.f43806b.add((String) obj);
+                jVar.f43829b.add((String) obj);
                 jVar.invalidate();
                 return;
             case 1:
@@ -103,14 +104,14 @@ public final class i implements Runnable {
             case 2:
                 n nVar = (n) obj2;
                 f5 f5Var = (f5) obj;
-                int i15 = nVar.f45118k;
-                n2 n2Var = nVar.f45115g;
+                int i15 = nVar.f45141k;
+                o2 o2Var = nVar.f45138g;
                 TLRPC.TL_chatInviteImporter importer = f5Var.getImporter();
-                nVar.f45125r = importer;
+                nVar.f45148r = importer;
                 LongSparseArray longSparseArray = nVar.d;
                 TLRPC.User user = (TLRPC.User) longSparseArray.get(importer.user_id);
                 if (user != null) {
-                    n2Var.getMessagesController().putUser(user, false);
+                    o2Var.getMessagesController().putUser(user, false);
                     Point point = AndroidUtilities.displaySize;
                     if (point.x > point.y) {
                         z10 = true;
@@ -118,12 +119,12 @@ public final class i implements Runnable {
                         z10 = false;
                     }
                     if (user.photo != null && !z10) {
-                        if (nVar.f45126s == null) {
-                            m mVar = new m(nVar, n2Var.getParentActivity(), (ll0) f5Var.getParent(), n2Var.getResourceProvider(), nVar.f45111a);
-                            nVar.f45126s = mVar;
-                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = nVar.f45125r;
+                        if (nVar.f45149s == null) {
+                            m mVar = new m(nVar, o2Var.getParentActivity(), (ml0) f5Var.getParent(), o2Var.getResourceProvider(), nVar.f45134a);
+                            nVar.f45149s = mVar;
+                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = nVar.f45148r;
                             u9 avatarImageView = f5Var.getAvatarImageView();
-                            mVar.f45106r = tL_chatInviteImporter;
+                            mVar.f45129r = tL_chatInviteImporter;
                             mVar.v = avatarImageView;
                             TLRPC.User user2 = MessagesController.getInstance(i15).getUser(Long.valueOf(tL_chatInviteImporter.user_id));
                             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(i15, user2, 0);
@@ -131,10 +132,10 @@ public final class i implements Runnable {
                             if (MessagesController.getInstance(i15).getUserFull(tL_chatInviteImporter.user_id) == null) {
                                 MessagesController.getInstance(i15).loadUserInfo(user2, false, 0);
                             }
-                            oh0 oh0Var = mVar.h;
-                            oh0Var.setParentAvatarImage(avatarImageView);
-                            oh0Var.M(tL_chatInviteImporter.user_id, true);
-                            oh0Var.H(null, forUserOrChat, forUserOrChat2, true);
+                            ph0 ph0Var = mVar.h;
+                            ph0Var.setParentAvatarImage(avatarImageView);
+                            ph0Var.M(tL_chatInviteImporter.user_id, true);
+                            ph0Var.H(null, forUserOrChat, forUserOrChat2, true);
                             mVar.d.setText(UserObject.getUserName((TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id)));
                             String str = tL_chatInviteImporter.about;
                             TextView textView = mVar.e;
@@ -145,20 +146,20 @@ public final class i implements Runnable {
                                 i10 = 0;
                             }
                             textView.setVisibility(i10);
-                            mVar.f45110y.requestLayout();
-                            nVar.f45126s.setOnDismissListener(new g5(nVar, 11));
-                            nVar.f45126s.show();
+                            mVar.f45133y.requestLayout();
+                            nVar.f45149s.setOnDismissListener(new g5(nVar, 11));
+                            nVar.f45149s.show();
                             return;
                         }
                         return;
                     }
-                    nVar.f45112b = true;
-                    n2Var.dismissCurrentDialog();
+                    nVar.f45135b = true;
+                    o2Var.dismissCurrentDialog();
                     Bundle bundle = new Bundle();
                     ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-                    bundle.putLong("user_id", user.f18259id);
+                    bundle.putLong("user_id", user.f18268id);
                     bundle.putBoolean("removeFragmentOnChatOpen", false);
-                    n2Var.presentFragment(profileActivity);
+                    o2Var.presentFragment(profileActivity);
                     return;
                 }
                 return;
@@ -179,29 +180,29 @@ public final class i implements Runnable {
                 }
                 return;
             case 6:
-                nr0 nr0Var = (nr0) obj2;
+                or0 or0Var = (or0) obj2;
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                nr0Var.h(tL_starGiftCollection.title, new mj0(15, nr0Var, tL_starGiftCollection));
+                or0Var.h(tL_starGiftCollection.title, new oj0(15, or0Var, tL_starGiftCollection));
                 return;
             case 7:
                 AndroidUtilities.addToClipboard((String) obj);
-                vc.a0(((xh.n2) obj2).f46034a.f46105a).k(false).j();
+                vc.a0(((n2) obj2).f46057a.f46128a).k(false).j();
                 return;
             case 8:
                 l lVar = (l) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i16 = lVar.f47390a;
+                int i16 = lVar.f47413a;
                 ArrayList arrayList2 = lVar.e;
-                lVar.f47395i = 0;
+                lVar.f47418i = 0;
                 if (tLObject instanceof TL_payments.connectedStarRefBots) {
                     TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
                     MessagesController.getInstance(i16).putUsers(connectedstarrefbots.users, false);
-                    if (lVar.f47392c <= 0) {
+                    if (lVar.f47415c <= 0) {
                         arrayList2.clear();
                     }
-                    lVar.f47392c = connectedstarrefbots.count;
+                    lVar.f47415c = connectedstarrefbots.count;
                     arrayList2.addAll(connectedstarrefbots.connected_bots);
-                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < lVar.f47392c) {
+                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < lVar.f47415c) {
                         z11 = false;
                     } else {
                         z11 = true;
@@ -211,35 +212,35 @@ public final class i implements Runnable {
                     lVar.h = true;
                     lVar.d = true;
                 }
-                lVar.f47394g = false;
-                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(lVar.f47391b));
+                lVar.f47417g = false;
+                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(lVar.f47414b));
                 return;
             case 9:
                 yh.m mVar2 = (yh.m) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                int i17 = mVar2.f47427a;
+                int i17 = mVar2.f47450a;
                 ArrayList arrayList3 = mVar2.e;
                 if (tLObject2 instanceof TL_payments.suggestedStarRefBots) {
                     TL_payments.suggestedStarRefBots suggestedstarrefbots = (TL_payments.suggestedStarRefBots) tLObject2;
                     MessagesController.getInstance(i17).putUsers(suggestedstarrefbots.users, false);
-                    if (mVar2.f47429c <= 0) {
+                    if (mVar2.f47452c <= 0) {
                         arrayList3.clear();
                     }
-                    mVar2.f47429c = suggestedstarrefbots.count;
+                    mVar2.f47452c = suggestedstarrefbots.count;
                     arrayList3.addAll(suggestedstarrefbots.suggested_bots);
-                    mVar2.f47433j = suggestedstarrefbots.next_offset;
-                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < mVar2.f47429c) {
+                    mVar2.f47456j = suggestedstarrefbots.next_offset;
+                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < mVar2.f47452c) {
                         z12 = false;
                     } else {
                         z12 = true;
                     }
                     mVar2.d = z12;
                 } else {
-                    mVar2.f47432i = true;
+                    mVar2.f47455i = true;
                     mVar2.d = true;
                 }
                 mVar2.h = false;
-                NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(mVar2.f47428b));
+                NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(mVar2.f47451b));
                 return;
             case 10:
                 a4.U0((a4) obj2, (Long) obj);
@@ -248,11 +249,11 @@ public final class i implements Runnable {
                 a4 a4Var = (a4) obj2;
                 if (!((v5) obj).e) {
                     oc Q = a4Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f26764t = true;
+                    Q.f26712t = true;
                     Q.j();
                     return;
                 }
-                a4Var.f46963j0.setLoading(false);
+                a4Var.f46986j0.setLoading(false);
                 a4Var.w1();
                 return;
             case 12:
@@ -265,7 +266,7 @@ public final class i implements Runnable {
                 a4 a4Var2 = (a4) obj2;
                 a4Var2.getClass();
                 ((boolean[]) obj)[0] = true;
-                a4Var2.f46963j0.setLoading(false);
+                a4Var2.f46986j0.setLoading(false);
                 a4Var2.w1();
                 return;
             case 15:
@@ -287,8 +288,8 @@ public final class i implements Runnable {
                 return;
             case 19:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                ((b2) obj2).dismiss();
-                n2 U = LaunchActivity.U();
+                ((c2) obj2).dismiss();
+                o2 U = LaunchActivity.U();
                 if (U != null) {
                     if (tL_error != null && "STARGIFT_ALREADY_BURNED".equalsIgnoreCase(tL_error.text)) {
                         a02 = vc.a0(U);
@@ -306,14 +307,14 @@ public final class i implements Runnable {
             case 20:
                 e4 e4Var = (e4) obj2;
                 bo boVar = (bo) obj;
-                a0 a0Var = e4Var.f47109b;
+                a0 a0Var = e4Var.f47132b;
                 if (a0Var != null) {
                     try {
                         a0Var.performHapticFeedback(0);
                     } catch (Exception unused) {
                     }
                     e4Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                    a0 a0Var2 = e4Var.f47109b;
+                    a0 a0Var2 = e4Var.f47132b;
                     if (a0Var2 instanceof t1) {
                         messageObject = ((t1) a0Var2).getPrimaryMessageObject();
                         if (messageObject != null) {
@@ -349,7 +350,7 @@ public final class i implements Runnable {
                     MessageObject messageObject2 = messageObject;
                     q8 q8Var = new q8(context, currentAccount, a2, boVar, messageObject2, arrayList4, z13, false, 0L, boVar.getResourceProvider());
                     messageObject2.getId();
-                    a0 a0Var3 = e4Var.f47109b;
+                    a0 a0Var3 = e4Var.f47132b;
                     q8Var.T = boVar;
                     q8Var.U = a0Var3;
                     q8Var.show();
@@ -378,8 +379,8 @@ public final class i implements Runnable {
             case 23:
                 n5 n5Var = (n5) obj2;
                 TLObject tLObject4 = (TLObject) obj;
-                ArrayList arrayList5 = n5Var.f47498l;
-                int i20 = n5Var.f47490a;
+                ArrayList arrayList5 = n5Var.f47521l;
+                int i20 = n5Var.f47513a;
                 if (tLObject4 instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject4;
                     MessagesController.getInstance(i20).putUsers(tL_payments_savedStarGifts.users, false);
@@ -391,7 +392,7 @@ public final class i implements Runnable {
                             i21++;
                         }
                         arrayList5.add(i21, savedStarGift);
-                        NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(n5Var.f47491b), n5Var);
+                        NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(n5Var.f47514b), n5Var);
                         return;
                     }
                     return;
@@ -401,7 +402,7 @@ public final class i implements Runnable {
                 ((MessagesController) obj2).processUpdates((TLRPC.Updates) ((TLObject) obj), false);
                 return;
             case 25:
-                new vc(((f3[]) obj2)[0].topBulletinContainer, (e6) obj).Q(R.raw.copy, 36, LocaleController.getString(R.string.StarsTransactionIDCopied)).k(false);
+                new vc(((g3[]) obj2)[0].topBulletinContainer, (f6) obj).Q(R.raw.copy, 36, LocaleController.getString(R.string.StarsTransactionIDCopied)).k(false);
                 return;
             case 26:
                 q8 q8Var2 = (q8) obj2;
@@ -412,18 +413,18 @@ public final class i implements Runnable {
             case 27:
                 q qVar = (q) obj2;
                 x5 x5Var = (x5) obj;
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f49133n.getText());
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f49156n.getText());
                 x5[] x5VarArr = (x5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), x5.class);
                 int length = x5VarArr.length;
                 while (i14 < length) {
                     x5 x5Var2 = x5VarArr[i14];
                     if (x5Var2 == x5Var) {
-                        int editTextSelectionEnd = qVar.f49133n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd = qVar.f49156n.getEditTextSelectionEnd();
                         int spanEnd = spannableStringBuilder.getSpanEnd(x5Var2);
                         int spanStart = spannableStringBuilder.getSpanStart(x5Var2);
-                        qVar.f49133n.getText().delete(spanStart, spanEnd);
+                        qVar.f49156n.getText().delete(spanStart, spanEnd);
                         int i22 = spanEnd - spanStart;
-                        o oVar = qVar.f49133n;
+                        o oVar = qVar.f49156n;
                         if (spanEnd <= editTextSelectionEnd) {
                             editTextSelectionEnd -= i22;
                         }
@@ -448,19 +449,19 @@ public final class i implements Runnable {
                 return;
             default:
                 x5 x5Var3 = (x5) obj;
-                q qVar3 = ((p) obj2).f49123e2;
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(qVar3.f49133n.getText());
+                q qVar3 = ((p) obj2).f49146e2;
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(qVar3.f49156n.getText());
                 x5[] x5VarArr2 = (x5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), x5.class);
                 int length2 = x5VarArr2.length;
                 while (i14 < length2) {
                     x5 x5Var4 = x5VarArr2[i14];
                     if (x5Var4 == x5Var3) {
-                        int editTextSelectionEnd2 = qVar3.f49133n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd2 = qVar3.f49156n.getEditTextSelectionEnd();
                         int spanEnd2 = spannableStringBuilder2.getSpanEnd(x5Var4);
                         int spanStart2 = spannableStringBuilder2.getSpanStart(x5Var4);
-                        qVar3.f49133n.getText().delete(spanStart2, spanEnd2);
+                        qVar3.f49156n.getText().delete(spanStart2, spanEnd2);
                         int i23 = spanEnd2 - spanStart2;
-                        o oVar2 = qVar3.f49133n;
+                        o oVar2 = qVar3.f49156n;
                         if (spanEnd2 <= editTextSelectionEnd2) {
                             editTextSelectionEnd2 -= i23;
                         }
@@ -474,8 +475,8 @@ public final class i implements Runnable {
     }
 
     public i(v5 v5Var, boolean[] zArr, Utilities.Callback2 callback2) {
-        this.f43802a = 22;
-        this.f43803b = zArr;
-        this.f43804c = callback2;
+        this.f43825a = 22;
+        this.f43826b = zArr;
+        this.f43827c = callback2;
     }
 }

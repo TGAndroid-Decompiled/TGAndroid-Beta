@@ -4,21 +4,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class oa extends o6.a {
     public static final Parcelable.Creator<oa> CREATOR = new n5(3);
-    public final float f45545a;
-    public final int f45546b;
+    public final float f45568a;
+    public final int f45569b;
 
     public oa(float f7, int i10) {
-        this.f45545a = f7;
-        this.f45546b = i10;
+        this.f45568a = f7;
+        this.f45569b = i10;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.e0.q(parcel, 20293);
         w7.e0.s(parcel, 1, 4);
-        parcel.writeFloat(this.f45545a);
+        parcel.writeFloat(this.f45568a);
         w7.e0.s(parcel, 2, 4);
-        parcel.writeInt(this.f45546b);
+        parcel.writeInt(this.f45569b);
         w7.e0.r(parcel, q6);
     }
 }

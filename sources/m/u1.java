@@ -3,28 +3,28 @@ package m;
 import android.view.View;
 import android.view.ViewConfiguration;
 public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChangeListener {
-    public final float f14319a;
-    public final int f14320b;
-    public final int f14321c;
+    public final float f14329a;
+    public final int f14330b;
+    public final int f14331c;
     public final View d;
     public t1 e;
-    public t1 f14322f;
+    public t1 f14332f;
     public boolean h;
-    public int f14323n;
-    public final int[] f14324r = new int[2];
+    public int f14333n;
+    public final int[] f14334r = new int[2];
 
     public u1(View view) {
         this.d = view;
         view.setLongClickable(true);
         view.addOnAttachStateChangeListener(this);
-        this.f14319a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+        this.f14329a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
         int tapTimeout = ViewConfiguration.getTapTimeout();
-        this.f14320b = tapTimeout;
-        this.f14321c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
+        this.f14330b = tapTimeout;
+        this.f14331c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
     }
 
     public final void a() {
-        t1 t1Var = this.f14322f;
+        t1 t1Var = this.f14332f;
         View view = this.d;
         if (t1Var != null) {
             view.removeCallbacks(t1Var);
@@ -56,7 +56,7 @@ public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChan
     @Override
     public final void onViewDetachedFromWindow(View view) {
         this.h = false;
-        this.f14323n = -1;
+        this.f14333n = -1;
         t1 t1Var = this.e;
         if (t1Var != null) {
             this.d.removeCallbacks(t1Var);

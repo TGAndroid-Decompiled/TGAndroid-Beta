@@ -5,48 +5,48 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 public final class on implements TextWatcher {
-    public final nn f26865a;
-    public final int f26866b;
-    public final sn f26867c;
+    public final nn f26823a;
+    public final int f26824b;
+    public final sn f26825c;
 
     public on(sn snVar, nn nnVar, int i10) {
-        this.f26867c = snVar;
-        this.f26865a = nnVar;
-        this.f26866b = i10;
+        this.f26825c = snVar;
+        this.f26823a = nnVar;
+        this.f26824b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        un unVar = this.f26867c.d;
-        nn nnVar = this.f26865a;
+        un unVar = this.f26825c.d;
+        nn nnVar = this.f26823a;
         if (nnVar.getTag() != null) {
             return;
         }
-        int i11 = this.f26866b;
+        int i11 = this.f26824b;
         if (i11 == 11) {
-            i10 = unVar.f28457n0;
+            i10 = unVar.f28435n0;
         } else {
             i10 = unVar.m0;
         }
-        s4.c1 K = unVar.f28463s.K(i10);
-        if (K != null && unVar.f28470x != null) {
+        s4.c1 L = unVar.f28441s.L(i10);
+        if (L != null && unVar.f28448x != null) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, nnVar.getEditField().getPaint().getFontMetricsInt(), false);
-            unVar.f28470x.setDirection(1);
-            unVar.f28470x.setDelegate(nnVar);
-            unVar.f28470x.setTranslationY(K.f42675a.getY());
-            unVar.f28470x.e();
+            unVar.f28448x.setDirection(1);
+            unVar.f28448x.setDelegate(nnVar);
+            unVar.f28448x.setTranslationY(L.f42697a.getY());
+            unVar.f28448x.e();
         }
         if (i11 == 11) {
             unVar.O = editable;
         } else {
             unVar.N = editable;
         }
-        if (K != null) {
-            un.L(unVar, K.f42675a, i10);
+        if (L != null) {
+            un.L(unVar, L.f42697a, i10);
         }
         unVar.T();
     }

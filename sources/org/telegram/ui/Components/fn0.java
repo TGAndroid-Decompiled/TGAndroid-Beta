@@ -1,18 +1,33 @@
 package org.telegram.ui.Components;
-public final class fn0 {
-    public zg.p0 f24022a;
-    public int f24023b;
-    public String f24024c;
-    public int d;
+public final class fn0 extends s4.o {
+    public final jn0 f23966b;
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof fn0)) {
-            return false;
+    public fn0(jn0 jn0Var) {
+        this.f23966b = jn0Var;
+    }
+
+    @Override
+    public final boolean a(int i10, int i11) {
+        jn0 jn0Var = this.f23966b;
+        return ((gn0) jn0Var.f25359n.get(i10)).equals(jn0Var.f25360r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        jn0 jn0Var = this.f23966b;
+        if (((gn0) jn0Var.f25359n.get(i10)).f24349a.h == ((gn0) jn0Var.f25360r.get(i11)).f24349a.h) {
+            return true;
         }
-        fn0 fn0Var = (fn0) obj;
-        if (this.f24023b != fn0Var.f24023b || this.f24022a.h != fn0Var.f24022a.h || this.d != fn0Var.d) {
-            return false;
-        }
-        return true;
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f23966b.f25360r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f23966b.f25359n.size();
     }
 }

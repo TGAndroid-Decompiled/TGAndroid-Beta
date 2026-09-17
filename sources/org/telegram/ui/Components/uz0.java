@@ -1,45 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class uz0 implements TextWatcher {
-    public final b01 f28532a;
-
-    public uz0(b01 b01Var) {
-        this.f28532a = b01Var;
-    }
-
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class uz0 extends ViewOutlineProvider {
     @Override
-    public final void afterTextChanged(Editable editable) {
-        b01 b01Var = this.f28532a;
-        n6 n6Var = b01Var.f22553n;
-        if (!b01Var.f22557x) {
-            String trim = editable.toString().trim();
-            if (trim.length() > 16) {
-                n6Var.setText("-" + (trim.length() - 16));
-                trim = trim.substring(0, 16);
-            } else {
-                n6Var.setText("");
-            }
-            Utilities.Callback callback = b01Var.f22556w;
-            if (callback != null) {
-                callback.run(trim);
-            }
-            MessageObject messageObject = b01Var.f22554r;
-            if (messageObject != null) {
-                messageObject.forceUpdate = true;
-                b01Var.d.X3(messageObject, null, false, false, false, false);
-            }
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(16.0f));
     }
 }

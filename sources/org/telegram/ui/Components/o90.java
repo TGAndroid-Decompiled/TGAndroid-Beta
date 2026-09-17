@@ -11,7 +11,7 @@ public final class o90 extends ed.h {
             return null;
         }
         ?? pVar = new bf.p();
-        pVar.f48864g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
+        pVar.f48887g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
         return pVar;
     }
 

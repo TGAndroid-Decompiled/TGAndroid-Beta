@@ -1,69 +1,65 @@
 package org.telegram.ui;
 
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class o8 implements RequestDelegate {
-    public final int f36119a;
-    public final k9 f36120b;
-    public final org.telegram.ui.ActionBar.b2 f36121c;
-    public final HashSet d;
-    public final TLRPC.TL_inputGroupCallInviteMessage e;
-    public final boolean f36122f;
+import android.view.View;
+public final class o8 implements View.OnClickListener {
+    public final int f36242a;
+    public final boolean[] f36243b;
 
-    public o8(k9 k9Var, org.telegram.ui.ActionBar.b2 b2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z10, int i10) {
-        this.f36119a = i10;
-        this.f36120b = k9Var;
-        this.f36121c = b2Var;
-        this.d = hashSet;
-        this.e = tL_inputGroupCallInviteMessage;
-        this.f36122f = z10;
+    public o8(int i10, boolean[] zArr) {
+        this.f36242a = i10;
+        this.f36243b = zArr;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f36119a) {
+    public final void onClick(View view) {
+        switch (this.f36242a) {
             case 0:
-                final k9 k9Var = this.f36120b;
-                final org.telegram.ui.ActionBar.b2 b2Var = this.f36121c;
-                final HashSet hashSet = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.e;
-                final boolean z10 = this.f36122f;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r8) {
-                            case 0:
-                                k9.V(k9Var, b2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
-                                return;
-                            default:
-                                k9.Y(k9Var, b2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
-                                return;
-                        }
-                    }
-                });
+                boolean[] zArr = this.f36243b;
+                boolean z10 = !zArr[0];
+                zArr[0] = z10;
+                ((org.telegram.ui.Cells.z1) view).c(z10, true);
+                return;
+            case 1:
+                boolean[] zArr2 = this.f36243b;
+                boolean z11 = !zArr2[1];
+                zArr2[1] = z11;
+                ((org.telegram.ui.Cells.z1) view).c(z11, true);
+                return;
+            case 2:
+                boolean[] zArr3 = this.f36243b;
+                boolean z12 = !zArr3[0];
+                zArr3[0] = z12;
+                ((org.telegram.ui.Cells.z1) view).c(z12, true);
+                return;
+            case 3:
+                boolean[] zArr4 = this.f36243b;
+                boolean z13 = !zArr4[0];
+                zArr4[0] = z13;
+                ((org.telegram.ui.Cells.z1) view).c(z13, true);
+                return;
+            case 4:
+                if (view.isEnabled()) {
+                    boolean[] zArr5 = this.f36243b;
+                    boolean z14 = !zArr5[0];
+                    zArr5[0] = z14;
+                    ((org.telegram.ui.Cells.z1) view).c(z14, true);
+                    return;
+                }
+                return;
+            case 5:
+                boolean[] zArr6 = this.f36243b;
+                boolean z15 = !zArr6[0];
+                zArr6[0] = z15;
+                ((org.telegram.ui.Cells.z1) view).c(z15, true);
                 return;
             default:
-                final k9 k9Var2 = this.f36120b;
-                final org.telegram.ui.ActionBar.b2 b2Var2 = this.f36121c;
-                final HashSet hashSet2 = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.e;
-                final boolean z11 = this.f36122f;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r8) {
-                            case 0:
-                                k9.V(k9Var2, b2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
-                                return;
-                            default:
-                                k9.Y(k9Var2, b2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
-                                return;
-                        }
-                    }
-                });
+                if (view.isEnabled()) {
+                    boolean[] zArr7 = this.f36243b;
+                    boolean z16 = !zArr7[0];
+                    zArr7[0] = z16;
+                    ((org.telegram.ui.Cells.z1) view).c(z16, true);
+                    return;
+                }
                 return;
         }
     }

@@ -35,7 +35,7 @@ public interface ky {
 
     void n();
 
-    void o(e51 e51Var);
+    void o(f51 f51Var);
 
     float p();
 

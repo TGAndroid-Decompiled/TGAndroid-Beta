@@ -11,33 +11,33 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class bc0 implements Runnable {
-    public final int f22753a;
-    public final Object f22754b;
+    public final int f22699a;
+    public final Object f22700b;
 
     public bc0(Object obj, int i10) {
-        this.f22753a = i10;
-        this.f22754b = obj;
+        this.f22699a = i10;
+        this.f22700b = obj;
     }
 
     @Override
     public final void run() {
         float f7;
-        g71 g71Var;
-        switch (this.f22753a) {
+        h71 h71Var;
+        switch (this.f22699a) {
             case 0:
-                ((cc0) this.f22754b).z();
+                ((cc0) this.f22700b).z();
                 return;
             case 1:
-                ((ci.u) this.f22754b).invalidateSelf();
+                ((ci.u) this.f22700b).invalidateSelf();
                 return;
             case 2:
-                ((kc0) this.f22754b).invalidateSelf();
+                ((kc0) this.f22700b).invalidateSelf();
                 return;
             case 3:
-                ((dd0) this.f22754b).d();
+                ((dd0) this.f22700b).d();
                 return;
             case 4:
-                nd0 nd0Var = (nd0) this.f22754b;
+                nd0 nd0Var = (nd0) this.f22700b;
                 nd0Var.getClass();
                 try {
                     nd0Var.d.I.performHapticFeedback(3, 2);
@@ -46,118 +46,118 @@ public final class bc0 implements Runnable {
                     return;
                 }
             case 5:
-                ((ae0) this.f22754b).f22375f.start();
+                ((ae0) this.f22700b).f22390f.start();
                 return;
             case 6:
-                vz vzVar = ((ef0) this.f22754b).f23635c.f25325l0;
+                vz vzVar = ((ef0) this.f22700b).f23549c.f25247l0;
                 if (vzVar != null) {
                     vzVar.e(false, true, false);
                     return;
                 }
                 return;
             case 7:
-                hf0 hf0Var = (hf0) this.f22754b;
-                hf0Var.f24691r = false;
+                hf0 hf0Var = (hf0) this.f22700b;
+                hf0Var.f24655r = false;
                 hf0Var.invalidate();
                 return;
             case 8:
-                ((kf0) this.f22754b).h = null;
+                ((kf0) this.f22700b).h = null;
                 return;
             case 9:
-                kf0 kf0Var = (kf0) ((n7.a1) this.f22754b).f15109c;
+                kf0 kf0Var = (kf0) ((n7.a1) this.f22700b).f15119c;
                 kf0Var.d.L(kf0Var.e, false);
                 return;
             case 10:
-                org.telegram.ui.iu0 iu0Var = (org.telegram.ui.iu0) this.f22754b;
-                if (iu0Var.f27330x) {
-                    iu0Var.h("pollPosition();");
+                org.telegram.ui.ku0 ku0Var = (org.telegram.ui.ku0) this.f22700b;
+                if (ku0Var.f27286x) {
+                    ku0Var.h("pollPosition();");
                 }
-                if (iu0Var.G) {
-                    AndroidUtilities.runOnUIThread(iu0Var.L, 500L);
+                if (ku0Var.G) {
+                    AndroidUtilities.runOnUIThread(ku0Var.L, 500L);
                     return;
                 }
                 return;
             case 11:
-                ((FrameLayout) this.f22754b).invalidate();
+                ((FrameLayout) this.f22700b).invalidate();
                 return;
             case 12:
-                eg0 eg0Var = (eg0) ((lg.b) this.f22754b).f14038b;
-                eg0Var.d.invalidate();
-                eg0Var.e.requestLayout();
+                fg0 fg0Var = (fg0) ((lg.b) this.f22700b).f14051b;
+                fg0Var.d.invalidate();
+                fg0Var.e.requestLayout();
                 return;
             case 13:
-                ((gg0) this.f22754b).f();
+                ((hg0) this.f22700b).f();
                 return;
             case 14:
                 try {
-                    ei0 ei0Var = ((di0) this.f22754b).f23340b;
-                    if (ei0Var.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) ei0Var.getParent()).removeView(ei0Var);
+                    fi0 fi0Var = ((ei0) this.f22700b).f23573b;
+                    if (fi0Var.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) fi0Var.getParent()).removeView(fi0Var);
                     }
-                    ei0Var.Q.run();
+                    fi0Var.Q.run();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
                     return;
                 }
             case 15:
-                ((RLottieNative) this.f22754b).d();
+                ((RLottieNative) this.f22700b).d();
                 return;
             case 16:
-                fk0 fk0Var = (fk0) this.f22754b;
-                fk0Var.f24007x0 = null;
-                fk0Var.j();
-                ek0 ek0Var = fk0Var.f23982g0;
-                if (ek0Var != null) {
-                    ek0Var.o();
+                gk0 gk0Var = (gk0) this.f22700b;
+                gk0Var.f24306x0 = null;
+                gk0Var.j();
+                fk0 fk0Var = gk0Var.f24281g0;
+                if (fk0Var != null) {
+                    fk0Var.o();
                     return;
                 }
                 return;
             case 17:
-                ((ck0) this.f22754b).H.f23345a.setVisibility(4);
+                ((dk0) this.f22700b).H.f23580a.setVisibility(4);
                 return;
             case 18:
-                gk0 gk0Var = (gk0) this.f22754b;
-                g71 g71Var2 = gk0Var.f24382n;
-                if (g71Var2 != null) {
-                    boolean y3 = g71Var2.y();
-                    float n10 = ((float) gk0Var.f24382n.n()) / ((float) gk0Var.f24382n.p());
-                    if (n10 < gk0Var.f24384s) {
-                        gk0Var.f24382n.L(f7 * ((float) g71Var.p()), false);
-                    } else if (n10 > gk0Var.v) {
-                        gk0Var.setPlaying(false);
+                hk0 hk0Var = (hk0) this.f22700b;
+                h71 h71Var2 = hk0Var.f24684n;
+                if (h71Var2 != null) {
+                    boolean y3 = h71Var2.y();
+                    float n10 = ((float) hk0Var.f24684n.n()) / ((float) hk0Var.f24684n.p());
+                    if (n10 < hk0Var.f24686s) {
+                        hk0Var.f24684n.L(f7 * ((float) h71Var.p()), false);
+                    } else if (n10 > hk0Var.v) {
+                        hk0Var.setPlaying(false);
                         y3 = false;
                     }
                     if (y3) {
-                        AndroidUtilities.runOnUIThread(gk0Var.f24386x, 16L);
+                        AndroidUtilities.runOnUIThread(hk0Var.f24688x, 16L);
                     }
                 }
-                gk0Var.invalidate();
+                hk0Var.invalidate();
                 return;
             case 19:
-                ll0 ll0Var = (ll0) this.f22754b;
-                ll0Var.V1 = null;
-                ll0Var.U1 = null;
-                org.telegram.ui.Cells.z zVar = ll0Var.D1;
+                ml0 ml0Var = (ml0) this.f22700b;
+                ml0Var.V1 = null;
+                ml0Var.U1 = null;
+                org.telegram.ui.Cells.z zVar = ml0Var.D1;
                 if (zVar != null) {
                     Drawable current = zVar.getCurrent();
                     if (current instanceof TransitionDrawable) {
                         ((TransitionDrawable) current).resetTransition();
                     }
                 }
-                org.telegram.ui.Cells.z zVar2 = ll0Var.D1;
+                org.telegram.ui.Cells.z zVar2 = ml0Var.D1;
                 if (zVar2 != null && zVar2.isStateful()) {
-                    ll0Var.D1.setState(StateSet.NOTHING);
+                    ml0Var.D1.setState(StateSet.NOTHING);
                     return;
                 }
                 return;
             case 20:
-                vm0 vm0Var = (vm0) this.f22754b;
+                wm0 wm0Var = (wm0) this.f22700b;
                 ArrayList<MessageObject> arrayList = new ArrayList<>();
                 ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
-                int i10 = vm0Var.d;
+                int i10 = wm0Var.d;
                 FileLoader.getInstance(i10).getCurrentLoadingFiles(arrayList);
                 FileLoader.getInstance(i10).getRecentLoadingFiles(arrayList2);
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -170,68 +170,68 @@ public final class bc0 implements Runnable {
                         arrayList4.add(arrayList2.get(i12));
                     }
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(vm0Var, arrayList3, arrayList4, 27));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q(wm0Var, arrayList3, arrayList4, 27));
                 return;
             case 21:
-                ((xm0) this.f22754b).invalidateSelf();
+                ((ym0) this.f22700b).invalidateSelf();
                 return;
             case 22:
-                ((in0) this.f22754b).f25086f.setVisibility(8);
+                ((jn0) this.f22700b).f25358f.setVisibility(8);
                 return;
             case 23:
-                ((org.telegram.ui.ey) this.f22754b).s();
+                ((org.telegram.ui.gy) this.f22700b).s();
                 return;
             case 24:
-                ((n70) this.f22754b).s();
+                ((n70) this.f22700b).s();
                 return;
             case 25:
-                ((fo0) this.f22754b).getClass();
+                ((go0) this.f22700b).getClass();
                 return;
             case 26:
-                org.telegram.ui.Cells.t1 t1Var = ((io0) this.f22754b).f25103n;
+                org.telegram.ui.Cells.t1 t1Var = ((jo0) this.f22700b).f25385n;
                 if (t1Var != null) {
                     t1Var.invalidate();
                     return;
                 }
                 return;
             case 27:
-                ko0 ko0Var = (ko0) this.f22754b;
-                ko0Var.f25651q = false;
-                ko0Var.f25639b.run();
+                lo0 lo0Var = (lo0) this.f22700b;
+                lo0Var.f25947q = false;
+                lo0Var.f25935b.run();
                 return;
             case 28:
-                ((hq0) ((ci.i2) this.f22754b).f4777b).a1(1);
+                ((iq0) ((ci.i2) this.f22700b).f4782b).a1(1);
                 return;
             default:
-                mq0 mq0Var = (mq0) this.f22754b;
-                kq0[] kq0VarArr = mq0Var.f26228a;
-                if (mq0Var.f26229b != 1) {
-                    for (kq0 kq0Var : kq0VarArr) {
-                        org.telegram.ui.ActionBar.j5 j5Var = kq0Var.d;
-                        j5Var.setAlpha(1.0f);
-                        j5Var.setScaleX(1.0f);
-                        j5Var.setScaleY(1.0f);
-                        kq0Var.e.setAlpha(0.0f);
+                nq0 nq0Var = (nq0) this.f22700b;
+                lq0[] lq0VarArr = nq0Var.f26514a;
+                if (nq0Var.f26515b != 1) {
+                    for (lq0 lq0Var : lq0VarArr) {
+                        org.telegram.ui.ActionBar.k5 k5Var = lq0Var.d;
+                        k5Var.setAlpha(1.0f);
+                        k5Var.setScaleX(1.0f);
+                        k5Var.setScaleY(1.0f);
+                        lq0Var.e.setAlpha(0.0f);
                     }
-                    mq0Var.E = false;
-                    AndroidUtilities.runOnUIThread(mq0Var.G, 4000L);
+                    nq0Var.E = false;
+                    AndroidUtilities.runOnUIThread(nq0Var.G, 4000L);
                     return;
                 }
-                mq0Var.E = !mq0Var.E;
-                for (kq0 kq0Var2 : kq0VarArr) {
-                    org.telegram.ui.ActionBar.j5 j5Var2 = kq0Var2.d;
-                    org.telegram.ui.ActionBar.j5 j5Var3 = kq0Var2.e;
-                    j5Var2.setPivotX(0.0f);
-                    j5Var3.setPivotX(0.0f);
-                    if (mq0Var.E) {
-                        j5Var2.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
-                        j5Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                nq0Var.E = !nq0Var.E;
+                for (lq0 lq0Var2 : lq0VarArr) {
+                    org.telegram.ui.ActionBar.k5 k5Var2 = lq0Var2.d;
+                    org.telegram.ui.ActionBar.k5 k5Var3 = lq0Var2.e;
+                    k5Var2.setPivotX(0.0f);
+                    k5Var3.setPivotX(0.0f);
+                    if (nq0Var.E) {
+                        k5Var2.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                        k5Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
                     } else {
-                        j5Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
-                        j5Var3.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                        k5Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                        k5Var3.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
                     }
                 }
-                AndroidUtilities.runOnUIThread(mq0Var.G, 4000L);
+                AndroidUtilities.runOnUIThread(nq0Var.G, 4000L);
                 return;
         }
     }

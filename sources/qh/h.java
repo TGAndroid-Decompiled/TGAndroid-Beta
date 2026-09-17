@@ -5,23 +5,23 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class h {
-    public final f f41784a;
-    public final TLRPC.TL_messageMediaPoll f41785b;
-    public final TLRPC.TL_inputMediaPoll f41786c;
+    public final f f41806a;
+    public final TLRPC.TL_messageMediaPoll f41807b;
+    public final TLRPC.TL_inputMediaPoll f41808c;
     public final long d;
     public final String e;
-    public final ArrayList f41787f;
+    public final ArrayList f41809f;
 
     public h(f fVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, long j3, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f41784a = fVar;
+        this.f41806a = fVar;
         this.d = j3;
         this.e = str;
-        this.f41787f = arrayList;
+        this.f41809f = arrayList;
         TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
         TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
         tL_inputMediaPoll.poll = tL_poll;
         TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        tL_poll.f18138id = poll.f18138id;
+        tL_poll.f18147id = poll.f18147id;
         tL_poll.flags = poll.flags;
         tL_poll.closed = poll.closed;
         tL_poll.public_voters = poll.public_voters;
@@ -61,26 +61,26 @@ public final class h {
             tL_inputMediaPoll.flags |= 1;
         }
         if (fVar != null) {
-            SparseArray sparseArray = fVar.f41766a;
+            SparseArray sparseArray = fVar.f41788a;
             int size2 = sparseArray.size();
             for (int i11 = 0; i11 < size2; i11++) {
                 int keyAt = sparseArray.keyAt(i11);
                 e eVar = (e) sparseArray.valueAt(i11);
                 if (eVar instanceof rh.e) {
                     TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
-                    tL_inputMediaWebPage.url = ((rh.e) eVar).f42593b;
+                    tL_inputMediaWebPage.url = ((rh.e) eVar).f42615b;
                     tL_inputMediaWebPage.optional = true;
                     f.k(tL_inputMediaPoll, keyAt, tL_inputMediaWebPage);
                 } else if (eVar instanceof rh.f) {
-                    f.k(tL_inputMediaPoll, keyAt, zf.d.h(((rh.f) eVar).f42599b));
+                    f.k(tL_inputMediaPoll, keyAt, zf.d.h(((rh.f) eVar).f42621b));
                 } else if (eVar instanceof rh.h) {
                     TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    TLRPC.Document document = ((rh.h) eVar).f42602b;
-                    tL_inputDocument.f18124id = document.f18118id;
+                    TLRPC.Document document = ((rh.h) eVar).f42624b;
+                    tL_inputDocument.f18133id = document.f18127id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    tL_inputMediaDocument.f18173id = tL_inputDocument;
+                    tL_inputMediaDocument.f18182id = tL_inputDocument;
                     f.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
                 }
             }
@@ -92,20 +92,20 @@ public final class h {
                     TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
                     TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
                     tL_messageMediaWebPage.webpage = tL_webPage;
-                    String str2 = ((rh.e) eVar2).f42593b;
+                    String str2 = ((rh.e) eVar2).f42615b;
                     tL_webPage.display_url = str2;
                     tL_webPage.url = str2;
                     f.l(tL_messageMediaPoll, keyAt2, tL_messageMediaWebPage);
                 } else if (eVar2 instanceof rh.f) {
-                    f.l(tL_messageMediaPoll, keyAt2, ((rh.f) eVar2).f42599b);
+                    f.l(tL_messageMediaPoll, keyAt2, ((rh.f) eVar2).f42621b);
                 } else if (eVar2 instanceof rh.h) {
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                    tL_messageMediaDocument.document = ((rh.h) eVar2).f42602b;
+                    tL_messageMediaDocument.document = ((rh.h) eVar2).f42624b;
                     f.l(tL_messageMediaPoll, keyAt2, tL_messageMediaDocument);
                 }
             }
         }
-        this.f41785b = tL_messageMediaPoll;
-        this.f41786c = tL_inputMediaPoll;
+        this.f41807b = tL_messageMediaPoll;
+        this.f41808c = tL_inputMediaPoll;
     }
 }

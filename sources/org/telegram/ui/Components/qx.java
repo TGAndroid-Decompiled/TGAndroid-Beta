@@ -7,28 +7,28 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
-public class qx extends im0 {
+public class qx extends jm0 {
     public boolean A0;
     public boolean B0;
     public VelocityTracker C0;
     public final kz D0;
-    public final int f27466u0;
-    public boolean f27467v0;
-    public float f27468w0;
-    public boolean f27469x0;
-    public float f27470y0;
-    public float f27471z0;
+    public final int f27444u0;
+    public boolean f27445v0;
+    public float f27446w0;
+    public boolean f27447x0;
+    public float f27448y0;
+    public float f27449z0;
 
-    public qx(kz kzVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var, kzVar.f25723i2);
+    public qx(kz kzVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var, kzVar.f25733i2);
         this.D0 = kzVar;
-        this.f27469x0 = true;
-        this.f27466u0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f27447x0 = true;
+        this.f27444u0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f25077s != null) {
+        if (this.f25350s != null) {
             return super.onInterceptTouchEvent(motionEvent);
         }
         if (getParent() != null) {
@@ -37,17 +37,17 @@ public class qx extends im0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f27470y0 = motionEvent.getRawX();
-            this.f27471z0 = motionEvent.getRawY();
+            this.f27448y0 = motionEvent.getRawX();
+            this.f27449z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0) {
             kz kzVar = this.D0;
-            if (kzVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f27471z0) >= this.f27466u0) {
+            if (kzVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f27449z0) >= this.f27444u0) {
                 this.A0 = true;
-                this.f27471z0 = motionEvent.getRawY();
+                this.f27449z0 = motionEvent.getRawY();
                 ((c2.a) kzVar.O0).e();
-                if (this.f27467v0) {
+                if (this.f27445v0) {
                     kzVar.h.i();
-                    this.f27467v0 = false;
+                    this.f27445v0 = false;
                 }
                 return true;
             }
@@ -60,14 +60,14 @@ public class qx extends im0 {
         boolean z10;
         int i10;
         kz kzVar = this.D0;
-        org.telegram.ui.Cells.l7 l7Var = kzVar.f25714f2;
+        org.telegram.ui.Cells.l7 l7Var = kzVar.f25724f2;
         yw ywVar = kzVar.h;
-        if (this.f25077s != null) {
+        if (this.f25350s != null) {
             return super.onTouchEvent(motionEvent);
         }
-        if (this.f27469x0) {
-            this.f27469x0 = false;
-            this.f27468w0 = motionEvent.getX();
+        if (this.f27447x0) {
+            this.f27447x0 = false;
+            this.f27446w0 = motionEvent.getX();
         }
         if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
             kzVar.W1 = motionEvent.getRawX();
@@ -75,23 +75,23 @@ public class qx extends im0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f27470y0 = motionEvent.getRawX();
-            this.f27471z0 = motionEvent.getRawY();
+            this.f27448y0 = motionEvent.getRawX();
+            this.f27449z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0 && kzVar.O0 != null) {
-            float abs = Math.abs(motionEvent.getRawX() - this.f27470y0);
-            float f7 = this.f27466u0;
-            if (abs >= f7 && canScrollHorizontally((int) (this.f27470y0 - motionEvent.getRawX()))) {
+            float abs = Math.abs(motionEvent.getRawX() - this.f27448y0);
+            float f7 = this.f27444u0;
+            if (abs >= f7 && canScrollHorizontally((int) (this.f27448y0 - motionEvent.getRawX()))) {
                 this.B0 = true;
                 AndroidUtilities.cancelRunOnUIThread(l7Var);
                 kzVar.X1 = true;
                 kzVar.Z();
-            } else if (Math.abs(motionEvent.getRawY() - this.f27471z0) >= f7) {
+            } else if (Math.abs(motionEvent.getRawY() - this.f27449z0) >= f7) {
                 this.A0 = true;
-                this.f27471z0 = motionEvent.getRawY();
+                this.f27449z0 = motionEvent.getRawY();
                 ((c2.a) kzVar.O0).e();
-                if (this.f27467v0) {
+                if (this.f27445v0) {
                     ywVar.i();
-                    this.f27467v0 = false;
+                    this.f27445v0 = false;
                 }
             }
         }
@@ -105,18 +105,18 @@ public class qx extends im0 {
             this.C0.addMovement(motionEvent);
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 px pxVar = kzVar.O0;
-                int round = Math.round(motionEvent.getRawY() - this.f27471z0);
+                int round = Math.round(motionEvent.getRawY() - this.f27449z0);
                 c2.a aVar = (c2.a) pxVar;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) aVar.f3653c;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) aVar.f3658c;
                 if (aVar.d()) {
                     Point point = AndroidUtilities.displaySize;
                     if (point.x > point.y) {
-                        i10 = chatActivityEnterView.f21865x2;
+                        i10 = chatActivityEnterView.f21875x2;
                     } else {
-                        i10 = chatActivityEnterView.f21859w2;
+                        i10 = chatActivityEnterView.f21869w2;
                     }
-                    int max = Math.max(Math.min(round + aVar.f3652b, 0), -(chatActivityEnterView.C3 - i10));
-                    if (chatActivityEnterView.f21751c5 == null) {
+                    int max = Math.max(Math.min(round + aVar.f3657b, 0), -(chatActivityEnterView.C3 - i10));
+                    if (chatActivityEnterView.f21761c5 == null) {
                         float f10 = max;
                         chatActivityEnterView.U0.setTranslationY(f10);
                         chatActivityEnterView.setTranslationY(f10);
@@ -131,24 +131,24 @@ public class qx extends im0 {
                 this.C0 = null;
                 if (motionEvent.getAction() == 1) {
                     c2.a aVar2 = (c2.a) kzVar.O0;
-                    ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) aVar2.f3653c;
+                    ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) aVar2.f3658c;
                     if (aVar2.d()) {
                         chatActivityEnterView2.D3 = false;
-                        if ((aVar2.f3651a && yVelocity >= AndroidUtilities.dp(200.0f)) || ((!aVar2.f3651a && yVelocity <= AndroidUtilities.dp(-200.0f)) || (((z10 = aVar2.f3651a) && chatActivityEnterView2.B3 <= 0.6f) || (!z10 && chatActivityEnterView2.B3 >= 0.4f)))) {
-                            chatActivityEnterView2.m1(!aVar2.f3651a, true, true, true);
+                        if ((aVar2.f3656a && yVelocity >= AndroidUtilities.dp(200.0f)) || ((!aVar2.f3656a && yVelocity <= AndroidUtilities.dp(-200.0f)) || (((z10 = aVar2.f3656a) && chatActivityEnterView2.B3 <= 0.6f) || (!z10 && chatActivityEnterView2.B3 >= 0.4f)))) {
+                            chatActivityEnterView2.m1(!aVar2.f3656a, true, true, true);
                         } else {
                             chatActivityEnterView2.m1(z10, true, true, true);
                         }
                     }
                 } else {
                     c2.a aVar3 = (c2.a) kzVar.O0;
-                    ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) aVar3.f3653c;
-                    if (chatActivityEnterView3.f21860w3) {
+                    ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) aVar3.f3658c;
+                    if (chatActivityEnterView3.f21870w3) {
                         chatActivityEnterView3.D3 = false;
-                        chatActivityEnterView3.m1(aVar3.f3651a, true, false, true);
+                        chatActivityEnterView3.m1(aVar3.f3656a, true, false, true);
                     }
                 }
-                this.f27469x0 = true;
+                this.f27447x0 = true;
                 this.B0 = false;
                 this.A0 = false;
             }
@@ -157,9 +157,9 @@ public class qx extends im0 {
         }
         float translationX = getTranslationX();
         if (getScrollX() == 0 && translationX == 0.0f) {
-            if (!this.f27467v0 && this.f27468w0 - motionEvent.getX() < 0.0f) {
+            if (!this.f27445v0 && this.f27446w0 - motionEvent.getX() < 0.0f) {
                 if (!ywVar.M) {
-                    ywVar.f48132e0 = true;
+                    ywVar.f48155e0 = true;
                     ywVar.setScrollState(1);
                     ywVar.R = 0.0f;
                     ywVar.T = 0.0f;
@@ -173,28 +173,28 @@ public class qx extends im0 {
                     MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
                     ywVar.W.addMovement(obtain);
                     obtain.recycle();
-                    this.f27467v0 = true;
+                    this.f27445v0 = true;
                     getTranslationX();
                 }
-            } else if (this.f27467v0 && this.f27468w0 - motionEvent.getX() > 0.0f && ywVar.f48132e0) {
+            } else if (this.f27445v0 && this.f27446w0 - motionEvent.getX() > 0.0f && ywVar.f48155e0) {
                 ywVar.i();
-                this.f27467v0 = false;
+                this.f27445v0 = false;
             }
         }
-        if (this.f27467v0) {
+        if (this.f27445v0) {
             motionEvent.getX();
         }
-        this.f27468w0 = motionEvent.getX();
+        this.f27446w0 = motionEvent.getX();
         if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f27469x0 = true;
+            this.f27447x0 = true;
             this.B0 = false;
             this.A0 = false;
-            if (this.f27467v0) {
+            if (this.f27445v0) {
                 ywVar.i();
-                this.f27467v0 = false;
+                this.f27445v0 = false;
             }
         }
-        if (!this.f27467v0 && !super.onTouchEvent(motionEvent)) {
+        if (!this.f27445v0 && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

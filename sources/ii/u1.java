@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.f51;
 import org.telegram.ui.Components.ky;
 import org.telegram.ui.StickersActivity;
 public final class u1 implements ky {
-    public final d2 f11651a;
+    public final d2 f11654a;
 
     public u1(d2 d2Var) {
-        this.f11651a = d2Var;
+        this.f11654a = d2Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class u1 implements ky {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        d2 d2Var = this.f11651a;
+        d2 d2Var = this.f11654a;
         if (i10 != 0 && (focusedEditTextOrNull = d2Var.P.getFocusedEditTextOrNull()) != null) {
             d2Var.R0 = focusedEditTextOrNull;
             d2Var.S0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class u1 implements ky {
 
     @Override
     public final boolean k() {
-        i1 a02 = d2.a0(this.f11651a);
+        i1 a02 = d2.a0(this.f11654a);
         if (a02 == null || a02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class u1 implements ky {
 
     @Override
     public final void l(String str) {
-        d2 d2Var = this.f11651a;
+        d2 d2Var = this.f11654a;
         i1 a02 = d2.a0(d2Var);
         if (a02 != null) {
             int b02 = d2.b0(d2Var, a02);
@@ -104,18 +104,18 @@ public final class u1 implements ky {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f11651a.presentFragment(new StickersActivity(5, arrayList));
+        this.f11654a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f11651a.presentFragment(new StickersActivity(0, null));
+        this.f11654a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.x5 x5Var;
-        d2 d2Var = this.f11651a;
+        d2 d2Var = this.f11654a;
         i1 a02 = d2.a0(d2Var);
         if (a02 != null) {
             int b02 = d2.b0(d2Var, a02);
@@ -144,7 +144,7 @@ public final class u1 implements ky {
 
     @Override
     public final boolean z() {
-        return this.f11651a.C0;
+        return this.f11654a.C0;
     }
 
     @Override
@@ -156,7 +156,7 @@ public final class u1 implements ky {
     }
 
     @Override
-    public final void o(e51 e51Var) {
+    public final void o(f51 f51Var) {
     }
 
     @Override

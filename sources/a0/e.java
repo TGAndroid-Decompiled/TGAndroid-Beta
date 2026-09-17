@@ -67,7 +67,7 @@ public final class e implements Collection {
     @Override
     public final boolean removeAll(Collection collection) {
         f fVar = this.f9a;
-        int i10 = fVar.f28c;
+        int i10 = fVar.f30c;
         int i11 = 0;
         boolean z10 = false;
         while (i11 < i10) {
@@ -85,7 +85,7 @@ public final class e implements Collection {
     @Override
     public final boolean retainAll(Collection collection) {
         f fVar = this.f9a;
-        int i10 = fVar.f28c;
+        int i10 = fVar.f30c;
         int i11 = 0;
         boolean z10 = false;
         while (i11 < i10) {
@@ -102,13 +102,13 @@ public final class e implements Collection {
 
     @Override
     public final int size() {
-        return this.f9a.f28c;
+        return this.f9a.f30c;
     }
 
     @Override
     public final Object[] toArray() {
         f fVar = this.f9a;
-        int i10 = fVar.f28c;
+        int i10 = fVar.f30c;
         Object[] objArr = new Object[i10];
         for (int i11 = 0; i11 < i10; i11++) {
             objArr[i11] = fVar.h(i11);
@@ -119,7 +119,7 @@ public final class e implements Collection {
     @Override
     public final Object[] toArray(Object[] objArr) {
         f fVar = this.f9a;
-        int i10 = fVar.f28c;
+        int i10 = fVar.f30c;
         if (objArr.length < i10) {
             objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i10);
         }

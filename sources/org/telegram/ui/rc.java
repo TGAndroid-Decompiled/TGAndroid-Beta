@@ -1,70 +1,56 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.ViewGroup;
 import org.telegram.messenger.MessagesController;
-public final class rc extends FrameLayout {
-    public final org.telegram.ui.ActionBar.e6 f37072a;
-    public final dc1 f37073b;
-    public final s4.c0 f37074c;
-    public final int d;
-    public int e;
+public final class rc extends org.telegram.ui.Components.ll0 {
+    public final Context f37185c;
+    public final org.telegram.ui.ActionBar.f6 d;
+    public final int e;
+    public final tc f37186f;
 
-    public rc(int i10, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(activity);
-        this.d = i10;
-        this.f37072a = e6Var;
-        dc1 dc1Var = new dc1(activity, 3, e6Var);
-        this.f37073b = dc1Var;
-        dc1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
-        dc1Var.setClipToPadding(false);
-        dc1Var.setAdapter(new pc(this, activity, e6Var, i10));
-        s4.c0 c0Var = new s4.c0();
-        this.f37074c = c0Var;
-        c0Var.j1(0);
-        dc1Var.setLayoutManager(c0Var);
-        addView(dc1Var, w7.x5.c(-1.0f, -1));
+    public rc(tc tcVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        this.f37186f = tcVar;
+        this.f37185c = context;
+        this.d = f6Var;
+        this.e = i10;
     }
 
-    public final void a(int i10, boolean z10) {
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.d).peerColors;
-        int i11 = 0;
-        if (peerColors != null) {
-            int i12 = 0;
-            while (true) {
-                if (i12 >= peerColors.colors.size()) {
-                    break;
-                } else if (peerColors.colors.get(i12).f15605id == i10) {
-                    i11 = i12;
-                    break;
-                } else {
-                    i12++;
-                }
-            }
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
+        if (peerColors == null) {
+            return 0;
         }
-        if (i11 != this.e) {
-            this.e = i11;
-            if (!z10) {
-                this.f37074c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
-            }
-            AndroidUtilities.forEachViews((RecyclerView) this.f37073b, (e2.h) new m4.t0(1, this, z10));
+        return peerColors.colors.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        sc scVar = (sc) c1Var.f42697a;
+        scVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18862d6, this.d));
+        if (i10 == this.f37186f.e) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        scVar.f37461s = z10;
+        scVar.v.f(z10, true);
+        scVar.invalidate();
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
+        if (peerColors != null && i10 >= 0 && i10 < peerColors.colors.size()) {
+            scVar.a(peerColors.colors.get(i10));
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getParent() != null) {
-            ViewParent parent = getParent();
-            boolean z10 = true;
-            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                z10 = false;
-            }
-            parent.requestDisallowInterceptTouchEvent(z10);
-        }
-        return super.onInterceptTouchEvent(motionEvent);
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new sc(this.f37186f, this.f37185c));
     }
 }

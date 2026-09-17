@@ -18,15 +18,15 @@ import org.telegram.ui.Components.mg;
 import org.telegram.ui.Components.w50;
 import org.telegram.ui.rn;
 public final class b4 implements mg {
-    public final f6 f573a;
+    public final f6 f578a;
 
     public b4(f6 f6Var) {
-        this.f573a = f6Var;
+        this.f578a = f6Var;
     }
 
     @Override
     public final void A2() {
-        this.f573a.P0();
+        this.f578a.P0();
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class b4 implements mg {
     @Override
     public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
         boolean z11;
-        f6 f6Var = this.f573a;
+        f6 f6Var = this.f578a;
         if (f6Var.G2) {
             AndroidUtilities.runOnUIThread(new j(this, j3, 1), 200L);
             return;
@@ -54,8 +54,8 @@ public final class b4 implements mg {
     public final TLRPC.TL_channels_sendAsPeers J() {
         d2 d2Var;
         boolean z10;
-        f6 f6Var = this.f573a;
-        if (f6Var.O1.f704f) {
+        f6 f6Var = this.f578a;
+        if (f6Var.O1.f709f) {
             jc jcVar = f6Var.J0;
             if (jcVar != null && (d2Var = jcVar.A0) != null) {
                 TLRPC.GroupCall groupCall = d2Var.v;
@@ -75,7 +75,7 @@ public final class b4 implements mg {
 
     @Override
     public final void K(float f7, int i10) {
-        w50 w50Var = this.f573a.J2;
+        w50 w50Var = this.f578a.J2;
         if (w50Var != null) {
             w50Var.e(f7, i10);
         }
@@ -83,23 +83,23 @@ public final class b4 implements mg {
 
     @Override
     public final int b1() {
-        return this.f573a.getHeight();
+        return this.f578a.getHeight();
     }
 
     @Override
     public final TL_stories.StoryItem d1() {
-        return this.f573a.O1.f701a;
+        return this.f578a.O1.f706a;
     }
 
     @Override
     public final boolean f1(long j3) {
         boolean z10;
-        f6 f6Var = this.f573a;
+        f6 f6Var = this.f578a;
         d6 d6Var = f6Var.O1;
-        TL_stories.StoryItem storyItem = d6Var.f701a;
+        TL_stories.StoryItem storyItem = d6Var.f706a;
         if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
             TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
-            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) d6Var.f701a.media).call;
+            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) d6Var.f706a.media).call;
             savedefaultsendas.send_as = MessagesController.getInstance(f6Var.C2).getInputPeer(j3);
             ConnectionsManager.getInstance(f6Var.C2).sendRequest(savedefaultsendas, null);
             d2 d2Var = f6Var.J0.A0;
@@ -118,8 +118,8 @@ public final class b4 implements mg {
                 }
             }
             f6Var.r0(true);
-            f6Var.f795b2.P1(true);
-            f6Var.f795b2.K(true);
+            f6Var.f800b2.P1(true);
+            f6Var.f800b2.K(true);
             f6Var.f1(false);
         }
         return true;
@@ -127,8 +127,8 @@ public final class b4 implements mg {
 
     @Override
     public final boolean i1() {
-        w50 w50Var = this.f573a.J2;
-        if (w50Var != null && !w50Var.f29583e0) {
+        w50 w50Var = this.f578a.J2;
+        if (w50Var != null && !w50Var.f29538e0) {
             return true;
         }
         return false;
@@ -138,7 +138,7 @@ public final class b4 implements mg {
     public final void i2() {
         String str;
         int i10;
-        f6 f6Var = this.f573a;
+        f6 f6Var = this.f578a;
         if (f6Var.E1) {
             f6.h0(f6Var);
             return;
@@ -160,22 +160,22 @@ public final class b4 implements mg {
             }
         }
         i40 i40Var2 = f6Var.W2;
-        if (f6Var.f795b2.f21747c1) {
+        if (f6Var.f800b2.f21757c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
         }
         i40Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
-        f6Var.W2.f(f6Var.f795b2.getAudioVideoButtonContainer(), true);
+        f6Var.W2.f(f6Var.f800b2.getAudioVideoButtonContainer(), true);
     }
 
     @Override
     public final void k2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
-        f6 f6Var = this.f573a;
+        f6 f6Var = this.f578a;
         boolean z11 = false;
         if (f6Var.J2 == null && CameraView.isCameraAllowed()) {
             f6Var.J2 = new w50(f6Var.getContext(), new r4(f6Var), f6Var.B0, false);
-            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f795b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f795b2.N1)), w7.x5.e(-1, -1, 51));
+            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f800b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f800b2.N1)), w7.x5.e(-1, -1, 51));
         }
         w50 w50Var = f6Var.J2;
         if (w50Var != null) {
@@ -196,19 +196,19 @@ public final class b4 implements mg {
 
     @Override
     public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
-        f6 f6Var = this.f573a;
-        if (f6Var.f804d3 == null) {
-            c4 c4Var = new c4(f6Var, f6Var.getContext(), f6Var.B1, f6Var.J0.f1075f, f6Var.B0);
-            f6Var.f804d3 = c4Var;
+        f6 f6Var = this.f578a;
+        if (f6Var.f809d3 == null) {
+            c4 c4Var = new c4(f6Var, f6Var.getContext(), f6Var.B1, f6Var.J0.f1080f, f6Var.B0);
+            f6Var.f809d3 = c4Var;
             c4Var.p(new f4(f6Var));
-            f6Var.addView(f6Var.f804d3, w7.x5.e(-1, -1, 83));
+            f6Var.addView(f6Var.f809d3, w7.x5.e(-1, -1, 83));
         }
-        if (f6Var.f804d3.getAdapter() != null) {
-            f6Var.f804d3.setDialogId(f6Var.B1);
-            if (f6Var.O1.f704f) {
-                gg.k1 adapter = f6Var.f804d3.getAdapter();
-                if (adapter.f9821j0 == 0 && adapter.f9834u0 == 0 && adapter.f9833t0 == 0 && adapter.E0 == 0) {
-                    adapter.f9837w0 = null;
+        if (f6Var.f809d3.getAdapter() != null) {
+            f6Var.f809d3.setDialogId(f6Var.B1);
+            if (f6Var.O1.f709f) {
+                gg.k1 adapter = f6Var.f809d3.getAdapter();
+                if (adapter.f9826j0 == 0 && adapter.f9839u0 == 0 && adapter.f9838t0 == 0 && adapter.E0 == 0) {
+                    adapter.f9842w0 = null;
                     adapter.F = null;
                     ArrayList arrayList = adapter.A0;
                     if (arrayList != null) {
@@ -220,7 +220,7 @@ public final class b4 implements mg {
                     }
                     adapter.T = null;
                     adapter.U = null;
-                    ArrayList arrayList3 = adapter.f9838x;
+                    ArrayList arrayList3 = adapter.f9843x;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -243,12 +243,12 @@ public final class b4 implements mg {
                     adapter.l();
                 }
             } else {
-                gg.k1 adapter2 = f6Var.f804d3.getAdapter();
+                gg.k1 adapter2 = f6Var.f809d3.getAdapter();
                 MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1));
                 TLRPC.Chat chat = MessagesController.getInstance(f6Var.C2).getChat(Long.valueOf(-f6Var.B1));
                 adapter2.getClass();
-                adapter2.f9823l0 = chat;
-                f6Var.f804d3.getAdapter().U(charSequence, f6Var.f795b2.getCursorPosition(), null, false, false);
+                adapter2.f9828l0 = chat;
+                f6Var.f809d3.getAdapter().U(charSequence, f6Var.f800b2.getCursorPosition(), null, false, false);
             }
         }
         f6Var.invalidate();
@@ -261,7 +261,7 @@ public final class b4 implements mg {
 
     @Override
     public final void n1() {
-        w50 w50Var = this.f573a.J2;
+        w50 w50Var = this.f578a.J2;
         if (w50Var != null) {
             w50Var.q();
         }
@@ -270,7 +270,7 @@ public final class b4 implements mg {
     @Override
     public final boolean o1() {
         TLRPC.User user;
-        f6 f6Var = this.f573a;
+        f6 f6Var = this.f578a;
         if (f6Var.B1 < 0 || (user = MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1))) == null || UserObject.isUserSelf(user) || user.bot) {
             return false;
         }
@@ -289,19 +289,19 @@ public final class b4 implements mg {
 
     @Override
     public final void q1() {
-        this.f573a.O0();
+        this.f578a.O0();
     }
 
     @Override
     public final void s1() {
-        this.f573a.requestLayout();
+        this.f578a.requestLayout();
     }
 
     @Override
     public final TLRPC.Peer v() {
         d2 d2Var;
         boolean z10;
-        jc jcVar = this.f573a.J0;
+        jc jcVar = this.f578a.J0;
         if (jcVar != null && (d2Var = jcVar.A0) != null) {
             TLRPC.GroupCall groupCall = d2Var.v;
             if (groupCall == null) {

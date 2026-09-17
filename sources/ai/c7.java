@@ -12,12 +12,12 @@ public final class c7 extends org.telegram.ui.Cells.n6 {
 
     @Override
     public final void b(long j3) {
-        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
         if (R == null) {
             return;
         }
         jc createOverlayStoryViewer = R.createOverlayStoryViewer();
         createOverlayStoryViewer.getClass();
-        createOverlayStoryViewer.D(getContext(), j3, u9.a(this.K.d.f1047r));
+        createOverlayStoryViewer.D(getContext(), j3, u9.a(this.K.d.f1052r));
     }
 }

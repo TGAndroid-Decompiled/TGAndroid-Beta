@@ -1,30 +1,20 @@
 package org.telegram.ui;
-public final class hj extends org.telegram.ui.ActionBar.n1 {
-    public final bo f34299o;
 
-    public hj(bo boVar, fj fjVar) {
-        super(fjVar, -2, -2);
-        this.f34299o = boVar;
+import android.app.Activity;
+import java.util.ArrayList;
+public final class hj extends org.telegram.ui.Components.sv {
+    public final bo W;
+
+    public hj(bo boVar, org.telegram.ui.ActionBar.o2 o2Var, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList) {
+        super(o2Var, activity, f6Var, arrayList);
+        this.W = boVar;
     }
 
     @Override
     public final void dismiss() {
-        d(true);
-        bo boVar = this.f34299o;
-        if (boVar.Q8 == this) {
-            boVar.Q8 = null;
-            boVar.T8 = null;
-            boVar.S8 = null;
-            boVar.f32549z0.R = true;
-            if (boVar.R8) {
-                boVar.g8(false, true, 0.0f);
-            } else {
-                boVar.R8 = true;
-            }
-            mk mkVar = boVar.Y;
-            if (mkVar != null && mkVar.getEditField() != null) {
-                boVar.Y.getEditField().setAllowDrawCursor(true);
-            }
-        }
+        super.dismiss();
+        bo boVar = this.W;
+        boVar.getClass();
+        boVar.g8(false, true, 0.0f);
     }
 }

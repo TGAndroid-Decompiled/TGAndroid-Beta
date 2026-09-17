@@ -2,10 +2,10 @@ package y8;
 
 import org.telegram.ui.Cells.ia;
 public final class d implements x8.c {
-    public final ia f46357a;
+    public final ia f46380a;
 
     public d(ia iaVar) {
-        this.f46357a = iaVar;
+        this.f46380a = iaVar;
     }
 
     public final boolean equals(Object obj) {
@@ -13,36 +13,36 @@ public final class d implements x8.c {
             return true;
         }
         if (obj != null && d.class == obj.getClass()) {
-            return this.f46357a.equals(((d) obj).f46357a);
+            return this.f46380a.equals(((d) obj).f46380a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f46357a.hashCode();
+        return this.f46380a.hashCode();
     }
 
     @Override
     public final void onChannelClosed(x8.b bVar, int i10, int i11) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46357a.f20280b).onChannelClosed((x8.d) ((f) bVar), i10, i11);
+        ((x8.k) this.f46380a.f20290b).onChannelClosed((x8.d) ((f) bVar), i10, i11);
     }
 
     @Override
     public final void onChannelOpened(x8.b bVar) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46357a.f20280b).onChannelOpened((x8.d) ((f) bVar));
+        ((x8.k) this.f46380a.f20290b).onChannelOpened((x8.d) ((f) bVar));
     }
 
     @Override
     public final void onInputClosed(x8.b bVar, int i10, int i11) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46357a.f20280b).onInputClosed((x8.d) ((f) bVar), i10, i11);
+        ((x8.k) this.f46380a.f20290b).onInputClosed((x8.d) ((f) bVar), i10, i11);
     }
 
     @Override
     public final void onOutputClosed(x8.b bVar, int i10, int i11) {
         n6.l.i(bVar, "channel must not be null");
-        ((x8.k) this.f46357a.f20280b).onOutputClosed((x8.d) ((f) bVar), i10, i11);
+        ((x8.k) this.f46380a.f20290b).onOutputClosed((x8.d) ((f) bVar), i10, i11);
     }
 }

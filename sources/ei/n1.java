@@ -1,8 +1,8 @@
 package ei;
 
 import android.os.Bundle;
-import org.telegram.ui.uy;
-public final class n1 extends uy {
+import org.telegram.ui.wy;
+public final class n1 extends wy {
     public final org.telegram.tgnet.e B4;
     public final p1 C4;
 
@@ -21,8 +21,8 @@ public final class n1 extends uy {
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         p1 p1Var = this.C4;
-        if (!p1Var.f8533c0) {
-            p1Var.f8533c0 = true;
+        if (!p1Var.f8538c0) {
+            p1Var.f8538c0 = true;
             this.B4.run("USER_DECLINED", null);
         }
     }

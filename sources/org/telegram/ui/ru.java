@@ -1,67 +1,17 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.StatsController;
-public final class ru implements org.telegram.ui.Components.wk0, org.telegram.ui.ActionBar.a2 {
-    public final vu f37187a;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class ru extends MetricAffectingSpan {
+    public double f37305a;
 
-    public ru(vu vuVar) {
-        this.f37187a = vuVar;
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.baselineShift += (int) (textPaint.ascent() * this.f37305a);
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11;
-        int i12;
-        int i13;
-        vu vuVar = this.f37187a;
-        zu zuVar = vuVar.f38699o3;
-        ArrayList arrayList = vuVar.f38691f3;
-        arrayList.clear();
-        int i14 = 0;
-        while (true) {
-            uu[] uuVarArr = vuVar.f38692g3;
-            if (i14 >= uuVarArr.length) {
-                i11 = ((org.telegram.ui.ActionBar.n2) zuVar).currentAccount;
-                StatsController.getInstance(i11).resetStats(0);
-                i12 = ((org.telegram.ui.ActionBar.n2) zuVar).currentAccount;
-                StatsController.getInstance(i12).resetStats(1);
-                i13 = ((org.telegram.ui.ActionBar.n2) zuVar).currentAccount;
-                StatsController.getInstance(i13).resetStats(2);
-                vuVar.X2 = true;
-                vuVar.z1();
-                vuVar.A1(true);
-                return;
-            }
-            uu uuVar = uuVarArr[i14];
-            if (uuVar.f22361c > 0) {
-                arrayList.add(Integer.valueOf(uuVar.d));
-            }
-            i14++;
-        }
-    }
-
-    @Override
-    public int run() {
-        vu vuVar = this.f37187a;
-        ArrayList arrayList = vuVar.f38688c3;
-        int i10 = 0;
-        while (true) {
-            if (i10 < arrayList.size()) {
-                if (((qu) arrayList.get(i10)).f15533a == 5) {
-                    break;
-                }
-                i10++;
-            } else {
-                i10 = -1;
-                break;
-            }
-        }
-        if (i10 < 0) {
-            return -1;
-        }
-        vuVar.Z2.h1(i10, AndroidUtilities.dp(60.0f));
-        return i10;
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.baselineShift += (int) (textPaint.ascent() * this.f37305a);
     }
 }

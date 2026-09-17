@@ -3,48 +3,48 @@ package yh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.oc;
 public final class v1 implements Runnable {
-    public final int f47881a;
-    public final a4 f47882b;
-    public final String f47883c;
+    public final int f47904a;
+    public final a4 f47905b;
+    public final String f47906c;
 
     public v1(a4 a4Var, String str, int i10) {
-        this.f47881a = i10;
-        this.f47882b = a4Var;
-        this.f47883c = str;
+        this.f47904a = i10;
+        this.f47905b = a4Var;
+        this.f47906c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f47881a) {
+        switch (this.f47904a) {
             case 0:
-                a4.i1(this.f47882b, this.f47883c);
+                a4.i1(this.f47905b, this.f47906c);
                 return;
             case 1:
-                a4.h1(this.f47882b, this.f47883c);
+                a4.h1(this.f47905b, this.f47906c);
                 return;
             case 2:
-                a4.u0(this.f47882b, this.f47883c);
+                a4.u0(this.f47905b, this.f47906c);
                 return;
             case 3:
-                a4.Q0(this.f47882b, this.f47883c);
+                a4.Q0(this.f47905b, this.f47906c);
                 return;
             case 4:
-                a4.D0(this.f47882b, this.f47883c);
+                a4.D0(this.f47905b, this.f47906c);
                 return;
             case 5:
-                a4.Q(this.f47882b, this.f47883c);
+                a4.Q(this.f47905b, this.f47906c);
                 return;
             case 6:
-                a4.x0(this.f47882b, this.f47883c);
+                a4.x0(this.f47905b, this.f47906c);
                 return;
             case 7:
-                AndroidUtilities.addToClipboard(this.f47883c);
-                oc k10 = this.f47882b.getBulletinFactory().k(false);
-                k10.f26764t = true;
+                AndroidUtilities.addToClipboard(this.f47906c);
+                oc k10 = this.f47905b.getBulletinFactory().k(false);
+                k10.f26712t = true;
                 k10.j();
                 return;
             default:
-                a4.p0(this.f47882b, this.f47883c);
+                a4.p0(this.f47905b, this.f47906c);
                 return;
         }
     }

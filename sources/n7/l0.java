@@ -5,7 +5,7 @@ public final class l0 extends n0 {
     public l0(k0 k0Var) {
         super(k0Var, (Character) null);
         this.e = new char[512];
-        char[] cArr = k0Var.f15139b;
+        char[] cArr = k0Var.f15149b;
         if (cArr.length == 16) {
             for (int i10 = 0; i10 < 256; i10++) {
                 char[] cArr2 = this.e;

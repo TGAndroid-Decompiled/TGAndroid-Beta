@@ -1,26 +1,29 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class vt {
-    public String f38680a;
-    public String f38681b;
-    public String f38682c;
-    public String d;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class vt implements NotificationCenter.NotificationCenterDelegate {
+    public final int f38500a;
+    public final View f38501b;
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && vt.class == obj.getClass()) {
-            vt vtVar = (vt) obj;
-            if (Objects.equals(this.f38680a, vtVar.f38680a) && Objects.equals(this.f38682c, vtVar.f38682c)) {
-                return true;
-            }
-        }
-        return false;
+    public vt(int i10, View view) {
+        this.f38500a = i10;
+        this.f38501b = view;
     }
 
-    public final int hashCode() {
-        return Objects.hash(this.f38680a, this.f38682c);
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+        switch (this.f38500a) {
+            case 0:
+                org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) this.f38501b;
+                if (i10 == NotificationCenter.emojiLoaded) {
+                    eaVar.getTextView().invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((bk0) this.f38501b).invalidate();
+                return;
+        }
     }
 }

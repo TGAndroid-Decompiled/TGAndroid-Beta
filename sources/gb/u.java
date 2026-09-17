@@ -3,23 +3,23 @@ package gb;
 import java.lang.reflect.Field;
 import org.telegram.ui.Cells.p6;
 public final class u extends t {
-    public final fb.n f9588b;
+    public final fb.n f9593b;
 
     public u(fb.n nVar, v vVar) {
         super(vVar);
-        this.f9588b = nVar;
+        this.f9593b = nVar;
     }
 
     @Override
     public final Object a() {
-        return this.f9588b.p2();
+        return this.f9593b.p2();
     }
 
     @Override
     public final void c(Object obj, lb.a aVar, s sVar) {
-        Field field = sVar.f9583b;
-        Object read = sVar.f9585f.read(aVar);
-        if (read == null && sVar.f9586g) {
+        Field field = sVar.f9588b;
+        Object read = sVar.f9590f.read(aVar);
+        if (read == null && sVar.f9591g) {
             return;
         }
         if (!sVar.h) {

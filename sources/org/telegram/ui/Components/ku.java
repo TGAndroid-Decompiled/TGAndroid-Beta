@@ -79,8 +79,8 @@ public final class ku extends vh.o {
                 this.S = d90Var;
                 z80Var.a(d90Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.S.f23248i);
-                int spanEnd = spannableString.getSpanEnd(this.S.f23248i);
+                int spanStart = spannableString.getSpanStart(this.S.f23240i);
+                int spanEnd = spannableString.getSpanEnd(this.S.f23240i);
                 w80 b10 = this.S.b();
                 b10.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b10);
@@ -90,7 +90,7 @@ public final class ku extends vh.o {
             if (motionEvent.getAction() == 1) {
                 z80Var.d(true);
                 d90 d90Var2 = this.S;
-                if (d90Var2 != null && (characterStyle = d90Var2.f23248i) == a2) {
+                if (d90Var2 != null && (characterStyle = d90Var2.f23240i) == a2) {
                     if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }

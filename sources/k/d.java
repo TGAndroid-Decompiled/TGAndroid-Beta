@@ -7,16 +7,16 @@ import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 import n4.y;
 public final class d extends a implements l.i {
-    public Context f13108c;
+    public Context f13111c;
     public ActionBarContextView d;
     public y e;
-    public WeakReference f13109f;
+    public WeakReference f13112f;
     public boolean h;
-    public l.k f13110n;
+    public l.k f13113n;
 
     @Override
     public final boolean A(l.k kVar, MenuItem menuItem) {
-        return ((ni.f) this.e.f14994b).G(this, menuItem);
+        return ((ni.f) this.e.f15004b).G(this, menuItem);
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f13109f;
+        WeakReference weakReference = this.f13112f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -39,7 +39,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final l.k c() {
-        return this.f13110n;
+        return this.f13113n;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void g() {
-        this.e.U(this, this.f13110n);
+        this.e.U(this, this.f13113n);
     }
 
     @Override
@@ -76,12 +76,12 @@ public final class d extends a implements l.i {
         } else {
             weakReference = null;
         }
-        this.f13109f = weakReference;
+        this.f13112f = weakReference;
     }
 
     @Override
     public final void j(int i10) {
-        k(this.f13108c.getString(i10));
+        k(this.f13111c.getString(i10));
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void l(int i10) {
-        m(this.f13108c.getString(i10));
+        m(this.f13111c.getString(i10));
     }
 
     @Override
@@ -101,7 +101,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void n(boolean z10) {
-        this.f13104b = z10;
+        this.f13107b = z10;
         this.d.setTitleOptional(z10);
     }
 

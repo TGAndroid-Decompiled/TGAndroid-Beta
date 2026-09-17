@@ -1,15 +1,17 @@
 package org.telegram.ui;
-public final class rp0 extends x61 {
-    public final up0 e;
 
-    public rp0(up0 up0Var, qp0 qp0Var) {
-        super(qp0Var);
-        this.e = up0Var;
+import android.graphics.Canvas;
+public final class rp0 extends org.telegram.ui.Cells.ja {
+    public static void b(rp0 rp0Var, Canvas canvas) {
+        super.draw(canvas);
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.e.f38082o0 = null;
+    public final void draw(Canvas canvas) {
+        if (canvas.isHardwareAccelerated()) {
+            super.draw(canvas);
+        } else {
+            yf.j0.a(canvas, this, new s3(this, 12));
+        }
     }
 }

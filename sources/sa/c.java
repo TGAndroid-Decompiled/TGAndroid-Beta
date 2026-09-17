@@ -23,13 +23,13 @@ import org.telegram.ui.Cells.p6;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f42886a;
-    public final pa.b f42887b;
-    public final d f42888c = new d();
+    public final Context f42908a;
+    public final pa.b f42909b;
+    public final d f42910c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f42886a = context;
-        this.f42887b = bVar;
+        this.f42908a = context;
+        this.f42909b = bVar;
     }
 
     public static URL a(String str) {
@@ -111,7 +111,7 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f276c = jsonReader.nextString();
+                        a2.f278c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
@@ -139,7 +139,7 @@ public final class c {
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f276c = jsonReader.nextString();
+                a2.f278c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -149,7 +149,7 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f275b = 1;
+        a2.f277b = 1;
         return a2.c();
     }
 

@@ -1,41 +1,18 @@
 package org.telegram.ui.Components;
+public final class t41 {
+    public final c51 f28011a;
+    public final f51 f28012b;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class t41 extends wm0 {
-    public final e51 h;
-
-    public t41(e51 e51Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 14.0f, e6Var);
-        this.h = e51Var;
+    public t41(f51 f51Var, c51 c51Var) {
+        this.f28012b = f51Var;
+        this.f28011a = c51Var;
     }
 
-    @Override
-    public final void a(String str) {
-        gg.g2 g2Var = this.h.v;
-        gg.e2 e2Var = g2Var.S;
-        int i10 = g2Var.f9740c;
-        if (g2Var.N != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(g2Var.N, true);
-            g2Var.N = 0;
-        }
-        if (g2Var.O != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(g2Var.O, true);
-            g2Var.O = 0;
-        }
-        if (TextUtils.isEmpty(str)) {
-            g2Var.R = null;
-            g2Var.F.clear();
-            g2Var.I.clear();
-            g2Var.E.clear();
-            g2Var.e.b(false);
-            g2Var.l();
-        } else {
-            g2Var.R = str.toLowerCase();
-        }
-        AndroidUtilities.cancelRunOnUIThread(e2Var);
-        AndroidUtilities.runOnUIThread(e2Var, 300L);
+    public final int a() {
+        return this.f28012b.f23784s.v;
+    }
+
+    public final void b(boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t41.b(boolean):void");
     }
 }

@@ -3,43 +3,43 @@ package p4;
 import android.os.Bundle;
 import org.telegram.ui.Cells.p6;
 public final class q0 extends q implements n0 {
-    public final String f40637a;
-    public final String f40638b;
-    public boolean f40639c;
+    public final String f40659a;
+    public final String f40660b;
+    public boolean f40661c;
     public int d = -1;
     public int e;
-    public m0 f40640f;
-    public int f40641g;
+    public m0 f40662f;
+    public int f40663g;
     public final r0 h;
 
     public q0(r0 r0Var, String str, String str2) {
         this.h = r0Var;
-        this.f40637a = str;
-        this.f40638b = str2;
+        this.f40659a = str;
+        this.f40660b = str2;
     }
 
     @Override
     public final void a(m0 m0Var) {
-        this.f40640f = m0Var;
+        this.f40662f = m0Var;
         int i10 = m0Var.e;
         m0Var.e = i10 + 1;
         Bundle bundle = new Bundle();
-        bundle.putString("routeId", this.f40637a);
-        bundle.putString("routeGroupId", this.f40638b);
+        bundle.putString("routeId", this.f40659a);
+        bundle.putString("routeGroupId", this.f40660b);
         int i11 = m0Var.d;
         m0Var.d = i11 + 1;
         m0Var.b(3, i11, i10, null, bundle);
-        this.f40641g = i10;
-        if (this.f40639c) {
+        this.f40663g = i10;
+        if (this.f40661c) {
             m0Var.a(i10);
             int i12 = this.d;
             if (i12 >= 0) {
-                m0Var.c(this.f40641g, i12);
+                m0Var.c(this.f40663g, i12);
                 this.d = -1;
             }
             int i13 = this.e;
             if (i13 != 0) {
-                m0Var.d(this.f40641g, i13);
+                m0Var.d(this.f40663g, i13);
                 this.e = 0;
             }
         }
@@ -47,19 +47,19 @@ public final class q0 extends q implements n0 {
 
     @Override
     public final int b() {
-        return this.f40641g;
+        return this.f40663g;
     }
 
     @Override
     public final void c() {
-        m0 m0Var = this.f40640f;
+        m0 m0Var = this.f40662f;
         if (m0Var != null) {
-            int i10 = this.f40641g;
+            int i10 = this.f40663g;
             int i11 = m0Var.d;
             m0Var.d = i11 + 1;
             m0Var.b(4, i11, i10, null, null);
-            this.f40640f = null;
-            this.f40641g = 0;
+            this.f40662f = null;
+            this.f40663g = 0;
         }
     }
 
@@ -73,18 +73,18 @@ public final class q0 extends q implements n0 {
 
     @Override
     public final void e() {
-        this.f40639c = true;
-        m0 m0Var = this.f40640f;
+        this.f40661c = true;
+        m0 m0Var = this.f40662f;
         if (m0Var != null) {
-            m0Var.a(this.f40641g);
+            m0Var.a(this.f40663g);
         }
     }
 
     @Override
     public final void f(int i10) {
-        m0 m0Var = this.f40640f;
+        m0 m0Var = this.f40662f;
         if (m0Var != null) {
-            m0Var.c(this.f40641g, i10);
+            m0Var.c(this.f40663g, i10);
             return;
         }
         this.d = i10;
@@ -98,10 +98,10 @@ public final class q0 extends q implements n0 {
 
     @Override
     public final void h(int i10) {
-        this.f40639c = false;
-        m0 m0Var = this.f40640f;
+        this.f40661c = false;
+        m0 m0Var = this.f40662f;
         if (m0Var != null) {
-            int i11 = this.f40641g;
+            int i11 = this.f40663g;
             Bundle e = p6.e(i10, "unselectReason");
             int i12 = m0Var.d;
             m0Var.d = i12 + 1;
@@ -111,9 +111,9 @@ public final class q0 extends q implements n0 {
 
     @Override
     public final void i(int i10) {
-        m0 m0Var = this.f40640f;
+        m0 m0Var = this.f40662f;
         if (m0Var != null) {
-            m0Var.d(this.f40641g, i10);
+            m0Var.d(this.f40663g, i10);
         } else {
             this.e += i10;
         }

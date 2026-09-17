@@ -17,7 +17,7 @@ public final class x7 extends c8 {
         int action = motionEvent.getAction();
         h8 h8Var = this.e;
         if (action == 0) {
-            if (this.f22972a[this.f22973b].getImageReceiver().hasBitmapImage()) {
+            if (this.f22954a[this.f22955b].getImageReceiver().hasBitmapImage()) {
                 h8Var.A0(true, true);
                 this.d = SystemClock.elapsedRealtime();
                 return true;

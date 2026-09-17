@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 public final class l1 {
-    public static final String f3084f;
-    public static final String f3085g;
-    public final int f3086a;
-    public final String f3087b;
-    public final int f3088c;
+    public static final String f3089f;
+    public static final String f3090g;
+    public final int f3091a;
+    public final String f3092b;
+    public final int f3093c;
     public final s[] d;
     public int e;
 
     static {
-        String str = e2.d0.f7883a;
-        f3084f = Integer.toString(0, 36);
-        f3085g = Integer.toString(1, 36);
+        String str = e2.d0.f7888a;
+        f3089f = Integer.toString(0, 36);
+        f3090g = Integer.toString(1, 36);
     }
 
     public l1(String str, s... sVarArr) {
@@ -28,21 +28,21 @@ public final class l1 {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f3087b = str;
+        this.f3092b = str;
         this.d = sVarArr;
-        this.f3086a = sVarArr.length;
-        int h = r0.h(sVarArr[0].f3304r);
-        this.f3088c = h == -1 ? r0.h(sVarArr[0].f3303q) : h;
+        this.f3091a = sVarArr.length;
+        int h = r0.h(sVarArr[0].f3309r);
+        this.f3093c = h == -1 ? r0.h(sVarArr[0].f3308q) : h;
         String str2 = sVarArr[0].d;
         str2 = (str2 == null || str2.equals("und")) ? "" : "";
-        int i10 = sVarArr[0].f3293f | 16384;
+        int i10 = sVarArr[0].f3298f | 16384;
         for (int i11 = 1; i11 < sVarArr.length; i11++) {
             String str3 = sVarArr[i11].d;
             if (!str2.equals((str3 == null || str3.equals("und")) ? "" : "")) {
                 b("languages", i11, sVarArr[0].d, sVarArr[i11].d);
                 return;
-            } else if (i10 != (sVarArr[i11].f3293f | 16384)) {
-                b("role flags", i11, Integer.toBinaryString(sVarArr[0].f3293f), Integer.toBinaryString(sVarArr[i11].f3293f));
+            } else if (i10 != (sVarArr[i11].f3298f | 16384)) {
+                b("role flags", i11, Integer.toBinaryString(sVarArr[0].f3298f), Integer.toBinaryString(sVarArr[i11].f3298f));
                 return;
             }
         }
@@ -80,12 +80,12 @@ public final class l1 {
         int i10 = 0;
         while (i10 < length) {
             s sVar = sVarArr[i10];
-            List list = sVar.f3307u;
+            List list = sVar.f3312u;
             Bundle bundle2 = new Bundle();
-            bundle2.putString(s.V, sVar.f3290a);
-            bundle2.putString(s.W, sVar.f3291b);
+            bundle2.putString(s.V, sVar.f3295a);
+            bundle2.putString(s.W, sVar.f3296b);
             String str = s.A0;
-            e9.i0 i0Var = sVar.f3292c;
+            e9.i0 i0Var = sVar.f3297c;
             ArrayList<? extends Parcelable> arrayList2 = new ArrayList<>(i0Var.size());
             int size = i0Var.size();
             int i11 = 0;
@@ -96,12 +96,12 @@ public final class l1 {
                 wVar.getClass();
                 Bundle bundle3 = new Bundle();
                 s[] sVarArr2 = sVarArr;
-                String str2 = wVar.f3336a;
+                String str2 = wVar.f3341a;
                 int i12 = length;
                 if (str2 != null) {
-                    bundle3.putString(w.f3335c, str2);
+                    bundle3.putString(w.f3340c, str2);
                 }
-                bundle3.putString(w.d, wVar.f3337b);
+                bundle3.putString(w.d, wVar.f3342b);
                 arrayList2.add(bundle3);
                 sVarArr = sVarArr2;
                 length = i12;
@@ -111,60 +111,60 @@ public final class l1 {
             bundle2.putParcelableArrayList(str, arrayList2);
             bundle2.putString(s.X, sVar.d);
             bundle2.putInt(s.Y, sVar.e);
-            bundle2.putInt(s.Z, sVar.f3293f);
-            int i14 = sVar.f3294g;
-            if (i14 != s.U.f3294g) {
+            bundle2.putInt(s.Z, sVar.f3298f);
+            int i14 = sVar.f3299g;
+            if (i14 != s.U.f3299g) {
                 bundle2.putInt(s.B0, i14);
             }
-            bundle2.putInt(s.f3265a0, sVar.h);
-            bundle2.putInt(s.f3266b0, sVar.f3295i);
-            bundle2.putString(s.f3267c0, sVar.f3297k);
-            bundle2.putString(s.f3268d0, sVar.f3303q);
-            bundle2.putString(s.f3269e0, sVar.f3304r);
-            bundle2.putInt(s.f3270f0, sVar.f3305s);
+            bundle2.putInt(s.f3270a0, sVar.h);
+            bundle2.putInt(s.f3271b0, sVar.f3300i);
+            bundle2.putString(s.f3272c0, sVar.f3302k);
+            bundle2.putString(s.f3273d0, sVar.f3308q);
+            bundle2.putString(s.f3274e0, sVar.f3309r);
+            bundle2.putInt(s.f3275f0, sVar.f3310s);
             for (int i15 = 0; i15 < list.size(); i15++) {
-                bundle2.putByteArray(s.f3271g0 + "_" + Integer.toString(i15, 36), (byte[]) list.get(i15));
+                bundle2.putByteArray(s.f3276g0 + "_" + Integer.toString(i15, 36), (byte[]) list.get(i15));
             }
-            bundle2.putParcelable(s.f3272h0, sVar.v);
-            bundle2.putLong(s.f3273i0, sVar.f3308w);
-            bundle2.putInt(s.f3274j0, sVar.f3310y);
-            bundle2.putInt(s.f3275k0, sVar.f3311z);
+            bundle2.putParcelable(s.f3277h0, sVar.v);
+            bundle2.putLong(s.f3278i0, sVar.f3313w);
+            bundle2.putInt(s.f3279j0, sVar.f3315y);
+            bundle2.putInt(s.f3280k0, sVar.f3316z);
             bundle2.putInt(s.D0, sVar.A);
             bundle2.putInt(s.E0, sVar.B);
-            bundle2.putFloat(s.f3276l0, sVar.C);
+            bundle2.putFloat(s.f3281l0, sVar.C);
             bundle2.putInt(s.m0, sVar.D);
-            bundle2.putFloat(s.f3277n0, sVar.E);
-            bundle2.putByteArray(s.f3278o0, sVar.F);
-            bundle2.putInt(s.f3279p0, sVar.G);
+            bundle2.putFloat(s.f3282n0, sVar.E);
+            bundle2.putByteArray(s.f3283o0, sVar.F);
+            bundle2.putInt(s.f3284p0, sVar.G);
             j jVar = sVar.H;
             if (jVar != null) {
-                String str3 = s.f3280q0;
+                String str3 = s.f3285q0;
                 Bundle bundle4 = new Bundle();
-                bundle4.putInt(j.f3022i, jVar.f3028a);
-                bundle4.putInt(j.f3023j, jVar.f3029b);
-                bundle4.putInt(j.f3024k, jVar.f3030c);
-                bundle4.putByteArray(j.f3025l, jVar.d);
-                bundle4.putInt(j.f3026m, jVar.e);
-                bundle4.putInt(j.f3027n, jVar.f3031f);
+                bundle4.putInt(j.f3027i, jVar.f3033a);
+                bundle4.putInt(j.f3028j, jVar.f3034b);
+                bundle4.putInt(j.f3029k, jVar.f3035c);
+                bundle4.putByteArray(j.f3030l, jVar.d);
+                bundle4.putInt(j.f3031m, jVar.e);
+                bundle4.putInt(j.f3032n, jVar.f3036f);
                 bundle2.putBundle(str3, bundle4);
             }
             bundle2.putInt(s.C0, sVar.I);
-            bundle2.putInt(s.f3281r0, sVar.J);
-            bundle2.putInt(s.f3282s0, sVar.K);
-            bundle2.putInt(s.f3283t0, sVar.L);
-            bundle2.putInt(s.f3284u0, sVar.M);
-            bundle2.putInt(s.f3285v0, sVar.N);
-            bundle2.putInt(s.f3286w0, sVar.O);
-            bundle2.putInt(s.f3288y0, sVar.Q);
-            bundle2.putInt(s.f3289z0, sVar.R);
-            bundle2.putInt(s.f3287x0, sVar.S);
+            bundle2.putInt(s.f3286r0, sVar.J);
+            bundle2.putInt(s.f3287s0, sVar.K);
+            bundle2.putInt(s.f3288t0, sVar.L);
+            bundle2.putInt(s.f3289u0, sVar.M);
+            bundle2.putInt(s.f3290v0, sVar.N);
+            bundle2.putInt(s.f3291w0, sVar.O);
+            bundle2.putInt(s.f3293y0, sVar.Q);
+            bundle2.putInt(s.f3294z0, sVar.R);
+            bundle2.putInt(s.f3292x0, sVar.S);
             arrayList.add(bundle2);
             i10++;
             sVarArr = sVarArr3;
             length = i13;
         }
-        bundle.putParcelableArrayList(f3084f, arrayList);
-        bundle.putString(f3085g, this.f3087b);
+        bundle.putParcelableArrayList(f3089f, arrayList);
+        bundle.putString(f3090g, this.f3092b);
         return bundle;
     }
 
@@ -174,7 +174,7 @@ public final class l1 {
         }
         if (obj != null && l1.class == obj.getClass()) {
             l1 l1Var = (l1) obj;
-            if (this.f3087b.equals(l1Var.f3087b) && Arrays.equals(this.d, l1Var.d)) {
+            if (this.f3092b.equals(l1Var.f3092b) && Arrays.equals(this.d, l1Var.d)) {
                 return true;
             }
         }
@@ -183,12 +183,12 @@ public final class l1 {
 
     public final int hashCode() {
         if (this.e == 0) {
-            this.e = Arrays.hashCode(this.d) + a4.a.h(527, 31, this.f3087b);
+            this.e = Arrays.hashCode(this.d) + a4.a.h(527, 31, this.f3092b);
         }
         return this.e;
     }
 
     public final String toString() {
-        return this.f3087b + ": " + Arrays.toString(this.d);
+        return this.f3092b + ": " + Arrays.toString(this.d);
     }
 }

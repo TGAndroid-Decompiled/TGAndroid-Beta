@@ -3,21 +3,21 @@ package m4;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.f81;
 import org.telegram.ui.Components.g81;
 import org.telegram.ui.Components.h81;
+import org.telegram.ui.Components.i81;
 import org.telegram.ui.bo;
-import org.telegram.ui.qc;
-import org.telegram.ui.rc;
+import org.telegram.ui.sc;
+import org.telegram.ui.tc;
 public final class t0 implements e2.h {
-    public final int f14700a;
-    public final boolean f14701b;
-    public final Object f14702c;
+    public final int f14710a;
+    public final boolean f14711b;
+    public final Object f14712c;
 
     public t0(int i10, Object obj, boolean z10) {
-        this.f14700a = i10;
-        this.f14702c = obj;
-        this.f14701b = z10;
+        this.f14710a = i10;
+        this.f14712c = obj;
+        this.f14711b = z10;
     }
 
     @Override
@@ -25,32 +25,32 @@ public final class t0 implements e2.h {
         boolean z10;
         boolean z11;
         boolean z12;
-        g81 g81Var;
-        switch (this.f14700a) {
+        h81 h81Var;
+        switch (this.f14710a) {
             case 0:
-                ((k1) obj).K0((b2.e) this.f14702c, this.f14701b);
+                ((k1) obj).K0((b2.e) this.f14712c, this.f14711b);
                 return;
             case 1:
-                rc rcVar = (rc) this.f14702c;
+                tc tcVar = (tc) this.f14712c;
                 View view = (View) obj;
-                qc qcVar = (qc) view;
-                rcVar.f37073b.getClass();
-                if (RecyclerView.R(view) == rcVar.e) {
+                sc scVar = (sc) view;
+                tcVar.f37711b.getClass();
+                if (RecyclerView.S(view) == tcVar.e) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                qcVar.f36848s = z10;
-                if (!this.f14701b) {
-                    qcVar.v.f(z10, true);
+                scVar.f37461s = z10;
+                if (!this.f14711b) {
+                    scVar.v.f(z10, true);
                 }
-                qcVar.invalidate();
+                scVar.invalidate();
                 return;
             case 2:
-                bo boVar = (bo) this.f14702c;
+                bo boVar = (bo) this.f14712c;
                 View view2 = (View) obj;
                 boolean z13 = view2 instanceof t1;
-                boolean z14 = this.f14701b;
+                boolean z14 = this.f14711b;
                 if (z13) {
                     t1 t1Var = (t1) view2;
                     if (t1Var.E8 && t1Var.G8) {
@@ -61,30 +61,30 @@ public final class t0 implements e2.h {
                     if (z11 != z14 && boVar.B9()) {
                         t1Var.E8 = z14;
                         t1Var.G8 = boVar.B9();
-                        t1Var.f21164n8 = true;
+                        t1Var.f21174n8 = true;
                         t1Var.forceLayout();
                         return;
                     }
                     return;
                 } else if (view2 instanceof org.telegram.ui.Cells.w0) {
-                    ((org.telegram.ui.Cells.w0) view2).f21510e0 = z14;
+                    ((org.telegram.ui.Cells.w0) view2).f21520e0 = z14;
                     return;
                 } else {
                     return;
                 }
             default:
-                h81 h81Var = (h81) this.f14702c;
+                i81 i81Var = (i81) this.f14712c;
                 View view3 = (View) obj;
-                h81Var.v.getClass();
-                int R = RecyclerView.R(view3);
-                if (view3 instanceof f81) {
-                    f81 f81Var = (f81) view3;
-                    if (this.f14701b && (g81Var = h81Var.f24614y) != null && ((ka.c) g81Var).d(R)) {
+                i81Var.v.getClass();
+                int S = RecyclerView.S(view3);
+                if (view3 instanceof g81) {
+                    g81 g81Var = (g81) view3;
+                    if (this.f14711b && (h81Var = i81Var.f24896y) != null && ((ka.c) h81Var).d(S)) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    f81Var.setReordering(z12);
+                    g81Var.setReordering(z12);
                     return;
                 }
                 return;

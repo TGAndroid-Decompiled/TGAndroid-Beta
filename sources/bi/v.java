@@ -48,25 +48,25 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.n5;
+import org.telegram.ui.ActionBar.o5;
 import org.telegram.ui.Cells.h6;
 import org.telegram.ui.Components.bc0;
 import org.telegram.ui.Components.bu;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.jn0;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.kn0;
 import org.telegram.ui.Components.n6;
 import org.telegram.ui.Components.n70;
-import org.telegram.ui.Components.rn0;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.y51;
-import org.telegram.ui.uy;
+import org.telegram.ui.Components.sn0;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.z51;
+import org.telegram.ui.wy;
 public final class v implements Utilities.Callback2 {
-    public final int f3596a;
-    public final Object f3597b;
+    public final int f3601a;
+    public final Object f3602b;
 
     public v(Object obj, int i10) {
-        this.f3596a = i10;
-        this.f3597b = obj;
+        this.f3601a = i10;
+        this.f3602b = obj;
     }
 
     @Override
@@ -79,7 +79,7 @@ public final class v implements Utilities.Callback2 {
         String upperCase;
         boolean z10;
         int i10;
-        w51 w51Var;
+        x51 x51Var;
         int i11;
         String str2;
         int i12;
@@ -92,16 +92,16 @@ public final class v implements Utilities.Callback2 {
         boolean z16;
         boolean z17;
         boolean z18;
-        int i13 = this.f3596a;
+        int i13 = this.f3601a;
         String str4 = "";
         int i14 = -1;
         boolean z19 = false;
         z19 = false;
-        Object obj3 = this.f3597b;
+        Object obj3 = this.f3602b;
         switch (i13) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                w51 w51Var2 = (w51) obj2;
+                x51 x51Var2 = (x51) obj2;
                 ((y) obj3).getClass();
                 ArrayList<TranslateController.Language> languages = TranslateController.getLanguages();
                 int size = languages.size();
@@ -109,8 +109,8 @@ public final class v implements Utilities.Callback2 {
                 while (i15 < size) {
                     TranslateController.Language language = languages.get(i15);
                     i15++;
-                    int i16 = w.f3598a;
-                    i51 J = i51.J(w.class);
+                    int i16 = w.f3603a;
+                    j51 J = j51.J(w.class);
                     J.G = language;
                     arrayList.add(J);
                 }
@@ -120,8 +120,8 @@ public final class v implements Utilities.Callback2 {
                 Canvas canvas = (Canvas) obj;
                 Runnable runnable = (Runnable) obj2;
                 Paint paint = mVar.I;
-                RectF rectF = mVar.f5016z0;
-                ci.g gVar = mVar.f4990f;
+                RectF rectF = mVar.f5021z0;
+                ci.g gVar = mVar.f4995f;
                 if (mVar.g()) {
                     if (mVar.G == null) {
                         runnable.run();
@@ -157,24 +157,24 @@ public final class v implements Utilities.Callback2 {
             case 2:
                 z1 z1Var = (z1) obj3;
                 String str5 = (String) obj;
-                t2 t2Var = z1Var.f5855r;
-                t2Var.f5542b = str5;
-                t2Var.f5543c = ((Integer) obj2).intValue();
-                z1Var.f5852c.H(str5);
+                t2 t2Var = z1Var.f5860r;
+                t2Var.f5547b = str5;
+                t2Var.f5548c = ((Integer) obj2).intValue();
+                z1Var.f5857c.H(str5);
                 return;
             case 3:
                 e2 e2Var = (e2) obj3;
                 String str6 = (String) obj;
-                t2 t2Var2 = e2Var.f4588s;
-                t2Var2.f5542b = str6;
-                t2Var2.f5543c = ((Integer) obj2).intValue();
-                e2Var.f4584c.D(str6);
+                t2 t2Var2 = e2Var.f4593s;
+                t2Var2.f5547b = str6;
+                t2Var2.f5548c = ((Integer) obj2).intValue();
+                e2Var.f4589c.D(str6);
                 return;
             case 4:
                 b4 b4Var = (b4) obj3;
                 Bitmap bitmap = (Bitmap) obj2;
                 if (obj != null) {
-                    if (b4Var.e == null && (obj instanceof MediaController.PhotoEntry) && (callback = b4Var.f4385f) != null) {
+                    if (b4Var.e == null && (obj instanceof MediaController.PhotoEntry) && (callback = b4Var.f4390f) != null) {
                         callback.run((MediaController.PhotoEntry) obj);
                         return;
                     }
@@ -192,39 +192,39 @@ public final class v implements Utilities.Callback2 {
             case 7:
                 x8 x8Var = (x8) obj3;
                 ArrayList arrayList2 = (ArrayList) obj;
-                w51 w51Var3 = (w51) obj2;
-                if (x8Var.f5765h0 || x8Var.f5764g0 != null) {
-                    TLRPC.WebPage webPage = x8Var.f5764g0;
+                x51 x51Var3 = (x51) obj2;
+                if (x8Var.f5770h0 || x8Var.f5769g0 != null) {
+                    TLRPC.WebPage webPage = x8Var.f5769g0;
                     p8 p8Var = new p8(x8Var, 0);
-                    int i17 = v8.f5659a;
-                    i51 J2 = i51.J(v8.class);
+                    int i17 = v8.f5664a;
+                    j51 J2 = j51.J(v8.class);
                     J2.G = webPage;
                     J2.D = p8Var;
                     arrayList2.add(J2);
                 }
-                arrayList2.add(i51.k(x8Var.Y));
-                arrayList2.add(i51.A(1, null));
-                i51 i18 = i51.i(2, LocaleController.getString(R.string.StoryLinkNameHeader));
+                arrayList2.add(j51.k(x8Var.Y));
+                arrayList2.add(j51.A(1, null));
+                j51 i18 = j51.i(2, LocaleController.getString(R.string.StoryLinkNameHeader));
                 i18.K(x8Var.m0);
                 arrayList2.add(i18);
                 if (x8Var.m0) {
-                    arrayList2.add(i51.k(x8Var.Z));
+                    arrayList2.add(j51.k(x8Var.Z));
                 }
-                arrayList2.add(i51.A(3, null));
-                arrayList2.add(i51.k(x8Var.f5758a0));
+                arrayList2.add(j51.A(3, null));
+                arrayList2.add(j51.k(x8Var.f5763a0));
                 return;
             case 8:
                 oc ocVar = (oc) obj3;
                 Boolean bool = (Boolean) obj;
                 Float f7 = (Float) obj2;
                 if (ocVar.X0.getDuration() < 100) {
-                    duration = ocVar.K1.f5154h0;
+                    duration = ocVar.K1.f5159h0;
                 } else {
                     duration = ocVar.X0.getDuration();
                 }
                 float floatValue = ((f7.floatValue() / 0.96f) * 0.04f) + f7.floatValue();
                 o8 o8Var = ocVar.K1;
-                float f10 = o8Var.f5138a0;
+                float f10 = o8Var.f5143a0;
                 float f11 = o8Var.Z;
                 float f12 = (f10 - f11) * floatValue;
                 float f13 = (float) duration;
@@ -233,13 +233,13 @@ public final class v implements Utilities.Callback2 {
                 long j10 = (f11 * f13) + ((float) j3);
                 ocVar.M1 = j10;
                 ccVar.m(j10);
-                qb qbVar = ocVar.f5267v1;
+                qb qbVar = ocVar.f5272v1;
                 if (qbVar != null) {
                     qbVar.setCoverTime(ocVar.M1);
                 }
                 o8 o8Var2 = ocVar.K1;
-                if (o8Var2 != null && o8Var2.f5152g) {
-                    o8Var2.f5157j = true;
+                if (o8Var2 != null && o8Var2.f5157g) {
+                    o8Var2.f5162j = true;
                     return;
                 }
                 return;
@@ -247,20 +247,20 @@ public final class v implements Utilities.Callback2 {
                 ((rc) obj3).b((short[]) obj, ((Integer) obj2).intValue());
                 return;
             case 10:
-                ((di.i) obj3).C0((ArrayList) obj, (w51) obj2);
+                ((di.i) obj3).C0((ArrayList) obj, (x51) obj2);
                 return;
             case 11:
                 di.h hVar = (di.h) obj3;
                 ArrayList arrayList3 = (ArrayList) obj;
-                w51 w51Var4 = (w51) obj2;
-                arrayList3.add(i51.k(hVar.Y));
-                arrayList3.add(i51.k(hVar.Z));
+                x51 x51Var4 = (x51) obj2;
+                arrayList3.add(j51.k(hVar.Y));
+                arrayList3.add(j51.k(hVar.Z));
                 return;
             case 12:
-                ((ei.l) obj3).E0((ArrayList) obj, (w51) obj2);
+                ((ei.l) obj3).E0((ArrayList) obj, (x51) obj2);
                 return;
             case 13:
-                w51 w51Var5 = (w51) obj2;
+                x51 x51Var5 = (x51) obj2;
                 ei.u.U((ei.u) obj3, (ArrayList) obj);
                 return;
             case 14:
@@ -708,9 +708,9 @@ public final class v implements Utilities.Callback2 {
             case 15:
                 p1 p1Var = (p1) obj3;
                 ArrayList arrayList4 = (ArrayList) obj;
-                w51 w51Var6 = (w51) obj2;
-                arrayList4.add(i51.j(-1, p1Var.f8531a0));
-                arrayList4.add(i51.B(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotShareMessageInfo, p1Var.Y))));
+                x51 x51Var6 = (x51) obj2;
+                arrayList4.add(j51.j(-1, p1Var.f8536a0));
+                arrayList4.add(j51.B(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotShareMessageInfo, p1Var.Y))));
                 return;
             case 16:
                 k3 k3Var = (k3) obj3;
@@ -719,7 +719,7 @@ public final class v implements Utilities.Callback2 {
                     k3Var.getClass();
                     return;
                 }
-                f5 f5Var = k3Var.f8448v0;
+                f5 f5Var = k3Var.f8453v0;
                 if (f5Var != null) {
                     f5Var.a(tL_webViewResultUrl);
                     k3Var.n();
@@ -727,21 +727,21 @@ public final class v implements Utilities.Callback2 {
                 }
                 return;
             case 17:
-                ((e4) obj3).F0((ArrayList) obj, (w51) obj2);
+                ((e4) obj3).F0((ArrayList) obj, (x51) obj2);
                 return;
             case 18:
-                ((e5) obj3).U((ArrayList) obj, (w51) obj2);
+                ((e5) obj3).U((ArrayList) obj, (x51) obj2);
                 return;
             case 19:
-                w51 w51Var7 = (w51) obj2;
+                x51 x51Var7 = (x51) obj2;
                 ((fi.s) obj3).v.c((ArrayList) obj);
                 return;
             case 20:
                 TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) obj2;
-                rn0 rn0Var = (rn0) ((i0) obj3);
-                uy uyVar = rn0Var.I0;
-                AndroidUtilities.hideKeyboard(uyVar.getParentActivity().getCurrentFocus());
-                n70 I = n70.I(uyVar, (h6) obj);
+                sn0 sn0Var = (sn0) ((i0) obj3);
+                wy wyVar = sn0Var.I0;
+                AndroidUtilities.hideKeyboard(wyVar.getParentActivity().getCurrentFocus());
+                n70 I = n70.I(wyVar, (h6) obj);
                 if (TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info) && TextUtils.isEmpty(tL_sponsoredPeer.additional_info)) {
                     z10 = false;
                 } else {
@@ -763,10 +763,10 @@ public final class v implements Utilities.Callback2 {
                     z10 = false;
                     I.c(i19, string, m2Var, false);
                 }
-                I.c(R.drawable.msg_info, LocaleController.getString(R.string.AboutRevenueSharingAds), new n5(rn0Var, uyVar, rn0Var.J0, I, 29), z10);
-                I.c(R.drawable.msg_block2, LocaleController.getString(R.string.ReportAd), new jn0(rn0Var, uyVar, tL_sponsoredPeer, I, 0), z10);
+                I.c(R.drawable.msg_info, LocaleController.getString(R.string.AboutRevenueSharingAds), new o5(sn0Var, wyVar, sn0Var.J0, I, 29), z10);
+                I.c(R.drawable.msg_block2, LocaleController.getString(R.string.ReportAd), new kn0(sn0Var, wyVar, tL_sponsoredPeer, I, 0), z10);
                 I.k();
-                I.c(R.drawable.msg_cancel, LocaleController.getString(R.string.RemoveAds), new org.telegram.ui.ActionBar.p(rn0Var, uyVar, I, 28), z10);
+                I.c(R.drawable.msg_cancel, LocaleController.getString(R.string.RemoveAds), new org.telegram.ui.ActionBar.q(sn0Var, wyVar, I, 28), z10);
                 if (LocaleController.isRTL) {
                     i10 = 3;
                 } else {
@@ -774,71 +774,71 @@ public final class v implements Utilities.Callback2 {
                 }
                 I.V(i10);
                 I.Y = true;
-                I.f26369t = z10;
+                I.f26385t = z10;
                 I.Z();
                 return;
             case 21:
-                hg.c.U((hg.c) obj3, (ArrayList) obj, (w51) obj2);
+                hg.c.U((hg.c) obj3, (ArrayList) obj, (x51) obj2);
                 return;
             case 22:
                 hg.m mVar2 = (hg.m) obj3;
                 mVar2.M.dismiss();
                 mVar2.E = (String) obj;
                 mVar2.F = (TLRPC.InputDocument) obj2;
-                mVar2.f10354x = false;
+                mVar2.f10359x = false;
                 AndroidUtilities.cancelRunOnUIThread(mVar2.e);
-                mVar2.f10351r.setSticker(mVar2.E);
+                mVar2.f10356r.setSticker(mVar2.E);
                 mVar2.e0(true);
-                y51 y51Var = mVar2.f30485a;
-                if (y51Var != null && (w51Var = y51Var.Y2) != null) {
-                    w51Var.N(true);
+                z51 z51Var = mVar2.f22333a;
+                if (z51Var != null && (x51Var = z51Var.Y2) != null) {
+                    x51Var.N(true);
                     return;
                 }
                 return;
             case 23:
                 l0 l0Var = (l0) obj3;
                 ArrayList arrayList5 = (ArrayList) obj;
-                w51 w51Var8 = (w51) obj2;
-                w51Var8.E = 1;
-                LinearLayout linearLayout = l0Var.f10341a0;
-                i51 i51Var = new i51(-4);
-                i51Var.d = -5;
-                i51Var.f24888c = linearLayout;
-                i51Var.f24907z = -1;
-                arrayList5.add(i51Var);
+                x51 x51Var8 = (x51) obj2;
+                x51Var8.E = 1;
+                LinearLayout linearLayout = l0Var.f10346a0;
+                j51 j51Var = new j51(-4);
+                j51Var.d = -5;
+                j51Var.f25118c = linearLayout;
+                j51Var.f25137z = -1;
+                arrayList5.add(j51Var);
                 TL_account.TL_connectedBot tL_connectedBot = l0Var.X;
                 if (tL_connectedBot != null) {
                     if (TLObject.hasFlag(tL_connectedBot.flags, 1) || TLObject.hasFlag(tL_connectedBot.flags, 2) || TLObject.hasFlag(tL_connectedBot.flags, 4)) {
                         com.google.android.gms.internal.vision.e2.n(R.string.SessionBotConnectedFrom, arrayList5);
                         if (TLObject.hasFlag(tL_connectedBot.flags, 1)) {
-                            arrayList5.add(i51.f(LocaleController.getString(R.string.SessionBotDevice), tL_connectedBot.device, 1));
+                            arrayList5.add(j51.f(LocaleController.getString(R.string.SessionBotDevice), tL_connectedBot.device, 1));
                         }
                         if (TLObject.hasFlag(tL_connectedBot.flags, 4)) {
                             i11 = 2;
-                            arrayList5.add(i51.f(LocaleController.getString(R.string.SessionBotLocation), tL_connectedBot.location, 2));
+                            arrayList5.add(j51.f(LocaleController.getString(R.string.SessionBotLocation), tL_connectedBot.location, 2));
                         } else {
                             i11 = 2;
                         }
                         if (TLObject.hasFlag(tL_connectedBot.flags, i11)) {
-                            arrayList5.add(i51.f(LocaleController.getString(R.string.SessionBotDate), LocaleController.formatDateTime(tL_connectedBot.date, false), 3));
+                            arrayList5.add(j51.f(LocaleController.getString(R.string.SessionBotDate), LocaleController.formatDateTime(tL_connectedBot.date, false), 3));
                         }
-                        arrayList5.add(i51.B(null));
+                        arrayList5.add(j51.B(null));
                     }
-                    w51Var8.U();
+                    x51Var8.U();
                     com.google.android.gms.internal.vision.e2.n(R.string.BusinessBotChats2, arrayList5);
-                    int i20 = l0.f10339g0;
-                    i51 w10 = i51.w(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
-                    w10.K(l0Var.f10345e0);
+                    int i20 = l0.f10344g0;
+                    j51 w10 = j51.w(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
+                    w10.K(l0Var.f10350e0);
                     arrayList5.add(w10);
-                    int i21 = l0.f10340h0;
-                    i51 w11 = i51.w(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
-                    w11.K(!l0Var.f10345e0);
+                    int i21 = l0.f10345h0;
+                    j51 w11 = j51.w(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
+                    w11.K(!l0Var.f10350e0);
                     arrayList5.add(w11);
-                    w51Var8.T();
-                    arrayList5.add(i51.B(null));
+                    x51Var8.T();
+                    arrayList5.add(j51.B(null));
                     a0 a0Var = l0Var.Z;
                     if (a0Var != null) {
-                        a0Var.a(arrayList5, w51Var8, true);
+                        a0Var.a(arrayList5, x51Var8, true);
                     }
                     com.google.android.gms.internal.vision.e2.w(R.string.BusinessBotChatsInfo2, arrayList5);
                     return;
@@ -847,31 +847,31 @@ public final class v implements Utilities.Callback2 {
             case 24:
                 final u0 u0Var = (u0) obj3;
                 ArrayList arrayList6 = (ArrayList) obj;
-                w51 w51Var9 = (w51) obj2;
+                x51 x51Var9 = (x51) obj2;
                 LongSparseArray longSparseArray = u0Var.N;
                 String string2 = LocaleController.getString(R.string.BusinessBots2);
                 String string3 = LocaleController.getString(R.string.BusinessBots2Info);
-                i51 i51Var2 = new i51(2);
-                i51Var2.f24894l = string2;
-                i51Var2.f24897o = string3;
-                i51Var2.f24895m = "tg_superplaceholders_android_2";
-                i51Var2.f24896n = "🤖🏝️";
-                i51Var2.f24907z = 120;
-                arrayList6.add(i51Var2);
+                j51 j51Var2 = new j51(2);
+                j51Var2.f25124l = string2;
+                j51Var2.f25127o = string3;
+                j51Var2.f25125m = "tg_superplaceholders_android_2";
+                j51Var2.f25126n = "🤖🏝️";
+                j51Var2.f25137z = 120;
+                arrayList6.add(j51Var2);
                 if (u0Var.M != null) {
-                    w51Var9.U();
-                    long j11 = u0Var.M.f18259id;
-                    i51 i51Var3 = new i51(13);
-                    i51Var3.f24905x = j11;
-                    i51Var3.K(true);
-                    i51Var3.D = new View.OnClickListener() {
+                    x51Var9.U();
+                    long j11 = u0Var.M.f18268id;
+                    j51 j51Var3 = new j51(13);
+                    j51Var3.f25135x = j11;
+                    j51Var3.K(true);
+                    j51Var3.D = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
                                     u0 u0Var2 = u0Var;
                                     u0Var2.M = null;
-                                    u0Var2.f10429c.Y2.N(true);
+                                    u0Var2.f10434c.Y2.N(true);
                                     u0Var2.Y(true);
                                     return;
                                 case 1:
@@ -888,7 +888,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights.read_messages = true;
                                         tL_businessBotRights.reply = true;
                                     }
-                                    u0Var3.f10429c.Y2.N(true);
+                                    u0Var3.f10434c.Y2.N(true);
                                     u0Var3.Y(true);
                                     return;
                                 case 2:
@@ -899,7 +899,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights2.edit_profile_photo = false;
                                         tL_businessBotRights2.edit_bio = false;
                                         tL_businessBotRights2.edit_name = false;
-                                        u0Var4.f10429c.Y2.N(true);
+                                        u0Var4.f10434c.Y2.N(true);
                                         u0Var4.Y(true);
                                         return;
                                     }
@@ -914,7 +914,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights3.change_gift_settings = false;
                                         tL_businessBotRights3.sell_gifts = false;
                                         tL_businessBotRights3.view_gifts = false;
-                                        u0Var5.f10429c.Y2.N(true);
+                                        u0Var5.f10434c.Y2.N(true);
                                         u0Var5.Y(true);
                                         return;
                                     }
@@ -924,18 +924,18 @@ public final class v implements Utilities.Callback2 {
                                     u0 u0Var6 = u0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights4 = u0Var6.J;
                                     tL_businessBotRights4.manage_stories = !tL_businessBotRights4.manage_stories;
-                                    u0Var6.f10429c.Y2.N(true);
+                                    u0Var6.f10434c.Y2.N(true);
                                     u0Var6.Y(true);
                                     return;
                             }
                         }
                     };
-                    arrayList6.add(i51Var3);
-                    w51Var9.T();
+                    arrayList6.add(j51Var3);
+                    x51Var9.T();
                     str2 = "";
                 } else {
-                    w51Var9.U();
-                    arrayList6.add(i51.k(u0Var.e));
+                    x51Var9.U();
+                    arrayList6.add(j51.k(u0Var.e));
                     longSparseArray.clear();
                     int i22 = 0;
                     boolean z20 = false;
@@ -945,13 +945,13 @@ public final class v implements Utilities.Callback2 {
                             TLRPC.User user = (TLRPC.User) tLObject;
                             if (user.bot) {
                                 str3 = str4;
-                                long j12 = user.f18259id;
-                                String str8 = u0Var.f10436y;
-                                i51 i51Var4 = new i51(13);
-                                i51Var4.f24905x = j12;
-                                i51Var4.f24896n = str8;
-                                arrayList6.add(i51Var4);
-                                longSparseArray.put(user.f18259id, user);
+                                long j12 = user.f18268id;
+                                String str8 = u0Var.f10441y;
+                                j51 j51Var4 = new j51(13);
+                                j51Var4.f25135x = j12;
+                                j51Var4.f25126n = str8;
+                                arrayList6.add(j51Var4);
+                                longSparseArray.put(user.f18268id, user);
                                 z20 = true;
                                 i22++;
                                 str4 = str3;
@@ -967,19 +967,19 @@ public final class v implements Utilities.Callback2 {
                         if (tLObject2 instanceof TLRPC.User) {
                             TLRPC.User user2 = (TLRPC.User) tLObject2;
                             if (user2.bot) {
-                                long j13 = user2.f18259id;
-                                String str9 = u0Var.f10436y;
-                                i51 i51Var5 = new i51(13);
-                                i51Var5.f24905x = j13;
-                                i51Var5.f24896n = str9;
-                                arrayList6.add(i51Var5);
-                                longSparseArray.put(user2.f18259id, user2);
+                                long j13 = user2.f18268id;
+                                String str9 = u0Var.f10441y;
+                                j51 j51Var5 = new j51(13);
+                                j51Var5.f25135x = j13;
+                                j51Var5.f25126n = str9;
+                                arrayList6.add(j51Var5);
+                                longSparseArray.put(user2.f18268id, user2);
                                 z20 = true;
                             }
                         }
                     }
-                    if (longSparseArray.size() <= 0 && (!TextUtils.isEmpty(u0Var.f10430f.getText().toString()) || u0Var.d.e() || u0Var.f10435x)) {
-                        arrayList6.add(i51.k(u0Var.f10431n));
+                    if (longSparseArray.size() <= 0 && (!TextUtils.isEmpty(u0Var.f10435f.getText().toString()) || u0Var.d.e() || u0Var.f10440x)) {
+                        arrayList6.add(j51.k(u0Var.f10436n));
                         z20 = true;
                     }
                     View view = u0Var.h;
@@ -989,55 +989,55 @@ public final class v implements Utilities.Callback2 {
                         i12 = 8;
                     }
                     view.setVisibility(i12);
-                    w51Var9.T();
+                    x51Var9.T();
                 }
-                arrayList6.add(i51.B(LocaleController.getString(R.string.BusinessBotLinkInfo2)));
-                w51Var9.U();
-                i51 t10 = i51.t(LocaleController.getString(R.string.BusinessBotChats2));
+                arrayList6.add(j51.B(LocaleController.getString(R.string.BusinessBotLinkInfo2)));
+                x51Var9.U();
+                j51 t10 = j51.t(LocaleController.getString(R.string.BusinessBotChats2));
                 if (u0Var.M != null) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                t10.f24890g = z11;
+                t10.f25120g = z11;
                 arrayList6.add(t10);
-                i51 w12 = i51.w(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
+                j51 w12 = j51.w(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
                 w12.K(u0Var.I);
                 if (u0Var.M != null) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                w12.f24890g = z12;
+                w12.f25120g = z12;
                 arrayList6.add(w12);
-                i51 w13 = i51.w(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
+                j51 w13 = j51.w(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
                 w13.K(!u0Var.I);
                 if (u0Var.M != null) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                w13.f24890g = z13;
+                w13.f25120g = z13;
                 arrayList6.add(w13);
-                w51Var9.T();
-                arrayList6.add(i51.B(null));
+                x51Var9.T();
+                arrayList6.add(j51.B(null));
                 a0 a0Var2 = u0Var.v;
                 if (u0Var.M != null) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
-                a0Var2.a(arrayList6, w51Var9, z14);
+                a0Var2.a(arrayList6, x51Var9, z14);
                 com.google.android.gms.internal.vision.e2.w(R.string.BusinessBotChatsInfo2, arrayList6);
                 if (u0Var.M != null) {
-                    w51Var9.U();
+                    x51Var9.U();
                     com.google.android.gms.internal.vision.e2.n(R.string.BusinessBotPermissions, arrayList6);
                     String string4 = LocaleController.getString(R.string.BusinessBotPermissionsMessagesSection);
                     StringBuilder sb3 = new StringBuilder();
                     TL_account.TL_businessBotRights tL_businessBotRights = u0Var.J;
                     sb3.append((tL_businessBotRights.reply ? 1 : 0) + 1 + (tL_businessBotRights.read_messages ? 1 : 0) + (tL_businessBotRights.delete_sent_messages ? 1 : 0) + (tL_businessBotRights.delete_received_messages ? 1 : 0));
                     sb3.append("/5");
-                    i51 m10 = i51.m(-4, string4, sb3.toString());
+                    j51 m10 = j51.m(-4, string4, sb3.toString());
                     TL_account.TL_businessBotRights tL_businessBotRights2 = u0Var.J;
                     if (tL_businessBotRights2.reply && tL_businessBotRights2.read_messages && tL_businessBotRights2.delete_received_messages && tL_businessBotRights2.delete_sent_messages) {
                         z15 = true;
@@ -1045,7 +1045,7 @@ public final class v implements Utilities.Callback2 {
                         z15 = false;
                     }
                     m10.K(z15);
-                    m10.f24889f = !u0Var.P;
+                    m10.f25119f = !u0Var.P;
                     m10.D = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
@@ -1053,7 +1053,7 @@ public final class v implements Utilities.Callback2 {
                                 case 0:
                                     u0 u0Var2 = u0Var;
                                     u0Var2.M = null;
-                                    u0Var2.f10429c.Y2.N(true);
+                                    u0Var2.f10434c.Y2.N(true);
                                     u0Var2.Y(true);
                                     return;
                                 case 1:
@@ -1070,7 +1070,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights3.read_messages = true;
                                         tL_businessBotRights3.reply = true;
                                     }
-                                    u0Var3.f10429c.Y2.N(true);
+                                    u0Var3.f10434c.Y2.N(true);
                                     u0Var3.Y(true);
                                     return;
                                 case 2:
@@ -1081,7 +1081,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        u0Var4.f10429c.Y2.N(true);
+                                        u0Var4.f10434c.Y2.N(true);
                                         u0Var4.Y(true);
                                         return;
                                     }
@@ -1096,7 +1096,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights32.change_gift_settings = false;
                                         tL_businessBotRights32.sell_gifts = false;
                                         tL_businessBotRights32.view_gifts = false;
-                                        u0Var5.f10429c.Y2.N(true);
+                                        u0Var5.f10434c.Y2.N(true);
                                         u0Var5.Y(true);
                                         return;
                                     }
@@ -1106,7 +1106,7 @@ public final class v implements Utilities.Callback2 {
                                     u0 u0Var6 = u0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights4 = u0Var6.J;
                                     tL_businessBotRights4.manage_stories = !tL_businessBotRights4.manage_stories;
-                                    u0Var6.f10429c.Y2.N(true);
+                                    u0Var6.f10434c.Y2.N(true);
                                     u0Var6.Y(true);
                                     return;
                             }
@@ -1114,26 +1114,26 @@ public final class v implements Utilities.Callback2 {
                     };
                     arrayList6.add(m10);
                     if (u0Var.P) {
-                        i51 y3 = i51.y(-5, LocaleController.getString(R.string.BusinessBotPermissionsMessagesRead));
+                        j51 y3 = j51.y(-5, LocaleController.getString(R.string.BusinessBotPermissionsMessagesRead));
                         y3.K(true);
-                        y3.f24890g = false;
-                        y3.f24891i = 1;
+                        y3.f25120g = false;
+                        y3.f25121i = 1;
                         arrayList6.add(y3);
-                        i51 y10 = i51.y(-6, LocaleController.getString(R.string.BusinessBotPermissionsMessagesReply));
+                        j51 y10 = j51.y(-6, LocaleController.getString(R.string.BusinessBotPermissionsMessagesReply));
                         y10.K(u0Var.J.reply);
-                        y10.f24891i = 1;
+                        y10.f25121i = 1;
                         arrayList6.add(y10);
-                        i51 y11 = i51.y(-7, LocaleController.getString(R.string.BusinessBotPermissionsMessagesMarkAsRead));
+                        j51 y11 = j51.y(-7, LocaleController.getString(R.string.BusinessBotPermissionsMessagesMarkAsRead));
                         y11.K(u0Var.J.read_messages);
-                        y11.f24891i = 1;
+                        y11.f25121i = 1;
                         arrayList6.add(y11);
-                        i51 y12 = i51.y(-8, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteSent));
+                        j51 y12 = j51.y(-8, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteSent));
                         y12.K(u0Var.J.delete_sent_messages);
-                        y12.f24891i = 1;
+                        y12.f25121i = 1;
                         arrayList6.add(y12);
-                        i51 y13 = i51.y(-9, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteReceived));
+                        j51 y13 = j51.y(-9, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteReceived));
                         y13.K(u0Var.J.delete_received_messages);
-                        y13.f24891i = 1;
+                        y13.f25121i = 1;
                         arrayList6.add(y13);
                     }
                     String string5 = LocaleController.getString(R.string.BusinessBotPermissionsProfileSection);
@@ -1141,7 +1141,7 @@ public final class v implements Utilities.Callback2 {
                     TL_account.TL_businessBotRights tL_businessBotRights3 = u0Var.J;
                     sb4.append((tL_businessBotRights3.edit_name ? 1 : 0) + (tL_businessBotRights3.edit_bio ? 1 : 0) + (tL_businessBotRights3.edit_profile_photo ? 1 : 0) + (tL_businessBotRights3.edit_username ? 1 : 0));
                     sb4.append("/4");
-                    i51 m11 = i51.m(-10, string5, sb4.toString());
+                    j51 m11 = j51.m(-10, string5, sb4.toString());
                     TL_account.TL_businessBotRights tL_businessBotRights4 = u0Var.J;
                     if (tL_businessBotRights4.edit_name && tL_businessBotRights4.edit_bio && tL_businessBotRights4.edit_profile_photo && tL_businessBotRights4.edit_username) {
                         z16 = true;
@@ -1149,7 +1149,7 @@ public final class v implements Utilities.Callback2 {
                         z16 = false;
                     }
                     m11.K(z16);
-                    m11.f24889f = !u0Var.Q;
+                    m11.f25119f = !u0Var.Q;
                     m11.D = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
@@ -1157,7 +1157,7 @@ public final class v implements Utilities.Callback2 {
                                 case 0:
                                     u0 u0Var2 = u0Var;
                                     u0Var2.M = null;
-                                    u0Var2.f10429c.Y2.N(true);
+                                    u0Var2.f10434c.Y2.N(true);
                                     u0Var2.Y(true);
                                     return;
                                 case 1:
@@ -1174,7 +1174,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights32.read_messages = true;
                                         tL_businessBotRights32.reply = true;
                                     }
-                                    u0Var3.f10429c.Y2.N(true);
+                                    u0Var3.f10434c.Y2.N(true);
                                     u0Var3.Y(true);
                                     return;
                                 case 2:
@@ -1185,7 +1185,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        u0Var4.f10429c.Y2.N(true);
+                                        u0Var4.f10434c.Y2.N(true);
                                         u0Var4.Y(true);
                                         return;
                                     }
@@ -1200,7 +1200,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights322.change_gift_settings = false;
                                         tL_businessBotRights322.sell_gifts = false;
                                         tL_businessBotRights322.view_gifts = false;
-                                        u0Var5.f10429c.Y2.N(true);
+                                        u0Var5.f10434c.Y2.N(true);
                                         u0Var5.Y(true);
                                         return;
                                     }
@@ -1210,7 +1210,7 @@ public final class v implements Utilities.Callback2 {
                                     u0 u0Var6 = u0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights42 = u0Var6.J;
                                     tL_businessBotRights42.manage_stories = !tL_businessBotRights42.manage_stories;
-                                    u0Var6.f10429c.Y2.N(true);
+                                    u0Var6.f10434c.Y2.N(true);
                                     u0Var6.Y(true);
                                     return;
                             }
@@ -1218,21 +1218,21 @@ public final class v implements Utilities.Callback2 {
                     };
                     arrayList6.add(m11);
                     if (u0Var.Q) {
-                        i51 y14 = i51.y(-11, LocaleController.getString(R.string.BusinessBotPermissionsProfileName));
+                        j51 y14 = j51.y(-11, LocaleController.getString(R.string.BusinessBotPermissionsProfileName));
                         y14.K(u0Var.J.edit_name);
-                        y14.f24891i = 1;
+                        y14.f25121i = 1;
                         arrayList6.add(y14);
-                        i51 y15 = i51.y(-12, LocaleController.getString(R.string.BusinessBotPermissionsProfileBio));
+                        j51 y15 = j51.y(-12, LocaleController.getString(R.string.BusinessBotPermissionsProfileBio));
                         y15.K(u0Var.J.edit_bio);
-                        y15.f24891i = 1;
+                        y15.f25121i = 1;
                         arrayList6.add(y15);
-                        i51 y16 = i51.y(-13, LocaleController.getString(R.string.BusinessBotPermissionsProfilePicture));
+                        j51 y16 = j51.y(-13, LocaleController.getString(R.string.BusinessBotPermissionsProfilePicture));
                         y16.K(u0Var.J.edit_profile_photo);
-                        y16.f24891i = 1;
+                        y16.f25121i = 1;
                         arrayList6.add(y16);
-                        i51 y17 = i51.y(-14, LocaleController.getString(R.string.BusinessBotPermissionsProfileUsername));
+                        j51 y17 = j51.y(-14, LocaleController.getString(R.string.BusinessBotPermissionsProfileUsername));
                         y17.K(u0Var.J.edit_username);
-                        y17.f24891i = 1;
+                        y17.f25121i = 1;
                         arrayList6.add(y17);
                     }
                     String string6 = LocaleController.getString(R.string.BusinessBotPermissionsGiftsSection);
@@ -1240,7 +1240,7 @@ public final class v implements Utilities.Callback2 {
                     TL_account.TL_businessBotRights tL_businessBotRights5 = u0Var.J;
                     sb5.append((tL_businessBotRights5.view_gifts ? 1 : 0) + (tL_businessBotRights5.sell_gifts ? 1 : 0) + (tL_businessBotRights5.change_gift_settings ? 1 : 0) + (tL_businessBotRights5.transfer_and_upgrade_gifts ? 1 : 0) + (tL_businessBotRights5.transfer_stars ? 1 : 0));
                     sb5.append("/5");
-                    i51 m12 = i51.m(-15, string6, sb5.toString());
+                    j51 m12 = j51.m(-15, string6, sb5.toString());
                     TL_account.TL_businessBotRights tL_businessBotRights6 = u0Var.J;
                     if (tL_businessBotRights6.view_gifts && tL_businessBotRights6.sell_gifts && tL_businessBotRights6.change_gift_settings && tL_businessBotRights6.transfer_and_upgrade_gifts && tL_businessBotRights6.transfer_stars) {
                         z17 = true;
@@ -1248,7 +1248,7 @@ public final class v implements Utilities.Callback2 {
                         z17 = false;
                     }
                     m12.K(z17);
-                    m12.f24889f = !u0Var.R;
+                    m12.f25119f = !u0Var.R;
                     m12.D = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
@@ -1256,7 +1256,7 @@ public final class v implements Utilities.Callback2 {
                                 case 0:
                                     u0 u0Var2 = u0Var;
                                     u0Var2.M = null;
-                                    u0Var2.f10429c.Y2.N(true);
+                                    u0Var2.f10434c.Y2.N(true);
                                     u0Var2.Y(true);
                                     return;
                                 case 1:
@@ -1273,7 +1273,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights32.read_messages = true;
                                         tL_businessBotRights32.reply = true;
                                     }
-                                    u0Var3.f10429c.Y2.N(true);
+                                    u0Var3.f10434c.Y2.N(true);
                                     u0Var3.Y(true);
                                     return;
                                 case 2:
@@ -1284,7 +1284,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        u0Var4.f10429c.Y2.N(true);
+                                        u0Var4.f10434c.Y2.N(true);
                                         u0Var4.Y(true);
                                         return;
                                     }
@@ -1299,7 +1299,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights322.change_gift_settings = false;
                                         tL_businessBotRights322.sell_gifts = false;
                                         tL_businessBotRights322.view_gifts = false;
-                                        u0Var5.f10429c.Y2.N(true);
+                                        u0Var5.f10434c.Y2.N(true);
                                         u0Var5.Y(true);
                                         return;
                                     }
@@ -1309,7 +1309,7 @@ public final class v implements Utilities.Callback2 {
                                     u0 u0Var6 = u0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights42 = u0Var6.J;
                                     tL_businessBotRights42.manage_stories = !tL_businessBotRights42.manage_stories;
-                                    u0Var6.f10429c.Y2.N(true);
+                                    u0Var6.f10434c.Y2.N(true);
                                     u0Var6.Y(true);
                                     return;
                             }
@@ -1317,28 +1317,28 @@ public final class v implements Utilities.Callback2 {
                     };
                     arrayList6.add(m12);
                     if (u0Var.R) {
-                        i51 y18 = i51.y(-16, LocaleController.getString(R.string.BusinessBotPermissionsGiftsView));
+                        j51 y18 = j51.y(-16, LocaleController.getString(R.string.BusinessBotPermissionsGiftsView));
                         y18.K(u0Var.J.view_gifts);
-                        y18.f24891i = 1;
+                        y18.f25121i = 1;
                         arrayList6.add(y18);
-                        i51 y19 = i51.y(-17, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSell));
+                        j51 y19 = j51.y(-17, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSell));
                         y19.K(u0Var.J.sell_gifts);
-                        y19.f24891i = 1;
+                        y19.f25121i = 1;
                         arrayList6.add(y19);
-                        i51 y20 = i51.y(-18, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSettings));
+                        j51 y20 = j51.y(-18, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSettings));
                         y20.K(u0Var.J.change_gift_settings);
-                        y20.f24891i = 1;
+                        y20.f25121i = 1;
                         arrayList6.add(y20);
-                        i51 y21 = i51.y(-19, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransfer));
+                        j51 y21 = j51.y(-19, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransfer));
                         y21.K(u0Var.J.transfer_and_upgrade_gifts);
-                        y21.f24891i = 1;
+                        y21.f25121i = 1;
                         arrayList6.add(y21);
-                        i51 y22 = i51.y(-20, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransferStars));
+                        j51 y22 = j51.y(-20, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransferStars));
                         y22.K(u0Var.J.transfer_stars);
-                        y22.f24891i = 1;
+                        y22.f25121i = 1;
                         arrayList6.add(y22);
                     }
-                    i51 m13 = i51.m(-21, LocaleController.getString(R.string.BusinessBotPermissionsStories), str2);
+                    j51 m13 = j51.m(-21, LocaleController.getString(R.string.BusinessBotPermissionsStories), str2);
                     m13.K(u0Var.J.manage_stories);
                     m13.D = new View.OnClickListener() {
                         @Override
@@ -1347,7 +1347,7 @@ public final class v implements Utilities.Callback2 {
                                 case 0:
                                     u0 u0Var2 = u0Var;
                                     u0Var2.M = null;
-                                    u0Var2.f10429c.Y2.N(true);
+                                    u0Var2.f10434c.Y2.N(true);
                                     u0Var2.Y(true);
                                     return;
                                 case 1:
@@ -1364,7 +1364,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights32.read_messages = true;
                                         tL_businessBotRights32.reply = true;
                                     }
-                                    u0Var3.f10429c.Y2.N(true);
+                                    u0Var3.f10434c.Y2.N(true);
                                     u0Var3.Y(true);
                                     return;
                                 case 2:
@@ -1375,7 +1375,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        u0Var4.f10429c.Y2.N(true);
+                                        u0Var4.f10434c.Y2.N(true);
                                         u0Var4.Y(true);
                                         return;
                                     }
@@ -1390,7 +1390,7 @@ public final class v implements Utilities.Callback2 {
                                         tL_businessBotRights322.change_gift_settings = false;
                                         tL_businessBotRights322.sell_gifts = false;
                                         tL_businessBotRights322.view_gifts = false;
-                                        u0Var5.f10429c.Y2.N(true);
+                                        u0Var5.f10434c.Y2.N(true);
                                         u0Var5.Y(true);
                                         return;
                                     }
@@ -1400,97 +1400,97 @@ public final class v implements Utilities.Callback2 {
                                     u0 u0Var6 = u0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights42 = u0Var6.J;
                                     tL_businessBotRights42.manage_stories = !tL_businessBotRights42.manage_stories;
-                                    u0Var6.f10429c.Y2.N(true);
+                                    u0Var6.f10434c.Y2.N(true);
                                     u0Var6.Y(true);
                                     return;
                             }
                         }
                     };
                     arrayList6.add(m13);
-                    w51Var9.T();
-                    arrayList6.add(i51.A(-4, null));
-                    arrayList6.add(i51.A(-5, null));
-                    arrayList6.add(i51.A(-6, null));
-                    arrayList6.add(i51.A(-7, null));
+                    x51Var9.T();
+                    arrayList6.add(j51.A(-4, null));
+                    arrayList6.add(j51.A(-5, null));
+                    arrayList6.add(j51.A(-6, null));
+                    arrayList6.add(j51.A(-7, null));
                     return;
                 }
                 return;
             case 25:
-                w0.U((w0) obj3, (ArrayList) obj, (w51) obj2);
+                w0.U((w0) obj3, (ArrayList) obj, (x51) obj2);
                 return;
             case 26:
                 e1 e1Var = (e1) obj3;
                 ArrayList arrayList7 = (ArrayList) obj;
-                w51 w51Var10 = (w51) obj2;
+                x51 x51Var10 = (x51) obj2;
                 String string7 = LocaleController.getString(R.string.BusinessLocation);
                 String string8 = LocaleController.getString(R.string.BusinessLocationInfo);
                 int i24 = R.raw.biz_map;
-                i51 i51Var6 = new i51(2);
-                i51Var6.f24894l = string7;
-                i51Var6.f24897o = string8;
-                i51Var6.f24893k = i24;
-                arrayList7.add(i51Var6);
-                arrayList7.add(i51.k(e1Var.e));
-                arrayList7.add(i51.B(null));
-                i51 i25 = i51.i(1, LocaleController.getString(R.string.BusinessLocationMap));
-                if (e1Var.f10269x != null) {
+                j51 j51Var6 = new j51(2);
+                j51Var6.f25124l = string7;
+                j51Var6.f25127o = string8;
+                j51Var6.f25123k = i24;
+                arrayList7.add(j51Var6);
+                arrayList7.add(j51.k(e1Var.e));
+                arrayList7.add(j51.B(null));
+                j51 i25 = j51.i(1, LocaleController.getString(R.string.BusinessLocationMap));
+                if (e1Var.f10274x != null) {
                     z18 = true;
                 } else {
                     z18 = false;
                 }
                 i25.K(z18);
                 arrayList7.add(i25);
-                if (e1Var.f10269x != null) {
-                    arrayList7.add(i51.k(e1Var.h));
+                if (e1Var.f10274x != null) {
+                    arrayList7.add(j51.k(e1Var.h));
                 }
-                arrayList7.add(i51.B(null));
-                if (e1Var.f10268w != null && (e1Var.f10269x != null || !TextUtils.isEmpty(e1Var.f10270y))) {
+                arrayList7.add(j51.B(null));
+                if (e1Var.f10273w != null && (e1Var.f10274x != null || !TextUtils.isEmpty(e1Var.f10275y))) {
                     z19 = true;
                 }
                 e1Var.G = z19;
                 if (z19) {
-                    i51 e = i51.e(2, LocaleController.getString(R.string.BusinessLocationClear));
-                    e.f24900r = true;
+                    j51 e = j51.e(2, LocaleController.getString(R.string.BusinessLocationClear));
+                    e.f25130r = true;
                     arrayList7.add(e);
-                    arrayList7.add(i51.B(null));
+                    arrayList7.add(j51.B(null));
                 }
                 e1Var.U(true);
                 return;
             case 27:
-                w51 w51Var11 = (w51) obj2;
+                x51 x51Var11 = (x51) obj2;
                 g1.V((g1) obj3, (ArrayList) obj);
                 return;
             default:
                 i1 i1Var = (i1) obj3;
                 ArrayList arrayList8 = (ArrayList) obj;
-                w51 w51Var12 = (w51) obj2;
-                ArrayList arrayList9 = i1Var.f10312b;
+                x51 x51Var12 = (x51) obj2;
+                ArrayList arrayList9 = i1Var.f10317b;
                 String string9 = LocaleController.getString(R.string.BusinessHoursDayOpen);
-                i51 i51Var7 = new i51(9);
-                i51Var7.d = -1;
-                i51Var7.f24894l = string9;
-                i51Var7.K(i1Var.f10316r);
-                arrayList8.add(i51Var7);
-                arrayList8.add(i51.B(null));
-                if (i1Var.f10316r) {
+                j51 j51Var7 = new j51(9);
+                j51Var7.d = -1;
+                j51Var7.f25124l = string9;
+                j51Var7.K(i1Var.f10321r);
+                arrayList8.add(j51Var7);
+                arrayList8.add(j51.B(null));
+                if (i1Var.f10321r) {
                     for (int i26 = 0; i26 < arrayList9.size(); i26++) {
                         if (i26 > 0) {
-                            arrayList8.add(i51.B(null));
+                            arrayList8.add(j51.B(null));
                         }
                         f1 f1Var = (f1) arrayList9.get(i26);
                         if (!i1Var.U()) {
                             int i27 = i26 * 3;
-                            arrayList8.add(i51.f(LocaleController.getString(R.string.BusinessHoursDayOpenHour), f1.a(f1Var.f10284a), i27));
-                            arrayList8.add(i51.f(LocaleController.getString(R.string.BusinessHoursDayCloseHour), f1.a(f1Var.f10285b), i27 + 1));
-                            i51 e7 = i51.e(i27 + 2, LocaleController.getString(R.string.Remove));
-                            e7.f24900r = true;
+                            arrayList8.add(j51.f(LocaleController.getString(R.string.BusinessHoursDayOpenHour), f1.a(f1Var.f10289a), i27));
+                            arrayList8.add(j51.f(LocaleController.getString(R.string.BusinessHoursDayCloseHour), f1.a(f1Var.f10290b), i27 + 1));
+                            j51 e7 = j51.e(i27 + 2, LocaleController.getString(R.string.Remove));
+                            e7.f25130r = true;
                             arrayList8.add(e7);
                         }
                     }
                     if (i1Var.V()) {
-                        arrayList8.add(i51.B(null));
-                        i51 c12 = i51.c(-2, R.drawable.menu_premium_clock_add, LocaleController.getString(R.string.BusinessHoursDayAdd));
-                        c12.f24899q = true;
+                        arrayList8.add(j51.B(null));
+                        j51 c12 = j51.c(-2, R.drawable.menu_premium_clock_add, LocaleController.getString(R.string.BusinessHoursDayAdd));
+                        c12.f25129q = true;
                         arrayList8.add(c12);
                     }
                     com.google.android.gms.internal.vision.e2.w(R.string.BusinessHoursDayInfo, arrayList8);

@@ -8,14 +8,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.mj0;
+import org.telegram.ui.oj0;
 public final class n2 implements View.OnClickListener {
-    public final int f47483a;
-    public final a3 f47484b;
+    public final int f47506a;
+    public final a3 f47507b;
 
     public n2(a3 a3Var, int i10) {
-        this.f47483a = i10;
-        this.f47484b = a3Var;
+        this.f47506a = i10;
+        this.f47507b = a3Var;
     }
 
     @Override
@@ -24,19 +24,19 @@ public final class n2 implements View.OnClickListener {
         TL_stars.StarGift starGift2;
         TL_stars.StarGift starGift3;
         x2 x2Var;
-        int i10 = this.f47483a;
+        int i10 = this.f47506a;
         boolean z10 = true;
-        a3 a3Var = this.f47484b;
+        a3 a3Var = this.f47507b;
         switch (i10) {
             case 0:
                 if (a3Var.P.getAlpha() >= 1.0f) {
-                    a3Var.f46932g0.run();
+                    a3Var.f46955g0.run();
                     return;
                 }
                 return;
             case 1:
                 if (a3Var.P.getAlpha() >= 1.0f) {
-                    a3Var.f46932g0.run();
+                    a3Var.f46955g0.run();
                     return;
                 }
                 return;
@@ -49,12 +49,12 @@ public final class n2 implements View.OnClickListener {
                 a3Var.b((o2) view);
                 return;
             case 4:
-                a3 a3Var2 = this.f47484b;
+                a3 a3Var2 = this.f47507b;
                 LinearLayout linearLayout = a3Var2.G;
-                x2[] x2VarArr = a3Var2.f46938n;
-                if (a3Var2.getAlpha() >= 1.0f && !a3Var2.f46933h0) {
-                    if (a3Var2.f46935j0) {
-                        a3Var2.a(a3Var2.W, a3Var2.f46923a0, a3Var2.f46925b0, a3Var2.f46927c0);
+                x2[] x2VarArr = a3Var2.f46961n;
+                if (a3Var2.getAlpha() >= 1.0f && !a3Var2.f46956h0) {
+                    if (a3Var2.f46958j0) {
+                        a3Var2.a(a3Var2.W, a3Var2.f46946a0, a3Var2.f46948b0, a3Var2.f46950c0);
                         return;
                     }
                     ArrayList arrayList = new ArrayList();
@@ -74,10 +74,10 @@ public final class n2 implements View.OnClickListener {
                             }
                         }
                     }
-                    if (!arrayList.isEmpty() && a3Var2.f46929e0 != null) {
+                    if (!arrayList.isEmpty() && a3Var2.f46952e0 != null) {
                         TextView textView = a3Var2.K;
-                        a3Var2.f46933h0 = true;
-                        a3Var2.f46935j0 = false;
+                        a3Var2.f46956h0 = true;
+                        a3Var2.f46958j0 = false;
                         ci.f4 f4Var = a3Var2.T;
                         if (f4Var != null) {
                             f4Var.e(true);
@@ -140,7 +140,7 @@ public final class n2 implements View.OnClickListener {
                                 arrayList2.add(starGift7);
                             }
                         }
-                        a3Var2.f46929e0.run(arrayList2, new ai.m0(23, a3Var2, arrayList2), new rg.w1(a3Var2, 26));
+                        a3Var2.f46952e0.run(arrayList2, new ai.m0(23, a3Var2, arrayList2), new rg.w1(a3Var2, 26));
                         return;
                     }
                     AndroidUtilities.shakeViewSpring(linearLayout);
@@ -153,14 +153,14 @@ public final class n2 implements View.OnClickListener {
                 if (starGift8 == null) {
                     starGift8 = null;
                 }
-                if (starGift8 != null && !x2Var7.f47962n) {
+                if (starGift8 != null && !x2Var7.f47985n) {
                     x2Var7.a(null, true);
                     a3Var.d(true);
                     return;
                 }
                 int i13 = 0;
                 while (true) {
-                    x2[] x2VarArr2 = a3Var.f46938n;
+                    x2[] x2VarArr2 = a3Var.f46961n;
                     if (i13 < x2VarArr2.length && (x2Var = x2VarArr2[i13]) != view) {
                         if (x2Var != null) {
                             TL_stars.StarGift starGift9 = x2Var.h;
@@ -174,7 +174,7 @@ public final class n2 implements View.OnClickListener {
                         i13++;
                     }
                 }
-                a3Var.f46931f0.run(new mj0(19, a3Var, x2Var7), Boolean.valueOf(z10));
+                a3Var.f46954f0.run(new oj0(19, a3Var, x2Var7), Boolean.valueOf(z10));
                 return;
         }
     }

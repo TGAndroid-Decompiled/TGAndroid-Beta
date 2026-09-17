@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import n7.a1;
 public final class h extends i {
-    public static final byte[] f45243o = {79, 112, 117, 115, 72, 101, 97, 100};
-    public static final byte[] f45244p = {79, 112, 117, 115, 84, 97, 103, 115};
-    public boolean f45245n;
+    public static final byte[] f45266o = {79, 112, 117, 115, 72, 101, 97, 100};
+    public static final byte[] f45267p = {79, 112, 117, 115, 84, 97, 103, 115};
+    public boolean f45268n;
 
     public static boolean e(v vVar, byte[] bArr) {
         if (vVar.a() < bArr.length) {
             return false;
         }
-        int i10 = vVar.f7930b;
+        int i10 = vVar.f7935b;
         byte[] bArr2 = new byte[bArr.length];
         vVar.h(0, bArr.length, bArr2);
         vVar.J(i10);
@@ -27,46 +27,46 @@ public final class h extends i {
 
     @Override
     public final long b(v vVar) {
-        byte[] bArr = vVar.f7929a;
+        byte[] bArr = vVar.f7934a;
         byte b10 = 0;
         byte b11 = bArr[0];
         if (bArr.length > 1) {
             b10 = bArr[1];
         }
-        return (this.f45251i * c3.b.k(b11, b10)) / 1000000;
+        return (this.f45274i * c3.b.k(b11, b10)) / 1000000;
     }
 
     @Override
     public final boolean c(v vVar, long j3, a1 a1Var) {
-        if (e(vVar, f45243o)) {
-            byte[] copyOf = Arrays.copyOf(vVar.f7929a, vVar.f7931c);
+        if (e(vVar, f45266o)) {
+            byte[] copyOf = Arrays.copyOf(vVar.f7934a, vVar.f7936c);
             int i10 = copyOf[9] & 255;
             ArrayList a2 = c3.b.a(copyOf);
-            if (((s) a1Var.f15108b) == null) {
+            if (((s) a1Var.f15118b) == null) {
                 r rVar = new r();
-                rVar.f3247p = r0.n("audio/ogg");
-                rVar.f3248q = r0.n("audio/opus");
+                rVar.f3252p = r0.n("audio/ogg");
+                rVar.f3253q = r0.n("audio/opus");
                 rVar.I = i10;
                 rVar.J = 48000;
-                rVar.f3251t = a2;
-                a1Var.f15108b = new s(rVar);
+                rVar.f3256t = a2;
+                a1Var.f15118b = new s(rVar);
                 return true;
             }
-        } else if (e(vVar, f45244p)) {
-            e2.d.h((s) a1Var.f15108b);
-            if (!this.f45245n) {
-                this.f45245n = true;
+        } else if (e(vVar, f45267p)) {
+            e2.d.h((s) a1Var.f15118b);
+            if (!this.f45268n) {
+                this.f45268n = true;
                 vVar.K(8);
-                p0 r10 = c3.b.r(i0.w(c3.b.v(vVar, false, false).f3775a));
+                p0 r10 = c3.b.r(i0.w(c3.b.v(vVar, false, false).f3780a));
                 if (r10 != null) {
-                    r a10 = ((s) a1Var.f15108b).a();
-                    a10.f3242k = r10.b(((s) a1Var.f15108b).f3298l);
-                    a1Var.f15108b = new s(a10);
+                    r a10 = ((s) a1Var.f15118b).a();
+                    a10.f3247k = r10.b(((s) a1Var.f15118b).f3303l);
+                    a1Var.f15118b = new s(a10);
                     return true;
                 }
             }
         } else {
-            e2.d.h((s) a1Var.f15108b);
+            e2.d.h((s) a1Var.f15118b);
             return false;
         }
         return true;
@@ -76,7 +76,7 @@ public final class h extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f45245n = false;
+            this.f45268n = false;
         }
     }
 }

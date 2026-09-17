@@ -16,7 +16,7 @@ import org.telegram.ui.Cells.p6;
 import tc.g;
 import w7.q8;
 public abstract class b {
-    public static final c f44286a = new c();
+    public static final c f44309a = new c();
 
     public static HttpURLConnection a(String str, i iVar) {
         Throwable th2;
@@ -29,7 +29,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = iVar.f3895a;
+        String str2 = iVar.f3900a;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f44286a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f44309a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f44284a;
-            String str2 = aVar.f44285b;
+            String str = aVar.f44307a;
+            String str2 = aVar.f44308b;
             if (str == null) {
                 encode = null;
             } else {
@@ -94,8 +94,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static m.e3 c(java.util.HashMap r7, c5.i r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, c5.i):m.e3");
+    public static lf.i c(java.util.HashMap r7, c5.i r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, c5.i):lf.i");
     }
 
     public static LinkedList d(String str, Map map) {

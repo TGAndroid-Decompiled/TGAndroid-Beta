@@ -3,20 +3,20 @@ package org.telegram.ui;
 import j$.util.Objects;
 import org.telegram.tgnet.tl.TL_stories;
 public final class u5 extends og.a {
-    public final String f37857c;
+    public final String f37937c;
     public final TL_stories.Boost d;
     public TL_stories.PrepaidGiveaway e;
-    public boolean f37858f;
-    public final int f37859g;
+    public boolean f37938f;
+    public final int f37939g;
 
     public u5(int i10, String str) {
         super(i10, false);
-        this.f37857c = str;
+        this.f37937c = str;
     }
 
     public final boolean equals(Object obj) {
         TL_stories.PrepaidGiveaway prepaidGiveaway;
-        boolean z10 = this.f37858f;
+        boolean z10 = this.f37938f;
         if (this == obj) {
             return true;
         }
@@ -25,10 +25,10 @@ public final class u5 extends og.a {
         }
         u5 u5Var = (u5) obj;
         TL_stories.Boost boost = u5Var.d;
-        boolean z11 = u5Var.f37858f;
+        boolean z11 = u5Var.f37938f;
         TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.e;
         if (prepaidGiveaway2 != null && (prepaidGiveaway = u5Var.e) != null) {
-            if (prepaidGiveaway2.f18347id == prepaidGiveaway.f18347id && z10 == z11) {
+            if (prepaidGiveaway2.f18356id == prepaidGiveaway.f18356id && z10 == z11) {
                 return true;
             }
             return false;
@@ -37,20 +37,20 @@ public final class u5 extends og.a {
         if (boost2 == null || boost == null) {
             return true;
         }
-        if (boost2.f18343id.hashCode() == boost.f18343id.hashCode() && z10 == z11 && this.f37859g == u5Var.f37859g) {
+        if (boost2.f18352id.hashCode() == boost.f18352id.hashCode() && z10 == z11 && this.f37939g == u5Var.f37939g) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f37857c, this.d, this.e, Boolean.valueOf(this.f37858f), Integer.valueOf(this.f37859g));
+        return Objects.hash(this.f37937c, this.d, this.e, Boolean.valueOf(this.f37938f), Integer.valueOf(this.f37939g));
     }
 
     public u5(TL_stories.Boost boost, boolean z10, int i10) {
         super(5, true);
         this.d = boost;
-        this.f37858f = z10;
-        this.f37859g = i10;
+        this.f37938f = z10;
+        this.f37939g = i10;
     }
 }

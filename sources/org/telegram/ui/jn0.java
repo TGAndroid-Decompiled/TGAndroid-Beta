@@ -1,23 +1,47 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
+import android.content.Context;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class jn0 extends TimerTask {
-    public final kn0 f34942a;
+public final class jn0 extends TextView {
+    public final int f34910a;
 
-    public jn0(kn0 kn0Var) {
-        this.f34942a = kn0Var;
+    public jn0(Context context, int i10) {
+        super(context);
+        this.f34910a = i10;
     }
 
     @Override
-    public final void run() {
-        kn0 kn0Var = this.f34942a;
-        if (kn0Var.v == null) {
-            return;
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f34910a) {
+            case 3:
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
         }
-        double currentTimeMillis = System.currentTimeMillis();
-        kn0Var.f35205y = (int) (kn0Var.f35205y - (currentTimeMillis - kn0Var.F));
-        kn0Var.F = currentTimeMillis;
-        AndroidUtilities.runOnUIThread(new pl0(this, 6));
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f34910a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
+                return;
+            case 3:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+                return;
+        }
     }
 }

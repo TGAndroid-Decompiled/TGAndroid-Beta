@@ -1,129 +1,49 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class j7 extends f7 {
-    public final ArrayList f34823f;
-    public final s7 h;
+public final class j7 extends vu0 {
+    public org.telegram.ui.Components.ml0 f34784a;
+    public final u7 f34785b;
 
-    public j7(s7 s7Var) {
-        super(0);
-        this.h = s7Var;
-        this.f34823f = new ArrayList();
+    public j7(u7 u7Var) {
+        this.f34785b = u7Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final void F() {
-        ArrayList arrayList = this.f34823f;
-        arrayList.clear();
-        ArrayList arrayList2 = this.e;
-        arrayList.addAll(arrayList2);
-        arrayList2.clear();
-        s7 s7Var = this.h;
-        if (s7Var.f37266f != null) {
-            for (int i10 = 0; i10 < s7Var.f37266f.f49200b.size(); i10++) {
-                ?? aVar = new og.a(1, true);
-                aVar.f35644c = (s6) s7Var.f37266f.f49200b.get(i10);
-                arrayList2.add(aVar);
-            }
-        }
-        E(arrayList, arrayList2);
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        boolean z10;
-        String dialogPhotoTitle;
-        float f7;
-        boolean z11;
-        if (c1Var.f42678f == 1) {
-            y6 y6Var = (y6) c1Var.f42675a;
-            ArrayList arrayList = this.e;
-            s6 s6Var = ((m7) arrayList.get(i10)).f35644c;
-            s7 s7Var = this.h;
-            TLObject userOrChat = s7Var.d.getMessagesController().getUserOrChat(s6Var.f37257a);
-            s6 s6Var2 = y6Var.f39761a;
-            if (s6Var2 != null && s6Var2.f37257a == s6Var.f37257a) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (s6Var.f37257a == Long.MAX_VALUE) {
-                dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
-                y6Var.getImageView().getAvatarDrawable().g(14);
-                y6Var.getImageView().e(null, y6Var.getImageView().getAvatarDrawable());
-            } else {
-                dialogPhotoTitle = DialogObject.setDialogPhotoTitle(y6Var.getImageView(), userOrChat);
-            }
-            y6Var.f39761a = s6Var;
-            org.telegram.ui.Components.u9 imageView = y6Var.getImageView();
-            if ((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) {
-                f7 = 12.0f;
-            } else {
-                f7 = 19.0f;
-            }
-            imageView.setRoundRadius(AndroidUtilities.dp(f7));
-            String formatFileSize = AndroidUtilities.formatFileSize(s6Var.f37259c);
-            if (i10 < arrayList.size() - 1) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            org.telegram.ui.Components.n6 n6Var = y6Var.d;
-            TextView textView = y6Var.f39763c;
-            textView.setText(Emoji.replaceEmoji(dialogPhotoTitle, textView.getPaint().getFontMetricsInt(), false));
-            if (formatFileSize != null) {
-                n6Var.c(formatFileSize, false, true);
-                n6Var.setVisibility(0);
-            } else {
-                n6Var.setVisibility(4);
-            }
-            y6Var.f39764f = z11;
-            y6Var.setWillNotDraw(!z11);
-            y6Var.requestLayout();
-            boolean contains = s7Var.f37266f.f49207l.contains(Long.valueOf(s6Var.f37257a));
-            org.telegram.ui.Components.np npVar = y6Var.f39765n;
-            if (npVar == null && !contains) {
-                return;
-            }
-            if (npVar == null) {
-                org.telegram.ui.Components.np npVar2 = new org.telegram.ui.Components.np(y6Var.getContext(), 21, y6Var.f39762b);
-                y6Var.f39765n = npVar2;
-                npVar2.b(-1, org.telegram.ui.ActionBar.i6.f18836d6, org.telegram.ui.ActionBar.i6.f18965k7);
-                y6Var.f39765n.setDrawUnchecked(false);
-                int i11 = 3;
-                y6Var.f39765n.setDrawBackgroundAsArc(3);
-                org.telegram.ui.Components.np npVar3 = y6Var.f39765n;
-                if (LocaleController.isRTL) {
-                    i11 = 5;
+    public final fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        org.telegram.ui.Cells.t7 t7Var;
+        org.telegram.ui.Components.ml0 listView = this.f34785b.getListView();
+        int i11 = 0;
+        while (true) {
+            if (i11 < listView.getChildCount()) {
+                View childAt = listView.getChildAt(i11);
+                if (RecyclerView.S(childAt) == i10 && (childAt instanceof org.telegram.ui.Cells.t7)) {
+                    t7Var = (org.telegram.ui.Cells.t7) childAt;
+                    break;
                 }
-                y6Var.addView(npVar3, w7.x5.d(24, 24.0f, i11 | 48, 38.0f, 25.0f, 38.0f, 0.0f));
+                i11++;
+            } else {
+                t7Var = null;
+                break;
             }
-            y6Var.f39765n.a(contains, z10);
         }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        y6 y6Var = null;
-        if (i10 == 1) {
-            y6 y6Var2 = new y6(this.h.getContext(), null);
-            y6Var2.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18836d6, false));
-            y6Var = y6Var2;
+        if (t7Var == null) {
+            return null;
         }
-        return new s4.c1(y6Var);
+        int[] iArr = new int[2];
+        t7Var.getLocationInWindow(iArr);
+        fv0 fv0Var = new fv0();
+        fv0Var.f33764b = iArr[0];
+        fv0Var.f33765c = iArr[1];
+        fv0Var.d = this.f34784a;
+        ImageReceiver imageReceiver = t7Var.f21385c;
+        fv0Var.f33763a = imageReceiver;
+        fv0Var.e = imageReceiver.getBitmapSafe();
+        fv0Var.f33770k = t7Var.getScaleX();
+        return fv0Var;
     }
 }

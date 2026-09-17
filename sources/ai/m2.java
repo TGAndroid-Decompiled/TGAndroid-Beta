@@ -23,12 +23,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.iv0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.kn;
 import org.telegram.ui.Components.qr;
 public final class m2 implements NotificationCenter.NotificationCenterDelegate, rf.a {
-    public static final iv0 X = new iv0(new w1(1), new w1(2));
-    public static final iv0 Y = new iv0(new w1(3), new w1(4));
+    public static final jv0 X = new jv0(new w1(1), new w1(2));
+    public static final jv0 Y = new jv0(new w1(3), new w1(4));
     public static final m2 Z;
     public boolean E;
     public boolean F;
@@ -49,25 +49,25 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
     public a3.d U;
     public ci.l4 V;
     public boolean W;
-    public float f1227a;
-    public WindowManager f1228b;
-    public WindowManager.LayoutParams f1229c;
+    public float f1232a;
+    public WindowManager f1233b;
+    public WindowManager.LayoutParams f1234c;
     public j2 d;
     public f0 e;
-    public ci.l4 f1230f;
+    public ci.l4 f1235f;
     public FrameLayout h;
-    public org.telegram.ui.Components.u9 f1231n;
-    public kn f1232r;
-    public boolean f1233s;
+    public org.telegram.ui.Components.u9 f1236n;
+    public kn f1237r;
+    public boolean f1238s;
     public d2 v;
-    public int f1234w;
-    public ScaleGestureDetector f1235x;
-    public k2.u f1236y;
+    public int f1239w;
+    public ScaleGestureDetector f1240x;
+    public k2.u f1241y;
 
     static {
         ?? obj = new Object();
-        obj.f1227a = 1.4f;
-        obj.f1233s = true;
+        obj.f1232a = 1.4f;
+        obj.f1238s = true;
         obj.M = 1.0f;
         obj.U = new a3.d((Object) obj, 5);
         Z = obj;
@@ -84,7 +84,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             m2Var.S = true;
             m2Var.v = d2Var;
             int i10 = d2Var.e;
-            m2Var.f1234w = i10;
+            m2Var.f1239w = i10;
             NotificationCenter.getInstance(i10).addObserver(m2Var, NotificationCenter.liveStoryUpdated);
             m2Var.J = m2Var.n();
             m2Var.K = m2Var.m();
@@ -94,13 +94,13 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             o1.l lVar = new o1.l();
             lVar.a(0.75f);
             lVar.b(650.0f);
-            kVar.f15351u = lVar;
+            kVar.f15361u = lVar;
             m2Var.P = kVar;
             o1.k kVar2 = new o1.k(m2Var, Y);
             o1.l lVar2 = new o1.l();
             lVar2.a(0.75f);
             lVar2.b(650.0f);
-            kVar2.f15351u = lVar2;
+            kVar2.f15361u = lVar2;
             m2Var.Q = kVar2;
             if (activity != null) {
                 context = activity;
@@ -109,31 +109,31 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             }
             int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
             ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new Object());
-            m2Var.f1235x = scaleGestureDetector;
+            m2Var.f1240x = scaleGestureDetector;
             int i11 = Build.VERSION.SDK_INT;
             scaleGestureDetector.setQuickScaleEnabled(false);
             if (i11 >= 23) {
-                m2Var.f1235x.setStylusScaleEnabled(false);
+                m2Var.f1240x.setStylusScaleEnabled(false);
             }
-            m2Var.f1236y = new k2.u(context, new i2(scaledTouchSlop));
+            m2Var.f1241y = new k2.u(context, new i2(scaledTouchSlop));
             f0 f0Var = new f0(context, 1);
-            f0Var.f780b = new Path();
+            f0Var.f785b = new Path();
             m2Var.e = f0Var;
             ?? viewGroup = new ViewGroup(context);
             m2Var.d = viewGroup;
             viewGroup.addView(m2Var.e, w7.x5.c(-1.0f, -1));
             m2Var.e.setOutlineProvider(new k2(0));
             m2Var.e.setClipToOutline(true);
-            m2Var.e.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18899gg, false));
+            m2Var.e.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18925gg, false));
             org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
-            m2Var.f1231n = u9Var;
+            m2Var.f1236n = u9Var;
             m2Var.e.addView(u9Var, w7.x5.c(-1.0f, -1));
-            ci.l4 l4Var = new ci.l4(context, m2Var.f1234w);
-            m2Var.f1230f = l4Var;
+            ci.l4 l4Var = new ci.l4(context, m2Var.f1239w);
+            m2Var.f1235f = l4Var;
             l4Var.setAlpha(0.0f);
-            m2Var.e.addView(m2Var.f1230f, w7.x5.c(-1.0f, -1));
+            m2Var.e.addView(m2Var.f1235f, w7.x5.c(-1.0f, -1));
             kn knVar = new kn(context, 1);
-            m2Var.f1232r = knVar;
+            m2Var.f1237r = knVar;
             m2Var.e.addView(knVar, w7.x5.c(-1.0f, -1));
             FrameLayout frameLayout = new FrameLayout(context);
             m2Var.h = frameLayout;
@@ -147,10 +147,10 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             int dp = AndroidUtilities.dp(8.0f);
             ImageView imageView = new ImageView(context);
             imageView.setImageResource(R.drawable.pip_video_close);
-            int i12 = org.telegram.ui.ActionBar.i6.f18916hg;
-            imageView.setColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i12, false));
-            int i13 = org.telegram.ui.ActionBar.i6.f18926i6;
-            imageView.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.w0(null, i13, false), 1, -1));
+            int i12 = org.telegram.ui.ActionBar.j6.f18942hg;
+            imageView.setColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
+            int i13 = org.telegram.ui.ActionBar.j6.f18952i6;
+            imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, i13, false), 1, -1));
             imageView.setPadding(dp, dp, dp, dp);
             imageView.setOnClickListener(new e2(0));
             float f7 = 38;
@@ -158,36 +158,36 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             m2Var.h.addView(imageView, w7.x5.d(38, f7, 5, 0.0f, f10, f10, 0.0f));
             ImageView imageView2 = new ImageView(context);
             imageView2.setImageResource(R.drawable.pip_video_expand);
-            imageView2.setColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i12, false));
-            imageView2.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.w0(null, i13, false), 1, -1));
+            imageView2.setColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
+            imageView2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, i13, false), 1, -1));
             imageView2.setPadding(dp, dp, dp, dp);
             imageView2.setOnClickListener(new f2(0, d2Var, context));
             m2Var.h.addView(imageView2, w7.x5.d(38, f7, 5, 0.0f, f10, 48, 0.0f));
             m2Var.e.addView(m2Var.h, w7.x5.c(-1.0f, -1));
-            m2Var.f1228b = (WindowManager) context.getSystemService("window");
+            m2Var.f1233b = (WindowManager) context.getSystemService("window");
             WindowManager.LayoutParams b10 = sf.c.b(context, false);
-            m2Var.f1229c = b10;
+            m2Var.f1234c = b10;
             int i14 = m2Var.J;
             b10.width = i14;
             b10.height = m2Var.K;
             float dp2 = (AndroidUtilities.displaySize.x - i14) - AndroidUtilities.dp(16.0f);
             m2Var.N = dp2;
             b10.x = (int) dp2;
-            WindowManager.LayoutParams layoutParams = m2Var.f1229c;
+            WindowManager.LayoutParams layoutParams = m2Var.f1234c;
             float dp3 = (AndroidUtilities.displaySize.y - m2Var.K) - AndroidUtilities.dp(16.0f);
             m2Var.O = dp3;
             layoutParams.y = (int) dp3;
-            WindowManager.LayoutParams layoutParams2 = m2Var.f1229c;
+            WindowManager.LayoutParams layoutParams2 = m2Var.f1234c;
             layoutParams2.dimAmount = 0.0f;
             layoutParams2.flags = 520;
             m2Var.d.setAlpha(0.0f);
             m2Var.d.setScaleX(0.1f);
             m2Var.d.setScaleY(0.1f);
-            AndroidUtilities.setPreferredMaxRefreshRate(m2Var.f1228b, m2Var.d, m2Var.f1229c);
-            m2Var.f1228b.addView(m2Var.d, m2Var.f1229c);
+            AndroidUtilities.setPreferredMaxRefreshRate(m2Var.f1233b, m2Var.d, m2Var.f1234c);
+            m2Var.f1233b.addView(m2Var.d, m2Var.f1234c);
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(qr.f27423f);
+            animatorSet.setInterpolator(qr.f27380f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(m2Var.d, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(m2Var.d, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(m2Var.d, View.SCALE_Y, 1.0f));
             animatorSet.addListener(new l2(0));
             animatorSet.start();
@@ -200,11 +200,11 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             }
             if (activity != null && sf.c.a(activity) == 1) {
                 pf.d dVar = new pf.d(activity, m2Var);
-                dVar.f40785c = "pip-live-story";
+                dVar.f40807c = "pip-live-story";
                 dVar.e = 1;
                 dVar.d = AndroidUtilities.dp(10.0f);
-                dVar.f40789j = m2Var.d;
-                dVar.f40790k = m2Var.f1230f.getPlaceholderView();
+                dVar.f40811j = m2Var.d;
+                dVar.f40812k = m2Var.f1235f.getPlaceholderView();
                 m2Var.L = dVar.a();
             }
         }
@@ -214,7 +214,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
     public final void a(com.google.android.gms.internal.cast.p pVar) {
         i();
         this.W = true;
-        this.f1228b.removeView(this.d);
+        this.f1233b.removeView(this.d);
         this.d.invalidate();
     }
 
@@ -222,17 +222,17 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
     public final void b(com.google.android.gms.internal.cast.p pVar) {
         pf.e eVar = this.L;
         if (eVar != null && eVar.h.b()) {
-            WindowManager.LayoutParams layoutParams = this.f1229c;
-            int width = this.L.h.f42904a.width();
+            WindowManager.LayoutParams layoutParams = this.f1234c;
+            int width = this.L.h.f42926a.width();
             this.J = width;
             layoutParams.width = width;
-            WindowManager.LayoutParams layoutParams2 = this.f1229c;
-            int height = this.L.h.f42904a.height();
+            WindowManager.LayoutParams layoutParams2 = this.f1234c;
+            int height = this.L.h.f42926a.height();
             this.K = height;
             layoutParams2.height = height;
         }
         this.W = false;
-        this.f1228b.addView(this.d, this.f1229c);
+        this.f1233b.addView(this.d, this.f1234c);
         this.d.invalidate();
         ci.l4 l4Var = this.V;
         if (l4Var != null) {
@@ -262,9 +262,9 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
 
     @Override
     public final Bitmap e() {
-        ci.l4 l4Var = this.f1230f;
+        ci.l4 l4Var = this.f1235f;
         if (l4Var != null && l4Var.a()) {
-            return this.f1230f.getBitmap();
+            return this.f1235f.getBitmap();
         }
         return null;
     }
@@ -276,7 +276,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
 
     @Override
     public final View h() {
-        ci.l4 l4Var = new ci.l4(this.f1230f.getContext(), this.f1234w);
+        ci.l4 l4Var = new ci.l4(this.f1235f.getContext(), this.f1239w);
         this.V = l4Var;
         return l4Var;
     }
@@ -291,37 +291,37 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             if (l4Var != null) {
                 this.v.s(l4Var.getSink());
             } else {
-                this.v.s(this.f1230f.getSink());
+                this.v.s(this.f1235f.getSink());
             }
         }
-        if (this.f1233s) {
-            this.f1232r.animate().cancel();
-            ViewPropertyAnimator duration = this.f1232r.animate().alpha(0.0f).setDuration(150L);
-            qr qrVar = qr.f27423f;
+        if (this.f1238s) {
+            this.f1237r.animate().cancel();
+            ViewPropertyAnimator duration = this.f1237r.animate().alpha(0.0f).setDuration(150L);
+            qr qrVar = qr.f27380f;
             duration.setInterpolator(qrVar).start();
-            this.f1231n.animate().cancel();
-            this.f1231n.animate().alpha(0.0f).setDuration(150L).setInterpolator(qrVar).start();
-            this.f1230f.animate().cancel();
-            this.f1230f.animate().alpha(1.0f).setDuration(150L).setInterpolator(qrVar).start();
-            this.f1233s = false;
+            this.f1236n.animate().cancel();
+            this.f1236n.animate().alpha(0.0f).setDuration(150L).setInterpolator(qrVar).start();
+            this.f1235f.animate().cancel();
+            this.f1235f.animate().alpha(1.0f).setDuration(150L).setInterpolator(qrVar).start();
+            this.f1238s = false;
         }
         if (this.J == n() * this.M && this.K == m() * this.M) {
             return;
         }
-        WindowManager.LayoutParams layoutParams = this.f1229c;
+        WindowManager.LayoutParams layoutParams = this.f1234c;
         int n10 = (int) (n() * this.M);
         this.J = n10;
         layoutParams.width = n10;
-        WindowManager.LayoutParams layoutParams2 = this.f1229c;
+        WindowManager.LayoutParams layoutParams2 = this.f1234c;
         int m10 = (int) (m() * this.M);
         this.K = m10;
         layoutParams2.height = m10;
-        AndroidUtilities.updateViewLayout(this.f1228b, this.d, this.f1229c);
+        AndroidUtilities.updateViewLayout(this.f1233b, this.d, this.f1234c);
         o1.k kVar = this.P;
         float f10 = this.N;
-        kVar.f15342b = f10;
-        kVar.f15343c = true;
-        o1.l lVar = kVar.f15351u;
+        kVar.f15352b = f10;
+        kVar.f15353c = true;
+        o1.l lVar = kVar.f15361u;
         float A = a4.a.A(n(), this.M, 2.0f, f10);
         float f11 = AndroidUtilities.displaySize.x;
         if (A >= f11 / 2.0f) {
@@ -329,12 +329,12 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
-        lVar.f15357i = dp;
+        lVar.f15367i = dp;
         this.P.f();
         o1.k kVar2 = this.Q;
-        kVar2.f15342b = this.O;
-        kVar2.f15343c = true;
-        kVar2.f15351u.f15357i = w7.p.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
+        kVar2.f15352b = this.O;
+        kVar2.f15353c = true;
+        kVar2.f15361u.f15367i = w7.p.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
         this.Q.f();
     }
 
@@ -342,7 +342,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.S) {
             this.S = false;
             AndroidUtilities.runOnUIThread(new f(1), 100L);
-            NotificationCenter.getInstance(this.f1234w).removeObserver(this, NotificationCenter.liveStoryUpdated);
+            NotificationCenter.getInstance(this.f1239w).removeObserver(this, NotificationCenter.liveStoryUpdated);
             ValueAnimator valueAnimator = this.I;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -353,7 +353,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             }
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(qr.f27423f);
+            animatorSet.setInterpolator(qr.f27380f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new n(2, this, z10));
             animatorSet.start();
@@ -369,7 +369,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.R == null) {
             this.R = Float.valueOf(1.7777778f);
             Point point = AndroidUtilities.displaySize;
-            this.f1227a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / n();
+            this.f1232a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / n();
         }
         return this.R.floatValue();
     }
@@ -406,7 +406,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.I = duration;
-        duration.setInterpolator(qr.f27423f);
+        duration.setInterpolator(qr.f27380f);
         this.I.addUpdateListener(new a(this, 6));
         this.I.addListener(new b(this, 3));
         this.I.start();

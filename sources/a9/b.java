@@ -6,26 +6,26 @@ import android.os.RemoteException;
 import java.util.ArrayList;
 public final class b extends k0 {
     public final IBinder h;
-    public final d f315n;
+    public final d f317n;
 
     public b(d dVar, IBinder iBinder) {
         this.h = iBinder;
-        this.f315n = dVar;
+        this.f317n = dVar;
     }
 
     @Override
     public final void b() {
-        e eVar = (e) this.f315n.f318b;
-        eVar.f331n = (IInterface) eVar.f326i.a(this.h);
-        j0 j0Var = eVar.f322b;
+        e eVar = (e) this.f317n.f320b;
+        eVar.f333n = (IInterface) eVar.f328i.a(this.h);
+        j0 j0Var = eVar.f324b;
         int i10 = 0;
         j0Var.b("linkToDeath", new Object[0]);
         try {
-            eVar.f331n.asBinder().linkToDeath(eVar.f328k, 0);
+            eVar.f333n.asBinder().linkToDeath(eVar.f330k, 0);
         } catch (RemoteException e) {
             j0Var.a(e, "linkToDeath failed", new Object[0]);
         }
-        eVar.f325g = false;
+        eVar.f327g = false;
         ArrayList arrayList = eVar.d;
         int size = arrayList.size();
         while (i10 < size) {

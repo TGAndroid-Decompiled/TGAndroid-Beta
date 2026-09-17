@@ -8,55 +8,55 @@ import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.h40;
-import org.telegram.ui.hf0;
+import org.telegram.ui.j40;
+import org.telegram.ui.jf0;
 public final class dc extends ClickableSpan {
-    public final int f4541a;
-    public final Object f4542b;
+    public final int f4546a;
+    public final Object f4547b;
 
     public dc(Object obj, int i10) {
-        this.f4541a = i10;
-        this.f4542b = obj;
+        this.f4546a = i10;
+        this.f4547b = obj;
     }
 
     @Override
     public final void onClick(View view) {
         GroupCallMessage groupCallMessage;
-        switch (this.f4541a) {
+        switch (this.f4546a) {
             case 0:
-                ((ec) this.f4542b).S1.T();
+                ((ec) this.f4547b).S1.T();
                 return;
             case 1:
-                lh.c cVar = (lh.c) this.f4542b;
+                lh.c cVar = (lh.c) this.f4547b;
                 lh.a aVar = cVar.I;
                 if (aVar != null && (groupCallMessage = cVar.H) != null) {
-                    ((h40) aVar).a(groupCallMessage);
+                    ((j40) aVar).a(groupCallMessage);
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f4542b;
+                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f4547b;
                 Context context = x1Var.getContext();
-                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) x1Var.M).e.f36821r);
+                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.ra) x1Var.M).e.f37434r);
                 return;
             case 3:
-                ((org.telegram.ui.ub) this.f4542b).finishFragment();
+                ((org.telegram.ui.wb) this.f4547b).finishFragment();
                 return;
             case 4:
-                ((org.telegram.ui.q1) this.f4542b).run();
+                ((org.telegram.ui.q1) this.f4547b).run();
                 return;
             case 5:
-                ((org.telegram.ui.Components.vc) this.f4542b).f28688a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((org.telegram.ui.Components.vc) this.f4547b).f28681a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
-                ((ActionBarLayout) ((LaunchActivity) this.f4542b).O()).P(new PremiumPreviewFragment(0, "gift"));
+                ((ActionBarLayout) ((LaunchActivity) this.f4547b).O()).P(new PremiumPreviewFragment(0, "gift"));
                 return;
             case 7:
-                ((hf0) this.f4542b).q(false);
+                ((jf0) this.f4547b).q(false);
                 return;
             case 8:
-                rg.j0 j0Var = ((rg.c0) this.f4542b).f42266c;
-                tg.o.m(j0Var.f30528n, rg.j0.i1(j0Var), j0Var.f42310a0, null);
+                rg.j0 j0Var = ((rg.c0) this.f4547b).f42288c;
+                tg.o.m(j0Var.f30451n, rg.j0.i1(j0Var), j0Var.f42332a0, null);
                 return;
             default:
                 return;
@@ -65,7 +65,7 @@ public final class dc extends ClickableSpan {
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f4541a) {
+        switch (this.f4546a) {
             case 0:
                 textPaint.setUnderlineText(false);
                 return;
@@ -98,12 +98,12 @@ public final class dc extends ClickableSpan {
             case 8:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.gc, rg.j0.R0(((rg.c0) this.f4542b).f42266c)));
+                textPaint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, rg.j0.R0(((rg.c0) this.f4547b).f42288c)));
                 return;
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                Integer num = ((rg.k1) this.f4542b).f42363u0;
+                Integer num = ((rg.k1) this.f4547b).f42385u0;
                 if (num != null) {
                     textPaint.setColor(num.intValue());
                     return;

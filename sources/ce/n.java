@@ -20,12 +20,12 @@ public final class n extends de.b implements l, b {
     @Override
     public final Object a(Object obj, kd.c cVar) {
         d(obj);
-        return gd.i.f9616a;
+        return gd.i.f9621a;
     }
 
     public final Object c() {
         Object obj = e.get(this);
-        if (obj == de.e.f7713a) {
+        if (obj == de.e.f7718a) {
             return null;
         }
         return obj;
@@ -36,7 +36,7 @@ public final class n extends de.b implements l, b {
         p[] pVarArr;
         v vVar;
         if (obj == null) {
-            obj = de.e.f7713a;
+            obj = de.e.f7718a;
         }
         synchronized (this) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = e;
@@ -48,16 +48,16 @@ public final class n extends de.b implements l, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                p[] pVarArr2 = this.f7707a;
+                p[] pVarArr2 = this.f7712a;
                 while (true) {
                     if (pVarArr2 != null) {
                         for (p pVar : pVarArr2) {
                             if (pVar != null) {
-                                AtomicReference atomicReference = pVar.f4254a;
+                                AtomicReference atomicReference = pVar.f4259a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (vVar = o.f4253b)) {
-                                        v vVar2 = o.f4252a;
+                                    if (obj2 != null && obj2 != (vVar = o.f4258b)) {
+                                        v vVar2 = o.f4257a;
                                         if (obj2 == vVar2) {
                                             while (!atomicReference.compareAndSet(obj2, vVar)) {
                                                 if (atomicReference.get() != obj2) {
@@ -70,7 +70,7 @@ public final class n extends de.b implements l, b {
                                                     break;
                                                 }
                                             }
-                                            ((zd.m) obj2).resumeWith(gd.i.f9616a);
+                                            ((zd.m) obj2).resumeWith(gd.i.f9621a);
                                             break;
                                         }
                                     }
@@ -84,7 +84,7 @@ public final class n extends de.b implements l, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        pVarArr = this.f7707a;
+                        pVarArr = this.f7712a;
                     }
                     pVarArr2 = pVarArr;
                     i12 = i10;

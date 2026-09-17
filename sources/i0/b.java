@@ -3,20 +3,20 @@ package i0;
 import android.graphics.Insets;
 public final class b {
     public static final b e = new b(0, 0, 0, 0);
-    public final int f10588a;
-    public final int f10589b;
-    public final int f10590c;
+    public final int f10591a;
+    public final int f10592b;
+    public final int f10593c;
     public final int d;
 
     public b(int i10, int i11, int i12, int i13) {
-        this.f10588a = i10;
-        this.f10589b = i11;
-        this.f10590c = i12;
+        this.f10591a = i10;
+        this.f10592b = i11;
+        this.f10593c = i12;
         this.d = i13;
     }
 
     public static b a(b bVar, b bVar2) {
-        return b(Math.max(bVar.f10588a, bVar2.f10588a), Math.max(bVar.f10589b, bVar2.f10589b), Math.max(bVar.f10590c, bVar2.f10590c), Math.max(bVar.d, bVar2.d));
+        return b(Math.max(bVar.f10591a, bVar2.f10591a), Math.max(bVar.f10592b, bVar2.f10592b), Math.max(bVar.f10593c, bVar2.f10593c), Math.max(bVar.d, bVar2.d));
     }
 
     public static b b(int i10, int i11, int i12, int i13) {
@@ -31,7 +31,7 @@ public final class b {
     }
 
     public final Insets d() {
-        return b2.c.i(this.f10588a, this.f10589b, this.f10590c, this.d);
+        return b2.c.i(this.f10591a, this.f10592b, this.f10593c, this.d);
     }
 
     public final boolean equals(Object obj) {
@@ -42,17 +42,17 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (this.d == bVar.d && this.f10588a == bVar.f10588a && this.f10590c == bVar.f10590c && this.f10589b == bVar.f10589b) {
+        if (this.d == bVar.d && this.f10591a == bVar.f10591a && this.f10593c == bVar.f10593c && this.f10592b == bVar.f10592b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((((this.f10588a * 31) + this.f10589b) * 31) + this.f10590c) * 31) + this.d;
+        return (((((this.f10591a * 31) + this.f10592b) * 31) + this.f10593c) * 31) + this.d;
     }
 
     public final String toString() {
-        return "Insets{left=" + this.f10588a + ", top=" + this.f10589b + ", right=" + this.f10590c + ", bottom=" + this.d + '}';
+        return "Insets{left=" + this.f10591a + ", top=" + this.f10592b + ", right=" + this.f10593c + ", bottom=" + this.d + '}';
     }
 }

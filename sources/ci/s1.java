@@ -5,9 +5,9 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.n70;
-import org.telegram.ui.nf;
-import org.telegram.ui.qt;
-public final class s1 implements qt {
+import org.telegram.ui.pf;
+import org.telegram.ui.st;
+public final class s1 implements st {
     @Override
     public final boolean A() {
         return false;
@@ -192,7 +192,7 @@ public final class s1 implements qt {
     }
 
     @Override
-    public final void G(CharSequence charSequence, String str, nf nfVar) {
+    public final void G(CharSequence charSequence, String str, pf pfVar) {
     }
 
     @Override

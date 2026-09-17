@@ -1,36 +1,43 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class p51 implements Utilities.Callback {
-    public final int f36439a;
-    public final LinkedHashSet f36440b;
-    public final Runnable f36441c;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class p51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36537a;
+    public final i71 f36538b;
+    public final boolean f36539c;
 
-    public p51(LinkedHashSet linkedHashSet, Runnable runnable, int i10) {
-        this.f36439a = i10;
-        this.f36440b = linkedHashSet;
-        this.f36441c = runnable;
+    public p51(i71 i71Var, boolean z10, int i10) {
+        this.f36537a = i10;
+        this.f36538b = i71Var;
+        this.f36539c = z10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f36439a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f36537a) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                if (arrayList != null) {
-                    this.f36440b.addAll(arrayList);
+                i71 i71Var = this.f36538b;
+                f61 f61Var = i71Var.f34461h0;
+                v51 v51Var = i71Var.f34463i0;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f36539c) {
+                    floatValue = 1.0f - floatValue;
                 }
-                this.f36441c.run();
+                float f7 = 1.0f - floatValue;
+                f61Var.setAlpha(f7);
+                f61Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
+                v51Var.setAlpha(floatValue);
+                v51Var.setTranslationY(AndroidUtilities.dp(8.0f) * f7);
+                i71Var.f34465j0.setAlpha(v51Var.getAlpha() * floatValue);
                 return;
             default:
-                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
-                if (tL_emojiList != null) {
-                    this.f36440b.addAll(tL_emojiList.document_id);
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f36539c) {
+                    floatValue2 = 1.0f - floatValue2;
                 }
-                this.f36441c.run();
+                i71 i71Var2 = this.f36538b;
+                i71Var2.f34465j0.setAlpha(i71Var2.f34463i0.getAlpha() * floatValue2);
                 return;
         }
     }

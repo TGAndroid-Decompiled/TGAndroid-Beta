@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SharedConfig;
-public final class x6 implements org.telegram.ui.ActionBar.r0, bl0 {
-    public final int f29894a;
-    public final h8 f29895b;
+public final class x6 implements org.telegram.ui.ActionBar.s0, cl0 {
+    public final int f29856a;
+    public final h8 f29857b;
 
     public x6(h8 h8Var, int i10) {
-        this.f29894a = i10;
-        this.f29895b = h8Var;
+        this.f29856a = i10;
+        this.f29857b = h8Var;
     }
 
     @Override
     public boolean d(int i10, View view) {
         boolean z10 = view instanceof org.telegram.ui.Cells.x;
-        h8 h8Var = this.f29895b;
+        h8 h8Var = this.f29857b;
         if (z10) {
             if (!h8Var.s0()) {
                 org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) view;
@@ -30,9 +30,9 @@ public final class x6 implements org.telegram.ui.ActionBar.r0, bl0 {
 
     @Override
     public void m(int i10) {
-        switch (this.f29894a) {
+        switch (this.f29856a) {
             case 0:
-                h8 h8Var = this.f29895b;
+                h8 h8Var = this.f29857b;
                 h8Var.getClass();
                 if (i10 >= 0) {
                     float[] fArr = h8.U0;
@@ -45,7 +45,7 @@ public final class x6 implements org.telegram.ui.ActionBar.r0, bl0 {
                 }
                 return;
             case 1:
-                h8 h8Var2 = this.f29895b;
+                h8 h8Var2 = this.f29857b;
                 if (i10 != 1 && i10 != 2) {
                     if (i10 == 4) {
                         if (SharedConfig.repeatMode == 1) {
@@ -65,16 +65,16 @@ public final class x6 implements org.telegram.ui.ActionBar.r0, bl0 {
                     } else {
                         MediaController.getInstance().setPlaybackOrderType(i10);
                     }
-                    h8Var2.f24573s.l();
+                    h8Var2.f24565s.l();
                     if (z10 != SharedConfig.playOrderReversed) {
-                        h8Var2.f24566n.B0();
+                        h8Var2.f24558n.C0();
                         h8Var2.w0(false);
                     }
                 }
                 h8Var2.H0();
                 return;
             default:
-                this.f29895b.t0(i10);
+                this.f29857b.t0(i10);
                 return;
         }
     }

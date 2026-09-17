@@ -8,8 +8,8 @@ public final class nn extends org.telegram.ui.Cells.c6 {
     public final int F;
     public final sn G;
 
-    public nn(sn snVar, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(context, i10, null, e6Var);
+    public nn(sn snVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(context, i10, null, f6Var);
         this.G = snVar;
         this.F = i11;
     }
@@ -17,10 +17,10 @@ public final class nn extends org.telegram.ui.Cells.c6 {
     @Override
     public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
         un unVar = this.G.d;
-        if (!unVar.f28456n && this.F == 11 && b6Var.isFocused() && b6Var.hasSelection()) {
+        if (!unVar.f28434n && this.F == 11 && b6Var.isFocused() && b6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.bo.k8(menu, ((org.telegram.ui.bo) unVar.f26462b.f28750f0).h, false, true, true, true);
+                org.telegram.ui.bo.k8(menu, ((org.telegram.ui.bo) unVar.f26460b.f28742f0).h, false, true, true, true);
             }
         }
     }
@@ -37,7 +37,7 @@ public final class nn extends org.telegram.ui.Cells.c6 {
 
     @Override
     public final void k(org.telegram.ui.Cells.b6 b6Var) {
-        this.G.d.f26462b.t1(b6Var, true);
+        this.G.d.f26460b.t1(b6Var, true);
     }
 
     @Override
@@ -59,9 +59,9 @@ public final class nn extends org.telegram.ui.Cells.c6 {
             i10++;
         }
         unVar.h0();
-        unVar.f28453k0 = (unVar.f28465t0 + i10) - 1;
-        unVar.f28463s.setItemAnimator(unVar.v);
-        unVar.f28461r.l();
+        unVar.f28431k0 = (unVar.f28443t0 + i10) - 1;
+        unVar.f28441s.setItemAnimator(unVar.v);
+        unVar.f28439r.l();
         return true;
     }
 }

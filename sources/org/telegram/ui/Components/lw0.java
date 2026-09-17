@@ -1,19 +1,59 @@
 package org.telegram.ui.Components;
 
 import android.graphics.drawable.Drawable;
-public abstract class lw0 extends Drawable {
-    public final void a() {
-        yf.h d = yf.h.d();
-        d.getClass();
-        yf.h.c();
-        d.e.add(this);
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.tgnet.TLRPC;
+public final class lw0 {
+    public final m5 f25980a;
+    public Drawable f25981b;
+
+    public lw0(FrameLayout frameLayout) {
+        this(18, frameLayout);
     }
 
-    public abstract void b(int i10);
+    public final m5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
+        m5 m5Var = this.f25980a;
+        if (chat != null && chat.verified) {
+            Drawable drawable = this.f25981b;
+            if (drawable == null) {
+                drawable = new pq(org.telegram.ui.ActionBar.j6.f18893f1, org.telegram.ui.ActionBar.j6.f18947i1);
+            }
+            this.f25981b = drawable;
+            m5Var.g(drawable, z10);
+            m5Var.k(null);
+            return m5Var;
+        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
+            m5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
+            m5Var.k(Integer.valueOf(i10));
+            return m5Var;
+        } else if (user != null && user.verified) {
+            Drawable drawable2 = this.f25981b;
+            if (drawable2 == null) {
+                drawable2 = new pq(org.telegram.ui.ActionBar.j6.f18893f1, org.telegram.ui.ActionBar.j6.f18947i1);
+            }
+            this.f25981b = drawable2;
+            m5Var.g(drawable2, z10);
+            m5Var.k(null);
+            return m5Var;
+        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
+            m5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
+            m5Var.k(Integer.valueOf(i10));
+            return m5Var;
+        } else if (user != null && user.premium) {
+            m5Var.g(rg.a1.d().e, z10);
+            m5Var.k(Integer.valueOf(i10));
+            return m5Var;
+        } else {
+            m5Var.g(null, z10);
+            m5Var.k(null);
+            return m5Var;
+        }
+    }
 
-    public abstract void c(boolean z10);
-
-    public abstract void d();
-
-    public abstract void e();
+    public lw0(int i10, View view) {
+        this.f25980a = new m5(AndroidUtilities.dp(i10), view);
+    }
 }

@@ -8,20 +8,20 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 public final class a0 extends t {
     public static final a0 h;
-    public final transient n f15106f;
+    public final transient n f15116f;
 
     static {
-        j jVar = n.f15148b;
-        h = new a0(y.e, w.f15174b);
+        j jVar = n.f15158b;
+        h = new a0(y.e, w.f15184b);
     }
 
     public a0(n nVar, Comparator comparator) {
         super(comparator);
-        this.f15106f = nVar;
+        this.f15116f = nVar;
     }
 
     public final a0 A(int i10, int i11) {
-        n nVar = this.f15106f;
+        n nVar = this.f15116f;
         if (i10 == 0) {
             if (i11 != nVar.size()) {
                 i10 = 0;
@@ -39,7 +39,7 @@ public final class a0 extends t {
     @Override
     public final Object ceiling(Object obj) {
         int z10 = z(obj, true);
-        n nVar = this.f15106f;
+        n nVar = this.f15116f;
         if (z10 == nVar.size()) {
             return null;
         }
@@ -50,7 +50,7 @@ public final class a0 extends t {
     public final boolean contains(Object obj) {
         if (obj != null) {
             try {
-                if (Collections.binarySearch(this.f15106f, obj, this.d) >= 0) {
+                if (Collections.binarySearch(this.f15116f, obj, this.d) >= 0) {
                     return true;
                 }
             } catch (ClassCastException unused) {
@@ -66,7 +66,7 @@ public final class a0 extends t {
         }
         Comparator comparator = this.d;
         if (a.i(comparator, collection) && collection.size() > 1) {
-            j listIterator = this.f15106f.listIterator(0);
+            j listIterator = this.f15116f.listIterator(0);
             Iterator it = collection.iterator();
             if (listIterator.hasNext()) {
                 Object next = it.next();
@@ -97,7 +97,7 @@ public final class a0 extends t {
 
     @Override
     public final Iterator descendingIterator() {
-        return this.f15106f.r().listIterator(0);
+        return this.f15116f.r().listIterator(0);
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class a0 extends t {
         if (obj != this) {
             if (obj instanceof Set) {
                 Set set = (Set) obj;
-                n nVar = this.f15106f;
+                n nVar = this.f15116f;
                 if (nVar.size() == set.size()) {
                     if (!isEmpty()) {
                         Comparator comparator = this.d;
@@ -140,7 +140,7 @@ public final class a0 extends t {
     @Override
     public final Object first() {
         if (!isEmpty()) {
-            return this.f15106f.get(0);
+            return this.f15116f.get(0);
         }
         throw new NoSuchElementException();
     }
@@ -151,13 +151,13 @@ public final class a0 extends t {
         if (y3 == -1) {
             return null;
         }
-        return this.f15106f.get(y3);
+        return this.f15116f.get(y3);
     }
 
     @Override
     public final Object higher(Object obj) {
         int z10 = z(obj, false);
-        n nVar = this.f15106f;
+        n nVar = this.f15116f;
         if (z10 == nVar.size()) {
             return null;
         }
@@ -166,18 +166,18 @@ public final class a0 extends t {
 
     @Override
     public final int i(Object[] objArr) {
-        return this.f15106f.i(objArr);
+        return this.f15116f.i(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f15106f.listIterator(0);
+        return this.f15116f.listIterator(0);
     }
 
     @Override
     public final Object last() {
         if (!isEmpty()) {
-            n nVar = this.f15106f;
+            n nVar = this.f15116f;
             return nVar.get(nVar.size() - 1);
         }
         throw new NoSuchElementException();
@@ -189,42 +189,42 @@ public final class a0 extends t {
         if (y3 == -1) {
             return null;
         }
-        return this.f15106f.get(y3);
+        return this.f15116f.get(y3);
     }
 
     @Override
     public final int n() {
-        return this.f15106f.n();
+        return this.f15116f.n();
     }
 
     @Override
     public final int o() {
-        return this.f15106f.o();
+        return this.f15116f.o();
     }
 
     @Override
     public final e0 p() {
-        return this.f15106f.listIterator(0);
+        return this.f15116f.listIterator(0);
     }
 
     @Override
     public final Object[] q() {
-        return this.f15106f.q();
+        return this.f15116f.q();
     }
 
     @Override
     public final int size() {
-        return this.f15106f.size();
+        return this.f15116f.size();
     }
 
     @Override
     public final n t() {
-        return this.f15106f;
+        return this.f15116f;
     }
 
     public final int y(Object obj, boolean z10) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f15106f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f15116f, obj, this.d);
         if (binarySearch >= 0) {
             if (z10) {
                 return binarySearch + 1;
@@ -236,7 +236,7 @@ public final class a0 extends t {
 
     public final int z(Object obj, boolean z10) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f15106f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f15116f, obj, this.d);
         if (binarySearch >= 0) {
             if (z10) {
                 return binarySearch;

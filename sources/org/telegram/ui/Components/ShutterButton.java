@@ -13,18 +13,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public class ShutterButton extends View {
-    public Drawable f22189a;
-    public DecelerateInterpolator f22190b;
-    public Paint f22191c;
+    public Drawable f22199a;
+    public DecelerateInterpolator f22200b;
+    public Paint f22201c;
     public Paint d;
-    public dv0 e;
-    public ev0 f22192f;
+    public ev0 e;
+    public fv0 f22202f;
     public boolean h;
-    public float f22193n;
-    public long f22194r;
-    public long f22195s;
+    public float f22203n;
+    public long f22204r;
+    public long f22205s;
     public boolean v;
-    public org.telegram.ui.Cells.l7 f22196w;
+    public org.telegram.ui.Cells.l7 f22206w;
 
     private void setHighlighted(boolean z10) {
         AnimatorSet animatorSet = new AnimatorSet();
@@ -37,42 +37,42 @@ public class ShutterButton extends View {
             animatorSet.setStartDelay(40L);
         }
         animatorSet.setDuration(120L);
-        animatorSet.setInterpolator(this.f22190b);
+        animatorSet.setInterpolator(this.f22200b);
         animatorSet.start();
     }
 
-    public final void a(ev0 ev0Var) {
-        if (this.f22192f != ev0Var) {
-            this.f22192f = ev0Var;
-            this.f22194r = System.currentTimeMillis();
-            this.f22195s = 0L;
-            if (this.f22192f != ev0.f23756b) {
-                this.f22193n = 0.0f;
+    public final void a(fv0 fv0Var) {
+        if (this.f22202f != fv0Var) {
+            this.f22202f = fv0Var;
+            this.f22204r = System.currentTimeMillis();
+            this.f22205s = 0L;
+            if (this.f22202f != fv0.f24016b) {
+                this.f22203n = 0.0f;
             }
             invalidate();
         }
     }
 
-    public dv0 getDelegate() {
+    public ev0 getDelegate() {
         return this.e;
     }
 
-    public ev0 getState() {
-        return this.f22192f;
+    public fv0 getState() {
+        return this.f22202f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Paint paint = this.d;
-        Paint paint2 = this.f22191c;
+        Paint paint2 = this.f22201c;
         int measuredWidth = getMeasuredWidth() / 2;
         int measuredHeight = getMeasuredHeight() / 2;
-        Drawable drawable = this.f22189a;
+        Drawable drawable = this.f22199a;
         drawable.setBounds(measuredWidth - AndroidUtilities.dp(36.0f), measuredHeight - AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f) + measuredWidth, AndroidUtilities.dp(36.0f) + measuredHeight);
         drawable.draw(canvas);
         if (!this.h && getScaleX() == 1.0f) {
-            if (this.f22193n != 0.0f) {
-                this.f22193n = 0.0f;
+            if (this.f22203n != 0.0f) {
+                this.f22203n = 0.0f;
                 return;
             }
             return;
@@ -82,22 +82,22 @@ public class ShutterButton extends View {
         float f7 = measuredWidth;
         float f10 = measuredHeight;
         canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.0f), paint2);
-        if (this.f22192f == ev0.f23756b) {
-            if (this.f22193n != 1.0f) {
-                long abs = Math.abs(System.currentTimeMillis() - this.f22194r);
+        if (this.f22202f == fv0.f24016b) {
+            if (this.f22203n != 1.0f) {
+                long abs = Math.abs(System.currentTimeMillis() - this.f22204r);
                 if (abs > 17) {
                     abs = 17;
                 }
-                long j3 = this.f22195s + abs;
-                this.f22195s = j3;
+                long j3 = this.f22205s + abs;
+                this.f22205s = j3;
                 if (j3 > 120) {
-                    this.f22195s = 120L;
+                    this.f22205s = 120L;
                 }
-                this.f22193n = this.f22190b.getInterpolation(((float) this.f22195s) / 120.0f);
+                this.f22203n = this.f22200b.getInterpolation(((float) this.f22205s) / 120.0f);
                 invalidate();
             }
-            canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.5f) * scaleX * this.f22193n, paint);
-        } else if (this.f22193n != 0.0f) {
+            canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.5f) * scaleX * this.f22203n, paint);
+        } else if (this.f22203n != 0.0f) {
             canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.5f) * scaleX, paint);
         }
     }
@@ -122,8 +122,8 @@ public class ShutterButton extends View {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShutterButton.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
-    public void setDelegate(dv0 dv0Var) {
-        this.e = dv0Var;
+    public void setDelegate(ev0 ev0Var) {
+        this.e = ev0Var;
     }
 
     @Override

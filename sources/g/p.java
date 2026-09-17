@@ -5,21 +5,21 @@ import android.content.IntentFilter;
 import android.util.SparseIntArray;
 import android.view.MenuItem;
 public abstract class p {
-    public Object f9269a;
-    public Object f9270b;
+    public Object f9274a;
+    public Object f9275b;
 
     public p(Context context) {
-        this.f9269a = context;
+        this.f9274a = context;
     }
 
     public void c() {
-        androidx.mediarouter.app.g gVar = (androidx.mediarouter.app.g) this.f9269a;
+        androidx.mediarouter.app.g gVar = (androidx.mediarouter.app.g) this.f9274a;
         if (gVar != null) {
             try {
-                ((s) this.f9270b).e.unregisterReceiver(gVar);
+                ((s) this.f9275b).e.unregisterReceiver(gVar);
             } catch (IllegalArgumentException unused) {
             }
-            this.f9269a = null;
+            this.f9274a = null;
         }
     }
 
@@ -30,13 +30,13 @@ public abstract class p {
     public MenuItem f(MenuItem menuItem) {
         if (menuItem instanceof l0.a) {
             l0.a aVar = (l0.a) menuItem;
-            if (((a0.l) this.f9270b) == null) {
-                this.f9270b = new a0.l(0);
+            if (((a0.m) this.f9275b) == null) {
+                this.f9275b = new a0.m(0);
             }
-            MenuItem menuItem2 = (MenuItem) ((a0.l) this.f9270b).get(aVar);
+            MenuItem menuItem2 = (MenuItem) ((a0.m) this.f9275b).get(aVar);
             if (menuItem2 == null) {
-                l.r rVar = new l.r((Context) this.f9269a, aVar);
-                ((a0.l) this.f9270b).put(aVar, rVar);
+                l.r rVar = new l.r((Context) this.f9274a, aVar);
+                ((a0.m) this.f9275b).put(aVar, rVar);
                 return rVar;
             }
             return menuItem2;
@@ -89,7 +89,7 @@ public abstract class p {
     public abstract int i(int i10);
 
     public void j() {
-        ((SparseIntArray) this.f9269a).clear();
+        ((SparseIntArray) this.f9274a).clear();
     }
 
     public abstract void k();
@@ -100,18 +100,18 @@ public abstract class p {
         if (d.countActions() == 0) {
             return;
         }
-        if (((androidx.mediarouter.app.g) this.f9269a) == null) {
-            this.f9269a = new androidx.mediarouter.app.g(this, 3);
+        if (((androidx.mediarouter.app.g) this.f9274a) == null) {
+            this.f9274a = new androidx.mediarouter.app.g(this, 3);
         }
-        ((s) this.f9270b).e.registerReceiver((androidx.mediarouter.app.g) this.f9269a, d);
+        ((s) this.f9275b).e.registerReceiver((androidx.mediarouter.app.g) this.f9274a, d);
     }
 
     public p() {
-        this.f9269a = new SparseIntArray();
-        this.f9270b = new SparseIntArray();
+        this.f9274a = new SparseIntArray();
+        this.f9275b = new SparseIntArray();
     }
 
     public p(s sVar) {
-        this.f9270b = sVar;
+        this.f9275b = sVar;
     }
 }

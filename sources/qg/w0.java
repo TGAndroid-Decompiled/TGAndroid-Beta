@@ -7,23 +7,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.wl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.hk0;
+import org.telegram.ui.Components.ik0;
 import w7.x5;
 public final class w0 extends j {
-    public final v0 f41697q0;
-    public boolean f41698r0;
-    public int f41699s0;
-    public int f41700t0;
-    public TLRPC.MessageMedia f41701u0;
-    public TL_stories.MediaArea f41702v0;
+    public final v0 f41719q0;
+    public boolean f41720r0;
+    public int f41721s0;
+    public int f41722t0;
+    public TLRPC.MessageMedia f41723u0;
+    public TL_stories.MediaArea f41724v0;
 
     public w0(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f7, int i11) {
         super(context, pointF);
         v0 v0Var = new v0(context, f7);
-        this.f41697q0 = v0Var;
+        this.f41719q0 = v0Var;
         v0Var.setMaxWidth(i11);
         r(i10, messageMedia, mediaArea);
-        v0Var.e(0, this.f41699s0);
+        v0Var.e(0, this.f41721s0);
         addView(v0Var, x5.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -74,7 +74,7 @@ public final class w0 extends j {
     }
 
     public int getColor() {
-        return this.f41699s0;
+        return this.f41721s0;
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class w0 extends j {
     }
 
     @Override
-    public hk0 getSelectionBounds() {
+    public ik0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -94,35 +94,35 @@ public final class w0 extends j {
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
         float u10 = wl.u(dp, 2.0f, getPositionX(), scaleX);
-        return new hk0(u10, wl.u(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + u10) - u10, dp2 * scaleX);
+        return new ik0(u10, wl.u(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + u10) - u10, dp2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f41697q0.J;
+        return this.f41719q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f41697q0.I;
+        return this.f41719q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f41697q0.I;
+        return this.f41719q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f41697q0.J;
+        return this.f41719q0.J;
     }
 
     public int getType() {
-        return this.f41700t0;
+        return this.f41722t0;
     }
 
     public int getTypesCount() {
-        return this.f41697q0.getTypesCount() - (!this.f41698r0 ? 1 : 0);
+        return this.f41719q0.getTypesCount() - (!this.f41720r0 ? 1 : 0);
     }
 
     @Override
@@ -141,8 +141,8 @@ public final class w0 extends j {
         String str;
         String str2;
         String str3;
-        this.f41701u0 = messageMedia;
-        this.f41702v0 = mediaArea;
+        this.f41723u0 = messageMedia;
+        this.f41724v0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -172,23 +172,23 @@ public final class w0 extends j {
         } else {
             str = "";
         }
-        v0 v0Var = this.f41697q0;
+        v0 v0Var = this.f41719q0;
         v0Var.d(i10, str4);
         v0Var.setText(str);
         m();
     }
 
     public void setColor(int i10) {
-        this.f41698r0 = true;
-        this.f41699s0 = i10;
+        this.f41720r0 = true;
+        this.f41721s0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f41697q0.setMaxWidth(i10);
+        this.f41719q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f41700t0 = i10;
-        this.f41697q0.e(i10, this.f41699s0);
+        this.f41722t0 = i10;
+        this.f41719q0.e(i10, this.f41721s0);
     }
 }

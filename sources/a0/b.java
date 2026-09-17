@@ -74,12 +74,12 @@ public final class b implements Iterator {
     }
 
     public b(f fVar, int i10) {
-        this(fVar.f28c);
+        this(fVar.f30c);
         this.d = i10;
         switch (i10) {
             case 1:
                 this.e = fVar;
-                this(fVar.f28c);
+                this(fVar.f30c);
                 return;
             default:
                 this.e = fVar;

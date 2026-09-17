@@ -38,7 +38,7 @@ public final class c2 extends FrameLayout implements DownloadController.FileDown
     public MessageObject.GroupedMessagePosition R;
     public Drawable S;
     public boolean T;
-    public final u70 f32634a;
+    public final w70 f32634a;
     public final f4 f32635b;
     public a3 f32636c;
     public a3 d;
@@ -53,19 +53,19 @@ public final class c2 extends FrameLayout implements DownloadController.FileDown
     public int f32642x;
     public int f32643y;
 
-    public c2(Context context, u70 u70Var, f4 f4Var, int i10) {
+    public c2(Context context, w70 w70Var, f4 f4Var, int i10) {
         super(context);
-        this.f32634a = u70Var;
+        this.f32634a = w70Var;
         this.f32635b = f4Var;
         setWillNotDraw(false);
         this.e = new ImageReceiver(this);
-        c1 c1Var = new c1(context, u70Var, f4Var, 1);
+        c1 c1Var = new c1(context, w70Var, f4Var, 1);
         this.h = c1Var;
         RadialProgress2 radialProgress2 = new RadialProgress2(this, null);
         this.f32637f = radialProgress2;
         radialProgress2.d = -1;
         radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
-        this.M = DownloadController.getInstance(((h4) u70Var).X).generateObserverTag();
+        this.M = DownloadController.getInstance(((h4) w70Var).X).generateObserverTag();
         addView(c1Var, w7.x5.c(-2.0f, -1));
         this.f32638n = i10;
     }
@@ -219,7 +219,7 @@ public final class c2 extends FrameLayout implements DownloadController.FileDown
             canvas2 = canvas;
         } else {
             canvas2 = canvas;
-            canvas2.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2(), h4.f34119o1);
+            canvas2.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2(), h4.f34136o1);
         }
         imageReceiver.draw(canvas2);
         if (imageReceiver.getVisible()) {
@@ -232,12 +232,12 @@ public final class c2 extends FrameLayout implements DownloadController.FileDown
             this.S.draw(canvas2);
         }
         a3 a3Var = this.f32636c;
-        u70 u70Var = this.f32634a;
+        w70 w70Var = this.f32634a;
         int i10 = 0;
         if (a3Var != null) {
             canvas2.save();
             canvas2.translate(this.f32640s, this.v);
-            h4.v(u70Var, canvas2, this, 0);
+            h4.v(w70Var, canvas2, this, 0);
             this.f32636c.draw(canvas2, this);
             canvas2.restore();
             i10 = 1;
@@ -245,11 +245,11 @@ public final class c2 extends FrameLayout implements DownloadController.FileDown
         if (this.d != null) {
             canvas2.save();
             canvas2.translate(this.f32640s, this.v + this.f32641w);
-            h4.v(u70Var, canvas2, this, i10);
+            h4.v(w70Var, canvas2, this, i10);
             this.d.draw(canvas2, this);
             canvas2.restore();
         }
-        h4.u(canvas2, u70Var, this.N, getMeasuredHeight());
+        h4.u(canvas2, w70Var, this.N, getMeasuredHeight());
     }
 
     @Override

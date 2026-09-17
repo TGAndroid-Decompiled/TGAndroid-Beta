@@ -1,42 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-public final class a51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f22314a;
-    public int f22315b;
-    public final int f22316c;
-    public final Object d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class a51 implements ux0 {
+    public final TLRPC.InputStickerSet f22325a;
+    public final f51 f22326b;
 
-    public a51(org.telegram.ui.dv dvVar, int i10, int i11) {
-        this.f22314a = 1;
-        this.d = dvVar;
-        this.f22315b = i10;
-        this.f22316c = i11;
+    public a51(f51 f51Var, TLRPC.InputStickerSet inputStickerSet) {
+        this.f22326b = f51Var;
+        this.f22325a = inputStickerSet;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f22314a) {
-            case 0:
-                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f22316c);
-                e51 e51Var = (e51) this.d;
-                e51Var.N = true;
-                e51Var.f23546n.scrollBy(0, floatValue - this.f22315b);
-                e51Var.N = false;
-                this.f22315b = floatValue;
-                return;
-            default:
-                ((org.telegram.ui.dv) this.d).f33133c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f22315b, this.f22316c), PorterDuff.Mode.SRC_IN));
-                return;
+    public final void a() {
+        f51 f51Var = this.f22326b;
+        s4.h0 adapter = f51Var.f23782n.getAdapter();
+        e51 e51Var = f51Var.f23784s;
+        TLRPC.InputStickerSet inputStickerSet = this.f22325a;
+        int i10 = 0;
+        if (adapter == e51Var) {
+            while (i10 < e51Var.e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) e51Var.e.get(i10);
+                if (stickerSetCovered.set.f18148id == inputStickerSet.f18141id) {
+                    e51Var.F(stickerSetCovered, null);
+                    return;
+                }
+                i10++;
+            }
+            return;
         }
-    }
-
-    public a51(e51 e51Var, int i10) {
-        this.f22314a = 0;
-        this.d = e51Var;
-        this.f22316c = i10;
-        this.f22315b = 0;
+        gg.g2 g2Var = f51Var.v;
+        ArrayList arrayList = g2Var.E;
+        while (i10 < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
+            if (stickerSetCovered2.set.f18148id == inputStickerSet.f18141id) {
+                g2Var.F(stickerSetCovered2, null);
+                return;
+            }
+            i10++;
+        }
     }
 }

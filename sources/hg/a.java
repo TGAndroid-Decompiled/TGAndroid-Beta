@@ -9,72 +9,72 @@ import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.b5;
 import org.telegram.ui.Components.c5;
-import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.j51;
 import org.telegram.ui.bo;
-public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
-    public final int f10202a;
-    public final c f10203b;
+public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b2 {
+    public final int f10207a;
+    public final c f10208b;
 
     public a(c cVar, int i10) {
-        this.f10202a = i10;
-        this.f10203b = cVar;
+        this.f10207a = i10;
+        this.f10208b = cVar;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f10202a) {
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f10207a) {
             case 1:
-                this.f10203b.X();
+                this.f10208b.X();
                 return;
             default:
-                this.f10203b.finishFragment();
+                this.f10208b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        i51 i51Var = (i51) obj;
+        j51 j51Var = (j51) obj;
         final View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        final c cVar = this.f10203b;
-        if (!cVar.d.h(i51Var)) {
-            int i10 = i51Var.d;
-            if (i10 != 2 && i51Var.f15533a != 17) {
+        final c cVar = this.f10208b;
+        if (!cVar.d.h(j51Var)) {
+            int i10 = j51Var.d;
+            if (i10 != 2 && j51Var.f15543a != 17) {
                 if (i10 == 1) {
-                    cVar.f10239s = !cVar.f10239s;
-                    cVar.f10235c.Y2.N(true);
+                    cVar.f10244s = !cVar.f10244s;
+                    cVar.f10240c.Y2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 6) {
                     a0 a0Var = cVar.d;
                     cVar.v = true;
                     a0Var.h = true;
-                    cVar.f10235c.Y2.N(true);
+                    cVar.f10240c.Y2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 7) {
                     a0 a0Var2 = cVar.d;
                     cVar.v = false;
                     a0Var2.h = false;
-                    cVar.f10235c.Y2.N(true);
+                    cVar.f10240c.Y2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 3) {
-                    cVar.f10241x = 0;
-                    cVar.f10235c.Y2.N(true);
+                    cVar.f10246x = 0;
+                    cVar.f10240c.Y2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 4) {
-                    cVar.f10241x = 1;
-                    cVar.f10235c.Y2.N(true);
+                    cVar.f10246x = 1;
+                    cVar.f10240c.Y2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 5) {
-                    cVar.f10241x = 2;
-                    cVar.f10235c.Y2.N(true);
+                    cVar.f10246x = 2;
+                    cVar.f10240c.Y2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 8) {
@@ -124,8 +124,8 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a
                     });
                     return;
                 } else if (i10 == 10) {
-                    boolean z10 = !cVar.f10240w;
-                    cVar.f10240w = z10;
+                    boolean z10 = !cVar.f10245w;
+                    cVar.f10245w = z10;
                     ((w8) view).setChecked(z10);
                     cVar.V(true);
                     return;

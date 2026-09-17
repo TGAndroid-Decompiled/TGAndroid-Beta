@@ -1,73 +1,51 @@
 package org.telegram.ui;
+public final class cc0 implements Runnable {
+    public final int f32721a;
+    public final hc0 f32722b;
+    public final String f32723c;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_update;
-public final class cc0 extends e70 {
-    public cc0(fc0 fc0Var, Bundle bundle) {
-        super(bundle);
-    }
-
-    public static void t0(cc0 cc0Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_error tL_error) {
-        int i10 = 0;
-        if (tLObject instanceof TLRPC.Updates) {
-            TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            MessagesController.getInstance(cc0Var.currentAccount).putUsers(updates.users, false);
-            MessagesController.getInstance(cc0Var.currentAccount).putChats(updates.chats, false);
-            ArrayList findUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class);
-            int size = findUpdatesAndRemove.size();
-            TLRPC.GroupCall groupCall = null;
-            while (i10 < size) {
-                Object obj = findUpdatesAndRemove.get(i10);
-                i10++;
-                groupCall = ((TL_update.TL_updateGroupCall) obj).call;
-            }
-            if (LaunchActivity.G1 != null && groupCall != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f18129id = groupCall.f18122id;
-                tL_inputGroupCall.access_hash = groupCall.access_hash;
-                org.telegram.ui.Components.voip.f2.g(LaunchActivity.G1, cc0Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
-            }
-        } else if (tLObject instanceof TL_phone.groupCall) {
-            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            MessagesController.getInstance(cc0Var.currentAccount).putUsers(groupcall.users, false);
-            MessagesController.getInstance(cc0Var.currentAccount).putChats(groupcall.chats, false);
-            if (LaunchActivity.G1 != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
-                TLRPC.GroupCall groupCall2 = groupcall.call;
-                tL_inputGroupCall2.f18129id = groupCall2.f18122id;
-                tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                org.telegram.ui.Components.voip.f2.g(LaunchActivity.G1, cc0Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
-            }
-        } else if (tL_error != null) {
-            fc0.b().d0(tL_error, false);
-        }
+    public cc0(hc0 hc0Var, String str, int i10) {
+        this.f32721a = i10;
+        this.f32722b = hc0Var;
+        this.f32723c = str;
     }
 
     @Override
-    public final void n0(HashSet hashSet) {
-        if (hashSet.size() == 1) {
-            TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f18259id);
-            if (userFull == null) {
-                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f18252id = getMessagesController().getInputUser(user.f18259id);
-                getConnectionsManager().sendRequest(tL_users_getFullUser, new qo(29, this, user));
+    public final void run() {
+        switch (this.f32721a) {
+            case 0:
+                hc0 hc0Var = this.f32722b;
+                hc0Var.getClass();
+                String str = this.f32723c;
+                if ("disable".equalsIgnoreCase(str)) {
+                    hc0Var.o("turnPasswordOffRow");
+                }
+                if ("change".equalsIgnoreCase(str)) {
+                    hc0Var.o("changePasswordRow");
+                }
+                if ("change-email".equalsIgnoreCase(str)) {
+                    hc0Var.o("emailRow");
+                    return;
+                }
                 return;
-            }
-            org.telegram.ui.Components.voip.f2.m(user, false, userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
-        } else {
-            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-            createconferencecall.random_id = Utilities.random.nextInt();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new bc0(0, this, hashSet));
+            default:
+                hc0 hc0Var2 = this.f32722b;
+                hc0Var2.getClass();
+                String str2 = this.f32723c;
+                if ("disable".equalsIgnoreCase(str2)) {
+                    hc0Var2.o("disablePasscodeRow");
+                }
+                if ("change".equalsIgnoreCase(str2)) {
+                    hc0Var2.o("changePasscodeRow");
+                }
+                if ("auto-lock".equalsIgnoreCase(str2)) {
+                    hc0Var2.o("autoLockRow");
+                }
+                if ("fingerprint".equalsIgnoreCase(str2)) {
+                    hc0Var2.o("fingerprintRow");
+                    return;
+                }
+                return;
         }
-        finishFragment();
     }
 }

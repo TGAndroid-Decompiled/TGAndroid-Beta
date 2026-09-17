@@ -12,23 +12,23 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.k7;
-import org.telegram.ui.Components.kl0;
 import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.za;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.x5;
 public final class c extends za {
-    public static final int f45812a0 = 0;
+    public static final int f45835a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public w51 Z;
+    public x51 Z;
 
-    public c(Context context, e6 e6Var, GiftAuctionController.Auction auction, List list) {
-        super(context, null, false, false, 2, e6Var);
+    public c(Context context, f6 f6Var, GiftAuctionController.Auction auction, List list) {
+        super(context, null, false, false, 2, f6Var);
         this.Y = auction;
         this.X = list;
         this.v = 0.2f;
@@ -39,7 +39,7 @@ public final class c extends za {
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new k7(3));
         this.d.setOverScrollMode(2);
-        ci.d dVar = new ci.d(context, e6Var, true);
+        ci.d dVar = new ci.d(context, f6Var, true);
         dVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 15));
         dVar.g(LocaleController.getString(R.string.OK), false, true);
         FrameLayout.LayoutParams d = x5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
@@ -54,7 +54,7 @@ public final class c extends za {
     public static void P(c cVar, TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift) {
         long peerDialogId = DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer);
         cVar.dismiss();
-        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
         if (U != null && !UserObject.isService(peerDialogId)) {
             Bundle bundle = new Bundle();
             if (peerDialogId > 0) {
@@ -71,11 +71,11 @@ public final class c extends za {
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
-        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
-        this.Z = w51Var;
-        w51Var.f29613r = false;
-        return w51Var;
+    public final ll0 v(ml0 ml0Var) {
+        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
+        this.Z = x51Var;
+        x51Var.f29851r = false;
+        return x51Var;
     }
 
     @Override

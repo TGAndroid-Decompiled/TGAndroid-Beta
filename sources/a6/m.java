@@ -83,21 +83,21 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Cells.p6;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.b5;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.g71;
-import org.telegram.ui.Components.rn0;
+import org.telegram.ui.Components.e71;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.sn0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.bj0;
-import org.telegram.ui.gy;
-import org.telegram.ui.lv0;
+import org.telegram.ui.dj0;
+import org.telegram.ui.iy;
+import org.telegram.ui.nv0;
 import qg.e2;
-public final class m implements lv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, d71, OnSuccessListener, n, f6.a, fb.n, w, b2, z3.m, b5, h1 {
-    public final int f304a;
-    public final Object f305b;
+public final class m implements nv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, e71, OnSuccessListener, n, f6.a, fb.n, w, b2, z3.m, b5, h1 {
+    public final int f306a;
+    public final Object f307b;
 
     public m(r rVar, String[] strArr) {
-        this.f304a = 21;
-        this.f305b = strArr;
+        this.f306a = 21;
+        this.f307b = strArr;
     }
 
     public static int E(int i10, String str) {
@@ -341,7 +341,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         boolean z10;
         d2.b a2;
         boolean z11;
-        v vVar = (v) this.f305b;
+        v vVar = (v) this.f307b;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         ArrayList arrayList = new ArrayList();
@@ -367,9 +367,9 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     int j10 = vVar.j();
                     int j11 = vVar.j();
                     int i13 = j10 - 8;
-                    byte[] bArr2 = vVar.f7929a;
-                    int i14 = vVar.f7930b;
-                    String str = d0.f7883a;
+                    byte[] bArr2 = vVar.f7934a;
+                    int i14 = vVar.f7935b;
+                    String str = d0.f7888a;
                     String str2 = new String(bArr2, i14, i13, StandardCharsets.UTF_8);
                     vVar.K(i13);
                     i12 = (i12 - 8) - i13;
@@ -385,13 +385,13 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     charSequence = "";
                 }
                 if (aVar != null) {
-                    aVar.f7409a = charSequence;
-                    aVar.f7410b = null;
+                    aVar.f7414a = charSequence;
+                    aVar.f7415b = null;
                     a2 = aVar.a();
                 } else {
-                    Pattern pattern = i4.h.f10984a;
+                    Pattern pattern = i4.h.f10987a;
                     i4.g gVar2 = new i4.g();
-                    gVar2.f10978c = charSequence;
+                    gVar2.f10981c = charSequence;
                     a2 = gVar2.a().a();
                 }
                 arrayList.add(a2);
@@ -414,8 +414,8 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     public void D(i1 i1Var, int i10, int i11) {
         c3 c3Var;
         q9 textSelectionHelper;
-        o5 o5Var = (o5) this.f305b;
-        if (!o5Var.G && i10 != i11 && (c3Var = o5Var.E) != null && (textSelectionHelper = c3Var.f11283a.getTextSelectionHelper()) != null) {
+        o5 o5Var = (o5) this.f307b;
+        if (!o5Var.G && i10 != i11 && (c3Var = o5Var.E) != null && (textSelectionHelper = c3Var.f11286a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.y() || textSelectionHelper.W != o5Var) {
                 o5Var.post(new x4(this, i1Var, i11, textSelectionHelper, i10, 4));
             }
@@ -424,12 +424,12 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void E0(MessageObject messageObject) {
-        ((ac) ((f6) this.f305b).Q1).f(true);
+        ((ac) ((f6) this.f307b).Q1).f(true);
     }
 
     @Override
     public a0.i F() {
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 22:
                 return null;
             default:
@@ -443,24 +443,24 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void H(MessageObject messageObject) {
-        ((ac) ((f6) this.f305b).Q1).f(false);
+        ((ac) ((f6) this.f307b).Q1).f(false);
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 26:
-                ((ii.r) this.f305b).I(i10, z10, i11, false, 0L);
-                ii.r rVar = (ii.r) this.f305b;
-                bj0 bj0Var = rVar.O;
-                if (bj0Var != null) {
-                    bj0Var.i();
+                ((ii.r) this.f307b).I(i10, z10, i11, false, 0L);
+                ii.r rVar = (ii.r) this.f307b;
+                dj0 dj0Var = rVar.O;
+                if (dj0Var != null) {
+                    dj0Var.i();
                     rVar.O = null;
                     return;
                 }
                 return;
             default:
-                ((d2) this.f305b).s0(i10, i11, z10);
+                ((d2) this.f307b).s0(i10, i11, z10);
                 return;
         }
     }
@@ -475,17 +475,17 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void M(CharSequence charSequence) {
-        c3 c3Var = ((o5) this.f305b).E;
+        c3 c3Var = ((o5) this.f307b).E;
         if (c3Var != null && charSequence != null && charSequence.length() > 0) {
-            c3Var.f11283a.t4(charSequence.toString());
+            c3Var.f11286a.u4(charSequence.toString());
         }
     }
 
     @Override
     public boolean O(int i10) {
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 22:
-                if (i10 == ((rn0) this.f305b).f9761d0) {
+                if (i10 == ((sn0) this.f307b).f9766d0) {
                     return true;
                 }
                 return false;
@@ -497,22 +497,22 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void Q(ArrayList arrayList) {
         boolean z10;
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 22:
-                rn0 rn0Var = (rn0) this.f305b;
+                sn0 sn0Var = (sn0) this.f307b;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    rn0Var.J.add(((a2) arrayList.get(i10)).f9669a);
+                    sn0Var.J.add(((a2) arrayList.get(i10)).f9674a);
                 }
-                gy gyVar = rn0Var.U;
-                if (gyVar != null) {
-                    if (rn0Var.D0 > 0) {
+                iy iyVar = sn0Var.U;
+                if (iyVar != null) {
+                    if (sn0Var.D0 > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    gyVar.d(z10, false);
+                    iyVar.d(z10, false);
                 }
-                rn0Var.l();
+                sn0Var.l();
                 return;
             default:
                 return;
@@ -521,21 +521,21 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void W(Editable editable) {
-        o5 o5Var = (o5) this.f305b;
-        ii.a aVar = o5Var.f11217a;
+        o5 o5Var = (o5) this.f307b;
+        ii.a aVar = o5Var.f11220a;
         if (aVar != null) {
-            aVar.f11215s = true;
-            aVar.f11214r = o5Var.f11540r.E;
+            aVar.f11218s = true;
+            aVar.f11217r = o5Var.f11543r.E;
         }
         o5Var.u();
         c3 c3Var = o5Var.E;
-        if (c3Var != null && o5Var.f11217a != null) {
+        if (c3Var != null && o5Var.f11220a != null) {
             c3Var.a();
         }
     }
 
     public void a(j6.l lVar, t tVar) {
-        Object obj = this.f305b;
+        Object obj = this.f307b;
         l0 l0Var = (l0) obj;
         if (l0Var == null) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Client fragment manager was null.");
@@ -557,9 +557,9 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                 Log.e("BiometricFragment", "Not launching prompt. Client activity was null.");
                 return;
             }
-            x xVar = pVar.f2063l0;
-            xVar.f2072f = lVar;
-            int i10 = lVar.f12907a;
+            x xVar = pVar.f2068l0;
+            xVar.f2077f = lVar;
+            int i10 = lVar.f12910a;
             if (i10 == 0) {
                 if (tVar != null) {
                     i10 = 15;
@@ -569,20 +569,20 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             }
             int i11 = Build.VERSION.SDK_INT;
             if (i11 >= 23 && i11 < 30 && i10 == 15 && tVar == null) {
-                xVar.f2073g = v7.o.a();
+                xVar.f2078g = v7.o.a();
             } else {
-                xVar.f2073g = tVar;
+                xVar.f2078g = tVar;
             }
             if (pVar.Q()) {
-                pVar.f2063l0.f2076k = pVar.q(2131689576);
+                pVar.f2068l0.f2081k = pVar.q(2131689576);
             } else {
-                pVar.f2063l0.f2076k = null;
+                pVar.f2068l0.f2081k = null;
             }
             if (pVar.Q() && new aa.a(new k6.h(k10, 1)).f(255) != 0) {
-                pVar.f2063l0.f2079n = true;
+                pVar.f2068l0.f2084n = true;
                 pVar.S();
-            } else if (pVar.f2063l0.f2081p) {
-                pVar.f2062k0.postDelayed(new androidx.biometric.o(pVar), 600L);
+            } else if (pVar.f2068l0.f2086p) {
+                pVar.f2067k0.postDelayed(new androidx.biometric.o(pVar), 600L);
             } else {
                 pVar.X();
             }
@@ -591,11 +591,11 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 10:
                 g6.w wVar = (g6.w) obj;
                 g6.f fVar = (g6.f) wVar.u();
-                c6.d0 d0Var = ((e0) this.f305b).f3975k;
+                c6.d0 d0Var = ((e0) this.f307b).f3980k;
                 Parcel O0 = fVar.O0();
                 com.google.android.gms.internal.cast.v.d(O0, d0Var);
                 fVar.T0(O0, 18);
@@ -608,7 +608,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                 g6.i iVar = (g6.i) ((g6.s) obj).u();
                 Parcel O02 = iVar.O0();
                 com.google.android.gms.internal.cast.v.d(O02, qVar);
-                O02.writeStringArray((String[]) this.f305b);
+                O02.writeStringArray((String[]) this.f307b);
                 iVar.T0(O02, 5);
                 return;
         }
@@ -625,11 +625,11 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void c(i1 i1Var) {
-        c3 c3Var = ((o5) this.f305b).E;
+        c3 c3Var = ((o5) this.f307b).E;
         if (c3Var != null) {
-            w3 w3Var = c3Var.f11283a;
-            w3.M1(w3Var, i1Var);
-            w3Var.f11711h3.t(i1Var, true);
+            w3 w3Var = c3Var.f11286a;
+            w3.N1(w3Var, i1Var);
+            w3Var.f11714h3.t(i1Var, true);
         }
     }
 
@@ -639,7 +639,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         int i11;
         int i12;
         int i13;
-        fc.a aVar = (fc.a) this.f305b;
+        fc.a aVar = (fc.a) this.f307b;
         if (iArr.length != 0) {
             int length = iArr.length;
             if (length > 1 && iArr[0] == 0) {
@@ -661,7 +661,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             int[] iArr5 = new int[i10];
             boolean z10 = true;
             for (int i16 = 0; i16 < i10; i16++) {
-                int i17 = aVar.f9049a[aVar.f9053g + i16];
+                int i17 = aVar.f9054a[aVar.f9058g + i16];
                 if (i17 == 0) {
                     i13 = iArr2[iArr2.length - 1];
                 } else {
@@ -690,7 +690,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             }
             fc.b bVar = new fc.b(aVar, iArr5);
             fc.b a2 = aVar.a(i10, 1);
-            fc.b bVar2 = aVar.f9051c;
+            fc.b bVar2 = aVar.f9056c;
             if (a2.d() >= bVar.d()) {
                 a2 = bVar;
                 bVar = a2;
@@ -766,7 +766,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     }
                     int c13 = aVar.c(bVar11.b(b12), aVar.b(i23));
                     iArr7[i22] = c13;
-                    if (aVar.f9053g != 0) {
+                    if (aVar.f9058g != 0) {
                         iArr7[i22] = aVar.c(c13, b12);
                     }
                 }
@@ -774,7 +774,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     int length4 = iArr.length - 1;
                     int i26 = iArr3[i25];
                     if (i26 != 0) {
-                        int i27 = length4 - aVar.f9050b[i26];
+                        int i27 = length4 - aVar.f9055b[i26];
                         if (i27 >= 0) {
                             iArr[i27] = iArr[i27] ^ iArr7[i25];
                         } else {
@@ -792,7 +792,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     public Boolean e() {
-        Bundle bundle = (Bundle) this.f305b;
+        Bundle bundle = (Bundle) this.f307b;
         if (bundle.containsKey("firebase_sessions_enabled")) {
             return Boolean.valueOf(bundle.getBoolean("firebase_sessions_enabled"));
         }
@@ -801,17 +801,17 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public boolean f() {
-        o5 o5Var = (o5) this.f305b;
+        o5 o5Var = (o5) this.f307b;
         c3 c3Var = o5Var.E;
-        if (c3Var != null && o5Var.f11217a != null) {
-            return c3Var.f11283a.S4();
+        if (c3Var != null && o5Var.f11220a != null) {
+            return c3Var.f11286a.T4();
         }
         return false;
     }
 
     @Override
     public void g(l.k kVar, boolean z10) {
-        ((g.s) this.f305b).g(kVar);
+        ((g.s) this.f307b).g(kVar);
     }
 
     @Override
@@ -822,31 +822,31 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void h(int i10) {
         boolean z10;
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 22:
-                rn0 rn0Var = (rn0) this.f305b;
-                rn0Var.D0--;
-                rn0Var.f9762e0 = i10;
-                if (rn0Var.f9764f0 != i10) {
-                    rn0Var.f9778s.clear();
+                sn0 sn0Var = (sn0) this.f307b;
+                sn0Var.D0--;
+                sn0Var.f9767e0 = i10;
+                if (sn0Var.f9769f0 != i10) {
+                    sn0Var.f9783s.clear();
                 }
-                if (rn0Var.f9765g0 != i10) {
-                    rn0Var.I.clear();
+                if (sn0Var.f9770g0 != i10) {
+                    sn0Var.I.clear();
                 }
-                rn0Var.N = true;
-                gy gyVar = rn0Var.U;
-                if (gyVar != null) {
-                    if (rn0Var.D0 > 0) {
+                sn0Var.N = true;
+                iy iyVar = sn0Var.U;
+                if (iyVar != null) {
+                    if (sn0Var.D0 > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    gyVar.d(z10, true);
+                    iyVar.d(z10, true);
                 }
-                rn0Var.l();
-                gy gyVar2 = rn0Var.U;
-                if (gyVar2 != null) {
-                    gyVar2.c();
+                sn0Var.l();
+                iy iyVar2 = sn0Var.U;
+                if (iyVar2 != null) {
+                    iyVar2.c();
                     return;
                 }
                 return;
@@ -859,9 +859,9 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void j(int i10, int i11) {
         h2 h2Var;
-        o5 o5Var = (o5) this.f305b;
+        o5 o5Var = (o5) this.f307b;
         c3 c3Var = o5Var.E;
-        if (c3Var != null && o5Var.f11217a != null && (h2Var = c3Var.f11283a.J3) != null) {
+        if (c3Var != null && o5Var.f11220a != null && (h2Var = c3Var.f11286a.J3) != null) {
             h2Var.f(i10, i11);
         }
     }
@@ -874,30 +874,30 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void k(Object obj) {
         Bundle extras;
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 6:
                 androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                k0 k0Var = (k0) this.f305b;
+                k0 k0Var = (k0) this.f307b;
                 g0 g0Var = (g0) k0Var.F.pollFirst();
                 if (g0Var == null) {
                     Log.w("FragmentManager", "No IntentSenders were started for " + this);
                     return;
                 }
-                String str = g0Var.f2411a;
-                int i10 = g0Var.f2412b;
-                androidx.fragment.app.s l4 = k0Var.f2422c.l(str);
+                String str = g0Var.f2416a;
+                int i10 = g0Var.f2417b;
+                androidx.fragment.app.s l4 = k0Var.f2427c.l(str);
                 if (l4 == null) {
                     Log.w("FragmentManager", "Intent Sender result delivered for unknown Fragment " + str);
                     return;
                 }
-                l4.x(i10, aVar.f1916a, aVar.f1917b);
+                l4.x(i10, aVar.f1921a, aVar.f1922b);
                 return;
             default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f305b;
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f307b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
-                Intent intent = aVar2.f1917b;
-                int i11 = u.e("ProxyBillingActivityV2", intent).f3889a;
+                Intent intent = aVar2.f1922b;
+                int i11 = u.e("ProxyBillingActivityV2", intent).f3894a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.M;
                 if (resultReceiver != null) {
                     if (intent == null) {
@@ -907,7 +907,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     }
                     resultReceiver.send(i11, extras);
                 }
-                int i12 = aVar2.f1916a;
+                int i12 = aVar2.f1921a;
                 if (i12 != -1 || i11 != 0) {
                     u.h("ProxyBillingActivityV2", "Alternative billing only dialog finished with resultCode " + i12 + " and billing's responseCode: " + i11);
                 }
@@ -935,11 +935,11 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, rectF, (Paint) null);
             bitmap2 = createBitmap;
         }
-        ((f6.i) this.f305b).e(bitmap2, 0);
+        ((f6.i) this.f307b).e(bitmap2, 0);
     }
 
     public void o(int i10, String str) {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f305b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
         G(i10, 2);
         try {
             int R = R(str.length());
@@ -976,13 +976,13 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        d7 d7Var = (d7) this.f305b;
+        d7 d7Var = (d7) this.f307b;
         a7 a7Var = d7Var.M;
-        g71 g71Var = d7Var.f4529x;
-        if (g71Var == null) {
+        h71 h71Var = d7Var.f4534x;
+        if (h71Var == null) {
             return;
         }
-        if (g71Var.y()) {
+        if (h71Var.y()) {
             AndroidUtilities.runOnUIThread(a7Var);
         } else {
             AndroidUtilities.cancelRunOnUIThread(a7Var);
@@ -995,12 +995,12 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         int i11;
         f2 f2Var;
         f1 b10;
-        d6.a aVar = (d6.a) this.f305b;
+        d6.a aVar = (d6.a) this.f307b;
         Bundle bundle = (Bundle) obj;
-        if (r0.f6473j) {
-            Context context = aVar.f7507a;
-            r rVar = aVar.f7510f;
-            r0 r0Var = new r0(context, rVar, aVar.f7509c, aVar.f7513j, aVar.f7511g);
+        if (r0.f6478j) {
+            Context context = aVar.f7512a;
+            r rVar = aVar.f7515f;
+            r0 r0Var = new r0(context, rVar, aVar.f7514c, aVar.f7518j, aVar.f7516g);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE")) {
                 i10 = bundle.getInt("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE", 0);
             } else if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED") && bundle.getBoolean("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED", false)) {
@@ -1027,48 +1027,48 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             }
             r0Var.h = i11;
             l5.t.b(context);
-            r0Var.f6478g = l5.t.a().c(j5.a.e).a("CAST_SENDER_SDK", new i5.c("proto"), b0.f6253a);
+            r0Var.f6483g = l5.t.a().c(j5.a.e).a("CAST_SENDER_SDK", new i5.c("proto"), b0.f6258a);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE")) {
                 r0Var.e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
             }
             SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(t10, 0);
             if (i10 != 0) {
                 com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
-                e.f6178c = new j0(rVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"});
-                e.d = new k6.c[]{y.f4064c};
-                e.f6177b = false;
-                e.f6176a = 8426;
+                e.f6183c = new j0(rVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"});
+                e.d = new k6.c[]{y.f4069c};
+                e.f6182b = false;
+                e.f6181a = 8426;
                 Task e7 = rVar.e(0, e.a());
                 ?? obj2 = new Object();
-                obj2.f12908b = r0Var;
-                obj2.f12909c = packageName;
-                obj2.f12907a = i10;
+                obj2.f12911b = r0Var;
+                obj2.f12912c = packageName;
+                obj2.f12910a = i10;
                 obj2.d = sharedPreferences;
                 e7.addOnSuccessListener(obj2);
             }
             if (z10) {
                 n6.l.h(sharedPreferences);
-                g6.b bVar = f2.f6369i;
+                g6.b bVar = f2.f6374i;
                 synchronized (f2.class) {
                     try {
-                        if (f2.f6371k == null) {
-                            f2.f6371k = new f2(sharedPreferences, r0Var, packageName);
+                        if (f2.f6376k == null) {
+                            f2.f6376k = new f2(sharedPreferences, r0Var, packageName);
                         }
-                        f2Var = f2.f6371k;
+                        f2Var = f2.f6376k;
                     } catch (Throwable th2) {
                         throw th2;
                     }
                 }
-                String str = f2Var.f6374c;
-                SharedPreferences sharedPreferences2 = f2Var.f6373b;
-                HashSet hashSet = f2Var.f6375f;
+                String str = f2Var.f6379c;
+                SharedPreferences sharedPreferences2 = f2Var.f6378b;
+                HashSet hashSet = f2Var.f6380f;
                 String string = sharedPreferences2.getString("feature_usage_sdk_version", null);
                 String string2 = sharedPreferences2.getString("feature_usage_package_name", null);
                 hashSet.clear();
-                HashSet hashSet2 = f2Var.f6376g;
+                HashSet hashSet2 = f2Var.f6381g;
                 hashSet2.clear();
                 f2Var.h = 0L;
-                String str2 = f2.f6370j;
+                String str2 = f2.f6375j;
                 if (str2.equals(string) && str.equals(string2)) {
                     f2Var.h = sharedPreferences2.getLong("feature_usage_last_report_time", 0L);
                     long currentTimeMillis = System.currentTimeMillis();
@@ -1116,11 +1116,11 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        e2 e2Var = ((d7) this.f305b).f4527w;
+        e2 e2Var = ((d7) this.f307b).f4532w;
         if (e2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(e2Var.f41351y0 - f10) >= 1.0E-4f) {
-                e2Var.f41351y0 = f10;
+            if (Math.abs(e2Var.f41373y0 - f10) >= 1.0E-4f) {
+                e2Var.f41373y0 = f10;
                 e2Var.requestLayout();
             }
         }
@@ -1128,14 +1128,14 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void p(String str, long j3, long j10, long j11) {
-        e6.p pVar = (e6.p) this.f305b;
+        e6.p pVar = (e6.p) this.f307b;
         try {
             pVar.a(new e6.o(new Status(2103, null, null, null), 1));
         } catch (IllegalStateException e) {
-            g6.b bVar = e6.h.f8008k;
-            Log.e(bVar.f9425a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e);
+            g6.b bVar = e6.h.f8013k;
+            Log.e(bVar.f9430a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e);
         }
-        Iterator it = pVar.f8032q.f8014i.iterator();
+        Iterator it = pVar.f8037q.f8019i.iterator();
         while (it.hasNext()) {
             ((e6.g) it.next()).h(str, j3, 2103, j10, j11);
         }
@@ -1143,8 +1143,8 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void p0(Object obj) {
-        int i10 = this.f304a;
-        Object obj2 = this.f305b;
+        int i10 = this.f306a;
+        Object obj2 = this.f307b;
         switch (i10) {
             case 3:
                 p pVar = (p) obj2;
@@ -1152,8 +1152,8 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     if (pVar.R()) {
                         pVar.W(pVar.q(2131689613));
                     }
-                    x xVar = pVar.f2063l0;
-                    if (!xVar.f2079n) {
+                    x xVar = pVar.f2068l0;
+                    if (!xVar.f2084n) {
                         Log.w("BiometricFragment", "Failure not sent to client. Client is not awaiting a result.");
                     } else {
                         Executor executor = xVar.d;
@@ -1162,17 +1162,17 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                         }
                         executor.execute(new androidx.biometric.g(pVar, 0));
                     }
-                    x xVar2 = pVar.f2063l0;
-                    if (xVar2.f2086u == null) {
-                        xVar2.f2086u = new z();
+                    x xVar2 = pVar.f2068l0;
+                    if (xVar2.f2091u == null) {
+                        xVar2.f2091u = new z();
                     }
-                    x.h(xVar2.f2086u, Boolean.FALSE);
+                    x.h(xVar2.f2091u, Boolean.FALSE);
                     return;
                 }
                 return;
             default:
                 androidx.fragment.app.p pVar2 = (androidx.fragment.app.p) obj2;
-                if (((androidx.lifecycle.t) obj) != null && pVar2.f2465r0) {
+                if (((androidx.lifecycle.t) obj) != null && pVar2.f2470r0) {
                     pVar2.getClass();
                     throw new IllegalStateException("Fragment " + pVar2 + " did not return a View from onCreateView() or this was called before onCreateView().");
                 }
@@ -1182,7 +1182,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public Object p2() {
-        Type type = (Type) this.f305b;
+        Type type = (Type) this.f307b;
         if (type instanceof ParameterizedType) {
             Type type2 = ((ParameterizedType) type).getActualTypeArguments()[0];
             if (type2 instanceof Class) {
@@ -1207,7 +1207,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         G(i10, 2);
         C(bArr.length);
         int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f305b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
         if (byteBuffer.remaining() >= length) {
             byteBuffer.put(bArr, 0, length);
             return;
@@ -1222,7 +1222,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     public void u(int i10) {
         byte b10 = (byte) i10;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f305b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
         if (byteBuffer.hasRemaining()) {
             byteBuffer.put(b10);
             return;
@@ -1232,7 +1232,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public boolean v(l.k kVar) {
-        Window.Callback callback = ((g.s) this.f305b).f9293f.getCallback();
+        Window.Callback callback = ((g.s) this.f307b).f9298f.getCallback();
         if (callback != null) {
             callback.onMenuOpened(108, kVar);
             return true;
@@ -1242,7 +1242,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public a0.i w() {
-        switch (this.f304a) {
+        switch (this.f306a) {
             case 22:
                 return null;
             default:
@@ -1257,12 +1257,12 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void z() {
-        ((m0) this.f305b).e.invalidate();
+        ((m0) this.f307b).e.invalidate();
     }
 
     public m(Object obj, int i10) {
-        this.f304a = i10;
-        this.f305b = obj;
+        this.f306a = i10;
+        this.f307b = obj;
     }
 
     @Override
@@ -1270,40 +1270,40 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     public m(byte[] bArr, int i10) {
-        this.f304a = 14;
+        this.f306a = 14;
         ByteBuffer wrap = ByteBuffer.wrap(bArr, 0, i10);
-        this.f305b = wrap;
+        this.f307b = wrap;
         wrap.order(ByteOrder.LITTLE_ENDIAN);
     }
 
     public m(Context context) {
-        this.f304a = 8;
+        this.f306a = 8;
         kotlin.jvm.internal.i.e(context, "context");
         Bundle bundle = context.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
-        this.f305b = bundle == null ? Bundle.EMPTY : bundle;
+        this.f307b = bundle == null ? Bundle.EMPTY : bundle;
     }
 
     public m(int i10) {
-        this.f304a = i10;
+        this.f306a = i10;
         switch (i10) {
             case 25:
-                this.f305b = new v();
+                this.f307b = new v();
                 return;
             default:
-                this.f305b = new m(fc.a.h, 19);
+                this.f307b = new m(fc.a.h, 19);
                 return;
         }
     }
 
     public m(LaunchActivity launchActivity, Executor executor, v7.n nVar) {
-        this.f304a = 4;
+        this.f306a = 4;
         if (launchActivity == null) {
             throw new IllegalArgumentException("FragmentActivity must not be null.");
         }
         if (executor != null) {
             l0 s10 = launchActivity.s();
-            x xVar = (x) new aa.a(launchActivity).n(x.class);
-            this.f305b = s10;
+            x xVar = (x) new aa.a(launchActivity).m(x.class);
+            this.f307b = s10;
             xVar.d = executor;
             xVar.e = nVar;
             return;
@@ -1351,6 +1351,6 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void onError(g71 g71Var, Exception exc) {
+    public void onError(h71 h71Var, Exception exc) {
     }
 }

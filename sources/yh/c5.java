@@ -12,40 +12,40 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stars;
 public final class c5 implements Runnable {
-    public final int f47058a;
-    public final v5 f47059b;
-    public final TLObject f47060c;
+    public final int f47081a;
+    public final v5 f47082b;
+    public final TLObject f47083c;
 
     public c5(v5 v5Var, TLObject tLObject, int i10) {
-        this.f47058a = i10;
-        this.f47059b = v5Var;
-        this.f47060c = tLObject;
+        this.f47081a = i10;
+        this.f47082b = v5Var;
+        this.f47083c = tLObject;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f47058a) {
+        switch (this.f47081a) {
             case 0:
-                v5 v5Var = this.f47059b;
-                int i10 = v5Var.f47895a;
+                v5 v5Var = this.f47082b;
+                int i10 = v5Var.f47918a;
                 v5Var.A = false;
-                TLObject tLObject = this.f47060c;
+                TLObject tLObject = this.f47083c;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
                     MessagesController.getInstance(i10).putUsers(starsStatus.users, false);
                     MessagesController.getInstance(i10).putChats(starsStatus.chats, false);
-                    v5Var.f47916z.addAll(starsStatus.subscriptions);
+                    v5Var.f47939z.addAll(starsStatus.subscriptions);
                     v5Var.k0(starsStatus.balance);
                     NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starSubscriptionsLoaded, new Object[0]);
                     return;
                 }
                 return;
             case 1:
-                v5 v5Var2 = this.f47059b;
-                int i11 = v5Var2.f47895a;
-                v5Var2.f47914x = false;
-                TLObject tLObject2 = this.f47060c;
+                v5 v5Var2 = this.f47082b;
+                int i11 = v5Var2.f47918a;
+                v5Var2.f47937x = false;
+                TLObject tLObject2 = this.f47083c;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject2;
                     MessagesController.getInstance(i11).putUsers(starsStatus2.users, false);
@@ -56,8 +56,8 @@ public final class c5 implements Runnable {
                     } else {
                         z10 = false;
                     }
-                    v5Var2.f47915y = z10;
-                    v5Var2.f47913w = starsStatus2.subscriptions_next_offset;
+                    v5Var2.f47938y = z10;
+                    v5Var2.f47936w = starsStatus2.subscriptions_next_offset;
                     v5Var2.k0(starsStatus2.balance);
                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starSubscriptionsLoaded, new Object[0]);
                     return;
@@ -66,9 +66,9 @@ public final class c5 implements Runnable {
             case 2:
                 ArrayList arrayList = new ArrayList();
                 final ArrayList arrayList2 = new ArrayList();
-                TLObject tLObject3 = this.f47060c;
+                TLObject tLObject3 = this.f47083c;
                 boolean z11 = tLObject3 instanceof Vector;
-                final v5 v5Var3 = this.f47059b;
+                final v5 v5Var3 = this.f47082b;
                 if (z11) {
                     ArrayList<T> arrayList3 = ((Vector) tLObject3).objects;
                     int size = arrayList3.size();
@@ -85,11 +85,11 @@ public final class c5 implements Runnable {
                             }
                         }
                     }
-                    v5Var3.f47900i = true;
+                    v5Var3.f47923i = true;
                 }
-                v5Var3.f47901j = arrayList;
+                v5Var3.f47924j = arrayList;
                 v5Var3.h = false;
-                NotificationCenter.getInstance(v5Var3.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                NotificationCenter.getInstance(v5Var3.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                 if (!arrayList2.isEmpty()) {
                     Runnable runnable = new Runnable() {
                         @Override
@@ -102,8 +102,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList5 = arrayList2;
                                         if (i13 < arrayList5.size()) {
                                             ?? obj2 = new Object();
-                                            obj2.f3837b = "inapp";
-                                            obj2.f3836a = ((TL_stars.TL_starsTopupOption) arrayList5.get(i13)).store_product;
+                                            obj2.f3842b = "inapp";
+                                            obj2.f3841a = ((TL_stars.TL_starsTopupOption) arrayList5.get(i13)).store_product;
                                             arrayList4.add(obj2.a());
                                             i13++;
                                         } else {
@@ -128,8 +128,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -140,7 +140,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList7 = arrayList6;
                                                                                         if (i15 < arrayList7.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7.get(i15)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7.get(i15)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList7.get(i15);
                                                                                             } else {
                                                                                                 i15++;
@@ -150,27 +150,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var6 = v5Var5;
-                                                                            if (v5Var6.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var6.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var6.f47904m.get(i16);
+                                                                            if (v5Var6.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var6.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var6.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var6.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var6.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -181,7 +181,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList8 = arrayList6;
                                                                                         if (i18 < arrayList8.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList8.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -191,27 +191,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var7 = v5Var5;
-                                                                            if (v5Var7.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var7.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var7.f47907p.get(i19);
+                                                                            if (v5Var7.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var7.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var7.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var7.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var7.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -222,7 +222,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList9 = arrayList6;
                                                                                         if (i21 < arrayList9.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -232,22 +232,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var5;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -268,8 +268,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -280,7 +280,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList72 = arrayList7;
                                                                                         if (i15 < arrayList72.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i15)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i15)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList72.get(i15);
                                                                                             } else {
                                                                                                 i15++;
@@ -290,27 +290,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var62 = v5Var6;
-                                                                            if (v5Var62.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var62.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47904m.get(i16);
+                                                                            if (v5Var62.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var62.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var62.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var62.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -321,7 +321,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList8 = arrayList7;
                                                                                         if (i18 < arrayList8.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList8.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -331,27 +331,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var7 = v5Var6;
-                                                                            if (v5Var7.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var7.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var7.f47907p.get(i19);
+                                                                            if (v5Var7.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var7.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var7.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var7.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var7.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -362,7 +362,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList9 = arrayList7;
                                                                                         if (i21 < arrayList9.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -372,22 +372,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var6;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -408,8 +408,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -420,7 +420,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList72 = arrayList8;
                                                                                         if (i15 < arrayList72.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i15)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i15)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList72.get(i15);
                                                                                             } else {
                                                                                                 i15++;
@@ -430,27 +430,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var62 = v5Var7;
-                                                                            if (v5Var62.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var62.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47904m.get(i16);
+                                                                            if (v5Var62.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var62.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var62.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var62.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -461,7 +461,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList82 = arrayList8;
                                                                                         if (i18 < arrayList82.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -471,27 +471,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -502,7 +502,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList9 = arrayList8;
                                                                                         if (i21 < arrayList9.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -512,22 +512,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -546,8 +546,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList7 = arrayList2;
                                         if (i14 < arrayList7.size()) {
                                             ?? obj3 = new Object();
-                                            obj3.f3837b = "inapp";
-                                            obj3.f3836a = ((TL_stars.TL_starsGiftOption) arrayList7.get(i14)).store_product;
+                                            obj3.f3842b = "inapp";
+                                            obj3.f3841a = ((TL_stars.TL_starsGiftOption) arrayList7.get(i14)).store_product;
                                             arrayList6.add(obj3.a());
                                             i14++;
                                         } else {
@@ -572,8 +572,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -584,7 +584,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList72 = arrayList62;
                                                                                         if (i15 < arrayList72.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i15)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i15)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList72.get(i15);
                                                                                             } else {
                                                                                                 i15++;
@@ -594,27 +594,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var62 = v5Var52;
-                                                                            if (v5Var62.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var62.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47904m.get(i16);
+                                                                            if (v5Var62.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var62.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var62.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var62.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -625,7 +625,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList82 = arrayList62;
                                                                                         if (i18 < arrayList82.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -635,27 +635,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var52;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -666,7 +666,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList9 = arrayList62;
                                                                                         if (i21 < arrayList9.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -676,22 +676,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var52;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -712,8 +712,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -724,7 +724,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList72;
                                                                                         if (i15 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i15)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i15)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i15);
                                                                                             } else {
                                                                                                 i15++;
@@ -734,27 +734,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var62 = v5Var6;
-                                                                            if (v5Var62.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var62.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47904m.get(i16);
+                                                                            if (v5Var62.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var62.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var62.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var62.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -765,7 +765,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList82 = arrayList72;
                                                                                         if (i18 < arrayList82.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -775,27 +775,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var6;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -806,7 +806,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList9 = arrayList72;
                                                                                         if (i21 < arrayList9.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -816,22 +816,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var6;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -852,8 +852,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -864,7 +864,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList8;
                                                                                         if (i15 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i15)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i15)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i15);
                                                                                             } else {
                                                                                                 i15++;
@@ -874,27 +874,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var62 = v5Var7;
-                                                                            if (v5Var62.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var62.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47904m.get(i16);
+                                                                            if (v5Var62.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var62.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var62.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var62.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -905,7 +905,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList82 = arrayList8;
                                                                                         if (i18 < arrayList82.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -915,27 +915,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -946,7 +946,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList9 = arrayList8;
                                                                                         if (i21 < arrayList9.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -956,22 +956,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -990,8 +990,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList9 = arrayList2;
                                         if (i15 < arrayList9.size()) {
                                             ?? obj4 = new Object();
-                                            obj4.f3837b = "inapp";
-                                            obj4.f3836a = ((TL_stars.TL_starsGiveawayOption) arrayList9.get(i15)).store_product;
+                                            obj4.f3842b = "inapp";
+                                            obj4.f3841a = ((TL_stars.TL_starsGiveawayOption) arrayList9.get(i15)).store_product;
                                             arrayList8.add(obj4.a());
                                             i15++;
                                         } else {
@@ -1016,8 +1016,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -1028,7 +1028,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList62;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -1038,27 +1038,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var62 = v5Var52;
-                                                                            if (v5Var62.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var62.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47904m.get(i16);
+                                                                            if (v5Var62.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var62.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var62.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var62.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var62.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -1069,7 +1069,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList82 = arrayList62;
                                                                                         if (i18 < arrayList82.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -1079,27 +1079,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var52;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -1110,7 +1110,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList62;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -1120,22 +1120,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var52;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1156,8 +1156,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -1168,7 +1168,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList72;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -1178,27 +1178,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var62;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -1209,7 +1209,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList82 = arrayList72;
                                                                                         if (i18 < arrayList82.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -1219,27 +1219,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var62;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -1250,7 +1250,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList72;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -1260,22 +1260,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var62;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1296,8 +1296,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -1308,7 +1308,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList82;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -1318,27 +1318,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var7;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
                                                                                         tL_starsGiftOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -1349,7 +1349,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList82;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -1359,27 +1359,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -1390,7 +1390,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList82;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -1400,22 +1400,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1442,9 +1442,9 @@ public final class c5 implements Runnable {
             case 3:
                 ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
-                TLObject tLObject4 = this.f47060c;
+                TLObject tLObject4 = this.f47083c;
                 boolean z12 = tLObject4 instanceof Vector;
-                final v5 v5Var4 = this.f47059b;
+                final v5 v5Var4 = this.f47082b;
                 if (z12) {
                     ArrayList<T> arrayList6 = ((Vector) tLObject4).objects;
                     int size2 = arrayList6.size();
@@ -1461,11 +1461,11 @@ public final class c5 implements Runnable {
                             }
                         }
                     }
-                    v5Var4.f47903l = true;
+                    v5Var4.f47926l = true;
                 }
-                v5Var4.f47904m = arrayList4;
-                v5Var4.f47902k = false;
-                NotificationCenter.getInstance(v5Var4.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                v5Var4.f47927m = arrayList4;
+                v5Var4.f47925k = false;
+                NotificationCenter.getInstance(v5Var4.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                 if (!arrayList5.isEmpty()) {
                     Runnable runnable2 = new Runnable() {
                         @Override
@@ -1478,8 +1478,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList52 = arrayList5;
                                         if (i132 < arrayList52.size()) {
                                             ?? obj22 = new Object();
-                                            obj22.f3837b = "inapp";
-                                            obj22.f3836a = ((TL_stars.TL_starsTopupOption) arrayList52.get(i132)).store_product;
+                                            obj22.f3842b = "inapp";
+                                            obj22.f3841a = ((TL_stars.TL_starsTopupOption) arrayList52.get(i132)).store_product;
                                             arrayList42.add(obj22.a());
                                             i132++;
                                         } else {
@@ -1504,8 +1504,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -1516,7 +1516,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList62;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -1526,27 +1526,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var52;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -1557,7 +1557,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList62;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -1567,27 +1567,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var52;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -1598,7 +1598,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList62;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -1608,22 +1608,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var52;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1644,8 +1644,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -1656,7 +1656,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList72;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -1666,27 +1666,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var62;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -1697,7 +1697,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList72;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -1707,27 +1707,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var62;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -1738,7 +1738,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList72;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -1748,22 +1748,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var62;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1784,8 +1784,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -1796,7 +1796,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList82;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -1806,27 +1806,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var7;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -1837,7 +1837,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList82;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -1847,27 +1847,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -1878,7 +1878,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList82;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -1888,22 +1888,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -1922,8 +1922,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList7 = arrayList5;
                                         if (i14 < arrayList7.size()) {
                                             ?? obj3 = new Object();
-                                            obj3.f3837b = "inapp";
-                                            obj3.f3836a = ((TL_stars.TL_starsGiftOption) arrayList7.get(i14)).store_product;
+                                            obj3.f3842b = "inapp";
+                                            obj3.f3841a = ((TL_stars.TL_starsGiftOption) arrayList7.get(i14)).store_product;
                                             arrayList62.add(obj3.a());
                                             i14++;
                                         } else {
@@ -1948,8 +1948,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -1960,7 +1960,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList622;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -1970,27 +1970,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var52;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -2001,7 +2001,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList622;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -2011,27 +2011,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var52;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -2042,7 +2042,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList622;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -2052,22 +2052,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var52;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2088,8 +2088,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -2100,7 +2100,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList72;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -2110,27 +2110,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var62;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -2141,7 +2141,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList72;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -2151,27 +2151,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var62;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -2182,7 +2182,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList72;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -2192,22 +2192,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var62;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2228,8 +2228,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -2240,7 +2240,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList82;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -2250,27 +2250,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var7;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -2281,7 +2281,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList82;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -2291,27 +2291,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -2322,7 +2322,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList82;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -2332,22 +2332,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2366,8 +2366,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList9 = arrayList5;
                                         if (i15 < arrayList9.size()) {
                                             ?? obj4 = new Object();
-                                            obj4.f3837b = "inapp";
-                                            obj4.f3836a = ((TL_stars.TL_starsGiveawayOption) arrayList9.get(i15)).store_product;
+                                            obj4.f3842b = "inapp";
+                                            obj4.f3841a = ((TL_stars.TL_starsGiveawayOption) arrayList9.get(i15)).store_product;
                                             arrayList8.add(obj4.a());
                                             i15++;
                                         } else {
@@ -2392,8 +2392,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -2404,7 +2404,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList622;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -2414,27 +2414,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var52;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -2445,7 +2445,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList622;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -2455,27 +2455,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var52;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -2486,7 +2486,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList622;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -2496,22 +2496,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var52;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2532,8 +2532,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -2544,7 +2544,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList72;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -2554,27 +2554,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var62;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -2585,7 +2585,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList72;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -2595,27 +2595,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var62;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -2626,7 +2626,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList72;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -2636,22 +2636,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var62;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2672,8 +2672,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -2684,7 +2684,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList82;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -2694,27 +2694,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var7;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -2725,7 +2725,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList82;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -2735,27 +2735,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption2.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -2766,7 +2766,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList82;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -2776,22 +2776,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -2818,9 +2818,9 @@ public final class c5 implements Runnable {
             case 4:
                 ArrayList arrayList7 = new ArrayList();
                 final ArrayList arrayList8 = new ArrayList();
-                TLObject tLObject5 = this.f47060c;
+                TLObject tLObject5 = this.f47083c;
                 boolean z13 = tLObject5 instanceof Vector;
-                final v5 v5Var5 = this.f47059b;
+                final v5 v5Var5 = this.f47082b;
                 if (z13) {
                     ArrayList<T> arrayList9 = ((Vector) tLObject5).objects;
                     int size3 = arrayList9.size();
@@ -2837,11 +2837,11 @@ public final class c5 implements Runnable {
                             }
                         }
                     }
-                    v5Var5.f47906o = true;
+                    v5Var5.f47929o = true;
                 }
-                v5Var5.f47907p = arrayList7;
-                v5Var5.f47905n = false;
-                NotificationCenter.getInstance(v5Var5.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                v5Var5.f47930p = arrayList7;
+                v5Var5.f47928n = false;
+                NotificationCenter.getInstance(v5Var5.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                 if (!arrayList8.isEmpty()) {
                     Runnable runnable3 = new Runnable() {
                         @Override
@@ -2854,8 +2854,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList52 = arrayList8;
                                         if (i132 < arrayList52.size()) {
                                             ?? obj22 = new Object();
-                                            obj22.f3837b = "inapp";
-                                            obj22.f3836a = ((TL_stars.TL_starsTopupOption) arrayList52.get(i132)).store_product;
+                                            obj22.f3842b = "inapp";
+                                            obj22.f3841a = ((TL_stars.TL_starsTopupOption) arrayList52.get(i132)).store_product;
                                             arrayList42.add(obj22.a());
                                             i132++;
                                         } else {
@@ -2880,8 +2880,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -2892,7 +2892,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList622;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -2902,27 +2902,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var52;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -2933,7 +2933,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList622;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -2943,27 +2943,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var52;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -2974,7 +2974,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList622;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -2984,22 +2984,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var52;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3020,8 +3020,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -3032,7 +3032,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList72;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -3042,27 +3042,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var62;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -3073,7 +3073,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList72;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -3083,27 +3083,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var62;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -3114,7 +3114,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList72;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -3124,22 +3124,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var62;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3160,8 +3160,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -3172,7 +3172,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList82;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -3182,27 +3182,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var7;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -3213,7 +3213,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList82;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -3223,27 +3223,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -3254,7 +3254,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList82;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -3264,22 +3264,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3298,8 +3298,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList72 = arrayList8;
                                         if (i142 < arrayList72.size()) {
                                             ?? obj32 = new Object();
-                                            obj32.f3837b = "inapp";
-                                            obj32.f3836a = ((TL_stars.TL_starsGiftOption) arrayList72.get(i142)).store_product;
+                                            obj32.f3842b = "inapp";
+                                            obj32.f3841a = ((TL_stars.TL_starsGiftOption) arrayList72.get(i142)).store_product;
                                             arrayList62.add(obj32.a());
                                             i142++;
                                         } else {
@@ -3324,8 +3324,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -3336,7 +3336,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList722 = arrayList622;
                                                                                         if (i152 < arrayList722.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -3346,27 +3346,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var522;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -3377,7 +3377,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList622;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -3387,27 +3387,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var522;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -3418,7 +3418,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList622;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -3428,22 +3428,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var522;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3464,8 +3464,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -3476,7 +3476,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList7222 = arrayList722;
                                                                                         if (i152 < arrayList7222.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -3486,27 +3486,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var62;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -3517,7 +3517,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList722;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -3527,27 +3527,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var62;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -3558,7 +3558,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList722;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -3568,22 +3568,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var62;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3604,8 +3604,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -3616,7 +3616,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList7222 = arrayList82;
                                                                                         if (i152 < arrayList7222.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -3626,27 +3626,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var7;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -3657,7 +3657,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList82;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -3667,27 +3667,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -3698,7 +3698,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList92 = arrayList82;
                                                                                         if (i21 < arrayList92.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -3708,22 +3708,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3742,8 +3742,8 @@ public final class c5 implements Runnable {
                                         final ArrayList arrayList92 = arrayList8;
                                         if (i15 < arrayList92.size()) {
                                             ?? obj4 = new Object();
-                                            obj4.f3837b = "inapp";
-                                            obj4.f3836a = ((TL_stars.TL_starsGiveawayOption) arrayList92.get(i15)).store_product;
+                                            obj4.f3842b = "inapp";
+                                            obj4.f3841a = ((TL_stars.TL_starsGiveawayOption) arrayList92.get(i15)).store_product;
                                             arrayList82.add(obj4.a());
                                             i15++;
                                         } else {
@@ -3768,8 +3768,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -3780,7 +3780,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList7222 = arrayList622;
                                                                                         if (i152 < arrayList7222.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -3790,27 +3790,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var522;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -3821,7 +3821,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList622;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -3831,27 +3831,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var522;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -3862,7 +3862,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList922 = arrayList622;
                                                                                         if (i21 < arrayList922.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList922.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -3872,22 +3872,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var522;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -3908,8 +3908,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -3920,7 +3920,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList7222 = arrayList722;
                                                                                         if (i152 < arrayList7222.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -3930,27 +3930,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var62;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -3961,7 +3961,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList822 = arrayList722;
                                                                                         if (i18 < arrayList822.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -3971,27 +3971,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var62;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -4002,7 +4002,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList922 = arrayList722;
                                                                                         if (i21 < arrayList922.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList922.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -4012,22 +4012,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var62;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -4048,8 +4048,8 @@ public final class c5 implements Runnable {
                                                                     switch (r5) {
                                                                         case 0:
                                                                             c5.h hVar2 = hVar;
-                                                                            if (hVar2.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3889a));
+                                                                            if (hVar2.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar2.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list2 = list;
@@ -4060,7 +4060,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList7222 = arrayList822;
                                                                                         if (i152 < arrayList7222.size()) {
-                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i152)).store_product.equals(oVar.f3917c)) {
                                                                                                 tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i152);
                                                                                             } else {
                                                                                                 i152++;
@@ -4070,27 +4070,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiftOption2 != null && (a2 = oVar.a()) != null) {
-                                                                                        tL_starsGiftOption2.currency = a2.f3901c;
-                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.currency = a2.f3906c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption2.currency)) * (a2.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiftOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var622 = v5Var7;
-                                                                            if (v5Var622.f47904m != null) {
-                                                                                for (int i16 = 0; i16 < v5Var622.f47904m.size(); i16++) {
-                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47904m.get(i16);
+                                                                            if (v5Var622.f47927m != null) {
+                                                                                for (int i16 = 0; i16 < v5Var622.f47927m.size(); i16++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v5Var622.f47927m.get(i16);
                                                                                     if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
                                                                                         tL_starsGiftOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var622.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var622.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         case 1:
                                                                             c5.h hVar3 = hVar;
-                                                                            if (hVar3.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3889a));
+                                                                            if (hVar3.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar3.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list3 = list;
@@ -4101,7 +4101,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList8222 = arrayList822;
                                                                                         if (i18 < arrayList8222.size()) {
-                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8222.get(i18)).store_product.equals(oVar2.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8222.get(i18)).store_product.equals(oVar2.f3917c)) {
                                                                                                 tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList8222.get(i18);
                                                                                             } else {
                                                                                                 i18++;
@@ -4111,27 +4111,27 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsGiveawayOption2 != null && (a10 = oVar2.a()) != null) {
-                                                                                        tL_starsGiveawayOption2.currency = a10.f3901c;
-                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.currency = a10.f3906c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiveawayOption2.currency)) * (a10.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsGiveawayOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var72 = v5Var7;
-                                                                            if (v5Var72.f47907p != null) {
-                                                                                for (int i19 = 0; i19 < v5Var72.f47907p.size(); i19++) {
-                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47907p.get(i19);
+                                                                            if (v5Var72.f47930p != null) {
+                                                                                for (int i19 = 0; i19 < v5Var72.f47930p.size(); i19++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v5Var72.f47930p.get(i19);
                                                                                     if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
                                                                                         tL_starsGiveawayOption22.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var72.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var72.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiveawayOptionsLoaded, new Object[0]);
                                                                             return;
                                                                         default:
                                                                             c5.h hVar4 = hVar;
-                                                                            if (hVar4.f3889a != 0) {
-                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3889a));
+                                                                            if (hVar4.f3894a != 0) {
+                                                                                v5.e("BILLING_" + BillingController.getResponseCodeString(hVar4.f3894a));
                                                                                 return;
                                                                             }
                                                                             List list4 = list;
@@ -4142,7 +4142,7 @@ public final class c5 implements Runnable {
                                                                                     while (true) {
                                                                                         ArrayList arrayList922 = arrayList822;
                                                                                         if (i21 < arrayList922.size()) {
-                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i21)).store_product.equals(oVar3.f3912c)) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i21)).store_product.equals(oVar3.f3917c)) {
                                                                                                 tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList922.get(i21);
                                                                                             } else {
                                                                                                 i21++;
@@ -4152,22 +4152,22 @@ public final class c5 implements Runnable {
                                                                                         }
                                                                                     }
                                                                                     if (tL_starsTopupOption2 != null && (a11 = oVar3.a()) != null) {
-                                                                                        tL_starsTopupOption2.currency = a11.f3901c;
-                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3900b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.currency = a11.f3906c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption2.currency)) * (a11.f3905b / Math.pow(10.0d, 6.0d)));
                                                                                         tL_starsTopupOption2.loadingStorePrice = false;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             v5 v5Var8 = v5Var7;
-                                                                            if (v5Var8.f47901j != null) {
-                                                                                for (int i22 = 0; i22 < v5Var8.f47901j.size(); i22++) {
-                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47901j.get(i22);
+                                                                            if (v5Var8.f47924j != null) {
+                                                                                for (int i22 = 0; i22 < v5Var8.f47924j.size(); i22++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v5Var8.f47924j.get(i22);
                                                                                     if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
                                                                                         tL_starsTopupOption3.missingStorePrice = true;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            NotificationCenter.getInstance(v5Var8.f47895a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
+                                                                            NotificationCenter.getInstance(v5Var8.f47918a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
                                                                             return;
                                                                     }
                                                                 }
@@ -4192,7 +4192,7 @@ public final class c5 implements Runnable {
                 }
                 return;
             default:
-                MessagesController.getInstance(this.f47059b.f47895a).processUpdates((TLRPC.Updates) this.f47060c, false);
+                MessagesController.getInstance(this.f47082b.f47918a).processUpdates((TLRPC.Updates) this.f47083c, false);
                 return;
         }
     }

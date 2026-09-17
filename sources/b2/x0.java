@@ -4,24 +4,24 @@ import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import java.util.ArrayList;
 public final class x0 {
-    public static final x0 f3342b;
-    public static final String f3343c;
-    public final q f3344a;
+    public static final x0 f3347b;
+    public static final String f3348c;
+    public final q f3349a;
 
     static {
         SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
         e2.d.g(!false);
-        f3342b = new x0(new q(sparseBooleanArray));
-        String str = e2.d0.f7883a;
-        f3343c = Integer.toString(0, 36);
+        f3347b = new x0(new q(sparseBooleanArray));
+        String str = e2.d0.f7888a;
+        f3348c = Integer.toString(0, 36);
     }
 
     public x0(q qVar) {
-        this.f3344a = qVar;
+        this.f3349a = qVar;
     }
 
     public final boolean a(int i10) {
-        return this.f3344a.f3197a.get(i10);
+        return this.f3349a.f3202a.get(i10);
     }
 
     public final Bundle b() {
@@ -29,12 +29,12 @@ public final class x0 {
         ArrayList<Integer> arrayList = new ArrayList<>();
         int i10 = 0;
         while (true) {
-            q qVar = this.f3344a;
-            if (i10 < qVar.f3197a.size()) {
+            q qVar = this.f3349a;
+            if (i10 < qVar.f3202a.size()) {
                 arrayList.add(Integer.valueOf(qVar.a(i10)));
                 i10++;
             } else {
-                bundle.putIntegerArrayList(f3343c, arrayList);
+                bundle.putIntegerArrayList(f3348c, arrayList);
                 return bundle;
             }
         }
@@ -47,10 +47,10 @@ public final class x0 {
         if (!(obj instanceof x0)) {
             return false;
         }
-        return this.f3344a.equals(((x0) obj).f3344a);
+        return this.f3349a.equals(((x0) obj).f3349a);
     }
 
     public final int hashCode() {
-        return this.f3344a.hashCode();
+        return this.f3349a.hashCode();
     }
 }

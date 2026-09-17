@@ -9,25 +9,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class mc extends kb {
-    public Runnable f26137a;
-    public Runnable f26138b;
-    public oc f26139c;
+    public Runnable f26122a;
+    public Runnable f26123b;
+    public oc f26124c;
     public final TextView d;
     public boolean e;
 
-    public mc(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11) {
+    public mc(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
         super(context);
         int w02;
-        int i10 = org.telegram.ui.ActionBar.i6.Gi;
-        if (e6Var != null) {
-            w02 = e6Var.G0(i10);
+        int i10 = org.telegram.ui.ActionBar.j6.Gi;
+        if (f6Var != null) {
+            w02 = f6Var.G0(i10);
         } else {
-            w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+            w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
         }
         if (z10) {
             TextView textView = new TextView(context);
             this.d = textView;
-            textView.setBackground(org.telegram.ui.ActionBar.i6.f0((w02 & 16777215) | 419430400, 7, -1));
+            textView.setBackground(org.telegram.ui.ActionBar.j6.f0((w02 & 16777215) | 419430400, 7, -1));
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(w02);
@@ -42,7 +42,7 @@ public final class mc extends kb {
             imageView.setImageResource(R.drawable.chats_undo);
             imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
             if (!z10) {
-                imageView.setBackground(org.telegram.ui.ActionBar.i6.f0((w02 & 16777215) | 419430400, 1, -1));
+                imageView.setBackground(org.telegram.ui.ActionBar.j6.f0((w02 & 16777215) | 419430400, 1, -1));
             }
             w7.d6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
             addView(imageView, w7.x5.h(56.0f, 48.0f, 16));
@@ -52,13 +52,13 @@ public final class mc extends kb {
 
     @Override
     public final void a(oc ocVar) {
-        this.f26139c = ocVar;
+        this.f26124c = ocVar;
     }
 
     @Override
     public final void b() {
-        this.f26139c = null;
-        Runnable runnable = this.f26138b;
+        this.f26124c = null;
+        Runnable runnable = this.f26123b;
         if (runnable != null && !this.e) {
             runnable.run();
         }
@@ -72,20 +72,20 @@ public final class mc extends kb {
     }
 
     public final void f() {
-        if (this.f26139c != null) {
+        if (this.f26124c != null) {
             this.e = true;
-            Runnable runnable = this.f26137a;
+            Runnable runnable = this.f26122a;
             if (runnable != null) {
                 runnable.run();
             }
-            oc ocVar = this.f26139c;
+            oc ocVar = this.f26124c;
             if (ocVar != null) {
                 ocVar.b();
             }
         }
     }
 
-    public mc(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        this(context, e6Var, z10, !z10);
+    public mc(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        this(context, f6Var, z10, !z10);
     }
 }

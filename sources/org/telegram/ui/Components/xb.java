@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import org.telegram.messenger.FileLog;
-public final class xb extends fk0 {
+public final class xb extends gk0 {
     public final int l1 = 0;
-    public final Object f29915m1;
+    public final Object f29891m1;
 
-    public xb(org.telegram.ui.st stVar, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(4, i10, context, null, e6Var);
-        this.f29915m1 = stVar;
+    public xb(org.telegram.ui.ut utVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(4, i10, context, null, f6Var);
+        this.f29891m1 = utVar;
     }
 
     @Override
@@ -18,13 +18,13 @@ public final class xb extends fk0 {
         oc ocVar;
         switch (this.l1) {
             case 0:
-                zb zbVar = (zb) this.f29915m1;
+                zb zbVar = (zb) this.f29891m1;
                 if (motionEvent.getAction() == 0) {
-                    oc ocVar2 = zbVar.f30538n;
+                    oc ocVar2 = zbVar.f30461n;
                     if (ocVar2 != null) {
                         ocVar2.i(false);
                     }
-                } else if (motionEvent.getAction() == 1 && (ocVar = zbVar.f30538n) != null) {
+                } else if (motionEvent.getAction() == 1 && (ocVar = zbVar.f30461n) != null) {
                     ocVar.i(true);
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -38,16 +38,16 @@ public final class xb extends fk0 {
         switch (this.l1) {
             case 1:
                 super.j();
-                org.telegram.ui.st stVar = (org.telegram.ui.st) this.f29915m1;
+                org.telegram.ui.ut utVar = (org.telegram.ui.ut) this.f29891m1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = stVar.f37475x;
+                    WindowManager.LayoutParams layoutParams = utVar.f38219x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    stVar.f37475x.flags |= 131072;
+                    utVar.f38219x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) stVar.f37474w.getSystemService("window")).updateViewLayout(stVar.f37476y, stVar.f37475x);
+                    ((WindowManager) utVar.f38218w.getSystemService("window")).updateViewLayout(utVar.f38220y, utVar.f38219x);
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -63,19 +63,19 @@ public final class xb extends fk0 {
     public void m() {
         switch (this.l1) {
             case 0:
-                oc ocVar = oc.f26747w;
+                oc ocVar = oc.f26695w;
                 if (ocVar != null) {
                     ocVar.i(false);
                 }
-                ((zb) this.f29915m1).d.getReactionsWindow().f48985c.setOnClickListener(new f0(this, 5));
+                ((zb) this.f29891m1).d.getReactionsWindow().f49008c.setOnClickListener(new f0(this, 5));
                 return;
             default:
                 return;
         }
     }
 
-    public xb(zb zbVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(3, i10, context, n2Var, e6Var);
-        this.f29915m1 = zbVar;
+    public xb(zb zbVar, org.telegram.ui.ActionBar.o2 o2Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(3, i10, context, o2Var, f6Var);
+        this.f29891m1 = zbVar;
     }
 }

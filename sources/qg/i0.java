@@ -3,17 +3,17 @@ package qg;
 import android.content.Context;
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.au0;
+import org.telegram.ui.cu0;
 public final class i0 extends d {
     public final Paint h;
-    public long f41387n;
-    public float f41388r;
-    public float f41389s;
-    public final au0 v;
+    public long f41409n;
+    public float f41410r;
+    public float f41411s;
+    public final cu0 v;
 
-    public i0(au0 au0Var, Context context, h0 h0Var) {
+    public i0(cu0 cu0Var, Context context, h0 h0Var) {
         super(context, h0Var);
-        this.v = au0Var;
+        this.v = cu0Var;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);

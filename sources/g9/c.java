@@ -3,7 +3,7 @@ package g9;
 import java.math.RoundingMode;
 import v7.n7;
 public abstract class c {
-    public static final int f9525a = 0;
+    public static final int f9530a = 0;
 
     static {
         Math.log(2.0d);
@@ -42,7 +42,7 @@ public abstract class c {
         if (z10) {
             int exponent = Math.getExponent(d);
             if (Math.getExponent(d) >= -1022) {
-                switch (b.f9524a[roundingMode.ordinal()]) {
+                switch (b.f9529a[roundingMode.ordinal()]) {
                     case 1:
                         if (!b(d)) {
                             throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");

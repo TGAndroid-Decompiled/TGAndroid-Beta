@@ -1,4 +1,4 @@
 package ki;
-public interface e {
-    int e();
+public final class e {
+    public final i f13662a;
 }

@@ -1,272 +1,145 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class s60 extends ad {
-    public float A0;
-    public boolean B0;
-    public tc f37260z0;
+import org.telegram.messenger.Utilities;
+public final class s60 extends org.telegram.ui.Components.ml0 {
+    public final int X2;
+    public final Object Y2;
 
-    public s60(long j3) {
-        super(j3);
-        this.d = true;
-    }
-
-    public static void e1(s60 s60Var, int i10, ChannelBoostsController.CanApplyBoost canApplyBoost) {
-        if (canApplyBoost != null && s60Var.getParentActivity() != null) {
-            r60 r60Var = new r60(s60Var, s60Var, s60Var.getParentActivity(), i10, s60Var.currentAccount, s60Var.resourceProvider);
-            r60Var.G1(canApplyBoost);
-            r60Var.F1(s60Var.f31757c, true);
-            r60Var.H1(s60Var.f31753a);
-            r60Var.show();
-            return;
-        }
-        s60Var.B0 = false;
-    }
-
-    public static org.telegram.ui.ActionBar.k g1(s60 s60Var) {
-        return s60Var.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k h1(s60 s60Var) {
-        return s60Var.actionBar;
+    public s60(Object obj, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.X2 = i10;
+        this.Y2 = obj;
     }
 
     @Override
-    public final int A0() {
-        return R.string.GroupEmojiPackInfo;
-    }
-
-    @Override
-    public final int B0() {
-        return R.string.GroupEmojiPack;
-    }
-
-    @Override
-    public final int E0() {
-        return R.string.GroupEmojiStatusInfo;
-    }
-
-    @Override
-    public final int F0() {
-        return getMessagesController().groupEmojiStatusLevelMin;
-    }
-
-    @Override
-    public final int G0() {
-        return R.string.GroupEmojiStatus;
-    }
-
-    @Override
-    public final int H0() {
-        return getMessagesController().groupEmojiStickersLevelMin;
-    }
-
-    @Override
-    public final int I0() {
-        return 4;
-    }
-
-    @Override
-    public final int J0() {
-        return getMessagesController().groupProfileBgIconLevelMin;
-    }
-
-    @Override
-    public final int K0() {
-        return R.string.GroupProfileInfo;
-    }
-
-    @Override
-    public final int L0() {
-        return R.string.GroupStickerPackInfo;
-    }
-
-    @Override
-    public final int M0() {
-        return R.string.GroupStickerPack;
-    }
-
-    @Override
-    public final int N0() {
-        return R.string.GroupWallpaper2Info;
-    }
-
-    @Override
-    public final int O0() {
-        return getMessagesController().groupWallpaperLevelMin;
-    }
-
-    @Override
-    public final int P0() {
-        return R.string.GroupWallpaper;
-    }
-
-    @Override
-    public final boolean R0() {
-        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.f31753a)));
-    }
-
-    @Override
-    public final void T0(int i10) {
-        if (this.f31757c != null && !this.B0) {
-            this.B0 = true;
-            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.f31753a, this.f31757c, new ci.m4(this, i10, 2));
+    public boolean I0(View view, float f7, float f10) {
+        switch (this.X2) {
+            case 3:
+                ((yh.s0) this.Y2).getClass();
+                return true;
+            default:
+                return super.I0(view, f7, f10);
         }
     }
 
     @Override
-    public final void X0(boolean z10) {
-        int i10;
-        super.X0(z10);
-        tc tcVar = this.f37260z0;
-        if (tcVar != null) {
-            TextView textView = tcVar.d;
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f31757c;
-            if (tL_premium_boostsStatus != null) {
-                i10 = tL_premium_boostsStatus.boosts;
-            } else {
-                i10 = 0;
-            }
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGroupBoostCount", i10, new Object[0])));
+    public Integer X0(int i10) {
+        int i11;
+        switch (this.X2) {
+            case 2:
+                i11 = ((SessionsActivity) this.Y2).terminateAllSessionsRow;
+                org.telegram.ui.ActionBar.f6 f6Var = this.f26191p2;
+                if (i10 == i11) {
+                    return Integer.valueOf(org.telegram.ui.ActionBar.j6.l1(0.1f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19082p7, f6Var)));
+                }
+                return Integer.valueOf(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18952i6, f6Var));
+            default:
+                return super.X0(i10);
         }
     }
 
     @Override
-    public final void Z0(boolean z10) {
-        super.Z0(z10);
-        this.actionBar.setBackgroundColor(0);
-        org.telegram.ui.Components.pq pqVar = new org.telegram.ui.Components.pq(new ColorDrawable(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18836d6, this.resourceProvider)), org.telegram.ui.ActionBar.i6.V0(getParentActivity(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f18800b7), 0, 0);
-        pqVar.f27125w = true;
-        this.O.setBackground(pqVar);
-        tc tcVar = this.f37260z0;
-        if (tcVar != null && !z10) {
-            tcVar.f37640a.b(this.currentAccount, this.f31776s, false);
-            this.f37260z0.f37641b.b(this.f31776s, false);
-            this.f37260z0.e();
+    public void dispatchDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.k kVar;
+        ArrayList arrayList;
+        View view;
+        switch (this.X2) {
+            case 0:
+                super.dispatchDraw(canvas);
+                u60 u60Var = (u60) this.Y2;
+                if (u60Var.f37945z0 != null && u60Var.A0 >= 1.0f) {
+                    canvas.save();
+                    int measuredHeight = u60Var.f37945z0.getMeasuredHeight();
+                    kVar = ((org.telegram.ui.ActionBar.o2) u60Var).actionBar;
+                    canvas.translate(0.0f, -(measuredHeight - kVar.getMeasuredHeight()));
+                    u60Var.f37945z0.draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
+            case 1:
+                bq0 bq0Var = (bq0) this.Y2;
+                Paint paint = bq0Var.f32556w;
+                RectF rectF = bq0Var.f32555s;
+                RectF rectF2 = bq0Var.f32554r;
+                RectF rectF3 = bq0Var.f32553n;
+                s4.c0 c0Var = bq0Var.f32550b;
+                if (!bq0Var.f32552f.isEmpty()) {
+                    float d = bq0Var.e.d(bq0Var.d, false);
+                    double d10 = d;
+                    int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
+                    int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
+                    View m10 = c0Var.m(clamp);
+                    View m11 = c0Var.m(clamp2);
+                    if (m10 != null || m11 != null) {
+                        if (m10 != null) {
+                            view = m10;
+                        } else {
+                            view = m11;
+                        }
+                        rectF3.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                        if (m11 != null) {
+                            m10 = m11;
+                        }
+                        rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
+                        AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
+                        paint.setColor(bq0Var.f32557x);
+                        float height = rectF.height() / 2.0f;
+                        canvas.drawRoundRect(rectF, height, height, paint);
+                        super.dispatchDraw(canvas);
+                        return;
+                    }
+                }
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void c1() {
-        nc ncVar;
-        nc ncVar2;
-        this.Z = 0;
-        boolean z10 = true;
-        int i10 = 1 + 1;
-        this.f31754a0 = 1;
-        this.f31756b0 = i10;
-        int i11 = i10 + 2;
-        this.R = i11;
-        this.f31758c0 = i10 + 1;
-        if (this.f31781w == 0 && this.f31776s < 0) {
-            int i12 = this.f31760e0;
-            this.f31760e0 = -1;
-            if (i12 >= 0 && (ncVar2 = this.N) != null) {
-                ncVar2.u(i12);
-                this.N.m(this.f31758c0);
-            }
-        } else {
-            if (this.f31760e0 < 0) {
-                z10 = false;
-            }
-            this.R = i10 + 3;
-            this.f31760e0 = i11;
-            if (!z10 && (ncVar = this.N) != null) {
-                ncVar.o(i11);
-                this.N.m(this.f31758c0);
-                this.M.u0(0);
-            }
-        }
-        int i13 = this.R;
-        this.f31759d0 = i13;
-        this.f31764h0 = i13 + 1;
-        this.f31765i0 = i13 + 2;
-        this.f31762f0 = i13 + 3;
-        this.R = i13 + 5;
-        this.f31763g0 = i13 + 4;
-        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.f31753a);
-        if (chatFull != null && chatFull.can_set_stickers) {
-            int i14 = this.R;
-            this.f31766j0 = i14;
-            this.R = i14 + 2;
-            this.f31767k0 = i14 + 1;
-        } else {
-            this.f31766j0 = -1;
-            this.f31767k0 = -1;
-        }
-        int i15 = this.R;
-        this.S = i15;
-        this.W = i15 + 1;
-        this.X = i15 + 2;
-        this.R = i15 + 4;
-        this.Y = i15 + 3;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        View createView = super.createView(context);
-        Z0(false);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setTitle("");
-        ((ViewGroup) createView).addView(this.actionBar);
-        createView.getViewTreeObserver().addOnGlobalLayoutListener(new p60(this, (FrameLayout) createView));
-        return createView;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        super.didReceivedNotification(i10, i11, objArr);
-        if (i10 == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).f18113id == (-this.f31753a)) {
-            b1();
+    public void invalidate() {
+        switch (this.X2) {
+            case 1:
+                super.invalidate();
+                mp0 mp0Var = ((bq0) this.Y2).F;
+                if (mp0Var != null) {
+                    mp0Var.run();
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
         }
     }
 
     @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        tc tcVar = this.f37260z0;
-        if (tcVar != null) {
-            tcVar.a();
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.X2) {
+            case 3:
+                yh.s0 s0Var = (yh.s0) this.Y2;
+                s0Var.s();
+                super.onLayout(z10, i10, i11, i12, i13);
+                s0Var.Q(2);
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
         }
     }
 
-    @Override
-    public final boolean onFragmentCreate() {
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatInfoDidLoad);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatInfoDidLoad);
-    }
-
-    @Override
-    public final void x0() {
-        q60 q60Var = new q60(this, getParentActivity(), this.resourceProvider, 0);
-        this.M = q60Var;
-        q60Var.setOnScrollListener(new h3(this, 12));
-        this.M.setSections(true);
-    }
-
-    @Override
-    public final int z0() {
-        return getMessagesController().groupCustomWallpaperLevelMin;
+    public s60(SessionsActivity sessionsActivity, Context context) {
+        super(context, null);
+        this.X2 = 2;
+        this.Y2 = sessionsActivity;
     }
 }

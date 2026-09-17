@@ -1,17 +1,17 @@
 package c0;
 public final class j extends h {
-    public final k f3637n;
+    public final k f3642n;
 
     public j(k kVar) {
-        this.f3637n = kVar;
+        this.f3642n = kVar;
     }
 
     @Override
     public final String i() {
-        i iVar = (i) this.f3637n.f3638a.get();
+        i iVar = (i) this.f3642n.f3643a.get();
         if (iVar == null) {
             return "Completer object has been garbage collected, future will fail soon";
         }
-        return "tag=[" + iVar.f3634a + "]";
+        return "tag=[" + iVar.f3639a + "]";
     }
 }

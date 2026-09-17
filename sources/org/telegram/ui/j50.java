@@ -1,118 +1,89 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class j50 extends s4.o {
-    public final i60 f34812b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class j50 extends org.telegram.ui.Components.l30 {
+    public final n50 f34776n;
 
-    public j50(i60 i60Var) {
-        this.f34812b = i60Var;
+    public j50(n50 n50Var, Context context, TLRPC.Chat chat, boolean z10) {
+        super(context, chat, z10);
+        this.f34776n = n50Var;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return true;
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
+    public final void n(int i10) {
+        int i11;
         int i12;
         int i13;
-        int i14;
-        int i15;
-        int i16;
-        i60 i60Var = this.f34812b;
-        c60 c60Var = i60Var.P;
-        int i17 = c60Var.f32682w;
-        if (i17 >= 0) {
-            int i18 = i60Var.f34442h3;
-            if (i10 == i18 && i11 == i17) {
-                return true;
-            }
-            if ((i10 == i18 && i11 != i17) || (i10 != i18 && i11 == i17)) {
-                return false;
-            }
-        }
-        int i19 = c60Var.f32683x;
-        if (i19 >= 0) {
-            int i20 = i60Var.f34494u3;
-            if (i10 == i20 && i11 == i19) {
-                return true;
-            }
-            if ((i10 == i20 && i11 != i19) || (i10 != i20 && i11 == i19)) {
-                return false;
-            }
-        }
-        int i21 = c60Var.f32684y;
-        if (i21 >= 0) {
-            int i22 = i60Var.f34498v3;
-            if (i10 == i22 && i11 == i21) {
-                return true;
-            }
-            if ((i10 == i22 && i11 != i21) || (i10 != i22 && i11 == i21)) {
-                return false;
-            }
-        }
-        int i23 = c60Var.K;
-        if (i23 >= 0) {
-            int i24 = i60Var.f34438g3;
-            if (i10 == i24 && i11 == i23) {
-                return true;
-            }
-            if ((i10 == i24 && i11 != i23) || (i10 != i24 && i11 == i23)) {
-                return false;
-            }
-        }
-        int i25 = c60Var.J;
-        if (i25 >= 0) {
-            int i26 = i60Var.f34490t3;
-            if (i10 == i26 && i11 == i25) {
-                return true;
-            }
-            if ((i10 == i26 && i11 != i25) || (i10 != i26 && i11 == i25)) {
-                return false;
-            }
-        }
-        int i27 = c60Var.I;
-        if (i27 >= 0 && i27 == i11 && i10 == i60Var.f34486s3) {
-            return true;
-        }
-        int i28 = i60Var.I0;
-        if (i10 == i28 - 1 && i11 == c60Var.F - 1) {
-            return true;
-        }
-        if (i10 != i28 - 1 && i11 != c60Var.F - 1) {
-            if (i11 >= c60Var.G && i11 < c60Var.H && i10 >= (i16 = i60Var.f34476q3) && i10 < i60Var.f34481r3) {
-                return ((ChatObject.VideoParticipant) i60Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) i60Var.f34473q0.get(i11 - i60Var.P.G));
-            }
-            if (i11 >= c60Var.d && i11 < c60Var.e && i10 >= (i15 = i60Var.f34446i3) && i10 < i60Var.j3) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) i60Var.D0.get(i10 - i15);
-                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(i60Var.f34410a1.visibleParticipants.get(i11 - i60Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
-                    return false;
-                }
-                return true;
-            } else if (i11 >= c60Var.f32678f && i11 < c60Var.h && i10 >= (i14 = i60Var.f34453k3) && i10 < i60Var.f34456l3) {
-                return ((Long) i60Var.F0.get(i10 - i14)).equals(i60Var.f34410a1.invitedUsers.get(i11 - i60Var.P.f32678f));
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
+        alertDialog$Builder.f18446a.I = org.telegram.ui.ActionBar.j6.f19091pg;
+        k60 k60Var = this.f34776n.f35945b;
+        k60Var.f35102w0 = false;
+        alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.VoipGroupStartRecordingTitle);
+        if (i10 == 0) {
+            if (k60Var.f35012a1.call.rtmp_stream) {
+                i13 = R.string.VoipGroupStartRecordingRtmpText;
             } else {
-                if (i11 >= c60Var.f32679n && i11 < c60Var.f32680r && i10 >= (i13 = i60Var.f34459m3) && i10 < i60Var.f34464n3) {
-                    return ((Long) i60Var.G0.get(i10 - i13)).equals(i60Var.f34410a1.shadyJoinParticipants.get(i11 - i60Var.P.f32679n));
-                }
-                if (i11 >= c60Var.f32681s && i11 < c60Var.v && i10 >= (i12 = i60Var.f34468o3) && i10 < i60Var.f34472p3) {
-                    return ((Long) i60Var.H0.get(i10 - i12)).equals(i60Var.f34410a1.shadyLeftParticipants.get(i11 - i60Var.P.f32681s));
-                }
+                i13 = R.string.VoipGroupStartRecordingText;
             }
+            alertDialog$Builder.f18446a.T = LocaleController.getString(i13);
+        } else if (ChatObject.isChannelOrGiga(k60Var.Z0)) {
+            if (k60Var.f35012a1.call.rtmp_stream) {
+                i12 = R.string.VoipGroupStartRecordingRtmpVideoText;
+            } else {
+                i12 = R.string.VoipChannelStartRecordingVideoText;
+            }
+            alertDialog$Builder.f18446a.T = LocaleController.getString(i12);
+        } else {
+            if (k60Var.f35012a1.call.rtmp_stream) {
+                i11 = R.string.VoipGroupStartRecordingRtmpVideoText;
+            } else {
+                i11 = R.string.VoipGroupStartRecordingVideoText;
+            }
+            alertDialog$Builder.f18446a.T = LocaleController.getString(i11);
         }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f34812b.P.F;
-    }
-
-    @Override
-    public final int e() {
-        return this.f34812b.I0;
+        alertDialog$Builder.f18446a.f18525y0 = false;
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
+        editTextBoldCursor.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.T(getContext(), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19055nh, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19074oh, false)));
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        linearLayout.setOrientation(1);
+        alertDialog$Builder.n(linearLayout);
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        int i14 = org.telegram.ui.ActionBar.j6.f19054ng;
+        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
+        editTextBoldCursor.setMaxLines(1);
+        editTextBoldCursor.setLines(1);
+        editTextBoldCursor.setInputType(16385);
+        editTextBoldCursor.setGravity(51);
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setHint(LocaleController.getString(R.string.VoipGroupSaveFileHint));
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19073og, false));
+        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
+        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
+        editTextBoldCursor.setCursorWidth(1.5f);
+        editTextBoldCursor.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
+        linearLayout.addView(editTextBoldCursor, w7.x5.t(-1, 36, 51, 24, 0, 24, 12));
+        editTextBoldCursor.setOnEditorActionListener(new zz(alertDialog$Builder, 2));
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18906fg, false);
+        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
+        c2Var.i(w02);
+        c2Var.setOnShowListener(new i50(this, c2Var, editTextBoldCursor, 1));
+        c2Var.setOnDismissListener(new a00(2, editTextBoldCursor));
+        alertDialog$Builder.k(LocaleController.getString(R.string.Start), new gg.d2(this, editTextBoldCursor, i10, 10));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new yz(2, editTextBoldCursor));
+        int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19184ug, false);
+        org.telegram.ui.ActionBar.c2 c2Var2 = alertDialog$Builder.f18446a;
+        c2Var2.i(w03);
+        c2Var2.show();
+        c2Var2.o(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
+        editTextBoldCursor.requestFocus();
     }
 }

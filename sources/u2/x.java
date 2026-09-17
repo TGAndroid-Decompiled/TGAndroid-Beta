@@ -1,36 +1,36 @@
 package u2;
 public final class x implements d0, c0 {
-    public final f0 f43527a;
-    public final long f43528b;
-    public final y2.d f43529c;
+    public final f0 f43550a;
+    public final long f43551b;
+    public final y2.d f43552c;
     public a d;
     public d0 e;
-    public c0 f43530f;
+    public c0 f43553f;
     public long h = -9223372036854775807L;
 
     public x(f0 f0Var, y2.d dVar, long j3) {
-        this.f43527a = f0Var;
-        this.f43529c = dVar;
-        this.f43528b = j3;
+        this.f43550a = f0Var;
+        this.f43552c = dVar;
+        this.f43551b = j3;
     }
 
     @Override
     public final void a(d0 d0Var) {
-        c0 c0Var = this.f43530f;
-        String str = e2.d0.f7883a;
+        c0 c0Var = this.f43553f;
+        String str = e2.d0.f7888a;
         c0Var.a(this);
     }
 
     public final void b(f0 f0Var) {
         long j3 = this.h;
         if (j3 == -9223372036854775807L) {
-            j3 = this.f43528b;
+            j3 = this.f43551b;
         }
         a aVar = this.d;
         aVar.getClass();
-        d0 c10 = aVar.c(f0Var, this.f43529c, j3);
+        d0 c10 = aVar.c(f0Var, this.f43552c, j3);
         this.e = c10;
-        if (this.f43530f != null) {
+        if (this.f43553f != null) {
             c10.k(this, j3);
         }
     }
@@ -47,7 +47,7 @@ public final class x implements d0, c0 {
     @Override
     public final long d() {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         return d0Var.d();
     }
 
@@ -67,25 +67,25 @@ public final class x implements d0, c0 {
     @Override
     public final long h(long j3) {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         return d0Var.h(j3);
     }
 
     @Override
     public final void i(long j3) {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         d0Var.i(j3);
     }
 
     @Override
     public final void k(c0 c0Var, long j3) {
-        this.f43530f = c0Var;
+        this.f43553f = c0Var;
         d0 d0Var = this.e;
         if (d0Var != null) {
             long j10 = this.h;
             if (j10 == -9223372036854775807L) {
-                j10 = this.f43528b;
+                j10 = this.f43551b;
             }
             d0Var.k(this, j10);
         }
@@ -94,7 +94,7 @@ public final class x implements d0, c0 {
     @Override
     public final long l() {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         return d0Var.l();
     }
 
@@ -111,50 +111,50 @@ public final class x implements d0, c0 {
     public final long p(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
         long j10;
         long j11 = this.h;
-        if (j11 != -9223372036854775807L && j3 == this.f43528b) {
+        if (j11 != -9223372036854775807L && j3 == this.f43551b) {
             j10 = j11;
         } else {
             j10 = j3;
         }
         this.h = -9223372036854775807L;
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         return d0Var.p(rVarArr, zArr, b1VarArr, zArr2, j10);
     }
 
     @Override
     public final o1 r() {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         return d0Var.r();
     }
 
     @Override
     public final long s() {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         return d0Var.s();
     }
 
     @Override
     public final long t(long j3, i2.p1 p1Var) {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         return d0Var.t(j3, p1Var);
     }
 
     @Override
     public final void u(long j3) {
         d0 d0Var = this.e;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         d0Var.u(j3);
     }
 
     @Override
     public final void v(d1 d1Var) {
         d0 d0Var = (d0) d1Var;
-        c0 c0Var = this.f43530f;
-        String str = e2.d0.f7883a;
+        c0 c0Var = this.f43553f;
+        String str = e2.d0.f7888a;
         c0Var.v(this);
     }
 }

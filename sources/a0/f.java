@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
-public final class f extends l implements Map, j$.util.Map {
+public final class f extends m implements Map, j$.util.Map {
     public a d;
     public c e;
     public e f10f;
@@ -55,11 +55,11 @@ public final class f extends l implements Map, j$.util.Map {
     }
 
     public final boolean j(Collection collection) {
-        int i10 = this.f28c;
+        int i10 = this.f30c;
         for (Object obj : collection) {
             super.remove(obj);
         }
-        if (i10 != this.f28c) {
+        if (i10 != this.f30c) {
             return true;
         }
         return false;
@@ -83,18 +83,18 @@ public final class f extends l implements Map, j$.util.Map {
 
     @Override
     public final void putAll(java.util.Map map) {
-        int size = map.size() + this.f28c;
-        int i10 = this.f28c;
-        int[] iArr = this.f26a;
+        int size = map.size() + this.f30c;
+        int i10 = this.f30c;
+        int[] iArr = this.f28a;
         if (iArr.length < size) {
             int[] copyOf = Arrays.copyOf(iArr, size);
             kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
-            this.f26a = copyOf;
-            Object[] copyOf2 = Arrays.copyOf(this.f27b, size * 2);
+            this.f28a = copyOf;
+            Object[] copyOf2 = Arrays.copyOf(this.f29b, size * 2);
             kotlin.jvm.internal.i.d(copyOf2, "copyOf(this, newSize)");
-            this.f27b = copyOf2;
+            this.f29b = copyOf2;
         }
-        if (this.f28c == i10) {
+        if (this.f30c == i10) {
             for (Map.Entry entry : map.entrySet()) {
                 put(entry.getKey(), entry.getValue());
             }

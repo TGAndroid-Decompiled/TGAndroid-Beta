@@ -1,43 +1,48 @@
 package org.telegram.ui;
 
-import java.util.HashMap;
 import java.util.regex.Pattern;
-import org.telegram.messenger.ContactsController;
-public final class y80 implements org.telegram.ui.ActionBar.a2 {
-    public final int f39775a;
-    public final int f39776b;
-    public final HashMap f39777c;
-    public final boolean d;
-    public final boolean e;
+import org.telegram.messenger.FileLog;
+public final class y80 implements Runnable {
+    public final int f39810a;
+    public final oa0 f39811b;
 
-    public y80(int i10, HashMap hashMap, boolean z10, boolean z11, int i11) {
-        this.f39775a = i11;
-        this.f39776b = i10;
-        this.f39777c = hashMap;
-        this.d = z10;
-        this.e = z11;
+    public y80(oa0 oa0Var, int i10) {
+        this.f39810a = i10;
+        this.f39811b = oa0Var;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = this.f39775a;
-        boolean z10 = this.e;
-        boolean z11 = this.d;
-        HashMap<String, ContactsController.Contact> hashMap = this.f39777c;
-        int i12 = this.f39776b;
-        switch (i11) {
+    public final void run() {
+        int i10 = this.f39810a;
+        oa0 oa0Var = this.f39811b;
+        switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
-                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, true);
-                return;
+                try {
+                    oa0Var.run();
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
             case 1:
                 Pattern pattern2 = LaunchActivity.B1;
-                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, false);
-                return;
+                try {
+                    oa0Var.run();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
             default:
                 Pattern pattern3 = LaunchActivity.B1;
-                ContactsController.getInstance(i12).syncPhoneBookByAlert(hashMap, z11, z10, true);
-                return;
+                try {
+                    oa0Var.run();
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
         }
     }
 }

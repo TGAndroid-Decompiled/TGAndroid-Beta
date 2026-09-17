@@ -3,11 +3,11 @@ package r1;
 import android.media.MediaDataSource;
 import java.io.IOException;
 public final class a extends MediaDataSource {
-    public long f41890a;
-    public final f f41891b;
+    public long f41912a;
+    public final f f41913b;
 
     public a(f fVar) {
-        this.f41891b = fVar;
+        this.f41913b = fVar;
     }
 
     @Override
@@ -24,25 +24,25 @@ public final class a extends MediaDataSource {
             return -1;
         }
         try {
-            long j10 = this.f41890a;
+            long j10 = this.f41912a;
             if (j10 != j3) {
-                if (j10 >= 0 && j3 >= j10 + this.f41891b.f41893a.available()) {
+                if (j10 >= 0 && j3 >= j10 + this.f41913b.f41915a.available()) {
                     return -1;
                 }
-                this.f41891b.b(j3);
-                this.f41890a = j3;
+                this.f41913b.b(j3);
+                this.f41912a = j3;
             }
-            if (i11 > this.f41891b.f41893a.available()) {
-                i11 = this.f41891b.f41893a.available();
+            if (i11 > this.f41913b.f41915a.available()) {
+                i11 = this.f41913b.f41915a.available();
             }
-            int read = this.f41891b.read(bArr, i10, i11);
+            int read = this.f41913b.read(bArr, i10, i11);
             if (read >= 0) {
-                this.f41890a += read;
+                this.f41912a += read;
                 return read;
             }
         } catch (IOException unused) {
         }
-        this.f41890a = -1L;
+        this.f41912a = -1L;
         return -1;
     }
 

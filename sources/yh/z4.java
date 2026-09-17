@@ -7,52 +7,52 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.jb;
 import org.telegram.tgnet.TLRPC;
 public final class z4 implements Utilities.Callback {
-    public final v5 f48054a;
-    public final long f48055b;
-    public final boolean[] f48056c;
+    public final v5 f48077a;
+    public final long f48078b;
+    public final boolean[] f48079c;
     public final Utilities.Callback d;
     public final Context e;
-    public final org.telegram.ui.ActionBar.e6 f48057f;
-    public final boolean f48058g;
+    public final org.telegram.ui.ActionBar.f6 f48080f;
+    public final boolean f48081g;
     public final String h;
-    public final MessageObject f48059i;
-    public final TLRPC.InputInvoice f48060j;
-    public final TLRPC.TL_payments_paymentFormStars f48061k;
-    public final int f48062l;
-    public final long f48063m;
+    public final MessageObject f48082i;
+    public final TLRPC.InputInvoice f48083j;
+    public final TLRPC.TL_payments_paymentFormStars f48084k;
+    public final int f48085l;
+    public final long f48086m;
 
-    public z4(v5 v5Var, long j3, boolean[] zArr, Utilities.Callback callback, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, String str, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, int i10, long j10) {
-        this.f48054a = v5Var;
-        this.f48055b = j3;
-        this.f48056c = zArr;
+    public z4(v5 v5Var, long j3, boolean[] zArr, Utilities.Callback callback, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, String str, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, int i10, long j10) {
+        this.f48077a = v5Var;
+        this.f48078b = j3;
+        this.f48079c = zArr;
         this.d = callback;
         this.e = context;
-        this.f48057f = e6Var;
-        this.f48058g = z10;
+        this.f48080f = f6Var;
+        this.f48081g = z10;
         this.h = str;
-        this.f48059i = messageObject;
-        this.f48060j = inputInvoice;
-        this.f48061k = tL_payments_paymentFormStars;
-        this.f48062l = i10;
-        this.f48063m = j10;
+        this.f48082i = messageObject;
+        this.f48083j = inputInvoice;
+        this.f48084k = tL_payments_paymentFormStars;
+        this.f48085l = i10;
+        this.f48086m = j10;
     }
 
     @Override
     public final void run(Object obj) {
         Utilities.Callback callback = (Utilities.Callback) obj;
-        v5 v5Var = this.f48054a;
-        long j3 = v5Var.f47898f.amount;
-        long j10 = this.f48055b;
-        boolean[] zArr = this.f48056c;
+        v5 v5Var = this.f48077a;
+        long j3 = v5Var.f47921f.amount;
+        long j10 = this.f48078b;
+        boolean[] zArr = this.f48079c;
         Utilities.Callback callback2 = this.d;
-        MessageObject messageObject = this.f48059i;
-        TLRPC.InputInvoice inputInvoice = this.f48060j;
-        TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = this.f48061k;
-        int i10 = this.f48062l;
+        MessageObject messageObject = this.f48082i;
+        TLRPC.InputInvoice inputInvoice = this.f48083j;
+        TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = this.f48084k;
+        int i10 = this.f48085l;
         if (j3 < j10) {
-            boolean starsPurchaseAvailable = MessagesController.getInstance(v5Var.f47895a).starsPurchaseAvailable();
+            boolean starsPurchaseAvailable = MessagesController.getInstance(v5Var.f47918a).starsPurchaseAvailable();
             Context context = this.e;
-            org.telegram.ui.ActionBar.e6 e6Var = this.f48057f;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f48080f;
             int i11 = 0;
             if (!starsPurchaseAvailable) {
                 if (callback != null) {
@@ -62,14 +62,14 @@ public final class z4 implements Utilities.Callback {
                     callback2.run("cancelled");
                     zArr[0] = true;
                 }
-                v5.e0(context, e6Var);
+                v5.e0(context, f6Var);
                 return;
             }
             boolean[] zArr2 = {false};
-            if (this.f48058g) {
+            if (this.f48081g) {
                 i11 = 9;
             }
-            n7 n7Var = new n7(context, e6Var, j10, i11, this.h, new jb(v5Var, zArr2, messageObject, inputInvoice, tL_payments_paymentFormStars, zArr, i10, callback2, callback), this.f48063m);
+            n7 n7Var = new n7(context, f6Var, j10, i11, this.h, new jb(v5Var, zArr2, messageObject, inputInvoice, tL_payments_paymentFormStars, zArr, i10, callback2, callback), this.f48086m);
             n7Var.setOnDismissListener(new org.telegram.ui.web.d0(v5Var, callback, zArr2, zArr, callback2, 2));
             n7Var.show();
             return;

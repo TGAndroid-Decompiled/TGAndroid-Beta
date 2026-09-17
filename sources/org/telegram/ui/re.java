@@ -1,72 +1,27 @@
 package org.telegram.ui;
-
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
 public final class re implements Runnable {
-    public final int f37085a;
-    public final bo f37086b;
-    public final String f37087c;
+    public final int f37197a;
+    public final org.telegram.ui.Components.bm0 f37198b;
 
-    public re(bo boVar, String str, int i10) {
-        this.f37085a = i10;
-        this.f37086b = boVar;
-        this.f37087c = str;
+    public re(org.telegram.ui.Components.bm0 bm0Var, int i10) {
+        this.f37197a = i10;
+        this.f37198b = bm0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37085a) {
+        switch (this.f37197a) {
             case 0:
-                bo.W0(this.f37086b, this.f37087c);
-                return;
-            case 1:
-                bo.h1(this.f37086b, this.f37087c);
-                return;
-            case 2:
-                h4.f(this.f37087c, r1.currentAccount, r1.X0, null, this.f37086b.f32297ea);
-                return;
-            case 3:
-                bo boVar = this.f37086b;
-                String str = this.f37087c;
-                if (str != null) {
-                    boVar.getClass();
-                    if (str.length() != 0) {
-                        boVar.getMessagesController().sendBotStart(boVar.f32299f, str);
-                        return;
-                    }
+                org.telegram.ui.Components.bm0 bm0Var = this.f37198b;
+                if (!bm0Var.M) {
+                    bm0Var.M = true;
+                    bm0Var.c(new org.telegram.ui.Components.zl0(bm0Var, 0), false);
+                    bm0Var.f22771s.invalidate();
+                    return;
                 }
-                boVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", boVar.T5, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                return;
-            case 4:
-                this.f37086b.la(this.f37087c);
-                return;
-            case 5:
-                this.f37086b.da(this.f37087c, false);
-                return;
-            case 6:
-                Activity parentActivity = this.f37086b.getParentActivity();
-                nf.f.s(parentActivity, "tel:" + this.f37087c);
-                return;
-            case 7:
-                AndroidUtilities.addToClipboard(this.f37087c);
-                org.telegram.messenger.wl.o(R.string.PhoneCopied, org.telegram.ui.Components.vc.a0(this.f37086b));
-                return;
-            case 8:
-                bo.u1(this.f37086b, this.f37087c);
-                return;
-            case 9:
-                Activity parentActivity2 = this.f37086b.getParentActivity();
-                nf.f.s(parentActivity2, "tel:" + this.f37087c);
-                return;
-            case 10:
-                AndroidUtilities.addToClipboard(this.f37087c);
-                org.telegram.messenger.wl.o(R.string.PhoneCopied, org.telegram.ui.Components.vc.a0(this.f37086b));
                 return;
             default:
-                Activity parentActivity3 = this.f37086b.getParentActivity();
-                nf.f.s(parentActivity3, "https://fragment.com/username/" + this.f37087c);
+                this.f37198b.dismiss();
                 return;
         }
     }

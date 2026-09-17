@@ -1,27 +1,23 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-public final class ax extends org.telegram.ui.Components.ii0 {
-    public final int f32002f0 = 0;
-    public final Object f32003g0;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesStorage;
+public final class ax implements m70 {
+    public final wy f31996a;
 
-    public ax(dg1 dg1Var, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
-        super(spannableStringBuilder, spannableStringBuilder2);
-        this.f32003g0 = dg1Var;
+    public ax(wy wyVar) {
+        this.f31996a = wyVar;
     }
 
     @Override
-    public final float d() {
-        switch (this.f32002f0) {
-            case 0:
-                return ((ty) this.f32003g0).f37803a.getViewOffset();
-            default:
-                return ((dg1) this.f32003g0).N.f32162f3;
+    public final void a(n70 n70Var, long j3) {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
+        wy wyVar = this.f31996a;
+        qy qyVar = wyVar.C2;
+        if (wyVar.B2) {
+            wyVar.removeSelfFromStack();
         }
-    }
-
-    public ax(String str, String str2, ty tyVar) {
-        super(str, str2);
-        this.f32003g0 = tyVar;
+        qyVar.u(wyVar, arrayList, null, true, wyVar.J2, wyVar.K2, wyVar.L2, null);
     }
 }

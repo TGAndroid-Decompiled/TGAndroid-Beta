@@ -5,14 +5,14 @@ import b2.l1;
 import e2.d0;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.ob1;
+import org.telegram.ui.lb1;
 public abstract class c implements r {
-    public final l1 f45155a;
-    public final int f45156b;
-    public final int[] f45157c;
+    public final l1 f45178a;
+    public final int f45179b;
+    public final int[] f45180c;
     public final b2.s[] d;
     public final long[] e;
-    public int f45158f;
+    public int f45181f;
 
     public c(l1 l1Var, int[] iArr) {
         boolean z10;
@@ -24,19 +24,19 @@ public abstract class c implements r {
         }
         e2.d.g(z10);
         l1Var.getClass();
-        this.f45155a = l1Var;
+        this.f45178a = l1Var;
         int length = iArr.length;
-        this.f45156b = length;
+        this.f45179b = length;
         this.d = new b2.s[length];
         for (int i11 = 0; i11 < iArr.length; i11++) {
             this.d[i11] = l1Var.d[iArr[i11]];
         }
-        Arrays.sort(this.d, new ob1(10));
-        this.f45157c = new int[this.f45156b];
+        Arrays.sort(this.d, new lb1(10));
+        this.f45180c = new int[this.f45179b];
         while (true) {
-            int i12 = this.f45156b;
+            int i12 = this.f45179b;
             if (i10 < i12) {
-                this.f45157c[i10] = l1Var.a(this.d[i10]);
+                this.f45180c[i10] = l1Var.a(this.d[i10]);
                 i10++;
             } else {
                 this.e = new long[i12];
@@ -55,7 +55,7 @@ public abstract class c implements r {
 
     @Override
     public final l1 b() {
-        return this.f45155a;
+        return this.f45178a;
     }
 
     @Override
@@ -69,7 +69,7 @@ public abstract class c implements r {
         }
         if (obj != null && getClass() == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f45155a.equals(cVar.f45155a) && Arrays.equals(this.f45157c, cVar.f45157c)) {
+            if (this.f45178a.equals(cVar.f45178a) && Arrays.equals(this.f45180c, cVar.f45180c)) {
                 return true;
             }
         }
@@ -83,14 +83,14 @@ public abstract class c implements r {
 
     @Override
     public final int h(int i10) {
-        return this.f45157c[i10];
+        return this.f45180c[i10];
     }
 
     public final int hashCode() {
-        if (this.f45158f == 0) {
-            this.f45158f = Arrays.hashCode(this.f45157c) + (System.identityHashCode(this.f45155a) * 31);
+        if (this.f45181f == 0) {
+            this.f45181f = Arrays.hashCode(this.f45180c) + (System.identityHashCode(this.f45178a) * 31);
         }
-        return this.f45158f;
+        return this.f45181f;
     }
 
     @Override
@@ -100,12 +100,12 @@ public abstract class c implements r {
 
     @Override
     public final int l() {
-        return this.f45157c[c()];
+        return this.f45180c[c()];
     }
 
     @Override
     public final int length() {
-        return this.f45157c.length;
+        return this.f45180c.length;
     }
 
     @Override
@@ -117,7 +117,7 @@ public abstract class c implements r {
     public final boolean o(int i10, long j3) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         boolean a2 = a(i10, elapsedRealtime);
-        for (int i11 = 0; i11 < this.f45156b && !a2; i11++) {
+        for (int i11 = 0; i11 < this.f45179b && !a2; i11++) {
             if (i11 != i10 && !a(i11, elapsedRealtime)) {
                 a2 = true;
             } else {
@@ -129,7 +129,7 @@ public abstract class c implements r {
         }
         long[] jArr = this.e;
         long j10 = jArr[i10];
-        String str = d0.f7883a;
+        String str = d0.f7888a;
         long j11 = elapsedRealtime + j3;
         if (((j3 ^ j11) & (elapsedRealtime ^ j11)) < 0) {
             j11 = Long.MAX_VALUE;
@@ -140,7 +140,7 @@ public abstract class c implements r {
 
     @Override
     public final int s(b2.s sVar) {
-        for (int i10 = 0; i10 < this.f45156b; i10++) {
+        for (int i10 = 0; i10 < this.f45179b; i10++) {
             if (this.d[i10] == sVar) {
                 return i10;
             }
@@ -150,8 +150,8 @@ public abstract class c implements r {
 
     @Override
     public final int u(int i10) {
-        for (int i11 = 0; i11 < this.f45156b; i11++) {
-            if (this.f45157c[i11] == i10) {
+        for (int i11 = 0; i11 < this.f45179b; i11++) {
+            if (this.f45180c[i11] == i10) {
                 return i11;
             }
         }

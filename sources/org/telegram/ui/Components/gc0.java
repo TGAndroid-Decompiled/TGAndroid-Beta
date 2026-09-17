@@ -7,21 +7,21 @@ import android.graphics.Shader;
 import android.os.Build;
 import java.lang.ref.WeakReference;
 public final class gc0 {
-    public final Shader.TileMode f24298a;
-    public final Matrix f24299b = new Matrix();
-    public boolean f24300c;
+    public final Shader.TileMode f24167a;
+    public final Matrix f24168b = new Matrix();
+    public boolean f24169c;
     public BitmapShader d;
     public WeakReference e;
 
     public gc0(Shader.TileMode tileMode) {
-        this.f24298a = tileMode;
+        this.f24167a = tileMode;
     }
 
     public final void a(boolean z10) {
         BitmapShader bitmapShader;
         int i10;
-        if (this.f24300c != z10) {
-            this.f24300c = z10;
+        if (this.f24169c != z10) {
+            this.f24169c = z10;
             if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
                 if (z10) {
                     i10 = 1;
@@ -40,13 +40,13 @@ public final class gc0 {
             return false;
         }
         this.e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f24298a;
+        Shader.TileMode tileMode = this.f24167a;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
         this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f24299b);
+        bitmapShader.setLocalMatrix(this.f24168b);
         if (Build.VERSION.SDK_INT >= 33) {
             BitmapShader bitmapShader2 = this.d;
-            if (this.f24300c) {
+            if (this.f24169c) {
                 i10 = 1;
             } else {
                 i10 = 2;

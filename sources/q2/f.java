@@ -28,15 +28,15 @@ public final class f extends i2.f {
     public boolean X;
     public b0 Y;
     public b0 Z;
-    public int f41105a0;
-    public boolean f41106b0;
+    public int f41127a0;
+    public boolean f41128b0;
 
     public f(j jVar) {
         super(4);
         this.I = jVar;
-        this.V = d.f41101a;
+        this.V = d.f41123a;
         this.J = new h(0, 0);
-        this.N = e.f41102c;
+        this.N = e.f41124c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -59,7 +59,7 @@ public final class f extends i2.f {
     }
 
     public final void E() {
-        if (!this.f41106b0) {
+        if (!this.f41128b0) {
             return;
         }
         s sVar = this.S;
@@ -74,8 +74,8 @@ public final class f extends i2.f {
         if (bVar != null) {
             bVar.release();
         }
-        this.T = new b(jVar.f13900a);
-        this.f41106b0 = false;
+        this.T = new b(jVar.f13910a);
+        this.f41128b0 = false;
     }
 
     public final void F() {
@@ -101,7 +101,7 @@ public final class f extends i2.f {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f41101a;
+            dVar = d.f41123a;
         }
         this.V = dVar;
     }
@@ -131,7 +131,7 @@ public final class f extends i2.f {
     @Override
     public final void o() {
         this.S = null;
-        this.N = e.f41102c;
+        this.N = e.f41124c;
         this.K.clear();
         F();
         this.V.getClass();
@@ -179,16 +179,16 @@ public final class f extends i2.f {
     public final void x(long j3, long j10) {
         if (!this.M) {
             if (this.S == null) {
-                y yVar = this.f10683c;
+                y yVar = this.f10686c;
                 yVar.h();
                 h hVar = this.J;
                 hVar.clear();
                 int w10 = w(yVar, hVar, 2);
                 if (w10 == -5) {
-                    s sVar = (s) yVar.f14995c;
+                    s sVar = (s) yVar.f15005c;
                     e2.d.h(sVar);
                     this.S = sVar;
-                    this.f41106b0 = true;
+                    this.f41128b0 = true;
                 } else if (w10 == -4) {
                     e2.d.g(hVar.isEndOfStream());
                     this.L = true;

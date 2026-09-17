@@ -1,32 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class lu implements org.telegram.ui.ActionBar.a2, ki.e {
-    public final int f35558a;
-    public final DataSettingsActivity f35559b;
+import org.telegram.messenger.AndroidUtilities;
+public final class lu implements Runnable {
+    public final int f35623a;
+    public final DataSettingsActivity f35624b;
 
     public lu(DataSettingsActivity dataSettingsActivity, int i10) {
-        this.f35558a = i10;
-        this.f35559b = dataSettingsActivity;
+        this.f35623a = i10;
+        this.f35624b = dataSettingsActivity;
     }
 
     @Override
-    public int e() {
-        DataSettingsActivity dataSettingsActivity = this.f35559b;
-        dataSettingsActivity.getClass();
-        return dataSettingsActivity.getThemedColor(org.telegram.ui.ActionBar.i6.f18780a7);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f35558a) {
+    public final void run() {
+        int i10;
+        switch (this.f35623a) {
             case 0:
-                DataSettingsActivity.V(this.f35559b);
+                this.f35624b.getMediaDataController().clearAllDrafts(true);
+                return;
+            case 1:
+                DataSettingsActivity dataSettingsActivity = this.f35624b;
+                dataSettingsActivity.X = true;
+                if (dataSettingsActivity.f30793a != null && (i10 = dataSettingsActivity.f30799s) >= 0) {
+                    dataSettingsActivity.n0(i10);
+                    return;
+                }
                 return;
             default:
-                TLRPC.TL_messages_clearAllDrafts tL_messages_clearAllDrafts = new TLRPC.TL_messages_clearAllDrafts();
-                DataSettingsActivity dataSettingsActivity = this.f35559b;
-                dataSettingsActivity.getConnectionsManager().sendRequest(tL_messages_clearAllDrafts, new m(dataSettingsActivity, 6));
+                a7.f31729n0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.f35624b;
+                lu luVar = new lu(dataSettingsActivity2, 1);
+                AndroidUtilities.runOnUIThread(luVar, 100L);
+                a7.j0(new mu(dataSettingsActivity2, luVar, System.currentTimeMillis(), 0));
                 return;
         }
     }

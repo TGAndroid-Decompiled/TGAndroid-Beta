@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class a60 extends org.telegram.ui.Cells.v3 {
+public final class a60 extends org.telegram.ui.Cells.w3 {
     @Override
     public final void onMeasure(int i10, int i11) {
         if (AndroidUtilities.isTablet()) {

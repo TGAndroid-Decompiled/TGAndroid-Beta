@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.hj;
 import org.telegram.ui.Components.ni;
-import org.telegram.ui.Components.vx0;
+import org.telegram.ui.Components.wx0;
 import org.telegram.ui.Components.zl;
 import s4.z0;
 public final class l extends s4.s {
@@ -22,7 +22,7 @@ public final class l extends s4.s {
     public boolean Y0() {
         switch (this.Q) {
             case 3:
-                if (((vx0) this.R).W != null && LocaleController.isRTL) {
+                if (((wx0) this.R).W != null && LocaleController.isRTL) {
                     return true;
                 }
                 return false;
@@ -35,7 +35,7 @@ public final class l extends s4.s {
     public int o0(int i10, of.e eVar, z0 z0Var) {
         switch (this.Q) {
             case 0:
-                if (((u) this.R).f3587b) {
+                if (((u) this.R).f3592b) {
                     i10 = 0;
                 }
                 return super.o0(i10, eVar, z0Var);
@@ -49,12 +49,12 @@ public final class l extends s4.s {
         switch (this.Q) {
             case 1:
                 hj hjVar = new hj(this, recyclerView.getContext());
-                hjVar.f42825a = i10;
+                hjVar.f42847a = i10;
                 w0(hjVar);
                 return;
             case 2:
                 zl zlVar = new zl(this, recyclerView.getContext());
-                zlVar.f42825a = i10;
+                zlVar.f42847a = i10;
                 w0(zlVar);
                 return;
             default:
@@ -77,10 +77,10 @@ public final class l extends s4.s {
         }
     }
 
-    public l(vx0 vx0Var) {
+    public l(wx0 wx0Var) {
         super(5);
         this.Q = 3;
-        this.R = vx0Var;
+        this.R = wx0Var;
     }
 
     public l(u uVar) {

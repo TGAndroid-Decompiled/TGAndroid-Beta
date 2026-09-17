@@ -1,12 +1,12 @@
 package a4;
 public final class b {
-    public final int f202a;
-    public final boolean f203b;
-    public int f204c;
+    public final int f204a;
+    public final boolean f205b;
+    public int f206c;
 
     public b(int i10, boolean z10, int i11) {
-        this.f202a = i10;
-        this.f203b = z10;
-        this.f204c = i11;
+        this.f204a = i10;
+        this.f205b = z10;
+        this.f206c = i11;
     }
 }

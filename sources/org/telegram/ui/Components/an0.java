@@ -1,211 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
-import android.view.WindowManager;
-import java.util.regex.Pattern;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FlagSecureReason;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.LaunchActivity;
-public final class an0 implements org.telegram.ui.ActionBar.a2, gv0, hv0, GenericProvider, ImageReceiver.ImageReceiverDelegate, LanguageDetector.ExceptionCallback, qc0, FlagSecureReason.FlagSecureCondition {
-    public final int f22449a;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class an0 implements al0 {
+    public final int f22443a;
+    public final int f22444b;
+    public final org.telegram.ui.ActionBar.o2 f22445c;
+    public final Object d;
 
-    public an0(int i10) {
-        this.f22449a = i10;
+    public an0(Object obj, int i10, org.telegram.ui.ActionBar.o2 o2Var, int i11) {
+        this.f22443a = i11;
+        this.d = obj;
+        this.f22444b = i10;
+        this.f22445c = o2Var;
     }
 
     @Override
-    public void b(Object obj, float f7) {
-        switch (this.f22449a) {
-            case 3:
-                wo0 wo0Var = (wo0) obj;
-                wo0Var.f29765n = f7;
-                wo0Var.invalidate();
-                return;
-            case 14:
-                org.telegram.ui.Components.voip.j1 j1Var = (org.telegram.ui.Components.voip.j1) obj;
-                WindowManager.LayoutParams layoutParams = j1Var.f29009c;
-                j1Var.Q = f7;
-                layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(j1Var.f29008b, j1Var.d, layoutParams);
-                return;
-            default:
-                org.telegram.ui.Components.voip.j1 j1Var2 = (org.telegram.ui.Components.voip.j1) obj;
-                WindowManager.LayoutParams layoutParams2 = j1Var2.f29009c;
-                j1Var2.R = f7;
-                layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(j1Var2.f29008b, j1Var2.d, layoutParams2);
-                return;
-        }
-    }
-
-    @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        if (!imageReceiver.canInvertBitmap()) {
-            return;
-        }
-        imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
-    }
-
-    @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.h5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public String e(int i10) {
-        switch (this.f22449a) {
-            case 21:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 22:
-                return String.format("%02d", Integer.valueOf(i10));
-            default:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.AutoLockDisabled);
-                }
-                if (i10 == 1) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
-                }
-                if (i10 == 2) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
-                }
-                if (i10 == 3) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
-                }
-                if (i10 == 4) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
-                }
-                return "";
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f22449a) {
+    public final void d(int i10, View view) {
+        zg.p0 p0Var;
+        switch (this.f22443a) {
             case 0:
-                b2Var.dismiss();
+                jn0 jn0Var = (jn0) this.d;
+                ArrayList arrayList = jn0Var.f25360r;
+                ai.w0 w0Var = jn0Var.d;
+                if (i10 >= 0 && i10 < arrayList.size()) {
+                    if (!UserConfig.getInstance(this.f22444b).isPremium()) {
+                        new rg.x0(this.f22445c, 24, true).show();
+                        return;
+                    }
+                    long j3 = ((gn0) arrayList.get(i10)).f24349a.h;
+                    if (jn0Var.h == j3) {
+                        p0Var = null;
+                    } else {
+                        p0Var = ((gn0) arrayList.get(i10)).f24349a;
+                    }
+                    if (jn0Var.f(p0Var)) {
+                        for (int i11 = 0; i11 < w0Var.getChildCount(); i11++) {
+                            if (w0Var.getChildAt(i11) == view) {
+                                float f7 = 50.0f;
+                                if (i11 <= 1) {
+                                    if (i11 == 0) {
+                                        f7 = 90.0f;
+                                    }
+                                    w0Var.w0(-AndroidUtilities.dp(f7), 0, null);
+                                } else if (i11 >= w0Var.getChildCount() - 2) {
+                                    if (i11 == w0Var.getChildCount() - 1) {
+                                        f7 = 80.0f;
+                                    }
+                                    w0Var.w0(AndroidUtilities.dp(f7), 0, null);
+                                }
+                            }
+                        }
+                        w0Var.N(new org.telegram.ui.kr(3));
+                        if (jn0Var.h == j3) {
+                            jn0Var.h = 0L;
+                            return;
+                        }
+                        jn0Var.h = j3;
+                        ((in0) view).a(true, true);
+                        return;
+                    }
+                    return;
+                }
                 return;
-            case 1:
-                b2Var.dismiss();
-                return;
-            case 2:
-            case 3:
-            case 4:
-            case 10:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
             default:
-                b2Var.dismiss();
-                return;
-            case 5:
-                b2Var.dismiss();
-                return;
-            case 6:
-                b2Var.dismiss();
-                return;
-            case 7:
-                b2Var.dismiss();
-                return;
-            case 8:
-                int i11 = vx0.f29453u0;
-                return;
-            case 9:
-                b2Var.dismiss();
-                return;
-            case 11:
-                b2Var.dismiss();
-                return;
-            case 17:
-                b2Var.dismiss();
-                return;
-            case 18:
-                return;
-            case 19:
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
-                return;
-            case 20:
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutFSILockscreen", true).commit();
+                rg.k1 k1Var = (rg.k1) this.d;
+                if (view instanceof org.telegram.ui.ww0) {
+                    org.telegram.ui.ww0 ww0Var = (org.telegram.ui.ww0) view;
+                    PremiumPreviewFragment.q0(this.f22444b, ww0Var.f39183f.f35903a);
+                    k1Var.showDialog(new rg.x0(this.f22445c, ww0Var.f39183f.f35903a, false));
+                    return;
+                }
                 return;
         }
-    }
-
-    @Override
-    public float get(Object obj) {
-        switch (this.f22449a) {
-            case 2:
-                return ((wo0) obj).f29765n;
-            case 13:
-                return ((org.telegram.ui.Components.voip.j1) obj).Q;
-            default:
-                return ((org.telegram.ui.Components.voip.j1) obj).R;
-        }
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.h5.b(this, imageReceiver);
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        switch (this.f22449a) {
-            case 4:
-                Integer num = (Integer) obj;
-                int i10 = hq0.f24747a1;
-                return 0;
-            case 23:
-                Void r82 = (Void) obj;
-                int dp = AndroidUtilities.dp(150.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18836d6, false));
-                Paint paint = new Paint(1);
-                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
-                return createBitmap;
-            case 24:
-                Void r83 = (Void) obj;
-                Paint paint2 = new Paint(1);
-                paint2.setColor(-14509328);
-                int dp2 = AndroidUtilities.dp(150.0f);
-                Bitmap createBitmap2 = Bitmap.createBitmap(dp2, dp2, Bitmap.Config.ARGB_8888);
-                float f7 = dp2 / 2.0f;
-                new Canvas(createBitmap2).drawCircle(f7, f7, f7, paint2);
-                return createBitmap2;
-            default:
-                Void r84 = (Void) obj;
-                Pattern pattern = LaunchActivity.B1;
-                return new org.telegram.ui.eh0();
-        }
-    }
-
-    @Override
-    public void run(Exception exc) {
-        FileLog.e(exc);
-    }
-
-    @Override
-    public boolean run() {
-        Pattern pattern = LaunchActivity.B1;
-        return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
-    }
-
-    private final void a(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
     }
 }

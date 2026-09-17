@@ -12,8 +12,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public abstract class n20 extends org.telegram.ui.ActionBar.f3 {
-    public n20(Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+public abstract class n20 extends org.telegram.ui.ActionBar.g3 {
+    public n20(Context context, org.telegram.ui.ActionBar.o2 o2Var) {
         super(context, true);
         int i10;
         int i11;
@@ -29,7 +29,7 @@ public abstract class n20 extends org.telegram.ui.ActionBar.f3 {
         linearLayout.addView((View) imageView, w7.x5.t(160, 160, 49, 17, 30, 17, 0));
         TextView textView = new TextView(context);
         org.telegram.messenger.wl.j(24.0f, 1, textView);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18943j5, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18969j5, false));
         textView.setText(LocaleController.getString(R.string.GigagroupConvertTitle));
         linearLayout.addView(textView, w7.x5.t(-2, -2, 49, 17, 18, 17, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -44,12 +44,12 @@ public abstract class n20 extends org.telegram.ui.ActionBar.f3 {
             }
             linearLayout2.addView(f7, w7.x5.t(-2, -2, i10, 0, 8, 0, 0));
             ImageView imageView2 = new ImageView(context);
-            int i13 = org.telegram.ui.ActionBar.i6.f19091r5;
-            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i13, false), PorterDuff.Mode.MULTIPLY));
+            int i13 = org.telegram.ui.ActionBar.j6.f19117r5;
+            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i13, false), PorterDuff.Mode.MULTIPLY));
             imageView2.setImageResource(R.drawable.list_circle);
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
             if (LocaleController.isRTL) {
                 i11 = 5;
             } else {
@@ -78,24 +78,24 @@ public abstract class n20 extends org.telegram.ui.ActionBar.f3 {
         }
         ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
-        view.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.i6.Oh));
+        view.setBackground(org.telegram.ui.ActionBar.z5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.j6.Oh));
         frameLayout.addView(view, w7.x5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView3 = new TextView(context);
-        frameLayout.f26041a = textView3;
+        frameLayout.f26017a = textView3;
         textView3.setLines(1);
         textView3.setSingleLine(true);
         textView3.setGravity(1);
         textView3.setEllipsize(TextUtils.TruncateAt.END);
         textView3.setGravity(17);
-        org.telegram.messenger.w1.q(textView3, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false), 1, 14.0f);
+        org.telegram.messenger.w1.q(textView3, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false), 1, 14.0f);
         frameLayout.addView(textView3, w7.x5.e(-2, -2, 17));
         frameLayout.setBackground(null);
         frameLayout.setText(LocaleController.getString(R.string.GigagroupConvertProcessButton));
-        view.setOnClickListener(new ai.d0(this, context, n2Var, 22));
+        view.setOnClickListener(new ai.d0(this, context, o2Var, 22));
         linearLayout.addView((View) frameLayout, w7.x5.t(-1, 50, 51, 0, 29, 0, 0));
         TextView textView4 = new TextView(context);
         textView4.setTextSize(1, 14.0f);
-        textView4.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19020n5, false));
+        textView4.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19046n5, false));
         org.telegram.messenger.wl.k(R.string.GigagroupConvertCancelButton, textView4, 17);
         linearLayout.addView(textView4, w7.x5.t(-2, 48, 49, 17, 0, 17, 16));
         textView4.setOnClickListener(new f0(this, 20));

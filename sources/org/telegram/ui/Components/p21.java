@@ -1,51 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class p21 extends Drawable {
-    public final Drawable f26936a;
-    public final Paint f26937b = new Paint(1);
-    public final RectF f26938c = new RectF();
+public final class p21 extends AnimatorListenerAdapter {
+    public final boolean f26918a;
+    public final y21 f26919b;
 
-    public p21(Context context) {
-        this.f26936a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
+    public p21(y21 y21Var, boolean z10) {
+        this.f26919b = y21Var;
+        this.f26918a = z10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.f26937b;
-        canvas.drawRoundRect(this.f26938c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
-        this.f26936a.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.f26938c.set(rect);
-        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
-        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
-        this.f26936a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f26937b.setAlpha(i10);
-        this.f26936a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        int i10;
+        y21 y21Var = this.f26919b;
+        long j3 = y21Var.f30100c;
+        if (y21Var.U == animator) {
+            boolean z10 = this.f26918a;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            y21Var.R = f7;
+            y21Var.n();
+            y21Var.S = false;
+            ImageView imageView = y21Var.E;
+            if (y21Var.P) {
+                i10 = R.drawable.menu_sidebar_top;
+            } else {
+                i10 = R.drawable.menu_sidebar_bottom;
+            }
+            imageView.setImageResource(i10);
+            y21Var.U = null;
+            MessagesController.getInstance(y21Var.f30098b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), y21Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), y21Var.P).apply();
+            Boolean bool = y21Var.T;
+            if (bool != null && z10 != bool.booleanValue()) {
+                boolean booleanValue = y21Var.T.booleanValue();
+                y21Var.T = null;
+                y21Var.d(booleanValue);
+            }
+            AndroidUtilities.runOnUIThread(new kq0(this, 19));
+        }
     }
 }

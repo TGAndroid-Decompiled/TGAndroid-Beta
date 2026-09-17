@@ -12,10 +12,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 public final class xa extends FrameLayout {
-    public static final int f21638f = 0;
-    public final LinearLayout f21639a;
-    public final TextView f21640b;
-    public final TextView f21641c;
+    public static final int f21648f = 0;
+    public final LinearLayout f21649a;
+    public final TextView f21650b;
+    public final TextView f21651c;
     public final wa d;
     public final wa e;
 
@@ -23,17 +23,17 @@ public final class xa extends FrameLayout {
         super(activity);
         setClickable(true);
         LinearLayout linearLayout = new LinearLayout(activity);
-        this.f21639a = linearLayout;
+        this.f21649a = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(activity);
-        this.f21640b = textView;
+        this.f21650b = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
         linearLayout.addView(textView, w7.x5.p(-1, -2, 0.0f, 55, 28, 8, 28, 0));
         TextView textView2 = new TextView(activity);
-        this.f21641c = textView2;
+        this.f21651c = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 13.0f);
         textView2.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
@@ -78,29 +78,29 @@ public final class xa extends FrameLayout {
 
     public final void b() {
         float f7;
-        this.f21640b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
-        this.f21641c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19218y6, false));
-        int i10 = org.telegram.ui.ActionBar.i6.I6;
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+        this.f21650b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        this.f21651c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19244y6, false));
+        int i10 = org.telegram.ui.ActionBar.j6.I6;
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
         wa waVar = this.d;
         waVar.setTextColor(w02);
-        int w03 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+        int w03 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
         float f10 = 0.15f;
-        if (org.telegram.ui.ActionBar.i6.I.q()) {
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
             f7 = 0.3f;
         } else {
             f7 = 0.15f;
         }
-        waVar.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.l1(f7, w03), 7, AndroidUtilities.dp(8.0f)));
-        int i11 = org.telegram.ui.ActionBar.i6.f19074q7;
-        int w04 = org.telegram.ui.ActionBar.i6.w0(null, i11, false);
+        waVar.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(f7, w03), 7, AndroidUtilities.dp(8.0f)));
+        int i11 = org.telegram.ui.ActionBar.j6.f19100q7;
+        int w04 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
         wa waVar2 = this.e;
         waVar2.setTextColor(w04);
-        int w05 = org.telegram.ui.ActionBar.i6.w0(null, i11, false);
-        if (org.telegram.ui.ActionBar.i6.I.q()) {
+        int w05 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
             f10 = 0.3f;
         }
-        waVar2.setBackground(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.l1(f10, w05), 7, AndroidUtilities.dp(8.0f)));
+        waVar2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(f10, w05), 7, AndroidUtilities.dp(8.0f)));
     }
 
     @Override
@@ -111,7 +111,7 @@ public final class xa extends FrameLayout {
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE);
-        LinearLayout linearLayout = this.f21639a;
+        LinearLayout linearLayout = this.f21649a;
         linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight() + 1, 1073741824));
     }

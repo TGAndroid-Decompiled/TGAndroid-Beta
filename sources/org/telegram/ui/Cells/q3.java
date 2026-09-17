@@ -3,16 +3,16 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class q3 extends AnimatorListenerAdapter {
-    public final r3 f20608a;
+    public final r3 f20618a;
 
     public q3(r3 r3Var) {
-        this.f20608a = r3Var;
+        this.f20618a = r3Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        r3 r3Var = this.f20608a;
-        if (r3Var.f20795r) {
+        r3 r3Var = this.f20618a;
+        if (r3Var.f20805r) {
             r3Var.d.setVisibility(4);
         } else {
             r3Var.e.setVisibility(4);

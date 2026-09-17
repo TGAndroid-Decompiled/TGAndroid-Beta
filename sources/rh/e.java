@@ -11,33 +11,33 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.tp;
 import yf.p;
 public final class e extends qh.e implements Drawable.Callback, le.d {
-    public final String f42593b;
+    public final String f42615b;
     public final Drawable d;
-    public final tp f42595f;
+    public final tp f42617f;
     public qh.d h;
-    public TLRPC.WebPage f42596n;
-    public final le.b f42597r;
-    public final le.b f42598s;
-    public final a5.a f42594c = new a5.a((char) 0, 14);
+    public TLRPC.WebPage f42618n;
+    public final le.b f42619r;
+    public final le.b f42620s;
+    public final a5.a f42616c = new a5.a((char) 0, 14);
     public final Paint e = new Paint(1);
 
     public e(String str) {
         tp tpVar = new tp(-1);
-        this.f42595f = tpVar;
+        this.f42617f = tpVar;
         qr qrVar = qr.h;
-        this.f42597r = new le.b(0, this, qrVar, 320L, false);
-        this.f42598s = new le.b(0, this, qrVar, 320L, false);
-        this.f42593b = str;
-        this.f41765a.setRoundRadius(AndroidUtilities.dp(7.0f));
+        this.f42619r = new le.b(0, this, qrVar, 320L, false);
+        this.f42620s = new le.b(0, this, qrVar, 320L, false);
+        this.f42615b = str;
+        this.f41787a.setRoundRadius(AndroidUtilities.dp(7.0f));
         this.d = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
         tpVar.setCallback(this);
-        tpVar.b(i6.w0(null, i6.f19039o7, false));
-        tpVar.f28160a = AndroidUtilities.dp(15.0f);
+        tpVar.b(j6.w0(null, j6.f19065o7, false));
+        tpVar.f28173a = AndroidUtilities.dp(15.0f);
     }
 
     @Override
@@ -64,30 +64,30 @@ public final class e extends qh.e implements Drawable.Callback, le.d {
     public final void c(Canvas canvas, int i10, int i11) {
         float f7 = i10;
         float f10 = i11;
-        ImageReceiver imageReceiver = this.f41765a;
+        ImageReceiver imageReceiver = this.f41787a;
         imageReceiver.setImageCoords(0.0f, 0.0f, f7, f10);
         imageReceiver.draw(canvas);
-        tp tpVar = this.f42595f;
+        tp tpVar = this.f42617f;
         tpVar.setBounds(0, 0, i10, i11);
-        int w02 = i6.w0(null, i6.f18780a7, false);
-        le.b bVar = this.f42598s;
+        int w02 = j6.w0(null, j6.f18806a7, false);
+        le.b bVar = this.f42620s;
         int d = i0.a.d(bVar.e, w02, 1073741824);
         Paint paint = this.e;
         paint.setColor(d);
         canvas.drawRoundRect(0.0f, 0.0f, f7, f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
-        int d10 = i0.a.d(bVar.e, i6.w0(null, i6.f19039o7, false), -1);
+        int d10 = i0.a.d(bVar.e, j6.w0(null, j6.f19065o7, false), -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        a5.a aVar = this.f42594c;
+        a5.a aVar = this.f42616c;
         aVar.getClass();
-        if (((PorterDuffColorFilter) aVar.f276c) == null || aVar.f275b != d10 || ((PorterDuff.Mode) aVar.d) != mode) {
-            aVar.f276c = new PorterDuffColorFilter(d10, mode);
-            aVar.f275b = d10;
+        if (((PorterDuffColorFilter) aVar.f278c) == null || aVar.f277b != d10 || ((PorterDuff.Mode) aVar.d) != mode) {
+            aVar.f278c = new PorterDuffColorFilter(d10, mode);
+            aVar.f277b = d10;
             aVar.d = mode;
         }
         Drawable drawable = this.d;
-        drawable.setColorFilter((PorterDuffColorFilter) aVar.f276c);
+        drawable.setColorFilter((PorterDuffColorFilter) aVar.f278c);
         p.e(this.d, f7 / 2.0f, f10 / 2.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
-        le.b bVar2 = this.f42597r;
+        le.b bVar2 = this.f42619r;
         p.b(canvas, drawable, 1.0f - bVar2.e);
         p.b(canvas, tpVar, bVar2.e);
     }

@@ -12,7 +12,7 @@ public interface t40 {
 
     boolean e();
 
-    org.telegram.ui.dv0 getCloseIntoObject();
+    org.telegram.ui.fv0 getCloseIntoObject();
 
     String getInitialSearchString();
 

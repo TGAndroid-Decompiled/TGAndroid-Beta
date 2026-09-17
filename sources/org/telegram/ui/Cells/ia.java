@@ -29,18 +29,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.hq0;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.iq0;
 import org.telegram.ui.Components.k20;
 import org.telegram.ui.Components.l20;
 import org.telegram.ui.Components.vi;
-import org.telegram.ui.pv0;
-public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.common.api.internal.o, s4.e0, n5.b, v0.i, com.google.android.gms.common.api.internal.s {
-    public final int f20279a;
-    public Object f20280b;
+import org.telegram.ui.rv0;
+public final class ia implements k1, ah.k, me.a, qg.y1, com.google.android.gms.common.api.internal.o, s4.e0, n5.b, v0.i, com.google.android.gms.common.api.internal.s {
+    public final int f20289a;
+    public Object f20290b;
 
     public ia(int i10) {
-        this.f20279a = i10;
+        this.f20289a = i10;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     }
 
     public void B(da.b bVar, Thread thread, Throwable th2) {
-        w9.m mVar = (w9.m) this.f20280b;
+        w9.m mVar = (w9.m) this.f20290b;
         synchronized (mVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -69,7 +69,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void D(int i10, int i11) {
-        ((s4.h0) this.f20280b).p(i10, i11);
+        ((s4.h0) this.f20290b).p(i10, i11);
     }
 
     @Override
@@ -99,7 +99,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void O0(int i10, int i11) {
-        ((s4.h0) this.f20280b).t(i10, i11);
+        ((s4.h0) this.f20290b).t(i10, i11);
     }
 
     @Override
@@ -114,10 +114,10 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void P0(int i10, t1 t1Var) {
-        ja jaVar = (ja) this.f20280b;
+        ja jaVar = (ja) this.f20290b;
         g gVar = jaVar.v;
         if (jaVar.a()) {
-            jaVar.f20344s = 2;
+            jaVar.f20354s = 2;
             t1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -126,10 +126,10 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void P1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        ja jaVar = (ja) this.f20280b;
+        ja jaVar = (ja) this.f20290b;
         g gVar = jaVar.v;
         if (jaVar.a()) {
-            jaVar.f20344s = 2;
+            jaVar.f20354s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
@@ -171,12 +171,12 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     }
 
     @Override
-    public pv0 Y1() {
+    public rv0 Y1() {
         return null;
     }
 
     public void a() {
-        ArrayList arrayList = (ArrayList) this.f20280b;
+        ArrayList arrayList = (ArrayList) this.f20290b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -208,7 +208,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void accept(Object obj, Object obj2) {
-        v8.j jVar = (v8.j) this.f20280b;
+        v8.j jVar = (v8.j) this.f20290b;
         e8.b bVar = (e8.b) obj;
         Bundle G = bVar.G();
         G.putBoolean("com.google.android.gms.wallet.EXTRA_USING_AUTO_RESOLVABLE_RESULT", true);
@@ -217,13 +217,13 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
             e8.i iVar = (e8.i) bVar.u();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-            int i10 = e8.c.f8038a;
+            int i10 = e8.c.f8043a;
             obtain.writeInt(1);
             jVar.writeToParcel(obtain, 0);
             obtain.writeInt(1);
             G.writeToParcel(obtain, 0);
             obtain.writeStrongBinder(aVar);
-            iVar.f8046a.transact(19, obtain, null, 1);
+            iVar.f8051a.transact(19, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException e) {
             Log.e("WalletClientImpl", "RemoteException getting payment data", e);
@@ -234,20 +234,20 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void b(Canvas canvas) {
-        switch (this.f20279a) {
+        switch (this.f20289a) {
             case 1:
-                vi viVar = (vi) this.f20280b;
-                canvas.drawColor(viVar.getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6));
+                vi viVar = (vi) this.f20290b;
+                canvas.drawColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f18862d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     viVar.C2.b(canvas, -2);
                     return;
                 }
                 return;
             default:
-                hq0 hq0Var = (hq0) this.f20280b;
-                canvas.drawColor(hq0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6));
+                iq0 iq0Var = (iq0) this.f20290b;
+                canvas.drawColor(iq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f18862d6));
                 if (SharedConfig.chatBlurEnabled()) {
-                    hq0Var.O0.b(canvas, -2);
+                    iq0Var.O0.b(canvas, -2);
                     return;
                 }
                 return;
@@ -261,10 +261,10 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void b2(t1 t1Var, int i10, float f7, float f10, boolean z10) {
-        ja jaVar = (ja) this.f20280b;
+        ja jaVar = (ja) this.f20290b;
         g gVar = jaVar.v;
         if (jaVar.a()) {
-            jaVar.f20344s = 0;
+            jaVar.f20354s = 0;
             t1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -273,12 +273,12 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void c(Object obj) {
-        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f20280b);
+        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f20290b);
     }
 
     @Override
     public boolean c1(int i10, t1 t1Var) {
-        if (i10 == ((ja) this.f20280b).f20344s) {
+        if (i10 == ((ja) this.f20290b).f20354s) {
             return true;
         }
         return false;
@@ -290,29 +290,29 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     }
 
     public void d(s4.a aVar) {
-        RecyclerView recyclerView = (RecyclerView) this.f20280b;
-        int i10 = aVar.f42639a;
+        RecyclerView recyclerView = (RecyclerView) this.f20290b;
+        int i10 = aVar.f42661a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 4) {
                     if (i10 != 8) {
                         return;
                     }
-                    recyclerView.f2863x.X(recyclerView, aVar.f42640b, aVar.d);
+                    recyclerView.f2868x.X(recyclerView, aVar.f42662b, aVar.d);
                     return;
                 }
-                recyclerView.f2863x.a0(recyclerView, aVar.f42640b, aVar.d, aVar.f42641c);
+                recyclerView.f2868x.a0(recyclerView, aVar.f42662b, aVar.d, aVar.f42663c);
                 return;
             }
-            recyclerView.f2863x.Y(recyclerView, aVar.f42640b, aVar.d);
+            recyclerView.f2868x.Y(recyclerView, aVar.f42662b, aVar.d);
             return;
         }
-        recyclerView.f2863x.V(recyclerView, aVar.f42640b, aVar.d);
+        recyclerView.f2868x.V(recyclerView, aVar.f42662b, aVar.d);
     }
 
     @Override
     public boolean e() {
-        return ((ja) this.f20280b).a();
+        return ((ja) this.f20290b).a();
     }
 
     @Override
@@ -331,12 +331,12 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     }
 
     public void g(za.a0 a0Var) {
-        ((l5.r) ((i5.f) ((pa.b) this.f20280b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new r5.d(this, 28)).a(new i5.a(null, a0Var, i5.d.f10993a, null), new j2.e(18));
+        ((l5.r) ((i5.f) ((pa.b) this.f20290b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new r5.d(this, 28)).a(new i5.a(null, a0Var, i5.d.f10996a, null), new j2.e(18));
     }
 
     @Override
     public Object mo28get() {
-        String packageName = ((Context) ((fd.a) this.f20280b).mo28get()).getPackageName();
+        String packageName = ((Context) ((fd.a) this.f20290b).mo28get()).getPackageName();
         if (packageName != null) {
             return packageName;
         }
@@ -370,13 +370,13 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void k0(int i10, int i11) {
-        ((s4.h0) this.f20280b).s(i10, i11);
+        ((s4.h0) this.f20290b).s(i10, i11);
     }
 
     @Override
     public void l(float f7) {
-        qg.z0 z0Var = (qg.z0) this.f20280b;
-        pg.s0.e(z0Var.f41724a).k("-1", f7);
+        qg.z0 z0Var = (qg.z0) this.f20290b;
+        pg.s0.e(z0Var.f41746a).k("-1", f7);
         z0Var.e.setBrushSize(f7);
     }
 
@@ -387,7 +387,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void l1(int i10, int i11) {
-        ((s4.h0) this.f20280b).r(i10, i11, null);
+        ((s4.h0) this.f20290b).r(i10, i11, null);
     }
 
     @Override
@@ -397,13 +397,13 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void m(ah.a aVar) {
-        switch (this.f20279a) {
+        switch (this.f20289a) {
             case 1:
-                aVar.a(((vi) this.f20280b).getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6));
+                aVar.a(((vi) this.f20290b).getThemedColor(org.telegram.ui.ActionBar.j6.f18862d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((hq0) this.f20280b).getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6));
+                aVar.a(((iq0) this.f20290b).getThemedColor(org.telegram.ui.ActionBar.j6.f18862d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -417,12 +417,12 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        h61 h61Var = (h61) this.f20280b;
+        i61 i61Var = (i61) this.f20290b;
         float f11 = -dp;
-        h61Var.f24529g.inset(f11, f11);
-        boolean contains = h61Var.f24529g.contains(f7, f10);
+        i61Var.f24830g.inset(f11, f11);
+        boolean contains = i61Var.f24830g.contains(f7, f10);
         float f12 = dp;
-        h61Var.f24529g.inset(f12, f12);
+        i61Var.f24830g.inset(f12, f12);
         return contains;
     }
 
@@ -438,7 +438,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((h61) this.f20280b).f24531j;
+        Runnable runnable = ((i61) this.f20290b).f24832j;
         if (runnable != null) {
             runnable.run();
         }
@@ -446,19 +446,19 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((h61) this.f20280b).h.c(true);
+        ((i61) this.f20290b).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((h61) this.f20280b).h.c(false);
+        ((i61) this.f20290b).h.c(false);
     }
 
     @Override
     public void onError(Object obj) {
         w0.d e = (w0.d) obj;
         kotlin.jvm.internal.i.e(e, "e");
-        zd.m mVar = (zd.m) this.f20280b;
+        zd.m mVar = (zd.m) this.f20290b;
         if (mVar.w()) {
             mVar.resumeWith(v7.t7.a(e));
         }
@@ -473,7 +473,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     public void onResult(Object obj) {
         v0.c result = (v0.c) obj;
         kotlin.jvm.internal.i.e(result, "result");
-        zd.m mVar = (zd.m) this.f20280b;
+        zd.m mVar = (zd.m) this.f20290b;
         if (mVar.w()) {
             mVar.resumeWith(result);
         }
@@ -482,59 +482,59 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     public void q(int i10, int i11, Object obj) {
         int i12;
         int i13;
-        RecyclerView recyclerView = (RecyclerView) this.f20280b;
-        int K = recyclerView.e.K();
+        RecyclerView recyclerView = (RecyclerView) this.f20290b;
+        int L = recyclerView.e.L();
         int i14 = i11 + i10;
-        for (int i15 = 0; i15 < K; i15++) {
-            View J = recyclerView.e.J(i15);
-            s4.c1 U = RecyclerView.U(J);
-            if (U != null && !U.r() && (i13 = U.f42677c) >= i10 && i13 < i14) {
-                U.a(2);
+        for (int i15 = 0; i15 < L; i15++) {
+            View K = recyclerView.e.K(i15);
+            s4.c1 V = RecyclerView.V(K);
+            if (V != null && !V.r() && (i13 = V.f42699c) >= i10 && i13 < i14) {
+                V.a(2);
                 if (obj == null) {
-                    U.a(1024);
-                } else if ((1024 & U.f42683l) == 0) {
-                    if (U.f42684m == null) {
+                    V.a(1024);
+                } else if ((1024 & V.f42705l) == 0) {
+                    if (V.f42706m == null) {
                         ArrayList arrayList = new ArrayList();
-                        U.f42684m = arrayList;
-                        U.f42685n = DesugarCollections.unmodifiableList(arrayList);
+                        V.f42706m = arrayList;
+                        V.f42707n = DesugarCollections.unmodifiableList(arrayList);
                     }
-                    U.f42684m.add(obj);
+                    V.f42706m.add(obj);
                 }
-                ((s4.p0) J.getLayoutParams()).f42783c = true;
+                ((s4.p0) K.getLayoutParams()).f42805c = true;
             }
         }
-        of.e eVar = recyclerView.f2835b;
+        of.e eVar = recyclerView.f2840b;
         ArrayList arrayList2 = (ArrayList) eVar.e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
             s4.c1 c1Var = (s4.c1) arrayList2.get(size);
-            if (c1Var != null && (i12 = c1Var.f42677c) >= i10 && i12 < i14) {
+            if (c1Var != null && (i12 = c1Var.f42699c) >= i10 && i12 < i14) {
                 c1Var.a(2);
                 eVar.f(size);
             }
         }
-        recyclerView.f2864x0 = true;
+        recyclerView.f2869x0 = true;
     }
 
     public void v(int i10, int i11) {
-        RecyclerView recyclerView = (RecyclerView) this.f20280b;
-        int K = recyclerView.e.K();
-        for (int i12 = 0; i12 < K; i12++) {
-            s4.c1 U = RecyclerView.U(recyclerView.e.J(i12));
-            if (U != null && !U.r() && U.f42677c >= i10) {
-                U.n(i11, false);
-                recyclerView.f2858t0.f42836f = true;
+        RecyclerView recyclerView = (RecyclerView) this.f20290b;
+        int L = recyclerView.e.L();
+        for (int i12 = 0; i12 < L; i12++) {
+            s4.c1 V = RecyclerView.V(recyclerView.e.K(i12));
+            if (V != null && !V.r() && V.f42699c >= i10) {
+                V.n(i11, false);
+                recyclerView.f2863t0.f42858f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2835b.e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2840b.e;
         int size = arrayList.size();
         for (int i13 = 0; i13 < size; i13++) {
             s4.c1 c1Var = (s4.c1) arrayList.get(i13);
-            if (c1Var != null && c1Var.f42677c >= i10) {
+            if (c1Var != null && c1Var.f42699c >= i10) {
                 c1Var.n(i11, true);
             }
         }
         recyclerView.requestLayout();
-        recyclerView.f2862w0 = true;
+        recyclerView.f2867w0 = true;
     }
 
     @Override
@@ -560,8 +560,8 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
         int i16;
         int i17;
         int i18;
-        RecyclerView recyclerView = (RecyclerView) this.f20280b;
-        int K = recyclerView.e.K();
+        RecyclerView recyclerView = (RecyclerView) this.f20290b;
+        int L = recyclerView.e.L();
         int i19 = -1;
         if (i10 < i11) {
             i13 = i10;
@@ -572,18 +572,18 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
             i13 = i11;
             i14 = 1;
         }
-        for (int i20 = 0; i20 < K; i20++) {
-            s4.c1 U = RecyclerView.U(recyclerView.e.J(i20));
-            if (U != null && (i18 = U.f42677c) >= i13 && i18 <= i12) {
+        for (int i20 = 0; i20 < L; i20++) {
+            s4.c1 V = RecyclerView.V(recyclerView.e.K(i20));
+            if (V != null && (i18 = V.f42699c) >= i13 && i18 <= i12) {
                 if (i18 == i10) {
-                    U.n(i11 - i10, false);
+                    V.n(i11 - i10, false);
                 } else {
-                    U.n(i14, false);
+                    V.n(i14, false);
                 }
-                recyclerView.f2858t0.f42836f = true;
+                recyclerView.f2863t0.f42858f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2835b.e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2840b.e;
         if (i10 < i11) {
             i16 = i10;
             i15 = i11;
@@ -595,7 +595,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
         int size = arrayList.size();
         for (int i21 = 0; i21 < size; i21++) {
             s4.c1 c1Var = (s4.c1) arrayList.get(i21);
-            if (c1Var != null && (i17 = c1Var.f42677c) >= i16 && i17 <= i15) {
+            if (c1Var != null && (i17 = c1Var.f42699c) >= i16 && i17 <= i15) {
                 if (i17 == i10) {
                     c1Var.n(i11 - i10, false);
                 } else {
@@ -604,7 +604,7 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
             }
         }
         recyclerView.requestLayout();
-        recyclerView.f2862w0 = true;
+        recyclerView.f2867w0 = true;
     }
 
     public boolean y(android.view.MotionEvent r22) {
@@ -617,38 +617,38 @@ public final class ia implements k1, ah.j, me.a, qg.y1, com.google.android.gms.c
     }
 
     public ia(Object obj, int i10) {
-        this.f20279a = i10;
-        this.f20280b = obj;
+        this.f20289a = i10;
+        this.f20290b = obj;
     }
 
     public ia(TextView textView) {
-        this.f20279a = 7;
-        this.f20280b = new q1.g(textView);
+        this.f20289a = 7;
+        this.f20290b = new q1.g(textView);
     }
 
     @Override
     public float get() {
-        qg.z0 z0Var = (qg.z0) this.f20280b;
-        int i10 = z0Var.f41724a;
+        qg.z0 z0Var = (qg.z0) this.f20290b;
+        int i10 = z0Var.f41746a;
         pg.m currentBrush = z0Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return pg.s0.e(i10).f40997i;
+            return pg.s0.e(i10).f41019i;
         }
         return pg.s0.e(i10).f("-1", currentBrush.d());
     }
 
     public ia() {
-        this.f20279a = 22;
+        this.f20289a = 22;
         File file = new File(System.getProperty("java.io.tmpdir"));
         if (!file.exists()) {
             file.mkdirs();
         }
-        this.f20280b = new ArrayList();
+        this.f20290b = new ArrayList();
     }
 
     public ia(Context context, l20 l20Var) {
-        this.f20279a = 2;
-        this.f20280b = new k20(context, l20Var);
+        this.f20289a = 2;
+        this.f20290b = new k20(context, l20Var);
     }
 
     @Override

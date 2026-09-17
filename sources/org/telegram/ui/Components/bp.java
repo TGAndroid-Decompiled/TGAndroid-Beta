@@ -16,29 +16,29 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.gj1;
 public final class bp implements ti {
-    public final vi f22853a;
-    public final TL_stories.TL_premium_boostsStatus f22854b;
-    public final org.telegram.ui.ActionBar.e6 f22855c;
+    public final vi f22779a;
+    public final TL_stories.TL_premium_boostsStatus f22780b;
+    public final org.telegram.ui.ActionBar.f6 f22781c;
     public final org.telegram.ui.g d;
     public final long e;
-    public final org.telegram.ui.s3 f22856f;
-    public final org.telegram.ui.ad h;
+    public final org.telegram.ui.s3 f22782f;
+    public final org.telegram.ui.cd h;
 
-    public bp(vi viVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.g gVar, long j3, org.telegram.ui.s3 s3Var, org.telegram.ui.ad adVar) {
-        this.f22853a = viVar;
-        this.f22854b = tL_premium_boostsStatus;
-        this.f22855c = e6Var;
+    public bp(vi viVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.g gVar, long j3, org.telegram.ui.s3 s3Var, org.telegram.ui.cd cdVar) {
+        this.f22779a = viVar;
+        this.f22780b = tL_premium_boostsStatus;
+        this.f22781c = f6Var;
         this.d = gVar;
         this.e = j3;
-        this.f22856f = s3Var;
-        this.h = adVar;
+        this.f22782f = s3Var;
+        this.h = cdVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        vi viVar = this.f22853a;
+        vi viVar = this.f22779a;
         try {
-            HashMap<Object, Object> selectedPhotos = viVar.f28762j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = viVar.f28754j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -52,16 +52,16 @@ public final class bp implements ti {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     ap apVar = new ap(new gj1(file, file, ""), loadBitmap, false, 0);
-                    apVar.V1 = this.f22854b;
-                    apVar.f38513a.f38499a = this.f22855c;
-                    apVar.f38556p1 = this.d;
+                    apVar.V1 = this.f22780b;
+                    apVar.f39531a.f39517a = this.f22781c;
+                    apVar.f39574p1 = this.d;
                     apVar.F1 = false;
                     apVar.E1 = false;
-                    apVar.f38552n1 = 0.2f;
+                    apVar.f39570n1 = 0.2f;
                     apVar.c1(this.e);
-                    apVar.I1 = new zo(viVar, this.f22856f, 0);
+                    apVar.I1 = new zo(viVar, this.f22782f, 0);
                     ?? obj = new Object();
-                    obj.f19368a = true;
+                    obj.f19397a = true;
                     obj.e = true;
                     this.h.showAsSheet(apVar, obj);
                     viVar.dismiss();
@@ -81,13 +81,13 @@ public final class bp implements ti {
     @Override
     public final void U0(Object obj) {
         ap apVar = new ap(obj, null, true, 1);
-        apVar.V1 = this.f22854b;
-        apVar.f38513a.f38499a = this.f22855c;
-        apVar.f38556p1 = this.d;
+        apVar.V1 = this.f22780b;
+        apVar.f39531a.f39517a = this.f22781c;
+        apVar.f39574p1 = this.d;
         apVar.c1(this.e);
-        apVar.I1 = new zo(this.f22853a, this.f22856f, 1);
+        apVar.I1 = new zo(this.f22779a, this.f22782f, 1);
         ?? obj2 = new Object();
-        obj2.f19368a = true;
+        obj2.f19397a = true;
         obj2.e = true;
         this.h.showAsSheet(apVar, obj2);
     }

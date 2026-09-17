@@ -5,25 +5,25 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.RandomAccessFile;
-import lf.m;
+import lf.n;
 public abstract class a {
-    public String f12976a;
-    public long f12977b;
-    public String f12978c;
+    public String f12979a;
+    public long f12980b;
+    public String f12981c;
     public String d;
     public String e;
-    public String f12979f;
-    public short f12980g;
+    public String f12982f;
+    public short f12983g;
     public String h;
-    public String f12981i;
-    public short f12982j;
-    public short f12983k;
-    public String f12984l;
-    public String f12985m;
-    public String f12986n;
-    public Bitmap f12987o;
-    public Bitmap f12988p;
-    public File f12989q;
+    public String f12984i;
+    public short f12985j;
+    public short f12986k;
+    public String f12987l;
+    public String f12988m;
+    public String f12989n;
+    public Bitmap f12990o;
+    public Bitmap f12991p;
+    public File f12992q;
 
     public static a a(File file) {
         byte b10;
@@ -38,19 +38,19 @@ public abstract class a {
             }
             if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
                 b bVar = new b(file);
-                if (!bVar.f12991s) {
+                if (!bVar.f12994s) {
                     return bVar;
                 }
                 return null;
             }
             if (!file.getAbsolutePath().endsWith("mp3") && (((b10 = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b10 != 84 || bArr[1] != 65 || bArr[2] != 71))) {
                 b bVar2 = new b(file);
-                if (!bVar2.f12991s) {
+                if (!bVar2.f12994s) {
                     return bVar2;
                 }
                 return null;
             }
-            return new m(bufferedInputStream, file.length());
+            return new n(bufferedInputStream, file.length());
         } catch (Exception unused) {
             return null;
         }

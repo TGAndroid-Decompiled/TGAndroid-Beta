@@ -10,14 +10,14 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import java.lang.ref.WeakReference;
 public abstract class p {
-    public boolean f14972c;
+    public boolean f14982c;
     public androidx.mediarouter.app.c e;
-    public final Object f14970a = new Object();
-    public final o f14971b = new o(this);
+    public final Object f14980a = new Object();
+    public final o f14981b = new o(this);
     public WeakReference d = new WeakReference(null);
 
     public final void C(r rVar, Handler handler) {
-        synchronized (this.f14970a) {
+        synchronized (this.f14980a) {
             try {
                 this.d = new WeakReference(rVar);
                 androidx.mediarouter.app.c cVar = this.e;
@@ -35,17 +35,17 @@ public abstract class p {
         long j3;
         boolean z10;
         boolean z11;
-        if (this.f14972c) {
+        if (this.f14982c) {
             boolean z12 = false;
-            this.f14972c = false;
+            this.f14982c = false;
             handler.removeMessages(1);
-            h0 h0Var = rVar.f14979g;
+            h0 h0Var = rVar.f14989g;
             if (h0Var == null) {
                 j3 = 0;
             } else {
                 j3 = h0Var.e;
             }
-            if (h0Var != null && h0Var.f14944a == 3) {
+            if (h0Var != null && h0Var.f14954a == 3) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -72,7 +72,7 @@ public abstract class p {
         KeyEvent keyEvent;
         long j3;
         if (Build.VERSION.SDK_INT < 27) {
-            synchronized (this.f14970a) {
+            synchronized (this.f14980a) {
                 rVar = (r) this.d.get();
                 cVar = this.e;
             }
@@ -83,10 +83,10 @@ public abstract class p {
                     a(rVar, cVar);
                     return false;
                 } else if (keyEvent.getRepeatCount() == 0) {
-                    if (this.f14972c) {
+                    if (this.f14982c) {
                         cVar.removeMessages(1);
-                        this.f14972c = false;
-                        h0 h0Var = rVar.f14979g;
+                        this.f14982c = false;
+                        h0 h0Var = rVar.f14989g;
                         if (h0Var == null) {
                             j3 = 0;
                         } else {
@@ -97,7 +97,7 @@ public abstract class p {
                         }
                         return true;
                     }
-                    this.f14972c = true;
+                    this.f14982c = true;
                     cVar.sendMessageDelayed(cVar.obtainMessage(1, c10), ViewConfiguration.getDoubleTapTimeout());
                     return true;
                 } else {

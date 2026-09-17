@@ -7,30 +7,30 @@ import android.text.TextPaint;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class a4 extends LinearLayout {
-    public final int f22298a = 1;
-    public boolean f22299b;
-    public final uc0 f22300c;
+    public final int f22308a = 1;
+    public boolean f22309b;
+    public final uc0 f22310c;
     public final Object d;
     public final uc0 e;
-    public final uc0 f22301f;
+    public final uc0 f22311f;
 
     public a4(Context context, a5 a5Var, uc0 uc0Var, tg.i iVar, tg.j jVar) {
         super(context);
-        this.f22300c = uc0Var;
+        this.f22310c = uc0Var;
         this.e = iVar;
-        this.f22301f = jVar;
-        this.f22299b = false;
+        this.f22311f = jVar;
+        this.f22309b = false;
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
         setWillNotDraw(false);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setColor(a5Var.f22305a);
+        textPaint.setColor(a5Var.f22316a);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f22298a) {
+        switch (this.f22308a) {
             case 1:
                 super.onDraw(canvas);
                 canvas.drawText(":", ((tg.i) this.e).getRight() - AndroidUtilities.dp(12.0f), (getHeight() / 2.0f) - AndroidUtilities.dp(11.0f), (TextPaint) this.d);
@@ -45,48 +45,48 @@ public final class a4 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        switch (this.f22298a) {
+        switch (this.f22308a) {
             case 0:
                 uc0 uc0Var = (uc0) this.d;
-                this.f22299b = true;
+                this.f22309b = true;
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     i12 = 3;
                 } else {
                     i12 = 5;
                 }
-                uc0 uc0Var2 = this.f22300c;
+                uc0 uc0Var2 = this.f22310c;
                 uc0Var2.setItemCount(i12);
                 uc0Var.setItemCount(i12);
                 uc0 uc0Var3 = this.e;
                 uc0Var3.setItemCount(i12);
-                uc0 uc0Var4 = this.f22301f;
+                uc0 uc0Var4 = this.f22311f;
                 uc0Var4.setItemCount(i12);
                 uc0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
                 uc0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
                 uc0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
                 uc0Var4.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                this.f22299b = false;
+                this.f22309b = false;
                 super.onMeasure(i10, i11);
                 return;
             default:
-                tg.j jVar = (tg.j) this.f22301f;
+                tg.j jVar = (tg.j) this.f22311f;
                 tg.i iVar = (tg.i) this.e;
-                this.f22299b = true;
+                this.f22309b = true;
                 Point point2 = AndroidUtilities.displaySize;
                 if (point2.x > point2.y) {
                     i13 = 3;
                 } else {
                     i13 = 5;
                 }
-                uc0 uc0Var5 = this.f22300c;
+                uc0 uc0Var5 = this.f22310c;
                 uc0Var5.setItemCount(i13);
                 iVar.setItemCount(i13);
                 jVar.setItemCount(i13);
                 uc0Var5.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 iVar.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 jVar.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
-                this.f22299b = false;
+                this.f22309b = false;
                 super.onMeasure(i10, i11);
                 return;
         }
@@ -94,15 +94,15 @@ public final class a4 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        switch (this.f22298a) {
+        switch (this.f22308a) {
             case 0:
-                if (!this.f22299b) {
+                if (!this.f22309b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f22299b) {
+                if (!this.f22309b) {
                     super.requestLayout();
                     return;
                 }
@@ -112,10 +112,10 @@ public final class a4 extends LinearLayout {
 
     public a4(Context context, uc0 uc0Var, uc0 uc0Var2, uc0 uc0Var3, uc0 uc0Var4) {
         super(context);
-        this.f22300c = uc0Var;
+        this.f22310c = uc0Var;
         this.d = uc0Var2;
         this.e = uc0Var3;
-        this.f22301f = uc0Var4;
-        this.f22299b = false;
+        this.f22311f = uc0Var4;
+        this.f22309b = false;
     }
 }

@@ -6,12 +6,12 @@ public final class f1 extends k0 {
     public static final f1 h = new f1(null, new Object[0], 0);
     public final transient Object d;
     public final transient Object[] e;
-    public final transient int f8068f;
+    public final transient int f8073f;
 
     public f1(Object obj, Object[] objArr, int i10) {
         this.d = obj;
         this.e = objArr;
-        this.f8068f = i10;
+        this.f8073f = i10;
     }
 
     public static Object f(Object[] objArr, int i10, int i11, int i12) {
@@ -213,22 +213,22 @@ public final class f1 extends k0 {
 
     @Override
     public final c1 b() {
-        return new c1(this, this.e, 0, this.f8068f);
+        return new c1(this, this.e, 0, this.f8073f);
     }
 
     @Override
     public final d1 c() {
-        return new d1(this, new e1(0, this.f8068f, this.e));
+        return new d1(this, new e1(0, this.f8073f, this.e));
     }
 
     @Override
     public final d0 d() {
-        return new e1(1, this.f8068f, this.e);
+        return new e1(1, this.f8073f, this.e);
     }
 
     @Override
     public final Object get(Object obj) {
-        Object g10 = g(this.d, this.e, this.f8068f, 0, obj);
+        Object g10 = g(this.d, this.e, this.f8073f, 0, obj);
         if (g10 == null) {
             return null;
         }
@@ -237,6 +237,6 @@ public final class f1 extends k0 {
 
     @Override
     public final int size() {
-        return this.f8068f;
+        return this.f8073f;
     }
 }

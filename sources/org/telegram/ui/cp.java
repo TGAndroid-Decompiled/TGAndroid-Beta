@@ -5,17 +5,17 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class cp extends org.telegram.ui.Components.zn0 {
-    public final kp f32835r;
+public final class cp extends org.telegram.ui.Components.ao0 {
+    public final kp f32843r;
 
-    public cp(kp kpVar, Context context, xd xdVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, xdVar, e6Var, false);
-        this.f32835r = kpVar;
+    public cp(kp kpVar, Context context, zd zdVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, zdVar, f6Var, false);
+        this.f32843r = kpVar;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.f32835r.L && super.onInterceptTouchEvent(motionEvent)) {
+        if (!this.f32843r.L && super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -26,7 +26,7 @@ public final class cp extends org.telegram.ui.Components.zn0 {
         if (motionEvent.getAction() != 0) {
             return super.onTouchEvent(motionEvent);
         }
-        if (!this.f32835r.L && super.onTouchEvent(motionEvent)) {
+        if (!this.f32843r.L && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

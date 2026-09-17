@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class jp extends org.telegram.ui.Components.ll0 {
-    public static final int f34946b3 = 0;
+public final class jp extends org.telegram.ui.Components.ml0 {
+    public static final int f34915b3 = 0;
     public final ip X2;
     public boolean Y2;
     public final Paint Z2;
-    public final kp f34947a3;
+    public final kp f34916a3;
 
     public jp(kp kpVar, Context context) {
         super(context, null);
-        this.f34947a3 = kpVar;
+        this.f34916a3 = kpVar;
         this.Y2 = false;
         this.Z2 = new Paint(1);
         ip ipVar = new ip(this);
@@ -31,19 +31,19 @@ public final class jp extends org.telegram.ui.Components.ll0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        int R;
-        int size = this.f34947a3.N.size();
+        int S;
+        int size = this.f34916a3.N.size();
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MIN_VALUE;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             View childAt = getChildAt(i12);
-            if (childAt != null && (R = RecyclerView.R(childAt)) >= 1 && R <= size) {
+            if (childAt != null && (S = RecyclerView.S(childAt)) >= 1 && S <= size) {
                 i10 = Math.min(childAt.getTop(), i10);
                 i11 = Math.max(childAt.getBottom(), i11);
             }
         }
         if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18836d6, this.f25966p2);
+            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18862d6, this.f26191p2);
             Paint paint = this.Z2;
             paint.setColor(v02);
             canvas2 = canvas;
@@ -59,10 +59,10 @@ public final class jp extends org.telegram.ui.Components.ll0 {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
     }
 
-    public final void w1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
+    public final void x1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
         TLRPC.TL_username tL_username2;
         int min;
-        kp kpVar = this.f34947a3;
+        kp kpVar = this.f34916a3;
         ArrayList arrayList = kpVar.N;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -108,16 +108,16 @@ public final class jp extends org.telegram.ui.Components.ll0 {
                             break;
                         }
                         View childAt = getChildAt(i17);
-                        if (RecyclerView.R(childAt) == i12) {
+                        if (RecyclerView.S(childAt) == i12) {
                             if (z11) {
                                 AndroidUtilities.shakeView(childAt);
                             }
-                            if (childAt instanceof na) {
-                                na naVar = (na) childAt;
-                                naVar.setLoading(kpVar.P.contains(tL_username2.username));
-                                TLRPC.TL_username tL_username3 = naVar.v;
+                            if (childAt instanceof pa) {
+                                pa paVar = (pa) childAt;
+                                paVar.setLoading(kpVar.P.contains(tL_username2.username));
+                                TLRPC.TL_username tL_username3 = paVar.v;
                                 if (tL_username3 != null) {
-                                    naVar.a(tL_username3, naVar.f35927w, true, naVar.f35928x);
+                                    paVar.a(tL_username3, paVar.f36577w, true, paVar.f36578x);
                                 }
                             }
                         } else {
@@ -127,7 +127,7 @@ public final class jp extends org.telegram.ui.Components.ll0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         ip ipVar = this.X2;
-                        ArrayList arrayList2 = ipVar.f34718c.f34947a3.N;
+                        ArrayList arrayList2 = ipVar.f34640c.f34916a3.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             ipVar.p(i12, i13);

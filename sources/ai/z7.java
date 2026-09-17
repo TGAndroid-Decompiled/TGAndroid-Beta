@@ -26,35 +26,35 @@ import org.telegram.messenger.nk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.kv0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.fl0;
-import org.telegram.ui.g71;
+import org.telegram.ui.hl0;
+import org.telegram.ui.i71;
 public final class z7 implements Runnable {
-    public final int f1783a;
-    public final boolean f1784b;
-    public final boolean f1785c;
+    public final int f1788a;
+    public final boolean f1789b;
+    public final boolean f1790c;
     public final Object d;
     public final Object e;
-    public final Object f1786f;
+    public final Object f1791f;
 
     public z7(l9 l9Var, boolean z10, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, TLObject tLObject, boolean z11) {
-        this.f1783a = 0;
+        this.f1788a = 0;
         this.d = l9Var;
-        this.f1784b = z10;
+        this.f1789b = z10;
         this.e = tL_stories_getAllStories;
-        this.f1786f = tLObject;
-        this.f1785c = z11;
+        this.f1791f = tLObject;
+        this.f1790c = z11;
     }
 
     @Override
     public final void run() {
         boolean z10;
         Utilities.Callback callback;
-        int i10 = this.f1783a;
-        boolean z11 = this.f1785c;
-        boolean z12 = this.f1784b;
-        Object obj = this.f1786f;
+        int i10 = this.f1788a;
+        boolean z11 = this.f1790c;
+        boolean z12 = this.f1789b;
+        Object obj = this.f1791f;
         Object obj2 = this.e;
         Object obj3 = this.d;
         switch (i10) {
@@ -62,44 +62,44 @@ public final class z7 implements Runnable {
                 l9 l9Var = (l9) obj3;
                 TL_stories.TL_stories_getAllStories tL_stories_getAllStories = (TL_stories.TL_stories_getAllStories) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i11 = l9Var.f1188a;
-                SharedPreferences sharedPreferences = l9Var.f1196l;
+                int i11 = l9Var.f1193a;
+                SharedPreferences sharedPreferences = l9Var.f1201l;
                 if (z12) {
-                    l9Var.f1202r = false;
+                    l9Var.f1207r = false;
                 } else {
-                    l9Var.f1201q = false;
+                    l9Var.f1206q = false;
                 }
                 FileLog.d("StoriesController loaded stories from server state=" + tL_stories_getAllStories.state + " more=" + tL_stories_getAllStories.next + "  " + tLObject);
                 if (tLObject instanceof TL_stories.TL_stories_allStories) {
                     TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) tLObject;
                     MessagesStorage.getInstance(i11).putUsersAndChats(tL_stories_allStories.users, null, true, true);
                     if (!z12) {
-                        l9Var.f1205u = tL_stories_allStories.count;
-                        l9Var.f1200p = tL_stories_allStories.has_more;
-                        l9Var.f1199o = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1199o).putBoolean("last_stories_has_more", l9Var.f1200p).putInt("total_stores", l9Var.f1205u).apply();
+                        l9Var.f1210u = tL_stories_allStories.count;
+                        l9Var.f1205p = tL_stories_allStories.has_more;
+                        l9Var.f1204o = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1204o).putBoolean("last_stories_has_more", l9Var.f1205p).putInt("total_stores", l9Var.f1210u).apply();
                     } else {
                         l9Var.v = tL_stories_allStories.count;
-                        l9Var.f1209z = tL_stories_allStories.has_more;
-                        l9Var.f1208y = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1208y).putBoolean("last_stories_has_more_hidden", l9Var.f1209z).putInt("total_stores_hidden", l9Var.v).apply();
+                        l9Var.f1214z = tL_stories_allStories.has_more;
+                        l9Var.f1213y = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1213y).putBoolean("last_stories_has_more_hidden", l9Var.f1214z).putInt("total_stores_hidden", l9Var.v).apply();
                     }
                     l9Var.Y(tL_stories_allStories, z12, false, z11);
                     return;
                 } else if (tLObject instanceof TL_stories.TL_stories_allStoriesNotModified) {
                     if (!z12) {
-                        l9Var.f1200p = sharedPreferences.getBoolean("last_stories_has_more", false);
-                        l9Var.f1199o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1199o).apply();
+                        l9Var.f1205p = sharedPreferences.getBoolean("last_stories_has_more", false);
+                        l9Var.f1204o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1204o).apply();
                     } else {
-                        l9Var.f1209z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
-                        l9Var.f1208y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1208y).apply();
+                        l9Var.f1214z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
+                        l9Var.f1213y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1213y).apply();
                     }
                     if (z12) {
-                        z10 = l9Var.f1209z;
+                        z10 = l9Var.f1214z;
                     } else {
-                        z10 = l9Var.f1200p;
+                        z10 = l9Var.f1205p;
                     }
                     if (z10) {
                         NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -113,8 +113,8 @@ public final class z7 implements Runnable {
                 y9 y9Var = (y9) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 f fVar = (f) obj;
-                int i12 = y9Var.f1762a;
-                MessagesStorage messagesStorage = y9Var.f1763b;
+                int i12 = y9Var.f1767a;
+                MessagesStorage messagesStorage = y9Var.f1768b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -123,7 +123,7 @@ public final class z7 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18348id, peerDialogId);
+                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18357id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f7);
                                 }
@@ -178,20 +178,20 @@ public final class z7 implements Runnable {
                 ProfileActivity.m0((ProfileActivity) obj3, (TLRPC.User) obj2, (String) obj, z12, z11);
                 return;
             case 3:
-                final g71 g71Var = (g71) obj3;
+                final i71 i71Var = (i71) obj3;
                 final String str = (String) obj2;
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(g71Var.V).getReactionsMap();
+                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(i71Var.V).getReactionsMap();
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean fullyConsistsOfEmojis = Emoji.fullyConsistsOfEmojis(str);
                 ArrayList arrayList6 = new ArrayList();
                 HashMap hashMap = new HashMap();
                 ArrayList arrayList7 = new ArrayList();
-                fl0 fl0Var = new fl0(g71Var, str, this.f1784b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f1785c);
-                int i16 = g71Var.W;
+                hl0 hl0Var = new hl0(i71Var, str, this.f1789b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f1790c);
+                int i16 = i71Var.W;
                 if (i16 == 13) {
                     Utilities.doCallbacks(new Utilities.Callback() {
                         @Override
@@ -199,14 +199,14 @@ public final class z7 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(g71Var.V).getEmojiSuggestions(g71.a2, str, false, new rv0(6, linkedHashSet2, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(i71Var.V).getEmojiSuggestions(i71.a2, str, false, new tv0(6, linkedHashSet2, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(g71Var.V).getAnimatedEmojiByKeywords(str, new p51(linkedHashSet2, runnable, 0));
+                                    MediaDataController.getInstance(i71Var.V).getAnimatedEmojiByKeywords(str, new s51(linkedHashSet2, runnable, 0));
                                     return;
                             }
                         }
-                    }, fl0Var);
+                    }, hl0Var);
                     return;
                 } else if (i16 == 14) {
                     if (fullyConsistsOfEmojis) {
@@ -218,7 +218,7 @@ public final class z7 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(g71Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(i71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -238,8 +238,8 @@ public final class z7 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        g71 g71Var2 = g71Var;
-                                        MediaDataController.getInstance(g71Var2.V).getEmojiSuggestions(g71.a2, str, false, new a1.d(g71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        i71 i71Var2 = i71Var;
+                                        MediaDataController.getInstance(i71Var2.V).getEmojiSuggestions(i71.a2, str, false, new a1.d(i71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -253,7 +253,7 @@ public final class z7 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(g71Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(i71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -273,14 +273,14 @@ public final class z7 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        g71 g71Var2 = g71Var;
-                                        MediaDataController.getInstance(g71Var2.V).getEmojiSuggestions(g71.a2, str, false, new a1.d(g71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        i71 i71Var2 = i71Var;
+                                        MediaDataController.getInstance(i71Var2.V).getEmojiSuggestions(i71.a2, str, false, new a1.d(i71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
                         };
                     }
-                    Utilities.doCallbacks(callback, fl0Var);
+                    Utilities.doCallbacks(callback, hl0Var);
                     return;
                 } else {
                     Utilities.doCallbacks(new hd(fullyConsistsOfEmojis, str, linkedHashSet, 4), new Utilities.Callback() {
@@ -289,14 +289,14 @@ public final class z7 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(g71Var.V).getEmojiSuggestions(g71.a2, str, false, new rv0(6, linkedHashSet, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(i71Var.V).getEmojiSuggestions(i71.a2, str, false, new tv0(6, linkedHashSet, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(g71Var.V).getAnimatedEmojiByKeywords(str, new p51(linkedHashSet, runnable, 0));
+                                    MediaDataController.getInstance(i71Var.V).getAnimatedEmojiByKeywords(str, new s51(linkedHashSet, runnable, 0));
                                     return;
                             }
                         }
-                    }, new e4(g71Var, strArr, str, linkedHashSet, 11), new nk(g71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) g71Var, str, arrayList6, (Object) hashMap, 12), new org.telegram.ui.y(g71Var, str, arrayList7, 8), fl0Var);
+                    }, new e4(i71Var, strArr, str, linkedHashSet, 11), new nk(i71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) i71Var, str, arrayList6, (Object) hashMap, 12), new org.telegram.ui.y(i71Var, str, arrayList7, 8), hl0Var);
                     return;
                 }
             case 4:
@@ -310,11 +310,11 @@ public final class z7 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.q0 q0Var = ((pg.a1) obj3).f40816y.f40826c;
-                jv0 jv0Var = q0Var.f40952g;
-                n7.a1 h = q0Var.h(new RectF(0.0f, 0.0f, jv0Var.f25443a, jv0Var.f25444b), false, z12, z11);
+                pg.q0 q0Var = ((pg.a1) obj3).f40838y.f40848c;
+                kv0 kv0Var = q0Var.f40974g;
+                n7.a1 h = q0Var.h(new RectF(0.0f, 0.0f, kv0Var.f25695a, kv0Var.f25696b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f15108b;
+                    bitmapArr[0] = (Bitmap) h.f15118b;
                 }
                 countDownLatch.countDown();
                 return;
@@ -322,29 +322,29 @@ public final class z7 implements Runnable {
     }
 
     public z7(Object obj, Object obj2, boolean z10, boolean z11, Object obj3, int i10) {
-        this.f1783a = i10;
+        this.f1788a = i10;
         this.d = obj;
         this.e = obj2;
-        this.f1784b = z10;
-        this.f1785c = z11;
-        this.f1786f = obj3;
+        this.f1789b = z10;
+        this.f1790c = z11;
+        this.f1791f = obj3;
     }
 
     public z7(ProfileActivity profileActivity, TLRPC.User user, String str, boolean z10, boolean z11) {
-        this.f1783a = 2;
+        this.f1788a = 2;
         this.d = profileActivity;
         this.e = user;
-        this.f1786f = str;
-        this.f1784b = z10;
-        this.f1785c = z11;
+        this.f1791f = str;
+        this.f1789b = z10;
+        this.f1790c = z11;
     }
 
     public z7(pg.a1 a1Var, boolean z10, boolean z11, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
-        this.f1783a = 5;
+        this.f1788a = 5;
         this.d = a1Var;
-        this.f1784b = z10;
-        this.f1785c = z11;
+        this.f1789b = z10;
+        this.f1790c = z11;
         this.e = bitmapArr;
-        this.f1786f = countDownLatch;
+        this.f1791f = countDownLatch;
     }
 }

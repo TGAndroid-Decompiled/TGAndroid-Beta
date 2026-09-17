@@ -3,31 +3,31 @@ package ai;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.qr;
 public final class e5 implements Runnable {
-    public final int f757a;
-    public final jc f758b;
+    public final int f762a;
+    public final jc f763b;
 
     public e5(jc jcVar, int i10) {
-        this.f757a = i10;
-        this.f758b = jcVar;
+        this.f762a = i10;
+        this.f763b = jcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f757a) {
+        switch (this.f762a) {
             case 0:
-                this.f758b.P();
+                this.f763b.P();
                 return;
             case 1:
-                jc jcVar = this.f758b;
-                jcVar.f1069c0 = true;
+                jc jcVar = this.f763b;
+                jcVar.f1074c0 = true;
                 jcVar.n(true);
                 return;
             case 2:
-                jc jcVar2 = this.f758b;
+                jc jcVar2 = this.f763b;
                 if (jcVar2.F != null) {
                     yb ybVar = jcVar2.v;
                     if (ybVar != null) {
-                        i0.f963c = true;
+                        i0.f968c = true;
                         ybVar.setLayerType(2, null);
                     }
                     jcVar2.F.addListener(new sb(jcVar2, 0));
@@ -38,29 +38,29 @@ public final class e5 implements Runnable {
                 }
                 return;
             case 3:
-                jc jcVar3 = this.f758b;
-                jcVar3.f1109v0 = null;
+                jc jcVar3 = this.f763b;
+                jcVar3.f1114v0 = null;
                 jcVar3.P();
                 return;
             case 4:
-                this.f758b.L(true);
+                this.f763b.L(true);
                 return;
             case 5:
-                jc jcVar4 = this.f758b;
+                jc jcVar4 = this.f763b;
                 jcVar4.Q();
-                gc gcVar = jcVar4.f1103s0;
-                ImageReceiver imageReceiver = gcVar.f911b;
+                gc gcVar = jcVar4.f1108s0;
+                ImageReceiver imageReceiver = gcVar.f916b;
                 if (imageReceiver != null) {
                     imageReceiver.setVisible(false, true);
                 }
-                ImageReceiver imageReceiver2 = gcVar.f912c;
+                ImageReceiver imageReceiver2 = gcVar.f917c;
                 if (imageReceiver2 != null) {
                     imageReceiver2.setVisible(false, true);
                     return;
                 }
                 return;
             default:
-                this.f758b.m();
+                this.f763b.m();
                 return;
         }
     }

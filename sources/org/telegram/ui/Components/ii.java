@@ -5,30 +5,30 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SendMessagesHelper;
 public final class ii implements fk {
-    public final vi f25010a;
+    public final vi f24940a;
 
     public ii(vi viVar) {
-        this.f25010a = viVar;
+        this.f24940a = viVar;
     }
 
     @Override
     public final void O() {
-        this.f25010a.B1(true);
+        this.f24940a.B1(true);
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        vi viVar = this.f25010a;
+        vi viVar = this.f24940a;
         fk fkVar = viVar.X;
         if (fkVar != null) {
             fkVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28750f0;
-        if (n2Var instanceof fk) {
-            ((fk) n2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
-        } else if (n2Var instanceof org.telegram.ui.on0) {
-            org.telegram.ui.on0 on0Var = (org.telegram.ui.on0) n2Var;
+        org.telegram.ui.ActionBar.o2 o2Var = viVar.f28742f0;
+        if (o2Var instanceof fk) {
+            ((fk) o2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
+        } else if (o2Var instanceof org.telegram.ui.qn0) {
+            org.telegram.ui.qn0 qn0Var = (org.telegram.ui.qn0) o2Var;
             ArrayList arrayList4 = new ArrayList();
             int size = arrayList.size();
             for (int i11 = 0; i11 < size; i11++) {
@@ -36,45 +36,45 @@ public final class ii implements fk {
                 sendingMediaInfo.path = (String) arrayList.get(i11);
                 arrayList4.add(sendingMediaInfo);
             }
-            on0Var.G1(arrayList4);
+            qn0Var.G1(arrayList4);
         }
     }
 
     @Override
     public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        vi viVar = this.f25010a;
+        vi viVar = this.f24940a;
         fk fkVar = viVar.X;
         if (fkVar != null) {
             fkVar.l(j3, arrayList, z10, i10);
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28750f0;
-        if (n2Var instanceof org.telegram.ui.bo) {
-            ((org.telegram.ui.bo) n2Var).l(j3, arrayList, z10, i10);
-        } else if (n2Var instanceof org.telegram.ui.on0) {
-            ((org.telegram.ui.on0) n2Var).G1(arrayList);
+        org.telegram.ui.ActionBar.o2 o2Var = viVar.f28742f0;
+        if (o2Var instanceof org.telegram.ui.bo) {
+            ((org.telegram.ui.bo) o2Var).l(j3, arrayList, z10, i10);
+        } else if (o2Var instanceof org.telegram.ui.qn0) {
+            ((org.telegram.ui.qn0) o2Var).G1(arrayList);
         }
     }
 
     @Override
     public final void w() {
-        vi viVar = this.f25010a;
+        vi viVar = this.f24940a;
         fk fkVar = viVar.X;
         if (fkVar != null) {
             fkVar.w();
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28750f0;
-        if (n2Var instanceof fk) {
-            ((fk) n2Var).w();
-        } else if (n2Var instanceof org.telegram.ui.on0) {
-            org.telegram.ui.on0 on0Var = (org.telegram.ui.on0) n2Var;
-            on0Var.getClass();
+        org.telegram.ui.ActionBar.o2 o2Var = viVar.f28742f0;
+        if (o2Var instanceof fk) {
+            ((fk) o2Var).w();
+        } else if (o2Var instanceof org.telegram.ui.qn0) {
+            org.telegram.ui.qn0 qn0Var = (org.telegram.ui.qn0) o2Var;
+            qn0Var.getClass();
             try {
                 Intent intent = new Intent("android.intent.action.GET_CONTENT");
                 intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
                 intent.setType("*/*");
-                on0Var.startActivityForResult(intent, 21);
+                qn0Var.startActivityForResult(intent, 21);
             } catch (Exception e) {
                 FileLog.e(e);
             }

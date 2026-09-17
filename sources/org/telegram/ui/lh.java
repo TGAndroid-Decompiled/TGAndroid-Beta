@@ -1,27 +1,42 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class lh implements View.OnClickListener {
-    public final int f35504a;
-    public final org.telegram.ui.Components.n70 f35505b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class lh implements Runnable {
+    public final int f35547a;
+    public final EditTextBoldCursor f35548b;
 
-    public lh(org.telegram.ui.Components.n70 n70Var, int i10) {
-        this.f35504a = i10;
-        this.f35505b = n70Var;
+    public lh(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f35547a = i10;
+        this.f35548b = editTextBoldCursor;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f35504a;
-        org.telegram.ui.Components.n70 n70Var = this.f35505b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f35547a) {
             case 0:
-                n70Var.s();
+                AndroidUtilities.showKeyboard(this.f35548b);
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = this.f35548b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f35548b;
+                editTextBoldCursor2.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor2);
+                return;
+            case 3:
+                AndroidUtilities.showKeyboard(this.f35548b);
+                return;
+            case 4:
+                AndroidUtilities.showKeyboard(this.f35548b);
                 return;
             default:
-                Drawable[] drawableArr = PhotoViewer.T8;
-                n70Var.s();
+                EditTextBoldCursor editTextBoldCursor3 = this.f35548b;
+                editTextBoldCursor3.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor3);
                 return;
         }
     }

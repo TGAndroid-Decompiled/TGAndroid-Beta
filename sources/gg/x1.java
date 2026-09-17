@@ -1,13 +1,13 @@
 package gg;
 public final class x1 implements Runnable {
-    public final int f9978a;
-    public final Object f9979b;
-    public final Object f9980c;
+    public final int f9983a;
+    public final Object f9984b;
+    public final Object f9985c;
 
     public x1(int i10, Object obj, Object obj2) {
-        this.f9978a = i10;
-        this.f9979b = obj;
-        this.f9980c = obj2;
+        this.f9983a = i10;
+        this.f9984b = obj;
+        this.f9985c = obj2;
     }
 
     @Override
@@ -16,8 +16,8 @@ public final class x1 implements Runnable {
     }
 
     public x1(m4.a0 a0Var, m4.r rVar, Runnable runnable) {
-        this.f9978a = 28;
-        this.f9979b = a0Var;
-        this.f9980c = runnable;
+        this.f9983a = 28;
+        this.f9984b = a0Var;
+        this.f9985c = runnable;
     }
 }

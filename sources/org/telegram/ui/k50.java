@@ -1,102 +1,37 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class k50 implements org.telegram.ui.Components.ek0 {
-    public final Path f35031a = new Path();
-    public final Paint f35032b;
-    public final i60 f35033c;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class k50 extends org.telegram.ui.ActionBar.o1 {
+    public final k60 f34993o;
 
-    public k50(i60 i60Var) {
-        this.f35033c = i60Var;
-        Paint paint = new Paint(1);
-        this.f35032b = paint;
-        paint.setColor(-14603467);
+    public k50(k60 k60Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f34993o = k60Var;
     }
 
     @Override
-    public final void h(View view, zg.p0 p0Var, boolean z10, boolean z11) {
-        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-        String str = p0Var.f49127f;
-        if (str == null) {
-            str = "👍";
+    public final void dismiss() {
+        d(true);
+        k60 k60Var = this.f34993o;
+        if (k60Var.f35036f3 != this) {
+            return;
         }
-        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        tL_textWithEntities.text = str;
-        long j3 = p0Var.f49128g;
-        if (j3 != 0) {
-            tL_messageEntityCustomEmoji.document_id = j3;
-            tL_messageEntityCustomEmoji.offset = 0;
-            tL_messageEntityCustomEmoji.length = str.length();
-            tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
+        k60Var.f35036f3 = null;
+        AnimatorSet animatorSet = k60Var.f35031e3;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            k60Var.f35031e3 = null;
         }
-        i60 i60Var = this.f35033c;
-        i60Var.A1(tL_textWithEntities);
-        i40 i40Var = i60Var.H;
-        if (i40Var.m()) {
-            i40Var.j();
-        } else {
-            i40Var.d();
-        }
-        zg.c0 reactionsWindow = i60Var.K.getReactionsWindow();
-        if (reactionsWindow != null && !reactionsWindow.f48996q) {
-            i60Var.K.getReactionsWindow().e();
-            i60Var.K.n();
-        }
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
-        Paint paint = this.f35032b;
-        int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        if (i11 > 0) {
-            canvas.drawRoundRect(rectF, f7, f7, paint);
-        } else {
-            canvas.drawRect(rectF, paint);
-        }
-        if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            i60 i60Var = this.f35033c;
-            if (i60Var.Q2 != null) {
-                canvas.save();
-                if (i11 > 0) {
-                    Path path = this.f35031a;
-                    path.rewind();
-                    path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
-                    path.close();
-                    canvas.clipPath(path);
-                } else {
-                    canvas.clipRect(rectF);
-                }
-                canvas.translate(-i60Var.K.getX(), -i60Var.K.getY());
-                float f12 = i60Var.R2;
-                canvas.scale(f12, f12);
-                canvas.drawRenderNode(i60Var.Q2);
-                canvas.restore();
-            }
-        }
-    }
-
-    @Override
-    public final boolean q() {
-        return true;
-    }
-
-    @Override
-    public final void o() {
+        k60Var.Y.X = true;
+        k60Var.f35031e3 = new AnimatorSet();
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(ObjectAnimator.ofInt(k60Var.W2, org.telegram.ui.Components.q6.f27222b, 0));
+        k60Var.f35031e3.playTogether(arrayList);
+        k60Var.f35031e3.setDuration(220L);
+        k60Var.f35031e3.addListener(new org.telegram.ui.Components.w81(this, 21));
+        k60Var.f35031e3.start();
     }
 }

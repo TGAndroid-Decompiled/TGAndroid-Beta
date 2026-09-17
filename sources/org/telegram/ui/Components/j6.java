@@ -4,20 +4,20 @@ import android.graphics.Canvas;
 import android.text.StaticLayout;
 import android.view.View;
 public final class j6 {
-    public final t5 f25237a;
-    public final StaticLayout f25238b;
-    public final float f25239c;
+    public final t5 f25138a;
+    public final StaticLayout f25139b;
+    public final float f25140c;
     public final int d;
     public final float e;
-    public final float f25240f;
-    public final m6 f25241g;
+    public final float f25141f;
+    public final m6 f25142g;
 
     public j6(m6 m6Var, StaticLayout staticLayout, float f7, int i10) {
         float f10;
-        this.f25241g = m6Var;
-        this.f25238b = staticLayout;
+        this.f25142g = m6Var;
+        this.f25139b = staticLayout;
         this.d = i10;
-        this.f25239c = f7;
+        this.f25140c = f7;
         float f11 = 0.0f;
         if (staticLayout != null && staticLayout.getLineCount() > 0) {
             f10 = staticLayout.getLineLeft(0);
@@ -28,14 +28,14 @@ public final class j6 {
         if (staticLayout != null && staticLayout.getLineCount() > 0) {
             f11 = staticLayout.getLineWidth(0);
         }
-        this.f25240f = f11;
+        this.f25141f = f11;
         if (m6Var.getCallback() instanceof View) {
-            this.f25237a = x5.update(m6Var.f26093l, (View) m6Var.getCallback(), this.f25237a, staticLayout);
+            this.f25138a = x5.update(m6Var.f26074l, (View) m6Var.getCallback(), this.f25138a, staticLayout);
         }
     }
 
     public final void a(Canvas canvas, float f7) {
-        this.f25238b.draw(canvas);
-        x5.drawAnimatedEmojis(canvas, this.f25238b, this.f25237a, 0.0f, null, 0.0f, 0.0f, 0.0f, f7, this.f25241g.U);
+        this.f25139b.draw(canvas);
+        x5.drawAnimatedEmojis(canvas, this.f25139b, this.f25138a, 0.0f, null, 0.0f, 0.0f, 0.0f, f7, this.f25142g.U);
     }
 }

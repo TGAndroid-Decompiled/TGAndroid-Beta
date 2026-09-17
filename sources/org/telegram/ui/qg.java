@@ -1,54 +1,45 @@
 package org.telegram.ui;
-public final class qg implements q0.a {
-    public final int f36873a;
-    public final bo f36874b;
 
-    public qg(bo boVar, int i10) {
-        this.f36873a = i10;
-        this.f36874b = boVar;
+import org.telegram.messenger.Utilities;
+public final class qg implements Utilities.Callback2 {
+    public final int f36914a;
+    public final bo f36915b;
+    public final String f36916c;
+
+    public qg(bo boVar, String str, int i10) {
+        this.f36914a = i10;
+        this.f36915b = boVar;
+        this.f36916c = str;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f36873a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (this.f36914a) {
             case 0:
-                Integer num = (Integer) obj;
-                bo boVar = this.f36874b;
-                boVar.getClass();
-                if (num.intValue() == 0) {
-                    boVar.l1 = 0;
-                    boVar.Bc(true);
-                    boVar.getMessagesController().markReactionsAsRead(boVar.T5, boVar.d());
+                if (bool.booleanValue()) {
+                    boolean booleanValue = bool2.booleanValue();
+                    bo boVar = this.f36915b;
+                    String str = this.f36916c;
+                    if (booleanValue) {
+                        boVar.getMessagesController().addWebBrowserException(str, false);
+                    }
+                    boVar.getParentActivity();
+                    nf.f.n(str);
                     return;
                 }
-                boVar.Bc(true);
-                boVar.F(num.intValue(), 0, 0, 0, false, true);
-                return;
-            case 1:
-                Integer num2 = (Integer) obj;
-                bo boVar2 = this.f36874b;
-                boVar2.getClass();
-                if (num2.intValue() == 0) {
-                    boVar2.f32385m1 = 0;
-                    boVar2.Ac(true);
-                    boVar2.getMessagesController().markPollVotesAsRead(boVar2.T5, boVar2.d());
-                    return;
-                }
-                int i10 = boVar2.f32385m1 - 1;
-                boVar2.f32385m1 = i10;
-                if (i10 <= 0) {
-                    boVar2.getMessagesController().markPollVotesAsRead(boVar2.T5, boVar2.d());
-                }
-                boVar2.Ac(true);
-                boVar2.F(num2.intValue(), 0, 0, 0, false, true);
                 return;
             default:
-                bo boVar3 = this.f36874b;
-                boVar3.getClass();
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                boVar3.f7 = booleanValue;
-                if (!booleanValue) {
-                    boVar3.r8();
+                bo boVar2 = this.f36915b;
+                boVar2.getClass();
+                if (bool.booleanValue()) {
+                    boolean booleanValue2 = bool2.booleanValue();
+                    String str2 = this.f36916c;
+                    if (booleanValue2) {
+                        boVar2.getMessagesController().addWebBrowserException(str2, true);
+                    }
+                    nf.f.m(boVar2.getParentActivity(), str2, false, null);
                     return;
                 }
                 return;

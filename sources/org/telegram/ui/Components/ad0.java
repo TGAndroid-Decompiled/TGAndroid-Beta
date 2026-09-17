@@ -5,16 +5,16 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 public final class ad0 {
-    public Paint f22362a;
-    public Paint f22363b;
-    public View f22364c;
+    public Paint f22377a;
+    public Paint f22378b;
+    public View f22379c;
     public i2.z d;
     public long e;
-    public RectF f22365f;
-    public float f22366g;
+    public RectF f22380f;
+    public float f22381g;
     public float h;
-    public float f22367i;
-    public Path f22368j;
-    public boolean f22369k;
-    public boolean f22370l;
+    public float f22382i;
+    public Path f22383j;
+    public boolean f22384k;
+    public boolean f22385l;
 }

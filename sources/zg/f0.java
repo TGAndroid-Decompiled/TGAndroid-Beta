@@ -8,38 +8,38 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.SharedConfig;
 public abstract class f0 {
-    public static Runnable f49024c;
+    public static Runnable f49047c;
     public static Boolean h;
-    public static final HashSet f49022a = new HashSet();
-    public static volatile boolean f49023b = false;
+    public static final HashSet f49045a = new HashSet();
+    public static volatile boolean f49046b = false;
     public static boolean d = true;
     public static boolean e = false;
-    public static boolean f49025f = false;
-    public static boolean f49026g = false;
+    public static boolean f49048f = false;
+    public static boolean f49049g = false;
 
     public static void a() {
         ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-        CountDownLatch countDownLatch = cacheOutQueue.f9060b;
+        CountDownLatch countDownLatch = cacheOutQueue.f9065b;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            cacheOutQueue.f9060b = null;
+            cacheOutQueue.f9065b = null;
         }
-        f49023b = false;
+        f49046b = false;
         e = false;
-        f49026g = false;
-        f49024c = null;
-        Iterator it = f49022a.iterator();
+        f49049g = false;
+        f49047c = null;
+        Iterator it = f49045a.iterator();
         while (it.hasNext()) {
             ((View) it.next()).invalidate();
         }
-        f49022a.clear();
+        f49045a.clear();
     }
 
     public static boolean b(View view) {
-        if (f49023b) {
-            f49022a.add(view);
+        if (f49046b) {
+            f49045a.add(view);
         }
-        return f49023b;
+        return f49046b;
     }
 
     public static boolean c(View... viewArr) {
@@ -55,14 +55,14 @@ public abstract class f0 {
         if (!h.booleanValue()) {
             return false;
         }
-        if (f49023b) {
-            f49022a.addAll(Arrays.asList(viewArr));
+        if (f49046b) {
+            f49045a.addAll(Arrays.asList(viewArr));
         }
-        return f49023b;
+        return f49046b;
     }
 
     public static boolean d() {
-        if (!f49023b && !e && !f49026g) {
+        if (!f49046b && !e && !f49049g) {
             return false;
         }
         return true;

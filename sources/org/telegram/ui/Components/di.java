@@ -8,8 +8,8 @@ import org.telegram.messenger.AndroidUtilities;
 public final class di extends ju {
     public final vi V;
 
-    public di(vi viVar, Context context, li liVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, liVar, null, 1, true, e6Var);
+    public di(vi viVar, Context context, li liVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, liVar, null, 1, true, f6Var);
         this.V = viVar;
     }
 
@@ -18,8 +18,8 @@ public final class di extends ju {
         super.f();
         kz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f25765w0 = false;
-            emojiView.f25767w2 = false;
+            emojiView.f25775w0 = false;
+            emojiView.f25777w2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -27,9 +27,9 @@ public final class di extends ju {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.V.f28750f0;
-        if (n2Var instanceof org.telegram.ui.bo) {
-            org.telegram.ui.bo.k8(menu, ((org.telegram.ui.bo) n2Var).h, true, true, true, true);
+        org.telegram.ui.ActionBar.o2 o2Var = this.V.f28742f0;
+        if (o2Var instanceof org.telegram.ui.bo) {
+            org.telegram.ui.bo.k8(menu, ((org.telegram.ui.bo) o2Var).h, true, true, true, true);
         }
     }
 
@@ -37,7 +37,7 @@ public final class di extends ju {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         vi viVar = this.V;
         di diVar = viVar.P0;
-        if (!viVar.f28797u1) {
+        if (!viVar.f28789u1) {
             if (motionEvent.getX() > diVar.getEditText().getLeft() && motionEvent.getX() < diVar.getEditText().getRight() && motionEvent.getY() > diVar.getEditText().getTop() && motionEvent.getY() < diVar.getEditText().getBottom()) {
                 viVar.t1(diVar.getEditText(), true);
             } else {
@@ -58,7 +58,7 @@ public final class di extends ju {
         boolean z10;
         vi viVar = this.V;
         viVar.b2();
-        if (viVar.f28740c0) {
+        if (viVar.f28732c0) {
             if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             } else {

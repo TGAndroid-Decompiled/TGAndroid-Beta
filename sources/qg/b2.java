@@ -12,21 +12,21 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.h70;
+import org.telegram.ui.j70;
 public abstract class b2 extends View {
-    public Bitmap f41311a;
-    public Paint f41312b;
-    public Paint f41313c;
+    public Bitmap f41333a;
+    public Paint f41334b;
+    public Paint f41335c;
     public Paint d;
     public float e;
-    public float f41314f;
+    public float f41336f;
     public Path h;
-    public Rect f41315n;
-    public RectF f41316r;
-    public int f41317s;
+    public Rect f41337n;
+    public RectF f41338r;
+    public int f41339s;
     public boolean v;
-    public q0.a f41318w;
-    public float f41319x;
+    public q0.a f41340w;
+    public float f41341x;
 
     public final void a(boolean z10) {
         if (this.v) {
@@ -34,52 +34,52 @@ public abstract class b2 extends View {
         }
         this.v = true;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.setInterpolator(qr.f27423f);
+        duration.setInterpolator(qr.f27380f);
         duration.addUpdateListener(new org.telegram.ui.Components.voip.r0(this, 10));
-        duration.addListener(new h70(14, this, z10));
+        duration.addListener(new j70(14, this, z10));
         duration.start();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ((pg.n) this).f40918y.f41039n.d();
-        this.f41311a.recycle();
-        this.f41311a = null;
+        ((pg.n) this).f40940y.f41061n.d();
+        this.f41333a.recycle();
+        this.f41333a = null;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
         float f7;
-        Rect rect = this.f41315n;
-        Paint paint = this.f41312b;
-        RectF rectF = this.f41316r;
+        Rect rect = this.f41337n;
+        Paint paint = this.f41334b;
+        RectF rectF = this.f41338r;
         Path path = this.h;
         super.onDraw(canvas);
         float min = Math.min(getWidth(), getHeight()) * 0.2f;
         float width = this.e * getWidth();
-        float height = this.f41314f * getHeight();
-        int round = Math.round(this.e * this.f41311a.getWidth());
-        int round2 = Math.round(this.f41314f * this.f41311a.getHeight());
-        Bitmap bitmap = this.f41311a;
-        int pixel = bitmap.getPixel(Utilities.clamp(round, bitmap.getWidth() - 1, 0), Utilities.clamp(round2, this.f41311a.getHeight() - 1, 0));
-        this.f41317s = pixel;
+        float height = this.f41336f * getHeight();
+        int round = Math.round(this.e * this.f41333a.getWidth());
+        int round2 = Math.round(this.f41336f * this.f41333a.getHeight());
+        Bitmap bitmap = this.f41333a;
+        int pixel = bitmap.getPixel(Utilities.clamp(round, bitmap.getWidth() - 1, 0), Utilities.clamp(round2, this.f41333a.getHeight() - 1, 0));
+        this.f41339s = pixel;
         Paint paint2 = this.d;
         paint2.setColor(pixel);
-        float f10 = this.f41319x;
+        float f10 = this.f41341x;
         if (f10 != 0.0f && f10 != 1.0f) {
             RectF rectF2 = AndroidUtilities.rectTmp;
             f7 = 1.0f;
             i10 = round;
             rectF2.set(width - min, height - min, width + min, height + min);
-            canvas.saveLayerAlpha(rectF2, (int) (this.f41319x * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF2, (int) (this.f41341x * 255.0f), 31);
         } else {
             i10 = round;
             f7 = 1.0f;
             canvas.save();
         }
-        float f11 = (this.f41319x * 0.5f) + 0.5f;
+        float f11 = (this.f41341x * 0.5f) + 0.5f;
         canvas.scale(f11, f11, width, height);
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
@@ -88,7 +88,7 @@ public abstract class b2 extends View {
         int round3 = Math.round(3.5f);
         rect.set(i10 - round3, round2 - round3, i10 + round3, round2 + round3);
         rectF.set(width - min, height - min, width + min, height + min);
-        canvas.drawBitmap(this.f41311a, rect, rectF, (Paint) null);
+        canvas.drawBitmap(this.f41333a, rect, rectF, (Paint) null);
         float strokeWidth = min - (paint2.getStrokeWidth() / 2.0f);
         canvas.drawCircle(width, height, strokeWidth, paint2);
         float strokeWidth2 = (strokeWidth - (paint2.getStrokeWidth() / 2.0f)) - (paint.getStrokeWidth() / 2.0f);
@@ -109,7 +109,7 @@ public abstract class b2 extends View {
             path.moveTo(width - strokeWidth3, f16);
             path.lineTo(width + strokeWidth3, f16);
         }
-        canvas.drawPath(path, this.f41313c);
+        canvas.drawPath(path, this.f41335c);
         float f17 = f12 / 2.0f;
         rectF.set(width - f17, height - f17, width + f17, height + f17);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7), paint);
@@ -121,7 +121,7 @@ public abstract class b2 extends View {
         super.onSizeChanged(i10, i11, i12, i13);
         if (i10 != 0 && i11 != 0 && i12 != 0 && i13 != 0 && isLaidOut()) {
             this.e = (i12 * this.e) / i10;
-            this.f41314f = (i13 * this.f41314f) / i11;
+            this.f41336f = (i13 * this.f41336f) / i11;
         }
     }
 
@@ -138,7 +138,7 @@ public abstract class b2 extends View {
                     return true;
                 }
                 this.e = motionEvent.getX() / getWidth();
-                this.f41314f = motionEvent.getY() / getHeight();
+                this.f41336f = motionEvent.getY() / getHeight();
                 invalidate();
                 return true;
             }
@@ -146,13 +146,13 @@ public abstract class b2 extends View {
             return true;
         }
         this.e = motionEvent.getX() / getWidth();
-        this.f41314f = motionEvent.getY() / getHeight();
+        this.f41336f = motionEvent.getY() / getHeight();
         invalidate();
         getParent().requestDisallowInterceptTouchEvent(true);
         return true;
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f41318w = aVar;
+        this.f41340w = aVar;
     }
 }

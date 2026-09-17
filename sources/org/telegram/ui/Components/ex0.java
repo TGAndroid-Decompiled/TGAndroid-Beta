@@ -1,210 +1,160 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class ex0 implements View.OnClickListener {
-    public final int f23761a;
-    public final vx0 f23762b;
+import org.telegram.messenger.SvgHelper;
+public final class ex0 extends FrameLayout {
+    public static int G;
+    public boolean E;
+    public float F;
+    public final int f23681a;
+    public float f23682b;
+    public boolean f23683c;
+    public boolean d;
+    public final u9 e;
+    public final ImageView f23684f;
+    public final ai.p4 h;
+    public final View f23685n;
+    public boolean f23686r;
+    public final int f23687s;
+    public SvgHelper.SvgDrawable v;
+    public boolean f23688w;
+    public ValueAnimator f23689x;
+    public float f23690y;
 
-    public ex0(vx0 vx0Var, int i10) {
-        this.f23761a = i10;
-        this.f23762b = vx0Var;
+    public ex0(Context context, int i10) {
+        super(context);
+        this.f23681a = i10;
+        int i11 = G;
+        G = i11 + 1;
+        this.f23687s = i11;
+        if (i10 == 2) {
+            u9 u9Var = new u9(getContext());
+            this.e = u9Var;
+            u9Var.setLayerNum(1);
+            u9Var.setAspectFit(false);
+            u9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
+            addView(u9Var, w7.x5.e(26, 26, 17));
+            this.f23685n = u9Var;
+        } else if (i10 == 1) {
+            ImageView imageView = new ImageView(context);
+            this.f23684f = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            addView(imageView, w7.x5.e(24, 24, 17));
+            this.f23685n = imageView;
+        } else {
+            u9 u9Var2 = new u9(getContext());
+            this.e = u9Var2;
+            u9Var2.setLayerNum(1);
+            u9Var2.setAspectFit(true);
+            u9Var2.setRoundRadius(AndroidUtilities.dp(6.0f));
+            addView(u9Var2, w7.x5.e(26, 26, 17));
+            this.f23685n = u9Var2;
+        }
+        ai.p4 p4Var = new ai.p4(context, 24);
+        this.h = p4Var;
+        p4Var.addOnLayoutChangeListener(new e70(this, 1));
+        p4Var.setLines(1);
+        p4Var.setEllipsize(TextUtils.TruncateAt.END);
+        p4Var.setTextSize(1, 11.0f);
+        p4Var.setGravity(1);
+        p4Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        addView(p4Var, w7.x5.d(-1, -2.0f, 81, 8.0f, 0.0f, 8.0f, 10.0f));
+        p4Var.setVisibility(8);
     }
 
-    @Override
-    public final void onClick(View view) {
+    public final void a(float f7) {
+        float f10;
+        float f11;
+        int i10 = this.f23681a;
+        if (i10 == 2) {
+            return;
+        }
+        boolean z10 = this.f23686r;
+        View view = this.f23685n;
+        if (z10) {
+            if (i10 == 1) {
+                f10 = 24.0f;
+            } else {
+                f10 = 26.0f;
+            }
+            if (i10 == 1) {
+                f11 = 38.0f;
+            } else {
+                f11 = 44.0f;
+            }
+            int i11 = jm0.f25326t0;
+            float f12 = 1.0f - f7;
+            view.setTranslationY((((AndroidUtilities.dp(36.0f - f10) / 2.0f) - (AndroidUtilities.dp(86.0f - f11) / 2.0f)) * f12) - (AndroidUtilities.dp(8.0f) * f7));
+            view.setTranslationX(((AndroidUtilities.dp(33.0f - f10) / 2.0f) - (AndroidUtilities.dp(64.0f - f11) / 2.0f)) * f12);
+            float max = Math.max(0.0f, (f7 - 0.5f) / 0.5f);
+            ai.p4 p4Var = this.h;
+            p4Var.setAlpha(max);
+            p4Var.setTranslationY((-AndroidUtilities.dp(40.0f)) * f12);
+            p4Var.setTranslationX((-AndroidUtilities.dp(12.0f)) * f12);
+            view.setPivotX(0.0f);
+            view.setPivotY(0.0f);
+            float f13 = ((f10 / f11) * f12) + f7;
+            view.setScaleX(f13);
+            view.setScaleY(f13);
+            return;
+        }
+        view.setTranslationX(0.0f);
+        view.setTranslationY(0.0f);
+        view.setScaleX(1.0f);
+        view.setScaleY(1.0f);
+    }
+
+    public float getTextWidth() {
+        return this.F;
+    }
+
+    public void setExpanded(boolean z10) {
+        float f7;
+        float f10;
+        float f11;
         int i10;
-        org.telegram.ui.ActionBar.k kVar;
-        switch (this.f23761a) {
-            case 0:
-                vx0 vx0Var = this.f23762b;
-                org.telegram.ui.ActionBar.n2 n2Var = vx0Var.L;
-                if (n2Var != null) {
-                    new rg.x0(n2Var, 11, false).show();
-                    return;
-                } else if (vx0Var.getContext() instanceof LaunchActivity) {
-                    ((LaunchActivity) vx0Var.getContext()).p0(new PremiumPreviewFragment(0, null));
-                    return;
-                } else {
-                    return;
-                }
-            case 1:
-                vx0.H(this.f23762b);
-                return;
-            case 2:
-                this.f23762b.q0();
-                return;
-            case 3:
-                vx0 vx0Var2 = this.f23762b;
-                if (vx0Var2.Y != null) {
-                    vx0Var2.u0(vx0Var2.U);
-                    vx0Var2.q0();
-                    vx0Var2.U = null;
-                    return;
-                }
-                vx0Var2.f29456b0.d(vx0Var2.T, null, vx0Var2.S, null, vx0Var2.f29465i0, true, 0, 0);
-                vx0Var2.dismiss();
-                return;
-            case 4:
-                this.f23762b.f29469n.getPopupLayout().getSwipeBack().b(true);
-                return;
-            case 5:
-                vx0 vx0Var3 = this.f23762b;
-                org.telegram.ui.o70 o70Var = vx0Var3.f29459d0;
-                org.telegram.ui.t70 t70Var = o70Var.f36116c;
-                s4.c0 c0Var = t70Var.h;
-                boolean z10 = t70Var.N;
-                int L0 = c0Var.L0();
-                vk0 vk0Var = (vk0) t70Var.d.K(L0);
-                if (vk0Var != null) {
-                    i10 = vk0Var.f42675a.getTop();
-                } else {
-                    i10 = Integer.MAX_VALUE;
-                }
-                int i11 = t70Var.f37575n;
-                if (o70Var.f36114a) {
-                    t70Var.f37576r = null;
-                    t70Var.f37577s = true;
-                } else {
-                    t70Var.f37576r = o70Var.f36115b;
-                    t70Var.f37577s = false;
-                }
-                if (z10) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.g10(o70Var, 9), 350L);
-                }
-                t70Var.h0();
-                t70Var.f0(t70Var.f37576r, true);
-                if (i11 != -1) {
-                    if (!t70Var.M) {
-                        for (int i12 = 0; i12 < t70Var.d.getChildCount(); i12++) {
-                            View childAt = t70Var.d.getChildAt(i12);
-                            if (t70Var.d.T(childAt).b() == t70Var.E + i11) {
-                                ((org.telegram.ui.Cells.m8) childAt).b(false, true);
-                            }
-                        }
-                    }
-                    t70Var.e.m(i11);
-                }
-                if (t70Var.f37575n != -1) {
-                    if (!t70Var.M) {
-                        for (int i13 = 0; i13 < t70Var.d.getChildCount(); i13++) {
-                            View childAt2 = t70Var.d.getChildAt(i13);
-                            if (t70Var.d.T(childAt2).b() == t70Var.E + t70Var.f37575n) {
-                                ((org.telegram.ui.Cells.m8) childAt2).b(true, true);
-                            }
-                        }
-                    }
-                    t70Var.e.m(t70Var.f37575n);
-                }
-                if (i10 != Integer.MAX_VALUE && !z10) {
-                    t70Var.h.h1(L0 + 1, i10);
-                }
-                if (t70Var.M) {
-                    t70Var.L.H("", false);
-                    kVar = ((org.telegram.ui.ActionBar.n2) t70Var).actionBar;
-                    kVar.h(true);
-                }
-                vx0Var3.dismiss();
-                return;
-            case 6:
-                vx0.r(this.f23762b);
-                return;
-            case 7:
-                vx0.n(this.f23762b);
-                return;
-            case 8:
-                vx0 vx0Var4 = this.f23762b;
-                vx0Var4.f29469n.n();
-                vx0Var4.dismiss();
-                AndroidUtilities.runOnUIThread(new gx0(vx0Var4, 3), 200L);
-                return;
-            case 9:
-                vx0.A(this.f23762b);
-                return;
-            case 10:
-                vx0 vx0Var5 = this.f23762b;
-                if (vx0Var5.R) {
-                    vx0Var5.n0();
-                    return;
-                } else {
-                    vx0Var5.p0();
-                    return;
-                }
-            case 11:
-                vx0.z(this.f23762b);
-                return;
-            case 12:
-                vx0.q(this.f23762b);
-                return;
-            case 13:
-                vx0 vx0Var6 = this.f23762b;
-                Context context = vx0Var6.getContext();
-                int[] iArr = {0};
-                FrameLayout frameLayout = new FrameLayout(context);
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.ImportStickersEnterName);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Next), new an0(8));
-                LinearLayout linearLayout = new LinearLayout(context);
-                linearLayout.setOrientation(1);
-                alertDialog$Builder.n(linearLayout);
-                linearLayout.addView(frameLayout, w7.x5.t(-1, 36, 51, 24, 6, 24, 0));
-                TextView textView = new TextView(context);
-                TextView g10 = org.telegram.messenger.w1.g(context, 1, 16.0f);
-                g10.setTextColor(vx0Var6.getThemedColor(org.telegram.ui.ActionBar.i6.f19129t5));
-                g10.setMaxLines(1);
-                g10.setLines(1);
-                g10.setText("t.me/addstickers/");
-                g10.setInputType(16385);
-                g10.setGravity(51);
-                g10.setSingleLine(true);
-                g10.setVisibility(4);
-                g10.setImeOptions(6);
-                g10.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
-                frameLayout.addView(g10, w7.x5.e(-2, 36, 51));
-                EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-                editTextBoldCursor.setBackground(null);
-                editTextBoldCursor.setLineColors(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19147u5, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19165v5, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19074q7, false));
-                editTextBoldCursor.setTextSize(1, 16.0f);
-                editTextBoldCursor.setTextColor(vx0Var6.getThemedColor(org.telegram.ui.ActionBar.i6.f18943j5));
-                editTextBoldCursor.setMaxLines(1);
-                editTextBoldCursor.setLines(1);
-                editTextBoldCursor.setInputType(16385);
-                editTextBoldCursor.setGravity(51);
-                editTextBoldCursor.setSingleLine(true);
-                editTextBoldCursor.setImeOptions(5);
-                editTextBoldCursor.setCursorColor(vx0Var6.getThemedColor(org.telegram.ui.ActionBar.i6.G6));
-                editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
-                editTextBoldCursor.setCursorWidth(1.5f);
-                editTextBoldCursor.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
-                editTextBoldCursor.addTextChangedListener(new jx0(vx0Var6, iArr, textView, editTextBoldCursor));
-                frameLayout.addView(editTextBoldCursor, w7.x5.e(-1, 36, 51));
-                editTextBoldCursor.setOnEditorActionListener(new e1(alertDialog$Builder, 7));
-                editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new lv(editTextBoldCursor, 22));
-                textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ImportStickersEnterNameInfo)));
-                textView.setTextSize(1, 14.0f);
-                textView.setPadding(AndroidUtilities.dp(23.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(23.0f), AndroidUtilities.dp(6.0f));
-                textView.setTextColor(vx0Var6.getThemedColor(org.telegram.ui.ActionBar.i6.f19073q5));
-                linearLayout.addView(textView, w7.x5.n(-1, -2));
-                f1 f1Var = new f1(3, editTextBoldCursor);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18437a;
-                b2Var.setOnShowListener(f1Var);
-                b2Var.show();
-                editTextBoldCursor.requestFocus();
-                b2Var.d(-1).setOnClickListener(new m0(vx0Var6, iArr, editTextBoldCursor, textView, g10, alertDialog$Builder, 3));
-                return;
-            default:
-                this.f23762b.dismiss();
-                return;
+        int i11 = this.f23681a;
+        if (i11 != 2) {
+            this.f23686r = z10;
+            if (i11 == 1) {
+                f7 = 24.0f;
+            } else {
+                f7 = 26.0f;
+            }
+            if (i11 == 1) {
+                f10 = 38.0f;
+            } else {
+                f10 = 44.0f;
+            }
+            View view = this.f23685n;
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (z10) {
+                f11 = f10;
+            } else {
+                f11 = f7;
+            }
+            layoutParams.width = AndroidUtilities.dp(f11);
+            ViewGroup.LayoutParams layoutParams2 = view.getLayoutParams();
+            if (z10) {
+                f7 = f10;
+            }
+            layoutParams2.height = AndroidUtilities.dp(f7);
+            if (z10) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            this.h.setVisibility(i10);
+            if (i11 != 1 && this.f23688w) {
+                this.e.setRoundRadius(AndroidUtilities.dp(view.getLayoutParams().width / 2.0f));
+            }
         }
     }
 }

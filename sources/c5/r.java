@@ -1,10 +1,10 @@
 package c5;
 public final class r {
-    public final String f3916a;
-    public final String f3917b;
+    public final String f3921a;
+    public final String f3922b;
 
     public r(a aVar) {
-        this.f3916a = aVar.f3836a;
-        this.f3917b = aVar.f3837b;
+        this.f3921a = aVar.f3841a;
+        this.f3922b = aVar.f3842b;
     }
 }

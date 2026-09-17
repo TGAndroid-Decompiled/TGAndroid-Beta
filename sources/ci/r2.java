@@ -23,12 +23,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.de0;
 import org.telegram.ui.Components.h90;
 public final class r2 extends View {
-    public final Paint f5395a;
-    public final TextPaint f5396b;
-    public final ArrayList f5397c;
+    public final Paint f5400a;
+    public final TextPaint f5401b;
+    public final ArrayList f5402c;
     public float[] d;
     public e1 e;
-    public final t2 f5398f;
+    public final t2 f5403f;
 
     public r2(t2 t2Var, Context context) {
         super(context);
@@ -36,27 +36,27 @@ public final class r2 extends View {
         String a2;
         int i10;
         int i11;
-        this.f5398f = t2Var;
+        this.f5403f = t2Var;
         Paint paint = new Paint(1);
-        this.f5395a = paint;
+        this.f5400a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f5396b = textPaint;
+        this.f5401b = textPaint;
         paint.setColor(436207615);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(AndroidUtilities.dpf2(21.3f));
         textPaint.setColor(-1);
         ArrayList arrayList = new ArrayList();
-        this.f5397c = arrayList;
+        this.f5402c = arrayList;
         setPadding(0, 0, 0, 0);
         if (t2Var.m0(4)) {
             o2 o2Var = new o2(this, 4, R.drawable.msg_limit_links, LocaleController.getString(R.string.StoryWidgetLink));
-            i11 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
+            i11 = ((org.telegram.ui.ActionBar.g3) t2Var).currentAccount;
             if (!UserConfig.getInstance(i11).isPremium()) {
                 Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
-                o2Var.f5112j = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.l1(0.6f, -1), PorterDuff.Mode.SRC_IN));
+                o2Var.f5117j = mutate;
+                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.l1(0.6f, -1), PorterDuff.Mode.SRC_IN));
                 Paint paint2 = new Paint(1);
-                o2Var.f5116n = paint2;
+                o2Var.f5121n = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             }
             arrayList.add(o2Var);
@@ -65,13 +65,13 @@ public final class r2 extends View {
             arrayList.add(new o2(this, 0, R.drawable.map_pin3, LocaleController.getString(R.string.StoryWidgetLocation)));
         }
         if (t2Var.m0(5)) {
-            nd ndVar = od.f5285b;
+            nd ndVar = od.f5290b;
             o2[] o2VarArr = {null};
             StringBuilder sb2 = new StringBuilder();
             if (ndVar == null) {
                 str = "🌤";
             } else {
-                str = ndVar.f5099c;
+                str = ndVar.f5104c;
             }
             sb2.append(str);
             sb2.append(" ");
@@ -86,7 +86,7 @@ public final class r2 extends View {
             }
             sb2.append(a2);
             CharSequence replaceEmoji = Emoji.replaceEmoji(sb2.toString(), textPaint.getFontMetricsInt(), false);
-            i10 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
+            i10 = ((org.telegram.ui.ActionBar.g3) t2Var).currentAccount;
             SpannableStringBuilder spannableStringBuilder = replaceEmoji;
             if (MessagesController.getInstance(i10).storyWeatherPreload) {
                 spannableStringBuilder = replaceEmoji;
@@ -115,7 +115,7 @@ public final class r2 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.f5397c;
+        ArrayList arrayList = this.f5402c;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -143,7 +143,7 @@ public final class r2 extends View {
                 fArr2[i13] = f7 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i13] = fArr3[i13] + n2Var.h.d(n2Var.f5059b, false);
+            fArr3[i13] = fArr3[i13] + n2Var.h.d(n2Var.f5064b, false);
         }
         int size2 = arrayList.size();
         while (i10 < size2) {
@@ -157,7 +157,7 @@ public final class r2 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ArrayList arrayList = this.f5397c;
+        ArrayList arrayList = this.f5402c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -170,7 +170,7 @@ public final class r2 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ArrayList arrayList = this.f5397c;
+        ArrayList arrayList = this.f5402c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -184,7 +184,7 @@ public final class r2 extends View {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        ArrayList arrayList = this.f5397c;
+        ArrayList arrayList = this.f5402c;
         int size2 = arrayList.size();
         int i12 = 0;
         int i13 = 1;
@@ -195,11 +195,11 @@ public final class r2 extends View {
             i14++;
             n2 n2Var = (n2) obj;
             n2Var.d = f7;
-            float dp = n2Var.f5059b + AndroidUtilities.dp(10.0f) + f7;
+            float dp = n2Var.f5064b + AndroidUtilities.dp(10.0f) + f7;
             if (dp > paddingLeft) {
                 i13++;
                 n2Var.d = 0.0f;
-                f7 = n2Var.f5059b + AndroidUtilities.dp(10.0f) + 0.0f;
+                f7 = n2Var.f5064b + AndroidUtilities.dp(10.0f) + 0.0f;
             } else {
                 f7 = dp;
             }
@@ -223,7 +223,7 @@ public final class r2 extends View {
                 fArr2[i15] = f10 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i15] = fArr3[i15] + n2Var2.f5059b;
+            fArr3[i15] = fArr3[i15] + n2Var2.f5064b;
         }
         setMeasuredDimension(size, org.telegram.messenger.w1.D(12.0f, i13 - 1, org.telegram.messenger.w1.D(36.0f, i13, AndroidUtilities.dp(24.0f))));
     }
@@ -233,7 +233,7 @@ public final class r2 extends View {
         n2 n2Var;
         e1 e1Var;
         boolean z10;
-        ArrayList arrayList = this.f5397c;
+        ArrayList arrayList = this.f5402c;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -241,7 +241,7 @@ public final class r2 extends View {
                 Object obj = arrayList.get(i10);
                 i10++;
                 n2Var = (n2) obj;
-                if (n2Var.f5061f.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (n2Var.f5066f.contains(motionEvent.getX(), motionEvent.getY())) {
                     break;
                 }
             } else {
@@ -256,11 +256,11 @@ public final class r2 extends View {
             i11++;
             n2 n2Var2 = (n2) obj2;
             if (n2Var2 != n2Var) {
-                n2Var2.f5062g.c(false);
+                n2Var2.f5067g.c(false);
             }
         }
         if (n2Var != null) {
-            org.telegram.ui.Components.wc wcVar = n2Var.f5062g;
+            org.telegram.ui.Components.wc wcVar = n2Var.f5067g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
@@ -269,7 +269,7 @@ public final class r2 extends View {
             wcVar.c(z10);
         }
         if (motionEvent.getAction() == 1 && n2Var != null && (e1Var = this.e) != null) {
-            e1Var.run(Integer.valueOf(n2Var.f5058a));
+            e1Var.run(Integer.valueOf(n2Var.f5063a));
         }
         if (n2Var == null) {
             return false;

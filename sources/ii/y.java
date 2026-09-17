@@ -2,28 +2,28 @@ package ii;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
-public final class y extends h51 {
-    public static final int f11768a = 0;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
+public final class y extends i51 {
+    public static final int f11771a = 0;
 
     static {
-        h51.setup(new h51());
+        i51.setup(new i51());
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
-        ((z) view).i((a) i51Var.G, (q3) i51Var.H);
+    public final void bindView(View view, j51 j51Var, boolean z10, x51 x51Var, f61 f61Var) {
+        ((z) view).i((a) j51Var.G, (q3) j51Var.H);
     }
 
     @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        z zVar = new z(context, i10, e6Var);
-        zVar.setBackground(new a2(i6.v0(i6.f18836d6, e6Var)));
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        z zVar = new z(context, i10, f6Var);
+        zVar.setBackground(new a2(j6.v0(j6.f18862d6, f6Var)));
         return zVar;
     }
 

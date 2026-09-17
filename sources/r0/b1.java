@@ -2,35 +2,35 @@ package r0;
 
 import w7.w6;
 public abstract class b1 {
-    public final l1 f41813a;
-    public i0.b[] f41814b;
+    public final l1 f41835a;
+    public i0.b[] f41836b;
 
     public b1() {
         this(new l1());
     }
 
     public final void a() {
-        i0.b[] bVarArr = this.f41814b;
+        i0.b[] bVarArr = this.f41836b;
         if (bVarArr != null) {
             i0.b bVar = bVarArr[0];
             i0.b bVar2 = bVarArr[1];
-            l1 l1Var = this.f41813a;
+            l1 l1Var = this.f41835a;
             if (bVar2 == null) {
-                bVar2 = l1Var.f41855a.f(2);
+                bVar2 = l1Var.f41877a.f(2);
             }
             if (bVar == null) {
-                bVar = l1Var.f41855a.f(1);
+                bVar = l1Var.f41877a.f(1);
             }
             g(i0.b.a(bVar, bVar2));
-            i0.b bVar3 = this.f41814b[w6.a(16)];
+            i0.b bVar3 = this.f41836b[w6.a(16)];
             if (bVar3 != null) {
                 f(bVar3);
             }
-            i0.b bVar4 = this.f41814b[w6.a(32)];
+            i0.b bVar4 = this.f41836b[w6.a(32)];
             if (bVar4 != null) {
                 d(bVar4);
             }
-            i0.b bVar5 = this.f41814b[w6.a(64)];
+            i0.b bVar5 = this.f41836b[w6.a(64)];
             if (bVar5 != null) {
                 h(bVar5);
             }
@@ -40,12 +40,12 @@ public abstract class b1 {
     public abstract l1 b();
 
     public void c(int i10, i0.b bVar) {
-        if (this.f41814b == null) {
-            this.f41814b = new i0.b[10];
+        if (this.f41836b == null) {
+            this.f41836b = new i0.b[10];
         }
         for (int i11 = 1; i11 <= 512; i11 <<= 1) {
             if ((i10 & i11) != 0) {
-                this.f41814b[w6.a(i11)] = bVar;
+                this.f41836b[w6.a(i11)] = bVar;
             }
         }
     }
@@ -55,7 +55,7 @@ public abstract class b1 {
     public abstract void g(i0.b bVar);
 
     public b1(l1 l1Var) {
-        this.f41813a = l1Var;
+        this.f41835a = l1Var;
     }
 
     public void d(i0.b bVar) {

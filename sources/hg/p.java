@@ -8,28 +8,28 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class p implements TextView.OnEditorActionListener {
-    public final int f10378a;
-    public final int f10379b;
-    public final org.telegram.ui.ActionBar.b2[] f10380c;
+    public final int f10383a;
+    public final int f10384b;
+    public final org.telegram.ui.ActionBar.c2[] f10385c;
     public final View d;
     public final EditTextBoldCursor e;
-    public final Object f10381f;
+    public final Object f10386f;
 
-    public p(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.b2[] b2VarArr, View view, int i11) {
-        this.f10378a = i11;
+    public p(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.c2[] c2VarArr, View view, int i11) {
+        this.f10383a = i11;
         this.e = editTextBoldCursor;
-        this.f10379b = i10;
-        this.f10381f = obj;
-        this.f10380c = b2VarArr;
+        this.f10384b = i10;
+        this.f10386f = obj;
+        this.f10385c = c2VarArr;
         this.d = view;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f10378a) {
+        switch (this.f10383a) {
             case 0:
                 s sVar = (s) this.e;
-                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f10381f;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f10386f;
                 if (i10 != 6) {
                     return false;
                 }
@@ -37,7 +37,7 @@ public final class p implements TextView.OnEditorActionListener {
                 if (obj.length() > 32) {
                     AndroidUtilities.shakeView(sVar);
                 } else {
-                    y d = y.d(this.f10379b);
+                    y d = y.d(this.f10384b);
                     TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
                     if (c10 != null) {
                         TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
@@ -46,12 +46,12 @@ public final class p implements TextView.OnEditorActionListener {
                         tL_inputBusinessChatLink.title = obj;
                         d.b(c10, tL_inputBusinessChatLink, null);
                     }
-                    org.telegram.ui.ActionBar.b2[] b2VarArr = this.f10380c;
-                    org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-                    if (b2Var != null) {
-                        b2Var.dismiss();
+                    org.telegram.ui.ActionBar.c2[] c2VarArr = this.f10385c;
+                    org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+                    if (c2Var != null) {
+                        c2Var.dismiss();
                     }
-                    if (b2VarArr[0] == v.e) {
+                    if (c2VarArr[0] == v.e) {
                         v.e = null;
                     }
                     View view = this.d;
@@ -61,19 +61,19 @@ public final class p implements TextView.OnEditorActionListener {
                 }
                 return true;
             default:
-                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f10381f;
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f10386f;
                 if (i10 != 6) {
                     return false;
                 }
                 EditTextBoldCursor editTextBoldCursor = this.e;
                 String obj2 = editTextBoldCursor.getText().toString();
-                if (obj2.length() > this.f10379b) {
+                if (obj2.length() > this.f10384b) {
                     AndroidUtilities.shakeView(editTextBoldCursor);
                 } else {
                     stringCallback.run(obj2);
-                    org.telegram.ui.ActionBar.b2 b2Var2 = this.f10380c[0];
-                    if (b2Var2 != null) {
-                        b2Var2.dismiss();
+                    org.telegram.ui.ActionBar.c2 c2Var2 = this.f10385c[0];
+                    if (c2Var2 != null) {
+                        c2Var2.dismiss();
                     }
                     View view2 = this.d;
                     if (view2 != null) {

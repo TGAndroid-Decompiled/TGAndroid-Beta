@@ -5,11 +5,11 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public abstract class rq extends Drawable {
-    public final Paint f27664a = new Paint(1);
+    public final Paint f27670a = new Paint(1);
 
     public rq(View view) {
         if (view != null) {
-            view.addOnAttachStateChangeListener(new ai.u2(this, 6));
+            view.addOnAttachStateChangeListener(new ai.u2(this, 7));
             if (view.isAttachedToWindow()) {
                 view.post(new xp(this, 1));
             }
@@ -23,12 +23,12 @@ public abstract class rq extends Drawable {
 
     @Override
     public void setAlpha(int i10) {
-        this.f27664a.setAlpha(i10);
+        this.f27670a.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27664a.setColorFilter(colorFilter);
+        this.f27670a.setColorFilter(colorFilter);
     }
 
     public void a() {

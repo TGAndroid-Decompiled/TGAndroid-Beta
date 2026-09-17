@@ -7,29 +7,29 @@ import android.graphics.Paint;
 import android.widget.LinearLayout;
 import org.telegram.ui.Components.qr;
 public final class z9 extends LinearLayout {
-    public float f5872a;
-    public float f5873b;
-    public ValueAnimator f5874c;
+    public float f5877a;
+    public float f5878b;
+    public ValueAnimator f5879c;
     public ValueAnimator d;
     public final Paint e;
-    public final org.telegram.ui.Components.c6 f5875f;
+    public final org.telegram.ui.Components.c6 f5880f;
     public final ba h;
 
     public z9(ba baVar, Context context) {
         super(context);
         this.h = baVar;
         this.e = new Paint(1);
-        this.f5875f = new org.telegram.ui.Components.c6(this);
+        this.f5880f = new org.telegram.ui.Components.c6(this);
     }
 
     public static void a(z9 z9Var, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        z9Var.f5873b = floatValue;
-        super.setTranslationY(floatValue + z9Var.f5872a);
+        z9Var.f5878b = floatValue;
+        super.setTranslationY(floatValue + z9Var.f5877a);
     }
 
     public final void b(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f5874c;
+        ValueAnimator valueAnimator = this.f5879c;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -37,17 +37,17 @@ public final class z9 extends LinearLayout {
         int i10 = 0;
         if (z11) {
             setVisibility(0);
-            float f10 = this.f5873b;
+            float f10 = this.f5878b;
             if (z10) {
                 f7 = getMeasuredHeight();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f5874c = ofFloat;
+            this.f5879c = ofFloat;
             ofFloat.addUpdateListener(new y9(this, 0));
-            this.f5874c.addListener(new ai.n(12, this, z10));
-            this.f5874c.setDuration(320L);
-            this.f5874c.setInterpolator(qr.h);
-            this.f5874c.start();
+            this.f5879c.addListener(new ai.n(12, this, z10));
+            this.f5879c.setDuration(320L);
+            this.f5879c.setInterpolator(qr.h);
+            this.f5879c.start();
             return;
         }
         if (z10) {
@@ -57,34 +57,34 @@ public final class z9 extends LinearLayout {
         if (z10) {
             f7 = getMeasuredHeight();
         }
-        this.f5873b = f7;
-        super.setTranslationY(f7 + this.f5872a);
+        this.f5878b = f7;
+        super.setTranslationY(f7 + this.f5877a);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.ActionBar.f6 f6Var;
         float f7;
         super.dispatchDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.i6.f18780a7;
+        int i10 = org.telegram.ui.ActionBar.j6.f18806a7;
         ba baVar = this.h;
-        e6Var = ((org.telegram.ui.ActionBar.f3) baVar.W).resourcesProvider;
-        int v02 = org.telegram.ui.ActionBar.i6.v0(i10, e6Var);
+        f6Var = ((org.telegram.ui.ActionBar.g3) baVar.W).resourcesProvider;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
         Paint paint = this.e;
         paint.setColor(v02);
-        if (baVar.f4399f.canScrollVertically(1)) {
+        if (baVar.f4404f.canScrollVertically(1)) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        paint.setAlpha((int) (this.f5875f.d(f7, false) * 255.0f));
+        paint.setAlpha((int) (this.f5880f.d(f7, false) * 255.0f));
         canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, paint);
     }
 
     @Override
     public final void setTranslationY(float f7) {
-        float f10 = this.f5873b;
-        this.f5872a = f7;
+        float f10 = this.f5878b;
+        this.f5877a = f7;
         super.setTranslationY(f10 + f7);
     }
 }

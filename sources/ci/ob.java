@@ -1,14 +1,14 @@
 package ci;
 public final class ob implements sc {
-    public final bi.v f5198a;
+    public final bi.v f5203a;
 
     public ob(bi.v vVar) {
-        this.f5198a = vVar;
+        this.f5203a = vVar;
     }
 
     @Override
     public final void H(float f7, boolean z10) {
-        this.f5198a.run(Boolean.FALSE, Float.valueOf(f7));
+        this.f5203a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override

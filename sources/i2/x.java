@@ -4,29 +4,29 @@ import android.os.Bundle;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.Components.oc;
 import org.telegram.ui.Components.vc;
-import org.telegram.ui.eh0;
+import org.telegram.ui.gh0;
 public final class x implements e2.m, p.a, GenericProvider {
-    public final int f10913a;
-    public final boolean f10914b;
+    public final int f10916a;
+    public final boolean f10917b;
 
     public x(int i10, boolean z10) {
-        this.f10913a = i10;
-        this.f10914b = z10;
+        this.f10916a = i10;
+        this.f10917b = z10;
     }
 
     @Override
     public oc c(vc vcVar) {
-        return vcVar.k(this.f10914b);
+        return vcVar.k(this.f10917b);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f10913a) {
+        switch (this.f10916a) {
             case 0:
-                ((b2.z0) obj).onShuffleModeEnabledChanged(this.f10914b);
+                ((b2.z0) obj).onShuffleModeEnabledChanged(this.f10917b);
                 return;
             default:
-                ((b2.z0) obj).onSkipSilenceEnabledChanged(this.f10914b);
+                ((b2.z0) obj).onSkipSilenceEnabledChanged(this.f10917b);
                 return;
         }
     }
@@ -34,9 +34,9 @@ public final class x implements e2.m, p.a, GenericProvider {
     @Override
     public Object provide(Object obj) {
         Void r22 = (Void) obj;
-        Bundle i10 = a4.a.i("afterSignup", this.f10914b);
-        eh0 eh0Var = new eh0();
-        eh0Var.l0(i10);
-        return eh0Var;
+        Bundle i10 = a4.a.i("afterSignup", this.f10917b);
+        gh0 gh0Var = new gh0();
+        gh0Var.l0(i10);
+        return gh0Var;
     }
 }

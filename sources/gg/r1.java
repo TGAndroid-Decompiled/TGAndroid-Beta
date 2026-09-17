@@ -1,12 +1,12 @@
 package gg;
 
 import java.util.ArrayList;
-import org.telegram.ui.zs;
+import org.telegram.ui.bt;
 public final class r1 implements b2 {
-    public final zs f9903a;
+    public final bt f9908a;
 
-    public r1(zs zsVar) {
-        this.f9903a = zsVar;
+    public r1(bt btVar) {
+        this.f9908a = btVar;
     }
 
     @Override
@@ -21,10 +21,10 @@ public final class r1 implements b2 {
 
     @Override
     public final void h(int i10) {
-        zs zsVar = this.f9903a;
-        zsVar.l();
+        bt btVar = this.f9908a;
+        btVar.l();
         if (i10 != 0) {
-            zsVar.F();
+            btVar.F();
         }
     }
 

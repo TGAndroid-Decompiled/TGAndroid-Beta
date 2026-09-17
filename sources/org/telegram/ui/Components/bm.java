@@ -6,34 +6,34 @@ import android.graphics.Paint;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class bm extends TextView {
-    public float f22823a;
-    public boolean f22824b;
-    public final Paint f22825c;
+    public float f22762a;
+    public boolean f22763b;
+    public final Paint f22764c;
 
     public bm(Context context, Paint paint) {
         super(context);
-        this.f22825c = paint;
-        this.f22823a = 0.0f;
+        this.f22764c = paint;
+        this.f22762a = 0.0f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int i10 = (int) ((this.f22823a * 130.0f) + 125.0f);
-        Paint paint = this.f22825c;
+        int i10 = (int) ((this.f22762a * 130.0f) + 125.0f);
+        Paint paint = this.f22764c;
         paint.setAlpha(i10);
-        if (!this.f22824b) {
-            float f7 = this.f22823a - 0.026666667f;
-            this.f22823a = f7;
+        if (!this.f22763b) {
+            float f7 = this.f22762a - 0.026666667f;
+            this.f22762a = f7;
             if (f7 <= 0.0f) {
-                this.f22823a = 0.0f;
-                this.f22824b = true;
+                this.f22762a = 0.0f;
+                this.f22763b = true;
             }
         } else {
-            float f10 = this.f22823a + 0.026666667f;
-            this.f22823a = f10;
+            float f10 = this.f22762a + 0.026666667f;
+            this.f22762a = f10;
             if (f10 >= 1.0f) {
-                this.f22823a = 1.0f;
-                this.f22824b = false;
+                this.f22762a = 1.0f;
+                this.f22763b = false;
             }
         }
         super.onDraw(canvas);

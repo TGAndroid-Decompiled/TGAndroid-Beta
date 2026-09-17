@@ -2,9 +2,9 @@ package i2;
 
 import android.text.TextUtils;
 public final class h {
-    public final String f10732a;
-    public final b2.s f10733b;
-    public final b2.s f10734c;
+    public final String f10735a;
+    public final b2.s f10736b;
+    public final b2.s f10737c;
     public final int d;
     public final int e;
 
@@ -17,11 +17,11 @@ public final class h {
         }
         e2.d.b(z10);
         if (!TextUtils.isEmpty(str)) {
-            this.f10732a = str;
+            this.f10735a = str;
             sVar.getClass();
-            this.f10733b = sVar;
+            this.f10736b = sVar;
             sVar2.getClass();
-            this.f10734c = sVar2;
+            this.f10737c = sVar2;
             this.d = i10;
             this.e = i11;
             return;
@@ -35,7 +35,7 @@ public final class h {
         }
         if (obj != null && h.class == obj.getClass()) {
             h hVar = (h) obj;
-            if (this.d == hVar.d && this.e == hVar.e && this.f10732a.equals(hVar.f10732a) && this.f10733b.equals(hVar.f10733b) && this.f10734c.equals(hVar.f10734c)) {
+            if (this.d == hVar.d && this.e == hVar.e && this.f10735a.equals(hVar.f10735a) && this.f10736b.equals(hVar.f10736b) && this.f10737c.equals(hVar.f10737c)) {
                 return true;
             }
         }
@@ -43,7 +43,7 @@ public final class h {
     }
 
     public final int hashCode() {
-        int h = a4.a.h((((527 + this.d) * 31) + this.e) * 31, 31, this.f10732a);
-        return this.f10734c.hashCode() + ((this.f10733b.hashCode() + h) * 31);
+        int h = a4.a.h((((527 + this.d) * 31) + this.e) * 31, 31, this.f10735a);
+        return this.f10737c.hashCode() + ((this.f10736b.hashCode() + h) * 31);
     }
 }

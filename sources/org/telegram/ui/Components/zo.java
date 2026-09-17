@@ -1,28 +1,28 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ud1;
-public final class zo implements ud1 {
-    public final int f30627a;
-    public final vi f30628b;
-    public final org.telegram.ui.s3 f30629c;
+import org.telegram.ui.wd1;
+public final class zo implements wd1 {
+    public final int f30571a;
+    public final vi f30572b;
+    public final org.telegram.ui.s3 f30573c;
 
     public zo(vi viVar, org.telegram.ui.s3 s3Var, int i10) {
-        this.f30627a = i10;
-        this.f30628b = viVar;
-        this.f30629c = s3Var;
+        this.f30571a = i10;
+        this.f30572b = viVar;
+        this.f30573c = s3Var;
     }
 
     @Override
     public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f30627a) {
+        switch (this.f30571a) {
             case 0:
-                this.f30628b.dismissInternal();
-                this.f30629c.run(tL_wallPaper);
+                this.f30572b.dismissInternal();
+                this.f30573c.run(tL_wallPaper);
                 return;
             default:
-                this.f30628b.dismissInternal();
-                this.f30629c.run(tL_wallPaper);
+                this.f30572b.dismissInternal();
+                this.f30573c.run(tL_wallPaper);
                 return;
         }
     }

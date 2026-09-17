@@ -2,11 +2,11 @@ package v0;
 
 import android.os.Bundle;
 public abstract class c {
-    public final Bundle f43811a;
+    public final Bundle f43834a;
 
     public c(String type, Bundle data) {
         kotlin.jvm.internal.i.e(type, "type");
         kotlin.jvm.internal.i.e(data, "data");
-        this.f43811a = data;
+        this.f43834a = data;
     }
 }

@@ -15,34 +15,34 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class py extends kl0 {
+public final class py extends ll0 {
     public ny E;
     public boolean F;
     public int G;
     public int H;
     public boolean K;
     public final kz L;
-    public final Context f27189c;
+    public final Context f27151c;
     public final boolean d;
     public final ry e;
-    public final int f27190f;
+    public final int f27152f;
     public int h;
-    public TLRPC.User f27191n;
-    public String f27192r;
-    public boolean f27193s;
+    public TLRPC.User f27153n;
+    public String f27154r;
+    public boolean f27155s;
     public boolean v;
-    public String f27194w;
-    public final ArrayList f27195x = new ArrayList();
-    public final HashMap f27196y = new HashMap();
+    public String f27156w;
+    public final ArrayList f27157x = new ArrayList();
+    public final HashMap f27158y = new HashMap();
     public int I = -1;
     public int J = -1;
 
     public py(kz kzVar, Context context, boolean z10, int i10) {
         ry ryVar;
         this.L = kzVar;
-        this.f27189c = context;
+        this.f27151c = context;
         this.d = z10;
-        this.f27190f = i10;
+        this.f27152f = i10;
         if (z10) {
             ryVar = null;
         } else {
@@ -53,7 +53,7 @@ public final class py extends kl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42678f == 0) {
+        if (c1Var.f42700f == 0) {
             return true;
         }
         return false;
@@ -61,49 +61,49 @@ public final class py extends kl0 {
 
     public final void E(String str, String str2, boolean z10, boolean z11, boolean z12, String str3, TLObject tLObject) {
         boolean z13;
-        if (str != null && str.equals(this.f27194w)) {
+        if (str != null && str.equals(this.f27156w)) {
             this.h = 0;
             if (z12 && (!(tLObject instanceof TLRPC.messages_BotResults) || ((TLRPC.messages_BotResults) tLObject).results.isEmpty())) {
                 F(str, str2, z10, z11, false);
                 return;
             }
-            HashMap hashMap = this.f27196y;
+            HashMap hashMap = this.f27158y;
             boolean z14 = this.d;
-            ArrayList arrayList = this.f27195x;
+            ArrayList arrayList = this.f27157x;
             kz kzVar = this.L;
             if (!z14 && TextUtils.isEmpty(str2)) {
                 arrayList.clear();
                 hashMap.clear();
-                kzVar.f25738o0.e(false);
+                kzVar.f25748o0.e(false);
             }
             if (tLObject instanceof TLRPC.messages_BotResults) {
                 int size = arrayList.size();
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
-                HashMap hashMap2 = kzVar.f25730l0;
-                py pyVar = kzVar.f25735n0;
+                HashMap hashMap2 = kzVar.f25740l0;
+                py pyVar = kzVar.f25745n0;
                 if (!hashMap2.containsKey(str3)) {
-                    kzVar.f25730l0.put(str3, messages_botresults);
+                    kzVar.f25740l0.put(str3, messages_botresults);
                 }
                 if (!z12 && messages_botresults.cache_time != 0) {
-                    MessagesStorage.getInstance(kzVar.f25703c1).saveBotCache(str3, messages_botresults);
+                    MessagesStorage.getInstance(kzVar.f25713c1).saveBotCache(str3, messages_botresults);
                 }
-                this.f27192r = messages_botresults.next_offset;
+                this.f27154r = messages_botresults.next_offset;
                 int i10 = 0;
                 for (int i11 = 0; i11 < messages_botresults.results.size(); i11++) {
                     TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(i11);
-                    if (!hashMap.containsKey(botInlineResult.f18110id)) {
+                    if (!hashMap.containsKey(botInlineResult.f18119id)) {
                         botInlineResult.query_id = messages_botresults.query_id;
                         arrayList.add(botInlineResult);
-                        hashMap.put(botInlineResult.f18110id, botInlineResult);
+                        hashMap.put(botInlineResult.f18119id, botInlineResult);
                         i10++;
                     }
                 }
-                if (size != arrayList.size() && !TextUtils.isEmpty(this.f27192r)) {
+                if (size != arrayList.size() && !TextUtils.isEmpty(this.f27154r)) {
                     z13 = false;
                 } else {
                     z13 = true;
                 }
-                this.f27193s = z13;
+                this.f27155s = z13;
                 if (i10 != 0) {
                     if (z11 && size == 0) {
                         l();
@@ -137,11 +137,11 @@ public final class py extends kl0 {
                 l();
             }
             if (!z14) {
-                if (kzVar.f25718h0.getAdapter() != this) {
-                    kzVar.f25718h0.setAdapter(this);
+                if (kzVar.f25728h0.getAdapter() != this) {
+                    kzVar.f25728h0.setAdapter(this);
                 }
                 if (z11 && !TextUtils.isEmpty(str) && TextUtils.isEmpty(str2)) {
-                    kzVar.f25721i0.h1(0, 0);
+                    kzVar.f25731i0.h1(0, 0);
                     kzVar.G(2);
                 }
             }
@@ -153,21 +153,21 @@ public final class py extends kl0 {
         kz kzVar = this.L;
         if (i10 != 0) {
             if (i10 >= 0) {
-                ConnectionsManager.getInstance(kzVar.f25703c1).cancelRequest(this.h, true);
+                ConnectionsManager.getInstance(kzVar.f25713c1).cancelRequest(this.h, true);
             }
             this.h = 0;
         }
-        this.f27194w = str;
+        this.f27156w = str;
         this.v = z11;
         ry ryVar = this.e;
         if (ryVar != null) {
             ryVar.a(z11);
         }
-        int i11 = kzVar.f25703c1;
-        HashMap hashMap = kzVar.f25730l0;
-        mw mwVar = kzVar.f25718h0;
-        pw pwVar = kzVar.f25738o0;
-        int i12 = kzVar.f25703c1;
+        int i11 = kzVar.f25713c1;
+        HashMap hashMap = kzVar.f25740l0;
+        mw mwVar = kzVar.f25728h0;
+        pw pwVar = kzVar.f25748o0;
+        int i12 = kzVar.f25713c1;
         TLObject userOrChat = MessagesController.getInstance(i11).getUserOrChat(MessagesController.getInstance(i12).gifSearchBot);
         boolean z13 = userOrChat instanceof TLRPC.User;
         boolean z14 = this.d;
@@ -190,7 +190,7 @@ public final class py extends kl0 {
         if (!z14 && TextUtils.isEmpty(str2)) {
             pwVar.e(true);
         }
-        this.f27191n = (TLRPC.User) userOrChat;
+        this.f27153n = (TLRPC.User) userOrChat;
         final String j3 = com.google.android.gms.internal.vision.e2.j("gif_search_", str, "_", str2);
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
@@ -211,18 +211,18 @@ public final class py extends kl0 {
             }
         };
         if (!z12 && !z14 && z11 && TextUtils.isEmpty(str2)) {
-            this.f27195x.clear();
-            this.f27196y.clear();
+            this.f27157x.clear();
+            this.f27158y.clear();
             if (mwVar.getAdapter() != this) {
                 mwVar.setAdapter(this);
             }
             l();
-            kzVar.f25721i0.h1(0, 0);
+            kzVar.f25731i0.h1(0, 0);
             kzVar.G(2);
         }
         if (z12 && hashMap.containsKey(j3)) {
             E(str, str2, z10, z11, true, j3, (TLObject) hashMap.get(j3));
-        } else if (kzVar.f25727k0.f27994a.contains(j3)) {
+        } else if (kzVar.f25737k0.f27954a.contains(j3)) {
         } else {
             if (z12) {
                 this.h = -1;
@@ -234,7 +234,7 @@ public final class py extends kl0 {
                 str = "";
             }
             tL_messages_getInlineBotResults.query = str;
-            tL_messages_getInlineBotResults.bot = MessagesController.getInstance(i12).getInputUser(this.f27191n);
+            tL_messages_getInlineBotResults.bot = MessagesController.getInstance(i12).getInputUser(this.f27153n);
             tL_messages_getInlineBotResults.offset = str2;
             tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
             this.h = ConnectionsManager.getInstance(i12).sendRequest(tL_messages_getInlineBotResults, requestDelegate);
@@ -248,7 +248,7 @@ public final class py extends kl0 {
             kz kzVar = this.L;
             if (i10 != 0) {
                 if (i10 >= 0) {
-                    ConnectionsManager.getInstance(kzVar.f25703c1).cancelRequest(this.h, true);
+                    ConnectionsManager.getInstance(kzVar.f25713c1).cancelRequest(this.h, true);
                 }
                 this.h = 0;
             }
@@ -262,20 +262,20 @@ public final class py extends kl0 {
                 AndroidUtilities.cancelRunOnUIThread(nyVar);
             }
             if (TextUtils.isEmpty(str)) {
-                this.f27194w = null;
+                this.f27156w = null;
                 if (this.K) {
                     F("", "", true, true, true);
                     return;
                 }
-                qx qxVar = kzVar.f25741p0;
-                mw mwVar = kzVar.f25718h0;
+                qx qxVar = kzVar.f25751p0;
+                mw mwVar = kzVar.f25728h0;
                 int currentPosition = qxVar.getCurrentPosition();
-                if (currentPosition != kzVar.f25748r0 && currentPosition != kzVar.f25752s0) {
-                    H(MessagesController.getInstance(kzVar.f25703c1).gifSearchEmojies.get(currentPosition - kzVar.f25755t0));
+                if (currentPosition != kzVar.f25758r0 && currentPosition != kzVar.f25762s0) {
+                    H(MessagesController.getInstance(kzVar.f25713c1).gifSearchEmojies.get(currentPosition - kzVar.f25765t0));
                     return;
                 }
                 s4.h0 adapter = mwVar.getAdapter();
-                py pyVar = kzVar.f25735n0;
+                py pyVar = kzVar.f25745n0;
                 if (adapter != pyVar) {
                     mwVar.setAdapter(pyVar);
                     return;
@@ -283,7 +283,7 @@ public final class py extends kl0 {
                 return;
             }
             String lowerCase = str.toLowerCase();
-            this.f27194w = lowerCase;
+            this.f27156w = lowerCase;
             if (!TextUtils.isEmpty(lowerCase)) {
                 ny nyVar2 = new ny(0, this, str);
                 this.E = nyVar2;
@@ -298,8 +298,8 @@ public final class py extends kl0 {
     }
 
     public final void H(String str) {
-        if (this.v && TextUtils.equals(this.f27194w, str)) {
-            this.L.f25721i0.h1(0, 0);
+        if (this.v && TextUtils.equals(this.f27156w, str)) {
+            this.L.f25731i0.h1(0, 0);
         } else {
             F(str, "", true, true, true);
         }
@@ -313,7 +313,7 @@ public final class py extends kl0 {
         if (z10) {
             this.G = this.H;
         }
-        ArrayList arrayList = this.f27195x;
+        ArrayList arrayList = this.f27157x;
         if (!arrayList.isEmpty()) {
             if (z10 && this.H > 0) {
                 int i10 = this.G;
@@ -339,7 +339,7 @@ public final class py extends kl0 {
         if (z10 && i10 == this.I) {
             return 2;
         }
-        if (!z10 && this.f27195x.isEmpty()) {
+        if (!z10 && this.f27157x.isEmpty()) {
             return 3;
         }
         return 0;
@@ -348,26 +348,26 @@ public final class py extends kl0 {
     @Override
     public final void l() {
         int i10;
-        if (this.d && (i10 = this.f27190f) != 0) {
+        if (this.d && (i10 = this.f27152f) != 0) {
             kz kzVar = this.L;
             if (i10 == Integer.MAX_VALUE) {
-                this.H = kzVar.f25722i1.size();
+                this.H = kzVar.f25732i1.size();
             } else {
-                mw mwVar = kzVar.f25718h0;
-                qy qyVar = kzVar.f25721i0;
+                mw mwVar = kzVar.f25728h0;
+                qy qyVar = kzVar.f25731i0;
                 if (mwVar.getMeasuredWidth() != 0) {
-                    int measuredWidth = kzVar.f25718h0.getMeasuredWidth();
+                    int measuredWidth = kzVar.f25728h0.getMeasuredWidth();
                     int i11 = qyVar.J;
                     int dp = AndroidUtilities.dp(100.0f);
                     this.H = 0;
-                    int size = kzVar.f25722i1.size();
+                    int size = kzVar.f25732i1.size();
                     int i12 = i11;
                     int i13 = 0;
                     int i14 = 0;
                     for (int i15 = 0; i15 < size; i15++) {
-                        TLRPC.Document document = (TLRPC.Document) kzVar.f25722i1.get(i15);
-                        jv0 C1 = nz.C1(qyVar.F1(document, document.attributes));
-                        int min = Math.min(i11, (int) Math.floor((((C1.f25443a / C1.f25444b) * dp) / measuredWidth) * i11));
+                        TLRPC.Document document = (TLRPC.Document) kzVar.f25732i1.get(i15);
+                        kv0 C1 = nz.C1(qyVar.F1(document, document.attributes));
+                        int min = Math.min(i11, (int) Math.floor((((C1.f25695a / C1.f25696b) * dp) / measuredWidth) * i11));
                         if (i12 < min) {
                             this.H += i13;
                             i14++;
@@ -392,16 +392,16 @@ public final class py extends kl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f42678f != 0) {
+        if (c1Var.f42700f != 0) {
             return;
         }
-        org.telegram.ui.Cells.e2 e2Var = (org.telegram.ui.Cells.e2) c1Var.f42675a;
+        org.telegram.ui.Cells.e2 e2Var = (org.telegram.ui.Cells.e2) c1Var.f42697a;
         int i11 = this.J;
         if (i11 >= 0 && i10 >= i11) {
-            e2Var.e((TLRPC.BotInlineResult) this.f27195x.get(i10 - i11), this.f27191n, true, false, false, true);
+            e2Var.e((TLRPC.BotInlineResult) this.f27157x.get(i10 - i11), this.f27153n, true, false, false, true);
             return;
         }
-        TLRPC.Document document = (TLRPC.Document) this.L.f25722i1.get(i10);
+        TLRPC.Document document = (TLRPC.Document) this.L.f25732i1.get(i10);
         e2Var.getClass();
         e2Var.d(0, document, "gif" + document);
     }
@@ -418,7 +418,7 @@ public final class py extends kl0 {
                     view.setLayoutParams(p0Var);
                     o8Var = view;
                 } else {
-                    org.telegram.ui.Cells.o8 o8Var2 = new org.telegram.ui.Cells.o8(this.f27189c, false, false, kzVar.Z1, kzVar.f25723i2);
+                    org.telegram.ui.Cells.o8 o8Var2 = new org.telegram.ui.Cells.o8(this.f27151c, false, false, kzVar.Z1, kzVar.f25733i2);
                     o8Var2.b(0, LocaleController.getString(R.string.FeaturedGifs));
                     s4.p0 p0Var2 = new s4.p0(-1, -2);
                     ((ViewGroup.MarginLayoutParams) p0Var2).topMargin = AndroidUtilities.dp(2.5f);
@@ -428,11 +428,11 @@ public final class py extends kl0 {
                 }
             } else {
                 View view2 = new View(kzVar.getContext());
-                view2.setLayoutParams(new s4.p0(-1, kzVar.f25699b1));
+                view2.setLayoutParams(new s4.p0(-1, kzVar.f25709b1));
                 o8Var = view2;
             }
         } else {
-            org.telegram.ui.Cells.e2 e2Var = new org.telegram.ui.Cells.e2(this.f27189c);
+            org.telegram.ui.Cells.e2 e2Var = new org.telegram.ui.Cells.e2(this.f27151c);
             e2Var.setIsKeyboard(true);
             e2Var.setCanPreviewGif(true);
             o8Var = e2Var;

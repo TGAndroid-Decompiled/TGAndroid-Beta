@@ -24,23 +24,23 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.Cells.b6;
-import org.telegram.ui.Components.al0;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.nr0;
+import org.telegram.ui.Components.bl0;
+import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.or0;
 import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.dg1;
-import org.telegram.ui.g61;
-import org.telegram.ui.ip0;
-import org.telegram.ui.oy;
-import org.telegram.ui.tg1;
-import org.telegram.ui.uy;
-import org.telegram.ui.vo0;
+import org.telegram.ui.fg1;
+import org.telegram.ui.i61;
+import org.telegram.ui.kp0;
+import org.telegram.ui.qy;
+import org.telegram.ui.vg1;
+import org.telegram.ui.wy;
+import org.telegram.ui.xo0;
 import xh.f4;
 import xh.g4;
 import xh.n2;
@@ -48,20 +48,20 @@ import xh.q2;
 import xh.z1;
 import yh.a4;
 import yh.m2;
-public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.d, m2, Utilities.Callback5, al0, tg1, g61 {
-    public final int f43120a;
-    public final Object f43121b;
-    public final Object f43122c;
+public final class d implements b2, xo0, qy, c3.r, androidx.car.app.utils.b, q9.d, m2, Utilities.Callback5, bl0, vg1, i61 {
+    public final int f43142a;
+    public final Object f43143b;
+    public final Object f43144c;
 
     public d(int i10, Object obj, Object obj2) {
-        this.f43120a = i10;
-        this.f43121b = obj;
-        this.f43122c = obj2;
+        this.f43142a = i10;
+        this.f43143b = obj;
+        this.f43144c = obj2;
     }
 
     @Override
     public boolean A() {
-        switch (this.f43120a) {
+        switch (this.f43142a) {
             case 4:
                 return false;
             default:
@@ -72,9 +72,9 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
     @Override
     public Object G(cf.c cVar) {
         String valueOf;
-        String str = (String) this.f43121b;
+        String str = (String) this.f43143b;
         Context context = (Context) cVar.a(Context.class);
-        switch (((j2.e) this.f43122c).f12571a) {
+        switch (((j2.e) this.f43144c).f12574a) {
             case 13:
                 ApplicationInfo applicationInfo = context.getApplicationInfo();
                 if (applicationInfo != null) {
@@ -119,8 +119,8 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
     }
 
     @Override
-    public boolean K(uy uyVar) {
-        switch (this.f43120a) {
+    public boolean K(wy wyVar) {
+        switch (this.f43142a) {
             case 4:
                 return false;
             default:
@@ -130,10 +130,10 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
 
     @Override
     public void a(int i10) {
-        switch (this.f43120a) {
+        switch (this.f43142a) {
             case 2:
-                w wVar = (w) this.f43121b;
-                w wVar2 = (w) this.f43122c;
+                w wVar = (w) this.f43143b;
+                w wVar2 = (w) this.f43144c;
                 if (i10 == 1) {
                     wVar.run(null);
                     return;
@@ -144,8 +144,8 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
                     return;
                 }
             default:
-                Utilities.Callback callback = (Utilities.Callback) this.f43121b;
-                Utilities.Callback callback2 = (Utilities.Callback) this.f43122c;
+                Utilities.Callback callback = (Utilities.Callback) this.f43143b;
+                Utilities.Callback callback2 = (Utilities.Callback) this.f43144c;
                 if (i10 == 1) {
                     callback.run(null);
                     return;
@@ -160,13 +160,13 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
 
     @Override
     public void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
-        n2 n2Var = (n2) this.f43121b;
-        nr0 nr0Var = n2Var.f46034a;
-        n2Var.e.f47498l.remove((TL_stars.SavedStarGift) this.f43122c);
+        n2 n2Var = (n2) this.f43143b;
+        or0 or0Var = n2Var.f46057a;
+        n2Var.e.f47521l.remove((TL_stars.SavedStarGift) this.f43144c);
         n2Var.f(true);
-        int i10 = n2Var.f46035b;
+        int i10 = n2Var.f46058b;
         if (j3 == UserConfig.getInstance(i10).getClientUserId()) {
-            vc a02 = vc.a0(nr0Var.f46105a);
+            vc a02 = vc.a0(or0Var.f46128a);
             TLRPC.Document document = tL_starGiftUnique.getDocument();
             String string = LocaleController.getString(R.string.BoughtResoldGiftTitle);
             int i11 = R.string.BoughtResoldGiftText;
@@ -174,37 +174,37 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
             sb2.append(tL_starGiftUnique.title);
             sb2.append(" #");
             oc O = a02.O(document, string, LocaleController.formatString(i11, hg.k0.k(tL_starGiftUnique.num, ',', sb2)));
-            O.f26762r = false;
+            O.f26710r = false;
             O.j();
         } else {
-            oc O2 = vc.a0(nr0Var.f46105a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j3)));
-            O2.f26762r = false;
+            oc O2 = vc.a0(or0Var.f46128a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j3)));
+            O2.f26710r = false;
             O2.j();
         }
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity != null) {
-            launchActivity.f30858x0.c(true);
+            launchActivity.f30872x0.c(true);
         }
     }
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        g4.Q((g4) this.f43121b, (f4) this.f43122c, i10);
+        g4.Q((g4) this.f43143b, (f4) this.f43144c, i10);
     }
 
     @Override
     public void call() {
-        int i10 = CarAppNotificationBroadcastReceiver.f2140a;
-        ((IStartCarApp) this.f43121b).startCarApp((Intent) this.f43122c);
+        int i10 = CarAppNotificationBroadcastReceiver.f2145a;
+        ((IStartCarApp) this.f43143b).startCarApp((Intent) this.f43144c);
     }
 
     @Override
     public c3.o[] d(Uri uri, Map map) {
         c3.o aVar;
-        u2.p pVar = (u2.p) this.f43121b;
-        b2.s sVar = (b2.s) this.f43122c;
-        if (pVar.f43462c.W(sVar)) {
-            aVar = new z3.h(pVar.f43462c.x(sVar), null);
+        u2.p pVar = (u2.p) this.f43143b;
+        b2.s sVar = (b2.s) this.f43144c;
+        if (pVar.f43485c.W(sVar)) {
+            aVar = new z3.h(pVar.f43485c.x(sVar), null);
         } else {
             aVar = new k3.a(sVar);
         }
@@ -218,34 +218,34 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
 
     @Override
     public void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f43120a) {
+        switch (this.f43142a) {
             case 14:
-                ((yh.g) this.f43121b).h0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f43122c);
+                ((yh.g) this.f43143b).h0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f43144c);
                 return;
             default:
-                ((a4) this.f43121b).M1(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f43122c);
+                ((a4) this.f43143b).M1(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f43144c);
                 return;
         }
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f43120a) {
+    public void f(c2 c2Var, int i10) {
+        switch (this.f43142a) {
             case 0:
-                ((AtomicBoolean) this.f43121b).set(true);
-                ((u0) this.f43122c).run();
+                ((AtomicBoolean) this.f43143b).set(true);
+                ((u0) this.f43144c).run();
                 return;
             case 1:
-                ((w) this.f43121b).run((TLRPC.TL_premiumGiftCodeOption) this.f43122c);
+                ((w) this.f43143b).run((TLRPC.TL_premiumGiftCodeOption) this.f43144c);
                 return;
             case 9:
-                xh.m mVar = (xh.m) this.f43121b;
-                b6 b6Var = (b6) this.f43122c;
+                xh.m mVar = (xh.m) this.f43143b;
+                b6 b6Var = (b6) this.f43144c;
                 try {
                     int parseInt = Integer.parseInt(b6Var.getText().toString().trim());
                     mVar.X(parseInt);
-                    mVar.f45986c0.setValue(parseInt);
-                    b2Var.dismiss();
+                    mVar.f46009c0.setValue(parseInt);
+                    c2Var.dismiss();
                     return;
                 } catch (Throwable th2) {
                     AndroidUtilities.shakeView(b6Var);
@@ -253,26 +253,26 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
                     return;
                 }
             case 10:
-                z1 z1Var = (z1) this.f43121b;
-                Utilities.Callback callback = (Utilities.Callback) this.f43122c;
+                z1 z1Var = (z1) this.f43143b;
+                Utilities.Callback callback = (Utilities.Callback) this.f43144c;
                 String obj = z1Var.getText().toString();
                 if (obj.length() > 0 && obj.length() <= 12) {
                     callback.run(obj);
-                    b2Var.dismiss();
+                    c2Var.dismiss();
                     return;
                 }
                 AndroidUtilities.shakeView(z1Var);
                 return;
             default:
-                a4 a4Var = (a4) this.f43121b;
-                nf.e g10 = b2Var.g(i10, true, true);
+                a4 a4Var = (a4) this.f43143b;
+                nf.e g10 = c2Var.g(i10, true, true);
                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                 d dVar = new d(16, a4Var, twoStepVerificationActivity);
                 twoStepVerificationActivity.Z = 2;
-                twoStepVerificationActivity.f31591b0 = dVar;
-                twoStepVerificationActivity.f31589a0 = a4Var.C1();
+                twoStepVerificationActivity.f31604b0 = dVar;
+                twoStepVerificationActivity.f31602a0 = a4Var.C1();
                 g10.d();
-                twoStepVerificationActivity.s0(new w9.v(a4Var, (n1[]) this.f43122c, g10, twoStepVerificationActivity, 11));
+                twoStepVerificationActivity.s0(new w9.v(a4Var, (n1[]) this.f43144c, g10, twoStepVerificationActivity, 11));
                 return;
         }
     }
@@ -281,20 +281,20 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
         boolean z11;
-        q2 q2Var = (q2) this.f43121b;
-        ci.d dVar = (ci.d) this.f43122c;
+        q2 q2Var = (q2) this.f43143b;
+        ci.d dVar = (ci.d) this.f43144c;
         View view = (View) obj2;
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
         Float f10 = (Float) obj5;
         q2Var.getClass();
-        long j3 = ((TL_stars.SavedStarGift) ((i51) obj).G).gift.f18338id;
-        if (q2Var.f46096b == j3) {
-            q2Var.f46096b = 0L;
+        long j3 = ((TL_stars.SavedStarGift) ((j51) obj).G).gift.f18347id;
+        if (q2Var.f46119b == j3) {
+            q2Var.f46119b = 0L;
         } else {
-            q2Var.f46096b = j3;
+            q2Var.f46119b = j3;
         }
-        if (q2Var.f46096b != 0) {
+        if (q2Var.f46119b != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -304,36 +304,36 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
             ViewGroup viewGroup = (ViewGroup) view.getParent();
             for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
                 View childAt = viewGroup.getChildAt(i10);
-                if (childAt instanceof ip0) {
-                    ip0 ip0Var = (ip0) childAt;
-                    if (q2Var.f46096b == ip0Var.getGiftId()) {
+                if (childAt instanceof kp0) {
+                    kp0 kp0Var = (kp0) childAt;
+                    if (q2Var.f46119b == kp0Var.getGiftId()) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    ip0Var.b(z11, true);
+                    kp0Var.b(z11, true);
                 }
             }
         }
     }
 
     @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, dg1 dg1Var) {
-        switch (this.f43120a) {
+    public boolean u(wy wyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
+        switch (this.f43142a) {
             case 4:
-                h0 h0Var = (h0) this.f43121b;
-                String str = (String) this.f43122c;
+                h0 h0Var = (h0) this.f43143b;
+                String str = (String) this.f43144c;
                 long j3 = 0;
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     j3 = ((MessagesStorage.TopicKey) arrayList.get(i12)).dialogId;
-                    h0Var.f30528n.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    h0Var.f30451n.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }
-                uyVar.finishFragment();
+                wyVar.finishFragment();
                 k.h(j3);
                 return true;
             default:
-                ug.e eVar = (ug.e) this.f43121b;
-                String str2 = (String) this.f43122c;
+                ug.e eVar = (ug.e) this.f43143b;
+                String str2 = (String) this.f43144c;
                 long j10 = 0;
                 int i13 = 0;
                 while (i13 < arrayList.size()) {
@@ -342,7 +342,7 @@ public final class d implements a2, vo0, oy, c3.r, androidx.car.app.utils.b, q9.
                     i13++;
                     eVar = eVar;
                 }
-                uyVar.finishFragment();
+                wyVar.finishFragment();
                 k.h(j10);
                 return true;
         }

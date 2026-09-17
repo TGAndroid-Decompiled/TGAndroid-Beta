@@ -1,81 +1,161 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class so0 extends FrameLayout {
-    public final Paint f37418a;
-    public float f37419b;
-    public o1.k f37420c;
-    public final wo0 d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class so0 implements TextWatcher {
+    public final String[] f37533a = {"34", "37"};
+    public final String[] f37534b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public final String[] f37535c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+    public int d = -1;
+    public int e;
+    public final yo0 f37536f;
 
-    public so0(wo0 wo0Var, Context context) {
-        super(context);
-        this.d = wo0Var;
-        this.f37418a = new Paint(1);
-        setWillNotDraw(false);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        o1.k kVar = this.f37420c;
-        if (kVar != null) {
-            kVar.c();
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z11) {
-            float f11 = this.f37419b;
-            if (f11 == f7) {
-                return;
-            }
-            o1.k kVar2 = new o1.k(new o1.j(f11 * 100.0f));
-            o1.l lVar = new o1.l(f7 * 100.0f);
-            if (z10) {
-                f10 = 500.0f;
-            } else {
-                f10 = 650.0f;
-            }
-            lVar.b(f10);
-            lVar.a(1.0f);
-            kVar2.f15351u = lVar;
-            this.f37420c = kVar2;
-            kVar2.b(new td0(this, 1));
-            this.f37420c.a(new n9(this, 1));
-            this.f37420c.f();
-            return;
-        }
-        this.f37419b = f7;
-        TextView textView = this.d.U;
-        if (textView != null) {
-            textView.setAlpha((f7 * 0.2f) + 0.8f);
-        }
-        invalidate();
+    public so0(yo0 yo0Var) {
+        this.f37536f = yo0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        super.onDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.i6.O6;
-        wo0 wo0Var = this.d;
-        canvas.drawColor(wo0Var.getThemedColor(i10));
-        int themedColor = wo0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f18864ei);
-        Paint paint = this.f37418a;
-        paint.setColor(themedColor);
-        if (LocaleController.isRTL) {
-            dp = getWidth() - AndroidUtilities.dp(28.0f);
-        } else {
-            dp = AndroidUtilities.dp(28.0f);
+    public final void afterTextChanged(Editable editable) {
+        char c10;
+        boolean z10;
+        int i10;
+        int i11;
+        String[] strArr;
+        int i12;
+        String str;
+        yo0 yo0Var = this.f37536f;
+        if (yo0Var.f39968o0) {
+            return;
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f37419b, paint);
+        EditTextBoldCursor editTextBoldCursor = yo0Var.f39957f[0];
+        int selectionStart = editTextBoldCursor.getSelectionStart();
+        String obj = editTextBoldCursor.getText().toString();
+        int i13 = 3;
+        int i14 = 1;
+        if (this.d == 3) {
+            obj = obj.substring(0, this.e) + obj.substring(this.e + 1);
+            selectionStart--;
+        }
+        StringBuilder sb2 = new StringBuilder(obj.length());
+        int i15 = 0;
+        while (i15 < obj.length()) {
+            int i16 = i15 + 1;
+            String substring = obj.substring(i15, i16);
+            if ("0123456789".contains(substring)) {
+                sb2.append(substring);
+            }
+            i15 = i16;
+        }
+        yo0Var.f39968o0 = true;
+        String str2 = null;
+        int i17 = 100;
+        if (sb2.length() > 0) {
+            String sb3 = sb2.toString();
+            int i18 = 0;
+            while (true) {
+                if (i18 < i13) {
+                    if (i18 != 0) {
+                        if (i18 != i14) {
+                            strArr = this.f37534b;
+                            i12 = 14;
+                            str = "xxxx xxxx xxxx xx";
+                        } else {
+                            strArr = this.f37533a;
+                            i12 = 15;
+                            str = "xxxx xxxx xxxx xxx";
+                        }
+                    } else {
+                        strArr = this.f37535c;
+                        i12 = 16;
+                        str = "xxxx xxxx xxxx xxxx";
+                    }
+                    c10 = 1;
+                    for (String str3 : strArr) {
+                        if (sb3.length() <= str3.length()) {
+                            if (str3.startsWith(sb3)) {
+                                i17 = i12;
+                                str2 = str;
+                                break;
+                            }
+                        } else if (sb3.startsWith(str3)) {
+                            i17 = i12;
+                            str2 = str;
+                            break;
+                        }
+                    }
+                    if (str2 != null) {
+                        break;
+                    }
+                    i18++;
+                    i13 = 3;
+                    i14 = 1;
+                } else {
+                    c10 = 1;
+                    break;
+                }
+            }
+            if (sb2.length() > i17) {
+                sb2.setLength(i17);
+            }
+        } else {
+            c10 = 1;
+        }
+        if (str2 != null) {
+            if (sb2.length() == i17) {
+                yo0Var.f39957f[c10].requestFocus();
+            }
+            editTextBoldCursor.setTextColor(yo0Var.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
+            int i19 = 0;
+            while (true) {
+                if (i19 >= sb2.length()) {
+                    break;
+                } else if (i19 < str2.length()) {
+                    if (str2.charAt(i19) == ' ') {
+                        sb2.insert(i19, ' ');
+                        i19++;
+                        if (selectionStart == i19 && (i11 = this.d) != 2 && i11 != 3) {
+                            selectionStart++;
+                        }
+                    }
+                    i19++;
+                } else {
+                    sb2.insert(i19, ' ');
+                    if (selectionStart == i19 + 1 && (i10 = this.d) != 2 && i10 != 3) {
+                        selectionStart++;
+                    }
+                }
+            }
+        }
+        if (!sb2.toString().equals(editable.toString())) {
+            z10 = false;
+            editable.replace(0, editable.length(), sb2);
+        } else {
+            z10 = false;
+        }
+        if (selectionStart >= 0) {
+            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+        }
+        yo0Var.f39968o0 = z10;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (i11 == 0 && i12 == 1) {
+            this.d = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == ' ' && i10 > 0) {
+                this.d = 3;
+                this.e = i10 - 1;
+                return;
+            }
+            this.d = 2;
+        } else {
+            this.d = -1;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

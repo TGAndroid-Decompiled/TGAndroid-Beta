@@ -23,44 +23,44 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.l40;
-import org.telegram.ui.Components.pz0;
-import org.telegram.ui.mj0;
+import org.telegram.ui.Components.qz0;
+import org.telegram.ui.oj0;
 public final class f3 {
-    public final TL_stars.TL_starGiftUnique f47146a;
-    public final Context f47147b;
-    public final int f47148c;
+    public final TL_stars.TL_starGiftUnique f47169a;
+    public final Context f47170b;
+    public final int f47171c;
     public final long d;
     public final String e;
-    public final boolean f47149f;
-    public final org.telegram.ui.ActionBar.e6 f47150g;
-    public final org.telegram.ui.ActionBar.b2 h;
-    public final l40 f47151i;
-    public final TextView f47152j;
-    public a f47153k;
-    public TextView f47154l;
-    public FrameLayout f47155m;
-    public nf.e f47156n;
-    public final HashMap f47157o;
-    public final HashSet f47158p;
-    public zf.b f47159q;
-    public ci.f4 f47160r;
+    public final boolean f47172f;
+    public final org.telegram.ui.ActionBar.f6 f47173g;
+    public final org.telegram.ui.ActionBar.c2 h;
+    public final l40 f47174i;
+    public final TextView f47175j;
+    public a f47176k;
+    public TextView f47177l;
+    public FrameLayout f47178m;
+    public nf.e f47179n;
+    public final HashMap f47180o;
+    public final HashSet f47181p;
+    public zf.b f47182q;
+    public ci.f4 f47183r;
 
-    public f3(Context context, org.telegram.ui.ActionBar.e6 e6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, d3 d3Var, int i10, long j3, String str, boolean z10, Utilities.Callback2 callback2) {
+    public f3(Context context, org.telegram.ui.ActionBar.f6 f6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, d3 d3Var, int i10, long j3, String str, boolean z10, Utilities.Callback2 callback2) {
         TLObject chat;
         HashMap hashMap = new HashMap();
-        this.f47157o = hashMap;
-        this.f47158p = new HashSet();
-        this.f47147b = context;
-        this.f47146a = tL_starGiftUnique;
+        this.f47180o = hashMap;
+        this.f47181p = new HashSet();
+        this.f47170b = context;
+        this.f47169a = tL_starGiftUnique;
         this.d = j3;
-        this.f47148c = i10;
-        zf.b bVar = d3Var.f47073a;
-        this.f47159q = bVar;
+        this.f47171c = i10;
+        zf.b bVar = d3Var.f47096a;
+        this.f47182q = bVar;
         hashMap.put(bVar, d3Var);
-        this.f47150g = e6Var;
+        this.f47173g = f6Var;
         this.e = str;
         boolean z11 = tL_starGiftUnique.resale_ton_only;
-        this.f47149f = !z11;
+        this.f47172f = !z11;
         if (j3 >= 0) {
             chat = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
         } else {
@@ -70,40 +70,40 @@ public final class f3 {
         e3 e3Var = new e3(this, context);
         e3Var.addView(f7, w7.x5.c(-2.0f, -1));
         if (!z11) {
-            l40 l40Var = new l40(context, e6Var);
-            this.f47151i = l40Var;
+            l40 l40Var = new l40(context, f6Var);
+            this.f47174i = l40Var;
             ArrayList arrayList = new ArrayList();
             arrayList.add(LocaleController.getString(R.string.Gift2BuyInStars));
             arrayList.add(LocaleController.getString(R.string.Gift2BuyInTON));
             l40Var.b(arrayList, new v(this, 2));
             f7.addView(l40Var, w7.x5.t(-2, -2, 1, 18, 0, 18, 12));
         } else {
-            this.f47151i = null;
+            this.f47174i = null;
             TextView textView = new TextView(context);
-            wl.n(org.telegram.ui.ActionBar.i6.f19218y6, e6Var, textView, 1, 14.0f);
+            wl.n(org.telegram.ui.ActionBar.j6.f19244y6, f6Var, textView, 1, 14.0f);
             wl.k(R.string.Gift2BuyPriceOnlyTON, textView, 17);
             f7.addView(textView, w7.x5.t(-2, -2, 17, 24, 4, 24, 4));
         }
         f7.addView(new c3(context, tL_starGiftUnique, chat), w7.x5.t(-1, -2, 48, 0, -4, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f47152j = textView2;
-        wl.n(org.telegram.ui.ActionBar.i6.f18943j5, e6Var, textView2, 1, 16.0f);
+        this.f47175j = textView2;
+        wl.n(org.telegram.ui.ActionBar.j6.f18969j5, f6Var, textView2, 1, 16.0f);
         f7.addView(textView2, w7.x5.t(-1, -2, 48, 24, 4, 24, 4));
         if (z10) {
-            pz0 pz0Var = new pz0(context, e6Var);
-            a4.q1(pz0Var, v5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
-            a4.q1(pz0Var, v5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
-            a4.q1(pz0Var, v5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
+            qz0 qz0Var = new qz0(context, f6Var);
+            a4.q1(qz0Var, v5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
+            a4.q1(qz0Var, v5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
+            a4.q1(qz0Var, v5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
             if (!TextUtils.isEmpty(tL_starGiftUnique.slug) && (tL_starGiftUnique.flags & 256) != 0) {
-                pz0Var.c(LocaleController.getString(R.string.GiftValue2), org.telegram.ui.Cells.p6.i("~", BillingController.getInstance().formatCurrency(tL_starGiftUnique.value_amount, tL_starGiftUnique.value_currency, BillingController.getInstance().getCurrencyExp(tL_starGiftUnique.value_currency), true)), null, null);
+                qz0Var.c(LocaleController.getString(R.string.GiftValue2), org.telegram.ui.Cells.p6.i("~", BillingController.getInstance().formatCurrency(tL_starGiftUnique.value_amount, tL_starGiftUnique.value_currency, BillingController.getInstance().getCurrencyExp(tL_starGiftUnique.value_currency), true)), null, null);
             }
-            f7.addView(pz0Var, w7.x5.t(-1, -2, 48, 23, 16, 23, 4));
+            f7.addView(qz0Var, w7.x5.t(-1, -2, 48, 23, 16, 23, 4));
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
         alertDialog$Builder.n(e3Var);
-        alertDialog$Builder.k("_", new org.telegram.ui.Components.d2(this, i10, context, e6Var, callback2, 6));
+        alertDialog$Builder.k("_", new org.telegram.ui.Components.d2(this, i10, context, f6Var, callback2, 6));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        this.h = alertDialog$Builder.f18437a;
+        this.h = alertDialog$Builder.f18446a;
     }
 
     public final void a(boolean z10) {
@@ -115,9 +115,9 @@ public final class f3 {
         String formatPluralStringComma;
         ci.f4 f4Var;
         int i10;
-        zf.b bVar = this.f47159q;
-        d3 d3Var = (d3) this.f47157o.get(bVar);
-        TextView textView = this.f47152j;
+        zf.b bVar = this.f47182q;
+        d3 d3Var = (d3) this.f47180o.get(bVar);
+        TextView textView = this.f47175j;
         ViewPropertyAnimator animate = textView.animate();
         if (d3Var != null) {
             f7 = 1.0f;
@@ -131,20 +131,20 @@ public final class f3 {
             z11 = false;
         }
         textView.setEnabled(z11);
-        TextView textView2 = this.f47154l;
+        TextView textView2 = this.f47177l;
         if (d3Var != null) {
             z12 = true;
         } else {
             z12 = false;
         }
         textView2.setEnabled(z12);
-        a aVar = this.f47153k;
+        a aVar = this.f47176k;
         if (aVar.e != bVar) {
             aVar.e = bVar;
             aVar.a();
         }
-        zf.b bVar2 = zf.b.f48955b;
-        l40 l40Var = this.f47151i;
+        zf.b bVar2 = zf.b.f48978b;
+        l40 l40Var = this.f47174i;
         if (l40Var != null) {
             if (bVar == bVar2) {
                 i10 = 1;
@@ -153,11 +153,11 @@ public final class f3 {
             }
             l40Var.a(i10, z10);
         }
-        if (bVar == bVar2 && (f4Var = this.f47160r) != null && f4Var.V) {
+        if (bVar == bVar2 && (f4Var = this.f47183r) != null && f4Var.V) {
             f4Var.e(true);
         }
-        a aVar2 = this.f47153k;
-        zf.b bVar3 = zf.b.f48954a;
+        a aVar2 = this.f47176k;
+        zf.b bVar3 = zf.b.f48977a;
         if (aVar2 != null) {
             if (bVar == bVar3) {
                 aVar2.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 24));
@@ -165,16 +165,16 @@ public final class f3 {
                 aVar2.setOnClickListener(new ai.e2(20));
             }
         }
-        nf.e eVar = this.f47156n;
+        nf.e eVar = this.f47179n;
         if (eVar != null) {
             eVar.a(false);
-            this.f47156n = null;
+            this.f47179n = null;
         }
-        int i11 = this.f47148c;
+        int i11 = this.f47171c;
         long j3 = this.d;
         if (d3Var != null) {
-            zf.b bVar4 = d3Var.f47073a;
-            zf.a aVar3 = d3Var.f47075c;
+            zf.b bVar4 = d3Var.f47096a;
+            zf.a aVar3 = d3Var.f47098c;
             if (j3 == UserConfig.getInstance(i11).getClientUserId()) {
                 z13 = true;
             } else {
@@ -182,7 +182,7 @@ public final class f3 {
             }
             String str = this.e;
             if (bVar4 == bVar3) {
-                this.f47154l.setText(y7.Q0(LocaleController.formatPluralStringComma("Gift2BuyDoPrice2", (int) aVar3.a())));
+                this.f47177l.setText(y7.Q0(LocaleController.formatPluralStringComma("Gift2BuyDoPrice2", (int) aVar3.a())));
                 if (z13) {
                     formatPluralStringComma = LocaleController.formatPluralStringComma("Gift2BuyPriceSelfText", (int) aVar3.a(), str);
                 } else {
@@ -191,7 +191,7 @@ public final class f3 {
                 textView.setText(AndroidUtilities.replaceTags(formatPluralStringComma));
             }
             if (bVar4 == bVar2) {
-                this.f47154l.setText(y7.S0(LocaleController.formatString(R.string.Gift2BuyDoPrice2TON, aVar3.d()), true));
+                this.f47177l.setText(y7.S0(LocaleController.formatString(R.string.Gift2BuyDoPrice2TON, aVar3.d()), true));
                 if (z13) {
                     formatString = LocaleController.formatString(R.string.Gift2BuyPriceSelfTextTON, aVar3.d(), str);
                 } else {
@@ -203,31 +203,31 @@ public final class f3 {
             return;
         }
         nf.e g10 = this.h.g(-1, false, false);
-        this.f47156n = g10;
+        this.f47179n = g10;
         g10.d();
-        if (this.f47158p.add(bVar)) {
-            v5.x(i11, bVar).H(this.f47146a, j3, null, true, new mj0(20, this, bVar));
+        if (this.f47181p.add(bVar)) {
+            v5.x(i11, bVar).H(this.f47169a, j3, null, true, new oj0(20, this, bVar));
         }
     }
 
     public final void b() {
-        org.telegram.ui.ActionBar.b2 b2Var = this.h;
-        b2Var.X0 = true;
-        b2Var.show();
-        this.f47154l = (TextView) b2Var.d(-1);
-        this.f47153k = b2Var.Z0;
-        FrameLayout frameLayout = b2Var.Y0;
-        this.f47155m = frameLayout;
-        if (frameLayout != null && this.f47149f) {
-            ci.f4 f4Var = new ci.f4(this.f47147b, 3);
+        org.telegram.ui.ActionBar.c2 c2Var = this.h;
+        c2Var.X0 = true;
+        c2Var.show();
+        this.f47177l = (TextView) c2Var.d(-1);
+        this.f47176k = c2Var.Z0;
+        FrameLayout frameLayout = c2Var.Y0;
+        this.f47178m = frameLayout;
+        if (frameLayout != null && this.f47172f) {
+            ci.f4 f4Var = new ci.f4(this.f47170b, 3);
             f4Var.p(true);
             f4Var.K = Layout.Alignment.ALIGN_NORMAL;
             f4Var.d = 5000L;
             f4Var.s(LocaleController.getString(R.string.Gift2BuyPricePayHintTON));
             f4Var.u();
-            this.f47160r = f4Var;
+            this.f47183r = f4Var;
             f4Var.setPadding(AndroidUtilities.dp(7.33f), 0, AndroidUtilities.dp(7.33f), 0);
-            this.f47155m.addView(this.f47160r, w7.x5.d(-2, 100.0f, 48, 0.0f, 26.0f, 0.0f, 0.0f));
+            this.f47178m.addView(this.f47183r, w7.x5.d(-2, 100.0f, 48, 0.0f, 26.0f, 0.0f, 0.0f));
         }
         a(false);
     }

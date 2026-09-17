@@ -1,45 +1,37 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class c9 extends org.telegram.ui.Components.hq0 {
-    public final org.telegram.ui.ActionBar.f3 f32714b1;
+public final class c9 extends TextView {
+    public final Paint f32697a;
+    public final org.telegram.ui.ActionBar.f6 f32698b;
 
-    public c9(Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.f3 f3Var) {
-        super(context, null, str, false, str2, false, e6Var);
-        this.f32714b1 = f3Var;
+    public c9(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f32698b = f6Var;
+        this.f32697a = new Paint(1);
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        int m10;
-        String formatString;
-        if (!z10) {
-            return;
+    public final void dispatchDraw(Canvas canvas) {
+        int l1 = org.telegram.ui.ActionBar.j6.l1(0.8f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19263z6, this.f32698b));
+        Paint paint = this.f32697a;
+        paint.setColor(l1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.0f);
+        float height = getHeight() / 2.0f;
+        Layout layout = getLayout();
+        int i10 = 0;
+        for (int i11 = 0; i11 < layout.getLineCount(); i11++) {
+            i10 = Math.max(i10, (int) layout.getLineWidth(i11));
         }
-        if (iVar != null && iVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) iVar.n(0)).f18116id;
-            if (j3 != 0 && j3 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j3, true));
-            } else {
-                formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
-            }
-        } else {
-            int i11 = R.string.InvLinkToChats;
-            if (iVar == null) {
-                m10 = 1;
-            } else {
-                m10 = iVar.m();
-            }
-            formatString = LocaleController.formatString(i11, LocaleController.formatPluralString("Chats", m10, new Object[0]));
-        }
-        org.telegram.ui.Components.oc Q = new org.telegram.ui.Components.vc(this.f32714b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f26762r = false;
-        Q.j();
+        float f7 = i10 / 2.0f;
+        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f7) - AndroidUtilities.dp(8.0f), height, paint);
+        canvas.drawLine((getWidth() / 2.0f) + f7 + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
+        super.dispatchDraw(canvas);
     }
 }

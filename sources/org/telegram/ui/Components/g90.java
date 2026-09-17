@@ -23,53 +23,53 @@ public final class g90 extends Drawable {
     public Paint I;
     public LinearGradient J;
     public Matrix K;
-    public final org.telegram.ui.ActionBar.e6 f24261a;
-    public long f24262b;
-    public long f24263c;
+    public final org.telegram.ui.ActionBar.f6 f24130a;
+    public long f24131b;
+    public long f24132c;
     public LinearGradient d;
     public LinearGradient e;
-    public final Matrix f24264f;
-    public final Matrix f24265g;
+    public final Matrix f24133f;
+    public final Matrix f24134g;
     public int h;
-    public int f24266i;
-    public int f24267j;
-    public int f24268k;
-    public int f24269l;
-    public int f24270m;
-    public boolean f24271n;
-    public Integer f24272o;
-    public Integer f24273p;
-    public Integer f24274q;
-    public Integer f24275r;
-    public int f24276s;
-    public float f24277t;
-    public float f24278u;
+    public int f24135i;
+    public int f24136j;
+    public int f24137k;
+    public int f24138l;
+    public int f24139m;
+    public boolean f24140n;
+    public Integer f24141o;
+    public Integer f24142p;
+    public Integer f24143q;
+    public Integer f24144r;
+    public int f24145s;
+    public float f24146t;
+    public float f24147u;
     public final Paint v;
-    public final Paint f24279w;
-    public Path f24280x;
-    public final Path f24281y;
-    public Rect f24282z;
+    public final Paint f24148w;
+    public Path f24149x;
+    public final Path f24150y;
+    public Rect f24151z;
 
-    public g90(org.telegram.ui.ActionBar.e6 e6Var) {
+    public g90(org.telegram.ui.ActionBar.f6 f6Var) {
         this();
-        this.f24261a = e6Var;
+        this.f24130a = f6Var;
     }
 
     public final void a() {
         if (!b() && !c()) {
-            this.f24263c = SystemClock.elapsedRealtime();
+            this.f24132c = SystemClock.elapsedRealtime();
         }
     }
 
     public final boolean b() {
-        if (this.f24263c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f24263c)) >= 320.0f) {
+        if (this.f24132c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f24132c)) >= 320.0f) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f24263c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f24263c)) < 320.0f) {
+        if (this.f24132c > 0 && ((float) (SystemClock.elapsedRealtime() - this.f24132c)) < 320.0f) {
             return true;
         }
         return false;
@@ -77,7 +77,7 @@ public final class g90 extends Drawable {
 
     public final void d(RectF rectF) {
         setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        this.f24282z = null;
+        this.f24151z = null;
     }
 
     @Override
@@ -86,21 +86,21 @@ public final class g90 extends Drawable {
     }
 
     public final void e(int i10, int i11) {
-        this.f24272o = Integer.valueOf(i10);
-        this.f24273p = Integer.valueOf(i11);
-        this.f24271n = false;
+        this.f24141o = Integer.valueOf(i10);
+        this.f24142p = Integer.valueOf(i11);
+        this.f24140n = false;
     }
 
     public final void f(int i10, int i11, int i12, int i13) {
-        this.f24272o = Integer.valueOf(i10);
-        this.f24273p = Integer.valueOf(i11);
-        this.f24271n = true;
-        this.f24274q = Integer.valueOf(i12);
-        this.f24275r = Integer.valueOf(i13);
+        this.f24141o = Integer.valueOf(i10);
+        this.f24142p = Integer.valueOf(i11);
+        this.f24140n = true;
+        this.f24143q = Integer.valueOf(i12);
+        this.f24144r = Integer.valueOf(i13);
     }
 
     public final void g() {
-        this.f24277t = 2.0f;
+        this.f24146t = 2.0f;
     }
 
     @Override
@@ -110,9 +110,9 @@ public final class g90 extends Drawable {
 
     public final void h(float f7) {
         boolean z10;
-        if (this.f24280x != null) {
+        if (this.f24149x != null) {
             this.v.setPathEffect(new CornerPathEffect(f7));
-            this.f24279w.setPathEffect(new CornerPathEffect(f7));
+            this.f24148w.setPathEffect(new CornerPathEffect(f7));
             return;
         }
         float[] fArr = this.A;
@@ -129,10 +129,10 @@ public final class g90 extends Drawable {
         fArr[4] = f7;
         fArr[7] = f7;
         fArr[6] = f7;
-        if (this.f24282z != null && z10) {
-            Path path = this.f24281y;
+        if (this.f24151z != null && z10) {
+            Path path = this.f24150y;
             path.rewind();
-            Rect rect = this.f24282z;
+            Rect rect = this.f24151z;
             RectF rectF = this.B;
             rectF.set(rect);
             path.addRoundRect(rectF, fArr, Path.Direction.CW);
@@ -151,10 +151,10 @@ public final class g90 extends Drawable {
                     z10 = true;
                 }
             }
-            if (this.f24282z != null && z10) {
-                Path path = this.f24281y;
+            if (this.f24151z != null && z10) {
+                Path path = this.f24150y;
                 path.rewind();
-                Rect rect = this.f24282z;
+                Rect rect = this.f24151z;
                 RectF rectF = this.B;
                 rectF.set(rect);
                 path.addRoundRect(rectF, fArr, Path.Direction.CW);
@@ -167,7 +167,7 @@ public final class g90 extends Drawable {
     }
 
     public final void k() {
-        Path path = this.f24280x;
+        Path path = this.f24149x;
         if (path != null) {
             RectF rectF = AndroidUtilities.rectTmp;
             path.computeBounds(rectF, false);
@@ -178,7 +178,7 @@ public final class g90 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         this.v.setAlpha(i10);
-        this.f24279w.setAlpha(i10);
+        this.f24148w.setAlpha(i10);
         if (i10 > 0) {
             invalidateSelf();
         }
@@ -190,18 +190,18 @@ public final class g90 extends Drawable {
     }
 
     public g90() {
-        this.f24262b = -1L;
-        this.f24263c = -1L;
-        this.f24264f = new Matrix();
-        this.f24265g = new Matrix();
-        this.f24269l = org.telegram.ui.ActionBar.i6.f18907h5;
-        this.f24270m = org.telegram.ui.ActionBar.i6.f18925i5;
-        this.f24277t = 1.0f;
-        this.f24278u = 1.0f;
+        this.f24131b = -1L;
+        this.f24132c = -1L;
+        this.f24133f = new Matrix();
+        this.f24134g = new Matrix();
+        this.f24138l = org.telegram.ui.ActionBar.j6.f18933h5;
+        this.f24139m = org.telegram.ui.ActionBar.j6.f18951i5;
+        this.f24146t = 1.0f;
+        this.f24147u = 1.0f;
         this.v = new Paint(1);
         Paint paint = new Paint(1);
-        this.f24279w = paint;
-        this.f24281y = new Path();
+        this.f24148w = paint;
+        this.f24150y = new Path();
         this.A = new float[8];
         this.B = new RectF();
         paint.setStyle(Paint.Style.STROKE);

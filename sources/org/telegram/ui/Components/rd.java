@@ -5,37 +5,37 @@ import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.StickersActivity;
 import org.telegram.ui.ThemeActivity;
 public final class rd implements Runnable {
-    public final int f27622a;
-    public final org.telegram.ui.ActionBar.n2 f27623b;
+    public final int f27595a;
+    public final org.telegram.ui.ActionBar.o2 f27596b;
 
-    public rd(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f27622a = i10;
-        this.f27623b = n2Var;
+    public rd(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f27595a = i10;
+        this.f27596b = o2Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f27622a;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f27623b;
+        int i10 = this.f27595a;
+        org.telegram.ui.ActionBar.o2 o2Var = this.f27596b;
         switch (i10) {
             case 0:
-                int i11 = ChatActivityEnterView.f21731m5;
-                if (n2Var != null) {
-                    new rg.x0(n2Var, 11, false).show();
+                int i11 = ChatActivityEnterView.f21741m5;
+                if (o2Var != null) {
+                    new rg.x0(o2Var, 11, false).show();
                     return;
-                } else if (n2Var.getContext() instanceof LaunchActivity) {
-                    ((LaunchActivity) n2Var.getContext()).p0(new PremiumPreviewFragment(0, null));
+                } else if (o2Var.getContext() instanceof LaunchActivity) {
+                    ((LaunchActivity) o2Var.getContext()).p0(new PremiumPreviewFragment(0, null));
                     return;
                 } else {
                     return;
                 }
             case 1:
-                n2Var.presentFragment(new StickersActivity(0, null));
+                o2Var.presentFragment(new StickersActivity(0, null));
                 return;
             default:
                 ThemeActivity themeActivity = new ThemeActivity(0);
                 themeActivity.T0 = true;
-                n2Var.presentFragment(themeActivity);
+                o2Var.presentFragment(themeActivity);
                 return;
         }
     }

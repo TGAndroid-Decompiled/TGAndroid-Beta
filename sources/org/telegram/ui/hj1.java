@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class hj1 extends org.telegram.ui.Components.kl0 {
-    public final Context f34301c;
+public final class hj1 extends org.telegram.ui.Components.ll0 {
+    public final Context f34287c;
     public final WallpapersListActivity d;
 
     public hj1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f34301c = context;
+        this.f34287c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42678f == 0) {
+        if (c1Var.f42700f == 0) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class hj1 extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final int h() {
-        return this.d.f31622a;
+        return this.d.f31635a;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class hj1 extends org.telegram.ui.Components.kl0 {
         int i11;
         WallpapersListActivity wallpapersListActivity = this.d;
         i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f31624b && i10 != wallpapersListActivity.e) {
-            if (i10 != wallpapersListActivity.f31630f && i10 != wallpapersListActivity.f31635n) {
+        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f31637b && i10 != wallpapersListActivity.e) {
+            if (i10 != wallpapersListActivity.f31643f && i10 != wallpapersListActivity.f31647n) {
                 return 2;
             }
             return 3;
@@ -47,7 +47,7 @@ public final class hj1 extends org.telegram.ui.Components.kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View r8Var;
-        Context context = this.f34301c;
+        Context context = this.f34287c;
         if (i10 != 0) {
             if (i10 != 3) {
                 r8Var = new org.telegram.ui.Components.ij(this, context, 1);

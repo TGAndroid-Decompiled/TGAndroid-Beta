@@ -4,8 +4,8 @@ import android.os.Build;
 import android.view.View;
 import j$.util.Objects;
 public class i1 {
-    public static final l1 f41846b;
-    public final l1 f41847a;
+    public static final l1 f41868b;
+    public final l1 f41869a;
 
     static {
         b1 x0Var;
@@ -19,23 +19,23 @@ public class i1 {
         } else {
             x0Var = new x0();
         }
-        f41846b = x0Var.b().f41855a.a().f41855a.b().f41855a.c();
+        f41868b = x0Var.b().f41877a.a().f41877a.b().f41877a.c();
     }
 
     public i1(l1 l1Var) {
-        this.f41847a = l1Var;
+        this.f41869a = l1Var;
     }
 
     public l1 a() {
-        return this.f41847a;
+        return this.f41869a;
     }
 
     public l1 b() {
-        return this.f41847a;
+        return this.f41869a;
     }
 
     public l1 c() {
-        return this.f41847a;
+        return this.f41869a;
     }
 
     public i e() {
@@ -92,7 +92,7 @@ public class i1 {
     }
 
     public l1 m(int i10, int i11, int i12, int i13) {
-        return f41846b;
+        return f41868b;
     }
 
     public boolean n() {

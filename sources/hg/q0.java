@@ -2,27 +2,27 @@ package hg;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.i51;
-public final class q0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
-    public final int f10387a;
-    public final u0 f10388b;
+import org.telegram.ui.Components.j51;
+public final class q0 implements org.telegram.ui.ActionBar.b2, Utilities.Callback5 {
+    public final int f10392a;
+    public final u0 f10393b;
 
     public q0(u0 u0Var, int i10) {
-        this.f10387a = i10;
-        this.f10388b = u0Var;
+        this.f10392a = i10;
+        this.f10393b = u0Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f10387a) {
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f10392a) {
             case 0:
-                this.f10388b.a0();
+                this.f10393b.a0();
                 return;
             case 1:
-                this.f10388b.finishFragment();
+                this.f10393b.finishFragment();
                 return;
             default:
-                this.f10388b.a0();
+                this.f10393b.a0();
                 return;
         }
     }
@@ -32,6 +32,6 @@ public final class q0 implements org.telegram.ui.ActionBar.a2, Utilities.Callbac
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        u0.W(this.f10388b, (i51) obj, (View) obj2);
+        u0.W(this.f10393b, (j51) obj, (View) obj2);
     }
 }

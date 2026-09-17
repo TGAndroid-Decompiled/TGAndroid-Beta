@@ -1,17 +1,9 @@
 package org.telegram.ui;
+public final class xf1 {
+    public final int f39610a;
+    public int f39611b;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class xf1 extends s4.s0 {
-    public final int f39615a;
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12 = this.f39615a;
-    }
-
-    private final void c(RecyclerView recyclerView, int i10, int i11) {
-    }
-
-    private final void d(RecyclerView recyclerView, int i10, int i11) {
+    public xf1(int i10) {
+        this.f39610a = i10;
     }
 }

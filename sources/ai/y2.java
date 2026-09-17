@@ -8,17 +8,17 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class y2 implements org.telegram.ui.ActionBar.a2, jh.a {
-    public final int f1741a;
-    public final f6 f1742b;
+public final class y2 implements org.telegram.ui.ActionBar.b2, jh.a {
+    public final int f1746a;
+    public final f6 f1747b;
 
     public y2(f6 f6Var, int i10) {
-        this.f1741a = i10;
-        this.f1742b = f6Var;
+        this.f1746a = i10;
+        this.f1747b = f6Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
         long j3;
         TLRPC.ChatFull chatFull;
         TL_stories.PeerStories peerStories;
@@ -26,11 +26,11 @@ public final class y2 implements org.telegram.ui.ActionBar.a2, jh.a {
         boolean z10;
         boolean z11;
         TL_stories.StoryItem storyItem;
-        int i11 = this.f1741a;
-        f6 f6Var = this.f1742b;
+        int i11 = this.f1746a;
+        f6 f6Var = this.f1747b;
         switch (i11) {
             case 0:
-                a4 a4Var = f6Var.f795b2;
+                a4 a4Var = f6Var.f800b2;
                 if (a4Var != null) {
                     a4Var.A();
                     return;
@@ -40,7 +40,7 @@ public final class y2 implements org.telegram.ui.ActionBar.a2, jh.a {
                 d6 d6Var = f6Var.O1;
                 boolean z12 = true;
                 TLRPC.ChatFull chatFull2 = null;
-                if (d6Var.f704f && (storyItem = d6Var.f701a) != null) {
+                if (d6Var.f709f && (storyItem = d6Var.f706a) != null) {
                     TLRPC.MessageMedia messageMedia = storyItem.media;
                     if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
                         TLRPC.InputGroupCall inputGroupCall = ((TLRPC.TL_messageMediaVideoStream) messageMedia).call;
@@ -54,18 +54,18 @@ public final class y2 implements org.telegram.ui.ActionBar.a2, jh.a {
                         }
                     }
                 }
-                TL_stories.StoryItem storyItem2 = d6Var.f701a;
+                TL_stories.StoryItem storyItem2 = d6Var.f706a;
                 if (storyItem2 instanceof s8) {
-                    t8 t8Var = ((s8) storyItem2).f1506a;
+                    t8 t8Var = ((s8) storyItem2).f1511a;
                     TLRPC.MessageMedia messageMedia2 = storyItem2.media;
                     t8Var.getClass();
                     t8Var.F(new ArrayList(Arrays.asList(messageMedia2)));
                 } else if (storyItem2 != null) {
-                    f6 f6Var2 = d6Var.f708k;
+                    f6 f6Var2 = d6Var.f713k;
                     l9 l9Var = f6Var2.S1;
                     long j10 = f6Var2.B1;
-                    a0.i iVar = l9Var.f1193i;
-                    int i12 = l9Var.f1188a;
+                    a0.i iVar = l9Var.f1198i;
+                    int i12 = l9Var.f1193a;
                     if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
                         int i13 = 0;
                         while (i13 < 2) {
@@ -106,12 +106,12 @@ public final class y2 implements org.telegram.ui.ActionBar.a2, jh.a {
                                 int i14 = 0;
                                 while (true) {
                                     if (i14 < peerStories.stories.size()) {
-                                        if (peerStories.stories.get(i14).f18348id == storyItem2.f18348id) {
+                                        if (peerStories.stories.get(i14).f18357id == storyItem2.f18357id) {
                                             peerStories.stories.remove(i14);
                                             if (peerStories.stories.size() == 0) {
                                                 if (!l9Var.K(j10)) {
                                                     iVar.l(j10);
-                                                    l9Var.f1192g.remove(peerStories);
+                                                    l9Var.f1197g.remove(peerStories);
                                                     l9Var.h.remove(peerStories);
                                                 }
                                                 if (j10 > j3) {
@@ -148,16 +148,16 @@ public final class y2 implements org.telegram.ui.ActionBar.a2, jh.a {
                         }
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                         tL_stories_deleteStories.peer = MessagesController.getInstance(i12).getInputPeer(j10);
-                        tL_stories_deleteStories.f18351id.add(Integer.valueOf(storyItem2.f18348id));
+                        tL_stories_deleteStories.f18360id.add(Integer.valueOf(storyItem2.f18357id));
                         ConnectionsManager.getInstance(i12).sendRequest(tL_stories_deleteStories, new x7(l9Var, 5));
-                        y9 y9Var = l9Var.f1195k;
-                        y9Var.f1763b.getStorageQueue().postRunnable(new w9(y9Var, j10, storyItem2.f18348id, 0));
+                        y9 y9Var = l9Var.f1200k;
+                        y9Var.f1768b.getStorageQueue().postRunnable(new w9(y9Var, j10, storyItem2.f18357id, 0));
                         NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                         MessagesController.getInstance(i12).checkArchiveFolder();
                         l9Var.k0(j10, Arrays.asList(storyItem2));
                     }
                 } else {
-                    k9 k9Var = d6Var.f702b;
+                    k9 k9Var = d6Var.f707b;
                     if (k9Var != null) {
                         k9Var.a();
                     }
@@ -191,7 +191,7 @@ public final class y2 implements org.telegram.ui.ActionBar.a2, jh.a {
     @Override
     public void k(int i10) {
         if (i10 == 0) {
-            this.f1742b.P0();
+            this.f1747b.P0();
         }
     }
 }

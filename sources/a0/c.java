@@ -43,7 +43,7 @@ public final class c implements Set {
             if (obj instanceof Set) {
                 Set set = (Set) obj;
                 try {
-                    if (fVar.f28c == set.size()) {
+                    if (fVar.f30c == set.size()) {
                         if (fVar.i(set)) {
                             return true;
                         }
@@ -64,7 +64,7 @@ public final class c implements Set {
         int hashCode;
         f fVar = this.f5a;
         int i10 = 0;
-        for (int i11 = fVar.f28c - 1; i11 >= 0; i11--) {
+        for (int i11 = fVar.f30c - 1; i11 >= 0; i11--) {
             Object e = fVar.e(i11);
             if (e == null) {
                 hashCode = 0;
@@ -105,13 +105,13 @@ public final class c implements Set {
     @Override
     public final boolean retainAll(Collection collection) {
         f fVar = this.f5a;
-        int i10 = fVar.f28c;
+        int i10 = fVar.f30c;
         for (int i11 = i10 - 1; i11 >= 0; i11--) {
             if (!collection.contains(fVar.e(i11))) {
                 fVar.f(i11);
             }
         }
-        if (i10 != fVar.f28c) {
+        if (i10 != fVar.f30c) {
             return true;
         }
         return false;
@@ -119,13 +119,13 @@ public final class c implements Set {
 
     @Override
     public final int size() {
-        return this.f5a.f28c;
+        return this.f5a.f30c;
     }
 
     @Override
     public final Object[] toArray() {
         f fVar = this.f5a;
-        int i10 = fVar.f28c;
+        int i10 = fVar.f30c;
         Object[] objArr = new Object[i10];
         for (int i11 = 0; i11 < i10; i11++) {
             objArr[i11] = fVar.e(i11);
@@ -136,7 +136,7 @@ public final class c implements Set {
     @Override
     public final Object[] toArray(Object[] objArr) {
         f fVar = this.f5a;
-        int i10 = fVar.f28c;
+        int i10 = fVar.f30c;
         if (objArr.length < i10) {
             objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i10);
         }

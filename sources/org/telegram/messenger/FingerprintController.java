@@ -127,7 +127,7 @@ public class FingerprintController {
             return;
         }
         Context context = ApplicationLoader.applicationContext;
-        xf.a aVar = xf.b.f45751a;
+        xf.a aVar = xf.b.f45774a;
         if (aVar.H0(context) && aVar.c(ApplicationLoader.applicationContext)) {
             Utilities.globalQueue.postRunnable(new x3(0, z10));
         }

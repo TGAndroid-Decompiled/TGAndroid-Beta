@@ -4,64 +4,64 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class n3 {
-    public final int f11515a;
-    public final int f11516b;
-    public final int f11517c;
+    public final int f11518a;
+    public final int f11519b;
+    public final int f11520c;
     public final int d;
     public final w3 e;
 
     public n3(w3 w3Var, int i10, int i11, int i12, int i13) {
         this.e = w3Var;
-        this.f11515a = i10;
-        this.f11516b = i11;
-        this.f11517c = i12;
+        this.f11518a = i10;
+        this.f11519b = i11;
+        this.f11520c = i12;
         this.d = i13;
     }
 
     public final TL_iv.RichMessage a() {
         int i10;
-        TL_iv.PageBlock L1;
+        TL_iv.PageBlock M1;
         w3 w3Var = this.e;
-        ArrayList arrayList = w3Var.f11718l3;
-        int i11 = this.f11515a;
+        ArrayList arrayList = w3Var.f11721l3;
+        int i11 = this.f11518a;
         a aVar = (a) arrayList.get(i11);
-        ArrayList arrayList2 = w3Var.f11718l3;
-        int i12 = this.f11516b;
+        ArrayList arrayList2 = w3Var.f11721l3;
+        int i12 = this.f11519b;
         a aVar2 = (a) arrayList2.get(i12);
-        TL_iv.PageBlock pageBlock = aVar.f11201b;
-        TL_iv.PageBlock pageBlock2 = aVar2.f11201b;
+        TL_iv.PageBlock pageBlock = aVar.f11204b;
+        TL_iv.PageBlock pageBlock2 = aVar2.f11204b;
         int i13 = this.d;
         if (i11 == i12) {
             i10 = i13;
         } else {
             i10 = -1;
         }
-        TL_iv.PageBlock L12 = w3.L1(w3Var, aVar, this.f11517c, i10);
+        TL_iv.PageBlock M12 = w3.M1(w3Var, aVar, this.f11520c, i10);
         if (i11 == i12) {
-            L1 = null;
+            M1 = null;
         } else {
-            L1 = w3.L1(w3Var, aVar2, 0, i13);
+            M1 = w3.M1(w3Var, aVar2, 0, i13);
         }
-        if (L12 != null) {
-            aVar.f11201b = L12;
+        if (M12 != null) {
+            aVar.f11204b = M12;
         }
-        if (L1 != null) {
-            aVar2.f11201b = L1;
+        if (M1 != null) {
+            aVar2.f11204b = M1;
         }
         try {
-            ArrayList<TL_iv.PageBlock> Y2 = w3Var.Y2(i11, i12 + 1, 0, false);
-            ArrayList<TLRPC.Photo> A2 = w3Var.A2(i11, i12);
-            ArrayList<TLRPC.Document> z22 = w3Var.z2(i11, i12);
-            aVar.f11201b = pageBlock;
-            aVar2.f11201b = pageBlock2;
+            ArrayList<TL_iv.PageBlock> Z2 = w3Var.Z2(i11, i12 + 1, 0, false);
+            ArrayList<TLRPC.Photo> B2 = w3Var.B2(i11, i12);
+            ArrayList<TLRPC.Document> A2 = w3Var.A2(i11, i12);
+            aVar.f11204b = pageBlock;
+            aVar2.f11204b = pageBlock2;
             TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
-            richMessage.blocks = Y2;
-            richMessage.photos = A2;
-            richMessage.documents = z22;
+            richMessage.blocks = Z2;
+            richMessage.photos = B2;
+            richMessage.documents = A2;
             return richMessage;
         } catch (Throwable th2) {
-            aVar.f11201b = pageBlock;
-            aVar2.f11201b = pageBlock2;
+            aVar.f11204b = pageBlock;
+            aVar2.f11204b = pageBlock2;
             throw th2;
         }
     }

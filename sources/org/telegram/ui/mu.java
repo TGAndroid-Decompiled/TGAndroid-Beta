@@ -1,46 +1,58 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-public final class mu implements DialogInterface.OnClickListener {
-    public final DataSettingsActivity f35805a;
-    public final SharedPreferences f35806b;
-    public final int f35807c;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_payments;
+public final class mu implements Utilities.Callback {
+    public final int f35884a;
+    public final long f35885b;
+    public final Object f35886c;
+    public final Object d;
 
-    public mu(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i10) {
-        this.f35805a = dataSettingsActivity;
-        this.f35806b = sharedPreferences;
-        this.f35807c = i10;
+    public mu(Object obj, Object obj2, long j3, int i10) {
+        this.f35884a = i10;
+        this.f35886c = obj;
+        this.d = obj2;
+        this.f35885b = j3;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        int i11;
-        DataSettingsActivity dataSettingsActivity = this.f35805a;
-        dataSettingsActivity.getClass();
-        if (i10 != 0) {
-            i11 = 3;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        i11 = -1;
-                    } else {
-                        i11 = 2;
-                    }
+    public final void run(Object obj) {
+        boolean z10;
+        int i10;
+        switch (this.f35884a) {
+            case 0:
+                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f35886c;
+                Long l4 = (Long) obj;
+                AndroidUtilities.cancelRunOnUIThread((lu) this.d);
+                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f35885b <= 120) {
+                    z10 = false;
                 } else {
-                    i11 = 1;
+                    z10 = true;
                 }
-            }
-        } else {
-            i11 = 0;
-        }
-        if (i11 != -1) {
-            this.f35806b.edit().putInt("VoipDataSaving", i11).commit();
-            dataSettingsActivity.V = true;
-        }
-        nu nuVar = dataSettingsActivity.f30779a;
-        if (nuVar != null) {
-            nuVar.m(this.f35807c);
+                dataSettingsActivity.W = z10;
+                dataSettingsActivity.Y = l4.longValue();
+                dataSettingsActivity.X = false;
+                if (dataSettingsActivity.f30793a != null && (i10 = dataSettingsActivity.f30799s) >= 0) {
+                    dataSettingsActivity.n0(i10);
+                    return;
+                }
+                return;
+            case 1:
+                Runnable runnable = (Runnable) obj;
+                ((org.telegram.ui.ActionBar.c2) this.d).q(150L);
+                wy wyVar = ((vx) this.f35886c).f38521b;
+                Boolean bool = wyVar.G.bot_participant;
+                if (bool != null && bool.booleanValue()) {
+                    wyVar.getMessagesController().addUserToChat(this.f35885b, wyVar.getMessagesController().getUser(Long.valueOf(wyVar.H)), 0, null, wyVar, false, runnable, new nf(8, runnable));
+                    return;
+                }
+                runnable.run();
+                return;
+            default:
+                ProfileActivity.k0((ProfileActivity) this.f35886c, (Context) this.d, this.f35885b, (TL_payments.connectedBotStarRef) obj);
+                return;
         }
     }
 }

@@ -11,20 +11,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.wl;
 public final class z8 extends FrameLayout {
     public static Paint d;
-    public final TextView f21704a;
-    public int f21705b;
-    public float f21706c;
+    public final TextView f21714a;
+    public int f21715b;
+    public float f21716c;
 
     public z8(Context context) {
         super(context);
         int i10;
         int i11;
-        this.f21706c = 1.0f;
+        this.f21716c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f21704a = textView;
+        this.f21714a = textView;
         wl.r(textView, -14606047, 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -47,16 +47,16 @@ public final class z8 extends FrameLayout {
 
     @Override
     public float getAlpha() {
-        return this.f21706c;
+        return this.f21716c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int measuredWidth;
-        int i10 = this.f21705b;
+        int i10 = this.f21715b;
         if (i10 != 0) {
             d.setColor(i10);
-            d.setAlpha((int) (this.f21706c * 255.0f));
+            d.setAlpha((int) (this.f21716c * 255.0f));
             if (!LocaleController.isRTL) {
                 measuredWidth = AndroidUtilities.dp(28.0f);
             } else {
@@ -73,7 +73,7 @@ public final class z8 extends FrameLayout {
 
     @Override
     public void setAlpha(float f7) {
-        this.f21706c = f7;
+        this.f21716c = f7;
         invalidate();
     }
 }

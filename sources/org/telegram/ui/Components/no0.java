@@ -1,33 +1,27 @@
 package org.telegram.ui.Components;
-public final class no0 implements o1.f {
-    public final int f26544a;
-    public final vo0 f26545b;
-    public final o1.k f26546c;
+public final class no0 implements o1.g {
+    public final int f26506a;
+    public final wo0 f26507b;
 
-    public no0(vo0 vo0Var, o1.k kVar, int i10) {
-        this.f26544a = i10;
-        this.f26545b = vo0Var;
-        this.f26546c = kVar;
+    public no0(wo0 wo0Var, int i10) {
+        this.f26506a = i10;
+        this.f26507b = wo0Var;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f26544a) {
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f26506a) {
             case 0:
-                if (!z10) {
-                    this.f26545b.f28860z.remove(this.f26546c);
-                    hVar.c();
-                    return;
-                }
+                this.f26507b.f29710o.setScaleX(1.0f / f7);
+                return;
+            case 1:
+                this.f26507b.f29710o.setScaleY(1.0f / f7);
+                return;
+            case 2:
+                this.f26507b.f29710o.setScaleX(1.0f / f7);
                 return;
             default:
-                vo0 vo0Var = this.f26545b;
-                if (!z10) {
-                    vo0Var.f28860z.remove(this.f26546c);
-                    hVar.c();
-                    return;
-                }
-                vo0Var.getClass();
+                this.f26507b.f29710o.setScaleY(1.0f / f7);
                 return;
         }
     }

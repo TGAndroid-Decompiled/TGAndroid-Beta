@@ -1,73 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public abstract class ja1 extends ia1 {
-    public final int v;
-    public final ya1 f34846w;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ja1 {
+    public final org.telegram.ui.Components.s00 f34829a;
+    public kg.f f34830b;
+    public final int f34831c;
+    public final ka1 d;
 
-    public ja1(ya1 ya1Var, Context context, int i10, int i11, ig.f fVar) {
-        super(context, i11, fVar, null);
-        this.f34846w = ya1Var;
-        this.v = i10;
-    }
-
-    @Override
-    public final void b(ka1 ka1Var) {
-        int i10;
-        ya1 ya1Var = this.f34846w;
-        i10 = ((org.telegram.ui.ActionBar.n2) ya1Var).classGuid;
-        ka1Var.a(this.v, i10, ya1Var.f39795a.stats_dc, new org.telegram.ui.Components.s51(1, ya1Var, this.f34576r));
-    }
-
-    @Override
-    public final void c() {
-        int i10;
-        if (this.f34576r.f35095c <= 0) {
-            performClick();
-            ig.g gVar = this.f34572b;
-            if (gVar.f11162t0.G) {
-                long selectedDate = gVar.getSelectedDate();
-                if (this.f34577s == 4) {
-                    ka1 ka1Var = this.f34576r;
-                    ka1Var.e = new jg.e(ka1Var.d, selectedDate);
-                    g(false);
-                } else if (this.f34576r.f35097g == null) {
-                } else {
-                    ya1 ya1Var = this.f34846w;
-                    ya1.Z(ya1Var);
-                    String str = this.f34576r.f35097g + "_" + selectedDate;
-                    jg.b bVar = (jg.b) ya1Var.V.get(str);
-                    if (bVar != null) {
-                        this.f34576r.e = bVar;
-                        g(false);
-                        return;
-                    }
-                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f34576r.f35097g;
-                    if (selectedDate != 0) {
-                        tL_loadAsyncGraph.f18342x = selectedDate;
-                        tL_loadAsyncGraph.flags |= 1;
-                    }
-                    ?? obj = new Object();
-                    ya1Var.Z = obj;
-                    ya1Var.S.getClass();
-                    obj.f39563a = RecyclerView.R(this);
-                    gVar.f11162t0.d(true, false);
-                    int i11 = this.v;
-                    int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_loadAsyncGraph, new ns0(this, str, obj, 10), null, null, 0, ya1Var.f39795a.stats_dc, 1, true);
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
-                    i10 = ((org.telegram.ui.ActionBar.n2) ya1Var).classGuid;
-                    connectionsManager.bindRequestToGuid(sendRequest, i10);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void f() {
-        ya1.Z(this.f34846w);
+    public ja1(ka1 ka1Var, int i10) {
+        this.d = ka1Var;
+        this.f34831c = i10;
+        ?? view = new View(ka1Var.getContext());
+        view.f27731c = true;
+        TextPaint textPaint = new TextPaint(1);
+        view.e = textPaint;
+        view.f27732f = new Paint(1);
+        Paint paint = new Paint(1);
+        view.h = paint;
+        Paint paint2 = new Paint(1);
+        view.f27733n = paint2;
+        view.f27736w = AndroidUtilities.dp(35.0f);
+        view.f27737x = AndroidUtilities.dp(22.0f);
+        view.f27738y = AndroidUtilities.dp(8.0f);
+        view.E = AndroidUtilities.dp(3.5f);
+        view.F = new RectF();
+        view.G = 0.0f;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint2.setStyle(style);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.f34829a = view;
+        view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        ka1Var.h.addView(view);
+        ka1Var.f35177n.add(this);
     }
 }

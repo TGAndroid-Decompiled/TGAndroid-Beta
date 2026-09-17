@@ -1,58 +1,101 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class wx0 implements Utilities.Callback {
-    public final int f39401a;
-    public final yx0 f39402b;
+import android.util.SparseIntArray;
+public final class wx0 extends s4.o {
+    public int f39188b;
+    public final SparseIntArray f39189c = new SparseIntArray();
+    public final SparseIntArray d = new SparseIntArray();
+    public final PrivacyControlActivity e;
 
-    public wx0(yx0 yx0Var, int i10) {
-        this.f39401a = i10;
-        this.f39402b = yx0Var;
+    public wx0(PrivacyControlActivity privacyControlActivity) {
+        this.e = privacyControlActivity;
+    }
+
+    public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
+        if (i11 >= 0) {
+            sparseIntArray.put(i11, i10);
+        }
     }
 
     @Override
-    public final void run(Object obj) {
-        TL_account.TL_birthday tL_birthday;
+    public final boolean a(int i10, int i11) {
+        return b(i10, i11);
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        int i12 = this.f39189c.get(i10, -1);
+        if (i12 == this.d.get(i11, -1) && i12 >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.e.f31225r0;
+    }
+
+    @Override
+    public final int e() {
+        return this.f39188b;
+    }
+
+    public final void f(SparseIntArray sparseIntArray) {
         int i10;
         int i11;
-        switch (this.f39401a) {
-            case 0:
-                PrivacyControlActivity privacyControlActivity = this.f39402b.d;
-                privacyControlActivity.L = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f31202j0);
-                privacyControlActivity.E0();
-                return;
-            default:
-                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
-                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
-                updatebirthday.flags |= 1;
-                updatebirthday.birthday = tL_birthday2;
-                yx0 yx0Var = this.f39402b;
-                PrivacyControlActivity privacyControlActivity2 = yx0Var.d;
-                TLRPC.UserFull userFull = privacyControlActivity2.getMessagesController().getUserFull(privacyControlActivity2.getUserConfig().getClientUserId());
-                if (userFull != null) {
-                    tL_birthday = userFull.birthday;
-                } else {
-                    tL_birthday = null;
-                }
-                if (userFull != null) {
-                    userFull.flags2 |= 32;
-                    userFull.birthday = tL_birthday2;
-                    privacyControlActivity2.getMessagesStorage().updateUserInfo(userFull, false);
-                }
-                privacyControlActivity2.getMessagesController().invalidateContentSettings();
-                privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new ns0(yx0Var, userFull, tL_birthday, 1), 1024);
-                i10 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
-                MessagesController.getInstance(i10).removeSuggestion(0L, "BIRTHDAY_SETUP");
-                i11 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
-                privacyControlActivity2.F0(true);
-                return;
-        }
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        sparseIntArray.clear();
+        PrivacyControlActivity privacyControlActivity = this.e;
+        g(1, privacyControlActivity.M, sparseIntArray);
+        g(2, privacyControlActivity.N, sparseIntArray);
+        i10 = privacyControlActivity.everybodyRow;
+        g(3, i10, sparseIntArray);
+        g(4, privacyControlActivity.O, sparseIntArray);
+        i11 = privacyControlActivity.nobodyRow;
+        g(5, i11, sparseIntArray);
+        g(6, privacyControlActivity.f31213g0, sparseIntArray);
+        g(7, privacyControlActivity.P, sparseIntArray);
+        g(8, privacyControlActivity.R, sparseIntArray);
+        g(9, privacyControlActivity.S, sparseIntArray);
+        g(10, privacyControlActivity.T, sparseIntArray);
+        g(11, privacyControlActivity.U, sparseIntArray);
+        g(12, privacyControlActivity.V, sparseIntArray);
+        g(13, privacyControlActivity.W, sparseIntArray);
+        g(14, privacyControlActivity.X, sparseIntArray);
+        g(15, privacyControlActivity.Y, sparseIntArray);
+        i12 = privacyControlActivity.photoForRestRow;
+        g(16, i12, sparseIntArray);
+        i13 = privacyControlActivity.currentPhotoForRestRow;
+        g(17, i13, sparseIntArray);
+        g(18, privacyControlActivity.Z, sparseIntArray);
+        g(19, privacyControlActivity.f31204a0, sparseIntArray);
+        g(20, privacyControlActivity.f31206b0, sparseIntArray);
+        g(21, privacyControlActivity.f31208c0, sparseIntArray);
+        i14 = privacyControlActivity.readRow;
+        g(22, i14, sparseIntArray);
+        g(23, privacyControlActivity.f31209d0, sparseIntArray);
+        g(24, privacyControlActivity.f31210e0, sparseIntArray);
+        g(25, privacyControlActivity.f31212f0, sparseIntArray);
+        g(26, privacyControlActivity.f31214h0, sparseIntArray);
+        i15 = privacyControlActivity.priceRow;
+        g(27, i15, sparseIntArray);
+        g(28, privacyControlActivity.f31216j0, sparseIntArray);
+        i16 = privacyControlActivity.showGiftIconRow;
+        g(29, i16, sparseIntArray);
+        g(30, privacyControlActivity.f31217k0, sparseIntArray);
+        i17 = privacyControlActivity.giftTypesHeaderRow;
+        g(31, i17, sparseIntArray);
+        g(32, privacyControlActivity.m0, sparseIntArray);
+        g(33, privacyControlActivity.f31218l0, sparseIntArray);
+        g(34, privacyControlActivity.f31220n0, sparseIntArray);
+        g(35, privacyControlActivity.f31221o0, sparseIntArray);
+        g(36, privacyControlActivity.f31222p0, sparseIntArray);
+        g(37, privacyControlActivity.f31223q0, sparseIntArray);
     }
 }

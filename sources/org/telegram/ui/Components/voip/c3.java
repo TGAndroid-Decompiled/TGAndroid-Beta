@@ -15,7 +15,7 @@ import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.cc0;
-import org.telegram.ui.Components.v81;
+import org.telegram.ui.Components.w81;
 public final class c3 extends FrameLayout {
     public int E;
     public int F;
@@ -35,20 +35,20 @@ public final class c3 extends FrameLayout {
     public final q1 T;
     public final boolean U;
     public int V;
-    public final Drawable f28893a;
-    public final Drawable f28894b;
-    public final cc0 f28895c;
+    public final Drawable f28870a;
+    public final Drawable f28871b;
+    public final cc0 f28872c;
     public final cc0 d;
     public final Drawable e;
-    public final Drawable f28896f;
+    public final Drawable f28873f;
     public final cc0 h;
-    public final cc0 f28897n;
-    public final Drawable f28898r;
-    public final Drawable f28899s;
+    public final cc0 f28874n;
+    public final Drawable f28875r;
+    public final Drawable f28876s;
     public final cc0 v;
-    public final cc0 f28900w;
-    public final cc0 f28901x;
-    public final cc0 f28902y;
+    public final cc0 f28877w;
+    public final cc0 f28878x;
+    public final cc0 f28879y;
 
     public c3(Activity activity, boolean z10, q1 q1Var) {
         super(activity);
@@ -77,14 +77,14 @@ public final class c3 extends FrameLayout {
         } else {
             cc0Var = new cc0(-4958504, -8304404, -14637865, -12612630, false, 0, true);
         }
-        this.f28893a = cc0Var;
+        this.f28870a = cc0Var;
         if (z10) {
             cc0Var2 = new b3();
         } else {
             cc0Var2 = new cc0(-12224791, -12879119, -16207709, -15226140, false, 0, true);
         }
-        this.f28894b = cc0Var2;
-        this.f28895c = new cc0(-16275028, -16270749, -5649306, -10833593, false, 0, true);
+        this.f28871b = cc0Var2;
+        this.f28872c = new cc0(-16275028, -16270749, -5649306, -10833593, false, 0, true);
         this.d = new cc0(-1545896, -1613425, -2387892, -2198984, false, 0, true);
         if (z10) {
             cc0Var3 = new b3();
@@ -97,29 +97,29 @@ public final class c3 extends FrameLayout {
         } else {
             cc0Var4 = new cc0(-13803306, -13866273, -16738923, -16608823, false, 0, true);
         }
-        this.f28896f = cc0Var4;
+        this.f28873f = cc0Var4;
         cc0 cc0Var7 = new cc0(-16741490, -16673972, -7357129, -13525721, false, 0, true);
         this.h = cc0Var7;
         cc0 cc0Var8 = new cc0(-1949911, -1691537, -3705322, -2663914, false, 0, true);
-        this.f28897n = cc0Var8;
+        this.f28874n = cc0Var8;
         if (z10) {
             cc0Var5 = new b3();
         } else {
             cc0Var5 = new cc0(-2726657, -7186179, -13778695, -11034113, false, 0, true);
         }
-        this.f28898r = cc0Var5;
+        this.f28875r = cc0Var5;
         if (z10) {
             cc0Var6 = new b3();
         } else {
             cc0Var6 = new cc0(-11170817, -10507265, -16458548, -14105857, false, 0, true);
         }
-        this.f28899s = cc0Var6;
+        this.f28876s = cc0Var6;
         cc0 cc0Var9 = new cc0(-16723243, -16129415, -3674272, -9578153, false, 0, true);
         this.v = cc0Var9;
         cc0 cc0Var10 = new cc0(-34714, -32091, -85931, -29103, false, 0, true);
-        this.f28900w = cc0Var10;
-        this.f28901x = new cc0(-16723243, -16129415, -3674272, -9578153, false, 0, true);
-        this.f28902y = new cc0(-16741490, -16673972, -7357129, -13525721, false, 0, true);
+        this.f28877w = cc0Var10;
+        this.f28878x = new cc0(-16723243, -16129415, -3674272, -9578153, false, 0, true);
+        this.f28879y = new cc0(-16741490, -16673972, -7357129, -13525721, false, 0, true);
         cc0Var3.setBounds(0, 0, 80, 80);
         cc0Var4.setBounds(0, 0, 80, 80);
         cc0Var7.setBounds(0, 0, 80, 80);
@@ -199,7 +199,7 @@ public final class c3 extends FrameLayout {
             this.T.e = true;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, (float) max);
             ofFloat.addUpdateListener(new a3(this, 1));
-            ofFloat.addListener(new v81(this, 11));
+            ofFloat.addListener(new w81(this, 11));
             if (z10) {
                 j3 = 400;
             } else {
@@ -271,43 +271,43 @@ public final class c3 extends FrameLayout {
         canvas.scale(sqrt, sqrt, width, height);
         canvas.rotate(this.T.h, width, height);
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        ((Canvas) this.T.f29169a.f7332b).drawColor(0, mode);
-        ((Canvas) this.T.f29170b.f7332b).drawColor(0, mode);
+        ((Canvas) this.T.f29146a.f7337b).drawColor(0, mode);
+        ((Canvas) this.T.f29147b.f7337b).drawColor(0, mode);
         int i10 = this.G;
         if (i10 != 0 && this.H != 255) {
-            this.f28895c.setAlpha(i10);
+            this.f28872c.setAlpha(i10);
             this.v.setAlpha(this.G);
             this.h.setAlpha(this.G);
-            this.f28895c.draw(canvas);
-            this.v.draw((Canvas) this.T.f29169a.f7332b);
-            this.h.draw((Canvas) this.T.f29170b.f7332b);
+            this.f28872c.draw(canvas);
+            this.v.draw((Canvas) this.T.f29146a.f7337b);
+            this.h.draw((Canvas) this.T.f29147b.f7337b);
         }
         int i11 = this.F;
         if (i11 != 0 && this.H != 255) {
-            this.f28894b.setAlpha(i11);
-            this.f28896f.setAlpha(this.F);
-            this.f28899s.setAlpha(this.F);
-            this.f28894b.draw(canvas);
-            this.f28896f.draw((Canvas) this.T.f29170b.f7332b);
-            this.f28899s.draw((Canvas) this.T.f29169a.f7332b);
+            this.f28871b.setAlpha(i11);
+            this.f28873f.setAlpha(this.F);
+            this.f28876s.setAlpha(this.F);
+            this.f28871b.draw(canvas);
+            this.f28873f.draw((Canvas) this.T.f29147b.f7337b);
+            this.f28876s.draw((Canvas) this.T.f29146a.f7337b);
         }
         int i12 = this.E;
         if (i12 != 0 && this.H != 255) {
-            this.f28893a.setAlpha(i12);
+            this.f28870a.setAlpha(i12);
             this.e.setAlpha(this.E);
-            this.f28898r.setAlpha(this.E);
-            this.f28893a.draw(canvas);
-            this.e.draw((Canvas) this.T.f29170b.f7332b);
-            this.f28898r.draw((Canvas) this.T.f29169a.f7332b);
+            this.f28875r.setAlpha(this.E);
+            this.f28870a.draw(canvas);
+            this.e.draw((Canvas) this.T.f29147b.f7337b);
+            this.f28875r.draw((Canvas) this.T.f29146a.f7337b);
         }
         int i13 = this.H;
         if (i13 != 0) {
             this.d.setAlpha(i13);
-            this.f28897n.setAlpha(this.H);
-            this.f28900w.setAlpha(this.H);
+            this.f28874n.setAlpha(this.H);
+            this.f28877w.setAlpha(this.H);
             this.d.draw(canvas);
-            this.f28897n.draw((Canvas) this.T.f29170b.f7332b);
-            this.f28900w.draw((Canvas) this.T.f29169a.f7332b);
+            this.f28874n.draw((Canvas) this.T.f29147b.f7337b);
+            this.f28877w.draw((Canvas) this.T.f29146a.f7337b);
         }
         canvas.restore();
         if (this.J) {
@@ -319,22 +319,22 @@ public final class c3 extends FrameLayout {
             Objects.requireNonNull(this.T);
             Objects.requireNonNull(this.T);
             canvas.scale(1.12f, 1.12f, width, height);
-            this.f28895c.setAlpha(255);
-            this.f28895c.draw(canvas);
+            this.f28872c.setAlpha(255);
+            this.f28872c.draw(canvas);
             this.K.rewind();
             this.K.addCircle(this.L / 4.0f, this.M / 4.0f, this.I / 4.0f, direction);
-            ((Canvas) this.T.f29171c.f7332b).drawColor(0, mode);
-            ((Canvas) this.T.f29171c.f7332b).save();
-            ((Canvas) this.T.f29171c.f7332b).clipPath(this.K);
-            this.f28901x.setAlpha(255);
-            this.f28901x.draw((Canvas) this.T.f29171c.f7332b);
-            ((Canvas) this.T.f29171c.f7332b).restore();
-            ((Canvas) this.T.d.f7332b).drawColor(0, mode);
-            ((Canvas) this.T.d.f7332b).save();
-            ((Canvas) this.T.d.f7332b).clipPath(this.K);
-            this.f28902y.setAlpha(255);
-            this.f28902y.draw((Canvas) this.T.d.f7332b);
-            ((Canvas) this.T.d.f7332b).restore();
+            ((Canvas) this.T.f29148c.f7337b).drawColor(0, mode);
+            ((Canvas) this.T.f29148c.f7337b).save();
+            ((Canvas) this.T.f29148c.f7337b).clipPath(this.K);
+            this.f28878x.setAlpha(255);
+            this.f28878x.draw((Canvas) this.T.f29148c.f7337b);
+            ((Canvas) this.T.f29148c.f7337b).restore();
+            ((Canvas) this.T.d.f7337b).drawColor(0, mode);
+            ((Canvas) this.T.d.f7337b).save();
+            ((Canvas) this.T.d.f7337b).clipPath(this.K);
+            this.f28879y.setAlpha(255);
+            this.f28879y.draw((Canvas) this.T.d.f7337b);
+            ((Canvas) this.T.d.f7337b).restore();
         }
         super.onDraw(canvas);
     }
@@ -342,22 +342,22 @@ public final class c3 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f28895c.setBounds(0, 0, getWidth(), getHeight());
+        this.f28872c.setBounds(0, 0, getWidth(), getHeight());
         this.d.setBounds(0, 0, getWidth(), getHeight());
-        this.f28894b.setBounds(0, 0, getWidth(), getHeight());
-        this.f28893a.setBounds(0, 0, getWidth(), getHeight());
-        this.f28901x.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
-        this.f28902y.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
+        this.f28871b.setBounds(0, 0, getWidth(), getHeight());
+        this.f28870a.setBounds(0, 0, getWidth(), getHeight());
+        this.f28878x.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
+        this.f28879y.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
         int width = getWidth();
         int height = getHeight();
         q1 q1Var = this.T;
-        q1Var.f29172f = width;
-        q1Var.f29173g = height;
+        q1Var.f29149f = width;
+        q1Var.f29150g = height;
         int i14 = width / 4;
         int i15 = height / 4;
-        q1Var.f29171c = new com.google.firebase.messaging.n(i14, i15);
+        q1Var.f29148c = new com.google.firebase.messaging.n(i14, i15);
         com.google.firebase.messaging.n nVar = new com.google.firebase.messaging.n(i14, i15);
         q1Var.d = nVar;
-        ((Paint) nVar.f7331a).setAlpha(180);
+        ((Paint) nVar.f7336a).setAlpha(180);
     }
 }

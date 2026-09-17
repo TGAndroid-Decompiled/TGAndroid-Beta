@@ -4,19 +4,19 @@ import android.animation.ValueAnimator;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class hd0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24678a;
-    public final sd0 f24679b;
+    public final int f24642a;
+    public final sd0 f24643b;
 
     public hd0(sd0 sd0Var, int i10) {
-        this.f24678a = i10;
-        this.f24679b = sd0Var;
+        this.f24642a = i10;
+        this.f24643b = sd0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24678a) {
+        switch (this.f24642a) {
             case 0:
-                sd0 sd0Var = this.f24679b;
+                sd0 sd0Var = this.f24643b;
                 sd0Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 sd0Var.P = floatValue;
@@ -25,16 +25,16 @@ public final class hd0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sd0 sd0Var2 = this.f24679b;
+                sd0 sd0Var2 = this.f24643b;
                 ai.x5 x5Var = sd0Var2.e;
                 x5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
                 x5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
                 x5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
-                TextView textView = sd0Var2.f27839w;
+                TextView textView = sd0Var2.f27843w;
                 textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
                 textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
                 textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
-                sd0Var2.f27838s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                sd0Var2.f27842s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
                 return;
         }
     }

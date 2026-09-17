@@ -1,20 +1,21 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Bundle;
-public final class et0 extends org.telegram.ui.eo {
-    public final yu0 f23752f;
+public final class et0 extends tu0 {
+    public final zu0 h;
 
-    public et0(yu0 yu0Var, Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle) {
-        super(context, d5Var, bundle);
-        this.f23752f = yu0Var;
+    public et0(zu0 zu0Var, Context context) {
+        super(zu0Var, context);
+        this.h = zu0Var;
     }
 
     @Override
-    public final void b(boolean z10) {
-        org.telegram.ui.ActionBar.v0 v0Var = this.f23752f.f30373n0;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(z10);
+    public final void l() {
+        super.l();
+        zu0 zu0Var = this.h;
+        st0 W = zu0Var.W(0);
+        if (W != null && W.f27922r.getVisibility() == 0) {
+            zu0Var.I.l();
         }
     }
 }

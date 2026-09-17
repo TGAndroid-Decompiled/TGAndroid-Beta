@@ -7,13 +7,13 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.o5;
 public final class p0 {
-    public boolean f49124a;
-    public boolean f49125b;
-    public long f49126c;
+    public boolean f49147a;
+    public boolean f49148b;
+    public long f49149c;
     public boolean d;
     public boolean e;
-    public String f49127f;
-    public long f49128g;
+    public String f49150f;
+    public long f49151g;
     public long h;
 
     public static p0 b(String str) {
@@ -24,16 +24,16 @@ public final class p0 {
         if (str.startsWith("animated_")) {
             try {
                 long parseLong = Long.parseLong(str.substring(9));
-                obj.f49128g = parseLong;
+                obj.f49151g = parseLong;
                 obj.h = parseLong;
                 return obj;
             } catch (Exception unused) {
-                obj.f49127f = str;
+                obj.f49150f = str;
                 obj.h = str.hashCode();
                 return obj;
             }
         }
-        obj.f49127f = str;
+        obj.f49150f = str;
         obj.h = str.hashCode();
         return obj;
     }
@@ -41,7 +41,7 @@ public final class p0 {
     public static p0 c(TLRPC.TL_availableReaction tL_availableReaction) {
         ?? obj = new Object();
         String str = tL_availableReaction.reaction;
-        obj.f49127f = str;
+        obj.f49150f = str;
         obj.h = str.hashCode();
         return obj;
     }
@@ -49,17 +49,17 @@ public final class p0 {
     public static p0 d(TLRPC.Reaction reaction) {
         ?? obj = new Object();
         if (reaction instanceof TLRPC.TL_reactionPaid) {
-            obj.f49124a = true;
+            obj.f49147a = true;
             return obj;
         } else if (reaction instanceof TLRPC.TL_reactionEmoji) {
             String str = ((TLRPC.TL_reactionEmoji) reaction).emoticon;
-            obj.f49127f = str;
+            obj.f49150f = str;
             obj.h = str.hashCode();
             return obj;
         } else {
             if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
                 long j3 = ((TLRPC.TL_reactionCustomEmoji) reaction).document_id;
-                obj.f49128g = j3;
+                obj.f49151g = j3;
                 obj.h = j3;
             }
             return obj;
@@ -69,23 +69,23 @@ public final class p0 {
     public static p0 e(TLRPC.TL_availableEffect tL_availableEffect) {
         ?? obj = new Object();
         boolean z10 = true;
-        obj.f49125b = true;
-        long j3 = tL_availableEffect.f18143id;
-        obj.f49126c = j3;
+        obj.f49148b = true;
+        long j3 = tL_availableEffect.f18152id;
+        obj.f49149c = j3;
         if (tL_availableEffect.effect_animation_id != 0) {
             z10 = false;
         }
         obj.e = z10;
-        obj.f49128g = tL_availableEffect.effect_sticker_id;
+        obj.f49151g = tL_availableEffect.effect_sticker_id;
         obj.h = j3;
         obj.d = tL_availableEffect.premium_required;
-        obj.f49127f = tL_availableEffect.emoticon;
+        obj.f49150f = tL_availableEffect.emoticon;
         return obj;
     }
 
     public final p0 a() {
         String findAnimatedEmojiEmoticon;
-        long j3 = this.f49128g;
+        long j3 = this.f49151g;
         if (j3 != 0 && (findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(o5.f(UserConfig.selectedAccount, j3), null)) != null) {
             return b(findAnimatedEmojiEmoticon);
         }
@@ -98,7 +98,7 @@ public final class p0 {
         }
         if (obj != null && p0.class == obj.getClass()) {
             p0 p0Var = (p0) obj;
-            if (this.f49128g == p0Var.f49128g && Objects.equals(this.f49127f, p0Var.f49127f)) {
+            if (this.f49151g == p0Var.f49151g && Objects.equals(this.f49150f, p0Var.f49150f)) {
                 return true;
             }
         }
@@ -107,44 +107,44 @@ public final class p0 {
 
     public final boolean f(TLRPC.Reaction reaction) {
         if (reaction instanceof TLRPC.TL_reactionEmoji) {
-            return TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, this.f49127f);
+            return TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, this.f49150f);
         }
-        if (!(reaction instanceof TLRPC.TL_reactionCustomEmoji) || ((TLRPC.TL_reactionCustomEmoji) reaction).document_id != this.f49128g) {
+        if (!(reaction instanceof TLRPC.TL_reactionCustomEmoji) || ((TLRPC.TL_reactionCustomEmoji) reaction).document_id != this.f49151g) {
             return false;
         }
         return true;
     }
 
     public final TLRPC.Reaction g() {
-        if (this.f49124a) {
+        if (this.f49147a) {
             return new TLRPC.TL_reactionPaid();
         }
-        if (this.f49127f != null) {
+        if (this.f49150f != null) {
             TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
-            tL_reactionEmoji.emoticon = this.f49127f;
+            tL_reactionEmoji.emoticon = this.f49150f;
             return tL_reactionEmoji;
         }
         TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
-        tL_reactionCustomEmoji.document_id = this.f49128g;
+        tL_reactionCustomEmoji.document_id = this.f49151g;
         return tL_reactionCustomEmoji;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f49127f, Long.valueOf(this.f49128g));
+        return Objects.hash(this.f49150f, Long.valueOf(this.f49151g));
     }
 
     public final String toString() {
         TLRPC.Document f7;
-        if (!TextUtils.isEmpty(this.f49127f)) {
-            return this.f49127f;
+        if (!TextUtils.isEmpty(this.f49150f)) {
+            return this.f49150f;
         }
-        long j3 = this.f49128g;
+        long j3 = this.f49151g;
         if (j3 != 0 && (f7 = o5.f(UserConfig.selectedAccount, j3)) != null) {
             return MessageObject.findAnimatedEmojiEmoticon(f7, null);
         }
         StringBuilder sb2 = new StringBuilder("VisibleReaction{");
-        sb2.append(this.f49128g);
+        sb2.append(this.f49151g);
         sb2.append(", ");
-        return a4.a.s(sb2, this.f49127f, "}");
+        return a4.a.s(sb2, this.f49150f, "}");
     }
 }

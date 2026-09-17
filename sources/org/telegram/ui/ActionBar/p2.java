@@ -1,55 +1,36 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.ValueAnimator;
-public final class p2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f19499a;
-    public final f3 f19500b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class p2 implements Runnable {
+    public final int f19485a;
+    public final g3 f19486b;
 
-    public p2(f3 f3Var, int i10) {
-        this.f19499a = i10;
-        this.f19500b = f3Var;
+    public p2(g3 g3Var, int i10) {
+        this.f19485a = i10;
+        this.f19486b = g3Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f19499a) {
+    public final void run() {
+        switch (this.f19485a) {
             case 0:
-                f3 f3Var = this.f19500b;
-                f3Var.getClass();
-                f3Var.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d3 d3Var = f3Var.container;
-                if (d3Var != null) {
-                    d3Var.invalidate();
+                g3 g3Var = this.f19486b;
+                g3Var.getClass();
+                try {
+                    g3Var.dismissInternal();
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
                     return;
                 }
-                return;
             case 1:
-                f3 f3Var2 = this.f19500b;
-                f3Var2.getClass();
-                f3Var2.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d3 d3Var2 = f3Var2.container;
-                if (d3Var2 != null) {
-                    d3Var2.invalidate();
-                    return;
-                }
-                return;
-            case 2:
-                this.f19500b.onContainerViewTranslation();
-                return;
-            case 3:
-                this.f19500b.onContainerViewTranslation();
-                return;
-            case 4:
-                this.f19500b.onContainerViewTranslation();
-                return;
-            case 5:
-                f3.j(this.f19500b, valueAnimator);
-                return;
-            case 6:
-                this.f19500b.onContainerViewTranslation();
+                g3 g3Var2 = this.f19486b;
+                AndroidUtilities.removeFromParent(g3Var2.container);
+                g3Var2.attachedFragment.getLayoutContainer().addView(g3Var2.container);
                 return;
             default:
-                f3.i(this.f19500b, valueAnimator);
+                this.f19486b.dismiss();
                 return;
         }
     }

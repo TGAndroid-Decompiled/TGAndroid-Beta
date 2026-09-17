@@ -11,29 +11,29 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class wm implements Runnable {
-    public final int f29748a;
-    public final int f29749b;
-    public final Object f29750c;
+    public final int f29691a;
+    public final int f29692b;
+    public final Object f29693c;
     public final Object d;
 
     public wm(int i10, Object obj, Object obj2, int i11) {
-        this.f29748a = i11;
-        this.f29749b = i10;
-        this.f29750c = obj;
+        this.f29691a = i11;
+        this.f29692b = i10;
+        this.f29693c = obj;
         this.d = obj2;
     }
 
     private final void a() {
-        MessageObject messageObject = (MessageObject) this.f29750c;
+        MessageObject messageObject = (MessageObject) this.f29693c;
         org.telegram.ui.Cells.k1 k1Var = (org.telegram.ui.Cells.k1) this.d;
-        HashMap hashMap = e31.P;
+        HashMap hashMap = f31.P;
         if (hashMap != null) {
-            hashMap.remove(Integer.valueOf(e31.o(messageObject)));
+            hashMap.remove(Integer.valueOf(f31.o(messageObject)));
         }
         if (k1Var != null) {
             k1Var.d0(3);
         }
-        int i10 = this.f29749b;
+        int i10 = this.f29692b;
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
     }
@@ -41,71 +41,71 @@ public final class wm implements Runnable {
     private final void b() {
         int i10;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        org.telegram.ui.uy uyVar = ((org.telegram.ui.yx) this.f29750c).f40006f0;
-        ArrayList arrayList = uyVar.R1;
-        if (arrayList != null && (i10 = this.f29749b) >= 0 && i10 < arrayList.size()) {
-            uyVar.R1.add(i10, dialog);
-            uyVar.f38207e0[0].q(true);
+        org.telegram.ui.wy wyVar = ((org.telegram.ui.ay) this.f29693c).f32000f0;
+        ArrayList arrayList = wyVar.R1;
+        if (arrayList != null && (i10 = this.f29692b) >= 0 && i10 < arrayList.size()) {
+            wyVar.R1.add(i10, dialog);
+            wyVar.f39215e0[0].q(true);
         }
     }
 
     private final void c() {
-        org.telegram.ui.sy syVar = (org.telegram.ui.sy) this.f29750c;
+        org.telegram.ui.uy uyVar = (org.telegram.ui.uy) this.f29693c;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        org.telegram.ui.ty tyVar = syVar.f37498g;
-        org.telegram.ui.uy uyVar = syVar.h;
-        uyVar.S1 = true;
-        uyVar.getMessagesController().addDialogToFolder(dialog.f18116id, 0, this.f29749b, 0L);
-        uyVar.S1 = false;
-        ArrayList<TLRPC.Dialog> dialogs = uyVar.getMessagesController().getDialogs(0);
+        org.telegram.ui.vy vyVar = uyVar.f38242g;
+        org.telegram.ui.wy wyVar = uyVar.h;
+        wyVar.S1 = true;
+        wyVar.getMessagesController().addDialogToFolder(dialog.f18125id, 0, this.f29692b, 0L);
+        wyVar.S1 = false;
+        ArrayList<TLRPC.Dialog> dialogs = wyVar.getMessagesController().getDialogs(0);
         int indexOf = dialogs.indexOf(dialog);
         if (indexOf >= 0) {
-            ArrayList<TLRPC.Dialog> dialogs2 = uyVar.getMessagesController().getDialogs(1);
+            ArrayList<TLRPC.Dialog> dialogs2 = wyVar.getMessagesController().getDialogs(1);
             if (!dialogs2.isEmpty() || indexOf != 1) {
-                uyVar.A4(true, true);
-                tyVar.f37811x.D();
-                tyVar.q(true);
-                uyVar.o3();
+                wyVar.A4(true, true);
+                vyVar.f38530x.D();
+                vyVar.q(true);
+                wyVar.o3();
             }
             if (dialogs2.isEmpty()) {
                 dialogs.remove(0);
                 if (indexOf == 1) {
-                    uyVar.A4(true, true);
-                    tyVar.q(true);
-                    uyVar.o3();
+                    wyVar.A4(true, true);
+                    vyVar.q(true);
+                    wyVar.o3();
                     return;
                 }
-                if (!uyVar.R1.isEmpty()) {
-                    uyVar.R1.remove(0);
+                if (!wyVar.R1.isEmpty()) {
+                    wyVar.R1.remove(0);
                 }
-                tyVar.f37811x.D();
-                tyVar.q(true);
+                vyVar.f38530x.D();
+                vyVar.q(true);
                 return;
             }
             return;
         }
-        tyVar.q(false);
+        vyVar.q(false);
     }
 
     private final void e() {
-        org.telegram.ui.i60 i60Var = (org.telegram.ui.i60) this.f29750c;
-        org.telegram.ui.ActionBar.b2[] b2VarArr = (org.telegram.ui.ActionBar.b2[]) this.d;
-        org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-        if (b2Var == null) {
+        org.telegram.ui.k60 k60Var = (org.telegram.ui.k60) this.f29693c;
+        org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) this.d;
+        org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+        if (c2Var == null) {
             return;
         }
-        b2Var.setOnCancelListener(new org.telegram.ui.ba(i60Var, this.f29749b, 5));
-        b2VarArr[0].show();
+        c2Var.setOnCancelListener(new org.telegram.ui.da(k60Var, this.f29692b, 5));
+        c2VarArr[0].show();
     }
 
     private final void f() {
-        LaunchActivity launchActivity = (LaunchActivity) this.f29750c;
+        LaunchActivity launchActivity = (LaunchActivity) this.f29693c;
         TLRPC.TL_help_appUpdate tL_help_appUpdate = (TLRPC.TL_help_appUpdate) this.d;
         Pattern pattern = LaunchActivity.B1;
         TLRPC.TL_help_appUpdate tL_help_appUpdate2 = SharedConfig.pendingAppUpdate;
         if ((tL_help_appUpdate2 == null || !tL_help_appUpdate2.version.equals(tL_help_appUpdate.version)) && SharedConfig.setNewAppVersionAvailable(tL_help_appUpdate)) {
             boolean z10 = tL_help_appUpdate.can_not_skip;
-            int i10 = this.f29749b;
+            int i10 = this.f29692b;
             if (z10) {
                 launchActivity.I0(i10, tL_help_appUpdate, false);
             } else if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
@@ -121,16 +121,16 @@ public final class wm implements Runnable {
     }
 
     public wm(Object obj, int i10, Object obj2, int i11) {
-        this.f29748a = i11;
-        this.f29750c = obj;
-        this.f29749b = i10;
+        this.f29691a = i11;
+        this.f29693c = obj;
+        this.f29692b = i10;
         this.d = obj2;
     }
 
     public wm(Object obj, Object obj2, int i10, int i11) {
-        this.f29748a = i11;
-        this.f29750c = obj;
+        this.f29691a = i11;
+        this.f29693c = obj;
         this.d = obj2;
-        this.f29749b = i10;
+        this.f29692b = i10;
     }
 }

@@ -9,22 +9,22 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.view.View;
 public final class js extends View {
-    public final Paint f25404a;
-    public final Matrix f25405b;
-    public LinearGradient f25406c;
+    public final Paint f25414a;
+    public final Matrix f25415b;
+    public LinearGradient f25416c;
     public int d;
     public float e;
-    public float f25407f;
+    public float f25417f;
 
     public js(Context context) {
         super(context);
-        this.f25404a = new Paint(1);
-        this.f25405b = new Matrix();
+        this.f25414a = new Paint(1);
+        this.f25415b = new Matrix();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.e + this.f25407f, this.f25404a);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.e + this.f25417f, this.f25414a);
     }
 
     public void setColor(int i10) {
@@ -32,9 +32,9 @@ public final class js extends View {
             this.d = i10;
             int alpha = Color.alpha(i10);
             LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 192) / 255), i0.a.k(i10, (alpha * 144) / 255), i0.a.k(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
-            this.f25406c = linearGradient;
-            this.f25404a.setShader(linearGradient);
-            this.f25406c.setLocalMatrix(this.f25405b);
+            this.f25416c = linearGradient;
+            this.f25414a.setShader(linearGradient);
+            this.f25416c.setLocalMatrix(this.f25415b);
             invalidate();
         }
     }

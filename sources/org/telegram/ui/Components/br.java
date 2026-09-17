@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class br implements TextWatcher {
-    public final org.telegram.messenger.jb f22861a;
+    public final org.telegram.messenger.jb f22790a;
 
     public br(org.telegram.messenger.jb jbVar) {
-        this.f22861a = jbVar;
+        this.f22790a = jbVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f22861a.run();
+        this.f22790a.run();
     }
 
     @Override

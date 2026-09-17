@@ -24,34 +24,34 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.f51;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.g01;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h01;
 import org.telegram.ui.Components.np;
 import w7.x5;
 public final class x1 extends FrameLayout {
-    public final f9 f10470a;
-    public final ImageReceiver f10471b;
-    public final vh.o f10472c;
+    public final f9 f10475a;
+    public final ImageReceiver f10476b;
+    public final vh.o f10477c;
     public final np d;
     public final ImageView e;
-    public final e6 f10473f;
+    public final f6 f10478f;
     public boolean h;
-    public final int[] f10474n;
-    public boolean f10475r;
+    public final int[] f10479n;
+    public boolean f10480r;
 
-    public x1(Context context, e6 e6Var, boolean z10) {
+    public x1(Context context, f6 f6Var, boolean z10) {
         super(context);
         int i10;
         float f7;
         float f10;
         int i11;
-        this.f10470a = new f9((e6) null);
-        this.f10471b = new ImageReceiver(this);
-        this.f10474n = new int[1];
-        this.f10473f = e6Var;
+        this.f10475a = new f9((f6) null);
+        this.f10476b = new ImageReceiver(this);
+        this.f10479n = new int[1];
+        this.f10478f = f6Var;
         setWillNotDraw(false);
         if (z10) {
             i10 = 42;
@@ -59,10 +59,10 @@ public final class x1 extends FrameLayout {
             i10 = 16;
         }
         vh.o oVar = new vh.o(context);
-        this.f10472c = oVar;
+        this.f10477c = oVar;
         oVar.setLines(2);
         oVar.setEllipsize(TextUtils.TruncateAt.END);
-        oVar.setTextColor(i6.v0(i6.f19237z6, e6Var));
+        oVar.setTextColor(j6.v0(j6.f19263z6, f6Var));
         oVar.setTextSize(1, 14.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -81,7 +81,7 @@ public final class x1 extends FrameLayout {
             this.e = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(R.drawable.list_reorder);
-            imageView.setColorFilter(new PorterDuffColorFilter(i6.w0(null, i6.Uh, false), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.Uh, false), PorterDuff.Mode.MULTIPLY));
             imageView.setAlpha(0.0f);
             if (LocaleController.isRTL) {
                 i11 = 3;
@@ -92,9 +92,9 @@ public final class x1 extends FrameLayout {
         } else {
             this.e = null;
         }
-        np npVar = new np(getContext(), 21, e6Var);
+        np npVar = new np(getContext(), 21, f6Var);
         this.d = npVar;
-        npVar.b(-1, i6.f18836d6, i6.f18965k7);
+        npVar.b(-1, j6.f18862d6, j6.f18991k7);
         npVar.setDrawUnchecked(false);
         npVar.setDrawBackgroundAsArc(3);
         addView(npVar, x5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -112,7 +112,7 @@ public final class x1 extends FrameLayout {
         int length;
         String str3 = str;
         if (a2Var != null) {
-            z11 = a2Var.f10221g;
+            z11 = a2Var.f10226g;
         } else {
             z11 = false;
         }
@@ -121,13 +121,13 @@ public final class x1 extends FrameLayout {
         if (str3 != null && str3.length() > 0 && !str3.startsWith("/")) {
             str3 = "/".concat(str3);
         }
-        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) a2Var.f10218b);
-        spannableStringBuilder.setSpan(new f51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-        int i10 = i6.G6;
-        e6 e6Var = this.f10473f;
-        spannableStringBuilder.setSpan(new ForegroundColorSpan(i6.v0(i10, e6Var)), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) a2Var.f10223b);
+        spannableStringBuilder.setSpan(new g51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        int i10 = j6.G6;
+        f6 f6Var = this.f10478f;
+        spannableStringBuilder.setSpan(new ForegroundColorSpan(j6.v0(i10, f6Var)), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(i6.v0(i6.f19038o6, e6Var));
+            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(j6.v0(j6.f19064o6, f6Var));
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -136,7 +136,7 @@ public final class x1 extends FrameLayout {
             spannableStringBuilder.setSpan(foregroundColorSpan, 0, Math.min(length, spannableStringBuilder.length()), 33);
         }
         MessageObject messageObject = a2Var.e;
-        vh.o oVar = this.f10472c;
+        vh.o oVar = this.f10477c;
         if (messageObject != null) {
             spannableStringBuilder.append((CharSequence) " ");
             CharSequence charSequence = a2Var.e.caption;
@@ -156,7 +156,7 @@ public final class x1 extends FrameLayout {
             int i11 = w1.d;
             SpannableString spannableString = new SpannableString("+");
             w1 w1Var = new w1(a2Var.a() - 1);
-            this.f10474n[0] = (int) (((g01) w1Var.f10464c).f24149c + AndroidUtilities.dp(10.0f));
+            this.f10479n[0] = (int) (((h01) w1Var.f10469c).f24439c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(w1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, oVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -169,7 +169,7 @@ public final class x1 extends FrameLayout {
         int i12 = UserConfig.selectedAccount;
         TLRPC.MessageMedia media = MessageObject.getMedia(a2Var.e);
         long j10 = 0;
-        ImageReceiver imageReceiver = this.f10471b;
+        ImageReceiver imageReceiver = this.f10476b;
         if (media != null && (photo2 = media.photo) != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
             ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
@@ -208,12 +208,12 @@ public final class x1 extends FrameLayout {
             imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         } else {
             TLRPC.User currentUser = UserConfig.getInstance(i12).getCurrentUser();
-            f9 f9Var = this.f10470a;
+            f9 f9Var = this.f10475a;
             f9Var.r(currentUser);
             imageReceiver.setForUserOrChat(UserConfig.getInstance(i12).getCurrentUser(), f9Var);
             imageReceiver.setRoundRadius(AndroidUtilities.dp(36.0f));
         }
-        this.f10475r = z10;
+        this.f10480r = z10;
         invalidate();
     }
 
@@ -227,14 +227,14 @@ public final class x1 extends FrameLayout {
             dp = AndroidUtilities.dp(15.0f);
         }
         float f10 = dp;
-        ImageReceiver imageReceiver = this.f10471b;
+        ImageReceiver imageReceiver = this.f10476b;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        if (this.f10475r) {
-            Paint T0 = i6.T0("paintDivider", this.f10473f);
+        if (this.f10480r) {
+            Paint T0 = j6.T0("paintDivider", this.f10478f);
             if (T0 == null) {
-                T0 = i6.f18958k0;
+                T0 = j6.f18984k0;
             }
             Paint paint = T0;
             float f11 = 64.0f;
@@ -255,7 +255,7 @@ public final class x1 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f10475r ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f10480r ? 1 : 0), 1073741824));
     }
 
     public void setReorder(boolean z10) {

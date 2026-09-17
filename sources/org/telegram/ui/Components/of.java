@@ -17,28 +17,28 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class of extends lg {
     public boolean e;
-    public float f26772f;
+    public float f26720f;
     public float h;
-    public boolean f26773n;
-    public final ChatActivityEnterView f26774r;
+    public boolean f26721n;
+    public final ChatActivityEnterView f26722r;
 
-    public of(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(chatActivityEnterView, context, e6Var);
-        this.f26774r = chatActivityEnterView;
+    public of(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(chatActivityEnterView, context, f6Var);
+        this.f26722r = chatActivityEnterView;
         this.e = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ChatActivityEnterView chatActivityEnterView = this.f26774r;
+        ChatActivityEnterView chatActivityEnterView = this.f26722r;
         View view = chatActivityEnterView.I4;
         if (view != null) {
             setWindowView(view);
             return;
         }
         org.telegram.ui.bo boVar = chatActivityEnterView.O2;
-        if (boVar != null && boVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.O2.getParentLayout()).f18381b) {
+        if (boVar != null && boVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.O2.getParentLayout()).f18390b) {
             setWindowView(chatActivityEnterView.O2.getParentLayout().getWindow().getDecorView());
         } else {
             setWindowView(chatActivityEnterView.N2.getWindow().getDecorView());
@@ -50,7 +50,7 @@ public final class of extends lg {
         super.onDraw(canvas);
         if (getLayout() != null && this.e) {
             this.e = false;
-            this.f26774r.K(true);
+            this.f26722r.K(true);
         }
     }
 
@@ -58,7 +58,7 @@ public final class of extends lg {
     public final void onMeasure(int i10, int i11) {
         boolean z10;
         super.onMeasure(i10, i11);
-        ChatActivityEnterView chatActivityEnterView = this.f26774r;
+        ChatActivityEnterView chatActivityEnterView = this.f26722r;
         if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
             boolean z11 = false;
             if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
@@ -78,7 +78,7 @@ public final class of extends lg {
     public final boolean onTextContextMenuItem(int i10) {
         ClipData primaryClip;
         if (i10 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f26774r;
+            ChatActivityEnterView chatActivityEnterView = this.f26722r;
             if (chatActivityEnterView.E0 != null) {
                 try {
                     ClipboardManager clipboardManager = (ClipboardManager) chatActivityEnterView.getContext().getSystemService("clipboard");
@@ -111,15 +111,15 @@ public final class of extends lg {
                                     }
                                     int max2 = Math.max(0, chatActivityEnterView.E0.getSelectionStart());
                                     int min2 = Math.min(chatActivityEnterView.E0.getText().length(), chatActivityEnterView.E0.getSelectionEnd());
-                                    ri0[] ri0VarArr = (ri0[]) chatActivityEnterView.E0.getText().getSpans(max2, min2, ri0.class);
-                                    if (ri0VarArr != null && ri0VarArr.length > 0) {
-                                        ri0[] ri0VarArr2 = (ri0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), ri0.class);
-                                        for (int i11 = 0; i11 < ri0VarArr2.length; i11++) {
-                                            spannableStringBuilder.removeSpan(ri0VarArr2[i11]);
-                                            spannableStringBuilder.removeSpan(ri0VarArr2[i11].f27636a);
+                                    si0[] si0VarArr = (si0[]) chatActivityEnterView.E0.getText().getSpans(max2, min2, si0.class);
+                                    if (si0VarArr != null && si0VarArr.length > 0) {
+                                        si0[] si0VarArr2 = (si0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), si0.class);
+                                        for (int i11 = 0; i11 < si0VarArr2.length; i11++) {
+                                            spannableStringBuilder.removeSpan(si0VarArr2[i11]);
+                                            spannableStringBuilder.removeSpan(si0VarArr2[i11].f27870a);
                                         }
                                     } else {
-                                        si0.a(spannableStringBuilder);
+                                        ti0.a(spannableStringBuilder);
                                     }
                                     of ofVar = chatActivityEnterView.E0;
                                     ofVar.setText(ofVar.getText().replace(max2, min2, spannableStringBuilder));
@@ -139,20 +139,20 @@ public final class of extends lg {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ChatActivityEnterView chatActivityEnterView = this.f26774r;
+        ChatActivityEnterView chatActivityEnterView = this.f26722r;
         if (chatActivityEnterView.v()) {
             if (motionEvent.getAction() == 0) {
-                this.f26772f = motionEvent.getX();
+                this.f26720f = motionEvent.getX();
                 this.h = motionEvent.getY();
-                this.f26773n = true;
-            } else if (this.f26773n && motionEvent.getAction() == 2) {
-                if (Math.abs(motionEvent.getX() - this.f26772f) > AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.h) > AndroidUtilities.touchSlop) {
-                    this.f26773n = false;
+                this.f26721n = true;
+            } else if (this.f26721n && motionEvent.getAction() == 2) {
+                if (Math.abs(motionEvent.getX() - this.f26720f) > AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.h) > AndroidUtilities.touchSlop) {
+                    this.f26721n = false;
                 }
-            } else if (this.f26773n) {
+            } else if (this.f26721n) {
                 if (chatActivityEnterView.Y2 != null) {
-                    int i10 = org.telegram.ui.ActionBar.i6.f19174vf;
-                    int i11 = ChatActivityEnterView.f21731m5;
+                    int i10 = org.telegram.ui.ActionBar.j6.f19200vf;
+                    int i11 = ChatActivityEnterView.f21741m5;
                     setHandlesColor(chatActivityEnterView.i0(i10));
                     chatActivityEnterView.Y2.r1();
                 }
@@ -162,11 +162,11 @@ public final class of extends lg {
                     chatActivityEnterView.E0.requestFocus();
                 }
             }
-            return this.f26773n;
+            return this.f26721n;
         }
         if (motionEvent.getAction() == 0 && chatActivityEnterView.Y2 != null) {
-            int i12 = org.telegram.ui.ActionBar.i6.f19174vf;
-            int i13 = ChatActivityEnterView.f21731m5;
+            int i12 = org.telegram.ui.ActionBar.j6.f19200vf;
+            int i13 = ChatActivityEnterView.f21741m5;
             setHandlesColor(chatActivityEnterView.i0(i12));
             chatActivityEnterView.Y2.r1();
         }
@@ -176,6 +176,6 @@ public final class of extends lg {
     @Override
     public final void setOffsetY(float f7) {
         super.setOffsetY(f7);
-        this.f26774r.f21864x1.invalidate();
+        this.f26722r.f21874x1.invalidate();
     }
 }

@@ -1,19 +1,12 @@
 package ki;
 
-import android.graphics.RectF;
-import android.view.View;
+import org.telegram.ui.ActionBar.n;
 public final class g {
-    public final View f13656a;
-    public final ch.d f13657b;
-    public final RectF f13658c = new RectF();
-    public final RectF d = new RectF();
-    public final RectF e = new RectF();
-    public final RectF f13659f = new RectF();
-    public boolean f13660g;
-    public boolean h;
+    public final fh.c f13663a;
+    public final n f13664b;
 
-    public g(View view, ch.d dVar) {
-        this.f13656a = view;
-        this.f13657b = dVar;
+    public g(fh.c cVar, n nVar) {
+        this.f13663a = cVar;
+        this.f13664b = nVar;
     }
 }

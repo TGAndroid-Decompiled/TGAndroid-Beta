@@ -5,16 +5,16 @@ import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageView;
 import org.telegram.ui.Components.RadialProgressView;
 public final class zl extends AnimatorListenerAdapter {
-    public final boolean f40230a;
-    public final boolean f40231b;
-    public final boolean f40232c;
+    public final boolean f40266a;
+    public final boolean f40267b;
+    public final boolean f40268c;
     public final bo d;
 
     public zl(bo boVar, boolean z10, boolean z11, boolean z12) {
         this.d = boVar;
-        this.f40230a = z10;
-        this.f40231b = z11;
-        this.f40232c = z12;
+        this.f40266a = z10;
+        this.f40267b = z11;
+        this.f40268c = z12;
     }
 
     @Override
@@ -25,21 +25,21 @@ public final class zl extends AnimatorListenerAdapter {
         boVar.M2 = null;
         ImageView imageView = boVar.J2;
         int i12 = 4;
-        if (this.f40230a) {
+        if (this.f40266a) {
             i10 = 0;
         } else {
             i10 = 4;
         }
         imageView.setVisibility(i10);
         ImageView imageView2 = boVar.L2;
-        if (this.f40231b) {
+        if (this.f40267b) {
             i11 = 0;
         } else {
             i11 = 4;
         }
         imageView2.setVisibility(i11);
         RadialProgressView radialProgressView = boVar.K2;
-        if (this.f40232c) {
+        if (this.f40268c) {
             i12 = 0;
         }
         radialProgressView.setVisibility(i12);

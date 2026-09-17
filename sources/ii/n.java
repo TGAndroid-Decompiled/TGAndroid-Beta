@@ -10,24 +10,24 @@ import org.telegram.ui.Components.fh;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.vi;
 public final class n implements ti {
-    public final vi f11504a;
-    public final r f11505b;
+    public final vi f11507a;
+    public final r f11508b;
 
     public n(r rVar, vi viVar) {
-        this.f11505b = rVar;
-        this.f11504a = viVar;
+        this.f11508b = rVar;
+        this.f11507a = viVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        vi viVar = this.f11504a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f28762j0;
-        w3 w3Var = this.f11505b.f11588r;
+        vi viVar = this.f11507a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f28754j0;
+        w3 w3Var = this.f11508b.f11591r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = w3Var.f11703b4;
-            w3Var.f11703b4 = null;
+            a aVar = w3Var.f11706b4;
+            w3Var.f11706b4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -36,16 +36,16 @@ public final class n implements ti {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        w3Var.T1(aVar, (MediaController.PhotoEntry) obj);
+                        w3Var.U1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        w3Var.f2((MediaController.PhotoEntry) obj);
+                        w3Var.g2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;
                 }
             }
         }
-        w3Var.f11703b4 = null;
+        w3Var.f11706b4 = null;
         viVar.dismiss(true);
     }
 
@@ -61,7 +61,7 @@ public final class n implements ti {
 
     @Override
     public final void x0(fh fhVar) {
-        NotificationCenter.getInstance(this.f11505b.f11587n).doOnIdle(fhVar);
+        NotificationCenter.getInstance(this.f11508b.f11590n).doOnIdle(fhVar);
     }
 
     @Override

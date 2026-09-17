@@ -7,13 +7,13 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class gp extends org.telegram.ui.Components.k80 {
-    public final Context f33970w;
-    public final kp f33971x;
+    public final Context f34021w;
+    public final kp f34022x;
 
     public gp(kp kpVar, Context context, TLRPC.Chat chat, Context context2) {
         super(context, chat);
-        this.f33971x = kpVar;
-        this.f33970w = context2;
+        this.f34022x = kpVar;
+        this.f34021w = context2;
     }
 
     @Override
@@ -21,10 +21,10 @@ public final class gp extends org.telegram.ui.Components.k80 {
         TLRPC.ChatFull chatFull;
         int i10;
         String str;
-        org.telegram.ui.ActionBar.e6 e6Var;
-        kp kpVar = this.f33971x;
+        org.telegram.ui.ActionBar.f6 f6Var;
+        kp kpVar = this.f34022x;
         if (kpVar.V && (chatFull = kpVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
-            if (kpVar.f35211a0) {
+            if (kpVar.f35318a0) {
                 if (z10) {
                     str = "ApproveNewMembersEnableForLinksChannel";
                 } else {
@@ -35,62 +35,62 @@ public final class gp extends org.telegram.ui.Components.k80 {
             } else {
                 str = "ApproveNewMembersDisableForLinks";
             }
-            Context context = this.f33970w;
-            e6Var = ((org.telegram.ui.ActionBar.n2) kpVar).resourceProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
-            alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
-            alertDialog$Builder.f18437a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
-            alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final gp f33631b;
+            Context context = this.f34021w;
+            f6Var = ((org.telegram.ui.ActionBar.o2) kpVar).resourceProvider;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
+            alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
+            alertDialog$Builder.f18446a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
+            alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.b2(this) {
+                public final gp f33734b;
 
                 {
-                    this.f33631b = this;
+                    this.f33734b = this;
                 }
 
                 @Override
-                public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
+                public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i11) {
                     switch (r3) {
                         case 0:
                             boolean z11 = z10;
-                            gp gpVar = this.f33631b;
+                            gp gpVar = this.f33734b;
                             gpVar.setJoinRequest(z11);
-                            gpVar.f33971x.W = true;
+                            gpVar.f34022x.W = true;
                             return;
                         default:
                             boolean z12 = z10;
-                            gp gpVar2 = this.f33631b;
+                            gp gpVar2 = this.f33734b;
                             gpVar2.setJoinRequest(z12);
-                            gpVar2.f33971x.W = false;
+                            gpVar2.f34022x.W = false;
                             return;
                     }
                 }
             });
-            alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final gp f33631b;
+            alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.b2(this) {
+                public final gp f33734b;
 
                 {
-                    this.f33631b = this;
+                    this.f33734b = this;
                 }
 
                 @Override
-                public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
+                public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i11) {
                     switch (r3) {
                         case 0:
                             boolean z11 = z10;
-                            gp gpVar = this.f33631b;
+                            gp gpVar = this.f33734b;
                             gpVar.setJoinRequest(z11);
-                            gpVar.f33971x.W = true;
+                            gpVar.f34022x.W = true;
                             return;
                         default:
                             boolean z12 = z10;
-                            gp gpVar2 = this.f33631b;
+                            gp gpVar2 = this.f33734b;
                             gpVar2.setJoinRequest(z12);
-                            gpVar2.f33971x.W = false;
+                            gpVar2.f34022x.W = false;
                             return;
                     }
                 }
             });
-            kpVar.showDialog(alertDialog$Builder.f18437a);
+            kpVar.showDialog(alertDialog$Builder.f18446a);
             return false;
         }
         return true;

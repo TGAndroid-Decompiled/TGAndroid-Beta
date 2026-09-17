@@ -1,15 +1,16 @@
 package org.telegram.ui;
-public final class kc extends x61 {
-    public final ad e;
 
-    public kc(ad adVar, jc jcVar) {
-        super(jcVar);
-        this.e = adVar;
+import android.app.Activity;
+public final class kc extends rg.j0 {
+    public final int W0;
+
+    public kc(cd cdVar, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var, int i12) {
+        super(i10, i11, activity, cdVar, f6Var);
+        this.W0 = i12;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.e.Q = null;
+    public final int o1() {
+        return this.W0;
     }
 }

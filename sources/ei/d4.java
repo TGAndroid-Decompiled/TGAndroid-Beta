@@ -3,21 +3,21 @@ package ei;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.c90;
 import w7.x5;
 public final class d4 extends org.telegram.ui.Cells.l4 {
-    public final c90 f8297r;
+    public final c90 f8302r;
 
-    public d4(Context context, e6 e6Var) {
-        super(context, e6Var);
+    public d4(Context context, f6 f6Var) {
+        super(context, f6Var);
         int i10;
-        c90 c90Var = new c90(context, e6Var);
-        this.f8297r = c90Var;
+        c90 c90Var = new c90(context, f6Var);
+        this.f8302r = c90Var;
         c90Var.setTextSize(1, 14.0f);
-        c90Var.setTextColor(i6.v0(i6.f19237z6, e6Var));
-        c90Var.setLinkTextColor(i6.v0(i6.L6, e6Var));
+        c90Var.setTextColor(j6.v0(j6.f19263z6, f6Var));
+        c90Var.setLinkTextColor(j6.v0(j6.L6, f6Var));
         c90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         if (LocaleController.isRTL) {
             i10 = 3;

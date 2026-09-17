@@ -1,11 +1,11 @@
 package og;
 public abstract class a {
-    public int f15533a;
-    public boolean f15534b;
+    public int f15543a;
+    public boolean f15544b;
 
     public a(int i10, boolean z10) {
-        this.f15533a = i10;
-        this.f15534b = z10;
+        this.f15543a = i10;
+        this.f15544b = z10;
     }
 
     public boolean a(a aVar) {

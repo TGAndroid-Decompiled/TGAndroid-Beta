@@ -1,42 +1,24 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Paint;
-public final class c50 extends AnimatorListenerAdapter {
-    public final int f32672a;
-    public final i60 f32673b;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+public final class c50 implements ViewTreeObserver.OnPreDrawListener {
+    public final k60 f32677a;
 
-    public c50(i60 i60Var, int i10) {
-        this.f32672a = i10;
-        this.f32673b = i60Var;
+    public c50(k60 k60Var) {
+        this.f32677a = k60Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        switch (this.f32672a) {
-            case 0:
-                i60 i60Var = this.f32673b;
-                i60Var.V.setVisibility(4);
-                i60Var.W.setVisibility(4);
-                i60Var.U.setVisibility(4);
-                return;
-            case 1:
-                this.f32673b.f34439h0 = null;
-                return;
-            default:
-                i60 i60Var2 = this.f32673b;
-                i60Var2.f34440h1 = null;
-                Paint paint = i60Var2.f34436g1;
-                if (i60Var2.T1 == 3) {
-                    i10 = -1163700;
-                } else {
-                    i10 = -12761513;
-                }
-                paint.setColor(i10);
-                i60Var2.f34432f1.invalidate();
-                return;
-        }
+    public final boolean onPreDraw() {
+        ViewGroup viewGroup;
+        k60 k60Var = this.f32677a;
+        k60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        k60Var.a2.j(null);
+        AndroidUtilities.updateVisibleRows(k60Var.f35060m2);
+        viewGroup = ((org.telegram.ui.ActionBar.g3) k60Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

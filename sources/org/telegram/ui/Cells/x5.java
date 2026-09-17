@@ -7,33 +7,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.wl;
 public final class x5 extends FrameLayout {
-    public v5[] f21623a;
-    public MediaController.AlbumEntry[] f21624b;
-    public int f21625c;
+    public v5[] f21633a;
+    public MediaController.AlbumEntry[] f21634b;
+    public int f21635c;
     public w5 d;
     public Paint e;
 
     public final void a(int i10, MediaController.AlbumEntry albumEntry) {
-        v5[] v5VarArr = this.f21623a;
-        this.f21624b[i10] = albumEntry;
+        v5[] v5VarArr = this.f21633a;
+        this.f21634b[i10] = albumEntry;
         if (albumEntry != null) {
             v5 v5Var = v5VarArr[i10];
-            org.telegram.ui.Components.u9 u9Var = v5Var.f21473a;
-            org.telegram.ui.Components.u9 u9Var2 = v5Var.f21473a;
+            org.telegram.ui.Components.u9 u9Var = v5Var.f21483a;
+            org.telegram.ui.Components.u9 u9Var2 = v5Var.f21483a;
             u9Var.q(0, true);
             MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
             if (photoEntry != null && photoEntry.path != null) {
                 u9Var2.p(photoEntry.orientation, photoEntry.invert, true);
                 if (albumEntry.coverPhoto.isVideo) {
-                    u9Var2.f("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.i6.R4);
+                    u9Var2.f("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
                 } else {
-                    u9Var2.f("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.i6.R4);
+                    u9Var2.f("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
                 }
             } else {
-                u9Var2.setImageDrawable(org.telegram.ui.ActionBar.i6.R4);
+                u9Var2.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
             }
-            v5Var.f21474b.setText(albumEntry.bucketName);
-            v5Var.f21475c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
+            v5Var.f21484b.setText(albumEntry.bucketName);
+            v5Var.f21485c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
             return;
         }
         v5VarArr[i10].setVisibility(4);
@@ -42,13 +42,13 @@ public final class x5 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int A;
-        View[] viewArr = this.f21623a;
+        View[] viewArr = this.f21633a;
         if (AndroidUtilities.isTablet()) {
-            A = wl.A(4.0f, this.f21625c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f21625c;
+            A = wl.A(4.0f, this.f21635c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f21635c;
         } else {
-            A = wl.A(4.0f, this.f21625c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f21625c;
+            A = wl.A(4.0f, this.f21635c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f21635c;
         }
-        for (int i12 = 0; i12 < this.f21625c; i12++) {
+        for (int i12 = 0; i12 < this.f21635c; i12++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
             layoutParams.topMargin = AndroidUtilities.dp(4.0f);
             layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + A) * i12;
@@ -64,7 +64,7 @@ public final class x5 extends FrameLayout {
         int i11;
         int i12 = 0;
         while (true) {
-            v5[] v5VarArr = this.f21623a;
+            v5[] v5VarArr = this.f21633a;
             if (i12 < v5VarArr.length) {
                 v5 v5Var = v5VarArr[i12];
                 if (i12 < i10) {
@@ -75,7 +75,7 @@ public final class x5 extends FrameLayout {
                 v5Var.setVisibility(i11);
                 i12++;
             } else {
-                this.f21625c = i10;
+                this.f21635c = i10;
                 return;
             }
         }

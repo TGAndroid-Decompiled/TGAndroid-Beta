@@ -12,14 +12,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.f51;
 import org.telegram.ui.Components.ky;
 import org.telegram.ui.Components.x5;
 public final class d0 implements ky {
-    public final p0 f41328a;
+    public final p0 f41350a;
 
     public d0(p0 p0Var) {
-        this.f41328a = p0Var;
+        this.f41350a = p0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class d0 implements ky {
 
     @Override
     public final boolean k() {
-        b editText = ((x2) this.f41328a.S0).getEditText();
+        b editText = ((x2) this.f41350a.S0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class d0 implements ky {
         x2 x2Var;
         b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        j jVar = this.f41328a.S0;
+        j jVar = this.f41350a.S0;
         if ((jVar instanceof x2) && (editText = (x2Var = (x2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -98,10 +98,10 @@ public final class d0 implements ky {
 
     @Override
     public final void n() {
-        p0 p0Var = this.f41328a;
+        p0 p0Var = this.f41350a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(p0Var.getContext(), 0, p0Var.Q1);
-        alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18437a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18446a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new k2.v(this, 21));
         hg.k0.r(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -114,7 +114,7 @@ public final class d0 implements ky {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         x5 x5Var;
-        b editText = ((x2) this.f41328a.S0).getEditText();
+        b editText = ((x2) this.f41350a.S0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -153,7 +153,7 @@ public final class d0 implements ky {
     }
 
     @Override
-    public final void o(e51 e51Var) {
+    public final void o(f51 f51Var) {
     }
 
     @Override

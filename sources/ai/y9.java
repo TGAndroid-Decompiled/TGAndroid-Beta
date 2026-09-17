@@ -20,8 +20,8 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class y9 {
-    public int f1762a;
-    public MessagesStorage f1763b;
+    public int f1767a;
+    public MessagesStorage f1768b;
 
     public static void a(ai.y9 r22, ai.h8 r23) {
         throw new UnsupportedOperationException("Method not decompiled: ai.y9.a(ai.y9, ai.h8):void");
@@ -31,7 +31,7 @@ public final class y9 {
         TLRPC.WebPage webPage;
         TLRPC.Message message = messageObject.messageOwner;
         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
-        if ((messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) && messageReplyHeader.story_id == storyItem.f18348id) {
+        if ((messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) && messageReplyHeader.story_id == storyItem.f18357id) {
             message.replyStory = c(i10, j3, storyItem);
         }
         int i11 = messageObject.type;
@@ -40,7 +40,7 @@ public final class y9 {
             tL_messageMediaStory.user_id = DialogObject.getPeerDialogId(messageObject.messageOwner.media.peer);
             TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
             tL_messageMediaStory.peer = messageMedia.peer;
-            tL_messageMediaStory.f18134id = messageMedia.f18134id;
+            tL_messageMediaStory.f18143id = messageMedia.f18143id;
             tL_messageMediaStory.storyItem = c(i10, j3, storyItem);
             TLRPC.Message message2 = messageObject.messageOwner;
             tL_messageMediaStory.via_mention = message2.media.via_mention;
@@ -52,7 +52,7 @@ public final class y9 {
                 TLRPC.WebPageAttribute webPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i12);
                 if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
                     TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) webPageAttribute;
-                    if (tL_webPageAttributeStory.f18255id == storyItem.f18348id) {
+                    if (tL_webPageAttributeStory.f18264id == storyItem.f18357id) {
                         webPageAttribute.flags |= 1;
                         tL_webPageAttributeStory.storyItem = c(i10, j3, storyItem);
                     }
@@ -73,7 +73,7 @@ public final class y9 {
         }
         if (!storyItem.pinned && z10 && j3 != 0 && j3 != UserConfig.getInstance(i10).clientUserId) {
             TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-            tL_storyItemDeleted.f18348id = storyItem.f18348id;
+            tL_storyItemDeleted.f18357id = storyItem.f18357id;
             return tL_storyItemDeleted;
         }
         return storyItem;
@@ -88,19 +88,19 @@ public final class y9 {
                 for (int i11 = 0; i11 < messageObject.messageOwner.media.webpage.attributes.size(); i11++) {
                     TLRPC.WebPageAttribute webPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i11);
                     if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
-                        return ((TLRPC.TL_webPageAttributeStory) webPageAttribute).f18255id;
+                        return ((TLRPC.TL_webPageAttributeStory) webPageAttribute).f18264id;
                     }
                 }
             }
             return messageObject.messageOwner.reply_to.story_id;
         }
-        return messageObject.messageOwner.media.f18134id;
+        return messageObject.messageOwner.media.f18143id;
     }
 
     public final void d(a0.i iVar, Runnable runnable, int i10, boolean z10, Timer timer) {
         y9 y9Var = this;
         Timer timer2 = timer;
-        int i11 = y9Var.f1762a;
+        int i11 = y9Var.f1767a;
         if (iVar == null) {
             runnable.run();
             return;
@@ -148,10 +148,10 @@ public final class y9 {
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = MessagesController.getInstance(i11).getInputPeer(j10);
                 for (int i15 = 0; i15 < arrayList3.size(); i15++) {
-                    tL_stories_getStoriesByID.f18355id.add(Integer.valueOf(e((MessageObject) arrayList3.get(i15))));
+                    tL_stories_getStoriesByID.f18364id.add(Integer.valueOf(e((MessageObject) arrayList3.get(i15))));
                 }
                 StringBuilder t10 = a4.a.t(j10, "fillMessagesWithStories: getStoriesByID did=", " ids=");
-                t10.append(TextUtils.join(",", tL_stories_getStoriesByID.f18355id));
+                t10.append(TextUtils.join(",", tL_stories_getStoriesByID.f18364id));
                 int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoriesByID, new x9(y9Var, Timer.start(timer2, t10.toString()), arrayList3, j10, z10, timer2, iArr, runnable));
                 if (i10 != 0) {
                     ConnectionsManager.getInstance(i11).bindRequestToGuid(sendRequest, i10);
@@ -166,7 +166,7 @@ public final class y9 {
     }
 
     public final TL_stories.StoryItem f(int i10, long j3) {
-        SQLiteDatabase database = this.f1763b.getDatabase();
+        SQLiteDatabase database = this.f1768b.getDatabase();
         TL_stories.StoryItem storyItem = null;
         try {
             Locale locale = Locale.US;
@@ -195,7 +195,7 @@ public final class y9 {
     }
 
     public final void g(long j3, TL_stories.PeerStories peerStories) {
-        SQLiteDatabase database = this.f1763b.getDatabase();
+        SQLiteDatabase database = this.f1768b.getDatabase();
         if (peerStories != null) {
             try {
                 ArrayList<TL_stories.StoryItem> arrayList = peerStories.stories;
@@ -207,7 +207,7 @@ public final class y9 {
                         FileLog.e("try write deleted story");
                     } else {
                         executeFast.bindLong(1, j3);
-                        executeFast.bindLong(2, storyItem.f18348id);
+                        executeFast.bindLong(2, storyItem.f18357id);
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
                         storyItem.serializeToStream(nativeByteBuffer);
                         executeFast.bindByteBuffer(3, nativeByteBuffer);
@@ -236,13 +236,13 @@ public final class y9 {
 
     public final void h(long j3, TL_stories.StoryItem storyItem) {
         try {
-            SQLitePreparedStatement executeFast = this.f1763b.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = this.f1768b.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
             if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                 FileLog.e("putStoryInternal: try write deleted story");
                 return;
             }
             executeFast.bindLong(1, j3);
-            executeFast.bindLong(2, storyItem.f18348id);
+            executeFast.bindLong(2, storyItem.f18357id);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
             storyItem.serializeToStream(nativeByteBuffer);
             executeFast.bindByteBuffer(3, nativeByteBuffer);
@@ -266,8 +266,8 @@ public final class y9 {
     public final void i(int i10, long j3) {
         TL_stories.PeerStories peerStories;
         TL_stories.PeerStories peerStories2;
-        int i11 = this.f1762a;
-        MessagesStorage messagesStorage = this.f1763b;
+        int i11 = this.f1767a;
+        MessagesStorage messagesStorage = this.f1768b;
         if (j3 > 0) {
             TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(j3);
             if (userFull != null && (peerStories2 = userFull.stories) != null) {
@@ -287,7 +287,7 @@ public final class y9 {
     public final void j(List list) {
         SQLitePreparedStatement sQLitePreparedStatement;
         SQLitePreparedStatement sQLitePreparedStatement2;
-        MessagesStorage messagesStorage = this.f1763b;
+        MessagesStorage messagesStorage = this.f1768b;
         try {
             SQLiteDatabase database = messagesStorage.getDatabase();
             if (!list.isEmpty()) {
@@ -345,7 +345,7 @@ public final class y9 {
         if (j3 == 0) {
             return;
         }
-        this.f1763b.getStorageQueue().postRunnable(new a3.h0(this, j3, storyItem, 5));
+        this.f1768b.getStorageQueue().postRunnable(new a3.h0(this, j3, storyItem, 5));
     }
 
     public final void l(long j3, TL_stories.StoryItem storyItem) {
@@ -353,14 +353,14 @@ public final class y9 {
             if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                 FileLog.e("StoriesStorage: try write deleted story");
             }
-            if (ia.w(this.f1762a, storyItem)) {
+            if (ia.w(this.f1767a, storyItem)) {
                 FileLog.e("StoriesStorage: try write expired story");
             }
             try {
-                SQLitePreparedStatement executeFast = this.f1763b.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
+                SQLitePreparedStatement executeFast = this.f1768b.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
                 executeFast.requery();
                 executeFast.bindLong(1, j3);
-                executeFast.bindLong(2, storyItem.f18348id);
+                executeFast.bindLong(2, storyItem.f18357id);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
                 storyItem.serializeToStream(nativeByteBuffer);
                 executeFast.bindByteBuffer(3, nativeByteBuffer);

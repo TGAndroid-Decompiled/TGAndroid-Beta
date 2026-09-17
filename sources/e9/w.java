@@ -1,17 +1,17 @@
 package e9;
 
 import java.io.Serializable;
-import org.telegram.ui.ob1;
+import org.telegram.ui.lb1;
 public final class w extends y0 implements Serializable {
-    public final ob1 f8137a;
+    public final lb1 f8142a;
 
-    public w(ob1 ob1Var) {
-        this.f8137a = ob1Var;
+    public w(lb1 lb1Var) {
+        this.f8142a = lb1Var;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        return this.f8137a.compare(obj, obj2);
+        return this.f8142a.compare(obj, obj2);
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class w extends y0 implements Serializable {
             return true;
         }
         if (obj instanceof w) {
-            return this.f8137a.equals(((w) obj).f8137a);
+            return this.f8142a.equals(((w) obj).f8142a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f8137a.hashCode();
+        return this.f8142a.hashCode();
     }
 
     public final String toString() {
-        return this.f8137a.toString();
+        return this.f8142a.toString();
     }
 }

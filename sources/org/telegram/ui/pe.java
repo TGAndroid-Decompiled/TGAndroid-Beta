@@ -1,27 +1,52 @@
 package org.telegram.ui;
-public final class pe implements Runnable {
-    public final int f36548a;
-    public final org.telegram.ui.Components.am0 f36549b;
 
-    public pe(org.telegram.ui.Components.am0 am0Var, int i10) {
-        this.f36548a = i10;
-        this.f36549b = am0Var;
+import android.animation.ValueAnimator;
+public final class pe implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36607a;
+    public final bo f36608b;
+
+    public pe(bo boVar, int i10) {
+        this.f36607a = i10;
+        this.f36608b = boVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36548a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f36607a) {
             case 0:
-                org.telegram.ui.Components.am0 am0Var = this.f36549b;
-                if (!am0Var.M) {
-                    am0Var.M = true;
-                    am0Var.c(new org.telegram.ui.Components.yl0(am0Var, 0), false);
-                    am0Var.f22442s.invalidate();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bo boVar = this.f36608b;
+                boVar.K8 = floatValue;
+                tm tmVar = boVar.X0;
+                if (tmVar != null) {
+                    tmVar.invalidate();
+                    boVar.f32502x0.invalidate();
                     return;
                 }
                 return;
+            case 1:
+                bo boVar2 = this.f36608b;
+                boVar2.getClass();
+                boVar2.f32317i3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                boVar2.lc();
+                return;
+            case 2:
+                bo boVar3 = this.f36608b;
+                boVar3.getClass();
+                boVar3.f32317i3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                boVar3.lc();
+                return;
+            case 3:
+                bo boVar4 = this.f36608b;
+                boVar4.getClass();
+                boVar4.Da = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                boVar4.o9();
+                return;
             default:
-                this.f36549b.dismiss();
+                bo boVar5 = this.f36608b;
+                boVar5.getClass();
+                boVar5.Da = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                boVar5.o9();
                 return;
         }
     }

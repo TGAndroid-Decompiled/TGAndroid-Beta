@@ -8,25 +8,25 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public class AnimatedArrowDrawable extends Drawable {
-    public final Paint f21715a;
-    public final Path f21716b = new Path();
-    public float f21717c;
+    public final Paint f21725a;
+    public final Path f21726b = new Path();
+    public float f21727c;
     public float d;
     public long e;
-    public final boolean f21718f;
-    public final float f21719g;
+    public final boolean f21728f;
+    public final float f21729g;
     public final float h;
-    public final float f21720i;
+    public final float f21730i;
 
     public AnimatedArrowDrawable(int i10, boolean z10) {
         Paint paint = new Paint(1);
-        this.f21715a = paint;
+        this.f21725a = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setColor(i10);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f21718f = z10;
+        this.f21728f = z10;
         b();
     }
 
@@ -40,54 +40,54 @@ public class AnimatedArrowDrawable extends Drawable {
     }
 
     public final void b() {
-        Path path = this.f21716b;
+        Path path = this.f21726b;
         path.reset();
-        float f7 = (this.f21717c * 2.0f) - 1.0f;
-        float f10 = this.f21719g;
+        float f7 = (this.f21727c * 2.0f) - 1.0f;
+        float f10 = this.f21729g;
         if (f10 > 0.0f) {
             float f11 = this.h;
             if (f11 > 0.0f) {
-                float dpf2 = AndroidUtilities.dpf2(this.f21720i) / 2.0f;
+                float dpf2 = AndroidUtilities.dpf2(this.f21730i) / 2.0f;
                 float dpf22 = AndroidUtilities.dpf2(f10) - dpf2;
                 float dpf23 = AndroidUtilities.dpf2(f11) - dpf2;
                 float f12 = dpf23 - dpf2;
-                path.moveTo(dpf2, dpf23 - (this.f21717c * f12));
-                path.lineTo((dpf2 + dpf22) / 2.0f, (this.f21717c * f12) + dpf2);
-                path.lineTo(dpf22, dpf23 - (f12 * this.f21717c));
+                path.moveTo(dpf2, dpf23 - (this.f21727c * f12));
+                path.lineTo((dpf2 + dpf22) / 2.0f, (this.f21727c * f12) + dpf2);
+                path.lineTo(dpf22, dpf23 - (f12 * this.f21727c));
                 return;
             }
         }
-        if (this.f21718f) {
+        if (this.f21728f) {
             path.moveTo(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f) - (AndroidUtilities.dp(2.0f) * f7));
             path.lineTo(AndroidUtilities.dp(8.0f), (AndroidUtilities.dp(2.0f) * f7) + AndroidUtilities.dp(6.0f));
             path.lineTo(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(6.0f) - (AndroidUtilities.dp(2.0f) * f7));
             return;
         }
-        path.moveTo(AndroidUtilities.dp(4.5f), (AndroidUtilities.dp(2.0f) * this.f21717c) + (AndroidUtilities.dp(12.0f) - (AndroidUtilities.dp(4.0f) * f7)));
-        path.lineTo(AndroidUtilities.dp(13.0f), (AndroidUtilities.dp(2.0f) * this.f21717c) + (AndroidUtilities.dp(4.0f) * f7) + AndroidUtilities.dp(12.0f));
-        path.lineTo(AndroidUtilities.dp(21.5f), (AndroidUtilities.dp(2.0f) * this.f21717c) + (AndroidUtilities.dp(12.0f) - (AndroidUtilities.dp(4.0f) * f7)));
+        path.moveTo(AndroidUtilities.dp(4.5f), (AndroidUtilities.dp(2.0f) * this.f21727c) + (AndroidUtilities.dp(12.0f) - (AndroidUtilities.dp(4.0f) * f7)));
+        path.lineTo(AndroidUtilities.dp(13.0f), (AndroidUtilities.dp(2.0f) * this.f21727c) + (AndroidUtilities.dp(4.0f) * f7) + AndroidUtilities.dp(12.0f));
+        path.lineTo(AndroidUtilities.dp(21.5f), (AndroidUtilities.dp(2.0f) * this.f21727c) + (AndroidUtilities.dp(12.0f) - (AndroidUtilities.dp(4.0f) * f7)));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        canvas.drawPath(this.f21716b, this.f21715a);
-        if (this.d != this.f21717c) {
+        canvas.drawPath(this.f21726b, this.f21725a);
+        if (this.d != this.f21727c) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             long j3 = elapsedRealtime - this.e;
             this.e = elapsedRealtime;
-            float f7 = this.f21717c;
+            float f7 = this.f21727c;
             float f10 = this.d;
             if (f7 < f10) {
                 float f11 = (((float) j3) / 180.0f) + f7;
-                this.f21717c = f11;
+                this.f21727c = f11;
                 if (f11 > f10) {
-                    this.f21717c = f10;
+                    this.f21727c = f10;
                 }
             } else {
                 float f12 = f7 - (((float) j3) / 180.0f);
-                this.f21717c = f12;
+                this.f21727c = f12;
                 if (f12 < f10) {
-                    this.f21717c = f10;
+                    this.f21727c = f10;
                 }
             }
             b();
@@ -96,7 +96,7 @@ public class AnimatedArrowDrawable extends Drawable {
     }
 
     public float getAnimationProgress() {
-        return this.f21717c;
+        return this.f21727c;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class AnimatedArrowDrawable extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        float f7 = this.f21719g;
+        float f7 = this.f21729g;
         if (f7 > 0.0f) {
             return AndroidUtilities.dp(f7);
         }
@@ -123,7 +123,7 @@ public class AnimatedArrowDrawable extends Drawable {
     }
 
     public void setAnimationProgress(float f7) {
-        this.f21717c = f7;
+        this.f21727c = f7;
         this.d = f7;
         b();
         invalidateSelf();
@@ -131,21 +131,21 @@ public class AnimatedArrowDrawable extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f21715a.setColorFilter(colorFilter);
+        this.f21725a.setColorFilter(colorFilter);
     }
 
     public AnimatedArrowDrawable(int i10) {
         Paint paint = new Paint(1);
-        this.f21715a = paint;
+        this.f21725a = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
         paint.setColor(i10);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f21718f = true;
-        this.f21719g = 12.66f;
+        this.f21728f = true;
+        this.f21729g = 12.66f;
         this.h = 6.16f;
-        this.f21720i = 1.66f;
+        this.f21730i = 1.66f;
         b();
     }
 

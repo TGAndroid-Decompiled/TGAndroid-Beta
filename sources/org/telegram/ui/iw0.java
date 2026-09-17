@@ -1,211 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.util.SparseArray;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-public final class iw0 extends org.telegram.ui.Components.a81 {
-    public final int f34738a;
-    public final Object f34739b;
-    public final Object f34740c;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.MessageObject;
+public final class iw0 implements org.telegram.ui.Components.fk0 {
+    public final bo f34700a;
+    public final MessageObject f34701b;
+    public final org.telegram.ui.Components.gk0 f34702c;
+    public final ow0 d;
 
-    public iw0(Object obj, Context context, int i10) {
-        this.f34738a = i10;
-        this.f34740c = obj;
-        this.f34739b = context;
+    public iw0(ow0 ow0Var, bo boVar, MessageObject messageObject, org.telegram.ui.Components.gk0 gk0Var) {
+        this.d = ow0Var;
+        this.f34700a = boVar;
+        this.f34701b = messageObject;
+        this.f34702c = gk0Var;
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        org.telegram.ui.ActionBar.n2 n2Var;
-        t5 t5Var;
-        int i12 = this.f34738a;
-        Object obj = this.f34740c;
-        switch (i12) {
-            case 0:
-                return;
-            case 1:
-                ((a41) view).a(i11);
-                return;
-            case 2:
-                return;
-            case 3:
-                ai1 ai1Var = (ai1) obj;
-                SparseArray sparseArray = ai1Var.f31845a;
-                yh1 yh1Var = (yh1) sparseArray.get(i10);
-                if (yh1Var != null) {
-                    n2Var = yh1Var.f39911a;
-                } else {
-                    org.telegram.ui.ActionBar.n2 V = ai1Var.V(i10);
-                    yh1 yh1Var2 = new yh1(V);
-                    sparseArray.put(i10, yh1Var2);
-                    n2Var = V;
-                    yh1Var = yh1Var2;
-                }
-                if (!yh1Var.f39912b) {
-                    n2Var.onFragmentCreate();
-                    yh1Var.f39912b = true;
-                }
-                n2Var.setParentLayout(ai1Var.getParentLayout());
-                if (n2Var.getFragmentView() == null) {
-                    n2Var.performCreateView((Context) this.f34739b);
-                    n2Var.setTitleOverlayText(ai1Var.f31849n, ai1Var.f31850r, ai1Var.f31851s);
-                }
-                FrameLayout frameLayout = (FrameLayout) view;
-                frameLayout.removeAllViews();
-                View fragmentView = n2Var.getFragmentView();
-                AndroidUtilities.removeFromParent(fragmentView);
-                if (!n2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18836d6, false));
-                }
-                frameLayout.addView(fragmentView, w7.x5.c(-1.0f, -1));
-                if (n2Var.getActionBar() != null && n2Var.getActionBar().K) {
-                    AndroidUtilities.removeFromParent(n2Var.getActionBar());
-                    frameLayout.addView(n2Var.getActionBar());
-                }
-                WeakHashMap weakHashMap = r0.i0.f41843a;
-                r0.y.c(frameLayout);
-                ai1Var.checkSystemBarColors();
-                ai1Var.U();
-                return;
-            case 4:
-                return;
-            default:
-                yh.a4 a4Var = (yh.a4) obj;
-                if (i11 == 0) {
-                    yh.a4.j1(a4Var, false);
-                    xh.m2 m2Var = a4Var.f46947b0;
-                    if (m2Var != null) {
-                        t5Var = m2Var.Y;
-                    } else {
-                        return;
-                    }
-                } else if (i11 == 2) {
-                    yh.a4.j1(a4Var, true);
-                    xh.m2 m2Var2 = a4Var.f46949c0;
-                    if (m2Var2 != null) {
-                        t5Var = m2Var2.Y;
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-                FrameLayout frameLayout2 = (FrameLayout) view;
-                frameLayout2.removeAllViews();
-                AndroidUtilities.removeFromParent(t5Var);
-                frameLayout2.addView(t5Var);
-                return;
-        }
+    public final void h(android.view.View r13, zg.p0 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iw0.h(android.view.View, zg.p0, boolean, boolean):void");
     }
 
     @Override
-    public final View d(int i10) {
-        t5 t5Var;
-        switch (this.f34738a) {
-            case 0:
-                FrameLayout frameLayout = new FrameLayout((Context) this.f34739b);
-                frameLayout.setOnClickListener(new k60(this, 23));
-                return frameLayout;
-            case 1:
-                return new a41((b41) this.f34740c, (Context) this.f34739b);
-            case 2:
-                FrameLayout frameLayout2 = new FrameLayout((Context) this.f34739b);
-                frameLayout2.setOnClickListener(new g41(this, 7));
-                return frameLayout2;
-            case 3:
-                return new s51((Context) this.f34739b, 7);
-            case 4:
-                if (i10 == 0) {
-                    return ((tg.b0) this.f34739b).getContainerView();
-                }
-                return ((tg.a1) this.f34740c).getContainerView();
-            default:
-                yh.a4 a4Var = (yh.a4) this.f34740c;
-                if (i10 == 0) {
-                    yh.a4.j1(a4Var, false);
-                    xh.m2 m2Var = a4Var.f46947b0;
-                    if (m2Var != null) {
-                        t5Var = m2Var.Y;
-                        AndroidUtilities.removeFromParent(t5Var);
-                        FrameLayout frameLayout3 = new FrameLayout((Context) this.f34739b);
-                        frameLayout3.addView(t5Var, w7.x5.e(-1, -1, 119));
-                        return frameLayout3;
-                    }
-                    return null;
-                }
-                if (i10 == 1) {
-                    t5Var = a4Var.Y;
-                } else {
-                    if (i10 == 2) {
-                        yh.a4.j1(a4Var, true);
-                        xh.m2 m2Var2 = a4Var.f46949c0;
-                        if (m2Var2 != null) {
-                            t5Var = m2Var2.Y;
-                        }
-                    }
-                    return null;
-                }
-                AndroidUtilities.removeFromParent(t5Var);
-                FrameLayout frameLayout32 = new FrameLayout((Context) this.f34739b);
-                frameLayout32.addView(t5Var, w7.x5.e(-1, -1, 119));
-                return frameLayout32;
-        }
+    public final boolean j() {
+        return true;
     }
 
     @Override
-    public final int e() {
-        switch (this.f34738a) {
-            case 0:
-                return 2;
-            case 1:
-                return 5;
-            case 2:
-                return 2;
-            case 3:
-                ((ai1) this.f34740c).getClass();
-                return 4;
-            case 4:
-                return 2;
-            default:
-                yh.a4 a4Var = (yh.a4) this.f34740c;
-                return (a4Var.L1(true) ? 1 : 0) + (a4Var.L1(false) ? 1 : 0) + 1;
-        }
+    public final boolean k() {
+        return false;
     }
 
     @Override
-    public int h(int i10) {
-        switch (this.f34738a) {
-            case 1:
-                if (i10 == 0) {
-                    return 0;
-                }
-                return 1;
-            case 2:
-            case 3:
-            default:
-                return super.h(i10);
-            case 4:
-                return i10;
-            case 5:
-                return (i10 - (((yh.a4) this.f34740c).L1(false) ? 1 : 0)) + 1;
-        }
+    public final boolean q() {
+        return false;
     }
 
-    public iw0(tg.b0 b0Var, tg.a1 a1Var) {
-        this.f34738a = 4;
-        this.f34739b = b0Var;
-        this.f34740c = a1Var;
+    @Override
+    public final void o() {
     }
 
-    private final void i(View view, int i10, int i11) {
-    }
-
-    private final void j(View view, int i10, int i11) {
-    }
-
-    private final void k(View view, int i10, int i11) {
+    @Override
+    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

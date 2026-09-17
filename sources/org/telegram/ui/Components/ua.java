@@ -6,21 +6,21 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class ua extends pv0 {
-    public final boolean f28325w0;
-    public final boolean f28326x0;
-    public final za f28327y0;
+public final class ua extends qv0 {
+    public final boolean f28312w0;
+    public final boolean f28313x0;
+    public final za f28314y0;
 
     public ua(za zaVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f28327y0 = zaVar;
-        this.f28325w0 = z10;
-        this.f28326x0 = z11;
+        this.f28314y0 = zaVar;
+        this.f28312w0 = z10;
+        this.f28313x0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        za zaVar = this.f28327y0;
+        za zaVar = this.f28314y0;
         zaVar.I(canvas, this);
         super.dispatchDraw(canvas);
         zaVar.H(canvas, this);
@@ -31,8 +31,8 @@ public final class ua extends pv0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            za zaVar = this.f28327y0;
-            drawable = ((org.telegram.ui.ActionBar.f3) zaVar).shadowDrawable;
+            za zaVar = this.f28314y0;
+            drawable = ((org.telegram.ui.ActionBar.g3) zaVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 zaVar.dismiss();
             }
@@ -42,8 +42,8 @@ public final class ua extends pv0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f28326x0) {
-            this.f28327y0.getClass();
+        if (!this.f28313x0) {
+            this.f28314y0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -61,10 +61,10 @@ public final class ua extends pv0 {
         int i13;
         ju juVar;
         int size = View.MeasureSpec.getSize(i11);
-        za zaVar = this.f28327y0;
+        za zaVar = this.f28314y0;
         zaVar.h = size;
         zaVar.E(i10, i11);
-        if (this.f28325w0) {
+        if (this.f28312w0) {
             i11 = View.MeasureSpec.makeMeasureSpec(zaVar.h, 1073741824);
         }
         if (zaVar.Q != null) {
@@ -80,7 +80,7 @@ public final class ua extends pv0 {
             }
             int i14 = 0;
             if (AndroidUtilities.dp(20.0f) >= 0) {
-                z10 = ((org.telegram.ui.ActionBar.f3) zaVar).keyboardVisible;
+                z10 = ((org.telegram.ui.ActionBar.g3) zaVar).keyboardVisible;
                 if (!z10 && (juVar = zaVar.Q) != null) {
                     i13 = juVar.getEmojiPadding();
                 } else {

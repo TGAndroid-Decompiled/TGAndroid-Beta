@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import android.view.ViewTreeObserver;
 public final class df implements ViewTreeObserver.OnDrawListener {
-    public final fv0 f23315a;
-    public final uo0 f23316b;
+    public final gv0 f23342a;
+    public final vo0 f23343b;
 
-    public df(fv0 fv0Var, uo0 uo0Var) {
-        this.f23315a = fv0Var;
-        this.f23316b = uo0Var;
+    public df(gv0 gv0Var, vo0 vo0Var) {
+        this.f23342a = gv0Var;
+        this.f23343b = vo0Var;
     }
 
     @Override
     public final void onDraw() {
-        fv0 fv0Var = this.f23315a;
-        fv0Var.post(new org.telegram.ui.ActionBar.p(this, fv0Var, this.f23316b, 8));
+        gv0 gv0Var = this.f23342a;
+        gv0Var.post(new org.telegram.ui.ActionBar.q(this, gv0Var, this.f23343b, 8));
     }
 }

@@ -7,52 +7,52 @@ import hg.k0;
 import java.io.File;
 import org.telegram.messenger.FileLog;
 public final class b extends a {
-    public final MediaMetadataRetriever f12990r;
-    public final boolean f12991s;
+    public final MediaMetadataRetriever f12993r;
+    public final boolean f12994s;
 
     public b(File file) {
         long j3;
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        this.f12990r = mediaMetadataRetriever;
+        this.f12993r = mediaMetadataRetriever;
         try {
             mediaMetadataRetriever.setDataSource(file.getAbsolutePath());
-            this.f12976a = "OTHER";
+            this.f12979a = "OTHER";
             try {
                 j3 = Long.parseLong(mediaMetadataRetriever.extractMetadata(9));
             } catch (Exception unused) {
                 j3 = 0;
             }
-            this.f12977b = j3;
-            this.f12978c = c(7);
+            this.f12980b = j3;
+            this.f12981c = c(7);
             this.d = c(2);
             this.e = c(13);
-            this.f12979f = c(1);
-            this.f12980g = b(8);
+            this.f12982f = c(1);
+            this.f12983g = b(8);
             this.h = c(6);
-            this.f12982j = b(0);
+            this.f12985j = b(0);
             b(10);
-            this.f12983k = b(14);
-            this.f12985m = c(4);
-            byte[] embeddedPicture = this.f12990r.getEmbeddedPicture();
+            this.f12986k = b(14);
+            this.f12988m = c(4);
+            byte[] embeddedPicture = this.f12993r.getEmbeddedPicture();
             if (embeddedPicture != null) {
-                this.f12987o = BitmapFactory.decodeByteArray(embeddedPicture, 0, embeddedPicture.length);
+                this.f12990o = BitmapFactory.decodeByteArray(embeddedPicture, 0, embeddedPicture.length);
             }
-            Bitmap bitmap = this.f12987o;
+            Bitmap bitmap = this.f12990o;
             if (bitmap != null) {
-                float max = Math.max(bitmap.getWidth(), this.f12987o.getHeight()) / 120.0f;
+                float max = Math.max(bitmap.getWidth(), this.f12990o.getHeight()) / 120.0f;
                 if (max > 0.0f) {
-                    Bitmap bitmap2 = this.f12987o;
-                    this.f12988p = Bitmap.createScaledBitmap(bitmap2, (int) (bitmap2.getWidth() / max), (int) (this.f12987o.getHeight() / max), true);
+                    Bitmap bitmap2 = this.f12990o;
+                    this.f12991p = Bitmap.createScaledBitmap(bitmap2, (int) (bitmap2.getWidth() / max), (int) (this.f12990o.getHeight() / max), true);
                 } else {
-                    this.f12988p = this.f12987o;
+                    this.f12991p = this.f12990o;
                 }
             }
         } catch (Exception e) {
-            this.f12991s = true;
+            this.f12994s = true;
             FileLog.e(e);
         }
         try {
-            MediaMetadataRetriever mediaMetadataRetriever2 = this.f12990r;
+            MediaMetadataRetriever mediaMetadataRetriever2 = this.f12993r;
             if (mediaMetadataRetriever2 != null) {
                 k0.t(mediaMetadataRetriever2);
             }
@@ -63,7 +63,7 @@ public final class b extends a {
 
     public final short b(int i10) {
         try {
-            return Short.parseShort(this.f12990r.extractMetadata(i10));
+            return Short.parseShort(this.f12993r.extractMetadata(i10));
         } catch (Exception unused) {
             return (short) 0;
         }
@@ -71,7 +71,7 @@ public final class b extends a {
 
     public final String c(int i10) {
         try {
-            return this.f12990r.extractMetadata(i10);
+            return this.f12993r.extractMetadata(i10);
         } catch (Exception unused) {
             return null;
         }

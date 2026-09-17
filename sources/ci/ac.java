@@ -12,20 +12,20 @@ import android.widget.FrameLayout;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.af0;
-import org.telegram.ui.Components.hk0;
-import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.ik0;
+import org.telegram.ui.Components.kv0;
 import org.telegram.ui.Components.ye0;
 public final class ac extends FrameLayout {
-    public final Rect f4362a;
-    public final Rect f4363b;
-    public RenderNode f4364c;
+    public final Rect f4367a;
+    public final Rect f4368b;
+    public RenderNode f4369c;
     public final oc d;
 
     public ac(oc ocVar, Activity activity) {
         super(activity);
         this.d = ocVar;
-        this.f4362a = new Rect();
-        this.f4363b = new Rect();
+        this.f4367a = new Rect();
+        this.f4368b = new Rect();
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class ac extends FrameLayout {
         boolean z10;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 31 && canvas.isHardwareAccelerated() && !AndroidUtilities.makingGlobalBlurBitmap) {
-            if (this.f4364c == null) {
-                this.f4364c = new RenderNode("StoryRecorder.PreviewView");
+            if (this.f4369c == null) {
+                this.f4369c = new RenderNode("StoryRecorder.PreviewView");
             }
-            this.f4364c.setPosition(0, 0, getWidth(), getHeight());
-            recordingCanvas = this.f4364c.beginRecording();
+            this.f4369c.setPosition(0, 0, getWidth(), getHeight());
+            recordingCanvas = this.f4369c.beginRecording();
             z10 = true;
         } else {
             recordingCanvas = canvas;
@@ -46,12 +46,12 @@ public final class ac extends FrameLayout {
         }
         super.dispatchDraw(recordingCanvas);
         if (z10 && i10 >= 31) {
-            this.f4364c.endRecording();
-            org.telegram.ui.Components.ha haVar = this.d.f5253r0;
+            this.f4369c.endRecording();
+            org.telegram.ui.Components.ha haVar = this.d.f5258r0;
             if (haVar != null) {
-                haVar.g(this, this.f4364c);
+                haVar.g(this, this.f4369c);
             }
-            canvas.drawRenderNode(this.f4364c);
+            canvas.drawRenderNode(this.f4369c);
         }
     }
 
@@ -71,9 +71,9 @@ public final class ac extends FrameLayout {
             int i14 = i12 - i10;
             int i15 = i13 - i11;
             int dp = AndroidUtilities.dp(40.0f);
-            Rect rect = this.f4362a;
+            Rect rect = this.f4367a;
             rect.set(0, i15 - AndroidUtilities.dp(120.0f), dp, i15);
-            Rect rect2 = this.f4363b;
+            Rect rect2 = this.f4368b;
             rect2.set(i14 - AndroidUtilities.dp(40.0f), i15 - AndroidUtilities.dp(120.0f), i14, i15);
             setSystemGestureExclusionRects(Arrays.asList(rect, rect2));
         }
@@ -85,23 +85,23 @@ public final class ac extends FrameLayout {
         oc ocVar = this.d;
         af0 af0Var = ocVar.F1;
         if (af0Var != null) {
-            hk0 hk0Var = af0Var.e;
-            hk0Var.f24709a = 0.0f;
-            hk0Var.f24710b = 0.0f;
-            hk0Var.f24711c = af0Var.getMeasuredWidth();
-            hk0Var.d = ocVar.F1.getMeasuredHeight();
+            ik0 ik0Var = af0Var.e;
+            ik0Var.f24950a = 0.0f;
+            ik0Var.f24951b = 0.0f;
+            ik0Var.f24952c = af0Var.getMeasuredWidth();
+            ik0Var.d = ocVar.F1.getMeasuredHeight();
         }
         ye0 ye0Var = ocVar.E1;
         if (ye0Var != null) {
-            jv0 jv0Var = ye0Var.d;
-            jv0Var.f25443a = ye0Var.getMeasuredWidth();
-            jv0Var.f25444b = ocVar.E1.getMeasuredHeight();
+            kv0 kv0Var = ye0Var.d;
+            kv0Var.f25695a = ye0Var.getMeasuredWidth();
+            kv0Var.f25696b = ocVar.E1.getMeasuredHeight();
         }
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ?? r02 = this.d.f5268v2;
+        ?? r02 = this.d.f5273v2;
         if (r02 != 0) {
             r02.m(motionEvent);
             return true;

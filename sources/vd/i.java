@@ -2,11 +2,11 @@ package vd;
 
 import w7.m;
 public final class i {
-    public static final i[] f44290a;
+    public static final i[] f44313a;
 
     static {
         i[] iVarArr = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
-        f44290a = iVarArr;
+        f44313a = iVarArr;
         m.a(iVarArr);
     }
 
@@ -15,6 +15,6 @@ public final class i {
     }
 
     public static i[] values() {
-        return (i[]) f44290a.clone();
+        return (i[]) f44313a.clone();
     }
 }

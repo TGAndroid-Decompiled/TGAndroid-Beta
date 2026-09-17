@@ -8,34 +8,34 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.e5;
 import org.telegram.ui.Components.c90;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.au0;
+import org.telegram.ui.cu0;
 import yh.v5;
 public final class v implements Runnable {
-    public final int f41671a;
-    public final int f41672b;
-    public final Object f41673c;
+    public final int f41693a;
+    public final int f41694b;
+    public final Object f41695c;
 
-    public v(int i10, d5 d5Var) {
-        this.f41671a = 3;
-        this.f41672b = i10;
-        this.f41673c = d5Var;
+    public v(int i10, e5 e5Var) {
+        this.f41693a = 3;
+        this.f41694b = i10;
+        this.f41695c = e5Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f41671a;
+        int i10 = this.f41693a;
         boolean z10 = false;
-        int i11 = this.f41672b;
-        Object obj = this.f41673c;
+        int i11 = this.f41694b;
+        Object obj = this.f41695c;
         switch (i10) {
             case 0:
-                au0 au0Var = (au0) obj;
-                pg.q1 q1Var = au0Var.K1;
-                au0Var.s0(q1Var, null);
-                pg.s0.e(i11).j(q1Var.f40972c);
+                cu0 cu0Var = (cu0) obj;
+                pg.q1 q1Var = cu0Var.K1;
+                cu0Var.s0(q1Var, null);
+                pg.s0.e(i11).j(q1Var.f40994c);
                 return;
             case 1:
                 p2 p2Var = (p2) obj;
@@ -58,17 +58,17 @@ public final class v implements Runnable {
             case 3:
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", UserConfig.getInstance(i11).clientUserId);
-                ((d5) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
+                ((e5) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 4:
                 nf.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
                 return;
             case 5:
-                ConnectionsManager.getInstance(((v5) obj).f47895a).cancelRequest(i11, true);
+                ConnectionsManager.getInstance(((v5) obj).f47918a).cancelRequest(i11, true);
                 return;
             default:
                 zg.f fVar = (zg.f) obj;
-                if (fVar.f49020b) {
+                if (fVar.f49043b) {
                     Utilities.Callback callback = fVar.d;
                     if (callback != null) {
                         if (i11 < 300) {
@@ -76,11 +76,11 @@ public final class v implements Runnable {
                         }
                         callback.run(Boolean.valueOf(z10));
                         try {
-                            fVar.f49019a.performHapticFeedback(3);
+                            fVar.f49042a.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
                     }
-                    fVar.f49021c = true;
+                    fVar.f49044c = true;
                     int max = Math.max(50, i11 - 100);
                     AndroidUtilities.runOnUIThread(new v(fVar, max, 6), max);
                     return;
@@ -90,8 +90,8 @@ public final class v implements Runnable {
     }
 
     public v(Object obj, int i10, int i11) {
-        this.f41671a = i11;
-        this.f41673c = obj;
-        this.f41672b = i10;
+        this.f41693a = i11;
+        this.f41695c = obj;
+        this.f41694b = i10;
     }
 }

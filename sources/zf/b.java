@@ -1,15 +1,15 @@
 package zf;
 public final class b {
-    public static final b f48954a;
-    public static final b f48955b;
-    public static final b[] f48956c;
+    public static final b f48977a;
+    public static final b f48978b;
+    public static final b[] f48979c;
 
     static {
         ?? r02 = new Enum("STARS", 0);
-        f48954a = r02;
+        f48977a = r02;
         ?? r12 = new Enum("TON", 1);
-        f48955b = r12;
-        f48956c = new b[]{r02, r12};
+        f48978b = r12;
+        f48979c = new b[]{r02, r12};
     }
 
     public static b valueOf(String str) {
@@ -17,6 +17,6 @@ public final class b {
     }
 
     public static b[] values() {
-        return (b[]) f48956c.clone();
+        return (b[]) f48979c.clone();
     }
 }

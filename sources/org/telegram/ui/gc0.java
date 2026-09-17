@@ -1,18 +1,30 @@
 package org.telegram.ui;
 
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class gc0 extends org.telegram.ui.Cells.e9 {
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class gc0 extends bo {
+    public boolean Qc;
+    public final TLRPC.User Rc;
+    public final TLRPC.User[] Sc;
+    public final long Tc;
+
+    public gc0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j3) {
+        super(bundle);
+        this.Rc = user;
+        this.Sc = userArr;
+        this.Tc = j3;
     }
 
     @Override
-    public final void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onPopulateAccessibilityEvent(accessibilityEvent);
-        accessibilityEvent.setContentDescription(getTextView().getText());
-        setContentDescription(getTextView().getText());
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Qc) {
+            this.Qc = true;
+            org.telegram.ui.Components.vc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Rc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Sc[0])), new ai.j(this, this.Tc, 25)), R.raw.contact_check).j();
+        }
     }
 }

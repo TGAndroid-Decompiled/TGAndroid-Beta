@@ -19,40 +19,40 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public class o5 extends Drawable {
-    public static SparseArray f26679q;
-    public static HashMap f26680r;
-    public static boolean f26681s;
-    public static boolean f26682t;
-    public static boolean f26683u;
+    public static SparseArray f26623q;
+    public static HashMap f26624r;
+    public static boolean f26625s;
+    public static boolean f26626t;
+    public static boolean f26627u;
     public static final ai.f v = new ai.f(23);
-    public static HashMap f26684w;
-    public boolean f26685a;
-    public ArrayList f26686b;
-    public ArrayList f26687c;
+    public static HashMap f26628w;
+    public boolean f26629a;
+    public ArrayList f26630b;
+    public ArrayList f26631c;
     public int d;
     public TLRPC.Document e;
-    public long f26688f;
-    public int f26689g;
+    public long f26632f;
+    public int f26633g;
     public int h;
-    public String f26690i;
-    public boolean f26691j;
-    public ai.l4 f26692k;
-    public boolean f26694m;
-    public ColorFilter f26697p;
-    public float f26693l = 1.0f;
-    public Boolean f26695n = null;
-    public Boolean f26696o = null;
+    public String f26634i;
+    public boolean f26635j;
+    public ai.l4 f26636k;
+    public boolean f26638m;
+    public ColorFilter f26641p;
+    public float f26637l = 1.0f;
+    public Boolean f26639n = null;
+    public Boolean f26640o = null;
 
     public o5(int i10, int i11, long j3) {
         this.h = i11;
-        this.f26689g = i10;
+        this.f26633g = i10;
         y();
-        this.f26688f = j3;
+        this.f26632f = j3;
         h(i11).b(j3, new g5(this, 0));
     }
 
     public static TLRPC.Document f(int i10, long j3) {
-        HashMap hashMap = h(i10).f25545a;
+        HashMap hashMap = h(i10).f25562a;
         if (hashMap == null) {
             return null;
         }
@@ -67,12 +67,12 @@ public class o5 extends Drawable {
     }
 
     public static k5 h(int i10) {
-        if (f26680r == null) {
-            f26680r = new HashMap();
+        if (f26624r == null) {
+            f26624r = new HashMap();
         }
-        k5 k5Var = (k5) f26680r.get(Integer.valueOf(i10));
+        k5 k5Var = (k5) f26624r.get(Integer.valueOf(i10));
         if (k5Var == null) {
-            HashMap hashMap = f26680r;
+            HashMap hashMap = f26624r;
             Integer valueOf = Integer.valueOf(i10);
             k5 k5Var2 = new k5(i10);
             hashMap.put(valueOf, k5Var2);
@@ -82,20 +82,20 @@ public class o5 extends Drawable {
     }
 
     public static o5 m(int i10, int i11, TLRPC.Document document) {
-        if (f26679q == null) {
-            f26679q = new SparseArray();
+        if (f26623q == null) {
+            f26623q = new SparseArray();
         }
         int hash = Objects.hash(Integer.valueOf(i10), Integer.valueOf(i11));
-        LongSparseArray longSparseArray = (LongSparseArray) f26679q.get(hash);
+        LongSparseArray longSparseArray = (LongSparseArray) f26623q.get(hash);
         if (longSparseArray == null) {
-            SparseArray sparseArray = f26679q;
+            SparseArray sparseArray = f26623q;
             LongSparseArray longSparseArray2 = new LongSparseArray();
             sparseArray.put(hash, longSparseArray2);
             longSparseArray = longSparseArray2;
         }
-        o5 o5Var = (o5) longSparseArray.get(document.f18118id);
+        o5 o5Var = (o5) longSparseArray.get(document.f18127id);
         if (o5Var == null) {
-            long j3 = document.f18118id;
+            long j3 = document.f18127id;
             o5 o5Var2 = new o5(i11, i10, document);
             longSparseArray.put(j3, o5Var2);
             return o5Var2;
@@ -104,13 +104,13 @@ public class o5 extends Drawable {
     }
 
     public static o5 n(int i10, long j3, String str, int i11) {
-        if (f26679q == null) {
-            f26679q = new SparseArray();
+        if (f26623q == null) {
+            f26623q = new SparseArray();
         }
         int hash = Objects.hash(Integer.valueOf(i10), Integer.valueOf(i11));
-        LongSparseArray longSparseArray = (LongSparseArray) f26679q.get(hash);
+        LongSparseArray longSparseArray = (LongSparseArray) f26623q.get(hash);
         if (longSparseArray == null) {
-            SparseArray sparseArray = f26679q;
+            SparseArray sparseArray = f26623q;
             LongSparseArray longSparseArray2 = new LongSparseArray();
             sparseArray.put(hash, longSparseArray2);
             longSparseArray = longSparseArray2;
@@ -118,14 +118,14 @@ public class o5 extends Drawable {
         o5 o5Var = (o5) longSparseArray.get(j3);
         if (o5Var == null) {
             ?? drawable = new Drawable();
-            drawable.f26693l = 1.0f;
-            drawable.f26695n = null;
-            drawable.f26696o = null;
+            drawable.f26637l = 1.0f;
+            drawable.f26639n = null;
+            drawable.f26640o = null;
             drawable.h = i10;
-            drawable.f26689g = i11;
+            drawable.f26633g = i11;
             drawable.y();
-            drawable.f26688f = j3;
-            drawable.f26690i = str;
+            drawable.f26632f = j3;
+            drawable.f26634i = str;
             h(i10).b(j3, new g5(drawable, 1));
             longSparseArray.put(j3, drawable);
             return drawable;
@@ -137,12 +137,12 @@ public class o5 extends Drawable {
         LongSparseArray longSparseArray;
         ai.l4 l4Var;
         boolean z11 = !z10;
-        if (f26683u != z11) {
-            f26683u = z11;
-            if (f26679q != null && (longSparseArray = (LongSparseArray) f26679q.get(Objects.hash(Integer.valueOf(i10), 25))) != null) {
+        if (f26627u != z11) {
+            f26627u = z11;
+            if (f26623q != null && (longSparseArray = (LongSparseArray) f26623q.get(Objects.hash(Integer.valueOf(i10), 25))) != null) {
                 for (int i11 = 0; i11 < longSparseArray.size(); i11++) {
                     o5 o5Var = (o5) longSparseArray.valueAt(i11);
-                    if (o5Var != null && (l4Var = o5Var.f26692k) != null) {
+                    if (o5Var != null && (l4Var = o5Var.f26636k) != null) {
                         if (z10) {
                             l4Var.setAllowStartLottieAnimation(true);
                             l4Var.setAllowStartAnimation(true);
@@ -150,12 +150,12 @@ public class o5 extends Drawable {
                             b6 animation = l4Var.getAnimation();
                             if (animation != null) {
                                 boolean z12 = l4Var.useSharedAnimationQueue;
-                                if (!animation.f22646n0) {
-                                    animation.f22656v0 = z12;
+                                if (!animation.f22597n0) {
+                                    animation.f22607v0 = z12;
                                 }
                                 animation.start();
                             } else {
-                                xi0 lottieAnimation = l4Var.getLottieAnimation();
+                                yi0 lottieAnimation = l4Var.getLottieAnimation();
                                 if (lottieAnimation != null) {
                                     lottieAnimation.start();
                                 }
@@ -173,14 +173,14 @@ public class o5 extends Drawable {
     }
 
     public static void u() {
-        if (f26679q != null) {
+        if (f26623q != null) {
             x();
-            for (int i10 = 0; i10 < f26679q.size(); i10++) {
-                LongSparseArray longSparseArray = (LongSparseArray) f26679q.valueAt(i10);
+            for (int i10 = 0; i10 < f26623q.size(); i10++) {
+                LongSparseArray longSparseArray = (LongSparseArray) f26623q.valueAt(i10);
                 for (int i11 = 0; i11 < longSparseArray.size(); i11++) {
                     long keyAt = longSparseArray.keyAt(i11);
                     o5 o5Var = (o5) longSparseArray.get(keyAt);
-                    if (o5Var != null && o5Var.f26685a) {
+                    if (o5Var != null && o5Var.f26629a) {
                         o5Var.j(true);
                     } else {
                         longSparseArray.remove(keyAt);
@@ -191,18 +191,18 @@ public class o5 extends Drawable {
     }
 
     public static void x() {
-        f26681s = LiteMode.isEnabled(16388);
-        f26682t = LiteMode.isEnabled(8200);
+        f26625s = LiteMode.isEnabled(16388);
+        f26626t = LiteMode.isEnabled(8200);
     }
 
     public final void a(View view) {
-        if (!(view instanceof org.telegram.ui.i61)) {
-            this.f26694m = false;
-            if (this.f26686b == null) {
-                this.f26686b = new ArrayList(10);
+        if (!(view instanceof org.telegram.ui.k61)) {
+            this.f26638m = false;
+            if (this.f26630b == null) {
+                this.f26630b = new ArrayList(10);
             }
-            if (!this.f26686b.contains(view)) {
-                this.f26686b.add(view);
+            if (!this.f26630b.contains(view)) {
+                this.f26630b.add(view);
             }
             v();
             return;
@@ -211,22 +211,22 @@ public class o5 extends Drawable {
     }
 
     public final void b(u5 u5Var) {
-        if (this.f26687c == null) {
-            this.f26687c = new ArrayList(10);
+        if (this.f26631c == null) {
+            this.f26631c = new ArrayList(10);
         }
-        this.f26694m = false;
-        if (!this.f26687c.contains(u5Var)) {
-            this.f26687c.add(u5Var);
+        this.f26638m = false;
+        if (!this.f26631c.contains(u5Var)) {
+            this.f26631c.add(u5Var);
         }
         v();
     }
 
     public final boolean c() {
         boolean z10 = true;
-        if (this.f26689g == 19) {
+        if (this.f26633g == 19) {
             return true;
         }
-        Boolean bool = this.f26695n;
+        Boolean bool = this.f26639n;
         if (bool != null) {
             return bool.booleanValue();
         }
@@ -236,49 +236,49 @@ public class o5 extends Drawable {
         if (!l() && !MessageObject.isTextColorEmoji(this.e)) {
             z10 = false;
         }
-        this.f26695n = Boolean.valueOf(z10);
+        this.f26639n = Boolean.valueOf(z10);
         return z10;
     }
 
     public final void d() {
-        ArrayList arrayList = this.f26687c;
+        ArrayList arrayList = this.f26631c;
         if (arrayList != null) {
             arrayList.clear();
         }
-        ArrayList arrayList2 = this.f26686b;
+        ArrayList arrayList2 = this.f26630b;
         if (arrayList2 != null) {
             arrayList2.clear();
         }
-        this.f26694m = false;
+        this.f26638m = false;
         v();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        ai.l4 l4Var = this.f26692k;
+        ai.l4 l4Var = this.f26636k;
         if (l4Var == null) {
             return;
         }
         l4Var.setImageCoords(getBounds());
-        this.f26692k.setAlpha(this.f26693l);
-        this.f26692k.draw(canvas);
+        this.f26636k.setAlpha(this.f26637l);
+        this.f26636k.draw(canvas);
     }
 
     public final void e() {
-        if (this.f26692k == null) {
+        if (this.f26636k == null) {
             ai.l4 l4Var = new ai.l4(this, 4);
-            this.f26692k = l4Var;
+            this.f26636k = l4Var;
             l4Var.setCurrentAccount(this.h);
-            this.f26692k.setAllowLoadingOnAttachedOnly(true);
-            if (this.f26689g == 12) {
-                this.f26692k.ignoreNotifications = true;
+            this.f26636k.setAllowLoadingOnAttachedOnly(true);
+            if (this.f26633g == 12) {
+                this.f26636k.ignoreNotifications = true;
             }
         }
     }
 
     @Override
     public final int getAlpha() {
-        return (int) (this.f26693l * 255.0f);
+        return (int) (this.f26637l * 255.0f);
     }
 
     @Override
@@ -299,9 +299,9 @@ public class o5 extends Drawable {
     public final long i() {
         TLRPC.Document document = this.e;
         if (document != null) {
-            return document.f18118id;
+            return document.f18127id;
         }
-        return this.f26688f;
+        return this.f26632f;
     }
 
     public final void j(boolean r36) {
@@ -309,17 +309,17 @@ public class o5 extends Drawable {
     }
 
     public final void k() {
-        if (this.f26686b != null) {
-            for (int i10 = 0; i10 < this.f26686b.size(); i10++) {
-                View view = (View) this.f26686b.get(i10);
+        if (this.f26630b != null) {
+            for (int i10 = 0; i10 < this.f26630b.size(); i10++) {
+                View view = (View) this.f26630b.get(i10);
                 if (view != null) {
                     view.invalidate();
                 }
             }
         }
-        if (this.f26687c != null) {
-            for (int i11 = 0; i11 < this.f26687c.size(); i11++) {
-                u5 u5Var = (u5) this.f26687c.get(i11);
+        if (this.f26631c != null) {
+            for (int i11 = 0; i11 < this.f26631c.size(); i11++) {
+                u5 u5Var = (u5) this.f26631c.get(i11);
                 if (u5Var != null) {
                     u5Var.invalidate();
                 }
@@ -332,27 +332,27 @@ public class o5 extends Drawable {
     }
 
     public final void o(View view) {
-        ArrayList arrayList = this.f26686b;
+        ArrayList arrayList = this.f26630b;
         if (arrayList != null) {
             arrayList.remove(view);
         }
-        this.f26694m = false;
+        this.f26638m = false;
         v();
     }
 
     public final void p(u5 u5Var) {
-        ArrayList arrayList = this.f26687c;
+        ArrayList arrayList = this.f26631c;
         if (arrayList != null) {
             arrayList.remove(u5Var);
         }
-        this.f26694m = false;
+        this.f26638m = false;
         v();
     }
 
     public final void q(long j3) {
-        ai.l4 l4Var = this.f26692k;
+        ai.l4 l4Var = this.f26636k;
         if (l4Var != null) {
-            if (this.f26689g == 8) {
+            if (this.f26633g == 8) {
                 j3 = 0;
             }
             l4Var.setCurrentTime(j3);
@@ -360,21 +360,21 @@ public class o5 extends Drawable {
     }
 
     public final void r(String str) {
-        int i10 = this.f26689g;
-        if ((i10 != 20 && i10 != 21) || TextUtils.isEmpty(str) || this.f26692k != null) {
+        int i10 = this.f26633g;
+        if ((i10 != 20 && i10 != 21) || TextUtils.isEmpty(str) || this.f26636k != null) {
             return;
         }
         e();
-        this.f26691j = true;
-        this.f26692k.setImageBitmap(Emoji.getEmojiDrawable(str));
-        this.f26692k.setCrossfadeWithOldImage(true);
+        this.f26635j = true;
+        this.f26636k.setImageBitmap(Emoji.getEmojiDrawable(str));
+        this.f26636k.setCrossfadeWithOldImage(true);
     }
 
     @Override
     public final void setAlpha(int i10) {
         float f7 = i10 / 255.0f;
-        this.f26693l = f7;
-        ai.l4 l4Var = this.f26692k;
+        this.f26637l = f7;
+        ai.l4 l4Var = this.f26636k;
         if (l4Var != null) {
             l4Var.setAlpha(f7);
         }
@@ -382,27 +382,27 @@ public class o5 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        if (this.f26692k != null && this.e != null) {
+        if (this.f26636k != null && this.e != null) {
             if (c()) {
-                this.f26692k.setColorFilter(colorFilter);
+                this.f26636k.setColorFilter(colorFilter);
                 return;
             }
             return;
         }
-        this.f26697p = colorFilter;
+        this.f26641p = colorFilter;
     }
 
     public final void t(long j3) {
-        ai.l4 l4Var = this.f26692k;
+        ai.l4 l4Var = this.f26636k;
         if (l4Var != null) {
-            if (this.f26689g == 8) {
+            if (this.f26633g == 8) {
                 j3 = 0;
             }
             if (l4Var.getLottieAnimation() != null) {
-                this.f26692k.getLottieAnimation().U(j3);
+                this.f26636k.getLottieAnimation().U(j3);
             }
-            if (this.f26692k.getAnimation() != null) {
-                this.f26692k.getAnimation().D(j3);
+            if (this.f26636k.getAnimation() != null) {
+                this.f26636k.getAnimation().D(j3);
             }
         }
     }
@@ -422,21 +422,21 @@ public class o5 extends Drawable {
     public final void v() {
         ArrayList arrayList;
         boolean z10;
-        if (this.f26692k != null) {
-            ArrayList arrayList2 = this.f26686b;
-            if ((arrayList2 != null && arrayList2.size() > 0) || (((arrayList = this.f26687c) != null && arrayList.size() > 0) || this.f26694m)) {
+        if (this.f26636k != null) {
+            ArrayList arrayList2 = this.f26630b;
+            if ((arrayList2 != null && arrayList2.size() > 0) || (((arrayList = this.f26631c) != null && arrayList.size() > 0) || this.f26638m)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (z10 != this.f26685a) {
-                this.f26685a = z10;
+            if (z10 != this.f26629a) {
+                this.f26629a = z10;
                 if (z10) {
-                    this.f26692k.onAttachedToWindow();
+                    this.f26636k.onAttachedToWindow();
                 } else {
-                    this.f26692k.onDetachedFromWindow();
+                    this.f26636k.onDetachedFromWindow();
                 }
-                if (!this.f26685a) {
+                if (!this.f26629a) {
                     ai.f fVar = v;
                     AndroidUtilities.cancelRunOnUIThread(fVar);
                     AndroidUtilities.runOnUIThread(fVar, 5000L);
@@ -446,7 +446,7 @@ public class o5 extends Drawable {
     }
 
     public final void w(ImageReceiver imageReceiver) {
-        int i10 = this.f26689g;
+        int i10 = this.f26633g;
         if (i10 != 7 && i10 != 9 && i10 != 10) {
             if (i10 != 11 && i10 != 18 && i10 != 14 && i10 != 6 && i10 != 5 && i10 != 22) {
                 if (i10 == 17) {
@@ -462,14 +462,14 @@ public class o5 extends Drawable {
     }
 
     public final void y() {
-        int i10 = this.f26689g;
+        int i10 = this.f26633g;
         if (i10 != 0 && i10 != 26) {
-            TextPaint[] textPaintArr = org.telegram.ui.ActionBar.i6.f19215y2;
+            TextPaint[] textPaintArr = org.telegram.ui.ActionBar.j6.f19241y2;
             if (textPaintArr != null && (i10 == 1 || i10 == 4 || i10 == 19 || i10 == 20)) {
-                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.i6.f19215y2[2].descent()) + Math.abs(textPaintArr[2].ascent())) * 1.15f) / AndroidUtilities.density);
+                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.j6.f19241y2[2].descent()) + Math.abs(textPaintArr[2].ascent())) * 1.15f) / AndroidUtilities.density);
                 return;
             } else if (textPaintArr != null && i10 == 8) {
-                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.i6.f19215y2[0].descent()) + Math.abs(textPaintArr[0].ascent())) * 1.15f) / AndroidUtilities.density);
+                this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.j6.f19241y2[0].descent()) + Math.abs(textPaintArr[0].ascent())) * 1.15f) / AndroidUtilities.density);
                 return;
             } else if (i10 != 14 && i10 != 15 && i10 != 17) {
                 if (i10 != 11 && i10 != 22) {
@@ -497,11 +497,11 @@ public class o5 extends Drawable {
                 return;
             }
         }
-        this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.i6.f19034o2.descent()) + Math.abs(org.telegram.ui.ActionBar.i6.f19034o2.ascent())) * 1.15f) / AndroidUtilities.density);
+        this.d = (int) (((Math.abs(org.telegram.ui.ActionBar.j6.f19060o2.descent()) + Math.abs(org.telegram.ui.ActionBar.j6.f19060o2.ascent())) * 1.15f) / AndroidUtilities.density);
     }
 
     public o5(int i10, int i11, TLRPC.Document document) {
-        this.f26689g = i10;
+        this.f26633g = i10;
         this.h = i11;
         this.e = document;
         y();

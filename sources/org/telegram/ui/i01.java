@@ -1,36 +1,29 @@
 package org.telegram.ui;
-public final class i01 implements Runnable {
-    public final int f34373a;
-    public final j01 f34374b;
 
-    public i01(j01 j01Var, int i10) {
-        this.f34373a = i10;
-        this.f34374b = j01Var;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class i01 implements mq {
+    public final wy f34404a;
+    public final j01 f34405b;
+
+    public i01(j01 j01Var, wy wyVar) {
+        this.f34405b = j01Var;
+        this.f34404a = wyVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34373a) {
-            case 0:
-                ProfileActivity profileActivity = this.f34374b.D0;
-                vz0 vz0Var = profileActivity.B5;
-                if (vz0Var != null) {
-                    vz0Var.dismiss();
-                    profileActivity.B5 = null;
-                    return;
-                }
-                return;
-            default:
-                try {
-                    org.telegram.ui.Components.ll0 currentListView = this.f34374b.f34767x0.O.getCurrentListView();
-                    if (currentListView != null && currentListView.getAdapter() != null) {
-                        currentListView.getAdapter().l();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused) {
-                    return;
-                }
-        }
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        j01 j01Var = this.f34405b;
+        j01Var.f34743b.N1 = true;
+        this.f34404a.removeSelfFromStack();
+        NotificationCenter notificationCenter = j01Var.f34743b.getNotificationCenter();
+        ProfileActivity profileActivity = j01Var.f34743b;
+        int i11 = NotificationCenter.closeChats;
+        notificationCenter.removeObserver(profileActivity, i11);
+        j01Var.f34743b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
     }
 }

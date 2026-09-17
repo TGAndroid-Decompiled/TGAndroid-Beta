@@ -65,8 +65,8 @@ public abstract class wl {
         return linearLayout;
     }
 
-    public static ci.d g(int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        ci.d dVar = new ci.d(context, e6Var, z10);
+    public static ci.d g(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        ci.d dVar = new ci.d(context, f6Var, z10);
         dVar.setRoundRadius(i10);
         return dVar;
     }
@@ -75,10 +75,10 @@ public abstract class wl {
         return byteBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer();
     }
 
-    public static org.telegram.ui.ActionBar.f3 i(int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(i10, context, e6Var, z10);
-        f3Var.fixNavigationBar();
-        return f3Var;
+    public static org.telegram.ui.ActionBar.g3 i(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        org.telegram.ui.ActionBar.g3 g3Var = new org.telegram.ui.ActionBar.g3(i10, context, f6Var, z10);
+        g3Var.fixNavigationBar();
+        return g3Var;
     }
 
     public static void j(float f7, int i10, TextView textView) {
@@ -96,12 +96,12 @@ public abstract class wl {
         sb2.append(str);
     }
 
-    public static void m(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        n2Var.presentFragment(new ThemeActivity(i10));
+    public static void m(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        o2Var.presentFragment(new ThemeActivity(i10));
     }
 
-    public static void n(int i10, org.telegram.ui.ActionBar.e6 e6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
+    public static void n(int i10, org.telegram.ui.ActionBar.f6 f6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
         textView.setTextSize(i11, f7);
     }
 
@@ -147,8 +147,8 @@ public abstract class wl {
         return i11 - (drawable.getIntrinsicWidth() / i10);
     }
 
-    public static void x(int i10, org.telegram.ui.ActionBar.e6 e6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
+    public static void x(int i10, org.telegram.ui.ActionBar.f6 f6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
         textView.setTextSize(i11, f7);
         textView.setTypeface(AndroidUtilities.bold());
     }

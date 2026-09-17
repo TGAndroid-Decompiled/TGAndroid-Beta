@@ -7,15 +7,15 @@ import e0.b0;
 import e0.i0;
 public final class c extends b0 {
     public int[] e;
-    public MediaSessionCompat$Token f48074f;
+    public MediaSessionCompat$Token f48097f;
 
     @Override
     public final void b(i0 i0Var) {
-        Notification.Builder builder = (Notification.Builder) i0Var.f7786c;
+        Notification.Builder builder = (Notification.Builder) i0Var.f7791c;
         if (Build.VERSION.SDK_INT >= 34) {
-            a.d(builder, a.b(b.a(a.a(), null, 0, null, Boolean.FALSE), this.e, this.f48074f));
+            a.d(builder, a.b(b.a(a.a(), null, 0, null, Boolean.FALSE), this.e, this.f48097f));
         } else {
-            a.d(builder, a.b(a.a(), this.e, this.f48074f));
+            a.d(builder, a.b(a.a(), this.e, this.f48097f));
         }
     }
 }

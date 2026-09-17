@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.PhotoViewer;
-public final class tl extends ll0 {
+public final class tl extends ml0 {
     public final int X2;
     public final ChatAttachAlertPhotoLayout Y2;
 
-    public tl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, e6Var);
+    public tl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
         this.X2 = i10;
         this.Y2 = chatAttachAlertPhotoLayout;
     }
@@ -18,7 +18,7 @@ public final class tl extends ll0 {
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         switch (this.X2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f26462b.f28738b2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f26460b.f28730b2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -44,7 +44,7 @@ public final class tl extends ll0 {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.X2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f26462b.f28738b2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f26460b.f28730b2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

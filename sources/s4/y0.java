@@ -5,25 +5,25 @@ import android.util.Log;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public abstract class y0 {
-    public int f42825a = -1;
-    public RecyclerView f42826b;
-    public o0 f42827c;
+    public int f42847a = -1;
+    public RecyclerView f42848b;
+    public o0 f42849c;
     public boolean d;
     public boolean e;
-    public View f42828f;
-    public final x0 f42829g;
+    public View f42850f;
+    public final x0 f42851g;
     public boolean h;
 
     public y0() {
         ?? obj = new Object();
         obj.d = -1;
-        obj.f42813f = false;
-        obj.f42814g = 0;
-        obj.f42810a = 0;
-        obj.f42811b = 0;
-        obj.f42812c = Integer.MIN_VALUE;
+        obj.f42835f = false;
+        obj.f42836g = 0;
+        obj.f42832a = 0;
+        obj.f42833b = 0;
+        obj.f42834c = Integer.MIN_VALUE;
         obj.e = null;
-        this.f42829g = obj;
+        this.f42851g = obj;
     }
 
     public static void b(PointF pointF) {
@@ -35,7 +35,7 @@ public abstract class y0 {
     }
 
     public PointF a(int i10) {
-        o0 o0Var = this.f42827c;
+        o0 o0Var = this.f42849c;
         if (o0Var instanceof c0) {
             return ((c0) o0Var).E0(i10);
         }
@@ -45,35 +45,35 @@ public abstract class y0 {
 
     public final void c(int i10, int i11) {
         PointF a2;
-        RecyclerView recyclerView = this.f42826b;
-        if (this.f42825a == -1 || recyclerView == null) {
+        RecyclerView recyclerView = this.f42848b;
+        if (this.f42847a == -1 || recyclerView == null) {
             h();
         }
-        if (this.d && this.f42828f == null && this.f42827c != null && (a2 = a(this.f42825a)) != null) {
+        if (this.d && this.f42850f == null && this.f42849c != null && (a2 = a(this.f42847a)) != null) {
             float f7 = a2.x;
             if (f7 != 0.0f || a2.y != 0.0f) {
-                recyclerView.t0((int) Math.signum(f7), (int) Math.signum(a2.y), null);
+                recyclerView.u0((int) Math.signum(f7), (int) Math.signum(a2.y), null);
             }
         }
         boolean z10 = false;
         this.d = false;
-        View view = this.f42828f;
-        x0 x0Var = this.f42829g;
+        View view = this.f42850f;
+        x0 x0Var = this.f42851g;
         if (view != null) {
-            this.f42826b.getClass();
-            if (RecyclerView.S(view) == this.f42825a) {
-                View view2 = this.f42828f;
-                z0 z0Var = recyclerView.f2858t0;
+            this.f42848b.getClass();
+            if (RecyclerView.T(view) == this.f42847a) {
+                View view2 = this.f42850f;
+                z0 z0Var = recyclerView.f2863t0;
                 g(view2, x0Var);
                 x0Var.a(recyclerView);
                 h();
             } else {
                 Log.e("RecyclerView", "Passed over target position while smooth scrolling.");
-                this.f42828f = null;
+                this.f42850f = null;
             }
         }
         if (this.e) {
-            z0 z0Var2 = recyclerView.f2858t0;
+            z0 z0Var2 = recyclerView.f2863t0;
             d(i10, i11, x0Var);
             if (x0Var.d >= 0) {
                 z10 = true;
@@ -81,7 +81,7 @@ public abstract class y0 {
             x0Var.a(recyclerView);
             if (z10 && this.e) {
                 this.d = true;
-                recyclerView.f2853q0.a();
+                recyclerView.f2858q0.a();
             }
         }
     }
@@ -100,15 +100,15 @@ public abstract class y0 {
         }
         this.e = false;
         f();
-        this.f42826b.f2858t0.f42833a = -1;
-        this.f42828f = null;
-        this.f42825a = -1;
+        this.f42848b.f2863t0.f42855a = -1;
+        this.f42850f = null;
+        this.f42847a = -1;
         this.d = false;
-        o0 o0Var = this.f42827c;
+        o0 o0Var = this.f42849c;
         if (o0Var.e == this) {
             o0Var.e = null;
         }
-        this.f42827c = null;
-        this.f42826b = null;
+        this.f42849c = null;
+        this.f42848b = null;
     }
 }

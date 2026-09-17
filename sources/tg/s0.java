@@ -14,25 +14,25 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.c90;
 import org.telegram.ui.Components.f9;
 import org.telegram.ui.Components.qr;
 import w7.x5;
 public final class s0 extends LinearLayout {
-    public final ArrayList f43218a;
-    public final p0 f43219b;
-    public final FrameLayout f43220c;
+    public final ArrayList f43241a;
+    public final p0 f43242b;
+    public final FrameLayout f43243c;
     public final FrameLayout d;
     public final c90 e;
 
     public s0(Context context) {
         super(context);
-        this.f43218a = new ArrayList();
+        this.f43241a = new ArrayList();
         setOrientation(1);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f43220c = frameLayout;
+        this.f43243c = frameLayout;
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         this.d = frameLayout2;
@@ -41,11 +41,11 @@ public final class s0 extends LinearLayout {
         FrameLayout frameLayout3 = new FrameLayout(context);
         ImageView imageView = new ImageView(frameLayout3.getContext());
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(i6.w0(null, i6.E6, false));
+        imageView.setColorFilter(j6.w0(null, j6.E6, false));
         frameLayout3.addView(imageView);
         frameLayout.addView(frameLayout3, x5.e(24, 24, 17));
         p0 p0Var = new p0(context);
-        this.f43219b = p0Var;
+        this.f43242b = p0Var;
         p0Var.setLayerType(2, null);
         frameLayout.addView(p0Var, x5.e(70, 70, 17));
         addView(frameLayout, x5.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
@@ -53,13 +53,13 @@ public final class s0 extends LinearLayout {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.BoostingReassignBoost));
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(i6.w0(null, i6.G6, false));
+        textView.setTextColor(j6.w0(null, j6.G6, false));
         addView(textView, x5.t(-2, -2, 1, 0, 15, 0, 7));
         c90 c90Var = new c90(getContext(), null);
         this.e = c90Var;
         c90Var.setTextSize(1, 14.0f);
         c90Var.setGravity(1);
-        c90Var.setTextColor(i6.w0(null, i6.f18943j5, false));
+        c90Var.setTextColor(j6.w0(null, j6.f18969j5, false));
         c90Var.setLineSpacing(c90Var.getLineSpacingExtra(), c90Var.getLineSpacingMultiplier() * 1.1f);
         addView(c90Var, x5.t(-2, -2, 1, 28, 0, 28, 18));
     }
@@ -81,11 +81,11 @@ public final class s0 extends LinearLayout {
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        qr qrVar = qr.f27423f;
+        qr qrVar = qr.f27380f;
         int size2 = arrayList3.size();
         int i14 = 0;
         while (true) {
-            arrayList2 = this.f43218a;
+            arrayList2 = this.f43241a;
             if (i14 >= size2) {
                 break;
             }
@@ -130,7 +130,7 @@ public final class s0 extends LinearLayout {
             p0Var3.d = chat4;
             f9 f9Var = p0Var3.e;
             f9Var.q(chat4);
-            p0Var3.f43204a.e(chat4, f9Var);
+            p0Var3.f43227a.e(chat4, f9Var);
             int size5 = arrayList6.size();
             frameLayout.addView(p0Var3, i12, x5.e(70, 70, 17));
             p0Var3.setTranslationX(AndroidUtilities.dp(23.0f) * (-size5));
@@ -140,7 +140,7 @@ public final class s0 extends LinearLayout {
             ArrayList arrayList7 = arrayList5;
             p0Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(qrVar).setDuration(200).start();
             if (size5 == 0) {
-                q0 q0Var = p0Var3.f43205b;
+                q0 q0Var = p0Var3.f43228b;
                 q0Var.setScaleY(1.0f);
                 q0Var.setScaleX(1.0f);
                 q0Var.setAlpha(1.0f);
@@ -193,9 +193,9 @@ public final class s0 extends LinearLayout {
                 }
                 i10 = size6;
                 if (hg.k0.h(1, arrayList6) == p0Var && arrayList6.size() > 1) {
-                    ((p0) hg.k0.h(2, arrayList6)).f43205b.setScaleY(0.1f);
-                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43205b.setScaleX(0.1f);
-                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43205b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(qrVar).start();
+                    ((p0) hg.k0.h(2, arrayList6)).f43228b.setScaleY(0.1f);
+                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43228b.setScaleX(0.1f);
+                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43228b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(qrVar).start();
                     size6 = i10;
                 }
             } else {
@@ -203,16 +203,16 @@ public final class s0 extends LinearLayout {
             }
             size6 = i10;
         }
-        p0 p0Var5 = this.f43219b;
+        p0 p0Var5 = this.f43242b;
         if (p0Var5.d == null) {
             p0Var5.d = chat;
             f9 f9Var2 = p0Var5.e;
             f9Var2.q(chat);
-            p0Var5.f43204a.e(chat, f9Var2);
+            p0Var5.f43227a.e(chat, f9Var2);
         }
         arrayList2.removeAll(arrayList4);
         arrayList2.addAll(arrayList8);
-        FrameLayout frameLayout2 = this.f43220c;
+        FrameLayout frameLayout2 = this.f43243c;
         frameLayout2.animate().cancel();
         if (!arrayList2.isEmpty() && arrayList2.size() != 1) {
             frameLayout2.animate().setInterpolator(qrVar).translationX(AndroidUtilities.dp(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();

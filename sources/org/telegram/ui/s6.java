@@ -1,38 +1,24 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-public final class s6 {
-    public long f37257a;
-    public int f37258b;
-    public long f37259c;
-    public final SparseArray d = new SparseArray();
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class s6 extends FrameLayout {
+    public org.telegram.ui.Components.n6 f37389a;
+    public r6 f37390b;
 
-    public s6(long j3) {
-        this.f37257a = j3;
+    public final void a(float f7) {
+        org.telegram.ui.Components.n6 n6Var = this.f37389a;
+        n6Var.a();
+        n6Var.c(String.format("%d%%", Integer.valueOf((int) Math.ceil(w7.p.a(f7, 0.0f, 1.0f) * 100.0f))), !LocaleController.isRTL, true);
+        r6 r6Var = this.f37390b;
+        r6Var.d = f7;
+        r6Var.invalidate();
     }
 
-    public final void a(zh.a aVar, int i10) {
-        SparseArray sparseArray = this.d;
-        t6 t6Var = (t6) sparseArray.get(i10, null);
-        if (t6Var == null) {
-            t6Var = new t6();
-            sparseArray.put(i10, t6Var);
-        }
-        long j3 = aVar.f49196c;
-        t6Var.f37563a += j3;
-        this.f37259c += j3;
-        this.f37258b++;
-        t6Var.f37564b.add(aVar);
-    }
-
-    public final void b(zh.a aVar) {
-        t6 t6Var = (t6) this.d.get(aVar.d, null);
-        if (t6Var != null && t6Var.f37564b.remove(aVar)) {
-            long j3 = t6Var.f37563a;
-            long j10 = aVar.f49196c;
-            t6Var.f37563a = j3 - j10;
-            this.f37259c -= j10;
-            this.f37258b--;
-        }
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(350.0f), 1073741824));
     }
 }

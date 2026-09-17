@@ -8,13 +8,13 @@ public enum t0 extends b2 {
     public final void d(l lVar, a aVar) {
         String h = aVar.h(b2.H0);
         if (h.length() > 0) {
-            lVar.f7697i.f(h);
+            lVar.f7702i.f(h);
         }
         char d = aVar.d();
         if (d != 0) {
             if (d != ' ') {
                 if (d != '\"' && d != '`') {
-                    w wVar = b2.f7644a;
+                    w wVar = b2.f7649a;
                     if (d != 65535) {
                         if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
                             if (d != '&') {
@@ -25,38 +25,38 @@ public enum t0 extends b2 {
                                             break;
                                         case '>':
                                             lVar.k();
-                                            lVar.f7694c = wVar;
+                                            lVar.f7699c = wVar;
                                             return;
                                         default:
-                                            lVar.f7697i.e(d);
+                                            lVar.f7702i.e(d);
                                             return;
                                     }
                                 }
                             } else {
                                 int[] c10 = lVar.c('>', true);
                                 if (c10 != null) {
-                                    lVar.f7697i.g(c10);
+                                    lVar.f7702i.g(c10);
                                     return;
                                 } else {
-                                    lVar.f7697i.e('&');
+                                    lVar.f7702i.e('&');
                                     return;
                                 }
                             }
                         }
                     } else {
                         lVar.l(this);
-                        lVar.f7694c = wVar;
+                        lVar.f7699c = wVar;
                         return;
                     }
                 }
                 lVar.m(this);
-                lVar.f7697i.e(d);
+                lVar.f7702i.e(d);
                 return;
             }
-            lVar.f7694c = b2.W;
+            lVar.f7699c = b2.W;
             return;
         }
         lVar.m(this);
-        lVar.f7697i.e((char) 65533);
+        lVar.f7702i.e((char) 65533);
     }
 }

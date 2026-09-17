@@ -11,41 +11,41 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.fk0;
+import org.telegram.ui.Components.gk0;
 import org.telegram.ui.Components.kz;
-import org.telegram.ui.Components.pv0;
-public final class nc extends pv0 {
+import org.telegram.ui.Components.qv0;
+public final class nc extends qv0 {
     public boolean A0;
     public float B0;
     public float C0;
     public float D0;
     public final oc E0;
-    public final org.telegram.ui.Cells.ia f5093w0;
-    public final ScaleGestureDetector f5094x0;
-    public boolean f5095y0;
-    public boolean f5096z0;
+    public final org.telegram.ui.Cells.ia f5098w0;
+    public final ScaleGestureDetector f5099x0;
+    public boolean f5100y0;
+    public boolean f5101z0;
 
     public nc(oc ocVar, Activity activity) {
         super(activity, null);
         this.E0 = ocVar;
         this.A0 = false;
-        this.f5093w0 = new org.telegram.ui.Cells.ia(activity, new lc(this));
-        this.f5094x0 = new ScaleGestureDetector(activity, new mc(this));
+        this.f5098w0 = new org.telegram.ui.Cells.ia(activity, new lc(this));
+        this.f5099x0 = new ScaleGestureDetector(activity, new mc(this));
     }
 
     public final void Z(Bitmap bitmap, float f7) {
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(-16777216);
         oc ocVar = this.E0;
-        float width = bitmap.getWidth() / ocVar.f5239n.getWidth();
+        float width = bitmap.getWidth() / ocVar.f5244n.getWidth();
         canvas.scale(width, width);
         TextureView textureView = ocVar.X0.getTextureView();
         if (textureView == null) {
-            textureView = ocVar.X0.f4520r;
+            textureView = ocVar.X0.f4525r;
         }
         if (textureView != null) {
             canvas.save();
-            canvas.translate(ocVar.f5223h0.getX() + ocVar.f5252r.getX(), ocVar.f5223h0.getY() + ocVar.f5252r.getY());
+            canvas.translate(ocVar.f5228h0.getX() + ocVar.f5257r.getX(), ocVar.f5228h0.getY() + ocVar.f5257r.getY());
             try {
                 Bitmap bitmap2 = textureView.getBitmap((int) (textureView.getWidth() / f7), (int) (textureView.getHeight() / f7));
                 float f10 = 1.0f / width;
@@ -57,15 +57,15 @@ public final class nc extends pv0 {
             canvas.restore();
         }
         canvas.save();
-        canvas.translate(ocVar.f5252r.getX(), ocVar.f5252r.getY());
-        for (int i10 = 0; i10 < ocVar.f5252r.getChildCount(); i10++) {
-            View childAt = ocVar.f5252r.getChildAt(i10);
+        canvas.translate(ocVar.f5257r.getX(), ocVar.f5257r.getY());
+        for (int i10 = 0; i10 < ocVar.f5257r.getChildCount(); i10++) {
+            View childAt = ocVar.f5257r.getChildAt(i10);
             canvas.save();
             canvas.translate(childAt.getX(), childAt.getY());
             if (childAt.getVisibility() == 0) {
-                if (childAt == ocVar.f5223h0) {
-                    for (int i11 = 0; i11 < ocVar.f5223h0.getChildCount(); i11++) {
-                        View childAt2 = ocVar.f5223h0.getChildAt(i11);
+                if (childAt == ocVar.f5228h0) {
+                    for (int i11 = 0; i11 < ocVar.f5228h0.getChildCount(); i11++) {
+                        View childAt2 = ocVar.f5228h0.getChildAt(i11);
                         if (childAt2 != ocVar.X0 && childAt2 != ocVar.B0 && childAt2.getVisibility() == 0) {
                             canvas.save();
                             canvas.translate(childAt2.getX(), childAt2.getY());
@@ -99,29 +99,29 @@ public final class nc extends pv0 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10 = false;
-        this.f5095y0 = false;
+        this.f5100y0 = false;
         oc ocVar = this.E0;
         y yVar = ocVar.I0;
         boolean z11 = true;
         if (yVar != null && yVar.e) {
-            float y3 = ocVar.I0.getY() + ocVar.f5226i0.getY() + ocVar.f5252r.getY();
-            if ((motionEvent.getY() >= y3 && motionEvent.getY() <= y3 + ocVar.I0.getHeight()) || this.f5096z0) {
+            float y3 = ocVar.I0.getY() + ocVar.f5231i0.getY() + ocVar.f5257r.getY();
+            if ((motionEvent.getY() >= y3 && motionEvent.getY() <= y3 + ocVar.I0.getHeight()) || this.f5101z0) {
                 if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                     z10 = true;
                 }
-                this.f5096z0 = z10;
+                this.f5101z0 = z10;
                 return super.dispatchTouchEvent(motionEvent);
             }
             ocVar.I0.a(false, true);
             ocVar.m0(true);
         }
-        if (this.f5096z0 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            this.f5096z0 = false;
+        if (this.f5101z0 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
+            this.f5101z0 = false;
         }
-        this.f5094x0.onTouchEvent(motionEvent);
-        this.f5093w0.y(motionEvent);
-        if (motionEvent.getAction() == 1 && !this.f5095y0) {
-            if (ocVar.f5252r.getTranslationY() > 0.0f) {
+        this.f5099x0.onTouchEvent(motionEvent);
+        this.f5098w0.y(motionEvent);
+        if (motionEvent.getAction() == 1 && !this.f5100y0) {
+            if (ocVar.f5257r.getTranslationY() > 0.0f) {
                 if (ocVar.K > 0.4f) {
                     ocVar.q(true);
                 } else {
@@ -144,11 +144,11 @@ public final class nc extends pv0 {
     public int getBottomPadding() {
         int height = getHeight();
         oc ocVar = this.E0;
-        return (height - ocVar.f5252r.getBottom()) + ocVar.U;
+        return (height - ocVar.f5257r.getBottom()) + ocVar.U;
     }
 
     public int getBottomPadding2() {
-        return getHeight() - this.E0.f5252r.getBottom();
+        return getHeight() - this.E0.f5257r.getBottom();
     }
 
     @Override
@@ -159,7 +159,7 @@ public final class nc extends pv0 {
     public int getPaddingUnderContainer() {
         int height = getHeight();
         oc ocVar = this.E0;
-        return (height - ocVar.f5203b0) - ocVar.f5252r.getBottom();
+        return (height - ocVar.f5208b0) - ocVar.f5257r.getBottom();
     }
 
     @Override
@@ -176,12 +176,12 @@ public final class nc extends pv0 {
             i15 = 0;
         }
         int i16 = ocVar.S;
-        int b10 = w7.p.b((measuredWidth - i16) / 2, ocVar.Y, (measuredWidth - ocVar.f5200a0) - i16);
+        int b10 = w7.p.b((measuredWidth - i16) / 2, ocVar.Y, (measuredWidth - ocVar.f5205a0) - i16);
         int i17 = ocVar.S + b10;
         if (ocVar.V) {
             i14 = ocVar.T;
         } else {
-            int i18 = ocVar.f5203b0;
+            int i18 = ocVar.f5208b0;
             int i19 = ocVar.T;
             int i20 = (((((measuredHeight - i15) - i18) - i19) - measuredHeight2) / 2) + i15;
             if (ocVar.J == 1) {
@@ -196,8 +196,8 @@ public final class nc extends pv0 {
             }
             i14 = ocVar.T;
         }
-        ocVar.f5252r.layout(b10, i15, i17, i14 + i15 + measuredHeight2);
-        ocVar.f5256s.f5802b.layout(0, 0, measuredWidth, measuredHeight);
+        ocVar.f5257r.layout(b10, i15, i17, i14 + i15 + measuredHeight2);
+        ocVar.f5261s.f5807b.layout(0, 0, measuredWidth, measuredHeight);
         wb wbVar = ocVar.C2;
         if (wbVar != null) {
             wbVar.layout(0, 0, measuredWidth, measuredHeight);
@@ -206,22 +206,22 @@ public final class nc extends pv0 {
         if (nbVar != null) {
             nbVar.layout((measuredWidth - nbVar.getMeasuredWidth()) / 2, 0, (ocVar.M0.getMeasuredWidth() + measuredWidth) / 2, measuredHeight);
         }
-        ec ecVar = ocVar.f5208c1;
-        if (ecVar != null && (emojiView = ecVar.f4990f.getEmojiView()) != null) {
-            emojiView.layout(ocVar.Y, (measuredHeight - ocVar.f5203b0) - emojiView.getMeasuredHeight(), measuredWidth - ocVar.f5200a0, measuredHeight - ocVar.f5203b0);
+        ec ecVar = ocVar.f5213c1;
+        if (ecVar != null && (emojiView = ecVar.f4995f.getEmojiView()) != null) {
+            emojiView.layout(ocVar.Y, (measuredHeight - ocVar.f5208b0) - emojiView.getMeasuredHeight(), measuredWidth - ocVar.f5205a0, measuredHeight - ocVar.f5208b0);
         }
-        qb qbVar = ocVar.f5267v1;
+        qb qbVar = ocVar.f5272v1;
         if (qbVar != null) {
-            kz kzVar = qbVar.f5433p2;
+            kz kzVar = qbVar.f5438p2;
             if (kzVar != null) {
-                kzVar.layout(ocVar.Y, (measuredHeight - ocVar.f5203b0) - kzVar.getMeasuredHeight(), measuredWidth - ocVar.f5200a0, measuredHeight - ocVar.f5203b0);
+                kzVar.layout(ocVar.Y, (measuredHeight - ocVar.f5208b0) - kzVar.getMeasuredHeight(), measuredWidth - ocVar.f5205a0, measuredHeight - ocVar.f5208b0);
             }
-            fk0 fk0Var = ocVar.f5267v1.Z1;
-            if (fk0Var != null) {
+            gk0 gk0Var = ocVar.f5272v1.Z1;
+            if (gk0Var != null) {
                 int i21 = ocVar.Y;
-                fk0Var.layout(i21, ocVar.Z, fk0Var.getMeasuredWidth() + i21, ocVar.f5267v1.Z1.getMeasuredHeight() + ocVar.Z);
-                if (ocVar.f5267v1.Z1.getReactionsWindow() != null) {
-                    w3Var = ocVar.f5267v1.Z1.getReactionsWindow().f48985c;
+                gk0Var.layout(i21, ocVar.Z, gk0Var.getMeasuredWidth() + i21, ocVar.f5272v1.Z1.getMeasuredHeight() + ocVar.Z);
+                if (ocVar.f5272v1.Z1.getReactionsWindow() != null) {
+                    w3Var = ocVar.f5272v1.Z1.getReactionsWindow().f49008c;
                 } else {
                     w3Var = null;
                 }
@@ -231,17 +231,17 @@ public final class nc extends pv0 {
                 }
             }
         }
-        yb ybVar = ocVar.f5254r1;
+        yb ybVar = ocVar.f5259r1;
         if (ybVar != null) {
-            ybVar.e.setPadding(0, ocVar.Z, 0, ocVar.f5203b0);
-            ocVar.f5254r1.layout(0, 0, measuredWidth, measuredHeight);
-            ocVar.f5254r1.d.layout(0, 0, measuredWidth, measuredHeight);
+            ybVar.e.setPadding(0, ocVar.Z, 0, ocVar.f5208b0);
+            ocVar.f5259r1.layout(0, 0, measuredWidth, measuredHeight);
+            ocVar.f5259r1.d.layout(0, 0, measuredWidth, measuredHeight);
         }
-        zb zbVar = ocVar.f5258s1;
+        zb zbVar = ocVar.f5263s1;
         if (zbVar != null) {
-            zbVar.f5020f.setPadding(0, ocVar.Z, 0, ocVar.f5203b0);
-            ocVar.f5258s1.layout(0, 0, measuredWidth, measuredHeight);
-            ocVar.f5258s1.e.layout(0, 0, measuredWidth, measuredHeight);
+            zbVar.f5025f.setPadding(0, ocVar.Z, 0, ocVar.f5208b0);
+            ocVar.f5263s1.layout(0, 0, measuredWidth, measuredHeight);
+            ocVar.f5263s1.e.layout(0, 0, measuredWidth, measuredHeight);
         }
         for (int i23 = 0; i23 < getChildCount(); i23++) {
             View childAt = getChildAt(i23);
@@ -262,9 +262,9 @@ public final class nc extends pv0 {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         oc ocVar = this.E0;
-        int i15 = (size - ocVar.Y) - ocVar.f5200a0;
+        int i15 = (size - ocVar.Y) - ocVar.f5205a0;
         int i16 = ocVar.Z;
-        int i17 = ocVar.f5203b0;
+        int i17 = ocVar.f5208b0;
         int ceil = (int) Math.ceil((i15 / 9.0f) * 16.0f);
         int dp = AndroidUtilities.dp(48.0f);
         ocVar.U = dp;
@@ -299,8 +299,8 @@ public final class nc extends pv0 {
             i13 = systemUiVisibility & (-5);
         }
         setSystemUiVisibility(i13);
-        ocVar.f5252r.measure(View.MeasureSpec.makeMeasureSpec(ocVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(ocVar.T + ocVar.U, 1073741824));
-        ocVar.f5256s.f5802b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        ocVar.f5257r.measure(View.MeasureSpec.makeMeasureSpec(ocVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(ocVar.T + ocVar.U, 1073741824));
+        ocVar.f5261s.f5807b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         wb wbVar = ocVar.C2;
         if (wbVar != null) {
             wbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
@@ -309,26 +309,26 @@ public final class nc extends pv0 {
         if (nbVar != null) {
             nbVar.measure(View.MeasureSpec.makeMeasureSpec(ocVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        ec ecVar = ocVar.f5208c1;
+        ec ecVar = ocVar.f5213c1;
         if (ecVar != null) {
-            kz emojiView = ecVar.f4990f.getEmojiView();
+            kz emojiView = ecVar.f4995f.getEmojiView();
             R();
             AndroidUtilities.dp(20.0f);
             if (emojiView != null) {
                 emojiView.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(emojiView.getLayoutParams().height, 1073741824));
             }
         }
-        qb qbVar = ocVar.f5267v1;
+        qb qbVar = ocVar.f5272v1;
         if (qbVar != null) {
-            kz kzVar = qbVar.f5433p2;
+            kz kzVar = qbVar.f5438p2;
             if (kzVar != null) {
-                kzVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(ocVar.f5267v1.f5433p2.getLayoutParams().height, 1073741824));
+                kzVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(ocVar.f5272v1.f5438p2.getLayoutParams().height, 1073741824));
             }
-            fk0 fk0Var = ocVar.f5267v1.Z1;
-            if (fk0Var != null) {
-                measureChild(fk0Var, i10, i11);
-                if (ocVar.f5267v1.Z1.getReactionsWindow() != null) {
-                    measureChild(ocVar.f5267v1.Z1.getReactionsWindow().f48985c, i10, i11);
+            gk0 gk0Var = ocVar.f5272v1.Z1;
+            if (gk0Var != null) {
+                measureChild(gk0Var, i10, i11);
+                if (ocVar.f5272v1.Z1.getReactionsWindow() != null) {
+                    measureChild(ocVar.f5272v1.Z1.getReactionsWindow().f49008c, i10, i11);
                 }
             }
         }
@@ -347,15 +347,15 @@ public final class nc extends pv0 {
                 childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(dp2, size2 - i14), 1073741824));
             }
         }
-        yb ybVar = ocVar.f5254r1;
+        yb ybVar = ocVar.f5259r1;
         if (ybVar != null) {
             ybVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            ocVar.f5254r1.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            ocVar.f5259r1.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        zb zbVar = ocVar.f5258s1;
+        zb zbVar = ocVar.f5263s1;
         if (zbVar != null) {
             zbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            ocVar.f5258s1.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            ocVar.f5263s1.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
         setMeasuredDimension(size, size2);
     }

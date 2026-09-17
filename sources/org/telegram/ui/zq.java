@@ -11,34 +11,34 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zq implements Utilities.Callback {
-    public final int f40289a = 1;
-    public final int f40290b;
-    public final long f40291c;
+    public final int f40322a = 1;
+    public final int f40323b;
+    public final long f40324c;
     public final Object d;
     public final Object e;
-    public final Object f40292f;
-    public final Object f40293g;
+    public final Object f40325f;
+    public final Object f40326g;
     public final Serializable h;
 
-    public zq(int i10, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f40290b = i10;
+    public zq(int i10, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f40323b = i10;
         this.d = arrayList;
-        this.f40291c = j3;
+        this.f40324c = j3;
         this.e = activity;
-        this.f40292f = e6Var;
-        this.f40293g = callback;
+        this.f40325f = f6Var;
+        this.f40326g = callback;
         this.h = hashMap;
     }
 
     @Override
     public final void run(Object obj) {
         boolean z10;
-        switch (this.f40289a) {
+        switch (this.f40322a) {
             case 0:
                 ur urVar = (ur) this.d;
                 TLObject tLObject = (TLObject) this.e;
-                TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f40292f;
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.f40293g;
+                TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f40325f;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.f40326g;
                 String str = (String) this.h;
                 int intValue = ((Integer) obj).intValue();
                 boolean[] zArr = new boolean[1];
@@ -49,19 +49,19 @@ public final class zq implements Utilities.Callback {
                 }
                 long j3 = urVar.N;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights2 = urVar.E;
-                long j10 = this.f40291c;
+                long j10 = this.f40324c;
                 cr crVar = new cr(urVar, j10, j3, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j10);
-                crVar.X0 = new dr(urVar, intValue, j10, this.f40290b, z10, zArr);
+                crVar.X0 = new dr(urVar, intValue, j10, this.f40323b, z10, zArr);
                 urVar.presentFragment(crVar);
                 return;
             default:
                 final ArrayList arrayList = (ArrayList) this.d;
                 final Activity activity = (Activity) this.e;
-                final org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f40292f;
-                final Utilities.Callback callback = (Utilities.Callback) this.f40293g;
+                final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f40325f;
+                final Utilities.Callback callback = (Utilities.Callback) this.f40326g;
                 final HashMap hashMap = (HashMap) this.h;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                final int i10 = this.f40290b;
+                final int i10 = this.f40323b;
                 if (booleanValue) {
                     SharedPreferences.Editor edit = MessagesController.getInstance(i10).getMainSettings().edit();
                     int i11 = 0;
@@ -79,7 +79,7 @@ public final class zq implements Utilities.Callback {
                     }
                     edit.apply();
                 }
-                final long j11 = this.f40291c;
+                final long j11 = this.f40324c;
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -94,7 +94,7 @@ public final class zq implements Utilities.Callback {
                                 return;
                             }
                             long longValue2 = ((Long) arrayList.get(0)).longValue();
-                            new yh.n7(activity2, e6Var, j13, 13, DialogObject.getShortName(i12, longValue2), new a2(callback2, hashMap2, 0), longValue2).show();
+                            new yh.n7(activity2, f6Var, j13, 13, DialogObject.getShortName(i12, longValue2), new a2(callback2, hashMap2, 0), longValue2).show();
                             return;
                         }
                         callback2.run(hashMap2);
@@ -114,11 +114,11 @@ public final class zq implements Utilities.Callback {
 
     public zq(ur urVar, long j3, int i10, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
         this.d = urVar;
-        this.f40291c = j3;
-        this.f40290b = i10;
+        this.f40324c = j3;
+        this.f40323b = i10;
         this.e = tLObject;
-        this.f40292f = tL_chatAdminRights;
-        this.f40293g = tL_chatBannedRights;
+        this.f40325f = tL_chatAdminRights;
+        this.f40326g = tL_chatBannedRights;
         this.h = str;
     }
 }

@@ -11,27 +11,27 @@ import org.telegram.ui.Components.qr;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.fo;
 public final class l4 extends ImageReceiver {
-    public final int f1174a;
-    public final Object f1175b;
+    public final int f1179a;
+    public final Object f1180b;
 
     public l4(View view, View view2, int i10) {
         super(view2);
-        this.f1174a = i10;
-        this.f1175b = view;
+        this.f1179a = i10;
+        this.f1180b = view;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f1174a) {
+        switch (this.f1179a) {
             case 3:
-                View view = ((fo) this.f1175b).f33624b;
+                View view = ((fo) this.f1180b).f33726b;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 4:
-                ((org.telegram.ui.Components.o5) this.f1175b).k();
+                ((org.telegram.ui.Components.o5) this.f1180b).k();
                 super.invalidate();
                 return;
             default:
@@ -43,20 +43,20 @@ public final class l4 extends ImageReceiver {
     @Override
     public boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
         Runnable runnable;
-        int i12 = this.f1174a;
-        Object obj = this.f1175b;
+        int i12 = this.f1179a;
+        Object obj = this.f1180b;
         switch (i12) {
             case 0:
                 f6 f6Var = (f6) obj;
                 boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (i10 == 1 && (runnable = f6Var.f818i1) != null) {
+                if (i10 == 1 && (runnable = f6Var.f823i1) != null) {
                     runnable.run();
-                    f6Var.f818i1 = null;
+                    f6Var.f823i1 = null;
                 }
                 return imageBitmapByKey;
             case 1:
                 if (drawable != null && i10 != 1) {
-                    wl.q(((hg.e1) ((z5) obj).H).f10265n.animate().alpha(1.0f).translationY(0.0f), qr.f27427k, 250L);
+                    wl.q(((hg.e1) ((z5) obj).H).f10270n.animate().alpha(1.0f).translationY(0.0f), qr.f27384k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 2:
@@ -67,8 +67,8 @@ public final class l4 extends ImageReceiver {
                 org.telegram.ui.Components.o5 o5Var = (org.telegram.ui.Components.o5) obj;
                 o5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (o5Var.f26694m && hasImageLoaded()) {
-                    o5Var.f26694m = false;
+                if (o5Var.f26638m && hasImageLoaded()) {
+                    o5Var.f26638m = false;
                     AndroidUtilities.runOnUIThread(new ng(o5Var, 4));
                 }
                 return imageBitmapByKey2;
@@ -87,19 +87,19 @@ public final class l4 extends ImageReceiver {
 
     @Override
     public void setRoundRadius(int[] iArr) {
-        switch (this.f1174a) {
+        switch (this.f1179a) {
             case 2:
                 super.setRoundRadius(iArr);
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f1175b;
+                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f1180b;
                 int[] iArr2 = t1Var.R0;
                 iArr2[0] = iArr[0];
                 iArr2[1] = iArr[1];
                 int dp = AndroidUtilities.dp(6.0f);
                 iArr2[3] = dp;
                 iArr2[2] = dp;
-                qh.g gVar = t1Var.f20992b6;
+                qh.g gVar = t1Var.f21002b6;
                 if (gVar != null) {
-                    gVar.f41769b.setRoundRadius(t1Var.R0);
+                    gVar.f41791b.setRoundRadius(t1Var.R0);
                     return;
                 }
                 return;
@@ -110,7 +110,7 @@ public final class l4 extends ImageReceiver {
     }
 
     public l4(Object obj, int i10) {
-        this.f1174a = i10;
-        this.f1175b = obj;
+        this.f1179a = i10;
+        this.f1180b = obj;
     }
 }

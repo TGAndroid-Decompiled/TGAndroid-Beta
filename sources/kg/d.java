@@ -10,16 +10,16 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.ui.je;
+import org.telegram.ui.le;
 import yh.y7;
 public final class d {
-    public final long[] f13603a;
-    public final CharSequence[] f13604b;
-    public final CharSequence[] f13605c;
+    public final long[] f13606a;
+    public final CharSequence[] f13607b;
+    public final CharSequence[] f13608c;
     public final StaticLayout[] d;
     public final StaticLayout[] e;
-    public int f13606f;
-    public int f13607g;
+    public int f13609f;
+    public int f13610g;
     public DecimalFormat h;
 
     public d(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
@@ -39,9 +39,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f13604b;
+                charSequenceArr = this.f13607b;
             } else {
-                charSequenceArr = this.f13605c;
+                charSequenceArr = this.f13608c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {
@@ -77,7 +77,7 @@ public final class d {
                 i12 = 6;
             }
             decimalFormat2.setMaximumFractionDigits(i12);
-            return je.f0("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
+            return le.f0("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
         } else if (i11 == 2) {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j3, "USD");

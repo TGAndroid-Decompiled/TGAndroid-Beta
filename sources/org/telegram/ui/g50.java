@@ -1,29 +1,39 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class g50 implements DialogInterface.OnShowListener {
-    public final int f33764a;
-    public final org.telegram.ui.ActionBar.b2 f33765b;
-    public final EditTextBoldCursor f33766c;
-    public final Object d;
+import android.graphics.Canvas;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class g50 extends org.telegram.ui.ActionBar.k {
+    public final org.telegram.ui.Components.rp f33855u1;
+    public final k60 f33856v1;
 
-    public g50(Object obj, org.telegram.ui.ActionBar.b2 b2Var, EditTextBoldCursor editTextBoldCursor, int i10) {
-        this.f33764a = i10;
-        this.d = obj;
-        this.f33765b = b2Var;
-        this.f33766c = editTextBoldCursor;
+    public g50(k60 k60Var, LaunchActivity launchActivity, org.telegram.ui.Components.rp rpVar) {
+        super(launchActivity, null);
+        this.f33856v1 = k60Var;
+        this.f33855u1 = rpVar;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f33764a) {
-            case 0:
-                ((l50) this.d).f35341b.s1(null, this.f33765b, this.f33766c, true);
-                return;
-            default:
-                ((h50) this.d).f34158n.f35341b.s1(null, this.f33765b, this.f33766c, true);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
+            canvas.save();
+            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
+            org.telegram.ui.Components.rp rpVar = this.f33855u1;
+            rpVar.f27665f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            rpVar.draw(canvas);
+            canvas.restore();
+            invalidate();
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            viewGroup = ((org.telegram.ui.ActionBar.g3) this.f33856v1).containerView;
+            viewGroup.invalidate();
         }
     }
 }

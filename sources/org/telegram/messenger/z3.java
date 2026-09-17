@@ -5,31 +5,31 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class z3 implements Utilities.Callback2 {
-    public final int f18032a;
-    public final BaseController f18033b;
-    public final Object f18034c;
+    public final int f18041a;
+    public final BaseController f18042b;
+    public final Object f18043c;
     public final Object d;
     public final Object e;
 
     public z3(BaseController baseController, Object obj, Object obj2, Object obj3, int i10) {
-        this.f18032a = i10;
-        this.f18033b = baseController;
-        this.f18034c = obj;
+        this.f18041a = i10;
+        this.f18042b = baseController;
+        this.f18043c = obj;
         this.d = obj2;
         this.e = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f18032a) {
+        switch (this.f18041a) {
             case 0:
-                ((GiftAuctionController) this.f18033b).lambda$sendBid$9((Utilities.Callback2) this.f18034c, (GiftAuctionController.AuctionInternal) this.d, (TLRPC.TL_payments_getPaymentForm) this.e, (TLRPC.PaymentForm) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f18042b).lambda$sendBid$9((Utilities.Callback2) this.f18043c, (GiftAuctionController.AuctionInternal) this.d, (TLRPC.TL_payments_getPaymentForm) this.e, (TLRPC.PaymentForm) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ((MediaDataController) this.f18033b).lambda$searchStickers$247((MediaDataController.SearchStickersKey) this.f18034c, (MediaDataController.SearchStickersResult) this.d, (Utilities.Callback) this.e, (TLRPC.messages_FoundStickers) obj, (TLRPC.TL_error) obj2);
+                ((MediaDataController) this.f18042b).lambda$searchStickers$247((MediaDataController.SearchStickersKey) this.f18043c, (MediaDataController.SearchStickersResult) this.d, (Utilities.Callback) this.e, (TLRPC.messages_FoundStickers) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((MediaDataController) this.f18033b).lambda$getStickerSet$38((String) this.f18034c, (Utilities.Callback) this.d, (TLRPC.InputStickerSet) this.e, (Boolean) obj, (TLRPC.TL_messages_stickerSet) obj2);
+                ((MediaDataController) this.f18042b).lambda$getStickerSet$38((String) this.f18043c, (Utilities.Callback) this.d, (TLRPC.InputStickerSet) this.e, (Boolean) obj, (TLRPC.TL_messages_stickerSet) obj2);
                 return;
         }
     }

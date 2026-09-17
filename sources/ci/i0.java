@@ -10,29 +10,29 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.BubbleActivity;
 public final class i0 extends View {
-    public final Paint f4769a;
-    public final Path f4770b;
-    public final RectF f4771c;
+    public final Paint f4774a;
+    public final Path f4775b;
+    public final RectF f4776c;
     public final Matrix d;
     public final Matrix e;
-    public final Matrix f4772f;
+    public final Matrix f4777f;
     public final Matrix h;
-    public final Matrix f4773n;
-    public final Matrix f4774r;
-    public final j0 f4775s;
+    public final Matrix f4778n;
+    public final Matrix f4779r;
+    public final j0 f4780s;
 
     public i0(j0 j0Var, Context context) {
         super(context);
-        this.f4775s = j0Var;
-        this.f4769a = new Paint(1);
-        this.f4770b = new Path();
-        this.f4771c = new RectF();
+        this.f4780s = j0Var;
+        this.f4774a = new Paint(1);
+        this.f4775b = new Path();
+        this.f4776c = new RectF();
         this.d = new Matrix();
         this.e = new Matrix();
-        this.f4772f = new Matrix();
+        this.f4777f = new Matrix();
         this.h = new Matrix();
-        this.f4773n = new Matrix();
-        this.f4774r = new Matrix();
+        this.f4778n = new Matrix();
+        this.f4779r = new Matrix();
     }
 
     private float getContainerHeight() {
@@ -42,7 +42,7 @@ public final class i0 extends View {
         } else {
             f7 = 0.0f;
         }
-        return ((getHeight() - f7) - this.f4775s.f4823f.f14106y) - AndroidUtilities.dp(32.0f);
+        return ((getHeight() - f7) - this.f4780s.f4828f.f14119y) - AndroidUtilities.dp(32.0f);
     }
 
     private float getContainerWidth() {
@@ -59,7 +59,7 @@ public final class i0 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f4775s.f4828x == null) {
+        if (this.f4780s.f4833x == null) {
             return;
         }
         b(canvas, false);

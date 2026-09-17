@@ -7,24 +7,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class rc implements Utilities.Callback {
-    public final int f27619a = 0;
-    public final long f27620b;
-    public final int f27621c;
+    public final int f27592a = 0;
+    public final long f27593b;
+    public final int f27594c;
     public final Object d;
 
     public rc(int i10, oc ocVar, long j3) {
-        this.f27621c = i10;
+        this.f27594c = i10;
         this.d = ocVar;
-        this.f27620b = j3;
+        this.f27593b = j3;
     }
 
     @Override
     public final void run(Object obj) {
         Object string;
         TLRPC.StickerSet stickerSet;
-        int i10 = this.f27619a;
-        int i11 = this.f27621c;
-        long j3 = this.f27620b;
+        int i10 = this.f27592a;
+        int i11 = this.f27594c;
+        long j3 = this.f27593b;
         Object obj2 = this.d;
         switch (i10) {
             case 0:
@@ -41,17 +41,17 @@ public final class rc implements Utilities.Callback {
                 } else {
                     string = LocaleController.getString(R.string.AddEmojiNotFound);
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.uh(23, ocVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.wh(23, ocVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
                 return;
             default:
-                ((yu0) obj2).getStoriesController().b(i11, j3, (ArrayList) obj);
+                ((zu0) obj2).getStoriesController().b(i11, j3, (ArrayList) obj);
                 return;
         }
     }
 
-    public rc(yu0 yu0Var, long j3, int i10) {
-        this.d = yu0Var;
-        this.f27620b = j3;
-        this.f27621c = i10;
+    public rc(zu0 zu0Var, long j3, int i10) {
+        this.d = zu0Var;
+        this.f27593b = j3;
+        this.f27594c = i10;
     }
 }

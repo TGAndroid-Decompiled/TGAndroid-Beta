@@ -6,43 +6,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public abstract class eo extends FrameLayout {
-    public final co f33375a;
-    public final org.telegram.ui.ActionBar.d5 f33376b;
-    public View f33377c;
+    public final co f33444a;
+    public final org.telegram.ui.ActionBar.e5 f33445b;
+    public View f33446c;
     public int d;
     public boolean e;
 
-    public eo(Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle) {
+    public eo(Context context, org.telegram.ui.ActionBar.e5 e5Var, Bundle bundle) {
         super(context);
         this.e = true;
-        this.f33376b = d5Var;
+        this.f33445b = e5Var;
         co coVar = new co(this, bundle);
-        this.f33375a = coVar;
+        this.f33444a = coVar;
         coVar.Oa = true;
     }
 
     public void a() {
         int i10;
-        co coVar = this.f33375a;
+        co coVar = this.f33444a;
         if (coVar.onFragmentCreate()) {
-            this.f33377c = coVar.fragmentView;
-            coVar.setParentLayout(this.f33376b);
-            View view = this.f33377c;
+            this.f33446c = coVar.fragmentView;
+            coVar.setParentLayout(this.f33445b);
+            View view = this.f33446c;
             if (view == null) {
-                this.f33377c = coVar.createView(getContext());
+                this.f33446c = coVar.createView(getContext());
             } else {
                 ViewGroup viewGroup = (ViewGroup) view.getParent();
                 if (viewGroup != null) {
                     coVar.onRemoveFromParent();
-                    viewGroup.removeView(this.f33377c);
+                    viewGroup.removeView(this.f33446c);
                 }
             }
-            uj ujVar = coVar.f32524x0;
-            if (ujVar != null && (i10 = this.d) != 0) {
-                ujVar.setPadding(0, i10, 0, 0);
+            vj vjVar = coVar.f32502x0;
+            if (vjVar != null && (i10 = this.d) != 0) {
+                vjVar.setPadding(0, i10, 0, 0);
             }
             coVar.pa();
-            addView(this.f33377c, w7.x5.c(-1.0f, -1));
+            addView(this.f33446c, w7.x5.c(-1.0f, -1));
             if (this.e) {
                 coVar.onResume();
             }

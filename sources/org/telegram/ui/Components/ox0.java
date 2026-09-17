@@ -1,55 +1,178 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.MediaDataController;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class ox0 extends s4.x {
-    public int e;
-    public final vx0 f26905f;
+public final class ox0 extends FrameLayout {
+    public int f26874a;
+    public final RectF f26875b;
+    public boolean f26876c;
+    public Boolean d;
+    public final wx0 e;
 
-    public ox0(vx0 vx0Var) {
-        this.f26905f = vx0Var;
-        this.d = 15;
-        this.e = -1;
+    public ox0(wx0 wx0Var, Context context) {
+        super(context);
+        this.e = wx0Var;
+        this.f26875b = new RectF();
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        int i10 = c1Var.f42678f;
-        if (i10 != 3 && i10 == c1Var2.f42678f) {
-            vx0 vx0Var = this.f26905f;
-            if (vx0Var.S == null) {
-                return false;
+    public final void onDraw(android.graphics.Canvas r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ox0.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            wx0 wx0Var = this.e;
+            if (wx0Var.f29772e0 != 0 && motionEvent.getY() < wx0Var.f29772e0) {
+                wx0Var.dismiss();
+                return true;
             }
-            int b10 = c1Var.b();
-            int b11 = c1Var2.b();
-            vx0Var.S.documents.add(b11, vx0Var.S.documents.remove(b10));
-            vx0Var.d.p(b10, b11);
-            this.e = b11;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14 = this.f26874a;
+        int i15 = i12 - i10;
+        wx0 wx0Var = this.e;
+        if (i14 != i15) {
+            this.f26874a = i15;
+            sx0 sx0Var = wx0Var.d;
+            if (sx0Var != null && wx0Var.W != null) {
+                sx0Var.l();
+            }
+        }
+        super.onLayout(z10, i10, i11, i12, i13);
+        wx0.O(wx0Var);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        int i21;
+        float f7;
+        int size = View.MeasureSpec.getSize(i11);
+        wx0 wx0Var = this.e;
+        ArrayList arrayList = wx0Var.X;
+        boolean z10 = true;
+        wx0Var.f29775g0 = true;
+        i12 = ((org.telegram.ui.ActionBar.g3) wx0Var).backgroundPaddingLeft;
+        int i22 = AndroidUtilities.statusBarHeight;
+        i13 = ((org.telegram.ui.ActionBar.g3) wx0Var).backgroundPaddingLeft;
+        setPadding(i12, i22, i13, 0);
+        wx0Var.f29775g0 = false;
+        if (wx0Var.s0()) {
+            int measuredWidth = wx0Var.f29769c.getMeasuredWidth();
+            if (measuredWidth == 0) {
+                measuredWidth = AndroidUtilities.displaySize.x;
+            }
+            sx0 sx0Var = wx0Var.d;
+            if (AndroidUtilities.isTablet()) {
+                f7 = 60.0f;
+            } else {
+                f7 = 45.0f;
+            }
+            sx0Var.d = Math.max(1, measuredWidth / AndroidUtilities.dp(f7));
+            int size2 = (View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(36.0f)) / wx0Var.d.d;
+            wx0Var.O = size2;
+            wx0Var.P = size2;
+        } else {
+            wx0Var.d.d = 5;
+            wx0Var.O = (View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(36.0f)) / wx0Var.d.d;
+            wx0Var.P = AndroidUtilities.dp(82.0f);
+        }
+        float f10 = wx0Var.d.d;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) wx0Var.f29769c.getLayoutParams();
+        int i23 = 3;
+        if (arrayList != null) {
+            int max = Math.max(3, (int) Math.ceil(arrayList.size() / f10)) * wx0Var.P;
+            i21 = ((org.telegram.ui.ActionBar.g3) wx0Var).backgroundPaddingTop;
+            i18 = i21 + max + AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin + AndroidUtilities.statusBarHeight;
+        } else {
+            if (wx0Var.W != null) {
+                int size3 = (wx0Var.W.size() * AndroidUtilities.dp(60.0f)) + AndroidUtilities.dp(8.0f) + marginLayoutParams.bottomMargin;
+                i19 = ((org.telegram.ui.ActionBar.g3) wx0Var).backgroundPaddingTop;
+                i17 = i19 + (wx0Var.d.f27952n * wx0Var.P) + size3;
+                i16 = AndroidUtilities.dp(24.0f);
+            } else {
+                int dp = AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin;
+                if (wx0Var.s0()) {
+                    i23 = 2;
+                }
+                if (wx0Var.S != null) {
+                    i14 = (int) Math.ceil(tL_messages_stickerSet.documents.size() / f10);
+                } else {
+                    i14 = 0;
+                }
+                int max2 = (Math.max(i23, i14) * wx0Var.P) + dp;
+                i15 = ((org.telegram.ui.ActionBar.g3) wx0Var).backgroundPaddingTop;
+                i16 = i15 + max2;
+                i17 = AndroidUtilities.statusBarHeight;
+            }
+            i18 = i17 + i16;
+        }
+        if (wx0Var.s0()) {
+            i18 = (int) ((wx0Var.P * 0.15f) + i18);
+        }
+        float f11 = size / 5.0f;
+        if (i18 < f11 * 3.2d) {
+            i20 = 0;
+        } else {
+            i20 = (int) (f11 * 2.0f);
+        }
+        if (i20 != 0 && i18 < size) {
+            i20 -= size - i18;
+        }
+        if (i20 == 0) {
+            i20 = ((org.telegram.ui.ActionBar.g3) wx0Var).backgroundPaddingTop;
+        }
+        if (wx0Var.W != null) {
+            i20 += AndroidUtilities.dp(8.0f);
+        }
+        if (wx0Var.f29769c.getPaddingTop() != i20) {
+            wx0Var.f29775g0 = true;
+            wx0Var.f29769c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
+            wx0Var.K.setPadding(0, i20, 0, 0);
+            wx0Var.f29775g0 = false;
+        }
+        if (i18 < size) {
+            z10 = false;
+        }
+        this.f26876c = z10;
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(i18, size), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        vx0 vx0Var = this.f26905f;
-        if (i10 == 0 && vx0Var.f29461f != null && this.e > 0) {
-            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
-            tL_stickers_changeStickerPosition.position = this.e;
-            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(vx0Var.f29461f, "").document;
-            this.e = -1;
-            vx0Var.f29461f = null;
-        } else if (i10 == 2) {
-            vx0Var.f29461f = ((org.telegram.ui.Cells.f8) c1Var.f42675a).getSticker();
+    public final void requestLayout() {
+        if (this.e.f29775g0) {
+            return;
         }
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
-    }
-
-    @Override
-    public final void o(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2, int i10, int i11, int i12) {
+        super.requestLayout();
     }
 }

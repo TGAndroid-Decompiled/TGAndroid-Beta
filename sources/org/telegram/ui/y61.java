@@ -1,52 +1,21 @@
 package org.telegram.ui;
-
-import android.view.View;
-import java.util.List;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
 public final class y61 implements Runnable {
-    public final int f39766a;
-    public final c71 f39767b;
-    public final Integer f39768c;
+    public final int f39797a;
+    public final z61 f39798b;
 
-    public y61(c71 c71Var, Integer num, int i10) {
-        this.f39766a = i10;
-        this.f39767b = c71Var;
-        this.f39768c = num;
+    public y61(z61 z61Var, int i10) {
+        this.f39797a = i10;
+        this.f39798b = z61Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f39766a;
-        c71 c71Var = this.f39767b;
-        switch (i10) {
+        switch (this.f39797a) {
             case 0:
-                c71.a(c71Var, this.f39768c);
+                z61.a(this.f39798b);
                 return;
             default:
-                c71Var.getClass();
-                Integer num = this.f39768c;
-                if (num != null) {
-                    try {
-                        c71Var.P.performHapticFeedback(0, 1);
-                    } catch (Exception unused) {
-                    }
-                    v51 v51Var = (v51) c71Var;
-                    w51 w51Var = v51Var.S;
-                    g71 g71Var = w51Var.e;
-                    List list = g71.Z1;
-                    g71Var.l();
-                    TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-                    View view = v51Var.Q;
-                    long j3 = ((p61) view).e.documentId;
-                    tL_emojiStatus.document_id = j3;
-                    w51Var.e.p(view, Long.valueOf(j3), ((p61) v51Var.Q).e.document, v51Var.R, num);
-                    if (v51Var.R == null) {
-                        MediaDataController.getInstance(w51Var.e.V).pushRecentEmojiStatus(tL_emojiStatus);
-                        return;
-                    }
-                    return;
-                }
+                this.f39798b.dismiss();
                 return;
         }
     }

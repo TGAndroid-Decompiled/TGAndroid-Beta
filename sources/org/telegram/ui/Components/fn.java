@@ -6,12 +6,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class fn implements ky {
-    public final Utilities.Callback f24020a;
-    public final cn f24021b;
+    public final Utilities.Callback f23964a;
+    public final cn f23965b;
 
     public fn(Utilities.Callback callback, cn cnVar) {
-        this.f24020a = callback;
-        this.f24021b = cnVar;
+        this.f23964a = callback;
+        this.f23965b = cnVar;
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class fn implements ky {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f24020a.run(new rh.h(document, obj));
-        this.f24021b.dismiss(true);
+        this.f23964a.run(new rh.h(document, obj));
+        this.f23965b.dismiss(true);
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class fn implements ky {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f24020a.run(new rh.h(document, null));
-        this.f24021b.dismiss(true);
+        this.f23964a.run(new rh.h(document, null));
+        this.f23965b.dismiss(true);
     }
 
     @Override
@@ -93,7 +93,7 @@ public final class fn implements ky {
     }
 
     @Override
-    public final void o(e51 e51Var) {
+    public final void o(f51 f51Var) {
     }
 
     @Override

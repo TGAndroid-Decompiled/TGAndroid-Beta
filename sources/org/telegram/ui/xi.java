@@ -1,97 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class xi extends AnimatorListenerAdapter {
-    public final int f39628a;
-    public final bo f39629b;
+import org.telegram.messenger.MessageObject;
+public final class xi implements Runnable {
+    public final boolean f39645a;
+    public final boolean f39646b;
+    public final int f39647c;
+    public final boolean d;
+    public final org.telegram.ui.Components.gk0 e;
+    public final float f39648f;
+    public final float h;
+    public final zg.p0 f39649n;
+    public final MessageObject f39650r;
+    public final bo f39651s;
 
-    public xi(bo boVar, int i10) {
-        this.f39628a = i10;
-        this.f39629b = boVar;
+    public xi(bo boVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.gk0 gk0Var, float f7, float f10, zg.p0 p0Var, MessageObject messageObject) {
+        this.f39651s = boVar;
+        this.f39645a = z10;
+        this.f39646b = z11;
+        this.f39647c = i10;
+        this.d = z12;
+        this.e = gk0Var;
+        this.f39648f = f7;
+        this.h = f10;
+        this.f39649n = p0Var;
+        this.f39650r = messageObject;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        uj ujVar;
-        switch (this.f39628a) {
-            case 0:
-                bo boVar = this.f39629b;
-                gl glVar = boVar.f32252b3;
-                if (glVar != null) {
-                    glVar.setIsMessageTransition(false);
-                    boVar.f32252b3.h(true);
-                    boVar.f32252b3.setVisibility(4);
-                    return;
+    public final void run() {
+        if (!this.f39645a) {
+            bo boVar = this.f39651s;
+            if (boVar.f32252cc != null) {
+                boVar.f32252cc = null;
+                if (this.f39646b) {
+                    boVar.h8(new wi(this, this.f39647c, this.d, this.e, this.f39648f, this.h, this.f39649n, 0));
+                } else {
+                    boVar.h8(new wh(4, this, this.f39650r));
                 }
-                return;
-            case 1:
-                bo boVar2 = this.f39629b;
-                boVar2.A9 = AndroidUtilities.dp(30.0f);
-                boVar2.o9();
-                return;
-            case 2:
-                bo boVar3 = this.f39629b;
-                if (boVar3.fragmentView != null && (ujVar = boVar3.f32524x0) != null) {
-                    ujVar.invalidate();
-                    boVar3.fragmentView.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                this.f39629b.P.setVisibility(4);
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new dj(this, 3), 2000L);
-                return;
-            case 5:
-                bo boVar4 = this.f39629b;
-                if (animator.equals(boVar4.f32315g3)) {
-                    boVar4.f32315g3 = null;
-                    return;
-                }
-                return;
-            case 6:
-                bo boVar5 = this.f39629b;
-                if (animator.equals(boVar5.f32315g3)) {
-                    boVar5.f32315g3 = null;
-                    return;
-                }
-                return;
-            case 7:
-                bo boVar6 = this.f39629b;
-                if (animator.equals(boVar6.f32327h3)) {
-                    boVar6.f32339i3 = 1.0f;
-                    boVar6.lc();
-                    boVar6.f32327h3 = null;
-                    return;
-                }
-                return;
-            case 8:
-                bo boVar7 = this.f39629b;
-                if (animator.equals(boVar7.f32327h3)) {
-                    boVar7.f32339i3 = 0.0f;
-                    boVar7.lc();
-                    boVar7.f32327h3 = null;
-                    return;
-                }
-                return;
-            case 9:
-                this.f39629b.T4 = null;
-                return;
-            case 10:
-                bo boVar8 = this.f39629b;
-                boVar8.Da = 1.0f;
-                boVar8.Y.setVisibility(4);
-                boVar8.O0.setVisibility(4);
-                boVar8.o9();
-                return;
-            default:
-                bo boVar9 = this.f39629b;
-                boVar9.Da = 0.0f;
-                boVar9.o9();
-                return;
+                boVar.A7(true);
+            }
         }
     }
 }

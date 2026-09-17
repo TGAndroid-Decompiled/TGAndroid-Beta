@@ -11,7 +11,7 @@ public final class d implements Iterator, Map.Entry {
 
     public d(f fVar) {
         this.d = fVar;
-        this.f6a = fVar.f28c - 1;
+        this.f6a = fVar.f30c - 1;
     }
 
     @Override

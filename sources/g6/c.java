@@ -6,10 +6,10 @@ import java.util.Arrays;
 import w7.e0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new e6.i(11);
-    public final String f9428a;
+    public final String f9433a;
 
     public c(String str) {
-        this.f9428a = str;
+        this.f9433a = str;
     }
 
     public final boolean equals(Object obj) {
@@ -19,17 +19,17 @@ public final class c extends o6.a {
         if (!(obj instanceof c)) {
             return false;
         }
-        return a.d(this.f9428a, ((c) obj).f9428a);
+        return a.d(this.f9433a, ((c) obj).f9433a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f9428a});
+        return Arrays.hashCode(new Object[]{this.f9433a});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 2, this.f9428a);
+        e0.l(parcel, 2, this.f9433a);
         e0.r(parcel, q6);
     }
 }

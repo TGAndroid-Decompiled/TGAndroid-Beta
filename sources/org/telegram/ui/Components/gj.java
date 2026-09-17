@@ -49,31 +49,31 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
     public int U;
     public int V;
     public String W;
-    public boolean f24354a0;
-    public final wi f24355b0;
-    public int f24356c0;
-    public boolean f24357d0;
-    public int f24358e0;
-    public String f24359f0;
-    public final wi f24360g0;
-    public boolean f24361h0;
-    public TLRPC.User f24362i0;
-    public boolean f24363j0;
-    public boolean f24364k0;
-    public String f24365l0;
+    public boolean f24235a0;
+    public final wi f24236b0;
+    public int f24237c0;
+    public boolean f24238d0;
+    public int f24239e0;
+    public String f24240f0;
+    public final wi f24241g0;
+    public boolean f24242h0;
+    public TLRPC.User f24243i0;
+    public boolean f24244j0;
+    public boolean f24245k0;
+    public String f24246l0;
     public int m0;
-    public final le.b f24366n;
-    public boolean f24367n0;
-    public final FrameLayout f24368r;
-    public final ri f24369s;
+    public final le.b f24247n;
+    public boolean f24248n0;
+    public final FrameLayout f24249r;
+    public final ri f24250s;
     public final cj v;
-    public final ui f24370w;
-    public final ks f24371x;
-    public final FrameLayout f24372y;
+    public final ui f24251w;
+    public final ks f24252x;
+    public final FrameLayout f24253y;
 
-    public gj(Context context, org.telegram.ui.ActionBar.e6 e6Var, vi viVar) {
-        super(context, e6Var, viVar);
-        this.f24366n = new le.b(0, this, qr.h, 380L, false);
+    public gj(Context context, org.telegram.ui.ActionBar.f6 f6Var, vi viVar) {
+        super(context, f6Var, viVar);
+        this.f24247n = new le.b(0, this, qr.h, 380L, false);
         this.F = -1;
         this.I = new ArrayList();
         this.J = new HashSet();
@@ -84,17 +84,17 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
         this.R = 2;
         this.S = 3;
         this.T = new Runnable(this) {
-            public final gj f29729b;
+            public final gj f29681b;
 
             {
-                this.f29729b = this;
+                this.f29681b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        cj cjVar = this.f29729b.v;
+                        cj cjVar = this.f29681b.v;
                         int i10 = -1;
                         boolean canScrollVertically = cjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -102,15 +102,15 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                         while (true) {
                             if (i12 < cjVar.getChildCount()) {
                                 View childAt = cjVar.getChildAt(i12);
-                                int R = RecyclerView.R(childAt);
+                                int S = RecyclerView.S(childAt);
                                 int top = childAt.getTop();
-                                if (R >= 0) {
+                                if (S >= 0) {
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 } else {
                                     i12++;
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 }
                             }
                         }
@@ -125,13 +125,13 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f29729b.N();
+                        this.f29681b.N();
                         return;
                     case 2:
-                        this.f29729b.O();
+                        this.f29681b.O();
                         return;
                     default:
-                        gj gjVar = this.f29729b;
+                        gj gjVar = this.f29681b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -139,7 +139,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             int i13 = -2000000000;
                             while (query.moveToNext()) {
                                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                                audioEntry.f15596id = query.getInt(0);
+                                audioEntry.f15606id = query.getInt(0);
                                 audioEntry.author = query.getString(1);
                                 audioEntry.title = query.getString(2);
                                 audioEntry.path = query.getString(3);
@@ -148,12 +148,12 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 File file = new File(audioEntry.path);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f18133id = i13;
+                                tL_message.f18142id = i13;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long clientUserId = UserConfig.getInstance(gjVar.f26462b.J1).getClientUserId();
+                                long clientUserId = UserConfig.getInstance(gjVar.f26460b.J1).getClientUserId();
                                 tL_peerUser.user_id = clientUserId;
                                 peer.user_id = clientUserId;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -166,7 +166,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 tL_message.flags |= 768;
                                 String fileExtension = FileLoader.getFileExtension(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f18118id = 0L;
+                                document.f18127id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -188,11 +188,11 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                audioEntry.messageObject = new MessageObject(gjVar.f26462b.J1, tL_message, false, true);
+                                audioEntry.messageObject = new MessageObject(gjVar.f26460b.J1, tL_message, false, true);
                                 jf.a a2 = jf.a.a(file);
-                                if (a2 != null && a2.f12987o != null) {
+                                if (a2 != null && a2.f12990o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f12987o;
+                                    Bitmap bitmap = a2.f12990o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }
@@ -213,18 +213,18 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
             }
         };
         this.V = -1;
-        this.f24355b0 = new Runnable(this) {
-            public final gj f29729b;
+        this.f24236b0 = new Runnable(this) {
+            public final gj f29681b;
 
             {
-                this.f29729b = this;
+                this.f29681b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        cj cjVar = this.f29729b.v;
+                        cj cjVar = this.f29681b.v;
                         int i10 = -1;
                         boolean canScrollVertically = cjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -232,15 +232,15 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                         while (true) {
                             if (i12 < cjVar.getChildCount()) {
                                 View childAt = cjVar.getChildAt(i12);
-                                int R = RecyclerView.R(childAt);
+                                int S = RecyclerView.S(childAt);
                                 int top = childAt.getTop();
-                                if (R >= 0) {
+                                if (S >= 0) {
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 } else {
                                     i12++;
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 }
                             }
                         }
@@ -255,13 +255,13 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f29729b.N();
+                        this.f29681b.N();
                         return;
                     case 2:
-                        this.f29729b.O();
+                        this.f29681b.O();
                         return;
                     default:
-                        gj gjVar = this.f29729b;
+                        gj gjVar = this.f29681b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -269,7 +269,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             int i13 = -2000000000;
                             while (query.moveToNext()) {
                                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                                audioEntry.f15596id = query.getInt(0);
+                                audioEntry.f15606id = query.getInt(0);
                                 audioEntry.author = query.getString(1);
                                 audioEntry.title = query.getString(2);
                                 audioEntry.path = query.getString(3);
@@ -278,12 +278,12 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 File file = new File(audioEntry.path);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f18133id = i13;
+                                tL_message.f18142id = i13;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long clientUserId = UserConfig.getInstance(gjVar.f26462b.J1).getClientUserId();
+                                long clientUserId = UserConfig.getInstance(gjVar.f26460b.J1).getClientUserId();
                                 tL_peerUser.user_id = clientUserId;
                                 peer.user_id = clientUserId;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -296,7 +296,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 tL_message.flags |= 768;
                                 String fileExtension = FileLoader.getFileExtension(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f18118id = 0L;
+                                document.f18127id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -318,11 +318,11 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                audioEntry.messageObject = new MessageObject(gjVar.f26462b.J1, tL_message, false, true);
+                                audioEntry.messageObject = new MessageObject(gjVar.f26460b.J1, tL_message, false, true);
                                 jf.a a2 = jf.a.a(file);
-                                if (a2 != null && a2.f12987o != null) {
+                                if (a2 != null && a2.f12990o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f12987o;
+                                    Bitmap bitmap = a2.f12990o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }
@@ -342,19 +342,19 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                 }
             }
         };
-        this.f24358e0 = -1;
-        this.f24360g0 = new Runnable(this) {
-            public final gj f29729b;
+        this.f24239e0 = -1;
+        this.f24241g0 = new Runnable(this) {
+            public final gj f29681b;
 
             {
-                this.f29729b = this;
+                this.f29681b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        cj cjVar = this.f29729b.v;
+                        cj cjVar = this.f29681b.v;
                         int i10 = -1;
                         boolean canScrollVertically = cjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -362,15 +362,15 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                         while (true) {
                             if (i12 < cjVar.getChildCount()) {
                                 View childAt = cjVar.getChildAt(i12);
-                                int R = RecyclerView.R(childAt);
+                                int S = RecyclerView.S(childAt);
                                 int top = childAt.getTop();
-                                if (R >= 0) {
+                                if (S >= 0) {
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 } else {
                                     i12++;
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 }
                             }
                         }
@@ -385,13 +385,13 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f29729b.N();
+                        this.f29681b.N();
                         return;
                     case 2:
-                        this.f29729b.O();
+                        this.f29681b.O();
                         return;
                     default:
-                        gj gjVar = this.f29729b;
+                        gj gjVar = this.f29681b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -399,7 +399,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             int i13 = -2000000000;
                             while (query.moveToNext()) {
                                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                                audioEntry.f15596id = query.getInt(0);
+                                audioEntry.f15606id = query.getInt(0);
                                 audioEntry.author = query.getString(1);
                                 audioEntry.title = query.getString(2);
                                 audioEntry.path = query.getString(3);
@@ -408,12 +408,12 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 File file = new File(audioEntry.path);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f18133id = i13;
+                                tL_message.f18142id = i13;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long clientUserId = UserConfig.getInstance(gjVar.f26462b.J1).getClientUserId();
+                                long clientUserId = UserConfig.getInstance(gjVar.f26460b.J1).getClientUserId();
                                 tL_peerUser.user_id = clientUserId;
                                 peer.user_id = clientUserId;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -426,7 +426,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 tL_message.flags |= 768;
                                 String fileExtension = FileLoader.getFileExtension(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f18118id = 0L;
+                                document.f18127id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -448,11 +448,11 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                audioEntry.messageObject = new MessageObject(gjVar.f26462b.J1, tL_message, false, true);
+                                audioEntry.messageObject = new MessageObject(gjVar.f26460b.J1, tL_message, false, true);
                                 jf.a a2 = jf.a.a(file);
-                                if (a2 != null && a2.f12987o != null) {
+                                if (a2 != null && a2.f12990o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f12987o;
+                                    Bitmap bitmap = a2.f12990o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }
@@ -473,23 +473,23 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
             }
         };
         this.m0 = -1000000000;
-        NotificationCenter.getInstance(this.f26462b.J1).addObserver(this, NotificationCenter.messagePlayingDidReset);
-        NotificationCenter.getInstance(this.f26462b.J1).addObserver(this, NotificationCenter.messagePlayingDidStart);
-        NotificationCenter.getInstance(this.f26462b.J1).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        NotificationCenter.getInstance(this.f26462b.J1).addObserver(this, NotificationCenter.musicListLoaded);
+        NotificationCenter.getInstance(this.f26460b.J1).addObserver(this, NotificationCenter.messagePlayingDidReset);
+        NotificationCenter.getInstance(this.f26460b.J1).addObserver(this, NotificationCenter.messagePlayingDidStart);
+        NotificationCenter.getInstance(this.f26460b.J1).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
+        NotificationCenter.getInstance(this.f26460b.J1).addObserver(this, NotificationCenter.musicListLoaded);
         this.H = true;
         Utilities.globalQueue.postRunnable(new Runnable(this) {
-            public final gj f29729b;
+            public final gj f29681b;
 
             {
-                this.f29729b = this;
+                this.f29681b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        cj cjVar = this.f29729b.v;
+                        cj cjVar = this.f29681b.v;
                         int i10 = -1;
                         boolean canScrollVertically = cjVar.canScrollVertically(-1);
                         int i11 = -1;
@@ -497,15 +497,15 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                         while (true) {
                             if (i12 < cjVar.getChildCount()) {
                                 View childAt = cjVar.getChildAt(i12);
-                                int R = RecyclerView.R(childAt);
+                                int S = RecyclerView.S(childAt);
                                 int top = childAt.getTop();
-                                if (R >= 0) {
+                                if (S >= 0) {
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 } else {
                                     i12++;
                                     i11 = top;
-                                    i10 = R;
+                                    i10 = S;
                                 }
                             }
                         }
@@ -520,13 +520,13 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             return;
                         }
                     case 1:
-                        this.f29729b.N();
+                        this.f29681b.N();
                         return;
                     case 2:
-                        this.f29729b.O();
+                        this.f29681b.O();
                         return;
                     default:
-                        gj gjVar = this.f29729b;
+                        gj gjVar = this.f29681b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -534,7 +534,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                             int i13 = -2000000000;
                             while (query.moveToNext()) {
                                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                                audioEntry.f15596id = query.getInt(0);
+                                audioEntry.f15606id = query.getInt(0);
                                 audioEntry.author = query.getString(1);
                                 audioEntry.title = query.getString(2);
                                 audioEntry.path = query.getString(3);
@@ -543,12 +543,12 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 File file = new File(audioEntry.path);
                                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                                 tL_message.out = true;
-                                tL_message.f18133id = i13;
+                                tL_message.f18142id = i13;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long clientUserId = UserConfig.getInstance(gjVar.f26462b.J1).getClientUserId();
+                                long clientUserId = UserConfig.getInstance(gjVar.f26460b.J1).getClientUserId();
                                 tL_peerUser.user_id = clientUserId;
                                 peer.user_id = clientUserId;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -561,7 +561,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 tL_message.flags |= 768;
                                 String fileExtension = FileLoader.getFileExtension(file);
                                 TLRPC.Document document = tL_message.media.document;
-                                document.f18118id = 0L;
+                                document.f18127id = 0L;
                                 document.access_hash = 0L;
                                 document.file_reference = new byte[0];
                                 document.date = tL_message.date;
@@ -583,11 +583,11 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                audioEntry.messageObject = new MessageObject(gjVar.f26462b.J1, tL_message, false, true);
+                                audioEntry.messageObject = new MessageObject(gjVar.f26460b.J1, tL_message, false, true);
                                 jf.a a2 = jf.a.a(file);
-                                if (a2 != null && a2.f12987o != null) {
+                                if (a2 != null && a2.f12990o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f12987o;
+                                    Bitmap bitmap = a2.f12990o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }
@@ -607,52 +607,52 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                 }
             }
         });
-        ui uiVar = new ui(context, org.telegram.ui.ActionBar.i6.f18836d6, e6Var);
-        this.f24370w = uiVar;
+        ui uiVar = new ui(context, org.telegram.ui.ActionBar.j6.f18862d6, f6Var);
+        this.f24251w = uiVar;
         uiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f24368r = frameLayout;
-        ri riVar = new ri(context, e6Var, this.f26462b);
-        this.f24369s = riVar;
+        this.f24249r = frameLayout;
+        ri riVar = new ri(context, f6Var, this.f26460b);
+        this.f24250s = riVar;
         riVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        riVar.f22573r.addTextChangedListener(new bj(this));
-        riVar.f22573r.setHint(LocaleController.getString(R.string.SearchMusic));
+        riVar.f22543r.addTextChangedListener(new bj(this));
+        riVar.f22543r.setHint(LocaleController.getString(R.string.SearchMusic));
         frameLayout.addView(uiVar, w7.x5.g());
         FrameLayout.LayoutParams d = w7.x5.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
         ((ViewGroup.MarginLayoutParams) d).topMargin += AndroidUtilities.statusBarHeight;
         frameLayout.addView(riVar, d);
         ks ksVar = new ks(context);
-        this.f24371x = ksVar;
+        this.f24252x = ksVar;
         ksVar.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(21.0f));
         ksVar.setOnAnimatedHeightChangedListener(new oh(this, viVar));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f24372y = frameLayout2;
+        this.f24253y = frameLayout2;
         ksVar.addView(frameLayout2);
         ksVar.i(frameLayout2, true, false);
-        FragmentContextView y8Var = new org.telegram.ui.y8(this, context, viVar.f28750f0, frameLayout, e6Var, 1);
-        frameLayout2.addView(y8Var);
-        ksVar.setCallFragmentContextView(y8Var);
+        FragmentContextView a9Var = new org.telegram.ui.a9(this, context, viVar.f28742f0, frameLayout, f6Var, 1);
+        frameLayout2.addView(a9Var);
+        ksVar.setCallFragmentContextView(a9Var);
         FrameLayout.LayoutParams d10 = w7.x5.d(-1, -2.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f);
         ((ViewGroup.MarginLayoutParams) d10).topMargin = org.telegram.messenger.w1.C(27.0f, AndroidUtilities.statusBarHeight, ((ViewGroup.MarginLayoutParams) d10).topMargin);
         frameLayout.addView(ksVar, d10);
-        cj cjVar = new cj(this, context, viVar.J1, new d(this, 5), new zi(this), new zi(this), e6Var);
+        cj cjVar = new cj(this, context, viVar.J1, new d(this, 5), new zi(this), new zi(this), f6Var);
         this.v = cjVar;
-        cjVar.Y2.f29613r = false;
-        cjVar.p1();
-        this.f26463c = cjVar;
+        cjVar.Y2.f29851r = false;
+        cjVar.q1();
+        this.f26461c = cjVar;
         this.d = cjVar;
         this.h = true;
-        this.f26464f = true;
+        this.f26462f = true;
         cjVar.setClipToPadding(false);
         cjVar.setHorizontalScrollBarEnabled(false);
         cjVar.setVerticalScrollBarEnabled(false);
         addView(cjVar, w7.x5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        cjVar.setGlowColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.A5, this.f26461a));
+        cjVar.setGlowColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.A5, this.f26459a));
         cjVar.setOnScrollListener(new ai.r(this, 17));
         addView(frameLayout, w7.x5.e(-1, 200, 51));
         cjVar.Y2.N(false);
         L();
-        int i10 = this.f26462b.J1;
+        int i10 = this.f26460b.J1;
         this.K = new MessagesController.SavedMusicList(i10, UserConfig.getInstance(i10).getClientUserId());
     }
 
@@ -665,7 +665,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
     public final void D(int i10, float f7, float f10, le.e eVar) {
         int i11;
         if (i10 == 0) {
-            ui uiVar = this.f24370w;
+            ui uiVar = this.f24251w;
             uiVar.setAlpha(f7);
             if (f7 > 0.0f) {
                 i11 = 0;
@@ -687,7 +687,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public final void G() {
-        this.v.x0(0);
+        this.v.y0(0);
     }
 
     @Override
@@ -700,13 +700,13 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
             while (it.hasNext()) {
                 arrayList.add(((MediaController.AudioEntry) it.next()).messageObject);
             }
-            vi viVar = this.f26462b;
+            vi viVar = this.f26460b;
             return c5.b0(viVar.J1, viVar.n1(), viVar.j1() + arrayList.size(), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     gj gjVar = gj.this;
                     dj djVar = gjVar.O;
-                    vi viVar2 = gjVar.f26462b;
+                    vi viVar2 = gjVar.f26460b;
                     djVar.h(arrayList, viVar2.m1().getText(), z10, i10, i11, j3, z11, ((Long) obj).longValue());
                     viVar2.dismiss(true);
                 }
@@ -717,8 +717,8 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
 
     public final void L() {
         int i10;
-        vi viVar = this.f26462b;
-        if (viVar.f28787r1.R() > AndroidUtilities.dp(20.0f)) {
+        vi viVar = this.f26460b;
+        if (viVar.f28779r1.R() > AndroidUtilities.dp(20.0f)) {
             i10 = AndroidUtilities.dp(8.0f);
             viVar.setAllowNestedScroll(false);
         } else {
@@ -733,21 +733,21 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
             viVar.setAllowNestedScroll(true);
         }
         int i11 = i10 + AndroidUtilities.statusBarHeight;
-        this.v.setPadding(0, (int) (this.f24371x.c(0.0f) + AndroidUtilities.dp(56.0f) + i11), 0, this.e);
+        this.v.setPadding(0, (int) (this.f24252x.c(0.0f) + AndroidUtilities.dp(56.0f) + i11), 0, this.e);
     }
 
-    public final void M(i51 i51Var, View view) {
-        if (i51Var != null && i51Var.d == this.S) {
+    public final void M(j51 j51Var, View view) {
+        if (j51Var != null && j51Var.d == this.S) {
             this.K.load();
-        } else if (i51Var != null && i51Var.d == this.Q) {
+        } else if (j51Var != null && j51Var.d == this.Q) {
             N();
-        } else if (i51Var != null && i51Var.d == this.R) {
+        } else if (j51Var != null && j51Var.d == this.R) {
             O();
         } else if (!(view instanceof org.telegram.ui.Cells.i7)) {
         } else {
             org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view;
             MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) i7Var.getTag();
-            vi viVar = this.f26462b;
+            vi viVar = this.f26460b;
             viVar.getClass();
             int i10 = 1;
             if (viVar.H) {
@@ -759,7 +759,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                 HashSet hashSet = this.J;
                 if (hashSet.contains(audioEntry)) {
                     hashSet.remove(audioEntry);
-                    i51Var.e = false;
+                    j51Var.e = false;
                     i7Var.e(false, true);
                     i10 = 2;
                 } else {
@@ -768,16 +768,16 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                         int i11 = this.F;
                         if (size >= i11) {
                             String formatString = LocaleController.formatString(R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i11, new Object[0]));
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f26461a);
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f26459a);
                             String string = LocaleController.getString(R.string.AppName);
-                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18437a;
-                            b2Var.R = string;
-                            b2Var.T = formatString;
+                            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
+                            c2Var.R = string;
+                            c2Var.T = formatString;
                             hg.k0.A(R.string.OK, alertDialog$Builder, null);
                             return;
                         }
                     }
-                    i51Var.e = true;
+                    j51Var.e = true;
                     hashSet.add(audioEntry);
                     i7Var.e(true, true);
                 }
@@ -787,12 +787,12 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
     }
 
     public final void N() {
-        AndroidUtilities.cancelRunOnUIThread(this.f24355b0);
+        AndroidUtilities.cancelRunOnUIThread(this.f24236b0);
         String str = this.E;
         int i10 = 3;
         if (str != null && str.length() > 0 && this.E.length() < 3) {
-            if (this.f24354a0) {
-                this.f24354a0 = false;
+            if (this.f24235a0) {
+                this.f24235a0 = false;
                 P();
                 return;
             }
@@ -802,18 +802,18 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
         ArrayList arrayList = this.M;
         if (!equals) {
             arrayList.clear();
-            this.f24356c0 = 0;
-            this.f24357d0 = false;
+            this.f24237c0 = 0;
+            this.f24238d0 = false;
         }
-        if (!arrayList.isEmpty() && !this.f24357d0) {
-            if (this.f24354a0) {
-                this.f24354a0 = false;
+        if (!arrayList.isEmpty() && !this.f24238d0) {
+            if (this.f24235a0) {
+                this.f24235a0 = false;
                 P();
                 return;
             }
             return;
         }
-        int i11 = this.f26462b.J1;
+        int i11 = this.f26460b.J1;
         MessagesController messagesController = MessagesController.getInstance(i11);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
         int i12 = this.V;
@@ -828,7 +828,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
         if (str2 == null) {
             str2 = "";
         }
-        tL_messages_searchGlobal.f18223q = str2;
+        tL_messages_searchGlobal.f18232q = str2;
         if (!arrayList.isEmpty()) {
             i10 = 15;
         }
@@ -836,7 +836,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
         if (arrayList.size() > 0) {
             MessageObject messageObject = ((MediaController.AudioEntry) hg.k0.h(1, arrayList)).messageObject;
             tL_messages_searchGlobal.offset_id = messageObject.getId();
-            tL_messages_searchGlobal.offset_rate = this.f24356c0;
+            tL_messages_searchGlobal.offset_rate = this.f24237c0;
             tL_messages_searchGlobal.offset_peer = messagesController.getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
         } else {
             tL_messages_searchGlobal.offset_rate = 0;
@@ -848,30 +848,30 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
     }
 
     public final void O() {
-        AndroidUtilities.cancelRunOnUIThread(this.f24360g0);
+        AndroidUtilities.cancelRunOnUIThread(this.f24241g0);
         if (!TextUtils.isEmpty(this.E) && this.E.length() >= 3) {
-            boolean equals = TextUtils.equals(this.f24359f0, this.E);
+            boolean equals = TextUtils.equals(this.f24240f0, this.E);
             ArrayList arrayList = this.N;
             if (!equals) {
                 arrayList.clear();
-                this.f24361h0 = false;
+                this.f24242h0 = false;
             }
-            int i10 = this.f26462b.J1;
+            int i10 = this.f26460b.J1;
             MessagesController messagesController = MessagesController.getInstance(i10);
             ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
-            int i11 = this.f24358e0;
+            int i11 = this.f24239e0;
             if (i11 >= 0) {
                 connectionsManager.cancelRequest(i11, true);
-                this.f24358e0 = -1;
+                this.f24239e0 = -1;
             }
             String str = messagesController.config.musicSearchUsername.get();
             if (!TextUtils.isEmpty(str)) {
-                if (this.f24362i0 == null) {
-                    this.f24362i0 = messagesController.getUser(str);
+                if (this.f24243i0 == null) {
+                    this.f24243i0 = messagesController.getUser(str);
                 }
-                if (this.f24362i0 == null) {
-                    if (!this.f24363j0 && !this.f24364k0) {
-                        this.f24363j0 = true;
+                if (this.f24243i0 == null) {
+                    if (!this.f24244j0 && !this.f24245k0) {
+                        this.f24244j0 = true;
                         messagesController.getUserNameResolver().resolve(str, new ai.g3(8, this, messagesController));
                         return;
                     }
@@ -879,21 +879,21 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
                 }
                 TLRPC.User currentUser = UserConfig.getInstance(i10).getCurrentUser();
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f24362i0);
+                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f24243i0);
                 tL_messages_getInlineBotResults.peer = MessagesController.getInputPeer(currentUser);
                 String str2 = "";
-                tL_messages_getInlineBotResults.offset = (arrayList.isEmpty() || (r2 = this.f24365l0) == null) ? "" : "";
+                tL_messages_getInlineBotResults.offset = (arrayList.isEmpty() || (r2 = this.f24246l0) == null) ? "" : "";
                 String str3 = this.E;
                 if (str3 != null) {
                     str2 = str3;
                 }
-                this.f24359f0 = str2;
+                this.f24240f0 = str2;
                 tL_messages_getInlineBotResults.query = str2;
-                this.f24358e0 = connectionsManager.sendRequestTyped(tL_messages_getInlineBotResults, new Object(), new yi(this, messagesController, i10, 0));
+                this.f24239e0 = connectionsManager.sendRequestTyped(tL_messages_getInlineBotResults, new Object(), new yi(this, messagesController, i10, 0));
                 P();
             }
-        } else if (this.f24367n0) {
-            this.f24367n0 = false;
+        } else if (this.f24248n0) {
+            this.f24248n0 = false;
             P();
         }
     }
@@ -948,29 +948,29 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
             boolean z10 = false;
             for (int i12 = 0; i12 < cjVar.getChildCount(); i12++) {
                 View childAt = cjVar.getChildAt(i12);
-                int R = RecyclerView.R(childAt);
-                if (R == 0) {
+                int S = RecyclerView.S(childAt);
+                if (S == 0) {
                     z10 = true;
                 }
-                if (R >= 0 && childAt.getTop() < i11) {
+                if (S >= 0 && childAt.getTop() < i11) {
                     i11 = childAt.getTop();
                 }
             }
             if (i11 != Integer.MAX_VALUE) {
-                int dp = (((i11 - AndroidUtilities.dp(56.0f)) - ((int) this.f24371x.c(0.0f))) - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(8.0f);
+                int dp = (((i11 - AndroidUtilities.dp(56.0f)) - ((int) this.f24252x.c(0.0f))) - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(8.0f);
                 if (dp > 0 && z10) {
                     i10 = dp;
                 } else {
                     i10 = 0;
                 }
-                le.b bVar = this.f24366n;
+                le.b bVar = this.f24247n;
                 if (dp >= 0 && z10) {
                     bVar.a(false, true);
                 } else {
                     bVar.a(true, true);
                     dp = i10;
                 }
-                this.f24368r.setTranslationY(dp);
+                this.f24249r.setTranslationY(dp);
                 return AndroidUtilities.dp(12.0f) + dp;
             }
         }
@@ -984,7 +984,7 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public int getListTopPadding() {
-        return (this.v.getPaddingTop() - AndroidUtilities.dp(56.0f)) - ((int) this.f24371x.c(0.0f));
+        return (this.v.getPaddingTop() - AndroidUtilities.dp(56.0f)) - ((int) this.f24252x.c(0.0f));
     }
 
     public ArrayList<MessageObject> getSelected() {
@@ -1002,24 +1002,24 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public ArrayList<org.telegram.ui.ActionBar.k6> getThemeDescriptions() {
-        ArrayList<org.telegram.ui.ActionBar.k6> arrayList = new ArrayList<>();
-        int i10 = org.telegram.ui.ActionBar.i6.A5;
+    public ArrayList<org.telegram.ui.ActionBar.l6> getThemeDescriptions() {
+        ArrayList<org.telegram.ui.ActionBar.l6> arrayList = new ArrayList<>();
+        int i10 = org.telegram.ui.ActionBar.j6.A5;
         cj cjVar = this.v;
-        arrayList.add(new org.telegram.ui.ActionBar.k6(cjVar, 32768, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(cjVar, 4096, null, null, null, null, org.telegram.ui.ActionBar.i6.f18926i6));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(cjVar, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.i6.f18958k0, null, null, org.telegram.ui.ActionBar.i6.f18837d7));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(cjVar, 8192, new Class[]{org.telegram.ui.Cells.i7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.f18927i7));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(cjVar, 16384, new Class[]{org.telegram.ui.Cells.i7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.i6.f18965k7));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(cjVar, 4, new Class[]{org.telegram.ui.Cells.i7.class}, org.telegram.ui.ActionBar.i6.f18869f3, null, null, org.telegram.ui.ActionBar.i6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(cjVar, 4, new Class[]{org.telegram.ui.Cells.i7.class}, org.telegram.ui.ActionBar.i6.f18887g3, null, null, org.telegram.ui.ActionBar.i6.f19237z6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(cjVar, 32768, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(cjVar, 4096, null, null, null, null, org.telegram.ui.ActionBar.j6.f18952i6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(cjVar, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.j6.f18984k0, null, null, org.telegram.ui.ActionBar.j6.f18863d7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(cjVar, 8192, new Class[]{org.telegram.ui.Cells.i7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.f18953i7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(cjVar, 16384, new Class[]{org.telegram.ui.Cells.i7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.f18991k7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(cjVar, 4, new Class[]{org.telegram.ui.Cells.i7.class}, org.telegram.ui.ActionBar.j6.f18895f3, null, null, org.telegram.ui.ActionBar.j6.G6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(cjVar, 4, new Class[]{org.telegram.ui.Cells.i7.class}, org.telegram.ui.ActionBar.j6.f18913g3, null, null, org.telegram.ui.ActionBar.j6.f19263z6));
         return arrayList;
     }
 
     @Override
     public final void m() {
         r();
-        vi viVar = this.f26462b;
+        vi viVar = this.f26460b;
         NotificationCenter.getInstance(viVar.J1).removeObserver(this, NotificationCenter.messagePlayingDidReset);
         NotificationCenter.getInstance(viVar.J1).removeObserver(this, NotificationCenter.messagePlayingDidStart);
         NotificationCenter.getInstance(viVar.J1).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
@@ -1059,18 +1059,18 @@ public final class gj extends ni implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f26462b.getSheetContainer().invalidate();
+        this.f26460b.getSheetContainer().invalidate();
     }
 
     public void setupBlurredSearchField(ah.c cVar) {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f26461a;
-        ri riVar = this.f24369s;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f26459a;
+        ri riVar = this.f24250s;
         if (riVar != null) {
-            riVar.setupBlurredBackground(cVar.c(riVar, eh.b.n(e6Var), false));
+            riVar.setupBlurredBackground(cVar.c(riVar, eh.b.o(f6Var), false));
         }
-        ks ksVar = this.f24371x;
+        ks ksVar = this.f24252x;
         if (ksVar != null) {
-            ch.d c10 = cVar.c(ksVar, eh.b.n(e6Var), false);
+            ch.d c10 = cVar.c(ksVar, eh.b.o(f6Var), false);
             c10.q(AndroidUtilities.dp(24.0f));
             c10.p(AndroidUtilities.dp(7.0f));
             ksVar.setBlurredBackground(c10);

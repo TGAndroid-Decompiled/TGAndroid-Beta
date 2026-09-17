@@ -1,24 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-public final class sy0 extends uc0 {
-    public final ty0 f27996w0;
+import org.telegram.messenger.SharedConfig;
+public final class sy0 implements qc0, sc0 {
+    public final uy0 f27956a;
 
-    public sy0(ty0 ty0Var, Context context) {
-        super(context, 13, null);
-        this.f27996w0 = ty0Var;
+    @Override
+    public String e(int i10) {
+        return this.f27956a.h[i10];
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float dp = AndroidUtilities.dp(31.0f);
-        ty0 ty0Var = this.f27996w0;
-        ty0Var.d.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18909h7, false));
-        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, ty0Var.d);
-        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
-        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, ty0Var.d);
+    public void q(uc0 uc0Var, int i10) {
+        uy0 uy0Var = this.f27956a;
+        uy0Var.b();
+        SharedConfig.updateChatListSwipeSetting(i10);
+        uy0Var.invalidate();
+        try {
+            uc0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
     }
 }

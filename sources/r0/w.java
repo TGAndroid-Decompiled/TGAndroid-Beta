@@ -7,10 +7,10 @@ public final class w extends p1.c {
 
     public w(int i10, Class cls, int i11, int i12, int i13) {
         this.e = i13;
-        this.f40392a = i10;
+        this.f40414a = i10;
         this.d = cls;
-        this.f40394c = i11;
-        this.f40393b = i12;
+        this.f40416c = i11;
+        this.f40415b = i12;
     }
 
     @Override

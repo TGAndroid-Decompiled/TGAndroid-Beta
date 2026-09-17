@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class eg extends q41 {
+public final class eg extends r41 {
     public final fg h;
 
-    public eg(fg fgVar, Context context, org.telegram.ui.ActionBar.n2 n2Var, e51 e51Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, n2Var, e51Var, e6Var);
+    public eg(fg fgVar, Context context, org.telegram.ui.ActionBar.o2 o2Var, f51 f51Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, o2Var, f51Var, f6Var);
         this.h = fgVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.h.f23929a;
+        ChatActivityEnterView chatActivityEnterView = this.h.f23908a;
         if (chatActivityEnterView.Z2 == this) {
             chatActivityEnterView.Z2 = null;
         }

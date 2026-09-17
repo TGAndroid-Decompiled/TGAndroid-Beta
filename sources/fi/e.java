@@ -7,26 +7,26 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.ActionBar.a6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.u9;
 import w7.x5;
-public final class e extends FrameLayout implements z5 {
-    public final u9 f9090a;
-    public final e6 f9091b;
-    public final TextView f9092c;
+public final class e extends FrameLayout implements a6 {
+    public final u9 f9095a;
+    public final f6 f9096b;
+    public final TextView f9097c;
     public final TextView d;
 
-    public e(Context context, e6 e6Var) {
+    public e(Context context, f6 f6Var) {
         super(context);
-        this.f9091b = e6Var;
+        this.f9096b = f6Var;
         u9 u9Var = new u9(context);
-        this.f9090a = u9Var;
+        this.f9095a = u9Var;
         u9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(u9Var, x5.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f9092c = textView;
+        this.f9097c = textView;
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(17);
@@ -43,17 +43,17 @@ public final class e extends FrameLayout implements z5 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Drawable drawable = i6.S0;
-        u9 u9Var = this.f9090a;
+        Drawable drawable = j6.S0;
+        u9 u9Var = this.f9095a;
         yf.p.a(canvas, drawable, (u9Var.getWidth() / 2.0f) + u9Var.getLeft(), (u9Var.getHeight() / 2.0f) + u9Var.getTop(), u9Var.getHeight());
     }
 
     @Override
     public final void e() {
-        int i10 = i6.G6;
-        e6 e6Var = this.f9091b;
-        this.f9092c.setTextColor(i6.v0(i10, e6Var));
-        this.d.setTextColor(i6.v0(i6.f19237z6, e6Var));
+        int i10 = j6.G6;
+        f6 f6Var = this.f9096b;
+        this.f9097c.setTextColor(j6.v0(i10, f6Var));
+        this.d.setTextColor(j6.v0(j6.f19263z6, f6Var));
     }
 
     public int[] getColorKeys() {
@@ -70,6 +70,6 @@ public final class e extends FrameLayout implements z5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f9092c.setText(charSequence);
+        this.f9097c.setText(charSequence);
     }
 }

@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class ve extends tg {
-    public final int f28697l0;
+    public final int f28690l0;
     public final ChatActivityEnterView m0;
 
-    public ve(ChatActivityEnterView chatActivityEnterView, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(i10, context, e6Var, true);
-        this.f28697l0 = i11;
+    public ve(ChatActivityEnterView chatActivityEnterView, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(i10, context, f6Var, true);
+        this.f28690l0 = i11;
         this.m0 = chatActivityEnterView;
     }
 
     @Override
     public boolean d() {
-        switch (this.f28697l0) {
+        switch (this.f28690l0) {
             case 0:
                 return this.m0.c();
             default:
@@ -23,7 +23,7 @@ public final class ve extends tg {
 
     @Override
     public final boolean e() {
-        switch (this.f28697l0) {
+        switch (this.f28690l0) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = this.m0;
                 if (!chatActivityEnterView.c() && chatActivityEnterView.G0 == Integer.MAX_VALUE) {
@@ -31,16 +31,16 @@ public final class ve extends tg {
                 }
                 return false;
             default:
-                return !this.m0.f21822p3;
+                return !this.m0.f21832p3;
         }
     }
 
     @Override
     public final boolean f() {
-        switch (this.f28697l0) {
+        switch (this.f28690l0) {
             case 0:
                 kf kfVar = this.m0.L0;
-                if ((kfVar != null && !kfVar.f32195q0) || this.f28126r > 0) {
+                if ((kfVar != null && !kfVar.f33155q0) || this.f28091r > 0) {
                     return true;
                 }
                 return false;
@@ -51,9 +51,9 @@ public final class ve extends tg {
 
     @Override
     public boolean j() {
-        switch (this.f28697l0) {
+        switch (this.f28690l0) {
             case 0:
-                return this.m0.f21867x4;
+                return this.m0.f21877x4;
             default:
                 return super.j();
         }
@@ -61,10 +61,10 @@ public final class ve extends tg {
 
     @Override
     public void setAlpha(float f7) {
-        switch (this.f28697l0) {
+        switch (this.f28690l0) {
             case 0:
                 super.setAlpha(f7);
-                int i10 = ChatActivityEnterView.f21731m5;
+                int i10 = ChatActivityEnterView.f21741m5;
                 this.m0.y1();
                 return;
             default:

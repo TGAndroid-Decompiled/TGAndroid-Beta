@@ -4,30 +4,30 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 public final class w9 implements Utilities.Callback2 {
-    public final int f17765a;
-    public final MessagesController f17766b;
-    public final Utilities.Callback2 f17767c;
+    public final int f17774a;
+    public final MessagesController f17775b;
+    public final Utilities.Callback2 f17776c;
 
     public w9(MessagesController messagesController, Utilities.Callback2 callback2, int i10) {
-        this.f17765a = i10;
-        this.f17766b = messagesController;
-        this.f17767c = callback2;
+        this.f17774a = i10;
+        this.f17775b = messagesController;
+        this.f17776c = callback2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f17765a) {
+        switch (this.f17774a) {
             case 0:
-                this.f17766b.lambda$toggleChatNoForwards$278(this.f17767c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                this.f17775b.lambda$toggleChatNoForwards$278(this.f17776c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f17766b.lambda$fetchCommunityPendingJoinRequests$246(this.f17767c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
+                this.f17775b.lambda$fetchCommunityPendingJoinRequests$246(this.f17776c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                this.f17766b.lambda$fetchCommunityJoinedChats$247(this.f17767c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
+                this.f17775b.lambda$fetchCommunityJoinedChats$247(this.f17776c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f17766b.lambda$fetchChatsToAddToCommunity$252(this.f17767c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                this.f17775b.lambda$fetchChatsToAddToCommunity$252(this.f17776c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

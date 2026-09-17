@@ -15,20 +15,20 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class sh implements Runnable {
-    public final int f27855a;
+    public final int f27861a;
 
     public sh(int i10) {
-        this.f27855a = i10;
+        this.f27861a = i10;
     }
 
     @Override
     public final void run() {
         vc a02;
-        switch (this.f27855a) {
+        switch (this.f27861a) {
             case 0:
                 return;
             case 1:
-                int i10 = un.f28432m1;
+                int i10 = un.f28410m1;
                 return;
             case 2:
                 PhotoViewer.t1().G0(false, false);
@@ -37,7 +37,7 @@ public final class sh implements Runnable {
                 PhotoViewer.t1().G0(false, false);
                 return;
             case 4:
-                int i11 = bu.f22873b;
+                int i11 = bu.f22803b;
                 return;
             case 5:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -49,29 +49,29 @@ public final class sh implements Runnable {
                 }
                 return;
             case 7:
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (R != 0) {
                     ?? obj = new Object();
-                    obj.f19368a = true;
+                    obj.f19397a = true;
                     R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 8:
-                int i12 = h01.f24485f;
+                int i12 = i01.f24785f;
                 return;
             case 9:
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                x01.f29839f = Boolean.TRUE;
+                y01.f30066f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 10:
                 SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                x01.f29839f = Boolean.TRUE;
+                y01.f30066f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 11:
-                int i13 = x21.f29868f0;
+                int i13 = y21.f30095f0;
                 return;
             case 12:
                 SavedMessagesController.openSavedMessages();
@@ -86,9 +86,9 @@ public final class sh implements Runnable {
                 ai.w7.p();
                 return;
             case 16:
-                org.telegram.ui.i60 i60Var = org.telegram.ui.i60.D3;
-                if (i60Var != null) {
-                    i60Var.show();
+                org.telegram.ui.k60 k60Var = org.telegram.ui.k60.D3;
+                if (k60Var != null) {
+                    k60Var.show();
                     return;
                 }
                 return;
@@ -133,10 +133,10 @@ public final class sh implements Runnable {
                 vc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
                 if (U != null && (a02 = vc.a0(U)) != null) {
                     oc M = a02.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                    M.f26754j = 5000;
+                    M.f26702j = 5000;
                     M.j();
                     return;
                 }
@@ -145,7 +145,7 @@ public final class sh implements Runnable {
     }
 
     public sh(Object obj, int i10) {
-        this.f27855a = i10;
+        this.f27861a = i10;
     }
 
     private final void a() {

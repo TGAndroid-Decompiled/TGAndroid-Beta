@@ -17,10 +17,10 @@ import m4.r;
 import m4.z;
 import v7.l8;
 public final class e implements m, d9.e, i5.g, z, f1, e1 {
-    public final int f12571a;
+    public final int f12574a;
 
     public e(int i10) {
-        this.f12571a = i10;
+        this.f12574a = i10;
     }
 
     public static AudioDeviceInfo b(Object obj) {
@@ -38,12 +38,12 @@ public final class e implements m, d9.e, i5.g, z, f1, e1 {
 
     @Override
     public Object apply(Object obj) {
-        return i0.z(Integer.valueOf(((v2.h) obj).f43851a));
+        return i0.z(Integer.valueOf(((v2.h) obj).f43874a));
     }
 
     @Override
     public void d(q qVar, int i10) {
-        switch (this.f12571a) {
+        switch (this.f12574a) {
             case 21:
                 qVar.getClass();
                 return;
@@ -58,7 +58,7 @@ public final class e implements m, d9.e, i5.g, z, f1, e1 {
 
     @Override
     public Object h(a0 a0Var, r rVar, int i10) {
-        switch (this.f12571a) {
+        switch (this.f12574a) {
             case 24:
                 a0Var.getClass();
                 throw new ClassCastException();
@@ -81,7 +81,7 @@ public final class e implements m, d9.e, i5.g, z, f1, e1 {
     @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f12571a) {
+        switch (this.f12574a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -110,31 +110,31 @@ public final class e implements m, d9.e, i5.g, z, f1, e1 {
     }
 
     public e(int i10, Object obj, Object obj2) {
-        this.f12571a = i10;
+        this.f12574a = i10;
     }
 
     public e(a aVar, float f7) {
-        this.f12571a = 7;
+        this.f12574a = 7;
     }
 
     public e(a aVar, int i10) {
-        this.f12571a = 5;
+        this.f12574a = 5;
     }
 
     public e(a aVar, k0 k0Var, int i10) {
-        this.f12571a = 6;
+        this.f12574a = 6;
     }
 
     public e(a aVar, boolean z10) {
-        this.f12571a = 3;
+        this.f12574a = 3;
     }
 
     public e(Object obj, int i10) {
-        this.f12571a = i10;
+        this.f12574a = i10;
     }
 
     public e(String str, int i10, int i11, n nVar) {
-        this.f12571a = 25;
+        this.f12574a = 25;
     }
 
     @Override

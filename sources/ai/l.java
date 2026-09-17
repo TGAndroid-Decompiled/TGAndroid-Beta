@@ -6,37 +6,37 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.wo;
 public final class l implements e2.h {
-    public final int f1159a;
-    public final long f1160b;
-    public final Object f1161c;
+    public final int f1164a;
+    public final long f1165b;
+    public final Object f1166c;
     public final Object d;
     public final Object e;
 
     public l(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f1159a = i10;
-        this.f1161c = obj;
+        this.f1164a = i10;
+        this.f1166c = obj;
         this.d = obj2;
-        this.f1160b = j3;
+        this.f1165b = j3;
         this.e = obj3;
     }
 
     @Override
     public final void accept(Object obj) {
         j jVar;
-        int i10 = this.f1159a;
-        long j3 = this.f1160b;
+        int i10 = this.f1164a;
+        long j3 = this.f1165b;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f1161c;
+        Object obj4 = this.f1166c;
         switch (i10) {
             case 0:
                 b0 b0Var = (b0) obj4;
                 a0 a0Var = (a0) obj2;
-                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
+                ((org.telegram.ui.ActionBar.c2) obj3).dismiss();
                 if (((Boolean) obj).booleanValue()) {
-                    ci.oc E = ci.oc.E(b0Var.f542e0.getParentActivity(), b0Var.f543f);
+                    ci.oc E = ci.oc.E(b0Var.f547e0.getParentActivity(), b0Var.f548f);
                     E.N = j3;
-                    ci.ec ecVar = E.f5208c1;
+                    ci.ec ecVar = E.f5213c1;
                     if (ecVar != null) {
                         ecVar.setDialogId(j3);
                     }
@@ -55,7 +55,7 @@ public final class l implements e2.h {
                     return;
                 }
                 ChannelBoostsController boostsController = messagesController.getBoostsController();
-                long j10 = this.f1160b;
+                long j10 = this.f1165b;
                 boostsController.userCanBoostChannel(j10, tL_premium_boostsStatus, new l(l9Var, hVar, j10, tL_premium_boostsStatus, 2));
                 hVar.accept(Boolean.FALSE);
                 return;
@@ -68,7 +68,7 @@ public final class l implements e2.h {
                     hVar2.accept(Boolean.FALSE);
                     return;
                 }
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (l9Var2.j(j3)) {
                     jVar = new j(l9Var2, j3, 3);
                 } else {
@@ -86,19 +86,19 @@ public final class l implements e2.h {
                 hVar2.accept(Boolean.FALSE);
                 return;
             case 3:
-                wo.X((wo) obj4, (org.telegram.ui.ActionBar.b2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1160b, (ChannelBoostsController.CanApplyBoost) obj);
+                wo.X((wo) obj4, (org.telegram.ui.ActionBar.c2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1165b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             default:
-                yh.a4.d0((yh.a4) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1160b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
+                yh.a4.d0((yh.a4) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1165b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }
 
     public l(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f1159a = i10;
-        this.f1161c = obj;
+        this.f1164a = i10;
+        this.f1166c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f1160b = j3;
+        this.f1165b = j3;
     }
 }

@@ -92,8 +92,8 @@ public abstract class p6 {
         c90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
-    public static void q(FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new vc(frameLayout, e6Var).d0(tL_error, z10);
+    public static void q(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.TL_error tL_error, boolean z10) {
+        new vc(frameLayout, f6Var).d0(tL_error, z10);
     }
 
     public static void r(String str, int i10, ArrayList arrayList) {

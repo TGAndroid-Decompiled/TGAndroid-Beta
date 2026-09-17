@@ -8,28 +8,28 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 public abstract class m extends FrameLayout implements le.k {
-    public final e6 f19397a;
-    public final com.google.firebase.messaging.m f19398b;
-    public final le.l f19399c;
+    public final f6 f19392a;
+    public final com.google.firebase.messaging.m f19393b;
+    public final le.l f19394c;
 
-    public m(Context context, e6 e6Var, com.google.firebase.messaging.m mVar) {
+    public m(Context context, f6 f6Var, com.google.firebase.messaging.m mVar) {
         super(context);
-        this.f19399c = new le.l(this, qr.h, 350L);
-        this.f19397a = e6Var;
-        this.f19398b = mVar;
+        this.f19394c = new le.l(this, qr.h, 350L);
+        this.f19392a = f6Var;
+        this.f19393b = mVar;
     }
 
     public final void b(CharSequence charSequence) {
         boolean z10;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        le.l lVar = this.f19399c;
+        le.l lVar = this.f19394c;
         if (isEmpty) {
-            lVar.f13997a.r(null, true);
+            lVar.f14007a.r(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        com.google.firebase.messaging.m mVar = this.f19398b;
+        com.google.firebase.messaging.m mVar = this.f19393b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
             mVar.x(valueOf, indexOf);
@@ -40,10 +40,10 @@ public abstract class m extends FrameLayout implements le.k {
             spannableString = charSequence;
         }
         l lVar2 = new l(this, getContext());
-        int i10 = i6.gl;
-        e6 e6Var = this.f19397a;
-        lVar2.setTextColor(i6.v0(i10, e6Var));
-        lVar2.setLinkTextColor(i6.v0(i10, e6Var));
+        int i10 = j6.gl;
+        f6 f6Var = this.f19392a;
+        lVar2.setTextColor(j6.v0(i10, f6Var));
+        lVar2.setLinkTextColor(j6.v0(i10, f6Var));
         lVar2.setTextSize(1, 14.0f);
         lVar2.setAlpha(0.0f);
         lVar2.setText(spannableString);
@@ -56,11 +56,11 @@ public abstract class m extends FrameLayout implements le.k {
 
     public void c(le.l lVar) {
         float f7;
-        Iterator it = this.f19399c.iterator();
+        Iterator it = this.f19394c.iterator();
         while (it.hasNext()) {
             le.g gVar = (le.g) it.next();
             float c10 = gVar.c();
-            Object obj = gVar.f13984a;
+            Object obj = gVar.f13994a;
             float lerp = AndroidUtilities.lerp(0.85f, 1.0f, c10);
             l lVar2 = (l) obj;
             lVar2.setAlpha(c10);
@@ -76,18 +76,18 @@ public abstract class m extends FrameLayout implements le.k {
     }
 
     public final void d() {
-        Iterator it = this.f19399c.iterator();
+        Iterator it = this.f19394c.iterator();
         while (it.hasNext()) {
             le.g gVar = (le.g) it.next();
-            int i10 = i6.gl;
-            e6 e6Var = this.f19397a;
-            ((l) gVar.f13984a).setTextColor(i6.v0(i10, e6Var));
-            ((l) gVar.f13984a).setLinkTextColor(i6.v0(i10, e6Var));
+            int i10 = j6.gl;
+            f6 f6Var = this.f19392a;
+            ((l) gVar.f13994a).setTextColor(j6.v0(i10, f6Var));
+            ((l) gVar.f13994a).setLinkTextColor(j6.v0(i10, f6Var));
         }
     }
 
     public float getTotalVisibility() {
-        return this.f19399c.f13997a.d.f13990c.f13998a;
+        return this.f19394c.f14007a.d.f14000c.f14008a;
     }
 
     @Override

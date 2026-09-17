@@ -12,11 +12,11 @@ public final class j extends h {
     public final p b() {
         int i10;
         this.d++;
-        p pVar = (p) this.f8150b.d;
+        p pVar = (p) this.f8155b.d;
         if (pVar instanceof s) {
             s sVar = (s) pVar;
-            if (sVar.f3551g.endsWith(" ")) {
-                String str = sVar.f3551g;
+            if (sVar.f3556g.endsWith(" ")) {
+                String str = sVar.f3556g;
                 Matcher matcher = e.matcher(str);
                 if (matcher.find()) {
                     i10 = matcher.end() - matcher.start();
@@ -24,7 +24,7 @@ public final class j extends h {
                     i10 = 0;
                 }
                 if (i10 > 0) {
-                    sVar.f3551g = e2.i(i10, 0, str);
+                    sVar.f3556g = e2.i(i10, 0, str);
                 }
                 if (i10 >= 2) {
                     return new bf.g(1);

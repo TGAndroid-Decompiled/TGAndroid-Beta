@@ -15,22 +15,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-public final class y90 extends yu0 {
-    public AnimatorSet f30194f2;
-    public final FrameLayout f30195g2;
-    public final v90 f30196h2;
-    public final ba0 f30197i2;
+public final class y90 extends zu0 {
+    public AnimatorSet f30151f2;
+    public final FrameLayout f30152g2;
+    public final v90 f30153h2;
+    public final ba0 f30154i2;
 
-    public y90(ba0 ba0Var, Context context, long j3, qu0 qu0Var, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i10, ba0 ba0Var2, x90 x90Var, org.telegram.ui.ActionBar.e6 e6Var, FrameLayout frameLayout, v90 v90Var) {
-        super(context, j3, qu0Var, 0, null, chatFull, userFull, i10, 0, ba0Var2, x90Var, 0, e6Var, null);
-        this.f30197i2 = ba0Var;
-        this.f30195g2 = frameLayout;
-        this.f30196h2 = v90Var;
+    public y90(ba0 ba0Var, Context context, long j3, ru0 ru0Var, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i10, ba0 ba0Var2, x90 x90Var, org.telegram.ui.ActionBar.f6 f6Var, FrameLayout frameLayout, v90 v90Var) {
+        super(context, j3, ru0Var, 0, null, chatFull, userFull, i10, 0, ba0Var2, x90Var, 0, f6Var, null);
+        this.f30154i2 = ba0Var;
+        this.f30152g2 = frameLayout;
+        this.f30153h2 = v90Var;
     }
 
     @Override
     public final boolean D() {
-        int i10 = this.f30197i2.f22733a;
+        int i10 = this.f30154i2.f22679a;
         if (i10 != 1 && i10 != 2) {
             return true;
         }
@@ -41,9 +41,9 @@ public final class y90 extends yu0 {
     public final void D0(SparseArray sparseArray) {
         boolean z10;
         int size = sparseArray.size();
-        ba0 ba0Var = this.f30197i2;
+        ba0 ba0Var = this.f30154i2;
         ba0Var.I = sparseArray;
-        int i10 = ba0Var.f22733a;
+        int i10 = ba0Var.f22679a;
         if (i10 == 1 || i10 == 2) {
             ba0Var.F.a();
             ba0Var.F.c(LocaleController.formatPluralString("StoriesSelected", size, new Object[0]), !LocaleController.isRTL, true);
@@ -66,23 +66,23 @@ public final class y90 extends yu0 {
     @Override
     public final void K0(boolean z10) {
         int i10;
-        ba0 ba0Var = this.f30197i2;
+        ba0 ba0Var = this.f30154i2;
         Activity parentActivity = ba0Var.getParentActivity();
-        i10 = ((org.telegram.ui.ActionBar.n2) ba0Var).classGuid;
+        i10 = ((org.telegram.ui.ActionBar.o2) ba0Var).classGuid;
         AndroidUtilities.removeAdjustResize(parentActivity, i10);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f30195g2, !z10, 0.95f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f30152g2, !z10, 0.95f, true);
     }
 
     @Override
     public final void L0() {
         super.L0();
-        this.f30197i2.a0();
+        this.f30154i2.a0();
     }
 
     @Override
     public final void M0(float f7) {
-        ba0 ba0Var = this.f30197i2;
-        if (ba0Var.f22733a != 1) {
+        ba0 ba0Var = this.f30154i2;
+        if (ba0Var.f22679a != 1) {
             return;
         }
         float f10 = f7 - 8.0f;
@@ -99,7 +99,7 @@ public final class y90 extends yu0 {
 
     @Override
     public final boolean N() {
-        int i10 = this.f30197i2.f22733a;
+        int i10 = this.f30154i2.f22679a;
         if (i10 == 1 || i10 == 2 || i10 == 3) {
             return true;
         }
@@ -108,7 +108,7 @@ public final class y90 extends yu0 {
 
     @Override
     public final void N0(boolean z10) {
-        aa0 aa0Var = this.f30197i2.R;
+        aa0 aa0Var = this.f30154i2.R;
         if (aa0Var != null) {
             aa0Var.setScrolling(z10);
         }
@@ -116,7 +116,7 @@ public final class y90 extends yu0 {
 
     @Override
     public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
-        this.f30196h2.J(canvas, getY() + f7, rect, paint, true);
+        this.f30153h2.J(canvas, getY() + f7, rect, paint, true);
     }
 
     @Override
@@ -128,17 +128,17 @@ public final class y90 extends yu0 {
         float f12;
         float f13;
         float measuredHeight;
-        ba0 ba0Var = this.f30197i2;
-        if (ba0Var.f22733a == 0) {
+        ba0 ba0Var = this.f30154i2;
+        if (ba0Var.f22679a == 0) {
             super.b1(z10);
         } else if (this.C1 == z10) {
         } else {
             this.C1 = z10;
-            AnimatorSet animatorSet = this.f30194f2;
+            AnimatorSet animatorSet = this.f30151f2;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            int i10 = ba0Var.f22733a;
+            int i10 = ba0Var.f22679a;
             if (i10 == 1 || i10 == 2) {
                 if (z10) {
                     g1(null);
@@ -152,9 +152,9 @@ public final class y90 extends yu0 {
                     frameLayout.setVisibility(0);
                 }
             } else {
-                ba0Var.f22741s.setVisibility(0);
+                ba0Var.f22687s.setVisibility(0);
             }
-            org.telegram.ui.ActionBar.g2 g2Var = ba0Var.E;
+            org.telegram.ui.ActionBar.h2 h2Var = ba0Var.E;
             float f14 = 0.0f;
             float f15 = 1.0f;
             if (z10) {
@@ -162,8 +162,8 @@ public final class y90 extends yu0 {
             } else {
                 f7 = 0.0f;
             }
-            g2Var.c(f7, true);
-            this.f30194f2 = new AnimatorSet();
+            h2Var.c(f7, true);
+            this.f30151f2 = new AnimatorSet();
             ArrayList arrayList = new ArrayList();
             n6 n6Var = ba0Var.F;
             if (z10) {
@@ -174,7 +174,7 @@ public final class y90 extends yu0 {
             float[] fArr = {f10};
             Property property = View.ALPHA;
             arrayList.add(ObjectAnimator.ofFloat(n6Var, property, fArr));
-            FrameLayout frameLayout2 = ba0Var.f22741s;
+            FrameLayout frameLayout2 = ba0Var.f22687s;
             if (z10) {
                 f11 = 0.0f;
             } else {
@@ -197,30 +197,30 @@ public final class y90 extends yu0 {
                 }
                 arrayList.add(ObjectAnimator.ofFloat(frameLayout4, View.TRANSLATION_Y, measuredHeight));
             }
-            org.telegram.ui.ActionBar.v0 v0Var = ba0Var.H;
-            if (v0Var != null) {
-                v0Var.setVisibility(0);
-                org.telegram.ui.ActionBar.v0 v0Var2 = ba0Var.H;
+            org.telegram.ui.ActionBar.w0 w0Var = ba0Var.H;
+            if (w0Var != null) {
+                w0Var.setVisibility(0);
+                org.telegram.ui.ActionBar.w0 w0Var2 = ba0Var.H;
                 if (z10) {
                     f12 = 1.0f;
                 } else {
                     f12 = 0.0f;
                 }
-                arrayList.add(ObjectAnimator.ofFloat(v0Var2, property, f12));
+                arrayList.add(ObjectAnimator.ofFloat(w0Var2, property, f12));
             }
             if (c0(getClosestTab()) == 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            org.telegram.ui.ActionBar.v0 v0Var3 = ba0Var.G;
-            if (v0Var3 != null) {
-                v0Var3.setVisibility(0);
-                org.telegram.ui.ActionBar.v0 v0Var4 = ba0Var.G;
+            org.telegram.ui.ActionBar.w0 w0Var3 = ba0Var.G;
+            if (w0Var3 != null) {
+                w0Var3.setVisibility(0);
+                org.telegram.ui.ActionBar.w0 w0Var4 = ba0Var.G;
                 if (!z10 && !z11) {
                     f14 = 1.0f;
                 }
-                arrayList.add(ObjectAnimator.ofFloat(v0Var4, property, f14));
+                arrayList.add(ObjectAnimator.ofFloat(w0Var4, property, f14));
             }
             aa0 aa0Var = ba0Var.R;
             if (aa0Var != null) {
@@ -229,33 +229,33 @@ public final class y90 extends yu0 {
                 }
                 arrayList.add(ObjectAnimator.ofFloat(aa0Var, property, f15));
             }
-            this.f30194f2.playTogether(arrayList);
-            this.f30194f2.setDuration(300L);
-            this.f30194f2.setInterpolator(qr.h);
-            this.f30194f2.addListener(new org.telegram.ui.ActionBar.g(this, z10, z11, 4));
-            this.f30194f2.start();
+            this.f30151f2.playTogether(arrayList);
+            this.f30151f2.setDuration(300L);
+            this.f30151f2.setInterpolator(qr.h);
+            this.f30151f2.addListener(new org.telegram.ui.ActionBar.g(this, z10, z11, 4));
+            this.f30151f2.start();
         }
     }
 
     @Override
     public final int getInitialTab() {
-        return this.f30197i2.W;
+        return this.f30154i2.W;
     }
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f30197i2.h;
+        return this.f30154i2.h;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f30197i2.f22739n;
+        return this.f30154i2.f22685n;
     }
 
     @Override
     public final boolean l0() {
-        ba0 ba0Var = this.f30197i2;
-        if (ba0Var.f22733a == 0 && ba0Var.e == ba0Var.getUserConfig().getClientUserId() && ba0Var.f22738f == 0) {
+        ba0 ba0Var = this.f30154i2;
+        if (ba0Var.f22679a == 0 && ba0Var.e == ba0Var.getUserConfig().getClientUserId() && ba0Var.f22684f == 0) {
             return true;
         }
         return false;
@@ -263,7 +263,7 @@ public final class y90 extends yu0 {
 
     @Override
     public final boolean m0() {
-        int i10 = this.f30197i2.f22733a;
+        int i10 = this.f30154i2.f22679a;
         if (i10 == 1 || i10 == 2) {
             return true;
         }
@@ -272,12 +272,12 @@ public final class y90 extends yu0 {
 
     @Override
     public final void o0() {
-        this.f30196h2.M();
+        this.f30153h2.M();
     }
 
     @Override
     public final boolean q0() {
-        if (this.f30197i2.f22733a == 2) {
+        if (this.f30154i2.f22679a == 2) {
             return true;
         }
         return false;
@@ -285,7 +285,7 @@ public final class y90 extends yu0 {
 
     @Override
     public final boolean v0() {
-        int i10 = this.f30197i2.f22733a;
+        int i10 = this.f30154i2.f22679a;
         if (i10 == 1 || i10 == 2) {
             return true;
         }

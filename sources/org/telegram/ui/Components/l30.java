@@ -14,12 +14,12 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
-    public final z4.g f25816b;
-    public final i30 f25817c;
+public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
+    public final z4.g f25808b;
+    public final i30 f25809c;
     public final LinearLayout d;
     public final TextView[] e;
-    public float f25818f;
+    public float f25810f;
     public int h;
 
     public l30(Context context, TLRPC.Chat chat, boolean z10) {
@@ -27,7 +27,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
         int i10;
         int i11;
         int i12;
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18880fg, false);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18906fg, false);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
         g30 g30Var = new g30(this, context);
         this.containerView = g30Var;
@@ -70,7 +70,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
         this.containerView.addView(textView2, w7.x5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
         this.e = new TextView[3];
         z4.g gVar = new z4.g(context);
-        this.f25816b = gVar;
+        this.f25808b = gVar;
         gVar.setClipChildren(false);
         gVar.setOffscreenPageLimit(4);
         gVar.setClipToPadding(false);
@@ -87,19 +87,19 @@ public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
         view2.setBackground(new GradientDrawable(orientation, new int[]{0, w02}));
         this.containerView.addView(view2, w7.x5.d(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
         i30 i30Var = new i30(this, getContext());
-        this.f25817c = i30Var;
+        this.f25809c = i30Var;
         i30Var.setMinWidth(AndroidUtilities.dp(64.0f));
         i30Var.setTag(-1);
         i30Var.setTextSize(1, 14.0f);
-        int i14 = org.telegram.ui.ActionBar.i6.f19028ng;
-        i30Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i14, false));
+        int i14 = org.telegram.ui.ActionBar.j6.f19054ng;
+        i30Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
         i30Var.setGravity(17);
         i30Var.setTypeface(AndroidUtilities.bold());
         i30Var.setText(LocaleController.getString(R.string.VoipRecordStart));
         if (Build.VERSION.SDK_INT >= 23) {
             int dp = AndroidUtilities.dp(6.0f);
-            int k10 = i0.a.k(org.telegram.ui.ActionBar.i6.w0(null, i14, false), 76);
-            i30Var.setForeground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, 0, k10, k10));
+            int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, i14, false), 76);
+            i30Var.setForeground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, 0, k10, k10));
         }
         i30Var.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
         i30Var.setOnClickListener(new f0(this, 23));
@@ -132,7 +132,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
             i15++;
         }
         if (z10) {
-            this.f25816b.setCurrentItem(1);
+            this.f25808b.setCurrentItem(1);
         }
     }
 
@@ -150,7 +150,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
         float measuredWidth2 = (l30Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * l30Var.f25818f;
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * l30Var.f25810f;
         }
         for (int i11 = 0; i11 < textViewArr.length; i11++) {
             int i12 = l30Var.h;
@@ -158,11 +158,11 @@ public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
             float f10 = 0.7f;
             if (i11 >= i12 && i11 <= i12 + 1) {
                 if (i11 == i12) {
-                    float f11 = l30Var.f25818f;
+                    float f11 = l30Var.f25810f;
                     f10 = 1.0f - (0.3f * f11);
                     f7 = 1.0f - (f11 * 0.1f);
                 } else {
-                    float f12 = l30Var.f25818f;
+                    float f12 = l30Var.f25810f;
                     f10 = 0.7f + (0.3f * f12);
                     f7 = 0.9f + (f12 * 0.1f);
                 }
@@ -172,7 +172,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
             textViewArr[i11].setScaleY(f7);
         }
         l30Var.d.setTranslationX(measuredWidth2);
-        l30Var.f25817c.invalidate();
+        l30Var.f25809c.invalidate();
     }
 
     public abstract void n(int i10);

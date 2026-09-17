@@ -25,34 +25,34 @@ import org.telegram.ui.Components.wg;
 import t7.u;
 import yc.i;
 public final class d extends i {
-    public static final f f15516l;
-    public static final HashMap f15517m;
+    public static final f f15526l;
+    public static final HashMap f15527m;
     public final ExtendedDefaultDataSourceFactory e;
-    public final u0 f15518f;
-    public final u f15519g;
+    public final u0 f15528f;
+    public final u f15529g;
     public final HashMap h;
-    public Pair f15520i;
-    public boolean f15521j;
-    public final AtomicInteger f15522k;
+    public Pair f15530i;
+    public boolean f15531j;
+    public final AtomicInteger f15532k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f15516l = fVar;
+        f15526l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f15517m = hashMap;
+        f15527m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
 
     public d() {
-        this.f46699c = new n(9);
+        this.f46722c = new n(9);
         this.h = new HashMap();
-        this.f15520i = null;
-        this.f15521j = false;
-        this.f15522k = new AtomicInteger();
-        this.f15518f = new u0(12);
-        this.f15519g = new Object();
+        this.f15530i = null;
+        this.f15531j = false;
+        this.f15532k = new AtomicInteger();
+        this.f15528f = new u0(12);
+        this.f15529g = new Object();
         this.e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
@@ -88,9 +88,9 @@ public final class d extends i {
     @Override
     public final yc.g e(yc.d dVar) {
         String str;
-        int incrementAndGet = this.f15522k.incrementAndGet();
+        int incrementAndGet = this.f15532k.incrementAndGet();
         StringBuilder l4 = k0.l(incrementAndGet, "Request ", " ");
-        switch (dVar.f46677g) {
+        switch (dVar.f46700g) {
             case 1:
                 str = "GET";
                 break;
@@ -145,9 +145,9 @@ public final class d extends i {
         }
         l4.append(str);
         l4.append(" ");
-        l4.append(dVar.f46676f);
+        l4.append(dVar.f46699f);
         l4.append(" ");
-        l4.append((String) dVar.f46678i.get("range"));
+        l4.append((String) dVar.f46701i.get("range"));
         Log.d("CAST_SERVER", l4.toString());
         try {
             yc.g k10 = k(dVar);
@@ -171,34 +171,34 @@ public final class d extends i {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f15521j) {
+            if (this.f15531j) {
                 try {
-                    i.d(this.f46697a);
-                    n nVar = this.f46699c;
+                    i.d(this.f46720a);
+                    n nVar = this.f46722c;
                     nVar.getClass();
-                    ArrayList arrayList = new ArrayList((List) nVar.f8027c);
+                    ArrayList arrayList = new ArrayList((List) nVar.f8032c);
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         yc.a aVar = (yc.a) obj;
-                        i.d(aVar.f46664a);
-                        i.d(aVar.f46665b);
+                        i.d(aVar.f46687a);
+                        i.d(aVar.f46688b);
                     }
-                    Thread thread = this.f46698b;
+                    Thread thread = this.f46721b;
                     if (thread != null) {
                         thread.join();
                     }
                 } catch (Exception e) {
                     i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
                 }
-                this.f15521j = false;
+                this.f15531j = false;
             }
-        } else if (!this.f15521j) {
+        } else if (!this.f15531j) {
             try {
                 f();
-                this.f15521j = true;
+                this.f15531j = true;
             } catch (IOException e7) {
                 throw new RuntimeException(e7);
             }
@@ -211,16 +211,16 @@ public final class d extends i {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f15520i = new Pair(str, file);
+            this.f15530i = new Pair(str, file);
         } else {
-            Pair pair = this.f15520i;
+            Pair pair = this.f15530i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f15520i.second).delete();
+                    ((File) this.f15530i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f15520i = null;
+            this.f15530i = null;
         }
         h();
     }

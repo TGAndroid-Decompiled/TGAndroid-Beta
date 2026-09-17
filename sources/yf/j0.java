@@ -8,28 +8,28 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Looper;
 import android.view.ViewOutlineProvider;
-import org.telegram.ui.pp0;
+import org.telegram.ui.rp0;
 import org.telegram.ui.s3;
 public abstract class j0 {
-    public static final k2 f46838a = new k2(21);
-    public static final k2 f46839b = new k2(22);
-    public static Path f46840c;
+    public static final k2 f46861a = new k2(21);
+    public static final k2 f46862b = new k2(22);
+    public static Path f46863c;
     public static Outline d;
     public static Rect e;
 
-    public static void a(Canvas canvas, pp0 pp0Var, s3 s3Var) {
+    public static void a(Canvas canvas, rp0 rp0Var, s3 s3Var) {
         Path path;
         Outline outline;
         Rect rect;
-        ViewOutlineProvider outlineProvider = pp0Var.getOutlineProvider();
-        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && pp0Var.getClipToOutline() && outlineProvider != null) {
+        ViewOutlineProvider outlineProvider = rp0Var.getOutlineProvider();
+        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && rp0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                if (f46840c == null) {
-                    f46840c = new Path();
+                if (f46863c == null) {
+                    f46863c = new Path();
                     d = new Outline();
                     e = new Rect();
                 }
-                path = f46840c;
+                path = f46863c;
                 outline = d;
                 rect = e;
                 outline.setEmpty();
@@ -40,7 +40,7 @@ public abstract class j0 {
                 rect = new Rect();
             }
             Path path2 = path;
-            outlineProvider.getOutline(pp0Var, outline);
+            outlineProvider.getOutline(rp0Var, outline);
             path2.rewind();
             if (!outline.isEmpty() && outline.getRect(rect)) {
                 float radius = outline.getRadius();

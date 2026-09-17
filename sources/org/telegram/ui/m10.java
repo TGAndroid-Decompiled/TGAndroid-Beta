@@ -1,95 +1,135 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-public final class m10 extends s4.s0 {
-    public final x10 f35604a;
+import org.telegram.tgnet.TLRPC;
+public final class m10 extends vu0 {
+    public final z10 f35662a;
 
-    public m10(x10 x10Var) {
-        this.f35604a = x10Var;
+    public m10(z10 z10Var) {
+        this.f35662a = z10Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 1) {
-            AndroidUtilities.hideKeyboard(this.f35604a.K.getCurrentFocus());
-        }
+    public final CharSequence C(int i10) {
+        return LocaleController.formatDateAudio(((MessageObject) this.f35662a.f40077f.get(i10)).messageOwner.date, false);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        MessageObject messageObject;
-        x10 x10Var = this.f35604a;
-        ai.n4 n4Var = x10Var.m0;
-        s4.c0 c0Var = x10Var.f39451j0;
-        le.b bVar = x10Var.f39438a;
-        g10 g10Var = x10Var.f39455n0;
-        if (recyclerView.getAdapter() != null && x10Var.d != null) {
-            int L0 = c0Var.L0();
-            int N0 = c0Var.N0();
-            int abs = Math.abs(N0 - L0) + 1;
-            int h = recyclerView.getAdapter().h();
-            if (!x10Var.M && abs > 0 && N0 >= h - 10 && !x10Var.N) {
-                AndroidUtilities.runOnUIThread(new g10(this, 1));
-            }
-            if (x10Var.d == x10Var.U) {
-                if (i11 != 0 && !x10Var.f39446f.isEmpty() && TextUtils.isEmpty(x10Var.Q)) {
-                    AndroidUtilities.cancelRunOnUIThread(g10Var);
-                    AndroidUtilities.runOnUIThread(g10Var, 1650L);
-                    bVar.a(true, true);
-                }
-                s4.c1 K = recyclerView.K(L0);
-                if (K != null && K.f42678f == 0) {
-                    View view = K.f42675a;
-                    if (view instanceof org.telegram.ui.Cells.u7) {
-                        org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) view;
-                        if (u7Var.e <= 0) {
-                            messageObject = null;
+    public final fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        ImageReceiver photoImage;
+        View pinnedHeader;
+        int i11;
+        MessageObject messageObject2;
+        org.telegram.ui.Components.u9 u9Var;
+        if (messageObject != null) {
+            ai.w0 w0Var = this.f35662a.f40071b;
+            int childCount = w0Var.getChildCount();
+            for (int i12 = 0; i12 < childCount; i12++) {
+                View childAt = w0Var.getChildAt(i12);
+                int[] iArr = new int[2];
+                if (childAt instanceof org.telegram.ui.Cells.u7) {
+                    org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) childAt;
+                    photoImage = null;
+                    for (int i13 = 0; i13 < 6; i13++) {
+                        if (i13 >= u7Var.e) {
+                            messageObject2 = null;
                         } else {
-                            messageObject = u7Var.f21443b[0];
+                            messageObject2 = u7Var.f21453b[i13];
                         }
-                        if (messageObject != null) {
-                            int i12 = messageObject.messageOwner.date;
-                            n4Var.getClass();
-                            String formatDateChat = LocaleController.formatDateChat(i12);
-                            if (!TextUtils.equals((String) n4Var.d, formatDateChat)) {
-                                n4Var.d = formatDateChat;
-                                ((org.telegram.ui.Components.m6) n4Var.f1281b).q(formatDateChat, true, true);
-                                return;
+                        if (messageObject2 == null) {
+                            break;
+                        }
+                        if (messageObject2.getId() == messageObject.getId()) {
+                            if (i13 >= u7Var.e) {
+                                u9Var = null;
+                            } else {
+                                u9Var = u7Var.f21452a[i13].f20620a;
                             }
-                            return;
+                            ImageReceiver imageReceiver = u9Var.getImageReceiver();
+                            u9Var.getLocationInWindow(iArr);
+                            photoImage = imageReceiver;
                         }
-                        return;
                     }
-                    return;
+                } else if (childAt instanceof org.telegram.ui.Cells.j7) {
+                    org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) childAt;
+                    if (j7Var.getMessage().getId() == messageObject.getId()) {
+                        org.telegram.ui.Components.u9 imageView = j7Var.getImageView();
+                        ImageReceiver imageReceiver2 = imageView.getImageReceiver();
+                        imageView.getLocationInWindow(iArr);
+                        photoImage = imageReceiver2;
+                    }
+                    photoImage = null;
+                } else {
+                    if (childAt instanceof org.telegram.ui.Cells.e2) {
+                        org.telegram.ui.Cells.e2 e2Var = (org.telegram.ui.Cells.e2) childAt;
+                        MessageObject messageObject3 = (MessageObject) e2Var.getParentObject();
+                        if (messageObject3 != null && messageObject3.getId() == messageObject.getId()) {
+                            photoImage = e2Var.getPhotoImage();
+                            e2Var.getLocationInWindow(iArr);
+                        }
+                    }
+                    photoImage = null;
                 }
-                return;
-            }
-            View pinnedHeader = x10Var.f39440b.getPinnedHeader();
-            if (pinnedHeader instanceof org.telegram.ui.Cells.u3) {
-                org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) pinnedHeader;
-                CharSequence text = u3Var.getText();
-                if (!TextUtils.isEmpty(text) && u3Var.getAlpha() > 0.0f) {
-                    String charSequence = text.toString();
-                    if (!TextUtils.equals((String) n4Var.d, charSequence)) {
-                        n4Var.d = charSequence;
-                        ((org.telegram.ui.Components.m6) n4Var.f1281b).q(charSequence, true, true);
+                if (photoImage != null) {
+                    fv0 fv0Var = new fv0();
+                    fv0Var.f33764b = iArr[0];
+                    fv0Var.f33765c = iArr[1];
+                    fv0Var.d = w0Var;
+                    w0Var.getLocationInWindow(iArr);
+                    fv0Var.f33773n = -iArr[1];
+                    fv0Var.f33763a = photoImage;
+                    fv0Var.f33774o = false;
+                    fv0Var.h = photoImage.getRoundRadius(true);
+                    fv0Var.e = fv0Var.f33763a.getBitmapSafe();
+                    fv0Var.d.getLocationInWindow(iArr);
+                    fv0Var.f33769j = 0;
+                    if (PhotoViewer.M1(messageObject) && (pinnedHeader = w0Var.getPinnedHeader()) != null) {
+                        if (childAt instanceof org.telegram.ui.Cells.j7) {
+                            i11 = AndroidUtilities.dp(8.0f);
+                        } else {
+                            i11 = 0;
+                        }
+                        int i14 = i11 - fv0Var.f33765c;
+                        if (i14 > childAt.getHeight()) {
+                            w0Var.scrollBy(0, -(pinnedHeader.getHeight() + i14));
+                            return fv0Var;
+                        }
+                        int height = fv0Var.f33765c - w0Var.getHeight();
+                        if (childAt instanceof org.telegram.ui.Cells.j7) {
+                            height -= AndroidUtilities.dp(8.0f);
+                        }
+                        if (height >= 0) {
+                            w0Var.scrollBy(0, childAt.getHeight() + height);
+                        }
                     }
-                    if (i11 != 0) {
-                        AndroidUtilities.cancelRunOnUIThread(g10Var);
-                        AndroidUtilities.runOnUIThread(g10Var, 1650L);
-                        bVar.a(true, true);
-                        return;
-                    }
-                    return;
+                    return fv0Var;
                 }
             }
-            AndroidUtilities.cancelRunOnUIThread(g10Var);
-            bVar.a(false, true);
         }
+        return null;
+    }
+
+    @Override
+    public final boolean Y() {
+        z10 z10Var = this.f35662a;
+        if (!z10Var.N) {
+            z10Var.h(z10Var.E, z10Var.F, z10Var.H, z10Var.G, z10Var.f40095y, z10Var.J, z10Var.f40093w, false);
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final CharSequence b0(int i10) {
+        return z10.d((MessageObject) this.f35662a.f40077f.get(i10), true, 0, null);
+    }
+
+    @Override
+    public final int y() {
+        return this.f35662a.O;
     }
 }

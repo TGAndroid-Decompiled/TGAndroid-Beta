@@ -11,16 +11,16 @@ import org.telegram.ui.Components.oc;
 import org.telegram.ui.Components.r00;
 import org.telegram.ui.Components.s50;
 import org.telegram.ui.Components.u9;
-import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.yi0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.uy;
+import org.telegram.ui.wy;
 public final class b1 implements Runnable {
-    public final int f47005a;
-    public final a4 f47006b;
+    public final int f47028a;
+    public final a4 f47029b;
 
     public b1(a4 a4Var, int i10) {
-        this.f47005a = i10;
-        this.f47006b = a4Var;
+        this.f47028a = i10;
+        this.f47029b = a4Var;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class b1 implements Runnable {
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         h3 h3Var;
-        int i10 = this.f47005a;
-        a4 a4Var = this.f47006b;
+        int i10 = this.f47028a;
+        a4 a4Var = this.f47029b;
         switch (i10) {
             case 0:
                 a4.q0(a4Var);
@@ -49,7 +49,7 @@ public final class b1 implements Runnable {
                 a4.Y(a4Var);
                 return;
             case 5:
-                a4Var.f46963j0.setLoading(false);
+                a4Var.f46986j0.setLoading(false);
                 a4Var.q2(0, true, null);
                 return;
             case 6:
@@ -81,12 +81,12 @@ public final class b1 implements Runnable {
                 return;
             case 15:
                 a4Var.dismiss();
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
                 TL_stars.TL_starGiftUnique K1 = a4Var.K1();
                 if (U != null && K1 != null) {
-                    uy uyVar = new uy(org.telegram.messenger.w1.e(4, "onlySelect", "dialogsType", true));
-                    uyVar.C2 = new s50(a4Var, K1, uyVar, 11);
-                    U.presentFragment(uyVar);
+                    wy wyVar = new wy(org.telegram.messenger.w1.e(4, "onlySelect", "dialogsType", true));
+                    wyVar.C2 = new s50(a4Var, K1, wyVar, 11);
+                    U.presentFragment(wyVar);
                     return;
                 }
                 return;
@@ -116,34 +116,34 @@ public final class b1 implements Runnable {
                     str = "";
                 }
                 oc M = a4Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f26754j = 5000;
-                M.f26764t = true;
+                M.f26702j = 5000;
+                M.f26712t = true;
                 M.j();
-                r00 r00Var = a4Var.f46945a0;
+                r00 r00Var = a4Var.f46968a0;
                 if (r00Var != null) {
                     r00Var.c(true);
                     return;
                 }
                 return;
             case 21:
-                a4Var.d.u0(((a4) a4Var.Q0.d).P0.length - 1);
+                a4Var.d.v0(((a4) a4Var.Q0.d).P0.length - 1);
                 return;
             case 22:
                 a4Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
                 return;
             case 23:
-                x3 x3Var = a4Var.f46953e0;
-                ci.d dVar = a4Var.f46963j0;
+                x3 x3Var = a4Var.f46976e0;
+                ci.d dVar = a4Var.f46986j0;
                 i3 i3Var = a4Var.M0.h;
-                if (i3Var != null && (h3Var = i3Var.f47284c) != null) {
+                if (i3Var != null && (h3Var = i3Var.f47307c) != null) {
                     imageReceiver = ((k3) h3Var).d;
                 } else {
                     imageReceiver = null;
                 }
                 u9 u9Var = x3Var.d[0];
                 if (imageReceiver != null && u9Var != null && u9Var.getImageReceiver() != null) {
-                    xi0 lottieAnimation = imageReceiver.getLottieAnimation();
-                    xi0 lottieAnimation2 = u9Var.getImageReceiver().getLottieAnimation();
+                    yi0 lottieAnimation = imageReceiver.getLottieAnimation();
+                    yi0 lottieAnimation2 = u9Var.getImageReceiver().getLottieAnimation();
                     if (lottieAnimation2 != null && lottieAnimation != null) {
                         lottieAnimation2.S(lottieAnimation.t(), false);
                     } else if (lottieAnimation2 == null && lottieAnimation != null) {
@@ -151,9 +151,9 @@ public final class b1 implements Runnable {
                         u9Var.setImageDrawable(lottieAnimation);
                     }
                 }
-                x3Var.f47965b.setAlpha(1.0f);
-                x3Var.f47967c.setAlpha(0.0f);
-                if (a4Var.f46975q0 && a4Var.Z != null && a4Var.D0 != null && a4Var.G1() >= 0 && a4Var.D0.b(a4Var.G1()) >= 0) {
+                x3Var.f47988b.setAlpha(1.0f);
+                x3Var.f47990c.setAlpha(0.0f);
+                if (a4Var.f46998q0 && a4Var.Z != null && a4Var.D0 != null && a4Var.G1() >= 0 && a4Var.D0.b(a4Var.G1()) >= 0) {
                     dVar.setFilled(false);
                     int b10 = a4Var.D0.b(a4Var.G1());
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -175,7 +175,7 @@ public final class b1 implements Runnable {
                 return;
             default:
                 a4Var.getClass();
-                new rg.x0((org.telegram.ui.ActionBar.n2) new ai.y3(a4Var, 12), 12, false).show();
+                new rg.x0((org.telegram.ui.ActionBar.o2) new ai.y3(a4Var, 12), 12, false).show();
                 return;
         }
     }

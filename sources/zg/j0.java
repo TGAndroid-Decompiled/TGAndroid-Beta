@@ -62,12 +62,12 @@ public final class j0 extends u9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f29960l0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f30233l0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f29960l0) {
+        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f30233l0) {
             l0 l0Var = this.K;
-            if (l0Var.f49067a == 2 && !l0Var.f49088z) {
+            if (l0Var.f49090a == 2 && !l0Var.f49111z) {
                 getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().e[0] - 1, false, false);
             } else {
                 getImageReceiver().getLottieAnimation().N(0, false, false);

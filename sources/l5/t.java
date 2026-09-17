@@ -10,23 +10,23 @@ import java.util.concurrent.Executor;
 import org.telegram.ui.web.u0;
 public final class t {
     public static volatile k e;
-    public final u5.a f13919a;
-    public final u5.a f13920b;
-    public final q5.b f13921c;
+    public final u5.a f13929a;
+    public final u5.a f13930b;
+    public final q5.b f13931c;
     public final da.b d;
 
     public t(u5.a aVar, u5.a aVar2, q5.b bVar, da.b bVar2, com.google.firebase.messaging.t tVar) {
-        this.f13919a = aVar;
-        this.f13920b = aVar2;
-        this.f13921c = bVar;
+        this.f13929a = aVar;
+        this.f13930b = aVar2;
+        this.f13931c = bVar;
         this.d = bVar2;
-        ((Executor) tVar.f7347b).execute(new u0(tVar, 23));
+        ((Executor) tVar.f7352b).execute(new u0(tVar, 23));
     }
 
     public static t a() {
         k kVar = e;
         if (kVar != null) {
-            return (t) kVar.f13904f.mo28get();
+            return (t) kVar.f13914f.mo28get();
         }
         throw new IllegalStateException("Not initialized!");
     }
@@ -38,7 +38,7 @@ public final class t {
                     if (e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f13900a = context;
+                        obj.f13910a = context;
                         e = obj.a();
                     }
                 } catch (Throwable th2) {
@@ -58,10 +58,10 @@ public final class t {
         }
         aa.a a2 = i.a();
         lVar.getClass();
-        a2.f357b = "cct";
+        a2.f359b = "cct";
         j5.a aVar = (j5.a) lVar;
-        String str = aVar.f12876a;
-        String str2 = aVar.f12877b;
+        String str = aVar.f12879a;
+        String str2 = aVar.f12880b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {
@@ -70,7 +70,7 @@ public final class t {
             }
             bytes = e2.j("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
         }
-        a2.f358c = bytes;
+        a2.f360c = bytes;
         return new r(singleton, a2.e(), this);
     }
 }

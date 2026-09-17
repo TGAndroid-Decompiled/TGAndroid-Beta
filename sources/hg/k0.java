@@ -11,11 +11,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.h2;
 import org.telegram.ui.Components.vc;
 public abstract class k0 {
-    public static void A(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
-        alertDialog$Builder.k(LocaleController.getString(i10), a2Var);
+    public static void A(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.b2 b2Var) {
+        alertDialog$Builder.k(LocaleController.getString(i10), b2Var);
         alertDialog$Builder.o();
     }
 
@@ -412,8 +412,8 @@ public abstract class k0 {
         hashMap.put(Integer.valueOf(i11), str2);
     }
 
-    public static void r(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
-        alertDialog$Builder.h(LocaleController.getString(i10), a2Var);
+    public static void r(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.b2 b2Var) {
+        alertDialog$Builder.h(LocaleController.getString(i10), b2Var);
         alertDialog$Builder.o();
     }
 
@@ -450,7 +450,7 @@ public abstract class k0 {
     }
 
     public static void x(boolean z10, org.telegram.ui.ActionBar.k kVar) {
-        kVar.setBackButtonDrawable(new g2(z10));
+        kVar.setBackButtonDrawable(new h2(z10));
     }
 
     public static int y(int i10, int i11, int i12, int i13) {

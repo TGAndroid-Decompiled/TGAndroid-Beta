@@ -1,18 +1,18 @@
 package ii;
 public final class c1 implements Runnable {
-    public final int f11277a;
-    public final i1 f11278b;
+    public final int f11280a;
+    public final i1 f11281b;
 
     public c1(i1 i1Var, int i10) {
-        this.f11277a = i10;
-        this.f11278b = i1Var;
+        this.f11280a = i10;
+        this.f11281b = i1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f11277a) {
+        switch (this.f11280a) {
             case 0:
-                i1 i1Var = this.f11278b;
+                i1 i1Var = this.f11281b;
                 k4 k4Var = i1Var.R;
                 if (k4Var != null && i1Var.d != null) {
                     i1Var.S = true;
@@ -26,10 +26,10 @@ public final class c1 implements Runnable {
                 }
                 return;
             case 1:
-                this.f11278b.n();
+                this.f11281b.n();
                 return;
             default:
-                this.f11278b.s();
+                this.f11281b.s();
                 return;
         }
     }

@@ -1,22 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.graphics.SurfaceTexture;
-public interface d71 {
-    void onError(g71 g71Var, Exception exc);
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+public final class d71 {
+    public final boolean f23224a;
+    public final int f23225b;
+    public final int f23226c;
+    public final ArrayList d;
 
-    void onRenderedFirstFrame();
+    public d71(f71 f71Var) {
+        ArrayList arrayList = new ArrayList();
+        this.d = arrayList;
+        this.f23224a = f71Var.f23809b;
+        this.f23225b = f71Var.f23813i;
+        this.f23226c = f71Var.f23814j;
+        arrayList.add(f71Var);
+    }
 
-    void onRenderedFirstFrame(j2.a aVar);
+    public final f71 a() {
+        ArrayList arrayList = this.d;
+        f71 f71Var = null;
+        if (arrayList.isEmpty()) {
+            return null;
+        }
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            f71 f71Var2 = (f71) obj;
+            if (f71Var2.b()) {
+                return f71Var2;
+            }
+        }
+        long j3 = Long.MAX_VALUE;
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            f71 f71Var3 = (f71) arrayList.get(i11);
+            if (f71Var3.f23815k < j3 && h71.Y(f71Var3.f23817m)) {
+                j3 = f71Var3.f23815k;
+                f71Var = f71Var3;
+            }
+        }
+        if (f71Var != null) {
+            return f71Var;
+        }
+        return (f71) arrayList.get(0);
+    }
 
-    void onSeekFinished(j2.a aVar);
+    public final int b() {
+        int min = Math.min(this.f23225b, this.f23226c);
+        if (Math.abs(min - 2160) < 55) {
+            return 2160;
+        }
+        if (Math.abs(min - 1440) < 55) {
+            return 1440;
+        }
+        if (Math.abs(min - 1080) < 55) {
+            return 1080;
+        }
+        if (Math.abs(min - 720) < 55) {
+            return 720;
+        }
+        if (Math.abs(min - 480) < 55) {
+            return 480;
+        }
+        if (Math.abs(min - 360) < 55) {
+            return 360;
+        }
+        if (Math.abs(min - 240) < 55) {
+            return 240;
+        }
+        if (Math.abs(min - 144) < 55) {
+            return 144;
+        }
+        return min;
+    }
 
-    void onSeekStarted(j2.a aVar);
-
-    void onStateChanged(boolean z10, int i10);
-
-    boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture);
-
-    void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture);
-
-    void onVideoSizeChanged(int i10, int i11, int i12, float f7);
+    public final String toString() {
+        String str;
+        boolean z10 = SharedConfig.debugVideoQualities;
+        boolean z11 = this.f23224a;
+        String str2 = "";
+        if (z10) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.f23225b);
+            sb2.append("x");
+            sb2.append(this.f23226c);
+            if (!z11) {
+                str = "";
+            } else {
+                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+            }
+            sb2.append(str);
+            sb2.append("\n");
+            ArrayList arrayList = this.d;
+            sb2.append(AndroidUtilities.formatFileSize((long) ((f71) arrayList.get(0)).f23816l).replace(" ", ""));
+            sb2.append("/s");
+            if (((f71) arrayList.get(0)).f23817m != null) {
+                str2 = ", " + ((f71) arrayList.get(0)).f23817m;
+            }
+            sb2.append(str2);
+            return sb2.toString();
+        }
+        StringBuilder sb3 = new StringBuilder();
+        sb3.append(b());
+        sb3.append("p");
+        if (z11) {
+            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+        }
+        sb3.append(str2);
+        return sb3.toString();
+    }
 }

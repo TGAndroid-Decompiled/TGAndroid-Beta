@@ -27,7 +27,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
 
     public ContactsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
-        org.telegram.ui.ActionBar.i6.R(context);
+        org.telegram.ui.ActionBar.j6.R(context);
         boolean z10 = false;
         this.appWidgetId = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
@@ -172,7 +172,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                                 f9Var.g(1);
                             }
                         } else {
-                            org.telegram.ui.Components.f9 f9Var2 = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.e6) null);
+                            org.telegram.ui.Components.f9 f9Var2 = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.f6) null);
                             f9Var2.k(this.accountInstance.getCurrentAccount(), chat);
                             f9Var = f9Var2;
                         }

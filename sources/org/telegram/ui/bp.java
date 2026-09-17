@@ -8,33 +8,33 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class bp implements View.OnClickListener {
-    public final int f32563a;
-    public final kp f32564b;
+    public final int f32543a;
+    public final kp f32544b;
 
     public bp(kp kpVar, int i10) {
-        this.f32563a = i10;
-        this.f32564b = kpVar;
+        this.f32543a = i10;
+        this.f32544b = kpVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f32563a;
-        kp kpVar = this.f32564b;
+        int i10 = this.f32543a;
+        kp kpVar = this.f32544b;
         switch (i10) {
             case 0:
                 TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kpVar.getParentActivity());
                 String string = LocaleController.getString(R.string.AppName);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18437a;
-                b2Var.R = string;
-                if (kpVar.f35211a0) {
-                    b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, kpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
+                c2Var.R = string;
+                if (kpVar.f35318a0) {
+                    c2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, kpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
                 } else {
-                    b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", R.string.RevokeLinkAlert, kpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                    c2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", R.string.RevokeLinkAlert, kpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
                 }
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                 alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new x5(13, kpVar, currentChannel));
-                kpVar.showDialog(b2Var);
+                kpVar.showDialog(c2Var);
                 return;
             case 1:
                 if (!kpVar.V) {
@@ -45,7 +45,7 @@ public final class bp implements View.OnClickListener {
                 return;
             case 2:
                 if (kpVar.V) {
-                    if (!kpVar.f35215c0) {
+                    if (!kpVar.f35322c0) {
                         kpVar.Z();
                         return;
                     }
@@ -55,13 +55,13 @@ public final class bp implements View.OnClickListener {
                 }
                 return;
             case 3:
-                yh0 yh0Var = new yh0(kpVar.Z, 0L, 0);
-                yh0Var.g0(kpVar.Y, kpVar.f35225l0);
-                kpVar.presentFragment(yh0Var);
+                ai0 ai0Var = new ai0(kpVar.Z, 0L, 0);
+                ai0Var.g0(kpVar.Y, kpVar.f35332l0);
+                kpVar.presentFragment(ai0Var);
                 return;
             default:
-                boolean z10 = !kpVar.f35213b0;
-                kpVar.f35213b0 = z10;
+                boolean z10 = !kpVar.f35320b0;
+                kpVar.f35320b0 = z10;
                 ((org.telegram.ui.Cells.w8) view).setChecked(z10);
                 return;
         }

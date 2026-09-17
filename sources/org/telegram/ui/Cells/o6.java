@@ -10,18 +10,18 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.c90;
 import org.telegram.ui.Components.z80;
 public final class o6 extends FrameLayout {
-    public final z80 f20564a;
-    public final c90 f20565b;
-    public final CheckBoxSquare f20566c;
+    public final z80 f20574a;
+    public final c90 f20575b;
+    public final CheckBoxSquare f20576c;
 
-    public o6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public o6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int i10;
         int i11;
         float f7;
         float f10;
         CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
-        this.f20566c = checkBoxSquare;
+        this.f20576c = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);
         checkBoxSquare.setFocusableInTouchMode(false);
@@ -33,11 +33,11 @@ public final class o6 extends FrameLayout {
         }
         addView(checkBoxSquare, w7.x5.d(18, 18.0f, i10 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         z80 z80Var = new z80(this);
-        this.f20564a = z80Var;
-        c90 c90Var = new c90(context, z80Var, e6Var);
-        this.f20565b = c90Var;
-        c90Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, e6Var));
-        c90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J6, e6Var));
+        this.f20574a = z80Var;
+        c90 c90Var = new c90(context, z80Var, f6Var);
+        this.f20575b = c90Var;
+        c90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        c90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, f6Var));
         c90Var.setTextSize(1, 15.0f);
         c90Var.setMaxLines(2);
         if (LocaleController.isRTL) {
@@ -64,20 +64,20 @@ public final class o6 extends FrameLayout {
     }
 
     public CheckBoxSquare getCheckBox() {
-        return this.f20566c;
+        return this.f20576c;
     }
 
     public TextView getTextView() {
-        return this.f20565b;
+        return this.f20575b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        z80 z80Var = this.f20564a;
+        z80 z80Var = this.f20574a;
         if (z80Var != null) {
             canvas.save();
-            c90 c90Var = this.f20565b;
+            c90 c90Var = this.f20575b;
             canvas.translate(c90Var.getLeft(), c90Var.getTop());
             if (z80Var.f(canvas)) {
                 invalidate();
@@ -87,10 +87,10 @@ public final class o6 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f20566c.a(z10, true);
+        this.f20576c.a(z10, true);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f20565b.setText(charSequence);
+        this.f20575b.setText(charSequence);
     }
 }

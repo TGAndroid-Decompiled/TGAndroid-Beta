@@ -4,19 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.OrientationEventListener;
 public final class tu extends OrientationEventListener {
-    public final vu f28187a;
+    public final vu f28206a;
 
     public tu(vu vuVar, Context context) {
         super(context);
-        this.f28187a = vuVar;
+        this.f28206a = vuVar;
     }
 
     @Override
     public final void onOrientationChanged(int i10) {
         Activity activity;
-        vu vuVar = this.f28187a;
-        c91 c91Var = vuVar.f29431c;
-        if (vuVar.F != null && c91Var.getVisibility() == 0 && (activity = vuVar.f29434r) != null && c91Var.T && vuVar.M) {
+        vu vuVar = this.f28206a;
+        d91 d91Var = vuVar.f29410c;
+        if (vuVar.F != null && d91Var.getVisibility() == 0 && (activity = vuVar.f29413r) != null && d91Var.T && vuVar.M) {
             if (i10 >= 240 && i10 <= 300) {
                 vuVar.N = true;
             } else if (vuVar.N && i10 > 0) {

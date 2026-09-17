@@ -5,7 +5,7 @@ import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-public final class zg implements org.telegram.ui.ActionBar.a2, Vector.TLDeserializer {
+public final class zg implements org.telegram.ui.ActionBar.b2, Vector.TLDeserializer {
     public static NotificationChannel a(Object obj) {
         return (NotificationChannel) obj;
     }
@@ -16,7 +16,7 @@ public final class zg implements org.telegram.ui.ActionBar.a2, Vector.TLDeserial
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        SharedConfig.lambda$checkSdCard$1(b2Var, i10);
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        SharedConfig.lambda$checkSdCard$1(c2Var, i10);
     }
 }

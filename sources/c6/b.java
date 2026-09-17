@@ -9,34 +9,34 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new v(4);
-    public final long f3951a;
-    public final String f3952b;
-    public final long f3953c;
+    public final long f3956a;
+    public final String f3957b;
+    public final long f3958c;
     public final boolean d;
     public final String[] e;
-    public final boolean f3954f;
+    public final boolean f3959f;
     public final boolean h;
 
     public b(long j3, String str, long j10, boolean z10, String[] strArr, boolean z11, boolean z12) {
-        this.f3951a = j3;
-        this.f3952b = str;
-        this.f3953c = j10;
+        this.f3956a = j3;
+        this.f3957b = str;
+        this.f3958c = j10;
         this.d = z10;
         this.e = strArr;
-        this.f3954f = z11;
+        this.f3959f = z11;
         this.h = z12;
     }
 
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("id", this.f3952b);
-            long j3 = this.f3951a;
-            Pattern pattern = g6.a.f9423a;
+            jSONObject.put("id", this.f3957b);
+            long j3 = this.f3956a;
+            Pattern pattern = g6.a.f9428a;
             jSONObject.put("position", j3 / 1000.0d);
             jSONObject.put("isWatched", this.d);
-            jSONObject.put("isEmbedded", this.f3954f);
-            jSONObject.put("duration", this.f3953c / 1000.0d);
+            jSONObject.put("isEmbedded", this.f3959f);
+            jSONObject.put("duration", this.f3958c / 1000.0d);
             jSONObject.put("expanded", this.h);
             String[] strArr = this.e;
             if (strArr != null) {
@@ -59,29 +59,29 @@ public final class b extends o6.a {
             return false;
         }
         b bVar = (b) obj;
-        if (g6.a.d(this.f3952b, bVar.f3952b) && this.f3951a == bVar.f3951a && this.f3953c == bVar.f3953c && this.d == bVar.d && Arrays.equals(this.e, bVar.e) && this.f3954f == bVar.f3954f && this.h == bVar.h) {
+        if (g6.a.d(this.f3957b, bVar.f3957b) && this.f3956a == bVar.f3956a && this.f3958c == bVar.f3958c && this.d == bVar.d && Arrays.equals(this.e, bVar.e) && this.f3959f == bVar.f3959f && this.h == bVar.h) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f3952b.hashCode();
+        return this.f3957b.hashCode();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.e0.q(parcel, 20293);
         w7.e0.s(parcel, 2, 8);
-        parcel.writeLong(this.f3951a);
-        w7.e0.l(parcel, 3, this.f3952b);
+        parcel.writeLong(this.f3956a);
+        w7.e0.l(parcel, 3, this.f3957b);
         w7.e0.s(parcel, 4, 8);
-        parcel.writeLong(this.f3953c);
+        parcel.writeLong(this.f3958c);
         w7.e0.s(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
         w7.e0.m(parcel, 6, this.e);
         w7.e0.s(parcel, 7, 4);
-        parcel.writeInt(this.f3954f ? 1 : 0);
+        parcel.writeInt(this.f3959f ? 1 : 0);
         w7.e0.s(parcel, 8, 4);
         parcel.writeInt(this.h ? 1 : 0);
         w7.e0.r(parcel, q6);

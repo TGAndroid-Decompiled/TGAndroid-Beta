@@ -3,14 +3,14 @@ package vg;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import w7.x5;
 public class d extends c {
-    public static final int f44322s = 0;
-    public int f44323r;
+    public static final int f44345s = 0;
+    public int f44346r;
 
-    public d(Context context, e6 e6Var) {
-        super(context, e6Var);
+    public d(Context context, f6 f6Var) {
+        super(context, f6Var);
         this.d.setTypeface(AndroidUtilities.bold());
     }
 
@@ -34,7 +34,7 @@ public class d extends c {
         } else {
             i10 = 3;
         }
-        this.f44309c.setLayoutParams(x5.d(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        this.f44332c.setLayoutParams(x5.d(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -74,10 +74,10 @@ public class d extends c {
         if (LocaleController.isRTL) {
             i13 = 5;
         }
-        this.f44310f.setLayoutParams(x5.d(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f44333f.setLayoutParams(x5.d(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f44323r;
+        return this.f44346r;
     }
 }

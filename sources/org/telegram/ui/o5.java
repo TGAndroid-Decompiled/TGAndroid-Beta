@@ -27,17 +27,17 @@ public final class o5 extends og.b {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        return ((u5) this.d.f38347a0.get(c1Var.b())).f15534b;
+        return ((u5) this.d.f38276a0.get(c1Var.b())).f15544b;
     }
 
     @Override
     public final int h() {
-        return this.d.f38347a0.size();
+        return this.d.f38276a0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((u5) this.d.f38347a0.get(i10)).f15533a;
+        return ((u5) this.d.f38276a0.get(i10)).f15543a;
     }
 
     @Override
@@ -48,15 +48,15 @@ public final class o5 extends og.b {
         int i13;
         v5 v5Var = this.d;
         int i14 = v5Var.Q;
-        TLRPC.Chat chat = v5Var.f38353g0;
-        ArrayList arrayList = v5Var.f38347a0;
-        int i15 = c1Var.f42678f;
-        View view = c1Var.f42675a;
+        TLRPC.Chat chat = v5Var.f38282g0;
+        ArrayList arrayList = v5Var.f38276a0;
+        int i15 = c1Var.f42700f;
+        View view = c1Var.f42697a;
         if (i15 != 4 && i15 != 14 && i15 != 15) {
             if (i15 != 1 && i15 != 12 && i15 != 16) {
                 if (i15 == 0) {
-                    sa1 sa1Var = (sa1) view;
-                    sa1Var.a(Integer.toString(v5Var.R.level), 0, null, LocaleController.getString(R.string.BoostsLevel2));
+                    ua1 ua1Var = (ua1) view;
+                    ua1Var.a(Integer.toString(v5Var.R.level), 0, null, LocaleController.getString(R.string.BoostsLevel2));
                     TL_stats.TL_statsPercentValue tL_statsPercentValue = v5Var.R.premium_audience;
                     if (tL_statsPercentValue != null) {
                         double d = tL_statsPercentValue.total;
@@ -68,11 +68,11 @@ public final class o5 extends og.b {
                             } else {
                                 i13 = R.string.PremiumMembers;
                             }
-                            sa1Var.a(str, 1, concat, LocaleController.getString(i13));
-                            sa1Var.a(String.valueOf(v5Var.R.boosts), 2, null, LocaleController.getString(R.string.BoostsExisting));
+                            ua1Var.a(str, 1, concat, LocaleController.getString(i13));
+                            ua1Var.a(String.valueOf(v5Var.R.boosts), 2, null, LocaleController.getString(R.string.BoostsExisting));
                             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = v5Var.R;
-                            sa1Var.a(String.valueOf(Math.max(0, tL_premium_boostsStatus.next_level_boosts - tL_premium_boostsStatus.boosts)), 3, null, LocaleController.getString(R.string.BoostsToLevel));
-                            sa1Var.setPadding(AndroidUtilities.dp(23.0f), sa1Var.getPaddingTop(), AndroidUtilities.dp(23.0f), sa1Var.getPaddingBottom());
+                            ua1Var.a(String.valueOf(Math.max(0, tL_premium_boostsStatus.next_level_boosts - tL_premium_boostsStatus.boosts)), 3, null, LocaleController.getString(R.string.BoostsToLevel));
+                            ua1Var.setPadding(AndroidUtilities.dp(23.0f), ua1Var.getPaddingTop(), AndroidUtilities.dp(23.0f), ua1Var.getPaddingBottom());
                             return;
                         }
                     }
@@ -81,11 +81,11 @@ public final class o5 extends og.b {
                     } else {
                         i12 = R.string.PremiumMembers;
                     }
-                    sa1Var.a("~0", 1, "0%", LocaleController.getString(i12));
-                    sa1Var.a(String.valueOf(v5Var.R.boosts), 2, null, LocaleController.getString(R.string.BoostsExisting));
+                    ua1Var.a("~0", 1, "0%", LocaleController.getString(i12));
+                    ua1Var.a(String.valueOf(v5Var.R.boosts), 2, null, LocaleController.getString(R.string.BoostsExisting));
                     TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = v5Var.R;
-                    sa1Var.a(String.valueOf(Math.max(0, tL_premium_boostsStatus2.next_level_boosts - tL_premium_boostsStatus2.boosts)), 3, null, LocaleController.getString(R.string.BoostsToLevel));
-                    sa1Var.setPadding(AndroidUtilities.dp(23.0f), sa1Var.getPaddingTop(), AndroidUtilities.dp(23.0f), sa1Var.getPaddingBottom());
+                    ua1Var.a(String.valueOf(Math.max(0, tL_premium_boostsStatus2.next_level_boosts - tL_premium_boostsStatus2.boosts)), 3, null, LocaleController.getString(R.string.BoostsToLevel));
+                    ua1Var.setPadding(AndroidUtilities.dp(23.0f), ua1Var.getPaddingTop(), AndroidUtilities.dp(23.0f), ua1Var.getPaddingBottom());
                     return;
                 } else if (i15 == 5) {
                     TL_stories.Boost boost = ((u5) arrayList.get(i10)).d;
@@ -96,18 +96,18 @@ public final class o5 extends og.b {
                     } else {
                         formatString = LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(boost.expires));
                     }
-                    bVar.d(user, ContactsController.formatName(user), formatString, !((u5) arrayList.get(i10)).f37858f);
+                    bVar.d(user, ContactsController.formatName(user), formatString, !((u5) arrayList.get(i10)).f37938f);
                     bVar.setStatus(boost);
                     bVar.setAvatarPadding(5);
                     return;
                 } else if (i15 == 6) {
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                    e9Var.setText(((u5) arrayList.get(i10)).f37857c);
-                    e9Var.setTextColor(org.telegram.ui.ActionBar.i6.l1(0.875f, -1));
+                    e9Var.setText(((u5) arrayList.get(i10)).f37937c);
+                    e9Var.setTextColor(org.telegram.ui.ActionBar.j6.l1(0.875f, -1));
                     return;
                 } else if (i15 == 9) {
                     org.telegram.ui.Cells.x4 x4Var = (org.telegram.ui.Cells.x4) view;
-                    if (v5Var.f38348b0 == 0) {
+                    if (v5Var.f38277b0 == 0) {
                         x4Var.b(LocaleController.formatPluralString("BoostingShowMoreBoosts", v5Var.X, new Object[0]), R.drawable.arrow_more, 5, false);
                         return;
                     } else {
@@ -115,12 +115,12 @@ public final class o5 extends og.b {
                         return;
                     }
                 } else if (i15 == 3) {
-                    ((org.telegram.ui.Components.v80) view).setLink(((u5) arrayList.get(i10)).f37857c);
+                    ((org.telegram.ui.Components.v80) view).setLink(((u5) arrayList.get(i10)).f37937c);
                     return;
                 } else if (i15 == 11) {
                     u5 u5Var = (u5) arrayList.get(i10);
                     TL_stories.PrepaidGiveaway prepaidGiveaway = u5Var.e;
-                    boolean z10 = u5Var.f37858f;
+                    boolean z10 = u5Var.f37938f;
                     yg.c cVar = (yg.c) view;
                     if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                         cVar.d(prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, new Object[0])), !z10);
@@ -132,14 +132,14 @@ public final class o5 extends og.b {
                     cVar.setAvatarPadding(5);
                     return;
                 } else if (i15 == 13) {
-                    if (v5Var.T.getTag() == null || ((Integer) v5Var.T.getTag()).intValue() != Objects.hash(Integer.valueOf(v5Var.m0), Integer.valueOf(v5Var.f38358l0))) {
-                        v5Var.T.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(v5Var.m0), Integer.valueOf(v5Var.f38358l0))));
+                    if (v5Var.T.getTag() == null || ((Integer) v5Var.T.getTag()).intValue() != Objects.hash(Integer.valueOf(v5Var.m0), Integer.valueOf(v5Var.f38287l0))) {
+                        v5Var.T.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(v5Var.m0), Integer.valueOf(v5Var.f38287l0))));
                         v5Var.T.g();
                         v5Var.T.a(0, LocaleController.formatPluralString("BoostingBoostsCount", v5Var.m0, new Object[0]), null);
-                        if (MessagesController.getInstance(i14).giveawayGiftsPurchaseAvailable && (i11 = v5Var.f38358l0) > 0 && i11 != v5Var.m0) {
+                        if (MessagesController.getInstance(i14).giveawayGiftsPurchaseAvailable && (i11 = v5Var.f38287l0) > 0 && i11 != v5Var.m0) {
                             v5Var.T.a(1, LocaleController.formatPluralString("BoostingGiftsCount", i11, new Object[0]), null);
                         }
-                        v5Var.T.setInitialTabId(v5Var.f38348b0);
+                        v5Var.T.setInitialTabId(v5Var.f38277b0);
                         v5Var.T.c();
                         return;
                     }
@@ -149,9 +149,9 @@ public final class o5 extends og.b {
                 }
             }
             kg.c cVar2 = (kg.c) view;
-            cVar2.setTitle(((u5) arrayList.get(i10)).f37857c);
+            cVar2.setTitle(((u5) arrayList.get(i10)).f37937c);
             cVar2.c(false);
-            if (c1Var.f42678f == 12) {
+            if (c1Var.f42700f == 12) {
                 cVar2.setPadding(AndroidUtilities.dp(3.0f), cVar2.getPaddingTop(), cVar2.getPaddingRight(), cVar2.getPaddingBottom());
             }
         }
@@ -161,13 +161,13 @@ public final class o5 extends og.b {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View a7Var;
         ai.x5 x5Var;
-        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.ActionBar.f6 f6Var;
         int i11;
-        org.telegram.ui.ActionBar.e6 e6Var2;
+        org.telegram.ui.ActionBar.f6 f6Var2;
         v5 v5Var = this.d;
         switch (i10) {
             case 0:
-                x5Var = new sa1(v5Var.getParentActivity(), 2);
+                x5Var = new ua1(v5Var.getParentActivity(), 2);
                 break;
             case 1:
             case 16:
@@ -182,7 +182,7 @@ public final class o5 extends og.b {
             case 3:
                 org.telegram.ui.Components.v80 v80Var = new org.telegram.ui.Components.v80(v5Var.getParentActivity(), v5Var, null, false, false);
                 v80Var.d.setVisibility(8);
-                v80Var.f28654a.setGravity(17);
+                v80Var.f28647a.setGravity(17);
                 v80Var.h.setVisibility(8);
                 v80Var.v.setVisibility(8);
                 v80Var.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
@@ -196,8 +196,8 @@ public final class o5 extends og.b {
                 break;
             case 6:
                 Context context = viewGroup.getContext();
-                e6Var = ((org.telegram.ui.ActionBar.n2) v5Var).resourceProvider;
-                a7Var = new org.telegram.ui.Cells.e9(context, 20, e6Var);
+                f6Var = ((org.telegram.ui.ActionBar.o2) v5Var).resourceProvider;
+                a7Var = new org.telegram.ui.Cells.e9(context, 20, f6Var);
                 x5Var = a7Var;
                 break;
             case 7:
@@ -206,27 +206,27 @@ public final class o5 extends og.b {
             case 8:
                 ai.x5 x5Var2 = new ai.x5(v5Var.getParentActivity(), 7);
                 TextView textView = new TextView(v5Var.getParentActivity());
-                if (ChatObject.isChannelAndNotMegaGroup(v5Var.f38353g0)) {
+                if (ChatObject.isChannelAndNotMegaGroup(v5Var.f38282g0)) {
                     i11 = R.string.NoBoostersHint;
                 } else {
                     i11 = R.string.NoBoostersGroupHint;
                 }
                 textView.setText(LocaleController.getString(i11));
                 textView.setTextSize(1, 14.0f);
-                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.i6.f19218y6, null, false, textView, 17);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f19244y6, null, false, textView, 17);
                 x5Var2.addView(textView, w7.x5.d(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
                 x5Var = x5Var2;
                 break;
             case 9:
                 n5 n5Var = new n5(v5Var.getParentActivity(), 0);
-                n5Var.a(org.telegram.ui.ActionBar.i6.f19166v6, org.telegram.ui.ActionBar.i6.f19148u6);
+                n5Var.a(org.telegram.ui.ActionBar.j6.f19192v6, org.telegram.ui.ActionBar.j6.f19174u6);
                 x5Var = n5Var;
                 break;
             case 10:
                 org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(v5Var.getParentActivity());
                 r8Var.m(R.drawable.msg_gift_premium, LocaleController.formatString(R.string.BoostingGetBoostsViaGifts, new Object[0]), false);
-                r8Var.f20810s = 64;
-                int i12 = org.telegram.ui.ActionBar.i6.q6;
+                r8Var.f20820s = 64;
+                int i12 = org.telegram.ui.ActionBar.j6.q6;
                 r8Var.e(i12, i12);
                 x5Var = r8Var;
                 break;
@@ -240,11 +240,11 @@ public final class o5 extends og.b {
                 break;
             case 13:
                 Activity parentActivity = v5Var.getParentActivity();
-                e6Var2 = ((org.telegram.ui.ActionBar.n2) v5Var).resourceProvider;
-                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(parentActivity, e6Var2);
+                f6Var2 = ((org.telegram.ui.ActionBar.o2) v5Var).resourceProvider;
+                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(parentActivity, f6Var2);
                 v5Var.T = scrollSlidingTextTabStrip;
-                int i13 = org.telegram.ui.ActionBar.i6.Fh;
-                int i14 = org.telegram.ui.ActionBar.i6.Eh;
+                int i13 = org.telegram.ui.ActionBar.j6.Fh;
+                int i14 = org.telegram.ui.ActionBar.j6.Eh;
                 scrollSlidingTextTabStrip.L = i13;
                 scrollSlidingTextTabStrip.M = i14;
                 scrollSlidingTextTabStrip.e();

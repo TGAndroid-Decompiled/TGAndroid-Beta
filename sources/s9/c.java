@@ -9,15 +9,15 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.messaging.t;
 import com.google.firebase.messaging.w;
 import java.util.concurrent.atomic.AtomicMarkableReference;
-import m.q3;
+import m.p3;
 import w9.m;
 import w9.o;
 import w9.r;
 public final class c {
-    public final o f42879a;
+    public final o f42901a;
 
     public c(o oVar) {
-        this.f42879a = oVar;
+        this.f42901a = oVar;
     }
 
     public final void a(Throwable th2) {
@@ -25,7 +25,7 @@ public final class c {
             Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
             return;
         }
-        m mVar = this.f42879a.f44955f;
+        m mVar = this.f42901a.f44978f;
         Thread currentThread = Thread.currentThread();
         mVar.getClass();
         long currentTimeMillis = System.currentTimeMillis();
@@ -36,16 +36,16 @@ public final class c {
     }
 
     public final void b() {
-        o oVar = this.f42879a;
+        o oVar = this.f42901a;
         Boolean bool = Boolean.TRUE;
-        r rVar = oVar.f44953b;
+        r rVar = oVar.f44976b;
         synchronized (rVar) {
-            rVar.f44975f = false;
-            rVar.f44976g = bool;
-            SharedPreferences.Editor edit = rVar.f44972a.edit();
+            rVar.f44998f = false;
+            rVar.f44999g = bool;
+            SharedPreferences.Editor edit = rVar.f44995a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (rVar.f44974c) {
+            synchronized (rVar.f44997c) {
                 if (rVar.a()) {
                     if (!rVar.e) {
                         rVar.d.trySetResult(null);
@@ -60,12 +60,12 @@ public final class c {
     }
 
     public final void c(String str, String str2) {
-        m mVar = this.f42879a.f44955f;
+        m mVar = this.f42901a.f44978f;
         mVar.getClass();
         try {
             ((com.google.firebase.messaging.m) mVar.d.d).u(str, str2);
         } catch (IllegalArgumentException e) {
-            Context context = mVar.f44936a;
+            Context context = mVar.f44959a;
             if (context != null && (context.getApplicationInfo().flags & 2) != 0) {
                 throw e;
             }
@@ -75,12 +75,12 @@ public final class c {
 
     public final void d(String str) {
         boolean equals;
-        q3 q3Var = this.f42879a.f44955f.d;
-        q3Var.getClass();
+        p3 p3Var = this.f42901a.f44978f.d;
+        p3Var.getClass();
         String b10 = x9.d.b(1024, str);
-        synchronized (((AtomicMarkableReference) q3Var.h)) {
+        synchronized (((AtomicMarkableReference) p3Var.h)) {
             try {
-                String str2 = (String) ((AtomicMarkableReference) q3Var.h).getReference();
+                String str2 = (String) ((AtomicMarkableReference) p3Var.h).getReference();
                 if (b10 == null) {
                     if (str2 == null) {
                         equals = true;
@@ -93,8 +93,8 @@ public final class c {
                 if (equals) {
                     return;
                 }
-                ((AtomicMarkableReference) q3Var.h).set(b10, true);
-                ((t) q3Var.f14289b).k(new g(q3Var, 1));
+                ((AtomicMarkableReference) p3Var.h).set(b10, true);
+                ((t) p3Var.f14293b).k(new g(p3Var, 1));
             } finally {
             }
         }

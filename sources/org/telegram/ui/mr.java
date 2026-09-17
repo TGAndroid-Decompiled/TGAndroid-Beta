@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import android.app.Activity;
 public final class mr extends org.telegram.ui.Components.n20 {
-    public final ur f35794b;
+    public final ur f35872b;
 
     public mr(ur urVar, Activity activity, ur urVar2) {
         super(activity, urVar2);
-        this.f35794b = urVar;
+        this.f35872b = urVar;
     }
 
     @Override
     public final void n() {
-        ur urVar = this.f35794b;
-        urVar.getMessagesController().convertToGigaGroup(urVar.getParentActivity(), urVar.f38130r, urVar, new y0(this, 24));
+        ur urVar = this.f35872b;
+        urVar.getMessagesController().convertToGigaGroup(urVar.getParentActivity(), urVar.f38154r, urVar, new y0(this, 25));
     }
 
     @Override

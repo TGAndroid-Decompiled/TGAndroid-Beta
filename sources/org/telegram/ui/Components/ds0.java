@@ -1,47 +1,34 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class ds0 extends s4.s0 {
-    public final ur0 f23392a;
-    public final vr0 f23393b;
-    public final yu0 f23394c;
+import android.os.Bundle;
+public final class ds0 extends org.telegram.ui.bo {
+    public boolean Qc;
+    public final int Rc;
+    public final zu0 Sc;
 
-    public ds0(yu0 yu0Var, ur0 ur0Var, vr0 vr0Var) {
-        this.f23394c = yu0Var;
-        this.f23392a = ur0Var;
-        this.f23393b = vr0Var;
+    public ds0(zu0 zu0Var, Bundle bundle, int i10) {
+        super(bundle);
+        this.Sc = zu0Var;
+        this.Rc = i10;
+        this.Qc = true;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
+        zu0 zu0Var = this.Sc;
+        ku0 ku0Var = zu0Var.S;
+        if (this.Qc) {
+            if (this.f32327j0 != null) {
+                la("");
+                this.f32327j0.H(ku0Var.f25690w, false);
+            }
+            org.telegram.ui.zk zkVar = this.f32388o1;
+            if (zkVar != null) {
+                zkVar.e(ku0Var.f25691x, false);
+            }
+            zu0Var.f30656v1.getMediaDataController().portSavedSearchResults(getClassGuid(), ku0Var.f25691x, ku0Var.f25690w, ku0Var.f25687n, ku0Var.h, this.Rc, ku0Var.v, ku0Var.f25689s);
+            this.Qc = false;
         }
-        this.f23394c.f30347b1 = z10;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        int i13;
-        yu0 yu0Var = this.f23394c;
-        nu0[] nu0VarArr = yu0Var.f30388t1;
-        vr0 vr0Var = this.f23393b;
-        ur0 ur0Var = this.f23392a;
-        yu0Var.G(ur0Var, (ll0) recyclerView, vr0Var);
-        if (i11 != 0 && ((i13 = yu0Var.f30368k0[0].F) == 0 || i13 == 5)) {
-            nu0VarArr[0].f26576a.isEmpty();
-        }
-        if (i11 != 0 && ((i12 = ur0Var.F) == 0 || yu0.p0(i12))) {
-            yu0.q(ur0Var, nu0VarArr, true);
-        }
-        ur0Var.h.L0(true);
-        if (ur0Var.G != null) {
-            ur0Var.invalidate();
-        }
-        yu0Var.o0();
+        super.onTransitionAnimationStart(z10, z11);
     }
 }

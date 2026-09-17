@@ -1,10 +1,10 @@
 package o5;
 public final class g {
-    public final long f15489a;
-    public final long f15490b;
+    public final long f15499a;
+    public final long f15500b;
 
     public g(long j3, long j10) {
-        this.f15489a = j3;
-        this.f15490b = j10;
+        this.f15499a = j3;
+        this.f15500b = j10;
     }
 }

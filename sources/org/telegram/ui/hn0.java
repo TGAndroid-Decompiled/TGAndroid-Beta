@@ -1,46 +1,25 @@
 package org.telegram.ui;
+public final class hn0 implements org.telegram.ui.ActionBar.b2 {
+    public final int f34312a;
+    public final mn0 f34313b;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class hn0 extends TextView {
-    public final int f34318a;
-
-    public hn0(Context context, int i10) {
-        super(context);
-        this.f34318a = i10;
+    public hn0(mn0 mn0Var, int i10) {
+        this.f34312a = i10;
+        this.f34313b = mn0Var;
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f34318a) {
-            case 3:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f34318a) {
+    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f34312a) {
             case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                mn0 mn0Var = this.f34313b;
+                mn0Var.c(true);
+                mn0Var.Q.finishFragment();
                 return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
-                return;
-            case 3:
             default:
-                super.onMeasure(i10, i11);
-                return;
-            case 4:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+                mn0 mn0Var2 = this.f34313b;
+                mn0Var2.c(true);
+                mn0Var2.Q.K1(null, 0, true);
                 return;
         }
     }

@@ -4,22 +4,22 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.widget.AdapterView;
 public final class b implements AdapterView.OnItemClickListener {
-    public final f f9200a;
-    public final c f9201b;
+    public final f f9205a;
+    public final c f9206b;
 
     public b(c cVar, f fVar) {
-        this.f9201b = cVar;
-        this.f9200a = fVar;
+        this.f9206b = cVar;
+        this.f9205a = fVar;
     }
 
     @Override
     public final void onItemClick(AdapterView adapterView, View view, int i10, long j3) {
-        c cVar = this.f9201b;
-        DialogInterface.OnClickListener onClickListener = cVar.f9229j;
-        f fVar = this.f9200a;
-        onClickListener.onClick(fVar.f9236b, i10);
-        if (!cVar.f9231l) {
-            fVar.f9236b.dismiss();
+        c cVar = this.f9206b;
+        DialogInterface.OnClickListener onClickListener = cVar.f9234j;
+        f fVar = this.f9205a;
+        onClickListener.onClick(fVar.f9241b, i10);
+        if (!cVar.f9236l) {
+            fVar.f9241b.dismiss();
         }
     }
 }

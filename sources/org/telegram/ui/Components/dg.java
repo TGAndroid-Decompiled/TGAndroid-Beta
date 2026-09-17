@@ -9,23 +9,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class dg implements org.telegram.ui.bv0 {
-    public boolean f23318a;
-    public final Object f23319b;
-    public final Object f23320c;
+public final class dg implements org.telegram.ui.dv0 {
+    public boolean f23345a;
+    public final Object f23346b;
+    public final Object f23347c;
     public final MediaController.PhotoEntry d;
     public final fg e;
 
     public dg(fg fgVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
         this.e = fgVar;
-        this.f23319b = obj;
-        this.f23320c = obj2;
+        this.f23346b = obj;
+        this.f23347c = obj2;
         this.d = photoEntry;
     }
 
     @Override
     public final boolean A() {
-        return this.f23318a;
+        return this.f23345a;
     }
 
     @Override
@@ -34,13 +34,13 @@ public final class dg implements org.telegram.ui.bv0 {
     }
 
     @Override
-    public final org.telegram.ui.dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final org.telegram.ui.fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         return null;
     }
 
     @Override
     public final void F(boolean z10) {
-        this.f23318a = z10;
+        this.f23345a = z10;
     }
 
     @Override
@@ -137,8 +137,8 @@ public final class dg implements org.telegram.ui.bv0 {
     public final void d() {
         ci.g gVar;
         jd f12 = PhotoViewer.t1().f1();
-        if (f12 != null && (gVar = f12.f4990f) != null) {
-            eu euVar = gVar.f25422a;
+        if (f12 != null && (gVar = f12.f4995f) != null) {
+            eu euVar = gVar.f25430a;
             euVar.requestFocus();
             AndroidUtilities.showKeyboard(euVar);
         }
@@ -171,7 +171,7 @@ public final class dg implements org.telegram.ui.bv0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.e.B(null, this.f23319b, null, this.f23320c, z10, i11, i12, this.d, this.f23318a);
+        this.e.B(null, this.f23346b, null, this.f23347c, z10, i11, i12, this.d, this.f23345a);
     }
 
     @Override

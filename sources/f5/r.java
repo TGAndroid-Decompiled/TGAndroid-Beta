@@ -6,16 +6,16 @@ import java.util.List;
 import k2.c0;
 import w7.s6;
 public final class r extends com.googlecode.mp4parser.c {
-    public static final c0 f8939f;
+    public static final c0 f8944f;
     public static final c0 h;
-    public static final c0 f8940n;
+    public static final c0 f8945n;
     public List e;
 
     static {
         re.a aVar = new re.a(r.class, "SampleToChunkBox.java");
-        f8939f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
+        f8944f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
         h = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "java.util.List", "entries", "void"));
-        f8940n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
+        f8945n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("blowup", "com.coremedia.iso.boxes.SampleToChunkBox", "int", "chunkCount", "[J"));
     }
 
@@ -34,9 +34,9 @@ public final class r extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt(this.e.size());
         for (q qVar : this.e) {
-            byteBuffer.putInt((int) qVar.f8936a);
-            byteBuffer.putInt((int) qVar.f8937b);
-            byteBuffer.putInt((int) qVar.f8938c);
+            byteBuffer.putInt((int) qVar.f8941a);
+            byteBuffer.putInt((int) qVar.f8942b);
+            byteBuffer.putInt((int) qVar.f8943c);
         }
     }
 
@@ -46,7 +46,7 @@ public final class r extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        com.google.firebase.messaging.t b10 = re.a.b(f8940n, this, this);
+        com.google.firebase.messaging.t b10 = re.a.b(f8945n, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         return "SampleToChunkBox[entryCount=" + this.e.size() + "]";

@@ -4,25 +4,25 @@ import b2.r0;
 import e9.a1;
 import java.util.List;
 public final class d0 implements o {
-    public final int f3746a;
-    public final int f3747b;
-    public final String f3748c;
+    public final int f3751a;
+    public final int f3752b;
+    public final String f3753c;
     public int d;
     public int e;
-    public q f3749f;
-    public h0 f3750g;
+    public q f3754f;
+    public h0 f3755g;
 
     public d0(int i10, int i11, String str) {
-        this.f3746a = i10;
-        this.f3747b = i11;
-        this.f3748c = str;
+        this.f3751a = i10;
+        this.f3752b = i11;
+        this.f3753c = str;
     }
 
     @Override
     public final boolean a(p pVar) {
         boolean z10;
-        int i10 = this.f3747b;
-        int i11 = this.f3746a;
+        int i10 = this.f3752b;
+        int i11 = this.f3751a;
         if (i11 != -1 && i10 != -1) {
             z10 = true;
         } else {
@@ -30,7 +30,7 @@ public final class d0 implements o {
         }
         e2.d.g(z10);
         e2.v vVar = new e2.v(i10);
-        ((l) pVar).h(vVar.f7929a, 0, i10, false);
+        ((l) pVar).h(vVar.f7934a, 0, i10, false);
         if (vVar.D() == i11) {
             return true;
         }
@@ -39,16 +39,16 @@ public final class d0 implements o {
 
     @Override
     public final void g(q qVar) {
-        this.f3749f = qVar;
+        this.f3754f = qVar;
         h0 Z1 = qVar.Z1(1024, 4);
-        this.f3750g = Z1;
+        this.f3755g = Z1;
         b2.r rVar = new b2.r();
-        String str = this.f3748c;
-        rVar.f3247p = r0.n(str);
-        rVar.f3248q = r0.n(str);
+        String str = this.f3753c;
+        rVar.f3252p = r0.n(str);
+        rVar.f3253q = r0.n(str);
         hg.k0.u(rVar, Z1);
-        this.f3749f.e1();
-        this.f3749f.X1(new Object());
+        this.f3754f.e1();
+        this.f3754f.X1(new Object());
         this.e = 1;
     }
 
@@ -63,7 +63,7 @@ public final class d0 implements o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = e9.i0.f8079b;
+        e9.g0 g0Var = e9.i0.f8084b;
         return a1.e;
     }
 
@@ -76,12 +76,12 @@ public final class d0 implements o {
             }
             throw new IllegalStateException();
         }
-        h0 h0Var = this.f3750g;
+        h0 h0Var = this.f3755g;
         h0Var.getClass();
         int a2 = h0Var.a(pVar, 1024, true);
         if (a2 == -1) {
             this.e = 2;
-            this.f3750g.c(0L, 1, this.d, 0, null);
+            this.f3755g.c(0L, 1, this.d, 0, null);
             this.d = 0;
             return 0;
         }

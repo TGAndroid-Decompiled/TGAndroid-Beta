@@ -2,7 +2,7 @@ package ee;
 
 import v7.t7;
 public abstract class u {
-    public static final int f8195a = 0;
+    public static final int f8200a = 0;
 
     static {
         Object a2;

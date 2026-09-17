@@ -17,45 +17,45 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.uj;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.vj;
 import w7.p;
 public final class e extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
     public static final RectF H = new RectF();
     public ViewTreeObserver E;
     public boolean F;
     public TextPaint G;
-    public final boolean f10508a;
-    public final RectF f10509b;
-    public final RectF f10510c;
+    public final boolean f10513a;
+    public final RectF f10514b;
+    public final RectF f10515c;
     public long d;
     public int e;
-    public ViewGroup f10511f;
+    public ViewGroup f10516f;
     public ViewGroup h;
-    public long f10512n;
-    public c f10513r;
-    public long f10514s;
+    public long f10517n;
+    public c f10518r;
+    public long f10519s;
     public final ArrayList v;
-    public final LongSparseArray f10515w;
-    public final LongSparseArray f10516x;
-    public final c f10517y;
+    public final LongSparseArray f10520w;
+    public final LongSparseArray f10521x;
+    public final c f10522y;
 
     public e(Context context) {
         super(context);
-        this.f10509b = new RectF();
-        this.f10510c = new RectF();
+        this.f10514b = new RectF();
+        this.f10515c = new RectF();
         this.v = new ArrayList();
-        this.f10515w = new LongSparseArray();
-        this.f10516x = new LongSparseArray();
-        this.f10517y = new c(this, 1);
-        this.f10508a = SharedConfig.debugViewMetrics;
+        this.f10520w = new LongSparseArray();
+        this.f10521x = new LongSparseArray();
+        this.f10522y = new c(this, 1);
+        this.f10513a = SharedConfig.debugViewMetrics;
     }
 
     public final void a() {
-        c cVar = this.f10513r;
+        c cVar = this.f10518r;
         if (cVar != null) {
             AndroidUtilities.cancelRunOnUIThread(cVar);
-            this.f10513r = null;
+            this.f10518r = null;
         }
         ArrayList arrayList = this.v;
         if (!arrayList.isEmpty()) {
@@ -67,11 +67,11 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
         }
     }
 
-    public final void b(int i10, long j3, ViewGroup viewGroup, uj ujVar) {
+    public final void b(int i10, long j3, ViewGroup viewGroup, vj vjVar) {
         this.d = j3;
         this.e = i10;
-        this.f10511f = viewGroup;
-        this.h = ujVar;
+        this.f10516f = viewGroup;
+        this.h = vjVar;
     }
 
     public final void c() {
@@ -81,13 +81,13 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f10514s = 0L;
+        this.f10519s = 0L;
         ViewTreeObserver viewTreeObserver = getViewTreeObserver();
         this.E = viewTreeObserver;
         viewTreeObserver.addOnPreDrawListener(this);
         this.E.addOnGlobalLayoutListener(this);
         this.E.addOnScrollChangedListener(this);
-        AndroidUtilities.runOnUIThread(this.f10517y, 400L);
+        AndroidUtilities.runOnUIThread(this.f10522y, 400L);
         if (BuildVars.LOGS_ENABLED) {
             Log.d("ViewMetrics", "attach");
         }
@@ -102,8 +102,8 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
             this.E.removeOnScrollChangedListener(this);
         }
         this.E = null;
-        this.f10514s = 0L;
-        AndroidUtilities.cancelRunOnUIThread(this.f10517y);
+        this.f10519s = 0L;
+        AndroidUtilities.cancelRunOnUIThread(this.f10522y);
         if (BuildVars.LOGS_ENABLED) {
             Log.d("ViewMetrics", "detach");
         }
@@ -113,7 +113,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onDraw(Canvas canvas) {
         int round;
-        if (this.f10508a) {
+        if (this.f10513a) {
             if (this.G == null) {
                 TextPaint textPaint = new TextPaint(1);
                 this.G = textPaint;
@@ -121,32 +121,32 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
                 this.G.setTextSize(AndroidUtilities.dp(10.0f));
             }
             super.onDraw(canvas);
-            Paint paint = i6.Ll;
-            RectF rectF = this.f10510c;
+            Paint paint = j6.Ll;
+            RectF rectF = this.f10515c;
             canvas.drawRect(rectF, paint);
-            LongSparseArray longSparseArray = this.f10515w;
+            LongSparseArray longSparseArray = this.f10520w;
             int size = longSparseArray.size();
             for (int i10 = 0; i10 < size; i10++) {
                 d dVar = (d) longSparseArray.valueAt(i10);
-                RectF rectF2 = dVar.f10500c;
-                canvas.drawRect(rectF2, i6.Ml);
+                RectF rectF2 = dVar.f10505c;
+                canvas.drawRect(rectF2, j6.Ml);
                 canvas.save();
                 canvas.translate(rectF2.left, p.a(p.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), i6.Kl);
+                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), j6.Kl);
                 canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
                 canvas.save();
-                canvas.drawText("time_in_view_ms: " + dVar.f10502g, 0.0f, 0.0f, this.G);
+                canvas.drawText("time_in_view_ms: " + dVar.f10507g, 0.0f, 0.0f, this.G);
                 canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
                 canvas.drawText("active_time_in_view_ms: " + dVar.h, 0.0f, 0.0f, this.G);
                 canvas.restore();
                 canvas.save();
                 canvas.translate(getWidth() / 2.0f, 0.0f);
                 StringBuilder sb2 = new StringBuilder("height_to_viewport_ratio_permille: ");
-                float f7 = dVar.f10505k;
+                float f7 = dVar.f10510k;
                 if (f7 == 0.0f) {
                     round = 1000;
                 } else {
-                    round = Math.round((dVar.f10504j / f7) * 1000.0f);
+                    round = Math.round((dVar.f10509j / f7) * 1000.0f);
                 }
                 sb2.append(round);
                 canvas.drawText(sb2.toString(), 0.0f, 0.0f, this.G);
@@ -166,8 +166,8 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        RectF rectF = this.f10509b;
-        this.f10510c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
+        RectF rectF = this.f10514b;
+        this.f10515c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
     }
 
     @Override

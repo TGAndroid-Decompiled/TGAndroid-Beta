@@ -4,23 +4,23 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class ma0 extends ll0 {
+public final class ma0 extends ml0 {
     public boolean X2;
     public boolean Y2;
     public int Z2;
-    public int f26135a3;
-    public final na0 f26136b3;
+    public int f26120a3;
+    public final na0 f26121b3;
 
-    public ma0(na0 na0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        this.f26136b3 = na0Var;
+    public ma0(na0 na0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.f26121b3 = na0Var;
         setOnScrollListener(new ai.r(this, 29));
         i(new la0(this));
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        na0 na0Var = this.f26136b3;
+    public final void l0(int i10, int i11) {
+        na0 na0Var = this.f26121b3;
         na0Var.invalidate();
         na0Var.b();
     }
@@ -28,22 +28,22 @@ public final class ma0 extends ll0 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        na0 na0Var = this.f26136b3;
-        gg.k1 k1Var = na0Var.f26425f;
+        na0 na0Var = this.f26121b3;
+        gg.k1 k1Var = na0Var.f26427f;
         gg.q1 q1Var = na0Var.e;
-        if (!na0Var.f26424c.f42668t ? this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9898f || motionEvent.getY() >= q1Var.e.getBottom() : this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9898f || motionEvent.getY() <= q1Var.e.getTop()) {
-            if (!this.X2 && org.telegram.ui.st.q().r(motionEvent, na0Var.f26423b, null, this.f25966p2)) {
+        if (!na0Var.f26426c.f42690t ? this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9903f || motionEvent.getY() >= q1Var.e.getBottom() : this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9903f || motionEvent.getY() <= q1Var.e.getTop()) {
+            if (!this.X2 && org.telegram.ui.ut.q().r(motionEvent, na0Var.f26425b, null, this.f26191p2)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (((k1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && k1Var.N()) {
-                if (k1Var.f9825n0 == null) {
-                    gg.g1 g1Var = new gg.g1(k1Var, k1Var.f9816f, k1Var.f9824n, k1Var.f9829r, 0);
-                    k1Var.f9825n0 = g1Var;
+                if (k1Var.f9830n0 == null) {
+                    gg.g1 g1Var = new gg.g1(k1Var, k1Var.f9821f, k1Var.f9829n, k1Var.f9834r, 0);
+                    k1Var.f9830n0 = g1Var;
                     g1Var.a();
                 }
-                k1Var.f9825n0.b();
+                k1Var.f9830n0.b();
             }
             if (super.onInterceptTouchEvent(motionEvent) || z10) {
                 return true;
@@ -59,7 +59,7 @@ public final class ma0 extends ll0 {
         int i15;
         int i16 = i12 - i10;
         int i17 = i13 - i11;
-        na0 na0Var = this.f26136b3;
+        na0 na0Var = this.f26121b3;
         boolean g10 = na0Var.g();
         s4.c0 currentLayoutManager = na0Var.getCurrentLayoutManager();
         if (g10) {
@@ -73,7 +73,7 @@ public final class ma0 extends ll0 {
             if (g10) {
                 i15 = 0;
             } else {
-                i15 = this.f26135a3 - i17;
+                i15 = this.f26120a3 - i17;
             }
             i14 = top - i15;
         } else {
@@ -86,20 +86,20 @@ public final class ma0 extends ll0 {
             super.onLayout(false, i10, i11, i12, i13);
             na0Var.G = false;
             na0Var.H = false;
-        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f26135a3 != 0) {
+        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f26120a3 != 0) {
             na0Var.G = true;
             currentLayoutManager.i1(N0, i14, false);
             super.onLayout(false, i10, i11, i12, i13);
             na0Var.G = false;
         }
-        this.f26135a3 = i17;
+        this.f26120a3 = i17;
         this.Z2 = i16;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
-        na0 na0Var = this.f26136b3;
+        na0 na0Var = this.f26121b3;
         gg.q1 q1Var = na0Var.e;
         if (q1Var != null) {
             q1Var.d = Integer.valueOf(size);
@@ -115,13 +115,13 @@ public final class ma0 extends ll0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        na0 na0Var = this.f26136b3;
+        na0 na0Var = this.f26121b3;
         gg.q1 q1Var = na0Var.e;
-        if (na0Var.f26424c.f42668t) {
-            if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9898f && motionEvent.getY() > q1Var.e.getTop()) {
+        if (na0Var.f26426c.f42690t) {
+            if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9903f && motionEvent.getY() > q1Var.e.getTop()) {
                 return false;
             }
-        } else if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9898f && motionEvent.getY() < q1Var.e.getBottom()) {
+        } else if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9903f && motionEvent.getY() < q1Var.e.getBottom()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -129,7 +129,7 @@ public final class ma0 extends ll0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f26136b3.G) {
+        if (this.f26121b3.G) {
             return;
         }
         super.requestLayout();
@@ -138,7 +138,7 @@ public final class ma0 extends ll0 {
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        na0 na0Var = this.f26136b3;
+        na0 na0Var = this.f26121b3;
         na0Var.invalidate();
         na0Var.b();
     }

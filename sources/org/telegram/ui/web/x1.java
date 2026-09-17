@@ -7,41 +7,41 @@ import android.widget.ImageView;
 import ci.e4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.o5;
 import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.sk;
-public final class x1 extends h51 {
-    public static final int f39154a = 0;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.tk;
+public final class x1 extends i51 {
+    public static final int f38997a = 0;
 
     static {
-        h51.setup(new h51());
+        i51.setup(new i51());
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
+    public final void bindView(View view, j51 j51Var, boolean z10, x51 x51Var, f61 f61Var) {
         y1 y1Var = (y1) view;
-        CharSequence charSequence = i51Var.f24896n;
-        String str = (String) i51Var.f24894l;
-        long j3 = i51Var.B;
-        ImageView imageView = y1Var.f39159a;
-        y1Var.f39160b.setText(charSequence);
-        sk skVar = y1Var.f39161c;
-        skVar.setText(str);
+        CharSequence charSequence = j51Var.f25126n;
+        String str = (String) j51Var.f25124l;
+        long j3 = j51Var.B;
+        ImageView imageView = y1Var.f39002a;
+        y1Var.f39003b.setText(charSequence);
+        tk tkVar = y1Var.f39004c;
+        tkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
-            skVar.setTranslationY(-AndroidUtilities.dp(14.0f));
-            skVar.setScaleX(1.3f);
-            skVar.setScaleY(1.3f);
+            tkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
+            tkVar.setScaleX(1.3f);
+            tkVar.setScaleY(1.3f);
         } else {
-            skVar.setTranslationY(0.0f);
-            skVar.setScaleX(1.0f);
-            skVar.setScaleY(1.0f);
+            tkVar.setTranslationY(0.0f);
+            tkVar.setScaleX(1.0f);
+            tkVar.setScaleY(1.0f);
         }
         y1Var.e = str;
         if (TextUtils.isEmpty(charSequence)) {
@@ -63,19 +63,19 @@ public final class x1 extends h51 {
             n10.a(imageView);
             imageView.setImageDrawable(y1Var.d);
         } else {
-            pq pqVar = new pq(i6.b0(AndroidUtilities.dp(6.0f), i6.l1(0.1f, i6.w0(null, i6.G6, false))), new e4(charSequence2));
+            pq pqVar = new pq(j6.b0(AndroidUtilities.dp(6.0f), j6.l1(0.1f, j6.w0(null, j6.G6, false))), new e4(charSequence2));
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
             pqVar.h = dp;
-            pqVar.f27122n = dp2;
+            pqVar.f27110n = dp2;
             imageView.setImageDrawable(pqVar);
         }
-        y1Var.f39162f = z10;
+        y1Var.f39005f = z10;
         y1Var.invalidate();
     }
 
     @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, e6 e6Var) {
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, f6 f6Var) {
         return new y1(context);
     }
 }

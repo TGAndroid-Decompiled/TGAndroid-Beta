@@ -11,8 +11,8 @@ public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     public final int T;
     public Object U;
 
-    public no(Context context, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var, int i12) {
-        super(i10, i11, context, e6Var);
+    public no(Context context, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var, int i12) {
+        super(i10, i11, context, f6Var);
         this.T = i12;
     }
 
@@ -63,8 +63,8 @@ public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         }
     }
 
-    public no(n70 n70Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(i10, i11, context, e6Var);
+    public no(n70 n70Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(i10, i11, context, f6Var);
         this.T = 2;
         this.U = n70Var;
     }

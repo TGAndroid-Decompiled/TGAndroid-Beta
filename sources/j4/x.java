@@ -1,31 +1,31 @@
 package j4;
 public final class x {
-    public final int f12855a;
-    public final e2.b0 f12856b;
-    public final e2.v f12857c;
+    public final int f12858a;
+    public final e2.b0 f12859b;
+    public final e2.v f12860c;
     public boolean d;
     public boolean e;
-    public boolean f12858f;
-    public long f12859g;
+    public boolean f12861f;
+    public long f12862g;
     public long h;
-    public long f12860i;
+    public long f12863i;
 
     public x(int i10) {
-        this.f12855a = i10;
+        this.f12858a = i10;
         switch (i10) {
             case 1:
-                this.f12856b = new e2.b0(0L);
-                this.f12859g = -9223372036854775807L;
+                this.f12859b = new e2.b0(0L);
+                this.f12862g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f12860i = -9223372036854775807L;
-                this.f12857c = new e2.v();
+                this.f12863i = -9223372036854775807L;
+                this.f12860c = new e2.v();
                 return;
             default:
-                this.f12856b = new e2.b0(0L);
-                this.f12859g = -9223372036854775807L;
+                this.f12859b = new e2.b0(0L);
+                this.f12862g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f12860i = -9223372036854775807L;
-                this.f12857c = new e2.v();
+                this.f12863i = -9223372036854775807L;
+                this.f12860c = new e2.v();
                 return;
         }
     }
@@ -35,7 +35,7 @@ public final class x {
     }
 
     public static long c(e2.v vVar) {
-        int i10 = vVar.f7930b;
+        int i10 = vVar.f7935b;
         if (vVar.a() < 9) {
             return -9223372036854775807L;
         }
@@ -58,18 +58,18 @@ public final class x {
     }
 
     public final void a(c3.p pVar) {
-        switch (this.f12855a) {
+        switch (this.f12858a) {
             case 0:
-                byte[] bArr = e2.d0.f7884b;
-                e2.v vVar = this.f12857c;
+                byte[] bArr = e2.d0.f7889b;
+                e2.v vVar = this.f12860c;
                 vVar.getClass();
                 vVar.H(bArr.length, bArr);
                 this.d = true;
                 pVar.p();
                 return;
             default:
-                byte[] bArr2 = e2.d0.f7884b;
-                e2.v vVar2 = this.f12857c;
+                byte[] bArr2 = e2.d0.f7889b;
+                e2.v vVar2 = this.f12860c;
                 vVar2.getClass();
                 vVar2.H(bArr2.length, bArr2);
                 this.d = true;

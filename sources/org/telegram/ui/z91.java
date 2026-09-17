@@ -1,22 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class z91 extends org.telegram.ui.Components.ll0 {
-    public int X2;
-    public final ya1 Y2;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class z91 extends s4.s0 {
+    public final int f40190a;
+    public final ab1 f40191b;
 
-    public z91(ya1 ya1Var, Context context) {
-        super(context, null);
-        this.Y2 = ya1Var;
+    public z91(ab1 ab1Var, int i10) {
+        this.f40190a = i10;
+        this.f40191b = ab1Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        da1 da1Var;
-        super.onMeasure(i10, i11);
-        if (this.X2 != getMeasuredHeight() && (da1Var = this.Y2.X) != null) {
-            da1Var.l();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ah.i iVar;
+        ab1 ab1Var;
+        ah.i iVar2;
+        ab1 ab1Var2;
+        ah.i iVar3;
+        switch (this.f40190a) {
+            case 0:
+                ab1 ab1Var3 = this.f40191b;
+                if (ab1Var3.f31804r0.size() != ab1Var3.f31806s0.size() && !ab1Var3.f31811w0 && ab1Var3.U.N0() > ab1Var3.X.f33602c0 - 20) {
+                    ab1Var3.h0();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (iVar = ab1Var3.C0) != null) {
+                    iVar.f(i10, i11);
+                    ab1.W(ab1Var3);
+                    return;
+                }
+                return;
+            case 1:
+                if (Build.VERSION.SDK_INT >= 31 && (iVar2 = (ab1Var = this.f40191b).C0) != null) {
+                    iVar2.f(i10, i11);
+                    ab1.W(ab1Var);
+                    return;
+                }
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (iVar3 = (ab1Var2 = this.f40191b).C0) != null) {
+                    iVar3.f(i10, i11);
+                    ab1.W(ab1Var2);
+                    return;
+                }
+                return;
         }
-        this.X2 = getMeasuredHeight();
     }
 }

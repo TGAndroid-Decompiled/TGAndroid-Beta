@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class ff0 {
-    public final gf0 f23925a = new gf0();
-    public final gf0 f23926b = new gf0();
-    public final gf0 f23927c = new gf0();
+    public final gf0 f23904a = new gf0();
+    public final gf0 f23905b = new gf0();
+    public final gf0 f23906c = new gf0();
     public final gf0 d = new gf0();
     public final ByteBuffer e;
-    public int f23928f;
+    public int f23907f;
 
     public ff0() {
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
@@ -19,26 +19,26 @@ public final class ff0 {
     public final void a() {
         ByteBuffer byteBuffer = this.e;
         byteBuffer.position(0);
-        gf0 gf0Var = this.f23925a;
-        if (gf0Var.f24336f == null) {
+        gf0 gf0Var = this.f23904a;
+        if (gf0Var.f24205f == null) {
             gf0Var.a();
         }
-        float[] fArr = gf0Var.f24336f;
-        gf0 gf0Var2 = this.f23926b;
-        if (gf0Var2.f24336f == null) {
+        float[] fArr = gf0Var.f24205f;
+        gf0 gf0Var2 = this.f23905b;
+        if (gf0Var2.f24205f == null) {
             gf0Var2.a();
         }
-        float[] fArr2 = gf0Var2.f24336f;
-        gf0 gf0Var3 = this.f23927c;
-        if (gf0Var3.f24336f == null) {
+        float[] fArr2 = gf0Var2.f24205f;
+        gf0 gf0Var3 = this.f23906c;
+        if (gf0Var3.f24205f == null) {
             gf0Var3.a();
         }
-        float[] fArr3 = gf0Var3.f24336f;
+        float[] fArr3 = gf0Var3.f24205f;
         gf0 gf0Var4 = this.d;
-        if (gf0Var4.f24336f == null) {
+        if (gf0Var4.f24205f == null) {
             gf0Var4.a();
         }
-        float[] fArr4 = gf0Var4.f24336f;
+        float[] fArr4 = gf0Var4.f24205f;
         for (int i10 = 0; i10 < 200; i10++) {
             byteBuffer.put((byte) (fArr2[i10] * 255.0f));
             byteBuffer.put((byte) (fArr3[i10] * 255.0f));
@@ -49,7 +49,7 @@ public final class ff0 {
     }
 
     public final boolean b() {
-        if (this.f23925a.b() && this.f23926b.b() && this.f23927c.b() && this.d.b()) {
+        if (this.f23904a.b() && this.f23905b.b() && this.f23906c.b() && this.d.b()) {
             return true;
         }
         return false;

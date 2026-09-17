@@ -5,13 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Base64;
 import android.util.Log;
 import java.util.ArrayList;
-import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-public final class i implements q9.d, a2, s5.e, pa.a {
-    public final int f42168a;
+import org.telegram.ui.ActionBar.c2;
+public final class i implements q9.d, b2, s5.e, pa.a {
+    public final int f42190a;
 
     public i(int i10) {
-        this.f42168a = i10;
+        this.f42190a = i10;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class i implements q9.d, a2, s5.e, pa.a {
             ArrayList arrayList = new ArrayList();
             while (rawQuery.moveToNext()) {
                 aa.a a2 = l5.i.a();
-                a2.v(rawQuery.getString(1));
+                a2.u(rawQuery.getString(1));
                 a2.d = v5.a.b(rawQuery.getInt(2));
                 String string = rawQuery.getString(3);
                 if (string == null) {
@@ -35,7 +35,7 @@ public final class i implements q9.d, a2, s5.e, pa.a {
                 } else {
                     decode = Base64.decode(string, 0);
                 }
-                a2.f358c = decode;
+                a2.f360c = decode;
                 arrayList.add(a2.e());
             }
             return arrayList;
@@ -45,13 +45,13 @@ public final class i implements q9.d, a2, s5.e, pa.a {
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f42168a) {
+    public void f(c2 c2Var, int i10) {
+        switch (this.f42190a) {
             case 4:
-                b2Var.dismiss();
+                c2Var.dismiss();
                 return;
             default:
-                b2Var.dismiss();
+                c2Var.dismiss();
                 return;
         }
     }
@@ -66,6 +66,6 @@ public final class i implements q9.d, a2, s5.e, pa.a {
     }
 
     public i(Object obj, int i10) {
-        this.f42168a = i10;
+        this.f42190a = i10;
     }
 }

@@ -1,9 +1,13 @@
 package org.telegram.messenger;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -390,10 +394,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f15606id;
+        private int f15616id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f15606id = i10;
+            this.f15616id = i10;
             this.args = objArr;
         }
     }
@@ -402,44 +406,68 @@ public class NotificationCenter {
         void didReceivedNotification(int i10, int i11, Object... objArr);
     }
 
-    public static class ObserversGroup {
+    public interface ObserversGroup {
+        ObserversGroup add(int i10);
+
+        void removeAllObservers();
+    }
+
+    public static final class ObserversGroupImpl implements ObserversGroup {
         private NotificationCenterDelegate delegate;
+        private final a0.l ids;
         private NotificationCenter notificationCenter;
-        private final ArrayList<Observer> observers;
 
-        public static class Observer {
-            private final int f15607id;
-            private final NotificationCenterDelegate observer;
-
-            private Observer(NotificationCenterDelegate notificationCenterDelegate, int i10) {
-                this.observer = notificationCenterDelegate;
-                this.f15607id = i10;
-            }
-        }
-
+        @Override
         public ObserversGroup add(int i10) {
+            if (this.delegate == null) {
+                return this;
+            }
+            a0.l lVar = this.ids;
+            int i11 = lVar.f27b + 1;
+            int[] iArr = lVar.f26a;
+            if (iArr.length < i11) {
+                int[] copyOf = Arrays.copyOf(iArr, Math.max(i11, (iArr.length * 3) / 2));
+                kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
+                lVar.f26a = copyOf;
+            }
+            int[] iArr2 = lVar.f26a;
+            int i12 = lVar.f27b;
+            iArr2[i12] = i10;
+            lVar.f27b = i12 + 1;
             this.notificationCenter.addObserver(this.delegate, i10);
-            this.observers.add(new Observer(this.delegate, i10));
             return this;
         }
 
+        @Override
         public void removeAllObservers() {
-            ArrayList<Observer> arrayList = this.observers;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Observer observer = arrayList.get(i10);
-                i10++;
-                Observer observer2 = observer;
-                this.notificationCenter.removeObserver(observer2.observer, observer2.f15607id);
+            if (this.delegate == null) {
+                return;
             }
-            this.observers.clear();
+            int i10 = this.ids.f27b;
+            for (int i11 = 0; i11 < i10; i11++) {
+                NotificationCenter notificationCenter = this.notificationCenter;
+                NotificationCenterDelegate notificationCenterDelegate = this.delegate;
+                a0.l lVar = this.ids;
+                if (i11 >= 0) {
+                    if (i11 < lVar.f27b) {
+                        notificationCenter.removeObserver(notificationCenterDelegate, lVar.f26a[i11]);
+                    }
+                } else {
+                    lVar.getClass();
+                }
+                StringBuilder l4 = hg.k0.l(i11, "Index ", " must be in 0..");
+                l4.append(lVar.f27b - 1);
+                throw new IndexOutOfBoundsException(l4.toString());
+            }
+            this.ids.f27b = 0;
             this.notificationCenter = null;
             this.delegate = null;
         }
 
-        private ObserversGroup(NotificationCenter notificationCenter, NotificationCenterDelegate notificationCenterDelegate) {
-            this.observers = new ArrayList<>();
+        private ObserversGroupImpl(NotificationCenter notificationCenter, NotificationCenterDelegate notificationCenterDelegate) {
+            ?? obj = new Object();
+            obj.f26a = new int[16];
+            this.ids = obj;
             this.notificationCenter = notificationCenter;
             this.delegate = notificationCenterDelegate;
         }
@@ -447,6 +475,37 @@ public class NotificationCenter {
 
     public interface PostponeNotificationCallback {
         boolean needPostpone(int i10, int i11, Object[] objArr);
+    }
+
+    public static final class WeakObserversGroupImpl implements ObserversGroup, NotificationCenterDelegate {
+        private final ObserversGroupImpl observersGroup;
+        private final WeakReference<NotificationCenterDelegate> reference;
+
+        @Override
+        public ObserversGroup add(int i10) {
+            return this.observersGroup.add(i10);
+        }
+
+        @Override
+        public void didReceivedNotification(int i10, int i11, Object... objArr) {
+            NotificationCenterDelegate notificationCenterDelegate = this.reference.get();
+            if (notificationCenterDelegate != null) {
+                notificationCenterDelegate.didReceivedNotification(i10, i11, objArr);
+                return;
+            }
+            FileLog.e("MEMORY_LEAK observer " + i10 + " with destroyed WeakReference");
+            removeAllObservers();
+        }
+
+        @Override
+        public void removeAllObservers() {
+            this.observersGroup.removeAllObservers();
+        }
+
+        private WeakObserversGroupImpl(NotificationCenter notificationCenter, NotificationCenterDelegate notificationCenterDelegate) {
+            this.observersGroup = new ObserversGroupImpl(this);
+            this.reference = new WeakReference<>(notificationCenterDelegate);
+        }
     }
 
     static {
@@ -904,6 +963,19 @@ public class NotificationCenter {
         return notificationCenter2;
     }
 
+    private static boolean isContextDestroyed(Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (context instanceof Activity) {
+            return ((Activity) context).isDestroyed();
+        }
+        if (!(context instanceof ContextWrapper)) {
+            return false;
+        }
+        return isContextDestroyed(((ContextWrapper) context).getBaseContext());
+    }
+
     public void lambda$checkForExpiredNotifications$0() {
         this.checkForExpiredNotifications = new xg(this, 1);
     }
@@ -938,6 +1010,46 @@ public class NotificationCenter {
         AndroidUtilities.runOnUIThread(x4Var, 250L);
     }
 
+    public static void sanitize() {
+        sanitizeInternal(globalInstance);
+        for (NotificationCenter notificationCenter : Instance) {
+            sanitizeInternal(notificationCenter);
+        }
+    }
+
+    private static void sanitizeInternal(NotificationCenter notificationCenter) {
+        if (notificationCenter != null) {
+            for (int i10 = 0; i10 < notificationCenter.observers.size(); i10++) {
+                int keyAt = notificationCenter.observers.keyAt(i10);
+                ArrayList<NotificationCenterDelegate> valueAt = notificationCenter.observers.valueAt(i10);
+                for (int size = valueAt.size() - 1; size >= 0; size--) {
+                    NotificationCenterDelegate notificationCenterDelegate = valueAt.get(size);
+                    if (!(notificationCenterDelegate instanceof WeakObserversGroupImpl) && !(notificationCenterDelegate instanceof BaseController)) {
+                        if (notificationCenterDelegate instanceof Context) {
+                            if (isContextDestroyed((Context) notificationCenterDelegate)) {
+                                FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed Context");
+                                valueAt.remove(size);
+                            }
+                        } else if (notificationCenterDelegate instanceof View) {
+                            if (isContextDestroyed(((View) notificationCenterDelegate).getContext())) {
+                                FileLog.e("MEMORY_LEAK observer " + keyAt + " with View with destroyed Context");
+                                valueAt.remove(size);
+                            }
+                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.o2) {
+                            if (((org.telegram.ui.ActionBar.o2) notificationCenterDelegate).isFinished) {
+                                FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BaseFragment");
+                                valueAt.remove(size);
+                            }
+                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.g3) && ((org.telegram.ui.ActionBar.g3) notificationCenterDelegate).isDismissed()) {
+                            FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BottomSheet");
+                            valueAt.remove(size);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private boolean shouldDebounce(int i10, Object[] objArr) {
         if (i10 == updateInterfaces) {
             return true;
@@ -945,6 +1057,7 @@ public class NotificationCenter {
         return false;
     }
 
+    @Deprecated(since = "use createWeakObserversGroup or createObserversGroup")
     public void addObserver(NotificationCenterDelegate notificationCenterDelegate, int i10) {
         if (BuildVars.DEBUG_VERSION && Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
             throw new RuntimeException("addObserver allowed only from MAIN thread");
@@ -984,7 +1097,11 @@ public class NotificationCenter {
     }
 
     public ObserversGroup createObserversGroup(NotificationCenterDelegate notificationCenterDelegate) {
-        return new ObserversGroup(notificationCenterDelegate);
+        return new ObserversGroupImpl(notificationCenterDelegate);
+    }
+
+    public ObserversGroup createWeakObserversGroup(NotificationCenterDelegate notificationCenterDelegate) {
+        return new WeakObserversGroupImpl(notificationCenterDelegate);
     }
 
     public void doOnIdle(Runnable runnable) {
@@ -1070,7 +1187,7 @@ public class NotificationCenter {
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
             return new ei.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
         }
-        return new u1(16);
+        return new u1(18);
     }
 
     public void onAnimationFinish(int i10) {
@@ -1245,7 +1362,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f15606id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f15616id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

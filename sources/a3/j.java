@@ -1,12 +1,12 @@
 package a3;
 public final class j {
-    public final r2.l f126a;
-    public final int f127b;
-    public final n f128c;
+    public final r2.l f128a;
+    public final int f129b;
+    public final n f130c;
 
     public j(n nVar, r2.l lVar, int i10, long j3) {
-        this.f128c = nVar;
-        this.f126a = lVar;
-        this.f127b = i10;
+        this.f130c = nVar;
+        this.f128a = lVar;
+        this.f129b = i10;
     }
 }

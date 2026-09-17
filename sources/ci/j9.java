@@ -11,9 +11,9 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 public final class j9 extends FrameLayout {
-    public final int f4850a = 2;
-    public Object f4851b;
-    public float f4852c;
+    public final int f4855a = 2;
+    public Object f4856b;
+    public float f4857c;
     public Path d;
     public Object e;
 
@@ -40,15 +40,15 @@ public final class j9 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f4850a) {
+        switch (this.f4855a) {
             case 0:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4852c) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4857c) {
                     ((ia) this.e).dismiss();
                     return true;
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4852c) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4857c) {
                     ((fi.k0) this.e).dismiss();
                     return true;
                 }
@@ -60,23 +60,23 @@ public final class j9 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f4850a) {
+        switch (this.f4855a) {
             case 2:
                 super.onDraw(canvas);
                 float measuredWidth = getMeasuredWidth() / 2.0f;
                 Path path = this.d;
                 path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4852c), getMeasuredHeight());
-                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4852c));
+                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4857c), getMeasuredHeight());
+                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4857c));
                 float[] fArr = (float[]) this.e;
                 Path.Direction direction = Path.Direction.CW;
                 path.addRoundRect(rectF, fArr, direction);
-                Paint paint = (Paint) this.f4851b;
+                Paint paint = (Paint) this.f4856b;
                 canvas.drawPath(path, paint);
                 path.rewind();
-                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4852c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4852c), AndroidUtilities.dp(8.0f));
+                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4857c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4857c), AndroidUtilities.dp(8.0f));
                 path.addRoundRect(rectF, fArr, direction);
                 canvas.drawPath(path, paint);
                 return;
@@ -88,7 +88,7 @@ public final class j9 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f4850a) {
+        switch (this.f4855a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
                 return;
@@ -104,14 +104,14 @@ public final class j9 extends FrameLayout {
     public j9(fi.k0 k0Var, Context context) {
         super(context);
         this.e = k0Var;
-        this.f4851b = new org.telegram.ui.Components.c6(this, 250L, qr.h);
+        this.f4856b = new org.telegram.ui.Components.c6(this, 250L, qr.h);
         this.d = new Path();
     }
 
     public j9(ia iaVar, Context context) {
         super(context);
         this.e = iaVar;
-        this.f4851b = new org.telegram.ui.Components.c6(this, 250L, qr.h);
+        this.f4856b = new org.telegram.ui.Components.c6(this, 250L, qr.h);
         this.d = new Path();
     }
 }

@@ -4,27 +4,27 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 public final class rr implements Runnable {
-    public final int f27666a;
-    public final ur f27667b;
+    public final int f27673a;
+    public final ur f27674b;
 
     public rr(ur urVar, int i10) {
-        this.f27666a = i10;
-        this.f27667b = urVar;
+        this.f27673a = i10;
+        this.f27674b = urVar;
     }
 
     @Override
     public final void run() {
         View view;
-        switch (this.f27666a) {
+        switch (this.f27673a) {
             case 0:
-                ur urVar = this.f27667b;
-                if (urVar.f28493b == null && (view = urVar.d) != null) {
+                ur urVar = this.f27674b;
+                if (urVar.f28472b == null && (view = urVar.d) != null) {
                     View findFocus = view.findFocus();
                     if (findFocus instanceof EditText) {
-                        urVar.f28493b = (EditText) findFocus;
+                        urVar.f28472b = (EditText) findFocus;
                     }
                 }
-                EditText editText = urVar.f28493b;
+                EditText editText = urVar.f28472b;
                 if (editText != null) {
                     if (editText.length() != 0 || urVar.e) {
                         try {
@@ -32,9 +32,9 @@ public final class rr implements Runnable {
                             urVar.playSoundEffect(0);
                         } catch (Exception unused) {
                         }
-                        urVar.f28493b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        urVar.f28493b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (urVar.f28495f) {
+                        urVar.f28472b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        urVar.f28472b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (urVar.f28474f) {
                             urVar.postDelayed(urVar.h, 50L);
                             return;
                         }
@@ -44,9 +44,9 @@ public final class rr implements Runnable {
                 }
                 return;
             default:
-                ur urVar2 = this.f27667b;
-                urVar2.f28496n = false;
-                urVar2.f28495f = true;
+                ur urVar2 = this.f27674b;
+                urVar2.f28475n = false;
+                urVar2.f28474f = true;
                 urVar2.h.run();
                 return;
         }

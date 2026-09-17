@@ -18,20 +18,20 @@ import org.telegram.ui.Components.xl;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.bo;
 public final class i0 implements Runnable {
-    public final int f11426a = 1;
-    public final int f11427b;
-    public final int f11428c;
+    public final int f11429a = 1;
+    public final int f11430b;
+    public final int f11431c;
     public final Object d;
     public final Object e;
-    public final Object f11429f;
+    public final Object f11432f;
     public final Object h;
 
     public i0(m4.g1 g1Var, m4.r rVar, int i10, m4.a0 a0Var, int i11, m4.f1 f1Var) {
         this.d = g1Var;
         this.e = rVar;
-        this.f11427b = i10;
-        this.f11429f = a0Var;
-        this.f11428c = i11;
+        this.f11430b = i10;
+        this.f11432f = a0Var;
+        this.f11431c = i11;
         this.h = f1Var;
     }
 
@@ -49,19 +49,19 @@ public final class i0 implements Runnable {
         int i13;
         bo boVar;
         boolean z10;
-        int i14 = this.f11426a;
-        final int i15 = this.f11428c;
+        int i14 = this.f11429a;
+        final int i15 = this.f11431c;
         Object obj = this.h;
-        Object obj2 = this.f11429f;
+        Object obj2 = this.f11432f;
         Object obj3 = this.e;
-        int i16 = this.f11427b;
+        int i16 = this.f11430b;
         Object obj4 = this.d;
         switch (i14) {
             case 0:
                 i1 i1Var = (i1) obj3;
                 q9 q9Var = (q9) obj2;
                 k0 k0Var = (k0) obj;
-                l0 l0Var = (l0) ((n4.y) obj4).f14995c;
+                l0 l0Var = (l0) ((n4.y) obj4).f15005c;
                 if (i1Var.length() >= i16 && i1Var.getSelectionStart() != i1Var.getSelectionEnd() && q9Var.k0(k0Var.K(), 0, i15, i16)) {
                     l0Var.d = true;
                     i1Var.setSelection(i16);
@@ -73,7 +73,7 @@ public final class i0 implements Runnable {
                 final m4.r rVar = (m4.r) obj3;
                 final m4.a0 a0Var = (m4.a0) obj2;
                 final m4.f1 f1Var = (m4.f1) obj;
-                ni.f fVar = ((m4.g1) obj4).f14538b;
+                ni.f fVar = ((m4.g1) obj4).f14548b;
                 if (!fVar.B(rVar, i16)) {
                     m4.g1.O0(a0Var, rVar, i15, new m4.q1(-4));
                     return;
@@ -174,7 +174,7 @@ public final class i0 implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f18259id, 1);
+                                longSparseIntArray.put(user4.f18268id, 1);
                             }
                             arrayList4.add(contact);
                             i18++;
@@ -236,20 +236,20 @@ public final class i0 implements Runnable {
                     i11 = i21;
                     i21 = i11 + 1;
                 }
-                AndroidUtilities.runOnUIThread(new c9(ujVar4, this.f11428c, arrayList4, arrayList5, 15));
+                AndroidUtilities.runOnUIThread(new c9(ujVar4, this.f11431c, arrayList4, arrayList5, 15));
                 return;
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj4;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj3;
+                org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
                 bo boVar2 = (bo) obj;
-                boolean z11 = ChatAttachAlertPhotoLayout.f21898q1;
-                vi viVar = chatAttachAlertPhotoLayout.f26462b;
+                boolean z11 = ChatAttachAlertPhotoLayout.f21908q1;
+                vi viVar = chatAttachAlertPhotoLayout.f26460b;
                 if (viVar.F && !viVar.G) {
-                    PhotoViewer.t1().K2(null, n2Var, null);
+                    PhotoViewer.t1().K2(null, o2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
-                    t12.f31012n = false;
+                    t12.f31026n = false;
                     i12 = 3;
                 } else {
                     i12 = i16;
@@ -260,13 +260,13 @@ public final class i0 implements Runnable {
                     i13 = i12;
                 }
                 PhotoViewer t13 = PhotoViewer.t1();
-                xl xlVar = chatAttachAlertPhotoLayout.f21918h1;
+                xl xlVar = chatAttachAlertPhotoLayout.f21928h1;
                 if (viVar.H) {
                     boVar = null;
                 } else {
                     boVar = boVar2;
                 }
-                t13.f2(arrayList6, this.f11428c, i13, false, xlVar, boVar);
+                t13.f2(arrayList6, this.f11431c, i13, false, xlVar, boVar);
                 PhotoViewer.t1().x2(viVar.Q);
                 if (viVar.F && !viVar.G) {
                     PhotoViewer.t1().O = false;
@@ -286,8 +286,8 @@ public final class i0 implements Runnable {
                 if (ChatAttachAlertPhotoLayout.T()) {
                     PhotoViewer t15 = PhotoViewer.t1();
                     Editable text = viVar.m1().getText();
-                    t15.f31037p7 = true;
-                    t15.f31045q7 = text;
+                    t15.f31051p7 = true;
+                    t15.f31059q7 = text;
                     t15.A2(null, text, false, false);
                     t15.t3(null);
                     return;
@@ -299,27 +299,27 @@ public final class i0 implements Runnable {
     public i0(n4.y yVar, i1 i1Var, int i10, q9 q9Var, k0 k0Var, int i11) {
         this.d = yVar;
         this.e = i1Var;
-        this.f11427b = i10;
-        this.f11429f = q9Var;
+        this.f11430b = i10;
+        this.f11432f = q9Var;
         this.h = k0Var;
-        this.f11428c = i11;
+        this.f11431c = i11;
     }
 
     public i0(uj ujVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
         this.d = ujVar;
         this.e = str;
-        this.f11429f = arrayList;
+        this.f11432f = arrayList;
         this.h = arrayList2;
-        this.f11427b = i10;
-        this.f11428c = i11;
+        this.f11430b = i10;
+        this.f11431c = i11;
     }
 
-    public i0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, int i11, bo boVar) {
+    public i0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10, org.telegram.ui.ActionBar.o2 o2Var, ArrayList arrayList, int i11, bo boVar) {
         this.d = chatAttachAlertPhotoLayout;
-        this.f11427b = i10;
-        this.e = n2Var;
-        this.f11429f = arrayList;
-        this.f11428c = i11;
+        this.f11430b = i10;
+        this.e = o2Var;
+        this.f11432f = arrayList;
+        this.f11431c = i11;
         this.h = boVar;
     }
 }

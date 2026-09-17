@@ -1,18 +1,58 @@
 package org.telegram.ui.Components;
-public final class zv0 {
-    public float f30660a;
-    public float f30661b;
-    public float f30662c;
-    public float d;
-    public float e;
-    public float f30663f;
-    public float f30664g;
-    public float h;
-    public float f30665i;
-    public int f30666j;
-    public final aw0 f30667k;
 
-    public zv0(aw0 aw0Var) {
-        this.f30667k = aw0Var;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public class zv0 extends s4.d0 {
+    public final qr f30668r;
+    public int f30669s;
+    public float f30670t;
+
+    public zv0(Context context) {
+        super(context);
+        this.f30668r = qr.f27380f;
+        this.f30670t = 1.0f;
+    }
+
+    @Override
+    public final void g(View view, s4.x0 x0Var) {
+        int j3 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
+        if (m10 > 0) {
+            x0Var.b(-j3, -k10, m10, this.f30668r);
+        }
+        AndroidUtilities.runOnUIThread(new kq0(this, 8), Math.max(0, m10));
+    }
+
+    @Override
+    public final int k(int i10, View view) {
+        return super.k(i10, view) - this.f30669s;
+    }
+
+    @Override
+    public final int m(int i10) {
+        return Math.round(Math.min(super.m(i10), 500) * this.f30670t);
+    }
+
+    @Override
+    public final int n(int i10) {
+        return Math.round(Math.min(super.n(i10), 150) * this.f30670t);
+    }
+
+    @Override
+    public final void q(s4.x0 x0Var) {
+        PointF a2 = a(this.f42847a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            s4.y0.b(a2);
+            this.f42720k = a2;
+            this.f42724o = (int) (a2.x * 10000.0f);
+            this.f42725p = (int) (a2.y * 10000.0f);
+            x0Var.b((int) (this.f42724o * 1.2f), (int) (this.f42725p * 1.2f), (int) (n(10000) * 1.2f), this.f30668r);
+            return;
+        }
+        x0Var.d = this.f42847a;
+        h();
     }
 }

@@ -3,12 +3,12 @@ package qg;
 import z7.hb;
 import z7.wf;
 public final class b0 implements Runnable {
-    public final int f41306a;
-    public final Object f41307b;
+    public final int f41328a;
+    public final Object f41329b;
 
     public b0(Object obj, int i10) {
-        this.f41306a = i10;
-        this.f41307b = obj;
+        this.f41328a = i10;
+        this.f41329b = obj;
     }
 
     @Override
@@ -17,8 +17,8 @@ public final class b0 implements Runnable {
     }
 
     public b0(wf wfVar) {
-        this.f41306a = 12;
+        this.f41328a = 12;
         hb hbVar = hb.UNKNOWN_EVENT;
-        this.f41307b = wfVar;
+        this.f41329b = wfVar;
     }
 }

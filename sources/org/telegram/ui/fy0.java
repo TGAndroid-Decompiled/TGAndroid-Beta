@@ -1,187 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class fy0 extends org.telegram.ui.Components.kl0 {
-    public final Context f33701c;
-    public final gy0 d;
+import java.util.ArrayList;
+import java.util.Iterator;
+import org.telegram.messenger.GenericProvider;
+public final class fy0 implements GenericProvider, org.telegram.ui.Components.cl0, c70 {
+    public final iy0 f33791a;
 
-    public fy0(gy0 gy0Var, Context context) {
-        this.d = gy0Var;
-        this.f33701c = context;
+    public fy0(iy0 iy0Var) {
+        this.f33791a = iy0Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42678f;
-        if (i10 != 0 && i10 != 2 && i10 != 4) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.e;
-    }
-
-    @Override
-    public final int j(int i10) {
-        gy0 gy0Var = this.d;
-        if (i10 == gy0Var.f34044w) {
-            return 4;
-        }
-        if (i10 == gy0Var.f34041n) {
-            return 3;
-        }
-        if (i10 == gy0Var.f34040f) {
-            return 2;
-        }
-        if (i10 != gy0Var.h && i10 != gy0Var.v) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        String string;
-        String string2;
-        gy0 gy0Var = this.d;
-        int i11 = gy0Var.f34046y;
-        int i12 = c1Var.f42678f;
-        View view = c1Var.f42675a;
-        boolean z10 = false;
-        if (i12 != 0) {
-            if (i12 != 1) {
-                if (i12 != 2) {
-                    if (i12 == 3) {
-                        org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
-                        if (i10 == gy0Var.f34041n) {
-                            if (i11 == 1) {
-                                l4Var.setText(LocaleController.formatPluralString("BlockedUsersCount", gy0Var.getMessagesController().totalBlockedCount, new Object[0]));
-                                return;
-                            } else {
-                                l4Var.setText(LocaleController.getString(R.string.PrivacyExceptions));
-                                return;
-                            }
-                        }
-                        return;
-                    }
-                    return;
-                }
-                org.telegram.ui.Cells.x4 x4Var = (org.telegram.ui.Cells.x4) view;
-                x4Var.a(org.telegram.ui.ActionBar.i6.f19166v6, org.telegram.ui.ActionBar.i6.f19148u6);
-                if (i11 == 1) {
-                    x4Var.b(LocaleController.getString(R.string.BlockUser), R.drawable.msg_contact_add, 5, false);
-                    return;
-                } else {
-                    LocaleController.getString(R.string.PrivacyAddAnException);
-                    throw null;
-                }
-            }
-            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-            if (i10 == gy0Var.h) {
-                if (i11 == 1) {
-                    e9Var.setFixedSize(0);
-                    e9Var.setText(LocaleController.getString(R.string.BlockedUsersInfo));
-                    return;
-                }
-                e9Var.setFixedSize(8);
-                e9Var.setText(null);
-                return;
-            } else if (i10 == gy0Var.v) {
-                e9Var.setFixedSize(12);
-                e9Var.setText("");
-                return;
-            } else {
-                return;
-            }
-        }
-        org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) view;
-        if (i11 == 1) {
-            long keyAt = gy0Var.getMessagesController().blockePeers.keyAt(i10 - gy0Var.f34042r);
-            a5Var.setTag(Long.valueOf(keyAt));
-            if (keyAt > 0) {
-                TLRPC.User user = gy0Var.getMessagesController().getUser(Long.valueOf(keyAt));
-                if (user != null) {
-                    if (user.bot) {
-                        string2 = LocaleController.getString(R.string.Bot).substring(0, 1).toUpperCase() + LocaleController.getString(R.string.Bot).substring(1);
-                    } else {
-                        String str = user.phone;
-                        if (str != null && str.length() != 0) {
-                            string2 = org.telegram.messenger.w1.j(new StringBuilder("+"), user.phone, gf.b.c());
-                        } else {
-                            string2 = LocaleController.getString(R.string.NumberUnknown);
-                        }
-                    }
-                    if (i10 != gy0Var.f34043s - 1) {
-                        z10 = true;
-                    }
-                    a5Var.b(user, null, string2, z10);
-                    return;
-                }
-                return;
-            }
-            TLRPC.Chat chat = gy0Var.getMessagesController().getChat(Long.valueOf(-keyAt));
-            if (chat != null) {
-                int i13 = chat.participants_count;
-                if (i13 != 0) {
-                    string = LocaleController.formatPluralString("Members", i13, new Object[0]);
-                } else if (chat.has_geo) {
-                    string = LocaleController.getString(R.string.MegaLocation);
-                } else if (!ChatObject.isPublic(chat)) {
-                    string = LocaleController.getString(R.string.MegaPrivate);
-                } else {
-                    string = LocaleController.getString(R.string.MegaPublic);
-                }
-                if (i10 != gy0Var.f34043s - 1) {
-                    z10 = true;
-                }
-                a5Var.b(chat, null, string, z10);
-                return;
-            }
-            return;
-        }
-        throw null;
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.l4 l4Var;
-        FrameLayout e9Var;
-        if (i10 != 0) {
-            Context context = this.f33701c;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 4) {
-                        org.telegram.ui.Cells.l4 l4Var2 = new org.telegram.ui.Cells.l4(this.f33701c, org.telegram.ui.ActionBar.i6.L6, 21, 11, false, null);
-                        l4Var2.setHeight(43);
-                        l4Var = l4Var2;
-                    } else {
-                        org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(viewGroup.getContext());
-                        r8Var.i(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                        r8Var.e(-1, org.telegram.ui.ActionBar.i6.f19056p7);
-                        l4Var = r8Var;
-                    }
-                } else {
-                    e9Var = new org.telegram.ui.Cells.x4(context);
-                }
-            } else {
-                e9Var = new org.telegram.ui.Cells.e9(context);
-            }
-            l4Var = e9Var;
+    public void b(ArrayList arrayList, boolean z10, boolean z11) {
+        Iterator it = arrayList.iterator();
+        if (!it.hasNext()) {
+            this.f33791a.V();
         } else {
-            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(7, 6, this.f33701c, null, true);
-            a5Var.setDelegate(new tl0(this, 10));
-            l4Var = a5Var;
+            Long l4 = (Long) it.next();
+            throw null;
         }
-        return new s4.c1(l4Var);
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        iy0 iy0Var = this.f33791a;
+        if (i10 >= iy0Var.f34711r && i10 < iy0Var.f34712s) {
+            if (iy0Var.f34715y == 1) {
+                iy0Var.U(Long.valueOf(iy0Var.getMessagesController().blockePeers.keyAt(i10 - iy0Var.f34711r)), view);
+                return true;
+            }
+            throw null;
+        }
+        return false;
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        iy0 iy0Var = this.f33791a;
+        iy0Var.getClass();
+        if (((Integer) obj).intValue() != iy0Var.f34713w) {
+            return null;
+        }
+        return Integer.valueOf(org.telegram.ui.ActionBar.j6.l1(0.12f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19082p7, false)));
     }
 }

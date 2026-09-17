@@ -1,148 +1,52 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import org.telegram.messenger.AndroidUtilities;
-public final class kd1 extends org.telegram.ui.Components.u9 {
-    public Drawable G;
-    public final boolean H;
-    public float I;
-    public float J;
-    public final vd1 K;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+public final class kd1 extends vu0 {
+    public final MediaController.PhotoEntry f35249a;
+    public final ld1 f35250b;
 
-    public kd1(vd1 vd1Var, Activity activity) {
-        super(activity);
-        this.K = vd1Var;
-        this.H = true;
+    public kd1(ld1 ld1Var, MediaController.PhotoEntry photoEntry) {
+        this.f35250b = ld1Var;
+        this.f35249a = photoEntry;
     }
 
     @Override
-    public Drawable getBackground() {
-        return this.G;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        this.I = 0.0f;
-        this.J = 0.0f;
-        boolean z10 = this.H;
-        vd1 vd1Var = this.K;
-        if (z10) {
-            Drawable drawable = this.G;
-            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.cc0)) {
-                if (drawable instanceof BitmapDrawable) {
-                    if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
-                        canvas.save();
-                        float f7 = 2.0f / AndroidUtilities.density;
-                        canvas.scale(f7, f7);
-                        this.G.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f7), (int) Math.ceil(getMeasuredHeight() / f7));
-                        this.G.draw(canvas);
-                        canvas.restore();
-                    } else {
-                        int measuredHeight = getMeasuredHeight();
-                        float max = Math.max(getMeasuredWidth() / this.G.getIntrinsicWidth(), measuredHeight / this.G.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(this.G.getIntrinsicWidth() * max * vd1Var.f38579y1);
-                        int ceil2 = (int) Math.ceil(this.G.getIntrinsicHeight() * max * vd1Var.f38579y1);
-                        int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                        int i10 = (measuredHeight - ceil2) / 2;
-                        this.J = i10;
-                        this.G.setBounds(measuredWidth, i10, ceil + measuredWidth, ceil2 + i10);
-                        this.G.draw(canvas);
-                    }
-                }
-            } else {
-                drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.G.draw(canvas);
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        xd1 xd1Var = this.f35250b.f35501a;
+        MediaController.PhotoEntry photoEntry = this.f35249a;
+        if (photoEntry.imagePath != null) {
+            File directory = FileLoader.getDirectory(4);
+            File file = new File(directory, Utilities.random.nextInt() + ".jpg");
+            Point realScreenSize = AndroidUtilities.getRealScreenSize();
+            Bitmap loadBitmap = ImageLoader.loadBitmap(photoEntry.imagePath, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+            try {
+                loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-        }
-        if (vd1Var.a2) {
-            if (!vd1Var.f38520c.isFinished() && vd1Var.f38520c.computeScrollOffset()) {
-                if (vd1Var.f38520c.getStartX() < vd1Var.W1 && vd1Var.f38520c.getStartX() > 0) {
-                    vd1Var.X1 = vd1Var.f38520c.getCurrX();
-                }
-                vd1Var.V0();
-                invalidate();
-            }
-            canvas.save();
-            float f10 = -vd1Var.X1;
-            this.I = f10;
-            canvas.translate(f10, 0.0f);
-            super.onDraw(canvas);
-            canvas.restore();
-        } else {
-            super.onDraw(canvas);
-        }
-        if (vd1Var.M1) {
-            float f11 = vd1Var.f38552n1;
-            if (f11 > 0.0f) {
-                canvas.drawColor(i0.a.k(-16777216, (int) (f11 * 255.0f * vd1Var.f38554o1)));
-            }
+            File file2 = new File(photoEntry.imagePath);
+            xd1Var.B1 = new gj1(file2, file2, "");
+            xd1Var.C1 = loadBitmap;
+            xd1Var.f39537b2 = 0;
+            xd1Var.f39593x0.requestLayout();
+            xd1Var.b1(false);
+            xd1Var.f39591w1 = null;
+            xd1Var.i1();
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        vd1 vd1Var = this.K;
-        org.telegram.ui.Components.l81 l81Var = vd1Var.f38570v1;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        l81Var.getClass();
-        float a2 = org.telegram.ui.Components.l81.a(measuredWidth, measuredHeight);
-        vd1Var.f38579y1 = a2;
-        if (vd1Var.E1) {
-            setScaleX(a2);
-            setScaleY(vd1Var.f38579y1);
-        }
-        if (vd1Var.f38516b == 2) {
-            getMeasuredWidth();
-            getMeasuredHeight();
-        }
-        int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
-        if (vd1Var.f38519b2 != measuredWidth2) {
-            vd1Var.a2 = false;
-            Bitmap bitmap = vd1Var.C1;
-            if (bitmap != null) {
-                int measuredHeight2 = (int) ((getMeasuredHeight() / vd1Var.C1.getHeight()) * bitmap.getWidth());
-                if (measuredHeight2 - getMeasuredWidth() > 100) {
-                    vd1Var.a2 = true;
-                    vd1Var.Z1 = (int) ((vd1Var.C1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
-                    float measuredWidth3 = (measuredHeight2 - getMeasuredWidth()) / 2.0f;
-                    vd1Var.X1 = measuredWidth3;
-                    vd1Var.Y1 = measuredWidth3;
-                    vd1Var.W1 = measuredWidth3 * 2.0f;
-                    s(measuredHeight2, getMeasuredHeight());
-                    this.v = true;
-                    vd1Var.V0();
-                }
-            }
-            if (!vd1Var.a2) {
-                s(-1, -1);
-                this.v = false;
-            }
-        }
-        vd1Var.f38519b2 = measuredWidth2;
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
-        this.G = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.G != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public final boolean z() {
+        return false;
     }
 }

@@ -23,7 +23,7 @@ public final class k extends c implements ListIterator {
 
     public final ListIterator c() {
         a();
-        return (ListIterator) this.f8055b;
+        return (ListIterator) this.f8060b;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class k extends c implements ListIterator {
     }
 
     public k(l lVar, int i10) {
-        super(lVar, ((List) lVar.f8092c).listIterator(i10));
+        super(lVar, ((List) lVar.f8097c).listIterator(i10));
         this.e = lVar;
     }
 }

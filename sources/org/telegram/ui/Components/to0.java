@@ -1,28 +1,34 @@
 package org.telegram.ui.Components;
-public final class to0 implements pb {
-    public final oc f28158a;
-    public final cf f28159b;
 
-    public to0(cf cfVar, oc ocVar) {
-        this.f28159b = cfVar;
-        this.f28158a = ocVar;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class to0 extends FrameLayout {
+    public final cf f28172a;
+
+    public to0(cf cfVar, Context context) {
+        super(context);
+        this.f28172a = cfVar;
     }
 
     @Override
-    public final void c() {
-        this.f28159b.G.remove(this.f28158a);
-    }
-
-    @Override
-    public final void d() {
-        this.f28159b.G.add(this.f28158a);
-    }
-
-    @Override
-    public final void a(oc ocVar) {
-    }
-
-    @Override
-    public final void b() {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        cf cfVar = this.f28172a;
+        View contentView = cfVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + cfVar.E, iArr[1] + cfVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
+        }
+        if (!cfVar.A && !cfVar.D) {
+            cfVar.D = true;
+            cfVar.l(new o1.k[0]);
+        }
+        return true;
     }
 }

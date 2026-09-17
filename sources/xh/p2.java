@@ -1,9 +1,9 @@
 package xh;
 
-import org.telegram.ui.Components.e61;
-public final class p2 extends e61 {
+import org.telegram.ui.Components.f61;
+public final class p2 extends f61 {
     @Override
-    public final Integer W0(int i10) {
+    public final Integer X0(int i10) {
         return 0;
     }
 }

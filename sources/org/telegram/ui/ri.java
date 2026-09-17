@@ -1,47 +1,41 @@
 package org.telegram.ui;
-public final class ri extends org.telegram.ui.ActionBar.n1 {
-    public final org.telegram.ui.Components.fk0 f37119o;
-    public final bo f37120p;
 
-    public ri(bo boVar, db dbVar, org.telegram.ui.Components.fk0 fk0Var) {
-        super(dbVar, -2, -2);
-        this.f37120p = boVar;
-        this.f37119o = fk0Var;
+import android.util.SparseArray;
+import org.telegram.messenger.MessageObject;
+public final class ri {
+    public boolean f37245a;
+    public final boolean f37246b;
+    public final SparseArray f37247c;
+    public final bo d;
+
+    public ri(bo boVar, boolean z10, SparseArray sparseArray) {
+        this.d = boVar;
+        this.f37246b = z10;
+        this.f37247c = sparseArray;
     }
 
-    @Override
-    public final void d(boolean z10) {
-        super.d(true);
-        org.telegram.ui.Components.fk0 fk0Var = this.f37119o;
-        if (fk0Var != null) {
-            fk0Var.d();
+    public final boolean a(int i10) {
+        bo boVar = this.d;
+        int i11 = i10 - boVar.A0.J;
+        if (i11 >= 0 && i11 < boVar.f32469u6.size()) {
+            MessageObject messageObject = (MessageObject) boVar.f32469u6.get(i11);
+            if (messageObject.contentType == 0) {
+                SparseArray sparseArray = this.f37247c;
+                boolean z10 = this.f37246b;
+                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
+                    return true;
+                }
+                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return false;
     }
 
-    @Override
-    public final void dismiss() {
-        d(true);
-        bo boVar = this.f37120p;
-        if (boVar.Q8 == this) {
-            org.telegram.ui.Components.oc ocVar = org.telegram.ui.Components.oc.f26747w;
-            org.telegram.ui.Components.oc ocVar2 = boVar.f32399n1;
-            if (ocVar == ocVar2 && ocVar2 != null) {
-                ocVar2.b();
-                boVar.f32399n1 = null;
-            }
-            boVar.Q8 = null;
-            boVar.T8 = null;
-            boVar.S8 = null;
-            boVar.f32549z0.R = true;
-            if (boVar.R8) {
-                boVar.g8(false, true, 0.0f);
-            } else {
-                boVar.R8 = true;
-            }
-            mk mkVar = boVar.Y;
-            if (mkVar != null && mkVar.getEditField() != null) {
-                boVar.Y.getEditField().setAllowDrawCursor(true);
-            }
-        }
+    public final void b(int r8, boolean r9, float r10, float r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ri.b(int, boolean, float, float):void");
     }
 }

@@ -2,57 +2,57 @@ package ci;
 
 import android.animation.ValueAnimator;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.aq0;
-import org.telegram.ui.vd1;
+import org.telegram.ui.cq0;
+import org.telegram.ui.xd1;
 public final class xb implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5780a;
-    public boolean f5781b = false;
-    public final NotificationCenter.NotificationCenterDelegate f5782c;
+    public final int f5785a;
+    public boolean f5786b = false;
+    public final NotificationCenter.NotificationCenterDelegate f5787c;
 
     public xb(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f5780a = i10;
-        this.f5782c = notificationCenterDelegate;
+        this.f5785a = i10;
+        this.f5787c = notificationCenterDelegate;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f5780a) {
+        switch (this.f5785a) {
             case 0:
-                oc ocVar = (oc) this.f5782c;
+                oc ocVar = (oc) this.f5787c;
                 ocVar.D2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 wb wbVar = ocVar.C2;
                 if (wbVar != null) {
                     wbVar.invalidate();
                 }
-                if (!this.f5781b && ocVar.D2 > 0.5f) {
-                    this.f5781b = true;
+                if (!this.f5786b && ocVar.D2 > 0.5f) {
+                    this.f5786b = true;
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.ad adVar = (org.telegram.ui.ad) this.f5782c;
-                adVar.f31770n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                adVar.m0.invalidate();
-                if (!this.f5781b && adVar.f31770n0 > 0.5f) {
-                    this.f5781b = true;
+                org.telegram.ui.cd cdVar = (org.telegram.ui.cd) this.f5787c;
+                cdVar.f32741n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cdVar.m0.invalidate();
+                if (!this.f5786b && cdVar.f32741n0 > 0.5f) {
+                    this.f5786b = true;
                     return;
                 }
                 return;
             case 2:
-                aq0 aq0Var = (aq0) this.f5782c;
-                aq0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aq0Var.X.invalidate();
-                if (!this.f5781b && aq0Var.Y > 0.5f) {
-                    this.f5781b = true;
+                cq0 cq0Var = (cq0) this.f5787c;
+                cq0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cq0Var.X.invalidate();
+                if (!this.f5786b && cq0Var.Y > 0.5f) {
+                    this.f5786b = true;
                     return;
                 }
                 return;
             default:
-                vd1 vd1Var = (vd1) this.f5782c;
-                vd1Var.f38542i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vd1Var.f38539h2.invalidate();
-                if (!this.f5781b && vd1Var.f38542i2 > 0.5f) {
-                    this.f5781b = true;
+                xd1 xd1Var = (xd1) this.f5787c;
+                xd1Var.f39560i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                xd1Var.f39557h2.invalidate();
+                if (!this.f5786b && xd1Var.f39560i2 > 0.5f) {
+                    this.f5786b = true;
                     return;
                 }
                 return;

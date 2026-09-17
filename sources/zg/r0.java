@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Components.o5;
 import org.telegram.ui.Components.x5;
 import org.telegram.ui.LaunchActivity;
@@ -17,7 +17,7 @@ import yh.l1;
 public abstract class r0 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, p pVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j3 = document.f18118id;
+        long j3 = document.f18127id;
         x5 e = e(document, Long.valueOf(j3), fontMetricsInt);
         linkedHashMap.put(Long.valueOf(j3), e);
         arrayList.add(Long.valueOf(j3));
@@ -70,11 +70,11 @@ public abstract class r0 {
     }
 
     public static boolean d(TLRPC.Reaction reaction, p0 p0Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && p0Var.f49128g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, p0Var.f49127f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && p0Var.f49151g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, p0Var.f49150f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j3 = p0Var.f49128g;
+            long j3 = p0Var.f49151g;
             if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                 return true;
             }
@@ -86,7 +86,7 @@ public abstract class r0 {
     public static x5 e(TLRPC.Document document, Long l4, Paint.FontMetricsInt fontMetricsInt) {
         x5 x5Var;
         if (document != null) {
-            x5Var = new x5(document.f18118id, 1.0f, fontMetricsInt);
+            x5Var = new x5(document.f18127id, 1.0f, fontMetricsInt);
             x5Var.document = document;
         } else {
             x5Var = new x5(l4.longValue(), 1.0f, fontMetricsInt);
@@ -96,7 +96,7 @@ public abstract class r0 {
     }
 
     public static void f(long j3, int i10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        n2 R = LaunchActivity.R();
+        o2 R = LaunchActivity.R();
         if (R != null && tL_premium_boostsStatus != null) {
             rg.j0 j0Var = new rg.j0(21, UserConfig.selectedAccount, R.getContext(), R, R.getResourceProvider());
             j0Var.R0 = i10;

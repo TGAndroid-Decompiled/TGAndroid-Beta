@@ -1,62 +1,36 @@
 package org.telegram.ui.ActionBar;
 
-import ai.z9;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.MediaController;
-public final class p5 implements SensorEventListener {
-    @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        float f7 = sensorEvent.values[0];
-        if (f7 <= 0.0f) {
-            f7 = 0.1f;
-        }
-        if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
-            if (f7 > 500.0f) {
-                i6.h = 1.0f;
-            } else {
-                i6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
-            }
-            long j3 = 1800;
-            if (i6.h <= i6.f19067q) {
-                if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
-                    if (i6.f18938j) {
-                        i6.f18938j = false;
-                        AndroidUtilities.cancelRunOnUIThread(i6.f18977l);
-                    }
-                    if (!i6.f18957k) {
-                        i6.f18957k = true;
-                        z9 z9Var = i6.f18995m;
-                        if (Math.abs(i6.f18919i - SystemClock.elapsedRealtime()) < 12000) {
-                            j3 = 12000;
-                        }
-                        AndroidUtilities.runOnUIThread(z9Var, j3);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            if (i6.f18957k) {
-                i6.f18957k = false;
-                AndroidUtilities.cancelRunOnUIThread(i6.f18995m);
-            }
-            if (!i6.f18938j) {
-                i6.f18938j = true;
-                z9 z9Var2 = i6.f18977l;
-                if (Math.abs(i6.f18919i - SystemClock.elapsedRealtime()) < 12000) {
-                    j3 = 12000;
-                }
-                AndroidUtilities.runOnUIThread(z9Var2, j3);
-            }
-        }
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class p5 extends Drawable {
+    public final int f19500a;
+    public final int f19501b;
+
+    public p5(int i10, int i11) {
+        this.f19500a = i10;
+        this.f19501b = i11;
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int i10 = this.f19500a;
+        int i11 = this.f19501b;
+        canvas.drawCircle((bounds.centerX() - i10) + i11, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i10 + i11, j6.f19256z);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

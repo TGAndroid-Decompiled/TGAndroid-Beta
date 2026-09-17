@@ -1,47 +1,32 @@
 package org.telegram.ui;
 
-import android.content.ComponentName;
-import android.content.Context;
-import org.telegram.messenger.R;
-public final class lb0 {
-    public static final lb0 h;
-    public static final lb0[] f35408n;
-    public final String f35409a;
-    public final int f35410b;
-    public final int f35411c;
-    public final int d;
-    public final boolean e;
-    public ComponentName f35412f;
+import android.window.OnBackInvokedCallback;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class lb0 implements OnBackInvokedCallback {
+    public final LaunchActivity f35492a;
 
-    static {
-        int i10 = R.drawable.icon_background_sa;
-        int i11 = R.mipmap.icon_foreground_sa;
-        lb0 lb0Var = new lb0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
-        h = lb0Var;
-        f35408n = new lb0[]{lb0Var, new lb0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new lb0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new lb0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new lb0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new lb0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
+    public lb0(LaunchActivity launchActivity) {
+        this.f35492a = launchActivity;
     }
 
-    public lb0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
-        this.f35409a = str2;
-        this.f35410b = i11;
-        this.f35411c = i12;
-        this.d = i13;
-        this.e = z10;
-    }
-
-    public static lb0 valueOf(String str) {
-        return (lb0) Enum.valueOf(lb0.class, str);
-    }
-
-    public static lb0[] values() {
-        return (lb0[]) f35408n.clone();
-    }
-
-    public final ComponentName a(Context context) {
-        if (this.f35412f == null) {
-            String packageName = context.getPackageName();
-            this.f35412f = new ComponentName(packageName, "org.telegram.messenger." + this.f35409a);
+    public final void onBackInvoked() {
+        if (AndroidUtilities.isTablet()) {
+            this.f35492a.onBackPressed();
+        } else if (!this.f35492a.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f35492a;
+            ActionBarLayout actionBarLayout = launchActivity.f30858q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f18395c1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.f18395c1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
         }
-        return this.f35412f;
     }
 }

@@ -3,17 +3,17 @@ package m4;
 import j$.util.Objects;
 import java.util.HashSet;
 public final class n1 {
-    public static final String f14626b;
-    public final e9.m0 f14627a;
+    public static final String f14636b;
+    public final e9.m0 f14637a;
 
     static {
         new n1(new HashSet());
-        String str = e2.d0.f7883a;
-        f14626b = Integer.toString(0, 36);
+        String str = e2.d0.f7888a;
+        f14636b = Integer.toString(0, 36);
     }
 
     public n1(HashSet hashSet) {
-        this.f14627a = e9.m0.v(hashSet);
+        this.f14637a = e9.m0.v(hashSet);
     }
 
     public final boolean equals(Object obj) {
@@ -23,10 +23,10 @@ public final class n1 {
         if (!(obj instanceof n1)) {
             return false;
         }
-        return this.f14627a.equals(((n1) obj).f14627a);
+        return this.f14637a.equals(((n1) obj).f14637a);
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f14627a);
+        return Objects.hash(this.f14637a);
     }
 }

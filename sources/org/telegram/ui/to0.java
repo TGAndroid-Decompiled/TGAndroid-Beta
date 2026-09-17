@@ -1,24 +1,45 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class to0 extends ClickableSpan {
-    public final wo0 f37759a;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class to0 implements TextWatcher {
+    public int f37842a = -1;
+    public boolean f37843b;
+    public int f37844c;
+    public final yo0 d;
 
-    public to0(wo0 wo0Var) {
-        this.f37759a = wo0Var;
+    public to0(yo0 yo0Var) {
+        this.d = yo0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        wo0 wo0Var = this.f37759a;
-        wo0Var.presentFragment(new gh1(6, wo0Var.f39307a0));
+    public final void afterTextChanged(android.text.Editable r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.to0.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(false);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        boolean z10 = false;
+        if (i11 == 0 && i12 == 1) {
+            if (TextUtils.indexOf((CharSequence) this.d.f39957f[1].getText(), '/') != -1) {
+                z10 = true;
+            }
+            this.f37843b = z10;
+            this.f37842a = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == '/' && i10 > 0) {
+                this.f37843b = false;
+                this.f37842a = 3;
+                this.f37844c = i10 - 1;
+                return;
+            }
+            this.f37842a = 2;
+        } else {
+            this.f37842a = -1;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

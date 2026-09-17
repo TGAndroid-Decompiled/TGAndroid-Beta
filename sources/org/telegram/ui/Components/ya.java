@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 public final class ya {
-    public boolean f30198a;
-    public int f30199b;
-    public boolean f30200c;
+    public boolean f30155a;
+    public int f30156b;
+    public boolean f30157c;
     public boolean d;
     public boolean e;
-    public int f30201f;
-    public org.telegram.ui.ActionBar.e6 f30202g;
+    public int f30158f;
+    public org.telegram.ui.ActionBar.f6 f30159g;
 
     public ya(ya yaVar) {
-        this.f30198a = yaVar.f30198a;
-        this.f30199b = yaVar.f30199b;
-        this.f30200c = yaVar.f30200c;
+        this.f30155a = yaVar.f30155a;
+        this.f30156b = yaVar.f30156b;
+        this.f30157c = yaVar.f30157c;
         this.d = yaVar.d;
         this.e = yaVar.e;
-        this.f30201f = yaVar.f30201f;
-        this.f30202g = yaVar.f30202g;
+        this.f30158f = yaVar.f30158f;
+        this.f30159g = yaVar.f30159g;
     }
 
     public ya() {
-        this.f30199b = 1;
-        this.f30201f = 1;
+        this.f30156b = 1;
+        this.f30158f = 1;
     }
 }

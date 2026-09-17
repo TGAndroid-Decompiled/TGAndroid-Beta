@@ -191,15 +191,15 @@ public final class ExtendedDefaultDataSource implements h {
             z10 = false;
         }
         d.g(z10);
-        Uri uri = mVar.f9375a;
+        Uri uri = mVar.f9380a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f9375a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f9380a.toString().substring(8)));
             l a2 = mVar.a();
             a2.e = uri;
             mVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = d0.f7883a;
+        String str = d0.f7888a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {

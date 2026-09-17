@@ -1,41 +1,41 @@
 package org.telegram.messenger;
 public final class ah implements Runnable {
-    public final int f15688a;
-    public final NotificationsController f15689b;
-    public final int f15690c;
+    public final int f15697a;
+    public final NotificationsController f15698b;
+    public final int f15699c;
 
     public ah(NotificationsController notificationsController, int i10, int i11) {
-        this.f15688a = i11;
-        this.f15689b = notificationsController;
-        this.f15690c = i10;
+        this.f15697a = i11;
+        this.f15698b = notificationsController;
+        this.f15699c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f15688a) {
+        switch (this.f15697a) {
             case 0:
-                NotificationsController.R(this.f15689b, this.f15690c);
+                NotificationsController.R(this.f15698b, this.f15699c);
                 return;
             case 1:
-                NotificationsController.W(this.f15689b, this.f15690c);
+                NotificationsController.W(this.f15698b, this.f15699c);
                 return;
             case 2:
-                NotificationsController.b0(this.f15689b, this.f15690c);
+                NotificationsController.b0(this.f15698b, this.f15699c);
                 return;
             case 3:
-                NotificationsController.Y(this.f15689b, this.f15690c);
+                NotificationsController.Y(this.f15698b, this.f15699c);
                 return;
             case 4:
-                NotificationsController.i(this.f15689b, this.f15690c);
+                NotificationsController.i(this.f15698b, this.f15699c);
                 return;
             case 5:
-                NotificationsController.w(this.f15689b, this.f15690c);
+                NotificationsController.w(this.f15698b, this.f15699c);
                 return;
             case 6:
-                NotificationsController.q(this.f15689b, this.f15690c);
+                NotificationsController.q(this.f15698b, this.f15699c);
                 return;
             default:
-                NotificationsController.B(this.f15689b, this.f15690c);
+                NotificationsController.B(this.f15698b, this.f15699c);
                 return;
         }
     }

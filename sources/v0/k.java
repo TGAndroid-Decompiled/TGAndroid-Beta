@@ -9,16 +9,16 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 public final class k {
-    public final Context f43813a;
+    public final Context f43836a;
 
     public k(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f43813a = context;
+                this.f43836a = context;
                 return;
             default:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f43813a = context;
+                this.f43836a = context;
                 return;
         }
     }
@@ -28,10 +28,10 @@ public final class k {
             return kVar.c();
         }
         if (obj instanceof o) {
-            for (q qVar : ((o) obj).f43817a) {
+            for (q qVar : ((o) obj).f43840a) {
             }
         }
-        Context ctx = kVar.f43813a;
+        Context ctx = kVar.f43836a;
         kotlin.jvm.internal.i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -55,12 +55,12 @@ public final class k {
     }
 
     public PackageInfo b(int i10, String str) {
-        return this.f43813a.getPackageManager().getPackageInfo(str, i10);
+        return this.f43836a.getPackageManager().getPackageInfo(str, i10);
     }
 
     public j c() {
         String string;
-        Context context = this.f43813a;
+        Context context = this.f43836a;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;

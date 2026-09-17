@@ -2,30 +2,30 @@ package org.telegram.messenger.voip;
 
 import java.util.ArrayList;
 public final class y implements Runnable {
-    public final int f17724a;
-    public final VoIPService f17725b;
-    public final ArrayList f17726c;
+    public final int f17733a;
+    public final VoIPService f17734b;
+    public final ArrayList f17735c;
     public final ArrayList d;
     public final ArrayList e;
-    public final String f17727f;
+    public final String f17736f;
 
     public y(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i10) {
-        this.f17724a = i10;
-        this.f17725b = voIPService;
-        this.f17726c = arrayList;
+        this.f17733a = i10;
+        this.f17734b = voIPService;
+        this.f17735c = arrayList;
         this.d = arrayList2;
         this.e = arrayList3;
-        this.f17727f = str;
+        this.f17736f = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f17724a) {
+        switch (this.f17733a) {
             case 0:
-                this.f17725b.lambda$startConferenceGroupCall$47(this.f17726c, this.d, this.e, this.f17727f);
+                this.f17734b.lambda$startConferenceGroupCall$47(this.f17735c, this.d, this.e, this.f17736f);
                 return;
             default:
-                this.f17725b.lambda$startConferenceGroupCall$39(this.f17726c, this.d, this.e, this.f17727f);
+                this.f17734b.lambda$startConferenceGroupCall$39(this.f17735c, this.d, this.e, this.f17736f);
                 return;
         }
     }

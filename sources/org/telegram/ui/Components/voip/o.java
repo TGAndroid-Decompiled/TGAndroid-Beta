@@ -17,40 +17,40 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.c90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.em0;
+import org.telegram.ui.gm0;
 import org.telegram.ui.mi1;
-import org.telegram.ui.o20;
-import org.telegram.ui.ug;
+import org.telegram.ui.q20;
+import org.telegram.ui.wg;
 import yh.m7;
 import yh.o7;
 import yh.y5;
 import yh.y7;
 import yh.z3;
 public final class o implements View.OnClickListener {
-    public final int f29115a;
-    public final Object f29116b;
+    public final int f29092a;
+    public final Object f29093b;
 
     public o(Object obj, int i10) {
-        this.f29115a = i10;
-        this.f29116b = obj;
+        this.f29092a = i10;
+        this.f29093b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        org.telegram.ui.ActionBar.n2 R;
-        org.telegram.ui.ActionBar.n2 R2;
-        switch (this.f29115a) {
+        org.telegram.ui.ActionBar.o2 R;
+        org.telegram.ui.ActionBar.o2 R2;
+        switch (this.f29092a) {
             case 0:
-                u uVar = (u) this.f29116b;
+                u uVar = (u) this.f29093b;
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().stopScreenCapture();
                 }
                 uVar.N.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
                 return;
             case 1:
-                x0 x0Var = (x0) this.f29116b;
-                if (!x0Var.f29340a) {
-                    if (x0Var.f29348x == 0 && x0Var.f29349y) {
+                x0 x0Var = (x0) this.f29093b;
+                if (!x0Var.f29317a) {
+                    if (x0Var.f29325x == 0 && x0Var.f29326y) {
                         ((Activity) x0Var.getContext()).startActivityForResult(((MediaProjectionManager) x0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -60,9 +60,9 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 2:
-                mi1 mi1Var = (mi1) this.f29116b;
-                if (!mi1Var.f28905a) {
-                    if (mi1Var.f28912w == 0) {
+                mi1 mi1Var = (mi1) this.f29093b;
+                if (!mi1Var.f28882a) {
+                    if (mi1Var.f28889w == 0) {
                         ((Activity) mi1Var.getContext()).startActivityForResult(((MediaProjectionManager) mi1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -72,7 +72,7 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 3:
-                Context context = (Context) this.f29116b;
+                Context context = (Context) this.f29093b;
                 if (VoIPService.getSharedInstance() != null) {
                     Intent action = new Intent(context, LaunchActivity.class).setAction("voip_chat");
                     action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
@@ -85,36 +85,36 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 4:
-                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f29116b;
+                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f29093b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kVar.getContext());
-                alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.WebRecentClearTitle);
-                alertDialog$Builder.f18437a.T = LocaleController.getString(R.string.WebRecentClearText);
+                alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.WebRecentClearTitle);
+                alertDialog$Builder.f18446a.T = LocaleController.getString(R.string.WebRecentClearText);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(kVar));
                 hg.k0.r(R.string.Cancel, alertDialog$Builder, null);
                 return;
             case 5:
-                ((pg.x) this.f29116b).dismiss();
+                ((pg.x) this.f29093b).dismiss();
                 return;
             case 6:
-                ((em0) this.f29116b).run();
+                ((gm0) this.f29093b).run();
                 return;
             case 7:
-                ((qg.v2) this.f29116b).onBackPressed();
+                ((qg.v2) this.f29093b).onBackPressed();
                 return;
             case 8:
-                ((ug) this.f29116b).run();
+                ((wg) this.f29093b).run();
                 return;
             case 9:
-                ((c90) this.f29116b).performClick();
+                ((c90) this.f29093b).performClick();
                 return;
             case 10:
                 PremiumPreviewFragment.p0();
-                PremiumPreviewFragment.k0(((rg.k1) this.f29116b).f42362t0, null, "profile", null);
+                PremiumPreviewFragment.k0(((rg.k1) this.f29093b).f42384t0, null, "profile", null);
                 return;
             case 11:
-                final tg.h0 h0Var = (tg.h0) this.f29116b;
+                final tg.h0 h0Var = (tg.h0) this.f29093b;
                 vg.a aVar = h0Var.Q0;
-                if (!aVar.f44297a.N) {
+                if (!aVar.f44320a.N) {
                     aVar.b(true);
                     String str = h0Var.R0;
                     Utilities.Callback callback = new Utilities.Callback() {
@@ -159,79 +159,79 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 12:
-                ((tg.k0) this.f29116b).dismiss();
+                ((tg.k0) this.f29093b).dismiss();
                 return;
             case 13:
-                ((tg.c0) ((ug.e) this.f29116b)).f43117r.dismiss();
+                ((tg.c0) ((ug.e) this.f29093b)).f43139r.dismiss();
                 return;
             case 14:
-                Runnable runnable = ((xg.c) this.f29116b).d;
+                Runnable runnable = ((xg.c) this.f29093b).d;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 15:
-                ((xh.c) this.f29116b).dismiss();
+                ((xh.c) this.f29093b).dismiss();
                 return;
             case 16:
-                ((xh.c0) this.f29116b).dismiss();
+                ((xh.c0) this.f29093b).dismiss();
                 return;
             case 17:
-                if (((xh.q1) this.f29116b).f46081f0.f47471f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (((xh.q1) this.f29093b).f46104f0.f47494f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f19368a = true;
+                    obj.f19397a = true;
                     R.showAsSheet(new y7(), obj);
                     return;
                 }
                 return;
             case 18:
-                ((yh.s) this.f29116b).dismiss();
+                ((yh.s) this.f29093b).dismiss();
                 return;
             case 19:
-                ((yh.e0) this.f29116b).dismiss();
+                ((yh.e0) this.f29093b).dismiss();
                 return;
             case 20:
-                yh.i0 i0Var = (yh.i0) this.f29116b;
-                zf.b bVar = i0Var.E.f48952a;
-                zf.b bVar2 = zf.b.f48955b;
+                yh.i0 i0Var = (yh.i0) this.f29093b;
+                zf.b bVar = i0Var.E.f48975a;
+                zf.b bVar2 = zf.b.f48978b;
                 if (bVar == bVar2) {
-                    bVar2 = zf.b.f48954a;
+                    bVar2 = zf.b.f48977a;
                 }
                 i0Var.n(zf.a.i(0L, bVar2), true, false, true);
-                i0Var.f47268c.setText("");
+                i0Var.f47291c.setText("");
                 return;
             case 21:
-                ((yh.s0) this.f29116b).dismiss();
+                ((yh.s0) this.f29093b).dismiss();
                 return;
             case 22:
-                ((yh.r1) this.f29116b).run();
+                ((yh.r1) this.f29093b).run();
                 return;
             case 23:
-                ((yh.r1) this.f29116b).run();
+                ((yh.r1) this.f29093b).run();
                 return;
             case 24:
-                yh.f3 f3Var = (yh.f3) this.f29116b;
+                yh.f3 f3Var = (yh.f3) this.f29093b;
                 f3Var.getClass();
-                new o7(f3Var.f47147b, f3Var.f47150g).show();
+                new o7(f3Var.f47170b, f3Var.f47173g).show();
                 return;
             case 25:
-                ((z3) this.f29116b).dismiss();
+                ((z3) this.f29093b).dismiss();
                 return;
             case 26:
-                ((y5) this.f29116b).run();
+                ((y5) this.f29093b).run();
                 return;
             case 27:
-                if (((m7) ((o20) this.f29116b).d).f47471f > 0 && (R2 = LaunchActivity.R()) != 0) {
+                if (((m7) ((q20) this.f29093b).d).f47494f > 0 && (R2 = LaunchActivity.R()) != 0) {
                     ?? obj2 = new Object();
-                    obj2.f19368a = true;
+                    obj2.f19397a = true;
                     R2.showAsSheet(new y7(), obj2);
                     return;
                 }
                 return;
             default:
-                zg.c0 c0Var = (zg.c0) this.f29116b;
-                if (c0Var.f48990k) {
+                zg.c0 c0Var = (zg.c0) this.f29093b;
+                if (c0Var.f49013k) {
                     c0Var.d();
                     return;
                 }

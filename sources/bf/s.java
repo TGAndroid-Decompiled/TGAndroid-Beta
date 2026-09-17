@@ -2,10 +2,10 @@ package bf;
 
 import v7.i0;
 public final class s extends p {
-    public String f3551g;
+    public String f3556g;
 
     public s(String str) {
-        this.f3551g = str;
+        this.f3556g = str;
     }
 
     @Override
@@ -15,6 +15,6 @@ public final class s extends p {
 
     @Override
     public final String f() {
-        return "literal=" + this.f3551g;
+        return "literal=" + this.f3556g;
     }
 }

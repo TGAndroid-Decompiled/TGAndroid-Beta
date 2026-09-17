@@ -10,31 +10,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.oc;
 import org.telegram.ui.Components.qr;
 public final class w3 extends FrameLayout {
-    public final int f47934a = 0;
-    public Object f47935b;
-    public Object f47936c;
+    public final int f47957a = 0;
+    public Object f47958b;
+    public Object f47959c;
 
     public w3(Context context) {
         super(context);
     }
 
     public void b(int i10, CharSequence charSequence, boolean z10) {
-        ImageView imageView = (ImageView) this.f47935b;
+        ImageView imageView = (ImageView) this.f47958b;
         if (z10) {
             AndroidUtilities.updateImageViewImageAnimated(imageView, i10);
         } else {
             imageView.setImageResource(i10);
         }
-        ((TextView) this.f47936c).setText(charSequence);
+        ((TextView) this.f47959c).setText(charSequence);
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        switch (this.f47934a) {
+        switch (this.f47957a) {
             case 2:
                 if (keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 4) {
-                    zg.c0 c0Var = (zg.c0) this.f47936c;
-                    if (!c0Var.f48990k) {
+                    zg.c0 c0Var = (zg.c0) this.f47959c;
+                    if (!c0Var.f49013k) {
                         return true;
                     }
                     c0Var.d();
@@ -48,7 +48,7 @@ public final class w3 extends FrameLayout {
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f47934a) {
+        switch (this.f47957a) {
             case 2:
                 return;
             default:
@@ -59,30 +59,30 @@ public final class w3 extends FrameLayout {
 
     @Override
     public boolean fitSystemWindows(Rect rect) {
-        switch (this.f47934a) {
+        switch (this.f47957a) {
             case 2:
-                zg.c0 c0Var = (zg.c0) this.f47936c;
-                float f7 = c0Var.f49000u;
+                zg.c0 c0Var = (zg.c0) this.f47959c;
+                float f7 = c0Var.f49023u;
                 float f10 = rect.bottom;
                 if (f7 != f10 && c0Var.v) {
-                    c0Var.f49000u = f10;
-                    w3 w3Var = c0Var.f48985c;
-                    zg.b0 b0Var = c0Var.f48983a;
-                    if (!c0Var.f48996q) {
-                        float f11 = c0Var.f48999t;
+                    c0Var.f49023u = f10;
+                    w3 w3Var = c0Var.f49008c;
+                    zg.b0 b0Var = c0Var.f49006a;
+                    if (!c0Var.f49019q) {
+                        float f11 = c0Var.f49022t;
                         int dp = AndroidUtilities.dp(32.0f);
-                        int i10 = c0Var.f49003y;
+                        int i10 = c0Var.f49026y;
                         if (i10 == 1 || i10 == 2) {
                             dp = AndroidUtilities.dp(24.0f);
                         }
                         float f12 = dp;
-                        if (b0Var.getMeasuredHeight() + f11 > (w3Var.getMeasuredHeight() - c0Var.f49000u) - f12) {
-                            f11 = ((w3Var.getMeasuredHeight() - c0Var.f49000u) - b0Var.getMeasuredHeight()) - f12;
+                        if (b0Var.getMeasuredHeight() + f11 > (w3Var.getMeasuredHeight() - c0Var.f49023u) - f12) {
+                            f11 = ((w3Var.getMeasuredHeight() - c0Var.f49023u) - b0Var.getMeasuredHeight()) - f12;
                         }
                         if (f11 < 0.0f) {
                             f11 = 0.0f;
                         }
-                        b0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.w(c0Var, 1)).setInterpolator(qr.f27423f).start();
+                        b0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.w(c0Var, 1)).setInterpolator(qr.f27380f).start();
                     }
                 }
                 return super.fitSystemWindows(rect);
@@ -93,14 +93,14 @@ public final class w3 extends FrameLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f47934a) {
+        switch (this.f47957a) {
             case 1:
                 super.onAttachedToWindow();
-                ((zg.n) this.f47935b).c();
+                ((zg.n) this.f47958b).c();
                 return;
             case 2:
                 super.onAttachedToWindow();
-                oc.a(this, (ai.w4) this.f47935b);
+                oc.a(this, (ai.w4) this.f47958b);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -110,10 +110,10 @@ public final class w3 extends FrameLayout {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f47934a) {
+        switch (this.f47957a) {
             case 1:
                 super.onDetachedFromWindow();
-                ((zg.n) this.f47935b).d();
+                ((zg.n) this.f47958b).d();
                 return;
             case 2:
                 super.onDetachedFromWindow();
@@ -127,14 +127,14 @@ public final class w3 extends FrameLayout {
 
     public w3(zg.c0 c0Var, Context context) {
         super(context);
-        this.f47936c = c0Var;
-        this.f47935b = new ai.w4(this, 11);
+        this.f47959c = c0Var;
+        this.f47958b = new ai.w4(this, 11);
     }
 
     public w3(zg.q qVar, Context context) {
         super(context);
-        this.f47936c = qVar;
-        this.f47935b = new zg.n(this, this);
+        this.f47959c = qVar;
+        this.f47958b = new zg.n(this, this);
     }
 
     private final void a(boolean z10) {

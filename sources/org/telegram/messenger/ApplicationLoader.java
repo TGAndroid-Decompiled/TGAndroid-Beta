@@ -29,7 +29,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.g10;
 import org.telegram.ui.Components.n70;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.lb0;
+import org.telegram.ui.nb0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -52,6 +52,7 @@ public class ApplicationLoader extends Application {
     private static volatile ConnectivityManager.NetworkCallback networkCallback;
     private static PushListenerController.IPushListenerServiceProvider pushProvider;
     public static long startTime;
+    private final Runnable debugEverySecondChecks = new u1(3);
 
     public static void appCenterLog(Throwable th2) {
         applicationLoaderInstance.appCenterLogInternal(th2);
@@ -63,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f13511a;
+            AtomicBoolean atomicBoolean = k6.g.f13514a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -163,7 +164,7 @@ public class ApplicationLoader extends Application {
     }
 
     private void initPushServices() {
-        AndroidUtilities.runOnUIThread(new u1(5), 1000L);
+        AndroidUtilities.runOnUIThread(new u1(7), 1000L);
     }
 
     public static boolean isAndroidTestEnvironment() {
@@ -305,7 +306,7 @@ public class ApplicationLoader extends Application {
         return applicationLoaderInstance.isStandalone();
     }
 
-    public static void lambda$initPushServices$0() {
+    public static void lambda$initPushServices$2() {
         if (getPushProvider().hasServices()) {
             getPushProvider().onRequestPushToken();
             return;
@@ -315,6 +316,10 @@ public class ApplicationLoader extends Application {
         }
         SharedConfig.pushStringStatus = "__NO_GOOGLE_PLAY_SERVICES__";
         PushListenerController.sendRegistrationToServer(getPushProvider().getPushType(), null);
+    }
+
+    public static void lambda$new$1() {
+        AndroidUtilities.runOnUIThread(new u1(4));
     }
 
     public static void logDualCamera(boolean z10, boolean z11) {
@@ -541,13 +546,13 @@ public class ApplicationLoader extends Application {
                     }
                 }
             };
-            new ANRDetector(new u1(3));
+            new ANRDetector(new u1(5));
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
-            AndroidUtilities.runOnUIThread(new u1(4));
-            lb0[] values = lb0.values();
+            AndroidUtilities.runOnUIThread(new u1(6));
+            nb0[] values = nb0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
@@ -556,7 +561,7 @@ public class ApplicationLoader extends Application {
                     }
                     i10++;
                 } else {
-                    w7.e6.b(lb0.h);
+                    w7.e6.b(nb0.h);
                     break;
                 }
             }
@@ -598,7 +603,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
-    public org.telegram.ui.ActionBar.n2 openSettings(int i10) {
+    public org.telegram.ui.ActionBar.o2 openSettings(int i10) {
         return null;
     }
 

@@ -8,27 +8,27 @@ import android.graphics.Path;
 import android.text.TextPaint;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-public final class rl extends org.telegram.ui.Components.n01 {
+public final class rl extends org.telegram.ui.Components.o01 {
     public final bo K;
 
-    public rl(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, bo boVar) {
+    public rl(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, bo boVar) {
         super(activity);
         this.K = boVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f26283b = textPaint;
+        this.f26579b = textPaint;
         Paint paint = new Paint(1);
-        this.f26284c = paint;
+        this.f26580c = paint;
         this.d = AndroidUtilities.dp(24.0f);
         this.e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.jq0(this, 14);
+        this.H = new org.telegram.ui.Components.kq0(this, 14);
         this.J = new Path();
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Hi, e6Var);
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Hi, f6Var);
         int alpha = Color.alpha(v02);
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setColor(v02);
         paint.setColor(v02);
         paint.setAlpha((int) (alpha * 0.14d));
-        setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Fi, e6Var)));
+        setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fi, f6Var)));
     }
 
     public final void d() {

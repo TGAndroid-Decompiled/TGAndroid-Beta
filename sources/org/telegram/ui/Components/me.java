@@ -8,14 +8,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 public final class me implements View.OnClickListener {
-    public final org.telegram.ui.bo f26149a;
-    public final Activity f26150b;
-    public final ChatActivityEnterView f26151c;
+    public final org.telegram.ui.bo f26134a;
+    public final Activity f26135b;
+    public final ChatActivityEnterView f26136c;
 
     public me(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.bo boVar, Activity activity) {
-        this.f26151c = chatActivityEnterView;
-        this.f26149a = boVar;
-        this.f26150b = activity;
+        this.f26136c = chatActivityEnterView;
+        this.f26134a = boVar;
+        this.f26135b = activity;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class me implements View.OnClickListener {
         String str;
         int i10;
         int i11;
-        org.telegram.ui.bo boVar = this.f26149a;
+        org.telegram.ui.bo boVar = this.f26134a;
         if (boVar == null) {
             return;
         }
-        ChatActivityEnterView chatActivityEnterView = this.f26151c;
-        chatActivityEnterView.f21767f2 = !chatActivityEnterView.f21767f2;
-        if (chatActivityEnterView.f21758e0 == null) {
-            chatActivityEnterView.f21758e0 = new nr(this.f26150b, R.drawable.input_notify_on, org.telegram.ui.ActionBar.i6.Wk);
+        ChatActivityEnterView chatActivityEnterView = this.f26136c;
+        chatActivityEnterView.f21777f2 = !chatActivityEnterView.f21777f2;
+        if (chatActivityEnterView.f21768e0 == null) {
+            chatActivityEnterView.f21768e0 = new nr(this.f26135b, R.drawable.input_notify_on, org.telegram.ui.ActionBar.j6.Wk);
         }
-        chatActivityEnterView.f21758e0.a(chatActivityEnterView.f21767f2, true);
-        chatActivityEnterView.H1.setImageDrawable(chatActivityEnterView.f21758e0);
-        MessagesController.getNotificationsSettings(chatActivityEnterView.Q).edit().putBoolean("silent_" + chatActivityEnterView.P2, chatActivityEnterView.f21767f2).commit();
+        chatActivityEnterView.f21768e0.a(chatActivityEnterView.f21777f2, true);
+        chatActivityEnterView.H1.setImageDrawable(chatActivityEnterView.f21768e0);
+        MessagesController.getNotificationsSettings(chatActivityEnterView.Q).edit().putBoolean("silent_" + chatActivityEnterView.P2, chatActivityEnterView.f21777f2).commit();
         NotificationsController notificationsController = NotificationsController.getInstance(chatActivityEnterView.Q);
         long j3 = chatActivityEnterView.P2;
         if (boVar == null) {
@@ -47,7 +47,7 @@ public final class me implements View.OnClickListener {
         boVar.Q7();
         UndoView undoView = boVar.y3;
         if (undoView != null) {
-            if (!chatActivityEnterView.f21767f2) {
+            if (!chatActivityEnterView.f21777f2) {
                 i11 = 54;
             } else {
                 i11 = 55;
@@ -55,7 +55,7 @@ public final class me implements View.OnClickListener {
             undoView.j(i11, 0L, null);
         }
         ImageView imageView = chatActivityEnterView.H1;
-        if (chatActivityEnterView.f21767f2) {
+        if (chatActivityEnterView.f21777f2) {
             str = "AccDescrChanSilentOn";
             i10 = R.string.AccDescrChanSilentOn;
         } else {

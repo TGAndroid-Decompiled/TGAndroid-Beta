@@ -1,63 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class su extends org.telegram.ui.Components.bd {
-    public final tu f37478e0;
+import android.text.TextUtils;
+public final class su extends og.a {
+    public final int f37549c;
+    public final int d;
+    public final int e;
+    public final CharSequence f37550f;
+    public final CharSequence f37551g;
+    public final int h;
 
-    public su(tu tuVar, Context context, int i10, int[] iArr, int[] iArr2) {
-        super(context, i10, iArr, 1, iArr2);
-        this.f37478e0 = tuVar;
+    public su(int i10, String str) {
+        super(i10, false);
+        this.f37550f = str;
     }
 
-    @Override
-    public final int c() {
-        return 216;
+    public static su b(CharSequence charSequence, String str) {
+        return new su(-1, 0, 0, 0, charSequence, str);
     }
 
-    @Override
-    public final void d(int i10, boolean z10) {
-        int i11;
-        vu vuVar = (vu) this.f37478e0.e;
-        if (!z10) {
-            vuVar.j1();
-        } else if (i10 >= 0 && i10 < vuVar.f38692g3.length) {
-            int i12 = 0;
-            while (true) {
-                uu[] uuVarArr = vuVar.f38692g3;
-                i11 = -1;
-                if (i12 < uuVarArr.length) {
-                    if (uuVarArr[i12].d == i10) {
-                        break;
-                    }
-                    i12++;
-                } else {
-                    i12 = -1;
-                    break;
-                }
-            }
-            int i13 = 0;
-            while (true) {
-                if (i13 < vuVar.f38688c3.size()) {
-                    qu quVar = (qu) vuVar.f38688c3.get(i13);
-                    if (quVar != null && quVar.f15533a == 2 && quVar.h == i12) {
-                        i11 = i13;
-                        break;
-                    }
-                    i13++;
-                } else {
-                    break;
-                }
-            }
-            if (i11 >= 0) {
-                vuVar.e1(new i2.v(i11, 3), 0, true);
-            } else {
-                vuVar.j1();
-            }
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof su)) {
+            return false;
         }
+        su suVar = (su) obj;
+        CharSequence charSequence = suVar.f37550f;
+        int i10 = suVar.f15543a;
+        int i11 = this.f15543a;
+        if (i10 != i11) {
+            return false;
+        }
+        CharSequence charSequence2 = this.f37550f;
+        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
+            if (i11 != 2) {
+                return true;
+            }
+            if (suVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || suVar.d != this.d || suVar.e != this.e || suVar.f37549c != this.f37549c) {
+                return false;
+            }
+            return true;
+        }
+        return TextUtils.equals(charSequence2, charSequence);
     }
 
-    @Override
-    public final int e() {
-        return 10;
+    public su(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
+        super(2, false);
+        this.h = i10;
+        this.f37549c = i11;
+        this.d = i12;
+        this.e = i13;
+        this.f37550f = charSequence;
+        this.f37551g = charSequence2;
     }
 }

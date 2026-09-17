@@ -1,16 +1,25 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class ic extends rg.j0 {
-    public final int W0;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ic implements e2.h {
+    public final int f34524a;
+    public final cd f34525b;
 
-    public ic(ad adVar, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var, int i12) {
-        super(i10, i11, activity, adVar, e6Var);
-        this.W0 = i12;
+    public ic(cd cdVar, int i10) {
+        this.f34524a = i10;
+        this.f34525b = cdVar;
     }
 
     @Override
-    public final int o1() {
-        return this.W0;
+    public final void accept(Object obj) {
+        switch (this.f34524a) {
+            case 0:
+                cd.V(this.f34525b, (ChannelBoostsController.CanApplyBoost) obj);
+                return;
+            default:
+                this.f34525b.W0((TL_stories.TL_premium_boostsStatus) obj);
+                return;
+        }
     }
 }

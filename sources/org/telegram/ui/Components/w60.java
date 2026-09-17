@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class w60 implements Runnable {
-    public final int f29620a;
-    public final x60 f29621b;
-    public final String f29622c;
+    public final int f29569a;
+    public final x60 f29570b;
+    public final String f29571c;
 
     public w60(x60 x60Var, String str, int i10) {
-        this.f29620a = i10;
-        this.f29621b = x60Var;
-        this.f29622c = str;
+        this.f29569a = i10;
+        this.f29570b = x60Var;
+        this.f29571c = str;
     }
 
     @Override
@@ -29,24 +29,24 @@ public final class w60 implements Runnable {
         ArrayList arrayList;
         char c10;
         Object obj;
-        switch (this.f29620a) {
+        switch (this.f29569a) {
             case 0:
-                x60 x60Var = this.f29621b;
-                String str2 = this.f29622c;
+                x60 x60Var = this.f29570b;
+                String str2 = this.f29571c;
                 x60Var.getClass();
                 AndroidUtilities.runOnUIThread(new w60(x60Var, str2, 1));
                 return;
             case 1:
-                x60 x60Var2 = this.f29621b;
-                String str3 = this.f29622c;
+                x60 x60Var2 = this.f29570b;
+                String str3 = this.f29571c;
                 gg.c2 c2Var = x60Var2.e;
-                org.telegram.ui.hu huVar = x60Var2.f29898n.m0;
+                org.telegram.ui.gu guVar = x60Var2.f29860n.m0;
                 boolean z10 = false;
-                if (huVar != null) {
+                if (guVar != null) {
                     z10 = true;
                 }
                 boolean z11 = false;
-                if (huVar != null) {
+                if (guVar != null) {
                     z11 = true;
                 }
                 c2Var.g(str3, true, z10, true, z11, 0L, false, 0, 0);
@@ -56,12 +56,12 @@ public final class w60 implements Runnable {
                 dispatchQueue.postRunnable(w60Var);
                 return;
             default:
-                x60 x60Var3 = this.f29621b;
-                String str4 = this.f29622c;
-                ArrayList arrayList2 = x60Var3.f29898n.f22675e0;
+                x60 x60Var3 = this.f29570b;
+                String str4 = this.f29571c;
+                ArrayList arrayList2 = x60Var3.f29860n.f22626e0;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(x60Var3, new ArrayList(), new ArrayList(), 21));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q(x60Var3, new ArrayList(), new ArrayList(), 21));
                     return;
                 }
                 String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
@@ -140,7 +140,7 @@ public final class w60 implements Runnable {
                     arrayList2 = arrayList;
                     i11 = 0;
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(x60Var3, arrayList3, arrayList4, 21));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q(x60Var3, arrayList3, arrayList4, 21));
                 return;
         }
     }

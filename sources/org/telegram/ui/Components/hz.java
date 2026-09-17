@@ -18,9 +18,9 @@ public final class hz extends u9 {
         super.onDraw(canvas);
         iz izVar = this.G;
         kz kzVar = izVar.d;
-        boolean z10 = izVar.f25169c;
-        if (!z10 && MediaDataController.getInstance(kzVar.f25703c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f18139id) && kzVar.f25753s1 != null) {
-            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), kzVar.f25753s1);
+        boolean z10 = izVar.f25058c;
+        if (!z10 && MediaDataController.getInstance(kzVar.f25713c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f18148id) && kzVar.f25763s1 != null) {
+            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), kzVar.f25763s1);
         }
     }
 }

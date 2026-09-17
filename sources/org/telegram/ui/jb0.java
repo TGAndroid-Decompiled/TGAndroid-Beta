@@ -1,32 +1,22 @@
 package org.telegram.ui;
 
-import android.window.OnBackInvokedCallback;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class jb0 implements OnBackInvokedCallback {
-    public final LaunchActivity f34847a;
+import android.view.View;
+public final class jb0 implements View.OnAttachStateChangeListener {
+    public final LaunchActivity f34833a;
 
     public jb0(LaunchActivity launchActivity) {
-        this.f34847a = launchActivity;
+        this.f34833a = launchActivity;
     }
 
-    public final void onBackInvoked() {
-        if (AndroidUtilities.isTablet()) {
-            this.f34847a.onBackPressed();
-        } else if (!this.f34847a.c0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f34847a;
-            ActionBarLayout actionBarLayout = launchActivity.f30844q0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.f18386c1) {
-                    actionBarLayout.G();
-                    return;
-                }
-                actionBarLayout.f18386c1 = false;
-                actionBarLayout.e(false);
-                return;
-            }
-            launchActivity.onBackPressed();
-        }
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        LaunchActivity launchActivity = this.f34833a;
+        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.f30835d1);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        LaunchActivity launchActivity = this.f34833a;
+        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.f30835d1);
     }
 }

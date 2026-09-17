@@ -1,39 +1,65 @@
 package org.telegram.ui;
-public final class jj extends dh.b {
-    public final int f34913n;
-    public final bo f34914r;
 
-    public jj(bo boVar, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11) {
-        super(i10, e6Var);
-        this.f34913n = i11;
-        this.f34914r = boVar;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class jj extends org.telegram.ui.Components.i40 {
+    public final int I;
+
+    public jj(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        super(i10, context, f6Var, z10);
+        this.I = i11;
     }
 
     @Override
-    public final int H() {
-        int i10;
-        int i11;
-        switch (this.f34913n) {
+    public int c() {
+        switch (this.I) {
             case 0:
-                bo boVar = this.f34914r;
-                i10 = ((org.telegram.ui.ActionBar.n2) boVar).currentAccount;
-                if (!eh.b.c(i10, boVar.f32297ea)) {
-                    return i0.a.k(boVar.getThemedColor(org.telegram.ui.ActionBar.i6.Sd), 255);
-                }
-                if (boVar.f32297ea != null && !org.telegram.ui.ActionBar.i6.I.q()) {
-                    return i0.a.k(this.d, 216);
-                }
-                return this.d;
+                return AndroidUtilities.dp(56.0f) / 2;
             default:
-                bo boVar2 = this.f34914r;
-                i11 = ((org.telegram.ui.ActionBar.n2) boVar2).currentAccount;
-                if (!eh.b.c(i11, boVar2.f32297ea)) {
-                    return i0.a.k(boVar2.getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6), 255);
+                return super.c();
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.I) {
+            case 1:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
                 }
-                if (boVar2.f32297ea != null && !org.telegram.ui.ActionBar.i6.I.q()) {
-                    return i0.a.k(this.d, 216);
+                return;
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused2) {
+                        return;
+                    }
                 }
-                return this.d;
+                return;
+            case 3:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused3) {
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
         }
     }
 }

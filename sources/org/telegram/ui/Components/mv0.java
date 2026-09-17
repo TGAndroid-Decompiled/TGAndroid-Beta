@@ -1,4 +1,10 @@
 package org.telegram.ui.Components;
-public interface mv0 {
-    void g(Runnable runnable);
+
+import android.graphics.Bitmap;
+public final class mv0 {
+    public int f26270a;
+    public ov0 f26271b;
+    public Bitmap f26272c;
+    public float d;
+    public float e;
 }

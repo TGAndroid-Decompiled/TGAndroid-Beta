@@ -13,14 +13,14 @@ public final class t7 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        View view = c1Var.f42675a;
+        View view = c1Var.f42697a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f42678f != 0) {
+        if (c1Var.f42700f != 0) {
             return 0;
         }
         return s4.v.l(3, 0);
@@ -31,36 +31,36 @@ public final class t7 extends s4.v {
         int b10 = c1Var.b();
         int b11 = c1Var2.b();
         h8 h8Var = this.d;
-        if (h8Var.f24577v0) {
+        if (h8Var.f24569v0) {
             if (b10 > 0 && b11 > 0) {
-                h8Var.f24579w0.move(b10 - 1, b11 - 1);
+                h8Var.f24571w0.move(b10 - 1, b11 - 1);
             } else {
                 return false;
             }
         } else {
-            h8Var.f24579w0.move(b10, b11);
+            h8Var.f24571w0.move(b10, b11);
         }
-        h8Var.f24581x0.clear();
-        h8Var.f24581x0.addAll(h8Var.f24579w0.list);
-        h8Var.f24573s.p(b10, b11);
+        h8Var.f24573x0.clear();
+        h8Var.f24573x0.addAll(h8Var.f24571w0.list);
+        h8Var.f24565s.p(b10, b11);
         return true;
     }
 
     @Override
     public final void p(s4.c1 c1Var, int i10) {
         Boolean bool;
-        s7 s7Var = this.d.f24566n;
+        s7 s7Var = this.d.f24558n;
         if (c1Var != null) {
-            s7Var.d1(false);
+            s7Var.e1(false);
         }
         if (i10 != 0) {
-            s7Var.I0(false);
+            s7Var.J0(false);
             if (c1Var != null) {
-                c1Var.f42675a.setPressed(true);
+                c1Var.f42697a.setPressed(true);
             }
         }
         if (c1Var != null) {
-            View view = c1Var.f42675a;
+            View view = c1Var.f42697a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

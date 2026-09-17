@@ -1,11 +1,11 @@
 package y9;
 public final class d0 extends h1 {
-    public final String f46496a;
-    public final String f46497b;
+    public final String f46519a;
+    public final String f46520b;
 
     public d0(String str, String str2) {
-        this.f46496a = str;
-        this.f46497b = str2;
+        this.f46519a = str;
+        this.f46520b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class d0 extends h1 {
         }
         if (obj instanceof h1) {
             d0 d0Var = (d0) ((h1) obj);
-            if (this.f46496a.equals(d0Var.f46496a) && this.f46497b.equals(d0Var.f46497b)) {
+            if (this.f46519a.equals(d0Var.f46519a) && this.f46520b.equals(d0Var.f46520b)) {
                 return true;
             }
         }
@@ -22,13 +22,13 @@ public final class d0 extends h1 {
     }
 
     public final int hashCode() {
-        return ((this.f46496a.hashCode() ^ 1000003) * 1000003) ^ this.f46497b.hashCode();
+        return ((this.f46519a.hashCode() ^ 1000003) * 1000003) ^ this.f46520b.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("CustomAttribute{key=");
-        sb2.append(this.f46496a);
+        sb2.append(this.f46519a);
         sb2.append(", value=");
-        return a4.a.s(sb2, this.f46497b, "}");
+        return a4.a.s(sb2, this.f46520b, "}");
     }
 }

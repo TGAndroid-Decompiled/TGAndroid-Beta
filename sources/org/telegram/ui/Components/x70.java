@@ -14,65 +14,65 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.PhotoViewer;
 public final class x70 implements View.OnClickListener {
-    public final int f29901a;
-    public final Object f29902b;
+    public final int f29876a;
+    public final Object f29877b;
 
     public x70(Object obj, int i10) {
-        this.f29901a = i10;
-        this.f29902b = obj;
+        this.f29876a = i10;
+        this.f29877b = obj;
     }
 
     @Override
     public final void onClick(View view) {
         TLRPC.Chat chat;
         int i10;
-        switch (this.f29901a) {
+        switch (this.f29876a) {
             case 0:
-                z70 z70Var = (z70) this.f29902b;
-                z70Var.f30493b = true;
+                z70 z70Var = (z70) this.f29877b;
+                z70Var.f30408b = true;
                 z70Var.dismiss();
                 return;
             case 1:
-                ((g80) this.f29902b).dismiss();
+                ((g80) this.f29877b).dismiss();
                 return;
             case 2:
-                ((org.telegram.ui.ActionBar.z) this.f29902b).o(2);
+                ((org.telegram.ui.ActionBar.a0) this.f29877b).o(2);
                 return;
             case 3:
-                zb0 zb0Var = (zb0) this.f29902b;
-                zb0.b(zb0Var.getContext(), zb0Var.f30539a, zb0Var.f30543n, false, zb0Var.f30547x, new xp(zb0Var, 29), zb0Var.f30541c);
+                zb0 zb0Var = (zb0) this.f29877b;
+                zb0.b(zb0Var.getContext(), zb0Var.f30462a, zb0Var.f30466n, false, zb0Var.f30470x, new xp(zb0Var, 29), zb0Var.f30464c);
                 return;
             case 4:
-                ((zc0) this.f29902b).onBackPressed();
+                ((zc0) this.f29877b).onBackPressed();
                 return;
             case 5:
-                ae0.m((ae0) this.f29902b);
+                ae0.m((ae0) this.f29877b);
                 return;
             case 6:
-                if0 if0Var = (if0) this.f29902b;
+                if0 if0Var = (if0) this.f29877b;
                 if0Var.getClass();
                 org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
                 int intValue = ((Integer) t5Var.getTag()).intValue();
                 jf0 jf0Var = if0Var.d;
-                if (intValue == jf0Var.f25342y) {
+                if (intValue == jf0Var.f25264y) {
                     jf0Var.N = t5Var.getCurrentColor();
                 } else {
                     jf0Var.O = t5Var.getCurrentColor();
                 }
-                vz vzVar = jf0Var.f25325l0;
+                vz vzVar = jf0Var.f25247l0;
                 if (vzVar != null) {
                     vzVar.e(false, false, false);
                 }
                 jf0Var.g();
                 return;
             case 7:
-                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((pf0) this.f29902b).f27033a.f27331y.url)));
+                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((pf0) this.f29877b).f27020a.f27287y.url)));
                 return;
             case 8:
-                eg0 eg0Var = (eg0) this.f29902b;
-                PhotoViewer photoViewer = eg0Var.V;
+                fg0 fg0Var = (fg0) this.f29877b;
+                PhotoViewer photoViewer = fg0Var.V;
                 if (photoViewer != null) {
-                    qf0 qf0Var = eg0Var.f23656r;
+                    qf0 qf0Var = fg0Var.f23929r;
                     if (qf0Var != null) {
                         if (qf0Var.G) {
                             qf0Var.f();
@@ -80,71 +80,71 @@ public final class x70 implements View.OnClickListener {
                             qf0Var.g();
                         }
                     } else {
-                        g71 g71Var = photoViewer.F2;
-                        if (g71Var != null) {
-                            if (g71Var.y()) {
-                                g71Var.B();
+                        h71 h71Var = photoViewer.F2;
+                        if (h71Var != null) {
+                            if (h71Var.y()) {
+                                h71Var.B();
                             } else {
-                                g71Var.C();
+                                h71Var.C();
                             }
                         } else {
                             return;
                         }
                     }
-                    eg0.f23638p0.z();
+                    fg0.f23911p0.z();
                     return;
                 }
                 return;
             case 9:
-                ng0 ng0Var = (ng0) this.f29902b;
-                ng0Var.getClass();
-                kg0 kg0Var = (kg0) ng0Var;
-                lg0 lg0Var = kg0Var.e;
-                og0 og0Var = (og0) kg0Var.getTag(R.id.object_tag);
-                if (og0Var.f26781b.size() > 15) {
-                    boolean z10 = og0Var.e;
-                    og0Var.e = !z10;
+                og0 og0Var = (og0) this.f29877b;
+                og0Var.getClass();
+                lg0 lg0Var = (lg0) og0Var;
+                mg0 mg0Var = lg0Var.e;
+                pg0 pg0Var = (pg0) lg0Var.getTag(R.id.object_tag);
+                if (pg0Var.f27023b.size() > 15) {
+                    boolean z10 = pg0Var.e;
+                    pg0Var.e = !z10;
                     if (!z10) {
-                        og0Var.f26783f = 10;
+                        pg0Var.f27025f = 10;
                     }
-                    lg0Var.f25916s.O(kg0Var);
-                    lg0Var.f25916s.f27036c.X(true);
+                    mg0Var.f26144s.O(lg0Var);
+                    mg0Var.f26144s.f27299c.X(true);
                     return;
                 }
                 return;
             case 10:
-                ((am0) this.f29902b).onBackPressed();
+                ((bm0) this.f29877b).onBackPressed();
                 return;
             case 11:
-                vm0 vm0Var = ((um0) this.f29902b).f28431c;
-                et.n(vm0Var.F, vm0Var.G);
+                wm0 wm0Var = ((vm0) this.f29877b).f28828c;
+                et.n(wm0Var.F, wm0Var.G);
                 return;
             case 12:
-                ci.h2 h2Var = ((wm0) this.f29902b).e;
+                ci.h2 h2Var = ((xm0) this.f29877b).e;
                 h2Var.setText("");
                 AndroidUtilities.showKeyboard(h2Var);
                 return;
             case 13:
-                in0 in0Var = (in0) this.f29902b;
-                in0Var.getClass();
-                new rg.x0(in0Var.f25084b, 24, true).show();
+                jn0 jn0Var = (jn0) this.f29877b;
+                jn0Var.getClass();
+                new rg.x0(jn0Var.f25356b, 24, true).show();
                 return;
             case 14:
-                ((yn0) this.f29902b).Q(false);
+                ((zn0) this.f29877b).R(false);
                 return;
             case 15:
-                mq0 mq0Var = ((kq0) this.f29902b).f25671s;
-                ArrayList arrayList = mq0Var.f26234s;
+                nq0 nq0Var = ((lq0) this.f29877b).f25964s;
+                ArrayList arrayList = nq0Var.f26520s;
                 if (!arrayList.isEmpty()) {
-                    mq0Var.f26233r = TextUtils.join(" ", arrayList).toString();
-                    mq0Var.f26232n = false;
-                    mq0Var.d();
-                    mq0Var.f26235w = null;
-                    if (mq0Var.f26229b != 0) {
-                        mq0Var.f26229b = 0;
-                        lq0 lq0Var = mq0Var.H;
-                        if (lq0Var != null) {
-                            ((org.telegram.ui.wv) lq0Var).h(0);
+                    nq0Var.f26519r = TextUtils.join(" ", arrayList).toString();
+                    nq0Var.f26518n = false;
+                    nq0Var.d();
+                    nq0Var.f26521w = null;
+                    if (nq0Var.f26515b != 0) {
+                        nq0Var.f26515b = 0;
+                        mq0 mq0Var = nq0Var.H;
+                        if (mq0Var != null) {
+                            ((org.telegram.ui.yv) mq0Var).h(0);
                             return;
                         }
                         return;
@@ -153,50 +153,50 @@ public final class x70 implements View.OnClickListener {
                 }
                 return;
             case 16:
-                yu0 yu0Var = ((ht0) this.f29902b).f24801f;
-                org.telegram.ui.ActionBar.n2 n2Var = yu0Var.f30392v1;
-                if (n2Var != null && n2Var.getParentLayout() != null) {
-                    ((ActionBarLayout) yu0Var.f30392v1.getParentLayout()).r();
+                zu0 zu0Var = ((it0) this.f29877b).f25028f;
+                org.telegram.ui.ActionBar.o2 o2Var = zu0Var.f30656v1;
+                if (o2Var != null && o2Var.getParentLayout() != null) {
+                    ((ActionBarLayout) zu0Var.f30656v1.getParentLayout()).r();
                     return;
                 }
                 return;
             case 17:
-                ((jq0) this.f29902b).run();
+                ((kq0) this.f29877b).run();
                 return;
             case 18:
-                ((yw0) this.f29902b).f30419b.getImageReceiver().startAnimation();
+                ((zw0) this.f29877b).f30673b.getImageReceiver().startAnimation();
                 return;
             case 19:
-                AndroidUtilities.runOnUIThread((ai.a7) this.f29902b, 100L);
+                AndroidUtilities.runOnUIThread((ai.a7) this.f29877b, 100L);
                 return;
             case 20:
-                ((EditTextBoldCursor) this.f29902b).setText("");
+                ((EditTextBoldCursor) this.f29877b).setText("");
                 return;
             case 21:
-                n11 n11Var = ((p11) this.f29902b).f26928b;
-                n11Var.setText("");
-                AndroidUtilities.showKeyboard(n11Var);
+                o11 o11Var = ((q11) this.f29877b).f27191b;
+                o11Var.setText("");
+                AndroidUtilities.showKeyboard(o11Var);
                 return;
             case 22:
-                ((z11) this.f29902b).f30448b.getImageReceiver().startAnimation();
+                ((a21) this.f29877b).f22295b.getImageReceiver().startAnimation();
                 return;
             case 23:
-                ((v31) this.f29902b).dismiss();
+                ((w31) this.f29877b).dismiss();
                 return;
             case 24:
-                org.telegram.ui.bo boVar = ((org.telegram.ui.zk) this.f29902b).f40222s;
+                org.telegram.ui.bo boVar = ((org.telegram.ui.al) this.f29877b).f31912s;
                 if (!boVar.getUserConfig().isPremium() && ((chat = boVar.e) == null || !chat.autotranslation)) {
-                    i10 = ((org.telegram.ui.ActionBar.n2) boVar).currentAccount;
+                    i10 = ((org.telegram.ui.ActionBar.o2) boVar).currentAccount;
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i10).edit();
                     edit.putInt("dialog_show_translate_count" + boVar.a(), 14).commit();
-                    boVar.showDialog(new rg.x0((org.telegram.ui.ActionBar.n2) boVar, 13, false));
+                    boVar.showDialog(new rg.x0((org.telegram.ui.ActionBar.o2) boVar, 13, false));
                 } else {
                     boVar.getMessagesController().getTranslateController().toggleTranslatingDialog(boVar.a());
                 }
                 boVar.Qc(true);
                 return;
             default:
-                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f29902b).getSwipeBack().b(true);
+                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f29877b).getSwipeBack().b(true);
                 return;
         }
     }

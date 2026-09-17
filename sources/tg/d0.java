@@ -12,22 +12,22 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d3;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.ActionBar.e3;
+import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.pv0;
+import org.telegram.ui.Components.qv0;
 import org.telegram.ui.Components.za;
 import org.telegram.ui.LaunchActivity;
 public final class d0 extends za {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public c0 Z;
-    public final String f43123a0;
+    public final String f43145a0;
 
-    public d0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
-        super(n2Var, true);
+    public d0(o2 o2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
+        super(o2Var, true);
         boolean z10;
         if (tL_payments_checkedGiftCode.used_date == 0) {
             z10 = true;
@@ -36,19 +36,19 @@ public final class d0 extends za {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f43123a0 = str;
+        this.f43145a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
         N();
         c0 c0Var = this.Z;
-        d3 d3Var = this.container;
+        e3 e3Var = this.container;
         c0Var.getClass();
         c0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        c0Var.e = n2Var;
-        c0Var.f43721f = tL_payments_checkedGiftCode;
+        c0Var.e = o2Var;
+        c0Var.f43744f = tL_payments_checkedGiftCode;
         c0Var.h = str;
-        c0Var.f43722n = d3Var;
+        c0Var.f43745n = e3Var;
     }
 
     public static boolean S(Intent intent, nf.e eVar) {
@@ -82,16 +82,16 @@ public final class d0 extends za {
         return false;
     }
 
-    public static void T(n2 n2Var, String str, nf.e eVar) {
-        if (n2Var == null) {
+    public static void T(o2 o2Var, String str, nf.e eVar) {
+        if (o2Var == null) {
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (eVar != null) {
             eVar.d();
-            eVar.f15210b = new f(atomicBoolean, 1);
+            eVar.f15220b = new f(atomicBoolean, 1);
         }
-        e4 e4Var = new e4(atomicBoolean, n2Var, str, eVar, 15);
+        e4 e4Var = new e4(atomicBoolean, o2Var, str, eVar, 15);
         h hVar = new h(atomicBoolean, eVar, 1);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -101,12 +101,12 @@ public final class d0 extends za {
     }
 
     @Override
-    public final void G(pv0 pv0Var) {
+    public final void G(qv0 qv0Var) {
         oc.a(this.container, new d9(14));
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
+    public final ll0 v(ml0 ml0Var) {
         c0 c0Var = new c0(this, this.resourcesProvider);
         this.Z = c0Var;
         return c0Var;

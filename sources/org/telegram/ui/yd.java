@@ -1,49 +1,61 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class yd extends org.telegram.ui.Components.yc0 {
-    public final int L;
-    public final Object M;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class yd implements org.telegram.ui.ActionBar.b2, Utilities.Callback5, Utilities.Callback5Return {
+    public final le f39857a;
 
-    public yd(Object obj, Context context, int i10) {
-        super(context, null);
-        this.L = i10;
-        this.M = obj;
+    public yd(le leVar) {
+        this.f39857a = leVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
-            case 0:
-                je jeVar = (je) this.M;
-                org.telegram.ui.Components.e61 e61Var = jeVar.f34860a1;
-                fi.o oVar = jeVar.Y0;
-                if (oVar != null && !oVar.isFocusable()) {
-                    oVar.setFocusable(true);
-                    oVar.setFocusableInTouchMode(true);
-                    int x12 = e61Var.x1(3);
-                    if (x12 >= 0 && x12 < e61Var.Y2.f29616x.size()) {
-                        e61Var.B0();
-                        e61Var.x0(x12);
-                    }
-                    oVar.requestFocus();
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                yh.g gVar = (yh.g) this.M;
-                fi.o oVar2 = gVar.Q;
-                if (oVar2 != null && !oVar2.isFocusable()) {
-                    gVar.Q.setFocusable(true);
-                    gVar.Q.setFocusableInTouchMode(true);
-                    int x13 = gVar.e.x1(1);
-                    if (x13 >= 0 && x13 < gVar.e.Y2.f29616x.size()) {
-                        gVar.e.B0();
-                        gVar.e.x0(x13);
-                    }
-                    gVar.Q.requestFocus();
-                }
-                return super.dispatchTouchEvent(motionEvent);
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        this.f39857a.f35525w0.presentFragment(new ih1(6, null));
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        org.telegram.ui.Components.j51 j51Var = (org.telegram.ui.Components.j51) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        this.f39857a.getClass();
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        le leVar = this.f39857a;
+        pd pdVar = leVar.f35524v1;
+        int i10 = leVar.f35528y0;
+        long j3 = leVar.f35529z0;
+        int i11 = ((org.telegram.ui.Components.j51) obj).d;
+        if (i11 != 1) {
+            if (i11 == 4) {
+                leVar.f35525w0.presentFragment(new ei.e4(j3));
+            }
+        } else if (leVar.B0 < MessagesController.getInstance(i10).channelRestrictSponsoredLevelMin) {
+            if (leVar.A0 == null) {
+                return;
+            }
+            ab1 ab1Var = leVar.f35525w0;
+            rg.j0 j0Var = new rg.j0(30, leVar.f35528y0, leVar.getContext(), ab1Var, leVar.f35527x0);
+            j0Var.H1(j3);
+            j0Var.F1(leVar.A0, true);
+            MessagesController.getInstance(i10).getBoostsController().userCanBoostChannel(j3, leVar.A0, new ai.g3(5, leVar, j0Var));
+        } else {
+            leVar.f35515m1 = !leVar.f35515m1;
+            AndroidUtilities.cancelRunOnUIThread(pdVar);
+            AndroidUtilities.runOnUIThread(pdVar, 1000L);
+            leVar.f35504a1.Y2.N(true);
         }
     }
 }

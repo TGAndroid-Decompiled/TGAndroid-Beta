@@ -1,34 +1,32 @@
 package org.telegram.ui;
 
+import android.content.DialogInterface;
 import java.util.regex.Pattern;
-import org.telegram.messenger.Utilities;
-public final class j90 implements Utilities.Callback {
-    public final int f34839a;
-    public final Runnable f34840b;
+import org.telegram.messenger.AndroidUtilities;
+public final class j90 implements DialogInterface.OnDismissListener {
+    public final int f34822a;
+    public final LaunchActivity f34823b;
 
-    public j90(xh.o4 o4Var, int i10) {
-        this.f34839a = i10;
-        this.f34840b = o4Var;
+    public j90(LaunchActivity launchActivity, int i10) {
+        this.f34822a = i10;
+        this.f34823b = launchActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f34839a;
-        Runnable runnable = this.f34840b;
-        String str = (String) obj;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i10 = this.f34822a;
+        LaunchActivity launchActivity = this.f34823b;
         switch (i10) {
             case 0:
+                launchActivity.f30869v1 = false;
+                return;
+            case 1:
                 Pattern pattern = LaunchActivity.B1;
-                if (runnable != null && "paid".equals(str)) {
-                    runnable.run();
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new h90(launchActivity, 9), 30000L);
                 return;
             default:
-                if (runnable != null && "paid".equals(str)) {
-                    runnable.run();
-                    return;
-                }
+                Pattern pattern2 = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new h90(launchActivity, 10), 30000L);
                 return;
         }
     }

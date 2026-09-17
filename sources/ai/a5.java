@@ -10,30 +10,30 @@ import org.telegram.ui.Components.qr;
 public final class a5 extends i0 {
     public final org.telegram.ui.Components.c6 d;
     public final org.telegram.ui.Components.c6 e;
-    public final org.telegram.ui.Components.voip.h f512f;
+    public final org.telegram.ui.Components.voip.h f517f;
     public final org.telegram.ui.Components.c6 h;
-    public final org.telegram.ui.Components.c6 f513n;
-    public boolean f514r;
-    public boolean f515s;
+    public final org.telegram.ui.Components.c6 f518n;
+    public boolean f519r;
+    public boolean f520s;
     public final c6 v;
-    public final jc f516w;
-    public final f6 f517x;
+    public final jc f521w;
+    public final f6 f522x;
 
     public a5(f6 f6Var, Context context, c6 c6Var, jc jcVar) {
         super(context);
-        this.f517x = f6Var;
+        this.f522x = f6Var;
         this.v = c6Var;
-        this.f516w = jcVar;
-        qr qrVar = qr.f27423f;
+        this.f521w = jcVar;
+        qr qrVar = qr.f27380f;
         this.d = new org.telegram.ui.Components.c6(this, 150L, qrVar);
         this.e = new org.telegram.ui.Components.c6(this, 150L, qrVar);
-        this.f512f = new org.telegram.ui.Components.voip.h(32, 102, 240);
+        this.f517f = new org.telegram.ui.Components.voip.h(32, 102, 240);
         org.telegram.ui.Components.c6 c6Var2 = new org.telegram.ui.Components.c6(this);
         this.h = c6Var2;
         org.telegram.ui.Components.c6 c6Var3 = new org.telegram.ui.Components.c6(this);
-        this.f513n = c6Var3;
-        c6Var2.f22955g = 500L;
-        c6Var3.f22955g = 100L;
+        this.f518n = c6Var3;
+        c6Var2.f22939g = 500L;
+        c6Var3.f22939g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -48,9 +48,9 @@ public final class a5 extends i0 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         d2 d2Var;
-        f6 f6Var = this.f517x;
+        f6 f6Var = this.f522x;
         e6 e6Var = f6Var.M2;
-        if (f6Var.K1 && !f6Var.f800c3 && ((org.telegram.ui.k4) e6Var.e) != null && (d2Var = (d2) e6Var.f760b) != null && d2Var.n() && ((org.telegram.ui.k4) e6Var.e).dispatchTouchEvent(motionEvent)) {
+        if (f6Var.K1 && !f6Var.f805c3 && ((org.telegram.ui.k4) e6Var.e) != null && (d2Var = (d2) e6Var.f765b) != null && d2Var.n() && ((org.telegram.ui.k4) e6Var.e).dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -58,11 +58,11 @@ public final class a5 extends i0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view != this.f517x.f821j1) {
-            if (this.f514r) {
-                org.telegram.ui.Components.oc ocVar = org.telegram.ui.Components.oc.f26747w;
+        if (view != this.f522x.f826j1) {
+            if (this.f519r) {
+                org.telegram.ui.Components.oc ocVar = org.telegram.ui.Components.oc.f26695w;
                 if (ocVar != null && view == ocVar.e) {
-                    if (this.f515s) {
+                    if (this.f520s) {
                         return super.drawChild(canvas, view, j3);
                     }
                     return true;
@@ -77,15 +77,15 @@ public final class a5 extends i0 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f517x.f823k1.j();
+        this.f522x.f828k1.j();
         org.telegram.ui.Components.oc.a(this, new w4(this, 0));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        f6 f6Var = this.f517x;
-        f6Var.f823k1.k();
+        f6 f6Var = this.f522x;
+        f6Var.f828k1.k();
         org.telegram.ui.Components.oc.h(this);
         y5 y5Var = f6Var.Q1;
         if (y5Var != null) {
@@ -97,7 +97,7 @@ public final class a5 extends i0 {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f517x.f866y0.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f522x.f871y0.getLayoutParams();
         layoutParams.rightMargin = AndroidUtilities.dp(42.0f);
         layoutParams.topMargin = AndroidUtilities.dp(15.0f);
         super.onMeasure(i10, i11);

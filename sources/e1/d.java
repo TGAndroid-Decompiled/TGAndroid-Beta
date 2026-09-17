@@ -8,14 +8,14 @@ import java.util.concurrent.Executor;
 import v0.i;
 public final class d extends b1.d {
     public final Context e;
-    public i f7864f;
-    public Executor f7865g;
+    public i f7869f;
+    public Executor f7870g;
     public CancellationSignal h;
-    public final c1.d f7866i;
+    public final c1.d f7871i;
 
     public d(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
         this.e = context;
-        this.f7866i = new c1.d(this, new Handler(Looper.getMainLooper()), 2);
+        this.f7871i = new c1.d(this, new Handler(Looper.getMainLooper()), 2);
     }
 }

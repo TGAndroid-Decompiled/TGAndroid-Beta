@@ -6,21 +6,21 @@ import android.os.SystemClock;
 import android.view.Surface;
 import b2.x1;
 public final class m implements Handler.Callback {
-    public final Handler f143a;
-    public final n f144b;
+    public final Handler f145a;
+    public final n f146b;
 
     public m(n nVar, r2.l lVar) {
-        this.f144b = nVar;
+        this.f146b = nVar;
         Handler o9 = e2.d0.o(this);
-        this.f143a = o9;
+        this.f145a = o9;
         lVar.e(this, o9);
     }
 
     public final void a(long j3) {
         boolean z10;
         Surface surface;
-        n nVar = this.f144b;
-        if (this == nVar.H1 && nVar.f41979b0 != null) {
+        n nVar = this.f146b;
+        if (this == nVar.H1 && nVar.f42001b0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 nVar.M0 = true;
                 return;
@@ -34,18 +34,18 @@ public final class m implements Handler.Callback {
                     bVar.W(x1Var);
                 }
                 nVar.O0.e++;
-                a0 a0Var = nVar.f148c1;
+                a0 a0Var = nVar.f150c1;
                 if (a0Var.e != 3) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 a0Var.e = 3;
-                a0Var.f65l.getClass();
-                a0Var.f61g = e2.d0.Q(SystemClock.elapsedRealtime());
-                if (z10 && (surface = nVar.f158n1) != null) {
+                a0Var.f67l.getClass();
+                a0Var.f63g = e2.d0.Q(SystemClock.elapsedRealtime());
+                if (z10 && (surface = nVar.f160n1) != null) {
                     bVar.S(surface);
-                    nVar.f161q1 = true;
+                    nVar.f163q1 = true;
                 }
                 nVar.d0(j3);
             } catch (i2.n e) {
@@ -61,7 +61,7 @@ public final class m implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

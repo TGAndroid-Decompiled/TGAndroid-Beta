@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.widget.EditText;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class dj1 extends org.telegram.ui.ActionBar.g5 {
-    public final WallpapersListActivity f33078f;
+public final class dj1 extends org.telegram.ui.ActionBar.h5 {
+    public final WallpapersListActivity f33170f;
 
     public dj1(WallpapersListActivity wallpapersListActivity) {
-        this.f33078f = wallpapersListActivity;
+        this.f33170f = wallpapersListActivity;
     }
 
     @Override
     public final void k() {
-        WallpapersListActivity wallpapersListActivity = this.f33078f;
+        WallpapersListActivity wallpapersListActivity = this.f33170f;
         ij1 ij1Var = wallpapersListActivity.H;
-        ij1Var.f34694n = null;
+        ij1Var.f34608n = null;
         ij1Var.E(null, true);
         wallpapersListActivity.J.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
     }
 
     @Override
     public final void m() {
-        WallpapersListActivity wallpapersListActivity = this.f33078f;
+        WallpapersListActivity wallpapersListActivity = this.f33170f;
         wallpapersListActivity.F.setAdapter(wallpapersListActivity.G);
         wallpapersListActivity.F.invalidate();
         wallpapersListActivity.H.E(null, true);
@@ -31,13 +31,13 @@ public final class dj1 extends org.telegram.ui.ActionBar.g5 {
 
     @Override
     public final void n() {
-        WallpapersListActivity wallpapersListActivity = this.f33078f;
+        WallpapersListActivity wallpapersListActivity = this.f33170f;
         wallpapersListActivity.F.setAdapter(wallpapersListActivity.H);
         wallpapersListActivity.F.invalidate();
     }
 
     @Override
     public final void q(EditText editText) {
-        this.f33078f.H.E(editText.getText().toString(), false);
+        this.f33170f.H.E(editText.getText().toString(), false);
     }
 }

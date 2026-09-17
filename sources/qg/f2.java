@@ -9,40 +9,40 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.ha;
 import org.telegram.ui.Components.la;
 import org.telegram.ui.Components.oq;
 public abstract class f2 extends ci.d {
-    public final la f41358h0;
-    public final RectF f41359i0;
-    public int f41360j0;
-    public final p2 f41361k0;
-    public final e6 f41362l0;
+    public final la f41380h0;
+    public final RectF f41381i0;
+    public int f41382j0;
+    public final p2 f41383k0;
+    public final f6 f41384l0;
     public int m0;
-    public boolean f41363n0;
+    public boolean f41385n0;
 
-    public f2(p2 p2Var, ContextThemeWrapper contextThemeWrapper, e6 e6Var, ha haVar) {
-        super(contextThemeWrapper, e6Var, false);
-        this.f41359i0 = new RectF();
+    public f2(p2 p2Var, ContextThemeWrapper contextThemeWrapper, f6 f6Var, ha haVar) {
+        super(contextThemeWrapper, f6Var, false);
+        this.f41381i0 = new RectF();
         this.m0 = 8;
-        this.f41362l0 = e6Var;
-        this.f41361k0 = p2Var;
-        this.f41358h0 = new la(haVar, this, 0, true);
+        this.f41384l0 = f6Var;
+        this.f41383k0 = p2Var;
+        this.f41380h0 = new la(haVar, this, 0, true);
         setWillNotDraw(false);
         setTextColor(-1);
         setFlickeringLoading(true);
         this.d.u(AndroidUtilities.bold());
-        removeView(this.f4454r);
-        setForeground(i6.Y(i6.l1(0.08f, -1), 8, 8));
+        removeView(this.f4459r);
+        setForeground(j6.Y(j6.l1(0.08f, -1), 8, 8));
         setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        boolean z10 = this.f4448d0;
-        RectF rectF = this.f41359i0;
+        boolean z10 = this.f4453d0;
+        RectF rectF = this.f41381i0;
         if (z10) {
             float d = this.d.d() + getPaddingLeft() + getPaddingRight();
             rectF.set((getMeasuredWidth() - d) / 2.0f, 0.0f, (getMeasuredWidth() + d) / 2.0f, getMeasuredHeight());
@@ -54,7 +54,7 @@ public abstract class f2 extends ci.d {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f41363n0) {
+        if (this.f41385n0) {
             i10 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.d.d()), 1073741824);
         }
         super.onMeasure(i10, i11);
@@ -63,17 +63,17 @@ public abstract class f2 extends ci.d {
     @Override
     public void setAlpha(float f7) {
         m2[] m2VarArr;
-        p2 p2Var = this.f41361k0;
-        super.setAlpha((!p2Var.f41579y || (m2VarArr = p2Var.H) == null || m2VarArr.length <= 0) ? 0.0f : 0.0f);
+        p2 p2Var = this.f41383k0;
+        super.setAlpha((!p2Var.f41601y || (m2VarArr = p2Var.H) == null || m2VarArr.length <= 0) ? 0.0f : 0.0f);
     }
 
     public void setCancelState(boolean z10) {
-        this.f41360j0 = 2;
+        this.f41382j0 = 2;
         g(LocaleController.getString(R.string.Cancel), z10, true);
     }
 
     public void setCutOutState(boolean z10) {
-        this.f41360j0 = 0;
+        this.f41382j0 = 0;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         oq oqVar = new oq(R.drawable.media_magic_cut, 0);
         oqVar.setSize(AndroidUtilities.dp(22.0f));
@@ -86,7 +86,7 @@ public abstract class f2 extends ci.d {
     }
 
     public void setEraseState(boolean z10) {
-        this.f41360j0 = 3;
+        this.f41382j0 = 3;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         oq oqVar = new oq(R.drawable.media_button_erase, 0);
         oqVar.setSize(AndroidUtilities.dp(20.0f));
@@ -97,7 +97,7 @@ public abstract class f2 extends ci.d {
     }
 
     public void setOutlineState(boolean z10) {
-        this.f41360j0 = 6;
+        this.f41382j0 = 6;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         oq oqVar = new oq(R.drawable.media_sticker_stroke, 0);
         oqVar.setSize(AndroidUtilities.dp(20.0f));
@@ -109,11 +109,11 @@ public abstract class f2 extends ci.d {
 
     public void setRad(int i10) {
         this.m0 = i10;
-        setForeground(i6.Y(i6.v0(i6.f18926i6, this.f41362l0), i10, i10));
+        setForeground(j6.Y(j6.v0(j6.f18952i6, this.f41384l0), i10, i10));
     }
 
     public void setRestoreState(boolean z10) {
-        this.f41360j0 = 4;
+        this.f41382j0 = 4;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         oq oqVar = new oq(R.drawable.media_button_restore, 0);
         oqVar.setSize(AndroidUtilities.dp(20.0f));
@@ -124,11 +124,11 @@ public abstract class f2 extends ci.d {
     }
 
     public void setUndoCutState(boolean z10) {
-        this.f41360j0 = 1;
+        this.f41382j0 = 1;
     }
 
     public void setUndoState(boolean z10) {
-        this.f41360j0 = 5;
+        this.f41382j0 = 5;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         oq oqVar = new oq(R.drawable.photo_undo2, 0);
         oqVar.setSize(AndroidUtilities.dp(20.0f));

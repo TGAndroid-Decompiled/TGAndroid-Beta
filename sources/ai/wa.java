@@ -20,7 +20,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.jw0;
+import org.telegram.ui.Components.kw0;
 import org.telegram.ui.Components.qr;
 public final class wa extends View implements org.telegram.ui.Cells.z9 {
     public int E;
@@ -29,36 +29,36 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
     public boolean H;
     public ValueAnimator I;
     public final xa J;
-    public final PorterDuffColorFilter f1663a;
-    public boolean f1664b;
-    public final TextPaint f1665c;
+    public final PorterDuffColorFilter f1668a;
+    public boolean f1669b;
+    public final TextPaint f1670c;
     public final TextPaint d;
     public final Paint e;
-    public final Paint f1666f;
+    public final Paint f1671f;
     public float h;
-    public float f1667n;
-    public final va[] f1668r;
-    public int f1669s;
+    public float f1672n;
+    public final va[] f1673r;
+    public int f1674s;
     public StaticLayout v;
-    public float f1670w;
-    public boolean f1671x;
-    public final boolean f1672y;
+    public float f1675w;
+    public boolean f1676x;
+    public final boolean f1677y;
 
     public wa(xa xaVar, Context context) {
         super(context);
         this.J = xaVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f1665c = textPaint;
+        this.f1670c = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.d = textPaint2;
         Paint paint = new Paint();
         this.e = paint;
         Paint paint2 = new Paint(1);
-        this.f1666f = paint2;
-        this.f1668r = r7;
-        this.f1669s = 0;
+        this.f1671f = paint2;
+        this.f1673r = r7;
+        this.f1674s = 0;
         new Path();
-        this.f1672y = true;
+        this.f1677y = true;
         this.H = false;
         va[] vaVarArr = {new va(this), null};
         textPaint.setColor(-1);
@@ -72,7 +72,7 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f1663a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f1668a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static StaticLayout a(wa waVar, TextPaint textPaint, CharSequence charSequence, int i10) {
@@ -80,9 +80,9 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setBreakStrategy(0).setHyphenationFrequency(0);
             if (LocaleController.isRTL) {
-                alignment = jw0.a();
+                alignment = kw0.a();
             } else {
-                Layout.Alignment[] alignmentArr = jw0.f25446a;
+                Layout.Alignment[] alignmentArr = kw0.f25699a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -98,16 +98,16 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         if (charSequence == null) {
             charSequence = "";
         }
-        va[] vaVarArr = this.f1668r;
-        if (MediaDataController.stringsEqual(vaVarArr[0].f1624n, charSequence)) {
+        va[] vaVarArr = this.f1673r;
+        if (MediaDataController.stringsEqual(vaVarArr[0].f1629n, charSequence)) {
             va vaVar = vaVarArr[0];
-            if (vaVar.f1625o == saVar && vaVar.f1626p == saVar2) {
-                vaVar.f1627q = z10;
+            if (vaVar.f1630o == saVar && vaVar.f1631p == saVar2) {
+                vaVar.f1632q = z10;
                 invalidate();
                 return;
             }
         }
-        this.f1671x = false;
+        this.f1676x = false;
         ValueAnimator valueAnimator = this.I;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -119,15 +119,15 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             }
             va vaVar2 = vaVarArr[1];
             va vaVar3 = vaVarArr[0];
-            vaVar2.g(vaVar3.f1624n, vaVar3.f1625o, vaVar3.f1626p);
+            vaVar2.g(vaVar3.f1629n, vaVar3.f1630o, vaVar3.f1631p);
             va vaVar4 = vaVarArr[1];
             va vaVar5 = vaVarArr[0];
-            vaVar4.f1627q = vaVar5.f1627q;
-            vaVar4.f1628r.d(vaVar5.f1628r.f22953c, true);
+            vaVar4.f1632q = vaVar5.f1632q;
+            vaVar4.f1633r.d(vaVar5.f1633r.f22937c, true);
             vaVarArr[0].g(charSequence, saVar, saVar2);
             va vaVar6 = vaVarArr[0];
-            vaVar6.f1627q = z10;
-            vaVar6.f1628r.d(0.0f, true);
+            vaVar6.f1632q = z10;
+            vaVar6.f1633r.d(0.0f, true);
             this.G = 1.0f;
             ValueAnimator valueAnimator2 = this.I;
             if (valueAnimator2 != null) {
@@ -139,12 +139,12 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             ofFloat.addUpdateListener(new a(this, 13));
             this.I.addListener(new b(this, 10));
             this.I.setDuration(180L);
-            this.I.setInterpolator(qr.f27424g);
+            this.I.setInterpolator(qr.f27381g);
             this.I.start();
             return;
         }
         vaVarArr[0].g(charSequence, saVar, saVar2);
-        vaVarArr[0].f1627q = z10;
+        vaVarArr[0].f1632q = z10;
         invalidate();
         this.G = 0.0f;
     }
@@ -156,38 +156,38 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
 
     public float getAnimatedHeight() {
         int i10 = this.F * 2;
-        va[] vaVarArr = this.f1668r;
+        va[] vaVarArr = this.f1673r;
         int i11 = 0;
-        int i12 = vaVarArr[0].f1622l;
+        int i12 = vaVarArr[0].f1627l;
         va vaVar = vaVarArr[1];
         if (vaVar != null) {
-            i11 = vaVar.f1622l;
+            i11 = vaVar.f1627l;
         }
         return AndroidUtilities.lerp(i12, i11, this.G) + i10;
     }
 
     public Paint getPaint() {
-        return this.f1665c;
+        return this.f1670c;
     }
 
     @Override
     public Layout getStaticTextLayout() {
-        return this.f1668r[0].e;
+        return this.f1673r[0].e;
     }
 
     @Override
     public CharSequence getText() {
-        return this.f1668r[0].f1624n;
+        return this.f1673r[0].f1629n;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i10 = 0;
-        va vaVar = this.f1668r[0];
+        va vaVar = this.f1673r[0];
         wa waVar = vaVar.v;
         org.telegram.ui.Components.x5.release(waVar, vaVar.d);
-        org.telegram.ui.Components.x5.release(waVar, vaVar.f1617f);
+        org.telegram.ui.Components.x5.release(waVar, vaVar.f1622f);
         if (vaVar.h == null) {
             return;
         }
@@ -196,7 +196,7 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             if (i10 < taVarArr.length) {
                 ta taVar = taVarArr[i10];
                 if (taVar != null) {
-                    org.telegram.ui.Components.x5.release(waVar, taVar.f1552a);
+                    org.telegram.ui.Components.x5.release(waVar, taVar.f1557a);
                 }
                 i10++;
             } else {
@@ -215,7 +215,7 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             canvas2 = canvas;
             canvas2.save();
         }
-        va[] vaVarArr = this.f1668r;
+        va[] vaVarArr = this.f1673r;
         vaVarArr[0].b(canvas2, 1.0f - this.G);
         va vaVar = vaVarArr[1];
         if (vaVar != null) {
@@ -223,19 +223,19 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         }
         if (this.v != null) {
             float scrollY = this.h + this.J.getScrollY();
-            int clamp = (int) ((1.0f - Utilities.clamp(this.f1670w / 0.5f, 1.0f, 0.0f)) * 255.0f);
-            Paint paint = this.f1666f;
+            int clamp = (int) ((1.0f - Utilities.clamp(this.f1675w / 0.5f, 1.0f, 0.0f)) * 255.0f);
+            Paint paint = this.f1671f;
             paint.setAlpha(clamp);
             Paint paint2 = this.e;
             paint2.setAlpha(clamp);
             this.d.setAlpha(clamp);
             canvas2.save();
-            canvas2.translate(this.f1667n - AndroidUtilities.dp(32.0f), scrollY);
+            canvas2.translate(this.f1672n - AndroidUtilities.dp(32.0f), scrollY);
             canvas2.drawRect(0.0f, 0.0f, AndroidUtilities.dp(32.0f), this.v.getHeight() + this.F, paint);
             canvas2.restore();
-            canvas2.drawRect(this.f1667n - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.v.getHeight() + scrollY + this.F, paint2);
+            canvas2.drawRect(this.f1672n - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.v.getHeight() + scrollY + this.F, paint2);
             canvas2.save();
-            canvas2.translate(this.f1667n, scrollY);
+            canvas2.translate(this.f1672n, scrollY);
             this.v.draw(canvas2);
             canvas2.restore();
         }
@@ -247,11 +247,11 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         int i12 = (i11 + i10) << 16;
         this.E = AndroidUtilities.dp(16.0f);
         this.F = AndroidUtilities.dp(8.0f);
-        int i13 = this.f1669s;
-        va[] vaVarArr = this.f1668r;
+        int i13 = this.f1674s;
+        va[] vaVarArr = this.f1673r;
         int i14 = 0;
         if (i13 != i12) {
-            this.f1669s = i12;
+            this.f1674s = i12;
             int max = Math.max(0, View.MeasureSpec.getSize(i10) - (this.E * 2));
             vaVarArr[0].e(max);
             va vaVar = vaVarArr[1];
@@ -260,10 +260,10 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             }
         }
         int i15 = this.F * 2;
-        int i16 = vaVarArr[0].f1622l;
+        int i16 = vaVarArr[0].f1627l;
         va vaVar2 = vaVarArr[1];
         if (vaVar2 != null) {
-            i14 = vaVar2.f1622l;
+            i14 = vaVar2.f1627l;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(i16, i14, this.G) + i15, 1073741824));
     }
@@ -302,9 +302,9 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         sa saVar2;
         sa saVar3;
         sa saVar4;
-        va[] vaVarArr = this.f1668r;
+        va[] vaVarArr = this.f1673r;
         va vaVar2 = vaVarArr[0];
-        if ((vaVar2 != null && (vaVar2.f1629s == drawable || (((saVar3 = vaVar2.f1625o) != null && saVar3.f1514j == drawable) || ((saVar4 = vaVar2.f1626p) != null && saVar4.f1514j == drawable)))) || ((vaVar = vaVarArr[1]) != null && (vaVar.f1629s == drawable || (((saVar = vaVar.f1625o) != null && saVar.f1514j == drawable) || ((saVar2 = vaVar.f1626p) != null && saVar2.f1514j == drawable))))) {
+        if ((vaVar2 != null && (vaVar2.f1634s == drawable || (((saVar3 = vaVar2.f1630o) != null && saVar3.f1519j == drawable) || ((saVar4 = vaVar2.f1631p) != null && saVar4.f1519j == drawable)))) || ((vaVar = vaVarArr[1]) != null && (vaVar.f1634s == drawable || (((saVar = vaVar.f1630o) != null && saVar.f1519j == drawable) || ((saVar2 = vaVar.f1631p) != null && saVar2.f1519j == drawable))))) {
             return true;
         }
         return super.verifyDrawable(drawable);

@@ -3,16 +3,16 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class er implements mq {
-    public final TLObject f33387a;
-    public final long f33388b;
-    public final boolean f33389c;
+    public final TLObject f33459a;
+    public final long f33460b;
+    public final boolean f33461c;
     public final ur d;
 
     public er(ur urVar, TLObject tLObject, long j3, boolean z10) {
         this.d = urVar;
-        this.f33387a = tLObject;
-        this.f33388b = j3;
-        this.f33389c = z10;
+        this.f33459a = tLObject;
+        this.f33460b = j3;
+        this.f33461c = z10;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class er implements mq {
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f33387a;
+        TLObject tLObject = this.f33459a;
         if (tLObject instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
             channelParticipant.admin_rights = tL_chatAdminRights;
@@ -30,14 +30,14 @@ public final class er implements mq {
             channelParticipant.rank = str;
         }
         ur urVar = this.d;
-        nr nrVar = urVar.f38120m1;
-        long j3 = this.f33388b;
+        nr nrVar = urVar.f38144m1;
+        long j3 = this.f33460b;
         if (nrVar != null && i10 == 1) {
             nrVar.b(j3);
         } else if (nrVar != null) {
             nrVar.c(j3, tLObject);
         }
-        if (this.f33389c) {
+        if (this.f33461c) {
             urVar.removeSelfFromStack();
         }
     }

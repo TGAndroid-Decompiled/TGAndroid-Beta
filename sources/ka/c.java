@@ -1,6 +1,6 @@
 package ka;
 
-import ah.j;
+import ah.k;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.SurfaceTexture;
@@ -25,52 +25,51 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import l.d0;
 import l.i;
-import l.k;
 import l.w;
 import m.h;
 import n7.a1;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.a81;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.b5;
-import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.b81;
 import org.telegram.ui.Components.e0;
-import org.telegram.ui.Components.g71;
-import org.telegram.ui.Components.g81;
-import org.telegram.ui.Components.hq0;
-import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.e71;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.h81;
+import org.telegram.ui.Components.iq0;
+import org.telegram.ui.Components.j81;
 import org.telegram.ui.Components.v50;
 import org.telegram.ui.Components.vi;
 import org.telegram.ui.Components.w50;
 import qg.p2;
 import qg.y1;
 import ye.m;
-public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnCompleteListener {
-    public final int f13563a;
-    public final Object f13564b;
+public class c implements w, i, b5, k, e71, h81, s, y1, r4.c, o, n5.b, OnCompleteListener {
+    public final int f13566a;
+    public final Object f13567b;
 
     public c(Object obj, int i10) {
-        this.f13563a = i10;
-        this.f13564b = obj;
+        this.f13566a = i10;
+        this.f13567b = obj;
     }
 
     @Override
-    public boolean A(k kVar, MenuItem menuItem) {
-        ((Toolbar) this.f13564b).getClass();
+    public boolean A(l.k kVar, MenuItem menuItem) {
+        ((Toolbar) this.f13567b).getClass();
         return false;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        e0 e0Var = (e0) this.f13564b;
+        e0 e0Var = (e0) this.f13567b;
         e0Var.l0(i10, i11, z10);
         e0Var.dismiss();
     }
 
     public n4.a a() {
-        return new n4.a(((AudioAttributes.Builder) this.f13564b).build());
+        return new n4.a(((AudioAttributes.Builder) this.f13567b).build());
     }
 
     @Override
@@ -78,9 +77,9 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
         p6.a aVar = (p6.a) ((p6.c) obj).u();
         Parcel I0 = aVar.I0();
-        k7.a.c(I0, (n6.o) this.f13564b);
+        k7.a.c(I0, (n6.o) this.f13567b);
         try {
-            aVar.f313b.transact(1, I0, null, 1);
+            aVar.f315b.transact(1, I0, null, 1);
             I0.recycle();
             taskCompletionSource.setResult(null);
         } catch (Throwable th2) {
@@ -91,20 +90,20 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
 
     @Override
     public void b(Canvas canvas) {
-        switch (this.f13563a) {
+        switch (this.f13566a) {
             case 7:
-                vi viVar = (vi) this.f13564b;
-                canvas.drawColor(viVar.getThemedColor(i6.f18836d6));
+                vi viVar = (vi) this.f13567b;
+                canvas.drawColor(viVar.getThemedColor(j6.f18862d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     viVar.C2.b(canvas, -3);
                     return;
                 }
                 return;
             default:
-                hq0 hq0Var = (hq0) this.f13564b;
-                canvas.drawColor(hq0Var.getThemedColor(i6.f18836d6));
+                iq0 iq0Var = (iq0) this.f13567b;
+                canvas.drawColor(iq0Var.getThemedColor(j6.f18862d6));
                 if (SharedConfig.chatBlurEnabled()) {
-                    hq0Var.O0.b(canvas, -3);
+                    iq0Var.O0.b(canvas, -3);
                     return;
                 }
                 return;
@@ -115,10 +114,10 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
     public void c(Object obj) {
         n nVar;
         g8.c cVar = (g8.c) obj;
-        androidx.activity.n nVar2 = ((r7.i) this.f13564b).f42071b;
+        androidx.activity.n nVar2 = ((r7.i) this.f13567b).f42093b;
         synchronized (nVar2) {
-            nVar2.f1903b = false;
-            nVar = ((p) nVar2.f1904c).f6140c;
+            nVar2.f1908b = false;
+            nVar = ((p) nVar2.f1909c).f6145c;
         }
         if (nVar != null) {
             ((r7.c) nVar2.d).c(nVar, 2441);
@@ -126,30 +125,30 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
     }
 
     public boolean d(int i10) {
-        a81 a81Var = ((i81) this.f13564b).L;
-        if (a81Var == null) {
+        b81 b81Var = ((j81) this.f13567b).L;
+        if (b81Var == null) {
             return false;
         }
-        return a81Var.c(i10);
+        return b81Var.c(i10);
     }
 
     public String e(Object obj) {
         StringWriter stringWriter = new StringWriter();
         try {
-            e eVar = (e) this.f13564b;
-            f fVar = new f(stringWriter, eVar.f13568a, eVar.f13569b, eVar.f13570c, eVar.d);
+            e eVar = (e) this.f13567b;
+            f fVar = new f(stringWriter, eVar.f13571a, eVar.f13572b, eVar.f13573c, eVar.d);
             fVar.h(obj);
             fVar.j();
-            fVar.f13572b.flush();
+            fVar.f13575b.flush();
         } catch (IOException unused) {
         }
         return stringWriter.toString();
     }
 
     public StringBuilder f() {
-        df.a aVar = (df.a) this.f13564b;
+        df.a aVar = (df.a) this.f13567b;
         if (aVar instanceof m) {
-            StringBuilder sb2 = ((m) aVar).f46772b.f46758b;
+            StringBuilder sb2 = ((m) aVar).f46795b.f46781b;
             if (sb2.length() != 0) {
                 return sb2;
             }
@@ -159,11 +158,11 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
     }
 
     @Override
-    public void g(k kVar, boolean z10) {
+    public void g(l.k kVar, boolean z10) {
         if (kVar instanceof d0) {
-            ((d0) kVar).f13715z.k().c(false);
+            ((d0) kVar).f13725z.k().c(false);
         }
-        w wVar = ((h) this.f13564b).e;
+        w wVar = ((h) this.f13567b).e;
         if (wVar != null) {
             wVar.g(kVar, z10);
         }
@@ -171,47 +170,47 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
 
     @Override
     public Object mo28get() {
-        return new s5.i((Context) ((fd.a) this.f13564b).mo28get(), "com.google.android.datatransport.events", Integer.valueOf(s5.i.d).intValue());
+        return new s5.i((Context) ((fd.a) this.f13567b).mo28get(), "com.google.android.datatransport.events", Integer.valueOf(s5.i.d).intValue());
     }
 
     public void h(float f7) {
-        i81 i81Var = (i81) this.f13564b;
+        j81 j81Var = (j81) this.f13567b;
         if (f7 == 1.0f) {
-            View[] viewArr = i81Var.e;
-            View[] viewArr2 = i81Var.e;
+            View[] viewArr = j81Var.e;
+            View[] viewArr2 = j81Var.e;
             if (viewArr[1] != null) {
-                i81Var.F();
-                i81Var.h.put(i81Var.f24959f[1], viewArr2[1]);
-                i81Var.removeView(viewArr2[1]);
-                i81Var.E(viewArr2[0], 0.0f);
+                j81Var.G();
+                j81Var.h.put(j81Var.f25181f[1], viewArr2[1]);
+                j81Var.removeView(viewArr2[1]);
+                j81Var.F(viewArr2[0], 0.0f);
                 viewArr2[1] = null;
             }
-            i81Var.z(i81Var.f24957b);
+            j81Var.A(j81Var.f25179b);
             return;
         }
-        View[] viewArr3 = i81Var.e;
-        View[] viewArr4 = i81Var.e;
+        View[] viewArr3 = j81Var.e;
+        View[] viewArr4 = j81Var.e;
         View view = viewArr3[1];
         if (view == null) {
             return;
         }
-        if (i81Var.f24965y) {
-            i81Var.E(view, (1.0f - f7) * viewArr3[0].getMeasuredWidth());
+        if (j81Var.f25187y) {
+            j81Var.F(view, (1.0f - f7) * viewArr3[0].getMeasuredWidth());
             View view2 = viewArr4[0];
-            i81Var.E(view2, (-view2.getMeasuredWidth()) * f7);
+            j81Var.F(view2, (-view2.getMeasuredWidth()) * f7);
         } else {
-            i81Var.E(view, (1.0f - f7) * (-viewArr3[0].getMeasuredWidth()));
+            j81Var.F(view, (1.0f - f7) * (-viewArr3[0].getMeasuredWidth()));
             View view3 = viewArr4[0];
-            i81Var.E(view3, view3.getMeasuredWidth() * f7);
+            j81Var.F(view3, view3.getMeasuredWidth() * f7);
         }
-        i81Var.w(false);
+        j81Var.x(false);
     }
 
     public c i(int i10) {
         if (i10 == 16) {
             i10 = 12;
         }
-        ((AudioAttributes.Builder) this.f13564b).setUsage(i10);
+        ((AudioAttributes.Builder) this.f13567b).setUsage(i10);
         return this;
     }
 
@@ -221,18 +220,18 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
 
     @Override
     public void l(float f7) {
-        ((p2) this.f13564b).setOutlineWidth(f7);
+        ((p2) this.f13567b).setOutlineWidth(f7);
     }
 
     @Override
     public void m(ah.a aVar) {
-        switch (this.f13563a) {
+        switch (this.f13566a) {
             case 7:
-                aVar.a(((vi) this.f13564b).getThemedColor(i6.f18836d6));
+                aVar.a(((vi) this.f13567b).getThemedColor(j6.f18862d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((hq0) this.f13564b).getThemedColor(i6.f18836d6));
+                aVar.a(((iq0) this.f13567b).getThemedColor(j6.f18862d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -240,7 +239,7 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
 
     @Override
     public void onComplete(Task task) {
-        y8.e0 e0Var = (y8.e0) this.f13564b;
+        y8.e0 e0Var = (y8.e0) this.f13567b;
         if (task.isSuccessful()) {
             x8.m.M0(e0Var, true, (byte[]) task.getResult());
             return;
@@ -250,7 +249,7 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
     }
 
     @Override
-    public void onError(g71 g71Var, Exception exc) {
+    public void onError(h71 h71Var, Exception exc) {
         FileLog.e(exc);
     }
 
@@ -262,15 +261,15 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
     public void onStateChanged(boolean z10, int i10) {
         w50 w50Var;
         VideoEditedInfo videoEditedInfo;
-        v50 v50Var = (v50) this.f13564b;
-        g71 g71Var = v50Var.H0.O;
-        if (g71Var != null && g71Var.y() && i10 == 4 && (videoEditedInfo = (w50Var = v50Var.H0).N) != null) {
-            g71 g71Var2 = w50Var.O;
+        v50 v50Var = (v50) this.f13567b;
+        h71 h71Var = v50Var.H0.O;
+        if (h71Var != null && h71Var.y() && i10 == 4 && (videoEditedInfo = (w50Var = v50Var.H0).N) != null) {
+            h71 h71Var2 = w50Var.O;
             long j3 = videoEditedInfo.startTime;
             if (j3 <= 0) {
                 j3 = 0;
             }
-            g71Var2.K(j3);
+            h71Var2.K(j3);
         }
     }
 
@@ -285,22 +284,22 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
     }
 
     @Override
-    public void t(k kVar) {
-        Toolbar toolbar = (Toolbar) this.f13564b;
-        h hVar = toolbar.f2020a.J;
+    public void t(l.k kVar) {
+        Toolbar toolbar = (Toolbar) this.f13567b;
+        h hVar = toolbar.f2025a.J;
         if (hVar != null && hVar.h()) {
             return;
         }
-        Iterator it = ((CopyOnWriteArrayList) toolbar.W.f14166c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) toolbar.W.f14034c).iterator();
         while (it.hasNext()) {
-            ((c0) it.next()).f2397a.t();
+            ((c0) it.next()).f2402a.t();
         }
     }
 
     @Override
-    public boolean v(k kVar) {
-        h hVar = (h) this.f13564b;
-        if (kVar == hVar.f14183c) {
+    public boolean v(l.k kVar) {
+        h hVar = (h) this.f13567b;
+        if (kVar == hVar.f14196c) {
             return false;
         }
         ((d0) kVar).A.getClass();
@@ -356,17 +355,17 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
         } else {
             Log.e("ProfileInstaller", str, (Throwable) obj);
         }
-        ((ProfileInstallReceiver) this.f13564b).setResultCode(i10);
+        ((ProfileInstallReceiver) this.f13567b).setResultCode(i10);
     }
 
     public c(int i10) {
-        this.f13563a = i10;
+        this.f13566a = i10;
         switch (i10) {
             case 23:
-                this.f13564b = new a1[zf.b.values().length];
+                this.f13567b = new a1[zf.b.values().length];
                 return;
             default:
-                this.f13564b = new AudioAttributes.Builder();
+                this.f13567b = new AudioAttributes.Builder();
                 return;
         }
     }
@@ -377,7 +376,7 @@ public class c implements w, i, b5, j, d71, g81, s, y1, r4.c, o, n5.b, OnComplet
 
     @Override
     public float get() {
-        return ((p2) this.f13564b).F;
+        return ((p2) this.f13567b).F;
     }
 
     @Override

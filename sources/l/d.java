@@ -2,13 +2,13 @@ package l;
 
 import m.j2;
 public final class d {
-    public final j2 f13712a;
-    public final k f13713b;
-    public final int f13714c;
+    public final j2 f13722a;
+    public final k f13723b;
+    public final int f13724c;
 
     public d(j2 j2Var, k kVar, int i10) {
-        this.f13712a = j2Var;
-        this.f13713b = kVar;
-        this.f13714c = i10;
+        this.f13722a = j2Var;
+        this.f13723b = kVar;
+        this.f13724c = i10;
     }
 }

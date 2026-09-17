@@ -1,68 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class qp0 extends g71 {
-    public final tp0 f36927d2;
-    public final x61[] f36928e2;
-    public final up0 f36929f2;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class qp0 extends s4.s0 {
+    public final int f37006a;
+    public final wp0 f37007b;
 
-    public qp0(up0 up0Var, org.telegram.ui.ActionBar.n2 n2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, int i12, tp0 tp0Var, x61[] x61VarArr) {
-        super(n2Var, context, true, num, i10, true, e6Var, i11, i12);
-        this.f36929f2 = up0Var;
-        this.f36927d2 = tp0Var;
-        this.f36928e2 = x61VarArr;
+    public qp0(wp0 wp0Var, int i10) {
+        this.f37007b = wp0Var;
+        this.f37006a = i10;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        up0 up0Var = this.f36929f2;
-        if (tL_starGiftUnique != null) {
-            if (up0Var.m0 == 0) {
-                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
-                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    up0Var.f38085s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    up0Var.f38084r = null;
-                } else {
-                    return;
-                }
-            } else {
-                up0Var.f38085s = null;
-                up0Var.f38084r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        yh.n5 n5Var;
+        ah.i iVar;
+        wp0 wp0Var = this.f37007b;
+        cq0 cq0Var = wp0Var.f39147p0;
+        if (i11 != 0) {
+            cq0Var.D0(1);
+        }
+        if (Build.VERSION.SDK_INT >= 31 && (iVar = cq0Var.f32856f0) != null) {
+            iVar.f(i10, i11);
+        }
+        wp0Var.h();
+        if (wp0Var.K != null) {
+            if (wp0Var.J != null && wp0Var.c()) {
+                wp0Var.J.g(false);
+                return;
             }
-            up0Var.I = null;
-            up0Var.h = -1;
+            return;
+        }
+        if (this.f37006a == 1) {
+            n5Var = cq0Var.f32851c;
         } else {
-            if (l4 == null) {
-                longValue = 0;
-            } else {
-                longValue = l4.longValue();
-            }
-            up0Var.f38080n = longValue;
-            up0Var.f38084r = null;
-            up0Var.f38085s = null;
-            up0Var.I = null;
+            n5Var = cq0Var.f32849b;
         }
-        tp0 tp0Var = this.f36927d2;
-        if (tp0Var != null) {
-            tp0Var.b(true);
-        }
-        up0Var.j(true);
-        up0Var.i();
-        up0Var.f(true);
-        x61 x61Var = this.f36928e2[0];
-        if (x61Var != null) {
-            up0Var.f38082o0 = null;
-            x61Var.dismiss();
+        if (n5Var != null && wp0Var.c()) {
+            n5Var.a();
         }
     }
 }

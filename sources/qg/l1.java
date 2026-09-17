@@ -7,28 +7,28 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.qr;
-public abstract class l1 extends ll0 {
-    public static final Paint f41444c3;
-    public static final Paint f41445d3;
-    public static final Path f41446e3;
-    public static final Paint f41447f3;
+public abstract class l1 extends ml0 {
+    public static final Paint f41466c3;
+    public static final Paint f41467d3;
+    public static final Path f41468e3;
+    public static final Paint f41469f3;
     public final Paint X2;
     public final Paint Y2;
     public int Z2;
-    public pg.s0 f41448a3;
-    public q0.a f41449b3;
+    public pg.s0 f41470a3;
+    public q0.a f41471b3;
 
     static {
         Paint paint = new Paint(1);
-        f41444c3 = paint;
+        f41466c3 = paint;
         Paint paint2 = new Paint(1);
-        f41445d3 = paint2;
+        f41467d3 = paint2;
         paint.setColor(-2013265920);
         paint2.setColor(-1996488705);
-        f41446e3 = new Path();
-        f41447f3 = new Paint(1);
+        f41468e3 = new Path();
+        f41469f3 = new Paint(1);
     }
 
     public l1(Context context) {
@@ -46,7 +46,7 @@ public abstract class l1 extends ll0 {
         setOnItemClickListener(new ai.g(this, 15));
     }
 
-    public static void w1(Canvas canvas, RectF rectF, int i10) {
+    public static void x1(Canvas canvas, RectF rectF, int i10) {
         float f7 = rectF.left;
         while (f7 <= rectF.right) {
             float f10 = rectF.top;
@@ -54,12 +54,12 @@ public abstract class l1 extends ll0 {
                 float f11 = i10;
                 float f12 = f7 + f11;
                 float f13 = f10 + f11;
-                Paint paint = f41444c3;
+                Paint paint = f41466c3;
                 Canvas canvas2 = canvas;
                 canvas2.drawRect(f7, f10, f12, f13, paint);
                 float f14 = i10 * 2;
                 float f15 = f7 + f14;
-                Paint paint2 = f41445d3;
+                Paint paint2 = f41467d3;
                 float f16 = f10;
                 canvas2.drawRect(f12, f16, f15, f13, paint2);
                 float f17 = f16 + f14;
@@ -73,15 +73,15 @@ public abstract class l1 extends ll0 {
         }
     }
 
-    public static void x1(float f7, float f10, float f11, int i10, Canvas canvas) {
-        Paint paint = f41447f3;
+    public static void y1(float f7, float f10, float f11, int i10, Canvas canvas) {
+        Paint paint = f41469f3;
         paint.setColor(i10);
         if (paint.getAlpha() != 255) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
             paint.setAlpha(255);
             canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f41446e3;
+            Path path = f41468e3;
             path.rewind();
             path.moveTo(rectF.centerX(), rectF.centerY());
             path.lineTo((float) hg.k0.e(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
@@ -90,7 +90,7 @@ public abstract class l1 extends ll0 {
             path.addArc(rectF, -45.0f, 180.0f);
             canvas.save();
             canvas.clipPath(path);
-            w1(canvas, rectF, AndroidUtilities.dp(4.0f));
+            x1(canvas, rectF, AndroidUtilities.dp(4.0f));
             canvas.restore();
             paint.setColor(i10);
             canvas.drawArc(rectF, -45.0f, 180.0f, true, paint);
@@ -104,11 +104,11 @@ public abstract class l1 extends ll0 {
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f41449b3 = aVar;
+        this.f41471b3 = aVar;
     }
 
     public void setColorPalette(pg.s0 s0Var) {
-        this.f41448a3 = s0Var;
+        this.f41470a3 = s0Var;
         getAdapter().l();
     }
 
@@ -117,13 +117,13 @@ public abstract class l1 extends ll0 {
         getAdapter().l();
     }
 
-    public final void y1(float f7, boolean z10) {
+    public final void z1(float f7, boolean z10) {
         float interpolation;
         float f10;
         if (z10) {
-            interpolation = qr.f27424g.getInterpolation(f7);
+            interpolation = qr.f27381g.getInterpolation(f7);
         } else {
-            interpolation = qr.f27425i.getInterpolation(f7);
+            interpolation = qr.f27382i.getInterpolation(f7);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i10 = 0; i10 < getChildCount(); i10++) {

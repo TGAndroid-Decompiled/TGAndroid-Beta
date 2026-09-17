@@ -6,45 +6,45 @@ import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class i implements Runnable {
-    public final int f44426a;
-    public final j f44427b;
-    public final int f44428c;
+    public final int f44449a;
+    public final j f44450b;
+    public final int f44451c;
 
     public i(j jVar, int i10, int i11) {
-        this.f44426a = i11;
-        this.f44427b = jVar;
-        this.f44428c = i10;
+        this.f44449a = i11;
+        this.f44450b = jVar;
+        this.f44451c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f44426a) {
+        switch (this.f44449a) {
             case 0:
-                j jVar = this.f44427b;
-                int i10 = jVar.f44437k;
-                o0.a[] aVarArr = jVar.f44432c;
-                int i11 = this.f44428c;
+                j jVar = this.f44450b;
+                int i10 = jVar.f44460k;
+                o0.a[] aVarArr = jVar.f44455c;
+                int i11 = this.f44451c;
                 if (aVarArr[i11] == null) {
                     aVarArr[i11] = new o0.a(i10);
                 }
                 Bitmap bitmap = jVar.e;
                 if (bitmap == null) {
                     jVar.e = Bitmap.createBitmap(i10, i10, Bitmap.Config.ALPHA_8);
-                    jVar.f44433f = new Canvas(jVar.e);
+                    jVar.f44456f = new Canvas(jVar.e);
                 } else {
                     bitmap.eraseColor(0);
                 }
-                jVar.a(jVar.f44433f, jVar.f44441o);
-                Utilities.copyBitmaps(jVar.e, (Bitmap) aVarArr[i11].f15300b);
+                jVar.a(jVar.f44456f, jVar.f44464o);
+                Utilities.copyBitmaps(jVar.e, (Bitmap) aVarArr[i11].f15310b);
                 AndroidUtilities.runOnUIThread(new i(jVar, i11, 1));
                 return;
             default:
-                j jVar2 = this.f44427b;
-                int i12 = this.f44428c;
+                j jVar2 = this.f44450b;
+                int i12 = this.f44451c;
                 jVar2.d = i12;
-                jVar2.f44434g.setShader((BitmapShader) jVar2.f44432c[i12].f15301c);
-                jVar2.f44436j = false;
-                jVar2.f44442p = true;
+                jVar2.f44457g.setShader((BitmapShader) jVar2.f44455c[i12].f15311c);
+                jVar2.f44459j = false;
+                jVar2.f44465p = true;
                 return;
         }
     }

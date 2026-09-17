@@ -10,18 +10,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class v implements OnCompleteListener, Runnable {
     public static final c0 d = new Handler(Looper.getMainLooper());
     public static final SparseArray e = new SparseArray(2);
-    public static final AtomicInteger f44271f = new AtomicInteger();
-    public int f44272a;
-    public w f44273b;
-    public Task f44274c;
+    public static final AtomicInteger f44294f = new AtomicInteger();
+    public int f44295a;
+    public w f44296b;
+    public Task f44297c;
 
     public final void a() {
-        if (this.f44274c != null && this.f44273b != null) {
-            e.delete(this.f44272a);
+        if (this.f44297c != null && this.f44296b != null) {
+            e.delete(this.f44295a);
             d.removeCallbacks(this);
-            w wVar = this.f44273b;
+            w wVar = this.f44296b;
             if (wVar != null) {
-                Task task = this.f44274c;
+                Task task = this.f44297c;
                 int i10 = w.d;
                 wVar.a(task);
             }
@@ -30,12 +30,12 @@ public final class v implements OnCompleteListener, Runnable {
 
     @Override
     public final void onComplete(Task task) {
-        this.f44274c = task;
+        this.f44297c = task;
         a();
     }
 
     @Override
     public final void run() {
-        e.delete(this.f44272a);
+        e.delete(this.f44295a);
     }
 }

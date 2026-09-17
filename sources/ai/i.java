@@ -6,19 +6,19 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.sh;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ad;
+import org.telegram.ui.cd;
 public final class i implements e2.h {
-    public final int f961a;
+    public final int f966a;
 
     public i(int i10) {
-        this.f961a = i10;
+        this.f966a = i10;
     }
 
     @Override
     public final void accept(Object obj) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f961a) {
+        switch (this.f966a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -34,7 +34,7 @@ public final class i implements e2.h {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof hg.x1) {
-                    ((hg.x1) view2).f10472c.invalidate();
+                    ((hg.x1) view2).f10477c.invalidate();
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class i implements e2.h {
                 ((n2.j) obj).a();
                 return;
             case 20:
-                ad.Y0((View) obj);
+                cd.Y0((View) obj);
                 return;
             case 21:
                 View view4 = (View) obj;
@@ -110,8 +110,8 @@ public final class i implements e2.h {
                 return;
             case 23:
                 View view6 = (View) obj;
-                if (view6 instanceof org.telegram.ui.ActionBar.y2) {
-                    ((org.telegram.ui.ActionBar.y2) view6).getTextView().invalidate();
+                if (view6 instanceof org.telegram.ui.ActionBar.z2) {
+                    ((org.telegram.ui.ActionBar.z2) view6).getTextView().invalidate();
                     return;
                 } else {
                     view6.invalidate();
@@ -121,11 +121,11 @@ public final class i implements e2.h {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.g5) {
                     org.telegram.ui.Cells.g5 g5Var = (org.telegram.ui.Cells.g5) view7;
-                    g5Var.f20136b.invalidate();
-                    g5Var.f20137c.invalidate();
+                    g5Var.f20146b.invalidate();
+                    g5Var.f20147c.invalidate();
                     return;
                 } else if (view7 instanceof hg.x1) {
-                    ((hg.x1) view7).f10472c.invalidate();
+                    ((hg.x1) view7).f10477c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -148,7 +148,7 @@ public final class i implements e2.h {
             case 27:
                 Long l4 = (Long) obj;
                 if (l4 != null && l4.longValue() != Long.MAX_VALUE) {
-                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
                     if (U != null) {
                         U.presentFragment(ProfileActivity.m4(l4.longValue()));
                         return;
@@ -168,7 +168,7 @@ public final class i implements e2.h {
         }
     }
 
-    public i(ad adVar) {
-        this.f961a = 20;
+    public i(cd cdVar) {
+        this.f966a = 20;
     }
 }

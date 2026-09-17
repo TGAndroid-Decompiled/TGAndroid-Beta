@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import j$.time.YearMonth;
 import org.telegram.messenger.FileLog;
 public final class w2 implements Runnable {
-    public final uc0 f29541a;
-    public final int f29542b;
-    public final uc0 f29543c;
+    public final uc0 f29500a;
+    public final int f29501b;
+    public final uc0 f29502c;
     public final uc0 d;
     public final int e;
-    public final int f29544f;
+    public final int f29503f;
     public final int h;
 
     public w2(uc0 uc0Var, int i10, uc0 uc0Var2, uc0 uc0Var3, int i11, int i12, int i13) {
-        this.f29541a = uc0Var;
-        this.f29542b = i10;
-        this.f29543c = uc0Var2;
+        this.f29500a = uc0Var;
+        this.f29501b = i10;
+        this.f29502c = uc0Var2;
         this.d = uc0Var3;
         this.e = i11;
-        this.f29544f = i12;
+        this.f29503f = i12;
         this.h = i13;
     }
 
     @Override
     public final void run() {
-        uc0 uc0Var = this.f29541a;
+        uc0 uc0Var = this.f29500a;
         int value = uc0Var.getValue();
-        int i10 = this.f29542b;
-        uc0 uc0Var2 = this.f29543c;
+        int i10 = this.f29501b;
+        uc0 uc0Var2 = this.f29502c;
         uc0 uc0Var3 = this.d;
         if (value == i10) {
             uc0Var2.setMinValue(1);
@@ -40,7 +40,7 @@ public final class w2 implements Runnable {
             uc0Var3.setMaxValue(11);
         } else if (uc0Var.getValue() == this.e) {
             uc0Var3.setMinValue(0);
-            int i11 = this.f29544f;
+            int i11 = this.f29503f;
             uc0Var3.setMaxValue(i11);
             if (uc0Var3.getValue() == i11) {
                 uc0Var2.setMinValue(1);

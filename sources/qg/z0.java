@@ -17,11 +17,11 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Cells.ia;
 import org.telegram.ui.Cells.p6;
-import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.kv0;
 import w7.x5;
 public abstract class z0 extends FrameLayout {
     public float E;
@@ -30,35 +30,35 @@ public abstract class z0 extends FrameLayout {
     public float H;
     public final ArrayList I;
     public final Rect J;
-    public final int f41724a;
-    public final pg.t1 f41725b;
-    public final DispatchQueue f41726c;
+    public final int f41746a;
+    public final pg.t1 f41747b;
+    public final DispatchQueue f41748c;
     public final MediaController.CropState d;
     public final pg.c1 e;
-    public final Bitmap f41727f;
+    public final Bitmap f41749f;
     public final int h;
-    public final boolean f41728n;
-    public final FrameLayout f41729r;
-    public final TextView f41730s;
+    public final boolean f41750n;
+    public final FrameLayout f41751r;
+    public final TextView f41752s;
     public final TextView v;
-    public final z1 f41731w;
-    public jv0 f41732x;
-    public boolean f41733y;
+    public final z1 f41753w;
+    public kv0 f41754x;
+    public boolean f41755y;
 
     public z0(Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
         super(context);
         y1 iaVar = new ia(this, 8);
         this.I = new ArrayList();
         this.J = new Rect();
-        this.f41724a = i10;
-        this.f41728n = context instanceof BubbleActivity;
+        this.f41746a = i10;
+        this.f41750n = context instanceof BubbleActivity;
         pg.t1 t1Var = new pg.t1();
-        this.f41725b = t1Var;
-        t1Var.f41012a = new Object();
+        this.f41747b = t1Var;
+        t1Var.f41034a = new Object();
         DispatchQueue dispatchQueue = new DispatchQueue("MaskPaint");
-        this.f41726c = dispatchQueue;
+        this.f41748c = dispatchQueue;
         this.d = cropState;
-        this.f41727f = bitmap;
+        this.f41749f = bitmap;
         this.h = i11;
         pg.q0 q0Var = new pg.q0(getPaintingSize(), bitmap2, i11, null);
         q0Var.G = true;
@@ -74,7 +74,7 @@ public abstract class z0 extends FrameLayout {
         c1Var.setColor(-65536);
         addView(c1Var, x5.e(-1, -1, 51));
         z1 z1Var = new z1(context);
-        this.f41731w = z1Var;
+        this.f41753w = z1Var;
         z1Var.b(0.05f, 1.0f);
         z1Var.setBrushWeight(iaVar.get());
         z1Var.setRenderView(c1Var);
@@ -83,15 +83,15 @@ public abstract class z0 extends FrameLayout {
         z1Var.setAlpha(0.0f);
         addView(z1Var, x5.c(-1.0f, -1));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f41729r = frameLayout;
+        this.f41751r = frameLayout;
         frameLayout.setAlpha(0.0f);
         frameLayout.setVisibility(8);
         addView(frameLayout, x5.e(-1, 44, 80));
         TextView textView = new TextView(context);
-        this.f41730s = textView;
+        this.f41752s = textView;
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setBackground(i6.f0(i6.l1(0.15f, -1), 3, -1));
+        textView.setBackground(j6.f0(j6.l1(0.15f, -1), 3, -1));
         textView.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
         textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
         textView.setTextColor(-1);
@@ -99,34 +99,34 @@ public abstract class z0 extends FrameLayout {
         TextView f7 = p6.f(frameLayout, textView, x5.d(-2, 44.0f, 3, -8.0f, 0.0f, 0.0f, 0.0f), context);
         this.v = f7;
         com.google.android.gms.internal.vision.e2.l(15.0f, 1, f7);
-        int i12 = i6.f19246zf;
-        f7.setBackground(i6.f0(i6.l1(0.15f, i6.w0(null, i12, false)), 3, -1));
+        int i12 = j6.f19272zf;
+        f7.setBackground(j6.f0(j6.l1(0.15f, j6.w0(null, i12, false)), 3, -1));
         f7.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
         f7.setText(LocaleController.getString(R.string.Save).toUpperCase());
-        f7.setTextColor(i6.w0(null, i12, false));
+        f7.setTextColor(j6.w0(null, i12, false));
         f7.setGravity(17);
         frameLayout.addView(f7, x5.d(-2, 44.0f, 5, 0.0f, 0.0f, -8.0f, 0.0f));
     }
 
-    private jv0 getPaintingSize() {
+    private kv0 getPaintingSize() {
         float f7;
         float f10;
-        jv0 jv0Var = this.f41732x;
-        if (jv0Var != null) {
-            return jv0Var;
+        kv0 kv0Var = this.f41754x;
+        if (kv0Var != null) {
+            return kv0Var;
         }
-        Bitmap bitmap = this.f41727f;
-        jv0 jv0Var2 = new jv0(bitmap.getWidth(), bitmap.getHeight());
+        Bitmap bitmap = this.f41749f;
+        kv0 kv0Var2 = new kv0(bitmap.getWidth(), bitmap.getHeight());
         float f11 = 1280;
-        jv0Var2.f25443a = f11;
+        kv0Var2.f25695a = f11;
         float floor = (float) Math.floor((f11 * f10) / f7);
-        jv0Var2.f25444b = floor;
+        kv0Var2.f25696b = floor;
         if (floor > f11) {
-            jv0Var2.f25444b = f11;
-            jv0Var2.f25443a = (float) Math.floor((f11 * f7) / f10);
+            kv0Var2.f25696b = f11;
+            kv0Var2.f25695a = (float) Math.floor((f11 * f7) / f10);
         }
-        this.f41732x = jv0Var2;
-        return jv0Var2;
+        this.f41754x = kv0Var2;
+        return kv0Var2;
     }
 
     public final void a(MotionEvent motionEvent) {
@@ -199,7 +199,7 @@ public abstract class z0 extends FrameLayout {
         int i10 = 0;
         if (view == this.e && (cropState = this.d) != null) {
             canvas.save();
-            if (!this.f41728n) {
+            if (!this.f41750n) {
                 i10 = AndroidUtilities.statusBarHeight;
             }
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10;
@@ -264,14 +264,14 @@ public abstract class z0 extends FrameLayout {
         super.onLayout(z10, i10, i11, i12, i13);
         int i14 = i12 - i10;
         int i15 = i13 - i11;
-        if (!this.f41728n) {
+        if (!this.f41750n) {
             int i16 = AndroidUtilities.REPLACING_TAG_TYPE_LINK;
         }
         pg.c1 c1Var = this.e;
         int ceil = (int) Math.ceil((i14 - c1Var.getMeasuredWidth()) / 2.0f);
         int measuredHeight = (i15 - c1Var.getMeasuredHeight()) / 2;
         c1Var.layout(ceil, measuredHeight, c1Var.getMeasuredWidth() + ceil, c1Var.getMeasuredHeight() + measuredHeight);
-        FrameLayout frameLayout = this.f41729r;
+        FrameLayout frameLayout = this.f41751r;
         frameLayout.layout(0, i15 - frameLayout.getMeasuredHeight(), frameLayout.getMeasuredWidth(), i15);
     }
 
@@ -284,7 +284,7 @@ public abstract class z0 extends FrameLayout {
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(size, size2);
         int i12 = AndroidUtilities.displaySize.y;
-        Bitmap bitmap = this.f41727f;
+        Bitmap bitmap = this.f41749f;
         if (bitmap != null) {
             f10 = bitmap.getWidth();
             f7 = bitmap.getHeight();
@@ -301,8 +301,8 @@ public abstract class z0 extends FrameLayout {
         }
         this.e.measure(View.MeasureSpec.makeMeasureSpec((int) f11, 1073741824), View.MeasureSpec.makeMeasureSpec((int) floor, 1073741824));
         this.H = 1.0f;
-        measureChild(this.f41731w, i10, i11);
-        measureChild(this.f41729r, i10, i11);
+        measureChild(this.f41753w, i10, i11);
+        measureChild(this.f41751r, i10, i11);
         this.G = false;
         if (Build.VERSION.SDK_INT >= 29) {
             ArrayList arrayList = this.I;
@@ -325,10 +325,10 @@ public abstract class z0 extends FrameLayout {
 
     public void setEraser(boolean z10) {
         ?? r22;
-        if (this.f41733y == z10) {
+        if (this.f41755y == z10) {
             return;
         }
-        this.f41733y = z10;
+        this.f41755y = z10;
         if (z10) {
             r22 = new Object();
         } else {

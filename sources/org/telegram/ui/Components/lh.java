@@ -4,19 +4,19 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class lh implements Utilities.Callback4 {
-    public final int f25917a;
-    public final KeyEvent.Callback f25918b;
+    public final int f25900a;
+    public final KeyEvent.Callback f25901b;
 
     public lh(KeyEvent.Callback callback, int i10) {
-        this.f25917a = i10;
-        this.f25918b = callback;
+        this.f25900a = i10;
+        this.f25901b = callback;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f25917a) {
+        switch (this.f25900a) {
             case 0:
-                vi viVar = (vi) this.f25918b;
+                vi viVar = (vi) this.f25901b;
                 CharSequence charSequence = (CharSequence) obj;
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
@@ -27,7 +27,7 @@ public final class lh implements Utilities.Callback4 {
                 viVar.z1();
                 return;
             case 1:
-                vi viVar2 = (vi) this.f25918b;
+                vi viVar2 = (vi) this.f25901b;
                 CharSequence charSequence2 = (CharSequence) obj;
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
@@ -38,15 +38,15 @@ public final class lh implements Utilities.Callback4 {
                 viVar2.z1();
                 return;
             default:
-                jd jdVar = (jd) this.f25918b;
+                jd jdVar = (jd) this.f25901b;
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;
-                ci.g gVar = jdVar.f4990f;
+                ci.g gVar = jdVar.f4995f;
                 gVar.setText((CharSequence) obj);
                 gVar.d();
                 gVar.k(true);
-                ci.e eVar = jdVar.f4987c0;
+                ci.e eVar = jdVar.f4992c0;
                 AndroidUtilities.cancelRunOnUIThread(eVar);
                 eVar.run();
                 return;

@@ -1,72 +1,69 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.graphics.drawable.NinePatchDrawable;
-import android.text.StaticLayout;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.MessageObject;
-public final class ib1 implements bi0 {
-    public final bo A;
-    public final LinearGradient B;
-    public final float C;
-    public final AnimationNotificationsLocker D;
-    public final MessageObject.TextLayoutBlock E;
-    public final NinePatchDrawable F;
-    public final mk G;
-    public final org.telegram.ui.Components.t5 H;
-    public float I;
-    public float J;
-    public final float K;
-    public final int L;
-    public final int M;
-    public final org.telegram.ui.ActionBar.e6 N;
-    public final PointF O;
-    public final RectF P;
-    public final RectF Q;
-    public float[] R;
-    public final float S;
-    public float f34584a;
-    public final Paint f34585b;
-    public final boolean f34586c;
-    public final ValueAnimator d;
-    public final float e;
-    public final float f34587f;
-    public final float f34588g;
-    public final int h;
-    public final int f34589i;
-    public final float f34590j;
-    public final MessageObject f34591k;
-    public final float f34592l;
-    public final float f34593m;
-    public final boolean f34594n;
-    public final boolean f34595o;
-    public final StaticLayout f34596p;
-    public final StaticLayout f34597q;
-    public final org.telegram.ui.Cells.t1 f34598r;
-    public final org.telegram.ui.Components.ll0 f34599s;
-    public final org.telegram.ui.Components.ui f34600t;
-    public final Matrix f34601u;
-    public final Paint v;
-    public final int f34602w;
-    public final float f34603x;
-    public final float f34604y;
-    public final float f34605z;
+import android.app.Activity;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class ib1 extends org.telegram.ui.ActionBar.g3 {
+    public static ib1 f34523b;
 
-    public ib1(org.telegram.ui.Cells.t1 r35, org.telegram.ui.bo r36, org.telegram.ui.Components.ll0 r37, org.telegram.ui.Components.ui r38, org.telegram.ui.ActionBar.e6 r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ib1.<init>(org.telegram.ui.Cells.t1, org.telegram.ui.bo, org.telegram.ui.Components.ll0, org.telegram.ui.Components.ui, org.telegram.ui.ActionBar.e6):void");
+    public static void m(ib1 ib1Var, wy wyVar) {
+        if (wyVar.getParentActivity() == null) {
+            return;
+        }
+        MessagesController.getInstance(ib1Var.currentAccount).clearQueryTime();
+        wyVar.getMessagesStorage().clearLocalDatabase();
+    }
+
+    public static void n(wy wyVar) {
+        if (f34523b == null) {
+            ?? g3Var = new org.telegram.ui.ActionBar.g3(wyVar.getParentActivity(), false);
+            Activity parentActivity = wyVar.getParentActivity();
+            LinearLayout f7 = org.telegram.messenger.w1.f(parentActivity, 1);
+            org.telegram.ui.Components.ax0 ax0Var = new org.telegram.ui.Components.ax0(parentActivity, g3Var.currentAccount);
+            ax0Var.setStickerNum(7);
+            ax0Var.getImageReceiver().setAutoRepeat(1);
+            f7.addView(ax0Var, w7.x5.t(144, 144, 1, 0, 16, 0, 0));
+            TextView textView = new TextView(parentActivity);
+            textView.setGravity(8388611);
+            int i10 = org.telegram.ui.ActionBar.j6.f18969j5;
+            org.telegram.messenger.w1.q(textView, org.telegram.ui.ActionBar.j6.w0(null, i10, false), 1, 20.0f);
+            textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
+            f7.addView(textView, w7.x5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+            TextView textView2 = new TextView(parentActivity);
+            textView2.setGravity(8388611);
+            textView2.setTextSize(1, 15.0f);
+            textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(wyVar.getMessagesStorage().getDatabaseSize()))));
+            f7.addView(textView2, w7.x5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+            TextView textView3 = new TextView(parentActivity);
+            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+            textView3.setGravity(17);
+            textView3.setTextSize(1, 14.0f);
+            textView3.setTypeface(AndroidUtilities.bold());
+            textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
+            textView3.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
+            int dp = AndroidUtilities.dp(6.0f);
+            int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
+            int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18862d6, false), 120);
+            textView3.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, w02, k10, k10));
+            f7.addView(textView3, w7.x5.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+            textView3.setOnClickListener(new xy0(8, g3Var, wyVar));
+            ScrollView scrollView = new ScrollView(parentActivity);
+            scrollView.addView(f7);
+            g3Var.setCustomView(scrollView);
+            f34523b = g3Var;
+            g3Var.show();
+        }
     }
 
     @Override
-    public final void a(android.graphics.Canvas r58) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ib1.a(android.graphics.Canvas):void");
-    }
-
-    public final int b(int i10) {
-        return org.telegram.ui.ActionBar.i6.v0(i10, this.N);
+    public final void dismiss() {
+        super.dismiss();
+        f34523b = null;
     }
 }

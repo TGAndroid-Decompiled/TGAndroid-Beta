@@ -21,46 +21,46 @@ public class kb extends View {
     public long F;
     public final Path G;
     public final a3.d H;
-    public final org.telegram.ui.Components.c6 f1149a;
-    public final TL_stories.MediaArea f1150b;
-    public final Paint f1151c;
+    public final org.telegram.ui.Components.c6 f1154a;
+    public final TL_stories.MediaArea f1155b;
+    public final Paint f1156c;
     public final Paint d;
     public LinearGradient e;
-    public LinearGradient f1152f;
+    public LinearGradient f1157f;
     public final Matrix h;
-    public final org.telegram.ui.Cells.z f1153n;
-    public final wc f1154r;
-    public final boolean f1155s;
+    public final org.telegram.ui.Cells.z f1158n;
+    public final wc f1159r;
+    public final boolean f1160s;
     public final boolean v;
-    public final boolean f1156w;
-    public final boolean f1157x;
-    public final boolean f1158y;
+    public final boolean f1161w;
+    public final boolean f1162x;
+    public final boolean f1163y;
 
     public kb(Context context, View view, TL_stories.MediaArea mediaArea) {
         super(context);
         boolean z10;
         boolean z11;
         boolean z12 = true;
-        this.f1151c = new Paint(1);
+        this.f1156c = new Paint(1);
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = new Matrix();
-        org.telegram.ui.Cells.z f02 = org.telegram.ui.ActionBar.i6.f0(1174405119, 2, -1);
-        this.f1153n = f02;
-        this.f1154r = new wc(this);
-        this.f1155s = false;
+        org.telegram.ui.Cells.z f02 = org.telegram.ui.ActionBar.j6.f0(1174405119, 2, -1);
+        this.f1158n = f02;
+        this.f1159r = new wc(this);
+        this.f1160s = false;
         this.v = false;
         this.E = false;
         this.G = new Path();
         this.H = new a3.d(this, 21);
-        this.f1150b = mediaArea;
+        this.f1155b = mediaArea;
         boolean z13 = mediaArea instanceof TL_stories.TL_mediaAreaGeoPoint;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && !(mediaArea instanceof TL_stories.TL_mediaAreaUrl)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f1155s = z10;
+        this.f1160s = z10;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue)) {
             z11 = false;
         } else {
@@ -70,16 +70,16 @@ public class kb extends View {
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && (mediaArea.coordinates.flags & 1) == 0) {
             z12 = false;
         }
-        this.f1156w = z12;
-        this.f1158y = z12;
-        this.f1157x = z12;
-        this.f1149a = new org.telegram.ui.Components.c6(view, 0L, 120L, new LinearInterpolator());
+        this.f1161w = z12;
+        this.f1163y = z12;
+        this.f1162x = z12;
+        this.f1154a = new org.telegram.ui.Components.c6(view, 0L, 120L, new LinearInterpolator());
         paint.setStyle(Paint.Style.STROKE);
         f02.setCallback(this);
     }
 
     public final void b(Canvas canvas) {
-        if (!this.f1158y) {
+        if (!this.f1163y) {
             return;
         }
         float innerRadius = getInnerRadius();
@@ -92,7 +92,7 @@ public class kb extends View {
         canvas.clipPath(path);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f1153n;
+        org.telegram.ui.Cells.z zVar = this.f1158n;
         zVar.setBounds(0, 0, width, height);
         zVar.draw(canvas);
         canvas.restore();
@@ -101,13 +101,13 @@ public class kb extends View {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        org.telegram.ui.Cells.z zVar = this.f1153n;
-        wc wcVar = this.f1154r;
+        org.telegram.ui.Cells.z zVar = this.f1158n;
+        wc wcVar = this.f1159r;
         if (action == 0) {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                wcVar.f29691f = new nu(1, view);
+                wcVar.f29632f = new nu(1, view);
             }
             wcVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
@@ -123,7 +123,7 @@ public class kb extends View {
     public float getInnerRadius() {
         TL_stories.MediaArea mediaArea;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
-        if ((getParent() instanceof View) && (mediaArea = this.f1150b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
+        if ((getParent() instanceof View) && (mediaArea = this.f1155b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
             if ((mediaAreaCoordinates.flags & 1) != 0) {
                 return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
             }
@@ -151,13 +151,13 @@ public class kb extends View {
             matrix.postTranslate(measuredWidth2, 0.0f);
             this.e.setLocalMatrix(matrix);
             LinearGradient linearGradient = this.e;
-            Paint paint = this.f1151c;
+            Paint paint = this.f1156c;
             paint.setShader(linearGradient);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             canvas.drawRoundRect(rectF, innerRadius, innerRadius, paint);
-            this.f1152f.setLocalMatrix(matrix);
-            LinearGradient linearGradient2 = this.f1152f;
+            this.f1157f.setLocalMatrix(matrix);
+            LinearGradient linearGradient2 = this.f1157f;
             Paint paint2 = this.d;
             paint2.setShader(linearGradient2);
             float dpf2 = AndroidUtilities.dpf2(1.5f);
@@ -172,7 +172,7 @@ public class kb extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f1153n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f1158n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

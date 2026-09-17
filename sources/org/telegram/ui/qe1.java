@@ -1,19 +1,30 @@
 package org.telegram.ui;
-public final class qe1 implements Runnable {
-    public final int f36865a;
-    public final re1 f36866b;
-    public final String f36867c;
-    public final int d;
 
-    public qe1(re1 re1Var, String str, int i10, int i11) {
-        this.f36865a = i11;
-        this.f36866b = re1Var;
-        this.f36867c = str;
-        this.d = i10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class qe1 extends AnimatorListenerAdapter {
+    public final int f36907a;
+    public final ue1 f36908b;
+
+    public qe1(ue1 ue1Var, int i10) {
+        this.f36907a = i10;
+        this.f36908b = ue1Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qe1.run():void");
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36907a) {
+            case 0:
+                ue1 ue1Var = this.f36908b;
+                ue1Var.v = 0;
+                ue1Var.f38056n.setVisibility(8);
+                return;
+            case 1:
+                this.f36908b.v = 0;
+                return;
+            default:
+                this.f36908b.F.setVisibility(8);
+                return;
+        }
     }
 }

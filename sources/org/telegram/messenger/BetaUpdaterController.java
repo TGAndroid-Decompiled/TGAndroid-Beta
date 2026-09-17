@@ -235,38 +235,38 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f17423b;
+                public final BetaUpdaterController f17432b;
 
                 {
-                    this.f17423b = this;
+                    this.f17432b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f17423b.lambda$downloadUpdate$5((File) obj);
+                            this.f17432b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f17423b.lambda$downloadUpdate$6((Float) obj);
+                            this.f17432b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f17423b;
+                public final BetaUpdaterController f17432b;
 
                 {
-                    this.f17423b = this;
+                    this.f17432b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f17423b.lambda$downloadUpdate$5((File) obj);
+                            this.f17432b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f17423b.lambda$downloadUpdate$6((Float) obj);
+                            this.f17432b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }

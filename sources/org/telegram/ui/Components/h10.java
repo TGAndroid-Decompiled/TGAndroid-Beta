@@ -9,16 +9,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public final class h10 extends URLSpan {
     public static final int e = 0;
-    public final String f24491a;
-    public final TLRPC.TL_messageEntityFormattedDate f24492b;
-    public final o01 f24493c;
+    public final String f24456a;
+    public final TLRPC.TL_messageEntityFormattedDate f24457b;
+    public final p01 f24458c;
     public final boolean d;
 
-    public h10(String str, o01 o01Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
+    public h10(String str, p01 p01Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
         super(str);
-        this.f24491a = str;
-        this.f24492b = tL_messageEntityFormattedDate;
-        this.f24493c = o01Var;
+        this.f24456a = str;
+        this.f24457b = tL_messageEntityFormattedDate;
+        this.f24458c = p01Var;
         this.d = false;
     }
 
@@ -32,7 +32,7 @@ public final class h10 extends URLSpan {
             ?? r42 = 0;
             while (i10 < length) {
                 h10 h10Var = h10VarArr[i10];
-                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = h10Var.f24492b;
+                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = h10Var.f24457b;
                 if (tL_messageEntityFormattedDate.flags != 0 && (h10Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
                     if (r42 == 0) {
                         charSequence = new SpannableStringBuilder(spanned);
@@ -41,9 +41,9 @@ public final class h10 extends URLSpan {
                     int spanStart = r42.getSpanStart(h10Var);
                     int spanEnd = r42.getSpanEnd(h10Var);
                     if (z10) {
-                        str = LocaleController.formatEntityFormattedDate(h10Var.f24492b);
+                        str = LocaleController.formatEntityFormattedDate(h10Var.f24457b);
                     } else {
-                        str = h10Var.f24491a;
+                        str = h10Var.f24456a;
                     }
                     r42.removeSpan(h10Var);
                     r42.replace(spanStart, spanEnd, str);
@@ -66,9 +66,9 @@ public final class h10 extends URLSpan {
         int i10 = textPaint.linkColor;
         int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        o01 o01Var = this.f24493c;
-        if (o01Var != null) {
-            o01Var.a(textPaint);
+        p01 p01Var = this.f24458c;
+        if (p01Var != null) {
+            p01Var.a(textPaint);
         }
         if (i10 == color) {
             z10 = true;
@@ -79,10 +79,10 @@ public final class h10 extends URLSpan {
     }
 
     public h10(h10 h10Var, boolean z10) {
-        super(h10Var.f24491a);
-        this.f24491a = h10Var.f24491a;
-        this.f24492b = h10Var.f24492b;
-        this.f24493c = h10Var.f24493c;
+        super(h10Var.f24456a);
+        this.f24456a = h10Var.f24456a;
+        this.f24457b = h10Var.f24457b;
+        this.f24458c = h10Var.f24458c;
         this.d = z10;
     }
 

@@ -11,35 +11,35 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.messenger.voip.VoIPServiceState;
 import org.webrtc.OrientationHelper;
 public final class li1 extends org.telegram.ui.Components.voip.w2 {
-    public final Path f35517s;
+    public final Path f35557s;
     public final RectF v;
-    public final ti1 f35518w;
+    public final ti1 f35558w;
 
     public li1(Activity activity, boolean z10, ti1 ti1Var) {
         super(activity);
-        this.f35518w = ti1Var;
-        this.f29333c = new AnimationNotificationsLocker();
-        this.f29331a = activity;
+        this.f35558w = ti1Var;
+        this.f29310c = new AnimationNotificationsLocker();
+        this.f29308a = activity;
         setSystemUiVisibility(1792);
         AndroidUtilities.lockOrientation(activity, 1);
         OrientationHelper.cameraRotationDisabled = true;
         if (!z10) {
             this.e = true;
         }
-        this.f35517s = new Path();
+        this.f35557s = new Path();
         this.v = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ti1 ti1Var = this.f35518w;
+        ti1 ti1Var = this.f35558w;
         if (ti1Var.E0 && getAlpha() != 0.0f) {
-            float scaleX = ti1Var.f37700c0.getScaleX() * ti1Var.f37700c0.getWidth();
-            float scaleY = ti1Var.f37700c0.getScaleY() * ti1Var.f37700c0.getHeight();
-            float x10 = ti1Var.f37700c0.getX() + ((ti1Var.f37700c0.getWidth() - scaleX) / 2.0f);
-            float y3 = ti1Var.f37700c0.getY() + ((ti1Var.f37700c0.getHeight() - scaleY) / 2.0f);
+            float scaleX = ti1Var.f37763c0.getScaleX() * ti1Var.f37763c0.getWidth();
+            float scaleY = ti1Var.f37763c0.getScaleY() * ti1Var.f37763c0.getHeight();
+            float x10 = ti1Var.f37763c0.getX() + ((ti1Var.f37763c0.getWidth() - scaleX) / 2.0f);
+            float y3 = ti1Var.f37763c0.getY() + ((ti1Var.f37763c0.getHeight() - scaleY) / 2.0f);
             canvas.save();
-            Path path = this.f35517s;
+            Path path = this.f35557s;
             path.rewind();
             RectF rectF = this.v;
             rectF.set(x10, y3, scaleX + x10, scaleY + y3);
@@ -57,13 +57,13 @@ public final class li1 extends org.telegram.ui.Components.voip.w2 {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         VoIPServiceState sharedState;
-        ti1 ti1Var = this.f35518w;
+        ti1 ti1Var = this.f35558w;
         if (!ti1Var.G0 && !ti1Var.E0) {
             int keyCode = keyEvent.getKeyCode();
             if (keyCode == 4 && keyEvent.getAction() == 1) {
                 ti1Var.p();
                 return true;
-            } else if ((keyCode == 25 || keyCode == 24) && ti1Var.f37724p0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
+            } else if ((keyCode == 25 || keyCode == 24) && ti1Var.f37787p0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
                 sharedState.stopRinging();
                 return true;
             } else {
@@ -75,7 +75,7 @@ public final class li1 extends org.telegram.ui.Components.voip.w2 {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f35518w.f37720m1) {
+        if (this.f35558w.f37783m1) {
             return;
         }
         super.draw(canvas);

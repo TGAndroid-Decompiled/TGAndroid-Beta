@@ -5,25 +5,25 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class xa implements Runnable {
-    public final int f5774a = 0;
-    public final boolean f5775b;
-    public final boolean f5776c;
+    public final int f5779a = 0;
+    public final boolean f5780b;
+    public final boolean f5781c;
     public final long d;
     public final Object e;
-    public final Object f5777f;
+    public final Object f5782f;
     public final TLObject h;
-    public final TLObject f5778n;
-    public final Object f5779r;
+    public final TLObject f5783n;
+    public final Object f5784r;
 
     public xa(oc ocVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z10, long j3, boolean z11, TLRPC.TL_error tL_error, androidx.fragment.app.a0 a0Var) {
         this.e = ocVar;
-        this.f5777f = tLObject;
+        this.f5782f = tLObject;
         this.h = tL_startLive;
-        this.f5775b = z10;
+        this.f5780b = z10;
         this.d = j3;
-        this.f5776c = z11;
-        this.f5778n = tL_error;
-        this.f5779r = a0Var;
+        this.f5781c = z11;
+        this.f5783n = tL_error;
+        this.f5784r = a0Var;
     }
 
     @Override
@@ -33,12 +33,12 @@ public final class xa implements Runnable {
 
     public xa(yh.v5 v5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.m4 m4Var) {
         this.e = v5Var;
-        this.f5777f = zArr;
+        this.f5782f = zArr;
         this.h = starGift;
-        this.f5775b = z10;
-        this.f5776c = z11;
+        this.f5780b = z10;
+        this.f5781c = z11;
         this.d = j3;
-        this.f5778n = tL_textWithEntities;
-        this.f5779r = m4Var;
+        this.f5783n = tL_textWithEntities;
+        this.f5784r = m4Var;
     }
 }

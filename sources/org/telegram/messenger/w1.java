@@ -100,8 +100,8 @@ public abstract class w1 {
         vcVar.Q(i11, i12, LocaleController.getString(i10)).j();
     }
 
-    public static void p(int i10, org.telegram.ui.Components.vc vcVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        vcVar.t(LocaleController.getString(i10), e6Var).j();
+    public static void p(int i10, org.telegram.ui.Components.vc vcVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        vcVar.t(LocaleController.getString(i10), f6Var).j();
     }
 
     public static void q(TextView textView, int i10, int i11, float f7) {

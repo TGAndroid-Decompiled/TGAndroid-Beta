@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class ma extends FrameLayout {
-    public f6 f1256a;
-    public long f1257b;
-    public ArrayList f1258c;
+    public f6 f1261a;
+    public long f1262b;
+    public ArrayList f1263c;
     public boolean d;
     public final zb e;
 
@@ -20,7 +20,7 @@ public final class ma extends FrameLayout {
         if (this.d != z10) {
             this.d = z10;
             invalidate();
-            this.f1256a.setIsVisible(z10);
+            this.f1261a.setIsVisible(z10);
             this.e.A();
         }
     }

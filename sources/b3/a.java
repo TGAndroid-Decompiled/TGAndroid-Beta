@@ -23,7 +23,7 @@ public final class a extends f {
 
     @Override
     public final int A(s sVar) {
-        if ("application/x-camera-motion".equals(sVar.f3304r)) {
+        if ("application/x-camera-motion".equals(sVar.f3309r)) {
             return k0.b(4, 0, 0, 0);
         }
         return k0.b(0, 0, 0, 0);
@@ -75,20 +75,20 @@ public final class a extends f {
         while (!k() && this.L < 100000 + j3) {
             h hVar = this.I;
             hVar.clear();
-            y yVar = this.f10683c;
+            y yVar = this.f10686c;
             yVar.h();
             if (w(yVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
                 long j11 = hVar.e;
                 this.L = j11;
-                if (j11 < this.f10688w) {
+                if (j11 < this.f10691w) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (this.K != null && !z10) {
                     hVar.c();
-                    ByteBuffer byteBuffer = hVar.f10092c;
-                    String str = d0.f7883a;
+                    ByteBuffer byteBuffer = hVar.f10097c;
+                    String str = d0.f7888a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {

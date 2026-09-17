@@ -6,14 +6,14 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class h90 extends ReplacementSpan {
-    public final int f24637a;
-    public View f24638b;
-    public final g90 f24639c;
+    public final int f24601a;
+    public View f24602b;
+    public final g90 f24603c;
     public final int d;
     public float e;
-    public float f24640f;
+    public float f24604f;
     public float h;
-    public boolean f24641n;
+    public boolean f24605n;
 
     public h90(int i10, View view) {
         this(view, i10, AndroidUtilities.dp(2.0f), null);
@@ -21,22 +21,22 @@ public final class h90 extends ReplacementSpan {
 
     public final void a(int i10, int i11) {
         Integer valueOf = Integer.valueOf(i10);
-        g90 g90Var = this.f24639c;
-        g90Var.f24272o = valueOf;
-        g90Var.f24273p = Integer.valueOf(i11);
+        g90 g90Var = this.f24603c;
+        g90Var.f24141o = valueOf;
+        g90Var.f24142p = Integer.valueOf(i11);
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         int alpha;
         View view;
-        boolean z10 = this.f24641n;
-        int i15 = this.f24637a;
-        if (z10 && (view = this.f24638b) != null && view.getMeasuredWidth() > 0) {
-            i15 = ((this.f24638b.getMeasuredWidth() - this.f24638b.getPaddingLeft()) - this.f24638b.getPaddingRight()) - i15;
+        boolean z10 = this.f24605n;
+        int i15 = this.f24601a;
+        if (z10 && (view = this.f24602b) != null && view.getMeasuredWidth() > 0) {
+            i15 = ((this.f24602b.getMeasuredWidth() - this.f24602b.getPaddingLeft()) - this.f24602b.getPaddingRight()) - i15;
         }
-        float f10 = this.f24640f;
-        g90 g90Var = this.f24639c;
+        float f10 = this.f24604f;
+        g90 g90Var = this.f24603c;
         if (f10 > 0.0f) {
             float f11 = (i12 + i14) / 2.0f;
             int i16 = (int) f7;
@@ -55,7 +55,7 @@ public final class h90 extends ReplacementSpan {
         }
         g90Var.setAlpha((int) (alpha * this.h));
         g90Var.draw(canvas);
-        View view2 = this.f24638b;
+        View view2 = this.f24602b;
         if (view2 != null) {
             view2.invalidate();
         }
@@ -72,28 +72,28 @@ public final class h90 extends ReplacementSpan {
             fontMetricsInt.leading = (int) fontMetrics.leading;
             fontMetricsInt.top = (int) fontMetrics.top;
         }
-        g90 g90Var = this.f24639c;
-        if (g90Var.f24272o == null && g90Var.f24273p == null) {
-            g90Var.e(org.telegram.ui.ActionBar.i6.l1(0.1f, paint.getColor()), org.telegram.ui.ActionBar.i6.l1(0.25f, paint.getColor()));
+        g90 g90Var = this.f24603c;
+        if (g90Var.f24141o == null && g90Var.f24142p == null) {
+            g90Var.e(org.telegram.ui.ActionBar.j6.l1(0.1f, paint.getColor()), org.telegram.ui.ActionBar.j6.l1(0.25f, paint.getColor()));
         }
-        boolean z10 = this.f24641n;
-        int i12 = this.f24637a;
-        if (z10 && (view = this.f24638b) != null && view.getMeasuredWidth() > 0) {
-            return ((this.f24638b.getMeasuredWidth() - this.f24638b.getPaddingLeft()) - this.f24638b.getPaddingRight()) - i12;
+        boolean z10 = this.f24605n;
+        int i12 = this.f24601a;
+        if (z10 && (view = this.f24602b) != null && view.getMeasuredWidth() > 0) {
+            return ((this.f24602b.getMeasuredWidth() - this.f24602b.getPaddingLeft()) - this.f24602b.getPaddingRight()) - i12;
         }
         return i12;
     }
 
-    public h90(View view, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+    public h90(View view, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
         this.e = 1.0f;
-        this.f24640f = -1.0f;
+        this.f24604f = -1.0f;
         this.h = 1.0f;
-        this.f24641n = false;
-        this.f24638b = view;
-        this.f24637a = i10;
+        this.f24605n = false;
+        this.f24602b = view;
+        this.f24601a = i10;
         this.d = i11;
-        g90 g90Var = new g90(e6Var);
-        this.f24639c = g90Var;
+        g90 g90Var = new g90(f6Var);
+        this.f24603c = g90Var;
         g90Var.j(4.0f);
     }
 }

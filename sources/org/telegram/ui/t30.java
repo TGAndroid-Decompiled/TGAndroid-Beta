@@ -1,13 +1,43 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class t30 extends View {
-    public t30(LaunchActivity launchActivity) {
-        super(launchActivity);
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class t30 implements Runnable {
+    public final k60 f37638a;
+
+    public t30(k60 k60Var) {
+        this.f37638a = k60Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
+    public final void run() {
+        int i10;
+        k60 k60Var = this.f37638a;
+        org.telegram.ui.ActionBar.k5 k5Var = k60Var.U;
+        p50 p50Var = k60Var.V;
+        if (p50Var != null && !k60Var.isDismissed()) {
+            ChatObject.Call call = k60Var.f35012a1;
+            if (call != null) {
+                i10 = call.call.schedule_date;
+            } else {
+                i10 = k60Var.f35054k2;
+            }
+            if (i10 != 0) {
+                int currentTime = i10 - k60Var.d.getConnectionsManager().getCurrentTime();
+                if (currentTime >= 86400) {
+                    p50Var.l(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]), false);
+                } else {
+                    p50Var.l(AndroidUtilities.formatFullDuration(Math.abs(currentTime)), false);
+                    if (currentTime < 0 && k5Var.getTag() == null) {
+                        k5Var.setTag(1);
+                        k5Var.l(LocaleController.getString(R.string.VoipChatLateBy), false);
+                    }
+                }
+                k60Var.W.l(LocaleController.formatStartsTime(i10, 3), false);
+                AndroidUtilities.runOnUIThread(k60Var.f35104w2, 1000L);
+            }
+        }
     }
 }

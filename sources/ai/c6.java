@@ -9,89 +9,89 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.yi0;
 public final class c6 {
-    public final Paint f622a;
-    public final Paint f623b;
-    public final Paint f624c;
+    public final Paint f627a;
+    public final Paint f628b;
+    public final Paint f629c;
     public final Drawable d;
     public final Drawable e;
-    public final ColorDrawable f625f;
-    public final com.google.firebase.messaging.n f626g = new com.google.firebase.messaging.n(5);
+    public final ColorDrawable f630f;
+    public final com.google.firebase.messaging.n f631g = new com.google.firebase.messaging.n(5);
     public final RectF h = new RectF();
-    public final RectF f627i = new RectF();
-    public final RectF f628j = new RectF();
-    public final RectF f629k;
-    public final Paint f630l;
-    public final Drawable f631m;
-    public final Drawable f632n;
-    public final Drawable f633o;
-    public final Drawable f634p;
-    public final Drawable f635q;
-    public final Drawable f636r;
-    public final Drawable f637s;
-    public final xi0 f638t;
-    public final xi0 f639u;
+    public final RectF f632i = new RectF();
+    public final RectF f633j = new RectF();
+    public final RectF f634k;
+    public final Paint f635l;
+    public final Drawable f636m;
+    public final Drawable f637n;
+    public final Drawable f638o;
+    public final Drawable f639p;
+    public final Drawable f640q;
+    public final Drawable f641r;
+    public final Drawable f642s;
+    public final yi0 f643t;
+    public final yi0 f644u;
 
     public c6(Context context) {
         new RectF();
-        this.f629k = new RectF();
-        this.f630l = new Paint();
-        this.f631m = context.getDrawable(R.drawable.media_share);
-        this.f633o = context.getDrawable(R.drawable.media_like);
-        this.f632n = context.getDrawable(R.drawable.media_repost);
+        this.f634k = new RectF();
+        this.f635l = new Paint();
+        this.f636m = context.getDrawable(R.drawable.media_share);
+        this.f638o = context.getDrawable(R.drawable.media_like);
+        this.f637n = context.getDrawable(R.drawable.media_repost);
         Drawable drawable = context.getDrawable(R.drawable.media_like_active);
-        this.f634p = drawable;
+        this.f639p = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
-        this.f635q = context.getDrawable(R.drawable.media_more);
-        this.f636r = context.getDrawable(R.drawable.menu_stream_pip);
-        this.f637s = context.getDrawable(R.drawable.msg_delete);
-        this.f639u = new xi0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        xi0 xi0Var = new xi0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.f638t = xi0Var;
-        xi0Var.N(20, false, true);
-        xi0Var.stop();
+        this.f640q = context.getDrawable(R.drawable.media_more);
+        this.f641r = context.getDrawable(R.drawable.menu_stream_pip);
+        this.f642s = context.getDrawable(R.drawable.msg_delete);
+        this.f644u = new yi0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        yi0 yi0Var = new yi0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        this.f643t = yi0Var;
+        yi0Var.N(20, false, true);
+        yi0Var.stop();
         Paint paint = new Paint(1);
-        this.f622a = paint;
+        this.f627a = paint;
         paint.setColor(1442840575);
         Paint paint2 = new Paint(1);
-        this.f623b = paint2;
+        this.f628b = paint2;
         paint2.setColor(-1);
         int k10 = i0.a.k(-16777216, 102);
         this.d = context.getDrawable(R.drawable.shadow_story_top);
         this.e = context.getDrawable(R.drawable.shadow_story_bottom);
         Paint paint3 = new Paint();
-        this.f624c = paint3;
+        this.f629c = paint3;
         paint3.setColor(k10);
-        this.f625f = new ColorDrawable(i0.a.d(0.1f, -16777216, -1));
+        this.f630f = new ColorDrawable(i0.a.d(0.1f, -16777216, -1));
     }
 
     public final void a(boolean z10, boolean z11) {
         int i10;
         int i11 = 20;
-        xi0 xi0Var = this.f639u;
+        yi0 yi0Var = this.f644u;
         if (!z11) {
             if (z10) {
                 i10 = 20;
             } else {
                 i10 = 0;
             }
-            xi0Var.N(i10, false, false);
+            yi0Var.N(i10, false, false);
             if (!z10) {
                 i11 = 0;
             }
-            xi0Var.P(i11);
+            yi0Var.P(i11);
         } else if (z10) {
-            if (xi0Var.f29948b0 > 20) {
-                xi0Var.N(0, false, false);
+            if (yi0Var.f30221b0 > 20) {
+                yi0Var.N(0, false, false);
             }
-            xi0Var.P(20);
-            xi0Var.start();
+            yi0Var.P(20);
+            yi0Var.start();
         } else {
-            int i12 = xi0Var.f29948b0;
+            int i12 = yi0Var.f30221b0;
             if (i12 != 0 && i12 < 43) {
-                xi0Var.P(43);
-                xi0Var.start();
+                yi0Var.P(43);
+                yi0Var.start();
             }
         }
     }

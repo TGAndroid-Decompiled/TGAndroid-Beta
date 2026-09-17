@@ -10,21 +10,21 @@ import qb.i;
 public final class e extends i {
     public ThickLanguageIdentifier d;
     public final Context e;
-    public final tb.a f43659f;
-    public final boolean f43660g;
+    public final tb.a f43682f;
+    public final boolean f43683g;
 
     public e(Context context, tb.a aVar) {
         this.e = context;
-        this.f43659f = aVar;
+        this.f43682f = aVar;
         aVar.getClass();
-        this.f43660g = true;
+        this.f43683g = true;
     }
 
     @Override
     public final void b() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f41244a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f41266a.d).get()));
         if (this.d == null) {
-            this.f43659f.getClass();
+            this.f43682f.getClass();
             ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f41244a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f41266a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();
@@ -57,8 +57,8 @@ public final class e extends i {
                     Object obj = a2.get(i10);
                     i10++;
                     IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f7370a)) {
-                        str2 = identifiedLanguage.f7370a;
+                    if (!"unknown".equals(identifiedLanguage.f7375a)) {
+                        str2 = identifiedLanguage.f7375a;
                         break;
                     }
                 } else {

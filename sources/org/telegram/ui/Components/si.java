@@ -9,29 +9,29 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class si extends kl0 {
+public final class si extends ll0 {
     public int E;
     public int F;
     public int G;
     public int H;
     public int I;
     public final vi J;
-    public final Context f27861c;
+    public final Context f27862c;
     public int d;
     public int e;
-    public int f27862f;
+    public int f27863f;
     public final ArrayList h = new ArrayList();
-    public int f27863n;
-    public int f27864r;
-    public int f27865s;
+    public int f27864n;
+    public int f27865r;
+    public int f27866s;
     public int v;
-    public int f27866w;
-    public int f27867x;
-    public int f27868y;
+    public int f27867w;
+    public int f27868x;
+    public int f27869y;
 
     public si(vi viVar, Context context) {
         this.J = viVar;
-        this.f27861c = context;
+        this.f27862c = context;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class si extends kl0 {
     public final int h() {
         int i10 = this.I;
         vi viVar = this.J;
-        if (viVar.H1 == null && (viVar.f28750f0 instanceof org.telegram.ui.bo) && !viVar.H) {
+        if (viVar.H1 == null && (viVar.f28742f0 instanceof org.telegram.ui.bo) && !viVar.H) {
             return MediaDataController.getInstance(viVar.J1).inlineBots.size() + i10;
         }
         return i10;
@@ -54,7 +54,7 @@ public final class si extends kl0 {
         if (i10 >= this.I) {
             return 1;
         }
-        if (i10 >= this.e && i10 < this.f27862f) {
+        if (i10 >= this.e && i10 < this.f27863f) {
             return 1;
         }
         return 0;
@@ -66,22 +66,22 @@ public final class si extends kl0 {
         int i10 = 0;
         this.I = 0;
         this.d = -1;
-        this.f27863n = -1;
-        this.f27864r = -1;
-        this.f27865s = -1;
+        this.f27864n = -1;
+        this.f27865r = -1;
+        this.f27866s = -1;
         this.v = -1;
-        this.f27866w = -1;
-        this.f27867x = -1;
-        this.f27868y = -1;
+        this.f27867w = -1;
+        this.f27868x = -1;
+        this.f27869y = -1;
         this.E = -1;
         this.G = -1;
         this.H = -1;
         this.F = -1;
         this.e = -1;
-        this.f27862f = -1;
+        this.f27863f = -1;
         vi viVar = this.J;
         int i11 = viVar.J1;
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28750f0;
+        org.telegram.ui.ActionBar.o2 o2Var = viVar.f28742f0;
         boolean z10 = true;
         if (viVar.H) {
             this.I = 1;
@@ -90,7 +90,7 @@ public final class si extends kl0 {
             if (i12 == 0 || w7.c0.a(i12, 16)) {
                 int i13 = this.I;
                 this.I = i13 + 1;
-                this.f27863n = i13;
+                this.f27864n = i13;
             }
             int i14 = viVar.I;
             if (i14 == 0 || w7.c0.a(i14, 8192)) {
@@ -108,13 +108,13 @@ public final class si extends kl0 {
             if (i18 == 0 || w7.c0.a(i18, 8)) {
                 int i19 = this.I;
                 this.I = i19 + 1;
-                this.f27864r = i19;
+                this.f27865r = i19;
             }
             int i20 = viVar.I;
             if (i20 == 0 || w7.c0.a(i20, 64)) {
                 int i21 = this.I;
                 this.I = i21 + 1;
-                this.f27868y = i21;
+                this.f27869y = i21;
             }
             int i22 = viVar.I;
             if (i22 == 0 || w7.c0.a(i22, 32768)) {
@@ -122,21 +122,21 @@ public final class si extends kl0 {
                 this.I = i23 + 1;
                 this.G = i23;
             }
-        } else if (!(n2Var instanceof org.telegram.ui.bo)) {
+        } else if (!(o2Var instanceof org.telegram.ui.bo)) {
             this.d = 0;
             this.I = 2;
-            this.f27863n = 1;
+            this.f27864n = 1;
             if (viVar.W) {
                 this.I = 3;
-                this.f27864r = 2;
+                this.f27865r = 2;
             }
         } else if (viVar.H1 != null) {
             int i24 = viVar.G1;
             if (i24 == -1) {
                 this.d = 0;
-                this.f27863n = 1;
+                this.f27864n = 1;
                 this.I = 3;
-                this.f27864r = 2;
+                this.f27865r = 2;
             } else {
                 if (i24 == 0) {
                     this.I = 1;
@@ -145,27 +145,27 @@ public final class si extends kl0 {
                 if (i24 == 1) {
                     int i25 = this.I;
                     this.I = i25 + 1;
-                    this.f27863n = i25;
+                    this.f27864n = i25;
                 }
                 if (i24 == 2) {
                     int i26 = this.I;
                     this.I = i26 + 1;
-                    this.f27864r = i26;
+                    this.f27865r = i26;
                 }
             }
         } else {
-            TLRPC.User i27 = ((org.telegram.ui.bo) n2Var).i();
-            if (n2Var instanceof org.telegram.ui.bo) {
-                chat = ((org.telegram.ui.bo) n2Var).e;
+            TLRPC.User i27 = ((org.telegram.ui.bo) o2Var).i();
+            if (o2Var instanceof org.telegram.ui.bo) {
+                chat = ((org.telegram.ui.bo) o2Var).e;
             } else {
                 chat = null;
             }
-            z10 = (i27 == null || ((org.telegram.ui.bo) n2Var).getMessagesController().getSendPaidMessagesStars(i27.f18259id) <= 0) ? false : false;
+            z10 = (i27 == null || ((org.telegram.ui.bo) o2Var).getMessagesController().getSendPaidMessagesStars(i27.f18268id) <= 0) ? false : false;
             int i28 = this.I;
             this.I = i28 + 1;
             this.d = i28;
-            if ((viVar.L1 || viVar.M1) && !z10 && ((chat == null || !ChatObject.isMonoForum(chat)) && (n2Var instanceof org.telegram.ui.bo) && !((org.telegram.ui.bo) n2Var).c() && !((org.telegram.ui.bo) n2Var).v())) {
-                org.telegram.ui.bo boVar = (org.telegram.ui.bo) n2Var;
+            if ((viVar.L1 || viVar.M1) && !z10 && ((chat == null || !ChatObject.isMonoForum(chat)) && (o2Var instanceof org.telegram.ui.bo) && !((org.telegram.ui.bo) o2Var).c() && !((org.telegram.ui.bo) o2Var).v())) {
+                org.telegram.ui.bo boVar = (org.telegram.ui.bo) o2Var;
                 if (boVar.R3 != 5) {
                     this.e = this.I;
                     ArrayList arrayList = this.h;
@@ -188,17 +188,17 @@ public final class si extends kl0 {
                     }
                     int size2 = arrayList.size() + this.I;
                     this.I = size2;
-                    this.f27862f = size2;
+                    this.f27863f = size2;
                 }
             }
             int i29 = this.I;
             int i30 = i29 + 1;
             this.I = i30;
-            this.f27863n = i29;
+            this.f27864n = i29;
             boolean z11 = viVar.Q1;
             if (z11) {
                 this.I = i29 + 2;
-                this.f27868y = i30;
+                this.f27869y = i30;
             }
             if (z11 && MessagesController.getInstance(i11).richEditorAvailable()) {
                 int i31 = this.I;
@@ -208,7 +208,7 @@ public final class si extends kl0 {
             if (viVar.O1) {
                 int i32 = this.I;
                 this.I = i32 + 1;
-                this.f27865s = i32;
+                this.f27866s = i32;
             }
             if (viVar.P1) {
                 int i33 = this.I;
@@ -218,16 +218,16 @@ public final class si extends kl0 {
             if (viVar.Q1) {
                 int i34 = this.I;
                 this.I = i34 + 1;
-                this.f27866w = i34;
+                this.f27867w = i34;
             }
-            if ((n2Var instanceof org.telegram.ui.bo) && ((org.telegram.ui.bo) n2Var).R3 == 0 && i27 != null && !z10 && !i27.bot && !hg.b2.f(i11).f10230b.isEmpty()) {
+            if ((o2Var instanceof org.telegram.ui.bo) && ((org.telegram.ui.bo) o2Var).R3 == 0 && i27 != null && !z10 && !i27.bot && !hg.b2.f(i11).f10235b.isEmpty()) {
                 int i35 = this.I;
                 this.I = i35 + 1;
-                this.f27867x = i35;
+                this.f27868x = i35;
             }
             int i36 = this.I;
             this.I = i36 + 1;
-            this.f27864r = i36;
+            this.f27865r = i36;
         }
         super.l();
     }
@@ -240,7 +240,7 @@ public final class si extends kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View piVar;
-        Context context = this.f27861c;
+        Context context = this.f27862c;
         vi viVar = this.J;
         if (i10 != 0) {
             piVar = new oi(viVar, context);

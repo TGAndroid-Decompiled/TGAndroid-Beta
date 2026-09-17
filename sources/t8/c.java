@@ -9,21 +9,21 @@ import com.google.android.gms.internal.vision.g3;
 import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
 import java.util.HashSet;
-import m.e3;
+import lf.i;
 import n6.l;
 import org.telegram.ui.Cells.p6;
 public final class c extends g {
-    public final q8.a f43044b;
-    public final u2 f43045c;
+    public final q8.a f43066b;
+    public final u2 f43067c;
     public final Object d;
     public boolean e;
 
     public c(u2 u2Var) {
         super(3);
-        this.f43044b = new q8.a();
+        this.f43066b = new q8.a();
         this.d = new Object();
         this.e = true;
-        this.f43045c = u2Var;
+        this.f43067c = u2Var;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class c extends g {
                 if (!this.e) {
                     return;
                 }
-                this.f43045c.l();
+                this.f43067c.l();
                 this.e = false;
             } catch (Throwable th2) {
                 throw th2;
@@ -42,15 +42,15 @@ public final class c extends g {
         }
     }
 
-    public final SparseArray Z0(e3 e3Var) {
-        ByteBuffer H;
+    public final SparseArray Z0(i iVar) {
+        ByteBuffer I;
         a[] n10;
-        Bitmap bitmap = (Bitmap) e3Var.d;
+        Bitmap bitmap = (Bitmap) iVar.d;
         if (bitmap != null) {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
             int i10 = width * height;
-            H = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i10);
+            I = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i10);
             int i11 = i10;
             for (int i12 = 0; i12 < i10; i12++) {
                 int i13 = i12 % width;
@@ -59,24 +59,24 @@ public final class c extends g {
                 float red = Color.red(pixel);
                 float green = Color.green(pixel);
                 float blue = Color.blue(pixel);
-                H.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
+                I.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
                 if (i14 % 2 == 0 && i13 % 2 == 0) {
                     float a2 = p6.a(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
                     float a10 = p6.a(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
                     int i15 = i11 + 1;
-                    H.put(i11, (byte) a2);
+                    I.put(i11, (byte) a2);
                     i11 += 2;
-                    H.put(i15, (byte) a10);
+                    I.put(i15, (byte) a10);
                 }
             }
         } else {
-            H = e3Var.H();
+            I = iVar.I();
         }
         synchronized (this.d) {
             if (this.e) {
-                u2 u2Var = this.f43045c;
-                l.h(H);
-                n10 = u2Var.n(H, g3.b(e3Var));
+                u2 u2Var = this.f43067c;
+                l.h(I);
+                n10 = u2Var.n(I, g3.b(iVar));
             } else {
                 throw new IllegalStateException("Cannot use detector after release()");
             }
@@ -85,14 +85,14 @@ public final class c extends g {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f43038a;
+            int i17 = aVar.f43060a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f43044b.a(i17), aVar);
+            sparseArray.append(this.f43066b.a(i17), aVar);
         }
         return sparseArray;
     }

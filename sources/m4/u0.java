@@ -8,19 +8,19 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.gv0;
+import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.Components.hv0;
-import org.telegram.ui.Components.sv0;
-import org.telegram.ui.Components.yk0;
-import org.telegram.ui.gs;
+import org.telegram.ui.Components.iv0;
+import org.telegram.ui.Components.tv0;
+import org.telegram.ui.Components.zk0;
+import org.telegram.ui.is;
 import v7.l8;
-public final class u0 implements e1, f1, n2.l, d9.e, g2.g, a2, sv0, Utilities.Callback2Return, hh.i, yk0, gv0, hv0 {
-    public final int f14705a;
+public final class u0 implements e1, f1, n2.l, d9.e, g2.g, b2, tv0, Utilities.Callback2Return, hh.i, zk0, hv0, iv0 {
+    public final int f14715a;
 
     public u0(int i10) {
-        this.f14705a = i10;
+        this.f14715a = i10;
     }
 
     public static ActionMode.Callback2 e(Object obj) {
@@ -36,32 +36,32 @@ public final class u0 implements e1, f1, n2.l, d9.e, g2.g, a2, sv0, Utilities.Ca
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return e9.i0.v(e9.q.w(qVar.Y.f43458b, new t0.a(10)));
+        return e9.i0.v(e9.q.w(qVar.Y.f43481b, new t0.a(10)));
     }
 
     @Override
     public void b(Object obj, float f7) {
-        gs gsVar = (gs) obj;
-        switch (this.f14705a) {
+        is isVar = (is) obj;
+        switch (this.f14715a) {
             case 25:
-                gsVar.f33999b = f7;
-                if (gsVar.getParent() != null) {
-                    ((View) gsVar.getParent()).invalidate();
+                isVar.f34666b = f7;
+                if (isVar.getParent() != null) {
+                    ((View) isVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 26:
             default:
-                gsVar.d = f7;
-                if (gsVar.getParent() != null) {
-                    ((View) gsVar.getParent()).invalidate();
+                isVar.d = f7;
+                if (isVar.getParent() != null) {
+                    ((View) isVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 27:
-                gsVar.f34000c = f7;
-                if (gsVar.getParent() != null) {
-                    ((View) gsVar.getParent()).invalidate();
+                isVar.f34667c = f7;
+                if (isVar.getParent() != null) {
+                    ((View) isVar.getParent()).invalidate();
                     return;
                 }
                 return;
@@ -74,16 +74,16 @@ public final class u0 implements e1, f1, n2.l, d9.e, g2.g, a2, sv0, Utilities.Ca
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f14705a) {
+    public void f(c2 c2Var, int i10) {
+        switch (this.f14715a) {
             case 14:
-                b2Var.dismiss();
+                c2Var.dismiss();
                 return;
             case 19:
-                b2Var.dismiss();
+                c2Var.dismiss();
                 return;
             default:
-                b2Var.dismiss();
+                c2Var.dismiss();
                 return;
         }
     }
@@ -103,21 +103,21 @@ public final class u0 implements e1, f1, n2.l, d9.e, g2.g, a2, sv0, Utilities.Ca
 
     @Override
     public float get(Object obj) {
-        gs gsVar = (gs) obj;
-        switch (this.f14705a) {
+        is isVar = (is) obj;
+        switch (this.f14715a) {
             case 24:
-                return gsVar.f33999b;
+                return isVar.f34666b;
             case 25:
             default:
-                return gsVar.d;
+                return isVar.d;
             case 26:
-                return gsVar.f34000c;
+                return isVar.f34667c;
         }
     }
 
     @Override
     public Object h(a0 a0Var, r rVar, int i10) {
-        switch (this.f14705a) {
+        switch (this.f14715a) {
             case 1:
                 a0Var.getClass();
                 throw new ClassCastException();
@@ -147,7 +147,7 @@ public final class u0 implements e1, f1, n2.l, d9.e, g2.g, a2, sv0, Utilities.Ca
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f14705a) {
+        switch (this.f14715a) {
             case 17:
                 if (num.intValue() == 0) {
                     return LocaleController.formatPluralString("MaximumReactionsValue", num2.intValue(), new Object[0]);
@@ -162,15 +162,15 @@ public final class u0 implements e1, f1, n2.l, d9.e, g2.g, a2, sv0, Utilities.Ca
     }
 
     public u0(Object obj, int i10) {
-        this.f14705a = i10;
+        this.f14715a = i10;
     }
 
     public u0(String str, int i10, int i11, n nVar) {
-        this.f14705a = 1;
+        this.f14715a = 1;
     }
 
     public u0(String str, n nVar, int i10) {
-        this.f14705a = i10;
+        this.f14715a = i10;
     }
 
     @Override

@@ -1,42 +1,70 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class v6 extends org.telegram.ui.Components.bd {
-    public final x6 f38369e0;
+import j$.util.Objects;
+public final class v6 extends og.a {
+    public final int f38299c;
+    public CharSequence d;
+    public String e;
+    public int f38300f;
+    public long f38301g;
+    public int h;
+    public boolean f38302i;
+    public boolean f38303j;
 
-    public v6(x6 x6Var, Context context) {
-        super(context, 11, org.telegram.ui.Components.bd.W, 0, org.telegram.ui.Components.bd.f22755a0);
-        this.f38369e0 = x6Var;
+    public v6(int i10, String str) {
+        super(i10, true);
+        this.f38299c = -1;
+        this.d = str;
     }
 
-    @Override
-    public final void d(int i10, boolean z10) {
-        z6 z6Var = this.f38369e0.e;
-        if (!z10) {
-            z6Var.f40076b.j1();
-            return;
-        }
-        int i11 = -1;
-        if (i10 == 8) {
-            i10 = -1;
-        }
-        int i12 = 0;
-        while (true) {
-            if (i12 < z6Var.f40075a0.size()) {
-                u6 u6Var = (u6) z6Var.f40075a0.get(i12);
-                if (u6Var != null && u6Var.f15533a == 11 && u6Var.f37863f == i10) {
-                    i11 = i12;
-                    break;
+    public static v6 b(int i10, long j3, String str, int i11) {
+        v6 v6Var = new v6(11);
+        v6Var.f38300f = i10;
+        v6Var.d = str;
+        v6Var.f38301g = j3;
+        v6Var.h = i11;
+        v6Var.f38303j = false;
+        return v6Var;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && v6.class == obj.getClass()) {
+                v6 v6Var = (v6) obj;
+                int i10 = this.f15543a;
+                if (i10 == v6Var.f15543a) {
+                    if (i10 != 9 && i10 != 10 && i10 != 8 && i10 != 4 && i10 != 2 && i10 != 0 && i10 != 13) {
+                        if (i10 == 3) {
+                            return Objects.equals(this.d, v6Var.d);
+                        }
+                        if (i10 == 1) {
+                            return Objects.equals(this.e, v6Var.e);
+                        }
+                        if (i10 == 11) {
+                            if (this.f38300f != v6Var.f38300f || this.f38301g != v6Var.f38301g) {
+                                return false;
+                            }
+                        } else if (i10 != 7 || this.f38299c != v6Var.f38299c) {
+                            return false;
+                        }
+                    }
+                } else {
+                    return false;
                 }
-                i12++;
             } else {
-                break;
+                return false;
             }
         }
-        if (i11 >= 0) {
-            z6Var.f40076b.e1(new i2.v(i11, 3), 0, true);
-        } else {
-            z6Var.f40076b.j1();
-        }
+        return true;
+    }
+
+    public v6(int i10, int i11) {
+        super(7, true);
+        this.f38299c = i10;
+    }
+
+    public v6(int i10) {
+        super(i10, true);
+        this.f38299c = -1;
     }
 }

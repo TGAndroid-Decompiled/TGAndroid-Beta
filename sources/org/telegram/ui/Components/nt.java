@@ -5,27 +5,27 @@ import android.os.Build;
 import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
 public final class nt extends EdgeEffect {
-    public final int f26570a;
-    public final lt f26571b;
-    public final RecyclerView f26572c;
+    public final int f26536a;
+    public final lt f26537b;
+    public final RecyclerView f26538c;
     public final xp d;
     public boolean e;
 
     public nt(RecyclerView recyclerView, int i10, lt ltVar) {
         super(recyclerView.getContext());
         this.d = new xp(this, 7);
-        this.f26572c = recyclerView;
-        this.f26570a = i10;
-        this.f26571b = ltVar;
+        this.f26538c = recyclerView;
+        this.f26536a = i10;
+        this.f26537b = ltVar;
     }
 
     public final void a() {
         boolean b10 = b();
         if (this.e != b10) {
             this.e = b10;
-            lt ltVar = this.f26571b;
+            lt ltVar = this.f26537b;
             if (ltVar != null) {
-                ltVar.a(this.f26570a, b10);
+                ltVar.a(this.f26536a, b10);
             }
         }
     }
@@ -43,7 +43,7 @@ public final class nt extends EdgeEffect {
     @Override
     public final boolean draw(Canvas canvas) {
         boolean draw = super.draw(canvas);
-        this.f26572c.postOnAnimation(this.d);
+        this.f26538c.postOnAnimation(this.d);
         return draw;
     }
 

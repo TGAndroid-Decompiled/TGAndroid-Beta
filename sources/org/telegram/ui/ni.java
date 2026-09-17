@@ -1,72 +1,44 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class ni implements View.OnTouchListener {
-    public final int f35988a;
-    public final int[] f35989b;
-    public final Rect f35990c;
-    public final Object d;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class ni extends ci0 {
+    public final bo e;
 
-    public ni(i60 i60Var, Rect rect) {
-        this.f35988a = 1;
-        this.d = i60Var;
-        this.f35990c = rect;
-        this.f35989b = new int[2];
-    }
-
-    @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        i50 i50Var;
-        switch (this.f35988a) {
-            case 0:
-                bo boVar = (bo) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    org.telegram.ui.ActionBar.n1 n1Var = boVar.Q8;
-                    if (n1Var != null && n1Var.isShowing()) {
-                        View contentView = boVar.Q8.getContentView();
-                        int[] iArr = this.f35989b;
-                        contentView.getLocationInWindow(iArr);
-                        int i10 = iArr[0];
-                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
-                        Rect rect = this.f35990c;
-                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
-                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            boVar.A7(true);
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4) {
-                    boVar.A7(true);
-                }
-                return false;
-            default:
-                i60 i60Var = (i60) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    i50 i50Var2 = i60Var.f34434f3;
-                    if (i50Var2 != null && i50Var2.isShowing()) {
-                        View contentView2 = i60Var.f34434f3.getContentView();
-                        int[] iArr2 = this.f35989b;
-                        contentView2.getLocationInWindow(iArr2);
-                        int i11 = iArr2[0];
-                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
-                        Rect rect2 = this.f35990c;
-                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
-                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            i60Var.f34434f3.dismiss();
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4 && (i50Var = i60Var.f34434f3) != null && i50Var.isShowing()) {
-                    i60Var.f34434f3.dismiss();
-                }
-                return false;
+    public ni(bo boVar, Context context, int i10, MessageObject messageObject) {
+        super(context);
+        this.e = boVar;
+        this.f32813a = null;
+        if (!messageObject.isRoundVideo()) {
+            messageObject.isVoice();
         }
-    }
-
-    public ni(bo boVar, Rect rect) {
-        this.f35988a = 0;
-        this.d = boVar;
-        this.f35990c = rect;
-        this.f35989b = new int[2];
+        org.telegram.ui.Components.t00 t00Var = new org.telegram.ui.Components.t00(context, null);
+        this.f32815c = t00Var;
+        t00Var.f(org.telegram.ui.ActionBar.j6.G8, org.telegram.ui.ActionBar.j6.f18952i6, -1);
+        t00Var.setViewType(13);
+        t00Var.setIsSingleCell(false);
+        addView(t00Var, w7.x5.c(-1.0f, -2));
+        org.telegram.ui.Components.c90 c90Var = new org.telegram.ui.Components.c90(context, null);
+        this.f32814b = c90Var;
+        c90Var.setTextSize(1, 14.0f);
+        c90Var.setGravity(19);
+        c90Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.E8, false));
+        c90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.gc, false));
+        c90Var.setEllipsize(TextUtils.TruncateAt.END);
+        c90Var.setSingleLine();
+        c90Var.setLines(1);
+        c90Var.setMaxLines(1);
+        addView(c90Var, w7.x5.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
+        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
+        tL_channels_getMessageAuthor.channel = MessagesController.getInstance(i10).getInputChannel(-messageObject.getDialogId());
+        tL_channels_getMessageAuthor.f18158id = messageObject.getId();
+        c90Var.setAlpha(0.0f);
+        ConnectionsManager.getInstance(i10).sendRequest(tL_channels_getMessageAuthor, new ai.g8(this, i10, 6));
+        setBackground(org.telegram.ui.ActionBar.j6.Y(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.I5, false), 6, 0));
+        setEnabled(false);
     }
 }

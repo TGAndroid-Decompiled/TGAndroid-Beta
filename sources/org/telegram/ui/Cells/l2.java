@@ -3,15 +3,15 @@ package org.telegram.ui.Cells;
 import android.view.animation.Interpolator;
 import org.telegram.messenger.wl;
 public final class l2 implements Interpolator {
-    public final int f20384a;
+    public final int f20394a;
 
     public l2(int i10) {
-        this.f20384a = i10;
+        this.f20394a = i10;
     }
 
     @Override
     public final float getInterpolation(float f7) {
-        switch (this.f20384a) {
+        switch (this.f20394a) {
             case 0:
                 if (f7 < 0.33f) {
                     return (f7 / 0.33f) * 0.1f;

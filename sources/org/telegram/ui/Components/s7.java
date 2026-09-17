@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class s7 extends ll0 {
+public final class s7 extends ml0 {
     public boolean X2;
     public final h8 Y2;
 
@@ -11,9 +11,9 @@ public final class s7 extends ll0 {
     }
 
     @Override
-    public final boolean E0(float f7) {
+    public final boolean F0(float f7) {
         h8 h8Var = this.Y2;
-        if (f7 < h8Var.E.getY() - h8Var.f24566n.getTop()) {
+        if (f7 < h8Var.E.getY() - h8Var.f24558n.getTop()) {
             return true;
         }
         return false;
@@ -23,15 +23,15 @@ public final class s7 extends ll0 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         h8 h8Var = this.Y2;
-        int i14 = h8Var.f24574s0;
-        if (i14 != -1 && !h8Var.f24554c.f19316n0) {
+        int i14 = h8Var.f24566s0;
+        if (i14 != -1 && !h8Var.f24546c.f19304n0) {
             this.X2 = true;
-            h8Var.f24571r.h1(i14, h8Var.f24575t0 - h8Var.f24566n.getPaddingTop());
+            h8Var.f24563r.h1(i14, h8Var.f24567t0 - h8Var.f24558n.getPaddingTop());
             super.onLayout(false, i10, i11, i12, i13);
             this.X2 = false;
-            h8Var.f24574s0 = -1;
-        } else if (h8Var.f24572r0) {
-            h8Var.f24572r0 = false;
+            h8Var.f24566s0 = -1;
+        } else if (h8Var.f24564r0) {
+            h8Var.f24564r0 = false;
             this.X2 = true;
             if (h8Var.w0(true)) {
                 super.onLayout(false, i10, i11, i12, i13);

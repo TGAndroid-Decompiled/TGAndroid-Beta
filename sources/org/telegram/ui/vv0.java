@@ -1,51 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ActionMode;
-import java.util.ArrayList;
-public final class vv0 extends org.telegram.ui.Cells.c6 {
-    public final yv0 F;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class vv0 extends AnimatorListenerAdapter {
+    public final int f38508a;
+    public final cw0 f38509b;
 
-    public vv0(yv0 yv0Var, Context context, int i10) {
-        super(context, i10, null, null);
-        this.F = yv0Var;
+    public vv0(cw0 cw0Var, int i10) {
+        this.f38508a = i10;
+        this.f38509b = cw0Var;
     }
 
     @Override
-    public final void i(boolean z10) {
-        aw0.d0(this.F.d, this, z10);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.c6 c6Var) {
-        aw0.e0(this.F.d, c6Var);
-    }
-
-    @Override
-    public final boolean l(ArrayList arrayList) {
-        aw0 aw0Var = this.F.d;
-        if (arrayList.isEmpty()) {
-            return false;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38508a) {
+            case 0:
+                this.f38509b.R.setTranslationY(0.0f);
+                return;
+            case 1:
+                this.f38509b.R.setTranslationY(0.0f);
+                return;
+            default:
+                cw0 cw0Var = this.f38509b;
+                cw0Var.getClass();
+                cw0Var.R.setTranslationY(0.0f);
+                cw0Var.l0();
+                return;
         }
-        org.telegram.ui.Cells.b6 b6Var = this.d;
-        b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-        int i10 = 0;
-        while (!arrayList.isEmpty() && i10 < aw0Var.f31983n) {
-            for (int length = aw0Var.v.length - 1; length > i10; length--) {
-                CharSequence[] charSequenceArr = aw0Var.v;
-                charSequenceArr[length] = charSequenceArr[length - 1];
-            }
-            aw0Var.v[i10] = (CharSequence) arrayList.remove(0);
-            aw0Var.f31999y++;
-            i10++;
-        }
-        aw0Var.r0();
-        aw0Var.f31977g0 = (aw0Var.f31984n0 + i10) - 1;
-        aw0Var.f31969b.l();
-        return true;
-    }
-
-    @Override
-    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
     }
 }

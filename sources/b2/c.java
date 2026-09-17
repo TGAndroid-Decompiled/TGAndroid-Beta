@@ -67,7 +67,7 @@ public abstract class c {
                     break;
                 }
             }
-            if (i12 == 1 && z6.f44882a == null) {
+            if (i12 == 1 && z6.f44905a == null) {
                 if (Build.VERSION.SDK_INT < 35) {
                     int c10 = c(false);
                     int c11 = c(true);
@@ -75,12 +75,12 @@ public abstract class c {
                         if (c11 == 0) {
                         }
                     }
-                    z6.f44882a = Boolean.valueOf(z10);
+                    z6.f44905a = Boolean.valueOf(z10);
                     if (!z10) {
                     }
                 }
                 z10 = false;
-                z6.f44882a = Boolean.valueOf(z10);
+                z6.f44905a = Boolean.valueOf(z10);
                 if (!z10) {
                 }
             }
@@ -95,9 +95,9 @@ public abstract class c {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             r rVar = new r();
-            rVar.f3248q = r0.n("video/avc");
+            rVar.f3253q = r0.n("video/avc");
             s sVar = new s(rVar);
-            String str = sVar.f3304r;
+            String str = sVar.f3309r;
             if (str != null) {
                 List d10 = r2.w.d(str, z10, false);
                 String b10 = r2.w.b(sVar);
@@ -130,16 +130,16 @@ public abstract class c {
     public static e9.a1 d(e eVar) {
         e9.f0 u10 = e9.i0.u();
         e9.k0 k0Var = k2.b.e;
-        e9.m0 m0Var = k0Var.f8088b;
+        e9.m0 m0Var = k0Var.f8093b;
         if (m0Var == null) {
             m0Var = k0Var.c();
-            k0Var.f8088b = m0Var;
+            k0Var.f8093b = m0Var;
         }
         e9.o1 it = m0Var.iterator();
         while (it.hasNext()) {
             Integer num = (Integer) it.next();
             int intValue = num.intValue();
-            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f3339a)) {
+            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f3344a)) {
                 u10.b(num);
             }
         }
@@ -150,7 +150,7 @@ public abstract class c {
     public static int e(int i10, int i11, e eVar) {
         for (int i12 = 10; i12 > 0; i12--) {
             int s10 = e2.d0.s(i12);
-            if (s10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(s10).build(), (AudioAttributes) eVar.b().f3339a)) {
+            if (s10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(s10).build(), (AudioAttributes) eVar.b().f3344a)) {
                 return i12;
             }
         }
@@ -162,8 +162,8 @@ public abstract class c {
             return k2.e.d;
         }
         ?? obj = new Object();
-        obj.f380a = true;
-        obj.f382c = z10;
+        obj.f382a = true;
+        obj.f384c = z10;
         return obj.a();
     }
 

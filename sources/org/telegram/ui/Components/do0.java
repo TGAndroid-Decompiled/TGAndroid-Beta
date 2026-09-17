@@ -1,41 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ProfileActivity;
-public final class do0 extends b8 {
-    public final Context E;
-    public final Object F;
-    public final int f23370y;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.HashMap;
+import java.util.WeakHashMap;
+public abstract class do0 extends View.AccessibilityDelegate {
+    public static final String f23369c = "android.widget.SeekBar";
+    public final HashMap f23370a = new HashMap(4);
+    public final ai.u2 f23371b = new ai.u2(this, 9);
 
-    public do0(Object obj, Context context, Context context2, int i10) {
-        super(context);
-        this.f23370y = i10;
-        this.F = obj;
-        this.E = context2;
+    public abstract boolean a();
+
+    public abstract boolean b();
+
+    public abstract void c(boolean z10);
+
+    public CharSequence d() {
+        return null;
+    }
+
+    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        accessibilityNodeInfo.setClassName(f23369c);
+        CharSequence d = d();
+        if (!TextUtils.isEmpty(d)) {
+            accessibilityNodeInfo.setText(d);
+        }
+        if (a()) {
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
+        }
+        if (b()) {
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
+        }
+    }
+
+    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
+        e(null, accessibilityNodeInfo);
+    }
+
+    public boolean g(View view, int i10, Bundle bundle) {
+        boolean z10 = false;
+        if (i10 != 4096 && i10 != 8192) {
+            return false;
+        }
+        if (i10 == 8192) {
+            z10 = true;
+        }
+        c(z10);
+        if (view != null) {
+            WeakHashMap weakHashMap = r0.i0.f41865a;
+            if (view.isAttachedToWindow()) {
+                HashMap hashMap = this.f23370a;
+                Runnable runnable = (Runnable) hashMap.get(view);
+                if (runnable == null) {
+                    runnable = new ny(26, this, view);
+                    hashMap.put(view, runnable);
+                    view.addOnAttachStateChangeListener(this.f23371b);
+                } else {
+                    view.removeCallbacks(runnable);
+                }
+                view.postDelayed(runnable, 400L);
+            }
+        }
+        return true;
     }
 
     @Override
-    public final TextView a() {
-        switch (this.f23370y) {
-            case 0:
-                r90 r90Var = new r90(this.E);
-                r90Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Si, ((fo0) this.F).M));
-                r90Var.setTextSize(1, 12.0f);
-                r90Var.setEllipsize(TextUtils.TruncateAt.END);
-                r90Var.setSingleLine(true);
-                r90Var.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
-                return r90Var;
-            default:
-                TextView textView = new TextView(this.E);
-                textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Pi, ((ProfileActivity) this.F).f31412z0));
-                textView.setTextSize(0, AndroidUtilities.dp(13.5f));
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                textView.setGravity(3);
-                return textView;
+    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+        e(view, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(View view, int i10, Bundle bundle) {
+        if (super.performAccessibilityAction(view, i10, bundle)) {
+            return true;
         }
+        return g(view, i10, bundle);
     }
 }

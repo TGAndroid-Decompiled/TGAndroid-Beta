@@ -230,8 +230,8 @@ public class SharedConfig {
             if (readString == null) {
                 readString = "";
             }
-            a2.f15240b = readString;
-            a2.f15241c = inputSerializedData.readInt32(false);
+            a2.f15250b = readString;
+            a2.f15251c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -246,7 +246,7 @@ public class SharedConfig {
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f15242f = str;
+            a2.f15252f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -260,12 +260,12 @@ public class SharedConfig {
                 if (e == 0) {
                     e = 1;
                 }
-                a2.f15239a = e;
+                a2.f15249a = e;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f15239a = i11;
+                a2.f15249a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -278,14 +278,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f15246b);
-            outputSerializedData.writeInt32(this.settings.f15247c);
+            outputSerializedData.writeString(this.settings.f15256b);
+            outputSerializedData.writeInt32(this.settings.f15257c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f15248f);
+            outputSerializedData.writeString(this.settings.f15258f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f15245a);
+            int c10 = m1.j.c(this.settings.f15255a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -490,12 +490,12 @@ public class SharedConfig {
     }
 
     public static void checkSaveToGalleryFiles() {
-        Utilities.globalQueue.postRunnable(new u1(21));
+        Utilities.globalQueue.postRunnable(new u1(23));
     }
 
     public static void checkSdCard(File file) {
         if (file != null && storageCacheDir != null && !readOnlyStorageDirAlertShowed && file.getPath().startsWith(storageCacheDir)) {
-            AndroidUtilities.runOnUIThread(new u1(20));
+            AndroidUtilities.runOnUIThread(new u1(22));
         }
     }
 
@@ -904,19 +904,19 @@ public class SharedConfig {
     }
 
     public static void lambda$checkSdCard$2() {
-        org.telegram.ui.ActionBar.n2 R;
+        org.telegram.ui.ActionBar.o2 R;
         if (!readOnlyStorageDirAlertShowed && (R = LaunchActivity.R()) != null && R.getParentActivity() != null) {
             storageCacheDir = null;
             saveConfig();
-            ImageLoader.getInstance().checkMediaPaths(new u1(19));
+            ImageLoader.getInstance().checkMediaPaths(new u1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f18437a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f18446a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18437a;
-            b2Var.setCanceledOnTouchOutside(false);
-            b2Var.show();
+            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
+            c2Var.setCanceledOnTouchOutside(false);
+            c2Var.show();
         }
     }
 
@@ -1697,6 +1697,6 @@ public class SharedConfig {
     public static void lambda$checkSdCard$0() {
     }
 
-    public static void lambda$checkSdCard$1(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public static void lambda$checkSdCard$1(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
     }
 }

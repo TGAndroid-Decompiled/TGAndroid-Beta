@@ -1,15 +1,15 @@
 package ai;
 
-import org.telegram.ui.Components.zk0;
-public final class o6 implements zk0 {
-    public final int f1347a;
-    public final Object f1348b;
-    public final Object f1349c;
+import org.telegram.ui.Components.al0;
+public final class o6 implements al0 {
+    public final int f1352a;
+    public final Object f1353b;
+    public final Object f1354c;
 
     public o6(int i10, Object obj, Object obj2) {
-        this.f1347a = i10;
-        this.f1348b = obj;
-        this.f1349c = obj2;
+        this.f1352a = i10;
+        this.f1353b = obj;
+        this.f1354c = obj2;
     }
 
     @Override

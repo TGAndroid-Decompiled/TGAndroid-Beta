@@ -7,25 +7,25 @@ import ci.c6;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.pa0;
-public final class a1 extends ll0 {
+public final class a1 extends ml0 {
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public final ArrayList f41284a3;
-    public final ArrayList f41285b3;
-    public final c6 f41286c3;
+    public final ArrayList f41306a3;
+    public final ArrayList f41307b3;
+    public final c6 f41308c3;
 
     public a1(c6 c6Var, Context context, com.google.firebase.messaging.n nVar) {
         super(context, nVar);
-        this.f41286c3 = c6Var;
+        this.f41308c3 = c6Var;
         this.X2 = new ArrayList();
         this.Y2 = new ArrayList();
         this.Z2 = new ArrayList();
-        this.f41284a3 = new ArrayList();
-        this.f41285b3 = new ArrayList(10);
+        this.f41306a3 = new ArrayList();
+        this.f41307b3 = new ArrayList(10);
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class a1 extends ll0 {
                     if (currentMessagesGroup2 == null || currentMessagesGroup2 != groupedMessages) {
                         MessageObject.GroupedMessagePosition currentPosition = t1Var.getCurrentPosition();
                         pa0 backgroundDrawable = t1Var.getBackgroundDrawable();
-                        if ((backgroundDrawable.f26989f || t1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
+                        if ((backgroundDrawable.f26976f || t1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
                             int y3 = (int) t1Var.getY();
                             canvas.save();
                             if (currentPosition == null) {
@@ -83,10 +83,10 @@ public final class a1 extends ll0 {
                                             pa0 backgroundDrawable2 = t1Var2.getBackgroundDrawable();
                                             int min = Math.min(y3, (int) t1Var2.getY());
                                             int max = Math.max(measuredHeight, t1Var2.getMeasuredHeight() + ((int) t1Var2.getY()));
-                                            long j10 = backgroundDrawable2.f26994l;
+                                            long j10 = backgroundDrawable2.f26981l;
                                             if (j10 > j3) {
                                                 float x10 = t1Var2.getX() + backgroundDrawable2.h;
-                                                f16 = t1Var2.getY() + backgroundDrawable2.f26991i;
+                                                f16 = t1Var2.getY() + backgroundDrawable2.f26978i;
                                                 f7 = x10;
                                                 j3 = j10;
                                             }
@@ -95,14 +95,14 @@ public final class a1 extends ll0 {
                                         }
                                     }
                                 }
-                                backgroundDrawable.f26992j = f7;
-                                backgroundDrawable.f26993k = f16 - y3;
+                                backgroundDrawable.f26979j = f7;
+                                backgroundDrawable.f26980k = f16 - y3;
                                 i12 = measuredHeight - y3;
                             }
                             int i15 = i12 + y3;
                             canvas.clipRect(0, y3, getMeasuredWidth(), i15);
-                            backgroundDrawable.f26987b = null;
-                            backgroundDrawable.f26986a.setColor(i6.v0(i6.Hc, this.f25966p2));
+                            backgroundDrawable.f26974b = null;
+                            backgroundDrawable.f26973a.setColor(j6.v0(j6.Hc, this.f26191p2));
                             backgroundDrawable.setBounds(0, y3, getMeasuredWidth(), i15);
                             backgroundDrawable.draw(canvas);
                             canvas.restore();
@@ -125,7 +125,7 @@ public final class a1 extends ll0 {
         }
         int i16 = 0;
         while (i16 < 3) {
-            ArrayList arrayList = this.f41285b3;
+            ArrayList arrayList = this.f41307b3;
             arrayList.clear();
             if (i16 != i11 || this.X1) {
                 int i17 = 0;
@@ -133,7 +133,7 @@ public final class a1 extends ll0 {
                     View childAt3 = getChildAt(i17);
                     if (childAt3 instanceof org.telegram.ui.Cells.t1) {
                         org.telegram.ui.Cells.t1 t1Var3 = (org.telegram.ui.Cells.t1) childAt3;
-                        if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= f7 && t1Var3.getVisibility() != i10 && t1Var3.getVisibility() != 8 && (currentMessagesGroup = t1Var3.getCurrentMessagesGroup()) != null && ((i16 != 0 || currentMessagesGroup.messages.size() != z10) && ((i16 != z10 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i16 != 0 || !t1Var3.getMessageObject().deleted) && ((i16 != z10 || t1Var3.getMessageObject().deleted) && ((i16 != i11 || t1Var3.f21179oc) && (i16 == i11 || !t1Var3.f21179oc))))))) {
+                        if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= f7 && t1Var3.getVisibility() != i10 && t1Var3.getVisibility() != 8 && (currentMessagesGroup = t1Var3.getCurrentMessagesGroup()) != null && ((i16 != 0 || currentMessagesGroup.messages.size() != z10) && ((i16 != z10 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i16 != 0 || !t1Var3.getMessageObject().deleted) && ((i16 != z10 || t1Var3.getMessageObject().deleted) && ((i16 != i11 || t1Var3.f21189oc) && (i16 == i11 || !t1Var3.f21189oc))))))) {
                             if (!arrayList.contains(currentMessagesGroup)) {
                                 MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                                 transitionParams.left = 0;
@@ -159,7 +159,7 @@ public final class a1 extends ll0 {
                                 backgroundDrawableBottom = AndroidUtilities.dp(10.0f) + backgroundDrawableBottom;
                             }
                             int i19 = backgroundDrawableBottom;
-                            if (t1Var3.f21179oc) {
+                            if (t1Var3.f21189oc) {
                                 currentMessagesGroup.transitionParams.cell = t1Var3;
                             }
                             MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
@@ -319,7 +319,7 @@ public final class a1 extends ll0 {
                     }
                     canvas.clipRect(f23 + AndroidUtilities.dp(8.0f), f24 + AndroidUtilities.dp(8.0f), f25 - AndroidUtilities.dp(8.0f), f26 - AndroidUtilities.dp(8.0f));
                 }
-                if (t1Var7.getTransitionParams().f20917v0) {
+                if (t1Var7.getTransitionParams().f20927v0) {
                     canvas.translate(E23, y11);
                     t1Var7.setInvalidatesParent(true);
                     t1Var7.I1(f13, canvas, z11);
@@ -334,7 +334,7 @@ public final class a1 extends ll0 {
         } else {
             f11 = 8.0f;
         }
-        ArrayList arrayList6 = this.f41284a3;
+        ArrayList arrayList6 = this.f41306a3;
         int size4 = arrayList6.size();
         if (size4 > 0) {
             for (int i29 = 0; i29 < size4; i29++) {
@@ -362,7 +362,7 @@ public final class a1 extends ll0 {
                         }
                         canvas.clipRect(f27 + AndroidUtilities.dp(f11), f28 + AndroidUtilities.dp(f11), f29 - AndroidUtilities.dp(f11), f30 - AndroidUtilities.dp(f11));
                     }
-                    if (t1Var8.getTransitionParams().f20917v0) {
+                    if (t1Var8.getTransitionParams().f20927v0) {
                         canvas.translate(E25, y12);
                         t1Var8.setInvalidatesParent(true);
                         t1Var8.d2(canvas, f12, null);

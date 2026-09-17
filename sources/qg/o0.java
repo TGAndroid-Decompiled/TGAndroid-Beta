@@ -11,54 +11,54 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import ci.n6;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.qr;
 import w7.x5;
 public final class o0 extends LinearLayout {
-    public final TextView f41500a;
-    public final n6 f41501b;
-    public ImageView f41502c;
+    public final TextView f41522a;
+    public final n6 f41523b;
+    public ImageView f41524c;
     public ImageView d;
     public float e;
-    public boolean f41503f;
+    public boolean f41525f;
     public ValueAnimator h;
-    public final ImageView f41504n;
-    public final p0 f41505r;
+    public final ImageView f41526n;
+    public final p0 f41527r;
 
     public o0(p0 p0Var, Context context) {
         super(context);
-        this.f41505r = p0Var;
+        this.f41527r = p0Var;
         setOrientation(0);
-        int i10 = i6.f18926i6;
+        int i10 = j6.f18952i6;
         eh.a aVar = p0Var.Q1;
-        setBackground(i6.f0(i6.v0(i10, aVar), 2, -1));
+        setBackground(j6.f0(j6.v0(i10, aVar), 2, -1));
         n6 n6Var = new n6(this, context);
-        this.f41501b = n6Var;
+        this.f41523b = n6Var;
         addView(n6Var, x5.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.f41502c = imageView;
+        this.f41524c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f41502c;
-        int i11 = i6.E8;
-        imageView2.setColorFilter(i6.v0(i11, aVar));
-        n6Var.addView(this.f41502c, x5.e(-2, -2, 17));
+        ImageView imageView2 = this.f41524c;
+        int i11 = j6.E8;
+        imageView2.setColorFilter(j6.v0(i11, aVar));
+        n6Var.addView(this.f41524c, x5.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
-        this.d.setColorFilter(i6.v0(i11, aVar));
+        this.d.setColorFilter(j6.v0(i11, aVar));
         this.d.setVisibility(8);
         n6Var.addView(this.d, x5.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f41500a = textView;
-        textView.setTextColor(i6.v0(i11, aVar));
+        this.f41522a = textView;
+        textView.setTextColor(j6.v0(i11, aVar));
         textView.setTextSize(1, 16.0f);
         addView(textView, x5.t(-2, -2, 19, 0, 0, 16, 0));
         ImageView imageView4 = new ImageView(context);
-        this.f41504n = imageView4;
+        this.f41526n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.f18909h7, aVar), PorterDuff.Mode.MULTIPLY));
+        imageView4.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.f18935h7, aVar), PorterDuff.Mode.MULTIPLY));
         imageView4.setVisibility(8);
         addView(imageView4, x5.n(50, -1));
     }
@@ -72,7 +72,7 @@ public final class o0 extends LinearLayout {
                 a(i10, false, false);
                 return;
             }
-            this.f41503f = z10;
+            this.f41525f = z10;
             this.d.setImageResource(i10);
             this.d.setVisibility(0);
             this.d.setAlpha(1.0f);
@@ -85,7 +85,7 @@ public final class o0 extends LinearLayout {
             this.h.start();
             return;
         }
-        this.f41502c.setImageResource(i10);
+        this.f41524c.setImageResource(i10);
     }
 
     @Override
@@ -95,9 +95,9 @@ public final class o0 extends LinearLayout {
 
     @Override
     public final boolean performClick() {
-        p0 p0Var = this.f41505r;
-        org.telegram.ui.ActionBar.n1 n1Var = p0Var.R1;
-        if (n1Var != null && n1Var.isShowing()) {
+        p0 p0Var = this.f41527r;
+        org.telegram.ui.ActionBar.o1 o1Var = p0Var.R1;
+        if (o1Var != null && o1Var.isShowing()) {
             p0Var.R1.d(true);
         }
         return super.performClick();
@@ -115,10 +115,10 @@ public final class o0 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f41504n.setVisibility(i10);
+        this.f41526n.setVisibility(i10);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f41500a.setText(charSequence);
+        this.f41522a.setText(charSequence);
     }
 }

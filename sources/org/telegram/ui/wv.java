@@ -1,161 +1,95 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.DialogInterface;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.XiaomiUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class wv implements org.telegram.ui.Components.lq0, org.telegram.ui.Components.al0, org.telegram.ui.Components.bl0, o10, org.telegram.ui.ActionBar.a2, r0.n, org.telegram.ui.Components.nk0 {
-    public final int f39394a;
-    public final uy f39395b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class wv implements DialogInterface.OnClickListener {
+    public final int f39176a;
+    public final NotificationCenter.NotificationCenterDelegate f39177b;
 
-    public wv(uy uyVar, int i10) {
-        this.f39394a = i10;
-        this.f39395b = uyVar;
+    public wv(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f39176a = i10;
+        this.f39177b = notificationCenterDelegate;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        UndoView[] undoViewArr;
-        uy uyVar = this.f39395b;
-        uyVar.v.i(l1Var);
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        uyVar.f38217f4 = defaultWindowInsets.f10589b;
-        uyVar.f38222g4 = defaultWindowInsets.d;
-        int i10 = l1Var.f41855a.f(8).d;
-        if (uyVar.f38227h4 != i10) {
-            uyVar.f38227h4 = i10;
-            uyVar.fragmentView.requestLayout();
-        }
-        uyVar.F0.setPadding(0, uyVar.f38217f4, 0, 0);
-        uyVar.X4();
-        for (UndoView undoView : uyVar.f38309y0) {
-            if (undoView != null) {
-                int i11 = uyVar.f38222g4 + uyVar.f38232i4;
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) undoView.getLayoutParams();
-                if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
-                    marginLayoutParams.bottomMargin = i11;
-                    undoView.setLayoutParams(marginLayoutParams);
-                }
-            }
-        }
-        ox oxVar = uyVar.F3;
-        if (oxVar != null) {
-            r0.i0.b(oxVar, l1Var);
-        }
-        return r0.l1.f41854b;
-    }
-
-    @Override
-    public void a() {
-        uy uyVar = this.f39395b;
-        uyVar.Q = true;
-        uyVar.fragmentView.invalidate();
-    }
-
-    @Override
-    public void c(float r7, float r8, int r9, android.view.View r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wv.c(float, float, int, android.view.View):void");
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        uy.o0(this.f39395b, i10);
-        return false;
-    }
-
-    @Override
-    public boolean d1(View view) {
-        switch (this.f39394a) {
-            case 1:
-                return false;
-            case 2:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39394a) {
-            case 6:
-                uy.g0(this.f39395b);
-                return;
-            case 7:
-            default:
-                uy uyVar = this.f39395b;
-                uyVar.getMessagesController().hidePromoDialog();
-                uyVar.b4(false);
-                return;
-            case 8:
-                uy uyVar2 = this.f39395b;
-                uyVar2.getClass();
-                Intent permissionManagerIntent = XiaomiUtilities.getPermissionManagerIntent();
-                if (permissionManagerIntent != null) {
-                    try {
-                        try {
-                            uyVar2.getParentActivity().startActivity(permissionManagerIntent);
-                            return;
-                        } catch (Exception unused) {
-                            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                            uyVar2.getParentActivity().startActivity(intent);
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        String str;
+        int i11 = 0;
+        switch (this.f39176a) {
+            case 0:
+                wy wyVar = (wy) this.f39177b;
+                if (i10 == 0) {
+                    wyVar.getMessagesStorage().readAllDialogs(1);
+                    return;
+                } else if (i10 != 1 || wyVar.f39215e0 == null) {
+                    return;
+                } else {
+                    while (true) {
+                        vy[] vyVarArr = wyVar.f39215e0;
+                        if (i11 < vyVarArr.length) {
+                            vy vyVar = vyVarArr[i11];
+                            if (vyVar.f38528s == 0 && vyVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.r2 Q3 = wy.Q3(wyVar.f39215e0[i11]);
+                                sy syVar = wyVar.f39215e0[i11].f38522a;
+                                int i12 = sy.f37567v3;
+                                syVar.A1(true, Q3);
+                            }
+                            i11++;
+                        } else {
                             return;
                         }
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
                     }
                 }
-                return;
-            case 9:
-                uy uyVar3 = this.f39395b;
-                uyVar3.getClass();
-                Intent intent2 = new Intent("android.settings.MANAGE_APP_USE_FULL_SCREEN_INTENT");
-                intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                try {
-                    uyVar3.getParentActivity().startActivity(intent2);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                break;
+            case 1:
+                xg0 xg0Var = (xg0) this.f39177b;
+                if (i10 == 0) {
+                    BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
+                    ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
+                    org.telegram.ui.Components.vc a02 = org.telegram.ui.Components.vc.a0(xg0Var.V);
+                    int i13 = R.raw.chats_infotip;
+                    if (BuildVars.LOGS_ENABLED) {
+                        str = "Logs enabled.";
+                    } else {
+                        str = "Logs disabled.";
+                    }
+                    a02.Q(i13, 36, str).j();
+                    if (BuildVars.LOGS_ENABLED) {
+                        hg.k0.w(new StringBuilder("app start time = "), ApplicationLoader.startTime);
+                        try {
+                            FileLog.d("buildVersion = " + ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode);
+                            return;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return;
+                        }
+                    }
                     return;
                 }
+                ProfileActivity.H4(xg0Var.V.getParentActivity(), false);
+                return;
+            case 2:
+                qn0 qn0Var = (qn0) this.f39177b;
+                if (i10 == 0) {
+                    qn0Var.f36991w = "male";
+                    qn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+                    return;
+                } else if (i10 == 1) {
+                    qn0Var.f36991w = "female";
+                    qn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+                    return;
+                } else {
+                    qn0Var.getClass();
+                    return;
+                }
+            default:
+                g91.d0((g91) this.f39177b, i10);
+                return;
         }
-    }
-
-    public void h(int i10) {
-        ex exVar = this.f39395b.B1;
-        if (exVar == null) {
-            return;
-        }
-        if (i10 == 0) {
-            exVar.q0(true);
-        } else {
-            exVar.w1(true, false);
-        }
-    }
-
-    public void i(boolean z10, ArrayList arrayList, ArrayList arrayList2, boolean z11) {
-        this.f39395b.W4(z10, arrayList, arrayList2, z11, true);
-    }
-
-    @Override
-    public void r0(View view, float f7, float f10) {
-        int i10 = this.f39394a;
-    }
-
-    private final void b(View view, float f7, float f10) {
-    }
-
-    private final void e(View view, float f7, float f10) {
-    }
-
-    private final void g(View view, float f7, float f10) {
     }
 }

@@ -1,128 +1,79 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Point;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class w7 extends s4.h0 {
-    public final int f38785c;
-    public final Object d;
+import org.telegram.messenger.NotificationCenter;
+public final class w7 extends FrameLayout {
+    public final int f38577a;
+    public int f38578b;
+    public final NotificationCenter.NotificationCenterDelegate f38579c;
 
-    public w7(Object obj, int i10) {
-        this.f38785c = i10;
-        this.d = obj;
+    public w7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
+        super(context);
+        this.f38577a = i10;
+        this.f38579c = notificationCenterDelegate;
+        this.f38578b = -1;
     }
 
     @Override
-    public final int h() {
-        switch (this.f38785c) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f38577a) {
             case 0:
-                return ((h8) this.d).K;
-            case 1:
-                return ((org.telegram.ui.Cells.t) this.d).X2.size();
-            case 2:
-                return ((org.telegram.ui.Components.z8) this.d).X2.size() + 1;
-            case 3:
-                return 1;
-            case 4:
-                return 1;
-            default:
-                return ((zp0) this.d).f40282f.size();
-        }
-    }
-
-    @Override
-    public long i(int i10) {
-        switch (this.f38785c) {
-            case 0:
-                h8 h8Var = (h8) this.d;
-                return ((h8Var.I - (i10 / 12)) * 100) + (h8Var.J - (i10 % 12));
-            case 1:
-            default:
-                return super.i(i10);
-            case 2:
-                org.telegram.ui.Components.z8 z8Var = (org.telegram.ui.Components.z8) this.d;
-                if (i10 >= z8Var.X2.size()) {
-                    return 1L;
+                super.onLayout(z10, i10, i11, i12, i13);
+                int measuredWidth = (getMeasuredWidth() + getMeasuredHeight()) << 16;
+                if (this.f38578b != measuredWidth) {
+                    this.f38578b = measuredWidth;
+                    ((j8) this.f38579c).L.l();
+                    return;
                 }
-                return ((org.telegram.ui.Components.y8) z8Var.X2.get(i10)).f30173a;
-        }
-    }
-
-    @Override
-    public int j(int i10) {
-        switch (this.f38785c) {
-            case 2:
-                if (i10 >= ((org.telegram.ui.Components.z8) this.d).X2.size()) {
-                    return 1;
-                }
-                return 0;
-            default:
-                return super.j(i10);
-        }
-    }
-
-    @Override
-    public final void v(s4.c1 r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.w7.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        switch (this.f38785c) {
-            case 0:
-                return new s4.c1(new e8((h8) this.d, viewGroup.getContext()));
+                return;
             case 1:
-                Context context = viewGroup.getContext();
-                ?? linearLayout = new LinearLayout(context);
-                Paint paint = new Paint(1);
-                linearLayout.f20822a = paint;
-                Paint paint2 = new Paint(1);
-                linearLayout.f20823b = paint2;
-                linearLayout.setOrientation(1);
-                linearLayout.setWillNotDraw(false);
-                org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(context);
-                linearLayout.f20824c = qVar;
-                qVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-                linearLayout.addView(qVar, w7.x5.q(58, 58, 1));
-                TextView textView = new TextView(context);
-                linearLayout.d = textView;
-                textView.setSingleLine();
-                textView.setTextSize(1, 13.0f);
-                textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
-                linearLayout.addView(textView, w7.x5.t(-2, -2, 1, 0, 4, 0, 0));
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(0.5f)));
-                paint2.setColor(-1);
-                return new s4.c1(linearLayout);
-            case 2:
-                org.telegram.ui.Components.z8 z8Var = (org.telegram.ui.Components.z8) this.d;
-                return new s4.c1(new org.telegram.ui.Components.a9(z8Var.f30499c3, z8Var.getContext()));
-            case 3:
-                return new s4.c1(((org.telegram.ui.Components.qm) this.d).v);
-            case 4:
-                return new s4.c1(new ci.eb(this, ((org.telegram.ui.Components.vn) this.d).getContext(), 15));
+                super.onLayout(z10, i10, i11, i12, i13);
+                int i14 = i13 - i11;
+                int i15 = this.f38578b;
+                if (i15 != -1 && Math.abs(i15 - i14) > AndroidUtilities.dp(20.0f)) {
+                    pq pqVar = (pq) this.f38579c;
+                    pqVar.f36678b.y0(pqVar.V - 1);
+                }
+                this.f38578b = i14;
+                return;
             default:
-                org.telegram.ui.Components.c90 c90Var = new org.telegram.ui.Components.c90(viewGroup.getContext(), null);
-                c90Var.setGravity(17);
-                c90Var.setTypeface(AndroidUtilities.bold());
-                c90Var.setTextSize(1, 14.0f);
-                c90Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                c90Var.setEllipsize(TextUtils.TruncateAt.END);
-                c90Var.setSingleLine();
-                c90Var.setMaxLines(1);
-                c90Var.setLayoutParams(new s4.p0(-2, AndroidUtilities.dp(28.0f)));
-                w7.z5.b(c90Var, 0.075f, 1.4f);
-                return new s4.c1(c90Var);
+                super.onLayout(z10, i10, i11, i12, i13);
+                Point point = AndroidUtilities.displaySize;
+                int i16 = point.x + point.y;
+                int i17 = this.f38578b;
+                if (i17 > 0 && i17 != i16) {
+                    setVisibility(8);
+                    org.telegram.ui.Components.z20 z20Var = (org.telegram.ui.Components.z20) this.f38579c;
+                    z20Var.f30385w = false;
+                    z20Var.a();
+                }
+                this.f38578b = i16;
+                return;
         }
     }
 
-    private final void D(s4.c1 c1Var, int i10) {
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f38577a) {
+            case 2:
+                super.setVisibility(i10);
+                if (i10 == 8) {
+                    this.f38578b = -1;
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
     }
 
-    private final void E(s4.c1 c1Var, int i10) {
+    public w7(j8 j8Var, Context context) {
+        super(context);
+        this.f38577a = 0;
+        this.f38579c = j8Var;
     }
 }

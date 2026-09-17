@@ -1,44 +1,25 @@
 package org.telegram.ui.ActionBar;
 
+import android.graphics.Outline;
+import android.graphics.Path;
+import android.os.Build;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-public final class v implements Runnable {
-    public final boolean f19573a;
-    public final n2 f19574b;
-    public final n2 f19575c;
-    public final boolean d;
-    public final ActionBarLayout e;
-
-    public v(ActionBarLayout actionBarLayout, boolean z10, n2 n2Var, n2 n2Var2, boolean z11) {
-        this.e = actionBarLayout;
-        this.f19573a = z10;
-        this.f19574b = n2Var;
-        this.f19575c = n2Var2;
-        this.d = z11;
-    }
+public final class v extends ViewOutlineProvider {
+    public final Path f19584a = new Path();
 
     @Override
-    public final void run() {
-        ActionBarLayout actionBarLayout = this.e;
-        if (actionBarLayout.d == this) {
-            actionBarLayout.d = null;
-            if (this.f19573a) {
-                n2 n2Var = this.f19574b;
-                if (n2Var != null) {
-                    n2Var.onTransitionAnimationStart(false, false);
-                }
-                this.f19575c.onTransitionAnimationStart(true, false);
-                actionBarLayout.d0(true, true, this.d);
-                return;
-            }
-            Runnable runnable = actionBarLayout.e;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                if (actionBarLayout.R0) {
-                    actionBarLayout.e.run();
-                } else {
-                    AndroidUtilities.runOnUIThread(actionBarLayout.e, 200L);
-                }
-            }
+    public final void getOutline(View view, Outline outline) {
+        float dp = AndroidUtilities.dp(29.0f);
+        float dp2 = AndroidUtilities.dp(12.0f);
+        Path path = this.f19584a;
+        path.rewind();
+        path.addRoundRect(0.0f, 0.0f, view.getWidth(), view.getHeight(), new float[]{dp, dp, dp, dp, dp2, dp2, dp2, dp2}, Path.Direction.CW);
+        if (Build.VERSION.SDK_INT >= 30) {
+            outline.setPath(path);
+        } else {
+            outline.setConvexPath(path);
         }
     }
 }

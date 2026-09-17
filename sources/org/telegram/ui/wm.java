@@ -8,32 +8,32 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class wm extends tu0 {
-    public final ArrayList f39262a;
-    public final int[] f39263b = new int[2];
-    public final bo f39264c;
+public final class wm extends vu0 {
+    public final ArrayList f39075a;
+    public final int[] f39076b = new int[2];
+    public final bo f39077c;
 
     public wm(bo boVar, ArrayList arrayList) {
-        this.f39264c = boVar;
-        this.f39262a = arrayList;
+        this.f39077c = boVar;
+        this.f39075a = arrayList;
     }
 
     @Override
-    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         ImageReceiver imageReceiver;
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject2;
         RichMessageLayout richMessageLayout;
-        bo boVar = this.f39264c;
-        if (boVar.f32524x0 != null && i10 >= 0) {
-            ArrayList arrayList = this.f39262a;
+        bo boVar = this.f39077c;
+        if (boVar.f32502x0 != null && i10 >= 0) {
+            ArrayList arrayList = this.f39075a;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
-                int childCount = boVar.f32524x0.getChildCount();
+                int childCount = boVar.f32502x0.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = boVar.f32524x0.getChildAt(i11);
+                    View childAt = boVar.f32502x0.getChildAt(i11);
                     boolean z12 = childAt instanceof org.telegram.ui.Cells.t1;
-                    int[] iArr = this.f39263b;
+                    int[] iArr = this.f39076b;
                     if (z12 && (messageObject2 = (t1Var = (org.telegram.ui.Cells.t1) childAt).getMessageObject()) != null && (richMessageLayout = messageObject2.richLayout) != null) {
                         int[] iArr2 = new int[2];
                         imageReceiver = richMessageLayout.findMediaImageReceiver(pageBlock, iArr2);
@@ -46,16 +46,16 @@ public final class wm extends tu0 {
                         imageReceiver = null;
                     }
                     if (imageReceiver != null) {
-                        dv0 dv0Var = new dv0();
-                        dv0Var.f33135b = iArr[0];
-                        dv0Var.f33136c = iArr[1];
-                        dv0Var.d = boVar.f32524x0;
-                        dv0Var.f33134a = imageReceiver;
-                        dv0Var.e = imageReceiver.getBitmapSafe();
-                        dv0Var.h = imageReceiver.getRoundRadius(true);
-                        dv0Var.f33140j = (int) ((boVar.f32469s9 - boVar.f32494u9) - AndroidUtilities.dp(4.0f));
-                        dv0Var.f33139i = (int) (boVar.W8(org.telegram.ui.Components.t21.f28044c) + boVar.v.c() + AndroidUtilities.dp(9.0f) + boVar.Aa + boVar.f32472sc);
-                        return dv0Var;
+                        fv0 fv0Var = new fv0();
+                        fv0Var.f33764b = iArr[0];
+                        fv0Var.f33765c = iArr[1];
+                        fv0Var.d = boVar.f32502x0;
+                        fv0Var.f33763a = imageReceiver;
+                        fv0Var.e = imageReceiver.getBitmapSafe();
+                        fv0Var.h = imageReceiver.getRoundRadius(true);
+                        fv0Var.f33769j = (int) ((boVar.f32447s9 - boVar.f32472u9) - AndroidUtilities.dp(4.0f));
+                        fv0Var.f33768i = (int) (boVar.W8(org.telegram.ui.Components.u21.f28262c) + boVar.v.c() + AndroidUtilities.dp(9.0f) + boVar.Aa + boVar.f32450sc);
+                        return fv0Var;
                     }
                 }
             }

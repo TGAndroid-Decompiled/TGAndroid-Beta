@@ -4,7 +4,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class i extends FrameLayout {
-    public TextView f42302a;
-    public TextView f42303b;
-    public ImageView f42304c;
+    public TextView f42324a;
+    public TextView f42325b;
+    public ImageView f42326c;
 }

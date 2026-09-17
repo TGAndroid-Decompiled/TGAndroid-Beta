@@ -19,11 +19,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.lw0;
 import org.telegram.ui.Components.m5;
 import org.telegram.ui.Components.np;
 import org.telegram.ui.Components.u9;
@@ -34,16 +34,16 @@ public final class l extends vg.c {
     public TLRPC.User G;
     public TLRPC.Chat H;
     public TL_stories.TL_myBoost I;
-    public final kw0 J;
-    public final boolean[] f45785r;
-    public final np f45786s;
+    public final lw0 J;
+    public final boolean[] f45808r;
+    public final np f45809s;
     public final ImageView v;
-    public boolean f45787w;
-    public final ImageView f45788x;
-    public boolean f45789y;
+    public boolean f45810w;
+    public final ImageView f45811x;
+    public boolean f45812y;
 
-    public l(Context context, boolean z10, boolean z11, e6 e6Var, boolean z12) {
-        super(context, e6Var);
+    public l(Context context, boolean z10, boolean z11, f6 f6Var, boolean z12) {
+        super(context, f6Var);
         int i10;
         int i11;
         int i12;
@@ -52,15 +52,15 @@ public final class l extends vg.c {
         int i13;
         float f11;
         float f12;
-        this.f45785r = new boolean[1];
+        this.f45808r = new boolean[1];
         this.F = true;
-        this.J = new kw0(this);
+        this.J = new lw0(this);
         this.d.setTypeface(AndroidUtilities.bold());
-        this.f44310f.setVisibility(8);
+        this.f44333f.setVisibility(8);
         if (z11) {
-            np npVar = new np(context, 21, e6Var);
-            this.f45786s = npVar;
-            npVar.b(i6.B5, i6.f18907h5, i6.f18965k7);
+            np npVar = new np(context, 21, f6Var);
+            this.f45809s = npVar;
+            npVar.b(j6.B5, j6.f18933h5, j6.f18991k7);
             npVar.setDrawUnchecked(false);
             npVar.setDrawBackgroundAsArc(3);
             boolean z13 = LocaleController.isRTL;
@@ -83,12 +83,12 @@ public final class l extends vg.c {
             addView(npVar, x5.d(24, 24.0f, i14, f11, 33.0f, f12, 0.0f));
             d();
         } else if (z10) {
-            np npVar2 = new np(context, 21, e6Var);
-            this.f45786s = npVar2;
+            np npVar2 = new np(context, 21, f6Var);
+            this.f45809s = npVar2;
             if (z12) {
-                npVar2.b(i6.f18927i7, i6.f18945j7, i6.C5);
+                npVar2.b(j6.f18953i7, j6.f18971j7, j6.C5);
             } else {
-                npVar2.b(i6.B5, i6.f18945j7, i6.C5);
+                npVar2.b(j6.B5, j6.f18971j7, j6.C5);
             }
             npVar2.setDrawUnchecked(true);
             npVar2.setDrawBackgroundAsArc(10);
@@ -102,14 +102,14 @@ public final class l extends vg.c {
             npVar2.setLayoutParams(x5.d(24, 24.0f, i10 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
             d();
         } else {
-            this.f45786s = null;
+            this.f45809s = null;
         }
         ImageView imageView = new ImageView(context);
         this.v = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.ic_ab_other);
-        int v02 = i6.v0(i6.Ac, e6Var);
+        int v02 = j6.v0(j6.Ac, f6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(v02, mode));
         if (LocaleController.isRTL) {
@@ -119,11 +119,11 @@ public final class l extends vg.c {
         }
         addView(imageView, x5.d(32, 32.0f, i11 | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f45788x = imageView2;
+        this.f45811x = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.menu_phone);
-        int i15 = i6.Oh;
-        imageView2.setColorFilter(new PorterDuffColorFilter(i6.v0(i15, e6Var), mode));
+        int i15 = j6.Oh;
+        imageView2.setColorFilter(new PorterDuffColorFilter(j6.v0(i15, f6Var), mode));
         boolean z14 = LocaleController.isRTL;
         if (z14) {
             i12 = 3;
@@ -147,7 +147,7 @@ public final class l extends vg.c {
         this.E = imageView3;
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(R.drawable.menu_videocall);
-        imageView3.setColorFilter(new PorterDuffColorFilter(i6.v0(i15, e6Var), mode));
+        imageView3.setColorFilter(new PorterDuffColorFilter(j6.v0(i15, f6Var), mode));
         addView(imageView3, x5.d(32, 32.0f, (LocaleController.isRTL ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         imageView3.setVisibility(8);
     }
@@ -170,7 +170,7 @@ public final class l extends vg.c {
 
     @Override
     public final boolean b() {
-        np npVar = this.f45786s;
+        np npVar = this.f45809s;
         if (npVar != null && npVar.getDrawUnchecked()) {
             return true;
         }
@@ -179,7 +179,7 @@ public final class l extends vg.c {
 
     @Override
     public final void c(boolean z10, boolean z11) {
-        np npVar = this.f45786s;
+        np npVar = this.f45809s;
         if (npVar != null && npVar.getVisibility() == 0) {
             npVar.a(z10, z11);
         }
@@ -197,35 +197,35 @@ public final class l extends vg.c {
         float f11 = 0.0f;
         int i11 = 0;
         ImageView imageView = this.E;
-        ImageView imageView2 = this.f45788x;
+        ImageView imageView2 = this.f45811x;
         if (z11) {
             imageView2.setVisibility(0);
             ViewPropertyAnimator animate = imageView2.animate();
-            if (z10 && this.f45787w) {
+            if (z10 && this.f45810w) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
             ViewPropertyAnimator alpha = animate.alpha(f10);
             Runnable runnable2 = null;
-            if (z10 && this.f45787w) {
+            if (z10 && this.f45810w) {
                 runnable = null;
             } else {
                 runnable = new Runnable(this) {
-                    public final l f45783b;
+                    public final l f45806b;
 
                     {
-                        this.f45783b = this;
+                        this.f45806b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f45783b.f45788x.setVisibility(8);
+                                this.f45806b.f45811x.setVisibility(8);
                                 return;
                             default:
-                                this.f45783b.E.setVisibility(8);
+                                this.f45806b.E.setVisibility(8);
                                 return;
                         }
                     }
@@ -234,26 +234,26 @@ public final class l extends vg.c {
             alpha.withEndAction(runnable).start();
             imageView.setVisibility(0);
             ViewPropertyAnimator animate2 = imageView.animate();
-            if (z10 && this.f45789y) {
+            if (z10 && this.f45812y) {
                 f11 = 1.0f;
             }
             ViewPropertyAnimator alpha2 = animate2.alpha(f11);
-            if (!z10 || !this.f45789y) {
+            if (!z10 || !this.f45812y) {
                 runnable2 = new Runnable(this) {
-                    public final l f45783b;
+                    public final l f45806b;
 
                     {
-                        this.f45783b = this;
+                        this.f45806b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f45783b.f45788x.setVisibility(8);
+                                this.f45806b.f45811x.setVisibility(8);
                                 return;
                             default:
-                                this.f45783b.E.setVisibility(8);
+                                this.f45806b.E.setVisibility(8);
                                 return;
                         }
                     }
@@ -263,24 +263,24 @@ public final class l extends vg.c {
             return;
         }
         imageView2.animate().cancel();
-        if (z10 && this.f45787w) {
+        if (z10 && this.f45810w) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         imageView2.setAlpha(f7);
-        if (z10 && this.f45787w) {
+        if (z10 && this.f45810w) {
             i10 = 0;
         } else {
             i10 = 8;
         }
         imageView2.setVisibility(i10);
         imageView.animate().cancel();
-        if (z10 && this.f45789y) {
+        if (z10 && this.f45812y) {
             f11 = 1.0f;
         }
         imageView.setAlpha(f11);
-        imageView.setVisibility((z10 && this.f45789y) ? 8 : 8);
+        imageView.setVisibility((z10 && this.f45812y) ? 8 : 8);
     }
 
     public TL_stories.TL_myBoost getBoost() {
@@ -304,7 +304,7 @@ public final class l extends vg.c {
         this.v.setVisibility(8);
         this.H = chat;
         this.G = null;
-        f9 f9Var = this.f44308b;
+        f9 f9Var = this.f44331b;
         f9Var.q(chat);
         if (ChatObject.isForum(chat)) {
             f7 = 12.0f;
@@ -312,7 +312,7 @@ public final class l extends vg.c {
             f7 = 20.0f;
         }
         int dp = AndroidUtilities.dp(f7);
-        u9 u9Var = this.f44309c;
+        u9 u9Var = this.f44332c;
         u9Var.setRoundRadius(dp);
         u9Var.e(chat, f9Var);
         String str2 = chat.title;
@@ -339,7 +339,7 @@ public final class l extends vg.c {
             string = LocaleController.getString(i11);
         }
         setSubtitle(string);
-        this.e.setTextColor(i6.v0(i6.f19091r5, this.f44307a));
+        this.e.setTextColor(j6.v0(j6.f19117r5, this.f44330a));
         if (i10 > 200) {
             f10 = 0.3f;
         } else {
@@ -349,7 +349,7 @@ public final class l extends vg.c {
     }
 
     public final void i(float f7, boolean z10) {
-        np npVar = this.f45786s;
+        np npVar = this.f45809s;
         if (npVar != null) {
             if (z10) {
                 if (Math.abs(npVar.getAlpha() - f7) > 0.1d) {
@@ -367,13 +367,13 @@ public final class l extends vg.c {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.J.f25689a.a();
+        this.J.f25980a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.J.f25689a.b();
+        this.J.f25980a.b();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
@@ -381,29 +381,29 @@ public final class l extends vg.c {
         this.I = tL_myBoost;
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_myBoost.peer)));
         this.H = chat;
-        f9 f9Var = this.f44308b;
+        f9 f9Var = this.f44331b;
         f9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        u9 u9Var = this.f44309c;
+        u9 u9Var = this.f44332c;
         u9Var.setRoundRadius(dp);
         u9Var.e(this.H, f9Var);
         String str = this.H.title;
         a6 a6Var = this.d;
         a6Var.k(str);
-        int v02 = i6.v0(i6.f19091r5, this.f44307a);
-        j5 j5Var = this.e;
-        j5Var.setTextColor(v02);
+        int v02 = j6.v0(j6.f19117r5, this.f44330a);
+        k5 k5Var = this.e;
+        k5Var.setTextColor(v02);
         setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_myBoost.expires * 1000))));
         int i10 = tL_myBoost.cooldown_until_date;
         if (i10 > 0) {
             setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, f((i10 * 1000) - System.currentTimeMillis())));
             a6Var.setAlpha(0.65f);
-            j5Var.setAlpha(0.65f);
+            k5Var.setAlpha(0.65f);
             i(0.3f, false);
             return;
         }
         a6Var.setAlpha(1.0f);
-        j5Var.setAlpha(1.0f);
+        k5Var.setAlpha(1.0f);
         i(1.0f, false);
     }
 
@@ -423,16 +423,16 @@ public final class l extends vg.c {
         this.v.setVisibility(8);
         this.G = user;
         this.H = null;
-        f9 f9Var = this.f44308b;
+        f9 f9Var = this.f44331b;
         f9Var.r(user);
         int dp = AndroidUtilities.dp(20.0f);
-        u9 u9Var = this.f44309c;
+        u9 u9Var = this.f44332c;
         u9Var.setRoundRadius(dp);
         u9Var.e(user, f9Var);
         String userName = UserObject.getUserName(user);
         a6 a6Var = this.d;
         a6Var.k(userName);
-        boolean[] zArr = this.f45785r;
+        boolean[] zArr = this.f45808r;
         zArr[0] = false;
         if (UserObject.isBot(user)) {
             int i11 = user.bot_active_users;
@@ -445,22 +445,22 @@ public final class l extends vg.c {
             setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, user, zArr));
         }
         if (zArr[0]) {
-            i10 = i6.f19020n5;
+            i10 = j6.f19046n5;
         } else {
-            i10 = i6.f19091r5;
+            i10 = j6.f19117r5;
         }
-        this.e.setTextColor(i6.v0(i10, this.f44307a));
-        np npVar = this.f45786s;
+        this.e.setTextColor(j6.v0(i10, this.f44330a));
+        np npVar = this.f45809s;
         if (npVar != null) {
             npVar.setAlpha(1.0f);
         }
-        int w02 = i6.w0(null, i6.f19240z9, false);
+        int w02 = j6.w0(null, j6.f19266z9, false);
         boolean u10 = e2.u(user);
-        kw0 kw0Var = this.J;
+        lw0 lw0Var = this.J;
         if (u10) {
-            a2 = kw0Var.a(user, null, w02, false);
+            a2 = lw0Var.a(user, null, w02, false);
         } else {
-            a2 = kw0Var.a(null, null, w02, false);
+            a2 = lw0Var.a(null, null, w02, false);
         }
         a6Var.i(a2);
     }

@@ -12,20 +12,20 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class ug extends FrameLayout {
-    public final org.telegram.ui.ActionBar.j5 f28394a;
-    public final RectF f28395b;
-    public final Paint f28396c;
+    public final org.telegram.ui.ActionBar.k5 f28381a;
+    public final RectF f28382b;
+    public final Paint f28383c;
     public final Drawable d;
     public boolean e;
 
     public ug(Activity activity) {
         super(activity);
-        this.f28395b = new RectF();
-        this.f28396c = new Paint(1);
+        this.f28382b = new RectF();
+        this.f28383c = new Paint(1);
         this.e = false;
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(activity);
-        this.f28394a = j5Var;
-        addView(j5Var, w7.x5.c(-1.0f, -1));
+        org.telegram.ui.ActionBar.k5 k5Var = new org.telegram.ui.ActionBar.k5(activity);
+        this.f28381a = k5Var;
+        addView(k5Var, w7.x5.c(-1.0f, -1));
         setWillNotDraw(false);
         Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
         this.d = drawable;
@@ -37,15 +37,15 @@ public final class ug extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if ((view instanceof org.telegram.ui.ActionBar.j5) && this.e) {
-            org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) view;
+        if ((view instanceof org.telegram.ui.ActionBar.k5) && this.e) {
+            org.telegram.ui.ActionBar.k5 k5Var = (org.telegram.ui.ActionBar.k5) view;
             canvas.save();
             canvas.scale(0.8f, 0.8f);
             canvas.translate(-AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            int color = j5Var.getTextPaint().getColor();
-            j5Var.getTextPaint().setColor(-1);
+            int color = k5Var.getTextPaint().getColor();
+            k5Var.getTextPaint().setColor(-1);
             boolean drawChild = super.drawChild(canvas, view, j3);
-            j5Var.getTextPaint().setColor(color);
+            k5Var.getTextPaint().setColor(color);
             canvas.restore();
             return drawChild;
         }
@@ -59,10 +59,10 @@ public final class ug extends FrameLayout {
             int dp = AndroidUtilities.dp(26.0f);
             canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
             float f7 = dp;
-            RectF rectF = this.f28395b;
+            RectF rectF = this.f28382b;
             rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f7);
             float f10 = f7 / 2.0f;
-            canvas.drawRoundRect(rectF, f10, f10, this.f28396c);
+            canvas.drawRoundRect(rectF, f10, f10, this.f28383c);
             int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
             Drawable drawable = this.d;
             canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
@@ -74,6 +74,6 @@ public final class ug extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f28396c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        this.f28383c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 }

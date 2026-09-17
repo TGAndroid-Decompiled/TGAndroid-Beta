@@ -6,33 +6,33 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.l20;
+import org.telegram.ui.n20;
 public final class j1 extends TextView {
-    public int f1032a;
-    public final l20 f1033b;
+    public int f1037a;
+    public final n20 f1038b;
 
     public j1(Context context) {
         super(context);
-        this.f1032a = -1;
-        this.f1033b = new l20();
+        this.f1037a = -1;
+        this.f1038b = new n20();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f1032a < 0) {
+        if (this.f1037a < 0) {
             int i10 = 0;
             if (getLayout() != null) {
                 i10 = (int) getLayout().getLineWidth(0);
             }
-            this.f1032a = i10;
+            this.f1037a = i10;
         }
-        if (this.f1032a > AndroidUtilities.dp(100.0f)) {
+        if (this.f1037a > AndroidUtilities.dp(100.0f)) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             super.onDraw(canvas);
             canvas.save();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getWidth() - AndroidUtilities.dp(15.0f), 0.0f, getWidth(), getHeight());
-            this.f1033b.b(canvas, rectF, 2, 1.0f);
+            this.f1038b.b(canvas, rectF, 2, 1.0f);
             canvas.restore();
             canvas.restore();
             return;
@@ -48,6 +48,6 @@ public final class j1 extends TextView {
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(charSequence, bufferType);
-        this.f1032a = -1;
+        this.f1037a = -1;
     }
 }

@@ -6,8 +6,8 @@ import org.telegram.messenger.AndroidUtilities;
 public final class u9 extends fa {
     public final ba L;
 
-    public u9(ba baVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, p9 p9Var) {
-        super(context, e6Var, p9Var);
+    public u9(ba baVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, p9 p9Var) {
+        super(context, f6Var, p9Var);
         this.L = baVar;
     }
 
@@ -16,7 +16,7 @@ public final class u9 extends fa {
         int paddingTop;
         super.setContainerHeight(f7);
         ba baVar = this.L;
-        org.telegram.ui.Cells.u3 u3Var = baVar.f4405y;
+        org.telegram.ui.Cells.u3 u3Var = baVar.f4410y;
         float y3 = getY();
         FrameLayout frameLayout = baVar.e;
         if (frameLayout == null) {
@@ -36,7 +36,7 @@ public final class u9 extends fa {
         int paddingTop;
         super.setTranslationY(f7);
         ba baVar = this.L;
-        org.telegram.ui.Cells.u3 u3Var = baVar.f4405y;
+        org.telegram.ui.Cells.u3 u3Var = baVar.f4410y;
         float y3 = getY();
         FrameLayout frameLayout = baVar.e;
         if (frameLayout == null) {

@@ -3,21 +3,21 @@ package xh;
 import java.util.Comparator;
 import org.telegram.tgnet.tl.TL_stars;
 public final class t2 implements Comparator {
-    public final int f46127a;
-    public final h4 f46128b;
+    public final int f46150a;
+    public final h4 f46151b;
 
     public t2(h4 h4Var, int i10) {
-        this.f46127a = i10;
-        this.f46128b = h4Var;
+        this.f46150a = i10;
+        this.f46151b = h4Var;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f46127a) {
+        switch (this.f46150a) {
             case 0:
-                u3 u3Var = this.f46128b.d;
-                Integer num = (Integer) u3Var.f46154o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f18118id));
-                Integer num2 = (Integer) u3Var.f46154o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f18118id));
+                u3 u3Var = this.f46151b.d;
+                Integer num = (Integer) u3Var.f46177o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f18127id));
+                Integer num2 = (Integer) u3Var.f46177o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f18127id));
                 if (num == null) {
                     return 1;
                 }
@@ -26,9 +26,9 @@ public final class t2 implements Comparator {
                 }
                 return num2.intValue() - num.intValue();
             case 1:
-                u3 u3Var2 = this.f46128b.d;
-                Integer num3 = (Integer) u3Var2.f46153n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                Integer num4 = (Integer) u3Var2.f46153n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                u3 u3Var2 = this.f46151b.d;
+                Integer num3 = (Integer) u3Var2.f46176n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                Integer num4 = (Integer) u3Var2.f46176n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                 if (num3 == null) {
                     return 1;
                 }
@@ -37,9 +37,9 @@ public final class t2 implements Comparator {
                 }
                 return num4.intValue() - num3.intValue();
             default:
-                u3 u3Var3 = this.f46128b.d;
-                Integer num5 = (Integer) u3Var3.f46152m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f18118id));
-                Integer num6 = (Integer) u3Var3.f46152m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f18118id));
+                u3 u3Var3 = this.f46151b.d;
+                Integer num5 = (Integer) u3Var3.f46175m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f18127id));
+                Integer num6 = (Integer) u3Var3.f46175m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f18127id));
                 if (num5 == null) {
                     return 1;
                 }

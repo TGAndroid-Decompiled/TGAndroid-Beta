@@ -2,6 +2,6 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class ig {
-    public String f25003a;
-    public ArrayList f25004b;
+    public String f24934a;
+    public ArrayList f24935b;
 }

@@ -5,40 +5,40 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.m6;
 import org.telegram.ui.Components.qr;
 public final class s extends EditTextBoldCursor {
-    public final f5 f10399b;
-    public int f10400c;
+    public final f5 f10404b;
+    public int f10405c;
     public final m6 d;
-    public final e6 e;
+    public final f6 e;
 
-    public s(Context context, e6 e6Var) {
+    public s(Context context, f6 f6Var) {
         super(context);
-        this.e = e6Var;
-        this.f10399b = new f5(this);
+        this.e = f6Var;
+        this.f10404b = new f5(this);
         m6 m6Var = new m6(false, true, true, false);
         this.d = m6Var;
         m6Var.k(0.2f, 160L, qr.h);
         m6Var.t(AndroidUtilities.dp(15.33f));
         m6Var.setCallback(this);
-        m6Var.f26086b = 5;
+        m6Var.f26067b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f10400c < 0) {
-            i10 = i6.f19056p7;
+        if (this.f10405c < 0) {
+            i10 = j6.f19082p7;
         } else {
-            i10 = i6.P5;
+            i10 = j6.P5;
         }
-        int a2 = this.f10399b.a(i6.v0(i10, this.e), false);
+        int a2 = this.f10404b.a(j6.v0(i10, this.e), false);
         m6 m6Var = this.d;
         m6Var.r(a2);
         m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -55,11 +55,11 @@ public final class s extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         m6 m6Var = this.d;
         if (m6Var != null) {
-            this.f10400c = 32 - charSequence.length();
+            this.f10405c = 32 - charSequence.length();
             m6Var.b();
             String str = "";
-            if (this.f10400c <= 4) {
-                str = "" + this.f10400c;
+            if (this.f10405c <= 4) {
+                str = "" + this.f10405c;
             }
             m6Var.q(str, true, true);
         }

@@ -1,30 +1,37 @@
 package org.telegram.ui;
-public final class oh1 implements Runnable {
-    public final int f36218a;
-    public final ph1 f36219b;
 
-    public oh1(ph1 ph1Var, int i10) {
-        this.f36218a = i10;
-        this.f36219b = ph1Var;
+import android.content.Context;
+import android.text.Editable;
+public final class oh1 extends org.telegram.ui.Cells.i3 {
+    public final int f36351x;
+    public final UserInfoActivity f36352y;
+
+    public oh1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, str, false, false, -1, f6Var);
+        this.f36351x = i10;
+        this.f36352y = userInfoActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36218a) {
+    public final void b(Editable editable) {
+        switch (this.f36351x) {
             case 0:
-                org.telegram.ui.Components.y51 y51Var = this.f36219b.f30485a;
-                if (y51Var != null) {
-                    y51Var.Y2.N(true);
-                    return;
-                }
+                this.f36352y.b0(true);
+                return;
+            case 1:
+                this.f36352y.b0(true);
                 return;
             default:
-                org.telegram.ui.Components.y51 y51Var2 = this.f36219b.f30485a;
-                if (y51Var2 != null) {
-                    y51Var2.Y2.N(true);
-                    return;
-                }
+                UserInfoActivity userInfoActivity = this.f36352y;
+                userInfoActivity.b0(true);
+                userInfoActivity.e0();
                 return;
         }
+    }
+
+    public oh1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, str, true, false, i10, f6Var);
+        this.f36351x = 2;
+        this.f36352y = userInfoActivity;
     }
 }

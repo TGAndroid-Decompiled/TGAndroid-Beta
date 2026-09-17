@@ -14,7 +14,7 @@ public final class t80 extends i9 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int g10;
-        int min = Math.min(3, ((v80) this.e.d).f28661w);
+        int min = Math.min(3, ((v80) this.e.d).f28654w);
         if (min == 0) {
             g10 = 0;
         } else {

@@ -1,13 +1,59 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class yu extends FrameLayout {
-    public TextView f39990a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class yu extends org.telegram.ui.Components.b81 {
+    public final bv f40022a;
+
+    public yu(bv bvVar) {
+        this.f40022a = bvVar;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void b(View view, int i10, int i11) {
+        boolean z10;
+        xu xuVar = (xu) view;
+        xuVar.Y2 = i10;
+        xuVar.f39706f3.clear();
+        if (xuVar.x1(6) + xuVar.z1(6) <= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        xuVar.f39712m3 = z10;
+        xuVar.A1();
+        xuVar.B1(false);
+        xuVar.v0(0);
+    }
+
+    @Override
+    public final View d(int i10) {
+        bv bvVar = this.f40022a;
+        xu xuVar = new xu(bvVar, bvVar.getParentActivity());
+        bvVar.e.add(xuVar);
+        return xuVar;
+    }
+
+    @Override
+    public final int e() {
+        return 4;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        return "";
+                    }
+                    return LocaleController.getString(R.string.NetworkUsageRoamingTab);
+                }
+                return LocaleController.getString(R.string.NetworkUsageWiFiTab);
+            }
+            return LocaleController.getString(R.string.NetworkUsageMobileTab);
+        }
+        return LocaleController.getString(R.string.NetworkUsageAllTab);
     }
 }

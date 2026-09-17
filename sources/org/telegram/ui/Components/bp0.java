@@ -1,50 +1,101 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowInsets;
-public final class bp0 implements r0.n, org.telegram.ui.ActionBar.l1 {
-    public final int f22857a;
-    public final hq0 f22858b;
+import android.widget.Toast;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.PhotoViewer;
+public final class bp0 implements View.OnClickListener {
+    public final int f22783a;
+    public final iq0 f22784b;
 
-    public bp0(hq0 hq0Var, int i10) {
-        this.f22857a = i10;
-        this.f22858b = hq0Var;
+    public bp0(iq0 iq0Var, int i10) {
+        this.f22783a = i10;
+        this.f22784b = iq0Var;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        WindowInsets g10 = l1Var.g();
-        hq0 hq0Var = this.f22858b;
-        hq0Var.processLegacyContainerInsets(g10);
-        i0.b f7 = l1Var.f41855a.f(519);
-        if (!hq0Var.G0.equals(f7)) {
-            hq0Var.G0 = f7;
-            hq0Var.container.requestLayout();
-        }
-        return r0.l1.f41854b;
-    }
-
-    @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f22857a) {
+    public final void onClick(View view) {
+        switch (this.f22783a) {
+            case 0:
+                iq0 iq0Var = this.f22784b;
+                np npVar = iq0Var.f24990e0;
+                npVar.a(!npVar.f26508a.f21982q, true);
+                iq0Var.Z0();
+                return;
             case 1:
-                hq0 hq0Var = this.f22858b;
-                hq0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = hq0Var.J0) != null && n1Var.isShowing()) {
-                    hq0Var.J0.d(true);
+                iq0 iq0Var2 = this.f22784b;
+                org.telegram.ui.ActionBar.o1 o1Var = iq0Var2.J0;
+                if (o1Var != null && o1Var.isShowing()) {
+                    iq0Var2.J0.d(true);
+                }
+                iq0Var2.V0(false);
+                return;
+            case 2:
+                iq0 iq0Var3 = this.f22784b;
+                org.telegram.ui.ActionBar.o1 o1Var2 = iq0Var3.J0;
+                if (o1Var2 != null && o1Var2.isShowing()) {
+                    iq0Var3.J0.d(true);
+                }
+                iq0Var3.V0(true);
+                return;
+            case 3:
+                iq0 iq0Var4 = this.f22784b;
+                String[] strArr = iq0Var4.f25001o0;
+                if (iq0Var4.U.m() == 0) {
+                    if (iq0Var4.f25000n0 || strArr[0] != null) {
+                        iq0Var4.dismiss();
+                        PhotoViewer.t1().G0(true, false);
+                        if (strArr[0] == null && iq0Var4.f24998l0) {
+                            iq0Var4.m0 = true;
+                            Toast.makeText(iq0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        iq0Var4.getContext();
+                        iq0Var4.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                iq0 iq0Var5 = this.f22784b;
+                String[] strArr2 = iq0Var5.f25001o0;
+                if (iq0Var5.U.m() == 0) {
+                    if (iq0Var5.f25000n0 || strArr2[0] != null) {
+                        iq0Var5.dismiss();
+                        if (strArr2[0] == null && iq0Var5.f24998l0) {
+                            iq0Var5.m0 = true;
+                            Toast.makeText(iq0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        iq0Var5.getContext();
+                        iq0Var5.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                iq0 iq0Var6 = this.f22784b;
+                String[] strArr3 = iq0Var6.f25001o0;
+                if (iq0Var6.U.m() == 0) {
+                    if (iq0Var6.f25000n0 || strArr3[0] != null) {
+                        iq0Var6.dismiss();
+                        if (strArr3[0] == null && iq0Var6.f24998l0) {
+                            iq0Var6.m0 = true;
+                            Toast.makeText(iq0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        iq0Var6.getContext();
+                        iq0Var6.M0();
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                hq0 hq0Var2 = this.f22858b;
-                hq0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var2 = hq0Var2.J0) != null && n1Var2.isShowing()) {
-                    hq0Var2.J0.d(true);
-                    return;
-                }
+                this.f22784b.V0(true);
                 return;
         }
     }

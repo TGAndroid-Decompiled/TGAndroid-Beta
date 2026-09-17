@@ -1,47 +1,112 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.os.SystemClock;
 import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class gg implements View.OnLongClickListener {
-    public final int f33896a;
-    public final Object f33897b;
-    public final Object f33898c;
-    public final Object d;
-    public final Object e;
+import j$.util.Objects;
+public final class gg implements bh.a {
+    public final int f33966a;
+    public final tm f33967b;
 
-    public gg(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f33896a = i10;
-        this.f33897b = obj;
-        this.f33898c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+    public gg(tm tmVar, int i10) {
+        this.f33966a = i10;
+        this.f33967b = tmVar;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f33896a) {
+    public final void b(ah.a aVar, RectF rectF) {
+        switch (this.f33966a) {
             case 0:
-                bo boVar = (bo) this.f33897b;
-                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f33898c;
-                MessageObject messageObject = (MessageObject) this.d;
-                ai.p4 p4Var = (ai.p4) this.e;
-                TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = (TL_keyboard.TL_inlineButtonTypeUrl) zf.c.a(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrl.class);
-                if (boVar.getParentActivity() == null) {
-                    return false;
-                }
-                if ((boVar.O0.getVisibility() == 0 && tL_inlineButtonTypeUrl == null && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeSwitchInline.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeCallback.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeGame.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeBuy.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrlAuth.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUserProfile.class)) || tL_inlineButtonTypeUrl == null) {
-                    return false;
-                }
-                boVar.Z9(null, tL_inlineButtonTypeUrl.url, true, null, messageObject);
-                try {
-                    p4Var.performHapticFeedback(0, 1);
-                } catch (Exception unused) {
-                }
-                return true;
             default:
-                return org.telegram.ui.Components.vi.q((org.telegram.ui.Components.vi) this.f33897b, (Context) this.f33898c, (org.telegram.ui.ActionBar.e6) this.d, (org.telegram.ui.ActionBar.n2) this.e, view);
+                aVar.f417a = true;
+                return;
+        }
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        tm tmVar;
+        switch (this.f33966a) {
+            case 0:
+                tm tmVar2 = this.f33967b;
+                bo boVar = tmVar2.J0;
+                bo boVar2 = boVar.f32263da;
+                if (boVar2 != null) {
+                    tmVar = boVar2.X0;
+                } else {
+                    tmVar = boVar.X0;
+                }
+                tm tmVar3 = tmVar;
+                float f7 = boVar.f32526yc.e;
+                int i10 = (int) ((1.0f - f7) * 255.0f);
+                int i11 = (int) (255.0f * f7);
+                if (f7 > 0.0f) {
+                    canvas.drawColor(org.telegram.ui.ActionBar.j6.l1(f7 * 0.85f, boVar.getThemedColor(org.telegram.ui.ActionBar.j6.f18862d6)));
+                }
+                gh.d.b(new gg(tmVar2, 1), canvas, rectF, boVar.f32502x0, tmVar3, i10);
+                ai.w0 w0Var = boVar.L3;
+                if (w0Var != null) {
+                    gh.d.b(w0Var, canvas, rectF, w0Var, tmVar3, i11);
+                }
+                ci.i1 i1Var = boVar.f32412q1;
+                if (i1Var != null && i1Var.getVisibility() == 0) {
+                    int childCount = boVar.f32412q1.getChildCount();
+                    for (int i12 = 0; i12 < childCount; i12++) {
+                        View childAt = boVar.f32412q1.getChildAt(i12);
+                        if ((childAt instanceof eo) && childAt.getVisibility() == 0) {
+                            eo eoVar = (eo) childAt;
+                            co coVar = eoVar.f33444a;
+                            tm tmVar4 = coVar.X0;
+                            Objects.requireNonNull(tmVar4);
+                            gh.d.a(new gg(tmVar4, 0), canvas, rectF, coVar.X0, eoVar);
+                        }
+                    }
+                    return;
+                }
+                return;
+            default:
+                long uptimeMillis = SystemClock.uptimeMillis();
+                bo boVar3 = this.f33967b.J0;
+                if (boVar3.f32502x0.a1()) {
+                    boVar3.f32502x0.f(canvas, rectF);
+                    return;
+                }
+                boVar3.f32502x0.x1(canvas, rectF);
+                for (int i13 = 0; i13 < boVar3.f32502x0.getChildCount(); i13++) {
+                    View childAt2 = boVar3.f32502x0.getChildAt(i13);
+                    if (!bo.d2(boVar3, childAt2, rectF)) {
+                        if (childAt2 instanceof org.telegram.ui.Cells.t1) {
+                            canvas.save();
+                            canvas.translate(childAt2.getX(), childAt2.getY());
+                            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt2;
+                            if (t1Var.C1()) {
+                                canvas.save();
+                                canvas.translate(0.0f, t1Var.V);
+                                t1Var.D1(canvas, true, false);
+                                canvas.restore();
+                            }
+                            canvas.restore();
+                            boVar3.f32502x0.drawChild(canvas, childAt2, uptimeMillis);
+                            if (t1Var.U2()) {
+                                canvas.save();
+                                canvas.translate(t1Var.getX(), t1Var.getY());
+                                t1Var.X1(canvas);
+                                canvas.restore();
+                            }
+                        } else if (childAt2 instanceof org.telegram.ui.Cells.w0) {
+                            boVar3.f32502x0.drawChild(canvas, childAt2, uptimeMillis);
+                            canvas.save();
+                            canvas.translate(childAt2.getX(), childAt2.getY());
+                            ((org.telegram.ui.Cells.w0) childAt2).z(canvas);
+                            canvas.restore();
+                        } else {
+                            boVar3.f32502x0.drawChild(canvas, childAt2, uptimeMillis);
+                        }
+                    }
+                }
+                boVar3.f32502x0.y1(canvas, rectF);
+                return;
         }
     }
 }

@@ -27,8 +27,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f9336a;
-    public static volatile ArrayList f9337b;
+    public static volatile e f9341a;
+    public static volatile ArrayList f9342b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p5 = p(arrayList);
@@ -64,7 +64,7 @@ public abstract class f {
         IconCompat c10;
         IconCompat iconCompat = cVar.h;
         if (iconCompat != null) {
-            int i10 = iconCompat.f2163a;
+            int i10 = iconCompat.f2168a;
             if (i10 != 6 && i10 != 4) {
                 return true;
             }
@@ -74,7 +74,7 @@ public abstract class f {
             }
             if (i10 == 6) {
                 c10 = new IconCompat(5);
-                c10.f2164b = decodeStream;
+                c10.f2169b = decodeStream;
             } else {
                 c10 = IconCompat.c(decodeStream);
             }
@@ -148,7 +148,7 @@ public abstract class f {
     public static List i(Context context) {
         Bundle bundle;
         String string;
-        if (f9337b == null) {
+        if (f9342b == null) {
             ArrayList arrayList = new ArrayList();
             PackageManager packageManager = context.getPackageManager();
             Intent intent = new Intent("androidx.core.content.pm.SHORTCUT_LISTENER");
@@ -167,26 +167,26 @@ public abstract class f {
                     }
                 }
             }
-            if (f9337b == null) {
-                f9337b = arrayList;
+            if (f9342b == null) {
+                f9342b = arrayList;
             }
         }
-        return f9337b;
+        return f9342b;
     }
 
     public static e j(Context context) {
-        if (f9336a == null) {
+        if (f9341a == null) {
             if (Build.VERSION.SDK_INT >= 23) {
                 try {
-                    f9336a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                    f9341a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
                 } catch (Exception unused) {
                 }
             }
-            if (f9336a == null) {
-                f9336a = new Object();
+            if (f9341a == null) {
+                f9341a = new Object();
             }
         }
-        return f9336a;
+        return f9341a;
     }
 
     public static List k(Context context) {
@@ -243,9 +243,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f9334m;
+                        int i13 = cVar2.f9339m;
                         if (i13 > i11) {
-                            str2 = cVar2.f9326b;
+                            str2 = cVar2.f9331b;
                             i11 = i13;
                         }
                     }
@@ -278,10 +278,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f9326b);
+                q(context, cVar.f9331b);
                 throw th2;
             }
-            q(context, cVar.f9326b);
+            q(context, cVar.f9331b);
         }
     }
 

@@ -6,10 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import n4.y;
 public final class l implements Iterable {
-    public final j f13997a;
+    public final j f14007a;
 
     public l(k kVar, Interpolator interpolator, long j3) {
-        this.f13997a = new j(new y(this, kVar, false, 23), interpolator, j3);
+        this.f14007a = new j(new y(this, kVar, false, 23), interpolator, j3);
     }
 
     public final void i(Object obj, boolean z10) {
@@ -19,11 +19,11 @@ public final class l implements Iterable {
         } else {
             list = null;
         }
-        this.f13997a.r(list, z10);
+        this.f14007a.r(list, z10);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f13997a.f13994b.iterator();
+        return this.f14007a.f14004b.iterator();
     }
 }

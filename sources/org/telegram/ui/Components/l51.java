@@ -1,54 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
+import android.net.Uri;
 import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class l51 extends MetricAffectingSpan {
-    public final CharSequence f25835a;
-    public final int f25836b;
-    public final int f25837c;
-    public final byte d;
-    public final o01 e;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class l51 extends URLSpan {
+    public final p01 f25828a;
 
-    public l51(CharSequence charSequence, int i10, int i11, byte b10, o01 o01Var) {
-        this.f25835a = charSequence;
-        this.f25836b = i10;
-        this.f25837c = i11;
-        this.d = b10;
-        this.e = o01Var;
+    public l51(String str, p01 p01Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f25828a = p01Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18877fc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.ec, false));
+        super.updateDrawState(textPaint);
+        p01 p01Var = this.f25828a;
+        if (p01Var != null) {
+            p01Var.a(textPaint);
         }
-        o01 o01Var = this.e;
-        if (o01Var != null) {
-            o01Var.a(textPaint);
-            return;
-        }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        o01 o01Var = this.e;
-        if (o01Var != null) {
-            o01Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
-        }
+        textPaint.setUnderlineText(true);
     }
 }

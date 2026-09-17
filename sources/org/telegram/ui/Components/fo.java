@@ -13,12 +13,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class fo extends LinearLayout {
-    public final org.telegram.ui.ActionBar.e6 f24025a;
-    public final TextView f24026b;
-    public final ArrayList f24027c;
+    public final org.telegram.ui.ActionBar.f6 f23967a;
+    public final TextView f23968b;
+    public final ArrayList f23969c;
     public final ArrayList d;
 
-    public fo(Activity activity, View view, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+    public fo(Activity activity, View view, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
         Paint paint;
         int i11;
@@ -26,34 +26,34 @@ public final class fo extends LinearLayout {
         int i13;
         int i14;
         ArrayList arrayList = new ArrayList();
-        this.f24027c = arrayList;
+        this.f23969c = arrayList;
         this.d = new ArrayList();
-        this.f24025a = e6Var;
+        this.f23967a = f6Var;
         int dp = AndroidUtilities.dp(18.0f);
-        if (e6Var != null) {
-            paint = e6Var.G("paintChatActionBackground");
+        if (f6Var != null) {
+            paint = f6Var.G("paintChatActionBackground");
         } else {
             paint = null;
         }
-        paint = paint == null ? org.telegram.ui.ActionBar.i6.S0("paintChatActionBackground") : paint;
-        int i15 = org.telegram.ui.ActionBar.i6.f18773a;
-        setBackground(new org.telegram.ui.ActionBar.v5(this, view, dp, paint));
+        paint = paint == null ? org.telegram.ui.ActionBar.j6.S0("paintChatActionBackground") : paint;
+        int i15 = org.telegram.ui.ActionBar.j6.f18799a;
+        setBackground(new org.telegram.ui.ActionBar.w5(this, view, dp, paint));
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
         setOrientation(1);
         if (i10 == 0) {
             TextView textView = new TextView(activity);
-            this.f24026b = textView;
+            this.f23968b = textView;
             textView.setTextSize(1, 15.0f);
-            textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18932ic, e6Var));
+            textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18958ic, f6Var));
             textView.setGravity(1);
             textView.setMaxWidth(AndroidUtilities.dp(210.0f));
             arrayList.add(textView);
             addView(textView, w7.x5.q(-2, -2, 49));
         } else if (i10 == 1) {
             TextView textView2 = new TextView(activity);
-            this.f24026b = textView2;
+            this.f23968b = textView2;
             textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18932ic, e6Var));
+            textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18958ic, f6Var));
             textView2.setGravity(1);
             textView2.setMaxWidth(AndroidUtilities.dp(210.0f));
             arrayList.add(textView2);
@@ -78,7 +78,7 @@ public final class fo extends LinearLayout {
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(1);
         }
-        textView3.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18932ic, e6Var));
+        textView3.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18958ic, f6Var));
         arrayList.add(textView3);
         textView3.setMaxWidth(AndroidUtilities.dp(260.0f));
         if (i10 != 2) {
@@ -106,8 +106,8 @@ public final class fo extends LinearLayout {
             }
             addView(f7, w7.x5.t(-2, -2, i13, 0, 8, 0, 0));
             ImageView imageView2 = new ImageView(activity);
-            int i18 = org.telegram.ui.ActionBar.i6.f18932ic;
-            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(i18, this.f24025a), PorterDuff.Mode.MULTIPLY));
+            int i18 = org.telegram.ui.ActionBar.j6.f18958ic;
+            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i18, this.f23967a), PorterDuff.Mode.MULTIPLY));
             if (i10 == 0) {
                 imageView2.setImageResource(R.drawable.ic_lock_white);
             } else if (i10 == 2) {
@@ -118,8 +118,8 @@ public final class fo extends LinearLayout {
             this.d.add(imageView2);
             TextView textView4 = new TextView(activity);
             textView4.setTextSize(1, 15.0f);
-            textView4.setTextColor(org.telegram.ui.ActionBar.i6.v0(i18, this.f24025a));
-            this.f24027c.add(textView4);
+            textView4.setTextColor(org.telegram.ui.ActionBar.j6.v0(i18, this.f23967a));
+            this.f23969c.add(textView4);
             if (LocaleController.isRTL) {
                 i14 = 5;
             } else {
@@ -183,14 +183,14 @@ public final class fo extends LinearLayout {
     }
 
     public void setStatusText(CharSequence charSequence) {
-        this.f24026b.setText(charSequence);
+        this.f23968b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
         int i11 = 0;
         int i12 = 0;
         while (true) {
-            ArrayList arrayList = this.f24027c;
+            ArrayList arrayList = this.f23969c;
             if (i12 >= arrayList.size()) {
                 break;
             }
@@ -200,7 +200,7 @@ public final class fo extends LinearLayout {
         while (true) {
             ArrayList arrayList2 = this.d;
             if (i11 < arrayList2.size()) {
-                ((ImageView) arrayList2.get(i11)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18932ic, this.f24025a), PorterDuff.Mode.MULTIPLY));
+                ((ImageView) arrayList2.get(i11)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18958ic, this.f23967a), PorterDuff.Mode.MULTIPLY));
                 i11++;
             } else {
                 return;

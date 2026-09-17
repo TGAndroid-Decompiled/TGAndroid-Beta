@@ -3,19 +3,19 @@ package yh;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.yi0;
 public final class d7 implements ImageReceiver.ImageReceiverDelegate {
-    public final boolean[] f47085a;
+    public final boolean[] f47108a;
 
     public d7(boolean[] zArr) {
-        this.f47085a = zArr;
+        this.f47108a = zArr;
     }
 
     @Override
     public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        xi0 lottieAnimation;
+        yi0 lottieAnimation;
         if (z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
-            boolean[] zArr = this.f47085a;
+            boolean[] zArr = this.f47108a;
             if (!zArr[0]) {
                 lottieAnimation.N(0, false, false);
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Cells.q0(lottieAnimation, 0));

@@ -1,27 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class of1 extends bg1 {
-    public final dg1 f36206i3;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class of1 extends AnimatorListenerAdapter {
+    public final int f36334a;
+    public final boolean f36335b;
+    public final fg1 f36336c;
 
-    public of1(dg1 dg1Var, Context context) {
-        super(dg1Var, context);
-        this.f36206i3 = dg1Var;
+    public of1(fg1 fg1Var, boolean z10, int i10) {
+        this.f36334a = i10;
+        this.f36336c = fg1Var;
+        this.f36335b = z10;
     }
 
     @Override
-    public final boolean S0() {
-        ArrayList arrayList = this.f36206i3.f33015b;
-        if (getAdapter() == null || this.X1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((uf1) arrayList.get(0)).f37995c == null || ((uf1) arrayList.get(0)).f37995c.f18164id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
-            return false;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        int i10;
+        switch (this.f36334a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                boolean z10 = this.f36335b;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                fg1 fg1Var = this.f36336c;
+                fg1Var.S0(f7);
+                if (z10) {
+                    fg1Var.f33668q0.setVisibility(8);
+                    return;
+                }
+                Activity parentActivity = fg1Var.getParentActivity();
+                i10 = ((org.telegram.ui.ActionBar.o2) fg1Var).classGuid;
+                AndroidUtilities.setAdjustResizeToNothing(parentActivity, i10);
+                fg1Var.f33670r0.setVisibility(8);
+                fg1Var.Q0(true);
+                return;
+            default:
+                if (!this.f36335b) {
+                    this.f36336c.f33666o0.setVisibility(8);
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f36206i3.y0();
     }
 }

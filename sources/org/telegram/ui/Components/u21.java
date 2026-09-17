@@ -1,31 +1,25 @@
 package org.telegram.ui.Components;
+public final class u21 {
+    public static final u21 f28260a;
+    public static final u21 f28261b;
+    public static final u21 f28262c;
+    public static final u21[] d;
 
-import android.animation.ValueAnimator;
-public final class u21 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28275a;
-    public final w21 f28276b;
-
-    public u21(w21 w21Var, int i10) {
-        this.f28275a = i10;
-        this.f28276b = w21Var;
+    static {
+        ?? r02 = new Enum("TOP", 0);
+        f28260a = r02;
+        ?? r12 = new Enum("LEFT", 1);
+        f28261b = r12;
+        ?? r32 = new Enum("BOTTOM", 2);
+        f28262c = r32;
+        d = new u21[]{r02, r12, r32};
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28275a) {
-            case 0:
-                w21 w21Var = this.f28276b;
-                w21Var.getClass();
-                w21Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                w21Var.h();
-                w21Var.g();
-                return;
-            default:
-                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                w21 w21Var2 = this.f28276b;
-                w21Var2.K = max;
-                w21Var2.h.invalidate();
-                return;
-        }
+    public static u21 valueOf(String str) {
+        return (u21) Enum.valueOf(u21.class, str);
+    }
+
+    public static u21[] values() {
+        return (u21[]) d.clone();
     }
 }

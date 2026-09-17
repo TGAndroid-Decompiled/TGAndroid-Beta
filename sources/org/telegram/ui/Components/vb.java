@@ -8,8 +8,8 @@ import org.telegram.messenger.Emoji;
 public final class vb extends c90 {
     public final int L;
 
-    public vb(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public vb(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
         this.L = i10;
     }
 

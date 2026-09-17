@@ -1,35 +1,42 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
-import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class t40 implements lv0 {
-    public final i60 f37546a;
+public final class t40 extends LinearLayout {
+    public boolean f37647a;
+    public final org.telegram.ui.Components.uc0 f37648b;
+    public final p40 f37649c;
+    public final q40 d;
 
-    public t40(i60 i60Var) {
-        this.f37546a = i60Var;
+    public t40(LaunchActivity launchActivity, org.telegram.ui.Components.uc0 uc0Var, p40 p40Var, q40 q40Var) {
+        super(launchActivity);
+        this.f37648b = uc0Var;
+        this.f37649c = p40Var;
+        this.d = q40Var;
+        this.f37647a = false;
     }
 
     @Override
-    public final void E0(MessageObject messageObject) {
-        ViewGroup viewGroup;
-        i60 i60Var = this.f37546a;
-        i60Var.Q.I0(true);
-        i60Var.f34420c2.f36689f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
-        viewGroup = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
-        viewGroup.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        this.f37647a = true;
+        org.telegram.ui.Components.uc0 uc0Var = this.f37648b;
+        uc0Var.setItemCount(5);
+        p40 p40Var = this.f37649c;
+        p40Var.setItemCount(5);
+        q40 q40Var = this.d;
+        q40Var.setItemCount(5);
+        uc0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        p40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        q40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
+        this.f37647a = false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final void H(MessageObject messageObject) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f37546a).containerView;
-        viewGroup.invalidate();
-    }
-
-    @Override
-    public final TextureView j0() {
-        return null;
+    public final void requestLayout() {
+        if (this.f37647a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

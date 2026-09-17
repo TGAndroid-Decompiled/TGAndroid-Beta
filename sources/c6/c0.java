@@ -3,34 +3,34 @@ package c6;
 import android.os.Parcel;
 import android.os.RemoteException;
 public final class c0 implements Runnable {
-    public final int f3962a;
-    public final d0 f3963b;
-    public final int f3964c;
+    public final int f3967a;
+    public final d0 f3968b;
+    public final int f3969c;
 
     public c0(d0 d0Var, int i10, int i11) {
-        this.f3962a = i11;
-        this.f3963b = d0Var;
-        this.f3964c = i10;
+        this.f3967a = i11;
+        this.f3968b = d0Var;
+        this.f3969c = i10;
     }
 
     private final void a() {
-        d0 d0Var = this.f3963b;
-        e0 e0Var = d0Var.f3971b;
-        e0Var.f3987x = -1;
-        e0Var.f3988y = -1;
-        e0Var.f3984t = null;
-        e0Var.f3985u = null;
+        d0 d0Var = this.f3968b;
+        e0 e0Var = d0Var.f3976b;
+        e0Var.f3992x = -1;
+        e0Var.f3993y = -1;
+        e0Var.f3989t = null;
+        e0Var.f3990u = null;
         e0Var.v = 0.0d;
         e0Var.j();
-        e0Var.f3986w = false;
-        e0Var.f3989z = null;
-        e0 e0Var2 = d0Var.f3971b;
+        e0Var.f3991w = false;
+        e0Var.f3994z = null;
+        e0 e0Var2 = d0Var.f3976b;
         e0Var2.F = 1;
-        int i10 = this.f3964c;
+        int i10 = this.f3969c;
         synchronized (e0Var2.E) {
             try {
-                for (d6.i iVar : d0Var.f3971b.E) {
-                    d6.q qVar = iVar.f7543a.e;
+                for (d6.i iVar : d0Var.f3976b.E) {
+                    d6.q qVar = iVar.f7548a.e;
                     if (qVar != null) {
                         try {
                             k6.a aVar = new k6.a(i10);
@@ -39,7 +39,7 @@ public final class c0 implements Runnable {
                             com.google.android.gms.internal.cast.v.c(O0, aVar);
                             oVar.S0(O0, 3);
                         } catch (RemoteException e) {
-                            d6.c.f7527m.a(e, "Unable to call %s on %s.", "onDisconnected", d6.q.class.getSimpleName());
+                            d6.c.f7532m.a(e, "Unable to call %s on %s.", "onDisconnected", d6.q.class.getSimpleName());
                         }
                     }
                 }
@@ -47,24 +47,24 @@ public final class c0 implements Runnable {
                 throw th2;
             }
         }
-        d0Var.f3971b.h();
-        e0 e0Var3 = d0Var.f3971b;
-        com.google.android.gms.common.api.internal.n nVar = xa.c.o(e0Var3.f6207f, e0Var3.f3975k, "castDeviceControllerListenerKey").f6140c;
+        d0Var.f3976b.h();
+        e0 e0Var3 = d0Var.f3976b;
+        com.google.android.gms.common.api.internal.n nVar = xa.c.o(e0Var3.f6212f, e0Var3.f3980k, "castDeviceControllerListenerKey").f6145c;
         n6.l.i(nVar, "Key must not be null");
         e0Var3.c(nVar, 8415);
     }
 
     private final void b() {
-        d0 d0Var = this.f3963b;
-        int i10 = this.f3964c;
+        d0 d0Var = this.f3968b;
+        int i10 = this.f3969c;
         if (i10 == 0) {
-            e0 e0Var = d0Var.f3971b;
+            e0 e0Var = d0Var.f3976b;
             e0Var.F = 2;
-            e0Var.f3977m = true;
-            e0Var.f3978n = true;
+            e0Var.f3982m = true;
+            e0Var.f3983n = true;
             synchronized (e0Var.E) {
                 try {
-                    for (d6.i iVar : d0Var.f3971b.E) {
+                    for (d6.i iVar : d0Var.f3976b.E) {
                         iVar.a();
                     }
                 } finally {
@@ -72,16 +72,16 @@ public final class c0 implements Runnable {
             }
             return;
         }
-        e0 e0Var2 = d0Var.f3971b;
+        e0 e0Var2 = d0Var.f3976b;
         e0Var2.F = 1;
         synchronized (e0Var2.E) {
             try {
             } catch (RemoteException e) {
-                d6.c.f7527m.a(e, "Unable to call %s on %s.", "onConnectionFailed", d6.q.class.getSimpleName());
+                d6.c.f7532m.a(e, "Unable to call %s on %s.", "onConnectionFailed", d6.q.class.getSimpleName());
             } finally {
             }
-            for (d6.i iVar2 : d0Var.f3971b.E) {
-                d6.q qVar = iVar2.f7543a.e;
+            for (d6.i iVar2 : d0Var.f3976b.E) {
+                d6.q qVar = iVar2.f7548a.e;
                 if (qVar != null) {
                     k6.a aVar = new k6.a(i10);
                     d6.o oVar = (d6.o) qVar;
@@ -91,12 +91,12 @@ public final class c0 implements Runnable {
                 }
             }
         }
-        d0Var.f3971b.h();
+        d0Var.f3976b.h();
     }
 
     @Override
     public final void run() {
-        switch (this.f3962a) {
+        switch (this.f3967a) {
             case 0:
                 a();
                 return;
@@ -104,17 +104,17 @@ public final class c0 implements Runnable {
                 b();
                 return;
             case 2:
-                this.f3963b.f3971b.D.b(this.f3964c);
+                this.f3968b.f3976b.D.b(this.f3969c);
                 return;
             default:
-                d0 d0Var = this.f3963b;
-                e0 e0Var = d0Var.f3971b;
+                d0 d0Var = this.f3968b;
+                e0 e0Var = d0Var.f3976b;
                 e0Var.F = 3;
-                int i10 = this.f3964c;
+                int i10 = this.f3969c;
                 synchronized (e0Var.E) {
                     try {
-                        for (d6.i iVar : d0Var.f3971b.E) {
-                            d6.q qVar = iVar.f7543a.e;
+                        for (d6.i iVar : d0Var.f3976b.E) {
+                            d6.q qVar = iVar.f7548a.e;
                             if (qVar != null) {
                                 try {
                                     d6.o oVar = (d6.o) qVar;
@@ -122,7 +122,7 @@ public final class c0 implements Runnable {
                                     O0.writeInt(i10);
                                     oVar.S0(O0, 2);
                                 } catch (RemoteException e) {
-                                    d6.c.f7527m.a(e, "Unable to call %s on %s.", "onConnectionSuspended", d6.q.class.getSimpleName());
+                                    d6.c.f7532m.a(e, "Unable to call %s on %s.", "onConnectionSuspended", d6.q.class.getSimpleName());
                                 }
                             }
                         }

@@ -9,18 +9,18 @@ public final class uc {
     public static final uc I;
     public static final uc[] J;
     public static final uc e;
-    public static final uc f28334f;
+    public static final uc f28321f;
     public static final uc h;
-    public static final uc f28335n;
-    public static final uc f28336r;
-    public static final uc f28337s;
+    public static final uc f28322n;
+    public static final uc f28323r;
+    public static final uc f28324s;
     public static final uc v;
-    public static final uc f28338w;
-    public static final uc f28339x;
-    public static final uc f28340y;
-    public final String f28341a;
-    public final int f28342b;
-    public final boolean f28343c;
+    public static final uc f28325w;
+    public static final uc f28326x;
+    public static final uc f28327y;
+    public final String f28328a;
+    public final int f28329b;
+    public final boolean f28330c;
     public final tc d;
 
     static {
@@ -29,25 +29,25 @@ public final class uc {
         uc ucVar = new uc("PHOTO", 0, "PhotoSavedHint", i10, tcVar);
         e = ucVar;
         uc ucVar2 = new uc("PHOTOS", 1, "PhotosSavedHint", tcVar);
-        f28334f = ucVar2;
+        f28321f = ucVar2;
         uc ucVar3 = new uc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, tcVar);
         h = ucVar3;
         uc ucVar4 = new uc("VIDEOS", 3, "VideosSavedHint", tcVar);
-        f28335n = ucVar4;
+        f28322n = ucVar4;
         uc ucVar5 = new uc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, tcVar);
-        f28336r = ucVar5;
+        f28323r = ucVar5;
         uc ucVar6 = new uc("LIVEPHOTOS", 5, "LivePhotosSavedHint", tcVar);
-        f28337s = ucVar6;
+        f28324s = ucVar6;
         uc ucVar7 = new uc("MEDIA", 6, "MediaSavedHint", tcVar);
         v = ucVar7;
         int i11 = R.string.PhotoSavedToDownloadsHintLinked;
         tc tcVar2 = tc.SAVED_TO_DOWNLOADS;
         uc ucVar8 = new uc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, tcVar2);
-        f28338w = ucVar8;
+        f28325w = ucVar8;
         uc ucVar9 = new uc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, tcVar2);
-        f28339x = ucVar9;
+        f28326x = ucVar9;
         uc ucVar10 = new uc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, tc.SAVED_TO_GIFS);
-        f28340y = ucVar10;
+        f28327y = ucVar10;
         uc ucVar11 = new uc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, tcVar2);
         E = ucVar11;
         int i12 = R.string.AudioSavedHint;
@@ -64,10 +64,10 @@ public final class uc {
     }
 
     public uc(String str, int i10, String str2, int i11, tc tcVar) {
-        this.f28341a = str2;
-        this.f28342b = i11;
+        this.f28328a = str2;
+        this.f28329b = i11;
         this.d = tcVar;
-        this.f28343c = false;
+        this.f28330c = false;
     }
 
     public static uc valueOf(String str) {
@@ -79,9 +79,9 @@ public final class uc {
     }
 
     public uc(String str, int i10, String str2, tc tcVar) {
-        this.f28341a = str2;
+        this.f28328a = str2;
         this.d = tcVar;
-        this.f28342b = 0;
-        this.f28343c = true;
+        this.f28329b = 0;
+        this.f28330c = true;
     }
 }

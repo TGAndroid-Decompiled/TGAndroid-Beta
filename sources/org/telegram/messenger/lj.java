@@ -9,50 +9,50 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bo;
-import org.telegram.ui.e41;
-import org.telegram.ui.tg1;
-public final class lj implements tg1, org.telegram.ui.Components.b5, LanguageDetector.StringCallback {
-    public final boolean f16699a;
-    public final NotificationCenter.NotificationCenterDelegate f16700b;
-    public final Object f16701c;
+import org.telegram.ui.g41;
+import org.telegram.ui.vg1;
+public final class lj implements vg1, org.telegram.ui.Components.b5, LanguageDetector.StringCallback {
+    public final boolean f16708a;
+    public final NotificationCenter.NotificationCenterDelegate f16709b;
+    public final Object f16710c;
     public final Object d;
     public final Object e;
-    public final Object f16702f;
+    public final Object f16711f;
 
     public lj(MessageObject messageObject, SendMessagesHelper sendMessagesHelper, TL_keyboard.KeyboardButtonProto keyboardButtonProto, bo boVar, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10) {
-        this.f16700b = sendMessagesHelper;
-        this.f16699a = z10;
-        this.f16701c = messageObject;
+        this.f16709b = sendMessagesHelper;
+        this.f16708a = z10;
+        this.f16710c = messageObject;
         this.d = keyboardButtonProto;
         this.e = twoStepVerificationActivity;
-        this.f16702f = boVar;
+        this.f16711f = boVar;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f16700b;
-        TLRPC.Document document = (TLRPC.Document) this.f16701c;
+        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f16709b;
+        TLRPC.Document document = (TLRPC.Document) this.f16710c;
         String str = (String) this.d;
-        MessageObject.SendAnimationData sendAnimationData = (MessageObject.SendAnimationData) this.f16702f;
-        int i12 = ChatActivityEnterView.f21731m5;
-        chatActivityEnterView.d(document, str, this.e, sendAnimationData, this.f16699a, z10, i10, i11);
+        MessageObject.SendAnimationData sendAnimationData = (MessageObject.SendAnimationData) this.f16711f;
+        int i12 = ChatActivityEnterView.f21741m5;
+        chatActivityEnterView.d(document, str, this.e, sendAnimationData, this.f16708a, z10, i10, i11);
     }
 
     @Override
     public void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((SendMessagesHelper) this.f16700b).lambda$sendCallback$40(this.f16699a, (MessageObject) this.f16701c, (TL_keyboard.KeyboardButtonProto) this.d, (TwoStepVerificationActivity) this.e, (bo) this.f16702f, tL_inputCheckPasswordSRP);
+        ((SendMessagesHelper) this.f16709b).lambda$sendCallback$40(this.f16708a, (MessageObject) this.f16710c, (TL_keyboard.KeyboardButtonProto) this.d, (TwoStepVerificationActivity) this.e, (bo) this.f16711f, tL_inputCheckPasswordSRP);
     }
 
     @Override
     public void run(String str) {
         boolean z10;
         TLRPC.Chat chat;
-        ProfileActivity profileActivity = (ProfileActivity) this.f16700b;
+        ProfileActivity profileActivity = (ProfileActivity) this.f16709b;
         boolean[] zArr = (boolean[]) this.d;
         String str2 = (String) this.e;
-        gg.e1 e1Var = (gg.e1) this.f16702f;
-        ((String[]) this.f16701c)[0] = str;
-        if (str != null && ((!str.equals(str2) || str.equals("und")) && ((this.f16699a && !e41.Y().contains(str)) || ((chat = profileActivity.E2) != null && ((chat.has_link || ChatObject.isPublic(chat)) && ("uk".equals(str) || "ru".equals(str))))))) {
+        gg.e1 e1Var = (gg.e1) this.f16711f;
+        ((String[]) this.f16710c)[0] = str;
+        if (str != null && ((!str.equals(str2) || str.equals("und")) && ((this.f16708a && !g41.Y().contains(str)) || ((chat = profileActivity.E2) != null && ((chat.has_link || ChatObject.isPublic(chat)) && ("uk".equals(str) || "ru".equals(str))))))) {
             z10 = true;
         } else {
             z10 = false;
@@ -62,20 +62,20 @@ public final class lj implements tg1, org.telegram.ui.Components.b5, LanguageDet
     }
 
     public lj(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10) {
-        this.f16700b = chatActivityEnterView;
-        this.f16701c = document;
+        this.f16709b = chatActivityEnterView;
+        this.f16710c = document;
         this.d = str;
         this.e = obj;
-        this.f16702f = sendAnimationData;
-        this.f16699a = z10;
+        this.f16711f = sendAnimationData;
+        this.f16708a = z10;
     }
 
     public lj(ProfileActivity profileActivity, String[] strArr, boolean[] zArr, String str, boolean z10, gg.e1 e1Var) {
-        this.f16700b = profileActivity;
-        this.f16701c = strArr;
+        this.f16709b = profileActivity;
+        this.f16710c = strArr;
         this.d = zArr;
         this.e = str;
-        this.f16699a = z10;
-        this.f16702f = e1Var;
+        this.f16708a = z10;
+        this.f16711f = e1Var;
     }
 }

@@ -25,11 +25,11 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
 public abstract class lg extends bu {
-    public dd f25914c;
+    public dd f25899c;
     public final ChatActivityEnterView d;
 
-    public lg(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public lg(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
         this.d = chatActivityEnterView;
     }
 
@@ -50,7 +50,7 @@ public abstract class lg extends bu {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.e6 getResourcesProvider() {
+    public final org.telegram.ui.ActionBar.f6 getResourcesProvider() {
         return this.d.V3;
     }
 
@@ -62,7 +62,7 @@ public abstract class lg extends bu {
         } else {
             z10 = false;
         }
-        Utilities.globalQueue.postRunnable(new org.telegram.ui.ActionBar.p(this, uri, AndroidUtilities.generatePicturePath(z10, MimeTypeMap.getSingleton().getExtensionFromMimeType(str)), 9));
+        Utilities.globalQueue.postRunnable(new org.telegram.ui.ActionBar.q(this, uri, AndroidUtilities.generatePicturePath(z10, MimeTypeMap.getSingleton().getExtensionFromMimeType(str)), 9));
     }
 
     public final void n(File file, ArrayList arrayList) {
@@ -70,7 +70,7 @@ public abstract class lg extends bu {
         org.telegram.ui.bo boVar = chatActivityEnterView.O2;
         if (boVar != null && boVar.getParentActivity() != null) {
             MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList.get(0);
-            if (chatActivityEnterView.f21871y2) {
+            if (chatActivityEnterView.f21881y2) {
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new c5.v(this, arrayList, file, false, 9), 100L);
                 return;
@@ -93,11 +93,11 @@ public abstract class lg extends bu {
             chatActivityEnterView.L0 = null;
         }
         org.telegram.ui.rn rnVar = chatActivityEnterView.U2;
-        if (rnVar != null && boVar != null && rnVar.f37156f) {
+        if (rnVar != null && boVar != null && rnVar.f37274f) {
             boVar.Rb();
             return;
         }
-        t0.i iVar = jVar.f43001a;
+        t0.i iVar = jVar.f43023a;
         if (iVar.getDescription().hasMimeType("image/gif")) {
             AccountInstance accountInstance = chatActivityEnterView.R;
             Uri c10 = iVar.c();
@@ -157,13 +157,13 @@ public abstract class lg extends bu {
             return null;
         }
         try {
-            int i10 = ChatActivityEnterView.f21731m5;
+            int i10 = ChatActivityEnterView.f21741m5;
             if (chatActivityEnterView.a2 != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (!z10 && !chatActivityEnterView.f21799k5) {
+            if (!z10 && !chatActivityEnterView.f21809k5) {
                 t0.c.b(editorInfo, new String[]{"image/gif", "image/*", "image/jpg", "image/png", "image/webp"});
                 return t0.g.a(onCreateInputConnection, editorInfo, new s(this, 18));
             }
@@ -237,47 +237,47 @@ public abstract class lg extends bu {
         int i10;
         ChatActivityEnterView chatActivityEnterView = this.d;
         if (!chatActivityEnterView.D3 && chatActivityEnterView.A3 == null) {
-            if (!chatActivityEnterView.f21873z0 && !chatActivityEnterView.r0()) {
-                if (this.f25914c == null) {
+            if (!chatActivityEnterView.f21883z0 && !chatActivityEnterView.r0()) {
+                if (this.f25899c == null) {
                     dd ddVar = new dd(this);
-                    this.f25914c = ddVar;
+                    this.f25899c = ddVar;
                     ddVar.h = new Runnable(this) {
-                        public final lg f25346b;
+                        public final lg f25268b;
 
                         {
-                            this.f25346b = this;
+                            this.f25268b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            lg lgVar = this.f25346b;
+                            lg lgVar = this.f25268b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = lgVar.d;
-                                    int i12 = ChatActivityEnterView.f21731m5;
+                                    int i12 = ChatActivityEnterView.f21741m5;
                                     chatActivityEnterView2.t1();
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = lgVar.d;
-                                    chatActivityEnterView3.f21797k3 = false;
+                                    chatActivityEnterView3.f21807k3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
                         }
                     };
                 }
-                dd ddVar2 = this.f25914c;
+                dd ddVar2 = this.f25899c;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 ddVar2.getClass();
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f7 = 0;
                 rectF.set(f7, f7, measuredWidth, measuredHeight);
-                ddVar2.f23290i = false;
-                ddVar2.f23287c = 0;
+                ddVar2.f23317i = false;
+                ddVar2.f23314c = 0;
                 ddVar2.a(rectF);
-                return this.f25914c.b(motionEvent);
+                return this.f25899c.b(motionEvent);
             } else if (chatActivityEnterView.t0() && motionEvent.getAction() == 0) {
                 if (chatActivityEnterView.Q1 != 0) {
                     chatActivityEnterView.l1(0, false);
@@ -292,27 +292,27 @@ public abstract class lg extends bu {
                 chatActivityEnterView.s1(i10, 0, true, true);
                 if (chatActivityEnterView.y3) {
                     chatActivityEnterView.m1(false, true, false, true);
-                    chatActivityEnterView.f21797k3 = true;
+                    chatActivityEnterView.f21807k3 = true;
                     AndroidUtilities.runOnUIThread(new Runnable(this) {
-                        public final lg f25346b;
+                        public final lg f25268b;
 
                         {
-                            this.f25346b = this;
+                            this.f25268b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            lg lgVar = this.f25346b;
+                            lg lgVar = this.f25268b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = lgVar.d;
-                                    int i12 = ChatActivityEnterView.f21731m5;
+                                    int i12 = ChatActivityEnterView.f21741m5;
                                     chatActivityEnterView2.t1();
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = lgVar.d;
-                                    chatActivityEnterView3.f21797k3 = false;
+                                    chatActivityEnterView3.f21807k3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
@@ -336,7 +336,7 @@ public abstract class lg extends bu {
     @Override
     public final boolean requestFocus(int i10, Rect rect) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (!chatActivityEnterView.f21873z0 && !chatActivityEnterView.r0()) {
+        if (!chatActivityEnterView.f21883z0 && !chatActivityEnterView.r0()) {
             return false;
         }
         chatActivityEnterView.getClass();
@@ -354,8 +354,8 @@ public abstract class lg extends bu {
         super.setOffsetY(f7);
         ChatActivityEnterView chatActivityEnterView = this.d;
         if (chatActivityEnterView.l1.getForeground() != null) {
-            pv0 pv0Var = chatActivityEnterView.l1;
-            pv0Var.invalidateDrawable(pv0Var.getForeground());
+            qv0 qv0Var = chatActivityEnterView.l1;
+            qv0Var.invalidateDrawable(qv0Var.getForeground());
         }
     }
 }

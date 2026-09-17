@@ -99,9 +99,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             this.builder.f(LocaleController.getString(R.string.SendingVideo));
         }
         e0.t tVar = this.builder;
-        tVar.f7840n = 100;
-        tVar.f7841o = 0;
-        tVar.f7842p = true;
+        tVar.f7845n = 100;
+        tVar.f7846o = 0;
+        tVar.f7847p = true;
     }
 
     public void updateNotification() {
@@ -130,9 +130,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 if (i12 == 0) {
                     z10 = true;
                 }
-                tVar.f7840n = 100;
-                tVar.f7841o = i12;
-                tVar.f7842p = z10;
+                tVar.f7845n = 100;
+                tVar.f7846o = i12;
+                tVar.f7847p = z10;
                 updateNotification();
             }
         } else if (i10 == NotificationCenter.fileUploaded || i10 == NotificationCenter.fileUploadFailed) {
@@ -180,7 +180,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             tVar.E.icon = 17301640;
             tVar.E.when = System.currentTimeMillis();
             e0.t tVar2 = this.builder;
-            tVar2.f7850y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            tVar2.f7855y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             tVar2.g(LocaleController.getString(R.string.AppName));
         }
         setCurrentMessage(currentForegroundConverMessage);

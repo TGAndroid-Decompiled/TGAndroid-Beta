@@ -14,17 +14,17 @@ import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
-import org.telegram.ui.e71;
+import org.telegram.ui.g71;
 import v7.g5;
-public final class s implements com.google.android.gms.common.api.internal.s, w2.d, Continuation, y2.h, e71 {
-    public Object f44265a;
+public final class s implements com.google.android.gms.common.api.internal.s, w2.d, Continuation, y2.h, g71 {
+    public Object f44288a;
 
     public s(Object obj) {
-        this.f44265a = obj;
+        this.f44288a = obj;
     }
 
     public void a(IBinder iBinder) {
-        synchronized (((HashMap) this.f44265a)) {
+        synchronized (((HashMap) this.f44288a)) {
             if (iBinder != null) {
                 try {
                     iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
@@ -33,7 +33,7 @@ public final class s implements com.google.android.gms.common.api.internal.s, w2
                 }
             }
             new y8.a();
-            for (Map.Entry entry : ((HashMap) this.f44265a).entrySet()) {
+            for (Map.Entry entry : ((HashMap) this.f44288a).entrySet()) {
                 if (entry.getValue() == null) {
                     try {
                         throw null;
@@ -51,7 +51,7 @@ public final class s implements com.google.android.gms.common.api.internal.s, w2
 
     @Override
     public void accept(Object obj, Object obj2) {
-        e eVar = (e) this.f44265a;
+        e eVar = (e) this.f44288a;
         e8.b bVar = (e8.b) obj;
         bVar.getClass();
         e8.a aVar = new e8.a(1, (TaskCompletionSource) obj2);
@@ -60,36 +60,36 @@ public final class s implements com.google.android.gms.common.api.internal.s, w2
             Bundle G = bVar.G();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-            int i10 = e8.c.f8038a;
+            int i10 = e8.c.f8043a;
             obtain.writeInt(1);
             eVar.writeToParcel(obtain, 0);
             obtain.writeInt(1);
             G.writeToParcel(obtain, 0);
             obtain.writeStrongBinder(aVar);
-            iVar.f8046a.transact(14, obtain, null, 1);
+            iVar.f8051a.transact(14, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException e) {
             Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e);
             Bundle bundle = Bundle.EMPTY;
-            g5.a(Status.h, Boolean.FALSE, aVar.f8037b);
+            g5.a(Status.h, Boolean.FALSE, aVar.f8042b);
         }
     }
 
     @Override
     public k4.d n(y2.j jVar, long j3, long j10, IOException iOException, int i10) {
-        ((l2.d) this.f44265a).f13816a.x(iOException);
+        ((l2.d) this.f44288a).f13826a.x(iOException);
         return y2.m.e;
     }
 
     @Override
     public void q(y2.j jVar, long j3, long j10) {
         boolean z10;
-        l2.d dVar = (l2.d) this.f44265a;
-        synchronized (z2.b.f48078b) {
-            z10 = z2.b.f48079c;
+        l2.d dVar = (l2.d) this.f44288a;
+        synchronized (z2.b.f48101b) {
+            z10 = z2.b.f48102c;
         }
         if (!z10) {
-            dVar.f13816a.x(new IOException(new ConcurrentModificationException()));
+            dVar.f13826a.x(new IOException(new ConcurrentModificationException()));
             return;
         }
         dVar.a();
@@ -97,16 +97,16 @@ public final class s implements com.google.android.gms.common.api.internal.s, w2
 
     @Override
     public Object then(Task task) {
-        return ((Callable) this.f44265a).call();
+        return ((Callable) this.f44288a).call();
     }
 
     public s(int i10) {
         switch (i10) {
             case 4:
-                this.f44265a = new HashMap();
+                this.f44288a = new HashMap();
                 return;
             default:
-                this.f44265a = new qb.b(28);
+                this.f44288a = new qb.b(28);
                 return;
         }
     }

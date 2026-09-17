@@ -9,20 +9,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class h7 extends FrameLayout {
-    public final org.telegram.ui.Components.n6 f47262a;
-    public final ImageView f47263b;
-    public int f47264c;
+    public final org.telegram.ui.Components.n6 f47285a;
+    public final ImageView f47286b;
+    public int f47287c;
     public boolean d;
 
     public h7(Context context) {
         super(context);
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(context, false, false, false);
-        this.f47262a = n6Var;
+        this.f47285a = n6Var;
         n6Var.getDrawable().o(true, true, false);
         n6Var.setTextSize(AndroidUtilities.dp(15.0f));
         addView(n6Var, w7.x5.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f47263b = imageView;
+        this.f47286b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.arrow_more);
         addView(imageView, w7.x5.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 17.0f, 0.0f));
@@ -31,7 +31,7 @@ public final class h7 extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47264c = Integer.MAX_VALUE;
+        this.f47287c = Integer.MAX_VALUE;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class h7 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.i6.f18958k0);
+            canvas.drawRect(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f18984k0);
         }
     }
 

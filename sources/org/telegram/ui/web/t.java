@@ -5,29 +5,29 @@ import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class t implements Runnable {
-    public final int f39086a;
-    public final d1 f39087b;
+    public final int f38929a;
+    public final d1 f38930b;
 
     public t(d1 d1Var, int i10) {
-        this.f39086a = i10;
-        this.f39087b = d1Var;
+        this.f38929a = i10;
+        this.f38930b = d1Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f39086a) {
+        switch (this.f38929a) {
             case 0:
-                h0 h0Var = this.f39087b.f38897c;
+                h0 h0Var = this.f38930b.f38740c;
                 if (h0Var != null) {
                     h0Var.b();
                 }
                 LaunchActivity.L();
                 return;
             case 1:
-                d1 d1Var = this.f39087b;
+                d1 d1Var = this.f38930b;
                 da daVar = d1Var.I0;
-                ei.w0 w0Var = d1Var.f38907k0;
+                ei.w0 w0Var = d1Var.f38750k0;
                 w0Var.getClass();
                 JSONObject jSONObject = new JSONObject();
                 try {
@@ -49,10 +49,10 @@ public final class t implements Runnable {
                 d1Var.y(daVar, "location_checked", jSONObject);
                 return;
             default:
-                d1 d1Var2 = this.f39087b;
+                d1 d1Var2 = this.f38930b;
                 if (d1Var2.S) {
                     d1Var2.S = false;
-                    h0 h0Var2 = d1Var2.f38897c;
+                    h0 h0Var2 = d1Var2.f38740c;
                     if (h0Var2 != null) {
                         h0Var2.t(false);
                     }
@@ -61,10 +61,10 @@ public final class t implements Runnable {
                 d1Var2.N = false;
                 d1Var2.P = 0L;
                 d1Var2.T = false;
-                z0 z0Var = d1Var2.f38893a;
+                z0 z0Var = d1Var2.f38736a;
                 if (z0Var != null) {
                     z0Var.onResume();
-                    d1Var2.f38893a.reload();
+                    d1Var2.f38736a.reload();
                     return;
                 }
                 return;

@@ -8,25 +8,25 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.n2;
 import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
-public final class q0 extends h51 {
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
+public final class q0 extends i51 {
     static {
-        h51.setup(new h51());
+        i51.setup(new i51());
     }
 
-    public static i51 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
+    public static j51 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
         long j3;
         TLRPC.User user = communityPeerDialog.user;
         if (user != null) {
-            i51 J = i51.J(q0.class);
-            long j10 = user.f18259id;
+            j51 J = j51.J(q0.class);
+            long j10 = user.f18268id;
             J.B = j10;
             J.d = (int) (j10 ^ (j10 >>> 32));
             J.G = user;
@@ -34,9 +34,9 @@ public final class q0 extends h51 {
             return J;
         }
         TLRPC.Chat chat = communityPeerDialog.chat;
-        i51 J2 = i51.J(q0.class);
+        j51 J2 = j51.J(q0.class);
         if (chat != null) {
-            j3 = -chat.f18112id;
+            j3 = -chat.f18121id;
         } else {
             j3 = 0;
         }
@@ -48,15 +48,15 @@ public final class q0 extends h51 {
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
+    public final void bindView(View view, j51 j51Var, boolean z10, x51 x51Var, f61 f61Var) {
         r2 r2Var = (r2) view;
-        r2Var.setDialogCellDelegate((n2) i51Var.H);
-        Object obj = i51Var.G;
+        r2Var.setDialogCellDelegate((n2) j51Var.H);
+        Object obj = j51Var.G;
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             r2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, chat);
-            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f18112id);
+            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f18121id);
             if (dialog != null) {
                 z11 = false;
             }
@@ -67,11 +67,11 @@ public final class q0 extends h51 {
                 return;
             }
             r2Var.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
-            r2Var.W(-chat.f18112id, null, 0, false, false);
+            r2Var.W(-chat.f18121id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             r2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
-            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f18259id);
+            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f18268id);
             if (dialog2 != null) {
                 z11 = false;
             }
@@ -82,28 +82,28 @@ public final class q0 extends h51 {
                 return;
             }
             r2Var.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
-            r2Var.W(user.f18259id, null, 0, false, false);
+            r2Var.W(user.f18268id, null, 0, false, false);
         }
     }
 
     @Override
-    public final boolean contentsEquals(i51 i51Var, i51 i51Var2) {
-        if (i51Var.d == i51Var2.d) {
+    public final boolean contentsEquals(j51 j51Var, j51 j51Var2) {
+        if (j51Var.d == j51Var2.d) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, e6 e6Var) {
-        r2 r2Var = new r2(null, context, false, i10, e6Var);
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, f6 f6Var) {
+        r2 r2Var = new r2(null, context, false, i10, f6Var);
         r2Var.O0 = true;
         return r2Var;
     }
 
     @Override
-    public final boolean equals(i51 i51Var, i51 i51Var2) {
-        if (i51Var.d == i51Var2.d) {
+    public final boolean equals(j51 j51Var, j51 j51Var2) {
+        if (j51Var.d == j51Var2.d) {
             return true;
         }
         return false;

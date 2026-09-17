@@ -2,39 +2,39 @@ package org.telegram.ui;
 
 import android.util.SparseIntArray;
 public final class un implements Runnable {
-    public final int f38056a;
-    public final zn f38057b;
+    public final int f38097a;
+    public final zn f38098b;
 
     public un(zn znVar, int i10) {
-        this.f38056a = i10;
-        this.f38057b = znVar;
+        this.f38097a = i10;
+        this.f38098b = znVar;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.ActionBar.d5 d5Var;
-        org.telegram.ui.ActionBar.d5 d5Var2;
-        switch (this.f38056a) {
+        org.telegram.ui.ActionBar.e5 e5Var;
+        org.telegram.ui.ActionBar.e5 e5Var2;
+        switch (this.f38097a) {
             case 0:
                 SparseIntArray sparseIntArray = new SparseIntArray();
-                zn znVar = this.f38057b;
+                zn znVar = this.f38098b;
                 znVar.e = sparseIntArray;
                 bo boVar = znVar.V;
-                org.telegram.ui.ActionBar.f5 f5Var = (org.telegram.ui.ActionBar.f5) boVar.getThemedDrawable("drawableMsgOut");
-                znVar.I = f5Var;
-                d5Var = ((org.telegram.ui.ActionBar.n2) boVar).parentLayout;
-                f5Var.H = d5Var.getMessageDrawableOutStart();
-                org.telegram.ui.ActionBar.f5 f5Var2 = (org.telegram.ui.ActionBar.f5) boVar.getThemedDrawable("drawableMsgOutMedia");
-                znVar.J = f5Var2;
-                d5Var2 = ((org.telegram.ui.ActionBar.n2) boVar).parentLayout;
-                f5Var2.H = d5Var2.getMessageDrawableOutMediaStart();
+                org.telegram.ui.ActionBar.g5 g5Var = (org.telegram.ui.ActionBar.g5) boVar.getThemedDrawable("drawableMsgOut");
+                znVar.I = g5Var;
+                e5Var = ((org.telegram.ui.ActionBar.o2) boVar).parentLayout;
+                g5Var.H = e5Var.getMessageDrawableOutStart();
+                org.telegram.ui.ActionBar.g5 g5Var2 = (org.telegram.ui.ActionBar.g5) boVar.getThemedDrawable("drawableMsgOutMedia");
+                znVar.J = g5Var2;
+                e5Var2 = ((org.telegram.ui.ActionBar.o2) boVar).parentLayout;
+                g5Var2.H = e5Var2.getMessageDrawableOutMediaStart();
                 znVar.I.I = 0.0f;
                 znVar.J.I = 0.0f;
                 boVar.uc();
                 znVar.k(0.0f);
                 return;
             default:
-                zn znVar2 = this.f38057b;
+                zn znVar2 = this.f38098b;
                 znVar2.I.H = null;
                 znVar2.J.H = null;
                 znVar2.e = null;

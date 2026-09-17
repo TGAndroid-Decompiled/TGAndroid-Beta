@@ -61,7 +61,7 @@ public final class a6 extends bo {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
+    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
         return this.Rc.G1;
     }
 

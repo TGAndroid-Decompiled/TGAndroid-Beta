@@ -2,25 +2,25 @@ package e2;
 
 import android.os.SystemClock;
 public final class g {
-    public final x f7898a;
-    public boolean f7899b;
+    public final x f7903a;
+    public boolean f7904b;
 
     public g() {
-        this(x.f7935a);
+        this(x.f7940a);
     }
 
     public final synchronized void a() {
-        while (!this.f7899b) {
-            this.f7898a.getClass();
+        while (!this.f7904b) {
+            this.f7903a.getClass();
             wait();
         }
     }
 
     public final synchronized void b() {
         boolean z10 = false;
-        while (!this.f7899b) {
+        while (!this.f7904b) {
             try {
-                this.f7898a.getClass();
+                this.f7903a.getClass();
                 wait();
             } catch (InterruptedException unused) {
                 z10 = true;
@@ -33,46 +33,46 @@ public final class g {
 
     public final synchronized boolean c(long j3) {
         if (j3 <= 0) {
-            return this.f7899b;
+            return this.f7904b;
         }
-        this.f7898a.getClass();
+        this.f7903a.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         long j10 = j3 + elapsedRealtime;
         if (j10 < elapsedRealtime) {
             b();
         } else {
             boolean z10 = false;
-            while (!this.f7899b && elapsedRealtime < j10) {
+            while (!this.f7904b && elapsedRealtime < j10) {
                 try {
-                    this.f7898a.getClass();
+                    this.f7903a.getClass();
                     wait(j10 - elapsedRealtime);
                 } catch (InterruptedException unused) {
                     z10 = true;
                 }
-                this.f7898a.getClass();
+                this.f7903a.getClass();
                 elapsedRealtime = SystemClock.elapsedRealtime();
             }
             if (z10) {
                 Thread.currentThread().interrupt();
             }
         }
-        return this.f7899b;
+        return this.f7904b;
     }
 
     public final synchronized void d() {
-        this.f7899b = false;
+        this.f7904b = false;
     }
 
     public final synchronized boolean e() {
-        if (this.f7899b) {
+        if (this.f7904b) {
             return false;
         }
-        this.f7899b = true;
+        this.f7904b = true;
         notifyAll();
         return true;
     }
 
     public g(x xVar) {
-        this.f7898a = xVar;
+        this.f7903a = xVar;
     }
 }

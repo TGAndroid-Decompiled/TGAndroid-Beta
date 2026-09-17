@@ -12,12 +12,12 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.oq;
 import w7.x5;
-public final class b0 extends kl0 {
-    public ArrayList f8237c;
+public final class b0 extends ll0 {
+    public ArrayList f8242c;
     public ArrayList d;
     public ArrayList e;
 
@@ -27,7 +27,7 @@ public final class b0 extends kl0 {
     }
 
     public final void E(a0.i iVar) {
-        ArrayList arrayList = this.f8237c;
+        ArrayList arrayList = this.f8242c;
         arrayList.clear();
         ArrayList arrayList2 = this.d;
         arrayList2.clear();
@@ -49,26 +49,26 @@ public final class b0 extends kl0 {
 
     @Override
     public final int h() {
-        return this.f8237c.size();
+        return this.f8242c.size();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        a0 a0Var = (a0) c1Var.f42675a;
-        String str = (String) this.f8237c.get(i10);
+        a0 a0Var = (a0) c1Var.f42697a;
+        String str = (String) this.f8242c.get(i10);
         if (((Boolean) this.e.get(i10)).booleanValue()) {
             oq oqVar = new oq(R.drawable.mini_ephemeral_hidden_14, 0);
-            oqVar.setColorKey(i6.A6);
+            oqVar.setColorKey(j6.A6);
             oqVar.setTopOffset(1);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(oqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            a0Var.f8209a.setText(spannableStringBuilder);
+            a0Var.f8214a.setText(spannableStringBuilder);
         } else {
-            a0Var.f8209a.setText(str);
+            a0Var.f8214a.setText(str);
         }
-        a0Var.f8210b.setText((CharSequence) this.d.get(i10));
-        a0Var.f8211c = str;
+        a0Var.f8215b.setText((CharSequence) this.d.get(i10));
+        a0Var.f8216c = str;
     }
 
     @Override
@@ -78,20 +78,20 @@ public final class b0 extends kl0 {
         linearLayout.setOrientation(0);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         ai.p4 p4Var = new ai.p4(context, 2);
-        linearLayout.f8210b = p4Var;
+        linearLayout.f8215b = p4Var;
         NotificationCenter.listenEmojiLoading(p4Var);
         p4Var.setTextSize(1, 16.0f);
-        int i11 = i6.G6;
-        p4Var.setTextColor(i6.w0(null, i11, false));
+        int i11 = j6.G6;
+        p4Var.setTextColor(j6.w0(null, i11, false));
         p4Var.setTag(Integer.valueOf(i11));
         p4Var.setMaxLines(2);
         p4Var.setEllipsize(TextUtils.TruncateAt.END);
         linearLayout.addView(p4Var, x5.p(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
         TextView textView = new TextView(context);
-        linearLayout.f8209a = textView;
+        linearLayout.f8214a = textView;
         textView.setTextSize(1, 14.0f);
-        int i12 = i6.f19218y6;
-        textView.setTextColor(i6.w0(null, i12, false));
+        int i12 = j6.f19244y6;
+        textView.setTextColor(j6.w0(null, i12, false));
         textView.setTag(Integer.valueOf(i12));
         linearLayout.addView(textView, x5.o(-2, -2, 0.0f, 16));
         linearLayout.setLayoutParams(new s4.p0(-1, -2));

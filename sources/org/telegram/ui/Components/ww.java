@@ -14,14 +14,14 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class ww extends qx {
     public static final int H0 = 0;
-    public final org.telegram.ui.ActionBar.n2 E0;
+    public final org.telegram.ui.ActionBar.o2 E0;
     public final boolean F0;
     public final kz G0;
 
-    public ww(kz kzVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.n2 n2Var, boolean z10) {
-        super(kzVar, context, e6Var);
+    public ww(kz kzVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.o2 o2Var, boolean z10) {
+        super(kzVar, context, f6Var);
         this.G0 = kzVar;
-        this.E0 = n2Var;
+        this.E0 = o2Var;
         this.F0 = z10;
     }
 
@@ -36,13 +36,13 @@ public final class ww extends qx {
     @Override
     public final void o(int i10, int i11) {
         kz kzVar = this.G0;
-        org.telegram.ui.Cells.l7 l7Var = kzVar.f25714f2;
+        org.telegram.ui.Cells.l7 l7Var = kzVar.f25724f2;
         int i12 = kzVar.E1;
         int i13 = i10 - i12;
         int i14 = i11 - i12;
-        int i15 = kzVar.f25703c1;
+        int i15 = kzVar.f25713c1;
         MediaDataController mediaDataController = MediaDataController.getInstance(i15);
-        ArrayList arrayList = kzVar.f25706d1;
+        ArrayList arrayList = kzVar.f25716d1;
         arrayList.add(i14, (TLRPC.TL_messages_stickerSet) arrayList.remove(i13));
         Collections.sort(mediaDataController.getStickerSets(0), new ol(this, 1));
         ArrayList arrayList2 = kzVar.G2;
@@ -57,19 +57,19 @@ public final class ww extends qx {
         TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
         tL_messages_reorderStickerSets.masks = false;
         tL_messages_reorderStickerSets.emojis = false;
-        for (int i16 = kzVar.f25708e0; i16 < arrayList.size(); i16 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) arrayList.get(i16)).set.f18139id, tL_messages_reorderStickerSets.order, i16, 1)) {
+        for (int i16 = kzVar.f25718e0; i16 < arrayList.size(); i16 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) arrayList.get(i16)).set.f18148id, tL_messages_reorderStickerSets.order, i16, 1)) {
         }
         ConnectionsManager.getInstance(i15).sendRequest(tL_messages_reorderStickerSets, new ai.t7(13));
         NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, 0, Boolean.TRUE);
         kzVar.Y(true);
         if (SharedConfig.updateStickersOrderOnSend) {
             SharedConfig.toggleUpdateStickersOrderOnSend();
-            org.telegram.ui.ActionBar.n2 n2Var = this.E0;
-            if (n2Var != null) {
-                vc.a0(n2Var).K(R.raw.filter_reorder, LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), LocaleController.getString("Settings"), new rd(1, n2Var)).j();
+            org.telegram.ui.ActionBar.o2 o2Var = this.E0;
+            if (o2Var != null) {
+                vc.a0(o2Var).K(R.raw.filter_reorder, LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), LocaleController.getString("Settings"), new rd(1, o2Var)).j();
                 return;
             }
-            FrameLayout frameLayout = kzVar.f25747r;
+            FrameLayout frameLayout = kzVar.f25757r;
             if (frameLayout != null) {
                 new vc(frameLayout, kzVar.Z1).M(LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), R.raw.filter_reorder).j();
             }
@@ -85,7 +85,7 @@ public final class ww extends qx {
             xwVar.invalidate();
         }
         invalidate();
-        ky kyVar = kzVar.f25756t1;
+        ky kyVar = kzVar.f25766t1;
         if (kyVar != null) {
             kyVar.u();
         }
@@ -96,7 +96,7 @@ public final class ww extends qx {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
             if (!this.F0) {
-                this.G0.f25769x0.invalidate();
+                this.G0.f25779x0.invalidate();
             }
         }
     }

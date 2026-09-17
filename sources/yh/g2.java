@@ -5,20 +5,20 @@ import android.graphics.RectF;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.fk0;
 import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.wp0;
-public final class g2 implements wp0, ek0 {
-    public final KeyEvent.Callback f47214a;
+import org.telegram.ui.Components.xp0;
+public final class g2 implements xp0, fk0 {
+    public final KeyEvent.Callback f47237a;
 
     public g2(KeyEvent.Callback callback) {
-        this.f47214a = callback;
+        this.f47237a = callback;
     }
 
     @Override
     public void h(View view, zg.p0 p0Var, boolean z10, boolean z11) {
-        zg.t tVar = (zg.t) this.f47214a;
-        tVar.f49168a.ab(null, tVar.e, tVar.f49169b, view, 0.0f, 0.0f, p0Var, false, z10, z11, false);
+        zg.t tVar = (zg.t) this.f47237a;
+        tVar.f49191a.ab(null, tVar.e, tVar.f49192b, view, 0.0f, 0.0f, p0Var, false, z10, z11, false);
         AndroidUtilities.runOnUIThread(new y2(this, 8));
     }
 
@@ -39,8 +39,8 @@ public final class g2 implements wp0, ek0 {
 
     @Override
     public void u0() {
-        oc k10 = ((a4) this.f47214a).getBulletinFactory().k(false);
-        k10.f26764t = true;
+        oc k10 = ((a4) this.f47237a).getBulletinFactory().k(false);
+        k10.f26712t = true;
         k10.j();
     }
 

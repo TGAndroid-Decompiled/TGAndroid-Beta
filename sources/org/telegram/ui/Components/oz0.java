@@ -3,22 +3,23 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class oz0 extends TextView {
-    public final pz0 f26913a;
-    public boolean f26914b;
-    public boolean f26915c;
+public final class oz0 extends FrameLayout {
+    public final qz0 f26896a;
+    public boolean f26897b;
+    public boolean f26898c;
+    public boolean d;
 
-    public oz0(pz0 pz0Var, CharSequence charSequence) {
-        super(pz0Var.getContext());
-        this.f26913a = pz0Var;
-        org.telegram.ui.ActionBar.e6 e6Var = pz0Var.f27202a;
-        setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, e6Var));
-        setTypeface(AndroidUtilities.bold());
-        setTextSize(1, 14.0f);
-        setText(charSequence);
+    public oz0(qz0 qz0Var, View view, boolean z10) {
+        super(qz0Var.getContext());
+        this.f26896a = qz0Var;
+        setWillNotDraw(false);
+        if (!z10) {
+            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+        }
+        addView(view, w7.x5.c(-1.0f, -1));
     }
 
     @Override
@@ -26,50 +27,74 @@ public final class oz0 extends TextView {
         Canvas canvas2;
         float f7;
         float f10;
-        boolean z10 = this.f26914b;
-        pz0 pz0Var = this.f26913a;
-        if (z10 || this.f26915c) {
+        float f11;
+        float f12;
+        boolean z10 = this.f26898c;
+        qz0 qz0Var = this.f26896a;
+        if (z10 || this.d) {
             canvas2 = canvas;
             float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = pz0Var.f27204c;
-            if (this.f26914b) {
+            float[] fArr = qz0Var.f27464c;
+            boolean z11 = this.f26898c;
+            if (z11) {
                 f7 = dp;
             } else {
                 f7 = 0.0f;
             }
             fArr[1] = f7;
             fArr[0] = f7;
-            fArr[3] = 0.0f;
-            fArr[2] = 0.0f;
-            fArr[5] = 0.0f;
-            fArr[4] = 0.0f;
-            if (!this.f26915c) {
+            if (z11) {
+                f10 = dp;
+            } else {
+                f10 = 0.0f;
+            }
+            fArr[3] = f10;
+            fArr[2] = f10;
+            boolean z12 = this.d;
+            if (z12) {
+                f11 = dp;
+            } else {
+                f11 = 0.0f;
+            }
+            fArr[5] = f11;
+            fArr[4] = f11;
+            if (!z12) {
                 dp = 0.0f;
             }
             fArr[7] = dp;
             fArr[6] = dp;
-            pz0Var.f27203b.rewind();
+            qz0Var.f27463b.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            float f11 = pz0Var.h;
-            float width = getWidth() + pz0Var.h;
+            float f13 = qz0Var.h;
+            float width = getWidth() - qz0Var.h;
             float height = getHeight();
-            float f12 = pz0Var.h;
-            if (this.f26915c) {
-                f10 = -1.0f;
+            float f14 = qz0Var.h;
+            if (this.d) {
+                f12 = -1.0f;
             } else {
-                f10 = 1.0f;
+                f12 = 1.0f;
             }
-            rectF.set(f11, f11, width, (f12 * AndroidUtilities.dp(f10)) + height);
-            pz0Var.f27203b.addRoundRect(rectF, pz0Var.f27204c, Path.Direction.CW);
-            canvas2.drawPath(pz0Var.f27203b, pz0Var.d);
-            canvas2.drawPath(pz0Var.f27203b, pz0Var.e);
+            rectF.set(f13, f13, width, (f14 * AndroidUtilities.dp(f12)) + height);
+            qz0Var.f27463b.addRoundRect(rectF, qz0Var.f27464c, Path.Direction.CW);
+            if (this.f26897b) {
+                canvas2.drawPath(qz0Var.f27463b, qz0Var.d);
+            }
+            canvas2.drawPath(qz0Var.f27463b, qz0Var.e);
         } else {
-            float f13 = pz0Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f13, f13, getWidth() + pz0Var.h, getHeight() + pz0Var.h, pz0Var.d);
-            float f14 = pz0Var.h;
-            canvas2.drawRect(f14, f14, getWidth() + pz0Var.h, getHeight() + pz0Var.h, pz0Var.e);
+            if (this.f26897b) {
+                float f15 = qz0Var.h;
+                canvas2 = canvas;
+                canvas2.drawRect(f15, f15, getWidth() + qz0Var.h, getHeight() + qz0Var.h, qz0Var.d);
+            } else {
+                canvas2 = canvas;
+            }
+            float f16 = qz0Var.h;
+            canvas2.drawRect(f16, f16, getWidth() - qz0Var.h, getHeight() + qz0Var.h, qz0Var.e);
         }
         super.onDraw(canvas2);
+    }
+
+    public void setFilled(boolean z10) {
+        this.f26897b = z10;
     }
 }

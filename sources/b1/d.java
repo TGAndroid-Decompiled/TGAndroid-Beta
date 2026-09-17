@@ -14,9 +14,9 @@ import rd.l;
 import rd.p;
 import v7.f0;
 public abstract class d {
-    public static final a f2888a = new Object();
-    public static final LinkedHashSet f2889b;
-    public static final int f2890c;
+    public static final a f2893a = new Object();
+    public static final LinkedHashSet f2894b;
+    public static final int f2895c;
     public static final int d = 0;
 
     static {
@@ -25,14 +25,14 @@ public abstract class d {
         for (int i10 = 0; i10 < 2; i10++) {
             linkedHashSet.add(numArr[i10]);
         }
-        f2889b = linkedHashSet;
-        f2890c = 1;
+        f2894b = linkedHashSet;
+        f2895c = 1;
     }
 
     public static void a(ResultReceiver resultReceiver, Intent intent, String str) {
         i.e(resultReceiver, "resultReceiver");
         intent.putExtra("TYPE", str);
-        intent.putExtra("ACTIVITY_REQUEST_CODE", f2890c);
+        intent.putExtra("ACTIVITY_REQUEST_CODE", f2895c);
         Parcel obtain = Parcel.obtain();
         i.d(obtain, "obtain(...)");
         resultReceiver.writeToParcel(obtain, 0);
@@ -55,9 +55,9 @@ public abstract class d {
     public static final boolean c(int i10, p pVar, l lVar, CancellationSignal cancellationSignal) {
         if (i10 != -1) {
             ?? obj = new Object();
-            obj.f13686a = new w0.c(k0.j(i10, "activity with result code: ", " indicating not RESULT_OK"), 2);
+            obj.f13696a = new w0.c(k0.j(i10, "activity with result code: ", " indicating not RESULT_OK"), 2);
             if (i10 == 0) {
-                obj.f13686a = new w0.b("activity is cancelled by the user.");
+                obj.f13696a = new w0.b("activity is cancelled by the user.");
             }
             pVar.invoke(cancellationSignal, new c(lVar, obj, 0));
             return true;

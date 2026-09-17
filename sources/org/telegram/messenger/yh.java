@@ -3,32 +3,32 @@ package org.telegram.messenger;
 import android.view.View;
 import org.telegram.messenger.RichMessageLayout;
 public final class yh implements Runnable {
-    public final int f17994a = 0;
-    public final RichMessageLayout.Text f17995b;
-    public final RichMessageLayout f17996c;
+    public final int f18003a = 0;
+    public final RichMessageLayout.Text f18004b;
+    public final RichMessageLayout f18005c;
     public final View d;
 
     public yh(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
-        this.f17995b = text;
+        this.f18004b = text;
         this.d = view;
-        this.f17996c = richMessageLayout;
+        this.f18005c = richMessageLayout;
     }
 
     @Override
     public final void run() {
-        switch (this.f17994a) {
+        switch (this.f18003a) {
             case 0:
-                this.f17995b.lambda$revealSpoilers$4(this.d, this.f17996c);
+                this.f18004b.lambda$revealSpoilers$4(this.d, this.f18005c);
                 return;
             default:
-                this.f17995b.lambda$revealSpoilers$3(this.f17996c, this.d);
+                this.f18004b.lambda$revealSpoilers$3(this.f18005c, this.d);
                 return;
         }
     }
 
     public yh(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
-        this.f17995b = text;
-        this.f17996c = richMessageLayout;
+        this.f18004b = text;
+        this.f18005c = richMessageLayout;
         this.d = view;
     }
 }

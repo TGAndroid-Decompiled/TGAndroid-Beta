@@ -8,17 +8,17 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class nl implements om {
-    public final bo f36001a;
-    public final bo f36002b;
+    public final bo f36123a;
+    public final bo f36124b;
 
     public nl(bo boVar, bo boVar2) {
-        this.f36002b = boVar;
-        this.f36001a = boVar2;
+        this.f36124b = boVar;
+        this.f36123a = boVar2;
     }
 
     @Override
     public final void S0(int i10) {
-        this.f36002b.F(i10, 0, 0, 0, true, true);
+        this.f36124b.F(i10, 0, 0, 0, true, true);
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class nl implements om {
         ArrayList arrayList;
         org.telegram.ui.Components.wb wbVar;
         int i10;
-        bo boVar = this.f36002b;
+        bo boVar = this.f36124b;
         if (z10) {
             ArrayList arrayList2 = new ArrayList(boVar.H4);
             ArrayList arrayList3 = new ArrayList(boVar.J4.values());
             org.telegram.ui.Components.oc ocVar = null;
             if (z11) {
-                i10 = ((org.telegram.ui.ActionBar.n2) boVar).currentAccount;
+                i10 = ((org.telegram.ui.ActionBar.o2) boVar).currentAccount;
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
                 if (boVar.H4.isEmpty()) {
                     SharedPreferences.Editor edit = notificationsSettings.edit();
@@ -53,15 +53,15 @@ public final class nl implements om {
             boVar.B3 = true;
             int i11 = boVar.C3 + 1;
             boVar.C3 = i11;
-            boolean z12 = boVar.f32328h4;
-            bo boVar2 = this.f36001a;
+            boolean z12 = boVar.f32306h4;
+            bo boVar2 = this.f36123a;
             if (z12) {
                 G8 = boVar2.G8();
             } else {
                 G8 = boVar.G8();
             }
             int i12 = G8;
-            if (boVar.f32328h4) {
+            if (boVar.f32306h4) {
                 arrayList = boVar2.H4;
             } else {
                 arrayList = boVar.H4;
@@ -69,25 +69,25 @@ public final class nl implements om {
             ArrayList arrayList4 = new ArrayList(arrayList);
             org.telegram.messenger.y7 y7Var = new org.telegram.messenger.y7(this, z11, arrayList2, arrayList3, i12, i11);
             org.telegram.messenger.voip.l0 l0Var = new org.telegram.messenger.voip.l0(this, z11, arrayList4, i11);
-            zn znVar = boVar.f32297ea;
+            zn znVar = boVar.f32275ea;
             if (boVar.getParentActivity() == null) {
                 l0Var.run();
             } else {
                 if (z11) {
                     ?? lcVar = new org.telegram.ui.Components.lc(boVar.getParentActivity(), znVar);
                     lcVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    lcVar.f25903b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
-                    lcVar.f25904c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    lcVar.f25888b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    lcVar.f25889c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
                     wbVar = lcVar;
                 } else {
                     org.telegram.ui.Components.wb wbVar2 = new org.telegram.ui.Components.wb(boVar.getParentActivity(), znVar);
                     wbVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    wbVar2.f29682b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    wbVar2.f29623b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
                     wbVar = wbVar2;
                 }
                 org.telegram.ui.Components.mc mcVar = new org.telegram.ui.Components.mc(boVar.getParentActivity(), znVar, true);
-                mcVar.f26137a = y7Var;
-                mcVar.f26138b = l0Var;
+                mcVar.f26122a = y7Var;
+                mcVar.f26123b = l0Var;
                 wbVar.setButton(mcVar);
                 ocVar = org.telegram.ui.Components.oc.g(boVar, wbVar, 5000);
             }
@@ -96,13 +96,13 @@ public final class nl implements om {
         }
         MessageObject messageObject = (MessageObject) boVar.J4.get(Integer.valueOf(boVar.L4));
         if (messageObject == null) {
-            messageObject = (MessageObject) boVar.f32415o6[0].get(boVar.L4);
+            messageObject = (MessageObject) boVar.f32393o6[0].get(boVar.L4);
         }
         boVar.cc(messageObject);
     }
 
     @Override
     public final void s0(String str) {
-        this.f36002b.da(str, false);
+        this.f36124b.da(str, false);
     }
 }

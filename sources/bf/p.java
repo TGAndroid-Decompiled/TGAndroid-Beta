@@ -6,20 +6,20 @@ import java.io.EOFException;
 import java.io.IOException;
 import v7.i0;
 public abstract class p {
-    public final int f3546a;
-    public Object f3547b;
-    public Object f3548c;
+    public final int f3551a;
+    public Object f3552b;
+    public Object f3553c;
     public Object d;
     public Object e;
-    public Object f3549f;
+    public Object f3554f;
 
     public p() {
-        this.f3546a = 0;
-        this.f3547b = null;
-        this.f3548c = null;
+        this.f3551a = 0;
+        this.f3552b = null;
+        this.f3553c = null;
         this.d = null;
         this.e = null;
-        this.f3549f = null;
+        this.f3554f = null;
     }
 
     public abstract void a(i0 i0Var);
@@ -29,23 +29,23 @@ public abstract class p {
         pVar.e(this);
         p pVar2 = (p) this.d;
         if (pVar2 != null) {
-            pVar2.f3549f = pVar;
+            pVar2.f3554f = pVar;
             pVar.e = pVar2;
             this.d = pVar;
             return;
         }
-        this.f3548c = pVar;
+        this.f3553c = pVar;
         this.d = pVar;
     }
 
     public kf.b c() {
         mf.a aVar;
-        com.google.firebase.messaging.d dVar = (com.google.firebase.messaging.d) this.f3547b;
+        com.google.firebase.messaging.d dVar = (com.google.firebase.messaging.d) this.f3552b;
         DataInputStream dataInputStream = (DataInputStream) this.e;
-        kf.b bVar = (kf.b) this.f3549f;
+        kf.b bVar = (kf.b) this.f3554f;
         if (bVar != null) {
             while (bVar.i() > 0) {
-                if (((mf.a) ((com.google.firebase.messaging.d) bVar.f3547b)).skip(bVar.i()) == 0) {
+                if (((mf.a) ((com.google.firebase.messaging.d) bVar.f3552b)).skip(bVar.i()) == 0) {
                     throw new EOFException("Cannot skip atom");
                 }
             }
@@ -60,7 +60,7 @@ public abstract class p {
             aVar = new mf.a(dVar, 8L, readInt - 8);
         }
         kf.b bVar2 = new kf.b(aVar, this, str, 0);
-        this.f3549f = bVar2;
+        this.f3554f = bVar2;
         return bVar2;
     }
 
@@ -74,7 +74,7 @@ public abstract class p {
     }
 
     public void e(p pVar) {
-        this.f3547b = pVar;
+        this.f3552b = pVar;
     }
 
     public String f() {
@@ -84,29 +84,29 @@ public abstract class p {
     public void g() {
         p pVar = (p) this.e;
         if (pVar != null) {
-            pVar.f3549f = (p) this.f3549f;
+            pVar.f3554f = (p) this.f3554f;
         } else {
-            p pVar2 = (p) this.f3547b;
+            p pVar2 = (p) this.f3552b;
             if (pVar2 != null) {
-                pVar2.f3548c = (p) this.f3549f;
+                pVar2.f3553c = (p) this.f3554f;
             }
         }
-        p pVar3 = (p) this.f3549f;
+        p pVar3 = (p) this.f3554f;
         if (pVar3 != null) {
             pVar3.e = pVar;
         } else {
-            p pVar4 = (p) this.f3547b;
+            p pVar4 = (p) this.f3552b;
             if (pVar4 != null) {
                 pVar4.d = pVar;
             }
         }
-        this.f3547b = null;
-        this.f3549f = null;
+        this.f3552b = null;
+        this.f3554f = null;
         this.e = null;
     }
 
     public String toString() {
-        switch (this.f3546a) {
+        switch (this.f3551a) {
             case 0:
                 return getClass().getSimpleName() + "{" + f() + "}";
             default:
@@ -115,9 +115,9 @@ public abstract class p {
     }
 
     public p(com.google.firebase.messaging.d dVar, p pVar, String str) {
-        this.f3546a = 1;
-        this.f3547b = dVar;
-        this.f3548c = pVar;
+        this.f3551a = 1;
+        this.f3552b = dVar;
+        this.f3553c = pVar;
         this.d = str;
         this.e = new DataInputStream(dVar);
     }

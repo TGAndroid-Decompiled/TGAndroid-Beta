@@ -6,16 +6,16 @@ import android.view.View;
 import android.view.animation.PathInterpolator;
 import java.util.Collections;
 public final class o0 implements ValueAnimator.AnimatorUpdateListener {
-    public final v0 f41856a;
-    public final l1 f41857b;
-    public final l1 f41858c;
+    public final v0 f41878a;
+    public final l1 f41879b;
+    public final l1 f41880c;
     public final int d;
     public final View e;
 
     public o0(v0 v0Var, l1 l1Var, l1 l1Var2, int i10, View view) {
-        this.f41856a = v0Var;
-        this.f41857b = l1Var;
-        this.f41858c = l1Var2;
+        this.f41878a = v0Var;
+        this.f41879b = l1Var;
+        this.f41880c = l1Var2;
         this.d = i10;
         this.e = view;
     }
@@ -24,11 +24,11 @@ public final class o0 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         b1 x0Var;
         float animatedFraction = valueAnimator.getAnimatedFraction();
-        v0 v0Var = this.f41856a;
-        u0 u0Var = v0Var.f41878a;
+        v0 v0Var = this.f41878a;
+        u0 u0Var = v0Var.f41900a;
         u0Var.d(animatedFraction);
-        l1 l1Var = this.f41857b;
-        i1 i1Var = l1Var.f41855a;
+        l1 l1Var = this.f41879b;
+        i1 i1Var = l1Var.f41877a;
         float b10 = u0Var.b();
         PathInterpolator pathInterpolator = q0.e;
         int i10 = Build.VERSION.SDK_INT;
@@ -46,9 +46,9 @@ public final class o0 implements ValueAnimator.AnimatorUpdateListener {
                 x0Var.c(i11, i1Var.f(i11));
             } else {
                 i0.b f7 = i1Var.f(i11);
-                i0.b f10 = this.f41858c.f41855a.f(i11);
+                i0.b f10 = this.f41880c.f41877a.f(i11);
                 float f11 = 1.0f - b10;
-                x0Var.c(i11, l1.e(f7, (int) (((f7.f10588a - f10.f10588a) * f11) + 0.5d), (int) (((f7.f10589b - f10.f10589b) * f11) + 0.5d), (int) (((f7.f10590c - f10.f10590c) * f11) + 0.5d), (int) (((f7.d - f10.d) * f11) + 0.5d)));
+                x0Var.c(i11, l1.e(f7, (int) (((f7.f10591a - f10.f10591a) * f11) + 0.5d), (int) (((f7.f10592b - f10.f10592b) * f11) + 0.5d), (int) (((f7.f10593c - f10.f10593c) * f11) + 0.5d), (int) (((f7.d - f10.d) * f11) + 0.5d)));
             }
         }
         q0.g(this.e, x0Var.b(), Collections.singletonList(v0Var));

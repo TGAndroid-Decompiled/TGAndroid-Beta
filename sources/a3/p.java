@@ -6,14 +6,14 @@ import android.view.Surface;
 public final class p extends Surface {
     public static int d;
     public static boolean e;
-    public final boolean f175a;
-    public final o f176b;
-    public boolean f177c;
+    public final boolean f177a;
+    public final o f178b;
+    public boolean f179c;
 
     public p(o oVar, SurfaceTexture surfaceTexture, boolean z10) {
         super(surfaceTexture);
-        this.f176b = oVar;
-        this.f175a = z10;
+        this.f178b = oVar;
+        this.f177a = z10;
     }
 
     public static int a(android.content.Context r5) {
@@ -42,13 +42,13 @@ public final class p extends Surface {
     @Override
     public final void release() {
         super.release();
-        synchronized (this.f176b) {
+        synchronized (this.f178b) {
             try {
-                if (!this.f177c) {
-                    o oVar = this.f176b;
-                    oVar.f173b.getClass();
-                    oVar.f173b.sendEmptyMessage(2);
-                    this.f177c = true;
+                if (!this.f179c) {
+                    o oVar = this.f178b;
+                    oVar.f175b.getClass();
+                    oVar.f175b.sendEmptyMessage(2);
+                    this.f179c = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

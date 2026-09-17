@@ -1,40 +1,58 @@
 package org.telegram.ui;
 
+import android.view.View;
 import java.util.ArrayList;
-import java.util.HashSet;
-public final class fw implements Runnable {
-    public final int f33688a = 0;
-    public final uy f33689b;
-    public final ArrayList f33690c;
-    public final int d;
-    public final boolean e;
-    public final HashSet f33691f;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class fw implements View.OnLongClickListener {
+    public final int f33779a;
+    public final wy f33780b;
 
-    public fw(uy uyVar, int i10, ArrayList arrayList, boolean z10, HashSet hashSet) {
-        this.f33689b = uyVar;
-        this.d = i10;
-        this.f33690c = arrayList;
-        this.e = z10;
-        this.f33691f = hashSet;
+    public fw(wy wyVar, int i10) {
+        this.f33779a = i10;
+        this.f33780b = wyVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33688a) {
+    public final boolean onLongClick(View view) {
+        switch (this.f33779a) {
             case 0:
-                uy.p0(this.f33689b, this.d, this.f33690c, this.e, this.f33691f);
-                return;
+                wy wyVar = this.f33780b;
+                wyVar.r4(wyVar.I2, 104, true, true, null);
+                return true;
+            case 1:
+                wy wyVar2 = this.f33780b;
+                ArrayList arrayList = wyVar2.I2;
+                if (wyVar2.getParentActivity() == null) {
+                    return false;
+                }
+                boolean z10 = true;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    long longValue = ((Long) arrayList.get(i10)).longValue();
+                    if (DialogObject.isEncryptedDialog(longValue)) {
+                        z10 = false;
+                    }
+                    TLRPC.Chat chat = wyVar2.getMessagesController().getChat(Long.valueOf(-longValue));
+                    if (chat != null && !ChatObject.canWriteToChat(chat)) {
+                        z10 = false;
+                    }
+                }
+                org.telegram.ui.Components.n70 H = org.telegram.ui.Components.n70.H(wyVar2, view);
+                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new rv(wyVar2, 19), false);
+                H.l(R.drawable.msg_calendar2, LocaleController.getString(R.string.ScheduleMessage), new rv(wyVar2, 20), z10);
+                H.Z();
+                return true;
+            case 2:
+                this.f33780b.p4(view);
+                return true;
             default:
-                this.f33689b.r4(this.f33690c, this.d, false, this.e, this.f33691f);
-                return;
+                wy wyVar3 = this.f33780b;
+                wyVar3.getContactsController().loadGlobalPrivacySetting();
+                wyVar3.K4();
+                return true;
         }
-    }
-
-    public fw(uy uyVar, ArrayList arrayList, int i10, boolean z10, HashSet hashSet) {
-        this.f33689b = uyVar;
-        this.f33690c = arrayList;
-        this.d = i10;
-        this.e = z10;
-        this.f33691f = hashSet;
     }
 }

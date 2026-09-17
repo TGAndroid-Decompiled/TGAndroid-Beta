@@ -3,15 +3,15 @@ package a3;
 import java.util.concurrent.Executor;
 import org.telegram.messenger.AndroidUtilities;
 public final class b implements Executor {
-    public final int f68a;
+    public final int f70a;
 
     public b(int i10) {
-        this.f68a = i10;
+        this.f70a = i10;
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        switch (this.f68a) {
+        switch (this.f70a) {
             case 0:
                 return;
             case 1:

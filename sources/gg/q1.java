@@ -2,12 +2,12 @@ package gg;
 
 import android.view.ViewGroup;
 import ci.eb;
-import org.telegram.ui.Components.kl0;
-public final class q1 extends kl0 {
-    public k1 f9897c;
+import org.telegram.ui.Components.ll0;
+public final class q1 extends ll0 {
+    public k1 f9902c;
     public Integer d;
     public eb e;
-    public boolean f9898f;
+    public boolean f9903f;
     public int h;
 
     @Override
@@ -15,12 +15,12 @@ public final class q1 extends kl0 {
         if (c1Var.b() == 0) {
             return false;
         }
-        return this.f9897c.D(c1Var);
+        return this.f9902c.D(c1Var);
     }
 
     @Override
     public final int h() {
-        k1 k1Var = this.f9897c;
+        k1 k1Var = this.f9902c;
         int K = k1Var.K();
         k1Var.L0 = K;
         return K + 1;
@@ -31,13 +31,13 @@ public final class q1 extends kl0 {
         if (i10 == 0) {
             return -983904;
         }
-        return this.f9897c.j(i10 - 1);
+        return this.f9902c.j(i10 - 1);
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         if (i10 > 0) {
-            this.f9897c.v(c1Var, i10 - 1);
+            this.f9902c.v(c1Var, i10 - 1);
         }
     }
 
@@ -48,6 +48,6 @@ public final class q1 extends kl0 {
             this.e = ebVar;
             return new s4.c1(ebVar);
         }
-        return this.f9897c.x(viewGroup, i10);
+        return this.f9902c.x(viewGroup, i10);
     }
 }

@@ -19,11 +19,11 @@ public final class il extends org.telegram.ui.Components.vb0 {
         MessageObject messageObject;
         rn rnVar;
         bo boVar = this.H;
-        rn rnVar2 = boVar.f32377l5;
-        if (rnVar2 != null && (messageObject = rnVar2.f37153a) != null && ((rnVar = boVar.f32305f5.quote) == null || rnVar.f37153a == null || messageObject.getId() == boVar.f32305f5.quote.f37153a.getId())) {
+        rn rnVar2 = boVar.f32355l5;
+        if (rnVar2 != null && (messageObject = rnVar2.f37271a) != null && ((rnVar = boVar.f32283f5.quote) == null || rnVar.f37271a == null || messageObject.getId() == boVar.f32283f5.quote.f37271a.getId())) {
             return;
         }
-        boVar.f32377l5 = boVar.f32305f5.quote;
+        boVar.f32355l5 = boVar.f32283f5.quote;
     }
 
     @Override
@@ -37,10 +37,10 @@ public final class il extends org.telegram.ui.Components.vb0 {
         int i12 = 0;
         a(false);
         bo boVar = this.H;
-        MessagePreviewParams messagePreviewParams = boVar.f32305f5;
+        MessagePreviewParams messagePreviewParams = boVar.f32283f5;
         if (messagePreviewParams != null) {
             if (!z10) {
-                boVar.f32389m5 = true;
+                boVar.f32367m5 = true;
             }
             MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
             if (messages2 != null) {
@@ -48,7 +48,7 @@ public final class il extends org.telegram.ui.Components.vb0 {
                 i10 = 0;
                 z11 = false;
                 for (int i13 = 0; i13 < size; i13++) {
-                    MessageObject messageObject = boVar.f32305f5.forwardMessages.messages.get(i13);
+                    MessageObject messageObject = boVar.f32283f5.forwardMessages.messages.get(i13);
                     if (messageObject.isTodo()) {
                         i10 = 3;
                     } else if (messageObject.isPoll()) {
@@ -70,26 +70,26 @@ public final class il extends org.telegram.ui.Components.vb0 {
             }
             Bundle e = org.telegram.messenger.w1.e(3, "onlySelect", "dialogsType", true);
             e.putBoolean("quote", !z10);
-            if (!z10 && (messages = boVar.f32305f5.replyMessage) != null && !messages.messages.isEmpty() && boVar.f32305f5.quote == null) {
+            if (!z10 && (messages = boVar.f32283f5.replyMessage) != null && !messages.messages.isEmpty() && boVar.f32283f5.quote == null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
             e.putBoolean("reply_to", z12);
-            if (z12 && (DialogObject.getPeerDialogId(boVar.f32305f5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != boVar.a() && peerDialogId != boVar.getUserConfig().getClientUserId() && i11 > 0) {
+            if (z12 && (DialogObject.getPeerDialogId(boVar.f32283f5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != boVar.a() && peerDialogId != boVar.getUserConfig().getClientUserId() && i11 > 0) {
                 e.putLong("reply_to_author", peerDialogId);
             }
             e.putInt("hasPoll", i10);
             e.putBoolean("hasInvoice", z11);
-            MessagePreviewParams.Messages messages3 = boVar.f32305f5.forwardMessages;
+            MessagePreviewParams.Messages messages3 = boVar.f32283f5.forwardMessages;
             if (messages3 != null) {
                 i12 = messages3.messages.size();
             }
             e.putInt("messagesCount", i12);
             e.putBoolean("canSelectTopics", true);
-            uy uyVar = new uy(e);
-            uyVar.C2 = boVar;
-            boVar.presentFragment(uyVar);
+            wy wyVar = new wy(e);
+            wyVar.C2 = boVar;
+            boVar.presentFragment(wyVar);
         }
     }
 }

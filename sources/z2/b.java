@@ -9,9 +9,9 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.Arrays;
 public abstract class b {
-    public static final Object f48077a = new Object();
-    public static final Object f48078b = new Object();
-    public static boolean f48079c;
+    public static final Object f48100a = new Object();
+    public static final Object f48101b = new Object();
+    public static boolean f48102c;
     public static long d;
 
     public static long a() {
@@ -20,7 +20,7 @@ public abstract class b {
         byte[] bArr;
         DatagramSocket datagramSocket = new DatagramSocket();
         try {
-            synchronized (f48078b) {
+            synchronized (f48101b) {
             }
             datagramSocket.setSoTimeout(1000);
             c();
@@ -119,7 +119,7 @@ public abstract class b {
     }
 
     public static void c() {
-        synchronized (f48078b) {
+        synchronized (f48101b) {
         }
     }
 

@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
-public final class va0 extends i81 {
-    public final vb0 T;
+public final class va0 extends j81 {
+    public final vb0 U;
 
     public va0(vb0 vb0Var, Context context, rb0 rb0Var) {
         super(context, rb0Var);
-        this.T = vb0Var;
+        this.U = vb0Var;
     }
 
     @Override
@@ -16,13 +16,13 @@ public final class va0 extends i81 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.T.f28681f.e;
+            View[] viewArr = this.U.f28674f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     pb0 pb0Var = (pb0) view;
-                    if (pb0Var.f26996a == 0) {
-                        z10 = pb0Var.e.f19952i;
+                    if (pb0Var.f26983a == 0) {
+                        z10 = pb0Var.e.f19962i;
                         break;
                     }
                 }
@@ -35,7 +35,7 @@ public final class va0 extends i81 {
         if (z10) {
             return false;
         }
-        return A(motionEvent);
+        return B(motionEvent);
     }
 
     @Override
@@ -48,8 +48,8 @@ public final class va0 extends i81 {
 
     @Override
     public final void w(boolean z10) {
-        vb0 vb0Var = this.T;
-        vb0Var.e.setSelectedTab(vb0Var.f28681f.getPositionAnimated());
+        vb0 vb0Var = this.U;
+        vb0Var.e.setSelectedTab(vb0Var.f28674f.getPositionAnimated());
         View[] viewArr = this.e;
         View view = viewArr[0];
         if (view instanceof pb0) {

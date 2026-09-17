@@ -12,13 +12,13 @@ public final class g6 extends pg.c1 {
 
     @Override
     public final void g(pg.m mVar) {
-        int indexOf = pg.m.f40912a.indexOf(mVar);
+        int indexOf = pg.m.f40934a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;
         }
         qb qbVar = this.E;
-        qbVar.f5423k1.b(indexOf);
+        qbVar.f5428k1.b(indexOf);
         qbVar.b(mVar);
     }
 }

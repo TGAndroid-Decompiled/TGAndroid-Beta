@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 public final class e implements ja.a {
     public static final a e = new a(0);
-    public static final b f13566f = new ia.f() {
+    public static final b f13569f = new ia.f() {
         @Override
         public final void a(Object obj, Object obj2) {
             switch (r1) {
@@ -30,31 +30,31 @@ public final class e implements ja.a {
             }
         }
     };
-    public static final d f13567n = new Object();
-    public final HashMap f13568a;
-    public final HashMap f13569b;
-    public final a f13570c;
+    public static final d f13570n = new Object();
+    public final HashMap f13571a;
+    public final HashMap f13572b;
+    public final a f13573c;
     public boolean d;
 
     public e() {
         HashMap hashMap = new HashMap();
-        this.f13568a = hashMap;
+        this.f13571a = hashMap;
         HashMap hashMap2 = new HashMap();
-        this.f13569b = hashMap2;
-        this.f13570c = e;
+        this.f13572b = hashMap2;
+        this.f13573c = e;
         this.d = false;
-        hashMap2.put(String.class, f13566f);
+        hashMap2.put(String.class, f13569f);
         hashMap.remove(String.class);
         hashMap2.put(Boolean.class, h);
         hashMap.remove(Boolean.class);
-        hashMap2.put(Date.class, f13567n);
+        hashMap2.put(Date.class, f13570n);
         hashMap.remove(Date.class);
     }
 
     @Override
     public final ja.a m(Class cls, ia.d dVar) {
-        this.f13568a.put(cls, dVar);
-        this.f13569b.remove(cls);
+        this.f13571a.put(cls, dVar);
+        this.f13572b.remove(cls);
         return this;
     }
 }

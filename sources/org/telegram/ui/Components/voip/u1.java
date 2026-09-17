@@ -40,51 +40,51 @@ public final class u1 extends FrameLayout {
     public float U;
     public float V;
     public float W;
-    public float f29278a;
-    public float f29279a0;
-    public float f29280b;
-    public boolean f29281b0;
-    public float f29282c;
-    public boolean f29283c0;
+    public float f29255a;
+    public float f29256a0;
+    public float f29257b;
+    public boolean f29258b0;
+    public float f29259c;
+    public boolean f29260c0;
     public float d;
-    public ValueAnimator f29284d0;
+    public ValueAnimator f29261d0;
     public boolean e;
-    public final l6 f29285e0;
-    public int f29286f;
-    public ValueAnimator f29287f0;
-    public final r0 f29288g0;
+    public final l6 f29262e0;
+    public int f29263f;
+    public ValueAnimator f29264f0;
+    public final r0 f29265g0;
     public int h;
-    public View.OnClickListener f29289h0;
-    public t1 f29290i0;
-    public long f29291j0;
-    public WindowInsets f29292n;
-    public final float f29293r;
-    public final Path f29294s;
+    public View.OnClickListener f29266h0;
+    public t1 f29267i0;
+    public long f29268j0;
+    public WindowInsets f29269n;
+    public final float f29270r;
+    public final Path f29271s;
     public final RectF v;
-    public final Paint f29295w;
-    public final Drawable f29296x;
-    public float f29297y;
+    public final Paint f29272w;
+    public final Drawable f29273x;
+    public float f29274y;
 
     public u1(Activity activity) {
         super(activity);
-        this.f29294s = new Path();
+        this.f29271s = new Path();
         this.v = new RectF();
         new Paint(1);
         Paint paint = new Paint(1);
-        this.f29295w = paint;
-        this.f29297y = -1.0f;
+        this.f29272w = paint;
+        this.f29274y = -1.0f;
         this.E = -1.0f;
         this.J = 0.0f;
         this.K = 0.0f;
         this.Q = -1.0f;
         this.R = true;
-        this.f29285e0 = new l6(this, 10);
-        this.f29288g0 = new r0(this, 3);
-        this.f29293r = ViewConfiguration.get(activity).getScaledTouchSlop();
+        this.f29262e0 = new l6(this, 10);
+        this.f29265g0 = new r0(this, 3);
+        this.f29270r = ViewConfiguration.get(activity).getScaledTouchSlop();
         setOutlineProvider(new ch.b(this, 4));
         setClipToOutline(true);
         paint.setColor(i0.a.k(-16777216, 102));
-        this.f29296x = activity.getDrawable(R.drawable.calls_mute_mini);
+        this.f29273x = activity.getDrawable(R.drawable.calls_mute_mini);
     }
 
     public final void a() {
@@ -100,18 +100,18 @@ public final class u1 extends FrameLayout {
     public final void b() {
         float systemWindowInsetTop;
         float systemWindowInsetBottom;
-        if (getMeasuredWidth() > 0 && this.f29297y < 0.0f) {
+        if (getMeasuredWidth() > 0 && this.f29274y < 0.0f) {
             ViewParent parent = getParent();
             if (parent == null) {
                 return;
             }
-            WindowInsets windowInsets = this.f29292n;
+            WindowInsets windowInsets = this.f29269n;
             if (windowInsets == null) {
                 systemWindowInsetTop = 0.0f;
             } else {
                 systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
             }
-            WindowInsets windowInsets2 = this.f29292n;
+            WindowInsets windowInsets2 = this.f29269n;
             if (windowInsets2 == null) {
                 systemWindowInsetBottom = 0.0f;
             } else {
@@ -148,7 +148,7 @@ public final class u1 extends FrameLayout {
             this.M = true;
             this.N = z10;
             f();
-            float f10 = this.f29297y;
+            float f10 = this.f29274y;
             if (f10 >= 0.0f) {
                 u1Var = this;
                 u1Var.e(f10, this.E, (int) (getMeasuredWidth() * 0.23f), (int) (getMeasuredHeight() * 0.23f), false);
@@ -162,18 +162,18 @@ public final class u1 extends FrameLayout {
             setTranslationX(0.0f);
             setTranslationY(0.0f);
             invalidate();
-            ValueAnimator valueAnimator = u1Var.f29284d0;
+            ValueAnimator valueAnimator = u1Var.f29261d0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(u1Var.J, 1.0f);
-            u1Var.f29284d0 = ofFloat;
-            ofFloat.addUpdateListener(u1Var.f29285e0);
-            u1Var.f29284d0.setDuration(300L);
-            u1Var.f29284d0.start();
+            u1Var.f29261d0 = ofFloat;
+            ofFloat.addUpdateListener(u1Var.f29262e0);
+            u1Var.f29261d0.setDuration(300L);
+            u1Var.f29261d0.start();
             animate().setListener(null).cancel();
             ViewPropertyAnimator duration = animate().scaleX(0.23f).scaleY(0.23f).translationX(translationX - ((getMeasuredWidth() - (getMeasuredWidth() * 0.23f)) / 2.0f)).translationY(translationY - ((getMeasuredHeight() - (getMeasuredHeight() * 0.23f)) / 2.0f)).alpha(1.0f).setStartDelay(0L).setDuration(300L);
-            qr qrVar = qr.f27423f;
+            qr qrVar = qr.f27380f;
             duration.setInterpolator(qrVar).setListener(new le.c(this, translationX, translationY, 1)).setInterpolator(qrVar).start();
         } else if (!z10 && this.M) {
             this.N = z10;
@@ -202,7 +202,7 @@ public final class u1 extends FrameLayout {
             e(f7, f10, getMeasuredWidth(), getMeasuredHeight(), true);
             return;
         }
-        this.f29297y = f7;
+        this.f29274y = f7;
         this.E = f10;
     }
 
@@ -210,23 +210,23 @@ public final class u1 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         u1 u1Var;
         if (this.W >= 0.0f) {
-            if (!this.f29283c0) {
+            if (!this.f29260c0) {
                 animate().setListener(null).cancel();
             }
             setTranslationX(this.W);
-            setTranslationY(this.f29279a0);
-            if (!this.f29283c0) {
+            setTranslationY(this.f29256a0);
+            if (!this.f29260c0) {
                 setScaleX(1.0f);
                 setScaleY(1.0f);
                 setAlpha(1.0f);
             }
             this.W = -1.0f;
-            this.f29279a0 = -1.0f;
+            this.f29256a0 = -1.0f;
         }
-        if (this.f29297y >= 0.0f && this.M && getMeasuredWidth() > 0) {
+        if (this.f29274y >= 0.0f && this.M && getMeasuredWidth() > 0) {
             u1Var = this;
-            u1Var.e(this.f29297y, this.E, getMeasuredWidth(), getMeasuredHeight(), false);
-            u1Var.f29297y = -1.0f;
+            u1Var.e(this.f29274y, this.E, getMeasuredWidth(), getMeasuredHeight(), false);
+            u1Var.f29274y = -1.0f;
             u1Var.E = -1.0f;
         } else {
             u1Var = this;
@@ -245,8 +245,8 @@ public final class u1 extends FrameLayout {
         float f7 = measuredWidth;
         float f10 = measuredHeight;
         canvas.scale((1.0f / getScaleX()) * u1Var.J * u1Var.K, (1.0f / getScaleY()) * u1Var.J * u1Var.K, f7, f10);
-        canvas.drawCircle(f7, f10, AndroidUtilities.dp(14.0f), u1Var.f29295w);
-        Drawable drawable = u1Var.f29296x;
+        canvas.drawCircle(f7, f10, AndroidUtilities.dp(14.0f), u1Var.f29272w);
+        Drawable drawable = u1Var.f29273x;
         drawable.setBounds(wl.w(2, measuredWidth, drawable), wl.e(2, measuredHeight, drawable), wl.B(2, measuredWidth, drawable), wl.z(2, measuredHeight, drawable));
         drawable.draw(canvas);
         canvas.restore();
@@ -263,12 +263,12 @@ public final class u1 extends FrameLayout {
         ViewParent parent = getParent();
         if (parent != null && this.M && !this.O && this.R) {
             float f11 = 0.0f;
-            if (this.f29292n == null) {
+            if (this.f29269n == null) {
                 systemWindowInsetTop = 0.0f;
             } else {
                 systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
             }
-            if (this.f29292n != null) {
+            if (this.f29269n != null) {
                 f11 = windowInsets2.getSystemWindowInsetBottom() + this.I;
             }
             View view = (View) parent;
@@ -282,7 +282,7 @@ public final class u1 extends FrameLayout {
                 } else {
                     j3 = 150;
                 }
-                alpha.setStartDelay(j3).setDuration(150L).setInterpolator(qr.f27423f).start();
+                alpha.setStartDelay(j3).setDuration(150L).setInterpolator(qr.f27380f).start();
                 return;
             }
             if (!this.S) {
@@ -327,24 +327,24 @@ public final class u1 extends FrameLayout {
             size = (int) (size * 0.23f);
             size2 = (int) (size2 * 0.23f);
             this.P = true;
-        } else if (!this.f29281b0) {
+        } else if (!this.f29258b0) {
             setTranslationX(0.0f);
             setTranslationY(0.0f);
         }
-        t1 t1Var = this.f29290i0;
+        t1 t1Var = this.f29267i0;
         if (t1Var != null) {
-            ((bi1) t1Var).f32173b.f37702d0.d(this.J, this.P);
+            ((bi1) t1Var).f32188b.f37765d0.d(this.J, this.P);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        if (getMeasuredHeight() != this.f29286f && getMeasuredWidth() != this.h) {
-            Path path = this.f29294s;
+        if (getMeasuredHeight() != this.f29263f && getMeasuredWidth() != this.h) {
+            Path path = this.f29271s;
             path.reset();
             RectF rectF = this.v;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             path.addRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Path.Direction.CW);
             path.toggleInverseFillType();
         }
-        this.f29286f = getMeasuredHeight();
+        this.f29263f = getMeasuredHeight();
         this.h = getMeasuredWidth();
         f();
     }
@@ -360,11 +360,11 @@ public final class u1 extends FrameLayout {
     }
 
     public void setDelegate(t1 t1Var) {
-        this.f29290i0 = t1Var;
+        this.f29267i0 = t1Var;
     }
 
     public void setInsets(WindowInsets windowInsets) {
-        this.f29292n = windowInsets;
+        this.f29269n = windowInsets;
     }
 
     public void setIsActive(boolean z10) {
@@ -372,7 +372,7 @@ public final class u1 extends FrameLayout {
     }
 
     public void setOnTapListener(View.OnClickListener onClickListener) {
-        this.f29289h0 = onClickListener;
+        this.f29266h0 = onClickListener;
     }
 
     public void setRelativePosition(u1 u1Var) {
@@ -382,13 +382,13 @@ public final class u1 extends FrameLayout {
         if (parent == null) {
             return;
         }
-        WindowInsets windowInsets = this.f29292n;
+        WindowInsets windowInsets = this.f29269n;
         if (windowInsets == null) {
             systemWindowInsetTop = 0.0f;
         } else {
             systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
         }
-        WindowInsets windowInsets2 = this.f29292n;
+        WindowInsets windowInsets2 = this.f29269n;
         if (windowInsets2 == null) {
             systemWindowInsetBottom = 0.0f;
         } else {

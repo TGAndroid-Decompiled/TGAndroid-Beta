@@ -6,7 +6,7 @@ import android.util.Log;
 import e6.q;
 import java.util.ArrayList;
 public abstract class j {
-    public static final g6.b f9006a = new g6.b("MediaSessionUtils", null);
+    public static final g6.b f9011a = new g6.b("MediaSessionUtils", null);
 
     public static ArrayList a(q qVar) {
         try {
@@ -16,8 +16,8 @@ public abstract class j {
             return createTypedArrayList;
         } catch (RemoteException e) {
             Object[] objArr = {"getNotificationActions", q.class.getSimpleName()};
-            g6.b bVar = f9006a;
-            Log.e(bVar.f9425a, bVar.d("Unable to call %s on %s.", objArr), e);
+            g6.b bVar = f9011a;
+            Log.e(bVar.f9430a, bVar.d("Unable to call %s on %s.", objArr), e);
             return null;
         }
     }
@@ -30,8 +30,8 @@ public abstract class j {
             return createIntArray;
         } catch (RemoteException e) {
             Object[] objArr = {"getCompactViewActionIndices", q.class.getSimpleName()};
-            g6.b bVar = f9006a;
-            Log.e(bVar.f9425a, bVar.d("Unable to call %s on %s.", objArr), e);
+            g6.b bVar = f9011a;
+            Log.e(bVar.f9430a, bVar.d("Unable to call %s on %s.", objArr), e);
             return null;
         }
     }

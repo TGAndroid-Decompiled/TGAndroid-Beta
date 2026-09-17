@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hu implements ky {
-    public final ju f24802a;
+    public final ju f24738a;
 
     public hu(ju juVar) {
-        this.f24802a = juVar;
+        this.f24738a = juVar;
     }
 
     @Override
@@ -51,18 +51,18 @@ public final class hu implements ky {
     @Override
     public final void i(int i10) {
         boolean z10;
-        ju juVar = this.f24802a;
+        ju juVar = this.f24738a;
         if (juVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            juVar.f25430x = z10;
+            juVar.f25438x = z10;
             juVar.y();
-            pv0 pv0Var = juVar.f25425f;
-            if (pv0Var != null) {
-                pv0Var.S();
+            qv0 qv0Var = juVar.f25433f;
+            if (qv0Var != null) {
+                qv0Var.S();
             }
         }
     }
@@ -74,7 +74,7 @@ public final class hu implements ky {
 
     @Override
     public final boolean k() {
-        eu euVar = this.f24802a.f25422a;
+        eu euVar = this.f24738a.f25430a;
         if (euVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class hu implements ky {
 
     @Override
     public final void l(String str) {
-        eu euVar = this.f24802a.f25422a;
+        eu euVar = this.f24738a.f25430a;
         int selectionEnd = euVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class hu implements ky {
 
     @Override
     public final void n() {
-        ju juVar = this.f24802a;
+        ju juVar = this.f24738a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(juVar.getContext(), 0, juVar.M);
-        alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18437a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new r81(this));
+        alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18446a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s81(this));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.n2 n2Var = juVar.h;
-        if (n2Var != null) {
-            n2Var.showDialog(alertDialog$Builder.f18437a);
+        org.telegram.ui.ActionBar.o2 o2Var = juVar.h;
+        if (o2Var != null) {
+            o2Var.showDialog(alertDialog$Builder.f18446a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,19 +122,19 @@ public final class hu implements ky {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f24802a.h;
-        if (n2Var == null) {
-            new rg.x0((org.telegram.ui.ActionBar.n2) new ai.y3(this, 4), 11, false).show();
+        org.telegram.ui.ActionBar.o2 o2Var = this.f24738a.h;
+        if (o2Var == null) {
+            new rg.x0((org.telegram.ui.ActionBar.o2) new ai.y3(this, 4), 11, false).show();
         } else {
-            n2Var.showDialog(new rg.x0(n2Var, 11, false));
+            o2Var.showDialog(new rg.x0(o2Var, 11, false));
         }
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         x5 x5Var;
-        ju juVar = this.f24802a;
-        eu euVar = juVar.f25422a;
+        ju juVar = this.f24738a;
+        eu euVar = juVar.f25430a;
         int selectionEnd = euVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class hu implements ky {
             } else {
                 x5Var = new x5(j3, euVar.getPaint().getFontMetricsInt());
             }
-            x5Var.cacheType = juVar.d.f25701c;
+            x5Var.cacheType = juVar.d.f25711c;
             spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
             euVar.setText(euVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class hu implements ky {
 
     @Override
     public final boolean z() {
-        return this.f24802a.f25430x;
+        return this.f24738a.f25438x;
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class hu implements ky {
     }
 
     @Override
-    public final void o(e51 e51Var) {
+    public final void o(f51 f51Var) {
     }
 
     @Override

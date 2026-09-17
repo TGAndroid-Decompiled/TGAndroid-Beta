@@ -1,32 +1,32 @@
 package c3;
 public class k implements b0 {
-    public final long f3776a;
-    public final long f3777b;
-    public final int f3778c;
+    public final long f3781a;
+    public final long f3782b;
+    public final int f3783c;
     public final long d;
     public final int e;
-    public final long f3779f;
-    public final boolean f3780g;
+    public final long f3784f;
+    public final boolean f3785g;
 
     public k(long j3, int i10, int i11, boolean z10, long j10) {
-        this.f3776a = j3;
-        this.f3777b = j10;
-        this.f3778c = i11 == -1 ? 1 : i11;
+        this.f3781a = j3;
+        this.f3782b = j10;
+        this.f3783c = i11 == -1 ? 1 : i11;
         this.e = i10;
-        this.f3780g = z10;
+        this.f3785g = z10;
         if (j3 == -1) {
             this.d = -1L;
-            this.f3779f = -9223372036854775807L;
+            this.f3784f = -9223372036854775807L;
             return;
         }
         long j11 = j3 - j10;
         this.d = j11;
-        this.f3779f = (Math.max(0L, j11) * 8000000) / i10;
+        this.f3784f = (Math.max(0L, j11) * 8000000) / i10;
     }
 
     @Override
     public final boolean f() {
-        if (this.d == -1 && !this.f3780g) {
+        if (this.d == -1 && !this.f3785g) {
             return false;
         }
         return true;
@@ -34,15 +34,15 @@ public class k implements b0 {
 
     @Override
     public final a0 j(long j3) {
-        long j10 = this.f3777b;
+        long j10 = this.f3782b;
         long j11 = this.d;
         int i10 = (j11 > (-1L) ? 1 : (j11 == (-1L) ? 0 : -1));
-        if (i10 == 0 && !this.f3780g) {
+        if (i10 == 0 && !this.f3785g) {
             c0 c0Var = new c0(0L, j10);
             return new a0(c0Var, c0Var);
         }
         int i11 = this.e;
-        long j12 = this.f3778c;
+        long j12 = this.f3783c;
         long j13 = (((i11 * j3) / 8000000) / j12) * j12;
         if (i10 != 0) {
             j13 = Math.min(j13, j11 - j12);
@@ -52,7 +52,7 @@ public class k implements b0 {
         c0 c0Var2 = new c0(max2, max);
         if (i10 != 0 && max2 < j3) {
             long j14 = max + j12;
-            if (j14 < this.f3776a) {
+            if (j14 < this.f3781a) {
                 return new a0(c0Var2, new c0((Math.max(0L, j14 - j10) * 8000000) / i11, j14));
             }
         }
@@ -61,6 +61,6 @@ public class k implements b0 {
 
     @Override
     public final long l() {
-        return this.f3779f;
+        return this.f3784f;
     }
 }

@@ -7,49 +7,49 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class x10 {
-    public w10[] f29845a;
-    public w10 f29846b;
-    public w10 f29847c;
+    public w10[] f29806a;
+    public w10 f29807b;
+    public w10 f29808c;
     public w10 d;
     public float e;
-    public float f29848f;
-    public float f29849g;
+    public float f29809f;
+    public float f29810g;
     public float h;
-    public float f29850i;
-    public long f29851j;
-    public float f29852k;
-    public ArrayList f29853l;
-    public Paint f29854m;
-    public Path f29855n;
+    public float f29811i;
+    public long f29812j;
+    public float f29813k;
+    public ArrayList f29814l;
+    public Paint f29815m;
+    public Path f29816n;
 
     public final void a(float f7) {
-        this.f29849g = f7;
+        this.f29810g = f7;
         float f10 = this.e;
         this.h = (f7 - f10) / 250.0f;
-        this.f29850i = (f7 - f10) / 120.0f;
+        this.f29811i = (f7 - f10) / 120.0f;
     }
 
     public final void b(int i10, boolean z10) {
         w10 w10Var;
-        w10 w10Var2 = this.f29846b;
-        if (w10Var2 != null && w10Var2.f29525i == i10) {
+        w10 w10Var2 = this.f29807b;
+        if (w10Var2 != null && w10Var2.f29478i == i10) {
             return;
         }
-        if (VoIPService.getSharedInstance() == null && this.f29846b == null) {
-            this.f29846b = this.d;
+        if (VoIPService.getSharedInstance() == null && this.f29807b == null) {
+            this.f29807b = this.d;
             return;
         }
         if (z10) {
-            w10Var = this.f29846b;
+            w10Var = this.f29807b;
         } else {
             w10Var = null;
         }
-        this.f29847c = w10Var;
-        this.f29846b = this.f29845a[i10];
+        this.f29808c = w10Var;
+        this.f29807b = this.f29806a[i10];
         if (w10Var != null) {
-            this.f29852k = 0.0f;
+            this.f29813k = 0.0f;
         } else {
-            this.f29852k = 1.0f;
+            this.f29813k = 1.0f;
         }
     }
 

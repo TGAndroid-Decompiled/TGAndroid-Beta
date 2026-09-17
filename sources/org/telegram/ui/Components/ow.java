@@ -12,10 +12,10 @@ public final class ow extends jz {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.h hVar;
+        ah.i iVar;
         super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d.f25726j2) != null) {
-            hVar.f(i10, i11);
+        if (Build.VERSION.SDK_INT >= 31 && (iVar = this.d.f25736j2) != null) {
+            iVar.f(i10, i11);
         }
     }
 }

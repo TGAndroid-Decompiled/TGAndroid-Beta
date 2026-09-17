@@ -5,21 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.kl0;
-public final class g0 extends kl0 {
-    public final Context f10292c;
+import org.telegram.ui.Components.ll0;
+public final class g0 extends ll0 {
+    public final Context f10297c;
     public final ArrayList d = new ArrayList();
     public String e;
-    public final i0 f10293f;
+    public final i0 f10298f;
 
     public g0(i0 i0Var, Context context) {
-        this.f10293f = i0Var;
-        this.f10292c = context;
+        this.f10298f = i0Var;
+        this.f10297c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42678f == 0) {
+        if (c1Var.f42700f == 0) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public final class g0 extends kl0 {
     @Override
     public final void l() {
         super.l();
-        this.f10293f.L();
+        this.f10298f.L();
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class g0 extends kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View x1Var;
-        Context context = this.f10292c;
+        Context context = this.f10297c;
         if (i10 != 0) {
             if (i10 != 1) {
                 x1Var = new View(context);
@@ -66,7 +66,7 @@ public final class g0 extends kl0 {
                 x1Var.setTag(-33024);
             }
         } else {
-            x1Var = new x1(context, this.f10293f.f26461a, false);
+            x1Var = new x1(context, this.f10298f.f26459a, false);
         }
         return new s4.c1(x1Var);
     }

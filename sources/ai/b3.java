@@ -5,19 +5,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.n70;
 public final class b3 implements View.OnLongClickListener {
-    public final int f571a;
-    public final f6 f572b;
+    public final int f576a;
+    public final f6 f577b;
 
     public b3(f6 f6Var, int i10) {
-        this.f571a = i10;
-        this.f572b = f6Var;
+        this.f576a = i10;
+        this.f577b = f6Var;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f571a) {
+        switch (this.f576a) {
             case 0:
-                f6 f6Var = this.f572b;
+                f6 f6Var = this.f577b;
                 boolean z10 = false;
                 if (f6Var.D0(true)) {
                     return false;
@@ -33,7 +33,7 @@ public final class b3 implements View.OnLongClickListener {
                 F.Z();
                 return true;
             default:
-                f6 f6Var2 = this.f572b;
+                f6 f6Var2 = this.f577b;
                 f6Var2.L0.k(f6Var2.D0(false));
                 return true;
         }

@@ -2,48 +2,26 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import java.util.ArrayList;
 public final class m0 extends AnimatorListenerAdapter {
-    public final int f19400a;
-    public final ArrayList f19401b;
-    public final v0 f19402c;
+    public final int f19395a;
+    public final w0 f19396b;
 
-    public m0(v0 v0Var, ArrayList arrayList, int i10) {
-        this.f19400a = i10;
-        this.f19402c = v0Var;
-        this.f19401b = arrayList;
+    public m0(w0 w0Var, int i10) {
+        this.f19395a = i10;
+        this.f19396b = w0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f19400a) {
+        switch (this.f19395a) {
             case 0:
-                v0 v0Var = this.f19402c;
-                v0Var.F.setAlpha(0.0f);
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f19401b;
-                    if (i10 < arrayList.size()) {
-                        ((View) arrayList.get(i10)).setAlpha(1.0f);
-                        i10++;
-                    } else {
-                        v0Var.F.setVisibility(8);
-                        return;
-                    }
-                }
+                w0 w0Var = this.f19396b;
+                w0Var.f19626s.setVisibility(4);
+                w0Var.v = null;
+                return;
             default:
-                this.f19402c.F.setAlpha(1.0f);
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f19401b;
-                    if (i11 < arrayList2.size()) {
-                        ((View) arrayList2.get(i11)).setAlpha(0.0f);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
+                this.f19396b.v = null;
+                return;
         }
     }
 }

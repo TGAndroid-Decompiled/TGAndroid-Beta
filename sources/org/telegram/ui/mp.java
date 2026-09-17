@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
 public final class mp implements Runnable {
-    public final int f35785a;
-    public final wp f35786b;
-    public final org.telegram.ui.ActionBar.b2[] f35787c;
+    public final int f35857a;
+    public final wp f35858b;
+    public final org.telegram.ui.ActionBar.c2[] f35859c;
     public final int d;
 
-    public mp(wp wpVar, org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11) {
-        this.f35785a = i11;
-        this.f35786b = wpVar;
-        this.f35787c = b2VarArr;
+    public mp(wp wpVar, org.telegram.ui.ActionBar.c2[] c2VarArr, int i10, int i11) {
+        this.f35857a = i11;
+        this.f35858b = wpVar;
+        this.f35859c = c2VarArr;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f35785a) {
+        switch (this.f35857a) {
             case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f35787c;
-                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-                if (b2Var != null) {
-                    final wp wpVar = this.f35786b;
+                org.telegram.ui.ActionBar.c2[] c2VarArr = this.f35859c;
+                org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+                if (c2Var != null) {
+                    final wp wpVar = this.f35858b;
                     final int i10 = this.d;
-                    b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    c2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
@@ -37,17 +37,17 @@ public final class mp implements Runnable {
                             }
                         }
                     });
-                    wpVar.showDialog(b2VarArr[0]);
+                    wpVar.showDialog(c2VarArr[0]);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f35787c;
-                org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
-                if (b2Var2 != null) {
-                    final wp wpVar2 = this.f35786b;
+                org.telegram.ui.ActionBar.c2[] c2VarArr2 = this.f35859c;
+                org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr2[0];
+                if (c2Var2 != null) {
+                    final wp wpVar2 = this.f35858b;
                     final int i11 = this.d;
-                    b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    c2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
@@ -60,7 +60,7 @@ public final class mp implements Runnable {
                             }
                         }
                     });
-                    wpVar2.showDialog(b2VarArr2[0]);
+                    wpVar2.showDialog(c2VarArr2[0]);
                     return;
                 }
                 return;

@@ -7,31 +7,31 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public class kc extends lb {
-    public final u9 f25586a;
-    public final TextView f25587b;
-    public final TextView f25588c;
+    public final u9 f25611a;
+    public final TextView f25612b;
+    public final TextView f25613c;
 
-    public kc(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.i6.Hi);
+    public kc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.j6.Hi);
         u9 u9Var = new u9(context);
-        this.f25586a = u9Var;
+        this.f25611a = u9Var;
         addView(u9Var, w7.x5.i(29.0f, 29.0f, 8388627, 12.0f, 12.0f, 12.0f, 12.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.x5.i(-2.0f, -2.0f, 8388627, 54.0f, 8.0f, 12.0f, 8.0f));
         TextView textView = new TextView(context);
-        this.f25587b = textView;
+        this.f25612b = textView;
         textView.setSingleLine();
         textView.setTextColor(themedColor);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(textView);
         TextView textView2 = new TextView(context);
-        this.f25588c = textView2;
+        this.f25613c = textView2;
         textView2.setMaxLines(2);
         textView2.setTextColor(themedColor);
-        textView2.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.Gi));
+        textView2.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
         textView2.setMovementMethod(new LinkMovementMethod());
         textView2.setTypeface(Typeface.SANS_SERIF);
         textView2.setTextSize(1, 13.0f);
@@ -40,6 +40,6 @@ public class kc extends lb {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f25587b.getText()) + ".\n" + ((Object) this.f25588c.getText());
+        return ((Object) this.f25612b.getText()) + ".\n" + ((Object) this.f25613c.getText());
     }
 }

@@ -8,10 +8,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class gy implements View.OnClickListener {
-    public final jy f24466a;
+    public final jy f24414a;
 
     public gy(jy jyVar) {
-        this.f24466a = jyVar;
+        this.f24414a = jyVar;
     }
 
     @Override
@@ -19,9 +19,9 @@ public final class gy implements View.OnClickListener {
         int i10;
         int i11;
         boolean[] zArr = new boolean[1];
-        jy jyVar = this.f24466a;
+        jy jyVar = this.f24414a;
         kz kzVar = jyVar.F;
-        org.telegram.ui.ActionBar.a3 a3Var = new org.telegram.ui.ActionBar.a3(kzVar.getContext(), null);
+        org.telegram.ui.ActionBar.b3 b3Var = new org.telegram.ui.ActionBar.b3(kzVar.getContext(), null);
         LinearLayout linearLayout = new LinearLayout(kzVar.getContext());
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
@@ -31,7 +31,7 @@ public final class gy implements View.OnClickListener {
         TextView textView = new TextView(kzVar.getContext());
         textView.setText(LocaleController.getString(R.string.EmojiSuggestions));
         textView.setTextSize(1, 15.0f);
-        int i12 = org.telegram.ui.ActionBar.i6.f19020n5;
+        int i12 = org.telegram.ui.ActionBar.j6.f19046n5;
         int i13 = kz.N2;
         textView.setTextColor(kzVar.z(i12));
         int i14 = 3;
@@ -46,7 +46,7 @@ public final class gy implements View.OnClickListener {
         TextView textView2 = new TextView(kzVar.getContext());
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EmojiSuggestionsInfo)));
         textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(kzVar.z(org.telegram.ui.ActionBar.i6.f18943j5));
+        textView2.setTextColor(kzVar.z(org.telegram.ui.ActionBar.j6.f18969j5));
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
@@ -56,20 +56,20 @@ public final class gy implements View.OnClickListener {
         linearLayout.addView(textView2, w7.x5.t(-2, -2, 51, 0, 11, 0, 0));
         TextView textView3 = new TextView(kzVar.getContext());
         int i15 = R.string.EmojiSuggestionsUrl;
-        Object obj = jyVar.f25455w;
+        Object obj = jyVar.f25463w;
         if (obj == null) {
             obj = kzVar.W0;
         }
         textView3.setText(LocaleController.formatString("EmojiSuggestionsUrl", i15, obj));
         textView3.setTextSize(1, 15.0f);
-        textView3.setTextColor(kzVar.z(org.telegram.ui.ActionBar.i6.f18963k5));
+        textView3.setTextColor(kzVar.z(org.telegram.ui.ActionBar.j6.f18989k5));
         if (LocaleController.isRTL) {
             i14 = 5;
         }
         textView3.setGravity(i14);
         linearLayout.addView(textView3, w7.x5.t(-2, -2, 51, 0, 18, 0, 16));
-        textView3.setOnClickListener(new fy(this, zArr, a3Var));
-        a3Var.b(linearLayout);
-        a3Var.f18442a.show();
+        textView3.setOnClickListener(new fy(this, zArr, b3Var));
+        b3Var.b(linearLayout);
+        b3Var.f18470a.show();
     }
 }

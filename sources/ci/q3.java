@@ -7,8 +7,8 @@ public final class q3 extends np {
     public final int d;
     public final ViewGroup e;
 
-    public q3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, 21, e6Var);
+    public q3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, 21, f6Var);
         this.d = i10;
         this.e = viewGroup;
     }
@@ -31,8 +31,8 @@ public final class q3 extends np {
         }
     }
 
-    public q3(s3 s3Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 24, e6Var);
+    public q3(s3 s3Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 24, f6Var);
         this.d = 0;
         this.e = s3Var;
     }

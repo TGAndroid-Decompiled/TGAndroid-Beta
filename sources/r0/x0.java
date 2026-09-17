@@ -7,24 +7,24 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 public final class x0 extends b1 {
     public static Field e = null;
-    public static boolean f41883f = false;
-    public static Constructor f41884g = null;
+    public static boolean f41905f = false;
+    public static Constructor f41906g = null;
     public static boolean h = false;
-    public WindowInsets f41885c;
+    public WindowInsets f41907c;
     public i0.b d;
 
     public x0() {
-        this.f41885c = i();
+        this.f41907c = i();
     }
 
     private static WindowInsets i() {
-        if (!f41883f) {
+        if (!f41905f) {
             try {
                 e = WindowInsets.class.getDeclaredField("CONSUMED");
             } catch (ReflectiveOperationException e7) {
                 Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets.CONSUMED field", e7);
             }
-            f41883f = true;
+            f41905f = true;
         }
         Field field = e;
         if (field != null) {
@@ -39,13 +39,13 @@ public final class x0 extends b1 {
         }
         if (!h) {
             try {
-                f41884g = WindowInsets.class.getConstructor(Rect.class);
+                f41906g = WindowInsets.class.getConstructor(Rect.class);
             } catch (ReflectiveOperationException e11) {
                 Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets(Rect) constructor", e11);
             }
             h = true;
         }
-        Constructor constructor = f41884g;
+        Constructor constructor = f41906g;
         if (constructor != null) {
             try {
                 return (WindowInsets) constructor.newInstance(new Rect());
@@ -59,9 +59,9 @@ public final class x0 extends b1 {
     @Override
     public l1 b() {
         a();
-        l1 h10 = l1.h(null, this.f41885c);
-        i0.b[] bVarArr = this.f41814b;
-        i1 i1Var = h10.f41855a;
+        l1 h10 = l1.h(null, this.f41907c);
+        i0.b[] bVarArr = this.f41836b;
+        i1 i1Var = h10.f41877a;
         i1Var.q(bVarArr);
         i1Var.s(this.d);
         return h10;
@@ -74,14 +74,14 @@ public final class x0 extends b1 {
 
     @Override
     public void g(i0.b bVar) {
-        WindowInsets windowInsets = this.f41885c;
+        WindowInsets windowInsets = this.f41907c;
         if (windowInsets != null) {
-            this.f41885c = windowInsets.replaceSystemWindowInsets(bVar.f10588a, bVar.f10589b, bVar.f10590c, bVar.d);
+            this.f41907c = windowInsets.replaceSystemWindowInsets(bVar.f10591a, bVar.f10592b, bVar.f10593c, bVar.d);
         }
     }
 
     public x0(l1 l1Var) {
         super(l1Var);
-        this.f41885c = l1Var.g();
+        this.f41907c = l1Var.g();
     }
 }

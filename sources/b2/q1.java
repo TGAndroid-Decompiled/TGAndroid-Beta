@@ -28,54 +28,54 @@ public class q1 {
     public static final String X;
     public static final String Y;
     public static final String Z;
-    public static final String f3200a0;
-    public static final String f3201b0;
-    public static final String f3202c0;
-    public static final String f3203d0;
-    public static final String f3204e0;
-    public static final String f3205f0;
-    public static final String f3206g0;
-    public static final String f3207h0;
-    public static final String f3208i0;
-    public static final String f3209j0;
-    public static final String f3210k0;
-    public static final String f3211l0;
+    public static final String f3205a0;
+    public static final String f3206b0;
+    public static final String f3207c0;
+    public static final String f3208d0;
+    public static final String f3209e0;
+    public static final String f3210f0;
+    public static final String f3211g0;
+    public static final String f3212h0;
+    public static final String f3213i0;
+    public static final String f3214j0;
+    public static final String f3215k0;
+    public static final String f3216l0;
     public static final String m0;
-    public static final String f3212n0;
+    public static final String f3217n0;
     public final boolean A;
     public final boolean B;
     public final boolean C;
     public final e9.k0 D;
     public final e9.m0 E;
-    public final int f3213a;
-    public final int f3214b;
-    public final int f3215c;
+    public final int f3218a;
+    public final int f3219b;
+    public final int f3220c;
     public final int d;
     public final int e;
-    public final int f3216f;
-    public final int f3217g;
+    public final int f3221f;
+    public final int f3222g;
     public final int h;
-    public final int f3218i;
-    public final int f3219j;
-    public final boolean f3220k;
-    public final boolean f3221l;
-    public final e9.i0 f3222m;
-    public final e9.i0 f3223n;
-    public final int f3224o;
-    public final e9.i0 f3225p;
-    public final int f3226q;
-    public final int f3227r;
-    public final int f3228s;
-    public final e9.i0 f3229t;
-    public final o1 f3230u;
+    public final int f3223i;
+    public final int f3224j;
+    public final boolean f3225k;
+    public final boolean f3226l;
+    public final e9.i0 f3227m;
+    public final e9.i0 f3228n;
+    public final int f3229o;
+    public final e9.i0 f3230p;
+    public final int f3231q;
+    public final int f3232r;
+    public final int f3233s;
+    public final e9.i0 f3234t;
+    public final o1 f3235u;
     public final e9.i0 v;
-    public final int f3231w;
-    public final boolean f3232x;
-    public final int f3233y;
-    public final boolean f3234z;
+    public final int f3236w;
+    public final boolean f3237x;
+    public final int f3238y;
+    public final boolean f3239z;
 
     static {
-        String str = e2.d0.f7883a;
+        String str = e2.d0.f7888a;
         G = Integer.toString(1, 36);
         H = Integer.toString(2, 36);
         I = Integer.toString(3, 36);
@@ -96,49 +96,49 @@ public class q1 {
         X = Integer.toString(18, 36);
         Y = Integer.toString(19, 36);
         Z = Integer.toString(20, 36);
-        f3200a0 = Integer.toString(21, 36);
-        f3201b0 = Integer.toString(22, 36);
-        f3202c0 = Integer.toString(23, 36);
-        f3203d0 = Integer.toString(24, 36);
-        f3204e0 = Integer.toString(25, 36);
-        f3205f0 = Integer.toString(26, 36);
-        f3206g0 = Integer.toString(27, 36);
-        f3207h0 = Integer.toString(28, 36);
-        f3208i0 = Integer.toString(29, 36);
-        f3209j0 = Integer.toString(30, 36);
-        f3210k0 = Integer.toString(31, 36);
-        f3211l0 = Integer.toString(32, 36);
+        f3205a0 = Integer.toString(21, 36);
+        f3206b0 = Integer.toString(22, 36);
+        f3207c0 = Integer.toString(23, 36);
+        f3208d0 = Integer.toString(24, 36);
+        f3209e0 = Integer.toString(25, 36);
+        f3210f0 = Integer.toString(26, 36);
+        f3211g0 = Integer.toString(27, 36);
+        f3212h0 = Integer.toString(28, 36);
+        f3213i0 = Integer.toString(29, 36);
+        f3214j0 = Integer.toString(30, 36);
+        f3215k0 = Integer.toString(31, 36);
+        f3216l0 = Integer.toString(32, 36);
         m0 = Integer.toString(33, 36);
-        f3212n0 = Integer.toString(34, 36);
+        f3217n0 = Integer.toString(34, 36);
     }
 
     public q1(p1 p1Var) {
-        this.f3213a = p1Var.f3175a;
-        this.f3214b = p1Var.f3176b;
-        this.f3215c = p1Var.f3177c;
+        this.f3218a = p1Var.f3180a;
+        this.f3219b = p1Var.f3181b;
+        this.f3220c = p1Var.f3182c;
         this.d = p1Var.d;
         this.e = p1Var.e;
-        this.f3216f = p1Var.f3178f;
-        this.f3217g = p1Var.f3179g;
+        this.f3221f = p1Var.f3183f;
+        this.f3222g = p1Var.f3184g;
         this.h = p1Var.h;
-        this.f3218i = p1Var.f3180i;
-        this.f3219j = p1Var.f3181j;
-        this.f3220k = p1Var.f3182k;
-        this.f3221l = p1Var.f3183l;
-        this.f3222m = p1Var.f3184m;
-        this.f3223n = p1Var.f3185n;
-        this.f3224o = p1Var.f3186o;
-        this.f3225p = p1Var.f3187p;
-        this.f3226q = p1Var.f3188q;
-        this.f3227r = p1Var.f3189r;
-        this.f3228s = p1Var.f3190s;
-        this.f3229t = p1Var.f3191t;
-        this.f3230u = p1Var.f3192u;
+        this.f3223i = p1Var.f3185i;
+        this.f3224j = p1Var.f3186j;
+        this.f3225k = p1Var.f3187k;
+        this.f3226l = p1Var.f3188l;
+        this.f3227m = p1Var.f3189m;
+        this.f3228n = p1Var.f3190n;
+        this.f3229o = p1Var.f3191o;
+        this.f3230p = p1Var.f3192p;
+        this.f3231q = p1Var.f3193q;
+        this.f3232r = p1Var.f3194r;
+        this.f3233s = p1Var.f3195s;
+        this.f3234t = p1Var.f3196t;
+        this.f3235u = p1Var.f3197u;
         this.v = p1Var.v;
-        this.f3231w = p1Var.f3193w;
-        this.f3232x = p1Var.f3194x;
-        this.f3233y = p1Var.f3195y;
-        this.f3234z = p1Var.f3196z;
+        this.f3236w = p1Var.f3198w;
+        this.f3237x = p1Var.f3199x;
+        this.f3238y = p1Var.f3200y;
+        this.f3239z = p1Var.f3201z;
         this.A = p1Var.A;
         this.B = p1Var.B;
         this.C = p1Var.C;
@@ -152,85 +152,85 @@ public class q1 {
         e9.a1 j3;
         ?? obj = new Object();
         q1 q1Var = F;
-        obj.f3175a = bundle.getInt(L, q1Var.f3213a);
-        obj.f3176b = bundle.getInt(M, q1Var.f3214b);
-        obj.f3177c = bundle.getInt(N, q1Var.f3215c);
+        obj.f3180a = bundle.getInt(L, q1Var.f3218a);
+        obj.f3181b = bundle.getInt(M, q1Var.f3219b);
+        obj.f3182c = bundle.getInt(N, q1Var.f3220c);
         obj.d = bundle.getInt(O, q1Var.d);
         obj.e = bundle.getInt(P, q1Var.e);
-        obj.f3178f = bundle.getInt(Q, q1Var.f3216f);
-        obj.f3179g = bundle.getInt(R, q1Var.f3217g);
+        obj.f3183f = bundle.getInt(Q, q1Var.f3221f);
+        obj.f3184g = bundle.getInt(R, q1Var.f3222g);
         obj.h = bundle.getInt(S, q1Var.h);
-        obj.f3180i = bundle.getInt(T, q1Var.f3218i);
-        int i10 = bundle.getInt(U, q1Var.f3219j);
-        obj.f3181j = i10;
+        obj.f3185i = bundle.getInt(T, q1Var.f3223i);
+        int i10 = bundle.getInt(U, q1Var.f3224j);
+        obj.f3186j = i10;
         boolean z11 = true;
-        if (obj.f3180i == Integer.MAX_VALUE && i10 == Integer.MAX_VALUE && bundle.getBoolean(m0, q1Var.f3220k)) {
+        if (obj.f3185i == Integer.MAX_VALUE && i10 == Integer.MAX_VALUE && bundle.getBoolean(m0, q1Var.f3225k)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        obj.f3182k = z10;
-        obj.f3183l = bundle.getBoolean(V, q1Var.f3221l);
+        obj.f3187k = z10;
+        obj.f3188l = bundle.getBoolean(V, q1Var.f3226l);
         String[] stringArray = bundle.getStringArray(W);
         String[] strArr = new String[0];
         if (stringArray == null) {
             stringArray = strArr;
         }
-        obj.f3184m = e9.i0.w(stringArray);
-        String[] stringArray2 = bundle.getStringArray(f3211l0);
+        obj.f3189m = e9.i0.w(stringArray);
+        String[] stringArray2 = bundle.getStringArray(f3216l0);
         String[] strArr2 = new String[0];
         if (stringArray2 == null) {
             stringArray2 = strArr2;
         }
-        obj.f3185n = e9.i0.w(stringArray2);
-        obj.f3186o = bundle.getInt(f3204e0, q1Var.f3224o);
+        obj.f3190n = e9.i0.w(stringArray2);
+        obj.f3191o = bundle.getInt(f3209e0, q1Var.f3229o);
         String[] stringArray3 = bundle.getStringArray(G);
         String[] strArr3 = new String[0];
         if (stringArray3 == null) {
             stringArray3 = strArr3;
         }
-        obj.f3187p = p1.e(stringArray3);
-        obj.f3188q = bundle.getInt(H, q1Var.f3226q);
-        obj.f3189r = bundle.getInt(X, q1Var.f3227r);
-        obj.f3190s = bundle.getInt(Y, q1Var.f3228s);
+        obj.f3192p = p1.e(stringArray3);
+        obj.f3193q = bundle.getInt(H, q1Var.f3231q);
+        obj.f3194r = bundle.getInt(X, q1Var.f3232r);
+        obj.f3195s = bundle.getInt(Y, q1Var.f3233s);
         String[] stringArray4 = bundle.getStringArray(Z);
         String[] strArr4 = new String[0];
         if (stringArray4 == null) {
             stringArray4 = strArr4;
         }
-        obj.f3191t = e9.i0.w(stringArray4);
-        Bundle bundle2 = bundle.getBundle(f3209j0);
+        obj.f3196t = e9.i0.w(stringArray4);
+        Bundle bundle2 = bundle.getBundle(f3214j0);
         if (bundle2 != null) {
             n1 n1Var = new n1(0);
             String str = o1.e;
             o1 o1Var2 = o1.d;
-            n1Var.f3159a = bundle2.getInt(str, o1Var2.f3167a);
-            n1Var.f3160b = bundle2.getBoolean(o1.f3165f, o1Var2.f3168b);
-            n1Var.f3161c = bundle2.getBoolean(o1.f3166g, o1Var2.f3169c);
+            n1Var.f3164a = bundle2.getInt(str, o1Var2.f3172a);
+            n1Var.f3165b = bundle2.getBoolean(o1.f3170f, o1Var2.f3173b);
+            n1Var.f3166c = bundle2.getBoolean(o1.f3171g, o1Var2.f3174c);
             o1Var = new o1(n1Var);
         } else {
             n1 n1Var2 = new n1(0);
             o1 o1Var3 = o1.d;
-            n1Var2.f3159a = bundle.getInt(f3206g0, o1Var3.f3167a);
-            n1Var2.f3160b = bundle.getBoolean(f3207h0, o1Var3.f3168b);
-            n1Var2.f3161c = bundle.getBoolean(f3208i0, o1Var3.f3169c);
+            n1Var2.f3164a = bundle.getInt(f3211g0, o1Var3.f3172a);
+            n1Var2.f3165b = bundle.getBoolean(f3212h0, o1Var3.f3173b);
+            n1Var2.f3166c = bundle.getBoolean(f3213i0, o1Var3.f3174c);
             o1Var = new o1(n1Var2);
         }
-        obj.f3192u = o1Var;
+        obj.f3197u = o1Var;
         String[] stringArray5 = bundle.getStringArray(I);
         String[] strArr5 = new String[0];
         if (stringArray5 == null) {
             stringArray5 = strArr5;
         }
         obj.v = p1.e(stringArray5);
-        obj.f3193w = bundle.getInt(J, q1Var.f3231w);
-        obj.f3194x = (obj.v.isEmpty() && obj.f3193w == 0 && bundle.getBoolean(f3212n0, q1Var.f3232x)) ? false : false;
-        obj.f3195y = bundle.getInt(f3205f0, q1Var.f3233y);
-        obj.f3196z = bundle.getBoolean(K, q1Var.f3234z);
-        obj.A = bundle.getBoolean(f3210k0, q1Var.A);
-        obj.B = bundle.getBoolean(f3200a0, q1Var.B);
-        obj.C = bundle.getBoolean(f3201b0, q1Var.C);
-        ArrayList parcelableArrayList = bundle.getParcelableArrayList(f3202c0);
+        obj.f3198w = bundle.getInt(J, q1Var.f3236w);
+        obj.f3199x = (obj.v.isEmpty() && obj.f3198w == 0 && bundle.getBoolean(f3217n0, q1Var.f3237x)) ? false : false;
+        obj.f3200y = bundle.getInt(f3210f0, q1Var.f3238y);
+        obj.f3201z = bundle.getBoolean(K, q1Var.f3239z);
+        obj.A = bundle.getBoolean(f3215k0, q1Var.A);
+        obj.B = bundle.getBoolean(f3205a0, q1Var.B);
+        obj.C = bundle.getBoolean(f3206b0, q1Var.C);
+        ArrayList parcelableArrayList = bundle.getParcelableArrayList(f3207c0);
         if (parcelableArrayList == null) {
             j3 = e9.a1.e;
         } else {
@@ -239,9 +239,9 @@ public class q1 {
         obj.D = new HashMap();
         for (int i11 = 0; i11 < j3.d; i11++) {
             m1 m1Var = (m1) j3.get(i11);
-            obj.D.put(m1Var.f3113a, m1Var);
+            obj.D.put(m1Var.f3118a, m1Var);
         }
-        int[] intArray = bundle.getIntArray(f3203d0);
+        int[] intArray = bundle.getIntArray(f3208d0);
         int[] iArr = new int[0];
         if (intArray == null) {
             intArray = iArr;
@@ -261,57 +261,57 @@ public class q1 {
 
     public Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(L, this.f3213a);
-        bundle.putInt(M, this.f3214b);
-        bundle.putInt(N, this.f3215c);
+        bundle.putInt(L, this.f3218a);
+        bundle.putInt(M, this.f3219b);
+        bundle.putInt(N, this.f3220c);
         bundle.putInt(O, this.d);
         bundle.putInt(P, this.e);
-        bundle.putInt(Q, this.f3216f);
-        bundle.putInt(R, this.f3217g);
+        bundle.putInt(Q, this.f3221f);
+        bundle.putInt(R, this.f3222g);
         bundle.putInt(S, this.h);
-        bundle.putInt(T, this.f3218i);
-        bundle.putInt(U, this.f3219j);
-        bundle.putBoolean(m0, this.f3220k);
-        bundle.putBoolean(V, this.f3221l);
-        e9.i0 i0Var = this.f3222m;
+        bundle.putInt(T, this.f3223i);
+        bundle.putInt(U, this.f3224j);
+        bundle.putBoolean(m0, this.f3225k);
+        bundle.putBoolean(V, this.f3226l);
+        e9.i0 i0Var = this.f3227m;
         bundle.putStringArray(W, (String[]) i0Var.toArray(new String[0]));
-        bundle.putStringArray(f3211l0, (String[]) this.f3223n.toArray(new String[0]));
-        bundle.putInt(f3204e0, this.f3224o);
-        bundle.putStringArray(G, (String[]) this.f3225p.toArray(new String[0]));
-        bundle.putInt(H, this.f3226q);
-        bundle.putInt(X, this.f3227r);
-        bundle.putInt(Y, this.f3228s);
-        bundle.putStringArray(Z, (String[]) this.f3229t.toArray(new String[0]));
+        bundle.putStringArray(f3216l0, (String[]) this.f3228n.toArray(new String[0]));
+        bundle.putInt(f3209e0, this.f3229o);
+        bundle.putStringArray(G, (String[]) this.f3230p.toArray(new String[0]));
+        bundle.putInt(H, this.f3231q);
+        bundle.putInt(X, this.f3232r);
+        bundle.putInt(Y, this.f3233s);
+        bundle.putStringArray(Z, (String[]) this.f3234t.toArray(new String[0]));
         bundle.putStringArray(I, (String[]) this.v.toArray(new String[0]));
-        bundle.putInt(J, this.f3231w);
-        bundle.putBoolean(f3212n0, this.f3232x);
-        bundle.putInt(f3205f0, this.f3233y);
-        bundle.putBoolean(K, this.f3234z);
-        o1 o1Var = this.f3230u;
-        bundle.putInt(f3206g0, o1Var.f3167a);
-        boolean z10 = o1Var.f3168b;
-        bundle.putBoolean(f3207h0, z10);
-        boolean z11 = o1Var.f3169c;
-        bundle.putBoolean(f3208i0, z11);
+        bundle.putInt(J, this.f3236w);
+        bundle.putBoolean(f3217n0, this.f3237x);
+        bundle.putInt(f3210f0, this.f3238y);
+        bundle.putBoolean(K, this.f3239z);
+        o1 o1Var = this.f3235u;
+        bundle.putInt(f3211g0, o1Var.f3172a);
+        boolean z10 = o1Var.f3173b;
+        bundle.putBoolean(f3212h0, z10);
+        boolean z11 = o1Var.f3174c;
+        bundle.putBoolean(f3213i0, z11);
         Bundle bundle2 = new Bundle();
-        bundle2.putInt(o1.e, o1Var.f3167a);
-        bundle2.putBoolean(o1.f3165f, z10);
-        bundle2.putBoolean(o1.f3166g, z11);
-        bundle.putBundle(f3209j0, bundle2);
-        bundle.putBoolean(f3210k0, this.A);
-        bundle.putBoolean(f3200a0, this.B);
-        bundle.putBoolean(f3201b0, this.C);
+        bundle2.putInt(o1.e, o1Var.f3172a);
+        bundle2.putBoolean(o1.f3170f, z10);
+        bundle2.putBoolean(o1.f3171g, z11);
+        bundle.putBundle(f3214j0, bundle2);
+        bundle.putBoolean(f3215k0, this.A);
+        bundle.putBoolean(f3205a0, this.B);
+        bundle.putBoolean(f3206b0, this.C);
         e9.d0<m1> values = this.D.values();
         ArrayList<? extends Parcelable> arrayList = new ArrayList<>(values.size());
         for (m1 m1Var : values) {
             m1Var.getClass();
             Bundle bundle3 = new Bundle();
-            bundle3.putBundle(m1.f3112c, m1Var.f3113a.c());
-            bundle3.putIntArray(m1.d, y7.f(m1Var.f3114b));
+            bundle3.putBundle(m1.f3117c, m1Var.f3118a.c());
+            bundle3.putIntArray(m1.d, y7.f(m1Var.f3119b));
             arrayList.add(bundle3);
         }
-        bundle.putParcelableArrayList(f3202c0, arrayList);
-        bundle.putIntArray(f3203d0, y7.f(this.E));
+        bundle.putParcelableArrayList(f3207c0, arrayList);
+        bundle.putIntArray(f3208d0, y7.f(this.E));
         return bundle;
     }
 
@@ -321,7 +321,7 @@ public class q1 {
         }
         if (obj != null && getClass() == obj.getClass()) {
             q1 q1Var = (q1) obj;
-            if (this.f3213a == q1Var.f3213a && this.f3214b == q1Var.f3214b && this.f3215c == q1Var.f3215c && this.d == q1Var.d && this.e == q1Var.e && this.f3216f == q1Var.f3216f && this.f3217g == q1Var.f3217g && this.h == q1Var.h && this.f3221l == q1Var.f3221l && this.f3218i == q1Var.f3218i && this.f3219j == q1Var.f3219j && this.f3220k == q1Var.f3220k && this.f3222m.equals(q1Var.f3222m) && this.f3223n.equals(q1Var.f3223n) && this.f3224o == q1Var.f3224o && this.f3225p.equals(q1Var.f3225p) && this.f3226q == q1Var.f3226q && this.f3227r == q1Var.f3227r && this.f3228s == q1Var.f3228s && this.f3229t.equals(q1Var.f3229t) && this.f3230u.equals(q1Var.f3230u) && this.v.equals(q1Var.v) && this.f3231w == q1Var.f3231w && this.f3232x == q1Var.f3232x && this.f3233y == q1Var.f3233y && this.f3234z == q1Var.f3234z && this.A == q1Var.A && this.B == q1Var.B && this.C == q1Var.C) {
+            if (this.f3218a == q1Var.f3218a && this.f3219b == q1Var.f3219b && this.f3220c == q1Var.f3220c && this.d == q1Var.d && this.e == q1Var.e && this.f3221f == q1Var.f3221f && this.f3222g == q1Var.f3222g && this.h == q1Var.h && this.f3226l == q1Var.f3226l && this.f3223i == q1Var.f3223i && this.f3224j == q1Var.f3224j && this.f3225k == q1Var.f3225k && this.f3227m.equals(q1Var.f3227m) && this.f3228n.equals(q1Var.f3228n) && this.f3229o == q1Var.f3229o && this.f3230p.equals(q1Var.f3230p) && this.f3231q == q1Var.f3231q && this.f3232r == q1Var.f3232r && this.f3233s == q1Var.f3233s && this.f3234t.equals(q1Var.f3234t) && this.f3235u.equals(q1Var.f3235u) && this.v.equals(q1Var.v) && this.f3236w == q1Var.f3236w && this.f3237x == q1Var.f3237x && this.f3238y == q1Var.f3238y && this.f3239z == q1Var.f3239z && this.A == q1Var.A && this.B == q1Var.B && this.C == q1Var.C) {
                 e9.k0 k0Var = q1Var.D;
                 e9.k0 k0Var2 = this.D;
                 k0Var2.getClass();
@@ -334,13 +334,13 @@ public class q1 {
     }
 
     public int hashCode() {
-        int hashCode = this.f3222m.hashCode();
-        int hashCode2 = this.f3223n.hashCode();
-        int hashCode3 = this.f3225p.hashCode();
-        int hashCode4 = this.f3229t.hashCode();
-        int hashCode5 = this.f3230u.hashCode();
+        int hashCode = this.f3227m.hashCode();
+        int hashCode2 = this.f3228n.hashCode();
+        int hashCode3 = this.f3230p.hashCode();
+        int hashCode4 = this.f3234t.hashCode();
+        int hashCode5 = this.f3235u.hashCode();
         int hashCode6 = this.v.hashCode();
         int hashCode7 = this.D.hashCode();
-        return this.E.hashCode() + ((hashCode7 + ((((((((((((((((hashCode6 + ((hashCode5 + ((hashCode4 + ((((((((hashCode3 + ((((hashCode2 + ((hashCode + ((((((((((((((((((((((((this.f3213a + 31) * 31) + this.f3214b) * 31) + this.f3215c) * 31) + this.d) * 31) + this.e) * 31) + this.f3216f) * 31) + this.f3217g) * 31) + this.h) * 31) + (this.f3221l ? 1 : 0)) * 31) + this.f3218i) * 31) + this.f3219j) * 31) + (this.f3220k ? 1 : 0)) * 31)) * 31)) * 31) + this.f3224o) * 31)) * 31) + this.f3226q) * 31) + this.f3227r) * 31) + this.f3228s) * 31)) * 31)) * 31)) * 31) + this.f3231w) * 31) + (this.f3232x ? 1 : 0)) * 31) + this.f3233y) * 31) + (this.f3234z ? 1 : 0)) * 31) + (this.A ? 1 : 0)) * 31) + (this.B ? 1 : 0)) * 31) + (this.C ? 1 : 0)) * 31)) * 31);
+        return this.E.hashCode() + ((hashCode7 + ((((((((((((((((hashCode6 + ((hashCode5 + ((hashCode4 + ((((((((hashCode3 + ((((hashCode2 + ((hashCode + ((((((((((((((((((((((((this.f3218a + 31) * 31) + this.f3219b) * 31) + this.f3220c) * 31) + this.d) * 31) + this.e) * 31) + this.f3221f) * 31) + this.f3222g) * 31) + this.h) * 31) + (this.f3226l ? 1 : 0)) * 31) + this.f3223i) * 31) + this.f3224j) * 31) + (this.f3225k ? 1 : 0)) * 31)) * 31)) * 31) + this.f3229o) * 31)) * 31) + this.f3231q) * 31) + this.f3232r) * 31) + this.f3233s) * 31)) * 31)) * 31)) * 31) + this.f3236w) * 31) + (this.f3237x ? 1 : 0)) * 31) + this.f3238y) * 31) + (this.f3239z ? 1 : 0)) * 31) + (this.A ? 1 : 0)) * 31) + (this.B ? 1 : 0)) * 31) + (this.C ? 1 : 0)) * 31)) * 31);
     }
 }

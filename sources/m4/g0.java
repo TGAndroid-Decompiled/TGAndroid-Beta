@@ -1,13 +1,13 @@
 package m4;
 public final class g0 implements Runnable {
-    public final int f14534a;
-    public final Object f14535b;
-    public final Object f14536c;
+    public final int f14544a;
+    public final Object f14545b;
+    public final Object f14546c;
 
     public g0(int i10, Object obj, Object obj2) {
-        this.f14534a = i10;
-        this.f14535b = obj;
-        this.f14536c = obj2;
+        this.f14544a = i10;
+        this.f14545b = obj;
+        this.f14546c = obj2;
     }
 
     private final void a() {
