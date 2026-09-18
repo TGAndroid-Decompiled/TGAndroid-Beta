@@ -6,8 +6,8 @@ import org.telegram.ui.Components.cw;
 public final class c2 extends cw {
     public final e2 f4426g0;
 
-    public c2(e2 e2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19193v6, f6Var), false);
+    public c2(e2 e2Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19393v6, e6Var), false);
         this.f4426g0 = e2Var;
     }
 

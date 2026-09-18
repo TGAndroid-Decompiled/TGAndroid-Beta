@@ -9,49 +9,49 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ns implements Runnable {
-    public final int f26535a = 1;
-    public final Context f26536b;
-    public final org.telegram.ui.ActionBar.f6 f26537c;
+    public final int f26757a = 1;
+    public final Context f26758b;
+    public final org.telegram.ui.ActionBar.e6 f26759c;
 
-    public ns(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f26536b = context;
-        this.f26537c = f6Var;
+    public ns(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f26758b = context;
+        this.f26759c = e6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f26535a) {
+        switch (this.f26757a) {
             case 0:
-                org.telegram.ui.ActionBar.c2[] c2VarArr = new org.telegram.ui.ActionBar.c2[1];
+                org.telegram.ui.ActionBar.b2[] b2VarArr = new org.telegram.ui.ActionBar.b2[1];
                 String string = LocaleController.getString(R.string.AppsTabInfoText);
-                ls lsVar = new ls(c2VarArr, 0);
-                org.telegram.ui.ActionBar.f6 f6Var = this.f26537c;
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, f6Var, lsVar));
+                ls lsVar = new ls(b2VarArr, 0);
+                org.telegram.ui.ActionBar.e6 e6Var = this.f26759c;
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, e6Var, lsVar));
                 Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
                 while (true) {
                     boolean find = matcher.find();
-                    Context context = this.f26536b;
+                    Context context = this.f26758b;
                     if (find) {
-                        replaceTags.setSpan(new org.telegram.ui.n0(c2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
+                        replaceTags.setSpan(new org.telegram.ui.n0(b2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
                     } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
                         String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
-                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18447a;
-                        c2Var.R = string2;
-                        c2Var.T = replaceTags;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+                        b2Var.R = string2;
+                        b2Var.T = replaceTags;
                         alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
-                        c2VarArr[0] = alertDialog$Builder.o();
+                        b2VarArr[0] = alertDialog$Builder.o();
                         return;
                     }
                 }
             default:
-                new yh.o7(this.f26536b, this.f26537c).show();
+                new yh.l7(this.f26758b, this.f26759c).show();
                 return;
         }
     }
 
-    public ns(rs rsVar, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
-        this.f26537c = f6Var;
-        this.f26536b = context;
+    public ns(rs rsVar, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
+        this.f26759c = e6Var;
+        this.f26758b = context;
     }
 }

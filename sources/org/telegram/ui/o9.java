@@ -1,31 +1,34 @@
 package org.telegram.ui;
-public final class o9 implements o1.g {
-    public final int f36251a;
-    public final w9 f36252b;
+public final class o9 implements o1.f {
+    public final int f36129a;
+    public final Object f36130b;
 
-    public o9(w9 w9Var, int i10) {
-        this.f36251a = i10;
-        this.f36252b = w9Var;
+    public o9(Object obj, int i10) {
+        this.f36129a = i10;
+        this.f36130b = obj;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        float f11;
-        switch (this.f36251a) {
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f36129a) {
             case 0:
-                w9 w9Var = this.f36252b;
-                w9Var.f38619y = f7 / 500.0f;
-                w9Var.fragmentView.invalidate();
+                v9 v9Var = (v9) this.f36130b;
+                o1.k kVar = v9Var.f38380x;
+                if (kVar != null) {
+                    kVar.c();
+                    v9Var.f38380x = null;
+                    return;
+                }
+                return;
+            case 1:
+                to0 to0Var = (to0) this.f36130b;
+                if (hVar == to0Var.f37786c) {
+                    to0Var.f37786c = null;
+                    return;
+                }
                 return;
             default:
-                w9 w9Var2 = this.f36252b;
-                if (w9Var2.M) {
-                    f11 = f7 / 500.0f;
-                } else {
-                    f11 = 1.0f - (f7 / 500.0f);
-                }
-                w9Var2.f38606a0 = f11;
-                w9Var2.fragmentView.invalidate();
+                ((ou0) this.f36130b).D();
                 return;
         }
     }

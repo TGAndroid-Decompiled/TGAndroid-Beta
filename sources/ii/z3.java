@@ -9,7 +9,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.w70;
 public final class z3 implements View.OnClickListener {
     public final int f11802a;
     public final b4 f11803b;
@@ -44,7 +44,7 @@ public final class z3 implements View.OnClickListener {
                 return;
             default:
                 final r rVar = this.f11803b.f11258a.f11496a;
-                org.telegram.ui.ActionBar.f6 f6Var = rVar.f26462a;
+                org.telegram.ui.ActionBar.e6 e6Var = rVar.f26687a;
                 w3 w3Var = rVar.f11591r;
                 a R2 = w3Var.R2();
                 int i10 = this.f11804c;
@@ -74,7 +74,7 @@ public final class z3 implements View.OnClickListener {
                             } else {
                                 str = "";
                             }
-                            r.U(context, str, new ci.m2(18, rVar, pageblockmath), f6Var);
+                            r.U(context, str, new ci.m2(18, rVar, pageblockmath), e6Var);
                             return;
                         }
                         o5 o5Var = w3Var.f11717i4;
@@ -100,11 +100,11 @@ public final class z3 implements View.OnClickListener {
                             return;
                         }
                     }
-                    n70 n70Var = rVar.H;
-                    if (n70Var != null) {
-                        n70Var.u();
+                    w70 w70Var = rVar.H;
+                    if (w70Var != null) {
+                        w70Var.u();
                     }
-                    final n70 F = n70.F(rVar, f6Var, view);
+                    final w70 F = w70.F(rVar, e6Var, view);
                     F.Q = true;
                     if (R2 != null && R2.b()) {
                         z17 = false;
@@ -181,13 +181,13 @@ public final class z3 implements View.OnClickListener {
                     return;
                 }
                 int i11 = rVar.f11590n;
-                n70 n70Var2 = rVar.H;
-                if (n70Var2 != null) {
-                    n70Var2.u();
+                w70 w70Var2 = rVar.H;
+                if (w70Var2 != null) {
+                    w70Var2.u();
                 }
-                n70 G = n70.G(rVar, f6Var, view, true);
+                w70 G = w70.G(rVar, e6Var, view, true);
                 G.Q = true;
-                n70 J = G.J();
+                w70 J = G.J();
                 if (!MessagesController.getInstance(i11).richEditorAllowed() && !UserConfig.getInstance(i11).isPremium()) {
                     z10 = true;
                 } else {

@@ -352,7 +352,7 @@ public final class i implements m {
         int i11 = hVar.i(2);
         boolean h = hVar.h();
         hVar.t(1);
-        byte[] bArr2 = d0.f7889b;
+        byte[] bArr2 = d0.f7888b;
         if (i11 == 1) {
             hVar.t(hVar.i(8) * 16);
         } else if (i11 == 0) {
@@ -378,7 +378,7 @@ public final class i implements m {
     }
 
     @Override
-    public final void B(byte[] bArr, int i10, int i11, l lVar, e2.h hVar) {
+    public final void C(byte[] bArr, int i10, int i11, l lVar, e2.h hVar) {
         h hVar2;
         z3.a aVar;
         int i12;
@@ -541,7 +541,7 @@ public final class i implements m {
         }
         d dVar4 = hVar2.f3403i;
         if (dVar4 == null) {
-            g0 g0Var = i0.f8084b;
+            g0 g0Var = i0.f8083b;
             aVar = new z3.a(-9223372036854775807L, -9223372036854775807L, a1.e);
         } else {
             b bVar2 = hVar2.h;
@@ -682,7 +682,7 @@ public final class i implements m {
 
     @Override
     public final z3.d r(int i10, int i11, byte[] bArr) {
-        return w.f.a(this, bArr, i11);
+        return t8.b.a(this, bArr, i11);
     }
 
     @Override

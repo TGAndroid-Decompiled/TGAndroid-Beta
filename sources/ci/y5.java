@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.bh;
-import org.telegram.ui.Components.rv0;
-import org.telegram.ui.bo;
-import org.telegram.ui.ou0;
+import org.telegram.ui.Components.ch;
+import org.telegram.ui.Components.cw0;
+import org.telegram.ui.mu0;
+import org.telegram.ui.zn;
 public final class y5 extends AnimatorListenerAdapter {
     public final int f5828a;
     public int f5829b;
@@ -17,9 +17,9 @@ public final class y5 extends AnimatorListenerAdapter {
     public final Object d;
     public final Object e;
 
-    public y5(rv0 rv0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
+    public y5(cw0 cw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
         this.f5828a = i11;
-        this.e = rv0Var;
+        this.e = cw0Var;
         this.f5830c = viewGroup;
         this.d = viewGroup2;
         this.f5829b = i10;
@@ -43,48 +43,48 @@ public final class y5 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                bo boVar = (bo) this.e;
-                boVar.O5 = true;
-                ((org.telegram.ui.ActionBar.o2) boVar).fragmentBeginToShow = true;
-                boVar.V9 = null;
-                AndroidUtilities.runOnUIThread(new ou0(this, 29), 32L);
+                zn znVar = (zn) this.e;
+                znVar.O5 = true;
+                ((org.telegram.ui.ActionBar.n2) znVar).fragmentBeginToShow = true;
+                znVar.V9 = null;
+                AndroidUtilities.runOnUIThread(new mu0(this, 29), 32L);
                 super.onAnimationEnd(animator);
-                boVar.X0.invalidate();
-                boVar.X0.setSkipBackgroundDrawing(false);
-                boVar.S9 = false;
-                bo boVar2 = (bo) this.f5830c;
-                boVar2.U9 = 0.0f;
-                boVar2.fragmentView.invalidate();
-                boVar2.f32506x0.invalidate();
-                boVar2.T9 = null;
-                boVar.fragmentView.setAlpha(1.0f);
+                znVar.X0.invalidate();
+                znVar.X0.setSkipBackgroundDrawing(false);
+                znVar.S9 = false;
+                zn znVar2 = (zn) this.f5830c;
+                znVar2.U9 = 0.0f;
+                znVar2.fragmentView.invalidate();
+                znVar2.f40488x0.invalidate();
+                znVar2.T9 = null;
+                znVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
-                boVar.f32219a1.setTranslationY(0.0f);
-                boVar2.f32219a1.setTranslationY(0.0f);
-                boVar2.f32219a1.getAvatarImageView().setTranslationY(0.0f);
-                boVar.f32219a1.getAvatarImageView().setScaleX(1.0f);
-                boVar.f32219a1.getAvatarImageView().setScaleY(1.0f);
-                boVar.f32219a1.getAvatarImageView().setAlpha(1.0f);
-                boVar2.f32219a1.getAvatarImageView().setScaleX(1.0f);
-                boVar2.f32219a1.getAvatarImageView().setScaleY(1.0f);
-                boVar2.f32219a1.getAvatarImageView().setAlpha(1.0f);
-                bh bhVar = boVar2.M0;
-                if (bhVar != null) {
-                    bhVar.setAlpha(1.0f);
+                znVar.f40201a1.setTranslationY(0.0f);
+                znVar2.f40201a1.setTranslationY(0.0f);
+                znVar2.f40201a1.getAvatarImageView().setTranslationY(0.0f);
+                znVar.f40201a1.getAvatarImageView().setScaleX(1.0f);
+                znVar.f40201a1.getAvatarImageView().setScaleY(1.0f);
+                znVar.f40201a1.getAvatarImageView().setAlpha(1.0f);
+                znVar2.f40201a1.getAvatarImageView().setScaleX(1.0f);
+                znVar2.f40201a1.getAvatarImageView().setScaleY(1.0f);
+                znVar2.f40201a1.getAvatarImageView().setAlpha(1.0f);
+                ch chVar = znVar2.M0;
+                if (chVar != null) {
+                    chVar.setAlpha(1.0f);
                     return;
                 }
                 return;
             default:
-                qg.p0 p0Var = (qg.p0) this.e;
-                p0Var.f41553g1 = p0Var.f41555h1;
-                p0Var.f41555h1 = -1;
-                p0Var.f41551f1.invalidate();
+                qg.m0 m0Var = (qg.m0) this.e;
+                m0Var.f41748g1 = m0Var.f41750h1;
+                m0Var.f41750h1 = -1;
+                m0Var.f41746f1.invalidate();
                 View view2 = (View) this.f5830c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == p0Var.f41559j1) {
-                    p0Var.f41559j1 = null;
+                if (animator == m0Var.f41754j1) {
+                    m0Var.f41754j1 = null;
                     return;
                 }
                 return;
@@ -99,52 +99,52 @@ public final class y5 extends AnimatorListenerAdapter {
         switch (this.f5828a) {
             case 0:
                 r6 r6Var = (r6) this.e;
-                qg.z1 z1Var = r6Var.f5414d1;
+                qg.w1 w1Var = r6Var.f5414d1;
                 if (((View) this.f5830c) != null && (view = (View) this.d) != null) {
                     view.setVisibility(0);
                 }
                 if (this.f5829b == 2) {
-                    z1Var.b(0.5f, 2.0f);
+                    w1Var.b(0.5f, 2.0f);
                     return;
                 }
                 pg.m currentBrush = r6Var.O0.getCurrentBrush();
                 if (!(currentBrush instanceof pg.b) && !(currentBrush instanceof pg.d)) {
-                    z1Var.b(0.05f, 1.0f);
+                    w1Var.b(0.05f, 1.0f);
                     return;
                 } else {
-                    z1Var.b(0.4f, 1.75f);
+                    w1Var.b(0.4f, 1.75f);
                     return;
                 }
             case 1:
                 super.onAnimationStart(animator);
-                i10 = ((org.telegram.ui.ActionBar.o2) ((bo) this.e)).currentAccount;
+                i10 = ((org.telegram.ui.ActionBar.n2) ((zn) this.e)).currentAccount;
                 this.f5829b = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f5829b, null);
                 return;
             default:
-                qg.p0 p0Var = (qg.p0) this.e;
-                qg.z1 z1Var2 = p0Var.l1;
+                qg.m0 m0Var = (qg.m0) this.e;
+                qg.w1 w1Var2 = m0Var.l1;
                 if (((View) this.f5830c) != null && (view2 = (View) this.d) != null) {
                     view2.setVisibility(0);
                 }
                 if (this.f5829b == 2) {
-                    z1Var2.b(0.5f, 2.0f);
+                    w1Var2.b(0.5f, 2.0f);
                     return;
                 }
-                pg.m currentBrush2 = p0Var.W0.getCurrentBrush();
+                pg.m currentBrush2 = m0Var.W0.getCurrentBrush();
                 if (!(currentBrush2 instanceof pg.b) && !(currentBrush2 instanceof pg.d)) {
-                    z1Var2.b(0.05f, 1.0f);
+                    w1Var2.b(0.05f, 1.0f);
                     return;
                 } else {
-                    z1Var2.b(0.4f, 1.75f);
+                    w1Var2.b(0.4f, 1.75f);
                     return;
                 }
         }
     }
 
-    public y5(bo boVar, bo boVar2, Runnable runnable) {
+    public y5(zn znVar, zn znVar2, Runnable runnable) {
         this.f5828a = 1;
-        this.e = boVar;
-        this.f5830c = boVar2;
+        this.e = znVar;
+        this.f5830c = znVar2;
         this.d = runnable;
     }
 }

@@ -5,25 +5,25 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
 public final class fm extends ViewOutlineProvider {
-    public final hm f23964a;
+    public final hm f24186a;
 
     public fm(hm hmVar) {
-        this.f23964a = hmVar;
+        this.f24186a = hmVar;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
-        org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-        if (s5Var.getTag() == null) {
+        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+        if (t5Var.getTag() == null) {
             return;
         }
-        int intValue = ((Integer) s5Var.getTag()).intValue();
-        hm hmVar = this.f23964a;
+        int intValue = ((Integer) t5Var.getTag()).intValue();
+        hm hmVar = this.f24186a;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = hmVar.v;
         if (hmVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
             intValue++;
         }
-        if (chatAttachAlertPhotoLayout.f21929g1) {
+        if (chatAttachAlertPhotoLayout.f22102g1) {
             intValue++;
         }
         if (intValue == 0) {

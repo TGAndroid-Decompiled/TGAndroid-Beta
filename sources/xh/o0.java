@@ -1,79 +1,80 @@
 package xh;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.view.KeyEvent;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.za;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bo;
+import yh.t5;
 public final class o0 implements Runnable {
-    public final int f46077a;
-    public final long f46078b;
-    public final Object f46079c;
+    public final int f46290a;
+    public final int f46291b;
+    public final KeyEvent.Callback f46292c;
     public final Object d;
+    public final TLObject e;
+    public final Object f46293f;
 
-    public o0(Object obj, long j3, Object obj2, int i10) {
-        this.f46077a = i10;
-        this.f46079c = obj;
-        this.f46078b = j3;
-        this.d = obj2;
+    public o0(KeyEvent.Callback callback, Object obj, int i10, TLObject tLObject, Object obj2, int i11) {
+        this.f46290a = i11;
+        this.f46292c = callback;
+        this.d = obj;
+        this.f46291b = i10;
+        this.e = tLObject;
+        this.f46293f = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f46077a) {
+        boolean z10;
+        boolean z11;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
+        int i10 = this.f46290a;
+        Object obj = this.f46293f;
+        TLObject tLObject = this.e;
+        Object obj2 = this.d;
+        KeyEvent.Callback callback = this.f46292c;
+        switch (i10) {
             case 0:
-                q1 q1Var = (q1) this.f46079c;
-                Utilities.Callback callback = (Utilities.Callback) this.d;
-                q1Var.getClass();
-                org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-                if (U != null) {
-                    q1Var.dismiss();
-                    if (callback != null) {
-                        callback.run(Boolean.FALSE);
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", this.f46078b);
-                    bundle.putBoolean("open_gifts", true);
-                    U.presentFragment(new ProfileActivity(bundle, null));
-                    return;
+                r1 r1Var = (r1) callback;
+                Context context = (Context) obj2;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) tLObject;
+                long j3 = r1Var.f46342c0;
+                m0 m0Var = new m0(r1Var, (Utilities.Callback) obj, 2);
+                boolean z12 = starGift.limited;
+                if (z12 && (disallowedGiftsSettings2 = r1Var.f46341b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                return;
-            case 1:
-                yh.a4 a4Var = (yh.a4) this.f46079c;
-                Runnable runnable = (Runnable) this.d;
-                a4Var.p2((int) this.f46078b, a4Var.getContext(), true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
+                if (z12 && (disallowedGiftsSettings = r1Var.f46341b0) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
+                    z11 = true;
+                } else {
+                    z11 = false;
                 }
-                return;
-            case 2:
-                yh.a4 a4Var2 = (yh.a4) this.f46079c;
-                a4Var2.getClass();
-                ((nf.e) this.d).b();
-                a4Var2.p2((int) this.f46078b, a4Var2.getContext(), true);
+                new t0(r1Var, context, this.f46291b, starGift, j3, m0Var, z10, z11).show();
                 return;
             default:
-                TL_stories.Boost boost = (TL_stories.Boost) this.d;
-                org.telegram.ui.ActionBar.g3 g3Var = ((org.telegram.ui.ActionBar.g3[]) this.f46079c)[0];
-                if (g3Var != null) {
-                    g3Var.dismiss();
+                String str = (String) obj;
+                ((ci.d) callback).setLoading(false);
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) obj2)[0];
+                if (f3Var != null) {
+                    f3Var.dismiss();
                 }
-                org.telegram.ui.ActionBar.o2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    U2.presentFragment(bo.Q9(boost.giveaway_msg_id, this.f46078b));
+                t5.y(this.f46291b, false).S();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    xc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionRenewedToast), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsSubscriptionRenewedToastText, str)), null).k(false);
                     return;
                 }
                 return;
         }
-    }
-
-    public o0(za zaVar, Object obj, long j3, int i10) {
-        this.f46077a = i10;
-        this.f46079c = zaVar;
-        this.d = obj;
-        this.f46078b = j3;
     }
 }

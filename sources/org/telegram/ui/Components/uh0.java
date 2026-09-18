@@ -1,20 +1,10 @@
 package org.telegram.ui.Components;
+public interface uh0 {
+    void a();
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-public final class uh0 {
-    public Canvas f28390a;
-    public Bitmap f28391b;
-    public boolean f28392c;
-    public boolean d;
-    public boolean e;
-    public boolean f28393f;
+    void b(boolean z10);
 
-    public final void a() {
-        this.f28392c = true;
-        if (!this.e) {
-            this.d = true;
-            this.f28391b.recycle();
-        }
-    }
+    void c();
+
+    void d();
 }

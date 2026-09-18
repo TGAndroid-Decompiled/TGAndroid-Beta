@@ -6,8 +6,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.bo;
-public final class a6 extends bo {
+import org.telegram.ui.zn;
+public final class a6 extends zn {
     public final Utilities.Callback2 Pc;
     public final r6 Qc;
 
@@ -61,7 +61,7 @@ public final class a6 extends bo {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
+    public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
         return this.Qc.G1;
     }
 

@@ -13,7 +13,7 @@ public final class p9 implements Runnable {
         switch (this.f5313a) {
             case 0:
                 ia iaVar = this.f5314b.W;
-                org.telegram.ui.Components.oc.h(iaVar.container);
+                org.telegram.ui.Components.qc.h(iaVar.container);
                 ia.E(iaVar);
                 return;
             case 1:

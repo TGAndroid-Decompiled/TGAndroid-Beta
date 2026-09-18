@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.os.Parcel;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class q extends b8.b implements e {
-    public final int f9463b;
-    public final TaskCompletionSource f9464c;
+    public final int f9462b;
+    public final TaskCompletionSource f9463c;
 
     public q(int i10, TaskCompletionSource taskCompletionSource) {
         super("com.google.android.gms.cast.internal.IBundleCallback", 1);
-        this.f9463b = i10;
-        this.f9464c = taskCompletionSource;
+        this.f9462b = i10;
+        this.f9463c = taskCompletionSource;
     }
 
     @Override
@@ -25,15 +25,15 @@ public final class q extends b8.b implements e {
 
     @Override
     public final void k0(Bundle bundle) {
-        switch (this.f9463b) {
+        switch (this.f9462b) {
             case 0:
-                this.f9464c.setResult(bundle);
+                this.f9463c.setResult(bundle);
                 return;
             case 1:
-                this.f9464c.setResult(bundle);
+                this.f9463c.setResult(bundle);
                 return;
             default:
-                this.f9464c.setResult(bundle);
+                this.f9463c.setResult(bundle);
                 return;
         }
     }

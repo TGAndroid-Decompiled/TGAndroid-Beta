@@ -46,7 +46,7 @@ public final class e8 implements TextWatcher {
                 g8Var.Y();
                 String str6 = g8Var.f4716s0;
                 if (str6 != null && str6.length() > 3) {
-                    i10 = ((org.telegram.ui.ActionBar.g3) g8Var).currentAccount;
+                    i10 = ((org.telegram.ui.ActionBar.f3) g8Var).currentAccount;
                     if (!TextUtils.isEmpty(MessagesController.getInstance(i10).config.musicSearchUsername.get())) {
                         z11 = true;
                     }

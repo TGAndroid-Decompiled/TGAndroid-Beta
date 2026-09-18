@@ -25,7 +25,7 @@ public abstract class i {
     }
 
     public static long c(String str) {
-        String str2 = d0.f7888a;
+        String str2 = d0.f7887a;
         String[] split = str.split("\\.", 2);
         long j3 = 0;
         for (String str3 : split[0].split(":", -1)) {
@@ -44,7 +44,7 @@ public abstract class i {
     }
 
     public static void d(v vVar) {
-        int i10 = vVar.f7935b;
+        int i10 = vVar.f7934b;
         if (a(vVar)) {
             return;
         }

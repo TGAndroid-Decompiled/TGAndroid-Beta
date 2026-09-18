@@ -12,14 +12,14 @@ public final class z9 extends LinearLayout {
     public ValueAnimator f5879c;
     public ValueAnimator d;
     public final Paint e;
-    public final org.telegram.ui.Components.c6 f5880f;
+    public final org.telegram.ui.Components.e6 f5880f;
     public final ba h;
 
     public z9(ba baVar, Context context) {
         super(context);
         this.h = baVar;
         this.e = new Paint(1);
-        this.f5880f = new org.telegram.ui.Components.c6(this);
+        this.f5880f = new org.telegram.ui.Components.e6(this);
     }
 
     public static void a(z9 z9Var, ValueAnimator valueAnimator) {
@@ -63,13 +63,13 @@ public final class z9 extends LinearLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         float f7;
         super.dispatchDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.j6.f18807a7;
+        int i10 = org.telegram.ui.ActionBar.j6.f19006a7;
         ba baVar = this.h;
-        f6Var = ((org.telegram.ui.ActionBar.g3) baVar.W).resourcesProvider;
-        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
+        e6Var = ((org.telegram.ui.ActionBar.f3) baVar.W).resourcesProvider;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, e6Var);
         Paint paint = this.e;
         paint.setColor(v02);
         if (baVar.f4404f.canScrollVertically(1)) {

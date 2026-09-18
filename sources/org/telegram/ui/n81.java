@@ -1,28 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class n81 extends UndoView {
-    public final SessionsActivity f35982f0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class n81 implements Runnable {
+    public final int f35841a;
+    public final o81 f35842b;
 
-    public n81(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f35982f0 = sessionsActivity;
+    public n81(o81 o81Var, int i10) {
+        this.f35841a = i10;
+        this.f35842b = o81Var;
     }
 
     @Override
-    public final void e(int i10, boolean z10) {
-        int i11;
-        if (!z10 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.o2) this.f35982f0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new dc0(19, this, tL_authorization));
+    public final void run() {
+        String sb2;
+        switch (this.f35841a) {
+            case 0:
+                o81 o81Var = this.f35842b;
+                String str = o81Var.f36127b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb2 = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
+                } else {
+                    StringBuilder sb3 = new StringBuilder();
+                    org.telegram.ui.Cells.c1.l(R.string.ErrorOccurred, "\n", sb3);
+                    sb3.append(o81Var.f36127b.text);
+                    sb2 = sb3.toString();
+                }
+                org.telegram.ui.Components.e5.u0(o81Var.f36128c, LocaleController.getString(R.string.AuthAnotherClient), sb2, null);
+                return;
+            default:
+                org.telegram.ui.Components.e5.u0(this.f35842b.f36128c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
+                return;
         }
-        super.e(i10, z10);
     }
 }

@@ -6,8 +6,8 @@ import org.telegram.messenger.AndroidUtilities;
 public final class yq0 extends org.telegram.ui.Components.t00 {
     public final int U;
 
-    public yq0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
+    public yq0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
         this.U = i10;
     }
 

@@ -29,7 +29,7 @@ final class WebRtcAudioUtils {
                 case 9:
                     return "MP3";
                 default:
-                    return k0.i(i10, "Invalid encoding: ");
+                    return k0.h(i10, "Invalid encoding: ");
             }
         }
         return "INVALID";

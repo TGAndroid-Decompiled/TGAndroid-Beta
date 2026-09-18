@@ -2,75 +2,65 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-public final class nc extends lb {
-    public final i9 f26438a;
-    public final c90 f26439b;
-    public final c90 f26440c;
+public final class nc extends nb {
+    public final lj0 f26656a;
+    public final l90 f26657b;
+    public final l90 f26658c;
     public final LinearLayout d;
+    public final int e;
 
-    public nc(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(context, f6Var);
-        i9 i9Var = new i9(context, false);
-        this.f26438a = i9Var;
-        i9Var.setStyle(11);
-        i9Var.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
-        addView(i9Var, w7.x5.i(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
-        if (!z10) {
-            vb vbVar = new vb(context, 1, null);
-            this.f26439b = vbVar;
-            NotificationCenter.listenEmojiLoading(vbVar);
-            vbVar.setTypeface(Typeface.SANS_SERIF);
-            vbVar.setTextSize(1, 15.0f);
-            vbVar.setEllipsize(TextUtils.TruncateAt.END);
-            vbVar.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-            vbVar.setGravity(LocaleController.isRTL ? 5 : 3);
-            addView(vbVar, w7.x5.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
-        } else {
-            LinearLayout linearLayout = new LinearLayout(getContext());
-            this.d = linearLayout;
-            linearLayout.setOrientation(1);
-            addView(linearLayout, w7.x5.i(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
-            vb vbVar2 = new vb(context, 2, null);
-            this.f26439b = vbVar2;
-            NotificationCenter.listenEmojiLoading(vbVar2);
-            Typeface typeface = Typeface.SANS_SERIF;
-            vbVar2.setTypeface(typeface);
-            vbVar2.setTextSize(1, 14.0f);
-            vbVar2.setTypeface(AndroidUtilities.bold());
-            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            vbVar2.setEllipsize(truncateAt);
-            vbVar2.setMaxLines(1);
-            linearLayout.addView(vbVar2);
-            c90 c90Var = new c90(context, null);
-            this.f26440c = c90Var;
-            c90Var.setTypeface(typeface);
-            c90Var.setTextSize(1, 12.0f);
-            c90Var.setEllipsize(truncateAt);
-            c90Var.setSingleLine(false);
-            c90Var.setMaxLines(3);
-            c90Var.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
-            linearLayout.addView(c90Var, w7.x5.t(-2, -2, 0, 0, 0, 0, 0));
-        }
-        this.f26439b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
-        setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
+    public nc(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        int i10 = org.telegram.ui.ActionBar.j6.Hi;
+        this.e = getThemedColor(i10);
         setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
+        ?? imageView = new ImageView(context);
+        this.f26656a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView((View) imageView, w7.y5.h(56.0f, 48.0f, 8388627));
+        int themedColor = getThemedColor(i10);
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.j6.Gi);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.d = linearLayout;
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.y5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        l90 l90Var = new l90(context, null);
+        this.f26657b = l90Var;
+        l90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        l90Var.setTextColor(themedColor);
+        l90Var.setTextSize(1, 14.0f);
+        l90Var.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(l90Var);
+        l90 l90Var2 = new l90(context, null);
+        this.f26658c = l90Var2;
+        l90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        l90Var2.setTextColor(themedColor);
+        l90Var2.setLinkTextColor(themedColor2);
+        l90Var2.setTypeface(Typeface.SANS_SERIF);
+        l90Var2.setTextSize(1, 13.0f);
+        linearLayout.addView(l90Var2);
+    }
+
+    public final void c(int i10, int i11, int i12, String... strArr) {
+        lj0 lj0Var = this.f26656a;
+        lj0Var.f(i10, i11, i12, null);
+        for (String str : strArr) {
+            lj0Var.h(this.e, str);
+        }
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.f26439b.getText();
+        return ((Object) this.f26657b.getText()) + ".\n" + ((Object) this.f26658c.getText());
     }
 
-    public void setTextColor(int i10) {
-        this.f26439b.setTextColor(i10);
-        c90 c90Var = this.f26440c;
-        if (c90Var != null) {
-            c90Var.setTextColor(i10);
-        }
+    @Override
+    public final void onShow() {
+        super.onShow();
+        this.f26656a.d();
     }
 }

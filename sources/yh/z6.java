@@ -1,38 +1,58 @@
 package yh;
 
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.yc0;
-public final class z6 implements TextWatcher {
-    public boolean f48095a;
-    public int f48096b = 2;
-    public final EditTextBoldCursor f48097c;
-    public final yc0 d;
-    public final long e;
-    public final boolean f48098f;
-    public final ci.d h;
-    public final TextView f48099n;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.w9;
+public final class z6 extends w9 {
+    public vh.g G;
+    public Path H;
+    public RectF I;
+    public Drawable J;
 
-    public z6(EditTextBoldCursor editTextBoldCursor, yc0 yc0Var, long j3, boolean z10, ci.d dVar, TextView textView) {
-        this.f48097c = editTextBoldCursor;
-        this.d = yc0Var;
-        this.e = j3;
-        this.f48098f = z10;
-        this.h = dVar;
-        this.f48099n = textView;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        RectF rectF = this.I;
+        Path path = this.H;
+        Drawable drawable = this.J;
+        super.dispatchDraw(canvas);
+        if (this.G == null) {
+            this.G = vh.g.e(this);
+        }
+        if (this.G != null) {
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            path.rewind();
+            path.addRoundRect(rectF, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+            canvas2 = canvas;
+            this.G.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+        }
+        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
+        drawable.draw(canvas2);
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r11) {
-        throw new UnsupportedOperationException("Method not decompiled: yh.z6.afterTextChanged(android.text.Editable):void");
+    public final void onAttachedToWindow() {
+        vh.g gVar = this.G;
+        if (gVar != null) {
+            gVar.a(this);
+        }
+        super.onAttachedToWindow();
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onDetachedFromWindow() {
+        vh.g gVar = this.G;
+        if (gVar != null) {
+            gVar.b(this);
+        }
+        super.onDetachedFromWindow();
     }
 }

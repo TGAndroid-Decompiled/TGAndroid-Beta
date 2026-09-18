@@ -4,7 +4,7 @@ import android.media.MediaCodecInfo;
 public interface u {
     boolean Z(String str, MediaCodecInfo.CodecCapabilities codecCapabilities);
 
-    MediaCodecInfo c(int i10);
+    MediaCodecInfo b(int i10);
 
     int g0();
 

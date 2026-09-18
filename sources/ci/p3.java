@@ -10,10 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.wl;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.uk0;
-public final class p3 extends uk0 {
+import org.telegram.ui.Components.el0;
+import org.telegram.ui.Components.wl0;
+public final class p3 extends el0 {
     public final x3 f5304c;
 
     public p3(x3 x3Var) {
@@ -22,7 +21,7 @@ public final class p3 extends uk0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42705f == 2) {
+        if (c1Var.f42932f == 2) {
             return true;
         }
         return false;
@@ -56,26 +55,26 @@ public final class p3 extends uk0 {
     }
 
     @Override
-    public final void G(ml0 ml0Var, float f7, int[] iArr) {
+    public final void G(wl0 wl0Var, float f7, int[] iArr) {
         int i10;
         int k10 = k();
         x3 x3Var = this.f5304c;
         g3 g3Var = x3Var.e;
         float f10 = g3Var.J;
-        int width = (int) (((int) (((ml0Var.getWidth() - ml0Var.getPaddingLeft()) - ml0Var.getPaddingRight()) / f10)) * x3Var.O);
+        int width = (int) (((int) (((wl0Var.getWidth() - wl0Var.getPaddingLeft()) - wl0Var.getPaddingRight()) / f10)) * x3Var.O);
         int ceil = (int) Math.ceil(k10 / f10);
-        float lerp = (AndroidUtilities.lerp(0, Math.max(0, i10 - ((AndroidUtilities.displaySize.y - ml0Var.getPaddingTop()) - ml0Var.getPaddingBottom())), f7) / (ceil * width)) * ceil;
+        float lerp = (AndroidUtilities.lerp(0, Math.max(0, i10 - ((AndroidUtilities.displaySize.y - wl0Var.getPaddingTop()) - wl0Var.getPaddingBottom())), f7) / (ceil * width)) * ceil;
         int round = Math.round(lerp);
         iArr[0] = Math.max(0, g3Var.J * round) + 2;
-        iArr[1] = ml0Var.getPaddingTop() + ((int) ((lerp - round) * width));
+        iArr[1] = wl0Var.getPaddingTop() + ((int) ((lerp - round) * width));
     }
 
     @Override
-    public final float H(ml0 ml0Var) {
+    public final float H(wl0 wl0Var) {
         x3 x3Var;
         int k10 = k();
         float f7 = this.f5304c.e.J;
-        return (Math.max(0, ml0Var.computeVerticalScrollOffset() - x3Var.getPadding()) - ml0Var.getPaddingTop()) / ((((int) Math.ceil(k10 / f7)) * ((int) (((int) (((ml0Var.getWidth() - ml0Var.getPaddingLeft()) - ml0Var.getPaddingRight()) / f7)) * x3Var.O))) - (AndroidUtilities.displaySize.y - ml0Var.getPaddingTop()));
+        return (Math.max(0, wl0Var.computeVerticalScrollOffset() - x3Var.getPadding()) - wl0Var.getPaddingTop()) / ((((int) Math.ceil(k10 / f7)) * ((int) (((int) (((wl0Var.getWidth() - wl0Var.getPaddingLeft()) - wl0Var.getPaddingRight()) / f7)) * x3Var.O))) - (AndroidUtilities.displaySize.y - wl0Var.getPaddingTop()));
     }
 
     @Override
@@ -122,8 +121,8 @@ public final class p3 extends uk0 {
         x3 x3Var = this.f5304c;
         ArrayList arrayList = x3Var.f5744h0;
         ArrayList arrayList2 = x3Var.f5736b0;
-        int i11 = c1Var.f42705f;
-        View view = c1Var.f42702a;
+        int i11 = c1Var.f42932f;
+        View view = c1Var.f42929a;
         int i12 = -1;
         if (i11 == 0) {
             t3 t3Var = (t3) view;
@@ -189,7 +188,7 @@ public final class p3 extends uk0 {
                     s3Var.O = null;
                 } else if (photoEntry.isVideo) {
                     StringBuilder sb2 = new StringBuilder();
-                    wl.l(R.string.AttachVideo, ", ", sb2);
+                    org.telegram.ui.Cells.c1.l(R.string.AttachVideo, ", ", sb2);
                     sb2.append(LocaleController.formatDuration(photoEntry.duration));
                     s3Var.O = sb2.toString();
                 } else {
@@ -232,7 +231,7 @@ public final class p3 extends uk0 {
             } else {
                 f10 = 0.0f;
             }
-            x5Var2.addView(textView, w7.x5.d(-1, -1.0f, 119, 0.0f, 0.0f, f10, 0.0f));
+            x5Var2.addView(textView, w7.y5.d(-1, -1.0f, 119, 0.0f, 0.0f, f10, 0.0f));
             x3Var.f5745i0 = x5Var2;
             x5Var = x5Var2;
         } else {
@@ -246,8 +245,8 @@ public final class p3 extends uk0 {
         boolean z10;
         x3 x3Var = this.f5304c;
         ArrayList arrayList = x3Var.f5744h0;
-        if (c1Var.f42705f == 2) {
-            s3 s3Var = (s3) c1Var.f42702a;
+        if (c1Var.f42932f == 2) {
+            s3 s3Var = (s3) c1Var.f42929a;
             Object obj = s3Var.S;
             if (obj instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;

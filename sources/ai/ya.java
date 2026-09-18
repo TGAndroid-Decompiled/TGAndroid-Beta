@@ -13,13 +13,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qg0;
+import org.telegram.ui.Components.ah0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ej;
-import org.telegram.ui.oa0;
-import org.telegram.ui.us;
-import org.telegram.ui.w60;
-import org.telegram.ui.xq;
+import org.telegram.ui.cj;
+import org.telegram.ui.ss;
+import org.telegram.ui.u60;
+import org.telegram.ui.vq;
+import org.telegram.ui.y80;
 public final class ya implements RequestDelegate {
     public final int f1769a;
     public final int f1770b;
@@ -55,42 +55,42 @@ public final class ya implements RequestDelegate {
                 ((ChatObject.Call) obj4).lambda$loadUnknownParticipants$6(this.f1770b, (ChatObject.Call.OnParticipantsLoad) obj, (ArrayList) obj3, (HashSet) obj2, tLObject, tL_error);
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new cb(this.f1770b, 5, (org.telegram.ui.ActionBar.c2) obj4, (Context) obj, (org.telegram.ui.ActionBar.f6) obj3, (w60) obj2, tLObject));
+                AndroidUtilities.runOnUIThread(new cb(this.f1770b, 5, (org.telegram.ui.ActionBar.b2) obj4, (Context) obj, (org.telegram.ui.ActionBar.e6) obj3, (u60) obj2, tLObject));
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new gg.e1(tL_error, tLObject, (ArrayList) obj3, this.f1770b, (AtomicInteger) obj4, (ArrayList) obj, (xq) obj2));
+                AndroidUtilities.runOnUIThread(new gg.e1(tL_error, tLObject, (ArrayList) obj3, this.f1770b, (AtomicInteger) obj4, (ArrayList) obj, (vq) obj2));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new cb((qg0) obj4, (Integer[]) obj, this.f1770b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
+                AndroidUtilities.runOnUIThread(new cb((ah0) obj4, (Integer[]) obj, this.f1770b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.ActionBar.c2) obj4, tLObject, this.f1770b, (TLRPC.Document) obj3, tL_error, this.e, (TLRPC.TL_stickers_addStickerToSet) obj2));
+                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.ActionBar.b2) obj4, tLObject, this.f1770b, (TLRPC.Document) obj3, tL_error, this.e, (TLRPC.TL_stickers_addStickerToSet) obj2));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new cb((us) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, tLObject, (TLRPC.FileLocation) obj2, this.f1770b));
+                AndroidUtilities.runOnUIThread(new cb((ss) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, tLObject, (TLRPC.FileLocation) obj2, this.f1770b));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.ActionBar.c2) obj4, (nf.e) obj, tLObject, this.f1770b, (Context) obj3, (TLRPC.TL_inputGroupCallSlug) obj2, tL_error));
+                AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.ActionBar.b2) obj4, (nf.e) obj, tLObject, this.f1770b, (Context) obj3, (TLRPC.TL_inputGroupCallSlug) obj2, tL_error));
                 return;
             case 9:
                 Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (oa0) obj3, this.f1770b, (String) obj2));
+                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (y80) obj3, this.f1770b, (String) obj2));
                 return;
             case 10:
                 Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj4, tL_error, tLObject, this.f1770b, (org.telegram.ui.ActionBar.c2) obj, (oa0) obj3, (String) obj2));
+                AndroidUtilities.runOnUIThread(new gg.e1((LaunchActivity) obj4, tL_error, tLObject, this.f1770b, (org.telegram.ui.ActionBar.b2) obj, (y80) obj3, (String) obj2));
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new gg.e1((org.telegram.ui.web.d1) obj4, (String) obj, tLObject, tL_error, this.f1770b, (org.telegram.ui.web.z0) obj3, (da) obj2));
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new cb(this.f1770b, 13, (TLRPC.PhotoSize) obj4, (TLRPC.PhotoSize) obj, (ej) obj3, (org.telegram.ui.ActionBar.e5) obj2, tLObject));
+                AndroidUtilities.runOnUIThread(new cb(this.f1770b, 13, (TLRPC.PhotoSize) obj4, (TLRPC.PhotoSize) obj, (cj) obj3, (org.telegram.ui.ActionBar.d5) obj2, tLObject));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new yh.r6((ci.d) obj4, (org.telegram.ui.ActionBar.g3[]) obj, this.f1770b, (TLObject) obj3, (String) obj2, 0));
+                AndroidUtilities.runOnUIThread(new xh.o0((ci.d) obj4, (org.telegram.ui.ActionBar.f3[]) obj, this.f1770b, (TLObject) obj3, (String) obj2, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new cb((ci.d) obj4, tLObject, (org.telegram.ui.ActionBar.g3[]) obj, (org.telegram.ui.ActionBar.f6) obj3, this.f1770b, (TLRPC.TL_messages_checkChatInvite) obj2, 14));
+                AndroidUtilities.runOnUIThread(new cb((ci.d) obj4, tLObject, (org.telegram.ui.ActionBar.f3[]) obj, (org.telegram.ui.ActionBar.e6) obj3, this.f1770b, (TLRPC.TL_messages_checkChatInvite) obj2, 14));
                 return;
         }
     }
@@ -140,12 +140,12 @@ public final class ya implements RequestDelegate {
         this.f1770b = i10;
     }
 
-    public ya(ArrayList arrayList, int i10, AtomicInteger atomicInteger, ArrayList arrayList2, xq xqVar) {
+    public ya(ArrayList arrayList, int i10, AtomicInteger atomicInteger, ArrayList arrayList2, vq vqVar) {
         this.f1769a = 4;
         this.f1771c = arrayList;
         this.f1770b = i10;
         this.d = atomicInteger;
         this.e = arrayList2;
-        this.f1772f = xqVar;
+        this.f1772f = vqVar;
     }
 }

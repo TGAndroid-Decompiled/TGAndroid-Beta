@@ -5,7 +5,7 @@ public final class b extends id.a implements id.f {
     private volatile Object _preHandler;
 
     public b() {
-        super(b0.f48896a);
+        super(b0.f49122a);
         this._preHandler = this;
     }
 

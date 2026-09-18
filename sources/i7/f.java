@@ -23,7 +23,7 @@ public abstract class f {
         if (dataAvail <= 0) {
             return;
         }
-        throw new BadParcelableException(k0.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(k0.h(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
     public static void c(Parcel parcel, Parcelable parcelable) {

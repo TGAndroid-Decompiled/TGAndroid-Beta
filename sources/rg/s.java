@@ -21,33 +21,33 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.v5;
 public final class s extends View {
-    public final Path f42484a;
-    public final CornerPathEffect f42485b;
-    public final TextPaint f42486c;
+    public final Path f42711a;
+    public final CornerPathEffect f42712b;
+    public final TextPaint f42713c;
     public StaticLayout d;
     public float e;
-    public SpannableStringBuilder f42487f;
+    public SpannableStringBuilder f42714f;
     public final ArrayList h;
-    public StaticLayout f42488n;
-    public boolean f42489r;
-    public float f42490s;
+    public StaticLayout f42715n;
+    public boolean f42716r;
+    public float f42717s;
     public boolean v;
-    public final Paint f42491w;
-    public final Paint f42492x;
-    public final LimitPreviewView f42493y;
+    public final Paint f42718w;
+    public final Paint f42719x;
+    public final LimitPreviewView f42720y;
 
     public s(LimitPreviewView limitPreviewView, Context context) {
         super(context);
-        this.f42493y = limitPreviewView;
-        this.f42484a = new Path();
-        this.f42485b = new CornerPathEffect(AndroidUtilities.dp(6.0f));
+        this.f42720y = limitPreviewView;
+        this.f42711a = new Path();
+        this.f42712b = new CornerPathEffect(AndroidUtilities.dp(6.0f));
         TextPaint textPaint = new TextPaint(1);
-        this.f42486c = textPaint;
+        this.f42713c = textPaint;
         this.h = new ArrayList();
         Paint paint = new Paint();
-        this.f42491w = paint;
+        this.f42718w = paint;
         Paint paint2 = new Paint();
-        this.f42492x = paint2;
+        this.f42719x = paint2;
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(22.0f));
         textPaint.setColor(-1);
@@ -58,27 +58,27 @@ public final class s extends View {
     public static void a(s sVar) {
         ArrayList arrayList = sVar.h;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (((r) arrayList.get(i10)).f42476f != null) {
+            if (((r) arrayList.get(i10)).f42703f != null) {
                 return;
             }
         }
         arrayList.clear();
-        sVar.f42489r = false;
+        sVar.f42716r = false;
         sVar.invalidate();
     }
 
     public final void b() {
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
-        float measuredWidth = getMeasuredWidth() * this.f42490s;
+        float measuredWidth = getMeasuredWidth() * this.f42717s;
         float clamp = Utilities.clamp(AndroidUtilities.dp(8.0f) + measuredWidth, getMeasuredWidth(), 0.0f);
         float f7 = 10.0f;
         float clamp2 = Utilities.clamp(AndroidUtilities.dp(10.0f) + measuredWidth, getMeasuredWidth(), AndroidUtilities.dp(24.0f));
-        if (this.f42490s >= 0.7f) {
+        if (this.f42717s >= 0.7f) {
             f7 = 24.0f;
         }
         float clamp3 = Utilities.clamp(measuredWidth - AndroidUtilities.dp(f7), getMeasuredWidth(), 0.0f);
         float clamp4 = Utilities.clamp(measuredWidth - AndroidUtilities.dp(8.0f), getMeasuredWidth(), 0.0f);
-        Path path = this.f42484a;
+        Path path = this.f42711a;
         path.rewind();
         float f10 = measuredHeight;
         float f11 = f10 - (f10 / 2.0f);
@@ -86,7 +86,7 @@ public final class s extends View {
         path.lineTo(clamp3, f10);
         path.lineTo(clamp4, f10);
         path.lineTo(measuredWidth, AndroidUtilities.dp(8.0f) + measuredHeight);
-        if (this.f42490s < 0.7f) {
+        if (this.f42717s < 0.7f) {
             path.lineTo(clamp, f10);
         }
         path.lineTo(clamp2, f10);
@@ -96,94 +96,84 @@ public final class s extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float globalXOffset;
         Paint e;
-        float globalXOffset2;
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
-        LimitPreviewView limitPreviewView = this.f42493y;
+        LimitPreviewView limitPreviewView = this.f42720y;
         Paint paint = limitPreviewView.K;
         if (limitPreviewView.J) {
             measuredHeight = getMeasuredHeight();
-            a1 d = a1.d();
-            int measuredWidth = limitPreviewView.getMeasuredWidth();
-            int measuredHeight2 = limitPreviewView.getMeasuredHeight();
-            globalXOffset2 = limitPreviewView.getGlobalXOffset();
-            d.f(globalXOffset2 - getX(), -getTop(), measuredWidth, measuredHeight2);
+            a1.d().f(LimitPreviewView.c(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, AndroidUtilities.dp(3.0f), getMeasuredWidth(), measuredHeight - AndroidUtilities.dp(3.0f));
             float f7 = measuredHeight / 2.0f;
-            a1 d10 = a1.d();
-            if (d10.f42275c == null) {
-                d10.f42275c = new Paint(1);
+            a1 d = a1.d();
+            if (d.f42502c == null) {
+                d.f42502c = new Paint(1);
             }
-            d10.f42275c.setColor(j6.w0(null, j6.Oh, false));
-            canvas.drawRoundRect(rectF, f7, f7, d10.f42275c);
+            d.f42502c.setColor(j6.w0(null, j6.Oh, false));
+            canvas.drawRoundRect(rectF, f7, f7, d.f42502c);
         } else {
             if (this.v) {
                 this.v = false;
                 b();
             }
-            a1 d11 = a1.d();
-            int measuredWidth2 = limitPreviewView.getMeasuredWidth();
-            int measuredHeight3 = limitPreviewView.getMeasuredHeight();
-            globalXOffset = limitPreviewView.getGlobalXOffset();
-            d11.f(globalXOffset - getX(), -getTop(), measuredWidth2, measuredHeight3);
+            a1.d().f(LimitPreviewView.c(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
             RectF rectF2 = AndroidUtilities.rectTmp;
             float f10 = measuredHeight;
             rectF2.set(0.0f, 0.0f, getMeasuredWidth(), f10);
             float f11 = f10 / 2.0f;
             boolean z10 = limitPreviewView.R;
-            TextPaint textPaint = this.f42486c;
+            TextPaint textPaint = this.f42713c;
             if (z10) {
                 e = paint;
-            } else if (limitPreviewView.f22121e0 != null) {
+            } else if (limitPreviewView.f22294e0 != null) {
                 e = textPaint;
             } else {
                 e = a1.d().e();
             }
             canvas.drawRoundRect(rectF2, f11, f11, e);
             Paint e7 = a1.d().e();
-            CornerPathEffect cornerPathEffect = this.f42485b;
+            CornerPathEffect cornerPathEffect = this.f42712b;
             e7.setPathEffect(cornerPathEffect);
-            if (limitPreviewView.f22121e0 != null) {
+            if (limitPreviewView.f22294e0 != null) {
                 textPaint.setPathEffect(cornerPathEffect);
             }
             if (!limitPreviewView.R) {
-                if (limitPreviewView.f22121e0 != null) {
+                if (limitPreviewView.f22294e0 != null) {
                     paint = textPaint;
                 } else {
                     paint = a1.d().e();
                 }
             }
-            canvas.drawPath(this.f42484a, paint);
+            canvas.drawPath(this.f42711a, paint);
             a1.d().e().setPathEffect(null);
-            if (limitPreviewView.f22121e0 != null) {
+            if (limitPreviewView.f22294e0 != null) {
                 textPaint.setPathEffect(null);
             }
-            if (limitPreviewView.f22120d0) {
+            if (limitPreviewView.f22293d0) {
                 invalidate();
             }
         }
         int i10 = measuredHeight;
-        if (limitPreviewView.f22121e0 != null) {
-            canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f42491w, 31);
+        if (limitPreviewView.f22294e0 != null) {
+            canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f42718w, 31);
         }
-        float measuredWidth3 = (getMeasuredWidth() - this.e) / 2.0f;
+        float measuredWidth = (getMeasuredWidth() - this.e) / 2.0f;
         float height = (i10 - this.d.getHeight()) / 2.0f;
-        if (!this.f42489r) {
+        if (!this.f42716r) {
             if (this.d != null) {
                 canvas.save();
-                canvas.translate(measuredWidth3, height);
+                canvas.translate(measuredWidth, height);
                 this.d.draw(canvas);
                 canvas.restore();
             }
         } else {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(8.0f));
-            if (this.f42488n != null) {
+            if (this.f42715n != null) {
                 canvas.save();
-                canvas.translate(measuredWidth3, height);
-                this.f42488n.draw(canvas);
+                canvas.translate(measuredWidth, height);
+                this.f42715n.draw(canvas);
                 canvas.restore();
             }
             int i11 = 0;
@@ -194,22 +184,22 @@ public final class s extends View {
                 }
                 r rVar = (r) arrayList.get(i11);
                 canvas.save();
-                boolean z11 = rVar.f42473a;
-                ArrayList arrayList2 = rVar.f42474b;
+                boolean z11 = rVar.f42700a;
+                ArrayList arrayList2 = rVar.f42701b;
                 if (z11) {
-                    canvas.translate(rVar.e + measuredWidth3, ((i10 * rVar.f42475c) + height) - ((1 - arrayList2.size()) * i10));
+                    canvas.translate(rVar.e + measuredWidth, ((i10 * rVar.f42702c) + height) - ((1 - arrayList2.size()) * i10));
                     for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                         canvas.translate(0.0f, -i10);
                         ((StaticLayout) arrayList2.get(i12)).draw(canvas);
                     }
                 } else if (rVar.d) {
-                    canvas.translate(rVar.e + measuredWidth3, (height - ((i10 * 10) * rVar.f42475c)) + ((10 - arrayList2.size()) * i10));
+                    canvas.translate(rVar.e + measuredWidth, (height - ((i10 * 10) * rVar.f42702c)) + ((10 - arrayList2.size()) * i10));
                     for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                         canvas.translate(0.0f, i10);
                         ((StaticLayout) arrayList2.get(i13)).draw(canvas);
                     }
                 } else {
-                    canvas.translate(rVar.e + measuredWidth3, (((i10 * 10) * rVar.f42475c) + height) - ((10 - arrayList2.size()) * i10));
+                    canvas.translate(rVar.e + measuredWidth, (((i10 * 10) * rVar.f42702c) + height) - ((10 - arrayList2.size()) * i10));
                     for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                         canvas.translate(0.0f, -i10);
                         ((StaticLayout) arrayList2.get(i14)).draw(canvas);
@@ -220,20 +210,20 @@ public final class s extends View {
             }
             canvas.restore();
         }
-        if (limitPreviewView.f22121e0 != null) {
+        if (limitPreviewView.f22294e0 != null) {
             canvas.restore();
-            canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f42492x, 31);
-            canvas.drawRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), getMeasuredHeight() - AndroidUtilities.dp(10.0f), ((v5) ((org.telegram.ui.y0) limitPreviewView.f22121e0).f39746b).t0(getX(), getY()));
+            canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f42719x, 31);
+            canvas.drawRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), getMeasuredHeight() - AndroidUtilities.dp(10.0f), ((v5) ((org.telegram.ui.y0) limitPreviewView.f22294e0).f39653b).t0(getX(), getY()));
             canvas.restore();
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        SpannableStringBuilder spannableStringBuilder = this.f42487f;
-        TextPaint textPaint = this.f42486c;
+        SpannableStringBuilder spannableStringBuilder = this.f42714f;
+        TextPaint textPaint = this.f42713c;
         this.e = f4.g(spannableStringBuilder, textPaint);
-        this.d = new StaticLayout(this.f42487f, textPaint, AndroidUtilities.dp(12.0f) + ((int) this.e), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.d = new StaticLayout(this.f42714f, textPaint, AndroidUtilities.dp(12.0f) + ((int) this.e), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.e = 0.0f;
         for (int i12 = 0; i12 < this.d.getLineCount(); i12++) {
             this.e = Math.max(this.e, this.d.getLineWidth(i12));

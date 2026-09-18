@@ -6,36 +6,36 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 public final class sr extends ImageView {
-    public final int f27910a = 1;
-    public Object f27911b;
-    public final ViewGroup f27912c;
+    public final int f28222a = 1;
+    public Object f28223b;
+    public final ViewGroup f28224c;
 
-    public sr(ur urVar, Context context, k2.u uVar) {
+    public sr(ur urVar, Context context, n2.e eVar) {
         super(context);
-        this.f27912c = urVar;
-        this.f27911b = uVar;
+        this.f28224c = urVar;
+        this.f28223b = eVar;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27910a) {
+        switch (this.f28222a) {
             case 0:
-                ur urVar = (ur) this.f27912c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (urVar.f28478n || urVar.f28477f)) {
-                    urVar.f28478n = false;
-                    urVar.f28477f = false;
-                    removeCallbacks(urVar.f28479r);
+                ur urVar = (ur) this.f28224c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (urVar.f28810n || urVar.f28809f)) {
+                    urVar.f28810n = false;
+                    urVar.f28809f = false;
+                    removeCallbacks(urVar.f28811r);
                     removeCallbacks(urVar.h);
                 }
                 super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((k2.u) this.f27911b).f13385b).onTouchEvent(motionEvent);
+                return ((GestureDetector) ((n2.e) this.f28223b).f15073b).onTouchEvent(motionEvent);
             default:
                 return super.onTouchEvent(motionEvent);
         }
     }
 
-    public sr(gk0 gk0Var, Context context) {
+    public sr(qk0 qk0Var, Context context) {
         super(context);
-        this.f27912c = gk0Var;
+        this.f28224c = qk0Var;
     }
 }

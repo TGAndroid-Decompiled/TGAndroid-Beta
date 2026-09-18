@@ -14,7 +14,7 @@ public final class k extends og.b {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42705f;
+        int i10 = c1Var.f42932f;
         if (i10 != 2 && i10 != 0) {
             return true;
         }
@@ -31,7 +31,7 @@ public final class k extends og.b {
         if (i10 >= 0) {
             l lVar = this.d;
             if (i10 < lVar.h.size()) {
-                return ((j) lVar.h.get(i10)).f15543a;
+                return ((j) lVar.h.get(i10)).f15672a;
             }
             return 0;
         }
@@ -48,24 +48,24 @@ public final class k extends og.b {
             j jVar = (j) arrayList.get(i10);
             int i11 = i10 + 1;
             int i12 = 0;
-            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f15543a == jVar.f15543a) {
+            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f15672a == jVar.f15672a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i13 = c1Var.f42705f;
-            View view = c1Var.f42702a;
+            int i13 = c1Var.f42932f;
+            View view = c1Var.f42929a;
             if (i13 == 0) {
-                ((org.telegram.ui.Cells.l4) view).setText(jVar.f34731c);
+                ((org.telegram.ui.Cells.m4) view).setText(jVar.f34646c);
             } else if (i13 == 2) {
                 org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                if (TextUtils.isEmpty(jVar.f34731c)) {
+                if (TextUtils.isEmpty(jVar.f34646c)) {
                     e9Var.setFixedSize(12);
                     e9Var.setText(null);
                     return;
                 }
                 e9Var.setFixedSize(0);
-                e9Var.setText(jVar.f34731c);
+                e9Var.setText(jVar.f34646c);
             } else if (i13 == 1) {
                 org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
                 int i14 = jVar.d;
@@ -85,7 +85,7 @@ public final class k extends og.b {
                 } else {
                     return;
                 }
-                w8Var.f(jVar.f34731c, z11, z10);
+                w8Var.f(jVar.f34646c, z11, z10);
             }
         }
     }
@@ -95,7 +95,7 @@ public final class k extends og.b {
         View e9Var;
         l lVar = this.d;
         if (i10 == 0) {
-            e9Var = new org.telegram.ui.Cells.l4(lVar.getParentActivity());
+            e9Var = new org.telegram.ui.Cells.m4(lVar.getParentActivity());
         } else if (i10 == 1) {
             e9Var = new org.telegram.ui.Cells.w8(lVar.getParentActivity());
         } else {

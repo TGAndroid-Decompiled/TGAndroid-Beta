@@ -30,25 +30,25 @@ public final class z2 extends h1.b implements View.OnClickListener {
     public int K;
     public int L;
     public int M;
-    public final int f14382n;
-    public final int f14383r;
-    public final LayoutInflater f14384s;
+    public final int f14557n;
+    public final int f14558r;
+    public final LayoutInflater f14559s;
     public final SearchView v;
-    public final SearchableInfo f14385w;
-    public final Context f14386x;
-    public final WeakHashMap f14387y;
+    public final SearchableInfo f14560w;
+    public final Context f14561x;
+    public final WeakHashMap f14562y;
 
     public z2(Context context, SearchView searchView, SearchableInfo searchableInfo, WeakHashMap weakHashMap) {
         int suggestionRowLayout = searchView.getSuggestionRowLayout();
-        this.f10082b = true;
-        this.f10083c = null;
-        this.f10081a = false;
+        this.f10081b = true;
+        this.f10082c = null;
+        this.f10080a = false;
         this.d = -1;
         this.e = new com.google.android.gms.internal.clearcut.c(this);
-        this.f10084f = new h1.a(this, 0);
-        this.f14383r = suggestionRowLayout;
-        this.f14382n = suggestionRowLayout;
-        this.f14384s = (LayoutInflater) context.getSystemService("layout_inflater");
+        this.f10083f = new h1.a(this, 0);
+        this.f14558r = suggestionRowLayout;
+        this.f14557n = suggestionRowLayout;
+        this.f14559s = (LayoutInflater) context.getSystemService("layout_inflater");
         this.F = 1;
         this.H = -1;
         this.I = -1;
@@ -57,10 +57,10 @@ public final class z2 extends h1.b implements View.OnClickListener {
         this.L = -1;
         this.M = -1;
         this.v = searchView;
-        this.f14385w = searchableInfo;
+        this.f14560w = searchableInfo;
         this.E = searchView.getSuggestionCommitIconResId();
-        this.f14386x = context;
-        this.f14387y = weakHashMap;
+        this.f14561x = context;
+        this.f14562y = weakHashMap;
     }
 
     public static String g(Cursor cursor, int i10) {
@@ -106,7 +106,7 @@ public final class z2 extends h1.b implements View.OnClickListener {
             if (g12 != null) {
                 return g12;
             }
-            SearchableInfo searchableInfo = this.f14385w;
+            SearchableInfo searchableInfo = this.f14560w;
             if (searchableInfo.shouldRewriteQueryFromData() && (g11 = g(cursor, cursor.getColumnIndex("suggest_intent_data"))) != null) {
                 return g11;
             }
@@ -123,7 +123,7 @@ public final class z2 extends h1.b implements View.OnClickListener {
         String authority = uri.getAuthority();
         if (!TextUtils.isEmpty(authority)) {
             try {
-                Resources resourcesForApplication = this.f14386x.getPackageManager().getResourcesForApplication(authority);
+                Resources resourcesForApplication = this.f14561x.getPackageManager().getResourcesForApplication(authority);
                 List<String> pathSegments = uri.getPathSegments();
                 if (pathSegments != null) {
                     int size = pathSegments.size();
@@ -175,7 +175,7 @@ public final class z2 extends h1.b implements View.OnClickListener {
         }
         String[] strArr2 = strArr;
         fragment.appendQueryParameter("limit", String.valueOf(50));
-        return this.f14386x.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
+        return this.f14561x.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
     }
 
     @Override
@@ -184,9 +184,9 @@ public final class z2 extends h1.b implements View.OnClickListener {
             return super.getDropDownView(i10, view, viewGroup);
         } catch (RuntimeException e) {
             Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e);
-            View inflate = this.f14384s.inflate(this.f14383r, viewGroup, false);
+            View inflate = this.f14559s.inflate(this.f14558r, viewGroup, false);
             if (inflate != null) {
-                ((y2) inflate.getTag()).f14372a.setText(e.toString());
+                ((y2) inflate.getTag()).f14547a.setText(e.toString());
             }
             return inflate;
         }
@@ -198,10 +198,10 @@ public final class z2 extends h1.b implements View.OnClickListener {
             return super.getView(i10, view, viewGroup);
         } catch (RuntimeException e) {
             Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e);
-            View inflate = this.f14384s.inflate(this.f14382n, viewGroup, false);
+            View inflate = this.f14559s.inflate(this.f14557n, viewGroup, false);
             inflate.setTag(new y2(inflate));
             ((ImageView) inflate.findViewById(2131296420)).setImageResource(this.E);
-            ((y2) inflate.getTag()).f14372a.setText(e.toString());
+            ((y2) inflate.getTag()).f14547a.setText(e.toString());
             return inflate;
         }
     }
@@ -215,7 +215,7 @@ public final class z2 extends h1.b implements View.OnClickListener {
     public final void notifyDataSetChanged() {
         Bundle bundle;
         super.notifyDataSetChanged();
-        Cursor cursor = this.f10083c;
+        Cursor cursor = this.f10082c;
         if (cursor != null) {
             bundle = cursor.getExtras();
         } else {
@@ -230,7 +230,7 @@ public final class z2 extends h1.b implements View.OnClickListener {
     public final void notifyDataSetInvalidated() {
         Bundle bundle;
         super.notifyDataSetInvalidated();
-        Cursor cursor = this.f10083c;
+        Cursor cursor = this.f10082c;
         if (cursor != null) {
             bundle = cursor.getExtras();
         } else {

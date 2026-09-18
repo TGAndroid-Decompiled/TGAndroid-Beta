@@ -1,64 +1,47 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.Window;
-public final class ia1 extends AnimatorListenerAdapter {
-    public final int f34525a;
-    public final ka1 f34526b;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ia1 {
+    public final org.telegram.ui.Components.s00 f34480a;
+    public kg.f f34481b;
+    public final int f34482c;
+    public final ja1 d;
 
-    public ia1(ka1 ka1Var, int i10) {
-        this.f34525a = i10;
-        this.f34526b = ka1Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34525a) {
-            case 0:
-                ka1 ka1Var = this.f34526b;
-                ka1Var.f35179b.setVisibility(4);
-                ig.g gVar = ka1Var.f35179b;
-                gVar.J = false;
-                ig.g gVar2 = ka1Var.f35180c;
-                gVar2.J = true;
-                gVar.f11173y0 = 0;
-                gVar2.f11173y0 = 0;
-                Window window = ka1Var.f35178a;
-                if (window != null) {
-                    window.clearFlags(16);
-                    return;
-                }
-                return;
-            case 1:
-                ka1 ka1Var2 = this.f34526b;
-                ig.g gVar3 = ka1Var2.f35180c;
-                gVar3.setVisibility(4);
-                ig.g gVar4 = ka1Var2.f35179b;
-                gVar4.f11173y0 = 0;
-                gVar3.f11173y0 = 0;
-                gVar4.J = true;
-                gVar3.J = false;
-                if (!(gVar4 instanceof ig.q)) {
-                    gVar4.f11166u0 = true;
-                    gVar4.x((gVar4.G0 * gVar4.f11146g0.f11187k) - ig.g.f11115k1);
-                    gVar4.c(true);
-                    gVar4.invalidate();
-                } else {
-                    gVar4.f11166u0 = false;
-                    gVar4.d();
-                }
-                Window window2 = ka1Var2.f35178a;
-                if (window2 != null) {
-                    window2.clearFlags(16);
-                    return;
-                }
-                return;
-            default:
-                ka1 ka1Var3 = this.f34526b;
-                ka1Var3.f35179b.f11173y0 = 0;
-                ka1Var3.e.setVisibility(8);
-                return;
-        }
+    public ia1(ja1 ja1Var, int i10) {
+        this.d = ja1Var;
+        this.f34482c = i10;
+        ?? view = new View(ja1Var.getContext());
+        view.f28014c = true;
+        TextPaint textPaint = new TextPaint(1);
+        view.e = textPaint;
+        view.f28015f = new Paint(1);
+        Paint paint = new Paint(1);
+        view.h = paint;
+        Paint paint2 = new Paint(1);
+        view.f28016n = paint2;
+        view.f28019w = AndroidUtilities.dp(35.0f);
+        view.f28020x = AndroidUtilities.dp(22.0f);
+        view.f28021y = AndroidUtilities.dp(8.0f);
+        view.E = AndroidUtilities.dp(3.5f);
+        view.F = new RectF();
+        view.G = 0.0f;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint2.setStyle(style);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.f34480a = view;
+        view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        ja1Var.h.addView(view);
+        ja1Var.f34774n.add(this);
     }
 }

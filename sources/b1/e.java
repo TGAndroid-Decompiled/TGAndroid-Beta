@@ -16,7 +16,7 @@ public final class e implements p {
     public final Object invoke(Object obj, Object obj2) {
         id.b bVar;
         int i10 = this.f2896a;
-        i iVar = i.f9621a;
+        i iVar = i.f9620a;
         switch (i10) {
             case 0:
                 rd.a f7 = (rd.a) obj2;

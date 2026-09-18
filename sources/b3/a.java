@@ -76,7 +76,7 @@ public final class a extends f {
             h hVar = this.I;
             hVar.clear();
             y yVar = this.f10686c;
-            yVar.h();
+            yVar.n();
             if (w(yVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
                 long j11 = hVar.e;
                 this.L = j11;
@@ -87,8 +87,8 @@ public final class a extends f {
                 }
                 if (this.K != null && !z10) {
                     hVar.c();
-                    ByteBuffer byteBuffer = hVar.f10097c;
-                    String str = d0.f7888a;
+                    ByteBuffer byteBuffer = hVar.f10096c;
+                    String str = d0.f7887a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {
@@ -104,7 +104,7 @@ public final class a extends f {
                         fArr = fArr2;
                     }
                     if (fArr != null) {
-                        this.K.a();
+                        this.K.b();
                     }
                 }
             } else {

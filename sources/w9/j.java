@@ -6,22 +6,22 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 public final class j {
-    public final r f44956a;
-    public final i f44957b;
+    public final r f45182a;
+    public final i f45183b;
 
     public j(r rVar, ba.c cVar) {
-        this.f44956a = rVar;
-        this.f44957b = new i(cVar);
+        this.f45182a = rVar;
+        this.f45183b = new i(cVar);
     }
 
     public final String a(String str) {
         String substring;
-        i iVar = this.f44957b;
+        i iVar = this.f45183b;
         synchronized (iVar) {
-            if (Objects.equals(iVar.f44954b, str)) {
-                return iVar.f44955c;
+            if (Objects.equals(iVar.f45180b, str)) {
+                return iVar.f45181c;
             }
-            ba.c cVar = iVar.f44953a;
+            ba.c cVar = iVar.f45179a;
             ba.a aVar = i.d;
             File file = new File(cVar.f3453c, str);
             file.mkdirs();
@@ -37,11 +37,11 @@ public final class j {
     }
 
     public final void b(String str) {
-        i iVar = this.f44957b;
+        i iVar = this.f45183b;
         synchronized (iVar) {
-            if (!Objects.equals(iVar.f44954b, str)) {
-                i.a(iVar.f44953a, str, iVar.f44955c);
-                iVar.f44954b = str;
+            if (!Objects.equals(iVar.f45180b, str)) {
+                i.a(iVar.f45179a, str, iVar.f45181c);
+                iVar.f45180b = str;
             }
         }
     }

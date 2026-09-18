@@ -44,7 +44,7 @@ public final class c3 implements Runnable {
                         } else {
                             f7 = 56.0f;
                         }
-                        a5Var.addView(f4Var3, w7.x5.d(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, f7));
+                        a5Var.addView(f4Var3, w7.y5.d(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, f7));
                     }
                     f6Var.H0.u();
                     SharedConfig.setStoriesReactionsLongPressHintUsed(true);
@@ -75,8 +75,8 @@ public final class c3 implements Runnable {
                 f6Var2.L3 = 0L;
                 a4 a4Var = f6Var2.f800b2;
                 if (a4Var != null) {
-                    a4Var.L(true);
-                    f6Var2.f800b2.S1();
+                    a4Var.K(true);
+                    f6Var2.f800b2.R1();
                     f6Var2.r0(true);
                     return;
                 }

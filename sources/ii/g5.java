@@ -13,19 +13,19 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.ba;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-public final class g5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
-    public final org.telegram.ui.ActionBar.f6 f11394n;
+public final class g5 extends a0 implements org.telegram.ui.ActionBar.z5, p9 {
+    public final org.telegram.ui.ActionBar.e6 f11394n;
     public final i1 f11395r;
     public e5 f11396s;
     public final ArrayList v;
     public boolean f11397w;
 
-    public g5(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public g5(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.v = new ArrayList();
-        this.f11394n = f6Var;
+        this.f11394n = e6Var;
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        i1 i1Var = new i1(context, f6Var);
+        i1 i1Var = new i1(context, e6Var);
         this.f11395r = i1Var;
         i1Var.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
         i1Var.setAllowNewlines(false);
@@ -36,9 +36,9 @@ public final class g5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         i1Var.setTextColorKey(j6.Oh);
         i1Var.setAccentHint(true);
         i1Var.setHint(LocaleController.getString(R.string.ArticleHintAuthor));
-        i1Var.setListener(new a4.m(this, 22));
+        i1Var.setListener(new a4.m(this, 23));
         i1Var.setDelegate(new ei.d5(this, 20));
-        addView(i1Var, w7.x5.e(-1, -2, 51));
+        addView(i1Var, w7.y5.e(-1, -2, 51));
         e();
     }
 
@@ -71,9 +71,9 @@ public final class g5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         i1 i1Var = this.f11395r;
         i1Var.t();
         int i10 = j6.Oh;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f11394n;
-        i1Var.setTextColor(j6.v0(i10, f6Var));
-        i1Var.setHintTextColor(j6.l1(0.5f, j6.v0(i10, f6Var)));
+        org.telegram.ui.ActionBar.e6 e6Var = this.f11394n;
+        i1Var.setTextColor(j6.v0(i10, e6Var));
+        i1Var.setHintTextColor(j6.l1(0.5f, j6.v0(i10, e6Var)));
     }
 
     @Override

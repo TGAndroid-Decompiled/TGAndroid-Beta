@@ -1,46 +1,38 @@
 package org.telegram.ui;
 
+import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class wf implements View.OnLongClickListener {
-    public final int f39027a;
-    public final bo f39028b;
+import org.telegram.messenger.Utilities;
+public final class wf implements Utilities.CallbackReturn {
+    public final int f39137a;
+    public final Object f39138b;
+    public final Object f39139c;
 
-    public wf(bo boVar, int i10) {
-        this.f39027a = i10;
-        this.f39028b = boVar;
+    public wf(int i10, Object obj, Object obj2) {
+        this.f39137a = i10;
+        this.f39138b = obj;
+        this.f39139c = obj2;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        MessageObject messageObject;
-        MessageObject messageObject2;
-        switch (this.f39027a) {
+    public final Object run(Object obj) {
+        org.telegram.ui.Cells.u1 u1Var;
+        switch (this.f39137a) {
             case 0:
-                bo boVar = this.f39028b;
-                MessageObject messageObject3 = boVar.f32262d5;
-                if (messageObject3 == null) {
-                    return false;
-                }
-                if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
-                    new org.telegram.ui.Components.vc(org.telegram.ui.Components.jb.a(boVar.getParentActivity()), boVar.f32279ea).k(false).j();
-                }
-                return true;
-            case 1:
-                return bo.R0(this.f39028b);
-            default:
-                bo boVar2 = this.f39028b;
-                int i10 = boVar2.nb;
-                if (i10 == 1 && (messageObject2 = boVar2.p5) != null) {
-                    boVar2.F(messageObject2.getId(), 0, 0, 0, true, true);
-                    return true;
-                } else if (boVar2.f32287f5 != null && i10 == 2 && (messageObject = boVar2.f32385n5) != null) {
-                    boVar2.F(messageObject.getId(), 0, 0, 0, true, true);
-                    return true;
+                zn znVar = (zn) this.f39138b;
+                View view = (View) this.f39139c;
+                URLSpan uRLSpan = (URLSpan) obj;
+                MessageObject messageObject = znVar.f40244d5;
+                if (view instanceof org.telegram.ui.Cells.u1) {
+                    u1Var = (org.telegram.ui.Cells.u1) view;
                 } else {
-                    return false;
+                    u1Var = null;
                 }
+                znVar.U7(uRLSpan, false, messageObject, u1Var);
+                return Boolean.TRUE;
+            default:
+                return rh.c.d((View) obj, (String) this.f39138b, (String) this.f39139c, null, null);
         }
     }
 }

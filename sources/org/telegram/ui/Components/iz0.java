@@ -1,47 +1,47 @@
 package org.telegram.ui.Components;
 public final class iz0 {
-    public static final iz0 e = new iz0(false, new fz0(Integer.MIN_VALUE, -2147483647), lz0.R, 0.0f);
-    public final boolean f25062a;
-    public final fz0 f25063b;
-    public final xy0 f25064c;
-    public final float d;
+    public final int f25092a;
 
-    public iz0(boolean z10, fz0 fz0Var, xy0 xy0Var, float f7) {
-        this.f25062a = z10;
-        this.f25063b = fz0Var;
-        this.f25064c = xy0Var;
-        this.d = f7;
+    public iz0(int i10) {
+        this.f25092a = i10;
     }
 
-    public static xy0 a(iz0 iz0Var, boolean z10) {
-        xy0 xy0Var = iz0Var.f25064c;
-        if (xy0Var != lz0.R) {
-            return xy0Var;
+    public final int a(pz0 pz0Var, int i10) {
+        switch (this.f25092a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        if (iz0Var.d == 0.0f) {
-            if (z10) {
-                return lz0.S;
-            }
-            return lz0.T;
-        }
-        return lz0.U;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final int b(pz0 pz0Var, int i10) {
+        switch (this.f25092a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
         }
-        if (obj == null || iz0.class != obj.getClass()) {
-            return false;
-        }
-        iz0 iz0Var = (iz0) obj;
-        if (this.f25064c.equals(iz0Var.f25064c) && this.f25063b.equals(iz0Var.f25063b)) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return this.f25064c.hashCode() + (this.f25063b.hashCode() * 31);
+    public int c(int i10, int i11) {
+        switch (this.f25092a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

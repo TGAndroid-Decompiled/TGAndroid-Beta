@@ -11,9 +11,9 @@ import android.widget.ImageView;
 import androidx.appcompat.widget.ActionBarOverlayLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.yi0;
+import org.telegram.ui.Components.ij0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.o01;
+import org.telegram.ui.m01;
 public final class b extends AnimatorListenerAdapter {
     public final int f538a;
     public final Object f539b;
@@ -70,14 +70,14 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 4:
                 a4 a4Var = (a4) obj;
-                a4Var.f516s5.invalidate();
+                a4Var.f516r5.invalidate();
                 a4Var.setAnimatedTop(0);
-                a4Var.f516s5.V2 = true;
+                a4Var.f516r5.V2 = true;
                 View view = a4Var.F1;
                 if (view != null && view.getVisibility() == 0) {
                     a4Var.F1.setTranslationY(((1.0f - a4Var.getTopViewEnterProgress()) * a4Var.F1.getLayoutParams().height) + a4Var.S1);
                 }
-                a4Var.f516s5.f812e2 = null;
+                a4Var.f516r5.f812e2 = null;
                 return;
             case 5:
                 b6 b6Var = (b6) obj;
@@ -87,10 +87,10 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 6:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) obj;
-                o01 o01Var = profileStoriesView.h;
+                m01 m01Var = profileStoriesView.h;
                 profileStoriesView.G = 1.0f;
-                o01Var.R = 1.0f;
-                o01Var.invalidate();
+                m01Var.R = 1.0f;
+                m01Var.invalidate();
                 profileStoriesView.invalidate();
                 return;
             case 7:
@@ -186,10 +186,10 @@ public final class b extends AnimatorListenerAdapter {
             case 20:
                 ei.y yVar = (ei.y) obj;
                 yVar.setVisibility(8);
-                yVar.f8738a = null;
+                yVar.f8737a = null;
                 return;
             case 21:
-                ((ei.k3) obj).f8458y.setVisibility(8);
+                ((ei.k3) obj).f8457y.setVisibility(8);
                 return;
             case 22:
                 ((ei.q4) obj).I.setVisibility(8);
@@ -208,7 +208,7 @@ public final class b extends AnimatorListenerAdapter {
                 ((kg.e) obj).h.setVisibility(8);
                 return;
             case 25:
-                ((CropAreaView) obj).f22021c0 = null;
+                ((CropAreaView) obj).f22194c0 = null;
                 return;
             case 26:
                 ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) obj;
@@ -217,20 +217,20 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 27:
                 org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) obj;
-                Runnable runnable = h4Var.f34153a0;
+                Runnable runnable = h4Var.f34054a0;
                 if (runnable != null) {
                     runnable.run();
-                    h4Var.f34153a0 = null;
+                    h4Var.f34054a0 = null;
                     return;
                 }
                 return;
             case 28:
                 org.telegram.ui.u3 u3Var = (org.telegram.ui.u3) obj;
-                u3Var.f37931w = 1.0f;
+                u3Var.f37866w = 1.0f;
                 u3Var.n();
                 u3Var.i();
                 u3Var.h();
-                u3Var.f37924a.unlock();
+                u3Var.f37859a.unlock();
                 return;
             case 29:
                 org.telegram.ui.q4 q4Var = (org.telegram.ui.q4) obj;
@@ -246,9 +246,9 @@ public final class b extends AnimatorListenerAdapter {
             case 9:
                 super.onAnimationStart(animator);
                 p9 p9Var = (p9) this.f539b;
-                yi0 yi0Var = ((o9) p9Var.f1399a.get(p9Var.d)).f1361c;
-                yi0Var.L = 2;
-                yi0Var.start();
+                ij0 ij0Var = ((o9) p9Var.f1399a.get(p9Var.d)).f1361c;
+                ij0Var.L = 2;
+                ij0Var.start();
                 return;
             case 29:
                 ((org.telegram.ui.q4) this.f539b).setVisibility(0);

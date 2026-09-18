@@ -15,7 +15,7 @@ public final class k4 extends ReplacementSpan {
     public RichMessageLayout.RichButtonSpan f11477b;
     public View f11478c;
     public int d = UserConfig.selectedAccount;
-    public org.telegram.ui.ActionBar.f6 e;
+    public org.telegram.ui.ActionBar.e6 e;
 
     public k4(TL_iv.textButton textbutton) {
         this.f11476a = textbutton;
@@ -28,7 +28,7 @@ public final class k4 extends ReplacementSpan {
         return true;
     }
 
-    public final void a(int i10, View view, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final void a(int i10, View view, org.telegram.ui.ActionBar.e6 e6Var) {
         View view2;
         RichMessageLayout.RichButtonSpan richButtonSpan = this.f11477b;
         if (richButtonSpan != null && (view2 = this.f11478c) != null) {
@@ -36,7 +36,7 @@ public final class k4 extends ReplacementSpan {
         }
         this.f11478c = view;
         this.d = i10;
-        this.e = f6Var;
+        this.e = e6Var;
         this.f11477b = null;
         b();
     }

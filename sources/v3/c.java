@@ -5,14 +5,14 @@ import c3.a0;
 import c3.c0;
 import e2.d0;
 public final class c implements f {
-    public final long[] f43897a;
-    public final long[] f43898b;
-    public final long f43899c;
+    public final long[] f44123a;
+    public final long[] f44124b;
+    public final long f44125c;
 
     public c(long j3, long[] jArr, long[] jArr2) {
-        this.f43897a = jArr;
-        this.f43898b = jArr2;
-        this.f43899c = j3 == -9223372036854775807L ? d0.Q(jArr2[jArr2.length - 1]) : j3;
+        this.f44123a = jArr;
+        this.f44124b = jArr2;
+        this.f44125c = j3 == -9223372036854775807L ? d0.Q(jArr2[jArr2.length - 1]) : j3;
     }
 
     public static Pair a(long j3, long[] jArr, long[] jArr2) {
@@ -36,7 +36,7 @@ public final class c implements f {
 
     @Override
     public final long b(long j3) {
-        return d0.Q(((Long) a(j3, this.f43897a, this.f43898b).second).longValue());
+        return d0.Q(((Long) a(j3, this.f44123a, this.f44124b).second).longValue());
     }
 
     @Override
@@ -56,7 +56,7 @@ public final class c implements f {
 
     @Override
     public final a0 j(long j3) {
-        Pair a2 = a(d0.e0(d0.i(j3, 0L, this.f43899c)), this.f43898b, this.f43897a);
+        Pair a2 = a(d0.e0(d0.i(j3, 0L, this.f44125c)), this.f44124b, this.f44123a);
         c0 c0Var = new c0(d0.Q(((Long) a2.first).longValue()), ((Long) a2.second).longValue());
         return new a0(c0Var, c0Var);
     }
@@ -68,6 +68,6 @@ public final class c implements f {
 
     @Override
     public final long l() {
-        return this.f43899c;
+        return this.f44125c;
     }
 }

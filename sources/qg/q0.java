@@ -1,89 +1,119 @@
 package qg;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class q0 extends TLObject {
-    public static final int f41608j = 0;
-    public int f41609a;
-    public String f41610b;
-    public String f41611c;
-    public TLRPC.WebPage d;
-    public boolean e;
-    public boolean f41612f = true;
-    public int f41613i;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.sk0;
+import w7.y5;
+public final class q0 extends j {
+    public final o0 f41872q0;
+    public int f41873r0;
+    public int f41874s0;
+    public boolean f41875t0;
+    public n0 f41876u0;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        boolean z11;
-        int readInt32 = inputSerializedData.readInt32(z10);
-        this.f41609a = readInt32;
-        boolean z12 = false;
-        if ((readInt32 & 8) != 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.e = z11;
-        if ((readInt32 & 16) != 0) {
-            z12 = true;
-        }
-        this.f41612f = z12;
-        this.f41611c = inputSerializedData.readString(z10);
-        if ((this.f41609a & 1) != 0) {
-            this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        }
-        if ((this.f41609a & 2) != 0) {
-            this.f41610b = inputSerializedData.readString(z10);
-        }
-        if ((this.f41609a & 4) != 0) {
-            this.f41613i = inputSerializedData.readInt32(z10);
-        }
+    public q0(Context context, PointF pointF, int i10, n0 n0Var, float f7, int i11) {
+        super(context, pointF);
+        o0 o0Var = new o0(context, f7);
+        this.f41872q0 = o0Var;
+        o0Var.setMaxWidth(i11);
+        this.f41876u0 = n0Var;
+        o0Var.b(i10, n0Var, false);
+        m();
+        this.f41874s0 = 3;
+        o0Var.c(3, this.f41873r0);
+        addView(o0Var, y5.e(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        k();
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        outputSerializedData.writeInt32(-625858389);
-        if (this.d != null) {
-            i10 = this.f41609a | 1;
-        } else {
-            i10 = this.f41609a & (-2);
+    public final i a() {
+        return new p0(this, getContext());
+    }
+
+    public int getColor() {
+        return this.f41873r0;
+    }
+
+    @Override
+    public float getMaxScale() {
+        return 1.5f;
+    }
+
+    public int getNextType() {
+        int i10 = this.f41874s0 + 1;
+        if (i10 == 4) {
+            return !this.f41875t0 ? 1 : 0;
         }
-        this.f41609a = i10;
-        if (!TextUtils.isEmpty(this.f41610b)) {
-            i11 = this.f41609a | 2;
-        } else {
-            i11 = this.f41609a & (-3);
+        return i10;
+    }
+
+    @Override
+    public sk0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
         }
-        this.f41609a = i11;
-        if (this.e) {
-            i12 = i11 | 8;
-        } else {
-            i12 = i11 & (-9);
-        }
-        this.f41609a = i12;
-        if (this.f41612f) {
-            i13 = i12 | 16;
-        } else {
-            i13 = i12 & (-17);
-        }
-        this.f41609a = i13;
-        outputSerializedData.writeInt32(i13);
-        outputSerializedData.writeString(this.f41611c);
-        if ((this.f41609a & 1) != 0) {
-            this.d.serializeToStream(outputSerializedData);
-        }
-        if ((this.f41609a & 2) != 0) {
-            outputSerializedData.writeString(this.f41610b);
-        }
-        if ((this.f41609a & 4) != 0) {
-            outputSerializedData.writeInt32(this.f41613i);
-        }
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float x10 = wh.x(dp, 2.0f, getPositionX(), scaleX);
+        return new sk0(x10, wh.x(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + x10) - x10, dp2 * scaleX);
+    }
+
+    @Override
+    public float getStickyPaddingBottom() {
+        return this.f41872q0.h;
+    }
+
+    @Override
+    public float getStickyPaddingLeft() {
+        return this.f41872q0.f41830f;
+    }
+
+    @Override
+    public float getStickyPaddingRight() {
+        return this.f41872q0.f41830f;
+    }
+
+    @Override
+    public float getStickyPaddingTop() {
+        return this.f41872q0.h;
+    }
+
+    public int getType() {
+        return this.f41874s0;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        k();
+    }
+
+    public void setColor(int i10) {
+        this.f41875t0 = true;
+        this.f41873r0 = i10;
+    }
+
+    public void setMaxWidth(int i10) {
+        this.f41872q0.setMaxWidth(i10);
+    }
+
+    public void setType(int i10) {
+        this.f41874s0 = i10;
+        this.f41872q0.c(i10, this.f41873r0);
     }
 }

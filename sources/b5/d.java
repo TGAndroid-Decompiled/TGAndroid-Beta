@@ -30,7 +30,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.x9;
+import org.telegram.ui.w9;
 public abstract class d {
     public static int f3415a;
     public static AtomicInteger f3416b;
@@ -57,7 +57,7 @@ public abstract class d {
             e6.h.x(mVar);
             basePendingResult = mVar;
         }
-        basePendingResult.b(new x9(2));
+        basePendingResult.b(new w9(2));
     }
 
     public static boolean B(ViewConfiguration viewConfiguration) {
@@ -90,13 +90,13 @@ public abstract class d {
     }
 
     public static Person E(p0 p0Var) {
-        Person.Builder name = new Person.Builder().setName(p0Var.f7824a);
-        IconCompat iconCompat = p0Var.f7825b;
+        Person.Builder name = new Person.Builder().setName(p0Var.f7823a);
+        IconCompat iconCompat = p0Var.f7824b;
         Icon icon = null;
         if (iconCompat != null) {
             icon = iconCompat.m(null);
         }
-        return name.setIcon(icon).setUri(p0Var.f7826c).setKey(p0Var.d).setBot(p0Var.e).setImportant(p0Var.f7827f).build();
+        return name.setIcon(icon).setUri(p0Var.f7825c).setKey(p0Var.d).setBot(p0Var.e).setImportant(p0Var.f7826f).build();
     }
 
     public static void a(Notification.Builder builder, Person person) {
@@ -165,7 +165,7 @@ public abstract class d {
                 d6.a c11 = d6.a.c(f());
                 if (c11 != null && (c10 = c11.b().c()) != null && c10.b()) {
                     n6.l.e("Must be called from the main thread.");
-                    return c10.f7537j;
+                    return c10.f7536j;
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);
@@ -283,7 +283,7 @@ public abstract class d {
             f3416b = new AtomicInteger(0);
         }
         f3416b.incrementAndGet();
-        e7.q(new c6.p(j3)).b(new x9(3));
+        e7.q(new c6.p(j3)).b(new w9(3));
     }
 
     public static void w(int i10, TextView textView) {
@@ -308,7 +308,7 @@ public abstract class d {
                     e6.h.x(jVar);
                     basePendingResult2 = jVar;
                 }
-                basePendingResult2.b(new x9(0));
+                basePendingResult2.b(new w9(0));
                 return;
             }
             n6.l.e("Must be called from the main thread.");
@@ -319,7 +319,7 @@ public abstract class d {
                 e6.h.x(jVar2);
                 basePendingResult = jVar2;
             }
-            basePendingResult.b(new x9(1));
+            basePendingResult.b(new w9(1));
         }
     }
 
@@ -346,6 +346,6 @@ public abstract class d {
             e6.h.x(mVar);
             basePendingResult = mVar;
         }
-        basePendingResult.b(new x9(4));
+        basePendingResult.b(new w9(4));
     }
 }

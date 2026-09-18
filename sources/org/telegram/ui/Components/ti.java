@@ -19,5 +19,5 @@ public interface ti {
 
     void u0();
 
-    void x0(fh fhVar);
+    void x0(gh ghVar);
 }

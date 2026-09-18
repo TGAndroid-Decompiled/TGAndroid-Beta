@@ -593,7 +593,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
     public boolean isSemiPlanar(int i10) {
         if (i10 != 19) {
             if (i10 != 21 && i10 != 2141391872 && i10 != 2141391876) {
-                throw new IllegalArgumentException(k0.i(i10, "Unsupported colorFormat: "));
+                throw new IllegalArgumentException(k0.h(i10, "Unsupported colorFormat: "));
             }
             return true;
         }

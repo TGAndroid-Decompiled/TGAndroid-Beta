@@ -1,41 +1,32 @@
 package yh;
 
-import java.util.ArrayList;
-import org.telegram.ui.Components.yi0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
 public final class d4 implements Runnable {
-    public final int f47104a;
-    public final e4 f47105b;
+    public final int f47296a;
+    public final Utilities.Callback2 f47297b;
 
-    public d4(e4 e4Var, int i10) {
-        this.f47104a = i10;
-        this.f47105b = e4Var;
+    public d4(int i10, Utilities.Callback2 callback2) {
+        this.f47296a = i10;
+        this.f47297b = callback2;
     }
 
     @Override
     public final void run() {
-        switch (this.f47104a) {
+        switch (this.f47296a) {
             case 0:
-                e4 e4Var = this.f47105b;
-                e4Var.f47141r = false;
-                e4Var.invalidate();
-                e4Var.a();
-                e4Var.c();
+                FileLog.d("StarsController.buy onCanceled");
+                AndroidUtilities.runOnUIThread(new d4(1, this.f47297b));
                 return;
             case 1:
-                this.f47105b.invalidate();
+                this.f47297b.run(Boolean.FALSE, null);
+                return;
+            case 2:
+                this.f47297b.run(Boolean.FALSE, "PRODUCT_NOT_FOUND");
                 return;
             default:
-                e4 e4Var2 = this.f47105b;
-                e4Var2.setMessageCell(null);
-                ArrayList arrayList = e4Var2.J;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((yi0) obj).C(true);
-                }
-                arrayList.clear();
+                this.f47297b.run(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
                 return;
         }
     }

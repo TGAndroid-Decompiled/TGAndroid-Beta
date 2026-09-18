@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 public abstract class p {
-    public final b f9460a;
-    public final String f9461b;
-    public aa.a f9462c;
+    public final b f9459a;
+    public final String f9460b;
+    public aa.a f9461c;
     public final List d;
 
     public p(String str) {
         a.b(str);
-        this.f9461b = str;
-        this.f9460a = new b("MediaControlChannel", null);
+        this.f9460b = str;
+        this.f9459a = new b("MediaControlChannel", null);
         this.d = DesugarCollections.synchronizedList(new ArrayList());
     }
 
@@ -27,26 +27,26 @@ public abstract class p {
     }
 
     public final long b() {
-        aa.a aVar = this.f9462c;
+        aa.a aVar = this.f9461c;
         if (aVar == null) {
-            b bVar = this.f9460a;
-            Log.e(bVar.f9430a, bVar.d("Attempt to generate requestId without a sink", new Object[0]));
+            b bVar = this.f9459a;
+            Log.e(bVar.f9429a, bVar.d("Attempt to generate requestId without a sink", new Object[0]));
             return 0L;
         }
         return ((AtomicLong) aVar.f360c).getAndIncrement();
     }
 
     public final void c(long j3, String str) {
-        aa.a aVar = this.f9462c;
+        aa.a aVar = this.f9461c;
         if (aVar == null) {
-            b bVar = this.f9460a;
-            Log.e(bVar.f9430a, bVar.d("Attempt to send text message without a sink", new Object[0]));
+            b bVar = this.f9459a;
+            Log.e(bVar.f9429a, bVar.d("Attempt to send text message without a sink", new Object[0]));
             return;
         }
         f0 f0Var = (f0) aVar.f359b;
         if (f0Var != null) {
             e0 e0Var = (e0) f0Var;
-            String str2 = this.f9461b;
+            String str2 = this.f9460b;
             a.b(str2);
             if (!TextUtils.isEmpty(str)) {
                 if (str.length() <= 524288) {
@@ -57,7 +57,7 @@ public abstract class p {
                     return;
                 }
                 b bVar2 = e0.G;
-                Log.w(bVar2.f9430a, bVar2.d("Message send failed. Message exceeds maximum size", new Object[0]));
+                Log.w(bVar2.f9429a, bVar2.d("Message send failed. Message exceeds maximum size", new Object[0]));
                 throw new IllegalArgumentException("Message exceeds maximum size524288");
             }
             throw new IllegalArgumentException("The message payload cannot be null or empty");

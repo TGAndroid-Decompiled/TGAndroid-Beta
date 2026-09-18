@@ -2,69 +2,65 @@ package xh;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.qv0;
-public final class t4 extends org.telegram.ui.Cells.f3 {
-    public final y4 E;
-    public final ch.f f46160x;
-    public final int f46161y;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.ui.Components.bw0;
+public final class t4 extends bw0 {
+    public int f46386w0;
+    public final z4 f46387x0;
 
-    public t4(y4 y4Var, Context context, qv0 qv0Var, String str, int i10, f6 f6Var, ch.f fVar, int i11) {
-        super(context, qv0Var, str, true, i10, f6Var);
-        this.E = y4Var;
-        this.f46160x = fVar;
-        this.f46161y = i11;
+    public t4(z4 z4Var, Context context) {
+        super(context, null);
+        this.f46387x0 = z4Var;
+        this.f46386w0 = -1;
     }
 
     @Override
-    public final void b() {
-        TLRPC.TL_textWithEntities tL_textWithEntities;
-        y4 y4Var = this.E;
-        MessageObject messageObject = y4Var.m0;
-        TLRPC.MessageAction messageAction = y4Var.f46251l0;
-        if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
-            tL_textWithEntities = new TLRPC.TL_textWithEntities();
-            ((TLRPC.TL_messageActionStarGift) messageAction).message = tL_textWithEntities;
-        } else if (messageAction instanceof TLRPC.TL_messageActionGiftCode) {
-            TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode = (TLRPC.TL_messageActionGiftCode) messageAction;
-            tL_messageActionGiftCode.flags |= 16;
-            tL_textWithEntities = new TLRPC.TL_textWithEntities();
-            tL_messageActionGiftCode.message = tL_textWithEntities;
-        } else if (messageAction instanceof TLRPC.TL_messageActionGiftPremium) {
-            TLRPC.TL_messageActionGiftPremium tL_messageActionGiftPremium = (TLRPC.TL_messageActionGiftPremium) messageAction;
-            tL_messageActionGiftPremium.flags |= 16;
-            tL_textWithEntities = new TLRPC.TL_textWithEntities();
-            tL_messageActionGiftPremium.message = tL_textWithEntities;
-        } else {
-            return;
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean Q() {
+        return false;
+    }
+
+    @Override
+    public final void T() {
+        this.f46387x0.d.invalidate();
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.L) {
+            return true;
         }
-        CharSequence[] charSequenceArr = {y4Var.f46257s0.getText()};
-        tL_textWithEntities.entities = MediaDataController.getInstance(this.f46161y).getEntities(charSequenceArr, true);
-        tL_textWithEntities.text = charSequenceArr[0].toString();
-        messageObject.setType();
-        y4Var.f46250k0.U(messageObject, true);
-        y4Var.f46258t0.N(true);
-        y4Var.Z(true);
+        return super.drawChild(canvas, view, j3);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(10.0f);
-        int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(10.0f);
-        int measuredHeight = getMeasuredHeight();
-        ch.f fVar = this.f46160x;
-        fVar.setBounds(dp, 0, measuredWidth, measuredHeight);
-        fVar.draw(canvas);
-        super.dispatchDraw(canvas);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        z4 z4Var = this.f46387x0;
+        LinearLayout linearLayout = z4Var.f46487i0;
+        linearLayout.setTranslationY(((i13 - i11) - linearLayout.getMeasuredHeight()) / 2.0f);
+        z4Var.f46489k0.W(z4Var.f46489k0.getY() + z4Var.f46487i0.getY(), getBackgroundSizeY());
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(12.0f), 0);
+        if (this.f46386w0 != -1) {
+            super.onMeasure(i10, i11);
+            int measuredHeight = getMeasuredHeight();
+            int i12 = this.f46386w0;
+            if (measuredHeight < i12) {
+                i11 = View.MeasureSpec.makeMeasureSpec(Math.max(i12, getMeasuredHeight()), Integer.MIN_VALUE);
+            }
+        }
         super.onMeasure(i10, i11);
+        int i13 = this.f46386w0;
+        if (i13 == -1) {
+            this.f46386w0 = Math.max(i13, getMeasuredHeight());
+        }
     }
 }

@@ -1,66 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class wl extends vu0 {
-    public final MessageObject f39076a;
-    public final MediaController.PhotoEntry f39077b;
-    public final bo f39078c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class wl extends AnimatorListenerAdapter {
+    public final boolean f39185a;
+    public final boolean f39186b;
+    public final boolean f39187c;
+    public final zn d;
 
-    public wl(bo boVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f39078c = boVar;
-        this.f39076a = messageObject;
-        this.f39077b = photoEntry;
+    public wl(zn znVar, boolean z10, boolean z11, boolean z12) {
+        this.d = znVar;
+        this.f39185a = z10;
+        this.f39186b = z11;
+        this.f39187c = z12;
     }
 
     @Override
-    public final fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return bo.A1(this.f39078c, this.f39076a, null, i10, z10, true);
-    }
-
-    @Override
-    public final boolean O() {
-        bo boVar = this.f39078c;
-        if (boVar.Y != null && boVar.x9()) {
-            boVar.Y.Q();
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final MessageObject U() {
-        MessageObject messageObject = this.f39078c.p5;
-        MessageObject messageObject2 = this.f39076a;
-        if (messageObject == messageObject2) {
-            return messageObject2;
-        }
-        return null;
-    }
-
-    @Override
-    public final void e(CharSequence charSequence) {
-        this.f39078c.Y.f1(charSequence, false);
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        bo boVar = this.f39078c;
-        if (boVar.p5 != this.f39076a) {
-            return;
-        }
-        MediaController.PhotoEntry photoEntry = this.f39077b;
-        if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
-            boVar.Y.e0();
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        zn znVar = this.d;
+        znVar.M2 = null;
+        ImageView imageView = znVar.J2;
+        int i12 = 4;
+        if (this.f39185a) {
+            i10 = 0;
         } else {
-            boVar.q(photoEntry, videoEditedInfo, z10, i11, 0, z11, 0L);
+            i10 = 4;
         }
+        imageView.setVisibility(i10);
+        ImageView imageView2 = znVar.L2;
+        if (this.f39186b) {
+            i11 = 0;
+        } else {
+            i11 = 4;
+        }
+        imageView2.setVisibility(i11);
+        RadialProgressView radialProgressView = znVar.K2;
+        if (this.f39187c) {
+            i12 = 0;
+        }
+        radialProgressView.setVisibility(i12);
     }
 }

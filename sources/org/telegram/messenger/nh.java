@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.Utilities;
 public final class nh implements Runnable {
-    public final int f16873a;
-    public final Utilities.Callback2 f16874b;
-    public final Exception f16875c;
+    public final int f17046a;
+    public final Utilities.Callback2 f17047b;
+    public final Exception f17048c;
 
     public nh(Utilities.Callback2 callback2, Exception exc, int i10) {
-        this.f16873a = i10;
-        this.f16874b = callback2;
-        this.f16875c = exc;
+        this.f17046a = i10;
+        this.f17047b = callback2;
+        this.f17048c = exc;
     }
 
     @Override
     public final void run() {
-        switch (this.f16873a) {
+        switch (this.f17046a) {
             case 0:
-                PasskeysController.lambda$create$3(this.f16874b, this.f16875c);
+                PasskeysController.lambda$create$3(this.f17047b, this.f17048c);
                 return;
             default:
-                PasskeysController.lambda$create$8(this.f16874b, this.f16875c);
+                PasskeysController.lambda$create$8(this.f17047b, this.f17048c);
                 return;
         }
     }

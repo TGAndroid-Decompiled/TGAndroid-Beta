@@ -6,34 +6,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 public final class fa {
-    public static s f45448k;
-    public static final x f45449l;
-    public final String f45450a;
-    public final String f45451b;
-    public final ca f45452c;
+    public static s f45671k;
+    public static final x f45672l;
+    public final String f45673a;
+    public final String f45674b;
+    public final ca f45675c;
     public final qb.k d;
     public final Task e;
-    public final Task f45453f;
-    public final String f45454g;
+    public final Task f45676f;
+    public final String f45677g;
     public final int h;
-    public final HashMap f45455i = new HashMap();
-    public final HashMap f45456j = new HashMap();
+    public final HashMap f45678i = new HashMap();
+    public final HashMap f45679j = new HashMap();
 
     static {
         Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
         objArr[0].getClass();
         objArr[1].getClass();
-        f45449l = new x(objArr);
+        f45672l = new x(objArr);
     }
 
     public fa(Context context, qb.k kVar, ca caVar) {
         int i10;
-        this.f45450a = context.getPackageName();
-        this.f45451b = qb.c.a(context);
+        this.f45673a = context.getPackageName();
+        this.f45674b = qb.c.a(context);
         this.d = kVar;
-        this.f45452c = caVar;
+        this.f45675c = caVar;
         ia.b();
-        this.f45454g = "play-services-mlkit-image-labeling";
+        this.f45677g = "play-services-mlkit-image-labeling";
         qb.f a2 = qb.f.a();
         c5.x xVar = new c5.x(this, 9);
         a2.getClass();
@@ -42,8 +42,8 @@ public final class fa {
         kVar.getClass();
         t7.p pVar = new t7.p(kVar, 3);
         a10.getClass();
-        this.f45453f = qb.f.b(pVar);
-        x xVar2 = f45449l;
+        this.f45676f = qb.f.b(pVar);
+        x xVar2 = f45672l;
         if (xVar2.containsKey("play-services-mlkit-image-labeling")) {
             i10 = y6.e.d(context, (String) xVar2.get("play-services-mlkit-image-labeling"), false);
         } else {
@@ -61,11 +61,11 @@ public final class fa {
         if (task.isSuccessful()) {
             return (String) task.getResult();
         }
-        return n6.i.f15058c.a(this.f45454g);
+        return n6.i.f15233c.a(this.f45677g);
     }
 
     public final boolean c(o7 o7Var, long j3) {
-        HashMap hashMap = this.f45455i;
+        HashMap hashMap = this.f45678i;
         if (hashMap.get(o7Var) == null || j3 - ((Long) hashMap.get(o7Var)).longValue() > TimeUnit.SECONDS.toMillis(30L)) {
             return true;
         }

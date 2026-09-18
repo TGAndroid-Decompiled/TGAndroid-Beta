@@ -1,98 +1,93 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class gp extends org.telegram.ui.Components.k80 {
-    public final Context f34025w;
-    public final kp f34026x;
+public final class gp extends org.telegram.ui.Components.vl0 {
+    public final hp f33910c;
 
-    public gp(kp kpVar, Context context, TLRPC.Chat chat, Context context2) {
-        super(context, chat);
-        this.f34026x = kpVar;
-        this.f34025w = context2;
+    public gp(hp hpVar) {
+        this.f33910c = hpVar;
     }
 
     @Override
-    public final boolean a(final boolean z10, org.telegram.ui.Components.i80 i80Var) {
-        TLRPC.ChatFull chatFull;
-        int i10;
-        String str;
-        org.telegram.ui.ActionBar.f6 f6Var;
-        kp kpVar = this.f34026x;
-        if (kpVar.V && (chatFull = kpVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
-            if (kpVar.f35323a0) {
-                if (z10) {
-                    str = "ApproveNewMembersEnableForLinksChannel";
-                } else {
-                    str = "ApproveNewMembersDisableForLinksChannel";
-                }
-            } else if (z10) {
-                str = "ApproveNewMembersEnableForLinks";
-            } else {
-                str = "ApproveNewMembersDisableForLinks";
-            }
-            Context context = this.f34025w;
-            f6Var = ((org.telegram.ui.ActionBar.o2) kpVar).resourceProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-            alertDialog$Builder.f18447a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
-            alertDialog$Builder.f18447a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
-            alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.b2(this) {
-                public final gp f33738b;
-
-                {
-                    this.f33738b = this;
-                }
-
-                @Override
-                public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            gp gpVar = this.f33738b;
-                            gpVar.setJoinRequest(z11);
-                            gpVar.f34026x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            gp gpVar2 = this.f33738b;
-                            gpVar2.setJoinRequest(z12);
-                            gpVar2.f34026x.W = false;
-                            return;
-                    }
-                }
-            });
-            alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.b2(this) {
-                public final gp f33738b;
-
-                {
-                    this.f33738b = this;
-                }
-
-                @Override
-                public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            gp gpVar = this.f33738b;
-                            gpVar.setJoinRequest(z11);
-                            gpVar.f34026x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            gp gpVar2 = this.f33738b;
-                            gpVar2.setJoinRequest(z12);
-                            gpVar2.f34026x.W = false;
-                            return;
-                    }
-                }
-            });
-            kpVar.showDialog(alertDialog$Builder.f18447a);
-            return false;
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f42932f == 1) {
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.f33910c.f34202a3.N.size() + 2;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 <= this.f33910c.f34202a3.N.size()) {
+            return 1;
+        }
+        return 2;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        hp hpVar = this.f33910c;
+        ip ipVar = hpVar.f34202a3;
+        int i11 = c1Var.f42932f;
+        View view = c1Var.f42929a;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+                    e9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
+                    e9Var.setBackground(org.telegram.ui.ActionBar.j6.V0(hpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f19026b7));
+                    return;
+                }
+                return;
+            }
+            TLRPC.TL_username tL_username = (TLRPC.TL_username) ipVar.N.get(i10 - 1);
+            oa oaVar = (oa) view;
+            if (oaVar.H) {
+                ipVar.O = null;
+            }
+            if (i10 < ipVar.N.size()) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            oaVar.a(tL_username, z10, false, 0L);
+            if (tL_username != null && tL_username.editable) {
+                ipVar.O = oaVar;
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
+        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, hpVar.f30090p2));
+        m4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        hp hpVar = this.f33910c;
+        org.telegram.ui.ActionBar.e6 e6Var = hpVar.f30090p2;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return new s4.c1(new org.telegram.ui.Cells.e9(hpVar.getContext(), 12, e6Var));
+            }
+            return new s4.c1(new ha(this, hpVar.getContext(), e6Var));
+        }
+        return new s4.c1(new org.telegram.ui.Cells.m4(hpVar.getContext(), e6Var));
     }
 }

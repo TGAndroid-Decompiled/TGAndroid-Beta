@@ -1,59 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.Build;
-import android.widget.FrameLayout;
-public final class m40 extends FrameLayout {
-    public final RectF f35683a;
-    public final RectF f35684b;
-    public final RectF f35685c;
-    public final Paint d;
-    public final k60 e;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class m40 implements org.telegram.ui.ActionBar.z2 {
+    public final i60 f35518a;
 
-    public m40(k60 k60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.e = k60Var;
-        this.f35683a = new RectF();
-        this.f35684b = new RectF();
-        this.f35685c = new RectF();
-        this.d = new Paint(1);
+    public m40(i60 i60Var) {
+        this.f35518a = i60Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        k60 k60Var = this.e;
-        n40 n40Var = k60Var.F;
-        float y3 = n40Var.getY() + n40Var.getMeasuredHeight();
-        le.e eVar = k60Var.B3;
-        RectF rectF = this.f35683a;
-        rectF.set(0.0f, y3 - eVar.e, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f35684b;
-        rectF2.set(0.0f, n40Var.getY() + n40Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-        float y10 = n40Var.getY() + n40Var.getMeasuredHeight();
-        RectF rectF3 = this.f35685c;
-        rectF3.set(0.0f, (n40Var.getY() + n40Var.getMeasuredHeight()) - eVar.e, getMeasuredWidth(), y10);
-        int i10 = Build.VERSION.SDK_INT;
-        Paint paint = this.d;
-        if (i10 >= 29 && k60Var.Q2 != null && canvas.isHardwareAccelerated()) {
-            paint.setColor(-14933463);
-            canvas.drawRect(rectF, paint);
-            canvas.save();
-            canvas.clipRect(rectF);
-            canvas.translate(-getX(), -getY());
-            float f7 = k60Var.R2;
-            canvas.scale(f7, f7);
-            canvas.drawRenderNode(k60Var.Q2);
-            canvas.restore();
-            paint.setColor(234881023);
-            canvas.drawRect(rectF2, paint);
-        } else {
-            paint.setColor(-14933463);
-            canvas.drawRect(rectF3, paint);
-            paint.setColor(i0.a.h(234881023, -14933463));
-            canvas.drawRect(rectF2, paint);
+    public final boolean g() {
+        return true;
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
         }
-        super.dispatchDraw(canvas);
+        i60 i60Var = this.f35518a;
+        if (i60Var.F1 == 6) {
+            i60.B0(i60Var);
+        }
     }
 }

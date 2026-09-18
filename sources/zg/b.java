@@ -11,27 +11,27 @@ import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 public final class b extends ReplacementSpan {
-    public final TextPaint f48990a;
-    public final RectF f48991b;
-    public StaticLayout f48992c;
+    public final TextPaint f49222a;
+    public final RectF f49223b;
+    public StaticLayout f49224c;
     public float d;
     public float e;
-    public int f48993f;
+    public int f49225f;
 
-    public b(f6 f6Var) {
+    public b(e6 e6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f48990a = textPaint;
-        this.f48991b = new RectF();
+        this.f49222a = textPaint;
+        this.f49223b = new RectF();
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        textPaint.setColor(j6.v0(j6.C6, f6Var));
+        textPaint.setColor(j6.v0(j6.C6, e6Var));
     }
 
     public final void a() {
         Layout.Alignment alignment;
-        if (this.f48992c == null) {
+        if (this.f49224c == null) {
             String string = LocaleController.getString(R.string.ReactionAddReactionsHint);
             int i10 = AndroidUtilities.displaySize.x;
             if (LocaleController.isRTL) {
@@ -39,10 +39,10 @@ public final class b extends ReplacementSpan {
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
-            StaticLayout staticLayout = new StaticLayout(string, this.f48990a, i10, alignment, 1.0f, 0.0f, false);
-            this.f48992c = staticLayout;
+            StaticLayout staticLayout = new StaticLayout(string, this.f49222a, i10, alignment, 1.0f, 0.0f, false);
+            this.f49224c = staticLayout;
             this.d = staticLayout.getLineWidth(0);
-            this.e = this.f48992c.getHeight();
+            this.e = this.f49224c.getHeight();
         }
     }
 
@@ -50,11 +50,11 @@ public final class b extends ReplacementSpan {
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         a();
         Rect clipBounds = canvas.getClipBounds();
-        RectF rectF = this.f48991b;
+        RectF rectF = this.f49223b;
         rectF.set(clipBounds);
-        canvas.saveLayerAlpha(rectF, this.f48993f, 31);
+        canvas.saveLayerAlpha(rectF, this.f49225f, 31);
         canvas.translate(f7 + AndroidUtilities.dp(4.0f), (((i14 - i12) / 2.0f) + i12) - (this.e / 2.0f));
-        this.f48992c.draw(canvas);
+        this.f49224c.draw(canvas);
         canvas.restore();
     }
 

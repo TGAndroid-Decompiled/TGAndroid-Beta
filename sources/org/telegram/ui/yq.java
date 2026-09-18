@@ -1,19 +1,30 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-public final class yq implements Comparator {
-    public final int f40007a;
-    public final int f40008b;
-    public final Object f40009c;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class yq implements kq {
+    public final TLObject f39876a;
+    public final sr f39877b;
 
-    public yq(Object obj, int i10, int i11) {
-        this.f40007a = i11;
-        this.f40009c = obj;
-        this.f40008b = i10;
+    public yq(sr srVar, TLObject tLObject) {
+        this.f39877b = srVar;
+        this.f39876a = tLObject;
     }
 
     @Override
-    public final int compare(java.lang.Object r14, java.lang.Object r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yq.compare(java.lang.Object, java.lang.Object):int");
+    public final void a(TLRPC.User user) {
+        sr.c0(this.f39877b, user);
+    }
+
+    @Override
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.f39876a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
+            sr.W(this.f39877b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
+        }
     }
 }

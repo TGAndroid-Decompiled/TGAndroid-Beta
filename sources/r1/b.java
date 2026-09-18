@@ -10,10 +10,10 @@ import java.io.InputStream;
 import java.nio.ByteOrder;
 public class b extends InputStream implements DataInput {
     public static final ByteOrder e = ByteOrder.LITTLE_ENDIAN;
-    public static final ByteOrder f41919f = ByteOrder.BIG_ENDIAN;
-    public final DataInputStream f41920a;
-    public ByteOrder f41921b;
-    public int f41922c;
+    public static final ByteOrder f42147f = ByteOrder.BIG_ENDIAN;
+    public final DataInputStream f42148a;
+    public ByteOrder f42149b;
+    public int f42150c;
     public byte[] d;
 
     public b(byte[] r2) {
@@ -24,7 +24,7 @@ public class b extends InputStream implements DataInput {
         int i11 = 0;
         while (i11 < i10) {
             int i12 = i10 - i11;
-            DataInputStream dataInputStream = this.f41920a;
+            DataInputStream dataInputStream = this.f42148a;
             int skip = (int) dataInputStream.skip(i12);
             if (skip <= 0) {
                 if (this.d == null) {
@@ -32,17 +32,17 @@ public class b extends InputStream implements DataInput {
                 }
                 skip = dataInputStream.read(this.d, 0, Math.min(8192, i12));
                 if (skip == -1) {
-                    throw new EOFException(k0.j(i10, "Reached EOF while skipping ", " bytes."));
+                    throw new EOFException(k0.i(i10, "Reached EOF while skipping ", " bytes."));
                 }
             }
             i11 += skip;
         }
-        this.f41922c += i11;
+        this.f42150c += i11;
     }
 
     @Override
     public final int available() {
-        return this.f41920a.available();
+        return this.f42148a.available();
     }
 
     @Override
@@ -52,20 +52,20 @@ public class b extends InputStream implements DataInput {
 
     @Override
     public final int read() {
-        this.f41922c++;
-        return this.f41920a.read();
+        this.f42150c++;
+        return this.f42148a.read();
     }
 
     @Override
     public final boolean readBoolean() {
-        this.f41922c++;
-        return this.f41920a.readBoolean();
+        this.f42150c++;
+        return this.f42148a.readBoolean();
     }
 
     @Override
     public final byte readByte() {
-        this.f41922c++;
-        int read = this.f41920a.read();
+        this.f42150c++;
+        int read = this.f42148a.read();
         if (read >= 0) {
             return (byte) read;
         }
@@ -74,8 +74,8 @@ public class b extends InputStream implements DataInput {
 
     @Override
     public final char readChar() {
-        this.f41922c += 2;
-        return this.f41920a.readChar();
+        this.f42150c += 2;
+        return this.f42148a.readChar();
     }
 
     @Override
@@ -90,27 +90,27 @@ public class b extends InputStream implements DataInput {
 
     @Override
     public final void readFully(byte[] bArr, int i10, int i11) {
-        this.f41922c += i11;
-        this.f41920a.readFully(bArr, i10, i11);
+        this.f42150c += i11;
+        this.f42148a.readFully(bArr, i10, i11);
     }
 
     @Override
     public final int readInt() {
-        this.f41922c += 4;
-        DataInputStream dataInputStream = this.f41920a;
+        this.f42150c += 4;
+        DataInputStream dataInputStream = this.f42148a;
         int read = dataInputStream.read();
         int read2 = dataInputStream.read();
         int read3 = dataInputStream.read();
         int read4 = dataInputStream.read();
         if ((read | read2 | read3 | read4) >= 0) {
-            ByteOrder byteOrder = this.f41921b;
+            ByteOrder byteOrder = this.f42149b;
             if (byteOrder == e) {
                 return (read4 << 24) + (read3 << 16) + (read2 << 8) + read;
             }
-            if (byteOrder == f41919f) {
+            if (byteOrder == f42147f) {
                 return (read << 24) + (read2 << 16) + (read3 << 8) + read4;
             }
-            throw new IOException("Invalid byte order: " + this.f41921b);
+            throw new IOException("Invalid byte order: " + this.f42149b);
         }
         throw new EOFException();
     }
@@ -125,8 +125,8 @@ public class b extends InputStream implements DataInput {
     public final long readLong() {
         long j3;
         long j10;
-        this.f41922c += 8;
-        DataInputStream dataInputStream = this.f41920a;
+        this.f42150c += 8;
+        DataInputStream dataInputStream = this.f42148a;
         int read = dataInputStream.read();
         int read2 = dataInputStream.read();
         int read3 = dataInputStream.read();
@@ -136,15 +136,15 @@ public class b extends InputStream implements DataInput {
         int read7 = dataInputStream.read();
         int read8 = dataInputStream.read();
         if ((read | read2 | read3 | read4 | read5 | read6 | read7 | read8) >= 0) {
-            ByteOrder byteOrder = this.f41921b;
+            ByteOrder byteOrder = this.f42149b;
             if (byteOrder == e) {
                 j3 = (read8 << 56) + (read7 << 48) + (read6 << 40) + (read5 << 32) + (read4 << 24) + (read3 << 16) + (read2 << 8);
                 j10 = read;
-            } else if (byteOrder == f41919f) {
+            } else if (byteOrder == f42147f) {
                 j3 = (read << 56) + (read2 << 48) + (read3 << 40) + (read4 << 32) + (read5 << 24) + (read6 << 16) + (read7 << 8);
                 j10 = read8;
             } else {
-                throw new IOException("Invalid byte order: " + this.f41921b);
+                throw new IOException("Invalid byte order: " + this.f42149b);
             }
             return j3 + j10;
         }
@@ -153,50 +153,50 @@ public class b extends InputStream implements DataInput {
 
     @Override
     public final short readShort() {
-        this.f41922c += 2;
-        DataInputStream dataInputStream = this.f41920a;
+        this.f42150c += 2;
+        DataInputStream dataInputStream = this.f42148a;
         int read = dataInputStream.read();
         int read2 = dataInputStream.read();
         if ((read | read2) >= 0) {
-            ByteOrder byteOrder = this.f41921b;
+            ByteOrder byteOrder = this.f42149b;
             if (byteOrder == e) {
                 return (short) ((read2 << 8) + read);
             }
-            if (byteOrder == f41919f) {
+            if (byteOrder == f42147f) {
                 return (short) ((read << 8) + read2);
             }
-            throw new IOException("Invalid byte order: " + this.f41921b);
+            throw new IOException("Invalid byte order: " + this.f42149b);
         }
         throw new EOFException();
     }
 
     @Override
     public final String readUTF() {
-        this.f41922c += 2;
-        return this.f41920a.readUTF();
+        this.f42150c += 2;
+        return this.f42148a.readUTF();
     }
 
     @Override
     public final int readUnsignedByte() {
-        this.f41922c++;
-        return this.f41920a.readUnsignedByte();
+        this.f42150c++;
+        return this.f42148a.readUnsignedByte();
     }
 
     @Override
     public final int readUnsignedShort() {
-        this.f41922c += 2;
-        DataInputStream dataInputStream = this.f41920a;
+        this.f42150c += 2;
+        DataInputStream dataInputStream = this.f42148a;
         int read = dataInputStream.read();
         int read2 = dataInputStream.read();
         if ((read | read2) >= 0) {
-            ByteOrder byteOrder = this.f41921b;
+            ByteOrder byteOrder = this.f42149b;
             if (byteOrder == e) {
                 return (read2 << 8) + read;
             }
-            if (byteOrder == f41919f) {
+            if (byteOrder == f42147f) {
                 return (read << 8) + read2;
             }
-            throw new IOException("Invalid byte order: " + this.f41921b);
+            throw new IOException("Invalid byte order: " + this.f42149b);
         }
         throw new EOFException();
     }
@@ -218,24 +218,24 @@ public class b extends InputStream implements DataInput {
 
     public b(int i10, InputStream inputStream) {
         ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
-        this.f41921b = byteOrder;
+        this.f42149b = byteOrder;
         DataInputStream dataInputStream = new DataInputStream(inputStream);
-        this.f41920a = dataInputStream;
+        this.f42148a = dataInputStream;
         dataInputStream.mark(0);
-        this.f41922c = 0;
-        this.f41921b = byteOrder;
+        this.f42150c = 0;
+        this.f42149b = byteOrder;
     }
 
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
-        int read = this.f41920a.read(bArr, i10, i11);
-        this.f41922c += read;
+        int read = this.f42148a.read(bArr, i10, i11);
+        this.f42150c += read;
         return read;
     }
 
     @Override
     public final void readFully(byte[] bArr) {
-        this.f41922c += bArr.length;
-        this.f41920a.readFully(bArr);
+        this.f42150c += bArr.length;
+        this.f42148a.readFully(bArr);
     }
 }

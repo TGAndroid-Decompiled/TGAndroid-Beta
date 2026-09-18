@@ -5,26 +5,26 @@ import android.graphics.PorterDuffColorFilter;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class jp implements org.telegram.ui.ActionBar.k6 {
-    public boolean f25400a = false;
-    public final mp f25401b;
+    public boolean f25401a = false;
+    public final mp f25402b;
 
     public jp(mp mpVar) {
-        this.f25401b = mpVar;
+        this.f25402b = mpVar;
     }
 
     @Override
     public final void a(float f7) {
         ArrayList arrayList;
-        mp mpVar = this.f25401b;
+        mp mpVar = this.f25402b;
         kp kpVar = mpVar.h;
-        if (f7 == 0.0f && !this.f25400a) {
+        if (f7 == 0.0f && !this.f25401a) {
             if (kpVar != null && (arrayList = kpVar.d) != null) {
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    ((lp) obj).f25959c = mpVar.N ? 1 : 0;
+                    ((lp) obj).f26232c = mpVar.N ? 1 : 0;
                 }
             }
             if (!mpVar.P) {
@@ -32,34 +32,34 @@ public final class jp implements org.telegram.ui.ActionBar.k6 {
                     ((lp) kpVar.d.get(i11)).getClass();
                 }
             }
-            this.f25400a = true;
+            this.f25401a = true;
         }
-        yi0 yi0Var = mpVar.F;
+        ij0 ij0Var = mpVar.F;
         int i12 = org.telegram.ui.ActionBar.j6.Oh;
-        yi0Var.setColorFilter(new PorterDuffColorFilter(mpVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
-        mpVar.setOverlayNavBarColor(mpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f18807a7));
+        ij0Var.setColorFilter(new PorterDuffColorFilter(mpVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
+        mpVar.setOverlayNavBarColor(mpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19006a7));
         if (mpVar.P) {
             for (int i13 = 0; i13 < kpVar.h(); i13++) {
                 ((lp) kpVar.d.get(i13)).getClass();
             }
         }
-        if (f7 == 1.0f && this.f25400a) {
+        if (f7 == 1.0f && this.f25401a) {
             mpVar.P = false;
-            this.f25400a = false;
+            this.f25401a = false;
         }
         mpVar.E();
         ci.n6 n6Var = mpVar.Z;
         if (n6Var != null) {
             int dp = AndroidUtilities.dp(0.0f);
-            int themedColor = mpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f18863d6);
+            int themedColor = mpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19062d6);
             int k10 = i0.a.k(mpVar.getThemedColor(i12), 76);
             n6Var.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, themedColor, k10, k10));
         }
-        n6 n6Var2 = mpVar.f26223a0;
-        if (n6Var2 != null) {
-            n6Var2.setTextColor(mpVar.getThemedColor(i12));
+        p6 p6Var = mpVar.f26474a0;
+        if (p6Var != null) {
+            p6Var.setTextColor(mpVar.getThemedColor(i12));
         }
-        mpVar.setBackgroundColor(mpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f18934h5));
+        mpVar.setBackgroundColor(mpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19133h5));
     }
 
     @Override

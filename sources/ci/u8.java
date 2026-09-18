@@ -15,7 +15,7 @@ public final class u8 extends tp {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28177b * 2.0f) + this.f28176a);
+                return (int) ((this.f28457b * 2.0f) + this.f28456a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class u8 extends tp {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28177b * 2.0f) + this.f28176a);
+                return (int) ((this.f28457b * 2.0f) + this.f28456a);
         }
     }
 

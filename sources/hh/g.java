@@ -14,9 +14,9 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import ci.eb;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.w1;
-import r0.l1;
-import w7.x5;
+import org.telegram.messenger.q;
+import r0.m1;
+import w7.y5;
 public final class g extends FrameLayout {
     public float E;
     public int F;
@@ -49,10 +49,10 @@ public final class g extends FrameLayout {
         this.H = new RectF();
         FrameLayout frameLayout = new FrameLayout(context);
         this.f10526c = frameLayout;
-        addView(frameLayout, x5.e(-1, -2, 80));
+        addView(frameLayout, y5.e(-1, -2, 80));
         f0 f0Var = new f0(this, context, 5);
         this.d = f0Var;
-        addView(f0Var, x5.e(-1, -2, 80));
+        addView(f0Var, y5.e(-1, -2, 80));
         this.f10525b = new eb(this, context, 5);
     }
 
@@ -87,9 +87,9 @@ public final class g extends FrameLayout {
 
     public final void c() {
         int i10;
-        l1 l1Var = ((ph.i) this.f10524a).f41097r;
-        if (l1Var != null) {
-            i10 = l1Var.f41882a.f(2).d;
+        m1 m1Var = ((ph.i) this.f10524a).f41330r;
+        if (m1Var != null) {
+            i10 = m1Var.f42109a.f(2).d;
         } else {
             i10 = 0;
         }
@@ -115,7 +115,7 @@ public final class g extends FrameLayout {
         this.v = ((ph.i) this.f10524a).b();
         int i12 = 0;
         boolean z11 = true;
-        if (((ph.i) this.f10524a).f41098s != 1) {
+        if (((ph.i) this.f10524a).f41331s != 1) {
             z10 = true;
         } else {
             z10 = false;
@@ -136,7 +136,7 @@ public final class g extends FrameLayout {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) f0Var.getLayoutParams();
         int i13 = layoutParams.height;
-        int i14 = ((ph.i) this.f10524a).f41099w;
+        int i14 = ((ph.i) this.f10524a).f41332w;
         if (i13 != i14) {
             layoutParams.height = i14;
             requestLayout();
@@ -164,7 +164,7 @@ public final class g extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        this.h.setBounds(0, getMeasuredHeight() - ((int) this.v), getMeasuredWidth(), w1.b(58.0f, getMeasuredHeight() - ((int) this.v), getMeasuredHeight()));
+        this.h.setBounds(0, getMeasuredHeight() - ((int) this.v), getMeasuredWidth(), q.z(58.0f, getMeasuredHeight() - ((int) this.v), getMeasuredHeight()));
         int measuredHeight = getMeasuredHeight() - this.f10529r;
         int round = Math.round(this.f10532x);
         int measuredWidth = getMeasuredWidth() - Math.round(this.f10533y);

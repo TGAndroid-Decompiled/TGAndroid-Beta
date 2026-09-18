@@ -5,13 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.jo0;
+import org.telegram.ui.Components.b60;
+import org.telegram.ui.Components.cb0;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.ta0;
-import org.telegram.ui.Components.w50;
-import org.telegram.ui.dj0;
+import org.telegram.ui.Components.wo0;
+import org.telegram.ui.cj0;
+import org.telegram.ui.g51;
 import org.telegram.ui.i51;
-import org.telegram.ui.k51;
 public final class bb implements ValueAnimator.AnimatorUpdateListener {
     public final int f601a;
     public final boolean f602b;
@@ -27,7 +27,7 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float floatValue;
         ViewGroup viewGroup;
-        i51 i51Var;
+        g51 g51Var;
         qr qrVar;
         switch (this.f601a) {
             case 0:
@@ -50,11 +50,11 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 o6Var.f5133b.invalidate();
                 return;
             case 2:
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f603c;
-                t1Var.f21122jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t1Var.invalidate();
-                if (this.f602b && t1Var.getParent() != null) {
-                    ((View) t1Var.getParent()).invalidate();
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f603c;
+                u1Var.f21361jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var.invalidate();
+                if (this.f602b && u1Var.getParent() != null) {
+                    ((View) u1Var.getParent()).invalidate();
                     return;
                 }
                 return;
@@ -67,128 +67,128 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                     caVar.invalidate();
                 }
                 org.telegram.ui.Cells.y9 y9Var = r9Var.W;
-                if (y9Var != null && ((org.telegram.ui.Cells.t1) y9Var).getCurrentMessagesGroup() == null && this.f602b) {
-                    ((org.telegram.ui.Cells.t1) r9Var.W).setSelectedBackgroundProgress(1.0f - r9Var.U);
+                if (y9Var != null && ((org.telegram.ui.Cells.u1) y9Var).getCurrentMessagesGroup() == null && this.f602b) {
+                    ((org.telegram.ui.Cells.u1) r9Var.W).setSelectedBackgroundProgress(1.0f - r9Var.U);
                     return;
                 }
                 return;
             case 4:
-                org.telegram.ui.Components.u9 u9Var = (org.telegram.ui.Components.u9) this.f603c;
+                org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) this.f603c;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u9Var.setScaleX(floatValue3);
-                u9Var.setScaleY(floatValue3);
+                w9Var.setScaleX(floatValue3);
+                w9Var.setScaleY(floatValue3);
                 if (!this.f602b) {
-                    u9Var.setAlpha(valueAnimator.getAnimatedFraction());
+                    w9Var.setAlpha(valueAnimator.getAnimatedFraction());
                     return;
                 }
                 return;
             case 5:
-                org.telegram.ui.Components.c9 c9Var = (org.telegram.ui.Components.c9) this.f603c;
+                org.telegram.ui.Components.e9 e9Var = (org.telegram.ui.Components.e9) this.f603c;
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c9Var.i0(floatValue4, false);
+                e9Var.i0(floatValue4, false);
                 if (this.f602b) {
-                    org.telegram.ui.Components.v8 v8Var = c9Var.f22966a;
-                    v8Var.f22669w = floatValue4;
-                    v8Var.invalidate();
+                    org.telegram.ui.Components.x8 x8Var = e9Var.f23811a;
+                    x8Var.f23496w = floatValue4;
+                    x8Var.invalidate();
                     return;
                 }
                 return;
             case 6:
-                w50 w50Var = (w50) this.f603c;
+                b60 b60Var = (b60) this.f603c;
                 if (this.f602b) {
                     floatValue = 0.0f;
                 } else {
-                    floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * (w50Var.getMeasuredHeight() / 2.0f);
+                    floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * (b60Var.getMeasuredHeight() / 2.0f);
                 }
-                w50Var.f29560u0 = floatValue;
-                w50Var.s();
+                b60Var.f22861x0 = floatValue;
+                b60Var.w();
                 return;
             case 7:
-                ta0 ta0Var = (ta0) this.f603c;
-                ta0Var.getClass();
-                ta0Var.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ta0Var.invalidate();
+                cb0 cb0Var = (cb0) this.f603c;
+                cb0Var.getClass();
+                cb0Var.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cb0Var.invalidate();
                 if (this.f602b) {
-                    ta0Var.requestLayout();
+                    cb0Var.requestLayout();
                     return;
                 }
                 return;
             case 8:
                 org.telegram.ui.Components.voip.v2 v2Var = (org.telegram.ui.Components.voip.v2) this.f603c;
                 TextView[] textViewArr = v2Var.h;
-                v2Var.f29298s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v2Var.f29614s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v2Var.invalidate();
                 if (this.f602b) {
-                    textViewArr[0].setAlpha(1.0f - v2Var.f29298s);
-                    textViewArr[0].setScaleX(1.0f - v2Var.f29298s);
-                    textViewArr[0].setScaleY(1.0f - v2Var.f29298s);
-                    textViewArr[1].setAlpha(v2Var.f29298s);
-                    textViewArr[1].setScaleX(v2Var.f29298s);
-                    textViewArr[1].setScaleY(v2Var.f29298s);
+                    textViewArr[0].setAlpha(1.0f - v2Var.f29614s);
+                    textViewArr[0].setScaleX(1.0f - v2Var.f29614s);
+                    textViewArr[0].setScaleY(1.0f - v2Var.f29614s);
+                    textViewArr[1].setAlpha(v2Var.f29614s);
+                    textViewArr[1].setScaleX(v2Var.f29614s);
+                    textViewArr[1].setScaleY(v2Var.f29614s);
                     return;
                 }
                 return;
             case 9:
-                dj0 dj0Var = (dj0) this.f603c;
+                cj0 cj0Var = (cj0) this.f603c;
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dj0Var.E = floatValue5;
-                dj0Var.H.setAlpha(floatValue5);
-                dj0Var.K.setAlpha(dj0Var.E);
-                if (!this.f602b && (viewGroup = dj0Var.Z) != null) {
-                    viewGroup.setAlpha(dj0Var.E);
+                cj0Var.E = floatValue5;
+                cj0Var.H.setAlpha(floatValue5);
+                cj0Var.K.setAlpha(cj0Var.E);
+                if (!this.f602b && (viewGroup = cj0Var.Z) != null) {
+                    viewGroup.setAlpha(cj0Var.E);
                 }
-                dj0Var.F.invalidate();
-                dj0Var.G.invalidate();
+                cj0Var.F.invalidate();
+                cj0Var.G.invalidate();
                 return;
             case 10:
-                k51 k51Var = (k51) this.f603c;
-                k51Var.f35010s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k51Var.f35001b.invalidate();
-                k51Var.f35003c.invalidate();
-                if (k51Var.S) {
-                    k51Var.N.invalidate();
+                i51 i51Var = (i51) this.f603c;
+                i51Var.f34324s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i51Var.f34315b.invalidate();
+                i51Var.f34317c.invalidate();
+                if (i51Var.S) {
+                    i51Var.N.invalidate();
                 }
-                k51Var.e();
-                TextView textView = k51Var.f35013y;
+                i51Var.e();
+                TextView textView = i51Var.f34327y;
                 if (textView != null) {
-                    textView.setAlpha(k51Var.f35010s);
+                    textView.setAlpha(i51Var.f34324s);
                 }
-                if (!k51Var.S && (i51Var = k51Var.N) != null && i51Var.getSeekBarWaveform() != null) {
-                    jo0 seekBarWaveform = k51Var.N.getSeekBarWaveform();
+                if (!i51Var.S && (g51Var = i51Var.N) != null && g51Var.getSeekBarWaveform() != null) {
+                    wo0 seekBarWaveform = i51Var.N.getSeekBarWaveform();
                     if (this.f602b) {
-                        qrVar = qr.f27384g;
+                        qrVar = qr.f27716g;
                     } else {
-                        qrVar = qr.f27385i;
+                        qrVar = qr.f27717i;
                     }
-                    seekBarWaveform.L = qrVar.getInterpolation(Utilities.clamp(k51Var.f35010s * 1.25f, 1.0f, 0.0f));
-                    org.telegram.ui.Cells.t1 t1Var2 = seekBarWaveform.f25388n;
-                    if (t1Var2 != null) {
-                        t1Var2.invalidate();
+                    seekBarWaveform.L = qrVar.getInterpolation(Utilities.clamp(i51Var.f34324s * 1.25f, 1.0f, 0.0f));
+                    org.telegram.ui.Cells.u1 u1Var2 = seekBarWaveform.f30133n;
+                    if (u1Var2 != null) {
+                        u1Var2.invalidate();
                         return;
                     }
                     return;
                 }
                 return;
             case 11:
-                qg.o0 o0Var = (qg.o0) this.f603c;
+                qg.l0 l0Var = (qg.l0) this.f603c;
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o0Var.e = floatValue6;
+                l0Var.e = floatValue6;
                 if (!this.f602b) {
-                    o0Var.f41529c.setAlpha(1.0f - floatValue6);
+                    l0Var.f41725c.setAlpha(1.0f - floatValue6);
                 }
-                o0Var.f41528b.invalidate();
+                l0Var.f41724b.invalidate();
                 return;
             default:
-                zg.c0 c0Var = (zg.c0) this.f603c;
-                c0Var.f49030x = null;
-                c0Var.f49017j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c0Var.k();
-                c0Var.l();
-                c0Var.f49021n.setCustomEmojiEnterProgress(Utilities.clamp(c0Var.f49017j, 1.0f, 0.0f));
-                c0Var.f49011a.invalidate();
-                c0Var.f49020m.invalidateOutline();
-                if (c0Var.f49029w) {
-                    c0Var.j(c0Var.f49017j, this.f602b);
+                zg.b0 b0Var = (zg.b0) this.f603c;
+                b0Var.f49245x = null;
+                b0Var.f49232j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b0Var.k();
+                b0Var.l();
+                b0Var.f49236n.setCustomEmojiEnterProgress(Utilities.clamp(b0Var.f49232j, 1.0f, 0.0f));
+                b0Var.f49226a.invalidate();
+                b0Var.f49235m.invalidateOutline();
+                if (b0Var.f49244w) {
+                    b0Var.j(b0Var.f49232j, this.f602b);
                     return;
                 }
                 return;

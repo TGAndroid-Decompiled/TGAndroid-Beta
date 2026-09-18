@@ -2,9 +2,9 @@ package e2;
 
 import java.math.RoundingMode;
 public final class b0 {
-    public long f7880a;
-    public long f7881b;
-    public long f7882c;
+    public long f7879a;
+    public long f7880b;
+    public long f7881c;
     public final ThreadLocal d = new ThreadLocal();
 
     public b0(long j3) {
@@ -17,17 +17,17 @@ public final class b0 {
         }
         try {
             if (!f()) {
-                long j10 = this.f7880a;
+                long j10 = this.f7879a;
                 if (j10 == 9223372036854775806L) {
                     Long l4 = (Long) this.d.get();
                     l4.getClass();
                     j10 = l4.longValue();
                 }
-                this.f7881b = j10 - j3;
+                this.f7880b = j10 - j3;
                 notifyAll();
             }
-            this.f7882c = j3;
-            return j3 + this.f7881b;
+            this.f7881c = j3;
+            return j3 + this.f7880b;
         } catch (Throwable th2) {
             throw th2;
         }
@@ -38,9 +38,9 @@ public final class b0 {
             return -9223372036854775807L;
         }
         try {
-            long j10 = this.f7882c;
+            long j10 = this.f7881c;
             if (j10 != -9223372036854775807L) {
-                String str = d0.f7888a;
+                String str = d0.f7887a;
                 long Y = d0.Y(j10, 90000L, 1000000L, RoundingMode.DOWN);
                 long j11 = (4294967296L + Y) / 8589934592L;
                 long j12 = ((j11 - 1) * 8589934592L) + j3;
@@ -52,7 +52,7 @@ public final class b0 {
                 }
             }
             long j14 = j3;
-            String str2 = d0.f7888a;
+            String str2 = d0.f7887a;
             return a(d0.Y(j14, 1000000L, 90000L, RoundingMode.DOWN));
         } catch (Throwable th2) {
             throw th2;
@@ -63,9 +63,9 @@ public final class b0 {
         if (j3 == -9223372036854775807L) {
             return -9223372036854775807L;
         }
-        long j10 = this.f7882c;
+        long j10 = this.f7881c;
         if (j10 != -9223372036854775807L) {
-            String str = d0.f7888a;
+            String str = d0.f7887a;
             long Y = d0.Y(j10, 90000L, 1000000L, RoundingMode.DOWN);
             long j11 = Y / 8589934592L;
             Long.signum(j11);
@@ -78,23 +78,23 @@ public final class b0 {
             }
         }
         long j14 = j3;
-        String str2 = d0.f7888a;
+        String str2 = d0.f7887a;
         return a(d0.Y(j14, 1000000L, 90000L, RoundingMode.DOWN));
     }
 
     public final synchronized long d() {
         long j3;
-        j3 = this.f7880a;
+        j3 = this.f7879a;
         return (j3 == Long.MAX_VALUE || j3 == 9223372036854775806L) ? -9223372036854775807L : -9223372036854775807L;
     }
 
     public final synchronized long e() {
-        return this.f7881b;
+        return this.f7880b;
     }
 
     public final synchronized boolean f() {
         boolean z10;
-        if (this.f7881b != -9223372036854775807L) {
+        if (this.f7880b != -9223372036854775807L) {
             z10 = true;
         } else {
             z10 = false;
@@ -104,20 +104,20 @@ public final class b0 {
 
     public final synchronized void g(long j3) {
         long j10;
-        this.f7880a = j3;
+        this.f7879a = j3;
         if (j3 == Long.MAX_VALUE) {
             j10 = 0;
         } else {
             j10 = -9223372036854775807L;
         }
-        this.f7881b = j10;
-        this.f7882c = -9223372036854775807L;
+        this.f7880b = j10;
+        this.f7881c = -9223372036854775807L;
     }
 
     public final synchronized void h(long j3, boolean z10) {
         boolean z11;
         try {
-            if (this.f7880a == 9223372036854775806L) {
+            if (this.f7879a == 9223372036854775806L) {
                 z11 = true;
             } else {
                 z11 = false;

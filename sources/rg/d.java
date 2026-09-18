@@ -11,34 +11,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.wl;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.messenger.wh;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.s3;
+import org.telegram.ui.Cells.t3;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.t41;
-import w7.x5;
-public final class d extends ll0 {
-    public final f6 f42294c;
+import org.telegram.ui.Components.vl0;
+import org.telegram.ui.r41;
+import w7.y5;
+public final class d extends vl0 {
+    public final e6 f42521c;
     public final int d;
     public final int e;
-    public final ArrayList f42295f;
+    public final ArrayList f42522f;
     public final z0 h;
-    public int f42296n;
-    public c f42297r;
-    public final boolean f42298s;
+    public int f42523n;
+    public c f42524r;
+    public final boolean f42525s;
 
-    public d(int i10, f6 f6Var) {
+    public d(int i10, e6 e6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f42295f = arrayList;
-        this.f42298s = true;
-        this.f42294c = f6Var;
-        z0 z0Var = new z0(j6.Lj, j6.Mj, j6.Nj, j6.Oj, f6Var);
+        this.f42522f = arrayList;
+        this.f42525s = true;
+        this.f42521c = e6Var;
+        z0 z0Var = new z0(j6.Lj, j6.Mj, j6.Nj, j6.Oj, e6Var);
         this.h = z0Var;
-        z0Var.f42591o = 0.0f;
-        z0Var.f42592p = 0.0f;
-        z0Var.f42593q = 1.0f;
+        z0Var.f42818o = 0.0f;
+        z0Var.f42819p = 0.0f;
+        z0Var.f42820q = 1.0f;
         MessagesController messagesController = MessagesController.getInstance(i10);
         arrayList.add(new e(messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString(R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium))));
         arrayList.add(new e(messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString(R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium))));
@@ -79,49 +79,49 @@ public final class d extends ll0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f42705f == 0) {
-            f fVar = (f) c1Var.f42702a;
+        if (c1Var.f42932f == 0) {
+            f fVar = (f) c1Var.f42929a;
             int i11 = i10 - this.e;
-            ArrayList arrayList = this.f42295f;
+            ArrayList arrayList = this.f42522f;
             fVar.a((e) arrayList.get(i11));
-            LimitPreviewView limitPreviewView = fVar.f42312c;
+            LimitPreviewView limitPreviewView = fVar.f42539c;
             limitPreviewView.F = ((e) arrayList.get(i11)).e;
-            limitPreviewView.f22118c = this.f42296n;
+            limitPreviewView.f22291c = this.f42523n;
         }
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        s3 s3Var;
+        t3 t3Var;
         Context context = viewGroup.getContext();
-        f6 f6Var = this.f42294c;
+        e6 e6Var = this.f42521c;
         if (i10 != 1) {
             if (i10 != 2) {
-                ?? fVar = new f(context, f6Var);
-                fVar.f42312c.setParentViewForGradien(this.f42297r);
-                fVar.f42312c.setStaticGradinet(this.h);
-                s3Var = fVar;
+                ?? fVar = new f(context, e6Var);
+                fVar.f42539c.setParentViewForGradien(this.f42524r);
+                fVar.f42539c.setStaticGradinet(this.h);
+                t3Var = fVar;
             } else {
-                s3Var = new s3(context, 16);
+                t3Var = new t3(context, 16);
             }
-        } else if (this.f42298s) {
-            ?? t41Var = new t41(context, 11);
-            LinearLayout f7 = wl.f(context, 0);
+        } else if (this.f42525s) {
+            ?? r41Var = new r41(context, 11);
+            LinearLayout e = wh.e(context, 0);
             ImageView imageView = new ImageView(context);
-            imageView.setImageDrawable(a1.c(context.getDrawable(R.drawable.other_2x_large), a1.d().f42273a));
-            f7.addView(imageView, x5.d(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
+            imageView.setImageDrawable(a1.c(context.getDrawable(R.drawable.other_2x_large), a1.d().f42500a));
+            e.addView(imageView, y5.d(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setText(LocaleController.getString(R.string.DoubledLimits));
             textView.setGravity(17);
             textView.setTextSize(1, 20.0f);
-            textView.setTextColor(j6.v0(j6.G6, f6Var));
+            textView.setTextColor(j6.v0(j6.G6, e6Var));
             textView.setTypeface(AndroidUtilities.bold());
-            f7.addView(textView, x5.e(-2, -2, 16));
-            t41Var.addView(f7, x5.e(-2, -2, 17));
-            s3Var = t41Var;
+            e.addView(textView, y5.e(-2, -2, 16));
+            r41Var.addView(e, y5.e(-2, -2, 17));
+            t3Var = r41Var;
         } else {
-            s3Var = new s3(context, 64);
+            t3Var = new t3(context, 64);
         }
-        return e2.k(s3Var, s3Var, -1, -2);
+        return e2.k(t3Var, t3Var, -1, -2);
     }
 }

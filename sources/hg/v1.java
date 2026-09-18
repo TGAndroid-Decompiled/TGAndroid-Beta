@@ -11,43 +11,43 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wl;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.messenger.wh;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.np;
-import w7.x5;
+import w7.y5;
 public final class v1 extends FrameLayout {
-    public final f9 f10449a;
+    public final h9 f10449a;
     public final ImageReceiver f10450b;
     public final TextView f10451c;
     public final TextView d;
     public final np e;
     public final Path f10452f;
     public final Paint h;
-    public final f6 f10453n;
+    public final e6 f10453n;
     public final int[] f10454r;
     public boolean f10455s;
 
-    public v1(Context context, f6 f6Var) {
+    public v1(Context context, e6 e6Var) {
         super(context);
         float f7;
         float f10;
         float f11;
         float f12;
-        this.f10449a = new f9((f6) null);
+        this.f10449a = new h9((e6) null);
         this.f10450b = new ImageReceiver(this);
         this.f10452f = new Path();
         this.h = new Paint(1);
         this.f10454r = new int[1];
-        this.f10453n = f6Var;
+        this.f10453n = e6Var;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.f10451c = textView;
         textView.setSingleLine();
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        textView.setTextColor(j6.v0(j6.G6, f6Var));
+        textView.setTextColor(j6.v0(j6.G6, e6Var));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 16.0f);
         boolean z10 = LocaleController.isRTL;
@@ -61,12 +61,12 @@ public final class v1 extends FrameLayout {
         } else {
             f10 = 40.0f;
         }
-        addView(textView, x5.d(-1, -2.0f, 7, f7, 10.33f, f10, 0.0f));
+        addView(textView, y5.d(-1, -2.0f, 7, f7, 10.33f, f10, 0.0f));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        wl.n(j6.f19264z6, f6Var, textView2, 1, 15.0f);
+        wh.m(j6.f19464z6, e6Var, textView2, 1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             f11 = 40.0f;
@@ -78,13 +78,13 @@ public final class v1 extends FrameLayout {
         } else {
             f12 = 40.0f;
         }
-        addView(textView2, x5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
-        np npVar = new np(getContext(), 21, f6Var);
+        addView(textView2, y5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
+        np npVar = new np(getContext(), 21, e6Var);
         this.e = npVar;
-        npVar.b(-1, j6.f18863d6, j6.f18992k7);
+        npVar.b(-1, j6.f19062d6, j6.f19191k7);
         npVar.setDrawUnchecked(false);
         npVar.setDrawBackgroundAsArc(3);
-        addView(npVar, x5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        addView(npVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class v1 extends FrameLayout {
         if (this.f10455s) {
             Paint T0 = j6.T0("paintDivider", this.f10453n);
             if (T0 == null) {
-                T0 = j6.f18985k0;
+                T0 = j6.f19184k0;
             }
             Paint paint = T0;
             float f11 = 78.0f;
@@ -135,7 +135,7 @@ public final class v1 extends FrameLayout {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(j6.l1(0.85f, j6.v0(j6.f19264z6, this.f10453n)));
+        paint.setColor(j6.l1(0.85f, j6.v0(j6.f19464z6, this.f10453n)));
         Path path = this.f10452f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;

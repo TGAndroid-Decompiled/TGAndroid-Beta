@@ -6,22 +6,22 @@ import c3.c0;
 import c3.v;
 import e6.n;
 public final class d extends v {
-    public final b0 f13414b;
-    public final n f13415c;
+    public final b0 f13412b;
+    public final n f13413c;
 
     public d(n nVar, b0 b0Var, b0 b0Var2) {
         super(b0Var);
-        this.f13415c = nVar;
-        this.f13414b = b0Var2;
+        this.f13413c = nVar;
+        this.f13412b = b0Var2;
     }
 
     @Override
     public final a0 j(long j3) {
-        a0 j10 = this.f13414b.j(j3);
+        a0 j10 = this.f13412b.j(j3);
         c0 c0Var = j10.f3711a;
         long j11 = c0Var.f3740a;
         long j12 = c0Var.f3741b;
-        long j13 = this.f13415c.f8031b;
+        long j13 = this.f13413c.f8030b;
         c0 c0Var2 = new c0(j11, j12 + j13);
         c0 c0Var3 = j10.f3712b;
         return new a0(c0Var2, new c0(c0Var3.f3740a, c0Var3.f3741b + j13));

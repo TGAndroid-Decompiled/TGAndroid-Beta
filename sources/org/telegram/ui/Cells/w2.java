@@ -1,38 +1,37 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class w2 extends AnimatorListenerAdapter {
-    public final int f21577a;
-    public final x2 f21578b;
+import android.animation.ValueAnimator;
+public final class w2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f21752a;
+    public final y2 f21753b;
 
-    public w2(x2 x2Var, int i10) {
-        this.f21577a = i10;
-        this.f21578b = x2Var;
+    public w2(y2 y2Var, int i10) {
+        this.f21752a = i10;
+        this.f21753b = y2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f21577a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f21752a) {
             case 0:
-                x2 x2Var = this.f21578b;
-                Runnable runnable = x2Var.f21624b;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                if (animator == x2Var.e) {
-                    x2Var.e = null;
+                y2 y2Var = this.f21753b;
+                y2Var.getClass();
+                y2Var.f21831a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y2Var.requestLayout();
+                q0.a aVar = y2Var.f21833c;
+                if (aVar != null) {
+                    aVar.accept(Float.valueOf(y2Var.f21831a));
                     return;
                 }
                 return;
             default:
-                x2 x2Var2 = this.f21578b;
-                Runnable runnable2 = x2Var2.f21624b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                }
-                if (animator == x2Var2.e) {
-                    x2Var2.e = null;
+                y2 y2Var2 = this.f21753b;
+                y2Var2.getClass();
+                y2Var2.f21831a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y2Var2.requestLayout();
+                q0.a aVar2 = y2Var2.f21833c;
+                if (aVar2 != null) {
+                    aVar2.accept(Float.valueOf(y2Var2.f21831a));
                     return;
                 }
                 return;

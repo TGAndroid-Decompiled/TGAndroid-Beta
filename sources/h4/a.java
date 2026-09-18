@@ -4,15 +4,15 @@ import a4.h;
 import android.graphics.Rect;
 import java.util.Arrays;
 public final class a {
-    public boolean f10128b;
-    public boolean f10129c;
+    public boolean f10127b;
+    public boolean f10128c;
     public int[] d;
     public int e;
-    public int f10130f;
-    public Rect f10131g;
-    public final int[] f10127a = new int[4];
+    public int f10129f;
+    public Rect f10130g;
+    public final int[] f10126a = new int[4];
     public int h = -1;
-    public int f10132i = -1;
+    public int f10131i = -1;
 
     public static int a(int i10, int[] iArr) {
         if (i10 >= 0 && i10 < iArr.length) {
@@ -53,7 +53,7 @@ public final class a {
                 int min = Math.min(i11, width - i14);
                 if (min > 0) {
                     int i17 = i13 + min;
-                    Arrays.fill(iArr, i13, i17, this.f10127a[i10]);
+                    Arrays.fill(iArr, i13, i17, this.f10126a[i10]);
                     i14 += min;
                     i13 = i17;
                     continue;

@@ -221,13 +221,13 @@ public class c extends b {
     }
 
     @Override
-    public void c(a4.m mVar, org.telegram.messenger.c0 c0Var) {
-        if (f(new u(this, c0Var, mVar, 1), 30000L, new i9.s(5, this, c0Var), r(), e()) == null) {
+    public void c(a4.m mVar, org.telegram.messenger.d0 d0Var) {
+        if (f(new u(this, d0Var, mVar, 1), 30000L, new i9.s(5, this, d0Var), r(), e()) == null) {
             h u10 = u();
             y(25, 7, u10);
             com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f6874b;
             com.google.android.gms.internal.play_billing.v vVar = com.google.android.gms.internal.play_billing.v.e;
-            c0Var.a(u10, new s(vVar, vVar));
+            d0Var.a(u10, new s(vVar, vVar));
         }
     }
 
@@ -258,10 +258,10 @@ public class c extends b {
             of.b bVar = this.h;
             int i10 = this.f3856l;
             bVar.getClass();
-            o3 o3Var = (o3) ((p3) bVar.f15521b).g();
+            o3 o3Var = (o3) ((p3) bVar.f15650b).g();
             o3Var.c();
             p3.p((p3) o3Var.f6897b, i10);
-            bVar.f15521b = (p3) o3Var.a();
+            bVar.f15650b = (p3) o3Var.a();
             bVar.X(g3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -273,11 +273,11 @@ public class c extends b {
             of.b bVar = this.h;
             int i10 = this.f3856l;
             bVar.getClass();
-            o3 o3Var = (o3) ((p3) bVar.f15521b).g();
+            o3 o3Var = (o3) ((p3) bVar.f15650b).g();
             o3Var.c();
             p3.p((p3) o3Var.f6897b, i10);
             p3 p3Var = (p3) o3Var.a();
-            bVar.f15521b = p3Var;
+            bVar.f15650b = p3Var;
             bVar.f0(i3Var, p3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);

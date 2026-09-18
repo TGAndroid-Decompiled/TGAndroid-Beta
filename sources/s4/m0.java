@@ -5,23 +5,23 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.ui.Components.kk0;
+import org.telegram.ui.Components.uk0;
 public abstract class m0 {
-    public ka.c f42781a;
-    public ArrayList f42782b;
-    public long f42783c;
+    public l.d f43008a;
+    public ArrayList f43009b;
+    public long f43010c;
     public long d;
     public long e;
-    public long f42784f;
-    public long f42785g;
+    public long f43011f;
+    public long f43012g;
     public TimeInterpolator h;
-    public TimeInterpolator f42786i;
-    public TimeInterpolator f42787j;
-    public TimeInterpolator f42788k;
-    public long f42789l;
+    public TimeInterpolator f43013i;
+    public TimeInterpolator f43014j;
+    public TimeInterpolator f43015k;
+    public long f43016l;
 
     public static int b(c1 c1Var) {
-        int i10 = c1Var.f42710l;
+        int i10 = c1Var.f42937l;
         int i11 = i10 & 14;
         if (c1Var.h()) {
             return 4;
@@ -41,29 +41,29 @@ public abstract class m0 {
     public abstract boolean c(c1 c1Var, List list);
 
     public final void d(c1 c1Var) {
-        ka.c cVar = this.f42781a;
-        if (cVar != null) {
-            RecyclerView recyclerView = (RecyclerView) cVar.f13567b;
+        l.d dVar = this.f43008a;
+        if (dVar != null) {
+            RecyclerView recyclerView = (RecyclerView) dVar.f13859a;
             boolean z10 = true;
             c1Var.q(true);
-            View view = c1Var.f42702a;
-            if (c1Var.f42708j != null && c1Var.f42709k == null) {
-                c1Var.f42708j = null;
+            View view = c1Var.f42929a;
+            if (c1Var.f42935j != null && c1Var.f42936k == null) {
+                c1Var.f42935j = null;
             }
-            c1Var.f42709k = null;
-            if ((c1Var.f42710l & 16) == 0) {
+            c1Var.f42936k = null;
+            if ((c1Var.f42937l & 16) == 0) {
                 of.e eVar = recyclerView.f2840b;
                 recyclerView.z0();
                 lf.i iVar = recyclerView.e;
-                e6.n nVar = (e6.n) iVar.f14034c;
-                k2.c0 c0Var = (k2.c0) iVar.f14033b;
-                int indexOfChild = ((RecyclerView) c0Var.f13237b).indexOfChild(view);
+                e6.n nVar = (e6.n) iVar.f14180c;
+                ka.c cVar = (ka.c) iVar.f14179b;
+                int indexOfChild = ((RecyclerView) cVar.f13565b).indexOfChild(view);
                 if (indexOfChild == -1) {
                     iVar.Y(view);
-                } else if (nVar.z(indexOfChild)) {
-                    nVar.B(indexOfChild);
+                } else if (nVar.D(indexOfChild)) {
+                    nVar.F(indexOfChild);
                     iVar.Y(view);
-                    c0Var.r(indexOfChild);
+                    cVar.j0(indexOfChild);
                 } else {
                     z10 = false;
                 }
@@ -81,11 +81,11 @@ public abstract class m0 {
     }
 
     public final void e() {
-        ArrayList arrayList = this.f42782b;
+        ArrayList arrayList = this.f43009b;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
-            kk0 kk0Var = (kk0) arrayList.get(i10);
-            kk0Var.f25648a.d(kk0Var.f25649b, kk0Var.f25650c, kk0Var.d, false);
+            uk0 uk0Var = (uk0) arrayList.get(i10);
+            uk0Var.f28723a.d(uk0Var.f28724b, uk0Var.f28725c, uk0Var.d, false);
         }
         arrayList.clear();
     }
@@ -95,11 +95,11 @@ public abstract class m0 {
     public abstract void g();
 
     public long h() {
-        return this.f42783c;
+        return this.f43010c;
     }
 
     public long i() {
-        return Math.max(this.f42784f, this.f42785g);
+        return Math.max(this.f43011f, this.f43012g);
     }
 
     public long j() {
@@ -110,7 +110,7 @@ public abstract class m0 {
 
     public b2.q0 l(z0 z0Var, c1 c1Var, int i10, List list) {
         ?? obj = new Object();
-        View view = c1Var.f42702a;
+        View view = c1Var.f42929a;
         obj.f3203a = view.getLeft();
         obj.f3204b = view.getTop();
         view.getRight();
@@ -121,17 +121,17 @@ public abstract class m0 {
     public abstract void m();
 
     public final void n(long j3) {
-        this.f42783c = j3;
+        this.f43010c = j3;
         this.e = j3;
         this.d = j3;
-        this.f42784f = j3;
-        this.f42785g = j3;
+        this.f43011f = j3;
+        this.f43012g = j3;
     }
 
     public final void o(TimeInterpolator timeInterpolator) {
         this.h = timeInterpolator;
-        this.f42786i = timeInterpolator;
-        this.f42787j = timeInterpolator;
-        this.f42788k = timeInterpolator;
+        this.f43013i = timeInterpolator;
+        this.f43014j = timeInterpolator;
+        this.f43015k = timeInterpolator;
     }
 }

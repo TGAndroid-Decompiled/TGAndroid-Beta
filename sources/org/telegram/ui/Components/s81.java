@@ -1,13 +1,13 @@
 package org.telegram.ui.Components;
-public final class s81 implements org.telegram.ui.ActionBar.b2 {
-    public final Object f27807a;
+public final class s81 extends s4.j {
+    public final w81 F;
 
-    public s81(Object obj) {
-        this.f27807a = obj;
+    public s81(w81 w81Var) {
+        this.F = w81Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        ((hu) this.f27807a).f24741a.d.r();
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

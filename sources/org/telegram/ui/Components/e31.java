@@ -1,52 +1,48 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class e31 extends Drawable {
-    public final yi0 f23480a;
-    public int f23481b;
-    public final TextPaint f23482c;
+    public final Drawable f23780a;
+    public final Paint f23781b = new Paint(1);
+    public final RectF f23782c = new RectF();
 
-    public e31(TextPaint textPaint) {
-        ah.d dVar = new ah.d(this, 6);
-        this.f23482c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        yi0 yi0Var = new yi0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f23480a = yi0Var;
-        yi0Var.setCallback(dVar);
-        yi0Var.K(1);
-        yi0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        yi0Var.J(true);
-        yi0Var.start();
+    public e31(Context context) {
+        this.f23780a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int color = this.f23482c.getColor();
-        int i10 = this.f23481b;
-        yi0 yi0Var = this.f23480a;
-        if (color != i10) {
-            yi0Var.Z = true;
-            yi0Var.Q(color, "Comp 1");
-            yi0Var.o();
-            yi0Var.J(true);
-            yi0Var.V(0L);
-            this.f23481b = color;
-        }
-        yi0Var.draw(canvas);
+        Paint paint = this.f23781b;
+        canvas.drawRoundRect(this.f23782c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+        this.f23780a.draw(canvas);
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f23782c.set(rect);
+        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
+        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
+        this.f23780a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
     }
 
     @Override
     public final void setAlpha(int i10) {
+        this.f23781b.setAlpha(i10);
+        this.f23780a.setAlpha(i10);
     }
 
     @Override

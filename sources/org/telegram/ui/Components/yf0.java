@@ -1,63 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class yf0 extends org.telegram.ui.k4 {
-    public final int h;
-    public final Object f30199n;
+public final class yf0 {
+    public final org.telegram.ui.iu0 f30569a;
 
-    public yf0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f30199n = obj;
+    public yf0(org.telegram.ui.iu0 iu0Var) {
+        this.f30569a = iu0Var;
     }
 
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        MessageObject playingMessageObject;
-        switch (this.h) {
-            case 0:
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f30199n;
-                if (view == pipRoundVideoView.f22095c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
-                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.j6.f18987k2);
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
+    @JavascriptInterface
+    public void onPlayerError(String str) {
+        AndroidUtilities.runOnUIThread(new x2(this, Integer.parseInt(str), 7));
+    }
+
+    @JavascriptInterface
+    public void onPlayerLoaded() {
+        AndroidUtilities.runOnUIThread(new wf0(this, 0));
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyBufferedPosition(float f7) {
+        this.f30569a.J = f7;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyCurrentPosition(int i10) {
+        this.f30569a.I = i10 * 1000;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyDuration(int i10) {
+        org.telegram.ui.iu0 iu0Var = this.f30569a;
+        iu0Var.H = i10 * 1000;
+        String str = iu0Var.f30789s;
+        if (str != null) {
+            zf0.a(iu0Var, str);
+            iu0Var.f30789s = null;
         }
     }
 
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.h) {
-            case 1:
-                super.onMeasure(i10, i11);
-                d91 d91Var = (d91) this.f30199n;
-                if (d91Var.f23275f != null) {
-                    ViewGroup.LayoutParams layoutParams = d91Var.d.getLayoutParams();
-                    layoutParams.width = getMeasuredWidth();
-                    layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = d91Var.e;
-                    if (imageView != null) {
-                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
-                        layoutParams2.width = getMeasuredWidth();
-                        layoutParams2.height = getMeasuredHeight();
-                        return;
+    @JavascriptInterface
+    public void onPlayerStateChange(String str) {
+        boolean z10;
+        int parseInt = Integer.parseInt(str);
+        org.telegram.ui.iu0 iu0Var = this.f30569a;
+        boolean z11 = iu0Var.G;
+        boolean z12 = false;
+        int i10 = 1;
+        if (parseInt != 1 && parseInt != 3) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        iu0Var.G = z10;
+        iu0Var.b(z11);
+        if (parseInt != 0) {
+            if (parseInt != 1) {
+                if (parseInt != 2) {
+                    if (parseInt == 3) {
+                        z12 = true;
+                        i10 = 2;
                     }
-                    return;
                 }
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+            } else {
+                z12 = true;
+            }
+            i10 = 3;
+        } else {
+            i10 = 4;
         }
+        if (i10 == 3 && iu0Var.h.getVisibility() != 4) {
+            AndroidUtilities.runOnUIThread(new wf0(this, 1), 300L);
+        }
+        AndroidUtilities.runOnUIThread(new i2.f0(this, z12, i10, 1));
     }
 }

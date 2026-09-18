@@ -6,7 +6,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class r5 extends qg.l1 {
+public final class r5 extends qg.i1 {
     public final Path f5407g3;
     public final qb f5408h3;
 

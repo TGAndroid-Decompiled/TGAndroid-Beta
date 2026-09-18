@@ -1,16 +1,7 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class d81 extends s4.d0 {
-    public final gg.j0 f23235r;
-
-    public d81(gg.j0 j0Var, Context context) {
-        super(context);
-        this.f23235r = j0Var;
-    }
-
-    @Override
-    public final void g(android.view.View r6, s4.x0 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d81.g(android.view.View, s4.x0):void");
-    }
+import android.graphics.Bitmap;
+public final class d81 {
+    public Bitmap f23487a;
+    public float f23488b;
 }

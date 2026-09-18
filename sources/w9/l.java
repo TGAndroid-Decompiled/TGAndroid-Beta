@@ -2,21 +2,21 @@ package w9;
 
 import android.os.Bundle;
 import java.util.concurrent.Callable;
-import org.telegram.ui.Cells.p6;
+import org.telegram.ui.Cells.c1;
 public final class l implements Callable {
-    public final long f44961a;
-    public final m f44962b;
+    public final long f45187a;
+    public final m f45188b;
 
     public l(m mVar, long j3) {
-        this.f44962b = mVar;
-        this.f44961a = j3;
+        this.f45188b = mVar;
+        this.f45187a = j3;
     }
 
     @Override
     public final Object call() {
-        Bundle e = p6.e(1, "fatal");
-        e.putLong("timestamp", this.f44961a);
-        this.f44962b.f44971k.J(e);
+        Bundle f7 = c1.f(1, "fatal");
+        f7.putLong("timestamp", this.f45187a);
+        this.f45188b.f45197k.J(f7);
         return null;
     }
 }

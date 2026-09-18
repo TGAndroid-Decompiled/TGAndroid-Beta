@@ -40,8 +40,8 @@ public final class k extends l {
         lf.i iVar2 = new lf.i(7, false);
         ((lf.i) iVar.d).d = iVar2;
         iVar.d = iVar2;
-        iVar2.f14034c = valueOf;
-        iVar2.f14033b = "errorCode";
+        iVar2.f14180c = valueOf;
+        iVar2.f14179b = "errorCode";
         String str = this.f4114b;
         if (str != null) {
             iVar.Z(str, "errorMessage");
@@ -51,13 +51,13 @@ public final class k extends l {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
+        int q6 = w7.f0.q(parcel, 20293);
         int i11 = this.f4113a.f4143a;
-        w7.e0.s(parcel, 2, 4);
+        w7.f0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        w7.e0.l(parcel, 3, this.f4114b);
-        w7.e0.s(parcel, 4, 4);
+        w7.f0.l(parcel, 3, this.f4114b);
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(this.f4115c);
-        w7.e0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 }

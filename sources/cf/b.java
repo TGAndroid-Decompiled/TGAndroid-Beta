@@ -1,6 +1,6 @@
 package cf;
 
-import n7.a1;
+import n7.z0;
 public interface b {
-    a F1(a1 a1Var);
+    a F1(z0 z0Var);
 }

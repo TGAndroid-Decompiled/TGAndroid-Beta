@@ -1,24 +1,33 @@
 package org.telegram.ui.Components;
+public final class rn0 extends s4.o {
+    public final vn0 f27934b;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class rn0 extends s4.s0 {
-    public final int f27660a;
-    public final org.telegram.ui.gy f27661b;
-
-    public rn0(org.telegram.ui.gy gyVar, int i10) {
-        this.f27660a = i10;
-        this.f27661b = gyVar;
+    public rn0(vn0 vn0Var) {
+        this.f27934b = vn0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f27660a) {
-            case 0:
-                this.f27661b.T(i10, i11);
-                return;
-            default:
-                this.f27661b.T(i10, i11);
-                return;
+    public final boolean a(int i10, int i11) {
+        vn0 vn0Var = this.f27934b;
+        return ((sn0) vn0Var.f29144n.get(i10)).equals(vn0Var.f29145r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        vn0 vn0Var = this.f27934b;
+        if (((sn0) vn0Var.f29144n.get(i10)).f28200a.h == ((sn0) vn0Var.f29145r.get(i11)).f28200a.h) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f27934b.f29145r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f27934b.f29144n.size();
     }
 }

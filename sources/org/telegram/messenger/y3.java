@@ -5,32 +5,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 public final class y3 implements Utilities.Callback2 {
-    public final int f17938a = 0;
-    public final GiftAuctionController f17939b;
-    public final GiftAuctionController.AuctionInternal f17940c;
+    public final int f18106a = 0;
+    public final GiftAuctionController f18107b;
+    public final GiftAuctionController.AuctionInternal f18108c;
     public final Object d;
 
     public y3(GiftAuctionController giftAuctionController, GiftAuctionController.AuctionInternal auctionInternal, Utilities.Callback2 callback2) {
-        this.f17939b = giftAuctionController;
-        this.f17940c = auctionInternal;
+        this.f18107b = giftAuctionController;
+        this.f18108c = auctionInternal;
         this.d = callback2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f17938a) {
+        switch (this.f18106a) {
             case 0:
-                this.f17939b.lambda$sendBid$8(this.f17940c, (Utilities.Callback2) this.d, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
+                this.f18107b.lambda$sendBid$8(this.f18108c, (Utilities.Callback2) this.d, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f17939b.lambda$getOrRequestAcquiredGifts$11((Utilities.Callback) this.d, this.f17940c, (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj, (TLRPC.TL_error) obj2);
+                this.f18107b.lambda$getOrRequestAcquiredGifts$11((Utilities.Callback) this.d, this.f18108c, (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }
 
     public y3(GiftAuctionController giftAuctionController, Utilities.Callback callback, GiftAuctionController.AuctionInternal auctionInternal) {
-        this.f17939b = giftAuctionController;
+        this.f18107b = giftAuctionController;
         this.d = callback;
-        this.f17940c = auctionInternal;
+        this.f18108c = auctionInternal;
     }
 }

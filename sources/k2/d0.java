@@ -1,28 +1,36 @@
 package k2;
 
-import android.os.Handler;
-import java.util.concurrent.Executor;
-public final class d0 implements Executor {
-    public final int f13241a;
-    public final Object f13242b;
+import android.media.AudioTrack;
+public final class d0 extends AudioTrack.StreamEventCallback {
+    public final e0 f13241a;
 
-    public d0(Object obj, int i10) {
-        this.f13241a = i10;
-        this.f13242b = obj;
+    public d0(e0 e0Var) {
+        this.f13241a = e0Var;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        switch (this.f13241a) {
-            case 0:
-                ((Handler) this.f13242b).post(runnable);
-                return;
-            case 1:
-                e2.d0.U(((m4.a0) this.f13242b).f14468l, runnable);
-                return;
-            default:
-                ((p4.b) this.f13242b).post(runnable);
-                return;
+    public final void onDataRequest(AudioTrack audioTrack, int i10) {
+        f0 f0Var;
+        n nVar;
+        if (audioTrack.equals(this.f13241a.f13247c.f13286x) && (nVar = (f0Var = this.f13241a.f13247c).f13283t) != null && f0Var.X) {
+            nVar.f0();
+        }
+    }
+
+    @Override
+    public final void onPresentationEnded(AudioTrack audioTrack) {
+        if (!audioTrack.equals(this.f13241a.f13247c.f13286x)) {
+            return;
+        }
+        this.f13241a.f13247c.W = true;
+    }
+
+    @Override
+    public final void onTearDown(AudioTrack audioTrack) {
+        f0 f0Var;
+        n nVar;
+        if (audioTrack.equals(this.f13241a.f13247c.f13286x) && (nVar = (f0Var = this.f13241a.f13247c).f13283t) != null && f0Var.X) {
+            nVar.f0();
         }
     }
 }

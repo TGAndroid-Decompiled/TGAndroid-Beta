@@ -1,36 +1,13 @@
 package org.telegram.ui.Components;
+public final class ks0 extends org.telegram.ui.tu0 {
+    public final kv0 f25785a;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class ks0 extends org.telegram.ui.Cells.i7 {
-    public final zu0 f25681l0;
-
-    public ks0(zu0 zu0Var, Context context) {
-        super(context);
-        this.f25681l0 = zu0Var;
+    public ks0(kv0 kv0Var) {
+        this.f25785a = kv0Var;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        boolean isVoice = messageObject.isVoice();
-        zu0 zu0Var = this.f25681l0;
-        if (!isVoice && !messageObject.isRoundVideo()) {
-            if (!messageObject.isMusic()) {
-                return false;
-            }
-            return MediaController.getInstance().setPlaylist(zu0Var.f30655t1[4].f26852a, messageObject, zu0Var.f30618c1);
-        }
-        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-        MediaController mediaController = MediaController.getInstance();
-        if (playMessage) {
-            arrayList = zu0Var.f30655t1[4].f26852a;
-        } else {
-            arrayList = null;
-        }
-        mediaController.setVoiceMessagesPlaylist(arrayList, false);
-        return playMessage;
+    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r19, org.telegram.tgnet.TLRPC.FileLocation r20, int r21, boolean r22, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ks0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
     }
 }

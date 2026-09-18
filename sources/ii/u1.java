@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.ky;
+import org.telegram.ui.Components.ly;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.StickersActivity;
-public final class u1 implements ky {
+public final class u1 implements ly {
     public final d2 f11654a;
 
     public u1(d2 d2Var) {
@@ -114,7 +114,7 @@ public final class u1 implements ky {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.x5 x5Var;
+        org.telegram.ui.Components.z5 z5Var;
         d2 d2Var = this.f11654a;
         i1 a02 = d2.a0(d2Var);
         if (a02 != null) {
@@ -125,12 +125,12 @@ public final class u1 implements ky {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    x5Var = new org.telegram.ui.Components.x5(document, a02.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(document, a02.getPaint().getFontMetricsInt());
                 } else {
-                    x5Var = new org.telegram.ui.Components.x5(j3, a02.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(j3, a02.getPaint().getFontMetricsInt());
                 }
-                x5Var.cacheType = org.telegram.ui.Components.o5.g();
-                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
+                z5Var.cacheType = org.telegram.ui.Components.q5.g();
+                spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
                 a02.setText(a02.getText().insert(b02, spannableString));
                 int length = b02 + spannableString.length();
                 a02.setSelection(length, length);
@@ -152,15 +152,7 @@ public final class u1 implements ky {
     }
 
     @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void o(f51 f51Var) {
-    }
-
-    @Override
-    public final void q() {
+    public final void o(t51 t51Var) {
     }
 
     @Override
@@ -172,11 +164,19 @@ public final class u1 implements ky {
     }
 
     @Override
-    public final void u() {
+    public final void y(long j3) {
     }
 
     @Override
-    public final void y(long j3) {
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
     }
 
     @Override

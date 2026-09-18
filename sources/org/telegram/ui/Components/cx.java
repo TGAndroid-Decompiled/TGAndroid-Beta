@@ -1,36 +1,189 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class cx extends sv {
-    public final TLRPC.StickerSet W;
-    public final kz X;
+import org.telegram.messenger.MessagesController;
+public final class cx implements z4.e {
+    public final boolean f23356a;
+    public final kz f23357b;
 
-    public cx(kz kzVar, org.telegram.ui.ActionBar.o2 o2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(o2Var, context, f6Var, arrayList);
-        this.X = kzVar;
-        this.W = stickerSet;
+    public cx(kz kzVar, boolean z10) {
+        this.f23357b = kzVar;
+        this.f23356a = z10;
     }
 
     @Override
-    public final void X(boolean z10) {
-        kz kzVar = this.X;
-        ArrayList arrayList = kzVar.f25755p1;
-        TLRPC.StickerSet stickerSet = this.W;
-        if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f18148id))) {
-                arrayList.add(Long.valueOf(stickerSet.f18148id));
+    public final void a(int i10) {
+        boolean z10;
+        int i11;
+        kz kzVar = this.f23357b;
+        zw zwVar = kzVar.h;
+        boolean z11 = false;
+        if (zwVar != null) {
+            int currentItem = zwVar.getCurrentItem();
+            if (currentItem == 2) {
+                i11 = 1;
+            } else if (currentItem == 1) {
+                i11 = 2;
+            } else {
+                i11 = 0;
             }
-        } else {
-            arrayList.remove(Long.valueOf(stickerSet.f18148id));
+            if (kzVar.A1 != i11) {
+                kzVar.A1 = i11;
+                MessagesController.getGlobalEmojiSettings().edit().putInt("selected_page", i11).commit();
+            }
         }
-        kzVar.T();
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        kzVar.L(z10, true);
+        if (i10 == 2 && (this.f23356a || kzVar.f25950v0)) {
+            z11 = true;
+        }
+        kzVar.Q(z11, true);
+        if (kzVar.f25945t1.z()) {
+            if (i10 == 0) {
+                jw jwVar = kzVar.V;
+                if (jwVar != null) {
+                    jwVar.d.requestFocus();
+                }
+            } else if (i10 == 1) {
+                pw pwVar = kzVar.f25927o0;
+                if (pwVar != null) {
+                    pwVar.d.requestFocus();
+                }
+            } else {
+                ww wwVar = kzVar.G0;
+                if (wwVar != null) {
+                    wwVar.d.requestFocus();
+                }
+            }
+        }
     }
 
     @Override
-    public final void dismiss() {
-        this.X.f25776v2 = false;
-        super.dismiss();
+    public final void b(float f7, int i10, int i11) {
+        float f10;
+        xy xyVar;
+        xy xyVar2;
+        int i12;
+        int i13;
+        int i14;
+        kz kzVar = this.f23357b;
+        xy xyVar3 = kzVar.G0;
+        xy xyVar4 = kzVar.f25927o0;
+        xy xyVar5 = kzVar.V;
+        yw ywVar = kzVar.C0;
+        sw swVar = kzVar.D0;
+        rx rxVar = kzVar.f25930p0;
+        mw mwVar = kzVar.f25907h0;
+        wx wxVar = kzVar.P;
+        int i15 = 2;
+        boolean z10 = true;
+        if (kzVar.f25958x0 == null || kzVar.f25904g0 == null) {
+            f10 = 0.0f;
+        } else {
+            int i16 = 8;
+            if (i10 == 0) {
+                wxVar.setVisibility(0);
+                int i17 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+                if (i17 == 0) {
+                    i13 = 8;
+                } else {
+                    i13 = 0;
+                }
+                f10 = 0.0f;
+                mwVar.setVisibility(i13);
+                if (i17 == 0) {
+                    i14 = 8;
+                } else {
+                    i14 = 0;
+                }
+                rxVar.setVisibility(i14);
+                swVar.setVisibility(8);
+                if (ywVar != null) {
+                    ywVar.setVisibility(8);
+                }
+            } else {
+                f10 = 0.0f;
+                if (i10 == 1) {
+                    wxVar.setVisibility(8);
+                    mwVar.setVisibility(0);
+                    rxVar.setVisibility(0);
+                    int i18 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+                    if (i18 == 0) {
+                        i12 = 8;
+                    } else {
+                        i12 = 0;
+                    }
+                    swVar.setVisibility(i12);
+                    if (ywVar != null) {
+                        if (i18 != 0) {
+                            i16 = 0;
+                        }
+                        ywVar.setVisibility(i16);
+                    }
+                } else if (i10 == 2) {
+                    wxVar.setVisibility(8);
+                    mwVar.setVisibility(8);
+                    rxVar.setVisibility(8);
+                    swVar.setVisibility(0);
+                    if (ywVar != null) {
+                        ywVar.setVisibility(0);
+                    }
+                }
+            }
+        }
+        kzVar.getMeasuredWidth();
+        kzVar.getPaddingLeft();
+        kzVar.getPaddingRight();
+        ly lyVar = kzVar.f25945t1;
+        if (lyVar != null) {
+            if (i10 == 1) {
+                if (i11 == 0) {
+                    i15 = 0;
+                }
+                lyVar.s(i15);
+            } else if (i10 == 2) {
+                lyVar.s(3);
+            } else {
+                lyVar.s(0);
+            }
+        }
+        kzVar.M(true);
+        int currentItem = kzVar.h.getCurrentItem();
+        if (currentItem == 0) {
+            xyVar = xyVar5;
+        } else if (currentItem == 1) {
+            xyVar = xyVar4;
+        } else {
+            xyVar = xyVar3;
+        }
+        String obj = xyVar.d.getText().toString();
+        for (int i19 = 0; i19 < 3; i19++) {
+            if (i19 == 0) {
+                xyVar2 = xyVar5;
+            } else if (i19 == 1) {
+                xyVar2 = xyVar4;
+            } else {
+                xyVar2 = xyVar3;
+            }
+            if (xyVar2 != null) {
+                iq iqVar = xyVar2.d;
+                if (xyVar2 != xyVar && iqVar != null && !iqVar.getText().toString().equals(obj)) {
+                    iqVar.setText(obj);
+                    iqVar.setSelection(obj.length());
+                }
+            }
+        }
+        if ((i10 != 0 || f7 <= f10) && i10 != 1) {
+            z10 = false;
+        }
+        kz.a(kzVar, z10);
+        kzVar.Y();
+    }
+
+    @Override
+    public final void c(int i10) {
     }
 }

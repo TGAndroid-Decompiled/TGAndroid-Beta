@@ -18,7 +18,7 @@ public final class j {
     public int f3037g;
 
     static {
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         f3027i = Integer.toString(0, 36);
         f3028j = Integer.toString(1, 36);
         f3029k = Integer.toString(2, 36);
@@ -40,7 +40,7 @@ public final class j {
         if (i10 != -1) {
             if (i10 != 1) {
                 if (i10 != 2) {
-                    return hg.k0.i(i10, "Undefined color range ");
+                    return hg.k0.h(i10, "Undefined color range ");
                 }
                 return "Limited range";
             }
@@ -54,7 +54,7 @@ public final class j {
             if (i10 != 6) {
                 if (i10 != 1) {
                     if (i10 != 2) {
-                        return hg.k0.i(i10, "Undefined color space ");
+                        return hg.k0.h(i10, "Undefined color space ");
                     }
                     return "BT601";
                 }
@@ -73,7 +73,7 @@ public final class j {
                         if (i10 != 3) {
                             if (i10 != 6) {
                                 if (i10 != 7) {
-                                    return hg.k0.i(i10, "Undefined color transfer ");
+                                    return hg.k0.h(i10, "Undefined color transfer ");
                                 }
                                 return "HLG";
                             }

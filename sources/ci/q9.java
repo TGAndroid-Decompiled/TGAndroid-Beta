@@ -38,7 +38,7 @@ public final class q9 implements Utilities.Callback {
                 return;
             case 1:
                 ia iaVar2 = this.f5362b.W;
-                i10 = ((org.telegram.ui.ActionBar.g3) iaVar2).currentAccount;
+                i10 = ((org.telegram.ui.ActionBar.f3) iaVar2).currentAccount;
                 iaVar2.g1(new ga(5, i10, (ArrayList) obj), new ai.s5(iaVar2, 1), false);
                 return;
             case 2:

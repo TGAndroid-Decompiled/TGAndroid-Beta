@@ -1,40 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class a9 extends View {
-    public y8 f22354a;
-    public final c6 f22355b;
-    public boolean f22356c;
-    public boolean d;
-    public final o20 e;
-    public Drawable f22357f;
-    public Drawable h;
-    public boolean f22358n;
-    public Paint f22359r;
-    public Paint f22360s;
-    public boolean v;
-    public final c9 f22361w;
+import j$.util.Objects;
+public final class a9 {
+    public int f22564a;
+    public boolean f22565b;
+    public int f22566c;
+    public int d;
+    public int e;
+    public int f22567f;
 
-    public a9(c9 c9Var, Context context) {
-        super(context);
-        this.f22361w = c9Var;
-        c6 c6Var = new c6(400L, AndroidUtilities.overshootInterpolator);
-        this.f22355b = c6Var;
-        this.e = new o20();
-        c6Var.f22938a = this;
+    public final a9 a() {
+        ?? obj = new Object();
+        obj.f22566c = this.f22566c;
+        obj.d = this.d;
+        obj.e = this.e;
+        obj.f22567f = this.f22567f;
+        obj.f22565b = this.f22565b;
+        return obj;
     }
 
-    @Override
-    public final void onDraw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a9.onDraw(android.graphics.Canvas):void");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof a9)) {
+            return false;
+        }
+        a9 a9Var = (a9) obj;
+        if (this.f22566c == a9Var.f22566c && this.d == a9Var.d && this.e == a9Var.e && this.f22567f == a9Var.f22567f) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22361w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f22564a), Integer.valueOf(this.f22566c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f22567f));
     }
 }

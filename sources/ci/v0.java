@@ -22,7 +22,7 @@ public final class v0 extends View {
     public final Path f5643f;
     public androidx.fragment.app.a0 h;
     public boolean f5644n;
-    public final org.telegram.ui.Components.c6 f5645r;
+    public final org.telegram.ui.Components.e6 f5645r;
 
     public v0(Context context) {
         super(context);
@@ -33,8 +33,8 @@ public final class v0 extends View {
         TextPaint textPaint = new TextPaint(1);
         this.f5641b = textPaint;
         this.f5643f = new Path();
-        org.telegram.ui.Components.c6 c6Var = new org.telegram.ui.Components.c6(this);
-        this.f5645r = c6Var;
+        org.telegram.ui.Components.e6 e6Var = new org.telegram.ui.Components.e6(this);
+        this.f5645r = e6Var;
         paint.setColor(-869783512);
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(6.0f)));
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
@@ -53,7 +53,7 @@ public final class v0 extends View {
             f10 = 0.0f;
         }
         this.e = f10;
-        c6Var.d(0.0f, true);
+        e6Var.d(0.0f, true);
     }
 
     public final void a(boolean z10) {
@@ -75,7 +75,7 @@ public final class v0 extends View {
         }
         canvas.save();
         if (this.f5644n) {
-            f7 = qr.f27387k.getInterpolation(e);
+            f7 = qr.f27719k.getInterpolation(e);
         } else {
             f7 = 1.0f;
         }

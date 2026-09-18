@@ -1,22 +1,31 @@
 package org.telegram.ui.Components;
-public final class gf implements o1.g {
-    public boolean f24202a = false;
-    public final float f24203b;
-    public final gv0 f24204c;
 
-    public gf(float f7, gv0 gv0Var) {
-        this.f24203b = f7;
-        this.f24204c = gv0Var;
+import android.app.Dialog;
+import android.view.ViewTreeObserver;
+public final class gf implements ViewTreeObserver.OnPreDrawListener {
+    public final int f24379a;
+    public final Dialog f24380b;
+    public final ChatActivityEnterView f24381c;
+
+    public gf(ChatActivityEnterView chatActivityEnterView, Dialog dialog, int i10) {
+        this.f24379a = i10;
+        this.f24381c = chatActivityEnterView;
+        this.f24380b = dialog;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        if (!this.f24202a && f7 >= this.f24203b) {
-            this.f24202a = true;
-            try {
-                this.f24204c.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
-            }
+    public final boolean onPreDraw() {
+        switch (this.f24379a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f24381c;
+                chatActivityEnterView.f22005p0.getViewTreeObserver().removeOnPreDrawListener(this);
+                chatActivityEnterView.f22005p0.postDelayed(new og(this.f24380b, 18), 100L);
+                return true;
+            default:
+                ChatActivityEnterView chatActivityEnterView2 = this.f24381c;
+                chatActivityEnterView2.f22005p0.getViewTreeObserver().removeOnPreDrawListener(this);
+                chatActivityEnterView2.f22005p0.postDelayed(new og(this.f24380b, 18), 100L);
+                return true;
         }
     }
 }

@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 public class u1 {
     public boolean B;
@@ -17,35 +17,35 @@ public class u1 {
     public int[] E;
     public float[] F;
     public boolean G;
-    public f6 O;
+    public e6 O;
     public long Q;
     public long R;
-    public boolean f42527g;
+    public boolean f42754g;
     public boolean h;
-    public Utilities.CallbackReturn f42531l;
-    public boolean f42532m;
-    public final int f42535p;
-    public boolean f42536q;
-    public int f42544z;
-    public final RectF f42523a = new RectF();
-    public final RectF f42524b = new RectF();
-    public final RectF f42525c = new RectF();
+    public Utilities.CallbackReturn f42758l;
+    public boolean f42759m;
+    public final int f42762p;
+    public boolean f42763q;
+    public int f42771z;
+    public final RectF f42750a = new RectF();
+    public final RectF f42751b = new RectF();
+    public final RectF f42752c = new RectF();
     public Bitmap[] d = new Bitmap[3];
     public boolean[] e = new boolean[3];
-    public boolean[] f42526f = new boolean[3];
-    public final Paint f42528i = new Paint();
-    public float f42529j = 0.0f;
-    public float f42530k = 0.0f;
-    public final ArrayList f42533n = new ArrayList();
-    public float f42534o = 1.0f;
-    public int f42537r = 14;
-    public int f42538s = 12;
-    public int f42539t = 10;
-    public float f42540u = 0.85f;
+    public boolean[] f42753f = new boolean[3];
+    public final Paint f42755i = new Paint();
+    public float f42756j = 0.0f;
+    public float f42757k = 0.0f;
+    public final ArrayList f42760n = new ArrayList();
+    public float f42761o = 1.0f;
+    public int f42764r = 14;
+    public int f42765s = 12;
+    public int f42766t = 10;
+    public float f42767u = 0.85f;
     public float v = 0.85f;
-    public float f42541w = 0.9f;
-    public long f42542x = 2000;
-    public int f42543y = 1000;
+    public float f42768w = 0.9f;
+    public long f42769x = 2000;
+    public int f42770y = 1000;
     public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
     public boolean H = false;
     public boolean I = true;
@@ -58,7 +58,7 @@ public class u1 {
     public int S = 0;
 
     public u1(int i10) {
-        this.f42535p = i10;
+        this.f42762p = i10;
         this.B = i10 < 50;
     }
 
@@ -76,7 +76,7 @@ public class u1 {
     public final void c() {
         a();
         boolean z10 = this.G;
-        int i10 = this.f42535p;
+        int i10 = this.f42762p;
         if (z10) {
             int length = this.d.length;
             this.C = new Matrix[length];
@@ -88,7 +88,7 @@ public class u1 {
                 this.D[i11] = new float[i10 * 2];
             }
         }
-        ArrayList arrayList = this.f42533n;
+        ArrayList arrayList = this.f42760n;
         if (arrayList.isEmpty()) {
             for (int i12 = 0; i12 < i10; i12++) {
                 arrayList.add(new t1(this));
@@ -108,7 +108,7 @@ public class u1 {
         long currentTimeMillis = System.currentTimeMillis();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f42533n;
+            ArrayList arrayList = this.f42760n;
             if (i10 < arrayList.size()) {
                 ((t1) arrayList.get(i10)).b(currentTimeMillis);
                 i10++;
@@ -120,8 +120,8 @@ public class u1 {
 
     public final void g() {
         int v02 = j6.v0(this.P, this.O);
-        if (this.f42544z != v02) {
-            this.f42544z = v02;
+        if (this.f42771z != v02) {
+            this.f42771z = v02;
             a();
         }
     }

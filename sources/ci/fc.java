@@ -2,5 +2,5 @@ package ci;
 public interface fc {
     jc a(long j3);
 
-    void d(long j3, ai.j jVar);
+    void b(long j3, ai.j jVar);
 }

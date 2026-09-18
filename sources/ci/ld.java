@@ -2,7 +2,7 @@ package ci;
 
 import android.content.Context;
 import android.content.Intent;
-public final class ld implements org.telegram.ui.ActionBar.b2 {
+public final class ld implements org.telegram.ui.ActionBar.a2 {
     public final int f4985a;
     public final Context f4986b;
 
@@ -12,7 +12,7 @@ public final class ld implements org.telegram.ui.ActionBar.b2 {
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f4985a) {
             case 0:
                 try {

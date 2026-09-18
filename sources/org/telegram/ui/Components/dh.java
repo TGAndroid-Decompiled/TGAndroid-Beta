@@ -1,35 +1,253 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class dh implements ValueAnimator.AnimatorUpdateListener {
-    public final int f23354a;
-    public final vi f23355b;
+import android.text.Editable;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class dh implements bl, le.k, org.telegram.ui.ActionBar.a2, ml0, dh.d, org.telegram.ui.ActionBar.r0, tn, AndroidUtilities.IntColorCallback, d5, dj {
+    public final int f23582a;
+    public final vi f23583b;
 
     public dh(vi viVar, int i10) {
-        this.f23354a = i10;
-        this.f23355b = viVar;
+        this.f23582a = i10;
+        this.f23583b = viVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f23354a) {
-            case 0:
-                this.f23355b.b2();
-                return;
-            case 1:
-                this.f23355b.D0.invalidate();
-                return;
-            case 2:
-                vi.m(this.f23355b, valueAnimator);
-                return;
-            case 3:
-                vi viVar = this.f23355b;
-                viVar.getClass();
-                viVar.K1(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public void J(int i10, int i11, boolean z10) {
+        long j3;
+        boolean G1;
+        switch (this.f23582a) {
+            case 12:
+                vi viVar = this.f23583b;
+                ni niVar = viVar.f29082y0;
+                if (niVar != viVar.f29033j0 && niVar != viVar.f29053q0) {
+                    if (!niVar.I(i10, z10, i11, viVar.s1(), 0L)) {
+                        viVar.A2 = true;
+                        viVar.dismiss();
+                        return;
+                    }
+                    return;
+                }
+                viVar.G1(i10, z10, 0, viVar.s1(), viVar.N0);
                 return;
             default:
-                this.f23355b.b2();
+                vi viVar2 = this.f23583b;
+                mf mfVar = viVar2.f29027h0;
+                if (mfVar != null) {
+                    j3 = mfVar.k();
+                } else {
+                    j3 = 0;
+                }
+                long j10 = j3;
+                fi fiVar = viVar2.I0;
+                viVar2.N0 = j10;
+                fiVar.setEffect(j10);
+                ni niVar2 = viVar2.f29082y0;
+                if (niVar2 != viVar2.f29033j0 && niVar2 != viVar2.f29053q0) {
+                    if (!niVar2.I(i10, z10, i11, viVar2.s1(), j10)) {
+                        viVar2.dismiss();
+                    }
+                    G1 = false;
+                } else {
+                    G1 = viVar2.G1(i10, z10, i11, viVar2.s1(), j10);
+                }
+                mf mfVar2 = viVar2.f29027h0;
+                if (mfVar2 != null) {
+                    mfVar2.h(!G1);
+                    viVar2.f29027h0 = null;
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
+        switch (this.f23582a) {
+            case 0:
+                ((org.telegram.ui.zn) this.f23583b.f29021f0).b(messageMedia, i10, z10, i11, 0L);
+                return;
+            case 9:
+                ((org.telegram.ui.zn) this.f23583b.f29021f0).b(messageMedia, i10, z10, i11, j3);
+                return;
+            default:
+                ((org.telegram.ui.zn) this.f23583b.f29021f0).b(messageMedia, i10, z10, i11, j3);
+                return;
+        }
+    }
+
+    @Override
+    public void c(le.l lVar) {
+        this.f23583b.u1();
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        TLRPC.User user;
+        if (view instanceof oi) {
+            oi oiVar = (oi) view;
+            vi viVar = this.f23583b;
+            if (!viVar.V && (user = oiVar.f26950b) != null) {
+                viVar.w1(oiVar.f26951c, user);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public void e(TLRPC.MessageMedia messageMedia, Editable editable, qh.f fVar, ArrayList arrayList, boolean z10, int i10, long j3) {
+        String str;
+        ArrayList<TLRPC.MessageEntity> arrayList2;
+        int i11 = this.f23582a;
+        vi viVar = this.f23583b;
+        switch (i11) {
+            case 10:
+                org.telegram.ui.zn znVar = (org.telegram.ui.zn) viVar.f29021f0;
+                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
+                if (znVar.f7()) {
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of((TLRPC.TL_messageMediaPoll) null, znVar.T5, znVar.f40367n5, znVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
+                    of2.todo = tL_messageMediaToDo;
+                    of2.sendMessageChatArguments = znVar.C8();
+                    of2.payStars = j3;
+                    of2.monoForumPeer = znVar.N8();
+                    of2.suggestionParams = znVar.f40281g5;
+                    znVar.getSendMessagesHelper().sendMessage(of2);
+                    znVar.y6();
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.zn znVar2 = (org.telegram.ui.zn) viVar.f29021f0;
+                TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia;
+                if (znVar2.f7()) {
+                    long nextLong = Utilities.random.nextLong();
+                    if (editable != null) {
+                        CharSequence[] charSequenceArr = {editable};
+                        arrayList2 = znVar2.getMediaDataController().getEntities(charSequenceArr, true);
+                        str = charSequenceArr[0].toString();
+                    } else {
+                        str = null;
+                        arrayList2 = null;
+                    }
+                    SendMessagesHelper.prepareSendingPoll(znVar2.getAccountInstance(), new qh.h(fVar, tL_messageMediaPoll, nextLong, str, arrayList2, arrayList), znVar2.T5, znVar2.f40367n5, znVar2.X3, null, znVar2.f40341l5, z10, i10, znVar2.C8(), j3, znVar2.N8(), znVar2.f40281g5);
+                    znVar2.y6();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        vi viVar = this.f23583b;
+        viVar.A2 = true;
+        viVar.dismiss();
+    }
+
+    @Override
+    public int g(org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        float f7;
+        int i10;
+        switch (this.f23582a) {
+            case 4:
+                if (LiteMode.isEnabled(262144)) {
+                    f7 = 0.85f;
+                } else {
+                    f7 = 0.76f;
+                }
+                if (z10) {
+                    i10 = org.telegram.ui.ActionBar.j6.f19006a7;
+                } else {
+                    i10 = org.telegram.ui.ActionBar.j6.f19151i5;
+                }
+                int v02 = org.telegram.ui.ActionBar.j6.v0(i10, e6Var);
+                int v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, e6Var);
+                vi viVar = this.f23583b;
+                if (viVar.f29042m2) {
+                    return i0.a.d(0.75f, v03, viVar.f29046n2);
+                }
+                return eh.b.n(f7, v02, v03);
+            case 5:
+                if (this.f23583b.f29042m2) {
+                    return 0;
+                }
+                if (z10) {
+                    return 687865855;
+                }
+                return -1;
+            case 6:
+                if (this.f23583b.f29042m2) {
+                    return 0;
+                }
+                if (z10) {
+                    return 352321535;
+                }
+                return -1;
+            default:
+                vi viVar2 = this.f23583b;
+                if (viVar2.f29042m2) {
+                    if (AndroidUtilities.computePerceivedBrightness(viVar2.f29046n2) <= 0.72f) {
+                        return 1090519039;
+                    }
+                } else if (z10) {
+                    return 0;
+                }
+                return 536870912;
+        }
+    }
+
+    @Override
+    public void h(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+        CharSequence charSequence2;
+        vi viVar = this.f23583b;
+        dj djVar = viVar.Y;
+        if (djVar != null) {
+            djVar.h(arrayList, charSequence, z10, i10, i11, j3, z11, j10);
+            return;
+        }
+        org.telegram.ui.ActionBar.n2 n2Var = viVar.f29021f0;
+        if (n2Var != null && (n2Var instanceof org.telegram.ui.zn)) {
+            org.telegram.ui.zn znVar = (org.telegram.ui.zn) n2Var;
+            if (znVar.f7()) {
+                znVar.l8(charSequence, null);
+                AccountInstance accountInstance = znVar.getAccountInstance();
+                if (charSequence != null) {
+                    charSequence2 = charSequence;
+                } else {
+                    charSequence2 = null;
+                }
+                SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, znVar.T5, znVar.f40367n5, znVar.X3, null, z10, i10, i11, znVar.p5, znVar.C8(), j3, z11, j10);
+                znVar.y6();
+                return;
+            }
+            return;
+        }
+        ti tiVar = viVar.Z1;
+        if (tiVar != null) {
+            tiVar.W1(arrayList, charSequence, z10, i10, i11, j3, z11, j10);
+        }
+    }
+
+    @Override
+    public void m(int i10) {
+        this.f23583b.X0.getActionBarMenuOnItemClick().b(i10);
+    }
+
+    @Override
+    public void run(int i10) {
+        vi.o(this.f23583b, i10);
+    }
+
+    @Override
+    public void a() {
     }
 }

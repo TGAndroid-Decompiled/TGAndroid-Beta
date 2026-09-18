@@ -1,24 +1,28 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
 import android.view.ViewGroup;
-public final class z40 extends Paint {
-    public final k60 f40123a;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+public final class z40 implements ViewTreeObserver.OnPreDrawListener {
+    public final ChatObject.VideoParticipant f39969a;
+    public final i60 f39970b;
 
-    public z40(k60 k60Var) {
-        this.f40123a = k60Var;
+    public z40(i60 i60Var, ChatObject.VideoParticipant videoParticipant) {
+        this.f39970b = i60Var;
+        this.f39969a = videoParticipant;
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        super.setAlpha(i10);
-        k60 k60Var = this.f40123a;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) k60Var).containerView;
-        if (viewGroup != null) {
-            viewGroup2 = ((org.telegram.ui.ActionBar.g3) k60Var).containerView;
-            viewGroup2.invalidate();
-        }
+        i60 i60Var = this.f39970b;
+        i60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        i60Var.f34394q2 = null;
+        i60Var.a2.j(this.f39969a);
+        AndroidUtilities.updateVisibleRows(i60Var.f34377m2);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

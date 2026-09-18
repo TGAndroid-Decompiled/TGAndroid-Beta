@@ -2,7 +2,7 @@ package org.webrtc;
 
 import java.util.Map;
 public class RTCStats {
-    private final String f40369id;
+    private final String f40598id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -10,7 +10,7 @@ public class RTCStats {
     public RTCStats(long j3, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j3;
         this.type = str;
-        this.f40369id = str2;
+        this.f40598id = str2;
         this.members = map;
     }
 
@@ -39,7 +39,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f40369id;
+        return this.f40598id;
     }
 
     public Map<String, Object> getMembers() {
@@ -60,7 +60,7 @@ public class RTCStats {
         u10.append(", type: ");
         u10.append(this.type);
         u10.append(", id: ");
-        u10.append(this.f40369id);
+        u10.append(this.f40598id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
             u10.append(", ");
             u10.append(entry.getKey());

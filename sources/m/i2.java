@@ -9,26 +9,26 @@ import android.widget.ListAdapter;
 import androidx.appcompat.view.menu.ListMenuItemView;
 public final class i2 extends r1 {
     public e2 E;
-    public l.m F;
-    public final int f14212x;
-    public final int f14213y;
+    public l.n F;
+    public final int f14387x;
+    public final int f14388y;
 
     public i2(Context context, boolean z10) {
         super(context, z10);
         if (1 == h2.a(context.getResources().getConfiguration())) {
-            this.f14212x = 21;
-            this.f14213y = 22;
+            this.f14387x = 21;
+            this.f14388y = 22;
             return;
         }
-        this.f14212x = 22;
-        this.f14213y = 21;
+        this.f14387x = 22;
+        this.f14388y = 21;
     }
 
     @Override
     public final boolean onHoverEvent(MotionEvent motionEvent) {
-        l.h hVar;
+        l.i iVar;
         int i10;
-        l.m mVar;
+        l.n nVar;
         int pointToPosition;
         int i11;
         if (this.E != null) {
@@ -36,25 +36,25 @@ public final class i2 extends r1 {
             if (adapter instanceof HeaderViewListAdapter) {
                 HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter;
                 i10 = headerViewListAdapter.getHeadersCount();
-                hVar = (l.h) headerViewListAdapter.getWrappedAdapter();
+                iVar = (l.i) headerViewListAdapter.getWrappedAdapter();
             } else {
-                hVar = (l.h) adapter;
+                iVar = (l.i) adapter;
                 i10 = 0;
             }
-            if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i11 = pointToPosition - i10) >= 0 && i11 < hVar.getCount()) {
-                mVar = hVar.getItem(i11);
+            if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i11 = pointToPosition - i10) >= 0 && i11 < iVar.getCount()) {
+                nVar = iVar.getItem(i11);
             } else {
-                mVar = null;
+                nVar = null;
             }
-            l.m mVar2 = this.F;
-            if (mVar2 != mVar) {
-                l.k kVar = hVar.f13741a;
-                if (mVar2 != null) {
-                    this.E.s(kVar, mVar2);
+            l.n nVar2 = this.F;
+            if (nVar2 != nVar) {
+                l.l lVar = iVar.f13888a;
+                if (nVar2 != null) {
+                    this.E.p(lVar, nVar2);
                 }
-                this.F = mVar;
-                if (mVar != null) {
-                    this.E.G(kVar, mVar);
+                this.F = nVar;
+                if (nVar != null) {
+                    this.E.v(lVar, nVar);
                 }
             }
         }
@@ -63,22 +63,22 @@ public final class i2 extends r1 {
 
     @Override
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        l.h hVar;
+        l.i iVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f14212x) {
+        if (listMenuItemView != null && i10 == this.f14387x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i10 == this.f14213y) {
+        } else if (listMenuItemView != null && i10 == this.f14388y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
-                hVar = (l.h) ((HeaderViewListAdapter) adapter).getWrappedAdapter();
+                iVar = (l.i) ((HeaderViewListAdapter) adapter).getWrappedAdapter();
             } else {
-                hVar = (l.h) adapter;
+                iVar = (l.i) adapter;
             }
-            hVar.f13741a.c(false);
+            iVar.f13888a.c(false);
             return true;
         } else {
             return super.onKeyDown(i10, keyEvent);

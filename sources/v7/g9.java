@@ -1,29 +1,29 @@
 package v7;
 public final class g9 extends h9 {
-    public final transient int f44015c;
+    public final transient int f44241c;
     public final transient int d;
     public final h9 e;
 
     public g9(h9 h9Var, int i10, int i11) {
         this.e = h9Var;
-        this.f44015c = i10;
+        this.f44241c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        w7.w7.a(i10, this.d);
-        return this.e.get(i10 + this.f44015c);
+        w7.x7.a(i10, this.d);
+        return this.e.get(i10 + this.f44241c);
     }
 
     @Override
     public final int n() {
-        return this.e.o() + this.f44015c + this.d;
+        return this.e.o() + this.f44241c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.e.o() + this.f44015c;
+        return this.e.o() + this.f44241c;
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class g9 extends h9 {
 
     @Override
     public final h9 subList(int i10, int i11) {
-        w7.w7.b(i10, i11, this.d);
-        int i12 = this.f44015c;
+        w7.x7.b(i10, i11, this.d);
+        int i12 = this.f44241c;
         return this.e.subList(i10 + i12, i11 + i12);
     }
 

@@ -16,13 +16,13 @@ import y8.l0;
 import y8.v0;
 import y8.z0;
 public final class m extends b8.b {
-    public volatile int f45722b;
-    public final k f45723c;
+    public volatile int f45945b;
+    public final k f45946c;
 
     public m(k kVar) {
         super("com.google.android.gms.wearable.internal.IWearableListener", 4);
-        this.f45723c = kVar;
-        this.f45722b = -1;
+        this.f45946c = kVar;
+        this.f45945b = -1;
     }
 
     public static final void M0(e0 e0Var, boolean z10, byte[] bArr) {
@@ -30,7 +30,7 @@ public final class m extends b8.b {
             e0Var.getClass();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken(e0Var.f316c);
-            int i10 = f8.a.f9012a;
+            int i10 = f8.a.f9011a;
             obtain.writeInt(z10 ? 1 : 0);
             obtain.writeByteArray(bArr);
             e0Var.f315b.transact(1, obtain, null, 1);
@@ -132,24 +132,24 @@ public final class m extends b8.b {
         p pVar;
         ComponentName componentName;
         if (Log.isLoggable("WearableLS", 3)) {
-            componentName = this.f45723c.zza;
+            componentName = this.f45946c.zza;
             Log.d("WearableLS", String.format("%s: %s %s", str, componentName.toString(), obj));
         }
         int callingUid = Binder.getCallingUid();
-        if (callingUid != this.f45722b) {
-            if (z0.a(this.f45723c).b() && u6.b.g(this.f45723c, "com.google.android.wearable.app.cn", callingUid)) {
-                this.f45722b = callingUid;
-            } else if (u6.b.e(this.f45723c, callingUid)) {
-                this.f45722b = callingUid;
+        if (callingUid != this.f45945b) {
+            if (z0.a(this.f45946c).b() && u6.b.g(this.f45946c, "com.google.android.wearable.app.cn", callingUid)) {
+                this.f45945b = callingUid;
+            } else if (u6.b.e(this.f45946c, callingUid)) {
+                this.f45945b = callingUid;
             } else {
                 Log.e("WearableLS", "Caller is not GooglePlayServices; caller UID: " + callingUid);
                 return false;
             }
         }
-        obj2 = this.f45723c.zzf;
+        obj2 = this.f45946c.zzf;
         synchronized (obj2) {
             try {
-                k kVar = this.f45723c;
+                k kVar = this.f45946c;
                 z10 = kVar.zzg;
                 if (!z10) {
                     pVar = kVar.zzb;

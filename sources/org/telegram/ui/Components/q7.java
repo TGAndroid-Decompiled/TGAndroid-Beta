@@ -1,30 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class q7 extends bj0 {
-    public float f27232r;
-    public float f27233s;
-    public boolean v;
-    public final org.telegram.ui.Cells.l7 f27234w;
-    public final float f27235x;
-    public final h8 f27236y;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class q7 implements Runnable {
+    public final int f27475a;
+    public final r7 f27476b;
 
-    public q7(h8 h8Var, Context context, float f7) {
-        super(context);
-        this.f27236y = h8Var;
-        this.f27235x = f7;
-        this.f27234w = new org.telegram.ui.Cells.l7(this, 3);
+    public q7(r7 r7Var, int i10) {
+        this.f27475a = i10;
+        this.f27476b = r7Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.addAction(16);
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q7.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void run() {
+        long j3;
+        switch (this.f27475a) {
+            case 0:
+                r7 r7Var = this.f27476b;
+                int i10 = r7Var.v + 1;
+                r7Var.v = i10;
+                if (i10 == 1) {
+                    j8 j8Var = r7Var.H;
+                    j8Var.H0 = -1;
+                    j8Var.I0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
+                    r7Var.f27840w = System.currentTimeMillis();
+                    AndroidUtilities.runOnUIThread(this, 2000L);
+                    AndroidUtilities.runOnUIThread(r7Var.E);
+                    return;
+                } else if (i10 == 2) {
+                    AndroidUtilities.runOnUIThread(this, 2000L);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                r7 r7Var2 = this.f27476b;
+                j8 j8Var2 = r7Var2.H;
+                long duration = MediaController.getInstance().getDuration();
+                if (duration != 0 && duration != -9223372036854775807L) {
+                    float f7 = j8Var2.I0;
+                    long currentTimeMillis = System.currentTimeMillis();
+                    long j10 = currentTimeMillis - r7Var2.f27840w;
+                    r7Var2.f27840w = currentTimeMillis;
+                    long j11 = currentTimeMillis - r7Var2.f27841x;
+                    int i11 = r7Var2.v;
+                    if (i11 == 1) {
+                        j3 = 3;
+                    } else if (i11 == 2) {
+                        j3 = 6;
+                    } else {
+                        j3 = 12;
+                    }
+                    float f10 = (float) duration;
+                    float f11 = ((f7 * f10) - ((float) (j10 * j3))) / f10;
+                    if (f11 < 0.0f) {
+                        f11 = 0.0f;
+                    }
+                    j8Var2.I0 = f11;
+                    MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+                    if (playingMessageObject != null && playingMessageObject.isMusic()) {
+                        j8Var2.G0(playingMessageObject, false);
+                    }
+                    if (j8Var2.H0 == -1 && r7Var2.v > 0) {
+                        if (j11 > 200 || j8Var2.I0 == 0.0f) {
+                            r7Var2.f27841x = currentTimeMillis;
+                            if (j8Var2.I0 == 0.0f) {
+                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
+                                MediaController.getInstance().pauseByRewind();
+                            } else {
+                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f11);
+                            }
+                        }
+                        if (r7Var2.v > 0 && j8Var2.I0 > 0.0f) {
+                            AndroidUtilities.runOnUIThread(r7Var2.E, 16L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                r7Var2.f27840w = System.currentTimeMillis();
+                return;
+        }
     }
 }

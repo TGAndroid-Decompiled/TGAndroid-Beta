@@ -12,34 +12,34 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Cells.cb;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Cells.bb;
 import org.telegram.ui.Cells.h0;
-import org.telegram.ui.Cells.s1;
 import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Cells.v0;
 import org.telegram.ui.Cells.w0;
 import org.telegram.ui.Components.jo;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.k11;
+import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.w01;
-import org.telegram.ui.Components.x01;
-import org.telegram.ui.Components.y01;
-import org.telegram.ui.bo;
-import org.telegram.ui.dh;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.bh;
+import org.telegram.ui.zn;
 import s4.c1;
 import s4.z0;
 public abstract class n extends s4.j {
     public static final qr V = new qr(0.19919472913616398d, 0.010644531250000006d, 0.27920937042459737d, 0.91025390625d);
-    public final bo F;
-    public final ml0 G;
+    public final zn F;
+    public final wl0 G;
     public boolean N;
     public c1 O;
     public jo P;
     public boolean Q;
-    public final f6 R;
-    public dh T;
-    public dh U;
+    public final e6 R;
+    public bh T;
+    public bh U;
     public final HashMap H = new HashMap();
     public final ArrayList I = new ArrayList();
     public final HashMap J = new HashMap();
@@ -48,37 +48,37 @@ public abstract class n extends s4.j {
     public final HashMap M = new HashMap();
     public final ArrayList S = new ArrayList();
 
-    public n(bo boVar, ml0 ml0Var, f6 f6Var) {
-        this.R = f6Var;
-        this.F = boVar;
-        this.G = ml0Var;
-        this.f42759o = V;
-        this.f42738n = true;
-        this.f42737m = false;
+    public n(zn znVar, wl0 wl0Var, e6 e6Var) {
+        this.R = e6Var;
+        this.F = znVar;
+        this.G = wl0Var;
+        this.f42986o = V;
+        this.f42965n = true;
+        this.f42964m = false;
     }
 
     @Override
     public final void B(s4.h hVar) {
         View view;
         s4.h hVar2;
-        c1 c1Var = hVar.f42747a;
+        c1 c1Var = hVar.f42974a;
         View view2 = null;
         if (c1Var == null) {
             view = null;
         } else {
-            view = c1Var.f42702a;
+            view = c1Var.f42929a;
         }
-        c1 c1Var2 = hVar.f42748b;
+        c1 c1Var2 = hVar.f42975b;
         if (c1Var2 != null) {
-            view2 = c1Var2.f42702a;
+            view2 = c1Var2.f42929a;
         }
         View view3 = view2;
         ArrayList arrayList = this.B;
         if (view != null) {
             ViewPropertyAnimator duration = view.animate().setDuration(250L);
-            arrayList.add(hVar.f42747a);
-            duration.translationX(hVar.e - hVar.f42749c);
-            duration.translationY(hVar.f42750f - hVar.d);
+            arrayList.add(hVar.f42974a);
+            duration.translationX(hVar.e - hVar.f42976c);
+            duration.translationY(hVar.f42977f - hVar.d);
             hVar2 = hVar;
             duration.alpha(0.0f).setListener(new k(this, hVar2, duration, view, 0)).start();
         } else {
@@ -86,7 +86,7 @@ public abstract class n extends s4.j {
         }
         if (view3 != null) {
             ViewPropertyAnimator animate = view3.animate();
-            arrayList.add(hVar2.f42748b);
+            arrayList.add(hVar2.f42975b);
             animate.translationX(0.0f).translationY(0.0f).setDuration(250L).alpha(1.0f).setListener(new k(this, hVar2, animate, view3, 1)).start();
         }
     }
@@ -98,7 +98,7 @@ public abstract class n extends s4.j {
 
     @Override
     public final boolean J(s4.h hVar, c1 c1Var) {
-        y01 y01Var;
+        m11 m11Var;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("end change if necessary");
         }
@@ -106,14 +106,14 @@ public abstract class n extends s4.j {
         if (animator != null) {
             animator.cancel();
         }
-        View view = c1Var.f42702a;
-        if (this.K.contains(view) && (y01Var = (y01) this.U.run()) != null) {
-            y01Var.a(view);
+        View view = c1Var.f42929a;
+        if (this.K.contains(view) && (m11Var = (m11) this.U.run()) != null) {
+            m11Var.a(view);
         }
-        if (hVar.f42748b == c1Var) {
-            hVar.f42748b = null;
-        } else if (hVar.f42747a == c1Var) {
-            hVar.f42747a = null;
+        if (hVar.f42975b == c1Var) {
+            hVar.f42975b = null;
+        } else if (hVar.f42974a == c1Var) {
+            hVar.f42974a = null;
         } else {
             return false;
         }
@@ -146,7 +146,7 @@ public abstract class n extends s4.j {
     }
 
     public final void U() {
-        y01 y01Var;
+        m11 m11Var;
         HashMap hashMap = this.J;
         ArrayList arrayList = new ArrayList(hashMap.values());
         hashMap.clear();
@@ -161,30 +161,30 @@ public abstract class n extends s4.j {
                 animator.cancel();
             }
         }
-        if (!this.K.isEmpty() && (y01Var = (y01) this.U.run()) != null) {
-            ArrayList arrayList2 = y01Var.f30072c;
-            if (!y01Var.e) {
-                y01Var.e = true;
+        if (!this.K.isEmpty() && (m11Var = (m11) this.U.run()) != null) {
+            ArrayList arrayList2 = m11Var.f26281c;
+            if (!m11Var.e) {
+                m11Var.e = true;
                 int size2 = arrayList2.size();
                 while (i10 < size2) {
                     Object obj2 = arrayList2.get(i10);
                     i10++;
-                    x01 x01Var = (x01) obj2;
-                    Runnable runnable = x01Var.d;
+                    l11 l11Var = (l11) obj2;
+                    Runnable runnable = l11Var.d;
                     if (runnable != null) {
-                        y01.b(runnable);
-                        x01Var.d = null;
+                        m11.b(runnable);
+                        l11Var.d = null;
                     }
                 }
                 arrayList2.clear();
-                w01 w01Var = y01Var.f30070a;
-                if (w01Var != null) {
-                    w01Var.i();
+                k11 k11Var = m11Var.f26279a;
+                if (k11Var != null) {
+                    k11Var.i();
                 }
-                Runnable runnable2 = y01Var.d;
+                Runnable runnable2 = m11Var.d;
                 if (runnable2 != null) {
-                    y01Var.d = null;
-                    y01.b(runnable2);
+                    m11Var.d = null;
+                    m11.b(runnable2);
                 }
             }
         }
@@ -200,25 +200,25 @@ public abstract class n extends s4.j {
         }
         MessageObject.GroupedMessages.TransitionParams transitionParams = groupedMessages.transitionParams;
         if (transitionParams.top == 0 && transitionParams.bottom == 0 && transitionParams.left == 0 && transitionParams.right == 0) {
-            ml0 ml0Var = this.G;
-            int childCount = ml0Var.getChildCount();
+            wl0 wl0Var = this.G;
+            int childCount = wl0Var.getChildCount();
             int i10 = 0;
             while (true) {
                 if (i10 >= childCount) {
                     break;
                 }
-                View childAt = ml0Var.getChildAt(i10);
-                if (childAt instanceof t1) {
-                    t1 t1Var = (t1) childAt;
-                    MessageObject messageObject = t1Var.getMessageObject();
-                    if (t1Var.getTransitionParams().f20928v0 && groupedMessages.messages.contains(messageObject)) {
-                        groupedMessages.transitionParams.top = t1Var.getBackgroundDrawableTop() + t1Var.getPaddingTop() + t1Var.getTop();
-                        groupedMessages.transitionParams.bottom = t1Var.getBackgroundDrawableBottom() + t1Var.getPaddingTop() + t1Var.getTop();
-                        groupedMessages.transitionParams.left = t1Var.getBackgroundDrawableLeft() + t1Var.getLeft();
-                        groupedMessages.transitionParams.right = t1Var.getBackgroundDrawableRight() + t1Var.getLeft();
-                        groupedMessages.transitionParams.drawCaptionLayout = t1Var.P2();
-                        groupedMessages.transitionParams.pinnedTop = t1Var.n3();
-                        groupedMessages.transitionParams.pinnedBotton = t1Var.m3();
+                View childAt = wl0Var.getChildAt(i10);
+                if (childAt instanceof u1) {
+                    u1 u1Var = (u1) childAt;
+                    MessageObject messageObject = u1Var.getMessageObject();
+                    if (u1Var.getTransitionParams().f21130v0 && groupedMessages.messages.contains(messageObject)) {
+                        groupedMessages.transitionParams.top = u1Var.getBackgroundDrawableTop() + u1Var.getPaddingTop() + u1Var.getTop();
+                        groupedMessages.transitionParams.bottom = u1Var.getBackgroundDrawableBottom() + u1Var.getPaddingTop() + u1Var.getTop();
+                        groupedMessages.transitionParams.left = u1Var.getBackgroundDrawableLeft() + u1Var.getLeft();
+                        groupedMessages.transitionParams.right = u1Var.getBackgroundDrawableRight() + u1Var.getLeft();
+                        groupedMessages.transitionParams.drawCaptionLayout = u1Var.P2();
+                        groupedMessages.transitionParams.pinnedTop = u1Var.n3();
+                        groupedMessages.transitionParams.pinnedBotton = u1Var.m3();
                         groupedMessages.transitionParams.isNewGroup = true;
                         break;
                     }
@@ -237,45 +237,45 @@ public abstract class n extends s4.j {
         view.setScaleY(1.0f);
         view.setTranslationY(0.0f);
         boolean z10 = view instanceof h0;
-        ml0 ml0Var = this.G;
+        wl0 wl0Var = this.G;
         if (z10) {
-            int measuredHeight = (ml0Var.getMeasuredHeight() / 2) - (view.getMeasuredHeight() / 2);
+            int measuredHeight = (wl0Var.getMeasuredHeight() / 2) - (view.getMeasuredHeight() / 2);
             ((h0) view).setAnimating(false);
             if (view.getTop() > measuredHeight) {
                 view.setTranslationY(measuredHeight - view.getTop());
             } else {
                 view.setTranslationY(0.0f);
             }
-        } else if (view instanceof cb) {
-            int measuredHeight2 = (ml0Var.getMeasuredHeight() / 2) - (view.getMeasuredHeight() / 2);
-            ((cb) view).setAnimating(false);
+        } else if (view instanceof bb) {
+            int measuredHeight2 = (wl0Var.getMeasuredHeight() / 2) - (view.getMeasuredHeight() / 2);
+            ((bb) view).setAnimating(false);
             if (view.getTop() > measuredHeight2) {
                 view.setTranslationY(measuredHeight2 - view.getTop());
             } else {
                 view.setTranslationY(0.0f);
             }
-        } else if (view instanceof t1) {
-            t1 t1Var = (t1) view;
-            t1Var.getTransitionParams().j();
-            t1Var.setAnimationOffsetX(0.0f);
+        } else if (view instanceof u1) {
+            u1 u1Var = (u1) view;
+            u1Var.getTransitionParams().j();
+            u1Var.setAnimationOffsetX(0.0f);
         } else if (view instanceof w0) {
             v0 transitionParams = ((w0) view).getTransitionParams();
-            transitionParams.f21468b = false;
-            transitionParams.f21469c = 1.0f;
+            transitionParams.f21636b = false;
+            transitionParams.f21637c = 1.0f;
         } else {
             view.setTranslationX(0.0f);
         }
     }
 
-    public final void Y(dh dhVar, dh dhVar2) {
-        this.T = dhVar;
-        this.U = dhVar2;
+    public final void Y(bh bhVar, bh bhVar2) {
+        this.T = bhVar;
+        this.U = bhVar2;
     }
 
     public final boolean Z(View view) {
         c1 U;
         if (!this.N && (U = this.G.U(view)) != null) {
-            if (this.f42761q.contains(U) || this.f42768y.contains(U)) {
+            if (this.f42988q.contains(U) || this.f42995y.contains(U)) {
                 return true;
             }
             return false;
@@ -292,7 +292,7 @@ public abstract class n extends s4.j {
             int i11 = 0;
             boolean z10 = false;
             while (true) {
-                arrayList = this.f42761q;
+                arrayList = this.f42988q;
                 if (i11 >= arrayList.size()) {
                     break;
                 }
@@ -304,13 +304,13 @@ public abstract class n extends s4.j {
             if (z10) {
                 i10 = 0;
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    i10 += ((c1) arrayList.get(i12)).f42702a.getHeight();
+                    i10 += ((c1) arrayList.get(i12)).f42929a.getHeight();
                 }
             } else {
                 i10 = 0;
             }
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                ((c1) arrayList.get(i13)).f42702a.setTranslationY(i10);
+                ((c1) arrayList.get(i13)).f42929a.setTranslationY(i10);
             }
         }
         return a2;
@@ -319,7 +319,7 @@ public abstract class n extends s4.j {
     public final boolean a0(View view) {
         c1 U = this.G.U(view);
         if (U != null) {
-            if (this.f42760p.contains(U) || this.A.contains(U)) {
+            if (this.f42987p.contains(U) || this.A.contains(U)) {
                 return true;
             }
             return false;
@@ -329,14 +329,14 @@ public abstract class n extends s4.j {
 
     @Override
     public final void f(c1 c1Var) {
-        y01 y01Var;
+        m11 m11Var;
         Animator animator = (Animator) this.J.remove(c1Var);
         if (animator != null) {
             animator.cancel();
         }
-        View view = c1Var.f42702a;
-        if (this.K.contains(view) && (y01Var = (y01) this.U.run()) != null) {
-            y01Var.a(view);
+        View view = c1Var.f42929a;
+        if (this.K.contains(view) && (m11Var = (m11) this.U.run()) != null) {
+            m11Var.a(view);
         }
         super.f(c1Var);
         X(view);
@@ -363,28 +363,28 @@ public abstract class n extends s4.j {
         }
         this.O = null;
         this.P = null;
-        ArrayList arrayList2 = this.f42762r;
+        ArrayList arrayList2 = this.f42989r;
         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
             s4.i iVar = (s4.i) arrayList2.get(size2);
-            X(iVar.f42753a.f42702a);
-            v(iVar.f42753a);
+            X(iVar.f42980a.f42929a);
+            v(iVar.f42980a);
             arrayList2.remove(size2);
         }
-        ArrayList arrayList3 = this.f42760p;
+        ArrayList arrayList3 = this.f42987p;
         for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
             c1 c1Var = (c1) arrayList3.get(size3);
-            X(c1Var.f42702a);
+            X(c1Var.f42929a);
             d(c1Var);
             arrayList3.remove(size3);
         }
-        ArrayList arrayList4 = this.f42761q;
+        ArrayList arrayList4 = this.f42988q;
         for (int size4 = arrayList4.size() - 1; size4 >= 0; size4--) {
             c1 c1Var2 = (c1) arrayList4.get(size4);
-            X(c1Var2.f42702a);
+            X(c1Var2.f42929a);
             u(c1Var2);
             arrayList4.remove(size4);
         }
-        ArrayList arrayList5 = this.f42763s;
+        ArrayList arrayList5 = this.f42990s;
         for (int size5 = arrayList5.size() - 1; size5 >= 0; size5--) {
             I((s4.h) arrayList5.get(size5));
         }
@@ -392,25 +392,25 @@ public abstract class n extends s4.j {
         if (!k()) {
             return;
         }
-        ArrayList arrayList6 = this.f42765u;
+        ArrayList arrayList6 = this.f42992u;
         for (int size6 = arrayList6.size() - 1; size6 >= 0; size6--) {
             ArrayList arrayList7 = (ArrayList) arrayList6.get(size6);
             for (int size7 = arrayList7.size() - 1; size7 >= 0; size7--) {
                 s4.i iVar2 = (s4.i) arrayList7.get(size7);
-                X(iVar2.f42753a.f42702a);
-                v(iVar2.f42753a);
+                X(iVar2.f42980a.f42929a);
+                v(iVar2.f42980a);
                 arrayList7.remove(size7);
                 if (arrayList7.isEmpty()) {
                     arrayList6.remove(arrayList7);
                 }
             }
         }
-        ArrayList arrayList8 = this.f42764t;
+        ArrayList arrayList8 = this.f42991t;
         for (int size8 = arrayList8.size() - 1; size8 >= 0; size8--) {
             ArrayList arrayList9 = (ArrayList) arrayList8.get(size8);
             for (int size9 = arrayList9.size() - 1; size9 >= 0; size9--) {
                 c1 c1Var3 = (c1) arrayList9.get(size9);
-                X(c1Var3.f42702a);
+                X(c1Var3.f42929a);
                 u(c1Var3);
                 arrayList9.remove(size9);
                 if (arrayList9.isEmpty()) {
@@ -429,8 +429,8 @@ public abstract class n extends s4.j {
             }
         }
         E(this.A);
-        E(this.f42769z);
-        E(this.f42768y);
+        E(this.f42996z);
+        E(this.f42995y);
         E(this.B);
         e();
     }
@@ -448,15 +448,15 @@ public abstract class n extends s4.j {
     @Override
     public final q0 l(z0 z0Var, c1 c1Var, int i10, List list) {
         q0 l4 = super.l(z0Var, c1Var, i10, list);
-        View view = c1Var.f42702a;
-        if (view instanceof t1) {
+        View view = c1Var.f42929a;
+        if (view instanceof u1) {
             ?? obj = new Object();
             obj.f3203a = l4.f3203a;
             obj.f3204b = l4.f3204b;
-            s1 transitionParams = ((t1) view).getTransitionParams();
-            obj.f13080c = transitionParams.f20838a;
-            obj.d = transitionParams.f20842b;
-            obj.e = transitionParams.f20847c;
+            t1 transitionParams = ((u1) view).getTransitionParams();
+            obj.f13080c = transitionParams.f21040a;
+            obj.d = transitionParams.f21044b;
+            obj.e = transitionParams.f21049c;
             obj.f13081f = transitionParams.d;
             return obj;
         }
@@ -471,15 +471,15 @@ public abstract class n extends s4.j {
     @Override
     public final void p(c1 c1Var) {
         R(c1Var);
-        View view = c1Var.f42702a;
+        View view = c1Var.f42929a;
         view.setAlpha(0.0f);
         if (!this.N) {
             view.setScaleX(0.9f);
             view.setScaleY(0.9f);
-        } else if (view instanceof t1) {
-            ((t1) view).getTransitionParams().h = true;
+        } else if (view instanceof u1) {
+            ((u1) view).getTransitionParams().h = true;
         }
-        this.f42761q.add(c1Var);
+        this.f42988q.add(c1Var);
     }
 
     @Override
@@ -488,9 +488,9 @@ public abstract class n extends s4.j {
         if (c1Var == c1Var2) {
             return r(c1Var, q0Var, i10, i11, i12, i13);
         }
-        View view = c1Var.f42702a;
-        if (view instanceof t1) {
-            translationX = ((t1) view).getAnimationOffsetX();
+        View view = c1Var.f42929a;
+        if (view instanceof u1) {
+            translationX = ((u1) view).getAnimationOffsetX();
         } else {
             translationX = view.getTranslationX();
         }
@@ -499,23 +499,23 @@ public abstract class n extends s4.j {
         R(c1Var);
         int i14 = (int) ((i12 - i10) - translationX);
         int i15 = (int) ((i13 - i11) - translationY);
-        if (view instanceof t1) {
-            ((t1) view).setAnimationOffsetX(translationX);
+        if (view instanceof u1) {
+            ((u1) view).setAnimationOffsetX(translationX);
         } else {
             view.setTranslationX(translationX);
         }
         view.setTranslationY(translationY);
         view.setAlpha(alpha);
-        View view2 = c1Var2.f42702a;
+        View view2 = c1Var2.f42929a;
         R(c1Var2);
-        if (view2 instanceof t1) {
-            ((t1) view2).setAnimationOffsetX(-i14);
+        if (view2 instanceof u1) {
+            ((u1) view2).setAnimationOffsetX(-i14);
         } else {
             view2.setTranslationX(-i14);
         }
         view2.setTranslationY(-i15);
         view2.setAlpha(0.0f);
-        this.f42763s.add(new s4.h(c1Var, c1Var2, i10, i11, i12, i13));
+        this.f42990s.add(new s4.h(c1Var, c1Var2, i10, i11, i12, i13));
         F();
         return true;
     }
@@ -524,7 +524,7 @@ public abstract class n extends s4.j {
     public final boolean r(c1 c1Var, q0 q0Var, int i10, int i11, int i12, int i13) {
         int translationX;
         int i14;
-        t1 t1Var;
+        u1 u1Var;
         w0 w0Var;
         float f7;
         float f10;
@@ -545,39 +545,39 @@ public abstract class n extends s4.j {
         boolean z13;
         boolean isOutOwner;
         float f16;
-        View view2 = c1Var.f42702a;
-        if (view2 instanceof t1) {
-            t1 t1Var2 = (t1) view2;
-            translationX = i10 + ((int) t1Var2.getAnimationOffsetX());
-            if (t1Var2.getTransitionParams().f20919s2 != t1Var2.getTopMediaOffset()) {
-                i14 = (t1Var2.getTransitionParams().f20919s2 - t1Var2.getTopMediaOffset()) + i11;
+        View view2 = c1Var.f42929a;
+        if (view2 instanceof u1) {
+            u1 u1Var2 = (u1) view2;
+            translationX = i10 + ((int) u1Var2.getAnimationOffsetX());
+            if (u1Var2.getTransitionParams().f21121s2 != u1Var2.getTopMediaOffset()) {
+                i14 = (u1Var2.getTransitionParams().f21121s2 - u1Var2.getTopMediaOffset()) + i11;
             } else {
                 i14 = i11;
             }
-            t1Var = t1Var2;
+            u1Var = u1Var2;
             w0Var = null;
         } else if (view2 instanceof w0) {
             translationX = i10 + ((int) view2.getTranslationX());
             i14 = i11;
             w0Var = (w0) view2;
-            t1Var = null;
+            u1Var = null;
         } else {
             translationX = i10 + ((int) view2.getTranslationX());
             i14 = i11;
-            t1Var = null;
+            u1Var = null;
             w0Var = null;
         }
         int i18 = translationX;
         int translationY = i14 + ((int) view2.getTranslationY());
         int[] iArr = new int[4];
-        if (t1Var != null) {
-            float imageX = t1Var.getPhotoImage().getImageX();
-            float imageY = t1Var.getPhotoImage().getImageY();
-            f11 = t1Var.getPhotoImage().getImageWidth();
-            float imageHeight = t1Var.getPhotoImage().getImageHeight();
+        if (u1Var != null) {
+            float imageX = u1Var.getPhotoImage().getImageX();
+            float imageY = u1Var.getPhotoImage().getImageY();
+            f11 = u1Var.getPhotoImage().getImageWidth();
+            float imageHeight = u1Var.getPhotoImage().getImageHeight();
             f7 = 0.0f;
             for (int i19 = 0; i19 < 4; i19++) {
-                iArr[i19] = t1Var.getPhotoImage().getRoundRadius()[i19];
+                iArr[i19] = u1Var.getPhotoImage().getRoundRadius()[i19];
             }
             f12 = imageX;
             f10 = imageHeight;
@@ -599,43 +599,43 @@ public abstract class n extends s4.j {
         w0 w0Var2 = w0Var;
         float f18 = f11;
         ?? iVar = new s4.i(c1Var, i18, translationY, i12, i13);
-        if (t1Var != null) {
-            s1 transitionParams = t1Var.getTransitionParams();
+        if (u1Var != null) {
+            t1 transitionParams = u1Var.getTransitionParams();
             transitionParams.getClass();
-            int[] iArr2 = transitionParams.f20921t0;
+            int[] iArr2 = transitionParams.f21123t0;
             Rect rect = transitionParams.D0;
-            MessageObject.GroupedMessages currentMessagesGroup = t1Var.getCurrentMessagesGroup();
+            MessageObject.GroupedMessages currentMessagesGroup = u1Var.getCurrentMessagesGroup();
             if (i20 != 0) {
-                t1Var.setAnimationOffsetX(-i20);
+                u1Var.setAnimationOffsetX(-i20);
             }
             boolean z14 = q0Var instanceof l;
-            ml0 ml0Var = this.G;
+            wl0 wl0Var = this.G;
             if (z14) {
-                ImageReceiver photoImage = t1Var.getPhotoImage();
+                ImageReceiver photoImage = u1Var.getPhotoImage();
                 view = view2;
                 l lVar = (l) q0Var;
                 i15 = i20;
-                if (transitionParams.f20928v0 && lVar.f13081f != f7 && lVar.e != f7) {
+                if (transitionParams.f21130v0 && lVar.f13081f != f7 && lVar.e != f7) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 iVar.f13089n = z13;
                 if (z13) {
-                    ml0Var.setClipChildren(false);
-                    ml0Var.invalidate();
-                    transitionParams.f20861f0 = true;
-                    if (t1Var.getMessageObject().isRoundVideo()) {
+                    wl0Var.setClipChildren(false);
+                    wl0Var.invalidate();
+                    transitionParams.f21063f0 = true;
+                    if (u1Var.getMessageObject().isRoundVideo()) {
                         transitionParams.m0 = f12;
-                        transitionParams.f20897n0 = f13;
-                        transitionParams.f20901o0 = f18;
-                        transitionParams.f20905p0 = f17;
+                        transitionParams.f21099n0 = f13;
+                        transitionParams.f21103o0 = f18;
+                        transitionParams.f21107p0 = f17;
                         transitionParams.A0 = iArr;
                     } else {
                         transitionParams.m0 = photoImage.getImageX();
-                        transitionParams.f20897n0 = photoImage.getImageY();
-                        transitionParams.f20901o0 = photoImage.getImageWidth();
-                        transitionParams.f20905p0 = photoImage.getImageHeight();
+                        transitionParams.f21099n0 = photoImage.getImageY();
+                        transitionParams.f21103o0 = photoImage.getImageWidth();
+                        transitionParams.f21107p0 = photoImage.getImageHeight();
                         transitionParams.A0 = photoImage.getRoundRadius();
                     }
                     transitionParams.B0 = false;
@@ -652,8 +652,8 @@ public abstract class n extends s4.j {
                     }
                     float f19 = transitionParams.m0;
                     float f20 = lVar.f13080c;
-                    if (f19 == f20 && transitionParams.f20897n0 == lVar.d && transitionParams.f20905p0 == lVar.f13081f && transitionParams.f20901o0 == lVar.e && !transitionParams.B0) {
-                        transitionParams.f20861f0 = false;
+                    if (f19 == f20 && transitionParams.f21099n0 == lVar.d && transitionParams.f21107p0 == lVar.f13081f && transitionParams.f21103o0 == lVar.e && !transitionParams.B0) {
+                        transitionParams.f21063f0 = false;
                         iVar.f13089n = false;
                     } else {
                         iVar.f13090o = f20;
@@ -682,28 +682,28 @@ public abstract class n extends s4.j {
                             }
                             photoImage.setRoundRadius(iArr2);
                         }
-                        t1Var.U3(iVar.f13090o, iVar.f13091p, iVar.f13092q, iVar.f13093r);
+                        u1Var.U3(iVar.f13090o, iVar.f13091p, iVar.f13092q, iVar.f13093r);
                     }
                 }
-                if (currentMessagesGroup == null && transitionParams.f20928v0 && (((isOutOwner = t1Var.getMessageObject().isOutOwner()) && rect.left != t1Var.getBackgroundDrawableLeft()) || ((!isOutOwner && rect.right != t1Var.getBackgroundDrawableRight()) || rect.top != t1Var.getBackgroundDrawableTop() || rect.bottom != t1Var.getBackgroundDrawableBottom()))) {
-                    iVar.v = t1Var.getBackgroundDrawableBottom() - rect.bottom;
-                    iVar.f13096u = t1Var.getBackgroundDrawableTop() - rect.top;
-                    if (t1Var.G8 != transitionParams.E0) {
-                        iVar.f13094s = t1Var.getBackgroundDrawableLeft() - rect.left;
-                        iVar.f13095t = t1Var.getBackgroundDrawableRight() - rect.right;
+                if (currentMessagesGroup == null && transitionParams.f21130v0 && (((isOutOwner = u1Var.getMessageObject().isOutOwner()) && rect.left != u1Var.getBackgroundDrawableLeft()) || ((!isOutOwner && rect.right != u1Var.getBackgroundDrawableRight()) || rect.top != u1Var.getBackgroundDrawableTop() || rect.bottom != u1Var.getBackgroundDrawableBottom()))) {
+                    iVar.v = u1Var.getBackgroundDrawableBottom() - rect.bottom;
+                    iVar.f13096u = u1Var.getBackgroundDrawableTop() - rect.top;
+                    if (u1Var.G8 != transitionParams.E0) {
+                        iVar.f13094s = u1Var.getBackgroundDrawableLeft() - rect.left;
+                        iVar.f13095t = u1Var.getBackgroundDrawableRight() - rect.right;
                     } else if (isOutOwner) {
-                        iVar.f13094s = t1Var.getBackgroundDrawableLeft() - rect.left;
+                        iVar.f13094s = u1Var.getBackgroundDrawableLeft() - rect.left;
                     } else {
-                        iVar.f13095t = t1Var.getBackgroundDrawableRight() - rect.right;
+                        iVar.f13095t = u1Var.getBackgroundDrawableRight() - rect.right;
                     }
                     iVar.f13087l = true;
-                    transitionParams.f20932w0 = true;
-                    transitionParams.f20866g0 = -iVar.f13094s;
-                    transitionParams.f20870h0 = -iVar.f13095t;
-                    transitionParams.f20880j0 = -iVar.f13096u;
-                    transitionParams.f20875i0 = -iVar.v;
-                    ml0Var.setClipChildren(false);
-                    ml0Var.invalidate();
+                    transitionParams.f21134w0 = true;
+                    transitionParams.f21068g0 = -iVar.f13094s;
+                    transitionParams.f21072h0 = -iVar.f13095t;
+                    transitionParams.f21082j0 = -iVar.f13096u;
+                    transitionParams.f21077i0 = -iVar.v;
+                    wl0Var.setClipChildren(false);
+                    wl0Var.invalidate();
                 }
             } else {
                 view = view2;
@@ -713,7 +713,7 @@ public abstract class n extends s4.j {
                 ArrayList arrayList = this.I;
                 if (arrayList.contains(currentMessagesGroup)) {
                     arrayList.remove(currentMessagesGroup);
-                    ml0 ml0Var2 = (ml0) view.getParent();
+                    wl0 wl0Var2 = (wl0) view.getParent();
                     MessageObject.GroupedMessages.TransitionParams transitionParams3 = currentMessagesGroup.transitionParams;
                     boolean z17 = true;
                     int i24 = 0;
@@ -721,24 +721,24 @@ public abstract class n extends s4.j {
                     int i26 = 0;
                     int i27 = 0;
                     int i28 = 0;
-                    while (i24 < ml0Var2.getChildCount()) {
-                        View childAt = ml0Var2.getChildAt(i24);
-                        if (childAt instanceof t1) {
-                            t1 t1Var3 = (t1) childAt;
-                            if (t1Var3.getCurrentMessagesGroup() == currentMessagesGroup && !t1Var3.getMessageObject().deleted) {
-                                int backgroundDrawableLeft = t1Var3.getBackgroundDrawableLeft() + t1Var3.getLeft();
+                    while (i24 < wl0Var2.getChildCount()) {
+                        View childAt = wl0Var2.getChildAt(i24);
+                        if (childAt instanceof u1) {
+                            u1 u1Var3 = (u1) childAt;
+                            if (u1Var3.getCurrentMessagesGroup() == currentMessagesGroup && !u1Var3.getMessageObject().deleted) {
+                                int backgroundDrawableLeft = u1Var3.getBackgroundDrawableLeft() + u1Var3.getLeft();
                                 groupedMessages = currentMessagesGroup;
-                                int backgroundDrawableRight = t1Var3.getBackgroundDrawableRight() + t1Var3.getLeft();
+                                int backgroundDrawableRight = u1Var3.getBackgroundDrawableRight() + u1Var3.getLeft();
                                 i17 = i24;
-                                int backgroundDrawableTop = t1Var3.getBackgroundDrawableTop() + t1Var3.getPaddingTop() + t1Var3.getTop();
-                                int backgroundDrawableBottom = t1Var3.getBackgroundDrawableBottom() + t1Var3.getPaddingTop() + t1Var3.getTop();
+                                int backgroundDrawableTop = u1Var3.getBackgroundDrawableTop() + u1Var3.getPaddingTop() + u1Var3.getTop();
+                                int backgroundDrawableBottom = u1Var3.getBackgroundDrawableBottom() + u1Var3.getPaddingTop() + u1Var3.getTop();
                                 if (i27 == 0 || backgroundDrawableLeft < i27) {
                                     i27 = backgroundDrawableLeft;
                                 }
                                 if (i28 == 0 || backgroundDrawableRight > i28) {
                                     i28 = backgroundDrawableRight;
                                 }
-                                if (t1Var3.getTransitionParams().f20928v0 || transitionParams3.isNewGroup) {
+                                if (u1Var3.getTransitionParams().f21130v0 || transitionParams3.isNewGroup) {
                                     if (i25 == 0 || backgroundDrawableTop < i25) {
                                         i25 = backgroundDrawableTop;
                                     }
@@ -781,57 +781,57 @@ public abstract class n extends s4.j {
                             f15 = 0.0f;
                         }
                         transitionParams3.captionEnterProgress = f15;
-                        ml0Var2.setClipChildren(false);
-                        ml0Var2.invalidate();
+                        wl0Var2.setClipChildren(false);
+                        wl0Var2.invalidate();
                     }
                     transitionParams3.drawBackgroundForDeletedItems = z17;
                 }
             }
-            Integer valueOf = Integer.valueOf(t1Var.getMessageObject().getId());
+            Integer valueOf = Integer.valueOf(u1Var.getMessageObject().getId());
             HashMap hashMap = this.H;
             MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) hashMap.get(valueOf);
             if (groupedMessages2 != null) {
                 MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
-                hashMap.remove(Integer.valueOf(t1Var.getMessageObject().getId()));
-                if (transitionParams.f20928v0) {
-                    int backgroundDrawableLeft2 = t1Var.getBackgroundDrawableLeft() + t1Var.getLeft();
-                    int backgroundDrawableRight2 = t1Var.getBackgroundDrawableRight() + t1Var.getLeft();
-                    int backgroundDrawableTop2 = t1Var.getBackgroundDrawableTop() + t1Var.getPaddingTop() + t1Var.getTop();
-                    int backgroundDrawableBottom2 = t1Var.getBackgroundDrawableBottom() + t1Var.getPaddingTop() + t1Var.getTop();
+                hashMap.remove(Integer.valueOf(u1Var.getMessageObject().getId()));
+                if (transitionParams.f21130v0) {
+                    int backgroundDrawableLeft2 = u1Var.getBackgroundDrawableLeft() + u1Var.getLeft();
+                    int backgroundDrawableRight2 = u1Var.getBackgroundDrawableRight() + u1Var.getLeft();
+                    int backgroundDrawableTop2 = u1Var.getBackgroundDrawableTop() + u1Var.getPaddingTop() + u1Var.getTop();
+                    int backgroundDrawableBottom2 = u1Var.getBackgroundDrawableBottom() + u1Var.getPaddingTop() + u1Var.getTop();
                     iVar.f13097w = true;
-                    transitionParams.f20932w0 = true;
+                    transitionParams.f21134w0 = true;
                     iVar.f13094s = backgroundDrawableLeft2 - transitionParams4.left;
                     iVar.f13095t = backgroundDrawableRight2 - transitionParams4.right;
                     iVar.f13096u = backgroundDrawableTop2 - transitionParams4.top;
                     iVar.v = backgroundDrawableBottom2 - transitionParams4.bottom;
                     iVar.f13087l = false;
-                    transitionParams.f20866g0 = (int) ((-i16) - t1Var.getAnimationOffsetX());
-                    transitionParams.f20870h0 = (int) ((-iVar.f13095t) - t1Var.getAnimationOffsetX());
-                    transitionParams.f20880j0 = (int) ((-iVar.f13096u) - t1Var.getTranslationY());
-                    transitionParams.f20875i0 = (int) ((-iVar.v) - t1Var.getTranslationY());
+                    transitionParams.f21068g0 = (int) ((-i16) - u1Var.getAnimationOffsetX());
+                    transitionParams.f21072h0 = (int) ((-iVar.f13095t) - u1Var.getAnimationOffsetX());
+                    transitionParams.f21082j0 = (int) ((-iVar.f13096u) - u1Var.getTranslationY());
+                    transitionParams.f21077i0 = (int) ((-iVar.v) - u1Var.getTranslationY());
                     transitionParams.C0 = true;
-                    ml0Var.setClipChildren(false);
-                    ml0Var.invalidate();
+                    wl0Var.setClipChildren(false);
+                    wl0Var.invalidate();
                 } else {
                     transitionParams4.drawBackgroundForDeletedItems = true;
                 }
             }
-            MessageObject.GroupedMessagePosition groupedMessagePosition = t1Var.L;
-            if (groupedMessagePosition != null && (groupedMessagePosition.flags & 8) == 0 && t1Var.K.isDocuments) {
+            MessageObject.GroupedMessagePosition groupedMessagePosition = u1Var.L;
+            if (groupedMessagePosition != null && (groupedMessagePosition.flags & 8) == 0 && u1Var.K.isDocuments) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (!t1Var.f21132k8 && !t1Var.J && !z10) {
+            if (!u1Var.f21371k8 && !u1Var.J && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            if (transitionParams.f20940y0 != z11) {
+            if (transitionParams.f21142y0 != z11) {
                 z12 = true;
                 iVar.f13086k = true;
                 f14 = 0.0f;
-                transitionParams.f20944z0 = 0.0f;
+                transitionParams.f21146z0 = 0.0f;
             } else {
                 f14 = 0.0f;
                 z12 = true;
@@ -839,7 +839,7 @@ public abstract class n extends s4.j {
             boolean f21 = transitionParams.f();
             iVar.f13088m = f21;
             if (f21) {
-                transitionParams.f20865g = z12;
+                transitionParams.f21067g = z12;
                 transitionParams.K1 = f14;
             }
             if (i15 == 0 && i21 == 0 && !iVar.f13089n && !iVar.f13097w && !iVar.f13085j && !iVar.f13086k && !iVar.f13087l && !f21) {
@@ -852,15 +852,15 @@ public abstract class n extends s4.j {
             if (i20 != 0) {
                 view2.setTranslationX(-i20);
             }
-            if (!transitionParams5.f21467a) {
+            if (!transitionParams5.f21635a) {
                 a2 = false;
             } else {
                 a2 = transitionParams5.d.C0.a();
             }
             iVar.f13088m = a2;
             if (a2) {
-                transitionParams5.f21468b = true;
-                transitionParams5.f21469c = 0.0f;
+                transitionParams5.f21636b = true;
+                transitionParams5.f21637c = 0.0f;
             }
             if (i20 == 0 && i21 == 0 && !a2) {
                 v(c1Var);
@@ -868,15 +868,15 @@ public abstract class n extends s4.j {
             }
         } else if (view2 instanceof h0) {
             ((h0) view2).setAnimating(true);
-        } else if (view2 instanceof cb) {
-            ((cb) view2).setAnimating(true);
+        } else if (view2 instanceof bb) {
+            ((bb) view2).setAnimating(true);
         } else if (i20 == 0 && i21 == 0) {
             v(c1Var);
             return false;
         } else if (i20 != 0) {
             view2.setTranslationX(-i20);
         }
-        this.f42762r.add(iVar);
+        this.f42989r.add(iVar);
         F();
         return true;
     }
@@ -887,7 +887,7 @@ public abstract class n extends s4.j {
             FileLog.d("animate remove");
         }
         super.s(c1Var, q0Var);
-        View view = c1Var.f42702a;
+        View view = c1Var.f42929a;
         if (q0Var != null) {
             int i10 = q0Var.f3204b;
             int top = view.getTop();
@@ -896,14 +896,14 @@ public abstract class n extends s4.j {
             if (i11 != 0) {
                 view.setTranslationY(-i11);
             }
-            if (view instanceof t1) {
-                t1 t1Var = (t1) view;
+            if (view instanceof u1) {
+                u1 u1Var = (u1) view;
                 if (left != 0) {
-                    t1Var.setAnimationOffsetX(-left);
+                    u1Var.setAnimationOffsetX(-left);
                 }
                 if (q0Var instanceof l) {
                     l lVar = (l) q0Var;
-                    t1Var.U3(lVar.f13080c, lVar.d, lVar.e, lVar.f13081f);
+                    u1Var.U3(lVar.f13080c, lVar.d, lVar.e, lVar.f13081f);
                 }
             } else if (left != 0) {
                 view.setTranslationX(-left);

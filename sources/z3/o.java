@@ -10,19 +10,19 @@ import e2.v;
 import hg.k0;
 import java.io.EOFException;
 public final class o implements h0 {
-    public final h0 f48133a;
-    public final k f48134b;
-    public m f48137g;
+    public final h0 f48359a;
+    public final k f48360b;
+    public m f48363g;
     public s h;
-    public boolean f48138i;
+    public boolean f48364i;
     public int d = 0;
     public int e = 0;
-    public byte[] f48136f = d0.f7889b;
-    public final v f48135c = new v();
+    public byte[] f48362f = d0.f7888b;
+    public final v f48361c = new v();
 
     public o(h0 h0Var, k kVar) {
-        this.f48133a = h0Var;
-        this.f48134b = kVar;
+        this.f48359a = h0Var;
+        this.f48360b = kVar;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class o implements h0 {
         }
         e2.d.b(z10);
         boolean equals = sVar.equals(this.h);
-        k kVar = this.f48134b;
+        k kVar = this.f48360b;
         if (!equals) {
             this.h = sVar;
             if (kVar.W(sVar)) {
@@ -51,10 +51,10 @@ public final class o implements h0 {
             } else {
                 mVar = null;
             }
-            this.f48137g = mVar;
+            this.f48363g = mVar;
         }
-        m mVar2 = this.f48137g;
-        h0 h0Var = this.f48133a;
+        m mVar2 = this.f48363g;
+        h0 h0Var = this.f48359a;
         if (mVar2 == null) {
             h0Var.b(sVar);
             return;
@@ -64,14 +64,14 @@ public final class o implements h0 {
         a2.f3246j = str;
         a2.v = Long.MAX_VALUE;
         a2.O = kVar.D(sVar);
-        k0.u(a2, h0Var);
+        k0.r(a2, h0Var);
     }
 
     @Override
     public final void c(final long j3, final int i10, int i11, int i12, g0 g0Var) {
         boolean z10;
-        if (this.f48137g == null) {
-            this.f48133a.c(j3, i10, i11, i12, g0Var);
+        if (this.f48363g == null) {
+            this.f48359a.c(j3, i10, i11, i12, g0Var);
             return;
         }
         if (g0Var == null) {
@@ -82,19 +82,19 @@ public final class o implements h0 {
         e2.d.a("DRM on subtitles is not supported", z10);
         int i13 = (this.e - i12) - i11;
         try {
-            this.f48137g.B(this.f48136f, i13, i11, l.f48127c, new e2.h() {
+            this.f48363g.C(this.f48362f, i13, i11, l.f48353c, new e2.h() {
                 @Override
                 public final void accept(Object obj) {
                     boolean z11;
                     a aVar = (a) obj;
                     o oVar = o.this;
                     e2.d.h(oVar.h);
-                    byte[] C2 = ob.a.C2(aVar.f48108a, aVar.f48110c);
-                    v vVar = oVar.f48135c;
+                    byte[] C2 = ob.a.C2(aVar.f48334a, aVar.f48336c);
+                    v vVar = oVar.f48361c;
                     vVar.getClass();
                     vVar.H(C2.length, C2);
-                    oVar.f48133a.d(C2.length, vVar);
-                    long j10 = aVar.f48109b;
+                    oVar.f48359a.d(C2.length, vVar);
+                    long j10 = aVar.f48335b;
                     long j11 = j3;
                     if (j10 == -9223372036854775807L) {
                         if (oVar.h.f3313w == Long.MAX_VALUE) {
@@ -111,11 +111,11 @@ public final class o implements h0 {
                             j11 = j10 + j12;
                         }
                     }
-                    oVar.f48133a.c(j11, i10 | 1, C2.length, 0, null);
+                    oVar.f48359a.c(j11, i10 | 1, C2.length, 0, null);
                 }
             });
         } catch (RuntimeException e) {
-            if (this.f48138i) {
+            if (this.f48364i) {
                 e2.a.o("SubtitleTranscodingTO", "Parsing subtitles failed, ignoring sample.", e);
             } else {
                 throw e;
@@ -136,11 +136,11 @@ public final class o implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        if (this.f48137g == null) {
-            return this.f48133a.e(kVar, i10, z10);
+        if (this.f48363g == null) {
+            return this.f48359a.e(kVar, i10, z10);
         }
         g(i10);
-        int read = kVar.read(this.f48136f, this.e, i10);
+        int read = kVar.read(this.f48362f, this.e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
@@ -153,25 +153,25 @@ public final class o implements h0 {
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        if (this.f48137g == null) {
-            this.f48133a.f(vVar, i10, i11);
+        if (this.f48363g == null) {
+            this.f48359a.f(vVar, i10, i11);
             return;
         }
         g(i10);
-        vVar.h(this.e, i10, this.f48136f);
+        vVar.h(this.e, i10, this.f48362f);
         this.e += i10;
     }
 
     public final void g(int i10) {
         byte[] bArr;
-        int length = this.f48136f.length;
+        int length = this.f48362f.length;
         int i11 = this.e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f48136f;
+        byte[] bArr2 = this.f48362f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -180,6 +180,6 @@ public final class o implements h0 {
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
         this.e = i12;
-        this.f48136f = bArr;
+        this.f48362f = bArr;
     }
 }

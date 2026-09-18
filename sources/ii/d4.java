@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.q01;
+import org.telegram.ui.Components.e11;
 public abstract class d4 {
     public static void A(java.util.ArrayList r31, java.util.ArrayList r32, java.util.Map r33) {
         throw new UnsupportedOperationException("Method not decompiled: ii.d4.A(java.util.ArrayList, java.util.ArrayList, java.util.Map):void");
@@ -167,7 +167,7 @@ public abstract class d4 {
         int i17 = i10;
         d7.c cVar2 = cVar;
         int i18 = i15;
-        ArrayList arrayList = cVar2.f7559a;
+        ArrayList arrayList = cVar2.f7558a;
         while (true) {
             int i19 = iArr[0];
             if (i19 > i17) {
@@ -176,7 +176,7 @@ public abstract class d4 {
             a aVar = (a) list3.get(i19);
             if (!aVar.f11208i) {
                 if (aVar.f11210k.size() > i18) {
-                    cVar2.b(sb3);
+                    cVar2.c(sb3);
                     Long l4 = (Long) ((a) list3.get(iArr[0])).f11210k.get(i18);
                     long longValue = l4.longValue();
                     int i20 = iArr[0];
@@ -194,14 +194,14 @@ public abstract class d4 {
                     sb3.append("<blockquote>");
                     d7.c cVar3 = new d7.c(1);
                     F(sb3, list3, iArr, i20, i11, i12, i13, i14, cVar3, z10, i18 + 1, map);
-                    cVar3.b(sb3);
+                    cVar3.c(sb3);
                     c(sb3, map != null ? k((TL_iv.RichText) map.get(l4)) : null);
                     sb3.append("</blockquote>");
                     i17 = i10;
                     i18 = i15;
                 } else {
                     if (w3.y3(aVar)) {
-                        cVar2.b(sb3);
+                        cVar2.c(sb3);
                         a aVar3 = (a) list3.get(iArr[0]);
                         sb3.append(((TL_iv.pageBlockDetails) aVar3.f11204b).open ? "<details open>" : "<details>");
                         sb3.append("<summary>");
@@ -212,7 +212,7 @@ public abstract class d4 {
                         F(sb3, list3, iArr, i10, i11, i12, i13, i14, cVar4, true, i15, map);
                         list2 = list3;
                         i16 = i10;
-                        cVar4.b(sb3);
+                        cVar4.c(sb3);
                         int i22 = iArr[0];
                         if (i22 <= i16 && i22 < list2.size() && ((a) list2.get(iArr[0])).f11208i) {
                             iArr[0] = iArr[0] + 1;
@@ -225,7 +225,7 @@ public abstract class d4 {
                             int i23 = aVar.f11205c;
                             boolean z11 = aVar.d > 0;
                             while (arrayList.size() > i23) {
-                                cVar2.a(sb3);
+                                cVar2.b(sb3);
                             }
                             while (true) {
                                 str2 = "<ul>";
@@ -238,8 +238,8 @@ public abstract class d4 {
                                 sb3.append(str2);
                                 arrayList.add(Boolean.valueOf(z11));
                             }
-                            if (!arrayList.isEmpty() && ((Boolean) hg.k0.h(1, arrayList)).booleanValue() != z11) {
-                                cVar2.a(sb3);
+                            if (!arrayList.isEmpty() && ((Boolean) hg.k0.g(1, arrayList)).booleanValue() != z11) {
+                                cVar2.b(sb3);
                                 sb3.append(z11 ? "<ol>" : "<ul>");
                                 arrayList.add(Boolean.valueOf(z11));
                             }
@@ -248,7 +248,7 @@ public abstract class d4 {
                             sb3.append("</li>");
                             iArr[0] = iArr[0] + 1;
                         } else {
-                            cVar2.b(sb3);
+                            cVar2.c(sb3);
                             int i24 = iArr[0];
                             TL_iv.PageBlock pageBlock = aVar.f11204b;
                             if (pageBlock instanceof TL_iv.pageBlockDivider) {
@@ -369,9 +369,9 @@ public abstract class d4 {
                                             sb3.append(pageblockmap.zoom);
                                             sb3.append('\"');
                                         }
-                                        if (pageblockmap.f18342w != 0) {
+                                        if (pageblockmap.f18517w != 0) {
                                             sb3.append(" w=\"");
-                                            sb3.append(pageblockmap.f18342w);
+                                            sb3.append(pageblockmap.f18517w);
                                             sb3.append('\"');
                                         }
                                         if (pageblockmap.h != 0) {
@@ -1026,12 +1026,12 @@ public abstract class d4 {
             spannableStringBuilder.append((CharSequence) str);
             int length2 = spannableStringBuilder.length();
             if (j3 != 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Components.x5(j3, (Paint.FontMetricsInt) null), length, length2, 33);
+                spannableStringBuilder.setSpan(new org.telegram.ui.Components.z5(j3, (Paint.FontMetricsInt) null), length, length2, 33);
             }
             if (i10 != 0) {
                 ?? obj = new Object();
-                obj.f26908a = i10 & 114975;
-                spannableStringBuilder.setSpan(new q01(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
+                obj.f23395a = i10 & 114975;
+                spannableStringBuilder.setSpan(new e11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
             }
             if (str2 != null) {
                 spannableStringBuilder.setSpan(f6.k(str2), length, length2, 33);

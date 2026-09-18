@@ -1,132 +1,35 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.media.AudioRecordingConfiguration;
-import android.media.MediaRoute2Info;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.installations.FirebaseInstallationsRegistrar;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-public final class bs0 implements org.telegram.ui.ActionBar.b2, Utilities.Callback2Return, org.telegram.ui.Components.tv0, pg.h0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, androidx.car.app.utils.b {
-    public final int f32568a;
+public final class bs0 implements Runnable {
+    public final int f32449a;
+    public final PhotoViewer f32450b;
 
-    public bs0(int i10) {
-        this.f32568a = i10;
-    }
-
-    public static AudioRecordingConfiguration d(Object obj) {
-        return (AudioRecordingConfiguration) obj;
-    }
-
-    public static MediaRoute2Info e(Object obj) {
-        return (MediaRoute2Info) obj;
+    public bs0(PhotoViewer photoViewer, int i10) {
+        this.f32449a = i10;
+        this.f32450b = photoViewer;
     }
 
     @Override
-    public Object G(cf.c cVar) {
-        qa.d lambda$getComponents$0;
-        lambda$getComponents$0 = FirebaseInstallationsRegistrar.lambda$getComponents$0(cVar);
-        return lambda$getComponents$0;
-    }
-
-    @Override
-    public Typeface a() {
-        switch (this.f32568a) {
-            case 14:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 15:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 16:
-                return Typeface.create("serif", 1);
-            case 17:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            case 18:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
-        }
-    }
-
-    @Override
-    public List b(ComponentRegistrar componentRegistrar) {
-        return componentRegistrar.getComponents();
-    }
-
-    @Override
-    public boolean c(int i10, int i11, int i12, int i13, int i14) {
-        return false;
-    }
-
-    @Override
-    public void call() {
-        throw null;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f32568a) {
+    public final void run() {
+        int i10 = this.f32449a;
+        PhotoViewer photoViewer = this.f32450b;
+        switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.G0(true, false);
                 return;
             case 1:
-                c2Var.dismiss();
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                photoViewer.e3(1, false);
                 return;
             case 2:
-                c2Var.dismiss();
+                Drawable[] drawableArr3 = PhotoViewer.U8;
+                photoViewer.e3(-1, false);
                 return;
-            case 3:
-            case 6:
             default:
-                c2Var.dismiss();
-                return;
-            case 4:
-                c2Var.dismiss();
-                return;
-            case 5:
-                c2Var.dismiss();
-                return;
-            case 7:
-                c2Var.dismiss();
-                return;
-            case 8:
-                c2Var.dismiss();
-                return;
-            case 9:
-                c2Var.dismiss();
+                PhotoViewer.S(photoViewer);
                 return;
         }
-    }
-
-    @Override
-    public void g(int i10) {
-        SharedConfig.proxyRotationTimeout = i10;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        int i10 = qg.p2.f41580r0;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        if (((Integer) obj).intValue() == 0) {
-            return yh.y7.X0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
-        }
-        return LocaleController.formatNumber(num.intValue(), ',');
-    }
-
-    @Override
-    public void j(pa.b bVar) {
-    }
-
-    @Override
-    public void l() {
     }
 }

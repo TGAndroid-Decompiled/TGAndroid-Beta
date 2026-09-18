@@ -6,15 +6,15 @@ import android.graphics.Paint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.j6;
-public final class w0 extends View implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f11700a;
+public final class w0 extends View implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f11700a;
     public final Paint f11701b;
     public a f11702c;
 
-    public w0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public w0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.f11701b = new Paint();
-        this.f11700a = f6Var;
+        this.f11700a = e6Var;
         e();
     }
 

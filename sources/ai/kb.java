@@ -15,13 +15,13 @@ import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.nu;
-import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.yc;
 public class kb extends View {
     public boolean E;
     public long F;
     public final Path G;
     public final a3.d H;
-    public final org.telegram.ui.Components.c6 f1154a;
+    public final org.telegram.ui.Components.e6 f1154a;
     public final TL_stories.MediaArea f1155b;
     public final Paint f1156c;
     public final Paint d;
@@ -29,7 +29,7 @@ public class kb extends View {
     public LinearGradient f1157f;
     public final Matrix h;
     public final org.telegram.ui.Cells.z f1158n;
-    public final wc f1159r;
+    public final yc f1159r;
     public final boolean f1160s;
     public final boolean v;
     public final boolean f1161w;
@@ -47,7 +47,7 @@ public class kb extends View {
         this.h = new Matrix();
         org.telegram.ui.Cells.z f02 = org.telegram.ui.ActionBar.j6.f0(1174405119, 2, -1);
         this.f1158n = f02;
-        this.f1159r = new wc(this);
+        this.f1159r = new yc(this);
         this.f1160s = false;
         this.v = false;
         this.E = false;
@@ -73,7 +73,7 @@ public class kb extends View {
         this.f1161w = z12;
         this.f1163y = z12;
         this.f1162x = z12;
-        this.f1154a = new org.telegram.ui.Components.c6(view, 0L, 120L, new LinearInterpolator());
+        this.f1154a = new org.telegram.ui.Components.e6(view, 0L, 120L, new LinearInterpolator());
         paint.setStyle(Paint.Style.STROKE);
         f02.setCallback(this);
     }
@@ -102,18 +102,18 @@ public class kb extends View {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
         org.telegram.ui.Cells.z zVar = this.f1158n;
-        wc wcVar = this.f1159r;
+        yc ycVar = this.f1159r;
         if (action == 0) {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                wcVar.f29635f = new nu(1, view);
+                ycVar.f30548f = new nu(1, view);
             }
-            wcVar.c(true);
+            ycVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
             zVar.setState(new int[]{16842919, 16842910});
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            wcVar.c(false);
+            ycVar.c(false);
             zVar.setState(new int[0]);
         }
         super.dispatchTouchEvent(motionEvent);

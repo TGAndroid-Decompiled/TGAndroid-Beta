@@ -9,20 +9,20 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.fg1;
-import org.telegram.ui.wy;
+import org.telegram.ui.dg1;
+import org.telegram.ui.uy;
 public final class v1 implements Utilities.Callback {
-    public final fg1 f8674a;
-    public final wy f8675b;
-    public final long f8676c;
+    public final dg1 f8673a;
+    public final uy f8674b;
+    public final long f8675c;
     public final int d;
 
-    public v1(fg1 fg1Var, wy wyVar, long j3, int i10) {
-        this.f8674a = fg1Var;
-        this.f8675b = wyVar;
-        this.f8676c = j3;
+    public v1(dg1 dg1Var, uy uyVar, long j3, int i10) {
+        this.f8673a = dg1Var;
+        this.f8674b = uyVar;
+        this.f8675c = j3;
         this.d = i10;
     }
 
@@ -32,19 +32,19 @@ public final class v1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        fg1 fg1Var = this.f8674a;
-        wy wyVar = this.f8675b;
-        if (fg1Var != null) {
-            fg1Var.finishFragment();
-            wyVar.removeSelfFromStack();
+        dg1 dg1Var = this.f8673a;
+        uy uyVar = this.f8674b;
+        if (dg1Var != null) {
+            dg1Var.finishFragment();
+            uyVar.removeSelfFromStack();
         } else {
-            wyVar.finishFragment();
+            uyVar.finishFragment();
         }
-        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
         if (U == null) {
             return;
         }
-        long j3 = this.f8676c;
+        long j3 = this.f8675c;
         int i11 = this.d;
         if (j3 >= 0) {
             TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
@@ -60,7 +60,7 @@ public final class v1 implements Utilities.Callback {
                 user = chat;
             }
         }
-        vc a02 = vc.a0(U);
+        xc a02 = xc.a0(U);
         if (bool.booleanValue()) {
             i10 = R.string.BotSentRevokeVerifyRequest;
         } else {

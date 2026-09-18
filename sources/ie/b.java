@@ -18,14 +18,14 @@ public final class b extends kotlin.jvm.internal.j implements l {
             case 0:
                 Throwable th2 = (Throwable) obj;
                 this.f11086c.e(null);
-                return gd.i.f9621a;
+                return gd.i.f9620a;
             default:
                 Throwable th3 = (Throwable) obj;
                 AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f11089g;
                 d dVar = this.f11086c;
                 atomicReferenceFieldUpdater.set(dVar, null);
                 dVar.e(null);
-                return gd.i.f9621a;
+                return gd.i.f9620a;
         }
     }
 }

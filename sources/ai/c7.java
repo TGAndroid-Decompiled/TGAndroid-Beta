@@ -2,7 +2,7 @@ package ai;
 
 import android.content.Context;
 import org.telegram.ui.LaunchActivity;
-public final class c7 extends org.telegram.ui.Cells.n6 {
+public final class c7 extends org.telegram.ui.Cells.o6 {
     public final e7 K;
 
     public c7(int i10, d dVar, e7 e7Var, Context context) {
@@ -12,7 +12,7 @@ public final class c7 extends org.telegram.ui.Cells.n6 {
 
     @Override
     public final void b(long j3) {
-        org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
         if (R == null) {
             return;
         }

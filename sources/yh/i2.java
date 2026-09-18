@@ -1,24 +1,41 @@
 package yh;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class i2 extends ClickableSpan {
-    public final long f47308a;
-    public final a4 f47309b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.LinearLayout;
+public final class i2 extends LinearLayout {
+    public final int f47508a;
+    public final y3 f47509b;
 
-    public i2(a4 a4Var, long j3) {
-        this.f47309b = a4Var;
-        this.f47308a = j3;
+    public i2(y3 y3Var, Context context, int i10) {
+        super(context);
+        this.f47508a = i10;
+        this.f47509b = y3Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f47309b.X1(this.f47308a);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(textPaint.linkColor);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f47508a) {
+            case 0:
+                if (!this.f47509b.Y0.c(0)) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 1:
+                if (!this.f47509b.Y0.c(1)) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 2:
+                if (!this.f47509b.Y0.c(2)) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                if (!this.f47509b.Y0.c(3)) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+        }
     }
 }

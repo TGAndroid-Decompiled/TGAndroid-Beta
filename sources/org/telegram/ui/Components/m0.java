@@ -12,20 +12,20 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class m0 implements View.OnClickListener {
-    public final int f26000a;
-    public final KeyEvent.Callback f26001b;
-    public final Object f26002c;
+    public final int f26266a;
+    public final KeyEvent.Callback f26267b;
+    public final Object f26268c;
     public final Object d;
     public final Object e;
-    public final Object f26003f;
+    public final Object f26269f;
     public final Object h;
 
     public m0(KeyEvent.Callback callback, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f26000a = i10;
-        this.f26001b = callback;
+        this.f26266a = i10;
+        this.f26267b = callback;
         this.e = obj;
-        this.f26003f = obj2;
-        this.f26002c = obj3;
+        this.f26269f = obj2;
+        this.f26268c = obj3;
         this.h = obj4;
         this.d = obj5;
     }
@@ -37,75 +37,75 @@ public final class m0 implements View.OnClickListener {
         Runnable runnable3;
         boolean z10;
         Runnable runnable4;
-        switch (this.f26000a) {
+        switch (this.f26266a) {
             case 0:
-                uc0 uc0Var = (uc0) this.f26001b;
-                uc0 uc0Var2 = (uc0) this.e;
-                uc0 uc0Var3 = (uc0) this.f26003f;
-                Calendar calendar = (Calendar) this.f26002c;
-                c5.b(uc0Var, uc0Var2, uc0Var3);
-                calendar.set(1, uc0Var3.getValue());
-                calendar.set(2, uc0Var2.getValue());
-                calendar.set(5, uc0Var.getValue());
+                dd0 dd0Var = (dd0) this.f26267b;
+                dd0 dd0Var2 = (dd0) this.e;
+                dd0 dd0Var3 = (dd0) this.f26269f;
+                Calendar calendar = (Calendar) this.f26268c;
+                e5.b(dd0Var, dd0Var2, dd0Var3);
+                calendar.set(1, dd0Var3.getValue());
+                calendar.set(2, dd0Var2.getValue());
+                calendar.set(5, dd0Var.getValue());
                 calendar.set(12, 0);
                 calendar.set(11, 0);
                 calendar.set(13, 0);
                 ((MessagesStorage.IntCallback) this.h).run((int) (calendar.getTimeInMillis() / 1000));
-                runnable = ((org.telegram.ui.ActionBar.b3) this.d).f18471a.dismissRunnable;
+                runnable = ((org.telegram.ui.ActionBar.a3) this.d).f18627a.dismissRunnable;
                 runnable.run();
                 return;
             case 1:
-                uc0 uc0Var4 = (uc0) this.f26001b;
-                e4 e4Var = (e4) this.e;
-                f4 f4Var = (f4) this.f26003f;
-                Calendar calendar2 = (Calendar) this.f26002c;
-                org.telegram.ui.tv0 tv0Var = (org.telegram.ui.tv0) this.h;
-                org.telegram.ui.ActionBar.b3 b3Var = (org.telegram.ui.ActionBar.b3) this.d;
-                boolean g10 = c5.g(null, null, 0L, 0L, 0, uc0Var4, e4Var, f4Var);
+                dd0 dd0Var4 = (dd0) this.f26267b;
+                g4 g4Var = (g4) this.e;
+                h4 h4Var = (h4) this.f26269f;
+                Calendar calendar2 = (Calendar) this.f26268c;
+                org.telegram.ui.rv0 rv0Var = (org.telegram.ui.rv0) this.h;
+                org.telegram.ui.ActionBar.a3 a3Var = (org.telegram.ui.ActionBar.a3) this.d;
+                boolean g10 = e5.g(null, null, 0L, 0L, 0, dd0Var4, g4Var, h4Var);
                 calendar2.setTimeInMillis(System.currentTimeMillis());
-                calendar2.add(6, uc0Var4.getValue());
-                calendar2.set(11, e4Var.getValue());
-                calendar2.set(12, f4Var.getValue());
+                calendar2.add(6, dd0Var4.getValue());
+                calendar2.set(11, g4Var.getValue());
+                calendar2.set(12, h4Var.getValue());
                 if (g10) {
                     calendar2.set(13, 0);
                     calendar2.set(14, 0);
                 }
                 int timeInMillis = (int) (calendar2.getTimeInMillis() / 1000);
-                ((boolean[]) tv0Var.f37879c)[0] = true;
-                ((org.telegram.ui.x51) tv0Var.f37878b).e(Integer.valueOf(timeInMillis));
-                runnable2 = b3Var.f18471a.dismissRunnable;
+                ((boolean[]) rv0Var.f37141c)[0] = true;
+                ((org.telegram.ui.v51) rv0Var.f37140b).e(Integer.valueOf(timeInMillis));
+                runnable2 = a3Var.f18627a.dismissRunnable;
                 runnable2.run();
                 return;
             case 2:
-                uc0 uc0Var5 = (uc0) this.f26001b;
-                v3 v3Var = (v3) this.e;
-                x3 x3Var = (x3) this.f26003f;
-                Calendar calendar3 = (Calendar) this.f26002c;
-                b5 b5Var = (b5) this.h;
-                org.telegram.ui.ActionBar.b3 b3Var2 = (org.telegram.ui.ActionBar.b3) this.d;
-                boolean g11 = c5.g(null, null, 0L, 0L, 0, uc0Var5, v3Var, x3Var);
+                dd0 dd0Var5 = (dd0) this.f26267b;
+                x3 x3Var = (x3) this.e;
+                z3 z3Var = (z3) this.f26269f;
+                Calendar calendar3 = (Calendar) this.f26268c;
+                d5 d5Var = (d5) this.h;
+                org.telegram.ui.ActionBar.a3 a3Var2 = (org.telegram.ui.ActionBar.a3) this.d;
+                boolean g11 = e5.g(null, null, 0L, 0L, 0, dd0Var5, x3Var, z3Var);
                 calendar3.setTimeInMillis(System.currentTimeMillis());
-                calendar3.add(6, uc0Var5.getValue());
-                calendar3.set(11, v3Var.getValue());
-                calendar3.set(12, x3Var.getValue());
+                calendar3.add(6, dd0Var5.getValue());
+                calendar3.set(11, x3Var.getValue());
+                calendar3.set(12, z3Var.getValue());
                 if (g11) {
                     calendar3.set(13, 0);
                     calendar3.set(14, 0);
                 }
-                b5Var.J((int) (calendar3.getTimeInMillis() / 1000), 0, true);
-                runnable3 = b3Var2.f18471a.dismissRunnable;
+                d5Var.J((int) (calendar3.getTimeInMillis() / 1000), 0, true);
+                runnable3 = a3Var2.f18627a.dismissRunnable;
                 runnable3.run();
                 return;
             case 3:
-                wx0.x((wx0) this.f26001b, (int[]) this.e, (EditTextBoldCursor) this.f26003f, (TextView) this.f26002c, (TextView) this.h, (AlertDialog$Builder) this.d);
+                hy0.x((hy0) this.f26267b, (int[]) this.e, (EditTextBoldCursor) this.f26269f, (TextView) this.f26268c, (TextView) this.h, (AlertDialog$Builder) this.d);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.g3 g3Var = (org.telegram.ui.ActionBar.g3) this.f26001b;
-                ArrayList arrayList = (ArrayList) this.f26003f;
-                int[] iArr = (int[]) this.f26002c;
-                f9 f9Var = (f9) this.h;
-                u9 u9Var = (u9) this.d;
-                n70 F = n70.F(g3Var.container, g3Var.getResourcesProvider(), (FrameLayout) this.e);
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f26267b;
+                ArrayList arrayList = (ArrayList) this.f26269f;
+                int[] iArr = (int[]) this.f26268c;
+                h9 h9Var = (h9) this.h;
+                w9 w9Var = (w9) this.d;
+                w70 F = w70.F(f3Var.container, f3Var.getResourcesProvider(), (FrameLayout) this.e);
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -118,36 +118,36 @@ public final class m0 implements View.OnClickListener {
                         } else {
                             z10 = false;
                         }
-                        F.e(intValue, z10, new ei.l3(iArr, intValue, f9Var, currentUser, u9Var));
+                        F.e(intValue, z10, new ei.l3(iArr, intValue, h9Var, currentUser, w9Var));
                     }
                     i10 = i11;
                 }
-                F.f26388t = false;
+                F.f29925t = false;
                 F.Y = true;
-                F.f26387s = 0;
-                F.f26369i = 3;
+                F.f29924s = 0;
+                F.f29906i = 3;
                 F.a0(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
                 F.Z();
                 return;
             default:
-                Calendar calendar4 = (Calendar) this.f26002c;
-                calendar4.setTimeInMillis((((uc0) this.f26001b).getValue() * 86400000) + System.currentTimeMillis());
-                calendar4.set(11, ((tg.i) this.e).getValue());
-                calendar4.set(12, ((tg.j) this.f26003f).getValue() * 5);
-                ((tg.v) this.h).J((int) (calendar4.getTimeInMillis() / 1000), 0, true);
-                runnable4 = ((org.telegram.ui.ActionBar.b3) this.d).f18471a.dismissRunnable;
+                Calendar calendar4 = (Calendar) this.f26268c;
+                calendar4.setTimeInMillis((((dd0) this.f26267b).getValue() * 86400000) + System.currentTimeMillis());
+                calendar4.set(11, ((tg.g) this.e).getValue());
+                calendar4.set(12, ((tg.h) this.f26269f).getValue() * 5);
+                ((tg.u) this.h).J((int) (calendar4.getTimeInMillis() / 1000), 0, true);
+                runnable4 = ((org.telegram.ui.ActionBar.a3) this.d).f18627a.dismissRunnable;
                 runnable4.run();
                 return;
         }
     }
 
-    public m0(Calendar calendar, uc0 uc0Var, tg.i iVar, tg.j jVar, tg.v vVar, org.telegram.ui.ActionBar.b3 b3Var) {
-        this.f26000a = 5;
-        this.f26002c = calendar;
-        this.f26001b = uc0Var;
-        this.e = iVar;
-        this.f26003f = jVar;
-        this.h = vVar;
-        this.d = b3Var;
+    public m0(Calendar calendar, dd0 dd0Var, tg.g gVar, tg.h hVar, tg.u uVar, org.telegram.ui.ActionBar.a3 a3Var) {
+        this.f26266a = 5;
+        this.f26268c = calendar;
+        this.f26267b = dd0Var;
+        this.e = gVar;
+        this.f26269f = hVar;
+        this.h = uVar;
+        this.d = a3Var;
     }
 }

@@ -2,8 +2,8 @@ package hg;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.j51;
-public final class q0 implements org.telegram.ui.ActionBar.b2, Utilities.Callback5 {
+import org.telegram.ui.Components.x51;
+public final class q0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
     public final int f10392a;
     public final u0 f10393b;
 
@@ -13,7 +13,7 @@ public final class q0 implements org.telegram.ui.ActionBar.b2, Utilities.Callbac
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f10392a) {
             case 0:
                 this.f10393b.a0();
@@ -32,6 +32,6 @@ public final class q0 implements org.telegram.ui.ActionBar.b2, Utilities.Callbac
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        u0.W(this.f10393b, (j51) obj, (View) obj2);
+        u0.W(this.f10393b, (x51) obj, (View) obj2);
     }
 }

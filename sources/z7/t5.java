@@ -1,9 +1,9 @@
 package z7;
 public final class t5 implements ia.d {
-    public static final t5 f48644a = new Object();
+    public static final t5 f48870a = new Object();
 
     static {
-        org.telegram.ui.Cells.p6.s(w.f.k(w.class, w.f.n(11, w.f.k(w.class, w.f.n(10, w.f.k(w.class, w.f.n(9, w.f.k(w.class, w.f.n(8, w.f.k(w.class, w.f.n(7, w.f.k(w.class, w.f.n(6, w.f.k(w.class, w.f.n(5, w.f.k(w.class, w.f.n(4, w.f.k(w.class, w.f.n(3, w.f.k(w.class, w.f.n(2, w.f.k(w.class, new s(1)))))))))))))))))))))));
+        t8.b.t(t8.b.o(w.class, t8.b.s(11, t8.b.o(w.class, t8.b.s(10, t8.b.o(w.class, t8.b.s(9, t8.b.o(w.class, t8.b.s(8, t8.b.o(w.class, t8.b.s(7, t8.b.o(w.class, t8.b.s(6, t8.b.o(w.class, t8.b.s(5, t8.b.o(w.class, t8.b.s(4, t8.b.o(w.class, t8.b.s(3, t8.b.o(w.class, t8.b.s(2, t8.b.o(w.class, new s(1)))))))))))))))))))))));
     }
 
     @Override

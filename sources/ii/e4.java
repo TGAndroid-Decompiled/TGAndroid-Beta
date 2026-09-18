@@ -1,5 +1,5 @@
 package ii;
-public final class e4 implements org.telegram.ui.ActionBar.b2 {
+public final class e4 implements org.telegram.ui.ActionBar.a2 {
     public final int f11358a;
     public final t3 f11359b;
 
@@ -9,7 +9,7 @@ public final class e4 implements org.telegram.ui.ActionBar.b2 {
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f11358a) {
             case 0:
                 this.f11359b.b();

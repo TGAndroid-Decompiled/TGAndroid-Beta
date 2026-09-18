@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.e5;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.kz;
-import org.telegram.ui.Components.qv0;
-public final class q1 extends qv0 {
+public final class q1 extends bw0 {
     public final int f10394w0;
 
-    public q1(Context context, e5 e5Var, int i10) {
-        super(context, e5Var);
+    public q1(Context context, d5 d5Var, int i10) {
+        super(context, d5Var);
         this.f10394w0 = i10;
     }
 

@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.w70;
+import org.telegram.ui.u70;
 public final class a4 extends HorizontalScrollView {
     public final int f11234a;
     public final Object f11235b;
@@ -53,10 +53,10 @@ public final class a4 extends HorizontalScrollView {
                 return;
             case 2:
                 super.onScrollChanged(i10, i11, i12, i13);
-                w70 w70Var = (w70) this.f11235b;
-                if (w70Var.d != null) {
-                    w70Var.d = null;
-                    w70Var.f38588f = null;
+                u70 u70Var = (u70) this.f11235b;
+                if (u70Var.d != null) {
+                    u70Var.d = null;
+                    u70Var.f37898f = null;
                     return;
                 }
                 return;
@@ -66,9 +66,9 @@ public final class a4 extends HorizontalScrollView {
         }
     }
 
-    public a4(Context context, w70 w70Var) {
+    public a4(Context context, u70 u70Var) {
         super(context);
         this.f11234a = 2;
-        this.f11235b = w70Var;
+        this.f11235b = u70Var;
     }
 }

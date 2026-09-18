@@ -1,8 +1,17 @@
 package org.telegram.ui;
-public final class wn {
-    public final zn f39084a;
 
-    public wn(zn znVar) {
-        this.f39084a = znVar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wn extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.lc0 f39193a;
+
+    public wn(org.telegram.ui.Components.lc0 lc0Var) {
+        this.f39193a = lc0Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        super.onAnimationEnd(animator);
+        this.f39193a.s(1.0f);
     }
 }

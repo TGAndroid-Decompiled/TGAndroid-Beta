@@ -11,40 +11,40 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import n7.a1;
+import n7.z0;
 public final class h implements cf.a {
-    public static final Pattern f46768i = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
-    public static final Pattern f46769j = Pattern.compile("^(?:<[A-Za-z][A-Za-z0-9-]*(?:\\s+[a-zA-Z_:][a-zA-Z0-9:._-]*(?:\\s*=\\s*(?:[^\"'=<>`\\x00-\\x20]+|'[^']*'|\"[^\"]*\"))?)*\\s*/?>|</[A-Za-z][A-Za-z0-9-]*\\s*[>]|<!---->|<!--(?:-?[^>-])(?:-?[^-])*-->|[<][?].*?[?][>]|<![A-Z]+\\s+[^>]*>|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>)", 2);
-    public static final Pattern f46770k = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
-    public static final Pattern f46771l = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
-    public static final Pattern f46772m = Pattern.compile("`+");
-    public static final Pattern f46773n = Pattern.compile("^`+");
-    public static final Pattern f46774o = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f46775p = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
-    public static final Pattern f46776q = Pattern.compile("^ *(?:\n *)?");
-    public static final Pattern f46777r = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
-    public static final Pattern f46778s = Pattern.compile("\\s+");
-    public static final Pattern f46779t = Pattern.compile(" *$");
-    public final BitSet f46780a;
-    public final BitSet f46781b;
-    public final HashMap f46782c;
-    public final a1 d;
+    public static final Pattern f46995i = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
+    public static final Pattern f46996j = Pattern.compile("^(?:<[A-Za-z][A-Za-z0-9-]*(?:\\s+[a-zA-Z_:][a-zA-Z0-9:._-]*(?:\\s*=\\s*(?:[^\"'=<>`\\x00-\\x20]+|'[^']*'|\"[^\"]*\"))?)*\\s*/?>|</[A-Za-z][A-Za-z0-9-]*\\s*[>]|<!---->|<!--(?:-?[^>-])(?:-?[^-])*-->|[<][?].*?[?][>]|<![A-Z]+\\s+[^>]*>|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>)", 2);
+    public static final Pattern f46997k = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
+    public static final Pattern f46998l = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+    public static final Pattern f46999m = Pattern.compile("`+");
+    public static final Pattern f47000n = Pattern.compile("^`+");
+    public static final Pattern f47001o = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
+    public static final Pattern f47002p = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+    public static final Pattern f47003q = Pattern.compile("^ *(?:\n *)?");
+    public static final Pattern f47004r = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
+    public static final Pattern f47005s = Pattern.compile("\\s+");
+    public static final Pattern f47006t = Pattern.compile(" *$");
+    public final BitSet f47007a;
+    public final BitSet f47008b;
+    public final HashMap f47009c;
+    public final z0 d;
     public String e;
-    public int f46783f;
-    public b f46784g;
+    public int f47010f;
+    public b f47011g;
     public f6.f h;
 
-    public h(a1 a1Var) {
+    public h(z0 z0Var) {
         HashMap hashMap = new HashMap();
         c(Arrays.asList(new ze.a(0), new ze.a(1)), hashMap);
-        c((List) a1Var.f15118b, hashMap);
-        this.f46782c = hashMap;
+        c((List) z0Var.f15367b, hashMap);
+        this.f47009c = hashMap;
         Set<Character> keySet = hashMap.keySet();
         BitSet bitSet = new BitSet();
         for (Character ch2 : keySet) {
             bitSet.set(ch2.charValue());
         }
-        this.f46781b = bitSet;
+        this.f47008b = bitSet;
         BitSet bitSet2 = new BitSet();
         bitSet2.or(bitSet);
         bitSet2.set(10);
@@ -55,8 +55,8 @@ public final class h implements cf.a {
         bitSet2.set(33);
         bitSet2.set(60);
         bitSet2.set(38);
-        this.f46780a = bitSet2;
-        this.d = a1Var;
+        this.f47007a = bitSet2;
+        this.d = z0Var;
     }
 
     public static void b(char c10, ef.a aVar, HashMap hashMap) {
@@ -139,21 +139,21 @@ public final class h implements cf.a {
     }
 
     public final String d(Pattern pattern) {
-        if (this.f46783f >= this.e.length()) {
+        if (this.f47010f >= this.e.length()) {
             return null;
         }
         Matcher matcher = pattern.matcher(this.e);
-        matcher.region(this.f46783f, this.e.length());
+        matcher.region(this.f47010f, this.e.length());
         if (!matcher.find()) {
             return null;
         }
-        this.f46783f = matcher.end();
+        this.f47010f = matcher.end();
         return matcher.group();
     }
 
     public final char g() {
-        if (this.f46783f < this.e.length()) {
-            return this.e.charAt(this.f46783f);
+        if (this.f47010f < this.e.length()) {
+            return this.e.charAt(this.f47010f);
         }
         return (char) 0;
     }
@@ -162,7 +162,7 @@ public final class h implements cf.a {
         boolean z10;
         p pVar;
         HashMap hashMap = new HashMap();
-        b bVar2 = this.f46784g;
+        b bVar2 = this.f47011g;
         while (bVar2 != null) {
             b bVar3 = bVar2.e;
             if (bVar3 == bVar) {
@@ -171,16 +171,16 @@ public final class h implements cf.a {
             bVar2 = bVar3;
         }
         while (bVar2 != null) {
-            s sVar = bVar2.f46738a;
-            char c10 = bVar2.f46739b;
-            ef.a aVar = (ef.a) this.f46782c.get(Character.valueOf(c10));
+            s sVar = bVar2.f46965a;
+            char c10 = bVar2.f46966b;
+            ef.a aVar = (ef.a) this.f47009c.get(Character.valueOf(c10));
             if (bVar2.d && aVar != null) {
                 char e = aVar.e();
                 b bVar4 = bVar2.e;
                 int i10 = 0;
                 boolean z11 = false;
                 while (bVar4 != null && bVar4 != bVar && bVar4 != hashMap.get(Character.valueOf(c10))) {
-                    if (bVar4.f46740c && bVar4.f46739b == e) {
+                    if (bVar4.f46967c && bVar4.f46966b == e) {
                         i10 = aVar.b(bVar4, bVar2);
                         z11 = true;
                         if (i10 > 0) {
@@ -195,15 +195,15 @@ public final class h implements cf.a {
                 if (!z11) {
                     if (!z10) {
                         hashMap.put(Character.valueOf(c10), bVar2.e);
-                        if (!bVar2.f46740c) {
+                        if (!bVar2.f46967c) {
                             i(bVar2);
                         }
                     }
-                    bVar2 = bVar2.f46741f;
+                    bVar2 = bVar2.f46968f;
                 } else {
-                    s sVar2 = bVar4.f46738a;
-                    bVar4.f46742g -= i10;
-                    bVar2.f46742g -= i10;
+                    s sVar2 = bVar4.f46965a;
+                    bVar4.f46969g -= i10;
+                    bVar2.f46969g -= i10;
                     sVar2.f3556g = e2.i(i10, 0, sVar2.f3556g);
                     sVar.f3556g = e2.i(i10, 0, sVar.f3556g);
                     b bVar5 = bVar2.e;
@@ -216,23 +216,23 @@ public final class h implements cf.a {
                         f(pVar, (p) sVar.e);
                     }
                     aVar.d(sVar2, sVar, i10);
-                    if (bVar4.f46742g == 0) {
-                        bVar4.f46738a.g();
+                    if (bVar4.f46969g == 0) {
+                        bVar4.f46965a.g();
                         i(bVar4);
                     }
-                    if (bVar2.f46742g == 0) {
-                        b bVar7 = bVar2.f46741f;
+                    if (bVar2.f46969g == 0) {
+                        b bVar7 = bVar2.f46968f;
                         sVar.g();
                         i(bVar2);
                         bVar2 = bVar7;
                     }
                 }
             } else {
-                bVar2 = bVar2.f46741f;
+                bVar2 = bVar2.f46968f;
             }
         }
         while (true) {
-            b bVar8 = this.f46784g;
+            b bVar8 = this.f47011g;
             if (bVar8 != null && bVar8 != bVar) {
                 i(bVar8);
             } else {
@@ -244,11 +244,11 @@ public final class h implements cf.a {
     public final void i(b bVar) {
         b bVar2 = bVar.e;
         if (bVar2 != null) {
-            bVar2.f46741f = bVar.f46741f;
+            bVar2.f46968f = bVar.f46968f;
         }
-        b bVar3 = bVar.f46741f;
+        b bVar3 = bVar.f46968f;
         if (bVar3 == null) {
-            this.f46784g = bVar2;
+            this.f47011g = bVar2;
         } else {
             bVar3.e = bVar2;
         }

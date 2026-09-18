@@ -1,243 +1,210 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.PointF;
+import ai.ob;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import ci.o8;
-import com.google.mlkit.vision.segmentation.subject.internal.zzd;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.wl;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.ik0;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.al0;
+import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.tv0;
-import w7.x5;
+import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.vv0;
 public final class a2 extends j {
-    public final Bitmap A0;
-    public boolean B0;
-    public boolean C0;
-    public final Rect D0;
-    public final Rect E0;
-    public final Paint F0;
-    public MediaController.CropState G0;
-    public final TLObject f41314q0;
-    public final String f41315r0;
-    public final int f41316s0;
-    public boolean f41317t0;
-    public final c6 f41318u0;
-    public final kv0 f41319v0;
-    public final int f41320w0;
-    public boolean f41321x0;
-    public final c6 f41322y0;
-    public final ai.f0 f41323z0;
-
-    public a2(Context context, PointF pointF, kv0 kv0Var, String str, int i10) {
-        super(context, pointF);
-        this.f41316s0 = -1;
-        this.f41317t0 = false;
-        this.f41321x0 = false;
-        new Rect();
-        new RectF();
-        new Paint(3);
-        this.D0 = new Rect();
-        this.E0 = new Rect();
-        this.F0 = new Paint(3);
-        setRotation(0.0f);
-        setScale(1.0f);
-        this.f41315r0 = str;
-        this.f41319v0 = kv0Var;
-        ai.f0 f0Var = new ai.f0(this, context);
-        this.f41323z0 = f0Var;
-        addView(f0Var, x5.c(-1.0f, -1));
-        qr qrVar = qr.h;
-        this.f41318u0 = new c6(f0Var, 0L, 500L, qrVar);
-        this.f41322y0 = new c6(f0Var, 0L, 350L, qrVar);
-        this.f41320w0 = i10;
-        Bitmap q6 = o8.q(new k2.v(str, 22), 1920, 1920, 0, false);
-        this.A0 = q6;
-        if (q6 != null) {
-            s(q6);
-        }
-        k();
-    }
-
-    private String getImageFilter() {
-        Point point = AndroidUtilities.displaySize;
-        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / AndroidUtilities.density);
-        return a4.a.k(round, round, "_");
-    }
+    public vv0 f41548q0;
+    public ob f41549r0;
+    public ob f41550s0;
+    public zg.f0 f41551t0;
+    public zg.f0 f41552u0;
+    public zg.o0 f41553v0;
+    public e6 f41554w0;
+    public e6 f41555x0;
+    public boolean f41556y0;
+    public float f41557z0;
 
     @Override
     public final i a() {
-        return new s0(this, getContext());
-    }
-
-    public int getAnchor() {
-        return this.f41316s0;
-    }
-
-    public kv0 getBaseSize() {
-        return this.f41319v0;
-    }
-
-    public int getContentHeight() {
-        Bitmap bitmap = this.A0;
-        if (bitmap == null) {
-            return 1;
-        }
-        return bitmap.getHeight();
-    }
-
-    public int getContentWidth() {
-        Bitmap bitmap = this.A0;
-        if (bitmap == null) {
-            return 1;
-        }
-        return bitmap.getWidth();
-    }
-
-    public int getOrientation() {
-        return this.f41320w0;
-    }
-
-    public Bitmap getSegmentedOutBitmap() {
-        return null;
+        z1 z1Var = new z1(this, getContext(), 0);
+        z1Var.f41997r = new RectF();
+        return z1Var;
     }
 
     @Override
-    public ik0 getSelectionBounds() {
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        vv0 vv0Var = this.f41548q0;
+        int padding = getPadding();
+        float d = this.f41555x0.d(1.0f, false);
+        if (d == 1.0f) {
+            this.f41550s0 = null;
+        }
+        canvas.save();
+        float f7 = this.f41557z0;
+        canvas.scale(f7, f7, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        ob obVar = this.f41550s0;
+        if (obVar != null) {
+            obVar.e = (int) ((1.0f - d) * 255.0f);
+            obVar.setBounds(padding, padding, ((int) vv0Var.f29776a) - padding, ((int) vv0Var.f29777b) - padding);
+            this.f41550s0.draw(canvas);
+        }
+        ob obVar2 = this.f41549r0;
+        obVar2.e = (int) (d * 255.0f);
+        obVar2.setBounds(padding, padding, ((int) vv0Var.f29776a) - padding, ((int) vv0Var.f29777b) - padding);
+        this.f41549r0.draw(canvas);
+        Rect rect = AndroidUtilities.rectTmp2;
+        float width = (this.f41549r0.getBounds().width() * 0.61f) / 2.0f;
+        rect.set((int) (this.f41549r0.getBounds().centerX() - width), (int) (this.f41549r0.getBounds().centerY() - width), (int) (this.f41549r0.getBounds().centerX() + width), (int) (this.f41549r0.getBounds().centerY() + width));
+        float d10 = this.f41554w0.d(1.0f, false);
+        this.f41551t0.c(rect);
+        this.f41552u0.c(rect);
+        zg.f0 f0Var = this.f41551t0;
+        if (this.f41549r0.f1369a == 1) {
+            i10 = -1;
+        } else {
+            i10 = -16777216;
+        }
+        f0Var.d(i10);
+        if (d10 == 1.0f) {
+            this.f41551t0.a(canvas);
+        } else {
+            canvas.save();
+            float f10 = 1.0f - d10;
+            canvas.scale(f10, f10, rect.centerX(), rect.top);
+            zg.f0 f0Var2 = this.f41552u0;
+            f0Var2.h = f10;
+            f0Var2.a(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.scale(d10, d10, rect.centerX(), rect.bottom);
+            zg.f0 f0Var3 = this.f41551t0;
+            f0Var3.h = d10;
+            f0Var3.a(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    public zg.o0 getCurrentReaction() {
+        return this.f41553v0;
+    }
+
+    @Override
+    public float getMaxScale() {
+        return 1.8f;
+    }
+
+    @Override
+    public float getMinScale() {
+        return 0.5f;
+    }
+
+    public int getPadding() {
+        return (int) ((this.f41548q0.f29777b - AndroidUtilities.dp(84.0f)) / 2.0f);
+    }
+
+    @Override
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
         }
         float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (getScale() * getMeasuredHeight());
-        float scale2 = getScale() * getMeasuredWidth();
-        getMeasuredHeight();
-        getScale();
-        AndroidUtilities.dp(64.0f);
-        float u10 = wl.u(dp, 2.0f, getPositionX(), scaleX);
-        return new ik0(u10, wl.u(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + u10) - u10, dp2 * scaleX);
+        float scale = (getScale() + 0.4f) * getMeasuredWidth();
+        float f7 = scale / 2.0f;
+        float f10 = scale * scaleX;
+        return new sk0((getPositionX() - f7) * scaleX, (getPositionY() - f7) * scaleX, f10, f10);
     }
 
     @Override
     public final void k() {
-        kv0 kv0Var = this.f41319v0;
-        float f7 = kv0Var.f25698a / 2.0f;
-        float f10 = kv0Var.f25699b / 2.0f;
-        MediaController.CropState cropState = this.G0;
-        if (cropState != null) {
-            f7 *= cropState.cropPw;
-            f10 *= cropState.cropPh;
-        }
-        setX(getPositionX() - f7);
-        setY(getPositionY() - f10);
+        vv0 vv0Var = this.f41548q0;
+        setX(getPositionX() - (vv0Var.f29776a / 2.0f));
+        setY(getPositionY() - (vv0Var.f29777b / 2.0f));
         m();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
+        this.f41551t0.b(true);
+        this.f41552u0.b(true);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        this.f41551t0.b(false);
+        this.f41552u0.b(false);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        kv0 kv0Var = this.f41319v0;
-        float f7 = kv0Var.f25698a;
-        float f10 = kv0Var.f25699b;
-        MediaController.CropState cropState = this.G0;
-        if (cropState != null) {
-            f7 *= cropState.cropPw;
-            f10 *= cropState.cropPh;
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) f7, 1073741824), View.MeasureSpec.makeMeasureSpec((int) f10, 1073741824));
+        vv0 vv0Var = this.f41548q0;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) vv0Var.f29776a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) vv0Var.f29777b, 1073741824));
     }
 
-    public final String q(int i10) {
-        TLObject tLObject = this.f41314q0;
-        if (tLObject instanceof TLRPC.Photo) {
-            try {
-                return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
-            } catch (Exception unused) {
+    public final void q(boolean z10) {
+        if (!z10) {
+            this.f41549r0.a();
+        } else {
+            this.f41550s0 = this.f41549r0;
+            ob obVar = new ob(this);
+            this.f41549r0 = obVar;
+            if (this.f41550s0.f1369a != 1) {
+                obVar.a();
             }
+            this.f41549r0.b(this.f41556y0, false);
+            this.f41549r0.c(getScaleX());
+            this.f41555x0.d(0.0f, true);
         }
-        return this.f41315r0;
+        invalidate();
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f41317t0;
-        this.f41317t0 = z11;
+        boolean z11 = !this.f41556y0;
+        this.f41556y0 = z11;
         if (!z10) {
-            this.f41318u0.f(z11, true);
+            this.f41549r0.b(z11, z10);
+            return;
         }
-        ai.f0 f0Var = this.f41323z0;
-        if (f0Var != null) {
-            f0Var.invalidate();
-        }
+        boolean[] zArr = {false};
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new ai.x(26, this, zArr));
+        ofFloat.addListener(new al0(18, this, zArr));
+        ofFloat.setInterpolator(qr.f27716g);
+        ofFloat.setDuration(350L);
+        ofFloat.start();
     }
 
-    public final void s(Bitmap bitmap) {
-        if (!this.C0 && !this.B0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
-            ac.d dVar = new ac.d();
-            dVar.f382a = true;
-            zzd a2 = i8.d.a(new ac.e(dVar));
-            this.B0 = true;
-            a2.g(vb.a.a(bitmap, this.f41320w0)).addOnSuccessListener(new k2.v(this, 23)).addOnFailureListener(new tv0(25, this, bitmap));
+    public final void s(zg.o0 o0Var, boolean z10) {
+        if (Objects.equals(this.f41553v0, o0Var)) {
+            return;
         }
-    }
-
-    public final void t(boolean z10) {
-        boolean z11 = !this.f41321x0;
-        this.f41321x0 = z11;
         if (!z10) {
-            this.f41322y0.f(z11, true);
+            this.f41553v0 = o0Var;
+            this.f41551t0.e(o0Var);
+            invalidate();
+            return;
         }
-        ai.f0 f0Var = this.f41323z0;
-        if (f0Var != null) {
-            f0Var.invalidate();
-        }
+        this.f41553v0 = o0Var;
+        this.f41552u0.e(o0Var);
+        zg.f0 f0Var = this.f41551t0;
+        this.f41551t0 = this.f41552u0;
+        this.f41552u0 = f0Var;
+        this.f41554w0.d(0.0f, true);
+        invalidate();
     }
 
-    public a2(Context context, PointF pointF, kv0 kv0Var, TLObject tLObject) {
-        super(context, pointF);
-        this.f41316s0 = -1;
-        this.f41317t0 = false;
-        this.f41321x0 = false;
-        new Rect();
-        new RectF();
-        new Paint(3);
-        this.D0 = new Rect();
-        this.E0 = new Rect();
-        this.F0 = new Paint(3);
-        setRotation(0.0f);
-        setScale(1.0f);
-        this.f41314q0 = tLObject;
-        this.f41319v0 = kv0Var;
-        ai.f0 f0Var = new ai.f0(this, context);
-        this.f41323z0 = f0Var;
-        addView(f0Var, x5.c(-1.0f, -1));
-        qr qrVar = qr.h;
-        this.f41318u0 = new c6(f0Var, 0L, 500L, qrVar);
-        this.f41322y0 = new c6(f0Var, 0L, 350L, qrVar);
-        k();
+    @Override
+    public void setScaleX(float f7) {
+        if (getScaleX() != f7) {
+            super.setScaleX(f7);
+            this.f41549r0.c(f7);
+            invalidate();
+        }
     }
 }

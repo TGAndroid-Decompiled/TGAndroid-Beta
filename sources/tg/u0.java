@@ -1,43 +1,34 @@
 package tg;
-public final class u0 implements Runnable {
-    public final int f43255a;
-    public final a1 f43256b;
 
-    public u0(a1 a1Var, int i10) {
-        this.f43255a = i10;
-        this.f43256b = a1Var;
+import j$.util.function.BiConsumer$CC;
+import java.util.List;
+import java.util.function.BiConsumer;
+import org.telegram.ui.Components.bb;
+public final class u0 implements BiConsumer {
+    public final int f43464a;
+    public final bb f43465b;
+
+    public u0(bb bbVar, int i10) {
+        this.f43464a = i10;
+        this.f43465b = bbVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43255a) {
+    public final void accept(Object obj, Object obj2) {
+        switch (this.f43464a) {
             case 0:
-                this.f43256b.W(true);
-                return;
-            case 1:
-                this.f43256b.b0(true, false);
-                return;
-            case 2:
-                this.f43256b.R();
-                return;
-            case 3:
-                this.f43256b.b0(true, false);
-                return;
-            case 4:
-                this.f43256b.b0(true, false);
-                return;
-            case 5:
-                this.f43256b.b0(true, false);
-                return;
-            case 6:
-                a1 a1Var = this.f43256b;
-                a1Var.f43095e0.clear();
-                a1Var.f43096f0.clear();
-                a1Var.dismiss();
+                String str = (String) obj;
+                ((z0) this.f43465b).f43492k0.addAll((List) obj2);
                 return;
             default:
-                this.f43256b.dismiss();
+                String str2 = (String) obj;
+                ((th.f) this.f43465b).f43515b0.addAll((List) obj2);
                 return;
         }
+    }
+
+    public BiConsumer andThen(BiConsumer biConsumer) {
+        int i10 = this.f43464a;
+        return BiConsumer$CC.$default$andThen(this, biConsumer);
     }
 }

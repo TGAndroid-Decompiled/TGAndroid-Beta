@@ -4,7 +4,7 @@ import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.wo;
+import org.telegram.ui.uo;
 public final class l implements e2.h {
     public final int f1164a;
     public final long f1165b;
@@ -32,7 +32,7 @@ public final class l implements e2.h {
             case 0:
                 b0 b0Var = (b0) obj4;
                 a0 a0Var = (a0) obj2;
-                ((org.telegram.ui.ActionBar.c2) obj3).dismiss();
+                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
                 if (((Boolean) obj).booleanValue()) {
                     ci.oc E = ci.oc.E(b0Var.f547e0.getParentActivity(), b0Var.f548f);
                     E.N = j3;
@@ -68,7 +68,7 @@ public final class l implements e2.h {
                     hVar2.accept(Boolean.FALSE);
                     return;
                 }
-                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (l9Var2.j(j3)) {
                     jVar = new j(l9Var2, j3, 3);
                 } else {
@@ -86,10 +86,10 @@ public final class l implements e2.h {
                 hVar2.accept(Boolean.FALSE);
                 return;
             case 3:
-                wo.X((wo) obj4, (org.telegram.ui.ActionBar.c2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1165b, (ChannelBoostsController.CanApplyBoost) obj);
+                uo.X((uo) obj4, (org.telegram.ui.ActionBar.b2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1165b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             default:
-                yh.a4.d0((yh.a4) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1165b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
+                yh.y3.d0((yh.y3) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1165b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }

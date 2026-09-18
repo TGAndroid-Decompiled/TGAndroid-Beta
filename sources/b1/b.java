@@ -5,7 +5,7 @@ import ci.b9;
 import com.google.android.gms.common.api.r;
 import java.util.concurrent.Executor;
 import v0.i;
-import v0.p;
+import v0.o;
 public final class b implements rd.a {
     public final int f2887a;
     public final Executor f2888b;
@@ -27,7 +27,7 @@ public final class b implements rd.a {
                 this.f2888b.execute(new ba(5, this.f2889c, this.d));
                 break;
             case 1:
-                this.f2888b.execute(new ba(6, this.f2889c, (p) this.d));
+                this.f2888b.execute(new ba(6, this.f2889c, (o) this.d));
                 break;
             case 2:
                 this.f2888b.execute(new h(this.f2889c, (w0.i) this.d, 0));
@@ -55,7 +55,7 @@ public final class b implements rd.a {
                 this.f2888b.execute(new b9(8, this.f2889c, cVar));
                 break;
         }
-        return gd.i.f9621a;
+        return gd.i.f9620a;
     }
 
     public b(Executor executor, i iVar, Object obj, int i10) {

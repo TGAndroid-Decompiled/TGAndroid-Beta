@@ -5,7 +5,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import j$.util.Objects;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.wl0;
 public final class z7 implements bh.a {
     public final int f5872a;
     public final Object f5873b;
@@ -31,21 +31,21 @@ public final class z7 implements bh.a {
         switch (this.f5872a) {
             case 0:
                 g8 g8Var = (g8) this.f5873b;
-                ml0 ml0Var = g8Var.d;
-                gh.d.b(ml0Var, canvas, rectF, ml0Var, g8Var.getContainerView(), 255);
+                wl0 wl0Var = g8Var.d;
+                gh.d.b(wl0Var, canvas, rectF, wl0Var, g8Var.getContainerView(), 255);
                 return;
             default:
-                xh.r2 r2Var = (xh.r2) this.f5873b;
-                for (View view : r2Var.h.getViewPages()) {
-                    if (view instanceof xh.n2) {
-                        xh.n2 n2Var = (xh.n2) view;
-                        if (n2Var.h == null) {
-                            xh.i2 i2Var = n2Var.f46065f;
-                            ViewGroup viewGroup = r2Var.S;
-                            Objects.requireNonNull(i2Var);
-                            n2Var.h = new ah.o(i2Var, viewGroup, new org.telegram.ui.x8(i2Var, 0));
+                xh.s2 s2Var = (xh.s2) this.f5873b;
+                for (View view : s2Var.h.getViewPages()) {
+                    if (view instanceof xh.o2) {
+                        xh.o2 o2Var = (xh.o2) view;
+                        if (o2Var.h == null) {
+                            xh.j2 j2Var = o2Var.f46303f;
+                            ViewGroup viewGroup = s2Var.S;
+                            Objects.requireNonNull(j2Var);
+                            o2Var.h = new ah.o(j2Var, viewGroup, new org.telegram.ui.w8(j2Var, 0));
                         }
-                        n2Var.h.f(canvas, rectF);
+                        o2Var.h.f(canvas, rectF);
                     }
                 }
                 return;

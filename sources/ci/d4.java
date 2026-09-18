@@ -2,7 +2,7 @@ package ci;
 
 import android.text.style.ClickableSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.m90;
 public final class d4 implements Runnable {
     public final int f4498a;
     public final f4 f4499b;
@@ -30,7 +30,7 @@ public final class d4 implements Runnable {
         }
     }
 
-    public d4(f4 f4Var, d90 d90Var, ClickableSpan clickableSpan) {
+    public d4(f4 f4Var, m90 m90Var, ClickableSpan clickableSpan) {
         this.f4498a = 0;
         this.f4499b = f4Var;
     }

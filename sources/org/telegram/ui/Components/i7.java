@@ -1,45 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class i7 implements o1.g {
-    public final int f24850a;
-    public final Object f24851b;
+import org.telegram.tgnet.TLRPC;
+public final class i7 implements Runnable {
+    public final int f24860a;
+    public final j8 f24861b;
+    public final TLRPC.TL_error f24862c;
 
-    public i7(Object obj, int i10) {
-        this.f24850a = i10;
-        this.f24851b = obj;
+    public i7(j8 j8Var, TLRPC.TL_error tL_error, int i10) {
+        this.f24860a = i10;
+        this.f24861b = j8Var;
+        this.f24862c = tL_error;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        ViewGroup viewGroup;
-        switch (this.f24850a) {
+    public final void run() {
+        switch (this.f24860a) {
             case 0:
-                ((h8) this.f24851b).T.setBufferedProgress(f7 / 1000.0f);
+                j8.s(this.f24861b, this.f24862c);
                 return;
             case 1:
-                oc ocVar = (oc) this.f24851b;
-                ocVar.f26710o = (int) f7;
-                ocVar.l();
+                j8.w(this.f24861b, this.f24862c);
                 return;
             case 2:
-                if (Math.abs(f7) > ((sb) this.f24851b).getWidth()) {
-                    hVar.c();
-                    return;
-                }
-                return;
-            case 3:
-                vi viVar = (vi) ((gi) this.f24851b).d;
-                ni niVar = viVar.f28809z0;
-                if (niVar == viVar.m0 || niVar == viVar.f28768n0 || (viVar.F && viVar.f28789t1 != null)) {
-                    viVar.a2(1);
-                }
-                viVar.f28809z0.k(viVar.f28764l2);
-                viewGroup = ((org.telegram.ui.ActionBar.g3) viVar).containerView;
-                viewGroup.invalidate();
+                j8.H(this.f24861b, this.f24862c);
                 return;
             default:
-                ((cc0) this.f24851b).z();
+                j8.I(this.f24861b, this.f24862c);
                 return;
         }
     }

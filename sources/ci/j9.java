@@ -104,14 +104,14 @@ public final class j9 extends FrameLayout {
     public j9(fi.k0 k0Var, Context context) {
         super(context);
         this.e = k0Var;
-        this.f4856b = new org.telegram.ui.Components.c6(this, 250L, qr.h);
+        this.f4856b = new org.telegram.ui.Components.e6(this, 250L, qr.h);
         this.d = new Path();
     }
 
     public j9(ia iaVar, Context context) {
         super(context);
         this.e = iaVar;
-        this.f4856b = new org.telegram.ui.Components.c6(this, 250L, qr.h);
+        this.f4856b = new org.telegram.ui.Components.e6(this, 250L, qr.h);
         this.d = new Path();
     }
 }

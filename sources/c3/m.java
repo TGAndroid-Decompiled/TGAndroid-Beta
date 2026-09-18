@@ -58,13 +58,13 @@ public final class m implements r {
                 } else {
                     i11 = 32;
                 }
-                e9.g0 g0Var = e9.i0.f8084b;
-                arrayList.add(new w3.h(bVar2, i11, null, a1.e, null));
+                e9.g0 g0Var = e9.i0.f8083b;
+                arrayList.add(new w3.i(bVar2, i11, null, a1.e, null));
                 qb.b bVar3 = this.f3795c;
                 if (!this.f3794b) {
                     i13 = 16;
                 }
-                arrayList.add(new w3.k(bVar3, i13));
+                arrayList.add(new w3.l(bVar3, i13));
                 return;
             case 9:
                 arrayList.add(new Object());
@@ -74,17 +74,17 @@ public final class m implements r {
                 return;
             case 11:
                 if (this.f3793a == null) {
-                    e9.g0 g0Var2 = e9.i0.f8084b;
+                    e9.g0 g0Var2 = e9.i0.f8083b;
                     this.f3793a = a1.e;
                 }
                 arrayList.add(new j4.d0(1, !this.f3794b ? 1 : 0, this.f3795c, new e2.b0(0L), new j4.f(0, this.f3793a)));
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f13432c = 0;
+                obj.f13430c = 0;
                 obj.d = -1L;
-                obj.f13433f = -1;
-                obj.f13434g = -1L;
+                obj.f13431f = -1;
+                obj.f13432g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:

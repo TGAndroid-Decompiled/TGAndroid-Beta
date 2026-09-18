@@ -7,17 +7,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.kd0;
+import org.telegram.ui.jd0;
 public final class x0 implements Runnable {
     public final int f10472a = 0;
     public final e1 f10473b;
-    public final kd0 f10474c;
-    public final org.telegram.ui.ActionBar.c2 d;
+    public final jd0 f10474c;
+    public final org.telegram.ui.ActionBar.b2 d;
 
-    public x0(e1 e1Var, org.telegram.ui.ActionBar.c2 c2Var, kd0 kd0Var) {
+    public x0(e1 e1Var, org.telegram.ui.ActionBar.b2 b2Var, jd0 jd0Var) {
         this.f10473b = e1Var;
-        this.d = c2Var;
-        this.f10474c = kd0Var;
+        this.d = b2Var;
+        this.f10474c = jd0Var;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class x0 implements Runnable {
                 return;
             default:
                 e1 e1Var2 = this.f10473b;
-                kd0 kd0Var = this.f10474c;
+                jd0 jd0Var = this.f10474c;
                 try {
                     List<Address> fromLocationName = new Geocoder(e1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(e1Var2.f10275y, 1);
                     if (!fromLocationName.isEmpty()) {
@@ -42,19 +42,19 @@ public final class x0 implements Runnable {
                         tL_channelLocation.geo_point = tL_geoPoint;
                         tL_geoPoint.lat = address.getLatitude();
                         tL_channelLocation.geo_point._long = address.getLongitude();
-                        kd0Var.A0 = tL_channelLocation;
+                        jd0Var.A0 = tL_channelLocation;
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                AndroidUtilities.runOnUIThread(new x0(e1Var2, this.d, kd0Var));
+                AndroidUtilities.runOnUIThread(new x0(e1Var2, this.d, jd0Var));
                 return;
         }
     }
 
-    public x0(e1 e1Var, kd0 kd0Var, org.telegram.ui.ActionBar.c2 c2Var) {
+    public x0(e1 e1Var, jd0 jd0Var, org.telegram.ui.ActionBar.b2 b2Var) {
         this.f10473b = e1Var;
-        this.f10474c = kd0Var;
-        this.d = c2Var;
+        this.f10474c = jd0Var;
+        this.d = b2Var;
     }
 }

@@ -11,44 +11,44 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import w7.x5;
-public final class d extends FrameLayout implements a6 {
-    public final f6 f15246a;
-    public final ImageView f15247b;
-    public final TextView f15248c;
+import org.telegram.ui.ActionBar.z5;
+import w7.y5;
+public final class d extends FrameLayout implements z5 {
+    public final e6 f15420a;
+    public final ImageView f15421b;
+    public final TextView f15422c;
 
-    public d(Context context, f6 f6Var) {
+    public d(Context context, e6 e6Var) {
         super(context);
-        this.f15246a = f6Var;
+        this.f15420a = e6Var;
         ImageView imageView = new ImageView(context);
-        this.f15247b = imageView;
+        this.f15421b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_arrow_back);
-        addView(imageView, x5.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
+        addView(imageView, y5.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f15248c = textView;
+        this.f15422c = textView;
         textView.setText(LocaleController.getString(R.string.EmojiSearchBackToSearch));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, x5.d(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, y5.d(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
         e();
     }
 
     @Override
     public final void e() {
         int i10 = j6.Wk;
-        f6 f6Var = this.f15246a;
+        e6 e6Var = this.f15420a;
         int i11 = (int) 153.0f;
-        this.f15248c.setTextColor(i0.a.k(j6.v0(i10, f6Var), i11));
-        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i0.a.k(j6.v0(i10, f6Var), i11), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.f15247b;
+        this.f15422c.setTextColor(i0.a.k(j6.v0(i10, e6Var), i11));
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i0.a.k(j6.v0(i10, e6Var), i11), PorterDuff.Mode.MULTIPLY);
+        ImageView imageView = this.f15421b;
         imageView.setColorFilter(porterDuffColorFilter);
-        imageView.setBackground(j6.f0(i0.a.k(j6.v0(i10, f6Var), (int) 25.5f), 1, -1));
+        imageView.setBackground(j6.f0(i0.a.k(j6.v0(i10, e6Var), (int) 25.5f), 1, -1));
     }
 
     public int[] getColorKeys() {
@@ -56,6 +56,6 @@ public final class d extends FrameLayout implements a6 {
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.f15247b.setOnClickListener(onClickListener);
+        this.f15421b.setOnClickListener(onClickListener);
     }
 }

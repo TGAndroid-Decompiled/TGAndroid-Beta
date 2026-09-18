@@ -8,24 +8,24 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class ur extends ViewGroup {
-    public static final int f28473s = 0;
-    public final sr f28474a;
-    public EditText f28475b;
-    public final View[] f28476c;
+    public static final int f28805s = 0;
+    public final sr f28806a;
+    public EditText f28807b;
+    public final View[] f28808c;
     public View d;
     public boolean e;
-    public boolean f28477f;
+    public boolean f28809f;
     public final rr h;
-    public boolean f28478n;
-    public final rr f28479r;
+    public boolean f28810n;
+    public final rr f28811r;
 
     public ur(Context context) {
         super(context);
         String str;
         int i10;
-        this.f28476c = new View[12];
+        this.f28808c = new View[12];
         this.h = new rr(this, 0);
-        this.f28479r = new rr(this, 1);
+        this.f28811r = new rr(this, 1);
         int i11 = 0;
         for (int i12 = 0; i12 < 11; i12++) {
             if (i12 != 9) {
@@ -68,26 +68,26 @@ public final class ur extends ViewGroup {
                     i10 = 0;
                 }
                 String valueOf = String.valueOf(i10);
-                this.f28476c[i12] = new tr(context, valueOf, str);
-                this.f28476c[i12].setOnClickListener(new org.telegram.ui.tf(27, this, valueOf));
-                addView(this.f28476c[i12]);
+                this.f28808c[i12] = new tr(context, valueOf, str);
+                this.f28808c[i12].setOnClickListener(new org.telegram.ui.sf(27, this, valueOf));
+                addView(this.f28808c[i12]);
             }
         }
-        sr srVar = new sr(this, context, new k2.u(context, new ei.n4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f28474a = srVar;
+        sr srVar = new sr(this, context, new n2.e(context, new ei.n4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
+        this.f28806a = srVar;
         srVar.setImageResource(R.drawable.msg_clear_input);
         srVar.setColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
         int dp = AndroidUtilities.dp(11.0f);
         srVar.setPadding(dp, dp, dp, dp);
         srVar.setOnClickListener(new ai.e2(10));
-        this.f28476c[11] = srVar;
+        this.f28808c[11] = srVar;
         addView(srVar);
         while (true) {
-            View[] viewArr = this.f28476c;
+            View[] viewArr = this.f28808c;
             if (i11 < viewArr.length) {
                 View view = viewArr[i11];
                 if (view != null) {
-                    w7.z5.b(view, 0.02f, 1.2f);
+                    w7.a6.b(view, 0.02f, 1.2f);
                     view.setBackground(a(i11));
                 }
                 i11++;
@@ -124,7 +124,7 @@ public final class ur extends ViewGroup {
         if (i10 <= 8) {
             z13 = false;
         }
-        int i12 = org.telegram.ui.ActionBar.j6.f18953i6;
+        int i12 = org.telegram.ui.ActionBar.j6.f19152i6;
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, i12, false);
         int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, i12, false), 30);
         float f12 = 12.0f;
@@ -159,19 +159,19 @@ public final class ur extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int y3 = org.telegram.messenger.wl.y(32.0f, getWidth(), 3);
-        int y10 = org.telegram.messenger.wl.y(42.0f, getHeight(), 4);
+        int A = org.telegram.messenger.wh.A(32.0f, getWidth(), 3);
+        int A2 = org.telegram.messenger.wh.A(42.0f, getHeight(), 4);
         int i14 = 0;
         while (true) {
-            View[] viewArr = this.f28476c;
+            View[] viewArr = this.f28808c;
             if (i14 < viewArr.length) {
-                int dp = AndroidUtilities.dp(6.0f) + y3;
+                int dp = AndroidUtilities.dp(6.0f) + A;
                 int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
-                int dp3 = AndroidUtilities.dp(6.0f) + y10;
+                int dp3 = AndroidUtilities.dp(6.0f) + A2;
                 int dp4 = AndroidUtilities.dp(10.0f) + (dp3 * (i14 / 3));
                 View view = viewArr[i14];
                 if (view != null) {
-                    view.layout(dp2, dp4, dp2 + y3, dp4 + y10);
+                    view.layout(dp2, dp4, dp2 + A, dp4 + A2);
                 }
                 i14++;
             } else {
@@ -184,11 +184,11 @@ public final class ur extends ViewGroup {
     public final void onMeasure(int i10, int i11) {
         View[] viewArr;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        int y3 = org.telegram.messenger.wl.y(32.0f, getWidth(), 3);
-        int y10 = org.telegram.messenger.wl.y(42.0f, getHeight(), 4);
-        for (View view : this.f28476c) {
+        int A = org.telegram.messenger.wh.A(32.0f, getWidth(), 3);
+        int A2 = org.telegram.messenger.wh.A(42.0f, getHeight(), 4);
+        for (View view : this.f28808c) {
             if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(y3, 1073741824), View.MeasureSpec.makeMeasureSpec(y10, 1073741824));
+                view.measure(View.MeasureSpec.makeMeasureSpec(A, 1073741824), View.MeasureSpec.makeMeasureSpec(A2, 1073741824));
             }
         }
     }
@@ -198,7 +198,7 @@ public final class ur extends ViewGroup {
     }
 
     public void setEditText(EditText editText) {
-        this.f28475b = editText;
+        this.f28807b = editText;
         this.e = false;
     }
 

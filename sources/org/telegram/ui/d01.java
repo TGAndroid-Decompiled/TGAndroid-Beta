@@ -1,82 +1,14 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class d01 extends AnimatorListenerAdapter {
-    public final int f32983a;
-    public final ProfileActivity f32984b;
-
-    public d01(ProfileActivity profileActivity, int i10) {
-        this.f32983a = i10;
-        this.f32984b = profileActivity;
-    }
-
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+public final class d01 extends d10 {
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f32983a) {
-            case 2:
-                ProfileActivity profileActivity = this.f32984b;
-                profileActivity.O1 = false;
-                profileActivity.f31255a.N0 = true;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32983a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f32984b.k4(true);
-                return;
-            case 1:
-                ProfileActivity profileActivity = this.f32984b;
-                AnimatorSet animatorSet = profileActivity.f31409w;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    profileActivity.f31409w = null;
-                    return;
-                }
-                return;
-            case 2:
-                ProfileActivity profileActivity2 = this.f32984b;
-                profileActivity2.O1 = false;
-                profileActivity2.f31255a.N0 = true;
-                profileActivity2.f31323j2.removeListener(this);
-                profileActivity2.f31279d1.setBackgroundColor(-16777216);
-                profileActivity2.Y.setVisibility(8);
-                profileActivity2.f31346n0.setVisibility(0);
-                profileActivity2.f31346n0.setAlpha(1.0f);
-                return;
-            case 3:
-                ProfileActivity profileActivity3 = this.f32984b;
-                profileActivity3.f31323j2.removeListener(this);
-                profileActivity3.f31346n0.setVisibility(8);
-                profileActivity3.f31346n0.setAlpha(1.0f);
-                return;
-            default:
-                ProfileActivity profileActivity4 = this.f32984b;
-                profileActivity4.f31410w0 = null;
-                profileActivity4.fragmentView.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f32983a) {
-            case 2:
-                ProfileActivity profileActivity = this.f32984b;
-                ProfileActivity.s3(profileActivity, false);
-                profileActivity.f31346n0.setAnimatedFileMaybe(profileActivity.f31285e0.getImageReceiver().getAnimation());
-                profileActivity.f31346n0.L();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        canvas.save();
+        canvas.translate(AndroidUtilities.dp(2.0f), 0.0f);
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+        canvas.restore();
     }
 }

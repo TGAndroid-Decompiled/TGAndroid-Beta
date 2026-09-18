@@ -8,14 +8,14 @@ import org.telegram.tgnet.TLRPC;
 import s4.c1;
 import s4.h0;
 public abstract class d extends h0 implements GroupCallMessagesController.CallMessageListener {
-    public List f14130c;
+    public List f14276c;
     public boolean d;
     public int e;
-    public TLRPC.InputGroupCall f14131f;
+    public TLRPC.InputGroupCall f14277f;
 
     @Override
     public final int h() {
-        List list = this.f14130c;
+        List list = this.f14276c;
         if (list != null) {
             return list.size();
         }
@@ -24,19 +24,19 @@ public abstract class d extends h0 implements GroupCallMessagesController.CallMe
 
     @Override
     public final void onNewGroupCallMessage(long j3, GroupCallMessage groupCallMessage) {
-        if (this.f14130c == null) {
-            this.f14130c = new ArrayList();
+        if (this.f14276c == null) {
+            this.f14276c = new ArrayList();
         }
-        this.f14130c.add(0, groupCallMessage);
+        this.f14276c.add(0, groupCallMessage);
         o(0);
     }
 
     @Override
     public final void onPopGroupCallMessage() {
-        List list = this.f14130c;
+        List list = this.f14276c;
         if (list != null && !list.isEmpty()) {
-            int size = this.f14130c.size() - 1;
-            this.f14130c.remove(size);
+            int size = this.f14276c.size() - 1;
+            this.f14276c.remove(size);
             u(size);
         }
     }
@@ -44,9 +44,9 @@ public abstract class d extends h0 implements GroupCallMessagesController.CallMe
     @Override
     public final void v(c1 c1Var, int i10) {
         b bVar = (b) c1Var;
-        List list = this.f14130c;
+        List list = this.f14276c;
         if (list != null && list.size() > i10) {
-            ((c) bVar.f42702a).set((GroupCallMessage) this.f14130c.get(i10));
+            ((c) bVar.f42929a).set((GroupCallMessage) this.f14276c.get(i10));
         }
     }
 }

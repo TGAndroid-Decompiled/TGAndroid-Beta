@@ -1,61 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-public final class ta extends mc0 {
-    public final boolean C0;
-    public final boolean D0;
-    public final za E0;
-
-    public ta(za zaVar, Context context, boolean z10, boolean z11) {
-        super(context);
-        this.E0 = zaVar;
-        this.C0 = z10;
-        this.D0 = z11;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        za zaVar = this.E0;
-        zaVar.I(canvas, this);
-        super.dispatchDraw(canvas);
-        zaVar.H(canvas, this);
-    }
+public final class ta extends View {
+    public int f28360a;
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        Drawable drawable;
-        if (motionEvent.getAction() == 0) {
-            float y3 = motionEvent.getY();
-            za zaVar = this.E0;
-            drawable = ((org.telegram.ui.ActionBar.g3) zaVar).shadowDrawable;
-            if (y3 < drawable.getBounds().top) {
-                zaVar.dismiss();
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.D0) {
-            this.E0.getClass();
-        }
-        return super.drawChild(canvas, view, j3);
+        return false;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i11);
-        za zaVar = this.E0;
-        zaVar.h = size;
-        zaVar.E(i10, i11);
-        if (this.C0) {
-            i11 = View.MeasureSpec.makeMeasureSpec(zaVar.h, 1073741824);
-        }
-        super.onMeasure(i10, i11);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f28360a, 1073741824));
     }
 }

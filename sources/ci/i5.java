@@ -3,7 +3,7 @@ package ci;
 import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class i5 implements org.telegram.ui.ActionBar.m1, Utilities.Callback3Return {
+public final class i5 implements org.telegram.ui.ActionBar.l1, Utilities.Callback3Return {
     public final r6 f4786a;
 
     public i5(r6 r6Var) {
@@ -11,11 +11,11 @@ public final class i5 implements org.telegram.ui.ActionBar.m1, Utilities.Callbac
     }
 
     @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.o1 o1Var;
+    public void p(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.n1 n1Var;
         r6 r6Var = this.f4786a;
         r6Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = r6Var.H1) != null && o1Var.isShowing()) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = r6Var.H1) != null && n1Var.isShowing()) {
             r6Var.H1.d(true);
         }
     }

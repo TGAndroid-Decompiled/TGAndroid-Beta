@@ -8,11 +8,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.sy;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.bo;
-import org.telegram.ui.eu;
-import org.telegram.ui.hp;
-import org.telegram.ui.le;
-import org.telegram.ui.og;
+import org.telegram.ui.du;
+import org.telegram.ui.fp;
+import org.telegram.ui.ke;
+import org.telegram.ui.kg;
+import org.telegram.ui.zn;
 public final class t1 implements RequestDelegate {
     public final int f5544a;
     public final boolean f5545b;
@@ -35,19 +35,19 @@ public final class t1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new u1((w1) this.f5546c, tLObject, this.f5545b, (TLRPC.TL_messages_getInlineBotResults) this.d, (String) this.e, 0));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new i2.b1((le) this.f5546c, tL_error, (TwoStepVerificationActivity) this.d, (Activity) this.e, this.f5545b, tLObject, 6));
+                AndroidUtilities.runOnUIThread(new i2.b1((ke) this.f5546c, tL_error, (TwoStepVerificationActivity) this.d, (Activity) this.e, this.f5545b, tLObject, 6));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new u1((Object) ((bo) this.f5546c), (Object) ((nf.e) this.d), tLObject, (Object) ((og) this.e), this.f5545b, 14));
+                AndroidUtilities.runOnUIThread(new u1((Object) ((zn) this.f5546c), (Object) ((nf.e) this.d), tLObject, (Object) ((kg) this.e), this.f5545b, 15));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new i2.b1((hp) this.f5546c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.e, this.f5545b, tL_error, 8));
+                AndroidUtilities.runOnUIThread(new i2.b1((fp) this.f5546c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.e, this.f5545b, tL_error, 8));
                 return;
             case 4:
                 AndroidUtilities.runOnUIThread(new u1((sy) this.f5546c, (String) this.e, this.f5545b, (String) this.d, tLObject));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new i2.b1((eu) this.f5546c, tLObject, (d) this.d, this.f5545b, (HashSet) this.e, tL_error, 10));
+                AndroidUtilities.runOnUIThread(new i2.b1((du) this.f5546c, tLObject, (d) this.d, this.f5545b, (HashSet) this.e, tL_error, 10));
                 return;
         }
     }
@@ -68,9 +68,9 @@ public final class t1 implements RequestDelegate {
         this.d = str2;
     }
 
-    public t1(eu euVar, d dVar, boolean z10, HashSet hashSet) {
+    public t1(du duVar, d dVar, boolean z10, HashSet hashSet) {
         this.f5544a = 5;
-        this.f5546c = euVar;
+        this.f5546c = duVar;
         this.d = dVar;
         this.f5545b = z10;
         this.e = hashSet;

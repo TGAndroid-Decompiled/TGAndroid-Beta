@@ -1,53 +1,68 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class ik extends FragmentContextView {
-    public final int P0;
-    public final bo Q0;
+import android.os.Bundle;
+import android.view.View;
+import java.util.WeakHashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ik extends org.telegram.ui.Components.o81 {
+    public final Context f34544a;
+    public final zn f34545b;
 
-    public ik(bo boVar, Context context, bo boVar2, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, boVar2, null, true, f6Var);
-        this.P0 = i10;
-        switch (i10) {
-            case 1:
-                this.Q0 = boVar;
-                super(context, boVar2, null, false, f6Var);
-                return;
-            default:
-                this.Q0 = boVar;
-                return;
-        }
+    public ik(zn znVar, Context context) {
+        this.f34545b = znVar;
+        this.f34544a = context;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.P0) {
-            case 0:
-                bo boVar = this.Q0;
-                org.telegram.ui.Components.bh bhVar = boVar.M0;
-                FrameLayout frameLayout = boVar.a2;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                bhVar.i(frameLayout, z10, true);
-                return;
-            default:
-                bo boVar2 = this.Q0;
-                org.telegram.ui.Components.bh bhVar2 = boVar2.M0;
-                FrameLayout frameLayout2 = boVar2.Y1;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                bhVar2.i(frameLayout2, z11, true);
-                return;
+    public final void b(View view, int i10, int i11) {
+        if (view instanceof bo) {
+            ((bo) view).f32418a.Jc(this.f34545b.f40452u3);
         }
+        WeakHashMap weakHashMap = r0.i0.f42096a;
+        r0.y.c(view);
+    }
+
+    @Override
+    public final View d(int i10) {
+        Context context = this.f34544a;
+        zn znVar = this.f34545b;
+        if (i10 == 0) {
+            return new nn(znVar, context);
+        }
+        Bundle bundle = new Bundle();
+        bundle.putInt("chatMode", 7);
+        bundle.putInt("searchType", i10);
+        bundle.putString("searchHashtag", znVar.f40452u3);
+        hk hkVar = new hk(context, znVar.getParentLayout(), bundle, 0);
+        hkVar.h = false;
+        ao aoVar = hkVar.f32418a;
+        aoVar.L.f9080a = znVar.L;
+        aoVar.f40237ca = znVar.f40261ea;
+        aoVar.f40249da = znVar;
+        aoVar.V8 = new g(this, 13);
+        return hkVar;
+    }
+
+    @Override
+    public final int e() {
+        return 3;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return LocaleController.getString(R.string.SearchThisChat);
+            }
+            return LocaleController.getString(R.string.SearchPublicPosts);
+        }
+        return LocaleController.getString(R.string.SearchMyMessages);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
     }
 }

@@ -1,38 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class c51 {
-    public String[] f22937a = new String[0];
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class c51 extends s4.s0 {
+    public final int f23205a;
+    public int f23206b;
+    public final Object f23207c;
 
-    public boolean a() {
-        return false;
+    public c51(f51 f51Var) {
+        this.f23205a = 0;
+        this.f23207c = f51Var;
     }
 
-    public String[] b() {
-        return this.f22937a;
+    @Override
+    public void a(RecyclerView recyclerView, int i10) {
+        switch (this.f23205a) {
+            case 0:
+                if (i10 == 0) {
+                    this.f23206b = 0;
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
     }
 
-    public boolean c() {
-        return false;
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f23205a) {
+            case 0:
+                f51 f51Var = (f51) this.f23207c;
+                this.f23206b += i11;
+                if (recyclerView.getScrollState() == 1 && Math.abs(this.f23206b) > AndroidUtilities.dp(96.0f)) {
+                    View findFocus = f51Var.e.findFocus();
+                    if (findFocus == null) {
+                        findFocus = f51Var.e;
+                    }
+                    AndroidUtilities.hideKeyboard(findFocus);
+                }
+                if (i11 != 0) {
+                    f51.m(f51Var);
+                    return;
+                }
+                return;
+            default:
+                int i12 = this.f23206b + i11;
+                this.f23206b = i12;
+                ((org.telegram.ui.d31) this.f23207c).H.setAlpha((i12 * 1.0f) / AndroidUtilities.dp(6.0f));
+                return;
+        }
     }
 
-    public boolean d(v41 v41Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(v41 v41Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f22937a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+    public c51(org.telegram.ui.d31 d31Var) {
+        this.f23205a = 1;
+        this.f23207c = d31Var;
+        this.f23206b = 0;
     }
 }

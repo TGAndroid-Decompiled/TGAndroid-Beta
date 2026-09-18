@@ -7,23 +7,23 @@ import android.view.View;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.qr;
 public final class b extends View {
-    public final le.b f41776a;
-    public final Drawable f41777b;
-    public final Drawable f41778c;
+    public final le.b f42003a;
+    public final Drawable f42004b;
+    public final Drawable f42005c;
 
     public b(Context context) {
         super(context);
-        this.f41776a = new le.b(this, qr.h, 320L);
-        this.f41777b = context.getResources().getDrawable(R.drawable.outline_poll_emoji_24).mutate();
-        this.f41778c = context.getResources().getDrawable(R.drawable.input_keyboard).mutate();
+        this.f42003a = new le.b(this, qr.h, 320L);
+        this.f42004b = context.getResources().getDrawable(R.drawable.outline_poll_emoji_24).mutate();
+        this.f42005c = context.getResources().getDrawable(R.drawable.input_keyboard).mutate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float f7 = this.f41776a.e;
-        yf.p.b(canvas, this.f41777b, 1.0f - f7);
-        yf.p.b(canvas, this.f41778c, f7);
+        float f7 = this.f42003a.e;
+        yf.p.b(canvas, this.f42004b, 1.0f - f7);
+        yf.p.b(canvas, this.f42005c, f7);
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class b extends View {
         super.onSizeChanged(i10, i11, i12, i13);
         float f7 = i10 / 2.0f;
         float f10 = i11 / 2.0f;
-        yf.p.d(this.f41777b, f7, f10, 17);
-        yf.p.d(this.f41778c, f7, f10, 17);
+        yf.p.d(this.f42004b, f7, f10, 17);
+        yf.p.d(this.f42005c, f7, f10, 17);
     }
 }

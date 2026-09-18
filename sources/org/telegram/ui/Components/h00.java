@@ -4,52 +4,52 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class h00 extends AnimatorListenerAdapter {
-    public final int f24437a;
-    public final int f24438b;
-    public final float f24439c;
+    public final int f24518a;
+    public final int f24519b;
+    public final float f24520c;
     public final View d;
 
     public h00(View view, int i10, float f7, int i11) {
-        this.f24437a = i11;
+        this.f24518a = i11;
         this.d = view;
-        this.f24438b = i10;
-        this.f24439c = f7;
+        this.f24519b = i10;
+        this.f24520c = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
-        switch (this.f24437a) {
+        switch (this.f24518a) {
             case 0:
                 i00 i00Var = (i00) this.d;
-                int i10 = this.f24438b;
+                int i10 = this.f24519b;
                 if (i10 == 5) {
                     f7 = 0.0f;
                 } else {
-                    f7 = -this.f24439c;
+                    f7 = -this.f24520c;
                 }
                 i00Var.b(f7, i10 + 1);
-                i00Var.f24787y = 0.0f;
+                i00Var.f24807y = 0.0f;
                 i00Var.invalidate();
                 return;
             case 1:
-                ((org.telegram.ui.web.v1) this.d).c(this.f24438b, this.f24439c, false);
+                ((org.telegram.ui.web.w1) this.d).c(this.f24519b, this.f24520c, false);
                 return;
             default:
-                yh.n8 n8Var = (yh.n8) this.d;
-                n8Var.f47550c0 = this.f24439c;
-                if (n8Var.getValue() != this.f24438b) {
-                    n8Var.e(n8Var.getValue());
+                yh.l8 l8Var = (yh.l8) this.d;
+                l8Var.f47668c0 = this.f24520c;
+                if (l8Var.getValue() != this.f24519b) {
+                    l8Var.e(l8Var.getValue());
                 }
-                n8Var.invalidate();
+                l8Var.invalidate();
                 return;
         }
     }
 
-    public h00(yh.n8 n8Var, float f7, int i10) {
-        this.f24437a = 2;
-        this.d = n8Var;
-        this.f24439c = f7;
-        this.f24438b = i10;
+    public h00(yh.l8 l8Var, float f7, int i10) {
+        this.f24518a = 2;
+        this.d = l8Var;
+        this.f24520c = f7;
+        this.f24519b = i10;
     }
 }

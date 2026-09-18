@@ -6,7 +6,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.cw;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.mi1;
+import org.telegram.ui.li1;
 public final class bb implements ValueAnimator.AnimatorUpdateListener {
     public final int f4411a;
     public final float f4412b;
@@ -36,8 +36,8 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 le.e eVar = (le.e) obj;
-                if (eVar.f13993g) {
-                    DecelerateInterpolator decelerateInterpolator = ke.a.f13590a;
+                if (eVar.f14139g) {
+                    DecelerateInterpolator decelerateInterpolator = ke.a.f13588a;
                     float animatedFraction = valueAnimator.getAnimatedFraction();
                     eVar.d((f7 * animatedFraction) + f10, animatedFraction);
                     return;
@@ -49,29 +49,29 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 cwVar.L = floatValue2;
                 cwVar.K = AndroidUtilities.lerp(f10, f7, floatValue2);
-                cwVar.f26505b.invalidate();
+                cwVar.f30846b.invalidate();
                 return;
             case 3:
-                mi1 mi1Var = (mi1) obj;
-                mi1Var.f28894y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                li1 li1Var = (li1) obj;
+                li1Var.f29210y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float dp = f10 + AndroidUtilities.dp(28.0f);
                 float dp2 = f7 + AndroidUtilities.dp(52.0f);
-                float f11 = mi1Var.f28894y;
-                mi1Var.G = dp - (dp * f11);
-                mi1Var.H = dp2 - (f11 * dp2);
-                mi1Var.invalidate();
+                float f11 = li1Var.f29210y;
+                li1Var.G = dp - (dp * f11);
+                li1Var.H = dp2 - (f11 * dp2);
+                li1Var.invalidate();
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.C1.f28372b.f14110a;
+                CropAreaView cropAreaView = photoViewer.C1.f23571b.f14256a;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f10;
-                float f12 = photoViewer.f30922a6;
-                cropAreaView.f22033n0 = floatValue3;
-                cropAreaView.f22034o0 = ((photoViewer.f30960e6 - f12) * photoViewer.f31019l6) + f12;
-                cropAreaView.f22035p0 = 0.0f;
-                cropAreaView.f22036q0 = 0.0f;
+                float f12 = photoViewer.f31149a6;
+                cropAreaView.f22206n0 = floatValue3;
+                cropAreaView.f22207o0 = ((photoViewer.f31187e6 - f12) * photoViewer.f31246l6) + f12;
+                cropAreaView.f22208p0 = 0.0f;
+                cropAreaView.f22209q0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.C1.f28373c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                photoViewer.C1.f23572c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
         }
     }

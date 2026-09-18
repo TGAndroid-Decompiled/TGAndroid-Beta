@@ -2,13 +2,13 @@ package ci;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.hy0;
 import org.telegram.ui.Components.jj;
 import org.telegram.ui.Components.kz;
 import org.telegram.ui.Components.nz;
 import org.telegram.ui.Components.py;
 import org.telegram.ui.Components.qy;
-import org.telegram.ui.Components.wx0;
+import org.telegram.ui.Components.x51;
 import org.telegram.ui.wp0;
 public final class x1 extends g.p {
     public final int f5731c;
@@ -41,8 +41,8 @@ public final class x1 extends g.p {
                 return 1;
             case 2:
                 jj jjVar = (jj) this.d;
-                int i15 = jjVar.f25307r;
-                int i16 = jjVar.f25309w;
+                int i15 = jjVar.f25349r;
+                int i16 = jjVar.f25351w;
                 if (i10 % i16 != i16 - 1) {
                     i11 = AndroidUtilities.dp(5.0f);
                 } else {
@@ -51,7 +51,7 @@ public final class x1 extends g.p {
                 return i15 + i11;
             case 3:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i10 != chatAttachAlertPhotoLayout.G.f24699n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                if (i10 != chatAttachAlertPhotoLayout.G.f24692n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
                     if (chatAttachAlertPhotoLayout.O0) {
                         i10--;
                     }
@@ -69,44 +69,44 @@ public final class x1 extends g.p {
                 qy qyVar = (qy) this.d;
                 kz kzVar = qyVar.Y;
                 if (i10 == 0) {
-                    kzVar.f25748n0.getClass();
+                    kzVar.f25924n0.getClass();
                 }
-                s4.h0 adapter = kzVar.f25731h0.getAdapter();
-                py pyVar = kzVar.f25737j0;
-                if (adapter == pyVar && pyVar.f27160x.isEmpty()) {
+                s4.h0 adapter = kzVar.f25907h0.getAdapter();
+                py pyVar = kzVar.f25913j0;
+                if (adapter == pyVar && pyVar.f27351x.isEmpty()) {
                     return qyVar.J;
                 }
-                kzVar.f25748n0.getClass();
+                kzVar.f25924n0.getClass();
                 qyVar.B1();
                 return qyVar.R.get(i10);
             case 5:
-                wx0 wx0Var = (wx0) this.d;
-                if ((wx0Var.W != null && (wx0Var.d.e.get(i10) instanceof Integer)) || i10 == wx0Var.d.h) {
-                    return wx0Var.d.d;
+                hy0 hy0Var = (hy0) this.d;
+                if ((hy0Var.W != null && (hy0Var.d.e.get(i10) instanceof Integer)) || i10 == hy0Var.d.h) {
+                    return hy0Var.d.d;
                 }
                 return 1;
             case 6:
                 wp0 wp0Var = (wp0) this.d;
-                if (i10 >= wp0Var.f39136b0 && i10 < wp0Var.f39138c0) {
+                if (i10 >= wp0Var.f39205b0 && i10 < wp0Var.f39207c0) {
                     return 1;
                 }
-                if (i10 >= wp0Var.f39139d0 && i10 < wp0Var.f39140e0) {
+                if (i10 >= wp0Var.f39208d0 && i10 < wp0Var.f39209e0) {
                     return 1;
                 }
                 return 3;
             case 7:
-                j51 G = ((xh.g4) this.d).f45915i0.G(i10 - 1);
-                if (G == null || (i13 = G.f25136u) == -1) {
+                x51 G = ((xh.h4) this.d).f46149i0.G(i10 - 1);
+                if (G == null || (i13 = G.f30257u) == -1) {
                     return 3;
                 }
                 return i13;
             default:
                 yh.s0 s0Var = (yh.s0) this.d;
-                nz nzVar = s0Var.f47772h0;
-                yh.n0 n0Var = s0Var.f47775k0;
+                nz nzVar = s0Var.f47968h0;
+                yh.n0 n0Var = s0Var.f47971k0;
                 if (n0Var != null && i10 != 0) {
-                    j51 G2 = n0Var.G(i10 - 1);
-                    if (G2 == null || (i14 = G2.f25136u) == -1) {
+                    x51 G2 = n0Var.G(i10 - 1);
+                    if (G2 == null || (i14 = G2.f30257u) == -1) {
                         return nzVar.J;
                     }
                     return i14;

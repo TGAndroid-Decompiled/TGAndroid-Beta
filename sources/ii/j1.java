@@ -1,6 +1,6 @@
 package ii;
 
-import org.telegram.ui.dj0;
+import org.telegram.ui.cj0;
 public final class j1 implements Runnable {
     public final int f11454a;
     public final d2 f11455b;
@@ -43,9 +43,9 @@ public final class j1 implements Runnable {
             case 5:
                 d2 d2Var4 = this.f11455b;
                 d2Var4.s0(2147483646, 0, true);
-                dj0 dj0Var = d2Var4.O0;
-                if (dj0Var != null) {
-                    dj0Var.h(false);
+                cj0 cj0Var = d2Var4.O0;
+                if (cj0Var != null) {
+                    cj0Var.h(false);
                     d2Var4.O0 = null;
                     return;
                 }
@@ -53,9 +53,9 @@ public final class j1 implements Runnable {
             default:
                 d2 d2Var5 = this.f11455b;
                 d2Var5.s0(0, 0, false);
-                dj0 dj0Var2 = d2Var5.O0;
-                if (dj0Var2 != null) {
-                    dj0Var2.h(true);
+                cj0 cj0Var2 = d2Var5.O0;
+                if (cj0Var2 != null) {
+                    cj0Var2.h(true);
                     d2Var5.O0 = null;
                     return;
                 }

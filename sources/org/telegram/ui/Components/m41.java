@@ -1,43 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.ScrollView;
-import org.telegram.messenger.R;
-public final class m41 extends ScrollView {
-    public Drawable f26051a;
-    public c6 f26052b;
-    public boolean f26053c;
+public final class m41 implements View.OnClickListener {
+    public final int f26326a;
+    public final v41 f26327b;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        super.dispatchDraw(canvas);
-        c6 c6Var = this.f26052b;
-        if (canScrollVertically(-1)) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = c6Var.d(f7, false) * 0.5f;
-        if (d > 0.0f) {
-            if (this.f26051a == null) {
-                this.f26051a = getContext().getResources().getDrawable(R.drawable.header_shadow);
-            }
-            this.f26051a.setBounds(0, getScrollY(), getWidth(), this.f26051a.getIntrinsicHeight() + getScrollY());
-            this.f26051a.setAlpha((int) (d * 255.0f));
-            this.f26051a.draw(canvas);
-        }
+    public m41(v41 v41Var, int i10) {
+        this.f26326a = i10;
+        this.f26327b = v41Var;
     }
 
     @Override
-    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        super.onNestedScroll(view, i10, i11, i12, i13);
-        boolean canScrollVertically = canScrollVertically(-1);
-        if (this.f26053c != canScrollVertically) {
-            invalidate();
-            this.f26053c = canScrollVertically;
+    public final void onClick(View view) {
+        switch (this.f26326a) {
+            case 0:
+                this.f26327b.dismiss();
+                return;
+            case 1:
+                this.f26327b.dismiss();
+                return;
+            case 2:
+                this.f26327b.dismiss();
+                return;
+            case 3:
+                v41 v41Var = this.f26327b;
+                CharSequence charSequence = v41Var.f28917c0;
+                if (charSequence != null) {
+                    v41Var.f28918d0.run(charSequence);
+                }
+                v41Var.dismiss();
+                return;
+            default:
+                v41.P(this.f26327b, view);
+                return;
         }
     }
 }

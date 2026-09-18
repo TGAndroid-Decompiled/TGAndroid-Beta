@@ -2,12 +2,12 @@ package ci;
 public final class v4 implements Runnable {
     public final int f5651a;
     public final r6 f5652b;
-    public final qg.e2 f5653c;
+    public final qg.b2 f5653c;
 
-    public v4(r6 r6Var, qg.e2 e2Var, int i10) {
+    public v4(r6 r6Var, qg.b2 b2Var, int i10) {
         this.f5651a = i10;
         this.f5652b = r6Var;
-        this.f5653c = e2Var;
+        this.f5653c = b2Var;
     }
 
     @Override

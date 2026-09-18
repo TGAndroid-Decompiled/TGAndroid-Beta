@@ -1,83 +1,30 @@
 package org.telegram.ui;
+public final class ya implements Runnable {
+    public final int f39764a;
+    public final vb f39765b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class ya implements RequestDelegate {
-    public final int f39845a;
-    public final wb f39846b;
-
-    public ya(wb wbVar, int i10) {
-        this.f39845a = i10;
-        this.f39846b = wbVar;
+    public ya(vb vbVar, int i10) {
+        this.f39764a = i10;
+        this.f39765b = vbVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39845a) {
+    public final void run() {
+        switch (this.f39764a) {
             case 0:
-                if (tLObject != null) {
-                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final wb wbVar = this.f39846b;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            switch (r3) {
-                                case 0:
-                                    wb.U(wbVar, tL_channels_adminLogResults);
-                                    return;
-                                default:
-                                    wb.Y(wbVar, tL_channels_adminLogResults);
-                                    return;
-                            }
-                        }
-                    });
-                    return;
-                }
+                vb vbVar = this.f39765b;
+                vbVar.G0 = Integer.MAX_VALUE;
+                vbVar.H0 = -1;
+                vbVar.d1();
+                vbVar.I0 = null;
                 return;
             case 1:
-                wb wbVar2 = this.f39846b;
-                wbVar2.getClass();
-                if (tLObject instanceof Vector) {
-                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
-                    ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (arrayList.get(i10) instanceof TLRPC.User) {
-                            arrayList2.add((TLRPC.User) arrayList.get(i10));
-                        }
-                    }
-                    wbVar2.getMessagesController().putUsers(arrayList2, false);
-                    return;
-                }
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new l4(11, this.f39846b, tLObject));
-                return;
-            case 3:
-                if (tLObject != null) {
-                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final wb wbVar3 = this.f39846b;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            switch (r3) {
-                                case 0:
-                                    wb.U(wbVar3, tL_channels_adminLogResults2);
-                                    return;
-                                default:
-                                    wb.Y(wbVar3, tL_channels_adminLogResults2);
-                                    return;
-                            }
-                        }
-                    });
-                    return;
-                }
+                vb vbVar2 = this.f39765b;
+                vbVar2.W0(false);
+                vbVar2.E.l();
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new q1(this.f39846b, tL_error, tLObject, 9));
+                this.f39765b.V0();
                 return;
         }
     }

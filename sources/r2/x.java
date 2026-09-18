@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
-import org.telegram.ui.Cells.ia;
 public final class x implements l {
-    public final MediaCodec f42034a;
-    public final j f42035b;
+    public final MediaCodec f42262a;
+    public final j f42263b;
 
     public x(MediaCodec mediaCodec, j jVar) {
-        this.f42034a = mediaCodec;
-        this.f42035b = jVar;
+        this.f42262a = mediaCodec;
+        this.f42263b = jVar;
         if (Build.VERSION.SDK_INT >= 35 && jVar != null) {
             jVar.a(mediaCodec);
         }
@@ -22,87 +21,87 @@ public final class x implements l {
 
     @Override
     public final void a(long j3, int i10, int i11, int i12) {
-        this.f42034a.queueInputBuffer(i10, 0, i11, j3, i12);
+        this.f42262a.queueInputBuffer(i10, 0, i11, j3, i12);
     }
 
     @Override
     public final void b(int i10, h2.d dVar, long j3, int i11) {
-        this.f42034a.queueSecureInputBuffer(i10, 0, dVar.f10093i, j3, i11);
+        this.f42262a.queueSecureInputBuffer(i10, 0, dVar.f10092i, j3, i11);
     }
 
     @Override
     public final void c(int i10) {
-        this.f42034a.releaseOutputBuffer(i10, false);
+        this.f42262a.releaseOutputBuffer(i10, false);
     }
 
     @Override
-    public final boolean d(ia iaVar) {
-        return false;
+    public final void d(a3.m mVar, Handler handler) {
+        this.f42262a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
     }
 
     @Override
-    public final void e(a3.m mVar, Handler handler) {
-        this.f42034a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
+    public final void e() {
+        this.f42262a.detachOutputSurface();
     }
 
     @Override
-    public final void f() {
-        this.f42034a.detachOutputSurface();
+    public final void f(int i10, long j3) {
+        this.f42262a.releaseOutputBuffer(i10, j3);
     }
 
     @Override
     public final void flush() {
-        this.f42034a.flush();
+        this.f42262a.flush();
     }
 
     @Override
-    public final void g(int i10, long j3) {
-        this.f42034a.releaseOutputBuffer(i10, j3);
+    public final int g() {
+        return this.f42262a.dequeueInputBuffer(0L);
     }
 
     @Override
     public final ByteBuffer getInputBuffer(int i10) {
-        return this.f42034a.getInputBuffer(i10);
+        return this.f42262a.getInputBuffer(i10);
     }
 
     @Override
     public final ByteBuffer getOutputBuffer(int i10) {
-        return this.f42034a.getOutputBuffer(i10);
+        return this.f42262a.getOutputBuffer(i10);
     }
 
     @Override
     public final MediaFormat getOutputFormat() {
-        return this.f42034a.getOutputFormat();
+        return this.f42262a.getOutputFormat();
     }
 
     @Override
-    public final int h() {
-        return this.f42034a.dequeueInputBuffer(0L);
-    }
-
-    @Override
-    public final int i(MediaCodec.BufferInfo bufferInfo) {
+    public final int h(MediaCodec.BufferInfo bufferInfo) {
         int dequeueOutputBuffer;
         do {
-            dequeueOutputBuffer = this.f42034a.dequeueOutputBuffer(bufferInfo, 0L);
+            dequeueOutputBuffer = this.f42262a.dequeueOutputBuffer(bufferInfo, 0L);
         } while (dequeueOutputBuffer == -3);
         return dequeueOutputBuffer;
     }
 
     @Override
-    public final void j(int i10) {
-        this.f42034a.setVideoScalingMode(i10);
+    public final void i(int i10) {
+        this.f42262a.setVideoScalingMode(i10);
     }
 
     @Override
-    public final void k(Surface surface) {
-        this.f42034a.setOutputSurface(surface);
+    public final void j(Surface surface) {
+        this.f42262a.setOutputSurface(surface);
+    }
+
+    @Override
+    public final boolean k(k2.u uVar) {
+        return false;
     }
 
     @Override
     public final void release() {
-        j jVar = this.f42035b;
-        MediaCodec mediaCodec = this.f42034a;
+        j jVar = this.f42263b;
+        MediaCodec mediaCodec = this.f42262a;
         try {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 30 && i10 < 33) {
@@ -123,6 +122,6 @@ public final class x implements l {
 
     @Override
     public final void setParameters(Bundle bundle) {
-        this.f42034a.setParameters(bundle);
+        this.f42262a.setParameters(bundle);
     }
 }

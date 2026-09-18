@@ -1,46 +1,29 @@
 package yf;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.w1;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
-public final class r extends q {
-    public final void b(int i10, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i11) {
-        ArrayList arrayList = this.f46878a;
-        int size = arrayList.size();
-        int i12 = 0;
-        while (i12 < size) {
-            Object obj = arrayList.get(i12);
-            i12++;
-            TLRPC.TL_message b10 = u.b((TL_ephemeral.EphemeralMessage) obj);
-            int i13 = i10;
-            ConcurrentHashMap concurrentHashMap3 = concurrentHashMap;
-            ConcurrentHashMap concurrentHashMap4 = concurrentHashMap2;
-            MessageObject messageObject = new MessageObject(i13, (TLRPC.Message) b10, (AbstractMap<Long, TLRPC.User>) concurrentHashMap3, (AbstractMap<Long, TLRPC.Chat>) concurrentHashMap4, true, true);
-            long dialogId = MessageObject.getDialogId(b10);
-            if (i11 != 0) {
-                b10.edit_date = i11;
-                b10.flags |= 32768;
-            }
-            a0.i iVar = this.f46879b;
-            TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) iVar.f(dialogId);
-            if (tL_messages_messages == null) {
-                tL_messages_messages = new TLRPC.TL_messages_messages();
-                iVar.k(tL_messages_messages, dialogId);
-            }
-            tL_messages_messages.messages.add(b10);
-            a0.i iVar2 = this.f46880c;
-            ArrayList arrayList2 = (ArrayList) iVar2.f(dialogId);
-            if (arrayList2 == null) {
-                arrayList2 = w1.k(dialogId, iVar2);
-            }
-            arrayList2.add(messageObject);
-            i10 = i13;
-            concurrentHashMap = concurrentHashMap3;
-            concurrentHashMap2 = concurrentHashMap4;
+public class r {
+    public final ArrayList f47108a = new ArrayList();
+    public final a0.i f47109b = new a0.i();
+    public final a0.i f47110c = new a0.i();
+
+    public static void a(r rVar, TL_ephemeral.EphemeralMessage ephemeralMessage, TLRPC.TL_message tL_message, MessageObject messageObject) {
+        a0.i iVar = rVar.f47110c;
+        long dialogId = MessageObject.getDialogId(tL_message);
+        rVar.f47108a.add(ephemeralMessage);
+        a0.i iVar2 = rVar.f47109b;
+        TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) iVar2.f(dialogId);
+        if (tL_messages_messages == null) {
+            tL_messages_messages = new TLRPC.TL_messages_messages();
+            iVar2.k(tL_messages_messages, dialogId);
         }
+        tL_messages_messages.messages.add(tL_message);
+        ArrayList arrayList = (ArrayList) iVar.f(dialogId);
+        if (arrayList == null) {
+            arrayList = org.telegram.messenger.q.k(dialogId, iVar);
+        }
+        arrayList.add(messageObject);
     }
 }

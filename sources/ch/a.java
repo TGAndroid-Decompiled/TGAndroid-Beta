@@ -8,9 +8,9 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.c70;
-import yf.e0;
-public final class a implements gh.f, c70 {
+import org.telegram.ui.a70;
+import yf.f0;
+public final class a implements gh.f, a70 {
     public final int f4265a;
     public final boolean f4266b;
     public final Object f4267c;
@@ -46,7 +46,7 @@ public final class a implements gh.f, c70 {
         }
         if (this.f4266b) {
             float[] copyOf = Arrays.copyOf(cVar.f4271b, 8);
-            boolean c10 = e0.c(copyOf);
+            boolean c10 = f0.c(copyOf);
             float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
             Paint paint3 = new Paint(1);
             if (Color.alpha(dVar.f4285f) > 0 && copyOf[0] > 0.0f) {
@@ -117,7 +117,7 @@ public final class a implements gh.f, c70 {
                 i12++;
             }
         } else {
-            boolean[] zArr2 = privacyControlActivity.f31239y;
+            boolean[] zArr2 = privacyControlActivity.f31466y;
             int i13 = privacyControlActivity.I;
             if (i13 == 2) {
                 c10 = 0;
@@ -133,6 +133,6 @@ public final class a implements gh.f, c70 {
             }
         }
         privacyControlActivity.E0();
-        privacyControlActivity.f31207a.l();
+        privacyControlActivity.f31434a.l();
     }
 }

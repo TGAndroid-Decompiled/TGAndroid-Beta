@@ -1,15 +1,15 @@
 package ii;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.i70;
-import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.r70;
+import org.telegram.ui.Components.w70;
 public final class h implements Runnable {
     public final int f11399a;
-    public final n70 f11400b;
+    public final w70 f11400b;
 
-    public h(n70 n70Var, int i10) {
+    public h(w70 w70Var, int i10) {
         this.f11399a = i10;
-        this.f11400b = n70Var;
+        this.f11400b = w70Var;
     }
 
     @Override
@@ -25,44 +25,44 @@ public final class h implements Runnable {
                 this.f11400b.s();
                 return;
             case 3:
-                i70 i70Var = this.f11400b.f26377m;
-                if (i70Var != null) {
-                    AndroidUtilities.hideKeyboard(i70Var.getContentView());
+                r70 r70Var = this.f11400b.f29914m;
+                if (r70Var != null) {
+                    AndroidUtilities.hideKeyboard(r70Var.getContentView());
                     return;
                 }
                 return;
             case 4:
-                i70 i70Var2 = this.f11400b.f26377m;
-                if (i70Var2 != null) {
-                    AndroidUtilities.hideKeyboard(i70Var2.getContentView());
+                r70 r70Var2 = this.f11400b.f29914m;
+                if (r70Var2 != null) {
+                    AndroidUtilities.hideKeyboard(r70Var2.getContentView());
                     return;
                 }
                 return;
             case 5:
-                i70 i70Var3 = this.f11400b.f26377m;
-                if (i70Var3 != null) {
-                    AndroidUtilities.hideKeyboard(i70Var3.getContentView());
+                r70 r70Var3 = this.f11400b.f29914m;
+                if (r70Var3 != null) {
+                    AndroidUtilities.hideKeyboard(r70Var3.getContentView());
                     return;
                 }
                 return;
             case 6:
-                i70 i70Var4 = this.f11400b.f26377m;
-                if (i70Var4 != null) {
-                    AndroidUtilities.hideKeyboard(i70Var4.getContentView());
+                r70 r70Var4 = this.f11400b.f29914m;
+                if (r70Var4 != null) {
+                    AndroidUtilities.hideKeyboard(r70Var4.getContentView());
                     return;
                 }
                 return;
             case 7:
-                i70 i70Var5 = this.f11400b.f26377m;
-                if (i70Var5 != null) {
-                    AndroidUtilities.hideKeyboard(i70Var5.getContentView());
+                r70 r70Var5 = this.f11400b.f29914m;
+                if (r70Var5 != null) {
+                    AndroidUtilities.hideKeyboard(r70Var5.getContentView());
                     return;
                 }
                 return;
             default:
-                i70 i70Var6 = this.f11400b.f26377m;
-                if (i70Var6 != null) {
-                    AndroidUtilities.hideKeyboard(i70Var6.getContentView());
+                r70 r70Var6 = this.f11400b.f29914m;
+                if (r70Var6 != null) {
+                    AndroidUtilities.hideKeyboard(r70Var6.getContentView());
                     return;
                 }
                 return;

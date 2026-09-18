@@ -1,41 +1,22 @@
 package tg;
 
-import android.util.Pair;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.Utilities;
-public final class y0 implements Utilities.Callback {
-    public final int f43270a;
-    public final a1 f43271b;
-    public final boolean f43272c;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.e6;
+public final class y0 extends xg.i {
+    public final z0 J;
 
-    public y0(a1 a1Var, boolean z10, int i10) {
-        this.f43270a = i10;
-        this.f43271b = a1Var;
-        this.f43272c = z10;
+    public y0(z0 z0Var, Context context, e6 e6Var) {
+        super(context, e6Var);
+        this.J = z0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43270a) {
-            case 0:
-                List list = (List) obj;
-                a1 a1Var = this.f43271b;
-                ArrayList arrayList = a1Var.f43097g0;
-                if (this.f43272c) {
-                    a1Var.f43098h0.addAll(list);
-                }
-                if (a1Var.f43107r0 == 1) {
-                    arrayList.clear();
-                    arrayList.addAll(list);
-                    a1Var.b0(true, true);
-                    a1Var.X(true);
-                    return;
-                }
-                return;
-            default:
-                a1.P(this.f43271b, this.f43272c, (Pair) obj);
-                return;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        int dp = AndroidUtilities.dp(78.0f) + getMeasuredHeight();
+        z0 z0Var = this.J;
+        z0Var.f43496p0 = dp;
+        z0Var.f43495o0.G();
     }
 }

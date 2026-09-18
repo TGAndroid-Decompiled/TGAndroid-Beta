@@ -1,30 +1,38 @@
 package yh;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.bo;
-public final class w6 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.g3[] f47972a;
-    public final long f47973b;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.id0;
+public final class w6 implements TextWatcher {
+    public boolean f48185a;
+    public int f48186b = 2;
+    public final EditTextBoldCursor f48187c;
+    public final id0 d;
+    public final long e;
+    public final boolean f48188f;
+    public final ci.d h;
+    public final TextView f48189n;
 
-    public w6(org.telegram.ui.ActionBar.g3[] g3VarArr, long j3) {
-        this.f47972a = g3VarArr;
-        this.f47973b = j3;
+    public w6(EditTextBoldCursor editTextBoldCursor, id0 id0Var, long j3, boolean z10, ci.d dVar, TextView textView) {
+        this.f48187c = editTextBoldCursor;
+        this.d = id0Var;
+        this.e = j3;
+        this.f48188f = z10;
+        this.h = dVar;
+        this.f48189n = textView;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f47972a[0].dismiss();
-        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(bo.R9(this.f47973b));
-        }
+    public final void afterTextChanged(android.text.Editable r11) {
+        throw new UnsupportedOperationException("Method not decompiled: yh.w6.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

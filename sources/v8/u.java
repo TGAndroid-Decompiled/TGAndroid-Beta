@@ -1,19 +1,41 @@
 package v8;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import w7.e0;
-public final class u extends o6.a {
-    public static final Parcelable.Creator<u> CREATOR = new r(5);
-    public String f44297a;
-    public Bundle f44298b;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.SparseArray;
+import com.google.android.gms.internal.cast.c0;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.atomic.AtomicInteger;
+public final class u implements OnCompleteListener, Runnable {
+    public static final c0 d = new Handler(Looper.getMainLooper());
+    public static final SparseArray e = new SparseArray(2);
+    public static final AtomicInteger f44524f = new AtomicInteger();
+    public int f44525a;
+    public v f44526b;
+    public Task f44527c;
+
+    public final void a() {
+        if (this.f44527c != null && this.f44526b != null) {
+            e.delete(this.f44525a);
+            d.removeCallbacks(this);
+            v vVar = this.f44526b;
+            if (vVar != null) {
+                Task task = this.f44527c;
+                int i10 = v.d;
+                vVar.a(task);
+            }
+        }
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 2, this.f44297a);
-        e0.b(parcel, 3, this.f44298b);
-        e0.r(parcel, q6);
+    public final void onComplete(Task task) {
+        this.f44527c = task;
+        a();
+    }
+
+    @Override
+    public final void run() {
+        e.delete(this.f44525a);
     }
 }

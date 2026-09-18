@@ -7,16 +7,16 @@ import android.widget.Button;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.iq0;
-import org.telegram.ui.Components.tg;
+import org.telegram.ui.Components.ug;
+import org.telegram.ui.Components.vq0;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.wy;
-public final class y1 extends tg {
+import org.telegram.ui.uy;
+public final class y1 extends ug {
     public final int f11776l0;
     public final Object m0;
 
-    public y1(Object obj, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
-        super(i10, context, f6Var, true);
+    public y1(Object obj, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
+        super(i10, context, e6Var, true);
         this.f11776l0 = i11;
         this.m0 = obj;
     }
@@ -41,12 +41,12 @@ public final class y1 extends tg {
     public final boolean f() {
         switch (this.f11776l0) {
             case 0:
-                if (!((d2) this.m0).L0 && this.f28094r <= 0) {
+                if (!((d2) this.m0).L0 && this.f28703r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((b4) this.m0).W && this.f28094r <= 0) {
+                if (!((b4) this.m0).W && this.f28703r <= 0) {
                     return false;
                 }
                 return true;
@@ -65,12 +65,12 @@ public final class y1 extends tg {
         Object obj = this.m0;
         switch (i10) {
             case 2:
-                return ((iq0) obj).getThemedColor(j6.S5);
+                return ((vq0) obj).getThemedColor(j6.S5);
             case 3:
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = j6.f19273zf;
+                int i11 = j6.f19473zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).z1(i11);
         }
@@ -95,7 +95,7 @@ public final class y1 extends tg {
         switch (this.f11776l0) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((wy) this.m0).I2.size(), new Object[0]));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((uy) this.m0).I2.size(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
@@ -106,8 +106,8 @@ public final class y1 extends tg {
         }
     }
 
-    public y1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
-        super(i10, context, f6Var, false);
+    public y1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
+        super(i10, context, e6Var, false);
         this.f11776l0 = i11;
         this.m0 = notificationCenterDelegate;
     }

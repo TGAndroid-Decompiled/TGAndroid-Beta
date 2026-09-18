@@ -35,7 +35,7 @@ public final class c0 extends VideoPlayerHolderBase {
                 TextureView textureView = z1Var.J;
                 if (textureView != null && !z1Var.F) {
                     textureView.setAlpha(0.0f);
-                    textureView.animate().alpha(1.0f).setListener(new qg.n0(this, 4)).setDuration(200L);
+                    textureView.animate().alpha(1.0f).setListener(new pg.d0(this, 5)).setDuration(200L);
                     return;
                 }
                 return;

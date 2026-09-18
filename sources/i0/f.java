@@ -66,16 +66,16 @@ public class f extends h8 {
         h();
         try {
             Object newInstance = f10600b.newInstance(null);
-            for (h0.f fVar : eVar.f10055a) {
+            for (h0.f fVar : eVar.f10054a) {
                 File d10 = i8.d(context);
                 if (d10 == null) {
                     return null;
                 }
                 try {
-                    if (!i8.b(d10, resources, fVar.f10059f)) {
+                    if (!i8.b(d10, resources, fVar.f10058f)) {
                         return null;
                     }
-                    if (!g(newInstance, d10.getPath(), fVar.f10057b, fVar.f10058c)) {
+                    if (!g(newInstance, d10.getPath(), fVar.f10056b, fVar.f10057c)) {
                         return null;
                     }
                     d10.delete();
@@ -105,7 +105,7 @@ public class f extends h8 {
         String readlink;
         if (iVarArr.length >= 1) {
             try {
-                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f15328a, "r", null);
+                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f15457a, "r", null);
                 if (openFileDescriptor == null) {
                     if (openFileDescriptor != null) {
                         openFileDescriptor.close();

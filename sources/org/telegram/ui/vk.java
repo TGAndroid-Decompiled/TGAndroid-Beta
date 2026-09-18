@@ -1,20 +1,22 @@
 package org.telegram.ui;
-public final class vk extends org.telegram.ui.Components.pk0 {
-    public final bo f38468l;
 
-    public vk(bo boVar, vj vjVar, yj yjVar) {
-        super(vjVar, yjVar);
-        this.f38468l = boVar;
+import org.telegram.messenger.NotificationCenter;
+public final class vk implements NotificationCenter.PostponeNotificationCallback {
+    public final zn f38589a;
+
+    public vk(zn znVar) {
+        this.f38589a = znVar;
     }
 
-    public final void f(int i10) {
-        if (this.f38468l.Pa) {
-            if (i10 == 0) {
-                i10 = 1;
-            } else if (i10 == 1) {
-                i10 = 0;
+    @Override
+    public final boolean needPostpone(int i10, int i11, Object[] objArr) {
+        if (i10 == NotificationCenter.didReceiveNewMessages) {
+            long longValue = ((Long) objArr[0]).longValue();
+            zn znVar = this.f38589a;
+            if (znVar.H6 && longValue == znVar.T5) {
+                return true;
             }
         }
-        this.f27064b = i10;
+        return false;
     }
 }

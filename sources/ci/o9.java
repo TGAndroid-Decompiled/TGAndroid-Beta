@@ -30,7 +30,7 @@ public final class o9 implements View.OnClickListener {
         int i16;
         int i17;
         int i18;
-        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         switch (this.f5194a) {
             case 0:
                 ba baVar = this.f5195b;
@@ -39,7 +39,7 @@ public final class o9 implements View.OnClickListener {
                 ia iaVar = baVar.W;
                 d dVar = baVar.v;
                 if (!dVar.N) {
-                    i10 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                    i10 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                     HashMap hashMap2 = iaVar.e;
                     ArrayList arrayList2 = iaVar.d;
                     HashMap hashMap3 = iaVar.f4812r;
@@ -55,9 +55,9 @@ public final class o9 implements View.OnClickListener {
                         return;
                     } else if (i19 == 1) {
                         TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
-                        tL_editCloseFriends.f18171id.addAll(arrayList);
+                        tL_editCloseFriends.f18346id.addAll(arrayList);
                         dVar.setLoading(true);
-                        i18 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                        i18 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                         ConnectionsManager.getInstance(i18).sendRequest(tL_editCloseFriends, new ai.v1(7, baVar, messagesController));
                         return;
                     } else if (i19 == 0) {
@@ -65,7 +65,7 @@ public final class o9 implements View.OnClickListener {
                         if (i20 == 3) {
                             HashSet l1 = ia.l1(arrayList3, hashMap3);
                             int i21 = iaVar.N;
-                            i17 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                            i17 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                             gaVar = new ga(i21, i17, new ArrayList(l1));
                             ArrayList arrayList4 = gaVar.f4727c;
                             arrayList4.clear();
@@ -74,15 +74,15 @@ public final class o9 implements View.OnClickListener {
                             hashMap4.clear();
                             hashMap4.putAll(hashMap3);
                         } else if (i20 == 2) {
-                            i16 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                            i16 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                             gaVar = new ga(i20, i16, iaVar.h);
                         } else if (i20 != 4) {
-                            i14 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                            i14 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                             gaVar = new ga(i20, i14, (ArrayList) null);
                         } else {
                             HashSet l12 = ia.l1(arrayList2, hashMap2);
                             int i22 = iaVar.N;
-                            i15 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                            i15 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                             gaVar = new ga(i22, i15, new ArrayList(l12));
                             ArrayList arrayList5 = gaVar.f4727c;
                             arrayList5.clear();
@@ -96,7 +96,7 @@ public final class o9 implements View.OnClickListener {
                     } else if (i19 == 2) {
                         if (iaVar.Z) {
                             iaVar.f1();
-                            i13 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                            i13 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                             iaVar.g1(new ga(2, i13, arrayList), new ai.s5(iaVar, 1), false);
                             return;
                         }
@@ -108,7 +108,7 @@ public final class o9 implements View.OnClickListener {
                             HashSet l13 = ia.l1(arrayList, hashMap);
                             if (!l13.isEmpty()) {
                                 iaVar.f1();
-                                i12 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                                i12 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                                 ga gaVar2 = new ga(3, i12, new ArrayList(l13));
                                 ArrayList arrayList6 = gaVar2.f4727c;
                                 arrayList6.clear();
@@ -131,7 +131,7 @@ public final class o9 implements View.OnClickListener {
                     } else if (i19 == 6) {
                         HashSet l14 = ia.l1(arrayList, hashMap);
                         dVar.setLoading(true);
-                        i11 = ((org.telegram.ui.ActionBar.g3) iaVar).currentAccount;
+                        i11 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                         ai.l9 storiesController = MessagesController.getInstance(i11).getStoriesController();
                         p9 p9Var = new p9(baVar, 1);
                         int i23 = storiesController.f1193a;
@@ -151,7 +151,7 @@ public final class o9 implements View.OnClickListener {
                             TLRPC.InputPeer inputPeer = MessagesController.getInstance(i23).getInputPeer(l4.longValue());
                             if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerEmpty)) {
                                 hashSet.add(l4);
-                                tL_contacts_setBlocked.f18168id.add(inputPeer);
+                                tL_contacts_setBlocked.f18343id.add(inputPeer);
                             }
                         }
                         storiesController.N = hashSet.size() + storiesController.N;
@@ -175,8 +175,8 @@ public final class o9 implements View.OnClickListener {
                     return;
                 }
                 Context context = baVar2.getContext();
-                f6Var = ((org.telegram.ui.ActionBar.g3) iaVar2).resourcesProvider;
-                ia iaVar3 = new ia(context, f6Var);
+                e6Var = ((org.telegram.ui.ActionBar.f3) iaVar2).resourcesProvider;
+                ia iaVar3 = new ia(context, e6Var);
                 iaVar3.V = new q9(baVar2, 1);
                 iaVar3.Q = iaVar2.Q;
                 iaVar3.show();

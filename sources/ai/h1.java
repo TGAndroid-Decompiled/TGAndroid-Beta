@@ -11,10 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.m70;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.qr;
-public final class h1 extends FrameLayout implements m70 {
+import org.telegram.ui.Components.v70;
+public final class h1 extends FrameLayout implements v70 {
     public final TextView E;
     public final TextView F;
     public final oq[] G;
@@ -34,8 +34,8 @@ public final class h1 extends FrameLayout implements m70 {
     public final vh.o f934r;
     public final vh.o f935s;
     public CharSequence v;
-    public final org.telegram.ui.Components.u9 f936w;
-    public final org.telegram.ui.Components.f9 f937x;
+    public final org.telegram.ui.Components.w9 f936w;
+    public final org.telegram.ui.Components.h9 f937x;
     public final vh.o f938y;
 
     public h1(int i10, Context context, boolean z10) {
@@ -51,54 +51,54 @@ public final class h1 extends FrameLayout implements m70 {
         d1 d1Var = new d1(this, context);
         this.h = d1Var;
         d1Var.setOrientation(0);
-        addView(d1Var, w7.x5.d(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
-        this.f937x = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.f6) null);
-        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
-        this.f936w = u9Var;
-        u9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
-        d1Var.addView(u9Var, w7.x5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
+        addView(d1Var, w7.y5.d(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
+        this.f937x = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
+        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
+        this.f936w = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
+        d1Var.addView(w9Var, w7.y5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        d1Var.addView(linearLayout, w7.x5.p(-2, -2, 1.0f, 51, 4, 3, 7, 3));
+        d1Var.addView(linearLayout, w7.y5.p(-2, -2, 1.0f, 51, 4, 3, 7, 3));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.f933n = linearLayout2;
         linearLayout2.setOrientation(0);
         linearLayout2.setVisibility(8);
-        linearLayout.addView(linearLayout2, w7.x5.n(-2, -2));
+        linearLayout.addView(linearLayout2, w7.y5.n(-2, -2));
         vh.o oVar = new vh.o(context);
         this.f934r = oVar;
         oVar.setTextColor(-1);
         oVar.setTextSize(1, 14.0f);
         oVar.setGravity(3);
         oVar.setTypeface(AndroidUtilities.bold());
-        linearLayout2.addView(oVar, w7.x5.p(-2, -2, 1.0f, 51, 0, 0, 16, 0));
+        linearLayout2.addView(oVar, w7.y5.p(-2, -2, 1.0f, 51, 0, 0, 16, 0));
         vh.o oVar2 = new vh.o(context);
         this.f935s = oVar2;
         oVar2.setTextColor(org.telegram.ui.ActionBar.j6.l1(0.55f, -1));
         oVar2.setTextSize(1, 12.0f);
         oVar2.setGravity(5);
-        linearLayout2.addView(oVar2, w7.x5.p(-2, -2, 0.0f, 53, 0, 0, 0, 0));
+        linearLayout2.addView(oVar2, w7.y5.p(-2, -2, 0.0f, 53, 0, 0, 0, 0));
         vh.o oVar3 = new vh.o(context);
         this.f938y = oVar3;
         oVar3.setTextColor(-1);
         oVar3.setTextSize(1, 14.0f);
         oVar3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), org.telegram.ui.ActionBar.j6.l1(0.6f, -16777216));
         NotificationCenter.listenEmojiLoading(oVar3);
-        linearLayout.addView(oVar3, w7.x5.n(-2, -2));
+        linearLayout.addView(oVar3, w7.y5.n(-2, -2));
         TextView textView = new TextView(context);
         this.E = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 11.0f);
         textView.setPadding(AndroidUtilities.dp(4.66f), 0, AndroidUtilities.dp(4.66f), 0);
         textView.setVisibility(8);
-        d1Var.addView(textView, w7.x5.p(-2, 16, 0.0f, 21, -3, 0, 6, 0));
+        d1Var.addView(textView, w7.y5.p(-2, 16, 0.0f, 21, -3, 0, 6, 0));
         TextView textView2 = new TextView(context);
         this.F = textView2;
         textView2.setTextColor(-1);
         textView2.setAlpha(0.65f);
         textView2.setTextSize(1, 11.0f);
         textView2.setVisibility(8);
-        d1Var.addView(textView2, w7.x5.p(-2, -2, 0.0f, 85, 0, 3, 10, 0));
+        d1Var.addView(textView2, w7.y5.p(-2, -2, 0.0f, 85, 0, 3, 10, 0));
     }
 
     @Override

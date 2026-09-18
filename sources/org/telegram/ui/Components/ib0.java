@@ -1,34 +1,30 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 public final class ib0 implements Runnable {
-    public final int f24923a;
-    public final jb0 f24924b;
+    public final int f24898a;
+    public final yb0 f24899b;
+    public final Context f24900c;
 
-    public ib0(jb0 jb0Var, int i10) {
-        this.f24923a = i10;
-        this.f24924b = jb0Var;
+    public ib0(yb0 yb0Var, Context context, int i10) {
+        this.f24898a = i10;
+        this.f24899b = yb0Var;
+        this.f24900c = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f24923a) {
+        switch (this.f24898a) {
             case 0:
-                jb0 jb0Var = this.f24924b;
-                if (jb0Var.W != -1) {
-                    NotificationCenter.getInstance(jb0Var.Y.f26991c0.f28681w).onAnimationFinish(jb0Var.W);
-                    jb0Var.W = -1;
-                    return;
-                }
-                return;
-            case 1:
-                this.f24924b.Y.h();
+                yb0 yb0Var = this.f24899b;
+                yb0Var.f30537c0.a(false);
+                AndroidUtilities.runOnUIThread(new ib0(yb0Var, this.f24900c, 1));
                 return;
             default:
-                jb0 jb0Var2 = this.f24924b;
-                if (jb0Var2.W != -1) {
-                    NotificationCenter.getInstance(jb0Var2.Y.f26991c0.f28681w).onAnimationFinish(jb0Var2.W);
-                    jb0Var2.W = -1;
+                Context context = this.f24900c;
+                if (AndroidUtilities.isContextSafe(context)) {
+                    new rg.x0(context, 43, this.f24899b.f30537c0.F).show();
                     return;
                 }
                 return;

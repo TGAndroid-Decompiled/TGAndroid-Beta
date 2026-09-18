@@ -1,38 +1,38 @@
 package yd;
 
 import java.util.concurrent.TimeUnit;
-import w7.m;
+import w7.n;
 public final class c {
-    public static final c f46732b;
-    public static final c f46733c;
+    public static final c f46959b;
+    public static final c f46960c;
     public static final c d;
     public static final c e;
-    public static final c f46734f;
+    public static final c f46961f;
     public static final c h;
-    public static final c[] f46735n;
-    public final TimeUnit f46736a;
+    public static final c[] f46962n;
+    public final TimeUnit f46963a;
 
     static {
         c cVar = new c("NANOSECONDS", 0, TimeUnit.NANOSECONDS);
-        f46732b = cVar;
+        f46959b = cVar;
         c cVar2 = new c("MICROSECONDS", 1, TimeUnit.MICROSECONDS);
         c cVar3 = new c("MILLISECONDS", 2, TimeUnit.MILLISECONDS);
-        f46733c = cVar3;
+        f46960c = cVar3;
         c cVar4 = new c("SECONDS", 3, TimeUnit.SECONDS);
         d = cVar4;
         c cVar5 = new c("MINUTES", 4, TimeUnit.MINUTES);
         e = cVar5;
         c cVar6 = new c("HOURS", 5, TimeUnit.HOURS);
-        f46734f = cVar6;
+        f46961f = cVar6;
         c cVar7 = new c("DAYS", 6, TimeUnit.DAYS);
         h = cVar7;
         c[] cVarArr = {cVar, cVar2, cVar3, cVar4, cVar5, cVar6, cVar7};
-        f46735n = cVarArr;
-        m.a(cVarArr);
+        f46962n = cVarArr;
+        n.a(cVarArr);
     }
 
     public c(String str, int i10, TimeUnit timeUnit) {
-        this.f46736a = timeUnit;
+        this.f46963a = timeUnit;
     }
 
     public static c valueOf(String str) {
@@ -40,6 +40,6 @@ public final class c {
     }
 
     public static c[] values() {
-        return (c[]) f46735n.clone();
+        return (c[]) f46962n.clone();
     }
 }

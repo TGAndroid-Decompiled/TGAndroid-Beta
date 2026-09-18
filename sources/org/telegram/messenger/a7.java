@@ -4,24 +4,24 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a7 implements RequestDelegate {
-    public final int f15661a;
-    public final MediaDataController f15662b;
-    public final String f15663c;
+    public final int f15837a;
+    public final MediaDataController f15838b;
+    public final String f15839c;
 
     public a7(MediaDataController mediaDataController, String str, int i10) {
-        this.f15661a = i10;
-        this.f15662b = mediaDataController;
-        this.f15663c = str;
+        this.f15837a = i10;
+        this.f15838b = mediaDataController;
+        this.f15839c = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f15661a) {
+        switch (this.f15837a) {
             case 0:
-                this.f15662b.lambda$verifyAnimatedStickerMessageInternal$70(this.f15663c, tLObject, tL_error);
+                this.f15838b.lambda$verifyAnimatedStickerMessageInternal$70(this.f15839c, tLObject, tL_error);
                 return;
             default:
-                this.f15662b.lambda$fetchStickerSetInternal$42(this.f15663c, tLObject, tL_error);
+                this.f15838b.lambda$fetchStickerSetInternal$42(this.f15839c, tLObject, tL_error);
                 return;
         }
     }

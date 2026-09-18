@@ -19,16 +19,16 @@ public final class m implements e2.h {
                 a0Var.f506y.setTextColor(this.f1223b);
                 return;
             case 1:
-                ((m4.k1) obj).f0(this.f1223b);
+                ((m4.j1) obj).f0(this.f1223b);
                 return;
             case 2:
-                ((m4.k1) obj).N(this.f1223b);
+                ((m4.j1) obj).N(this.f1223b);
                 return;
             case 3:
-                ((m4.k1) obj).j(this.f1223b);
+                ((m4.j1) obj).j(this.f1223b);
                 return;
             default:
-                ((m4.k1) obj).D0(this.f1223b);
+                ((m4.j1) obj).D0(this.f1223b);
                 return;
         }
     }

@@ -10,26 +10,26 @@ public class oz extends s4.s {
     public int S;
     public int T;
     public final int U;
-    public final ml0 V;
+    public final wl0 V;
     public boolean W;
     public boolean X;
 
-    public oz(int i10, int i11, ml0 ml0Var) {
+    public oz(int i10, int i11, wl0 wl0Var) {
         super(i10);
         this.Q = new SparseArray();
         this.R = -1;
         this.W = true;
         this.X = true;
-        this.V = ml0Var;
+        this.V = wl0Var;
         this.U = i11;
     }
 
     public final void B1() {
-        ml0 ml0Var;
+        wl0 wl0Var;
         s4.h0 adapter;
         int i10;
-        ml0 ml0Var2;
-        if (this.S > 0 && D1() && (adapter = (ml0Var = this.V).getAdapter()) != null) {
+        wl0 wl0Var2;
+        if (this.S > 0 && D1() && (adapter = (wl0Var = this.V).getAdapter()) != null) {
             int i11 = this.J;
             int h = adapter.h() - 1;
             g.p pVar = this.O;
@@ -47,43 +47,43 @@ public class oz extends s4.s {
                         z10 = true;
                     }
                     if (!z10) {
-                        ml0Var2 = ml0Var;
+                        wl0Var2 = wl0Var;
                     } else {
                         int j3 = adapter.j(i12);
                         SparseArray sparseArray = this.Q;
                         s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
                         if (c1Var == null) {
-                            c1Var = adapter.g(ml0Var, j3);
-                            View view = c1Var.f42702a;
+                            c1Var = adapter.g(wl0Var, j3);
+                            View view = c1Var.f42929a;
                             sparseArray.put(j3, c1Var);
                             if (view.getLayoutParams() == null) {
                                 view.setLayoutParams(n());
                             }
                         }
-                        View view2 = c1Var.f42702a;
+                        View view2 = c1Var.f42929a;
                         if (this.W) {
                             adapter.v(c1Var, i12);
                         }
                         s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
                         int i16 = this.T;
-                        int i17 = this.f42801k;
+                        int i17 = this.f43028k;
                         int D = D();
-                        ml0Var2 = ml0Var;
-                        view2.measure(s4.o0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.X, this.S, this.f42802l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
+                        wl0Var2 = wl0Var;
+                        view2.measure(s4.o0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.X, this.S, this.f43029l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
                         i14 += view2.getMeasuredHeight();
-                        if (i14 >= (this.S - i10) - ml0Var2.getPaddingBottom()) {
+                        if (i14 >= (this.S - i10) - wl0Var2.getPaddingBottom()) {
                             break;
                         }
                         z10 = false;
                     }
                     i12++;
-                    ml0Var = ml0Var2;
+                    wl0Var = wl0Var2;
                 } else {
-                    ml0Var2 = ml0Var;
+                    wl0Var2 = wl0Var;
                     break;
                 }
             }
-            this.R = Math.max(0, ((this.S - i14) - i10) - ml0Var2.getPaddingBottom());
+            this.R = Math.max(0, ((this.S - i14) - i10) - wl0Var2.getPaddingBottom());
         }
     }
 
@@ -162,13 +162,13 @@ public class oz extends s4.s {
         super.w1(view, i10, z10);
     }
 
-    public oz(int i10, org.telegram.ui.q50 q50Var) {
+    public oz(int i10, org.telegram.ui.o50 o50Var) {
         super(i10, false);
         this.Q = new SparseArray();
         this.R = -1;
         this.W = true;
         this.X = true;
-        this.V = q50Var;
+        this.V = o50Var;
         this.U = 0;
     }
 }

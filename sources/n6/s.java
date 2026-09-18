@@ -7,24 +7,24 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 public final class s implements Handler.Callback {
-    public final a4.m f15092a;
-    public final com.google.android.gms.internal.cast.c0 f15096n;
-    public final ArrayList f15093b = new ArrayList();
-    public final ArrayList f15094c = new ArrayList();
+    public final a4.m f15267a;
+    public final com.google.android.gms.internal.cast.c0 f15271n;
+    public final ArrayList f15268b = new ArrayList();
+    public final ArrayList f15269c = new ArrayList();
     public final ArrayList d = new ArrayList();
     public volatile boolean e = false;
-    public final AtomicInteger f15095f = new AtomicInteger(0);
+    public final AtomicInteger f15270f = new AtomicInteger(0);
     public boolean h = false;
-    public final Object f15097r = new Object();
+    public final Object f15272r = new Object();
 
     public s(Looper looper, a4.m mVar) {
-        this.f15092a = mVar;
-        this.f15096n = new com.google.android.gms.internal.cast.c0(looper, this);
+        this.f15267a = mVar;
+        this.f15271n = new com.google.android.gms.internal.cast.c0(looper, this);
     }
 
     public final void a(com.google.android.gms.common.api.l lVar) {
         l.h(lVar);
-        synchronized (this.f15097r) {
+        synchronized (this.f15272r) {
             try {
                 if (this.d.contains(lVar)) {
                     String valueOf = String.valueOf(lVar);
@@ -43,9 +43,9 @@ public final class s implements Handler.Callback {
         int i10 = message.what;
         if (i10 == 1) {
             com.google.android.gms.common.api.k kVar = (com.google.android.gms.common.api.k) message.obj;
-            synchronized (this.f15097r) {
+            synchronized (this.f15272r) {
                 try {
-                    if (this.e && this.f15092a.v0() && this.f15093b.contains(kVar)) {
+                    if (this.e && this.f15267a.s0() && this.f15268b.contains(kVar)) {
                         kVar.onConnected(null);
                     }
                 } catch (Throwable th2) {
@@ -54,7 +54,7 @@ public final class s implements Handler.Callback {
             }
             return true;
         }
-        Log.wtf("GmsClientEvents", hg.k0.i(i10, "Don't know how to handle message: "), new Exception());
+        Log.wtf("GmsClientEvents", hg.k0.h(i10, "Don't know how to handle message: "), new Exception());
         return false;
     }
 }

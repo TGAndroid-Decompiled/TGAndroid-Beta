@@ -2,9 +2,9 @@ package i2;
 
 import android.os.Bundle;
 import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.gh0;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.fh0;
 public final class x implements e2.m, p.a, GenericProvider {
     public final int f10916a;
     public final boolean f10917b;
@@ -15,8 +15,8 @@ public final class x implements e2.m, p.a, GenericProvider {
     }
 
     @Override
-    public oc c(vc vcVar) {
-        return vcVar.k(this.f10917b);
+    public qc c(xc xcVar) {
+        return xcVar.k(this.f10917b);
     }
 
     @Override
@@ -35,8 +35,8 @@ public final class x implements e2.m, p.a, GenericProvider {
     public Object provide(Object obj) {
         Void r22 = (Void) obj;
         Bundle i10 = a4.a.i("afterSignup", this.f10917b);
-        gh0 gh0Var = new gh0();
-        gh0Var.l0(i10);
-        return gh0Var;
+        fh0 fh0Var = new fh0();
+        fh0Var.l0(i10);
+        return fh0Var;
     }
 }

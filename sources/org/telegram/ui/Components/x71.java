@@ -1,63 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class x71 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29881a;
-    public final j81 f29882b;
+import org.telegram.ui.PhotoViewer;
+public final class x71 implements Runnable {
+    public final int f30276a;
+    public final b81 f30277b;
 
-    public x71(j81 j81Var, int i10) {
-        this.f29881a = i10;
-        this.f29882b = j81Var;
+    public x71(b81 b81Var, int i10) {
+        this.f30276a = i10;
+        this.f30277b = b81Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29881a) {
+    public final void run() {
+        switch (this.f30276a) {
             case 0:
-                j81 j81Var = this.f29882b;
-                j81Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View[] viewArr = j81Var.e;
-                View view = viewArr[1];
-                if (view != null) {
-                    if (j81Var.f25190y) {
-                        j81Var.F(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
-                        View view2 = viewArr[0];
-                        j81Var.F(view2, (-view2.getMeasuredWidth()) * floatValue);
-                    } else {
-                        j81Var.F(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
-                        View view3 = viewArr[0];
-                        j81Var.F(view3, view3.getMeasuredWidth() * floatValue);
-                    }
-                    j81Var.f25183c = floatValue;
-                    j81Var.x(true);
-                    z71 z71Var = j81Var.M;
-                    if (z71Var != null) {
-                        z71Var.v.invalidate();
-                        j81Var.M.v.g1();
-                        j81Var.M.invalidate();
+                b81 b81Var = this.f30277b;
+                b81Var.h = 0.0f;
+                d6 d6Var = b81Var.f22880b;
+                if (d6Var != null) {
+                    d6Var.u();
+                    b81Var.f22880b = null;
+                    return;
+                }
+                return;
+            case 1:
+                b81 b81Var2 = this.f30277b;
+                b81Var2.f22878a = true;
+                b81Var2.e = null;
+                if (b81Var2.f22880b != null) {
+                    b81Var2.f22891s = true;
+                    PhotoViewer photoViewer = b81Var2.M.f37125a;
+                    if (photoViewer.f31324u3) {
+                        photoViewer.a3(true);
                         return;
                     }
                     return;
                 }
                 return;
-            case 1:
-                j81 j81Var2 = this.f29882b;
-                j81Var2.getClass();
-                j81Var2.S = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 2:
-                j81 j81Var3 = this.f29882b;
-                j81Var3.N.onAnimationUpdate(valueAnimator);
-                j81Var3.M.f24873a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j81Var3.M.v.g1();
-                j81Var3.M.invalidate();
-                return;
             default:
-                j81 j81Var4 = this.f29882b;
-                j81Var4.getClass();
-                j81Var4.S = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b81 b81Var3 = this.f30277b;
+                b81Var3.f22878a = true;
+                b81Var3.e = null;
+                if (b81Var3.f22880b != null) {
+                    b81Var3.f22891s = true;
+                    PhotoViewer photoViewer2 = b81Var3.M.f37125a;
+                    if (photoViewer2.f31324u3) {
+                        photoViewer2.a3(true);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

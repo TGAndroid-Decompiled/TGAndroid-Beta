@@ -43,16 +43,16 @@ public final class m0 extends d2 implements o0 {
         ViewTreeObserver viewTreeObserver;
         x xVar = this.O;
         boolean isShowing = xVar.isShowing();
-        q();
+        r();
         xVar.setInputMethodMode(2);
         h();
-        r1 r1Var = this.f14167c;
+        r1 r1Var = this.f14342c;
         r1Var.setChoiceMode(1);
         g0.d(r1Var, i10);
         g0.c(r1Var, i11);
         p0 p0Var = this.W;
         int selectedItemPosition = p0Var.getSelectedItemPosition();
-        r1 r1Var2 = this.f14167c;
+        r1 r1Var2 = this.f14342c;
         if (xVar.isShowing() && r1Var2 != null) {
             r1Var2.setListSelectionHidden(false);
             r1Var2.setSelection(selectedItemPosition);
@@ -73,11 +73,11 @@ public final class m0 extends d2 implements o0 {
         this.T = (j0) listAdapter;
     }
 
-    public final void q() {
+    public final void r() {
         int i10;
         int i11;
         p0 p0Var = this.W;
-        Rect rect = p0Var.f14289n;
+        Rect rect = p0Var.f14464n;
         x xVar = this.O;
         Drawable background = xVar.getBackground();
         if (background != null) {
@@ -102,17 +102,17 @@ public final class m0 extends d2 implements o0 {
             if (a2 > i13) {
                 a2 = i13;
             }
-            p(Math.max(a2, (width - paddingLeft) - paddingRight));
+            q(Math.max(a2, (width - paddingLeft) - paddingRight));
         } else if (i12 == -1) {
-            p((width - paddingLeft) - paddingRight);
+            q((width - paddingLeft) - paddingRight);
         } else {
-            p(i12);
+            q(i12);
         }
         if (s3.a(p0Var)) {
             i11 = (((width - paddingRight) - this.e) - this.V) + i10;
         } else {
             i11 = paddingLeft + this.V + i10;
         }
-        this.f14168f = i11;
+        this.f14343f = i11;
     }
 }

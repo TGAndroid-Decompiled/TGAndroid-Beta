@@ -1,30 +1,39 @@
 package org.telegram.ui;
-public final class ij extends org.telegram.ui.ActionBar.o1 {
-    public final bo f34610o;
+public final class ij extends dh.b {
+    public final int f34539n;
+    public final zn f34540r;
 
-    public ij(bo boVar, gj gjVar) {
-        super(gjVar, -2, -2);
-        this.f34610o = boVar;
+    public ij(zn znVar, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11) {
+        super(i10, e6Var);
+        this.f34539n = i11;
+        this.f34540r = znVar;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        bo boVar = this.f34610o;
-        if (boVar.Q8 == this) {
-            boVar.Q8 = null;
-            boVar.T8 = null;
-            boVar.S8 = null;
-            boVar.f32531z0.R = true;
-            if (boVar.R8) {
-                boVar.g8(false, true, 0.0f);
-            } else {
-                boVar.R8 = true;
-            }
-            nk nkVar = boVar.Y;
-            if (nkVar != null && nkVar.getEditField() != null) {
-                boVar.Y.getEditField().setAllowDrawCursor(true);
-            }
+    public final int H() {
+        int i10;
+        int i11;
+        switch (this.f34539n) {
+            case 0:
+                zn znVar = this.f34540r;
+                i10 = ((org.telegram.ui.ActionBar.n2) znVar).currentAccount;
+                if (!eh.b.c(i10, znVar.f40261ea)) {
+                    return i0.a.k(znVar.getThemedColor(org.telegram.ui.ActionBar.j6.Sd), 255);
+                }
+                if (znVar.f40261ea != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
+            default:
+                zn znVar2 = this.f34540r;
+                i11 = ((org.telegram.ui.ActionBar.n2) znVar2).currentAccount;
+                if (!eh.b.c(i11, znVar2.f40261ea)) {
+                    return i0.a.k(znVar2.getThemedColor(org.telegram.ui.ActionBar.j6.f19062d6), 255);
+                }
+                if (znVar2.f40261ea != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
         }
     }
 }

@@ -1,46 +1,46 @@
 package org.telegram.messenger.camera;
 
 import java.io.File;
-import org.telegram.ui.Cells.b2;
-import org.telegram.ui.Cells.e2;
+import org.telegram.ui.Cells.c2;
+import org.telegram.ui.Cells.f2;
 public final class i implements Runnable {
-    public final int f15859a = 0;
-    public final boolean f15860b;
-    public final boolean f15861c;
+    public final int f16038a = 0;
+    public final boolean f16039b;
+    public final boolean f16040c;
     public final Object d;
     public final Object e;
 
     public i(CameraController cameraController, Object obj, boolean z10, boolean z11) {
         this.d = cameraController;
         this.e = obj;
-        this.f15860b = z10;
-        this.f15861c = z11;
+        this.f16039b = z10;
+        this.f16040c = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f15859a) {
+        switch (this.f16038a) {
             case 0:
-                ((CameraController) this.d).lambda$stopVideoRecording$17(this.e, this.f15860b, this.f15861c);
+                ((CameraController) this.d).lambda$stopVideoRecording$17(this.e, this.f16039b, this.f16040c);
                 return;
             default:
                 String str = (String) this.e;
-                e2 e2Var = ((b2) this.d).f19836b;
-                e2Var.f20021d0 = false;
-                e2Var.f20022e0 = str;
+                f2 f2Var = ((c2) this.d).f20047b;
+                f2Var.f20243d0 = false;
+                f2Var.f20244e0 = str;
                 if (str == null) {
-                    e2Var.f20022e0 = "";
+                    f2Var.f20244e0 = "";
                 }
-                e2Var.f20024f0 = this.f15860b;
-                e2Var.f(this.f15861c, true);
+                f2Var.f20246f0 = this.f16039b;
+                f2Var.f(this.f16040c, true);
                 return;
         }
     }
 
-    public i(b2 b2Var, String str, File file, boolean z10, boolean z11) {
-        this.d = b2Var;
+    public i(c2 c2Var, String str, File file, boolean z10, boolean z11) {
+        this.d = c2Var;
         this.e = str;
-        this.f15860b = z10;
-        this.f15861c = z11;
+        this.f16039b = z10;
+        this.f16040c = z11;
     }
 }

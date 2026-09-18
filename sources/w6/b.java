@@ -1,33 +1,33 @@
 package w6;
 
 import android.content.Context;
-import v0.k;
+import k6.h;
 public final class b {
-    public static final b f44625b;
-    public k f44626a;
+    public static final b f44851b;
+    public h f44852a;
 
     static {
         ?? obj = new Object();
-        obj.f44626a = null;
-        f44625b = obj;
+        obj.f44852a = null;
+        f44851b = obj;
     }
 
-    public static k a(Context context) {
-        k kVar;
-        b bVar = f44625b;
+    public static h a(Context context) {
+        h hVar;
+        b bVar = f44851b;
         synchronized (bVar) {
             try {
-                if (bVar.f44626a == null) {
+                if (bVar.f44852a == null) {
                     if (context.getApplicationContext() != null) {
                         context = context.getApplicationContext();
                     }
-                    bVar.f44626a = new k(context, 1);
+                    bVar.f44852a = new h(context, (short) 0);
                 }
-                kVar = bVar.f44626a;
+                hVar = bVar.f44852a;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return kVar;
+        return hVar;
     }
 }

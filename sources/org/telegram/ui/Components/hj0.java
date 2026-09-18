@@ -1,27 +1,49 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
 public final class hj0 implements Runnable {
-    public final int f24678a;
-    public final qj0 f24679b;
-    public final TLObject f24680c;
+    public final int f24683a;
+    public final ij0 f24684b;
 
-    public hj0(qj0 qj0Var, TLObject tLObject, int i10) {
-        this.f24678a = i10;
-        this.f24679b = qj0Var;
-        this.f24680c = tLObject;
+    public hj0(ij0 ij0Var, int i10) {
+        this.f24683a = i10;
+        this.f24684b = ij0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24678a) {
+        switch (this.f24683a) {
             case 0:
-                qj0 qj0Var = this.f24679b;
-                NotificationCenter.getInstance(qj0Var.f27328b).doOnIdle(new hj0(qj0Var, this.f24680c, 1));
+                ij0 ij0Var = this.f24684b;
+                ij0Var.getClass();
+                try {
+                    yf.e eVar = ij0Var.B0;
+                    if (eVar != null) {
+                        eVar.b();
+                    }
+                } catch (Throwable unused) {
+                }
+                AndroidUtilities.runOnUIThread(ij0Var.f25005z0);
+                return;
+            case 1:
+                ij0 ij0Var2 = this.f24684b;
+                ij0Var2.P = null;
+                ij0Var2.p();
+                return;
+            case 2:
+                ij0.h(this.f24684b);
+                return;
+            case 3:
+                ij0.e(this.f24684b);
+                return;
+            case 4:
+                ij0.d(this.f24684b);
+                return;
+            case 5:
+                ij0.f(this.f24684b);
                 return;
             default:
-                qj0.a(this.f24679b, this.f24680c);
+                this.f24684b.m();
                 return;
         }
     }

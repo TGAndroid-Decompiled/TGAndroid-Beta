@@ -16,7 +16,7 @@ public interface p extends b2.k {
 
     long i();
 
-    void k(int i10);
+    void l(int i10);
 
     void p();
 
@@ -24,7 +24,7 @@ public interface p extends b2.k {
 
     void readFully(byte[] bArr, int i10, int i11);
 
-    boolean s(int i10, boolean z10);
-
     int skip(int i10);
+
+    boolean t(int i10, boolean z10);
 }

@@ -41,7 +41,7 @@ public final class b {
         int i17 = (int) f7;
         int i18 = i15 * 2;
         dc.b bVar = this.f11071a;
-        int i19 = bVar.f7619b;
+        int i19 = bVar.f7618b;
         int[] iArr2 = this.h;
         iArr2[0] = 0;
         iArr2[1] = 0;

@@ -1,41 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class or0 extends xh.r2 {
-    public final zu0 U;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+public final class or0 implements Runnable {
+    public final int f27044a;
+    public final org.telegram.ui.ActionBar.b2[] f27045b;
+    public final int f27046c;
+    public final int d;
 
-    public or0(int i10, long j3, Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.f6 f6Var, zu0 zu0Var) {
-        super(i10, j3, context, o2Var, f6Var);
-        this.U = zu0Var;
+    public or0(org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11, int i12) {
+        this.f27044a = i12;
+        this.f27045b = b2VarArr;
+        this.f27046c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final void p(boolean z10) {
-        float f7;
-        float f10;
-        zu0 zu0Var = this.U;
-        TextView textView = zu0Var.f30646q0;
-        textView.setVisibility(0);
-        ViewPropertyAnimator animate = textView.animate();
-        float f11 = 1.0f;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final void run() {
+        switch (this.f27044a) {
+            case 0:
+                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f27045b;
+                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+                if (b2Var != null) {
+                    final int i10 = this.f27046c;
+                    final int i11 = this.d;
+                    b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
+                                    return;
+                                default:
+                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
+                                    return;
+                            }
+                        }
+                    });
+                    b2VarArr[0].show();
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f27045b;
+                org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
+                if (b2Var2 != null) {
+                    final int i12 = this.f27046c;
+                    final int i13 = this.d;
+                    b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
+                                    return;
+                                default:
+                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
+                                    return;
+                            }
+                        }
+                    });
+                    b2VarArr2[0].show();
+                    return;
+                }
+                return;
         }
-        ViewPropertyAnimator alpha = animate.alpha(f7);
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.4f;
-        }
-        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
-        if (!z10) {
-            f11 = 0.4f;
-        }
-        scaleX.scaleY(f11).withEndAction(new bi.f(29, this, z10)).start();
-        zu0Var.q1(true);
     }
 }

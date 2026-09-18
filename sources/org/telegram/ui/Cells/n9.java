@@ -12,14 +12,14 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.g41;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.e41;
 public final class n9 implements ActionMode.Callback {
-    public String f20515a = null;
-    public final da f20516b;
+    public String f20687a = null;
+    public final da f20688b;
 
     public n9(da daVar) {
-        this.f20516b = daVar;
+        this.f20688b = daVar;
     }
 
     public final void a(Menu menu) {
@@ -29,7 +29,7 @@ public final class n9 implements ActionMode.Callback {
         if (findItem == null) {
             return;
         }
-        if (this.f20516b.f19970l0 != null && ((this.f20515a != null && !g41.Y().contains(this.f20515a)) || !LanguageDetector.hasSupport())) {
+        if (this.f20688b.f20139l0 != null && ((this.f20687a != null && !e41.Y().contains(this.f20687a)) || !LanguageDetector.hasSupport())) {
             z10 = true;
         } else {
             z10 = false;
@@ -41,8 +41,8 @@ public final class n9 implements ActionMode.Callback {
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
         MessageObject messageObject;
         CharSequence t10;
-        da daVar = this.f20516b;
-        g gVar = daVar.f19981r0;
+        da daVar = this.f20688b;
+        g gVar = daVar.f20150r0;
         if (daVar.y()) {
             int itemId = menuItem.getItemId();
             if (itemId == 16908321) {
@@ -50,7 +50,7 @@ public final class n9 implements ActionMode.Callback {
                 return true;
             } else if (itemId == 16908319) {
                 if (!daVar.K() && (t10 = daVar.t(daVar.W, false)) != null) {
-                    daVar.f19986u = 0;
+                    daVar.f20155u = 0;
                     daVar.v = t10.length();
                     daVar.v();
                     daVar.x();
@@ -59,27 +59,27 @@ public final class n9 implements ActionMode.Callback {
                     return true;
                 }
             } else if (itemId == 3) {
-                if (daVar.f19970l0 != null) {
+                if (daVar.f20139l0 != null) {
                     String language = LocaleController.getInstance().getCurrentLocale().getLanguage();
-                    org.telegram.ui.t tVar = daVar.f19970l0;
+                    org.telegram.ui.t tVar = daVar.f20139l0;
                     CharSequence s10 = daVar.s();
-                    String str = this.f20515a;
+                    String str = this.f20687a;
                     g gVar2 = new g(this, 8);
-                    org.telegram.ui.h4 h4Var = tVar.f37596a;
-                    w31.K(h4Var.L, h4Var.M, str, language, s10, null, gVar2);
+                    org.telegram.ui.h4 h4Var = tVar.f37521a;
+                    k41.K(h4Var.L, h4Var.M, str, language, s10, null, gVar2);
                 }
                 daVar.v();
                 return true;
             } else if (itemId == R.id.menu_quote) {
                 if (daVar.y()) {
                     y9 y9Var = daVar.W;
-                    if (y9Var instanceof t1) {
-                        messageObject = ((t1) y9Var).getMessageObject();
+                    if (y9Var instanceof u1) {
+                        messageObject = ((u1) y9Var).getMessageObject();
                     } else {
                         messageObject = null;
                     }
                     if (messageObject != null && daVar.s() != null) {
-                        daVar.J(daVar.f19986u, daVar.v, messageObject);
+                        daVar.J(daVar.f20155u, daVar.v, messageObject);
                         daVar.f(true);
                     }
                 }
@@ -115,7 +115,7 @@ public final class n9 implements ActionMode.Callback {
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
         if (Build.VERSION.SDK_INT < 23) {
-            this.f20516b.f(false);
+            this.f20688b.f(false);
         }
     }
 
@@ -127,23 +127,23 @@ public final class n9 implements ActionMode.Callback {
         y9 y9Var;
         MenuItem findItem = menu.findItem(R.id.menu_quote);
         if (findItem != null) {
-            findItem.setVisible(this.f20516b.e());
+            findItem.setVisible(this.f20688b.e());
         }
         MenuItem findItem2 = menu.findItem(16908321);
         if (findItem2 != null) {
-            findItem2.setVisible(this.f20516b.b());
+            findItem2.setVisible(this.f20688b.b());
         }
         MenuItem findItem3 = menu.findItem(16908319);
         boolean z10 = false;
-        if (findItem3 != null && (y9Var = (daVar = this.f20516b).W) != null) {
+        if (findItem3 != null && (y9Var = (daVar = this.f20688b).W) != null) {
             CharSequence t10 = daVar.t(y9Var, false);
-            if (!this.f20516b.b()) {
+            if (!this.f20688b.b()) {
                 findItem3.setVisible(false);
-            } else if (this.f20516b.k()) {
+            } else if (this.f20688b.k()) {
                 findItem3.setVisible(true);
             } else {
-                da daVar2 = this.f20516b;
-                if (!daVar2.Z && (daVar2.f19986u > 0 || daVar2.v < t10.length() - 1)) {
+                da daVar2 = this.f20688b;
+                if (!daVar2.Z && (daVar2.f20155u > 0 || daVar2.v < t10.length() - 1)) {
                     findItem3.setVisible(true);
                 } else {
                     findItem3.setVisible(false);
@@ -152,11 +152,11 @@ public final class n9 implements ActionMode.Callback {
         }
         MenuItem findItem4 = menu.findItem(16908320);
         if (findItem4 != null) {
-            findItem4.setVisible(this.f20516b instanceof ii.j3);
+            findItem4.setVisible(this.f20688b instanceof ii.j3);
         }
         MenuItem findItem5 = menu.findItem(16908322);
         if (findItem5 != null) {
-            da daVar3 = this.f20516b;
+            da daVar3 = this.f20688b;
             if (daVar3 instanceof ii.j3) {
                 try {
                     ca caVar = daVar3.C;
@@ -175,10 +175,10 @@ public final class n9 implements ActionMode.Callback {
             }
             findItem5.setVisible(z10);
         }
-        if (this.f20516b.f19970l0 != null && LanguageDetector.hasSupport() && this.f20516b.s() != null) {
-            LanguageDetector.detectLanguage(this.f20516b.s().toString(), new m9(this, menu), new m9(this, menu));
+        if (this.f20688b.f20139l0 != null && LanguageDetector.hasSupport() && this.f20688b.s() != null) {
+            LanguageDetector.detectLanguage(this.f20688b.s().toString(), new m9(this, menu), new m9(this, menu));
         } else {
-            this.f20515a = null;
+            this.f20687a = null;
             a(menu);
         }
         return true;

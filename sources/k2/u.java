@@ -1,157 +1,67 @@
 package k2;
 
 import ai.n8;
-import android.content.ComponentName;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.SurfaceTexture;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
-import android.os.SystemClock;
-import android.view.GestureDetector;
+import android.os.RemoteException;
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import androidx.appcompat.widget.ActionMenuView;
+import android.view.ViewConfiguration;
+import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.media3.decoder.ffmpeg.FfmpegAudioRenderer;
-import b2.s0;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import gg.b2;
 import j$.util.DesugarCollections;
-import j$.util.Objects;
 import java.io.IOException;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
-import m.e2;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.e9;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.bc0;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.eq0;
-import org.telegram.ui.Components.fo0;
-import org.telegram.ui.Components.gg0;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.hk0;
-import org.telegram.ui.Components.iq0;
-import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.te0;
-import org.telegram.ui.Components.ue0;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ThemeActivity;
-import org.telegram.ui.cc1;
-import org.telegram.ui.n9;
-import org.telegram.ui.v9;
-import org.telegram.ui.vs0;
-import org.telegram.ui.web.d1;
-import pg.a1;
-import pg.c1;
-import pg.z0;
-import s4.h1;
-import s4.p0;
-import w7.x8;
-public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e71, b2, v9, com.google.android.gms.common.api.internal.s, h1 {
-    public final int f13384a;
-    public Object f13385b;
+import org.telegram.ui.Components.b60;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.u50;
+import org.telegram.ui.Components.u71;
+import org.telegram.ui.Components.vi;
+import org.telegram.ui.Components.vq0;
+import org.telegram.ui.Components.w61;
+import pg.u0;
+import qg.v1;
+import qg.w0;
+import v7.t7;
+public final class u implements n, l.x, l.j, k1.f, d5, ah.k, r71, me.a, v1, com.google.android.gms.common.api.internal.o, s4.e0, n5.b, v0.i, com.google.android.gms.common.api.internal.s {
+    public final int f13382a;
+    public Object f13383b;
 
-    public u(Object obj, int i10) {
-        this.f13384a = i10;
-        this.f13385b = obj;
+    public u(int i10, boolean z10) {
+        this.f13382a = i10;
     }
 
     @Override
-    public boolean A(l.k kVar, MenuItem menuItem) {
-        m.k kVar2 = ((ActionMenuView) this.f13385b).P;
-        if (kVar2 != null) {
-            Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((a4.m) kVar2).f275b).W.f14034c).iterator();
-            while (it.hasNext()) {
-                if (((androidx.fragment.app.c0) it.next()).f2402a.p()) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        return false;
+    public void D(int i10, int i11) {
+        ((s4.h0) this.f13383b).p(i10, i11);
     }
 
     @Override
-    public void C(float f7, int i10) {
-        ((le.j) this.f13385b).i(f7);
-    }
-
-    @Override
-    public void D(int i10, float f7, float f10, le.e eVar) {
-        ((le.j) this.f13385b).i(f7);
-    }
-
-    @Override
-    public void E() {
-        ((k9) this.f13385b).f25598a.invalidate();
-    }
-
-    @Override
-    public a0.i F() {
-        return null;
-    }
-
-    @Override
-    public void G(l.k kVar, l.m mVar) {
-        l.e eVar = (l.e) this.f13385b;
-        Handler handler = eVar.f13728f;
-        l.d dVar = null;
-        handler.removeCallbacksAndMessages(null);
-        ArrayList arrayList = eVar.f13729n;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            if (i10 < size) {
-                if (kVar == ((l.d) arrayList.get(i10)).f13723b) {
-                    break;
-                }
-                i10++;
-            } else {
-                i10 = -1;
-                break;
-            }
-        }
-        if (i10 == -1) {
-            return;
-        }
-        int i11 = i10 + 1;
-        if (i11 < arrayList.size()) {
-            dVar = (l.d) arrayList.get(i11);
-        }
-        handler.postAtTime(new com.google.android.gms.internal.cast.p(this, dVar, mVar, kVar, false, 1), kVar, SystemClock.uptimeMillis() + 200);
-    }
-
-    @Override
-    public boolean H() {
-        return true;
-    }
-
-    @Override
-    public View I(int i10) {
-        return ((s4.o0) this.f13385b).q(i10);
-    }
-
-    @Override
-    public void J() {
+    public void G() {
         x2.p pVar;
-        FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f13385b;
+        FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f13383b;
         synchronized (ffmpegAudioRenderer.f10684a) {
             pVar = ffmpegAudioRenderer.H;
         }
@@ -161,221 +71,229 @@ public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e
     }
 
     @Override
-    public String J0() {
-        return ((d1) this.f13385b).f38753i0;
+    public void J(int i10, int i11, boolean z10) {
+        org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f13383b;
+        e0Var.l0(i10, i11, z10);
+        e0Var.dismiss();
     }
 
     @Override
-    public void K(String str) {
-        d1 d1Var = (d1) this.f13385b;
-        try {
-            d1Var.P = System.currentTimeMillis();
-            d1Var.z("qr_text_received", new JSONObject().put("data", str));
-        } catch (JSONException e) {
-            FileLog.e(e);
-        }
+    public void K(float f7) {
+        w0 w0Var = (w0) this.f13383b;
+        u0.e(w0Var.f41948a).k("-1", f7);
+        w0Var.e.setBrushSize(f7);
     }
 
     @Override
-    public void L(boolean z10) {
-        ((ue0) this.f13385b).f28373c.setAspectLock(z10);
+    public void O0(int i10, int i11) {
+        ((s4.h0) this.f13383b).t(i10, i11);
     }
 
     @Override
-    public long M() {
-        return 0L;
-    }
-
-    @Override
-    public int N(View view) {
-        return s4.o0.y(view) + ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).rightMargin;
-    }
-
-    @Override
-    public boolean O(int i10) {
-        if (i10 == ((eq0) this.f13385b).f23651r) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public long P(long j3) {
-        return 1L;
-    }
-
-    @Override
-    public void R(Exception exc) {
+    public void P(Exception exc) {
         e2.a.f("DecoderAudioRenderer", "Audio sink error", exc);
-        n4.y yVar = ((FfmpegAudioRenderer) this.f13385b).I;
-        Handler handler = (Handler) yVar.f15004b;
+        n4.y yVar = ((FfmpegAudioRenderer) this.f13383b).I;
+        Handler handler = (Handler) yVar.f15179b;
         if (handler != null) {
             handler.post(new f(yVar, exc, 1));
         }
     }
 
     @Override
-    public long S(long j3, long j10) {
-        return 1L;
+    public void S() {
+        ((FfmpegAudioRenderer) this.f13383b).Z = true;
     }
 
     @Override
-    public Object T(rd.p pVar, kd.c cVar) {
-        return ((k1.a0) this.f13385b).T(new n1.c(pVar, null, 0), cVar);
-    }
-
-    @Override
-    public void U() {
-        ((FfmpegAudioRenderer) this.f13385b).Z = true;
-    }
-
-    @Override
-    public void V(y2.j jVar, long j3, long j10, boolean z10) {
-        ((l2.g) this.f13385b).w((y2.p) jVar, j10);
-    }
-
-    public void W() {
-        a1 a1Var = ((c1) this.f13385b).d;
-        if (a1Var != null) {
-            z0 z0Var = a1Var.f40840s;
-            if (z0Var != null) {
-                a1Var.cancelRunnable(z0Var);
-                a1Var.f40840s = null;
-            }
-            z0 z0Var2 = new z0(a1Var, 1);
-            a1Var.f40840s = z0Var2;
-            a1Var.postRunnable(z0Var2, 1L);
+    public void U(ah.a aVar) {
+        switch (this.f13382a) {
+            case 12:
+                aVar.a(((vi) this.f13383b).getThemedColor(j6.f19062d6));
+                aVar.b(SharedConfig.chatBlurEnabled());
+                return;
+            default:
+                aVar.a(((vq0) this.f13383b).getThemedColor(j6.f19062d6));
+                aVar.b(SharedConfig.chatBlurEnabled());
+                return;
         }
     }
 
     @Override
-    public void X(float f7, boolean z10) {
-        cc1 cc1Var = (cc1) ((org.telegram.ui.Cells.k0) this.f13385b);
-        int i10 = (int) (j6.f19094q * 100.0f);
-        int i11 = (int) (f7 * 100.0f);
-        j6.f19094q = f7;
-        if (i10 != i11) {
-            ThemeActivity themeActivity = cc1Var.e.e;
-            wk0 wk0Var = (wk0) themeActivity.f31568b.L(themeActivity.f31575f0);
-            if (wk0Var != null) {
-                ((e9) wk0Var.f42702a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (j6.f19094q * 100.0f))));
-            }
-            j6.E(true);
-        }
-    }
-
-    @Override
-    public void Y(k kVar) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f13385b).I;
-        Handler handler = (Handler) yVar.f15004b;
+    public void V(k kVar) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f13383b).I;
+        Handler handler = (Handler) yVar.f15179b;
         if (handler != null) {
             handler.post(new h(yVar, kVar, 0));
         }
     }
 
-    public s0.c Z(int i10) {
-        return null;
-    }
-
-    public s0.c a0(int i10) {
-        return null;
+    @Override
+    public Object a(rd.p pVar, kd.c cVar) {
+        return ((k1.a0) this.f13383b).a(new n1.c(pVar, null, 0), cVar);
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f13384a) {
-            case 21:
-                r7.z zVar = (r7.z) ((r7.k) obj).u();
-                r7.f fVar = new r7.f(1, (TaskCompletionSource) obj2);
-                Parcel O0 = zVar.O0();
-                r7.d.c(O0, (g8.e) this.f13385b);
-                r7.d.d(O0, fVar);
-                O0.writeString(null);
-                zVar.S0(O0, 63);
-                return;
-            default:
-                s6.f fVar2 = new s6.f(0, (TaskCompletionSource) obj2);
-                s6.e eVar = (s6.e) ((s6.h) obj).u();
-                Parcel I0 = eVar.I0();
-                k7.a.d(I0, fVar2);
-                k7.a.c(I0, (s6.a) this.f13385b);
-                eVar.J0(I0, 1);
-                return;
+        v8.j jVar = (v8.j) this.f13383b;
+        e8.b bVar = (e8.b) obj;
+        Bundle G = bVar.G();
+        G.putBoolean("com.google.android.gms.wallet.EXTRA_USING_AUTO_RESOLVABLE_RESULT", true);
+        e8.a aVar = new e8.a(0, (TaskCompletionSource) obj2);
+        try {
+            e8.i iVar = (e8.i) bVar.u();
+            Parcel obtain = Parcel.obtain();
+            obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
+            int i10 = e8.c.f8042a;
+            obtain.writeInt(1);
+            jVar.writeToParcel(obtain, 0);
+            obtain.writeInt(1);
+            G.writeToParcel(obtain, 0);
+            obtain.writeStrongBinder(aVar);
+            iVar.f8050a.transact(19, obtain, null, 1);
+            obtain.recycle();
+        } catch (RemoteException e) {
+            Log.e("WalletClientImpl", "RemoteException getting payment data", e);
+            Bundle bundle = Bundle.EMPTY;
+            aVar.O(Status.h, null);
         }
     }
 
     @Override
-    public long b(long j3) {
-        return 0L;
-    }
-
-    public void b0(aa.a aVar) {
-        h8.j jVar = (h8.j) this.f13385b;
-        jVar.f10151a = aVar;
-        Iterator it = jVar.f10153c.iterator();
-        while (it.hasNext()) {
-            ((x6.e) it.next()).b();
-        }
-        jVar.f10153c.clear();
-        jVar.f10152b = null;
-    }
-
-    public boolean c0(int i10, int i11, Bundle bundle) {
-        return false;
-    }
-
-    @Override
-    public int d(View view) {
-        return s4.o0.x(view) - ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).leftMargin;
-    }
-
-    public void d0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f13385b;
-        if (arrayDeque.isEmpty()) {
-            return;
-        }
-        int size = arrayDeque.size();
-        long f02 = f0();
-        throw new IOException("data item not completed, stackSize: " + size + " scope: " + f02);
-    }
-
-    @Override
-    public void e(long j3) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f13385b).I;
-        Handler handler = (Handler) yVar.f15004b;
+    public void b(long j3) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f13383b).I;
+        Handler handler = (Handler) yVar.f15179b;
         if (handler != null) {
             handler.post(new ai.j(yVar, j3, 12));
         }
     }
 
-    public void e0(long j3) {
-        long f02 = f0();
-        if (f02 != j3) {
-            if (f02 != -1) {
-                if (f02 == -2) {
-                    f02 = -2;
+    public l5.j c() {
+        Context context = (Context) this.f13383b;
+        if (context != null) {
+            ?? obj = new Object();
+            obj.f14057a = n5.a.a(l5.m.f14063a);
+            a9.r rVar = new a9.r(context);
+            obj.f14058b = rVar;
+            obj.f14059c = n5.a.a(new n4.y(26, rVar, new a4.m(rVar, 29)));
+            a9.r rVar2 = obj.f14058b;
+            obj.d = new l.d(rVar2);
+            fd.a a2 = n5.a.a(new o0.a(16, obj.d, n5.a.a(new u(rVar2, 25))));
+            obj.e = a2;
+            qb.b bVar = new qb.b(19);
+            a9.r rVar3 = obj.f14058b;
+            lf.i iVar = new lf.i(rVar3, a2, bVar, 21);
+            fd.a aVar = obj.f14057a;
+            fd.a aVar2 = obj.f14059c;
+            ?? obj2 = new Object();
+            obj2.f4260a = aVar;
+            obj2.f4261b = aVar2;
+            obj2.f4262c = iVar;
+            obj2.d = a2;
+            obj2.e = a2;
+            ?? obj3 = new Object();
+            obj3.f14467a = rVar3;
+            obj3.f14468b = aVar2;
+            obj3.f14469c = a2;
+            obj3.d = iVar;
+            obj3.e = aVar;
+            obj3.f14470f = a2;
+            obj3.h = a2;
+            ?? obj4 = new Object();
+            obj4.f15716a = aVar;
+            obj4.f15717b = a2;
+            obj4.f15718c = iVar;
+            obj4.d = a2;
+            obj.f14060f = n5.a.a(new aa.a(obj2, obj3, obj4, false, 28));
+            return obj;
+        }
+        throw new IllegalStateException(Context.class.getCanonicalName() + " must be set");
+    }
+
+    @Override
+    public void d(Canvas canvas) {
+        switch (this.f13382a) {
+            case 12:
+                vi viVar = (vi) this.f13383b;
+                canvas.drawColor(viVar.getThemedColor(j6.f19062d6));
+                if (SharedConfig.chatBlurEnabled()) {
+                    viVar.C2.b(canvas, -3);
+                    return;
+                }
+                return;
+            default:
+                vq0 vq0Var = (vq0) this.f13383b;
+                canvas.drawColor(vq0Var.getThemedColor(j6.f19062d6));
+                if (SharedConfig.chatBlurEnabled()) {
+                    vq0Var.O0.b(canvas, -2);
+                    return;
+                }
+                return;
+        }
+    }
+
+    public void e() {
+        ArrayDeque arrayDeque = (ArrayDeque) this.f13383b;
+        if (arrayDeque.isEmpty()) {
+            return;
+        }
+        int size = arrayDeque.size();
+        long h = h();
+        throw new IOException("data item not completed, stackSize: " + size + " scope: " + h);
+    }
+
+    public void f(long j3) {
+        long h = h();
+        if (h != j3) {
+            if (h != -1) {
+                if (h == -2) {
+                    h = -2;
                 } else {
                     return;
                 }
             }
             StringBuilder t10 = a4.a.t(j3, "expected non-string scope or scope ", " but found ");
-            t10.append(f02);
+            t10.append(h);
             throw new IOException(t10.toString());
         }
     }
 
     @Override
-    public boolean e1(String str, n9 n9Var) {
+    public boolean forceEnableVibration() {
         return false;
     }
 
     @Override
-    public long f(long j3, long j10) {
-        return 0L;
+    public void g(l.l lVar, boolean z10) {
+        if (lVar instanceof l.e0) {
+            ((l.e0) lVar).f13872z.k().c(false);
+        }
+        l.x xVar = ((m.h) this.f13383b).e;
+        if (xVar != null) {
+            xVar.g(lVar, z10);
+        }
     }
 
-    public long f0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f13385b;
+    @Override
+    public Object mo28get() {
+        String packageName = ((Context) ((fd.a) this.f13383b).mo28get()).getPackageName();
+        if (packageName != null) {
+            return packageName;
+        }
+        throw new NullPointerException("Cannot return null from a non-@Nullable @Provides method");
+    }
+
+    @Override
+    public ce.b getData() {
+        return ((k1.a0) this.f13383b).f13153c;
+    }
+
+    @Override
+    public long getLongPressDuration() {
+        return ViewConfiguration.getLongPressTimeout();
+    }
+
+    public long h() {
+        ArrayDeque arrayDeque = (ArrayDeque) this.f13383b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -383,125 +301,101 @@ public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e
     }
 
     @Override
-    public void g0(boolean z10) {
-        ue0 ue0Var = (ue0) this.f13385b;
-        ue0Var.getClass();
-        te0 te0Var = ue0Var.f28371a;
-        if (te0Var != null) {
-            ((vs0) te0Var).a(z10);
-        }
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return " ";
-    }
-
-    @Override
-    public ce.b getData() {
-        return ((k1.a0) this.f13385b).f13153c;
-    }
-
-    @Override
-    public void h(int i10) {
-        eq0 eq0Var = (eq0) this.f13385b;
-        iq0 iq0Var = eq0Var.K;
-        eq0Var.f23652s = i10;
-        if (eq0Var.v != i10) {
-            eq0Var.d.clear();
-        }
-        int i11 = eq0Var.J;
-        if (eq0Var.h() == 0 && !eq0Var.e.e() && !eq0Var.I) {
-            iq0Var.Q.e(false, true);
-        } else {
-            iq0Var.f25017x0.b(i11);
-        }
-        eq0Var.l();
-        int i12 = iq0.f24986a1;
-        iq0Var.K0(true);
-    }
-
-    @Override
-    public boolean i() {
+    public boolean ignoreHapticFeedbackSettings(float f7, float f10) {
         return false;
     }
 
     @Override
-    public long j(long j3, long j10) {
-        return -9223372036854775807L;
-    }
-
-    @Override
-    public boolean k(float f7) {
-        return false;
-    }
-
-    @Override
-    public void k0() {
-        te0 te0Var = ((ue0) this.f13385b).f28371a;
-        if (te0Var != null) {
-            PhotoViewer photoViewer = ((vs0) te0Var).f38504a;
-            if (photoViewer.f30938c2 == 1) {
-                photoViewer.H2 = true;
-                photoViewer.p3();
-            }
-        }
-    }
-
-    @Override
-    public void l0(k kVar) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f13385b).I;
-        Handler handler = (Handler) yVar.f15004b;
+    public void j0(k kVar) {
+        n4.y yVar = ((FfmpegAudioRenderer) this.f13383b).I;
+        Handler handler = (Handler) yVar.f15179b;
         if (handler != null) {
             handler.post(new h(yVar, kVar, 1));
         }
     }
 
     @Override
-    public m2.j m(long j3) {
-        return (m2.j) this.f13385b;
+    public void k0(int i10, int i11) {
+        ((s4.h0) this.f13383b).s(i10, i11);
     }
 
     @Override
-    public int m0() {
-        return 0;
+    public void l(Object obj) {
+        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f13383b);
     }
 
     @Override
-    public k4.d n(y2.j r4, long r5, long r7, java.io.IOException r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: k2.u.n(y2.j, long, long, java.io.IOException, int):k4.d");
+    public void l1(int i10, int i11) {
+        ((s4.h0) this.f13383b).r(i10, i11, null);
     }
 
     @Override
-    public void o(y2.j jVar, long j3, long j10, int i10) {
-        u2.t tVar;
-        y2.p pVar = (y2.p) jVar;
-        l2.g gVar = (l2.g) this.f13385b;
-        if (i10 == 0) {
-            long j11 = pVar.f46326a;
-            tVar = new u2.t(pVar.f46327b);
-        } else {
-            long j12 = pVar.f46326a;
-            Uri uri = pVar.d.f9352c;
-            tVar = new u2.t(j10);
-        }
-        gVar.f13844q.s(tVar, pVar.f46328c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+    public boolean needCancelTouchBySlopMove() {
+        return true;
+    }
+
+    @Override
+    public boolean needClickAt(View view, float f7, float f10) {
+        int dp = AndroidUtilities.dp(9.0f);
+        w61 w61Var = (w61) this.f13383b;
+        float f11 = -dp;
+        w61Var.f29874g.inset(f11, f11);
+        boolean contains = w61Var.f29874g.contains(f7, f10);
+        float f12 = dp;
+        w61Var.f29874g.inset(f12, f12);
+        return contains;
+    }
+
+    @Override
+    public boolean needLongPress(float f7, float f10) {
+        return false;
+    }
+
+    @Override
+    public void o() {
+        ((FfmpegAudioRenderer) this.f13383b).f2657f0 = true;
     }
 
     @Override
     public void onAudioSessionIdChanged(int i10) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f13385b).I;
-        Handler handler = (Handler) yVar.f15004b;
+        n4.y yVar = ((FfmpegAudioRenderer) this.f13383b).I;
+        Handler handler = (Handler) yVar.f15179b;
         if (handler != null) {
             handler.post(new n8(yVar, i10, 11));
         }
     }
 
     @Override
-    public void onDismiss() {
-        d1 d1Var = (d1) this.f13385b;
-        d1Var.z("scan_qr_popup_closed", null);
-        d1Var.f38752h0 = false;
+    public void onClickAt(View view, float f7, float f10) {
+        Runnable runnable = ((w61) this.f13383b).f29876j;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public void onClickTouchDown(View view, float f7, float f10) {
+        ((w61) this.f13383b).h.c(true);
+    }
+
+    @Override
+    public void onClickTouchUp(View view, float f7, float f10) {
+        ((w61) this.f13383b).h.c(false);
+    }
+
+    @Override
+    public void onError(Object obj) {
+        w0.d e = (w0.d) obj;
+        kotlin.jvm.internal.i.e(e, "e");
+        zd.m mVar = (zd.m) this.f13383b;
+        if (mVar.w()) {
+            mVar.resumeWith(t7.a(e));
+        }
+    }
+
+    @Override
+    public boolean onLongPressRequestedAt(View view, float f7, float f10) {
+        return false;
     }
 
     @Override
@@ -509,9 +403,19 @@ public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e
     }
 
     @Override
+    public void onResult(Object obj) {
+        v0.c result = (v0.c) obj;
+        kotlin.jvm.internal.i.e(result, "result");
+        zd.m mVar = (zd.m) this.f13383b;
+        if (mVar.w()) {
+            mVar.resumeWith(result);
+        }
+    }
+
+    @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f13385b).I;
-        Handler handler = (Handler) yVar.f15004b;
+        n4.y yVar = ((FfmpegAudioRenderer) this.f13383b).I;
+        Handler handler = (Handler) yVar.f15179b;
         if (handler != null) {
             handler.post(new bi.f(7, yVar, z10));
         }
@@ -519,16 +423,17 @@ public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        hk0 hk0Var = (hk0) this.f13385b;
-        if (z10 && hk0Var.f24687n.n() >= 0) {
-            hk0Var.f24690w = true;
-        }
-        gg0 gg0Var = hk0Var.f24686f;
-        bc0 bc0Var = hk0Var.f24691x;
-        gg0Var.a(z10, true);
-        AndroidUtilities.cancelRunOnUIThread(bc0Var);
-        if (z10) {
-            AndroidUtilities.runOnUIThread(bc0Var, 16L);
+        b60 b60Var;
+        VideoEditedInfo videoEditedInfo;
+        u50 u50Var = (u50) this.f13383b;
+        u71 u71Var = u50Var.H0.R;
+        if (u71Var != null && u71Var.y() && i10 == 4 && (videoEditedInfo = (b60Var = u50Var.H0).Q) != null) {
+            u71 u71Var2 = b60Var.R;
+            long j3 = videoEditedInfo.startTime;
+            if (j3 <= 0) {
+                j3 = 0;
+            }
+            u71Var2.K(j3);
         }
     }
 
@@ -538,179 +443,51 @@ public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e
     }
 
     @Override
-    public void p() {
-        ((FfmpegAudioRenderer) this.f13385b).f2657f0 = true;
-    }
-
-    @Override
-    public void q(y2.j jVar, long j3, long j10) {
-        int size;
-        int i10;
-        long j11;
-        y2.p pVar = (y2.p) jVar;
-        l2.g gVar = (l2.g) this.f13385b;
-        long j12 = pVar.f46326a;
-        Uri uri = pVar.d.f9352c;
-        u2.t tVar = new u2.t(j10);
-        gVar.f13840m.getClass();
-        gVar.f13844q.p(tVar, pVar.f46328c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        m2.c cVar = (m2.c) pVar.f46329f;
-        m2.c cVar2 = gVar.H;
-        if (cVar2 == null) {
-            size = 0;
-        } else {
-            size = cVar2.f14412m.size();
-        }
-        long j13 = cVar.b(0).f14429b;
-        int i11 = 0;
-        while (i11 < size && gVar.H.b(i11).f14429b < j13) {
-            i11++;
-        }
-        if (cVar.d) {
-            if (size - i11 > cVar.f14412m.size()) {
-                e2.a.n("DashMediaSource", "Loaded out of sync manifest");
-            } else {
-                j11 = -9223372036854775807L;
-                long j14 = gVar.N;
-                if (j14 != -9223372036854775807L) {
-                    i10 = i11;
-                    if (cVar.h * 1000 <= j14) {
-                        e2.a.n("DashMediaSource", "Loaded stale dynamic manifest: " + cVar.h + ", " + gVar.N);
-                    }
-                } else {
-                    i10 = i11;
-                }
-                gVar.M = 0;
-            }
-            int i12 = gVar.M;
-            gVar.M = i12 + 1;
-            if (i12 < gVar.f13840m.L3(pVar.f46328c)) {
-                gVar.D.postDelayed(gVar.v, Math.min((gVar.M - 1) * 1000, 5000));
-                return;
-            }
-            gVar.C = new IOException();
+    public void r(l.l lVar) {
+        Toolbar toolbar = (Toolbar) this.f13383b;
+        m.h hVar = toolbar.f2025a.J;
+        if (hVar != null && hVar.h()) {
             return;
         }
-        i10 = i11;
-        j11 = -9223372036854775807L;
-        gVar.H = cVar;
-        gVar.I = cVar.d & gVar.I;
-        gVar.J = j3 - j10;
-        gVar.K = j3;
-        gVar.O += i10;
-        synchronized (gVar.f13847t) {
-            try {
-                if (pVar.f46327b.f9380a.equals(gVar.F)) {
-                    Uri uri2 = gVar.H.f14410k;
-                    if (uri2 == null) {
-                        uri2 = x8.a(pVar.d.f9352c);
-                    }
-                    gVar.F = uri2;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        m2.c cVar3 = gVar.H;
-        if (cVar3.d && gVar.L == j11) {
-            lf.g gVar2 = cVar3.f14408i;
-            if (gVar2 != null) {
-                String str = gVar2.f14028b;
-                if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {
-                    if (!Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2012")) {
-                        if (!Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2012")) {
-                            if (!Objects.equals(str, "urn:mpeg:dash:utc:ntp:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:ntp:2012")) {
-                                gVar.x(new IOException("Unsupported UTC timing scheme"));
-                                return;
-                            } else {
-                                gVar.v();
-                                return;
-                            }
-                        }
-                        gVar.z(gVar2, new ob.a(12));
-                        return;
-                    }
-                    gVar.z(gVar2, new Object());
-                    return;
-                }
-                try {
-                    gVar.L = e2.d0.T(gVar2.f14029c) - gVar.K;
-                    gVar.y(true);
-                    return;
-                } catch (s0 e) {
-                    gVar.x(e);
-                    return;
-                }
-            }
-            gVar.v();
-            return;
-        }
-        gVar.y(true);
-    }
-
-    @Override
-    public void s(l.k kVar, MenuItem menuItem) {
-        ((l.e) this.f13385b).f13728f.removeCallbacksAndMessages(kVar);
-    }
-
-    @Override
-    public void t(l.k kVar) {
-        ka.c cVar = ((ActionMenuView) this.f13385b).K;
-        if (cVar != null) {
-            cVar.t(kVar);
-        }
-    }
-
-    public String toString() {
-        switch (this.f13384a) {
-            case 17:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f13385b).flattenToShortString() + " }";
-            default:
-                return super.toString();
+        Iterator it = ((CopyOnWriteArrayList) toolbar.W.f14180c).iterator();
+        while (it.hasNext()) {
+            ((androidx.fragment.app.c0) it.next()).f2402a.t();
         }
     }
 
     @Override
-    public int u() {
-        return ((s4.o0) this.f13385b).D();
+    public boolean t(l.l lVar, MenuItem menuItem) {
+        ((Toolbar) this.f13383b).getClass();
+        return false;
     }
 
     @Override
-    public long v(long j3, long j10) {
-        return 0L;
-    }
-
-    @Override
-    public a0.i w() {
-        return null;
-    }
-
-    @Override
-    public int x() {
-        s4.o0 o0Var = (s4.o0) this.f13385b;
-        return o0Var.f42803m - o0Var.E();
+    public boolean v(l.l lVar) {
+        m.h hVar = (m.h) this.f13383b;
+        if (lVar == hVar.f14371c) {
+            return false;
+        }
+        ((l.e0) lVar).A.getClass();
+        hVar.getClass();
+        l.x xVar = hVar.e;
+        if (xVar == null) {
+            return false;
+        }
+        return xVar.v(lVar);
     }
 
     @Override
     public void y(int i10, long j3, long j10) {
-        n4.y yVar = ((FfmpegAudioRenderer) this.f13385b).I;
-        Handler handler = (Handler) yVar.f15004b;
+        n4.y yVar = ((FfmpegAudioRenderer) this.f13383b).I;
+        Handler handler = (Handler) yVar.f15179b;
         if (handler != null) {
             handler.post(new i(yVar, i10, j3, j10, 0));
         }
     }
 
-    @Override
-    public void z() {
-        te0 te0Var = ((ue0) this.f13385b).f28371a;
-        if (te0Var != null) {
-            ((vs0) te0Var).f38504a.f30954e0.invalidate();
-        }
-    }
-
-    public u(s6.g gVar, s6.a aVar) {
-        this.f13384a = 25;
-        this.f13385b = aVar;
+    public u(Object obj, int i10) {
+        this.f13382a = i10;
+        this.f13383b = obj;
     }
 
     @Override
@@ -718,73 +495,60 @@ public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e
     }
 
     public u(int i10) {
-        this.f13384a = i10;
+        this.f13382a = i10;
         switch (i10) {
-            case 23:
-                if (Build.VERSION.SDK_INT >= 26) {
-                    this.f13385b = new ah0(this);
-                    return;
-                } else {
-                    this.f13385b = new ah0(this);
-                    return;
-                }
-            case 27:
-                return;
-            case 29:
-                this.f13385b = new CopyOnWriteArrayList();
+            case 10:
+                this.f13383b = new SparseArray();
                 return;
             default:
-                this.f13385b = new ArrayDeque(16);
+                this.f13383b = new ArrayDeque(16);
                 return;
         }
     }
 
-    public u(Context context, GestureDetector.OnGestureListener onGestureListener) {
-        this.f13384a = 20;
-        this.f13385b = new GestureDetector(context, onGestureListener, null);
+    @Override
+    public float get() {
+        w0 w0Var = (w0) this.f13383b;
+        int i10 = w0Var.f41948a;
+        pg.m currentBrush = w0Var.e.getCurrentBrush();
+        if (currentBrush == null) {
+            return u0.e(i10).f41267i;
+        }
+        return u0.e(i10).f("-1", currentBrush.d());
+    }
+
+    @Override
+    public void onError(u71 u71Var, Exception exc) {
+        FileLog.e(exc);
+    }
+
+    public u(TextView textView) {
+        this.f13382a = 19;
+        this.f13383b = new q1.g(textView);
     }
 
     public u(Context context, n4.y yVar) {
-        this.f13384a = 7;
-        n4.x xVar = ((n4.r) yVar.f15004b).f14987c;
+        this.f13382a = 7;
+        n4.x xVar = ((n4.r) yVar.f15179b).f15162c;
         DesugarCollections.synchronizedSet(new HashSet());
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f13385b = new n4.j(context, xVar);
+            this.f13383b = new n4.j(context, xVar);
         } else {
-            this.f13385b = new n4.j(context, xVar);
+            this.f13383b = new n4.j(context, xVar);
         }
     }
 
-    @Override
-    public void B() {
+    public u(int i10, int i11) {
+        this.f13382a = 14;
+        this.f13383b = ApplicationLoader.applicationContext.getSharedPreferences(a4.a.l(i10, i11, "pip_layout_", "_"), 0);
     }
 
     @Override
-    public void a() {
+    public void f0() {
     }
 
     @Override
-    public void h0() {
-    }
-
-    @Override
-    public void l() {
-    }
-
-    @Override
-    public void r() {
-    }
-
-    @Override
-    public void Q(ArrayList arrayList) {
-    }
-
-    @Override
-    public void T0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public void g(boolean z10) {
+    public void q() {
     }
 
     @Override
@@ -800,15 +564,22 @@ public class u implements n, e2, y2.h, le.d, l.i, l2.h, k1.f, fo0, le.f, lg.o, e
     }
 
     @Override
-    public long c(long j3, long j10) {
-        return j10;
+    public void onClickTouchMove(View view, float f7, float f10) {
     }
 
     @Override
-    public void onError(h71 h71Var, Exception exc) {
+    public void onLongPressCancelled(View view, float f7, float f10) {
+    }
+
+    @Override
+    public void onLongPressFinish(View view, float f7, float f10) {
     }
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
+    }
+
+    @Override
+    public void onLongPressMove(View view, MotionEvent motionEvent, float f7, float f10, float f11, float f12) {
     }
 }

@@ -1,33 +1,34 @@
 package zg;
 
-import android.graphics.Outline;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class z extends ViewOutlineProvider {
-    public final Rect f49219a = new Rect();
-    public final RectF f49220b = new RectF();
-    public final RectF f49221c = new RectF();
-    public final c0 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.qk0;
+public final class z extends AnimatorListenerAdapter {
+    public final int f49443a;
+    public final b0 f49444b;
 
-    public z(c0 c0Var) {
-        this.d = c0Var;
+    public z(b0 b0Var, int i10) {
+        this.f49443a = i10;
+        this.f49444b = b0Var;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        c0 c0Var = this.d;
-        float lerp = AndroidUtilities.lerp(c0Var.e, AndroidUtilities.dp(8.0f), c0Var.f49017j);
-        RectF rectF = this.f49220b;
-        rectF.set(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight());
-        RectF rectF2 = c0Var.f49014f;
-        float f7 = c0Var.f49017j;
-        RectF rectF3 = this.f49221c;
-        AndroidUtilities.lerp(rectF2, rectF, f7, rectF3);
-        Rect rect = this.f49219a;
-        rectF3.round(rect);
-        outline.setRoundRect(rect, lerp);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f49443a) {
+            case 0:
+                this.f49444b.f();
+                return;
+            default:
+                b0 b0Var = this.f49444b;
+                b0.a(b0Var, false);
+                b0Var.f49232j = 0.0f;
+                qk0 qk0Var = b0Var.f49236n;
+                qk0Var.setCustomEmojiEnterProgress(Utilities.clamp(0.0f, 1.0f, 0.0f));
+                qk0Var.setSkipDraw(false);
+                b0Var.f49228c.setVisibility(8);
+                b0Var.f();
+                return;
+        }
     }
 }

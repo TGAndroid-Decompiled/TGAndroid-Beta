@@ -1,88 +1,52 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
 import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
 public final class ze extends ImageView {
-    public final int f30510a;
-    public final ChatActivityEnterView f30511b;
+    public float f30774a;
+    public final ChatActivityEnterView f30775b;
 
-    public ze(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
+    public ze(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.f30510a = i10;
-        this.f30511b = chatActivityEnterView;
+        this.f30775b = chatActivityEnterView;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f30510a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                post(new ge(this.f30511b, 5));
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
+    public final float getTranslationX() {
+        return this.f30774a;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30510a) {
-            case 2:
-                if (getAlpha() <= 0.0f) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+    public final void setTranslationX(float f7) {
+        float f10;
+        float alpha;
+        this.f30774a = f7;
+        float f11 = -44.0f;
+        float dp = AndroidUtilities.dp(-44.0f) + this.f30774a;
+        ChatActivityEnterView chatActivityEnterView = this.f30775b;
+        float f12 = dp + chatActivityEnterView.f22054y + chatActivityEnterView.f22048x;
+        bf bfVar = chatActivityEnterView.J1;
+        float f13 = 0.0f;
+        if (bfVar != null && bfVar.getVisibility() == 0) {
+            f10 = -44.0f;
+        } else {
+            f10 = 0.0f;
         }
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        switch (this.f30510a) {
-            case 0:
-                super.setAlpha(f7);
-                xe xeVar = this.f30511b.I1;
-                if (xeVar != null) {
-                    xeVar.setTranslationX(xeVar.f29903a);
-                    return;
-                }
-                return;
-            case 1:
-                super.setAlpha(f7);
-                xe xeVar2 = this.f30511b.I1;
-                if (xeVar2 != null) {
-                    xeVar2.setTranslationX(xeVar2.f29903a);
-                    return;
-                }
-                return;
-            default:
-                super.setAlpha(f7);
-                se seVar = this.f30511b.Z0;
-                if (seVar != null) {
-                    seVar.invalidate();
-                    return;
-                }
-                return;
+        float dp2 = AndroidUtilities.dp(f10);
+        bf bfVar2 = chatActivityEnterView.J1;
+        if (bfVar2 == null) {
+            alpha = 0.0f;
+        } else {
+            alpha = bfVar2.getAlpha();
         }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f30510a) {
-            case 2:
-                super.setVisibility(i10);
-                se seVar = this.f30511b.Z0;
-                if (seVar != null) {
-                    seVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
+        float f14 = (dp2 * alpha) + f12;
+        bf bfVar3 = chatActivityEnterView.f22044w1;
+        float dp3 = AndroidUtilities.dp((bfVar3 == null || bfVar3.getVisibility() != 0) ? 0.0f : 0.0f);
+        bf bfVar4 = chatActivityEnterView.f22044w1;
+        if (bfVar4 != null) {
+            f13 = bfVar4.getAlpha();
         }
+        super.setTranslationX((dp3 * f13) + f14);
     }
 }

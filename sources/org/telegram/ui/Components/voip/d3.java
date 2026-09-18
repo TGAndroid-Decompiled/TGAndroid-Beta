@@ -33,7 +33,7 @@ public final class d3 extends f4 {
         Path path = this.f4648t0;
         canvas.drawPath(path, paint);
         if (q1Var.e) {
-            paint.setShader(((Paint) q1Var.d.f7336a).getShader());
+            paint.setShader(((Paint) q1Var.d.f7329a).getShader());
             canvas.drawPath(path, paint);
         }
         canvas.restore();

@@ -5,10 +5,11 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.Components.z51;
-public final class g1 extends h5 {
-    public final u0 f38796f = new u0(this, 1);
+import org.telegram.messenger.wh;
+import org.telegram.ui.ActionBar.g5;
+import org.telegram.ui.Components.n61;
+public final class g1 extends g5 {
+    public final u0 f38904f = new u0(this, 1);
     public final h1 h;
 
     public g1(h1 h1Var) {
@@ -19,10 +20,10 @@ public final class g1 extends h5 {
         if (str != null && str2 != null) {
             String lowerCase = str.toLowerCase();
             String lowerCase2 = str2.toLowerCase();
-            if (!lowerCase.startsWith(lowerCase2) && !org.telegram.messenger.w1.w(" ", lowerCase2, lowerCase) && !org.telegram.messenger.w1.w(".", lowerCase2, lowerCase)) {
+            if (!lowerCase.startsWith(lowerCase2) && !wh.u(" ", lowerCase2, lowerCase) && !wh.u(".", lowerCase2, lowerCase)) {
                 String translitSafe = AndroidUtilities.translitSafe(lowerCase);
                 String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                if (translitSafe.startsWith(translitSafe2) || org.telegram.messenger.w1.w(" ", translitSafe2, translitSafe) || org.telegram.messenger.w1.w(".", translitSafe2, translitSafe)) {
+                if (translitSafe.startsWith(translitSafe2) || wh.u(" ", translitSafe2, translitSafe) || wh.u(".", translitSafe2, translitSafe)) {
                     return true;
                 }
                 return false;
@@ -36,16 +37,16 @@ public final class g1 extends h5 {
     public final void m() {
         int i10;
         h1 h1Var = this.h;
-        h1Var.f38817r = null;
-        h1Var.f38816n = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f38796f);
-        z51 z51Var = h1Var.f22336a;
-        if (z51Var != null) {
-            z51Var.Y2.N(true);
-            h1Var.f22336a.X2.h1(0, 0);
+        h1Var.f38917r = null;
+        h1Var.f38916n = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f38904f);
+        n61 n61Var = h1Var.f26891a;
+        if (n61Var != null) {
+            n61Var.Y2.N(true);
+            h1Var.f26891a.X2.h1(0, 0);
         }
-        vh.o oVar = h1Var.f38820x.d;
-        if (TextUtils.isEmpty(h1Var.f38817r)) {
+        vh.o oVar = h1Var.f38920x.d;
+        if (TextUtils.isEmpty(h1Var.f38917r)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -57,15 +58,15 @@ public final class g1 extends h5 {
     public final void q(EditText editText) {
         int i10;
         h1 h1Var = this.h;
-        boolean z10 = !TextUtils.isEmpty(h1Var.f38817r);
+        boolean z10 = !TextUtils.isEmpty(h1Var.f38917r);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(h1Var.f38817r, obj)) {
-            h1Var.f38817r = obj;
-            h1Var.f38816n = true;
-            u0 u0Var = this.f38796f;
+        if (!TextUtils.equals(h1Var.f38917r, obj)) {
+            h1Var.f38917r = obj;
+            h1Var.f38916n = true;
+            u0 u0Var = this.f38904f;
             AndroidUtilities.cancelRunOnUIThread(u0Var);
             AndroidUtilities.runOnUIThread(u0Var, 500L);
-            vh.o oVar = h1Var.f38820x.d;
+            vh.o oVar = h1Var.f38920x.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {
@@ -73,11 +74,11 @@ public final class g1 extends h5 {
             }
             oVar.setText(LocaleController.getString(i10));
         }
-        z51 z51Var = h1Var.f22336a;
-        if (z51Var != null) {
-            z51Var.Y2.N(true);
+        n61 n61Var = h1Var.f26891a;
+        if (n61Var != null) {
+            n61Var.Y2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                h1Var.f22336a.X2.h1(0, 0);
+                h1Var.f26891a.X2.h1(0, 0);
             }
         }
     }

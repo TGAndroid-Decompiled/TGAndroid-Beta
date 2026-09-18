@@ -1,29 +1,29 @@
 package org.telegram.messenger;
 public final class da implements Runnable {
-    public final int f15965a;
-    public final MessagesController f15966b;
-    public final int f15967c;
+    public final int f16141a;
+    public final MessagesController f16142b;
+    public final int f16143c;
 
     public da(MessagesController messagesController, int i10, int i11) {
-        this.f15965a = i11;
-        this.f15966b = messagesController;
-        this.f15967c = i10;
+        this.f16141a = i11;
+        this.f16142b = messagesController;
+        this.f16143c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f15965a) {
+        switch (this.f16141a) {
             case 0:
-                this.f15966b.lambda$updateTimerProc$157(this.f15967c);
+                this.f16142b.lambda$updateTimerProc$157(this.f16143c);
                 return;
             case 1:
-                this.f15966b.lambda$onFolderEmpty$197(this.f15967c);
+                this.f16142b.lambda$onFolderEmpty$197(this.f16143c);
                 return;
             case 2:
-                this.f15966b.lambda$ensureMessagesLoaded$462(this.f15967c);
+                this.f16142b.lambda$ensureMessagesLoaded$462(this.f16143c);
                 return;
             default:
-                this.f15966b.lambda$didAddedNewTask$81(this.f15967c);
+                this.f16142b.lambda$didAddedNewTask$81(this.f16143c);
                 return;
         }
     }

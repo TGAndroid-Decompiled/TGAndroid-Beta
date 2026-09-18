@@ -5,8 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import java.util.Arrays;
-import w7.p;
-import yf.e0;
+import w7.q;
+import yf.f0;
 public final class c {
     public int d;
     public boolean e;
@@ -26,7 +26,7 @@ public final class c {
 
     public final void a() {
         float[] fArr = this.f4271b;
-        this.f4278l = e0.c(fArr);
+        this.f4278l = f0.c(fArr);
         Rect rect = this.f4270a;
         Rect rect2 = this.f4279m;
         rect2.set(rect);
@@ -94,7 +94,7 @@ public final class c {
         if (z10) {
             float f7 = this.f4279m.top;
             float[] fArr = this.f4271b;
-            float a2 = p.a((fArr[0] * 2.0f) + f7, f7, rect.bottom);
+            float a2 = q.a((fArr[0] * 2.0f) + f7, f7, rect.bottom);
             canvas.save();
             Rect rect2 = this.f4270a;
             canvas.clipRect(rect2.left, rect2.top, rect2.right, a2);

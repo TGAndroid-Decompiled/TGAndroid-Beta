@@ -13,7 +13,7 @@ public final class i5 implements h1 {
     }
 
     @Override
-    public final void D(final i1 i1Var, final int i10, final int i11) {
+    public final void B(final i1 i1Var, final int i10, final int i11) {
         c3 c3Var;
         final q9 textSelectionHelper;
         final int k10;
@@ -39,7 +39,7 @@ public final class i5 implements h1 {
     }
 
     @Override
-    public final void M(CharSequence charSequence) {
+    public final void K(CharSequence charSequence) {
         c3 c3Var = this.f11448b.E;
         if (c3Var != null && charSequence != null && charSequence.length() > 0) {
             c3Var.f11286a.u4(charSequence.toString());
@@ -47,7 +47,7 @@ public final class i5 implements h1 {
     }
 
     @Override
-    public final void W(Editable editable) {
+    public final void U(Editable editable) {
         TL_iv.pageTableCell pagetablecell = this.f11447a.f11607b;
         if (pagetablecell != null) {
             h6.d(pagetablecell, editable);
@@ -61,7 +61,7 @@ public final class i5 implements h1 {
     }
 
     @Override
-    public final boolean b0(boolean z10) {
+    public final boolean X(boolean z10) {
         return this.f11448b.s(this.f11447a, z10);
     }
 
@@ -96,7 +96,7 @@ public final class i5 implements h1 {
     }
 
     @Override
-    public final boolean q(i1 i1Var) {
+    public final boolean p(i1 i1Var) {
         return false;
     }
 

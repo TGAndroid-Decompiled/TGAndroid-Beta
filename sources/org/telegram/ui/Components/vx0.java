@@ -1,51 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import java.util.ArrayList;
-public final class vx0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29427a;
-    public final com.google.firebase.messaging.n f29428b;
-    public final int f29429c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import java.io.Serializable;
+import java.util.HashMap;
+import org.telegram.messenger.NotificationCenter;
+public final class vx0 implements TextWatcher {
+    public final int f29784a = 0;
+    public final EditTextBoldCursor f29785b;
+    public final Serializable f29786c;
+    public final Object d;
+    public final NotificationCenter.NotificationCenterDelegate e;
 
-    public vx0(com.google.firebase.messaging.n nVar, int i10, int i11) {
-        this.f29427a = i11;
-        this.f29428b = nVar;
-        this.f29429c = i10;
+    public vx0(hy0 hy0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
+        this.e = hy0Var;
+        this.f29786c = iArr;
+        this.d = textView;
+        this.f29785b = editTextBoldCursor;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29427a) {
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        switch (this.f29784a) {
             case 0:
-                Float f7 = (Float) valueAnimator.getAnimatedValue();
-                f7.getClass();
-                ((ArrayList) this.f29428b.d).set(this.f29429c, f7);
-                return;
-            case 1:
-                Float f10 = (Float) valueAnimator.getAnimatedValue();
-                f10.getClass();
-                ((ArrayList) this.f29428b.e).set(this.f29429c, f10);
-                return;
-            case 2:
-                Float f11 = (Float) valueAnimator.getAnimatedValue();
-                f11.getClass();
-                ((ArrayList) this.f29428b.f7339f).set(this.f29429c, f11);
-                return;
-            case 3:
-                Float f12 = (Float) valueAnimator.getAnimatedValue();
-                f12.getClass();
-                ((ArrayList) this.f29428b.d).set(this.f29429c, f12);
-                return;
-            case 4:
-                Float f13 = (Float) valueAnimator.getAnimatedValue();
-                f13.getClass();
-                ((ArrayList) this.f29428b.e).set(this.f29429c, f13);
                 return;
             default:
-                Float f14 = (Float) valueAnimator.getAnimatedValue();
-                f14.getClass();
-                ((ArrayList) this.f29428b.f7339f).set(this.f29429c, f14);
+                org.telegram.ui.pn0 pn0Var = (org.telegram.ui.pn0) this.e;
+                String str = (String) this.f29786c;
+                if (((HashMap) this.d) == pn0Var.f36565t1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                EditTextBoldCursor editTextBoldCursor = this.f29785b;
+                org.telegram.ui.pn0.J0(pn0Var, editTextBoldCursor, str, editable, z10);
+                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
+                EditTextBoldCursor editTextBoldCursor2 = pn0Var.Y[intValue];
+                if (intValue == 6) {
+                    pn0Var.Y0(true);
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f29784a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f29784a) {
+            case 0:
+                if (((int[]) this.f29786c)[0] == 2) {
+                    ((hy0) this.e).m0((TextView) this.d, this.f29785b.getText().toString(), false);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    public vx0(org.telegram.ui.pn0 pn0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
+        this.e = pn0Var;
+        this.f29785b = editTextBoldCursor;
+        this.f29786c = str;
+        this.d = hashMap;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

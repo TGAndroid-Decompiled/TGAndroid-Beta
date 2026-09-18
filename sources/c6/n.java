@@ -84,7 +84,7 @@ public final class n extends o6.a {
             jSONObject.put("startIndex", this.f4024n);
             long j3 = this.f4025r;
             if (j3 != -1) {
-                Pattern pattern = g6.a.f9428a;
+                Pattern pattern = g6.a.f9427a;
                 jSONObject.put("startTime", j3 / 1000.0d);
             }
             jSONObject.put("shuffle", this.f4026s);
@@ -114,16 +114,16 @@ public final class n extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         List unmodifiableList;
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.l(parcel, 2, this.f4020a);
-        w7.e0.l(parcel, 3, this.f4021b);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.l(parcel, 2, this.f4020a);
+        w7.f0.l(parcel, 3, this.f4021b);
         int i11 = this.f4022c;
-        w7.e0.s(parcel, 4, 4);
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(i11);
-        w7.e0.l(parcel, 5, this.d);
-        w7.e0.k(parcel, 6, this.e, i10);
+        w7.f0.l(parcel, 5, this.d);
+        w7.f0.k(parcel, 6, this.e, i10);
         int i12 = this.f4023f;
-        w7.e0.s(parcel, 7, 4);
+        w7.f0.s(parcel, 7, 4);
         parcel.writeInt(i12);
         List list = this.h;
         if (list == null) {
@@ -131,16 +131,16 @@ public final class n extends o6.a {
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(list);
         }
-        w7.e0.p(parcel, 8, unmodifiableList);
+        w7.f0.p(parcel, 8, unmodifiableList);
         int i13 = this.f4024n;
-        w7.e0.s(parcel, 9, 4);
+        w7.f0.s(parcel, 9, 4);
         parcel.writeInt(i13);
         long j3 = this.f4025r;
-        w7.e0.s(parcel, 10, 8);
+        w7.f0.s(parcel, 10, 8);
         parcel.writeLong(j3);
         boolean z10 = this.f4026s;
-        w7.e0.s(parcel, 11, 4);
+        w7.f0.s(parcel, 11, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        w7.e0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 }

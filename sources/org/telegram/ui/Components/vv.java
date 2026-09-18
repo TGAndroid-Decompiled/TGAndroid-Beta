@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class vv extends u9 {
+public final class vv extends w9 {
     public final yv G;
 
     public vv(yv yvVar, Context context) {
@@ -11,7 +11,7 @@ public final class vv extends u9 {
 
     @Override
     public final void invalidate() {
-        if (zg.f0.b(this)) {
+        if (zg.e0.b(this)) {
             return;
         }
         super.invalidate();
@@ -20,7 +20,7 @@ public final class vv extends u9 {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (zg.f0.b(this)) {
+        if (zg.e0.b(this)) {
             return;
         }
         super.invalidate(i10, i11, i12, i13);

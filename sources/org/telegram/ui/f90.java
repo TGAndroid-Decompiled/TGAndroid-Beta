@@ -1,29 +1,36 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import java.util.regex.Pattern;
-public final class f90 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33592a;
-    public final LaunchActivity f33593b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class f90 implements e2.h {
+    public final int f33474a = 0;
+    public final LaunchActivity f33475b;
+    public final nf.e f33476c;
+    public final Runnable d;
+    public final Long e;
+    public final org.telegram.ui.Cells.u1 f33477f;
+    public final Object f33478g;
 
-    public f90(LaunchActivity launchActivity, int i10) {
-        this.f33592a = i10;
-        this.f33593b = launchActivity;
+    public f90(LaunchActivity launchActivity, nf.e eVar, Long l4, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.Cells.u1 u1Var, Runnable runnable) {
+        this.f33475b = launchActivity;
+        this.f33476c = eVar;
+        this.e = l4;
+        this.f33478g = tL_premium_boostsStatus;
+        this.f33477f = u1Var;
+        this.d = runnable;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f33592a;
-        LaunchActivity launchActivity = this.f33593b;
-        switch (i10) {
-            case 0:
-                launchActivity.f30873w0.invalidate();
-                return;
-            default:
-                Pattern pattern = LaunchActivity.B1;
-                launchActivity.getClass();
-                launchActivity.z0(((Integer) valueAnimator.getAnimatedValue()).intValue());
-                return;
-        }
+    public final void accept(java.lang.Object r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.f90.accept(java.lang.Object):void");
+    }
+
+    public f90(LaunchActivity launchActivity, nf.e eVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.u1 u1Var) {
+        this.f33475b = launchActivity;
+        this.f33476c = eVar;
+        this.d = runnable;
+        this.f33478g = channelBoostsController;
+        this.e = l4;
+        this.f33477f = u1Var;
     }
 }

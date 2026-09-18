@@ -4,39 +4,77 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.wl;
-import org.telegram.ui.Components.ik0;
-import w7.x5;
+import org.telegram.messenger.wh;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.sk0;
+import w7.y5;
 public final class t0 extends j {
-    public final r0 f41679q0;
-    public int f41680r0;
-    public int f41681s0;
-    public boolean f41682t0;
-    public q0 f41683u0;
+    public final s0 f41917q0;
+    public boolean f41918r0;
+    public int f41919s0;
+    public int f41920t0;
+    public TLRPC.MessageMedia f41921u0;
+    public TL_stories.MediaArea f41922v0;
 
-    public t0(Context context, PointF pointF, int i10, q0 q0Var, float f7, int i11) {
+    public t0(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f7, int i11) {
         super(context, pointF);
-        r0 r0Var = new r0(context, f7);
-        this.f41679q0 = r0Var;
-        r0Var.setMaxWidth(i11);
-        this.f41683u0 = q0Var;
-        r0Var.b(i10, q0Var, false);
-        m();
-        this.f41681s0 = 3;
-        r0Var.c(3, this.f41680r0);
-        addView(r0Var, x5.e(-2, -2, 51));
+        s0 s0Var = new s0(context, f7);
+        this.f41917q0 = s0Var;
+        s0Var.setMaxWidth(i11);
+        r(i10, messageMedia, mediaArea);
+        s0Var.e(0, this.f41919s0);
+        addView(s0Var, y5.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
         k();
     }
 
+    public static String q(double d) {
+        String str;
+        String str2;
+        String str3;
+        double abs = Math.abs(d);
+        double floor = Math.floor(abs);
+        String str4 = "";
+        String n10 = a4.a.n((int) floor, "°", new StringBuilder(""));
+        double floor2 = Math.floor((abs - floor) * 60.0d);
+        StringBuilder u10 = a4.a.u(n10);
+        if (floor2 > 0.0d) {
+            str = "";
+        } else {
+            str = "0";
+        }
+        u10.append(str);
+        if (floor2 >= 10.0d) {
+            str2 = "";
+        } else {
+            str2 = "0";
+        }
+        u10.append(str2);
+        String n11 = a4.a.n((int) floor2, "'", u10);
+        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
+        StringBuilder u11 = a4.a.u(n11);
+        if (floor3 > 0.0d) {
+            str3 = "";
+        } else {
+            str3 = "0";
+        }
+        u11.append(str3);
+        if (floor3 < 10.0d) {
+            str4 = "0";
+        }
+        u11.append(str4);
+        return a4.a.n((int) floor3, "\"", u11);
+    }
+
     @Override
     public final i a() {
-        return new s0(this, getContext());
+        return new p0(this, getContext());
     }
 
     public int getColor() {
-        return this.f41680r0;
+        return this.f41919s0;
     }
 
     @Override
@@ -44,16 +82,8 @@ public final class t0 extends j {
         return 1.5f;
     }
 
-    public int getNextType() {
-        int i10 = this.f41681s0 + 1;
-        if (i10 == 4) {
-            return !this.f41682t0 ? 1 : 0;
-        }
-        return i10;
-    }
-
     @Override
-    public ik0 getSelectionBounds() {
+    public sk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -63,32 +93,36 @@ public final class t0 extends j {
         float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float u10 = wl.u(dp, 2.0f, getPositionX(), scaleX);
-        return new ik0(u10, wl.u(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + u10) - u10, dp2 * scaleX);
+        float x10 = wh.x(dp, 2.0f, getPositionX(), scaleX);
+        return new sk0(x10, wh.x(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + x10) - x10, dp2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f41679q0.h;
+        return this.f41917q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f41679q0.f41635f;
+        return this.f41917q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f41679q0.f41635f;
+        return this.f41917q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f41679q0.h;
+        return this.f41917q0.J;
     }
 
     public int getType() {
-        return this.f41681s0;
+        return this.f41920t0;
+    }
+
+    public int getTypesCount() {
+        return this.f41917q0.getTypesCount() - (!this.f41918r0 ? 1 : 0);
     }
 
     @Override
@@ -103,17 +137,58 @@ public final class t0 extends j {
         k();
     }
 
+    public final void r(int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
+        String str;
+        String str2;
+        String str3;
+        this.f41921u0 = messageMedia;
+        this.f41922v0 = mediaArea;
+        String str4 = null;
+        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
+            TLRPC.GeoPoint geoPoint = messageMedia.geo;
+            double d = geoPoint.lat;
+            double d10 = geoPoint._long;
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(q(d));
+            if (d > 0.0d) {
+                str2 = "N";
+            } else {
+                str2 = "S";
+            }
+            sb2.append(str2);
+            sb2.append(" ");
+            sb2.append(q(d10));
+            if (d10 > 0.0d) {
+                str3 = "E";
+            } else {
+                str3 = "W";
+            }
+            sb2.append(str3);
+            str = sb2.toString();
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            String upperCase = messageMedia.title.toUpperCase();
+            str4 = ((TLRPC.TL_messageMediaVenue) messageMedia).emoji;
+            str = upperCase;
+        } else {
+            str = "";
+        }
+        s0 s0Var = this.f41917q0;
+        s0Var.d(i10, str4);
+        s0Var.setText(str);
+        m();
+    }
+
     public void setColor(int i10) {
-        this.f41682t0 = true;
-        this.f41680r0 = i10;
+        this.f41918r0 = true;
+        this.f41919s0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f41679q0.setMaxWidth(i10);
+        this.f41917q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f41681s0 = i10;
-        this.f41679q0.c(i10, this.f41680r0);
+        this.f41920t0 = i10;
+        this.f41917q0.e(i10, this.f41919s0);
     }
 }

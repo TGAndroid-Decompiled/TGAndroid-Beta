@@ -19,9 +19,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.hv0;
-import org.telegram.ui.Components.iv0;
-public final class w1 implements NativeInstance.AudioLevelsCallback, hv0, iv0, org.telegram.ui.ActionBar.b2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
+import org.telegram.ui.Components.sv0;
+import org.telegram.ui.Components.tv0;
+public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
     public final int f1640a;
 
     public w1(int i10) {
@@ -128,7 +128,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, hv0, iv0, o
                 b2.r rVar = new b2.r();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e2.d.class.getClassLoader();
-                    String str5 = e2.d0.f7888a;
+                    String str5 = e2.d0.f7887a;
                     bundle4.setClassLoader(classLoader);
                 }
                 String string5 = bundle4.getString(b2.s.V);
@@ -230,7 +230,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, hv0, iv0, o
                 bundle8.getClass();
                 ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(b2.l1.f3089f);
                 if (parcelableArrayList2 == null) {
-                    e9.g0 g0Var = e9.i0.f8084b;
+                    e9.g0 g0Var = e9.i0.f8083b;
                     j3 = e9.a1.e;
                 } else {
                     j3 = e2.d.j(new w1(14), parcelableArrayList2);
@@ -254,7 +254,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, hv0, iv0, o
             default:
                 wa.e eVar = (wa.e) obj;
                 eVar.getClass();
-                aa.a aVar = com.google.firebase.messaging.r.f7347a;
+                aa.a aVar = com.google.firebase.messaging.r.f7340a;
                 aVar.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
@@ -264,7 +264,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, hv0, iv0, o
                 return byteArrayOutputStream.toByteArray();
             case 20:
                 ca.a.f4182b.getClass();
-                return z9.a.f48767a.e((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
+                return z9.a.f48993a.J((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
@@ -288,13 +288,13 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, hv0, iv0, o
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f1640a) {
             case 5:
-                c2Var.dismiss();
+                b2Var.dismiss();
                 return;
             default:
-                c2Var.dismiss();
+                b2Var.dismiss();
                 return;
         }
     }

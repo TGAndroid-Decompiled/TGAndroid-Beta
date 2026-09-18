@@ -4,28 +4,28 @@ import android.util.Log;
 import android.util.LongSparseArray;
 import java.lang.reflect.Field;
 public abstract class k7 {
-    public static Field f44060a;
-    public static boolean f44061b;
-    public static Class f44062c;
+    public static Field f44286a;
+    public static boolean f44287b;
+    public static Class f44288c;
     public static boolean d;
     public static Field e;
-    public static boolean f44063f;
-    public static Field f44064g;
+    public static boolean f44289f;
+    public static Field f44290g;
     public static boolean h;
 
     public static void a(Object obj) {
         LongSparseArray longSparseArray;
         if (!d) {
             try {
-                f44062c = Class.forName("android.content.res.ThemedResourceCache");
+                f44288c = Class.forName("android.content.res.ThemedResourceCache");
             } catch (ClassNotFoundException e7) {
                 Log.e("ResourcesFlusher", "Could not find ThemedResourceCache class", e7);
             }
             d = true;
         }
-        Class cls = f44062c;
+        Class cls = f44288c;
         if (cls != null) {
-            if (!f44063f) {
+            if (!f44289f) {
                 try {
                     Field declaredField = cls.getDeclaredField("mUnthemedEntries");
                     e = declaredField;
@@ -33,7 +33,7 @@ public abstract class k7 {
                 } catch (NoSuchFieldException e10) {
                     Log.e("ResourcesFlusher", "Could not retrieve ThemedResourceCache#mUnthemedEntries field", e10);
                 }
-                f44063f = true;
+                f44289f = true;
             }
             Field field = e;
             if (field != null) {

@@ -21,8 +21,8 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.LaunchActivity;
 public final class uc implements Runnable {
     public final int f5638a;
@@ -38,50 +38,50 @@ public final class uc implements Runnable {
         String c10;
         TelephonyManager telephonyManager;
         e2.t tVar = (e2.t) this.f5639b;
-        y2.e eVar = (y2.e) tVar.f7926a.get();
+        y2.e eVar = (y2.e) tVar.f7925a.get();
         if (eVar != null) {
-            int b10 = tVar.f7928c.b();
-            y2.f fVar = eVar.f46293a;
+            int b10 = tVar.f7927c.b();
+            y2.f fVar = eVar.f46520a;
             synchronized (fVar) {
                 synchronized (fVar) {
-                    int i11 = fVar.f46310n;
+                    int i11 = fVar.f46537n;
                     if (i11 != 0 && !fVar.e) {
                         return;
                     }
-                    if (i11 == b10 && fVar.f46311o != null) {
+                    if (i11 == b10 && fVar.f46538o != null) {
                         return;
                     }
-                    fVar.f46310n = b10;
+                    fVar.f46537n = b10;
                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                        if (fVar.f46311o == null) {
-                            Context context = fVar.f46300a;
-                            String str = e2.d0.f7888a;
+                        if (fVar.f46538o == null) {
+                            Context context = fVar.f46527a;
+                            String str = e2.d0.f7887a;
                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                     c10 = v7.r6.c(networkCountryIso);
-                                    fVar.f46311o = c10;
+                                    fVar.f46538o = c10;
                                 }
                             }
                             c10 = v7.r6.c(Locale.getDefault().getCountry());
-                            fVar.f46311o = c10;
+                            fVar.f46538o = c10;
                         }
-                        fVar.f46308l = fVar.a(b10);
+                        fVar.f46535l = fVar.a(b10);
                         fVar.d.getClass();
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (fVar.f46304g > 0) {
+                        if (fVar.f46531g > 0) {
                             i10 = (int) (elapsedRealtime - fVar.h);
                         } else {
                             i10 = 0;
                         }
-                        fVar.c(i10, fVar.f46305i, fVar.f46308l);
+                        fVar.c(i10, fVar.f46532i, fVar.f46535l);
                         fVar.h = elapsedRealtime;
-                        fVar.f46305i = 0L;
-                        fVar.f46307k = 0L;
-                        fVar.f46306j = 0L;
-                        y2.r rVar = fVar.f46303f;
-                        rVar.f46334a.clear();
-                        rVar.f46336c = -1;
+                        fVar.f46532i = 0L;
+                        fVar.f46534k = 0L;
+                        fVar.f46533j = 0L;
+                        y2.r rVar = fVar.f46530f;
+                        rVar.f46561a.clear();
+                        rVar.f46563c = -1;
                         rVar.d = 0;
                         rVar.e = 0;
                     }
@@ -143,15 +143,15 @@ public final class uc implements Runnable {
                 }
                 return;
             case 3:
-                com.google.firebase.messaging.f0 f0Var = (com.google.firebase.messaging.f0) this.f5639b;
-                Log.w("FirebaseMessaging", "Service took too long to process intent: " + f0Var.f7315a.getAction() + " finishing.");
-                f0Var.f7316b.trySetResult(null);
+                com.google.firebase.messaging.e0 e0Var = (com.google.firebase.messaging.e0) this.f5639b;
+                Log.w("FirebaseMessaging", "Service took too long to process intent: " + e0Var.f7307a.getAction() + " finishing.");
+                e0Var.f7308b.trySetResult(null);
                 return;
             case 4:
                 di.f fVar = (di.f) this.f5639b;
                 fVar.getClass();
                 try {
-                    ml0 currentListView = ((di.i) fVar.L0).R.getCurrentListView();
+                    wl0 currentListView = ((di.i) fVar.L0).R.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -192,10 +192,10 @@ public final class uc implements Runnable {
                 return;
             case 15:
                 ei.p4 p4Var = (ei.p4) this.f5639b;
-                p4Var.Q = p4Var.f8553r;
+                p4Var.Q = p4Var.f8552r;
                 return;
             case 16:
-                ai.v8 v8Var = ((gg.o1) this.f5639b).f9884y;
+                ai.v8 v8Var = ((gg.o1) this.f5639b).f9883y;
                 if (v8Var != null) {
                     v8Var.p(3, true);
                     return;
@@ -211,13 +211,13 @@ public final class uc implements Runnable {
                 return;
             case 19:
                 AndroidUtilities.addToClipboard(((TL_account.TL_businessChatLink) this.f5639b).link);
-                org.telegram.ui.Components.vc.a0(LaunchActivity.R()).k(false).j();
+                org.telegram.ui.Components.xc.a0(LaunchActivity.R()).k(false).j();
                 return;
             case 20:
                 hg.l0 l0Var = (hg.l0) this.f5639b;
-                x51 x51Var = l0Var.f10349d0;
-                if (x51Var != null) {
-                    x51Var.N(true);
+                l61 l61Var = l0Var.f10349d0;
+                if (l61Var != null) {
+                    l61Var.N(true);
                 }
                 l0Var.T(true);
                 return;
@@ -244,33 +244,33 @@ public final class uc implements Runnable {
                 return;
             case 26:
                 com.google.firebase.messaging.m mVar = (com.google.firebase.messaging.m) this.f5639b;
-                ((Context) mVar.f7334b).unregisterReceiver((i2.b) mVar.f7335c);
+                ((Context) mVar.f7327b).unregisterReceiver((i2.b) mVar.f7328c);
                 return;
             case 27:
                 i2.b bVar = (i2.b) this.f5639b;
-                if (bVar.f10623c.f7333a) {
+                if (bVar.f10623c.f7326a) {
                     bVar.f10621a.f10624a.y1(3, false);
                     return;
                 }
                 return;
             case 28:
-                i2.e0 e0Var = (i2.e0) this.f5639b;
-                e2.c cVar3 = e0Var.E;
-                Context context = e0Var.e;
-                String str2 = e2.d0.f7888a;
+                i2.e0 e0Var2 = (i2.e0) this.f5639b;
+                e2.c cVar3 = e0Var2.E;
+                Context context = e0Var2.e;
+                String str2 = e2.d0.f7887a;
                 Integer valueOf = Integer.valueOf(c2.d.e(context).generateAudioSessionId());
-                cVar3.f7886f = valueOf;
+                cVar3.f7885f = valueOf;
                 e2.b bVar2 = new e2.b(cVar3, valueOf, 0);
-                e2.z zVar = (e2.z) cVar3.f7885c;
-                if (zVar.f7943a.getLooper().getThread().isAlive()) {
+                e2.z zVar = (e2.z) cVar3.f7884c;
+                if (zVar.f7942a.getLooper().getThread().isAlive()) {
                     zVar.c(bVar2);
                     return;
                 }
                 return;
             default:
-                i2.e0 e0Var2 = ((i2.b0) this.f5639b).f10624a;
-                e0Var2.t1(null);
-                e0Var2.m1(0, 0);
+                i2.e0 e0Var3 = ((i2.b0) this.f5639b).f10624a;
+                e0Var3.t1(null);
+                e0Var3.m1(0, 0);
                 return;
         }
     }

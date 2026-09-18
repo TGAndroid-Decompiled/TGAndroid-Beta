@@ -13,7 +13,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.w70;
 public final class t5 implements View.OnClickListener {
     public final int f11636a;
     public final d6 f11637b;
@@ -61,24 +61,24 @@ public final class t5 implements View.OnClickListener {
                         ArrayList arrayList = new ArrayList(languages);
                         Collections.sort(arrayList);
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f11204b;
-                        n70 D = w3Var2.f11714h3.D(view);
-                        D.W(j6.b0(AndroidUtilities.dp(3.0f), j6.v0(j6.f18863d6, w3Var2.f11712g3)));
-                        D.Z = true;
-                        D.X = AndroidUtilities.dp(350.0f);
-                        D.i(new o2(w3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
+                        w70 F = w3Var2.f11714h3.F(view);
+                        F.W(j6.b0(AndroidUtilities.dp(3.0f), j6.v0(j6.f19062d6, w3Var2.f11712g3)));
+                        F.Z = true;
+                        F.X = AndroidUtilities.dp(350.0f);
+                        F.i(new o2(w3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
                         if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
-                            D.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
+                            F.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
                         }
-                        D.k();
+                        F.k();
                         int size = arrayList.size();
                         int i10 = 0;
                         while (i10 < size) {
                             Object obj = arrayList.get(i10);
                             i10++;
                             String str = (String) obj;
-                            D.i(new gg.t(w3Var2, aVar3, str, 17), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
+                            F.i(new gg.t(w3Var2, aVar3, str, 17), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
                         }
-                        D.Z();
+                        F.Z();
                         return;
                     }
                     return;

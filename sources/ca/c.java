@@ -7,7 +7,7 @@ import i5.d;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import l5.s;
+import l5.r;
 public final class c {
     public final double f4188a;
     public final double f4189b;
@@ -16,18 +16,18 @@ public final class c {
     public final int e;
     public final ArrayBlockingQueue f4191f;
     public final ThreadPoolExecutor f4192g;
-    public final s h;
+    public final r h;
     public final o0.a f4193i;
     public int f4194j;
     public long f4195k;
 
-    public c(s sVar, da.a aVar, o0.a aVar2) {
+    public c(r rVar, da.a aVar, o0.a aVar2) {
         double d = aVar.d;
         double d10 = aVar.e;
         this.f4188a = d;
         this.f4189b = d10;
-        this.f4190c = aVar.f7580f * 1000;
-        this.h = sVar;
+        this.f4190c = aVar.f7579f * 1000;
+        this.h = rVar;
         this.f4193i = aVar2;
         this.d = SystemClock.elapsedRealtime();
         int i10 = (int) d;
@@ -59,7 +59,7 @@ public final class c {
 
     public final void b(w9.b bVar, TaskCompletionSource taskCompletionSource) {
         boolean z10;
-        String str = "Sending report through Google DataTransport: " + bVar.f44940b;
+        String str = "Sending report through Google DataTransport: " + bVar.f45166b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", str, null);
         }
@@ -68,6 +68,6 @@ public final class c {
         } else {
             z10 = false;
         }
-        this.h.a(new i5.a(null, bVar.f44939a, d.f10998c, null), new b(this, taskCompletionSource, z10, bVar, 0));
+        this.h.a(new i5.a(null, bVar.f45165a, d.f10998c, null), new b(this, taskCompletionSource, z10, bVar, 0));
     }
 }

@@ -1,409 +1,861 @@
 package n2;
 
-import android.media.ResourceBusyException;
-import android.media.UnsupportedSchemeException;
+import android.content.ComponentName;
+import android.content.ContentProviderClient;
+import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.graphics.SurfaceTexture;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import b2.r0;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.text.SpannableStringBuilder;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+import b2.q0;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import e9.a1;
 import e9.g0;
 import e9.i0;
-import e9.m0;
-import e9.o1;
-import j$.util.Objects;
+import gg.b2;
+import hg.k0;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import k2.c0;
-import m4.u0;
-import w7.a0;
-public final class e implements m {
-    public int E;
-    public q F;
-    public b G;
-    public b H;
-    public Looper I;
-    public Handler J;
-    public byte[] K;
-    public j2.k L;
-    public volatile androidx.mediarouter.app.c M;
-    public final UUID f14899a;
-    public final u0 f14900b;
-    public final com.google.firebase.messaging.m f14901c;
-    public final HashMap d;
-    public final boolean e;
-    public final int[] f14902f;
-    public final boolean h;
-    public final of.b f14903n;
-    public final qb.b f14904r;
-    public final a4.m f14905s;
-    public final long v;
-    public final ArrayList f14906w;
-    public final Set f14907x;
-    public final Set f14908y;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.cf0;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.df0;
+import org.telegram.ui.Components.h60;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.kc0;
+import org.telegram.ui.Components.kh0;
+import org.telegram.ui.Components.kq0;
+import org.telegram.ui.Components.pk0;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.qg0;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.rk0;
+import org.telegram.ui.Components.rq0;
+import org.telegram.ui.Components.ta0;
+import org.telegram.ui.Components.u71;
+import org.telegram.ui.Components.vi;
+import org.telegram.ui.Components.vq0;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.m9;
+import org.telegram.ui.ts0;
+import org.telegram.ui.u9;
+import org.telegram.ui.web.d1;
+import pg.b1;
+import pg.e1;
+import r7.z;
+import s4.c1;
+import s4.f1;
+import s4.h1;
+import s4.o0;
+import s4.p0;
+import yh.w2;
+import yh.y3;
+public class e implements o0.b, k71, d5, ta0, lg.o, r71, b2, u9, com.google.android.gms.common.api.internal.s, h1, w2.a, kq0, pk0 {
+    public final int f15072a;
+    public Object f15073b;
 
-    public e(UUID uuid, com.google.firebase.messaging.m mVar, HashMap hashMap, boolean z10, int[] iArr, boolean z11, qb.b bVar) {
-        uuid.getClass();
-        e2.d.a("Use C.CLEARKEY_UUID instead", !b2.i.f3018b.equals(uuid));
-        this.f14899a = uuid;
-        this.f14900b = t.d;
-        this.f14901c = mVar;
-        this.d = hashMap;
-        this.e = z10;
-        this.f14902f = iArr;
-        this.h = z11;
-        this.f14904r = bVar;
-        this.f14903n = new of.b(28);
-        this.f14905s = new a4.m(this, 27);
-        this.f14906w = new ArrayList();
-        this.f14907x = Collections.newSetFromMap(new IdentityHashMap());
-        this.f14908y = Collections.newSetFromMap(new IdentityHashMap());
-        this.v = 300000L;
+    public e(int i10, boolean z10) {
+        this.f15072a = i10;
     }
 
-    public static boolean c(b bVar) {
-        bVar.p();
-        if (bVar.f14887o == 1) {
-            f g10 = bVar.g();
-            g10.getClass();
-            Throwable cause = g10.getCause();
-            if ((cause instanceof ResourceBusyException) || a0.c(cause)) {
-                return true;
-            }
-            return false;
+    public static float[] D(ArrayList arrayList) {
+        double d;
+        double d10;
+        float f7;
+        double[] dArr;
+        ArrayList arrayList2;
+        float f10;
+        float f11;
+        int i10;
+        float f12;
+        int size = arrayList.size();
+        for (int i11 = 0; i11 < size; i11++) {
+            PointF pointF = (PointF) arrayList.get(i11);
+            pointF.x *= 255.0f;
+            pointF.y *= 255.0f;
         }
-        return false;
-    }
-
-    public static ArrayList f(b2.o oVar, UUID uuid, boolean z10) {
-        ArrayList arrayList = new ArrayList(oVar.d);
-        for (int i10 = 0; i10 < oVar.d; i10++) {
-            b2.n nVar = oVar.f3167a[i10];
-            if ((nVar.a(uuid) || (b2.i.f3019c.equals(uuid) && nVar.a(b2.i.f3018b))) && (nVar.e != null || z10)) {
-                arrayList.add(nVar);
-            }
-        }
-        return arrayList;
-    }
-
-    @Override
-    public final void C(Looper looper, j2.k kVar) {
-        boolean z10;
-        synchronized (this) {
-            try {
-                Looper looper2 = this.I;
-                if (looper2 == null) {
-                    this.I = looper;
-                    this.J = new Handler(looper);
-                } else {
-                    if (looper2 == looper) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    e2.d.g(z10);
-                    this.J.getClass();
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        this.L = kVar;
-    }
-
-    @Override
-    public final int L0(b2.s sVar) {
-        h(false);
-        q qVar = this.F;
-        qVar.getClass();
-        int m0 = qVar.m0();
-        b2.o oVar = sVar.v;
-        if (oVar == null) {
-            int h = r0.h(sVar.f3309r);
-            int i10 = 0;
+        int size2 = arrayList.size();
+        double d11 = 1.0d;
+        if (size2 <= 0 || size2 == 1) {
+            d = 1.0d;
+            d10 = 6.0d;
+            f7 = 255.0f;
+            dArr = null;
+        } else {
+            double[][] dArr2 = (double[][]) Array.newInstance(Double.TYPE, size2, 3);
+            double[] dArr3 = new double[size2];
+            double[] dArr4 = dArr2[0];
+            dArr4[1] = 1.0d;
+            double d12 = 0.0d;
+            dArr4[0] = 0.0d;
+            dArr4[2] = 0.0d;
+            int i12 = 1;
             while (true) {
-                int[] iArr = this.f14902f;
-                if (i10 < iArr.length) {
-                    if (iArr[i10] == h) {
-                        break;
-                    }
-                    i10++;
-                } else {
-                    i10 = -1;
+                i10 = size2 - 1;
+                if (i12 >= i10) {
                     break;
                 }
+                PointF pointF2 = (PointF) arrayList.get(i12 - 1);
+                PointF pointF3 = (PointF) arrayList.get(i12);
+                int i13 = i12 + 1;
+                double d13 = d11;
+                PointF pointF4 = (PointF) arrayList.get(i13);
+                double[] dArr5 = dArr2[i12];
+                float f13 = pointF3.x;
+                double d14 = d12;
+                double d15 = f13 - pointF2.x;
+                dArr5[0] = d15 / 6.0d;
+                float f14 = pointF4.x;
+                dArr5[1] = (f14 - f12) / 3.0d;
+                double d16 = f14 - f13;
+                dArr5[2] = d16 / 6.0d;
+                float f15 = pointF4.y;
+                float f16 = pointF3.y;
+                dArr3[i12] = ((f15 - f16) / d16) - ((f16 - pointF2.y) / d15);
+                i12 = i13;
+                d11 = d13;
+                d12 = d14;
             }
-            if (i10 == -1) {
-                return 0;
+            d = d11;
+            double d17 = d12;
+            d10 = 6.0d;
+            f7 = 255.0f;
+            dArr3[0] = d17;
+            dArr3[i10] = d17;
+            double[] dArr6 = dArr2[i10];
+            dArr6[1] = d;
+            dArr6[0] = d17;
+            dArr6[2] = d17;
+            for (int i14 = 1; i14 < size2; i14++) {
+                double[] dArr7 = dArr2[i14];
+                double d18 = dArr7[0];
+                int i15 = i14 - 1;
+                double[] dArr8 = dArr2[i15];
+                double d19 = d18 / dArr8[1];
+                dArr7[1] = dArr7[1] - (dArr8[2] * d19);
+                dArr7[0] = d17;
+                dArr3[i14] = dArr3[i14] - (d19 * dArr3[i15]);
             }
-        } else if (this.K == null) {
-            UUID uuid = this.f14899a;
-            if (f(oVar, uuid, true).isEmpty()) {
-                if (oVar.d == 1 && oVar.f3167a[0].a(b2.i.f3018b)) {
-                    e2.a.n("DefaultDrmSessionMgr", "DrmInitData only contains common PSSH SchemeData. Assuming support for: " + uuid);
-                }
-                return 1;
+            for (int i16 = size2 - 2; i16 >= 0; i16--) {
+                double[] dArr9 = dArr2[i16];
+                double d20 = dArr9[2];
+                int i17 = i16 + 1;
+                double[] dArr10 = dArr2[i17];
+                double d21 = d20 / dArr10[1];
+                dArr9[1] = dArr9[1] - (dArr10[0] * d21);
+                dArr9[2] = d17;
+                dArr3[i16] = dArr3[i16] - (d21 * dArr3[i17]);
             }
-            String str = oVar.f3169c;
-            if (str != null && !"cenc".equals(str) && (!"cbcs".equals(str) ? "cbc1".equals(str) || "cens".equals(str) : Build.VERSION.SDK_INT < 25)) {
-                return 1;
+            dArr = new double[size2];
+            for (int i18 = 0; i18 < size2; i18++) {
+                dArr[i18] = dArr3[i18] / dArr2[i18][1];
             }
         }
-        return m0;
-    }
-
-    @Override
-    public final g Y0(j jVar, b2.s sVar) {
-        boolean z10 = false;
-        h(false);
-        if (this.E > 0) {
-            z10 = true;
-        }
-        e2.d.g(z10);
-        e2.d.h(this.I);
-        return a(this.I, jVar, sVar, true);
-    }
-
-    public final g a(Looper looper, j jVar, b2.s sVar, boolean z10) {
-        ArrayList arrayList;
-        if (this.M == null) {
-            this.M = new androidx.mediarouter.app.c(this, looper, 5);
-        }
-        b2.o oVar = sVar.v;
-        int i10 = 0;
-        b bVar = null;
-        if (oVar == null) {
-            int h = r0.h(sVar.f3309r);
-            q qVar = this.F;
-            qVar.getClass();
-            if (qVar.m0() != 2 || !r.f14925c) {
-                int[] iArr = this.f14902f;
+        int length = dArr.length;
+        if (length < 1) {
+            arrayList2 = null;
+            f10 = 0.0f;
+        } else {
+            arrayList2 = new ArrayList(length + 1);
+            int i19 = 0;
+            while (i19 < length - 1) {
+                PointF pointF5 = (PointF) arrayList.get(i19);
+                int i20 = i19 + 1;
+                PointF pointF6 = (PointF) arrayList.get(i20);
+                int i21 = (int) pointF5.x;
                 while (true) {
-                    if (i10 < iArr.length) {
-                        if (iArr[i10] == h) {
-                            break;
+                    float f17 = pointF6.x;
+                    if (i21 < ((int) f17)) {
+                        float f18 = i21;
+                        PointF pointF7 = pointF5;
+                        double d22 = f17 - pointF5.x;
+                        double d23 = (f18 - f11) / d22;
+                        double d24 = d - d23;
+                        int i22 = length;
+                        double[] dArr11 = dArr;
+                        float f19 = (float) (((((((d23 * d23) * d23) - d23) * dArr11[i20]) + ((((d24 * d24) * d24) - d24) * dArr11[i19])) * ((d22 * d22) / d10)) + (pointF6.y * d23) + (pointF7.y * d24));
+                        if (f19 > f7) {
+                            f19 = 255.0f;
+                        } else if (f19 < 0.0f) {
+                            f19 = 0.0f;
                         }
-                        i10++;
-                    } else {
-                        i10 = -1;
-                        break;
+                        arrayList2.add(new PointF(f18, f19));
+                        i21++;
+                        dArr = dArr11;
+                        pointF5 = pointF7;
+                        length = i22;
                     }
                 }
-                if (i10 != -1 && qVar.m0() != 1) {
-                    b bVar2 = this.G;
-                    if (bVar2 == null) {
-                        g0 g0Var = i0.f8084b;
-                        b e = e(a1.e, true, null, z10);
-                        this.f14906w.add(e);
-                        this.G = e;
-                    } else {
-                        bVar2.b(null);
-                    }
-                    return this.G;
-                }
+                i19 = i20;
             }
-            return null;
+            f10 = 0.0f;
+            arrayList2.add((PointF) k0.g(1, arrayList));
         }
-        if (this.K == null) {
-            arrayList = f(oVar, this.f14899a, false);
-            if (arrayList.isEmpty()) {
-                Exception exc = new Exception("Media does not support uuid: " + this.f14899a);
-                e2.a.f("DefaultDrmSessionMgr", "DRM error", exc);
-                if (jVar != null) {
-                    jVar.d(exc);
-                }
-                return new n(new f(6003, exc));
-            }
-        } else {
-            arrayList = null;
-        }
-        if (!this.e) {
-            bVar = this.H;
-        } else {
-            ArrayList arrayList2 = this.f14906w;
-            int size = arrayList2.size();
-            int i11 = 0;
-            while (true) {
-                if (i11 >= size) {
-                    break;
-                }
-                Object obj = arrayList2.get(i11);
-                i11++;
-                b bVar3 = (b) obj;
-                if (Objects.equals(bVar3.f14876a, arrayList)) {
-                    bVar = bVar3;
-                    break;
-                }
+        float f20 = ((PointF) arrayList2.get(0)).x;
+        if (f20 > f10) {
+            for (int i23 = (int) f20; i23 >= 0; i23--) {
+                arrayList2.add(0, new PointF(i23, 0.0f));
             }
         }
-        if (bVar == null) {
-            b e7 = e(arrayList, false, jVar, z10);
-            if (!this.e) {
-                this.H = e7;
+        float f21 = ((PointF) k0.g(1, arrayList2)).x;
+        if (f21 < f7) {
+            for (int i24 = ((int) f21) + 1; i24 <= 255; i24++) {
+                arrayList2.add(new PointF(i24, 255.0f));
             }
-            this.f14906w.add(e7);
-            return e7;
         }
-        bVar.b(jVar);
-        return bVar;
+        float[] fArr = new float[arrayList2.size()];
+        int size3 = arrayList2.size();
+        for (int i25 = 0; i25 < size3; i25++) {
+            PointF pointF8 = (PointF) arrayList2.get(i25);
+            float sqrt = (float) Math.sqrt(Math.pow(pointF8.x - pointF8.y, 2.0d));
+            if (pointF8.x > pointF8.y) {
+                sqrt = -sqrt;
+            }
+            fArr[i25] = sqrt;
+        }
+        return fArr;
     }
 
-    @Override
-    public final void b() {
-        q bVar;
-        h(true);
-        int i10 = this.E;
-        this.E = i10 + 1;
-        if (i10 == 0) {
-            if (this.F == null) {
-                UUID uuid = this.f14899a;
-                this.f14900b.getClass();
-                try {
-                    try {
-                        bVar = new t(uuid);
-                    } catch (w unused) {
-                        e2.a.e("FrameworkMediaDrm", "Failed to instantiate a FrameworkMediaDrm for uuid: " + uuid + ".");
-                        bVar = new qb.b(13);
-                    }
-                    this.F = bVar;
-                    bVar.a(new c0(this, 6));
-                } catch (UnsupportedSchemeException e) {
-                    throw new Exception(e);
-                } catch (Exception e7) {
-                    throw new Exception(e7);
-                }
-            } else if (this.v != -9223372036854775807L) {
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f14906w;
-                    if (i11 < arrayList.size()) {
-                        ((b) arrayList.get(i11)).b(null);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-    public final b d(List list, boolean z10, j jVar) {
-        this.F.getClass();
-        q qVar = this.F;
-        byte[] bArr = this.K;
-        Looper looper = this.I;
-        looper.getClass();
-        j2.k kVar = this.L;
-        kVar.getClass();
-        b bVar = new b(this.f14899a, qVar, this.f14903n, this.f14905s, list, this.h | z10, z10, bArr, this.d, this.f14901c, looper, this.f14904r, kVar);
-        bVar.b(jVar);
-        if (this.v != -9223372036854775807L) {
-            bVar.b(null);
-        }
-        return bVar;
-    }
-
-    public final b e(List list, boolean z10, j jVar, boolean z11) {
-        b d = d(list, z10, jVar);
-        boolean c10 = c(d);
-        long j3 = this.v;
-        Set set = this.f14908y;
-        if (c10 && !set.isEmpty()) {
-            o1 it = m0.v(set).iterator();
-            while (it.hasNext()) {
-                ((g) it.next()).a(null);
-            }
-            d.a(jVar);
-            if (j3 != -9223372036854775807L) {
-                d.a(null);
-            }
-            d = d(list, z10, jVar);
-        }
-        if (c(d) && z11) {
-            Set set2 = this.f14907x;
-            if (!set2.isEmpty()) {
-                o1 it2 = m0.v(set2).iterator();
-                while (it2.hasNext()) {
-                    ((d) it2.next()).release();
-                }
-                if (!set.isEmpty()) {
-                    o1 it3 = m0.v(set).iterator();
-                    while (it3.hasNext()) {
-                        ((g) it3.next()).a(null);
-                    }
-                }
-                d.a(jVar);
-                if (j3 != -9223372036854775807L) {
-                    d.a(null);
-                }
-                return d(list, z10, jVar);
-            }
-        }
-        return d;
-    }
-
-    public final void g() {
-        if (this.F != null && this.E == 0 && this.f14906w.isEmpty() && this.f14907x.isEmpty()) {
-            q qVar = this.F;
-            qVar.getClass();
-            qVar.release();
-            this.F = null;
-        }
-    }
-
-    public final void h(boolean z10) {
-        if (z10 && this.I == null) {
-            e2.a.o("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed before setPlayer(), possibly on the wrong thread.", new IllegalStateException());
-            return;
-        }
-        Thread currentThread = Thread.currentThread();
-        Looper looper = this.I;
-        looper.getClass();
-        if (currentThread != looper.getThread()) {
-            e2.a.o("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed on the wrong thread.\nCurrent thread: " + Thread.currentThread().getName() + "\nExpected thread: " + this.I.getThread().getName(), new IllegalStateException());
-        }
-    }
-
-    @Override
-    public final l j0(j jVar, b2.s sVar) {
+    public static e E(float f7, int i10) {
         boolean z10;
-        if (this.E > 0) {
+        Point point = AndroidUtilities.displaySize;
+        int i11 = (int) (point.x * f7);
+        int i12 = (int) (point.y * f7);
+        if (i11 == i12) {
+            return new e(i11, i12, new int[0]);
+        }
+        if (i10 == 3) {
+            return new e(i11, i12, new int[]{i12, i11});
+        }
+        boolean z11 = true;
+        if (i10 == 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        e2.d.g(z10);
-        e2.d.h(this.I);
-        d dVar = new d(this, jVar);
-        Handler handler = this.J;
-        handler.getClass();
-        handler.post(new m4.g0(4, dVar, sVar));
-        return dVar;
+        if (i11 >= i12) {
+            z11 = false;
+        }
+        if (z10 == z11) {
+            return new e(i11, i12, new int[0]);
+        }
+        return new e(i12, i11, new int[0]);
+    }
+
+    public int B(long j3) {
+        ArrayList arrayList = (ArrayList) this.f15073b;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (j3 < ((z3.a) arrayList.get(i10)).f48335b) {
+                return i10;
+            }
+        }
+        return arrayList.size();
     }
 
     @Override
-    public final void release() {
-        h(true);
-        int i10 = this.E - 1;
-        this.E = i10;
-        if (i10 != 0) {
+    public int C(View view) {
+        return o0.y(view) + ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).rightMargin;
+    }
+
+    public void G(aa.a aVar) {
+        h8.j jVar = (h8.j) this.f15073b;
+        jVar.f10150a = aVar;
+        Iterator it = jVar.f10152c.iterator();
+        while (it.hasNext()) {
+            ((x6.e) it.next()).b();
+        }
+        jVar.f10152c.clear();
+        jVar.f10151b = null;
+    }
+
+    public boolean H(int i10, int i11, Bundle bundle) {
+        return false;
+    }
+
+    public void I(c1 c1Var, q0 q0Var, q0 q0Var2) {
+        int i10;
+        int i11;
+        boolean z10;
+        c1 U;
+        int i12;
+        RecyclerView recyclerView = (RecyclerView) this.f15073b;
+        recyclerView.f2840b.k(c1Var);
+        recyclerView.h(c1Var);
+        c1Var.q(false);
+        f1 f1Var = (f1) recyclerView.f2843c0;
+        f1Var.getClass();
+        int i13 = q0Var.f3203a;
+        int i14 = q0Var.f3204b;
+        View view = c1Var.f42929a;
+        if (q0Var2 == null) {
+            i10 = view.getLeft();
+        } else {
+            i10 = q0Var2.f3203a;
+        }
+        int i15 = i10;
+        if (q0Var2 == null) {
+            i11 = view.getTop();
+        } else {
+            i11 = q0Var2.f3204b;
+        }
+        int i16 = i11;
+        if (!c1Var.j() && (i13 != i15 || i14 != i16)) {
+            view.layout(i15, i16, view.getWidth() + i15, view.getHeight() + i16);
+            z10 = f1Var.r(c1Var, q0Var, i13, i14, i15, i16);
+        } else {
+            int i17 = c1Var.h;
+            int i18 = -1;
+            if (i17 != -1) {
+                for (int i19 = 0; i19 < recyclerView.getChildCount(); i19++) {
+                    View childAt = recyclerView.getChildAt(i19);
+                    if (childAt != null && (U = recyclerView.U(childAt)) != null && !U.j() && (i12 = U.h) >= 0 && i12 < i17 && i12 > i18) {
+                        i18 = i12;
+                    }
+                }
+            }
+            c1Var.f42934i = (c1Var.h - i18) + (i18 * 1000);
+            f1Var.s(c1Var, q0Var);
+            z10 = true;
+        }
+        if (z10) {
+            recyclerView.m0();
+        }
+    }
+
+    @Override
+    public void J(int i10, int i11, boolean z10) {
+        ((ChatActivityEnterView) this.f15073b).T0(i10, z10, 0, true, 0L);
+    }
+
+    @Override
+    public String J0() {
+        return ((d1) this.f15073b).f38863i0;
+    }
+
+    @Override
+    public void K(String str) {
+        d1 d1Var = (d1) this.f15073b;
+        try {
+            d1Var.P = System.currentTimeMillis();
+            d1Var.z("qr_text_received", new JSONObject().put("data", str));
+        } catch (JSONException e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public void L(boolean z10) {
+        ((df0) this.f15073b).f23572c.setAspectLock(z10);
+    }
+
+    public void M(c1 c1Var) {
+        RecyclerView recyclerView = (RecyclerView) this.f15073b;
+        o0 o0Var = recyclerView.f2868x;
+        View view = c1Var.f42929a;
+        of.e eVar = recyclerView.f2840b;
+        lf.i iVar = o0Var.f43021a;
+        ka.c cVar = (ka.c) iVar.f14179b;
+        int indexOfChild = ((RecyclerView) cVar.f13565b).indexOfChild(view);
+        if (indexOfChild >= 0) {
+            if (((e6.n) iVar.f14180c).F(indexOfChild)) {
+                iVar.Y(view);
+            }
+            cVar.j0(indexOfChild);
+        }
+        eVar.g(view);
+    }
+
+    @Override
+    public void O(int i10, int i11, CharSequence charSequence, boolean z10) {
+        vi viVar = (vi) this.f15073b;
+        if (viVar.m1() == null) {
             return;
         }
-        if (this.v != -9223372036854775807L) {
-            ArrayList arrayList = new ArrayList(this.f14906w);
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                ((b) arrayList.get(i11)).a(null);
+        try {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(viVar.m1().getText());
+            spannableStringBuilder.replace(i10, i11 + i10, charSequence);
+            if (z10) {
+                Emoji.replaceEmoji(spannableStringBuilder, viVar.m1().getEditText().getPaint().getFontMetricsInt(), false);
+            }
+            viVar.m1().setText(spannableStringBuilder);
+            viVar.m1().setSelection(i10 + charSequence.length());
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public void a(int i10) {
+        rq0 rq0Var = (rq0) this.f15073b;
+        vq0 vq0Var = rq0Var.K;
+        rq0Var.f27949s = i10;
+        if (rq0Var.v != i10) {
+            rq0Var.d.clear();
+        }
+        int i11 = rq0Var.J;
+        if (rq0Var.h() == 0 && !rq0Var.e.e() && !rq0Var.I) {
+            vq0Var.Q.e(false, true);
+        } else {
+            vq0Var.f29742x0.b(i11);
+        }
+        rq0Var.l();
+        int i12 = vq0.f29711a1;
+        vq0Var.K0(true);
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        switch (this.f15072a) {
+            case 16:
+                z zVar = (z) ((r7.k) obj).u();
+                r7.f fVar = new r7.f(1, (TaskCompletionSource) obj2);
+                Parcel O0 = zVar.O0();
+                r7.d.c(O0, (g8.e) this.f15073b);
+                r7.d.d(O0, fVar);
+                O0.writeString(null);
+                zVar.S0(O0, 63);
+                return;
+            default:
+                s6.f fVar2 = new s6.f(0, (TaskCompletionSource) obj2);
+                s6.e eVar = (s6.e) ((s6.h) obj).u();
+                Parcel I0 = eVar.I0();
+                k7.a.d(I0, fVar2);
+                k7.a.c(I0, (s6.a) this.f15073b);
+                eVar.J0(I0, 1);
+                return;
+        }
+    }
+
+    @Override
+    public long b(long j3) {
+        ArrayList arrayList = (ArrayList) this.f15073b;
+        if (arrayList.isEmpty()) {
+            return Long.MIN_VALUE;
+        }
+        if (j3 < ((z3.a) arrayList.get(0)).f48335b) {
+            return ((z3.a) arrayList.get(0)).f48335b;
+        }
+        for (int i10 = 1; i10 < arrayList.size(); i10++) {
+            z3.a aVar = (z3.a) arrayList.get(i10);
+            long j10 = aVar.f48335b;
+            long j11 = aVar.f48335b;
+            if (j3 < j10) {
+                long j12 = ((z3.a) arrayList.get(i10 - 1)).d;
+                if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
+                    return j12;
+                }
+                return j11;
             }
         }
-        o1 it = m0.v(this.f14907x).iterator();
-        while (it.hasNext()) {
-            ((d) it.next()).release();
+        long j13 = ((z3.a) e9.q.l(arrayList)).d;
+        if (j13 == -9223372036854775807L || j3 >= j13) {
+            return Long.MIN_VALUE;
         }
-        g();
+        return j13;
+    }
+
+    @Override
+    public int c(View view) {
+        return o0.x(view) - ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).leftMargin;
+    }
+
+    @Override
+    public void clear() {
+        ((ArrayList) this.f15073b).clear();
+    }
+
+    @Override
+    public void close() {
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15073b;
+        if (contentProviderClient != null) {
+            contentProviderClient.release();
+        }
+    }
+
+    @Override
+    public i0 d(long j3) {
+        int B = B(j3);
+        if (B == 0) {
+            g0 g0Var = i0.f8083b;
+            return a1.e;
+        }
+        z3.a aVar = (z3.a) ((ArrayList) this.f15073b).get(B - 1);
+        long j10 = aVar.d;
+        if (j10 != -9223372036854775807L && j3 >= j10) {
+            g0 g0Var2 = i0.f8083b;
+            return a1.e;
+        }
+        return aVar.f48334a;
+    }
+
+    @Override
+    public boolean e(z3.a r11, long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: n2.e.e(z3.a, long):boolean");
+    }
+
+    @Override
+    public void e0(boolean z10) {
+        df0 df0Var = (df0) this.f15073b;
+        df0Var.getClass();
+        cf0 cf0Var = df0Var.f23570a;
+        if (cf0Var != null) {
+            ((ts0) cf0Var).a(z10);
+        }
+    }
+
+    @Override
+    public boolean e1(String str, m9 m9Var) {
+        return false;
+    }
+
+    @Override
+    public int g() {
+        return ((o0) this.f15073b).D();
+    }
+
+    @Override
+    public void g0() {
+        cf0 cf0Var = ((df0) this.f15073b).f23570a;
+        if (cf0Var != null) {
+            PhotoViewer photoViewer = ((ts0) cf0Var).f37802a;
+            if (photoViewer.f31165c2 == 1) {
+                photoViewer.H2 = true;
+                photoViewer.p3();
+            }
+        }
+    }
+
+    @Override
+    public void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
+        zg.t tVar = (zg.t) this.f15073b;
+        tVar.f49420a.ab(null, tVar.e, tVar.f49421b, view, 0.0f, 0.0f, o0Var, false, z10, z11, false);
+        AndroidUtilities.runOnUIThread(new w2(this, 8));
+    }
+
+    @Override
+    public a0.i i() {
+        return null;
+    }
+
+    @Override
+    public void invalidate() {
+        ((u1) ((org.telegram.ui.Cells.h1) this.f15073b).f20350b).invalidate();
+    }
+
+    @Override
+    public boolean j() {
+        return true;
+    }
+
+    @Override
+    public boolean k() {
+        return false;
+    }
+
+    @Override
+    public long l(long j3) {
+        ArrayList arrayList = (ArrayList) this.f15073b;
+        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f48335b) {
+            return -9223372036854775807L;
+        }
+        for (int i10 = 1; i10 < arrayList.size(); i10++) {
+            long j10 = ((z3.a) arrayList.get(i10)).f48335b;
+            int i11 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
+            if (i11 == 0) {
+                return j10;
+            }
+            if (i11 < 0) {
+                z3.a aVar = (z3.a) arrayList.get(i10 - 1);
+                long j11 = aVar.d;
+                if (j11 != -9223372036854775807L && j11 <= j3) {
+                    return j11;
+                }
+                return aVar.f48335b;
+            }
+        }
+        z3.a aVar2 = (z3.a) e9.q.l(arrayList);
+        long j12 = aVar2.d;
+        if (j12 != -9223372036854775807L && j3 >= j12) {
+            return j12;
+        }
+        return aVar2.f48335b;
+    }
+
+    @Override
+    public void m(long j3) {
+        ArrayList arrayList = (ArrayList) this.f15073b;
+        int B = B(j3);
+        if (B == 0) {
+            return;
+        }
+        long j10 = ((z3.a) arrayList.get(B - 1)).d;
+        if (j10 == -9223372036854775807L || j10 >= j3) {
+            B--;
+        }
+        arrayList.subList(0, B).clear();
+    }
+
+    @Override
+    public a0.i o() {
+        return null;
+    }
+
+    @Override
+    public void onDismiss() {
+        d1 d1Var = (d1) this.f15073b;
+        d1Var.z("scan_qr_popup_closed", null);
+        d1Var.f38862h0 = false;
+    }
+
+    @Override
+    public void onRenderedFirstFrame(j2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z10, int i10) {
+        rk0 rk0Var = (rk0) this.f15073b;
+        if (z10 && rk0Var.f27918n.n() >= 0) {
+            rk0Var.f27921w = true;
+        }
+        qg0 qg0Var = rk0Var.f27917f;
+        kc0 kc0Var = rk0Var.f27922x;
+        qg0Var.a(z10, true);
+        AndroidUtilities.cancelRunOnUIThread(kc0Var);
+        if (z10) {
+            AndroidUtilities.runOnUIThread(kc0Var, 16L);
+        }
+    }
+
+    @Override
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public Cursor q(Uri uri, String[] strArr, String[] strArr2) {
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15073b;
+        if (contentProviderClient == null) {
+            return null;
+        }
+        try {
+            return contentProviderClient.query(uri, strArr, "query = ?", strArr2, null, null);
+        } catch (RemoteException e) {
+            Log.w("FontsProvider", "Unable to query the content provider", e);
+            return null;
+        }
+    }
+
+    @Override
+    public boolean r() {
+        return false;
+    }
+
+    @Override
+    public boolean s(int i10) {
+        if (i10 == ((rq0) this.f15073b).f27948r) {
+            return true;
+        }
+        return false;
+    }
+
+    public void t() {
+        pg.c1 c1Var = ((e1) this.f15073b).d;
+        if (c1Var != null) {
+            b1 b1Var = c1Var.f41079s;
+            if (b1Var != null) {
+                c1Var.cancelRunnable(b1Var);
+                c1Var.f41079s = null;
+            }
+            b1 b1Var2 = new b1(c1Var, 1);
+            c1Var.f41079s = b1Var2;
+            c1Var.postRunnable(b1Var2, 1L);
+        }
+    }
+
+    public String toString() {
+        switch (this.f15072a) {
+            case 12:
+                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f15073b).flattenToShortString() + " }";
+            default:
+                return super.toString();
+        }
+    }
+
+    public s0.c u(int i10) {
+        return null;
+    }
+
+    @Override
+    public void u0() {
+        qc k10 = ((y3) this.f15073b).getBulletinFactory().k(false);
+        k10.f27560t = true;
+        k10.j();
+    }
+
+    public s0.c v(int i10) {
+        return null;
+    }
+
+    @Override
+    public Paint.FontMetricsInt w() {
+        return ((vi) this.f15073b).E0.getEditText().getPaint().getFontMetricsInt();
+    }
+
+    @Override
+    public int x() {
+        o0 o0Var = (o0) this.f15073b;
+        return o0Var.f43030m - o0Var.E();
+    }
+
+    @Override
+    public View y(int i10) {
+        return ((o0) this.f15073b).q(i10);
+    }
+
+    @Override
+    public void z() {
+        cf0 cf0Var = ((df0) this.f15073b).f23570a;
+        if (cf0Var != null) {
+            ((ts0) cf0Var).f37802a.f31181e0.invalidate();
+        }
+    }
+
+    public e(Object obj, int i10) {
+        this.f15072a = i10;
+        this.f15073b = obj;
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+    }
+
+    public e(s6.g gVar, s6.a aVar) {
+        this.f15072a = 21;
+        this.f15073b = aVar;
+    }
+
+    public e(int i10) {
+        this.f15072a = i10;
+        switch (i10) {
+            case 18:
+                if (Build.VERSION.SDK_INT >= 26) {
+                    this.f15073b = new kh0(this);
+                    return;
+                } else {
+                    this.f15073b = new kh0(this);
+                    return;
+                }
+            case 24:
+                this.f15073b = new ArrayList();
+                return;
+            case 26:
+                this.f15073b = new CopyOnWriteArrayList();
+                return;
+            default:
+                this.f15073b = new LinkedHashMap(5, 1.0f, false);
+                return;
+        }
+    }
+
+    public e(int i10, int i11, int[] iArr) {
+        this.f15072a = 4;
+        h60[] h60VarArr = new h60[(iArr.length / 2) + 1];
+        this.f15073b = h60VarArr;
+        h60 h60Var = new h60(i10, i11);
+        int i12 = 0;
+        h60VarArr[0] = h60Var;
+        while (i12 < iArr.length / 2) {
+            int i13 = i12 + 1;
+            int i14 = i12 * 2;
+            ((h60[]) this.f15073b)[i13] = new h60(iArr[i14], iArr[i14 + 1]);
+            i12 = i13;
+        }
+    }
+
+    public e(Context context, GestureDetector.OnGestureListener onGestureListener) {
+        this.f15072a = 15;
+        this.f15073b = new GestureDetector(context, onGestureListener, null);
+    }
+
+    @Override
+    public void U() {
+    }
+
+    @Override
+    public void p() {
+    }
+
+    public e(Context context, Uri uri) {
+        this.f15072a = 1;
+        this.f15073b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+    }
+
+    @Override
+    public void F(ArrayList arrayList) {
+    }
+
+    @Override
+    public void P(String str) {
+    }
+
+    @Override
+    public void T0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public void onSeekFinished(j2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(j2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(u71 u71Var, Exception exc) {
+    }
+
+    @Override
+    public void A(TLRPC.TL_document tL_document, String str, Object obj) {
+    }
+
+    @Override
+    public void f(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
+    }
+
+    @Override
+    public void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

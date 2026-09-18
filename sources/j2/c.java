@@ -104,4 +104,8 @@ public final class c implements m {
     public c(a aVar, Object obj, Object obj2, int i10) {
         this.f12570a = i10;
     }
+
+    public c(a aVar, String str, long j3, long j10) {
+        this.f12570a = 2;
+    }
 }

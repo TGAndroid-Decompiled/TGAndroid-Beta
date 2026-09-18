@@ -3,8 +3,8 @@ package org.telegram.ui.web;
 import ai.da;
 import android.os.Bundle;
 import org.json.JSONObject;
-import org.telegram.ui.wy;
-public final class g0 extends wy {
+import org.telegram.ui.uy;
+public final class g0 extends uy {
     public final boolean[] A4;
     public final da B4;
     public final d1 C4;

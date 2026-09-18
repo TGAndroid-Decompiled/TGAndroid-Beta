@@ -16,16 +16,16 @@ public final class r8 implements TextWatcher {
         String obj;
         this.f5460a.run();
         x8 x8Var = this.f5461b;
-        org.telegram.ui.Cells.i3 i3Var = x8Var.Y;
+        org.telegram.ui.Cells.j3 j3Var = x8Var.Y;
         if (x8Var.f5765c0) {
             return;
         }
         if (x8Var.f5766d0 && editable != null) {
             String substring = editable.toString().substring(8);
             x8Var.f5765c0 = true;
-            i3Var.f20240b.setText(substring);
-            org.telegram.ui.Cells.g3 g3Var = i3Var.f20240b;
-            g3Var.setSelection(0, g3Var.getText().length());
+            j3Var.f20455b.setText(substring);
+            org.telegram.ui.Cells.h3 h3Var = j3Var.f20455b;
+            h3Var.setSelection(0, h3Var.getText().length());
             x8Var.f5765c0 = false;
             x8Var.f5766d0 = false;
             x8.S(x8Var, substring);

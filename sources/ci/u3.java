@@ -7,18 +7,18 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.ae0;
+import org.telegram.ui.Components.je0;
 import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.cn0;
+import org.telegram.ui.bn0;
 import org.telegram.ui.cr0;
-import org.telegram.ui.dm0;
-import org.telegram.ui.ih1;
-import org.telegram.ui.kp;
-import org.telegram.ui.nn;
-import org.telegram.ui.oo;
-import org.telegram.ui.p70;
-import org.telegram.ui.wo;
-import org.telegram.ui.yo0;
+import org.telegram.ui.gh1;
+import org.telegram.ui.ip;
+import org.telegram.ui.ja0;
+import org.telegram.ui.ln;
+import org.telegram.ui.mo;
+import org.telegram.ui.n70;
+import org.telegram.ui.uo;
+import org.telegram.ui.xo0;
 public final class u3 implements RequestDelegate {
     public final int f5607a;
     public final boolean f5608b;
@@ -46,7 +46,7 @@ public final class u3 implements RequestDelegate {
                 ((VoIPService) obj).lambda$acknowledgeCall$13(z10, tLObject, tL_error);
                 return;
             case 3:
-                org.telegram.ui.m9 m9Var = (org.telegram.ui.m9) obj;
+                org.telegram.ui.l9 l9Var = (org.telegram.ui.l9) obj;
                 if (tLObject != null) {
                     TLRPC.TL_messages_affectedFoundMessages tL_messages_affectedFoundMessages = (TLRPC.TL_messages_affectedFoundMessages) tLObject;
                     TL_update.TL_updateDeleteMessages tL_updateDeleteMessages = new TL_update.TL_updateDeleteMessages();
@@ -55,56 +55,56 @@ public final class u3 implements RequestDelegate {
                     tL_updateDeleteMessages.pts_count = tL_messages_affectedFoundMessages.pts_count;
                     TLRPC.TL_updates tL_updates = new TLRPC.TL_updates();
                     tL_updates.updates.add(tL_updateDeleteMessages);
-                    m9Var.getMessagesController().processUpdates(tL_updates, false);
+                    l9Var.getMessagesController().processUpdates(tL_updates, false);
                     if (tL_messages_affectedFoundMessages.offset != 0) {
                         TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
                         tL_messages_deletePhoneCallHistory.revoke = z10;
-                        m9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new u3(3, m9Var, z10));
+                        l9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new u3(3, l9Var, z10));
                         return;
                     }
                     return;
                 }
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new y0((nn) obj, tLObject, z10, 13));
+                AndroidUtilities.runOnUIThread(new y0((ln) obj, tLObject, z10, 14));
                 return;
             case 5:
-                wo woVar = (wo) obj;
+                uo uoVar = (uo) obj;
                 if (tLObject instanceof TLRPC.Updates) {
-                    woVar.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
-                    AndroidUtilities.runOnUIThread(new bi.f(20, woVar, z10));
+                    uoVar.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                    AndroidUtilities.runOnUIThread(new bi.f(20, uoVar, z10));
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new oo(woVar, 3));
+                AndroidUtilities.runOnUIThread(new mo(uoVar, 3));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new ai.s4((kp) obj, tL_error, tLObject, this.f5608b, 13));
+                AndroidUtilities.runOnUIThread(new ai.s4((ip) obj, tL_error, tLObject, this.f5608b, 14));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q((ae0) obj, tL_error, tLObject, z10));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o((je0) obj, tL_error, tLObject, z10));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new ai.s4((p70) obj, tL_error, tLObject, this.f5608b, 22));
+                AndroidUtilities.runOnUIThread(new ai.s4((n70) obj, tL_error, tLObject, this.f5608b, 23));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new ai.s4((cn0) obj, tL_error, tLObject, this.f5608b, 23));
+                AndroidUtilities.runOnUIThread(new ai.s4((bn0) obj, tL_error, tLObject, this.f5608b, 24));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new ai.s4((yo0) obj, tL_error, tLObject, this.f5608b, 26));
+                AndroidUtilities.runOnUIThread(new ai.s4((xo0) obj, tL_error, tLObject, this.f5608b, 27));
                 return;
             case 11:
                 cr0 cr0Var = (cr0) obj;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new dm0(cr0Var, tLObject, z10, 2));
+                    AndroidUtilities.runOnUIThread(new ja0(cr0Var, tLObject, z10, 3));
                     return;
                 }
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new ai.s4((ih1) obj, tL_error, tLObject, this.f5608b, 28));
+                AndroidUtilities.runOnUIThread(new ai.s4((gh1) obj, tL_error, tLObject, this.f5608b, 29));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f31635i0;
-                AndroidUtilities.runOnUIThread(new dm0((WallpapersListActivity) obj, tLObject, z10, 9));
+                int[][] iArr = WallpapersListActivity.f31862i0;
+                AndroidUtilities.runOnUIThread(new ja0((WallpapersListActivity) obj, tLObject, z10, 10));
                 return;
         }
     }

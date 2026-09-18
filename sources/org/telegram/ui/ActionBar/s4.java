@@ -1,21 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageButton;
-public final class s4 extends ImageButton {
-    public final w4 f19554a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+public final class s4 extends AnimatorListenerAdapter {
+    public final int f19720a;
+    public final v4 f19721b;
 
-    public s4(w4 w4Var, Context context) {
-        super(context);
-        this.f19554a = w4Var;
+    public s4(v4 v4Var, int i10) {
+        this.f19720a = i10;
+        this.f19721b = v4Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f19554a.N) {
-            return false;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f19720a) {
+            case 0:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new q(this, 13));
+                return;
+            default:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new q(this, 14));
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 }

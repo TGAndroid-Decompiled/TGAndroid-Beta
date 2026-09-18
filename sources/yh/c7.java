@@ -1,58 +1,47 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.u9;
-public final class c7 extends u9 {
-    public vh.g G;
-    public Path H;
-    public RectF I;
-    public Drawable J;
+import android.widget.LinearLayout;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.w9;
+import org.telegram.ui.dv0;
+import org.telegram.ui.tu0;
+public final class c7 extends tu0 {
+    public final w9 f47268a;
+    public final LinearLayout f47269b;
+    public final long f47270c;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        RectF rectF = this.I;
-        Path path = this.H;
-        Drawable drawable = this.J;
-        super.dispatchDraw(canvas);
-        if (this.G == null) {
-            this.G = vh.g.e(this);
-        }
-        if (this.G != null) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            path.rewind();
-            path.addRoundRect(rectF, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            canvas2 = canvas;
-            this.G.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
-            canvas2.restore();
-        } else {
-            canvas2 = canvas;
-        }
-        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
-        drawable.draw(canvas2);
+    public c7(w9 w9Var, LinearLayout linearLayout, long j3) {
+        this.f47268a = w9Var;
+        this.f47269b = linearLayout;
+        this.f47270c = j3;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        vh.g gVar = this.G;
-        if (gVar != null) {
-            gVar.a(this);
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        w9 w9Var = this.f47268a;
+        ImageReceiver imageReceiver = w9Var.getImageReceiver();
+        int[] iArr = new int[2];
+        w9Var.getLocationInWindow(iArr);
+        dv0 dv0Var = new dv0();
+        dv0Var.f33093b = iArr[0];
+        dv0Var.f33094c = iArr[1];
+        dv0Var.d = this.f47269b;
+        dv0Var.f33101m = null;
+        dv0Var.f33092a = imageReceiver;
+        if (z10) {
+            dv0Var.e = imageReceiver.getBitmapSafe();
         }
-        super.onAttachedToWindow();
+        dv0Var.h = imageReceiver.getRoundRadius(true);
+        dv0Var.f33095f = this.f47270c;
+        dv0Var.f33098j = 0;
+        dv0Var.f33097i = 0;
+        return dv0Var;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        vh.g gVar = this.G;
-        if (gVar != null) {
-            gVar.b(this);
-        }
-        super.onDetachedFromWindow();
+    public final boolean K() {
+        return true;
     }
 }

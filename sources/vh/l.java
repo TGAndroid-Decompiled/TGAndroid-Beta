@@ -1,4 +1,4 @@
 package vh;
 public interface l {
-    void j(h hVar, float f7, float f10);
+    void l(h hVar, float f7, float f10);
 }

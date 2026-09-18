@@ -14,14 +14,14 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.q9;
 public final class l0 {
     public final i1 f11486a;
-    public final org.telegram.ui.ActionBar.f6 f11487b;
+    public final org.telegram.ui.ActionBar.e6 f11487b;
     public final k0 f11488c;
     public boolean d;
 
-    public l0(Context context, org.telegram.ui.ActionBar.f6 f6Var, k0 k0Var) {
-        this.f11487b = f6Var;
+    public l0(Context context, org.telegram.ui.ActionBar.e6 e6Var, k0 k0Var) {
+        this.f11487b = e6Var;
         this.f11488c = k0Var;
-        i1 i1Var = new i1(context, f6Var);
+        i1 i1Var = new i1(context, e6Var);
         this.f11486a = i1Var;
         i1Var.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         i1Var.setAllowNewlines(false);
@@ -60,10 +60,10 @@ public final class l0 {
 
     public final void b() {
         TL_iv.PageBlock pageBlock;
-        a N = this.f11488c.N();
-        if (N != null && (pageBlock = N.f11204b) != null) {
+        a M = this.f11488c.M();
+        if (M != null && (pageBlock = M.f11204b) != null) {
             d(pageBlock);
-            TL_iv.RichText richText = N.f11204b.caption.text;
+            TL_iv.RichText richText = M.f11204b.caption.text;
             String l4 = f6.l(richText);
             i1 i1Var = this.f11486a;
             if (!String.valueOf(i1Var.getText()).equals(l4)) {
@@ -75,13 +75,13 @@ public final class l0 {
 
     public final void c(Canvas canvas) {
         k0 k0Var = this.f11488c;
-        q9 E = k0Var.E();
-        if (E != null) {
+        q9 C = k0Var.C();
+        if (C != null) {
             i1 i1Var = this.f11486a;
             if (i1Var.getLayout() != null) {
                 canvas.save();
                 canvas.translate(i1Var.getPaddingLeft() + i1Var.getLeft(), i1Var.getPaddingTop() + i1Var.getTop());
-                E.a0(canvas, k0Var.K(), 0);
+                C.a0(canvas, k0Var.I(), 0);
                 canvas.restore();
             }
         }
@@ -131,10 +131,10 @@ public final class l0 {
 
     public final void i() {
         TL_iv.PageBlock pageBlock;
-        a N = this.f11488c.N();
-        if (N != null && (pageBlock = N.f11204b) != null) {
+        a M = this.f11488c.M();
+        if (M != null && (pageBlock = M.f11204b) != null) {
             d(pageBlock);
-            N.f11204b.caption.text = f6.f(this.f11486a.getText());
+            M.f11204b.caption.text = f6.f(this.f11486a.getText());
         }
     }
 }

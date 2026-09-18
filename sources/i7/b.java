@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.j;
-import w7.f0;
+import w7.g0;
 public final class b extends j {
     public static final com.google.android.gms.common.api.e f11016l = new com.google.android.gms.common.api.e("Auth.Api.Identity.SignIn.API", new a8.d(6), new Object());
     public final String f11017k;
@@ -25,7 +25,7 @@ public final class b extends j {
             if (byteArrayExtra == null) {
                 a2 = null;
             } else {
-                a2 = f0.a(byteArrayExtra, creator);
+                a2 = g0.a(byteArrayExtra, creator);
             }
             Status status2 = (Status) a2;
             if (status2 != null) {
@@ -33,7 +33,7 @@ public final class b extends j {
                     Parcelable.Creator<x5.g> creator2 = x5.g.CREATOR;
                     byte[] byteArrayExtra2 = intent.getByteArrayExtra("sign_in_credential");
                     if (byteArrayExtra2 != null) {
-                        bVar = f0.a(byteArrayExtra2, creator2);
+                        bVar = g0.a(byteArrayExtra2, creator2);
                     }
                     x5.g gVar = (x5.g) bVar;
                     if (gVar != null) {

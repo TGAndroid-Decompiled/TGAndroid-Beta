@@ -10,18 +10,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.e5;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.g1;
-import org.telegram.ui.ActionBar.o1;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f1;
+import org.telegram.ui.ActionBar.n1;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.bo;
-import org.telegram.ui.cz0;
+import org.telegram.ui.Components.ym0;
+import org.telegram.ui.az0;
 import org.telegram.ui.e0;
-import org.telegram.ui.sf;
-import org.telegram.ui.tm;
-import org.telegram.ui.we;
+import org.telegram.ui.qe;
+import org.telegram.ui.rf;
+import org.telegram.ui.rm;
+import org.telegram.ui.zn;
 public final class g implements View.OnLongClickListener {
     public final int f13032a;
     public final int f13033b;
@@ -35,34 +35,34 @@ public final class g implements View.OnLongClickListener {
 
     @Override
     public final boolean onLongClick(View view) {
-        sf sfVar;
+        rf rfVar;
         char c10;
         String string;
-        mm0 mm0Var;
+        ym0 ym0Var;
         switch (this.f13032a) {
             case 0:
                 b bVar = ((h) this.f13034c).f13040n;
                 if (bVar != null) {
-                    bo boVar = ((we) bVar).f38698b;
+                    zn znVar = ((qe) bVar).f36798b;
                     int i10 = this.f13033b;
                     if (i10 == 2) {
-                        sfVar = new sf(boVar, 10);
+                        rfVar = new rf(znVar, 9);
                         c10 = 1;
                     } else if (i10 == 3) {
-                        sfVar = new sf(boVar, 11);
+                        rfVar = new rf(znVar, 10);
                         c10 = 0;
                     } else if (i10 == 4) {
-                        sfVar = new sf(boVar, 12);
+                        rfVar = new rf(znVar, 11);
                         c10 = 2;
                     }
-                    Activity parentActivity = boVar.getParentActivity();
-                    e5 parentLayout = boVar.getParentLayout();
-                    tm tmVar = boVar.X0;
-                    f6 resourceProvider = boVar.getResourceProvider();
+                    Activity parentActivity = znVar.getParentActivity();
+                    d5 parentLayout = znVar.getParentLayout();
+                    rm rmVar = znVar.X0;
+                    e6 resourceProvider = znVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
-                    g1 g1Var = new g1(0, parentActivity, resourceProvider, true, true);
-                    g1Var.setMinimumWidth(AndroidUtilities.dp(200.0f));
+                    f1 f1Var = new f1(0, parentActivity, resourceProvider, true, true);
+                    f1Var.setMinimumWidth(AndroidUtilities.dp(200.0f));
                     if (c10 == 0) {
                         string = LocaleController.getString(R.string.ReadAllReactions);
                     } else if (c10 == 1) {
@@ -70,22 +70,22 @@ public final class g implements View.OnLongClickListener {
                     } else {
                         string = LocaleController.getString(R.string.ReadAllPollVotes);
                     }
-                    g1Var.g(string, R.drawable.msg_seen, null);
-                    g1Var.setOnClickListener(new cz0(1, sfVar));
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.addView(g1Var);
-                    o1 o1Var = new o1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                    o1Var.e = true;
-                    o1Var.f19449c = 220;
-                    o1Var.setOutsideTouchable(true);
-                    o1Var.setClippingEnabled(true);
-                    o1Var.setAnimationStyle(R.style.PopupContextAnimation);
-                    o1Var.setFocusable(true);
+                    f1Var.g(string, R.drawable.msg_seen, null);
+                    f1Var.setOnClickListener(new az0(1, rfVar));
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.addView(f1Var);
+                    n1 n1Var = new n1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+                    n1Var.e = true;
+                    n1Var.f19609c = 220;
+                    n1Var.setOutsideTouchable(true);
+                    n1Var.setClippingEnabled(true);
+                    n1Var.setAnimationStyle(R.style.PopupContextAnimation);
+                    n1Var.setFocusable(true);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
-                    o1Var.setInputMethodMode(2);
-                    o1Var.setSoftInputMode(0);
-                    o1Var.getContentView().setFocusableInTouchMode(true);
+                    n1Var.setInputMethodMode(2);
+                    n1Var.setSoftInputMode(0);
+                    n1Var.getContentView().setFocusableInTouchMode(true);
                     PointF pointF = new PointF();
-                    k.b(view, tmVar, pointF);
+                    k.b(view, rmVar, pointF);
                     float width = ((pointF.x + view.getWidth()) - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) + AndroidUtilities.dp(8.0f);
                     float measuredHeight = pointF.y - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
                     if (AndroidUtilities.isTablet()) {
@@ -93,10 +93,10 @@ public final class g implements View.OnLongClickListener {
                         width += view2.getX() + view2.getPaddingLeft();
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
-                    o1Var.showAtLocation(tmVar, 51, (int) width, (int) measuredHeight);
-                    boVar.Q8 = o1Var;
-                    boVar.f8(boVar.f32332j1, false);
-                    boVar.Q8.setOnDismissListener(new e0(boVar, 1));
+                    n1Var.showAtLocation(rmVar, 51, (int) width, (int) measuredHeight);
+                    znVar.Q8 = n1Var;
+                    znVar.f8(znVar.f40314j1, false);
+                    znVar.Q8.setOnDismissListener(new e0(znVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f13034c;
-                if (!scrollSlidingTextTabStrip.f22196n0 && (mm0Var = scrollSlidingTextTabStrip.f22181b) != null && mm0Var.n1(this.f13033b, view)) {
+                if (!scrollSlidingTextTabStrip.f22369n0 && (ym0Var = scrollSlidingTextTabStrip.f22354b) != null && ym0Var.n1(this.f13033b, view)) {
                     return true;
                 }
                 return false;

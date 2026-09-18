@@ -1,44 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class m7 implements fo0 {
-    public final h8 f26095a;
+import android.view.View;
+public final class m7 implements kl0 {
+    public final int f26346a;
 
-    public m7(h8 h8Var) {
-        this.f26095a = h8Var;
+    public m7(int i10) {
+        this.f26346a = i10;
     }
 
     @Override
-    public final void X(float f7, boolean z10) {
-        if (z10) {
-            MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
+    public final void d(int i10, View view) {
+        switch (this.f26346a) {
+            case 0:
+                if (view instanceof org.telegram.ui.Cells.x) {
+                    ((org.telegram.ui.Cells.x) view).a();
+                    return;
+                }
+                return;
+            case 1:
+                boolean z10 = ChatAttachAlertPhotoLayout.f22084q1;
+                if (view instanceof org.telegram.ui.Cells.t5) {
+                    org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+                    t5Var.f21169w.a(t5Var);
+                    return;
+                }
+                return;
+            case 2:
+                return;
+            case 3:
+                int i11 = xh.c.f46066a0;
+                return;
+            default:
+                int i12 = xh.m.A0;
+                return;
         }
-        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-        if (playingMessageObject != null && playingMessageObject.isMusic()) {
-            this.f26095a.G0(playingMessageObject, false);
-        }
     }
 
-    @Override
-    public final CharSequence getContentDescription() {
-        StringBuilder sb2 = new StringBuilder();
-        h8 h8Var = this.f26095a;
-        sb2.append(LocaleController.formatPluralString("Minutes", h8Var.D0 / 60, new Object[0]));
-        sb2.append(' ');
-        sb2.append(LocaleController.formatPluralString("Seconds", h8Var.D0 % 60, new Object[0]));
-        String sb3 = sb2.toString();
-        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, LocaleController.formatPluralString("Minutes", h8Var.E0 / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", h8Var.E0 % 60, new Object[0]));
-    }
-
-    @Override
-    public final int m0() {
-        return 0;
-    }
-
-    @Override
-    public final void B() {
+    private final void a(int i10, View view) {
     }
 }

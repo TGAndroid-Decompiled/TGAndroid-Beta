@@ -8,11 +8,11 @@ import ei.d5;
 import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.ml0;
-import w7.x5;
-public final class i1 extends o2 {
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.wl0;
+import w7.y5;
+public final class i1 extends n2 {
     public final CharSequence f10316a;
     public final ArrayList f10317b;
     public final int f10318c;
@@ -20,7 +20,7 @@ public final class i1 extends o2 {
     public final int e;
     public uc f10319f;
     public gg.x1 h;
-    public f61 f10320n;
+    public t61 f10320n;
     public boolean f10321r;
 
     public i1(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
@@ -46,7 +46,7 @@ public final class i1 extends o2 {
         if (arrayList.size() >= this.e) {
             return false;
         }
-        if (!arrayList.isEmpty() && !U() && ((f1) k0.h(1, arrayList)).f10290b >= Math.min(1438, this.d - 2)) {
+        if (!arrayList.isEmpty() && !U() && ((f1) k0.g(1, arrayList)).f10290b >= Math.min(1438, this.d - 2)) {
             return false;
         }
         return true;
@@ -59,17 +59,17 @@ public final class i1 extends o2 {
         this.actionBar.setTitle(this.f10316a);
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 15));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f18807a7, false));
-        f61 f61Var = new f61(this, new bi.v(this, 28), new d5(this, 4), null);
-        this.f10320n = f61Var;
-        f61Var.q1();
-        frameLayout.addView(this.f10320n, x5.c(-1.0f, -1));
+        frameLayout.setBackgroundColor(j6.w0(null, j6.f19006a7, false));
+        t61 t61Var = new t61(this, new bi.v(this, 28), new d5(this, 4), null);
+        this.f10320n = t61Var;
+        t61Var.q1();
+        frameLayout.addView(this.f10320n, y5.c(-1.0f, -1));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     @Override
-    public final ml0 getListViewForSimpleGlass() {
+    public final wl0 getListViewForSimpleGlass() {
         return this.f10320n;
     }
 

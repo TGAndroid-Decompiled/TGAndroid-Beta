@@ -3,14 +3,14 @@ package n4;
 import android.text.TextUtils;
 import j$.util.Objects;
 public class c0 {
-    public final String f14940a;
-    public final int f14941b;
-    public final int f14942c;
+    public final String f15115a;
+    public final int f15116b;
+    public final int f15117c;
 
     public c0(String str, int i10, int i11) {
-        this.f14940a = str;
-        this.f14941b = i10;
-        this.f14942c = i11;
+        this.f15115a = str;
+        this.f15116b = i10;
+        this.f15117c = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -21,12 +21,12 @@ public class c0 {
             return false;
         }
         c0 c0Var = (c0) obj;
-        int i10 = c0Var.f14942c;
-        String str = c0Var.f14940a;
-        int i11 = c0Var.f14941b;
-        int i12 = this.f14942c;
-        String str2 = this.f14940a;
-        int i13 = this.f14941b;
+        int i10 = c0Var.f15117c;
+        String str = c0Var.f15115a;
+        int i11 = c0Var.f15116b;
+        int i12 = this.f15117c;
+        String str2 = this.f15115a;
+        int i13 = this.f15116b;
         if (i13 >= 0 && i11 >= 0) {
             if (TextUtils.equals(str2, str) && i13 == i11 && i12 == i10) {
                 return true;
@@ -40,6 +40,6 @@ public class c0 {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f14940a, Integer.valueOf(this.f14942c));
+        return Objects.hash(this.f15115a, Integer.valueOf(this.f15117c));
     }
 }

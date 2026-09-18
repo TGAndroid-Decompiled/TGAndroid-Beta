@@ -1,39 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class s31 implements Runnable {
-    public final int f37380a;
-    public final org.telegram.messenger.video.a f37381b;
-    public final org.telegram.ui.Components.vc f37382c;
-    public final Context d;
-    public final ai.a1 e;
+import org.telegram.messenger.Utilities;
+public final class s31 implements x31 {
+    public final boolean[] f37192a;
+    public final Utilities.Callback f37193b;
+    public final org.telegram.ui.Components.xc f37194c;
 
-    public s31(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.vc vcVar, Context context, ai.a1 a1Var, int i10) {
-        this.f37380a = i10;
-        this.f37381b = aVar;
-        this.f37382c = vcVar;
-        this.d = context;
-        this.e = a1Var;
+    public s31(boolean[] zArr, Utilities.Callback callback, org.telegram.ui.Components.xc xcVar) {
+        this.f37192a = zArr;
+        this.f37193b = callback;
+        this.f37194c = xcVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37380a) {
-            case 0:
-                this.f37381b.run();
-                this.f37382c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new qv(this.d, 2), this.e)).j();
-                return;
-            case 1:
-                this.f37381b.run();
-                this.f37382c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new qv(this.d, 5), this.e)).j();
-                return;
-            default:
-                this.f37381b.run();
-                this.f37382c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new qv(this.d, 6), this.e)).j();
-                return;
+    public final void a() {
+        Utilities.Callback callback;
+        boolean[] zArr = this.f37192a;
+        if (!zArr[0] && (callback = this.f37193b) != null) {
+            zArr[0] = true;
+            callback.run(Boolean.TRUE);
         }
+        AndroidUtilities.runOnUIThread(new e01(this.f37194c, 7), 200L);
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void c() {
     }
 }

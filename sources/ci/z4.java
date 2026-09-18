@@ -1,7 +1,7 @@
 package ci;
 
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.na0;
+import org.telegram.ui.Components.wa0;
 public final class z4 implements o1.f {
     public final int f5866a;
     public final FrameLayout f5867b;
@@ -24,7 +24,7 @@ public final class z4 implements o1.f {
                     r6Var.C1 = null;
                     if (!this.f5868c) {
                         r5Var.setVisibility(8);
-                        pg.s0.e(r6Var.F1).g();
+                        pg.u0.e(r6Var.F1).g();
                         r5Var.getAdapter().l();
                         return;
                     }
@@ -33,32 +33,32 @@ public final class z4 implements o1.f {
                 return;
             case 1:
                 r6 r6Var2 = (r6) this.f5867b;
-                qg.w1 w1Var = r6Var2.f5431m1;
+                qg.t1 t1Var = r6Var2.f5431m1;
                 if (hVar == r6Var2.f5449v1) {
                     r6Var2.f5449v1 = null;
                     if (!this.f5868c) {
-                        w1Var.setVisibility(8);
+                        t1Var.setVisibility(8);
                     }
-                    w1Var.setMaskProvider(null);
+                    t1Var.setMaskProvider(null);
                     return;
                 }
                 return;
             default:
-                na0 na0Var = (na0) this.f5867b;
+                wa0 wa0Var = (wa0) this.f5867b;
                 if (!z10) {
-                    na0Var.K = null;
+                    wa0Var.K = null;
                     boolean z11 = this.f5868c;
                     if (z11) {
                         i10 = 8;
                     } else {
                         i10 = 0;
                     }
-                    na0Var.setVisibility(i10);
-                    if (na0Var.N && z11) {
-                        na0Var.N = false;
-                        na0Var.f26428b.setLayoutManager(na0Var.getNeededLayoutManager());
-                        na0Var.I = true;
-                        na0Var.o(true);
+                    wa0Var.setVisibility(i10);
+                    if (wa0Var.N && z11) {
+                        wa0Var.N = false;
+                        wa0Var.f30004b.setLayoutManager(wa0Var.getNeededLayoutManager());
+                        wa0Var.I = true;
+                        wa0Var.o(true);
                         return;
                     }
                     return;

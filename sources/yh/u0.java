@@ -5,126 +5,126 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.np;
 public final class u0 implements View.OnClickListener {
-    public final int f47869a;
-    public final a4 f47870b;
+    public final int f48075a;
+    public final y3 f48076b;
 
-    public u0(a4 a4Var, int i10) {
-        this.f47869a = i10;
-        this.f47870b = a4Var;
+    public u0(y3 y3Var, int i10) {
+        this.f48075a = i10;
+        this.f48076b = y3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f47869a) {
+        switch (this.f48075a) {
             case 0:
-                this.f47870b.onBackPressed();
+                this.f48076b.onBackPressed();
                 return;
             case 1:
-                this.f47870b.w1();
+                this.f48076b.w1();
                 return;
             case 2:
-                this.f47870b.onBackPressed();
+                this.f48076b.onBackPressed();
                 return;
             case 3:
-                this.f47870b.a2();
+                this.f48076b.a2();
                 return;
             case 4:
-                this.f47870b.dismiss();
+                this.f48076b.dismiss();
                 return;
             case 5:
-                this.f47870b.a2();
+                this.f48076b.a2();
                 return;
             case 6:
-                this.f47870b.onBackPressed();
+                this.f48076b.onBackPressed();
                 return;
             case 7:
-                this.f47870b.Q1();
+                this.f48076b.Q1();
                 return;
             case 8:
-                this.f47870b.a2();
+                this.f48076b.a2();
                 return;
             case 9:
-                this.f47870b.onBackPressed();
+                this.f48076b.onBackPressed();
                 return;
             case 10:
-                this.f47870b.W1(true);
+                this.f48076b.W1(true);
                 return;
             case 11:
-                this.f47870b.a2();
+                this.f48076b.a2();
                 return;
             case 12:
-                a4 a4Var = this.f47870b;
-                if (!a4Var.f46991j0.N) {
-                    np npVar = a4Var.f47008v0;
-                    npVar.a(!npVar.f26511a.f21985q, true);
+                y3 y3Var = this.f48076b;
+                if (!y3Var.f48274j0.N) {
+                    np npVar = y3Var.f48291v0;
+                    npVar.a(!npVar.f26739a.f22158q, true);
                     return;
                 }
                 return;
             case 13:
-                a4.T0(this.f47870b, view);
+                y3.T0(this.f48076b, view);
                 return;
             case 14:
-                this.f47870b.W1(true);
+                this.f48076b.W1(true);
                 return;
             case 15:
                 float alpha = view.getAlpha();
-                a4 a4Var2 = this.f47870b;
+                y3 y3Var2 = this.f48076b;
                 if (alpha < 0.99f) {
-                    a4Var2.u1();
+                    y3Var2.u1();
                     return;
                 } else {
-                    a4Var2.Y1();
+                    y3Var2.Y1();
                     return;
                 }
             case 16:
-                a4.b1(this.f47870b);
+                y3.b1(this.f48076b);
                 return;
             case 17:
-                this.f47870b.S1();
+                this.f48076b.S1();
                 return;
             case 18:
-                this.f47870b.R1(view);
+                this.f48076b.R1(view);
                 return;
             case 19:
-                this.f47870b.U1();
+                this.f48076b.U1();
                 return;
             case 20:
                 if (view.getAlpha() >= 1.0f) {
-                    a4 a4Var3 = this.f47870b;
-                    ci.d dVar = a4Var3.f46991j0;
+                    y3 y3Var3 = this.f48076b;
+                    ci.d dVar = y3Var3.f48274j0;
                     dVar.g(LocaleController.getString(R.string.GiftCraftInfoButton), true, true);
                     dVar.f(null, true);
-                    dVar.setOnClickListener(new u0(a4Var3, 22));
-                    a4Var3.f46981e0.i(3, LocaleController.getString(R.string.GiftCraftInfoTitle), LocaleController.getString(R.string.GiftCraftInfoText), null);
-                    a4Var3.q2(3, true, null);
+                    dVar.setOnClickListener(new u0(y3Var3, 22));
+                    y3Var3.f48264e0.i(3, LocaleController.getString(R.string.GiftCraftInfoTitle), LocaleController.getString(R.string.GiftCraftInfoText), null);
+                    y3Var3.q2(3, true, null);
                     return;
                 }
                 return;
             case 21:
-                a4 a4Var4 = this.f47870b;
-                a4Var4.V0 = true;
-                a4Var4.r2(false);
+                y3 y3Var4 = this.f48076b;
+                y3Var4.V0 = true;
+                y3Var4.r2(false);
                 return;
             case 22:
-                this.f47870b.W1(false);
+                this.f48076b.W1(false);
                 return;
             case 23:
-                m3 m3Var = this.f47870b.M0;
-                m3Var.h.e();
-                m3Var.f47470i.e();
-                m3Var.f47471j.e();
-                m3Var.f47472k.e();
+                k3 k3Var = this.f48076b.M0;
+                k3Var.h.e();
+                k3Var.f47591i.e();
+                k3Var.f47592j.e();
+                k3Var.f47593k.e();
                 return;
             case 24:
-                this.f47870b.Q1();
+                this.f48076b.Q1();
                 return;
             case 25:
-                this.f47870b.onBackPressed();
+                this.f48076b.onBackPressed();
                 return;
             default:
-                a4 a4Var5 = this.f47870b;
-                a4Var5.V0 = true;
-                a4Var5.r2(false);
+                y3 y3Var5 = this.f48076b;
+                y3Var5.V0 = true;
+                y3Var5.r2(false);
                 return;
         }
     }

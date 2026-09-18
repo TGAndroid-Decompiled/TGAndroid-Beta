@@ -1,4 +1,14 @@
 package org.telegram.ui.Components;
-public interface rc0 {
-    void n(int i10);
+
+import android.graphics.drawable.Drawable;
+public final class rc0 extends Drawable.ConstantState {
+    @Override
+    public final int getChangingConfigurations() {
+        return 0;
+    }
+
+    @Override
+    public final Drawable newDrawable() {
+        return new sc0();
+    }
 }

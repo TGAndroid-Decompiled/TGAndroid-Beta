@@ -6,37 +6,37 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.WallpapersListActivity;
 public final class vo implements View.OnClickListener {
-    public final int f28836a;
-    public final mp f28837b;
+    public final int f29150a;
+    public final mp f29151b;
 
     public vo(mp mpVar, int i10) {
-        this.f28836a = i10;
-        this.f28837b = mpVar;
+        this.f29150a = i10;
+        this.f29151b = mpVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f28836a) {
+        switch (this.f29150a) {
             case 0:
-                mp mpVar = this.f28837b;
+                mp mpVar = this.f29151b;
                 vi viVar = mpVar.Y;
-                if (viVar.f28806y0 == viVar.f28757j0) {
-                    mpVar.f26223a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
+                if (viVar.f29082y0 == viVar.f29033j0) {
+                    mpVar.f26474a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
                     mpVar.Y.C1();
-                    jj jjVar = mpVar.Y.f28781r0;
+                    jj jjVar = mpVar.Y.f29057r0;
                     boolean z10 = mpVar.N;
-                    xa xaVar = jjVar.v;
-                    ((ArrayList) xaVar.e).clear();
-                    WallpapersListActivity.z0((ArrayList) xaVar.e, z10);
-                    xaVar.l();
+                    za zaVar = jjVar.v;
+                    ((ArrayList) zaVar.e).clear();
+                    WallpapersListActivity.z0((ArrayList) zaVar.e, z10);
+                    zaVar.l();
                     return;
                 }
-                mpVar.f26223a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
+                mpVar.f26474a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
                 vi viVar2 = mpVar.Y;
-                viVar2.Q1(viVar2.f28757j0);
+                viVar2.Q1(viVar2.f29033j0);
                 return;
             case 1:
-                mp mpVar2 = this.f28837b;
+                mp mpVar2 = this.f29151b;
                 if (mpVar2.v()) {
                     mpVar2.z(true);
                     mpVar2.F(true);
@@ -45,14 +45,14 @@ public final class vo implements View.OnClickListener {
                 mpVar2.dismiss();
                 return;
             case 2:
-                mp mpVar3 = this.f28837b;
+                mp mpVar3 = this.f29151b;
                 if (mpVar3.T == null) {
                     mpVar3.B(!mpVar3.N);
                     return;
                 }
                 return;
             default:
-                this.f28837b.s(false);
+                this.f29151b.s(false);
                 return;
         }
     }

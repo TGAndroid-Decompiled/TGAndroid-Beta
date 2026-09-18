@@ -1,45 +1,20 @@
 package org.telegram.ui.Components;
-public final class re0 extends p6 {
-    public final int f27602b;
-    public final ue0 f27603c;
 
-    public re0(ue0 ue0Var, int i10) {
-        super("thumbAnimationProgress", 0);
-        this.f27602b = i10;
-        switch (i10) {
-            case 1:
-                this.f27603c = ue0Var;
-                super("thumbImageVisibleProgress", 0);
-                return;
-            default:
-                this.f27603c = ue0Var;
-                return;
-        }
+import android.app.Activity;
+import android.view.ViewGroup;
+public final class re0 extends org.telegram.ui.ActionBar.k {
+    public final ye0 f27879u1;
+
+    public re0(ye0 ye0Var, Activity activity) {
+        super(activity, null);
+        this.f27879u1 = ye0Var;
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        switch (this.f27602b) {
-            case 0:
-                this.f27603c.f28376r = f7;
-                ((ue0) obj).invalidate();
-                return;
-            default:
-                this.f27603c.f28375n = f7;
-                ((ue0) obj).invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f27602b) {
-            case 0:
-                ue0 ue0Var = (ue0) obj;
-                return Float.valueOf(this.f27603c.f28376r);
-            default:
-                ue0 ue0Var2 = (ue0) obj;
-                return Float.valueOf(this.f27603c.f28375n);
-        }
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        super.setAlpha(f7);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f27879u1).containerView;
+        viewGroup.invalidate();
     }
 }

@@ -62,8 +62,8 @@ public final class e {
         int a2 = (int) a(i11, iArr);
         int i16 = iArr[2];
         dc.b bVar = this.f11077a;
-        int i17 = bVar.f7619b;
-        int i18 = bVar.f7618a;
+        int i17 = bVar.f7618b;
+        int i18 = bVar.f7617a;
         int[] iArr2 = this.d;
         Arrays.fill(iArr2, 0);
         int i19 = i10;
@@ -212,7 +212,7 @@ public final class e {
                             i36++;
                         }
                         if (iArr2[0] != 0) {
-                            int i37 = bVar.f7619b;
+                            int i37 = bVar.f7618b;
                             int i38 = 1;
                             while (true) {
                                 int i39 = i26 + i38;

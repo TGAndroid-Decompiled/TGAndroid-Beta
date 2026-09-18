@@ -1,61 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class q01 extends MetricAffectingSpan {
-    public final int f27187a;
-    public final p01 f27188b;
+import java.util.HashMap;
+import java.util.Iterator;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
+public final class q01 implements ki.f0, NotificationCenter.NotificationCenterDelegate {
+    public final int f27399a;
+    public final boolean f27400b;
+    public final HashMap f27401c = new HashMap();
+    public boolean d;
 
-    public q01(p01 p01Var, int i10) {
-        this.f27188b = p01Var;
-        if (i10 > 0) {
-            this.f27187a = i10;
+    public q01(int i10, boolean z10) {
+        this.f27399a = i10;
+        this.f27400b = z10;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
+    }
+
+    public final synchronized void a(long j3) {
+        o01 o01Var = (o01) this.f27401c.remove(Long.valueOf(j3));
+        if (o01Var == null) {
+            return;
+        }
+        o01Var.e = true;
+        if (o01Var.d) {
+            FileLoader.getInstance(this.f27399a).cancelFileUpload(o01Var.f26805a.getAbsolutePath(), this.f27400b);
         }
     }
 
-    public final void a(TextPaint textPaint) {
-        p01 p01Var = this.f27188b;
-        if (w7.c0.a(p01Var.f26908a, 49152)) {
-            float textSize = textPaint.getTextSize();
-            textPaint.setTextSize(0.75f * textSize);
-            if (w7.c0.a(p01Var.f26908a, 32768)) {
-                textPaint.baselineShift -= (int) (textSize * 0.35f);
-            } else if (w7.c0.a(p01Var.f26908a, 16384)) {
-                textPaint.baselineShift += (int) (textSize * 0.12f);
+    public final synchronized void b(boolean z10) {
+        try {
+            if (this.d) {
+                return;
             }
+            this.d = true;
+            NotificationCenter.getInstance(this.f27399a).removeObserver(this, NotificationCenter.fileUploaded);
+            if (z10) {
+                Iterator it = this.f27401c.values().iterator();
+                while (it.hasNext()) {
+                    o01 o01Var = (o01) it.next();
+                    if (o01Var.d && !o01Var.e) {
+                        FileLoader.getInstance(this.f27399a).cancelFileUpload(o01Var.f26805a.getAbsolutePath(), this.f27400b);
+                    }
+                    it.remove();
+                }
+            }
+        } catch (Throwable th2) {
+            throw th2;
         }
     }
 
-    public final p01 b() {
-        return this.f27188b;
-    }
-
-    public final boolean c() {
-        if ((this.f27188b.f26908a & 256) > 0) {
-            return true;
+    public final void c(o01 o01Var) {
+        if (o01Var.d) {
+            return;
         }
-        return false;
+        o01Var.d = true;
+        FileLoader.getInstance(this.f27399a).uploadFile(o01Var.f26805a.getAbsolutePath(), this.f27400b, false, 1L, 33554432, false);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f27187a;
-        if (i10 != 0) {
-            textPaint.setTextSize(i10);
-        }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f27188b.a(textPaint);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        int i10 = this.f27187a;
-        if (i10 != 0) {
-            textPaint.setTextSize(i10);
-        }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f27188b.a(textPaint);
+    public final synchronized void didReceivedNotification(int r4, int r5, java.lang.Object... r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q01.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

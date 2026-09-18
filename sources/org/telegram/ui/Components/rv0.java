@@ -1,80 +1,114 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class rv0 extends qv0 {
-    public Activity f27705w0;
-    public final Rect f27706x0;
-    public int f27707y0;
-    public boolean f27708z0;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+public final class rv0 extends View {
+    public final ImageReceiver f27975a;
+    public final h9 f27976b;
+    public final Paint f27977c;
+    public float d;
+    public boolean e;
+    public ValueAnimator f27978f;
 
-    public rv0(Context context, Activity activity) {
-        super(context, null);
-        this.f27706x0 = new Rect();
-        setActivity(activity);
+    public rv0(Context context) {
+        super(context);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f27975a = imageReceiver;
+        this.f27976b = new h9((org.telegram.ui.ActionBar.e6) null);
+        Paint paint = new Paint(1);
+        this.f27977c = paint;
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(28.0f));
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    @Override
-    public int R() {
-        View rootView = getRootView();
-        Rect rect = this.f27706x0;
-        getWindowVisibleDisplayFrame(rect);
-        int i10 = 0;
-        if (this.f27708z0) {
-            int height = rootView.getHeight();
-            if (rect.top != 0) {
-                i10 = AndroidUtilities.statusBarHeight;
+    public final void a(boolean z10, boolean z11) {
+        ValueAnimator valueAnimator = this.f27978f;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float f7 = 0.0f;
+        if (z11) {
+            if (z10) {
+                f7 = 1.0f;
             }
-            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
-        }
-        int height2 = (this.f27705w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
-        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
-            return 0;
-        }
-        return height2;
-    }
-
-    @Override
-    public void S() {
-        boolean z10;
-        if (this.f27430n == null && this.f27435r.isEmpty()) {
+            ValueAnimator duration = ValueAnimator.ofFloat(this.d, f7).setDuration(200L);
+            duration.setInterpolator(qr.f27715f);
+            duration.addUpdateListener(new q70(this, 21));
+            duration.addListener(new ed0(this, 16));
+            duration.start();
+            this.f27978f = duration;
             return;
         }
-        this.f27707y0 = R();
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
+        if (z10) {
+            f7 = 1.0f;
         }
-        post(new tr0(2, this, z10));
+        this.d = f7;
+        invalidate();
     }
 
     @Override
-    public int[] getColorKeys() {
-        return null;
+    public final boolean isSelected() {
+        if (this.d == 1.0f) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public int getKeyboardHeight() {
-        return this.f27707y0;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f27975a.onAttachedToWindow();
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        S();
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f27975a.onDetachedFromWindow();
     }
 
-    public void setActivity(Activity activity) {
-        this.f27705w0 = activity;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        float f7 = (this.d * 0.1f) + 0.9f;
+        canvas.scale(f7, f7);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19226m5, false);
+        Paint paint = this.f27977c;
+        paint.setColor(w02);
+        paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));
+        float strokeWidth = paint.getStrokeWidth();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
+        canvas.drawArc(rectF, -90.0f, this.d * 360.0f, false, paint);
+        canvas.restore();
+        if (!this.e) {
+            float strokeWidth2 = paint.getStrokeWidth() * 2.5f * this.d;
+            float f10 = 2.0f * strokeWidth2;
+            float width = getWidth() - f10;
+            float height = getHeight() - f10;
+            ImageReceiver imageReceiver = this.f27975a;
+            imageReceiver.setImageCoords(strokeWidth2, strokeWidth2, width, height);
+            imageReceiver.draw(canvas);
+        }
     }
 
-    public void setWithoutWindow(boolean z10) {
-        this.f27708z0 = z10;
+    public void setAvatar(TLObject tLObject) {
+        h9 h9Var = this.f27976b;
+        h9Var.p(tLObject);
+        this.f27975a.setForUserOrChat(tLObject, h9Var);
+    }
+
+    public void setHideAvatar(boolean z10) {
+        this.e = z10;
+        invalidate();
     }
 }

@@ -1,28 +1,26 @@
 package org.telegram.ui;
-public final class hd1 implements od1 {
-    public boolean f34245a;
-    public final bo f34246b;
 
-    public hd1(bo boVar, boolean z10) {
-        this.f34246b = boVar;
-        this.f34245a = z10;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class hd1 extends org.telegram.ui.Components.vq0 {
+    public final jd1 f34126b1;
+
+    public hd1(jd1 jd1Var, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.f34126b1 = jd1Var;
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f34245a;
-    }
-
-    @Override
-    public final void o1(boolean z10) {
-        boolean z11 = !this.f34245a;
-        this.f34245a = z11;
-        zn znVar = this.f34246b.f32279ea;
-        znVar.i(znVar.f40285f, znVar.h, z10, Boolean.valueOf(z11), false);
+    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        int m10 = iVar.m();
+        jd1 jd1Var = this.f34126b1;
+        if (m10 == 1) {
+            jd1Var.f34846a.f38502l0.m(((TLRPC.Dialog) iVar.n(0)).f18300id, Integer.valueOf(i10), 61);
+        } else {
+            jd1Var.f34846a.f38502l0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+        }
     }
 }

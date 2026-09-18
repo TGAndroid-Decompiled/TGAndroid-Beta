@@ -1,10 +1,10 @@
 package w3;
-
-import java.util.ArrayList;
 public final class m {
-    public static final a5.a d = new a5.a(new a6.i(new d9.b(':'), 16));
-    public static final a5.a e = new a5.a(new a6.i(new d9.b('*'), 16));
-    public final ArrayList f44584a = new ArrayList();
-    public int f44585b = 0;
-    public int f44586c;
+    public final long f44808a;
+    public final int f44809b;
+
+    public m(long j3, int i10) {
+        this.f44808a = j3;
+        this.f44809b = i10;
+    }
 }

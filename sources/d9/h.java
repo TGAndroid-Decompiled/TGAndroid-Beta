@@ -4,39 +4,39 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import v7.t6;
 public final class h implements Iterator {
-    public String f7568b;
-    public final CharSequence f7569c;
+    public String f7567b;
+    public final CharSequence f7568c;
     public final a d;
-    public int f7570f;
+    public int f7569f;
     public final a6.i h;
-    public int f7567a = 2;
+    public int f7566a = 2;
     public int e = 0;
 
     public h(a6.i iVar, a5.a aVar, CharSequence charSequence) {
         this.h = iVar;
         this.d = (a) aVar.f278c;
-        this.f7570f = aVar.f277b;
-        this.f7569c = charSequence;
+        this.f7569f = aVar.f277b;
+        this.f7568c = charSequence;
     }
 
     @Override
     public final boolean hasNext() {
         String str;
         a aVar;
-        int i10 = this.f7567a;
+        int i10 = this.f7566a;
         if (i10 != 4) {
             int c10 = m1.j.c(i10);
             if (c10 == 0) {
                 return true;
             }
             if (c10 != 2) {
-                this.f7567a = 4;
+                this.f7566a = 4;
                 int i11 = this.e;
                 while (true) {
                     int i12 = this.e;
                     if (i12 != -1) {
                         b bVar = (b) this.h.f303b;
-                        CharSequence charSequence = this.f7569c;
+                        CharSequence charSequence = this.f7568c;
                         int length = charSequence.length();
                         t6.e(i12, length);
                         while (true) {
@@ -74,7 +74,7 @@ public final class h implements Iterator {
                             while (i12 > i11 && aVar.a(charSequence.charAt(i12 - 1))) {
                                 i12--;
                             }
-                            int i15 = this.f7570f;
+                            int i15 = this.f7569f;
                             if (i15 == 1) {
                                 i12 = charSequence.length();
                                 this.e = -1;
@@ -82,19 +82,19 @@ public final class h implements Iterator {
                                     i12--;
                                 }
                             } else {
-                                this.f7570f = i15 - 1;
+                                this.f7569f = i15 - 1;
                             }
                             str = charSequence.subSequence(i11, i12).toString();
                         }
                     } else {
-                        this.f7567a = 3;
+                        this.f7566a = 3;
                         str = null;
                         break;
                     }
                 }
-                this.f7568b = str;
-                if (this.f7567a != 3) {
-                    this.f7567a = 1;
+                this.f7567b = str;
+                if (this.f7566a != 3) {
+                    this.f7566a = 1;
                     return true;
                 }
                 return false;
@@ -107,9 +107,9 @@ public final class h implements Iterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f7567a = 2;
-            String str = this.f7568b;
-            this.f7568b = null;
+            this.f7566a = 2;
+            String str = this.f7567b;
+            this.f7567b = null;
             return str;
         }
         throw new NoSuchElementException();

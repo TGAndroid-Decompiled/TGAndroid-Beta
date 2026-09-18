@@ -19,15 +19,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bl0;
+import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.mr;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.j01;
-import org.telegram.ui.k60;
-import org.telegram.ui.vg1;
-import org.telegram.ui.wy;
-public final class t9 implements org.telegram.ui.ActionBar.b2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, bl0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, pa.a, vg1 {
+import org.telegram.ui.h01;
+import org.telegram.ui.i60;
+import org.telegram.ui.tg1;
+import org.telegram.ui.uy;
+public final class t9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, ll0, MessagesController.IsInChatCheckedCallback, t5.b, s5.f, pa.a, tg1 {
     public final int f5572a;
     public final long f5573b;
     public final Object f5574c;
@@ -45,7 +45,7 @@ public final class t9 implements org.telegram.ui.ActionBar.b2, ChatObject.Call.O
         boolean z10;
         String str = (String) this.f5574c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((o5.c) this.d).f15491a;
+        int i10 = ((o5.c) this.d).f15620a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -63,7 +63,7 @@ public final class t9 implements org.telegram.ui.ActionBar.b2, ChatObject.Call.O
                 sQLiteDatabase.insert("log_event_dropped", null, contentValues);
                 return null;
             }
-            sQLiteDatabase.execSQL(org.telegram.ui.Cells.p6.h(j3, "UPDATE log_event_dropped SET events_dropped_count = events_dropped_count + ", " WHERE log_source = ? AND reason = ?"), new String[]{str, Integer.toString(i10)});
+            sQLiteDatabase.execSQL(org.telegram.ui.Cells.c1.h(j3, "UPDATE log_event_dropped SET events_dropped_count = events_dropped_count + ", " WHERE log_source = ? AND reason = ?"), new String[]{str, Integer.toString(i10)});
             return null;
         } catch (Throwable th2) {
             rawQuery.close();
@@ -117,7 +117,7 @@ public final class t9 implements org.telegram.ui.ActionBar.b2, ChatObject.Call.O
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f5572a) {
             case 0:
                 ba baVar = (ba) this.f5574c;
@@ -133,32 +133,32 @@ public final class t9 implements org.telegram.ui.ActionBar.b2, ChatObject.Call.O
                 baVar.i(true);
                 baVar.e(true);
                 baVar.f(true);
-                c2Var.dismiss();
+                b2Var.dismiss();
                 baVar.f4409x.K = true;
                 return;
             case 3:
                 mr.Q((mr) this.f5574c, (d) this.d, this.f5573b);
                 return;
             default:
-                k60 k60Var = (k60) this.f5574c;
-                k60Var.d.getMessagesController().addUserToChat(k60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.o2) k60Var.f35050i0.O().getFragmentStack().get(k60Var.f35050i0.O().getFragmentStack().size() - 1), new ai.j(k60Var, this.f5573b, 24));
+                i60 i60Var = (i60) this.f5574c;
+                i60Var.d.getMessagesController().addUserToChat(i60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) i60Var.f34362i0.O().getFragmentStack().get(i60Var.f34362i0.O().getFragmentStack().size() - 1), new ai.j(i60Var, this.f5573b, 24));
                 return;
         }
     }
 
     @Override
-    public Object i() {
-        da.b bVar = (da.b) this.f5574c;
-        long q6 = ((u5.a) bVar.f7585g).q() + this.f5573b;
-        s5.g gVar = (s5.g) ((s5.d) bVar.f7583c);
-        gVar.getClass();
-        gVar.c(new ai.z1(q6, (l5.i) this.d));
-        return null;
+    public void g(pa.b bVar) {
+        ((t9.a) bVar.get()).d((String) this.f5574c, this.f5573b, (y9.b1) this.d);
     }
 
     @Override
-    public void j(pa.b bVar) {
-        ((t9.a) bVar.get()).d((String) this.f5574c, this.f5573b, (y9.b1) this.d);
+    public Object h() {
+        da.b bVar = (da.b) this.f5574c;
+        long q6 = ((u5.a) bVar.f7584g).q() + this.f5573b;
+        s5.h hVar = (s5.h) ((s5.d) bVar.f7582c);
+        hVar.getClass();
+        hVar.c(new ai.z1(q6, (l5.i) this.d));
+        return null;
     }
 
     @Override
@@ -173,7 +173,7 @@ public final class t9 implements org.telegram.ui.ActionBar.b2, ChatObject.Call.O
 
     @Override
     public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new ai.h3((j01) this.f5574c, this.f5573b, tL_chatAdminRights, str, z10, (wy) this.d));
+        AndroidUtilities.runOnUIThread(new ai.h3((h01) this.f5574c, this.f5573b, tL_chatAdminRights, str, z10, (uy) this.d));
     }
 
     public t9(Object obj, Object obj2, long j3, int i10) {

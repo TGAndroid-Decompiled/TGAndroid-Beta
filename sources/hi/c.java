@@ -13,28 +13,28 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.u9;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.za;
-import w7.x5;
-public final class c extends za {
+import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.wl0;
+import w7.y5;
+public final class c extends bb {
     public final d1 X;
-    public x51 Y;
+    public l61 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, (f6) null, false);
+        super(context, (e6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        ml0 ml0Var = this.d;
+        wl0 wl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        ml0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        wl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -56,7 +56,7 @@ public final class c extends za {
         TextView textView2 = (TextView) d1Var.f687c;
         this.X = d1Var;
         d1Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((u9) d1Var.f686b).e(chat, new f9(chat));
+        ((w9) d1Var.f686b).e(chat, new h9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = j6.G6;
         textView2.setTextColor(getThemedColor(i13));
@@ -71,17 +71,17 @@ public final class c extends za {
         spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
         textView.setTextColor(getThemedColor(i13));
         textView.setText(spannableStringBuilder);
-        this.containerView.addView(dVar2, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
-        this.containerView.addView(dVar, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar2, y5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar, y5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.Y.N(false);
     }
 
     @Override
-    public final ll0 v(ml0 ml0Var) {
-        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = x51Var;
-        x51Var.f29854r = false;
-        return x51Var;
+    public final vl0 v(wl0 wl0Var) {
+        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = l61Var;
+        l61Var.f26042r = false;
+        return l61Var;
     }
 
     @Override

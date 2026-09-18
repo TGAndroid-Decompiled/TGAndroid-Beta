@@ -1,56 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class n51 extends URLSpan {
-    public final boolean f26341a;
-    public final p01 f26342b;
-    public TLObject f26343c;
-    public String d;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class n51 implements ey0 {
+    public final t51 f26613a;
 
-    public n51(String str) {
-        this(str, (p01) null);
+    public n51(t51 t51Var) {
+        this.f26613a = t51Var;
     }
 
     @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            nf.f.p(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
-            return;
-        }
-        nf.f.s(view.getContext(), url);
+    public final boolean b() {
+        return this.f26613a.f28324b.a();
     }
 
     @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i10 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        p01 p01Var = this.f26342b;
-        if (p01Var != null) {
-            p01Var.a(textPaint);
-        }
-        if (i10 == color && !this.f26341a) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        textPaint.setUnderlineText(z10);
+    public final boolean c() {
+        return this.f26613a.f28324b.c();
     }
 
-    public n51(String str, int i10) {
-        this(str, (p01) null);
-        this.f26341a = true;
-    }
-
-    public n51(String str, p01 p01Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f26341a = false;
-        this.f26342b = p01Var;
+    @Override
+    public final void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11) {
+        this.f26613a.f28324b.f(document, obj, z11, i10);
     }
 }

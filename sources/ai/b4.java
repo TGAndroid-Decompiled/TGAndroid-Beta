@@ -13,11 +13,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.b60;
 import org.telegram.ui.Components.i40;
-import org.telegram.ui.Components.mg;
-import org.telegram.ui.Components.w50;
-import org.telegram.ui.rn;
-public final class b4 implements mg {
+import org.telegram.ui.Components.ng;
+import org.telegram.ui.pn;
+public final class b4 implements ng {
     public final f6 f578a;
 
     public b4(f6 f6Var) {
@@ -75,9 +75,9 @@ public final class b4 implements mg {
 
     @Override
     public final void K(float f7, int i10) {
-        w50 w50Var = this.f578a.J2;
-        if (w50Var != null) {
-            w50Var.e(f7, i10);
+        b60 b60Var = this.f578a.J2;
+        if (b60Var != null) {
+            b60Var.b(f7, i10);
         }
     }
 
@@ -118,8 +118,8 @@ public final class b4 implements mg {
                 }
             }
             f6Var.r0(true);
-            f6Var.f800b2.Q1(true);
-            f6Var.f800b2.L(true);
+            f6Var.f800b2.P1(true);
+            f6Var.f800b2.K(true);
             f6Var.f1(false);
         }
         return true;
@@ -127,8 +127,8 @@ public final class b4 implements mg {
 
     @Override
     public final boolean i1() {
-        w50 w50Var = this.f578a.J2;
-        if (w50Var != null && !w50Var.f29541e0) {
+        b60 b60Var = this.f578a.J2;
+        if (b60Var != null && !b60Var.f22841h0) {
             return true;
         }
         return false;
@@ -147,7 +147,7 @@ public final class b4 implements mg {
             i40 i40Var = new i40(9, f6Var.getContext(), f6Var.B0, false);
             f6Var.W2 = i40Var;
             i40Var.setVisibility(8);
-            f6Var.addView(f6Var.W2, w7.x5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+            f6Var.addView(f6Var.W2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
         }
         if (f6Var.B1 >= 0) {
             str = UserObject.getFirstName(MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1)));
@@ -160,7 +160,7 @@ public final class b4 implements mg {
             }
         }
         i40 i40Var2 = f6Var.W2;
-        if (f6Var.f800b2.f21759c1) {
+        if (f6Var.f800b2.f21933c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
@@ -174,22 +174,22 @@ public final class b4 implements mg {
         f6 f6Var = this.f578a;
         boolean z11 = false;
         if (f6Var.J2 == null && CameraView.isCameraAllowed()) {
-            f6Var.J2 = new w50(f6Var.getContext(), new r4(f6Var), f6Var.B0, false);
-            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f800b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f800b2.N1)), w7.x5.e(-1, -1, 51));
+            f6Var.J2 = new b60(f6Var.getContext(), new r4(f6Var), f6Var.B0, false);
+            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f800b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f800b2.N1)), w7.y5.e(-1, -1, 51));
         }
-        w50 w50Var = f6Var.J2;
-        if (w50Var != null) {
+        b60 b60Var = f6Var.J2;
+        if (b60Var != null) {
             if (i10 == 0) {
-                w50Var.l(false);
+                b60Var.i(false);
             } else if (i10 != 1 && i10 != 3 && i10 != 4) {
                 if (i10 == 2 || i10 == 5) {
                     if (i10 == 2) {
                         z11 = true;
                     }
-                    w50Var.d(z11);
+                    b60Var.a(z11);
                 }
             } else {
-                w50Var.k(i10, i11, i12, j3, j10, z10);
+                b60Var.g(i10, i11, i12, j3, j10, z10);
             }
         }
     }
@@ -201,14 +201,14 @@ public final class b4 implements mg {
             c4 c4Var = new c4(f6Var, f6Var.getContext(), f6Var.B1, f6Var.J0.f1080f, f6Var.B0);
             f6Var.f809d3 = c4Var;
             c4Var.p(new f4(f6Var));
-            f6Var.addView(f6Var.f809d3, w7.x5.e(-1, -1, 83));
+            f6Var.addView(f6Var.f809d3, w7.y5.e(-1, -1, 83));
         }
         if (f6Var.f809d3.getAdapter() != null) {
             f6Var.f809d3.setDialogId(f6Var.B1);
             if (f6Var.O1.f709f) {
                 gg.k1 adapter = f6Var.f809d3.getAdapter();
-                if (adapter.f9826j0 == 0 && adapter.f9839u0 == 0 && adapter.f9838t0 == 0 && adapter.E0 == 0) {
-                    adapter.f9842w0 = null;
+                if (adapter.f9825j0 == 0 && adapter.f9838u0 == 0 && adapter.f9837t0 == 0 && adapter.E0 == 0) {
+                    adapter.f9841w0 = null;
                     adapter.F = null;
                     ArrayList arrayList = adapter.A0;
                     if (arrayList != null) {
@@ -220,7 +220,7 @@ public final class b4 implements mg {
                     }
                     adapter.T = null;
                     adapter.U = null;
-                    ArrayList arrayList3 = adapter.f9843x;
+                    ArrayList arrayList3 = adapter.f9842x;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -247,7 +247,7 @@ public final class b4 implements mg {
                 MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1));
                 TLRPC.Chat chat = MessagesController.getInstance(f6Var.C2).getChat(Long.valueOf(-f6Var.B1));
                 adapter2.getClass();
-                adapter2.f9828l0 = chat;
+                adapter2.f9827l0 = chat;
                 f6Var.f809d3.getAdapter().U(charSequence, f6Var.f800b2.getCursorPosition(), null, false, false);
             }
         }
@@ -261,9 +261,9 @@ public final class b4 implements mg {
 
     @Override
     public final void n1() {
-        w50 w50Var = this.f578a.J2;
-        if (w50Var != null) {
-            w50Var.q();
+        b60 b60Var = this.f578a.J2;
+        if (b60Var != null) {
+            b60Var.j();
         }
     }
 
@@ -278,7 +278,7 @@ public final class b4 implements mg {
     }
 
     @Override
-    public final rn p0() {
+    public final pn p0() {
         return null;
     }
 
@@ -327,6 +327,30 @@ public final class b4 implements mg {
     }
 
     @Override
+    public final void X(boolean z10) {
+    }
+
+    @Override
+    public final void a1(int i10) {
+    }
+
+    @Override
+    public final void f2(int i10) {
+    }
+
+    @Override
+    public final void j2(boolean z10) {
+    }
+
+    @Override
+    public final void v1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void y(float f7) {
+    }
+
+    @Override
     public final void D() {
     }
 
@@ -351,27 +375,11 @@ public final class b4 implements mg {
     }
 
     @Override
-    public final void X(boolean z10) {
-    }
-
-    @Override
-    public final void a1(int i10) {
-    }
-
-    @Override
     public final void d2() {
     }
 
     @Override
-    public final void f2(int i10) {
-    }
-
-    @Override
     public final void g() {
-    }
-
-    @Override
-    public final void j2(boolean z10) {
     }
 
     @Override
@@ -395,19 +403,11 @@ public final class b4 implements mg {
     }
 
     @Override
-    public final void v1(CharSequence charSequence) {
-    }
-
-    @Override
     public final void w2() {
     }
 
     @Override
     public final void x() {
-    }
-
-    @Override
-    public final void y(float f7) {
     }
 
     @Override

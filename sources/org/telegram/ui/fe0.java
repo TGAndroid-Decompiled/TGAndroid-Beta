@@ -1,37 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class fe0 extends fs {
-    public final int h;
-    public final Object f33628n;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class fe0 implements NotificationCenter.NotificationCenterDelegate {
+    public final he0 f33521a;
 
-    public fe0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f33628n = obj;
+    public fe0(he0 he0Var) {
+        this.f33521a = he0Var;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
-            case 0:
-                ((ie0) this.f33628n).h(null);
-                return;
-            case 1:
-                ((cf0) this.f33628n).h(null);
-                return;
-            case 2:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f33628n;
-                if (passcodeActivity.E == 0) {
-                    postDelayed(new sl0(this, 0), 260L);
-                    return;
-                } else {
-                    passcodeActivity.g0();
-                    return;
-                }
-            default:
-                ((ih1) this.f33628n).C0();
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        he0 he0Var = this.f33521a;
+        int intValue = ((Integer) objArr[0]).intValue();
+        ((Integer) objArr[1]).getClass();
+        Intent intent = (Intent) objArr[2];
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
+        if (intValue == 200) {
+            try {
+                he0Var.F = (GoogleSignInAccount) w7.e9.b(intent).getResult(com.google.android.gms.common.api.f.class);
+                he0Var.h(null);
+            } catch (com.google.android.gms.common.api.f e) {
+                FileLog.e(e);
+            }
         }
     }
 }

@@ -1,18 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class rx0 extends org.telegram.ui.Cells.f8 {
-    public final sx0 O;
+import org.telegram.messenger.MessagesStorage;
+public final class rx0 implements org.telegram.ui.ActionBar.r0, MessagesStorage.StringCallback {
+    public final hy0 f27989a;
 
-    public rx0(sx0 sx0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var, false);
-        this.O = sx0Var;
+    public rx0(hy0 hy0Var) {
+        this.f27989a = hy0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        sx0 sx0Var = this.O;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(sx0Var.f27956r.O, 1073741824), View.MeasureSpec.makeMeasureSpec(sx0Var.f27956r.O, 1073741824));
+    public void m(int i10) {
+        hy0.B(this.f27989a, i10);
+    }
+
+    @Override
+    public void run(String str) {
+        new w40(r1.getContext(), r1.f24769o0, null, this.f27989a.resourcesProvider).show();
     }
 }

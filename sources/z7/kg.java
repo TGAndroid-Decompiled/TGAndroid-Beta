@@ -3,26 +3,26 @@ package z7;
 import java.util.Map;
 import java.util.Set;
 public abstract class kg implements k {
-    public transient ed f48556a;
-    public transient e9.d f48557b;
+    public transient ed f48782a;
+    public transient e9.d f48783b;
 
     public final Map a() {
-        e9.d dVar = this.f48557b;
+        e9.d dVar = this.f48783b;
         if (dVar == null) {
             lg lgVar = (lg) this;
-            e9.d dVar2 = new e9.d(lgVar, lgVar.f48566c, 2);
-            this.f48557b = dVar2;
+            e9.d dVar2 = new e9.d(lgVar, lgVar.f48792c, 2);
+            this.f48783b = dVar2;
             return dVar2;
         }
         return dVar;
     }
 
     public final Set b() {
-        ed edVar = this.f48556a;
+        ed edVar = this.f48782a;
         if (edVar == null) {
             lg lgVar = (lg) this;
-            ed edVar2 = new ed(lgVar, lgVar.f48566c);
-            this.f48556a = edVar2;
+            ed edVar2 = new ed(lgVar, lgVar.f48792c);
+            this.f48782a = edVar2;
             return edVar2;
         }
         return edVar;
@@ -39,10 +39,10 @@ public abstract class kg implements k {
     }
 
     public final int hashCode() {
-        return ((e9.d) a()).f8064b.hashCode();
+        return ((e9.d) a()).f8063b.hashCode();
     }
 
     public final String toString() {
-        return ((e9.d) a()).f8064b.toString();
+        return ((e9.d) a()).f8063b.toString();
     }
 }

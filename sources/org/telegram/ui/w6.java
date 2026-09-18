@@ -1,42 +1,44 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class w6 extends org.telegram.ui.Components.bd {
-    public final y6 f38578e0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class w6 extends t7 {
+    public final int F = 1;
+    public final Object G;
 
-    public w6(y6 y6Var, Context context) {
-        super(context, 11, org.telegram.ui.Components.bd.W, 0, org.telegram.ui.Components.bd.f22704a0);
-        this.f38578e0 = y6Var;
+    public w6(kv kvVar, Context context, z6 z6Var) {
+        super(context, z6Var, null);
+        this.G = kvVar;
+    }
+
+    public void f(boolean z10) {
+        z6 z6Var = ((x6) this.G).e;
+        if (z10) {
+            le.b bVar = z6Var.Q;
+            if (bVar != null) {
+                bVar.a(true, true);
+            }
+            z6.c0(z6Var).O(null, null);
+            return;
+        }
+        z6.d0(z6Var).r();
     }
 
     @Override
-    public final void d(int i10, boolean z10) {
-        a7 a7Var = this.f38578e0.e;
-        if (!z10) {
-            a7Var.f31738b.k1();
-            return;
+    public void onMeasure(int i10, int i11) {
+        switch (this.F) {
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((kv) this.G).h - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        int i11 = -1;
-        if (i10 == 8) {
-            i10 = -1;
-        }
-        int i12 = 0;
-        while (true) {
-            if (i12 < a7Var.f31743e0.size()) {
-                v6 v6Var = (v6) a7Var.f31743e0.get(i12);
-                if (v6Var != null && v6Var.f15543a == 11 && v6Var.f38305f == i10) {
-                    i11 = i12;
-                    break;
-                }
-                i12++;
-            } else {
-                break;
-            }
-        }
-        if (i11 >= 0) {
-            a7Var.f31738b.f1(new i2.v(i11, 3), 0, true);
-        } else {
-            a7Var.f31738b.k1();
-        }
+    }
+
+    public w6(x6 x6Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, li.i iVar) {
+        super(context, n2Var, iVar);
+        this.G = x6Var;
     }
 }

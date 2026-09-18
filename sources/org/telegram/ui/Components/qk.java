@@ -5,68 +5,68 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
 public final class qk implements Runnable {
-    public final int f27337a;
-    public final gl f27338b;
+    public final int f27631a;
+    public final gl f27632b;
 
     public qk(gl glVar, int i10) {
-        this.f27337a = i10;
-        this.f27338b = glVar;
+        this.f27631a = i10;
+        this.f27632b = glVar;
     }
 
     @Override
     public final void run() {
         Location location;
-        switch (this.f27337a) {
+        switch (this.f27631a) {
             case 0:
-                gl glVar = this.f27338b;
-                double[] dArr = glVar.f26463b.f28804x2;
+                gl glVar = this.f27632b;
+                double[] dArr = glVar.f26688b.f29080x2;
                 glVar.b0(dArr[0], dArr[1]);
                 return;
             case 1:
-                gl.M(this.f27338b);
+                gl.M(this.f27632b);
                 return;
             case 2:
-                this.f27338b.Y();
+                this.f27632b.Y();
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new qk(this.f27338b, 4));
+                AndroidUtilities.runOnUIThread(new qk(this.f27632b, 4));
                 return;
             case 4:
-                View view = this.f27338b.M;
+                View view = this.f27632b.M;
                 view.setTag(1);
                 view.animate().alpha(0.0f).setDuration(180L).start();
                 return;
             case 5:
-                gl glVar2 = this.f27338b;
+                gl glVar2 = this.f27632b;
                 gg.t0 t0Var = glVar2.O;
-                if (glVar2.f24334t0) {
-                    glVar2.f24334t0 = false;
+                if (glVar2.f24446t0) {
+                    glVar2.f24446t0 = false;
                     return;
                 }
                 IMapsProvider.IMap iMap = glVar2.H;
-                if (iMap != null && (location = glVar2.f24331r0) != null) {
+                if (iMap != null && (location = glVar2.f24443r0) != null) {
                     location.setLatitude(iMap.getCameraPosition().target.latitude);
-                    glVar2.f24331r0.setLongitude(glVar2.H.getCameraPosition().target.longitude);
+                    glVar2.f24443r0.setLongitude(glVar2.H.getCameraPosition().target.longitude);
                 }
-                t0Var.L(glVar2.f24331r0);
+                t0Var.L(glVar2.f24443r0);
                 t0Var.I();
                 return;
             case 6:
-                dl dlVar = this.f27338b.F;
+                dl dlVar = this.f27632b.F;
                 if (dlVar != null) {
                     dlVar.a();
                     return;
                 }
                 return;
             case 7:
-                View view2 = this.f27338b.M;
+                View view2 = this.f27632b.M;
                 if (view2.getTag() == null) {
                     view2.animate().alpha(0.0f).setDuration(180L).start();
                     return;
                 }
                 return;
             default:
-                this.f27338b.b0(0.0d, 0.0d);
+                this.f27632b.b0(0.0d, 0.0d);
                 return;
         }
     }

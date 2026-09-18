@@ -24,6 +24,6 @@ public abstract class v {
         if (dataAvail <= 0) {
             return;
         }
-        throw new BadParcelableException(hg.k0.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(hg.k0.h(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 }

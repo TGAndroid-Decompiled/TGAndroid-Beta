@@ -83,7 +83,7 @@ public class TelegramMediaSession {
         b0Var.f(new PlaybackStateCompat(0, 0L, 0L, 1.0f, getAvailableActions(), 0, null, SystemClock.elapsedRealtime(), arrayList, -1L, null));
         updateRepeatMode();
         updateShuffleMode();
-        NotificationCenter.getGlobalInstance().addObserver(new v1(this, 1), NotificationCenter.activeAccountChanged);
+        NotificationCenter.getGlobalInstance().addObserver(new w1(this, 1), NotificationCenter.activeAccountChanged);
     }
 
     private void applyQueueFor(long j3) {
@@ -115,9 +115,9 @@ public class TelegramMediaSession {
                 }
                 MessageObject messageObject = (MessageObject) arrayList.get(0);
                 a4.m mVar = new a4.m(1);
-                mVar.z0((long) (messageObject.getDuration() * 1000.0d));
-                mVar.A0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
-                mVar.A0("android.media.metadata.TITLE", messageObject.getMusicTitle());
+                mVar.v0((long) (messageObject.getDuration() * 1000.0d));
+                mVar.w0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
+                mVar.w0("android.media.metadata.TITLE", messageObject.getMusicTitle());
                 this.session.e(new MediaMetadataCompat((Bundle) mVar.f275b));
             }
         }
@@ -228,7 +228,7 @@ public class TelegramMediaSession {
                         byteBufferValue.reuse();
                         if (MessageObject.isMusicMessage(TLdeserialize)) {
                             long longValue2 = queryFinalized2.longValue(0);
-                            TLdeserialize.f18142id = queryFinalized2.intValue(2);
+                            TLdeserialize.f18317id = queryFinalized2.intValue(2);
                             TLdeserialize.dialog_id = longValue2;
                             ArrayList arrayList3 = (ArrayList) this.musicObjects.f(longValue2);
                             ArrayList arrayList4 = (ArrayList) this.musicQueues.f(longValue2);
@@ -254,7 +254,7 @@ public class TelegramMediaSession {
                         TLRPC.User user = arrayList5.get(i11);
                         i11++;
                         TLRPC.User user2 = user;
-                        this.users.k(user2, user2.f18268id);
+                        this.users.k(user2, user2.f18443id);
                     }
                 }
                 if (!arrayList2.isEmpty()) {
@@ -265,7 +265,7 @@ public class TelegramMediaSession {
                         TLRPC.Chat chat = arrayList6.get(i10);
                         i10++;
                         TLRPC.Chat chat2 = chat;
-                        this.chats.k(chat2, chat2.f18121id);
+                        this.chats.k(chat2, chat2.f18296id);
                     }
                 }
             }
@@ -308,9 +308,9 @@ public class TelegramMediaSession {
     }
 
     public Bundle buildRootHints() {
-        Bundle e = w1.e(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
-        e.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
-        return e;
+        Bundle d = wh.d(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
+        d.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
+        return d;
     }
 
     public void ensureLoaded(Runnable runnable) {
@@ -362,7 +362,7 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f18125id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f18300id), Integer.valueOf(i10));
             }
         }
         Collections.sort(arrayList, new rk(hashMap, 0));
@@ -415,7 +415,7 @@ public class TelegramMediaSession {
         }
         this.loadingChats = true;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new ai(this, messagesStorage, browseChildrenCallback, str, 4));
+        messagesStorage.getStorageQueue().postRunnable(new bi(this, messagesStorage, browseChildrenCallback, str, 4));
     }
 
     public void publishMetadata(MessageObject messageObject, jf.a aVar, Bitmap bitmap) {
@@ -424,18 +424,18 @@ public class TelegramMediaSession {
             return;
         }
         a4.m mVar = new a4.m(1);
-        mVar.A0("android.media.metadata.ALBUM_ARTIST", messageObject.getMusicAuthor());
-        mVar.A0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
-        mVar.z0((long) (messageObject.getDuration() * 1000.0d));
-        mVar.A0("android.media.metadata.TITLE", messageObject.getMusicTitle());
+        mVar.w0("android.media.metadata.ALBUM_ARTIST", messageObject.getMusicAuthor());
+        mVar.w0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
+        mVar.v0((long) (messageObject.getDuration() * 1000.0d));
+        mVar.w0("android.media.metadata.TITLE", messageObject.getMusicTitle());
         if (aVar != null && messageObject.isMusic()) {
             str = aVar.f12982f;
         } else {
             str = null;
         }
-        mVar.A0("android.media.metadata.ALBUM", str);
+        mVar.w0("android.media.metadata.ALBUM", str);
         if (bitmap != null && !bitmap.isRecycled()) {
-            mVar.y0("android.media.metadata.ALBUM_ART", bitmap);
+            mVar.t0("android.media.metadata.ALBUM_ART", bitmap);
         }
         this.session.e(new MediaMetadataCompat((Bundle) mVar.f275b));
     }
@@ -478,7 +478,7 @@ public class TelegramMediaSession {
         }
 
         private void notifyPlayStateForNotificationRefresh() {
-            AndroidUtilities.runOnUIThread(new d1(this, 10));
+            AndroidUtilities.runOnUIThread(new e1(this, 10));
         }
 
         @Override

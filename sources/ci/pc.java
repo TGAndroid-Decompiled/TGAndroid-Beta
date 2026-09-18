@@ -26,14 +26,14 @@ public final class pc implements Runnable {
             case 1:
                 sc scVar = this.f5321b.f5883a;
                 if (scVar != null) {
-                    scVar.f0();
+                    scVar.b0();
                     return;
                 }
                 return;
             default:
                 sc scVar2 = this.f5321b.f5883a;
                 if (scVar2 != null) {
-                    scVar2.s();
+                    scVar2.r();
                     return;
                 }
                 return;

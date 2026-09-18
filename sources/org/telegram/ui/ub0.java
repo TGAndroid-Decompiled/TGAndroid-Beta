@@ -1,23 +1,29 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-public final class ub0 extends zd {
-    public final zb0 f38040c;
+import android.view.MotionEvent;
+import android.widget.EditText;
+public final class ub0 extends EditText {
+    public final int f37958a;
 
-    public ub0(zb0 zb0Var, Context context) {
+    public ub0(Context context, int i10) {
         super(context);
-        this.f38040c = zb0Var;
+        this.f37958a = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.f38040c.getClass();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f37958a) {
+            case 0:
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
+                }
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

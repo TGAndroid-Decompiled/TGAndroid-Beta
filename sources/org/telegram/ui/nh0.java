@@ -3,31 +3,27 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nh0 implements Runnable {
-    public final int f36112a;
-    public final ai0 f36113b;
-    public final TLRPC.TL_chatInviteExported f36114c;
-    public final TLRPC.TL_error d;
-    public final TLObject e;
-    public final boolean f36115f;
+    public final int f35942a;
+    public final zh0 f35943b;
+    public final TLRPC.TL_error f35944c;
+    public final TLObject d;
 
-    public nh0(ai0 ai0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, int i10) {
-        this.f36112a = i10;
-        this.f36113b = ai0Var;
-        this.f36114c = tL_chatInviteExported;
-        this.d = tL_error;
-        this.e = tLObject;
-        this.f36115f = z10;
+    public nh0(zh0 zh0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f35942a = i10;
+        this.f35943b = zh0Var;
+        this.f35944c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f36112a) {
+        switch (this.f35942a) {
             case 0:
-                ai0 ai0Var = this.f36113b;
-                ai0Var.getNotificationCenter().doOnIdle(new nh0(ai0Var, this.f36114c, this.d, this.e, this.f36115f, 1));
+                zh0 zh0Var = this.f35943b;
+                zh0Var.getNotificationCenter().doOnIdle(new nh0(zh0Var, this.f35944c, this.d, 1));
                 return;
             default:
-                ai0.U(this.f36113b, this.f36114c, this.d, this.e, this.f36115f);
+                zh0.V(this.f35943b, this.f35944c, this.d);
                 return;
         }
     }

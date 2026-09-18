@@ -2,7 +2,7 @@ package n1;
 
 import m1.j;
 public abstract class f {
-    public static final int[] f14871a;
+    public static final int[] f15044a;
 
     static {
         int[] iArr = new int[j.d(8).length];
@@ -14,6 +14,6 @@ public abstract class f {
         iArr[4] = 6;
         iArr[5] = 7;
         iArr[7] = 8;
-        f14871a = iArr;
+        f15044a = iArr;
     }
 }

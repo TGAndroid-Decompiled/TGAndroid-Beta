@@ -9,7 +9,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
-import k2.u;
+import n2.e;
 import r0.i0;
 import s0.c;
 public abstract class b extends r0.b {
@@ -29,14 +29,14 @@ public abstract class b extends r0.b {
         this.f12558i = view;
         this.h = (AccessibilityManager) view.getContext().getSystemService("accessibility");
         view.setFocusable(true);
-        WeakHashMap weakHashMap = i0.f41870a;
+        WeakHashMap weakHashMap = i0.f42096a;
         if (view.getImportantForAccessibility() == 0) {
             view.setImportantForAccessibility(1);
         }
     }
 
     @Override
-    public final u a(View view) {
+    public final e a(View view) {
         if (this.f12559j == null) {
             this.f12559j = new a(this);
         }
@@ -45,7 +45,7 @@ public abstract class b extends r0.b {
 
     @Override
     public final void c(View view, c cVar) {
-        this.f41838a.onInitializeAccessibilityNodeInfo(view, cVar.f42651a);
+        this.f42065a.onInitializeAccessibilityNodeInfo(view, cVar.f42878a);
     }
 
     public final AccessibilityEvent e(int i10, int i11) {
@@ -54,7 +54,7 @@ public abstract class b extends r0.b {
             AccessibilityEvent obtain = AccessibilityEvent.obtain(i11);
             c j3 = j(i10);
             obtain.getText().add(j3.g());
-            AccessibilityNodeInfo accessibilityNodeInfo = j3.f42651a;
+            AccessibilityNodeInfo accessibilityNodeInfo = j3.f42878a;
             obtain.setContentDescription(accessibilityNodeInfo.getContentDescription());
             obtain.setScrollable(accessibilityNodeInfo.isScrollable());
             obtain.setPassword(accessibilityNodeInfo.isPassword());
@@ -126,7 +126,7 @@ public abstract class b extends r0.b {
         if (i10 == -1) {
             AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(view);
             c cVar = new c(obtain);
-            WeakHashMap weakHashMap = i0.f41870a;
+            WeakHashMap weakHashMap = i0.f42096a;
             view.onInitializeAccessibilityNodeInfo(obtain);
             ArrayList arrayList = new ArrayList();
             h(arrayList);
@@ -135,7 +135,7 @@ public abstract class b extends r0.b {
             }
             int size = arrayList.size();
             for (int i11 = 0; i11 < size; i11++) {
-                cVar.f42651a.addChild(view, ((Integer) arrayList.get(i11)).intValue());
+                cVar.f42878a.addChild(view, ((Integer) arrayList.get(i11)).intValue());
             }
             return cVar;
         }
@@ -159,7 +159,7 @@ public abstract class b extends r0.b {
             if ((actions & 64) == 0) {
                 if ((actions & 128) == 0) {
                     obtain2.setPackageName(view.getContext().getPackageName());
-                    cVar2.f42652b = i10;
+                    cVar2.f42879b = i10;
                     obtain2.setSource(view, i10);
                     if (this.f12560k == i10) {
                         obtain2.setAccessibilityFocused(true);

@@ -1,4 +1,37 @@
 package org.telegram.ui.Cells;
-public interface z4 {
-    boolean c(a5 a5Var, boolean z10);
+
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class z4 extends org.telegram.ui.Components.w9 {
+    public final org.telegram.ui.ActionBar.e6 G;
+    public final b5 H;
+
+    public z4(b5 b5Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.H = b5Var;
+        this.G = e6Var;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        b5 b5Var = this.H;
+        if (b5Var.f20018r != null) {
+            float dp2 = AndroidUtilities.dp(1.0f);
+            b5Var.N.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+            ai.ca caVar = b5Var.N;
+            caVar.f650a = false;
+            caVar.f651b = false;
+            caVar.v = true;
+            caVar.f661o = false;
+            caVar.J = this.G;
+            TL_stories.StoryItem storyItem = b5Var.f20018r;
+            caVar.d = storyItem;
+            ai.ia.h(storyItem.dialogId, canvas, this.f29987a, caVar);
+            return;
+        }
+        super.onDraw(canvas);
+    }
 }

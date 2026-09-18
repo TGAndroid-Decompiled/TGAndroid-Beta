@@ -1,49 +1,23 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class v41 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final Path f38279a;
-    public ch.d f38280b;
+import android.view.View;
+import android.view.WindowInsets;
+public final class v41 implements View.OnApplyWindowInsetsListener {
+    public final int f38286a;
+    public final Object f38287b;
 
-    public v41(Activity activity) {
-        super(activity);
-        this.f38279a = new Path();
+    public v41(Object obj, int i10) {
+        this.f38286a = i10;
+        this.f38287b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f38279a);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void e() {
-        ch.d dVar = this.f38280b;
-        if (dVar != null) {
-            dVar.v();
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        switch (this.f38286a) {
+            case 0:
+                return SecretMediaViewer.a((SecretMediaViewer) this.f38287b, windowInsets);
+            default:
+                return c71.b((v51) this.f38287b, view, windowInsets);
         }
-    }
-
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f38279a;
-        path.rewind();
-        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-    }
-
-    public void setBlurredBackground(ch.d dVar) {
-        this.f38280b = dVar;
-        setBackground(dVar);
     }
 }

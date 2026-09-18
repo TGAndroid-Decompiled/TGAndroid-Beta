@@ -73,7 +73,7 @@ public final class c0 {
                         rVar.d = sVar.d;
                         rVar.N = sVar.O;
                         rVar.f3256t = sVar.f3312u;
-                        k0.u(rVar, Z1);
+                        k0.r(rVar, Z1);
                         h0VarArr[i10] = Z1;
                         i10++;
                     } else {
@@ -106,7 +106,7 @@ public final class c0 {
                         rVar2.d = sVar2.d;
                         rVar2.N = sVar2.O;
                         rVar2.f3256t = sVar2.f3312u;
-                        k0.u(rVar2, Z12);
+                        k0.r(rVar2, Z12);
                         h0VarArr2[i11] = Z12;
                         i11++;
                     } else {

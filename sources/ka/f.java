@@ -6,19 +6,19 @@ import java.io.Writer;
 import java.util.Collection;
 import java.util.Map;
 public final class f implements ia.e, ia.g {
-    public final boolean f13574a = true;
-    public final JsonWriter f13575b;
-    public final Map f13576c;
+    public final boolean f13572a = true;
+    public final JsonWriter f13573b;
+    public final Map f13574c;
     public final Map d;
     public final ia.d e;
-    public final boolean f13577f;
+    public final boolean f13575f;
 
     public f(Writer writer, Map map, Map map2, ia.d dVar, boolean z10) {
-        this.f13575b = new JsonWriter(writer);
-        this.f13576c = map;
+        this.f13573b = new JsonWriter(writer);
+        this.f13574c = map;
         this.d = map2;
         this.e = dVar;
-        this.f13577f = z10;
+        this.f13575f = z10;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class f implements ia.e, ia.g {
     @Override
     public final ia.g b(String str) {
         j();
-        this.f13575b.value(str);
+        this.f13573b.value(str);
         return this;
     }
 
@@ -38,7 +38,7 @@ public final class f implements ia.e, ia.g {
     public final ia.e c(ia.c cVar, boolean z10) {
         String str = cVar.f11064a;
         j();
-        JsonWriter jsonWriter = this.f13575b;
+        JsonWriter jsonWriter = this.f13573b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(z10);
@@ -48,7 +48,7 @@ public final class f implements ia.e, ia.g {
     @Override
     public final ia.g d(boolean z10) {
         j();
-        this.f13575b.value(z10);
+        this.f13573b.value(z10);
         return this;
     }
 
@@ -56,7 +56,7 @@ public final class f implements ia.e, ia.g {
     public final ia.e e(ia.c cVar, int i10) {
         String str = cVar.f11064a;
         j();
-        JsonWriter jsonWriter = this.f13575b;
+        JsonWriter jsonWriter = this.f13573b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(i10);
@@ -67,7 +67,7 @@ public final class f implements ia.e, ia.g {
     public final ia.e f(ia.c cVar, long j3) {
         String str = cVar.f11064a;
         j();
-        JsonWriter jsonWriter = this.f13575b;
+        JsonWriter jsonWriter = this.f13573b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(j3);
@@ -78,7 +78,7 @@ public final class f implements ia.e, ia.g {
     public final ia.e g(ia.c cVar, double d) {
         String str = cVar.f11064a;
         j();
-        JsonWriter jsonWriter = this.f13575b;
+        JsonWriter jsonWriter = this.f13573b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(d);
@@ -86,7 +86,7 @@ public final class f implements ia.e, ia.g {
     }
 
     public final f h(Object obj) {
-        JsonWriter jsonWriter = this.f13575b;
+        JsonWriter jsonWriter = this.f13573b;
         if (obj == null) {
             jsonWriter.nullValue();
             return this;
@@ -169,7 +169,7 @@ public final class f implements ia.e, ia.g {
                 jsonWriter.endObject();
                 return this;
             } else {
-                ia.d dVar = (ia.d) this.f13576c.get(obj.getClass());
+                ia.d dVar = (ia.d) this.f13574c.get(obj.getClass());
                 if (dVar != null) {
                     jsonWriter.beginObject();
                     dVar.a(obj, this);
@@ -202,8 +202,8 @@ public final class f implements ia.e, ia.g {
     }
 
     public final f i(Object obj, String str) {
-        boolean z10 = this.f13577f;
-        JsonWriter jsonWriter = this.f13575b;
+        boolean z10 = this.f13575f;
+        JsonWriter jsonWriter = this.f13573b;
         if (z10) {
             if (obj == null) {
                 return this;
@@ -224,7 +224,7 @@ public final class f implements ia.e, ia.g {
     }
 
     public final void j() {
-        if (this.f13574a) {
+        if (this.f13572a) {
             return;
         }
         throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");

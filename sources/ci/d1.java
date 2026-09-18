@@ -204,9 +204,9 @@ public abstract class d1 extends CameraView {
                 this.f4478a = false;
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-                alertDialog$Builder.f18447a.R = LocaleController.getString(R.string.DualErrorTitle);
-                alertDialog$Builder.f18447a.T = LocaleController.getString(R.string.DualErrorMessage);
-                hg.k0.A(R.string.OK, alertDialog$Builder, null);
+                alertDialog$Builder.f18622a.R = LocaleController.getString(R.string.DualErrorTitle);
+                alertDialog$Builder.f18622a.T = LocaleController.getString(R.string.DualErrorMessage);
+                org.telegram.messenger.q.p(R.string.OK, alertDialog$Builder, null);
             }
             t(false);
             toggleDual();

@@ -15,10 +15,10 @@ import java.util.concurrent.Executor;
 import org.json.JSONException;
 import org.json.JSONObject;
 import v0.i;
-import v0.o;
-import v0.q;
+import v0.n;
+import v0.p;
 import v7.o6;
-import w7.g8;
+import w7.h8;
 public final class e extends b1.d {
     public final Context e;
     public i f3653f;
@@ -32,8 +32,8 @@ public final class e extends b1.d {
         this.f3655i = new d(this, new Handler(Looper.getMainLooper()), 0);
     }
 
-    public final v0.p d(x5.g r14) {
-        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(x5.g):v0.p");
+    public final v0.o d(x5.g r14) {
+        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(x5.g):v0.o");
     }
 
     public final i e() {
@@ -54,7 +54,7 @@ public final class e extends b1.d {
         throw null;
     }
 
-    public final void g(o request, CancellationSignal cancellationSignal, Executor executor, i callback) {
+    public final void g(n request, CancellationSignal cancellationSignal, Executor executor, i callback) {
         boolean z10;
         kotlin.jvm.internal.i.e(request, "request");
         kotlin.jvm.internal.i.e(callback, "callback");
@@ -77,14 +77,14 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         x5.b bVar2 = bVar;
         boolean z11 = false;
-        for (q qVar : request.f43845a) {
-            if ((qVar instanceof q) && !z11) {
+        for (p pVar : request.f44071a) {
+            if ((pVar instanceof p) && !z11) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = f.f7413a;
-                    bVar2 = new x5.b(qVar.d, true);
+                    LinkedHashMap linkedHashMap = f.f7412a;
+                    bVar2 = new x5.b(pVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = f.f7413a;
-                    JSONObject jSONObject = new JSONObject(qVar.d);
+                    LinkedHashMap linkedHashMap2 = f.f7412a;
+                    JSONObject jSONObject = new JSONObject(pVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     kotlin.jvm.internal.i.b(optString);
                     if (optString.length() != 0) {
@@ -97,11 +97,11 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z10 = request.f43846b;
+            z10 = request.f44072b;
         } else {
             z10 = false;
         }
-        i7.b a2 = g8.a(context);
+        i7.b a2 = h8.a(context);
         new x5.a(false, null, null, true, null, null, false);
         x5.e eVar = new x5.e(dVar, aVar, a2.f11017k, false, 0, cVar, bVar2, z10);
         v e = w.e();

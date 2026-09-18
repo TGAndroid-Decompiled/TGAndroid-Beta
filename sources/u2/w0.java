@@ -5,26 +5,26 @@ import android.os.Looper;
 import j$.util.Objects;
 public final class w0 extends a {
     public final g2.g h;
-    public final r5.d f43544i;
-    public final n2.m f43545j;
-    public final qb.b f43546k;
-    public final int f43547l;
-    public final b2.s f43548m;
-    public boolean f43549n = true;
-    public long f43550o = -9223372036854775807L;
-    public boolean f43551p;
-    public boolean f43552q;
-    public g2.c0 f43553r;
-    public b2.k0 f43554s;
+    public final r5.d f43771i;
+    public final n2.n f43772j;
+    public final qb.b f43773k;
+    public final int f43774l;
+    public final b2.s f43775m;
+    public boolean f43776n = true;
+    public long f43777o = -9223372036854775807L;
+    public boolean f43778p;
+    public boolean f43779q;
+    public g2.c0 f43780r;
+    public b2.k0 f43781s;
 
-    public w0(b2.k0 k0Var, g2.g gVar, r5.d dVar, n2.m mVar, qb.b bVar, int i10, b2.s sVar) {
-        this.f43554s = k0Var;
+    public w0(b2.k0 k0Var, g2.g gVar, r5.d dVar, n2.n nVar, qb.b bVar, int i10, b2.s sVar) {
+        this.f43781s = k0Var;
         this.h = gVar;
-        this.f43544i = dVar;
-        this.f43545j = mVar;
-        this.f43546k = bVar;
-        this.f43547l = i10;
-        this.f43548m = sVar;
+        this.f43771i = dVar;
+        this.f43772j = nVar;
+        this.f43773k = bVar;
+        this.f43774l = i10;
+        this.f43775m = sVar;
     }
 
     @Override
@@ -41,32 +41,32 @@ public final class w0 extends a {
     @Override
     public final d0 c(f0 f0Var, y2.d dVar, long j3) {
         g2.h createDataSource = this.h.createDataSource();
-        g2.c0 c0Var = this.f43553r;
+        g2.c0 c0Var = this.f43780r;
         if (c0Var != null) {
             createDataSource.addTransferListener(c0Var);
         }
         b2.f0 f0Var2 = i().f3078b;
         f0Var2.getClass();
         Uri uri = f0Var2.f2993a;
-        e2.d.h(this.f43331g);
-        return new u0(uri, createDataSource, new lf.i((c3.r) this.f43544i.f42076b), this.f43545j, new n2.j(this.d.f14917c, 0, f0Var), this.f43546k, b(f0Var), this, dVar, f0Var2.f2996f, this.f43547l, this.f43548m, e2.d0.Q(f0Var2.h), null);
+        e2.d.h(this.f43558g);
+        return new u0(uri, createDataSource, new lf.i((c3.r) this.f43771i.f42304b), this.f43772j, new n2.k(this.d.f15092c, 0, f0Var), this.f43773k, b(f0Var), this, dVar, f0Var2.f2996f, this.f43774l, this.f43775m, e2.d0.Q(f0Var2.h), null);
     }
 
     @Override
     public final synchronized b2.k0 i() {
-        return this.f43554s;
+        return this.f43781s;
     }
 
     @Override
     public final void m(g2.c0 c0Var) {
-        this.f43553r = c0Var;
+        this.f43780r = c0Var;
         Looper myLooper = Looper.myLooper();
         myLooper.getClass();
-        j2.k kVar = this.f43331g;
+        j2.k kVar = this.f43558g;
         e2.d.h(kVar);
-        n2.m mVar = this.f43545j;
-        mVar.C(myLooper, kVar);
-        mVar.b();
+        n2.n nVar = this.f43772j;
+        nVar.C(myLooper, kVar);
+        nVar.b();
         u();
     }
 
@@ -77,35 +77,35 @@ public final class w0 extends a {
         if (u0Var.N) {
             for (a1 a1Var : u0Var.K) {
                 a1Var.k();
-                n2.g gVar = a1Var.h;
-                if (gVar != null) {
-                    gVar.a(a1Var.e);
+                n2.h hVar = a1Var.h;
+                if (hVar != null) {
+                    hVar.a(a1Var.e);
                     a1Var.h = null;
-                    a1Var.f43344g = null;
+                    a1Var.f43571g = null;
                 }
             }
         }
-        u0Var.f43533x.e(u0Var);
+        u0Var.f43760x.e(u0Var);
         u0Var.H.removeCallbacksAndMessages(null);
         u0Var.I = null;
-        u0Var.f43528f0 = true;
+        u0Var.f43755f0 = true;
     }
 
     @Override
     public final void q() {
-        this.f43545j.release();
+        this.f43772j.release();
     }
 
     @Override
     public final synchronized void t(b2.k0 k0Var) {
-        this.f43554s = k0Var;
+        this.f43781s = k0Var;
     }
 
     public final void u() {
         b2.e0 e0Var;
-        long j3 = this.f43550o;
-        boolean z10 = this.f43551p;
-        boolean z11 = this.f43552q;
+        long j3 = this.f43777o;
+        boolean z10 = this.f43778p;
+        boolean z11 = this.f43779q;
         b2.k0 i10 = i();
         if (z11) {
             e0Var = i10.f3079c;
@@ -113,7 +113,7 @@ public final class w0 extends a {
             e0Var = null;
         }
         b2.k1 h1Var = new h1(-9223372036854775807L, -9223372036854775807L, j3, j3, 0L, 0L, z10, false, false, null, i10, e0Var);
-        if (this.f43549n) {
+        if (this.f43776n) {
             h1Var = new u(h1Var, 1);
         }
         n(h1Var);
@@ -121,16 +121,16 @@ public final class w0 extends a {
 
     public final void v(long j3, c3.b0 b0Var, boolean z10) {
         if (j3 == -9223372036854775807L) {
-            j3 = this.f43550o;
+            j3 = this.f43777o;
         }
         boolean f7 = b0Var.f();
-        if (!this.f43549n && this.f43550o == j3 && this.f43551p == f7 && this.f43552q == z10) {
+        if (!this.f43776n && this.f43777o == j3 && this.f43778p == f7 && this.f43779q == z10) {
             return;
         }
-        this.f43550o = j3;
-        this.f43551p = f7;
-        this.f43552q = z10;
-        this.f43549n = false;
+        this.f43777o = j3;
+        this.f43778p = f7;
+        this.f43779q = z10;
+        this.f43776n = false;
         u();
     }
 

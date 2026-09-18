@@ -10,7 +10,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.qr;
 public final class d0 {
     public int f4464a;
-    public final org.telegram.ui.Components.c6 f4465b;
+    public final org.telegram.ui.Components.e6 f4465b;
     public final ImageReceiver f4466c;
     public c0 d;
     public TextureView e;
@@ -28,7 +28,7 @@ public final class d0 {
 
     public d0(e0 e0Var) {
         this.f4476p = e0Var;
-        this.f4465b = new org.telegram.ui.Components.c6(e0Var, 0L, 1200L, qr.f27384g);
+        this.f4465b = new org.telegram.ui.Components.e6(e0Var, 0L, 1200L, qr.f27716g);
         this.f4466c = new ImageReceiver(e0Var);
     }
 

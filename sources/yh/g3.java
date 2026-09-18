@@ -1,229 +1,169 @@
 package yh;
 
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class g3 implements Runnable {
-    public final int f47243a;
-    public final m3 f47244b;
+import org.telegram.ui.Components.qr;
+public final class g3 {
+    public final Runnable f47424a;
+    public f3 f47425b;
+    public f3 f47426c;
+    public f3 d;
+    public int e;
+    public float f47427f;
+    public final ArrayList f47428g;
+    public final f3 h;
+    public final f3 f47429i;
+    public final float f47430j;
+    public final int f47431k;
+    public int f47432l;
+    public final org.telegram.ui.Components.e6 f47433m;
+    public int f47434n = -1;
 
-    public g3(m3 m3Var, int i10) {
-        this.f47243a = i10;
-        this.f47244b = m3Var;
+    public g3(Runnable runnable, ArrayList arrayList, f3 f3Var, f3 f3Var2, float f7, int i10) {
+        this.f47427f = 0.0f;
+        this.f47424a = runnable;
+        this.f47428g = arrayList;
+        this.h = f3Var;
+        this.f47429i = f3Var2;
+        this.f47430j = f7;
+        this.f47431k = i10;
+        org.telegram.ui.Components.e6 e6Var = new org.telegram.ui.Components.e6(runnable, 300L, qr.h);
+        this.f47433m = e6Var;
+        e6Var.a(true);
+        this.f47427f = -0.5f;
+        this.e = 1;
+        this.f47432l = i10;
+        this.f47425b = f3Var;
+        this.f47426c = d(false);
+        this.d = d(false);
     }
 
-    @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        boolean z15;
-        boolean z16;
-        boolean z17;
-        boolean z18;
-        boolean z19;
-        boolean z20;
-        boolean z21;
-        boolean z22;
-        boolean z23;
-        boolean z24;
-        switch (this.f47243a) {
-            case 0:
-                this.f47244b.b();
-                return;
-            case 1:
-                m3 m3Var = this.f47244b;
-                x3 x3Var = m3Var.f47465a;
-                if (!m3Var.f47482u) {
-                    m3Var.v = false;
-                    if (m3Var.f47476o) {
-                        m3Var.f47482u = true;
-                        long currentTimeMillis = System.currentTimeMillis();
-                        float min = Math.min(((float) (currentTimeMillis - m3Var.f47474m)) / 1000.0f, 0.25f);
-                        float f7 = m3Var.f47475n + min;
-                        m3Var.f47475n = f7;
-                        i3 i3Var = m3Var.f47471j;
-                        if (f7 > AndroidUtilities.lerp(0.1f, 1.0f, m3Var.f47481t)) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        float f10 = i3Var.f(min, z10);
-                        i3 i3Var2 = m3Var.f47472k;
-                        if (m3Var.f47475n > AndroidUtilities.lerp(0.1f, 1.0f, m3Var.f47481t)) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        float f11 = i3Var2.f(min, z11);
-                        float f12 = m3Var.f47470i.f(min, m3Var.f47471j.b(0.5f));
-                        i3 i3Var3 = m3Var.h;
-                        if (m3Var.f47471j.b(0.5f) && m3Var.f47470i.b(0.5f)) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                        float f13 = i3Var3.f(min, z12);
-                        m3Var.f47474m = currentTimeMillis;
-                        if (m3Var.f47471j.c() && m3Var.f47470i.c() && m3Var.h.c() && !m3Var.f47477p) {
-                            m3Var.f47477p = true;
-                            AndroidUtilities.runOnUIThread(new g3(m3Var, 2));
-                        }
-                        if (m3Var.f47471j.c() && m3Var.f47470i.c() && m3Var.h.b(0.25f) && !m3Var.f47478q) {
-                            m3Var.f47478q = true;
-                            AndroidUtilities.runOnUIThread(new g3(m3Var, 3));
-                        }
-                        r3 r3Var = m3Var.f47466b;
-                        if (r3Var != null) {
-                            i3 i3Var4 = m3Var.h;
-                            h3 h3Var = i3Var4.f47311b;
-                            float f14 = i3Var4.e - f13;
-                            float f15 = f14 - 1.0f;
-                            h3 h3Var2 = i3Var4.f47315i;
-                            if (h3Var == h3Var2) {
-                                z22 = true;
-                            } else {
-                                z22 = false;
-                            }
-                            h3 h3Var3 = i3Var4.f47312c;
-                            if (h3Var3 == h3Var2) {
-                                z23 = true;
-                            } else {
-                                z23 = false;
-                            }
-                            h3 h3Var4 = i3Var4.d;
-                            float f16 = f14 + 1.0f;
-                            if (h3Var4 == h3Var2) {
-                                z24 = true;
-                            } else {
-                                z24 = false;
-                            }
-                            r3Var.a(h3Var, f15, z22, h3Var3, f14, z23, h3Var4, f16, z24);
-                        }
-                        r3 r3Var2 = m3Var.f47467c;
-                        if (r3Var2 != null) {
-                            i3 i3Var5 = m3Var.f47470i;
-                            h3 h3Var5 = i3Var5.f47311b;
-                            float f17 = i3Var5.e - f12;
-                            float f18 = f17 - 1.0f;
-                            h3 h3Var6 = i3Var5.f47315i;
-                            if (h3Var5 == h3Var6) {
-                                z19 = true;
-                            } else {
-                                z19 = false;
-                            }
-                            h3 h3Var7 = i3Var5.f47312c;
-                            if (h3Var7 == h3Var6) {
-                                z20 = true;
-                            } else {
-                                z20 = false;
-                            }
-                            h3 h3Var8 = i3Var5.d;
-                            float f19 = f17 + 1.0f;
-                            if (h3Var8 == h3Var6) {
-                                z21 = true;
-                            } else {
-                                z21 = false;
-                            }
-                            r3Var2.a(h3Var5, f18, z19, h3Var7, f17, z20, h3Var8, f19, z21);
-                        }
-                        r3 r3Var3 = m3Var.d;
-                        if (r3Var3 != null) {
-                            i3 i3Var6 = m3Var.f47472k;
-                            h3 h3Var9 = i3Var6.f47311b;
-                            float f20 = i3Var6.e - f11;
-                            float f21 = f20 - 1.0f;
-                            h3 h3Var10 = i3Var6.f47315i;
-                            if (h3Var9 == h3Var10) {
-                                z16 = true;
-                            } else {
-                                z16 = false;
-                            }
-                            h3 h3Var11 = i3Var6.f47312c;
-                            if (h3Var11 == h3Var10) {
-                                z17 = true;
-                            } else {
-                                z17 = false;
-                            }
-                            h3 h3Var12 = i3Var6.d;
-                            float f22 = f20 + 1.0f;
-                            if (h3Var12 == h3Var10) {
-                                z18 = true;
-                            } else {
-                                z18 = false;
-                            }
-                            r3Var3.a(h3Var9, f21, z16, h3Var11, f20, z17, h3Var12, f22, z18);
-                        }
-                        x3Var.g(0, ((l3) m3Var.f47470i.f47312c).f47435c, true);
-                        p3 p3Var = x3Var.f47995c;
-                        i3 i3Var7 = m3Var.h;
-                        h3 h3Var13 = i3Var7.f47311b;
-                        k3 k3Var = (k3) h3Var13;
-                        float f23 = i3Var7.e - f13;
-                        float f24 = f23 - 1.0f;
-                        h3 h3Var14 = i3Var7.f47315i;
-                        if (h3Var13 == h3Var14) {
-                            z13 = true;
-                        } else {
-                            z13 = false;
-                        }
-                        h3 h3Var15 = i3Var7.f47312c;
-                        k3 k3Var2 = (k3) h3Var15;
-                        if (h3Var15 == h3Var14) {
-                            z14 = true;
-                        } else {
-                            z14 = false;
-                        }
-                        h3 h3Var16 = i3Var7.d;
-                        k3 k3Var3 = (k3) h3Var16;
-                        float f25 = f23 + 1.0f;
-                        if (h3Var16 == h3Var14) {
-                            z15 = true;
-                        } else {
-                            z15 = false;
-                        }
-                        i3 i3Var8 = m3Var.f47471j;
-                        float f26 = i3Var8.e - f10;
-                        p3Var.f47640a = k3Var;
-                        p3Var.f47641b = k3Var2;
-                        p3Var.f47642c = k3Var3;
-                        p3Var.d = f24;
-                        p3Var.e = f23;
-                        p3Var.f47643f = f25;
-                        p3Var.h = z13;
-                        p3Var.f47644n = z14;
-                        p3Var.f47645r = z15;
-                        p3Var.f47646s = (j3) i3Var8.f47311b;
-                        p3Var.v = (j3) i3Var8.f47312c;
-                        p3Var.f47647w = (j3) i3Var8.d;
-                        p3Var.f47648x = f26 - 1.0f;
-                        p3Var.f47649y = f26;
-                        p3Var.E = f26 + 1.0f;
-                        p3Var.invalidate();
-                        m3Var.f47482u = false;
-                        m3Var.b();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                m3 m3Var2 = this.f47244b;
-                m3Var2.f47476o = false;
-                m3Var2.f47465a.f47995c.c();
-                b1 b1Var = m3Var2.f47479r;
-                if (b1Var != null) {
-                    b1Var.run();
-                    return;
-                }
-                return;
-            default:
-                b1 b1Var2 = this.f47244b.f47480s;
-                if (b1Var2 != null) {
-                    b1Var2.run();
-                    return;
-                }
-                return;
+    public final void a() {
+        f3 f3Var = this.h;
+        if (f3Var != null) {
+            f3Var.a();
         }
+        f3 f3Var2 = this.f47429i;
+        if (f3Var2 != null) {
+            f3Var2.a();
+        }
+    }
+
+    public final boolean b(float f7) {
+        if (this.f47426c == this.f47429i && this.f47427f + f7 >= this.e + 0.5f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        if (this.f47426c == this.f47429i && this.f47427f >= this.e + 0.5f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final f3 d(boolean z10) {
+        ArrayList arrayList;
+        if (z10) {
+            f3 f3Var = this.f47429i;
+            if (f3Var.b()) {
+                int i10 = this.f47432l;
+                if (i10 <= 0) {
+                    return f3Var;
+                }
+                this.f47432l = i10 - 1;
+            }
+        }
+        ArrayList arrayList2 = new ArrayList();
+        int i11 = 0;
+        while (true) {
+            arrayList = this.f47428g;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            if (i11 != this.f47434n && ((f3) arrayList.get(i11)).b()) {
+                arrayList2.add(Integer.valueOf(i11));
+            }
+            i11++;
+        }
+        if (arrayList2.isEmpty()) {
+            for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                if (((f3) arrayList.get(i12)).b()) {
+                    arrayList2.add(Integer.valueOf(i12));
+                }
+            }
+            if (arrayList2.isEmpty()) {
+                return this.h;
+            }
+        }
+        int intValue = ((Integer) AndroidUtilities.randomOf(arrayList2)).intValue();
+        this.f47434n = intValue;
+        return (f3) arrayList.get(intValue);
+    }
+
+    public final void e() {
+        this.f47425b = this.f47426c;
+        this.f47426c = this.f47429i;
+        this.d = null;
+        int i10 = this.e + 1;
+        this.e = i10;
+        this.f47427f = i10 + 0.5f;
+    }
+
+    public final float f(float f7, boolean z10) {
+        int i10;
+        long j3;
+        boolean z11;
+        float f10;
+        f3 f3Var;
+        f3 d;
+        int i11 = this.f47432l;
+        int i12 = this.f47431k;
+        if (i11 >= i12) {
+            j3 = 450;
+        } else {
+            if (i12 == 3) {
+                i10 = 4500;
+            } else {
+                i10 = 2500;
+            }
+            j3 = i10;
+        }
+        org.telegram.ui.Components.e6 e6Var = this.f47433m;
+        e6Var.f23796g = j3;
+        if (i11 >= i12) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        float e = e6Var.e(z11);
+        if (i12 == 3) {
+            f10 = 0.75f;
+        } else {
+            f10 = 2.0f;
+        }
+        float lerp = (f7 * AndroidUtilities.lerp(f10, 7.5f, e) * this.f47430j) + this.f47427f;
+        this.f47427f = lerp;
+        f3 f3Var2 = this.f47429i;
+        if (lerp >= 0.0f) {
+            double d10 = lerp;
+            if (Math.floor(d10) + 1.0d > this.e && (f3Var = this.f47426c) != f3Var2) {
+                this.f47425b = f3Var;
+                f3 f3Var3 = this.d;
+                this.f47426c = f3Var3;
+                if (f3Var3 == f3Var2) {
+                    d = null;
+                } else {
+                    d = d(z10);
+                }
+                this.d = d;
+                this.e = ((int) Math.floor(d10)) + 1;
+            }
+        }
+        if (this.f47426c == f3Var2) {
+            return Math.min(lerp, this.e + 0.5f);
+        }
+        return lerp;
     }
 }

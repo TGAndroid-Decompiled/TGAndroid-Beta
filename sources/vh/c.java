@@ -1,11 +1,11 @@
 package vh;
 public final class c {
-    public float f44403a;
-    public float f44404b;
-    public float f44405c;
+    public float f44628a;
+    public float f44629b;
+    public float f44630c;
     public float d;
     public float e;
-    public float f44406f;
-    public float f44407g;
+    public float f44631f;
+    public float f44632g;
     public int h;
 }

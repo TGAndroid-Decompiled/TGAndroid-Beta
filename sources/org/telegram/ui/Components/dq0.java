@@ -1,83 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class dq0 extends gg.c0 {
-    public final eq0 f23380n;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class dq0 implements View.OnTouchListener {
+    public final int f23664a;
+    public final Rect f23665b;
+    public final vq0 f23666c;
 
-    public dq0(eq0 eq0Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(i10, context, f6Var, true, true);
-        this.f23380n = eq0Var;
+    public dq0(vq0 vq0Var, int i10) {
+        this.f23664a = i10;
+        switch (i10) {
+            case 1:
+                this.f23666c = vq0Var;
+                this.f23665b = new Rect();
+                return;
+            default:
+                this.f23666c = vq0Var;
+                this.f23665b = new Rect();
+                return;
+        }
     }
 
     @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        TLRPC.Chat chat;
-        int i12;
-        int i13;
-        boolean z10;
-        String str;
-        int i14;
-        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) c1Var.f42702a;
-        iq0 iq0Var = this.f23380n.K;
-        boolean z11 = false;
-        TLRPC.User user = null;
-        if (iq0Var.f24997h0 || iq0Var.f24998i0) {
-            int i15 = org.telegram.ui.ActionBar.j6.f19055ng;
-            int i16 = org.telegram.ui.ActionBar.j6.f18907fg;
-            m4Var.f20432b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i15, false));
-            m4Var.H = i16;
-            m4Var.v.b(org.telegram.ui.ActionBar.j6.B5, i16, org.telegram.ui.ActionBar.j6.C5);
-        }
-        i11 = ((org.telegram.ui.ActionBar.g3) iq0Var).currentAccount;
-        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
-        TLRPC.Peer peer = tL_topPeer.peer;
-        long j3 = peer.user_id;
-        if (j3 != 0) {
-            i14 = ((org.telegram.ui.ActionBar.g3) iq0Var).currentAccount;
-            user = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_topPeer.peer.user_id));
-            chat = null;
-        } else {
-            long j10 = peer.channel_id;
-            if (j10 != 0) {
-                j3 = -j10;
-                i13 = ((org.telegram.ui.ActionBar.g3) iq0Var).currentAccount;
-                chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
-            } else {
-                long j11 = peer.chat_id;
-                if (j11 != 0) {
-                    j3 = -j11;
-                    i12 = ((org.telegram.ui.ActionBar.g3) iq0Var).currentAccount;
-                    chat = MessagesController.getInstance(i12).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
-                } else {
-                    chat = null;
-                    j3 = 0;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        vq0 vq0Var;
+        org.telegram.ui.ActionBar.n1 n1Var;
+        vq0 vq0Var2;
+        org.telegram.ui.ActionBar.n1 n1Var2;
+        switch (this.f23664a) {
+            case 0:
+                if (motionEvent.getActionMasked() == 0 && (n1Var = (vq0Var = this.f23666c).J0) != null && n1Var.isShowing()) {
+                    Rect rect = this.f23665b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        vq0Var.J0.d(true);
+                        return false;
+                    }
+                    return false;
                 }
-            }
-        }
-        if (j3 == m4Var.getDialogId()) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        m4Var.setTag(Long.valueOf(j3));
-        if (user != null) {
-            str = UserObject.getFirstName(user);
-        } else if (chat != null) {
-            str = chat.title;
-        } else {
-            str = "";
-        }
-        m4Var.a(j3, str);
-        if (iq0Var.U.h(j3) >= 0) {
-            z11 = true;
-        }
-        if (m4Var.f20438w) {
-            m4Var.v.a(z11, z10);
+                return false;
+            default:
+                if (motionEvent.getActionMasked() == 0 && (n1Var2 = (vq0Var2 = this.f23666c).J0) != null && n1Var2.isShowing()) {
+                    Rect rect2 = this.f23665b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        vq0Var2.J0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
         }
     }
 }

@@ -1,9 +1,9 @@
 package ai;
 
-import org.telegram.ui.lj0;
-public final class v5 extends lj0 {
+import org.telegram.ui.kj0;
+public final class v5 extends kj0 {
     @Override
-    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
+    public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
         return new d();
     }
 

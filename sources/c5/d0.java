@@ -156,8 +156,8 @@ public final class d0 extends c {
     }
 
     @Override
-    public final void c(a4.m mVar, org.telegram.messenger.c0 c0Var) {
-        G(7, new z(c0Var, 0), new v(this, mVar, c0Var, 1));
+    public final void c(a4.m mVar, org.telegram.messenger.d0 d0Var) {
+        G(7, new z(d0Var, 0), new v(this, mVar, d0Var, 1));
     }
 
     @Override
@@ -170,7 +170,7 @@ public final class d0 extends c {
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 of.b bVar = this.h;
                 bVar.getClass();
-                bVar.f0(c10, (p3) bVar.f15521b);
+                bVar.f0(c10, (p3) bVar.f15650b);
             } else {
                 int i11 = 1;
                 if (this.D == 1) {

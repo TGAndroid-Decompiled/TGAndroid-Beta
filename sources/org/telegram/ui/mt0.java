@@ -1,55 +1,25 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.video.VideoFramesRewinder;
-import org.telegram.messenger.video.VideoPlayerRewinder;
-public final class mt0 extends VideoPlayerRewinder {
-    public final PhotoViewer f35888a;
+import android.content.Context;
+public final class mt0 extends org.telegram.ui.Components.b81 {
+    public final PhotoViewer f35739h0;
 
-    public mt0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
-        super(videoFramesRewinder);
-        this.f35888a = photoViewer;
+    public mt0(PhotoViewer photoViewer, Context context, rr0 rr0Var) {
+        super(context, rr0Var);
+        this.f35739h0 = photoViewer;
     }
 
     @Override
-    public final void onRewindCanceled() {
-        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-        PhotoViewer photoViewer = this.f35888a;
-        PhotoViewer.k(photoViewer, obtain);
-        photoViewer.f31142z1.f(false);
-        org.telegram.ui.Components.fg0.f23914p0.Q.f(false);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        PhotoViewer.X(this.f35739h0);
     }
 
     @Override
-    public final void onRewindStart(boolean z10) {
-        PhotoViewer photoViewer = this.f35888a;
-        photoViewer.f31142z1.e(false);
-        photoViewer.f31142z1.d(!z10);
-        photoViewer.f31142z1.f(true);
-        photoViewer.f30954e0.invalidate();
-        org.telegram.ui.Components.fg0.v(z10);
-    }
-
-    @Override
-    public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
-        PhotoViewer photoViewer = this.f35888a;
-        photoViewer.f31142z1.g(Math.abs(j3));
-        if (z10) {
-            photoViewer.f31060q3.h(f7, false);
-            photoViewer.f31069r3.invalidate();
-        }
-        org.telegram.ui.Components.fg0 fg0Var = org.telegram.ui.Components.fg0.f23914p0;
-        fg0Var.Q.g(0L);
-        if (z10) {
-            fg0Var.Z = f7;
-            ai.n4 n4Var = fg0Var.f23918b0;
-            if (n4Var != null) {
-                n4Var.invalidate();
-            }
-            org.telegram.ui.Components.eg0 eg0Var = fg0Var.h;
-            if (eg0Var != null) {
-                eg0Var.invalidate();
-            }
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 0) {
+            PhotoViewer.X(this.f35739h0);
         }
     }
 }

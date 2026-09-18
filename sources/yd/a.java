@@ -3,15 +3,15 @@ package yd;
 import hg.k0;
 import kotlin.jvm.internal.i;
 public final class a implements Comparable {
-    public static final long f46728b;
-    public static final long f46729c;
+    public static final long f46955b;
+    public static final long f46956c;
     public static final int d = 0;
-    public final long f46730a;
+    public final long f46957a;
 
     static {
-        int i10 = b.f46731a;
-        f46728b = Long.MAX_VALUE;
-        f46729c = -9223372036854775805L;
+        int i10 = b.f46958a;
+        f46955b = Long.MAX_VALUE;
+        f46956c = -9223372036854775805L;
     }
 
     public static final void a(StringBuilder sb2, int i10, int i11, int i12, String str) {
@@ -63,14 +63,14 @@ public final class a implements Comparable {
                     sb2.append((CharSequence) obj, 0, ((i14 + 3) / 3) * 3);
                 }
             } else {
-                throw new IllegalArgumentException(k0.j(i12, "Desired length ", " is less than zero."));
+                throw new IllegalArgumentException(k0.i(i12, "Desired length ", " is less than zero."));
             }
         }
         sb2.append(str);
     }
 
     public static final boolean b(long j3) {
-        if (j3 != f46728b && j3 != f46729c) {
+        if (j3 != f46955b && j3 != f46956c) {
             return false;
         }
         return true;
@@ -79,26 +79,26 @@ public final class a implements Comparable {
     public static final long c(long j3, c unit) {
         c sourceUnit;
         i.e(unit, "unit");
-        if (j3 == f46728b) {
+        if (j3 == f46955b) {
             return Long.MAX_VALUE;
         }
-        if (j3 == f46729c) {
+        if (j3 == f46956c) {
             return Long.MIN_VALUE;
         }
         long j10 = j3 >> 1;
         if ((((int) j3) & 1) == 0) {
-            sourceUnit = c.f46732b;
+            sourceUnit = c.f46959b;
         } else {
-            sourceUnit = c.f46733c;
+            sourceUnit = c.f46960c;
         }
         i.e(sourceUnit, "sourceUnit");
-        return unit.f46736a.convert(j10, sourceUnit.f46736a);
+        return unit.f46963a.convert(j10, sourceUnit.f46963a);
     }
 
     @Override
     public final int compareTo(Object obj) {
-        long j3 = ((a) obj).f46730a;
-        long j10 = this.f46730a;
+        long j3 = ((a) obj).f46957a;
+        long j10 = this.f46957a;
         long j11 = j10 ^ j3;
         if (j11 >= 0 && (((int) j11) & 1) != 0) {
             int i10 = (((int) j10) & 1) - (1 & ((int) j3));
@@ -119,7 +119,7 @@ public final class a implements Comparable {
 
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
-            if (this.f46730a != ((a) obj).f46730a) {
+            if (this.f46957a != ((a) obj).f46957a) {
                 return false;
             }
             return true;
@@ -128,7 +128,7 @@ public final class a implements Comparable {
     }
 
     public final int hashCode() {
-        long j3 = this.f46730a;
+        long j3 = this.f46957a;
         return (int) (j3 ^ (j3 >>> 32));
     }
 
@@ -146,15 +146,15 @@ public final class a implements Comparable {
         boolean z13;
         boolean z14;
         int i12;
-        long j11 = this.f46730a;
+        long j11 = this.f46957a;
         int i13 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
         if (i13 == 0) {
             return "0s";
         }
-        if (j11 == f46728b) {
+        if (j11 == f46955b) {
             return "Infinity";
         }
-        if (j11 == f46729c) {
+        if (j11 == f46956c) {
             return "-Infinity";
         }
         if (i13 < 0) {
@@ -168,13 +168,13 @@ public final class a implements Comparable {
         }
         if (i13 < 0) {
             j11 = (((int) j11) & 1) + ((-(j11 >> 1)) << 1);
-            int i14 = b.f46731a;
+            int i14 = b.f46958a;
         }
         long c13 = c(j11, c.h);
         if (b(j11)) {
             c10 = 0;
         } else {
-            c10 = (int) (c(j11, c.f46734f) % 24);
+            c10 = (int) (c(j11, c.f46961f) % 24);
         }
         if (b(j11)) {
             j3 = 0;

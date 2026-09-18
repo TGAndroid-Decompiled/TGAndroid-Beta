@@ -1,92 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.view.TextureView;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.FileLog;
-public final class u81 implements Runnable {
-    public final int f28302a;
-    public final d91 f28303b;
+public final class u81 extends View {
+    public t81 f28663a;
+    public int f28664b;
+    public final RectF f28665c;
+    public CharSequence d;
+    public v01 e;
+    public boolean f28666f;
+    public mp0 h;
+    public final e6 f28667n;
+    public final w81 f28668r;
 
-    public u81(d91 d91Var, int i10) {
-        this.f28302a = i10;
-        this.f28303b = d91Var;
+    public u81(w81 w81Var, Context context) {
+        super(context);
+        this.f28668r = w81Var;
+        this.f28665c = new RectF();
+        this.f28667n = new e6(this, 360L, qr.h);
     }
 
     @Override
-    public final void run() {
-        switch (this.f28302a) {
-            case 0:
-                d91 d91Var = this.f28303b;
-                z81 z81Var = d91Var.f23276f0;
-                h71 h71Var = d91Var.f23267a;
-                if (h71Var != null && h71Var.y()) {
-                    z81Var.c((int) (h71Var.n() / 1000));
-                    z81Var.f30427w = (int) (h71Var.j() / 1000);
-                    z81Var.invalidate();
-                    AndroidUtilities.runOnUIThread(d91Var.f23279i0, 1000L);
-                    return;
-                }
-                return;
-            default:
-                d91 d91Var2 = this.f28303b;
-                z81 z81Var2 = d91Var2.f23276f0;
-                ImageView imageView = d91Var2.e;
-                TextureView textureView = d91Var2.d;
-                d91Var2.W = false;
-                Bitmap bitmap = d91Var2.h;
-                if (bitmap != null) {
-                    bitmap.recycle();
-                    d91Var2.h = null;
-                }
-                d91Var2.S = true;
-                if (imageView != null) {
-                    try {
-                        Bitmap createBitmap = Bitmaps.createBitmap(textureView.getWidth(), textureView.getHeight(), Bitmap.Config.ARGB_8888);
-                        d91Var2.h = createBitmap;
-                        textureView.getBitmap(createBitmap);
-                    } catch (Throwable th2) {
-                        Bitmap bitmap2 = d91Var2.h;
-                        if (bitmap2 != null) {
-                            bitmap2.recycle();
-                            d91Var2.h = null;
-                        }
-                        FileLog.e(th2);
-                    }
-                    if (d91Var2.h != null) {
-                        imageView.setVisibility(0);
-                        imageView.setImageBitmap(d91Var2.h);
-                    } else {
-                        imageView.setImageDrawable(null);
-                    }
-                }
-                d91Var2.U = true;
-                d91Var2.n();
-                d91Var2.o();
-                d91Var2.k();
-                d91Var2.m();
-                ViewGroup viewGroup = (ViewGroup) z81Var2.getParent();
-                if (viewGroup != null) {
-                    viewGroup.removeView(z81Var2);
-                }
-                a91 a91Var = d91Var2.v;
-                z81 z81Var3 = d91Var2.f23276f0;
-                boolean z10 = d91Var2.U;
-                int i10 = d91Var2.f23277g0;
-                int i11 = d91Var2.f23278h0;
-                d91Var2.f23271c.getVideoRotation();
-                TextureView f7 = a91Var.f(z81Var3, z10, i10, i11, d91Var2.I);
-                d91Var2.f23282n = f7;
-                f7.setVisibility(4);
-                ViewGroup viewGroup2 = (ViewGroup) textureView.getParent();
-                if (viewGroup2 != null) {
-                    viewGroup2.removeView(textureView);
-                }
-                z81Var2.d(false, false);
-                return;
+    public int getId() {
+        return this.f28663a.f28354a;
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u81.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        int i10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        t81 t81Var = this.f28663a;
+        if (t81Var != null && (i10 = this.f28668r.G) != -1 && t81Var.f28354a == i10) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        accessibilityNodeInfo.setSelected(z10);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        t81 t81Var = this.f28663a;
+        w81 w81Var = this.f28668r;
+        setMeasuredDimension(AndroidUtilities.dp(w81Var.f29981r * 2) + t81Var.a(w81Var.f29964c) + w81Var.I, View.MeasureSpec.getSize(i11));
+    }
+
+    public void setReordering(boolean z10) {
+        if (this.f28666f == z10) {
+            return;
+        }
+        this.f28666f = z10;
+        invalidate();
     }
 }

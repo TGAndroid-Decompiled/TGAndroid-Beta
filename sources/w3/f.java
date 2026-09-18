@@ -1,12 +1,18 @@
 package w3;
-public final class f {
-    public final long f44519a;
-    public final boolean f44520b;
-    public final int f44521c;
 
-    public f(int i10, long j3, boolean z10) {
-        this.f44519a = j3;
-        this.f44520b = z10;
-        this.f44521c = i10;
+import e2.v;
+public final class f implements d9.e, f2.s {
+    public final i f44744a;
+
+    @Override
+    public Object apply(Object obj) {
+        p pVar = (p) obj;
+        this.f44744a.getClass();
+        return pVar;
+    }
+
+    @Override
+    public void b(long j3, v vVar) {
+        c3.b.d(j3, vVar, this.f44744a.K);
     }
 }

@@ -29,9 +29,9 @@ public final class m extends kd.j implements rd.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f13174a) {
             case 0:
-                return ((m) create((k) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((m) create((k) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             default:
-                return ((m) create((ce.c) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((m) create((ce.c) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
         }
     }
 

@@ -130,7 +130,7 @@ public class m {
         if (i10 >= 0 && i10 < this.f30c) {
             return this.f29b[i10 << 1];
         }
-        throw new IllegalArgumentException(k0.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(k0.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final boolean equals(Object obj) {
@@ -234,7 +234,7 @@ public class m {
             }
             throw new ConcurrentModificationException();
         }
-        throw new IllegalArgumentException(k0.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(k0.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final Object g(int i10, Object obj) {
@@ -245,7 +245,7 @@ public class m {
             objArr[i11] = obj;
             return obj2;
         }
-        throw new IllegalArgumentException(k0.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(k0.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public Object get(Object obj) {
@@ -268,7 +268,7 @@ public class m {
         if (i10 >= 0 && i10 < this.f30c) {
             return this.f29b[(i10 << 1) + 1];
         }
-        throw new IllegalArgumentException(k0.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(k0.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final int hashCode() {

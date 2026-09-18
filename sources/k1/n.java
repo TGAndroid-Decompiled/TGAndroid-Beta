@@ -30,9 +30,9 @@ public final class n extends kd.j implements rd.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f13177a) {
             case 0:
-                return ((n) create((b0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((n) create((b0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             default:
-                gd.i iVar = gd.i.f9621a;
+                gd.i iVar = gd.i.f9620a;
                 ((n) create((n1.b) obj, (id.c) obj2)).invokeSuspend(iVar);
                 return iVar;
         }
@@ -60,10 +60,10 @@ public final class n extends kd.j implements rd.p {
                 t7.b(obj);
                 n1.b bVar = (n1.b) this.f13178b;
                 bVar.getClass();
-                n1.d key = za.v.f48859a;
+                n1.d key = za.v.f49085a;
                 kotlin.jvm.internal.i.e(key, "key");
                 bVar.b(key, (String) obj2);
-                return gd.i.f9621a;
+                return gd.i.f9620a;
         }
     }
 }

@@ -11,19 +11,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qu extends WebViewClient {
-    public final vu f27408a;
+    public final vu f27741a;
 
     public qu(vu vuVar) {
-        this.f27408a = vuVar;
+        this.f27741a = vuVar;
     }
 
     @Override
     public final void onPageFinished(WebView webView, String str) {
         super.onPageFinished(webView, str);
-        vu vuVar = this.f27408a;
-        ImageView imageView = vuVar.f29419x;
-        if (!vuVar.f29420y) {
-            vuVar.f29415n.setVisibility(4);
+        vu vuVar = this.f27741a;
+        ImageView imageView = vuVar.f29766x;
+        if (!vuVar.f29767y) {
+            vuVar.f29762n.setVisibility(4);
             vuVar.h.setVisibility(4);
             imageView.setEnabled(true);
             imageView.setAlpha(1.0f);
@@ -32,17 +32,17 @@ public final class qu extends WebViewClient {
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        org.telegram.ui.ActionBar.f6 f6Var;
-        vu vuVar = this.f27408a;
+        org.telegram.ui.ActionBar.e6 e6Var;
+        vu vuVar = this.f27741a;
         try {
             if (!AndroidUtilities.isSafeToShow(vuVar.getContext())) {
                 return true;
             }
             Context context = vuVar.getContext();
-            f6Var = ((org.telegram.ui.ActionBar.g3) vuVar).resourcesProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-            alertDialog$Builder.f18447a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f18447a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new xp(this, 10));
+            e6Var = ((org.telegram.ui.ActionBar.f3) vuVar).resourcesProvider;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+            alertDialog$Builder.f18622a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f18622a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new xp(this, 10));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
             alertDialog$Builder.o();
             return true;
@@ -54,7 +54,7 @@ public final class qu extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        if (this.f27408a.f29420y) {
+        if (this.f27741a.f29767y) {
             nf.f.s(webView.getContext(), str);
             return true;
         }

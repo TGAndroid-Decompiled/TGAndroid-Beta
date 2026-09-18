@@ -3,7 +3,7 @@ package ei;
 import org.telegram.tgnet.TLRPC;
 public final class j1 implements org.telegram.ui.Cells.t0 {
     @Override
-    public final org.telegram.ui.ActionBar.o2 O0() {
+    public final org.telegram.ui.ActionBar.n2 O0() {
         return null;
     }
 

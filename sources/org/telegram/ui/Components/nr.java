@@ -9,25 +9,25 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class nr extends Drawable {
-    public final Drawable f26527a;
-    public final RectF f26528b = new RectF();
-    public final Paint f26529c;
+    public final Drawable f26747a;
+    public final RectF f26748b = new RectF();
+    public final Paint f26749c;
     public final Paint d;
     public int e;
-    public final int f26530f;
-    public float f26531g;
+    public final int f26750f;
+    public float f26751g;
     public boolean h;
-    public float f26532i;
-    public float f26533j;
-    public float f26534k;
+    public float f26752i;
+    public float f26753j;
+    public float f26754k;
 
     public nr(Context context, int i10, int i11) {
         Paint paint = new Paint(1);
-        this.f26529c = paint;
+        this.f26749c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f26527a = context.getDrawable(i10);
-        this.f26530f = i11;
+        this.f26747a = context.getDrawable(i10);
+        this.f26750f = i11;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
@@ -46,12 +46,12 @@ public final class nr extends Drawable {
                 if (z10) {
                     f7 = 1.0f;
                 }
-                this.f26531g = f7;
+                this.f26751g = f7;
             } else {
                 if (!z10) {
                     f7 = 1.0f;
                 }
-                this.f26531g = f7;
+                this.f26751g = f7;
             }
             invalidateSelf();
         }
@@ -64,12 +64,12 @@ public final class nr extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f26527a.getIntrinsicHeight();
+        return this.f26747a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f26527a.getIntrinsicWidth();
+        return this.f26747a.getIntrinsicWidth();
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class nr extends Drawable {
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
         super.setBounds(i10, i11, i12, i13);
-        this.f26527a.setBounds(i10, i11, i12, i13);
+        this.f26747a.setBounds(i10, i11, i12, i13);
     }
 
     @Override

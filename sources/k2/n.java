@@ -1,26 +1,26 @@
 package k2;
 public interface n {
-    void J();
+    void G();
 
-    void R(Exception exc);
+    void P(Exception exc);
 
-    void U();
+    void S();
 
-    void Y(k kVar);
+    void V(k kVar);
 
-    void e(long j3);
+    void b(long j3);
 
-    void h0();
+    void f0();
 
-    void l0(k kVar);
+    void j0(k kVar);
+
+    void o();
 
     void onAudioSessionIdChanged(int i10);
 
     void onSkipSilenceEnabledChanged(boolean z10);
 
-    void p();
-
-    void r();
+    void q();
 
     void y(int i10, long j3, long j10);
 }

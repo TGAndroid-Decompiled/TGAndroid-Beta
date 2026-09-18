@@ -1,32 +1,35 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-public final class ce0 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f23031a;
-    public final Utilities.Callback f23032b;
-    public final NotificationCenter.NotificationCenterDelegate[] f23033c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.LaunchActivity;
+public final class ce0 extends be0 {
+    public final de0 f23263b0;
 
-    public ce0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
-        this.f23031a = i10;
-        this.f23032b = callback;
-        this.f23033c = notificationCenterDelegateArr;
+    public ce0(de0 de0Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f23263b0 = de0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.activityPermissionsGranted;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            String[] strArr = (String[]) objArr[1];
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == this.f23031a) {
-                Utilities.Callback callback = this.f23032b;
-                if (callback != null) {
-                    callback.run(iArr);
-                }
-                NotificationCenter.getGlobalInstance().removeObserver(this.f23033c[0], i12);
-            }
+    public final void f(float f7) {
+        LaunchActivity launchActivity = LaunchActivity.G1;
+        if (launchActivity == null) {
+            return;
         }
+        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f31106z0;
+        z3Var.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f7));
+        z3Var.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f7));
+    }
+
+    @Override
+    public final void h() {
+        de0.a(this.f23263b0);
+        LaunchActivity launchActivity = LaunchActivity.G1;
+        if (launchActivity == null) {
+            return;
+        }
+        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f31106z0;
+        z3Var.setScaleX(1.0f);
+        z3Var.setScaleY(1.0f);
     }
 }

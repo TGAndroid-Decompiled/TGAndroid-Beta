@@ -7,25 +7,25 @@ import e2.d0;
 import e2.q;
 import java.math.RoundingMode;
 public final class f implements b0 {
-    public final q f13439a;
-    public final int f13440b;
-    public final long f13441c;
+    public final q f13437a;
+    public final int f13438b;
+    public final long f13439c;
     public final long d;
     public final long e;
 
     public f(q qVar, int i10, long j3, long j10) {
-        this.f13439a = qVar;
-        this.f13440b = i10;
-        this.f13441c = j3;
-        long j11 = (j10 - j3) / qVar.f7924c;
+        this.f13437a = qVar;
+        this.f13438b = i10;
+        this.f13439c = j3;
+        long j11 = (j10 - j3) / qVar.f7923c;
         this.d = j11;
         this.e = a(j11);
     }
 
     public final long a(long j3) {
-        long j10 = j3 * this.f13440b;
-        long j11 = this.f13439a.f7923b;
-        String str = d0.f7888a;
+        long j10 = j3 * this.f13438b;
+        long j11 = this.f13437a.f7922b;
+        String str = d0.f7887a;
         return d0.Y(j10, 1000000L, j11, RoundingMode.DOWN);
     }
 
@@ -36,16 +36,16 @@ public final class f implements b0 {
 
     @Override
     public final a0 j(long j3) {
-        q qVar = this.f13439a;
-        long j10 = (qVar.f7923b * j3) / (this.f13440b * 1000000);
+        q qVar = this.f13437a;
+        long j10 = (qVar.f7922b * j3) / (this.f13438b * 1000000);
         long j11 = this.d;
         long i10 = d0.i(j10, 0L, j11 - 1);
-        long j12 = this.f13441c;
+        long j12 = this.f13439c;
         long a2 = a(i10);
-        c0 c0Var = new c0(a2, (qVar.f7924c * i10) + j12);
+        c0 c0Var = new c0(a2, (qVar.f7923c * i10) + j12);
         if (a2 < j3 && i10 != j11 - 1) {
             long j13 = i10 + 1;
-            return new a0(c0Var, new c0(a(j13), (qVar.f7924c * j13) + j12));
+            return new a0(c0Var, new c0(a(j13), (qVar.f7923c * j13) + j12));
         }
         return new a0(c0Var, c0Var);
     }

@@ -128,7 +128,7 @@ public final class f implements o0 {
         }
         this.e = sVar;
         if (j3 != this.f100f) {
-            if (f0Var.f106f.f7924c == 0) {
+            if (f0Var.f106f.f7923c == 0) {
                 f0Var.f104b.f(i10);
                 f0Var.f110k = j3;
             } else {
@@ -163,9 +163,9 @@ public final class f implements o0 {
         e2.a0 a0Var2 = f0Var.d;
         e2.q qVar = f0Var.f106f;
         boolean z12 = false;
-        qVar.f7922a = 0;
-        qVar.f7923b = -1;
-        qVar.f7924c = 0;
+        qVar.f7921a = 0;
+        qVar.f7922b = -1;
+        qVar.f7923c = 0;
         f0Var.f107g = -9223372036854775807L;
         f0Var.h = -9223372036854775807L;
         f0Var.f108i = -9223372036854775807L;
@@ -204,29 +204,29 @@ public final class f implements o0 {
         this.f99c.add(jVar);
         f0 f0Var = this.f98b;
         e2.q qVar = f0Var.f106f;
-        int i10 = qVar.f7924c;
+        int i10 = qVar.f7923c;
         long[] jArr = (long[]) qVar.e;
         if (i10 == jArr.length) {
             int length = jArr.length << 1;
             if (length >= 0) {
                 long[] jArr2 = new long[length];
                 int length2 = jArr.length;
-                int i11 = qVar.f7922a;
+                int i11 = qVar.f7921a;
                 int i12 = length2 - i11;
                 System.arraycopy(jArr, i11, jArr2, 0, i12);
                 System.arraycopy((long[]) qVar.e, 0, jArr2, i12, i11);
-                qVar.f7922a = 0;
-                qVar.f7923b = qVar.f7924c - 1;
+                qVar.f7921a = 0;
+                qVar.f7922b = qVar.f7923c - 1;
                 qVar.e = jArr2;
                 qVar.d = length - 1;
             } else {
                 throw new IllegalStateException();
             }
         }
-        int i13 = (qVar.f7923b + 1) & qVar.d;
-        qVar.f7923b = i13;
+        int i13 = (qVar.f7922b + 1) & qVar.d;
+        qVar.f7922b = i13;
         ((long[]) qVar.e)[i13] = j3;
-        qVar.f7924c++;
+        qVar.f7923c++;
         f0Var.f107g = j3;
         f0Var.f108i = -9223372036854775807L;
         this.h.execute(new d(this, 0));

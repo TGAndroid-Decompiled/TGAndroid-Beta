@@ -1,43 +1,34 @@
 package org.telegram.ui.Components;
+public final class h60 {
+    public final int f24565a;
+    public final int f24566b;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class h60 implements View.OnClickListener {
-    public final int f24505a;
-    public final TLRPC.User f24506b;
-    public final String f24507c;
-    public final boolean d;
-    public final boolean e;
-    public final boolean f24508f;
-    public final ll0 h;
-
-    public h60(ll0 ll0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f24505a = i10;
-        this.h = ll0Var;
-        this.f24506b = user;
-        this.f24507c = str;
-        this.d = z10;
-        this.e = z11;
-        this.f24508f = z12;
+    public h60(int i10, int i11) {
+        this.f24565a = i10;
+        this.f24566b = i11;
     }
 
-    @Override
-    public final void onClick(View view) {
-        int i10;
-        org.telegram.ui.ActionBar.f6 f6Var;
-        switch (this.f24505a) {
-            case 0:
-                r60 r60Var = ((m60) this.h).f26091c;
-                Context context = r60Var.getContext();
-                i10 = ((org.telegram.ui.ActionBar.g3) r60Var).currentAccount;
-                f6Var = ((org.telegram.ui.ActionBar.g3) r60Var).resourcesProvider;
-                c01.b(context, i10, -r60Var.f27552g0, this.f24506b, this.f24507c, this.d, this.e, this.f24508f, f6Var);
-                return;
-            default:
-                zu0 zu0Var = ((jt0) this.h).f25432f;
-                c01.b(zu0Var.getContext(), zu0Var.f30659v1.getCurrentAccount(), zu0Var.f30634j1, this.f24506b, this.f24507c, this.d, this.e, this.f24508f, zu0Var.F1);
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && h60.class == obj.getClass()) {
+            h60 h60Var = (h60) obj;
+            if (this.f24565a == h60Var.f24565a && this.f24566b == h60Var.f24566b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return (this.f24565a * 31) + this.f24566b;
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("IntSize(");
+        sb2.append(this.f24565a);
+        sb2.append(", ");
+        return a4.a.n(this.f24566b, ")", sb2);
     }
 }

@@ -4,23 +4,23 @@ import android.content.Context;
 import android.view.ActionMode;
 import android.view.Menu;
 import java.util.ArrayList;
-public final class nn extends org.telegram.ui.Cells.c6 {
+public final class nn extends org.telegram.ui.Cells.d6 {
     public final int F;
     public final sn G;
 
-    public nn(sn snVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
-        super(context, i10, null, f6Var);
+    public nn(sn snVar, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
+        super(context, i10, null, e6Var);
         this.G = snVar;
         this.F = i11;
     }
 
     @Override
-    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
+    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
         un unVar = this.G.d;
-        if (!unVar.f28437n && this.F == 11 && b6Var.isFocused() && b6Var.hasSelection()) {
+        if (!unVar.f28758n && this.F == 11 && c6Var.isFocused() && c6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.bo.k8(menu, ((org.telegram.ui.bo) unVar.f26463b.f28745f0).h, false, true, true, true);
+                org.telegram.ui.zn.k8(menu, ((org.telegram.ui.zn) unVar.f26688b.f29021f0).h, false, true, true, true);
             }
         }
     }
@@ -31,13 +31,13 @@ public final class nn extends org.telegram.ui.Cells.c6 {
     }
 
     @Override
-    public final void j(org.telegram.ui.Cells.c6 c6Var) {
-        un.N(this.G.d, c6Var);
+    public final void j(org.telegram.ui.Cells.d6 d6Var) {
+        un.N(this.G.d, d6Var);
     }
 
     @Override
-    public final void k(org.telegram.ui.Cells.b6 b6Var) {
-        this.G.d.f26463b.t1(b6Var, true);
+    public final void k(org.telegram.ui.Cells.c6 c6Var) {
+        this.G.d.f26688b.t1(c6Var, true);
     }
 
     @Override
@@ -46,8 +46,8 @@ public final class nn extends org.telegram.ui.Cells.c6 {
         if (arrayList.isEmpty()) {
             return false;
         }
-        org.telegram.ui.Cells.b6 b6Var = this.d;
-        b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        org.telegram.ui.Cells.c6 c6Var = this.d;
+        c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
         int i10 = 0;
         while (!arrayList.isEmpty() && i10 < unVar.J) {
             for (int length = unVar.K.length - 1; length > i10; length--) {
@@ -59,9 +59,9 @@ public final class nn extends org.telegram.ui.Cells.c6 {
             i10++;
         }
         unVar.h0();
-        unVar.f28434k0 = (unVar.f28446t0 + i10) - 1;
-        unVar.f28444s.setItemAnimator(unVar.v);
-        unVar.f28442r.l();
+        unVar.f28755k0 = (unVar.f28767t0 + i10) - 1;
+        unVar.f28765s.setItemAnimator(unVar.v);
+        unVar.f28763r.l();
         return true;
     }
 }

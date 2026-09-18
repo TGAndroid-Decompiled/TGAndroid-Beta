@@ -1,51 +1,51 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class k31 extends s4.s0 {
-    public final w31 f25558a;
+import org.telegram.tgnet.TLRPC;
+public final class k31 extends w51 {
+    public static final int f25574a = 0;
 
-    public k31(w31 w31Var) {
-        this.f25558a = w31Var;
+    static {
+        w51.setup(new w51());
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        w31 w31Var = this.f25558a;
-        j31 j31Var = w31Var.H;
-        if (i10 == 0) {
-            w31Var.G = false;
-        }
-        if ((i10 == 0 || i10 == 2) && w31Var.z(false) > 0.0f && w31Var.z(false) < AndroidUtilities.dp(96.0f) && j31Var.canScrollVertically(1) && w31.u(w31Var)) {
-            w31Var.G = true;
-            j31Var.w0(0, (int) w31Var.z(false), null);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        float f7;
-        w31 w31Var = this.f25558a;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) w31Var).containerView;
-        viewGroup.invalidate();
-        boolean canScrollVertically = w31Var.H.canScrollVertically(1);
-        View view = w31Var.L;
-        Boolean bool = w31Var.Q;
-        if (bool != null && bool.booleanValue() == canScrollVertically) {
-            return;
-        }
-        w31Var.Q = Boolean.valueOf(canScrollVertically);
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (canScrollVertically) {
-            f7 = 1.0f;
+    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+        boolean z11;
+        l31 l31Var = (l31) view;
+        boolean z12 = false;
+        if (x51Var.f30254r) {
+            l31Var.e();
         } else {
-            f7 = 0.0f;
+            Object obj = x51Var.G;
+            if (obj == null) {
+                if (x51Var.B == -2) {
+                    l31Var.b(x51Var.f30253q, x51Var.e);
+                } else {
+                    if ((x51Var.f30260y & 1) != 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    l31Var.c(z11, x51Var.f30253q, x51Var.e);
+                }
+            } else if (obj instanceof TLRPC.TL_forumTopic) {
+                if (!x51Var.I) {
+                    l31Var.f((TLRPC.TL_forumTopic) obj, x51Var.e);
+                } else {
+                    l31Var.a(x51Var.f30259x, (TLRPC.TL_forumTopic) obj, x51Var.e);
+                }
+            }
         }
-        org.telegram.messenger.wl.q(animate.alpha(f7), qr.h, 320L);
+        if (t61Var != null && t61Var.f28336c3 && l31Var.f26013y) {
+            z12 = true;
+        }
+        l31Var.setReorder(z12);
+    }
+
+    @Override
+    public final View createView(Context context, wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new l31(context, i10, e6Var);
     }
 }

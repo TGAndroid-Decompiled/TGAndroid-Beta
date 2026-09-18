@@ -1,43 +1,43 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class a51 implements ux0 {
-    public final TLRPC.InputStickerSet f22328a;
-    public final f51 f22329b;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.ScrollView;
+import org.telegram.messenger.R;
+public final class a51 extends ScrollView {
+    public Drawable f22502a;
+    public e6 f22503b;
+    public boolean f22504c;
 
-    public a51(f51 f51Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f22329b = f51Var;
-        this.f22328a = inputStickerSet;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        super.dispatchDraw(canvas);
+        e6 e6Var = this.f22503b;
+        if (canScrollVertically(-1)) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        float d = e6Var.d(f7, false) * 0.5f;
+        if (d > 0.0f) {
+            if (this.f22502a == null) {
+                this.f22502a = getContext().getResources().getDrawable(R.drawable.header_shadow);
+            }
+            this.f22502a.setBounds(0, getScrollY(), getWidth(), this.f22502a.getIntrinsicHeight() + getScrollY());
+            this.f22502a.setAlpha((int) (d * 255.0f));
+            this.f22502a.draw(canvas);
+        }
     }
 
     @Override
-    public final void a() {
-        f51 f51Var = this.f22329b;
-        s4.h0 adapter = f51Var.f23785n.getAdapter();
-        e51 e51Var = f51Var.f23787s;
-        TLRPC.InputStickerSet inputStickerSet = this.f22328a;
-        int i10 = 0;
-        if (adapter == e51Var) {
-            while (i10 < e51Var.e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) e51Var.e.get(i10);
-                if (stickerSetCovered.set.f18148id == inputStickerSet.f18141id) {
-                    e51Var.F(stickerSetCovered, null);
-                    return;
-                }
-                i10++;
-            }
-            return;
-        }
-        gg.g2 g2Var = f51Var.v;
-        ArrayList arrayList = g2Var.E;
-        while (i10 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
-            if (stickerSetCovered2.set.f18148id == inputStickerSet.f18141id) {
-                g2Var.F(stickerSetCovered2, null);
-                return;
-            }
-            i10++;
+    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
+        super.onNestedScroll(view, i10, i11, i12, i13);
+        boolean canScrollVertically = canScrollVertically(-1);
+        if (this.f22504c != canScrollVertically) {
+            invalidate();
+            this.f22504c = canScrollVertically;
         }
     }
 }

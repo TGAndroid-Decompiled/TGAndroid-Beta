@@ -10,14 +10,14 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.gg0;
+import org.telegram.ui.Components.qg0;
 import org.telegram.ui.Components.qr;
 public final class qb extends r6 {
     public final oc A2;
     public boolean f5366z2;
 
-    public qb(oc ocVar, Context context, boolean z10, File file, boolean z11, boolean z12, nc ncVar, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, o8 o8Var, int i12, int i13, MediaController.CropState cropState, org.telegram.ui.Components.ha haVar, ai.d dVar, c7 c7Var, cc ccVar) {
-        super(context, z10, file, z11, z12, ncVar, activity, i10, bitmap, bitmap2, i11, arrayList, o8Var, i12, i13, cropState, haVar, dVar, c7Var, ccVar);
+    public qb(oc ocVar, Context context, boolean z10, File file, boolean z11, boolean z12, nc ncVar, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, o8 o8Var, int i12, int i13, MediaController.CropState cropState, org.telegram.ui.Components.ja jaVar, ai.d dVar, c7 c7Var, cc ccVar) {
+        super(context, z10, file, z11, z12, ncVar, activity, i10, bitmap, bitmap2, i11, arrayList, o8Var, i12, i13, cropState, jaVar, dVar, c7Var, ccVar);
         this.A2 = ocVar;
     }
 
@@ -33,7 +33,7 @@ public final class qb extends r6 {
         ocVar.f5272v1.O0(false);
         ocVar.f5213c1.clearAnimation();
         ViewPropertyAnimator duration = ocVar.f5213c1.animate().alpha(0.0f).setDuration(180L);
-        qr qrVar = qr.f27384g;
+        qr qrVar = qr.f27716g;
         duration.setInterpolator(qrVar).start();
         if (ocVar.f5225g0 != 2) {
             ocVar.Y0.clearAnimation();
@@ -49,12 +49,12 @@ public final class qb extends r6 {
             ocVar.f5252p1.setVisibility(0);
             ocVar.f5252p1.setAlpha(0.0f);
             ocVar.f5252p1.clearAnimation();
-            ocVar.f5252p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(qr.f27384g).start();
+            ocVar.f5252p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(qr.f27716g).start();
             return;
         }
         ocVar.f5252p1.a(false, z11);
         ocVar.f5252p1.clearAnimation();
-        ViewPropertyAnimator interpolator = ocVar.f5252p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(qr.f27384g);
+        ViewPropertyAnimator interpolator = ocVar.f5252p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(qr.f27716g);
         if (z11) {
             j3 = 500;
         } else {
@@ -118,7 +118,7 @@ public final class qb extends r6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        qr qrVar = qr.f27384g;
+        qr qrVar = qr.f27716g;
         duration.setInterpolator(qrVar).start();
         ocVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = ocVar.Y0.animate();
@@ -158,11 +158,11 @@ public final class qb extends r6 {
         ocVar.f5213c1.f4995f.d();
         ocVar.l0(0, false, true);
         qg.j jVar = this.J0;
-        if ((jVar instanceof qg.x2) && !this.K0) {
-            qg.x2 x2Var = (qg.x2) jVar;
+        if ((jVar instanceof qg.u2) && !this.K0) {
+            qg.u2 u2Var = (qg.u2) jVar;
             this.K0 = true;
-            x2Var.q();
-            View focusedView = x2Var.getFocusedView();
+            u2Var.q();
+            View focusedView = u2Var.getFocusedView();
             focusedView.requestFocus();
             AndroidUtilities.showKeyboard(focusedView);
         }
@@ -181,7 +181,7 @@ public final class qb extends r6 {
             ccVar.x(6, z10);
             s6 s6Var = ocVar.f5235j1;
             if (s6Var != null) {
-                ((gg0) s6Var.f5517c).a(ocVar.X0.k(), true);
+                ((qg0) s6Var.f5517c).a(ocVar.X0.k(), true);
             }
         }
         ec ecVar = ocVar.f5213c1;

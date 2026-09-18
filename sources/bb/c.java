@@ -15,7 +15,7 @@ public final class c extends kd.j implements p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        gd.i iVar = gd.i.f9621a;
+        gd.i iVar = gd.i.f9620a;
         ((c) create((String) obj, (id.c) obj2)).invokeSuspend(iVar);
         return iVar;
     }
@@ -25,6 +25,6 @@ public final class c extends kd.j implements p {
         jd.a aVar = jd.a.f12970a;
         t7.b(obj);
         Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f3462a));
-        return gd.i.f9621a;
+        return gd.i.f9620a;
     }
 }

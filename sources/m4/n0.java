@@ -1,48 +1,33 @@
 package m4;
 
-import java.util.List;
-public final class n0 implements d1, e1 {
-    public final int f14633a;
-    public final g1 f14634b;
-    public final int f14635c;
+import android.view.View;
+public final class n0 implements e2.h {
+    public final int f14807a;
+    public final boolean f14808b;
 
-    public n0(g1 g1Var, int i10, int i11) {
-        this.f14633a = i11;
-        this.f14634b = g1Var;
-        this.f14635c = i10;
+    public n0(int i10, boolean z10) {
+        this.f14807a = i10;
+        this.f14808b = z10;
     }
 
     @Override
-    public void a(k1 k1Var, r rVar, List list) {
-        switch (this.f14633a) {
+    public final void accept(Object obj) {
+        switch (this.f14807a) {
+            case 0:
+                ((j1) obj).X(this.f14808b);
+                return;
             case 1:
-                k1Var.b0(this.f14634b.K0(rVar, k1Var, this.f14635c), list);
+                ((j1) obj).o0(this.f14808b);
                 return;
             case 2:
-                g1 g1Var = this.f14634b;
-                g1Var.getClass();
-                int size = list.size();
-                int i10 = this.f14635c;
-                if (size == 1) {
-                    k1Var.s0((b2.k0) list.get(0), g1Var.K0(rVar, k1Var, i10));
+                ((j1) obj).x(this.f14808b);
+                return;
+            default:
+                View view = (View) obj;
+                if (view instanceof xg.l) {
+                    ((xg.l) view).g(this.f14808b, true);
                     return;
                 }
-                k1Var.P(g1Var.K0(rVar, k1Var, i10), g1Var.K0(rVar, k1Var, i10 + 1), list);
-                return;
-            default:
-                k1Var.b0(this.f14634b.K0(rVar, k1Var, this.f14635c), list);
-                return;
-        }
-    }
-
-    @Override
-    public void g(k1 k1Var, r rVar) {
-        switch (this.f14633a) {
-            case 0:
-                k1Var.Y(this.f14634b.K0(rVar, k1Var, this.f14635c));
-                return;
-            default:
-                k1Var.R(this.f14634b.K0(rVar, k1Var, this.f14635c));
                 return;
         }
     }

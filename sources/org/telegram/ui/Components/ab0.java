@@ -1,28 +1,41 @@
 package org.telegram.ui.Components;
-public final class ab0 implements Runnable {
-    public final int f22367a;
-    public final pb0 f22368b;
 
-    public ab0(pb0 pb0Var, int i10) {
-        this.f22367a = i10;
-        this.f22368b = pb0Var;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
+public final class ab0 extends ReplacementSpan {
+    public final int f22592a;
+    public final KeyEvent.Callback f22593b;
+
+    public ab0(KeyEvent.Callback callback, int i10) {
+        this.f22592a = i10;
+        this.f22593b = callback;
     }
 
     @Override
-    public final void run() {
-        switch (this.f22367a) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f22592a;
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f22592a) {
             case 0:
-                pb0 pb0Var = this.f22368b;
-                hb0 hb0Var = pb0Var.f26992f;
-                if (pb0Var.f26991c0.d.webpageTop) {
-                    hb0Var.x0(-hb0Var.computeVerticalScrollOffset(), 250, ji.n.V);
-                    return;
-                }
-                hb0Var.x0(hb0Var.computeVerticalScrollRange() - (hb0Var.computeVerticalScrollExtent() + hb0Var.computeVerticalScrollOffset()), 250, ji.n.V);
-                return;
+                return ((cb0) this.f22593b).f23244x;
+            case 1:
+                return (int) ((org.telegram.ui.sj0) this.f22593b).f37357n0;
             default:
-                this.f22368b.g(true, false);
-                return;
+                return (int) ((tg.m1) this.f22593b).f43425t0;
         }
+    }
+
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

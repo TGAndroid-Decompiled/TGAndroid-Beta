@@ -4,27 +4,32 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.n70;
-import org.telegram.ui.pf;
-import org.telegram.ui.st;
-public final class s1 implements st {
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.of;
+import org.telegram.ui.qt;
+public final class s1 implements qt {
     @Override
-    public final boolean A() {
+    public final MessageObject A() {
+        return null;
+    }
+
+    @Override
+    public final boolean B() {
         return false;
     }
 
     @Override
-    public final boolean C() {
+    public final boolean D() {
         return false;
     }
 
     @Override
-    public final boolean D(TLRPC.Document document) {
+    public final boolean E(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final String F(boolean z10) {
+    public final String G(boolean z10) {
         return null;
     }
 
@@ -94,7 +99,7 @@ public final class s1 implements st {
     }
 
     @Override
-    public final n70 i(n6 n6Var) {
+    public final w70 i(n6 n6Var) {
         return null;
     }
 
@@ -114,33 +119,20 @@ public final class s1 implements st {
     }
 
     @Override
-    public final boolean x() {
+    public final boolean y() {
         return true;
     }
 
     @Override
-    public final MessageObject z() {
-        return null;
+    public final void C(TLRPC.Document document) {
     }
 
     @Override
-    public final void B(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void E(TLRPC.Document document) {
+    public final void F(TLRPC.Document document) {
     }
 
     @Override
     public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
     }
 
     @Override
@@ -164,6 +156,22 @@ public final class s1 implements st {
     }
 
     @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void z(String str) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
     public final void r() {
     }
 
@@ -172,27 +180,19 @@ public final class s1 implements st {
     }
 
     @Override
-    public final void u(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void y(String str) {
-    }
-
-    @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
     }
 
     @Override
-    public final void v(TLRPC.StickerSet stickerSet, String str) {
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
     }
 
     @Override
-    public final void w(TLObject tLObject, Object obj) {
+    public final void x(TLObject tLObject, Object obj) {
     }
 
     @Override
-    public final void G(CharSequence charSequence, String str, pf pfVar) {
+    public final void u(CharSequence charSequence, String str, of ofVar) {
     }
 
     @Override

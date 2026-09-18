@@ -1,12 +1,9 @@
 package w7;
-
-import java.util.Date;
 public abstract class t6 {
-    public static long a(Date date) {
-        return (date.getTime() / 1000) + 2082844800;
-    }
-
-    public static Date b(long j3) {
-        return new Date((j3 - 2082844800) * 1000);
+    public static int a(long j3) {
+        if (j3 <= 2147483647L && j3 >= -2147483648L) {
+            return (int) j3;
+        }
+        throw new RuntimeException(org.telegram.ui.Cells.c1.h(j3, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
     }
 }

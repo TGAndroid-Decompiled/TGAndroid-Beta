@@ -11,16 +11,16 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.gk0;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.kz;
-import org.telegram.ui.Components.qv0;
-public final class nc extends qv0 {
+import org.telegram.ui.Components.qk0;
+public final class nc extends bw0 {
     public boolean A0;
     public float B0;
     public float C0;
     public float D0;
     public final oc E0;
-    public final org.telegram.ui.Cells.ia f5098w0;
+    public final ka.c f5098w0;
     public final ScaleGestureDetector f5099x0;
     public boolean f5100y0;
     public boolean f5101z0;
@@ -29,7 +29,7 @@ public final class nc extends qv0 {
         super(activity, null);
         this.E0 = ocVar;
         this.A0 = false;
-        this.f5098w0 = new org.telegram.ui.Cells.ia(activity, new lc(this));
+        this.f5098w0 = new ka.c(activity, new lc(this));
         this.f5099x0 = new ScaleGestureDetector(activity, new mc(this));
     }
 
@@ -119,7 +119,7 @@ public final class nc extends qv0 {
             this.f5101z0 = false;
         }
         this.f5099x0.onTouchEvent(motionEvent);
-        this.f5098w0.y(motionEvent);
+        this.f5098w0.g0(motionEvent);
         if (motionEvent.getAction() == 1 && !this.f5100y0) {
             if (ocVar.f5257r.getTranslationY() > 0.0f) {
                 if (ocVar.K > 0.4f) {
@@ -165,7 +165,7 @@ public final class nc extends qv0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
-        yh.w3 w3Var;
+        yh.u3 u3Var;
         kz emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
@@ -176,7 +176,7 @@ public final class nc extends qv0 {
             i15 = 0;
         }
         int i16 = ocVar.S;
-        int b10 = w7.p.b((measuredWidth - i16) / 2, ocVar.Y, (measuredWidth - ocVar.f5205a0) - i16);
+        int b10 = w7.q.b((measuredWidth - i16) / 2, ocVar.Y, (measuredWidth - ocVar.f5205a0) - i16);
         int i17 = ocVar.S + b10;
         if (ocVar.V) {
             i14 = ocVar.T;
@@ -216,18 +216,18 @@ public final class nc extends qv0 {
             if (kzVar != null) {
                 kzVar.layout(ocVar.Y, (measuredHeight - ocVar.f5208b0) - kzVar.getMeasuredHeight(), measuredWidth - ocVar.f5205a0, measuredHeight - ocVar.f5208b0);
             }
-            gk0 gk0Var = ocVar.f5272v1.Z1;
-            if (gk0Var != null) {
+            qk0 qk0Var = ocVar.f5272v1.Z1;
+            if (qk0Var != null) {
                 int i21 = ocVar.Y;
-                gk0Var.layout(i21, ocVar.Z, gk0Var.getMeasuredWidth() + i21, ocVar.f5272v1.Z1.getMeasuredHeight() + ocVar.Z);
+                qk0Var.layout(i21, ocVar.Z, qk0Var.getMeasuredWidth() + i21, ocVar.f5272v1.Z1.getMeasuredHeight() + ocVar.Z);
                 if (ocVar.f5272v1.Z1.getReactionsWindow() != null) {
-                    w3Var = ocVar.f5272v1.Z1.getReactionsWindow().f49013c;
+                    u3Var = ocVar.f5272v1.Z1.getReactionsWindow().f49228c;
                 } else {
-                    w3Var = null;
+                    u3Var = null;
                 }
-                if (w3Var != null) {
+                if (u3Var != null) {
                     int i22 = ocVar.Y;
-                    w3Var.layout(i22, ocVar.Z, w3Var.getMeasuredWidth() + i22, w3Var.getMeasuredHeight() + ocVar.Z);
+                    u3Var.layout(i22, ocVar.Z, u3Var.getMeasuredWidth() + i22, u3Var.getMeasuredHeight() + ocVar.Z);
                 }
             }
         }
@@ -247,7 +247,7 @@ public final class nc extends qv0 {
             View childAt = getChildAt(i23);
             if (childAt instanceof t0) {
                 childAt.layout(0, 0, measuredWidth, measuredHeight);
-            } else if (childAt instanceof org.telegram.ui.Components.gb) {
+            } else if (childAt instanceof org.telegram.ui.Components.ib) {
                 childAt.layout(0, i15, childAt.getMeasuredWidth(), childAt.getMeasuredHeight() + i15);
             }
         }
@@ -324,11 +324,11 @@ public final class nc extends qv0 {
             if (kzVar != null) {
                 kzVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(ocVar.f5272v1.f5438p2.getLayoutParams().height, 1073741824));
             }
-            gk0 gk0Var = ocVar.f5272v1.Z1;
-            if (gk0Var != null) {
-                measureChild(gk0Var, i10, i11);
+            qk0 qk0Var = ocVar.f5272v1.Z1;
+            if (qk0Var != null) {
+                measureChild(qk0Var, i10, i11);
                 if (ocVar.f5272v1.Z1.getReactionsWindow() != null) {
-                    measureChild(ocVar.f5272v1.Z1.getReactionsWindow().f49013c, i10, i11);
+                    measureChild(ocVar.f5272v1.Z1.getReactionsWindow().f49228c, i10, i11);
                 }
             }
         }
@@ -336,7 +336,7 @@ public final class nc extends qv0 {
             View childAt = getChildAt(i22);
             if (childAt instanceof t0) {
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            } else if (childAt instanceof org.telegram.ui.Components.gb) {
+            } else if (childAt instanceof org.telegram.ui.Components.ib) {
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i15, 1073741824);
                 int dp2 = AndroidUtilities.dp(340.0f);
                 if (ocVar.V) {

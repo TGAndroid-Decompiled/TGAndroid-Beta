@@ -1,80 +1,67 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-import android.widget.HorizontalScrollView;
+import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ji implements z4.e {
-    public final AtomicBoolean f34891a;
-    public final LinearLayout f34892b;
-    public final int f34893c;
-    public final HorizontalScrollView d;
-    public final SparseIntArray e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f34894f;
-    public final int[] f34895g;
+public final class ji implements View.OnClickListener {
+    public final gi0 f34885a;
+    public final org.telegram.ui.Components.wl0 f34886b;
+    public final LinearLayout f34887c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
+    public final int[] e;
+    public final zn f34888f;
 
-    public ji(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f34891a = atomicBoolean;
-        this.f34892b = linearLayout;
-        this.f34893c = i10;
-        this.d = horizontalScrollView;
-        this.e = sparseIntArray;
-        this.f34894f = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f34895g = iArr;
+    public ji(zn znVar, gi0 gi0Var, org.telegram.ui.Components.wl0 wl0Var, LinearLayout linearLayout, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
+        this.f34888f = znVar;
+        this.f34885a = gi0Var;
+        this.f34886b = wl0Var;
+        this.f34887c = linearLayout;
+        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.e = iArr;
     }
 
     @Override
-    public final void a(int i10) {
-        this.f34894f.getSwipeBack().f(this.f34895g[0], this.e.get(i10), true);
-    }
-
-    @Override
-    public final void b(float f7, int i10, int i11) {
-        HorizontalScrollView horizontalScrollView;
-        float f10;
-        if (!this.f34891a.get()) {
-            int i12 = 0;
-            float f11 = -1.0f;
-            float f12 = -1.0f;
-            while (true) {
-                LinearLayout linearLayout = this.f34892b;
-                int childCount = linearLayout.getChildCount();
-                horizontalScrollView = this.d;
-                if (i12 >= childCount) {
-                    break;
+    public final void onClick(View view) {
+        gi0 gi0Var = this.f34885a;
+        ArrayList arrayList = gi0Var.f33878b;
+        ArrayList arrayList2 = gi0Var.f33879c;
+        zn znVar = this.f34888f;
+        if (znVar.Q8 != null && !arrayList2.isEmpty()) {
+            if (arrayList2.size() == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject != null) {
+                    Bundle bundle = new Bundle();
+                    if (tLObject instanceof TLRPC.User) {
+                        bundle.putLong("user_id", ((TLRPC.User) tLObject).f18443id);
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f18296id);
+                    }
+                    znVar.presentFragment(new ProfileActivity(bundle, null));
+                    znVar.A7(true);
+                    return;
                 }
-                org.telegram.ui.Components.rj0 rj0Var = (org.telegram.ui.Components.rj0) linearLayout.getChildAt(i12);
-                if (i12 == i10) {
-                    f10 = 1.0f - f7;
-                } else if (i12 == (i10 + 1) % this.f34893c) {
-                    f10 = f7;
-                } else {
-                    f10 = 0.0f;
-                }
-                rj0Var.setOutlineProgress(f10);
-                if (i12 == i10) {
-                    f11 = rj0Var.getX() - ((horizontalScrollView.getWidth() - rj0Var.getWidth()) / 2.0f);
-                }
-                if (i12 == i10 + 1) {
-                    f12 = rj0Var.getX() - ((horizontalScrollView.getWidth() - rj0Var.getWidth()) / 2.0f);
-                }
-                i12++;
+                return;
             }
-            if (f11 != -1.0f && f12 != -1.0f) {
-                horizontalScrollView.setScrollX((int) com.google.android.gms.internal.vision.e2.z(f12, f11, f7, f11));
+            if (SharedConfig.messageSeenHintCount > 0 && znVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                org.telegram.ui.Components.qc t10 = new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(znVar.getParentActivity()), znVar.f40261ea).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                znVar.f40363n1 = t10;
+                t10.f27550j = 4000;
+                t10.j();
+                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
             }
-            SparseIntArray sparseIntArray = this.e;
-            int i13 = sparseIntArray.get(i10, 0);
-            float f13 = sparseIntArray.get(i10 + 1, 0) * f7;
-            this.f34894f.getSwipeBack().f(this.f34895g[0], (int) (f13 + ((1.0f - f7) * i13)), false);
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
-        if (i10 == 0) {
-            this.f34891a.set(false);
+            org.telegram.ui.Components.wl0 wl0Var = this.f34886b;
+            wl0Var.requestLayout();
+            this.f34887c.requestLayout();
+            wl0Var.getAdapter().l();
+            this.d.getSwipeBack().e(this.e[0]);
         }
     }
 }

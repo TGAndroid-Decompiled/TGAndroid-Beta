@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Property;
@@ -16,7 +15,6 @@ import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.io.IOException;
-import org.telegram.messenger.AndroidUtilities;
 public final class q4 implements Runnable {
     public final int f1421a;
     public final Object f1422b;
@@ -28,7 +26,7 @@ public final class q4 implements Runnable {
 
     private final void a() {
         g6.o oVar = (g6.o) this.f1422b;
-        synchronized (g6.o.f9454i) {
+        synchronized (g6.o.f9453i) {
             try {
                 if (!oVar.d()) {
                     return;
@@ -43,6 +41,7 @@ public final class q4 implements Runnable {
     @Override
     public final void run() {
         Object obj;
+        i2.e0 e0Var;
         m.h hVar;
         switch (this.f1421a) {
             case 0:
@@ -78,14 +77,14 @@ public final class q4 implements Runnable {
                     return;
                 }
             case 4:
-                androidx.biometric.e0 e0Var = (androidx.biometric.e0) this.f1422b;
-                Context n10 = e0Var.n();
+                androidx.biometric.e0 e0Var2 = (androidx.biometric.e0) this.f1422b;
+                Context n10 = e0Var2.n();
                 if (n10 == null) {
                     Log.w("FingerprintFragment", "Not resetting the dialog. Context is null.");
                     return;
                 }
-                e0Var.C0.f(1);
-                e0Var.C0.e(n10.getString(2131689607));
+                e0Var2.C0.f(1);
+                e0Var2.C0.e(n10.getString(2131689607));
                 return;
             case 5:
                 androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f1422b;
@@ -135,8 +134,8 @@ public final class q4 implements Runnable {
                 return;
             case 12:
                 qg.j jVar = ((ci.qb) this.f1422b).J0;
-                if (jVar instanceof qg.x2) {
-                    ((qg.x2) jVar).getEditText();
+                if (jVar instanceof qg.u2) {
+                    ((qg.u2) jVar).getEditText();
                     return;
                 }
                 return;
@@ -145,7 +144,7 @@ public final class q4 implements Runnable {
                 k6.e eVar = g0Var.d;
                 Context context = g0Var.f6082c;
                 eVar.getClass();
-                if (!k6.g.f13514a.getAndSet(true)) {
+                if (!k6.g.f13512a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -199,7 +198,7 @@ public final class q4 implements Runnable {
                 return;
             case 23:
                 kg.e eVar3 = (kg.e) this.f1422b;
-                eVar3.f13614f.animate().setDuration(120L).alpha(0.0f);
+                eVar3.f13612f.animate().setDuration(120L).alpha(0.0f);
                 eVar3.h.animate().setListener(null).start();
                 if (eVar3.h.getVisibility() != 0) {
                     eVar3.h.setVisibility(0);
@@ -208,50 +207,57 @@ public final class q4 implements Runnable {
                 eVar3.h.animate().setDuration(120L).alpha(1.0f).start();
                 return;
             case 24:
-                m.r1 r1Var = (m.r1) this.f1422b;
-                r1Var.f14311w = null;
-                r1Var.drawableStateChanged();
+                ki.h0 h0Var = (ki.h0) this.f1422b;
+                if (h0Var.Q == 5 && (e0Var = h0Var.L) != null && h0Var.f13719r) {
+                    long J0 = e0Var.J0();
+                    long j3 = h0Var.A;
+                    if (J0 < j3 || J0 >= h0Var.B) {
+                        h0Var.L.W0(5, j3);
+                        J0 = h0Var.A;
+                    }
+                    h0Var.f13707c.M(J0);
+                    h0Var.h.postDelayed(this, 33L);
+                    return;
+                }
                 return;
             case 25:
+                m.r1 r1Var = (m.r1) this.f1422b;
+                r1Var.f14486w = null;
+                r1Var.drawableStateChanged();
+                return;
+            case 26:
                 ActionMenuView actionMenuView = ((Toolbar) this.f1422b).f2025a;
                 if (actionMenuView != null && (hVar = actionMenuView.J) != null) {
                     hVar.l();
                     return;
                 }
                 return;
-            case 26:
+            case 27:
                 Object obj2 = ((a6.i) this.f1422b).f303b;
                 return;
-            case 27:
+            case 28:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1422b;
-                if (a0Var.f19790b == null) {
-                    a0Var.f19790b = new androidx.emoji2.text.j(a0Var, 3);
+                if (a0Var.f19966b == null) {
+                    a0Var.f19966b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f19790b;
-                int i10 = a0Var.f19791c + 1;
-                a0Var.f19791c = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f19966b;
+                int i10 = a0Var.f19967c + 1;
+                a0Var.f19967c = i10;
                 jVar2.f2334b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
-            case 28:
-                org.telegram.ui.Cells.u5 u5Var = (org.telegram.ui.Cells.u5) this.f1422b;
-                TextView textView = u5Var.f21441b;
+            default:
+                org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1422b;
+                TextView textView = v5Var.f21649b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
-                u5Var.d = animatorSet;
+                v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(u5Var.f21440a, property, 1.0f));
-                u5Var.d.setDuration(250L);
-                u5Var.d.setInterpolator(new DecelerateInterpolator());
-                u5Var.d.addListener(new org.telegram.ui.t4(this, 9));
-                u5Var.d.start();
-                return;
-            default:
-                org.telegram.ui.Cells.t6 t6Var = (org.telegram.ui.Cells.t6) this.f1422b;
-                t6Var.a();
-                RectF rectF = t6Var.f21375f;
-                t6Var.invalidate(((int) rectF.left) - 5, ((int) rectF.top) - 5, ((int) rectF.right) + 5, ((int) rectF.bottom) + 5);
-                AndroidUtilities.runOnUIThread(t6Var.v, 1000L);
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f21648a, property, 1.0f));
+                v5Var.d.setDuration(250L);
+                v5Var.d.setInterpolator(new DecelerateInterpolator());
+                v5Var.d.addListener(new org.telegram.ui.t4(this, 9));
+                v5Var.d.start();
                 return;
         }
     }
@@ -262,7 +268,7 @@ public final class q4 implements Runnable {
     }
 
     public q4(a6.i iVar, int i10) {
-        this.f1421a = 26;
+        this.f1421a = 27;
         this.f1422b = iVar;
     }
 }

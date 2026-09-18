@@ -1,7 +1,7 @@
 package fi;
 
 import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.ActionBar.f3;
 import s4.c1;
 public final class g0 extends s4.j {
     public final h0 F;
@@ -14,27 +14,27 @@ public final class g0 extends s4.j {
     public final void M() {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((g3) h0Var.f9113f).containerView;
+        viewGroup = ((f3) h0Var.f9112f).containerView;
         viewGroup.invalidate();
-        h0Var.f9112c.invalidate();
+        h0Var.f9111c.invalidate();
     }
 
     @Override
     public final void O() {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((g3) h0Var.f9113f).containerView;
+        viewGroup = ((f3) h0Var.f9112f).containerView;
         viewGroup.invalidate();
-        h0Var.f9112c.invalidate();
+        h0Var.f9111c.invalidate();
     }
 
     @Override
     public final void P(c1 c1Var) {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((g3) h0Var.f9113f).containerView;
+        viewGroup = ((f3) h0Var.f9112f).containerView;
         viewGroup.invalidate();
-        h0Var.f9112c.invalidate();
+        h0Var.f9111c.invalidate();
         h0Var.d.invalidate();
     }
 
@@ -42,9 +42,9 @@ public final class g0 extends s4.j {
     public final void Q() {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((g3) h0Var.f9113f).containerView;
+        viewGroup = ((f3) h0Var.f9112f).containerView;
         viewGroup.invalidate();
-        h0Var.f9112c.invalidate();
+        h0Var.f9111c.invalidate();
     }
 
     @Override

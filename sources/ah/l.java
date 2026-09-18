@@ -23,7 +23,7 @@ public final class l {
         boolean z10 = false;
         aVar.f417a = false;
         k kVar = this.f478b;
-        kVar.m(aVar);
+        kVar.U(aVar);
         if (aVar.f417a) {
             j3 = -1;
         } else {
@@ -34,7 +34,7 @@ public final class l {
         this.f480f = height;
         this.d = j3;
         if (z10) {
-            kVar.b(this.f477a.beginRecording());
+            kVar.d(this.f477a.beginRecording());
             this.f477a.endRecording();
         }
     }

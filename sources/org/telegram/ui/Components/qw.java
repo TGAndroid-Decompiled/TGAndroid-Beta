@@ -6,28 +6,28 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class qw extends FrameLayout {
-    public final boolean f27443a;
-    public final kz f27444b;
+    public final boolean f27746a;
+    public final kz f27747b;
 
     public qw(kz kzVar, Context context, boolean z10) {
         super(context);
-        this.f27444b = kzVar;
-        this.f27443a = z10;
+        this.f27747b = kzVar;
+        this.f27746a = z10;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        kz kzVar = this.f27444b;
-        ww wwVar = kzVar.B0;
+        kz kzVar = this.f27747b;
+        xw xwVar = kzVar.B0;
         sw swVar = kzVar.D0;
-        vw vwVar = kzVar.G0;
-        if (!this.f27443a && (view == swVar || view == vwVar)) {
+        ww wwVar = kzVar.G0;
+        if (!this.f27746a && (view == swVar || view == wwVar)) {
             canvas.save();
-            float y3 = wwVar.getY() + wwVar.getMeasuredHeight() + 1.0f;
+            float y3 = xwVar.getY() + xwVar.getMeasuredHeight() + 1.0f;
             if (view == swVar) {
-                y3 = Math.max(y3, vwVar.getY() + vwVar.getMeasuredHeight() + 1.0f);
+                y3 = Math.max(y3, wwVar.getY() + wwVar.getMeasuredHeight() + 1.0f);
             }
-            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * kzVar.f25707a.e), getMeasuredWidth(), getMeasuredHeight());
+            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * kzVar.f25883a.e), getMeasuredWidth(), getMeasuredHeight());
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -38,7 +38,7 @@ public final class qw extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        kz kzVar = this.f27444b;
+        kz kzVar = this.f27747b;
         kzVar.K0 = true;
         kzVar.Y();
         gg.g1 g1Var = kzVar.T0;
@@ -50,7 +50,7 @@ public final class qw extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        kz kzVar = this.f27444b;
+        kz kzVar = this.f27747b;
         kzVar.K0 = false;
         kzVar.Y();
         gg.g1 g1Var = kzVar.T0;

@@ -34,10 +34,10 @@ public final class r7 implements Utilities.Callback {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) obj;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
                 v7 v7Var2 = this.f5459b.E;
-                if (v7Var2 != null || o2Var == null) {
-                    v7Var2.c(o2Var);
+                if (v7Var2 != null || n2Var == null) {
+                    v7Var2.c(n2Var);
                     return;
                 }
                 return;

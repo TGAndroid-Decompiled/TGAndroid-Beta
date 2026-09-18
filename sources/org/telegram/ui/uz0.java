@@ -1,48 +1,139 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.ImageReceiver;
-public final class uz0 extends AnimatorListenerAdapter {
-    public final ProfileActivity f38252a;
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class uz0 extends g71 {
+    public final x61[] f38262d2;
+    public final ProfileActivity f38263e2;
 
-    public uz0(ProfileActivity profileActivity) {
-        this.f38252a = profileActivity;
+    public uz0(ProfileActivity profileActivity, ProfileActivity profileActivity2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, x61[] x61VarArr) {
+        super(profileActivity2, activity, true, num, i10, true, e6Var, i11);
+        this.f38263e2 = profileActivity;
+        this.f38262d2 = x61VarArr;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.ui.ActionBar.k kVar;
-        int v02;
-        ProfileActivity profileActivity = this.f38252a;
-        kVar = ((org.telegram.ui.ActionBar.o2) profileActivity).actionBar;
-        if (profileActivity.f31362p2) {
-            v02 = 1090519039;
-        } else if (profileActivity.Q5 != null) {
-            v02 = 553648127;
+    public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        int i10;
+        if (tL_starGiftUnique != null) {
+            i10 = ((org.telegram.ui.ActionBar.n2) this.f38263e2).currentAccount;
+            if (yh.t5.y(i10, false).n(tL_starGiftUnique.f18521id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final long getDialogId() {
+        return this.f38263e2.a();
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible;
+        Long l10;
+        long j3;
+        boolean z10;
+        int i10;
+        int i11;
+        int i12;
+        ProfileActivity profileActivity = this.f38263e2;
+        org.telegram.ui.Components.o5[] o5VarArr = profileActivity.G;
+        x61[] x61VarArr = this.f38262d2;
+        if (tL_starGiftUnique != null) {
+            i10 = ((org.telegram.ui.ActionBar.n2) profileActivity).currentAccount;
+            TL_stars.SavedStarGift n10 = yh.t5.y(i10, false).n(tL_starGiftUnique.f18521id);
+            if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+                MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
+                Context context = getContext();
+                i11 = ((org.telegram.ui.ActionBar.n2) profileActivity).currentAccount;
+                i12 = ((org.telegram.ui.ActionBar.n2) profileActivity).currentAccount;
+                yh.y3 y3Var = new yh.y3(context, i11, UserConfig.getInstance(i12).getClientUserId(), profileActivity.f31656z0, null);
+                y3Var.j2(n10, null);
+                y3Var.m2();
+                y3Var.show();
+                x61 x61Var = x61VarArr[0];
+                if (x61Var != null) {
+                    profileActivity.B5 = null;
+                    x61Var.dismiss();
+                    return;
+                }
+                return;
+            }
+            TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible2 = new TLRPC.TL_inputEmojiStatusCollectible();
+            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f18521id;
+            tL_inputEmojiStatusCollectible = tL_inputEmojiStatusCollectible2;
+            if (num != null) {
+                tL_inputEmojiStatusCollectible2.flags |= 1;
+                tL_inputEmojiStatusCollectible2.until = num.intValue();
+                tL_inputEmojiStatusCollectible = tL_inputEmojiStatusCollectible2;
+            }
+        } else if (l4 == null) {
+            tL_inputEmojiStatusCollectible = new TLRPC.TL_emojiStatusEmpty();
         } else {
-            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18900f8, profileActivity.f31429z0);
+            TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+            tL_emojiStatus.document_id = l4.longValue();
+            tL_inputEmojiStatusCollectible = tL_emojiStatus;
+            if (num != null) {
+                tL_emojiStatus.flags |= 1;
+                tL_emojiStatus.until = num.intValue();
+                tL_inputEmojiStatusCollectible = tL_emojiStatus;
+            }
         }
-        kVar.A(v02, false);
-        qz0 qz0Var = profileActivity.f31285e0;
-        ImageReceiver imageReceiver = qz0Var.U;
-        org.telegram.ui.Components.b6 animation = imageReceiver.getAnimation();
-        if (animation != null) {
-            animation.w(qz0Var);
+        if (tL_starGiftUnique != null) {
+            l10 = Long.valueOf(tL_starGiftUnique.f18521id);
+        } else {
+            l10 = null;
         }
-        imageReceiver.clearImage();
-        ImageReceiver.BitmapHolder bitmapHolder = qz0Var.W;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            qz0Var.W = null;
+        profileActivity.F = l10;
+        MessagesController messagesController = profileActivity.getMessagesController();
+        TLRPC.Chat chat = profileActivity.E2;
+        if (chat == null) {
+            j3 = 0;
+        } else {
+            j3 = -chat.f18296id;
         }
-        qz0Var.V = 0.0f;
-        qz0Var.invalidate();
-        profileActivity.H0 = false;
-        profileActivity.l5(false);
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
+        messagesController.updateEmojiStatus(j3, tL_inputEmojiStatusCollectible, tL_starGiftUnique);
+        for (int i13 = 0; i13 < 2; i13++) {
+            org.telegram.ui.Components.o5 o5Var = o5VarArr[i13];
+            if (o5Var != null) {
+                if (l4 == null && profileActivity.E2 == null) {
+                    o5Var.g(profileActivity.Y3(i13), true);
+                } else if (l4 != null) {
+                    o5Var.j(l4.longValue(), true);
+                } else {
+                    o5Var.g(null, true);
+                }
+                org.telegram.ui.Components.o5 o5Var2 = o5VarArr[i13];
+                if (tL_starGiftUnique != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                o5Var2.m(z10, true);
+            }
+        }
+        if (l4 != null) {
+            org.telegram.ui.Cells.o oVar = profileActivity.f31505d0;
+            ?? obj = new Object();
+            long longValue = l4.longValue();
+            obj.f49378g = longValue;
+            obj.h = longValue;
+            oVar.a(obj);
+        }
+        profileActivity.X4();
+        profileActivity.Z4();
+        x61 x61Var2 = x61VarArr[0];
+        if (x61Var2 != null) {
+            profileActivity.B5 = null;
+            x61Var2.dismiss();
+        }
     }
 }

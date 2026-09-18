@@ -1,19 +1,30 @@
 package tg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.ActionBar.j6;
-public final class j1 extends View {
-    public final n1 f43185a;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.ab0;
+public final class j1 extends ci.d {
+    public final m1 f43391h0;
 
-    public j1(n1 n1Var, Context context) {
-        super(context);
-        this.f43185a = n1Var;
+    public j1(m1 m1Var, Context context, e6 e6Var) {
+        super(context, e6Var, true);
+        this.f43391h0 = m1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawColor(this.f43185a.getThemedColor(j6.e7));
+    public final float a(float f7, float f10) {
+        boolean z10;
+        m1 m1Var = this.f43391h0;
+        if (m1Var.f43425t0 == 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        m1Var.f43425t0 = f7;
+        if (z10) {
+            m1Var.f43426u0 = new ab0(m1Var, 2);
+            m1Var.g0(false);
+        }
+        return f7;
     }
 }

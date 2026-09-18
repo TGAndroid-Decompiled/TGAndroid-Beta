@@ -306,7 +306,7 @@ public final class o8 {
     public static o8 n(File file, TL_stories.StoryItem storyItem) {
         o8 o8Var = new o8();
         o8Var.f5157g = true;
-        o8Var.f5155f = storyItem.f18356id;
+        o8Var.f5155f = storyItem.f18531id;
         o8Var.L = file;
         o8Var.M = false;
         o8Var.f5165k0 = 720;
@@ -330,7 +330,7 @@ public final class o8 {
                     }
                     TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i11);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                        o8Var.f5165k0 = documentAttribute.f18128w;
+                        o8Var.f5165k0 = documentAttribute.f18303w;
                         o8Var.f5167l0 = documentAttribute.h;
                         o8Var.f5160i = documentAttribute.duration;
                         break;
@@ -404,9 +404,9 @@ public final class o8 {
         arrayList.addAll(arrayList3);
         o8Var.I0 = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.j6.f19061o2.getFontMetricsInt(), true);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.j6.f19260o2.getFontMetricsInt(), true);
             MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
-            o8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.j6.f19061o2.getFontMetricsInt());
+            o8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.j6.f19260o2.getFontMetricsInt());
         } catch (Exception unused) {
         }
         o8Var.A();
@@ -455,7 +455,7 @@ public final class o8 {
         }
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        m8Var.c(options);
+        m8Var.g(options);
         options.inJustDecodeBounds = false;
         options.inScaled = false;
         Runtime runtime = Runtime.getRuntime();
@@ -468,13 +468,13 @@ public final class o8 {
             z11 = false;
         }
         if (i15 <= i14 && i16 <= i13) {
-            return m8Var.c(options);
+            return m8Var.g(options);
         }
         if (z10 && z11 && SharedConfig.getDevicePerformanceClass() >= 1) {
-            Bitmap c10 = m8Var.c(options);
-            float max = Math.max(i14 / c10.getWidth(), i13 / c10.getHeight());
-            Bitmap createBitmap = Bitmap.createBitmap((int) (c10.getWidth() * max), (int) (c10.getHeight() * max), Bitmap.Config.ARGB_8888);
-            Utilities.libyuvARGBSaleBitmap(c10, createBitmap, Utilities.libyuv_ScaleFilter.Box);
+            Bitmap g10 = m8Var.g(options);
+            float max = Math.max(i14 / g10.getWidth(), i13 / g10.getHeight());
+            Bitmap createBitmap = Bitmap.createBitmap((int) (g10.getWidth() * max), (int) (g10.getHeight() * max), Bitmap.Config.ARGB_8888);
+            Utilities.libyuvARGBSaleBitmap(g10, createBitmap, Utilities.libyuv_ScaleFilter.Box);
             Utilities.clamp(Math.round(1.0f / max), 8, 0);
             return createBitmap;
         }
@@ -488,7 +488,7 @@ public final class o8 {
             options.inDensity = i18;
             options.inTargetDensity = i13;
         }
-        return m8Var.c(options);
+        return m8Var.g(options);
     }
 
     public static boolean u(TLRPC.Document document, String str) {
@@ -498,7 +498,7 @@ public final class o8 {
                 if (MessageObject.isAnimatedStickerDocument(document, true)) {
                     RLottieNative a2 = RLottieNative.a(str, null, null, null, 0, null);
                     if (a2 != null) {
-                        int i10 = a2.f22135a[0];
+                        int i10 = a2.f22308a[0];
                         a2.d();
                         j3 = i10;
                     } else {
@@ -553,8 +553,8 @@ public final class o8 {
         o8Var.f5193z0 = p((MessageObject) arrayList.get(0));
         VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
         mediaEntity.type = (byte) 6;
-        mediaEntity.f15636x = 0.5f;
-        mediaEntity.f15637y = 0.5f;
+        mediaEntity.f15813x = 0.5f;
+        mediaEntity.f15814y = 0.5f;
         ArrayList arrayList2 = new ArrayList();
         o8Var.T0 = arrayList2;
         arrayList2.add(mediaEntity);
@@ -702,8 +702,8 @@ public final class o8 {
                 if (photo.has_stickers) {
                     TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
                     TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                    tL_inputStickeredMediaPhoto.f18191id = tL_inputPhoto;
-                    tL_inputPhoto.f18140id = photo.f18145id;
+                    tL_inputStickeredMediaPhoto.f18366id = tL_inputPhoto;
+                    tL_inputPhoto.f18315id = photo.f18320id;
                     tL_inputPhoto.access_hash = photo.access_hash;
                     byte[] bArr = photo.file_reference;
                     tL_inputPhoto.file_reference = bArr;
@@ -719,8 +719,8 @@ public final class o8 {
                 if (document != null && MessageObject.isDocumentHasAttachedStickers(document)) {
                     TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_inputStickeredMediaDocument.f18190id = tL_inputDocument;
-                    tL_inputDocument.f18133id = document.f18127id;
+                    tL_inputStickeredMediaDocument.f18365id = tL_inputDocument;
+                    tL_inputDocument.f18308id = document.f18302id;
                     tL_inputDocument.access_hash = document.access_hash;
                     byte[] bArr2 = document.file_reference;
                     tL_inputDocument.file_reference = bArr2;

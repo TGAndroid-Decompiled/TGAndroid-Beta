@@ -20,8 +20,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.kw0;
 import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.vw0;
 public final class wa extends View implements org.telegram.ui.Cells.z9 {
     public int E;
     public int F;
@@ -80,9 +80,9 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setBreakStrategy(0).setHyphenationFrequency(0);
             if (LocaleController.isRTL) {
-                alignment = kw0.a();
+                alignment = vw0.a();
             } else {
-                Layout.Alignment[] alignmentArr = kw0.f25702a;
+                Layout.Alignment[] alignmentArr = vw0.f29780a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -123,7 +123,7 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             va vaVar4 = vaVarArr[1];
             va vaVar5 = vaVarArr[0];
             vaVar4.f1632q = vaVar5.f1632q;
-            vaVar4.f1633r.d(vaVar5.f1633r.f22940c, true);
+            vaVar4.f1633r.d(vaVar5.f1633r.f23794c, true);
             vaVarArr[0].g(charSequence, saVar, saVar2);
             va vaVar6 = vaVarArr[0];
             vaVar6.f1632q = z10;
@@ -139,7 +139,7 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             ofFloat.addUpdateListener(new a(this, 13));
             this.I.addListener(new b(this, 10));
             this.I.setDuration(180L);
-            this.I.setInterpolator(qr.f27384g);
+            this.I.setInterpolator(qr.f27716g);
             this.I.start();
             return;
         }
@@ -186,8 +186,8 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
         int i10 = 0;
         va vaVar = this.f1673r[0];
         wa waVar = vaVar.v;
-        org.telegram.ui.Components.x5.release(waVar, vaVar.d);
-        org.telegram.ui.Components.x5.release(waVar, vaVar.f1622f);
+        org.telegram.ui.Components.z5.release(waVar, vaVar.d);
+        org.telegram.ui.Components.z5.release(waVar, vaVar.f1622f);
         if (vaVar.h == null) {
             return;
         }
@@ -196,7 +196,7 @@ public final class wa extends View implements org.telegram.ui.Cells.z9 {
             if (i10 < taVarArr.length) {
                 ta taVar = taVarArr[i10];
                 if (taVar != null) {
-                    org.telegram.ui.Components.x5.release(waVar, taVar.f1557a);
+                    org.telegram.ui.Components.z5.release(waVar, taVar.f1557a);
                 }
                 i10++;
             } else {

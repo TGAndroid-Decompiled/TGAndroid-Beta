@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class oq0 extends org.telegram.ui.ActionBar.o2 {
-    public Bitmap f36404a;
-    public BitmapDrawable f36405b;
-    public nq0 f36406c;
+public final class oq0 extends org.telegram.ui.ActionBar.n2 {
+    public Bitmap f36227a;
+    public BitmapDrawable f36228b;
+    public nq0 f36229c;
     public mq0 d;
     public boolean e;
-    public boolean f36407f;
+    public boolean f36230f;
 
     @Override
     public final View createView(Context context) {
@@ -29,7 +29,7 @@ public final class oq0 extends org.telegram.ui.ActionBar.o2 {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
-        this.actionBar.setActionBarMenuOnItemClick(new x70(this, 14));
+        this.actionBar.setActionBarMenuOnItemClick(new v70(this, 14));
         this.actionBar.n().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
         mq0 mq0Var = new mq0(this, context);
         this.d = mq0Var;
@@ -47,13 +47,13 @@ public final class oq0 extends org.telegram.ui.ActionBar.o2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f36404a == null) {
+        if (this.f36227a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
                 return false;
             }
-            if (string != null && !w.f.o(string)) {
+            if (string != null && !t8.b.u(string)) {
                 return false;
             }
             if (AndroidUtilities.isTablet()) {
@@ -64,12 +64,12 @@ public final class oq0 extends org.telegram.ui.ActionBar.o2 {
             }
             float f7 = max;
             Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
-            this.f36404a = loadBitmap;
+            this.f36227a = loadBitmap;
             if (loadBitmap == null) {
                 return false;
             }
         }
-        this.f36405b = new BitmapDrawable(this.f36404a);
+        this.f36228b = new BitmapDrawable(this.f36227a);
         super.onFragmentCreate();
         return true;
     }
@@ -77,11 +77,11 @@ public final class oq0 extends org.telegram.ui.ActionBar.o2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f36404a;
+        Bitmap bitmap = this.f36227a;
         if (bitmap != null && !this.e) {
             bitmap.recycle();
-            this.f36404a = null;
+            this.f36227a = null;
         }
-        this.f36405b = null;
+        this.f36228b = null;
     }
 }

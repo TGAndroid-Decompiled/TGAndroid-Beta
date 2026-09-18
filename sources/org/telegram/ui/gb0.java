@@ -1,45 +1,21 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-public final class gb0 implements qf.c {
-    public final mb0 f33945a;
-    public final LaunchActivity f33946b;
-
-    public gb0(LaunchActivity launchActivity) {
-        this.f33946b = launchActivity;
-        Pattern pattern = LaunchActivity.B1;
-        this.f33945a = new mb0(launchActivity, false);
-    }
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class gb0 implements View.OnLayoutChangeListener {
+    public boolean f33798a;
 
     @Override
-    public final void b() {
-        Pattern pattern = LaunchActivity.B1;
-        this.f33946b.getWindow();
-    }
-
-    @Override
-    public final void d() {
-        this.f33945a.a(false);
-    }
-
-    @Override
-    public final void f() {
-        Pattern pattern = LaunchActivity.B1;
-        LaunchActivity launchActivity = this.f33946b;
-        launchActivity.getClass();
-        this.f33945a.a(true);
-        launchActivity.getWindow();
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void e() {
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        boolean z10;
+        if (i13 - i11 > i12 - i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10 != this.f33798a) {
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.sh(this, 21));
+            this.f33798a = z10;
+        }
     }
 }

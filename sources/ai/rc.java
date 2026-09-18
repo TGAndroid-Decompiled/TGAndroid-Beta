@@ -21,18 +21,18 @@ public final class rc {
         this.f1487a = i10;
     }
 
-    public final void a(org.telegram.ui.Components.ga gaVar) {
+    public final void a(org.telegram.ui.Components.ia iaVar) {
         long j3;
         TLRPC.UserStatus userStatus;
         long currentTimeMillis = System.currentTimeMillis();
         ArrayList arrayList = this.f1489c;
         arrayList.clear();
-        for (int i10 = 0; i10 < gaVar.getChildCount(); i10++) {
-            View childAt = gaVar.getChildAt(i10);
-            if (childAt instanceof org.telegram.ui.Cells.r2) {
-                j3 = ((org.telegram.ui.Cells.r2) childAt).getDialogId();
-            } else if (childAt instanceof org.telegram.ui.Cells.ab) {
-                j3 = ((org.telegram.ui.Cells.ab) childAt).getDialogId();
+        for (int i10 = 0; i10 < iaVar.getChildCount(); i10++) {
+            View childAt = iaVar.getChildAt(i10);
+            if (childAt instanceof org.telegram.ui.Cells.s2) {
+                j3 = ((org.telegram.ui.Cells.s2) childAt).getDialogId();
+            } else if (childAt instanceof org.telegram.ui.Cells.za) {
+                j3 = ((org.telegram.ui.Cells.za) childAt).getDialogId();
             } else {
                 j3 = 0;
             }

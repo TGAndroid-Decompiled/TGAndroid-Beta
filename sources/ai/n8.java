@@ -5,31 +5,29 @@ import android.os.Looper;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.util.StateSet;
+import android.view.TextureView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c90;
+import org.telegram.ui.Components.a60;
 import org.telegram.ui.aj;
-import org.telegram.ui.bj;
-import org.telegram.ui.bo;
-import org.telegram.ui.cj;
-import org.telegram.ui.ge;
-import org.telegram.ui.nn;
-import org.telegram.ui.tm;
+import org.telegram.ui.fe;
+import org.telegram.ui.ln;
+import org.telegram.ui.rm;
+import org.telegram.ui.yi;
+import org.telegram.ui.zi;
+import org.telegram.ui.zn;
 public final class n8 implements Runnable {
     public final int f1301a;
     public final int f1302b;
@@ -162,157 +160,146 @@ public final class n8 implements Runnable {
                     ii.a aVar = h0Var.f11220a;
                     ii.w3 w3Var = ((ii.o3) f0Var).f11535a;
                     w3Var.p3(false);
-                    w3Var.f11714h3.H(new ii.t3(w3Var, aVar, i13), e0Var);
+                    w3Var.f11714h3.J(new ii.t3(w3Var, aVar, i13), e0Var);
                     return;
                 }
                 return;
             case 11:
-                String str = e2.d0.f7888a;
-                e2.c cVar = ((i2.b0) ((k2.j) ((n4.y) obj).f15005c)).f10624a.E;
+                String str = e2.d0.f7887a;
+                e2.c cVar = ((i2.b0) ((k2.j) ((n4.y) obj).f15180c)).f10624a.E;
                 i2.v vVar = new i2.v(i13, 2);
                 cVar.getClass();
-                if (Looper.myLooper() == ((e2.z) cVar.f7885c).f7943a.getLooper()) {
+                if (Looper.myLooper() == ((e2.z) cVar.f7884c).f7942a.getLooper()) {
                     z11 = true;
                 }
                 e2.d.g(z11);
-                cVar.f7883a++;
+                cVar.f7882a++;
                 cVar.i(new ci.b9(11, cVar, vVar));
                 Integer num = (Integer) cVar.e;
                 cVar.n(Integer.valueOf(i13));
                 return;
             case 12:
-                org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) obj;
-                org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
-                if (c2Var != null) {
+                ((ki.g) obj).r(i13);
+                return;
+            case 13:
+                ki.h0 h0Var2 = (ki.h0) ((k2.u) obj).f13383b;
+                h0Var2.G++;
+                h0Var2.f13718q = true;
+                h0Var2.f13713l.b("camera switch started: target=".concat(hg.k0.z(i13)));
+                TextureView textureView = ((a60) h0Var2.f13707c.f13859a).v;
+                textureView.animate().cancel();
+                textureView.animate().rotationY(90.0f).setDuration(120L).start();
+                h0Var2.m();
+                return;
+            case 14:
+                org.telegram.ui.ActionBar.b2[] b2VarArr = (org.telegram.ui.ActionBar.b2[]) obj;
+                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+                if (b2Var != null) {
                     try {
-                        c2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                             @Override
                             public final void onCancel(DialogInterface dialogInterface) {
                                 ConnectionsManager.getInstance(UserConfig.selectedAccount).cancelRequest(i13, true);
                             }
                         });
-                        c2VarArr[0].show();
+                        b2VarArr[0].show();
                     } catch (Exception unused2) {
                         return;
                     }
                 }
                 return;
-            case 13:
+            case 15:
                 ((nh.a) obj).w0(i13, 0, null);
                 return;
-            case 14:
+            case 16:
                 ConnectionsManager.lambda$onUpdateConfig$21(i13, (TLRPC.TL_config) obj);
                 return;
-            case 15:
-                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f18121id, 0, true);
-                return;
-            case 16:
-                ((org.telegram.ui.p4) ((org.telegram.ui.g) obj).f33810b).V(i13, true);
-                return;
             case 17:
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) obj;
-                int i15 = t1Var.f21289v7;
+                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f18296id, 0, true);
+                return;
+            case 18:
+                ((org.telegram.ui.p4) ((org.telegram.ui.g) obj).f33660b).V(i13, true);
+                return;
+            case 19:
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj;
+                int i15 = u1Var.f21528v7;
                 if (i13 == i15) {
-                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) t1Var.f21186o7.get(i15);
+                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f21425o7.get(i15);
                     if (e0Var2 != null) {
-                        org.telegram.ui.Cells.z zVar = e0Var2.f20010s;
+                        org.telegram.ui.Cells.z zVar = e0Var2.f20181s;
                         if (zVar != null) {
                             zVar.setState(StateSet.NOTHING);
                         }
                         e0Var2.b(false);
-                        if (!t1Var.f21333y7.scheduled) {
-                            if (e0Var2.f20001j != null) {
-                                t1Var.k();
-                            } else if (e0Var2.f20000i != null) {
-                                t1Var.k();
-                                org.telegram.ui.Cells.k1 k1Var = t1Var.Jc;
-                                if (k1Var != null) {
-                                    k1Var.H1(t1Var, e0Var2.f20000i);
+                        if (!u1Var.f21572y7.scheduled) {
+                            if (e0Var2.f20172j != null) {
+                                u1Var.k();
+                            } else if (e0Var2.f20171i != null) {
+                                u1Var.k();
+                                org.telegram.ui.Cells.l1 l1Var = u1Var.Jc;
+                                if (l1Var != null) {
+                                    l1Var.H1(u1Var, e0Var2.f20171i);
                                 }
                             }
                         }
                     }
-                    t1Var.f21289v7 = -1;
-                    t1Var.a3();
+                    u1Var.f21528v7 = -1;
+                    u1Var.a3();
                     return;
                 }
-                return;
-            case 18:
-                ((ge) obj).f33961f.c(i13);
-                return;
-            case 19:
-                ((cj) obj).f32823a.F(this.f1302b, 0, 0, 0, true, true);
                 return;
             case 20:
-                bo boVar = ((aj) obj).f31910g;
-                if (boVar.f32490vb == i13) {
-                    boVar.Ma();
-                    return;
-                }
+                ((fe) obj).f33520f.c(i13);
                 return;
             case 21:
-                bo boVar2 = ((bj) obj).f32194g;
-                if (boVar2.f32490vb == i13) {
-                    boVar2.Ma();
-                    return;
-                }
+                ((aj) obj).f32081a.F(this.f1302b, 0, 0, 0, true, true);
                 return;
             case 22:
-                bo boVar3 = ((aj) obj).f31910g;
-                if (boVar3.f32490vb == i13) {
-                    boVar3.Ma();
+                zn znVar = ((yi) obj).f39834g;
+                if (znVar.f40472vb == i13) {
+                    znVar.Ma();
                     return;
                 }
                 return;
             case 23:
-                bo boVar4 = ((bj) obj).f32194g;
-                if (boVar4.f32490vb == i13) {
-                    boVar4.Ma();
+                zn znVar2 = ((zi) obj).f40178g;
+                if (znVar2.f40472vb == i13) {
+                    znVar2.Ma();
                     return;
                 }
                 return;
             case 24:
-                bo boVar5 = ((bj) obj).f32194g;
-                if (boVar5.f32490vb == i13) {
-                    boVar5.Ma();
+                zn znVar3 = ((yi) obj).f39834g;
+                if (znVar3.f40472vb == i13) {
+                    znVar3.Ma();
                     return;
                 }
                 return;
             case 25:
-                bo boVar6 = ((tm) obj).J0;
-                boVar6.f32531z0.h1(i13, boVar6.f32522y4);
+                zn znVar4 = ((zi) obj).f40178g;
+                if (znVar4.f40472vb == i13) {
+                    znVar4.Ma();
+                    return;
+                }
                 return;
             case 26:
-                i11 = ((org.telegram.ui.ActionBar.o2) ((nn) obj).f36139a).currentAccount;
-                ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
+                zn znVar5 = ((zi) obj).f40178g;
+                if (znVar5.f40472vb == i13) {
+                    znVar5.Ma();
+                    return;
+                }
                 return;
             case 27:
-                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.t1((MessagesStorage.BooleanCallback) obj, 1), 250L);
+                zn znVar6 = ((rm) obj).J0;
+                znVar6.f40513z0.h1(i13, znVar6.f40504y4);
                 return;
             case 28:
-                c90 c90Var = (c90) obj;
-                ArrayList<TLRPC.PrivacyRule> privacyRules = ContactsController.getInstance(i13).getPrivacyRules(11);
-                String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
-                if (privacyRules != null && !privacyRules.isEmpty()) {
-                    int i16 = 0;
-                    while (true) {
-                        if (i16 < privacyRules.size()) {
-                            if (privacyRules.get(i16) instanceof TLRPC.TL_privacyValueAllowContacts) {
-                                string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
-                            } else {
-                                if ((privacyRules.get(i16) instanceof TLRPC.TL_privacyValueAllowAll) || (privacyRules.get(i16) instanceof TLRPC.TL_privacyValueDisallowAll)) {
-                                    string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
-                                }
-                                i16++;
-                            }
-                        }
-                    }
-                }
-                c90Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new org.telegram.ui.Components.m1(privacyRules, 0)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
+                i11 = ((org.telegram.ui.ActionBar.n2) ((ln) obj).f35408a).currentAccount;
+                ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
             default:
-                ((org.telegram.ui.Components.m8) obj).b(i13);
+                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.t1((MessagesStorage.BooleanCallback) obj, 1), 250L);
                 return;
         }
     }

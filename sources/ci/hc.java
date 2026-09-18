@@ -1,6 +1,6 @@
 package ci;
 
-import org.telegram.ui.o01;
+import org.telegram.ui.m01;
 public final class hc extends jc {
     public final int f4770g;
     public final Object h;
@@ -14,9 +14,9 @@ public final class hc extends jc {
     public final void e() {
         switch (this.f4770g) {
             case 0:
-                o01 o01Var = (o01) this.h;
-                o01Var.Q = false;
-                o01Var.invalidate();
+                m01 m01Var = (m01) this.h;
+                m01Var.Q = false;
+                m01Var.invalidate();
                 return;
             case 1:
                 ai.f6 t10 = ((ai.jc) this.h).t();
@@ -26,8 +26,8 @@ public final class hc extends jc {
                 }
                 return;
             default:
-                org.telegram.ui.Components.u9 u9Var = (org.telegram.ui.Components.u9) this.h;
-                u9Var.post(new androidx.fragment.app.a0(u9Var, 27));
+                org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) this.h;
+                w9Var.post(new androidx.fragment.app.a0(w9Var, 27));
                 return;
         }
     }
@@ -36,9 +36,9 @@ public final class hc extends jc {
     public final void f(boolean z10) {
         switch (this.f4770g) {
             case 0:
-                o01 o01Var = (o01) this.h;
-                o01Var.Q = true;
-                o01Var.invalidate();
+                m01 m01Var = (m01) this.h;
+                m01Var.Q = true;
+                m01Var.invalidate();
                 return;
             case 1:
                 ai.f6 t10 = ((ai.jc) this.h).t();
@@ -53,7 +53,7 @@ public final class hc extends jc {
                 }
                 return;
             default:
-                ((org.telegram.ui.Components.u9) this.h).setVisibility(0);
+                ((org.telegram.ui.Components.w9) this.h).setVisibility(0);
                 return;
         }
     }

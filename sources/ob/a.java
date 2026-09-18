@@ -18,7 +18,6 @@ import da.c;
 import e2.d0;
 import e9.i0;
 import fb.n;
-import g2.k;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
@@ -28,43 +27,42 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.TreeMap;
-import n2.j;
-import n2.l;
+import n2.k;
 import n2.m;
-import n7.a1;
+import n7.z0;
 import nf.f;
 import org.json.JSONObject;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.wl;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Cells.k1;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Cells.c1;
+import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Cells.t0;
-import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Cells.w0;
-import org.telegram.ui.Components.fh;
-import org.telegram.ui.Components.mg;
+import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.ng;
 import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.x5;
-import org.telegram.ui.rn;
-import org.telegram.ui.rv0;
+import org.telegram.ui.Components.z5;
+import org.telegram.ui.pn;
+import org.telegram.ui.pv0;
 import q9.d;
 import r0.r;
 import tc.g;
 import y2.o;
 import ye.h;
-public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0, r, xf.a {
-    public static a f15512b;
-    public final int f15513a;
+public final class a implements b, bg.a, q, cf.b, c, n, ti, o, n2.n, d, ng, l1, t0, r, xf.a {
+    public static a f15641b;
+    public final int f15642a;
 
     public a(int i10) {
-        this.f15513a = i10;
+        this.f15642a = i10;
     }
 
     public static da.a B2(na.d dVar) {
@@ -81,7 +79,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
             if (bitmap != null) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 e2.d.g(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
-                a2.putByteArray(d2.b.f7432x, byteArrayOutputStream.toByteArray());
+                a2.putByteArray(d2.b.f7431x, byteArrayOutputStream.toByteArray());
             }
             arrayList.add(a2);
         }
@@ -96,10 +94,10 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     public static Calendar D2() {
-        if (f15512b == null) {
-            f15512b = new a(25);
+        if (f15641b == null) {
+            f15641b = new a(25);
         }
-        f15512b.getClass();
+        f15641b.getClass();
         return Calendar.getInstance();
     }
 
@@ -124,13 +122,13 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public cf.a F1(a1 a1Var) {
-        return new h(a1Var);
+    public cf.a F1(z0 z0Var) {
+        return new h(z0Var);
     }
 
     @Override
     public Object G(cf.c cVar) {
-        switch (this.f15513a) {
+        switch (this.f15642a) {
             case 14:
                 qb.g gVar = (qb.g) cVar.a(qb.g.class);
                 return new rb.a(0);
@@ -141,7 +139,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public boolean G1(t1 t1Var, TLRPC.Chat chat) {
+    public boolean G1(u1 u1Var, TLRPC.Chat chat) {
         return false;
     }
 
@@ -174,22 +172,22 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void N1(t1 t1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        f.s(t1Var.getContext(), str);
+    public void N1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
+        f.s(u1Var.getContext(), str);
     }
 
     @Override
-    public boolean O(t1 t1Var, TLRPC.TodoItem todoItem, boolean z10) {
+    public boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
         return false;
     }
 
     @Override
-    public o2 O0() {
+    public n2 O0() {
         return null;
     }
 
     @Override
-    public CharacterStyle O1(t1 t1Var) {
+    public CharacterStyle O1(u1 u1Var) {
         return null;
     }
 
@@ -199,12 +197,12 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public boolean Q(t1 t1Var) {
+    public boolean Q(u1 u1Var) {
         return false;
     }
 
     @Override
-    public boolean Q1(t1 t1Var, MessageObject messageObject) {
+    public boolean Q1(u1 u1Var, MessageObject messageObject) {
         return false;
     }
 
@@ -229,12 +227,12 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public boolean V1(t1 t1Var, TLRPC.PollAnswer pollAnswer) {
+    public boolean V1(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
         return false;
     }
 
     @Override
-    public boolean W0(t1 t1Var, boolean z10) {
+    public boolean W0(u1 u1Var, boolean z10) {
         return false;
     }
 
@@ -244,15 +242,15 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public n2.g Y0(j jVar, s sVar) {
+    public n2.h Y0(k kVar, s sVar) {
         if (sVar.v == null) {
             return null;
         }
-        return new n2.n(new n2.f(6001, new Exception()));
+        return new n2.o(new n2.g(6001, new Exception()));
     }
 
     @Override
-    public rv0 Y1() {
+    public pv0 Y1() {
         return null;
     }
 
@@ -267,7 +265,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public boolean a0(t1 t1Var) {
+    public boolean a0(u1 u1Var) {
         return false;
     }
 
@@ -277,7 +275,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public boolean b0(t1 t1Var, TLRPC.User user) {
+    public boolean b0(u1 u1Var, TLRPC.User user) {
         return false;
     }
 
@@ -297,12 +295,12 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public boolean c1(int i10, t1 t1Var) {
+    public boolean c1(int i10, u1 u1Var) {
         return false;
     }
 
     @Override
-    public boolean c2(t1 t1Var, TLRPC.TodoItem todoItem) {
+    public boolean c2(u1 u1Var, TLRPC.TodoItem todoItem) {
         return false;
     }
 
@@ -328,7 +326,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
 
     @Override
     public boolean f() {
-        switch (this.f15513a) {
+        switch (this.f15642a) {
             case 17:
                 return true;
             default:
@@ -342,18 +340,18 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public String h(t1 t1Var) {
+    public String h(u1 u1Var) {
         return null;
     }
 
     @Override
-    public int h0(t1 t1Var) {
+    public int h0(u1 u1Var) {
         return 0;
     }
 
     @Override
     public boolean h1(MessageObject messageObject) {
-        return wl.a(messageObject);
+        return c1.a(messageObject);
     }
 
     @Override
@@ -362,8 +360,8 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public l j0(j jVar, s sVar) {
-        return l.f14918u;
+    public m j0(k kVar, s sVar) {
+        return m.f15093u;
     }
 
     @Override
@@ -372,7 +370,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public boolean l2(t1 t1Var, TL_iv.PageBlock pageBlock) {
+    public boolean l2(u1 u1Var, TL_iv.PageBlock pageBlock) {
         return false;
     }
 
@@ -382,12 +380,12 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public Object n2(Uri uri, k kVar) {
+    public Object n2(Uri uri, g2.k kVar) {
         return Long.valueOf(d0.T(new BufferedReader(new InputStreamReader(kVar)).readLine()));
     }
 
     @Override
-    public boolean o0(x5 x5Var) {
+    public boolean o0(z5 z5Var) {
         return false;
     }
 
@@ -397,13 +395,13 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public rn p0() {
+    public pn p0() {
         return null;
     }
 
     @Override
     public Object p2() {
-        switch (this.f15513a) {
+        switch (this.f15642a) {
             case 8:
                 return new LinkedHashSet();
             default:
@@ -452,8 +450,8 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void x0(fh fhVar) {
-        fhVar.run();
+    public void x0(gh ghVar) {
+        ghVar.run();
     }
 
     @Override
@@ -598,7 +596,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void A(t1 t1Var) {
+    public void A(u1 u1Var) {
     }
 
     @Override
@@ -606,19 +604,19 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void C1(t1 t1Var) {
+    public void C1(u1 u1Var) {
     }
 
     @Override
-    public void D0(t1 t1Var) {
+    public void D0(u1 u1Var) {
     }
 
     @Override
-    public void F(t1 t1Var) {
+    public void F(u1 u1Var) {
     }
 
     @Override
-    public void F0(t1 t1Var) {
+    public void F0(u1 u1Var) {
     }
 
     @Override
@@ -626,15 +624,15 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void I0(t1 t1Var) {
+    public void I0(u1 u1Var) {
     }
 
     @Override
-    public void K1(t1 t1Var) {
+    public void K1(u1 u1Var) {
     }
 
     @Override
-    public void L(t1 t1Var) {
+    public void L(u1 u1Var) {
     }
 
     @Override
@@ -646,7 +644,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void N0(t1 t1Var) {
+    public void N0(u1 u1Var) {
     }
 
     @Override
@@ -654,7 +652,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void T(t1 t1Var) {
+    public void T(u1 u1Var) {
     }
 
     @Override
@@ -666,7 +664,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void X0(t1 t1Var) {
+    public void X0(u1 u1Var) {
     }
 
     @Override
@@ -678,7 +676,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void Z0(t1 t1Var) {
+    public void Z0(u1 u1Var) {
     }
 
     @Override
@@ -690,7 +688,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void e2(t1 t1Var) {
+    public void e2(u1 u1Var) {
     }
 
     @Override
@@ -698,7 +696,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void i0(t1 t1Var) {
+    public void i0(u1 u1Var) {
     }
 
     @Override
@@ -714,7 +712,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void m2(t1 t1Var) {
+    public void m2(u1 u1Var) {
     }
 
     @Override
@@ -722,11 +720,11 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void o(t1 t1Var) {
+    public void o(u1 u1Var) {
     }
 
     @Override
-    public void r(t1 t1Var) {
+    public void r(u1 u1Var) {
     }
 
     @Override
@@ -734,11 +732,11 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void t(t1 t1Var) {
+    public void t(u1 u1Var) {
     }
 
     @Override
-    public void u(t1 t1Var) {
+    public void u(u1 u1Var) {
     }
 
     @Override
@@ -754,7 +752,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void y0(t1 t1Var) {
+    public void y0(u1 u1Var) {
     }
 
     @Override
@@ -762,7 +760,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void z(t1 t1Var) {
+    public void z(u1 u1Var) {
     }
 
     @Override
@@ -770,11 +768,11 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void D1(t1 t1Var, boolean z10) {
+    public void D1(u1 u1Var, boolean z10) {
     }
 
     @Override
-    public void E(t1 t1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
     @Override
@@ -782,7 +780,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void H1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void H1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
@@ -790,19 +788,19 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void M(int i10, t1 t1Var) {
+    public void M(int i10, u1 u1Var) {
     }
 
     @Override
-    public void P0(int i10, t1 t1Var) {
+    public void P0(int i10, u1 u1Var) {
     }
 
     @Override
-    public void R0(t1 t1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public void R0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     @Override
-    public void T1(t1 t1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public void T1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
     @Override
@@ -810,7 +808,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void g2(t1 t1Var, long j3) {
+    public void g2(u1 u1Var, long j3) {
     }
 
     @Override
@@ -818,23 +816,23 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void i(t1 t1Var, bi.f fVar) {
+    public void i(u1 u1Var, bi.f fVar) {
     }
 
     @Override
-    public void m1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void m1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void p1(t1 t1Var, TLRPC.Document document) {
+    public void p1(u1 u1Var, TLRPC.Document document) {
     }
 
     @Override
-    public void A0(t1 t1Var, TLObject tLObject, boolean z10) {
+    public void A0(u1 u1Var, TLObject tLObject, boolean z10) {
     }
 
     @Override
-    public void B0(t1 t1Var, float f7, float f10) {
+    public void B0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
@@ -847,11 +845,11 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void V0(t1 t1Var, CharacterStyle characterStyle, boolean z10) {
+    public void V0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
     @Override
-    public void f0(t1 t1Var, float f7, float f10) {
+    public void f0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
@@ -867,7 +865,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void q0(t1 t1Var, float f7, float f10) {
+    public void q0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
@@ -875,19 +873,19 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void u1(t1 t1Var, float f7, float f10) {
+    public void u1(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void y2(t1 t1Var, int i10, int i11) {
+    public void y2(u1 u1Var, int i10, int i11) {
     }
 
     @Override
-    public void U1(t1 t1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    public void U1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
-    public void n(t1 t1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+    public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
     }
 
     @Override
@@ -899,11 +897,11 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void t0(t1 t1Var, TLRPC.User user, float f7, float f10) {
+    public void t0(u1 u1Var, TLRPC.User user, float f7, float f10) {
     }
 
     @Override
-    public void v0(t1 t1Var, float f7, float f10, boolean z10) {
+    public void v0(u1 u1Var, float f7, float f10, boolean z10) {
     }
 
     @Override
@@ -911,15 +909,15 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void b2(t1 t1Var, int i10, float f7, float f10, boolean z10) {
+    public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
     }
 
     @Override
-    public void j(t1 t1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
     }
 
     @Override
-    public void t2(t1 t1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    public void t2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 
     @Override
@@ -927,7 +925,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ti, o, m, d, mg, k1, t0,
     }
 
     @Override
-    public void S(t1 t1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    public void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
     }
 
     @Override

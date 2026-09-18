@@ -1,95 +1,122 @@
 package org.telegram.ui.Cells;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.video.OldVideoPlayerRewinder;
-import org.telegram.ui.Components.eg0;
-import org.telegram.ui.Components.fg0;
-import org.telegram.ui.Components.x61;
-import org.telegram.ui.PhotoViewer;
-public final class g1 extends OldVideoPlayerRewinder {
-    public final int f20138a;
-    public final Object f20139b;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.oo0;
+import org.telegram.ui.Components.so0;
+import org.telegram.ui.Components.to0;
+import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.wo0;
+public final class g1 extends u00 {
+    public final int e = 0;
+    public final ViewGroup f20287f;
 
-    public g1(Object obj, int i10) {
-        this.f20138a = i10;
-        this.f20139b = obj;
+    public g1(to0 to0Var, boolean z10) {
+        super(z10);
+        this.f20287f = to0Var;
     }
 
     @Override
-    public final void onRewindCanceled() {
-        switch (this.f20138a) {
-            case 0:
-                t1 t1Var = (t1) this.f20139b;
-                t1Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                t1Var.Gd.f(false);
-                return;
+    public CharSequence d() {
+        switch (this.e) {
+            case 1:
+                so0 so0Var = ((to0) this.f20287f).f28453w;
+                if (so0Var != null) {
+                    return so0Var.getContentDescription();
+                }
+                return null;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f20139b;
-                PhotoViewer.k(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                photoViewer.f31142z1.f(false);
-                fg0.f23914p0.Q.f(false);
-                return;
+                return super.d();
         }
     }
 
     @Override
-    public final void onRewindStart(boolean z10) {
-        switch (this.f20138a) {
-            case 0:
-                t1 t1Var = (t1) this.f20139b;
-                x61 x61Var = t1Var.Gd;
-                x61Var.f29875n = new k2.c0(this, 9);
-                x61Var.e(false);
-                t1Var.Gd.d(!z10);
-                t1Var.Gd.f(true);
-                t1Var.invalidate();
-                return;
+    public float h() {
+        switch (this.e) {
+            case 1:
+                int m0 = ((to0) this.f20287f).f28453w.m0();
+                if (m0 > 0) {
+                    return 1.0f / m0;
+                }
+                return 0.05f;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f20139b;
-                photoViewer.f31142z1.e(false);
-                photoViewer.f31142z1.d(!z10);
-                photoViewer.f31142z1.f(true);
-                photoViewer.f30954e0.invalidate();
-                fg0.v(z10);
-                return;
+                return super.h();
         }
     }
 
     @Override
-    public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
-        switch (this.f20138a) {
+    public final float k() {
+        float f7;
+        int i10;
+        int i11;
+        switch (this.e) {
             case 0:
-                t1 t1Var = (t1) this.f20139b;
-                t1Var.Gd.g(Math.abs(j3));
-                if (z10) {
-                    t1Var.f21333y7.audioProgress = f7;
-                    t1Var.q4();
+                u1 u1Var = (u1) this.f20287f;
+                f1 f1Var = u1Var.G5;
+                if (u1Var.f21572y7.isMusic()) {
+                    f7 = f1Var.f27016b;
+                    i10 = f1Var.f27018f;
+                    i11 = oo0.E;
+                } else if (u1Var.f21572y7.isVoice()) {
+                    if (u1Var.F5) {
+                        wo0 wo0Var = u1Var.H5;
+                        return wo0Var.f30123a / wo0Var.f30127g;
+                    }
+                    f7 = f1Var.f27016b;
+                    i10 = f1Var.f27018f;
+                    i11 = oo0.E;
+                } else if (u1Var.f21572y7.isRoundVideo()) {
+                    return u1Var.f21572y7.audioProgress;
+                } else {
+                    return 0.0f;
+                }
+                return f7 / (i10 - i11);
+            default:
+                return ((to0) this.f20287f).getProgress();
+        }
+    }
+
+    @Override
+    public final void l(float f7) {
+        switch (this.e) {
+            case 0:
+                u1 u1Var = (u1) this.f20287f;
+                wo0 wo0Var = u1Var.H5;
+                f1 f1Var = u1Var.G5;
+                if (u1Var.f21572y7.isMusic()) {
+                    f1Var.i(f7);
+                } else if (u1Var.f21572y7.isVoice()) {
+                    if (u1Var.F5) {
+                        wo0Var.g(f7, false);
+                    } else {
+                        f1Var.i(f7);
+                    }
+                } else if (u1Var.f21572y7.isRoundVideo()) {
+                    if (u1Var.F5) {
+                        if (wo0Var != null) {
+                            wo0Var.g(f7, false);
+                        }
+                    } else if (f1Var != null) {
+                        f1Var.i(f7);
+                    }
+                    u1Var.f21572y7.audioProgress = f7;
+                } else {
                     return;
                 }
+                u1Var.b(f7);
+                u1Var.invalidate();
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f20139b;
-                photoViewer.f31142z1.g(Math.abs(j3));
-                if (z10) {
-                    photoViewer.f31060q3.h(f7, false);
-                    photoViewer.f31069r3.invalidate();
-                }
-                fg0 fg0Var = fg0.f23914p0;
-                fg0Var.Q.g(0L);
-                if (z10) {
-                    fg0Var.Z = f7;
-                    ai.n4 n4Var = fg0Var.f23918b0;
-                    if (n4Var != null) {
-                        n4Var.invalidate();
-                    }
-                    eg0 eg0Var = fg0Var.h;
-                    if (eg0Var != null) {
-                        eg0Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
+                to0 to0Var = (to0) this.f20287f;
+                to0Var.v = true;
+                to0Var.setProgress(f7);
+                to0Var.f(f7, true);
+                to0Var.v = false;
                 return;
         }
+    }
+
+    public g1(u1 u1Var) {
+        super(false);
+        this.f20287f = u1Var;
     }
 }

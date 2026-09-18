@@ -40,7 +40,7 @@ public final class p {
         this.e = dVar3;
         this.f10840f = sVar;
         this.f10841g = dVar4;
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         Looper myLooper = Looper.myLooper();
         this.h = myLooper == null ? Looper.getMainLooper() : myLooper;
         this.f10843j = b2.e.h;
@@ -52,12 +52,18 @@ public final class p {
         this.f10850q = 3000L;
         this.f10847n = o1.f10835b;
         this.f10851r = new i(e2.d0.Q(20L), e2.d0.Q(500L));
-        this.f10838b = e2.x.f7940a;
+        this.f10838b = e2.x.f7939a;
         this.f10852s = 500L;
         this.f10853t = 2000L;
         this.f10854u = true;
         this.f10855w = "";
         this.f10842i = -1000;
         new rb.a();
+    }
+
+    public final e0 a() {
+        e2.d.g(!this.v);
+        this.v = true;
+        return new e0(this);
     }
 }

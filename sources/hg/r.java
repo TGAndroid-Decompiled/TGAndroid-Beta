@@ -2,7 +2,7 @@ package hg;
 
 import android.content.DialogInterface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.b6;
+import org.telegram.ui.Cells.c6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class r implements DialogInterface.OnShowListener {
     public final int f10395a;
@@ -28,14 +28,14 @@ public final class r implements DialogInterface.OnShowListener {
                 editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
                 return;
             case 2:
-                b6 b6Var = (b6) this.f10396b;
-                b6Var.requestFocus();
-                AndroidUtilities.showKeyboard(b6Var);
+                c6 c6Var = (c6) this.f10396b;
+                c6Var.requestFocus();
+                AndroidUtilities.showKeyboard(c6Var);
                 return;
             default:
-                xh.z1 z1Var = (xh.z1) this.f10396b;
-                z1Var.requestFocus();
-                AndroidUtilities.showKeyboard(z1Var);
+                xh.a2 a2Var = (xh.a2) this.f10396b;
+                a2Var.requestFocus();
+                AndroidUtilities.showKeyboard(a2Var);
                 return;
         }
     }

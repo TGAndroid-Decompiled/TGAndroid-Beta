@@ -96,7 +96,7 @@ public final class ea extends ViewGroup {
             arrayList3.clear();
             this.f4608b = null;
             this.f4609c = false;
-            iVar.f45801b.setAllowDrawCursor(true);
+            iVar.f46024b.setAllowDrawCursor(true);
         }
         requestLayout();
     }

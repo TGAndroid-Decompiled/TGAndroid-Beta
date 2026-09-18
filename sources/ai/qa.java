@@ -23,32 +23,32 @@ public final class qa implements o1.g {
                 ci.r6 r6Var = (ci.r6) this.f1443b;
                 float f11 = f7 / 1000.0f;
                 r6Var.f5445t1 = f11;
-                qg.w1 w1Var = r6Var.f5431m1;
-                w1Var.setAlpha(f11);
-                w1Var.invalidate();
+                qg.t1 t1Var = r6Var.f5431m1;
+                t1Var.setAlpha(f11);
+                t1Var.invalidate();
                 r6Var.U0.invalidate();
                 r6Var.l1.getTypefaceCell().setAlpha(1.0f - r6Var.f5445t1);
                 return;
             case 2:
                 mg.i iVar = (mg.i) this.f1443b;
                 float f12 = f7 / 1000.0f;
-                ci.n6 n6Var = iVar.f14834a;
+                ci.n6 n6Var = iVar.f15006a;
                 n6Var.setPivotX(AndroidUtilities.dp(28.0f));
                 n6Var.setPivotY(AndroidUtilities.dp(28.0f));
                 n6Var.setScaleX(f12);
                 n6Var.setScaleY(f12);
-                n6Var.setAlpha(w7.p.a(f12, 0.0f, 1.0f));
+                n6Var.setAlpha(w7.q.a(f12, 0.0f, 1.0f));
                 iVar.invalidate();
                 return;
             default:
-                qg.p0 p0Var = (qg.p0) this.f1443b;
+                qg.m0 m0Var = (qg.m0) this.f1443b;
                 float f13 = f7 / 1000.0f;
-                p0Var.D1 = f13;
-                qg.w1 w1Var2 = p0Var.f41575v1;
-                w1Var2.setAlpha(f13);
-                w1Var2.invalidate();
-                p0Var.f41547d1.invalidate();
-                p0Var.f41574u1.getTypefaceCell().setAlpha(1.0f - p0Var.D1);
+                m0Var.D1 = f13;
+                qg.t1 t1Var2 = m0Var.f41770v1;
+                t1Var2.setAlpha(f13);
+                t1Var2.invalidate();
+                m0Var.f41742d1.invalidate();
+                m0Var.f41769u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
                 return;
         }
     }

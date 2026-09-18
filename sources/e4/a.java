@@ -11,16 +11,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import w.f;
+import t8.b;
 import z3.d;
 import z3.l;
 import z3.m;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f7979a = new StringBuilder();
-    public final ArrayList f7980b = new ArrayList();
-    public final v f7981c = new v();
+    public final StringBuilder f7978a = new StringBuilder();
+    public final ArrayList f7979b = new ArrayList();
+    public final v f7980c = new v();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -53,13 +53,13 @@ public final class a implements m {
     }
 
     @Override
-    public final void B(byte[] bArr, int i10, int i11, l lVar, h hVar) {
+    public final void C(byte[] bArr, int i10, int i11, l lVar, h hVar) {
         ArrayList arrayList;
         String k10;
         String str;
         a aVar = this;
-        long j3 = lVar.f48128a;
-        v vVar = aVar.f7981c;
+        long j3 = lVar.f48354a;
+        v vVar = aVar.f7980c;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         Charset F = vVar.F();
@@ -67,7 +67,7 @@ public final class a implements m {
             F = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && lVar.f48129b) {
+        if (j3 != -9223372036854775807L && lVar.f48355b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -91,9 +91,9 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f7979a;
+                    StringBuilder sb2 = aVar.f7978a;
                     sb2.setLength(0);
-                    ArrayList arrayList2 = aVar.f7980b;
+                    ArrayList arrayList2 = aVar.f7979b;
                     arrayList2.clear();
                     String k12 = vVar.k(F);
                     while (!TextUtils.isEmpty(k12)) {
@@ -163,7 +163,7 @@ public final class a implements m {
 
     @Override
     public final d r(int i10, int i11, byte[] bArr) {
-        return f.a(this, bArr, i11);
+        return b.a(this, bArr, i11);
     }
 
     @Override

@@ -1,82 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class gy0 extends FrameLayout {
-    public float E;
-    public float F;
-    public ValueAnimator G;
-    public ValueAnimator H;
-    public com.google.firebase.messaging.m I;
-    public float J;
-    public boolean K;
-    public org.telegram.ui.Components.voip.h L;
-    public Paint f24418a;
-    public Paint f24419b;
-    public Paint f24420c;
-    public Paint d;
-    public boolean e;
-    public ci.eb f24421f;
-    public TextView h;
-    public TextView f24422n;
-    public TextView f24423r;
-    public TextView f24424s;
-    public TextView v;
-    public View f24425w;
-    public int f24426x;
-    public org.telegram.ui.Cells.ea f24427y;
+import java.util.ArrayList;
+public final class gy0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f24506a;
+    public final com.google.firebase.messaging.n f24507b;
+    public final int f24508c;
 
-    @Override
-    public final void invalidate() {
-        TextView textView = this.f24424s;
-        TextView textView2 = this.f24423r;
-        TextView textView3 = this.f24422n;
-        TextView textView4 = this.h;
-        super.invalidate();
-        this.f24421f.invalidate();
-        int i10 = this.f24426x;
-        int i11 = org.telegram.ui.ActionBar.j6.Vi;
-        if (i10 != org.telegram.ui.ActionBar.j6.w0(null, i11, false)) {
-            this.f24426x = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
-            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), this.f24426x), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), this.f24426x), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f24426x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f24426x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        }
-        this.f24427y.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        this.f24425w.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18864d7, false));
+    public gy0(com.google.firebase.messaging.n nVar, int i10, int i11) {
+        this.f24506a = i11;
+        this.f24507b = nVar;
+        this.f24508c = i10;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        com.google.firebase.messaging.m mVar = this.I;
-        if (mVar != null) {
-            mVar.f7333a = true;
-            AnimatorSet animatorSet = (AnimatorSet) mVar.f7335c;
-            if (!animatorSet.isRunning()) {
-                animatorSet.start();
-            }
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        com.google.firebase.messaging.m mVar = this.I;
-        if (mVar != null) {
-            mVar.f7333a = false;
-            ((AnimatorSet) mVar.f7335c).cancel();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f24506a) {
+            case 0:
+                Float f7 = (Float) valueAnimator.getAnimatedValue();
+                f7.getClass();
+                ((ArrayList) this.f24507b.d).set(this.f24508c, f7);
+                return;
+            case 1:
+                Float f10 = (Float) valueAnimator.getAnimatedValue();
+                f10.getClass();
+                ((ArrayList) this.f24507b.e).set(this.f24508c, f10);
+                return;
+            case 2:
+                Float f11 = (Float) valueAnimator.getAnimatedValue();
+                f11.getClass();
+                ((ArrayList) this.f24507b.f7332f).set(this.f24508c, f11);
+                return;
+            case 3:
+                Float f12 = (Float) valueAnimator.getAnimatedValue();
+                f12.getClass();
+                ((ArrayList) this.f24507b.d).set(this.f24508c, f12);
+                return;
+            case 4:
+                Float f13 = (Float) valueAnimator.getAnimatedValue();
+                f13.getClass();
+                ((ArrayList) this.f24507b.e).set(this.f24508c, f13);
+                return;
+            default:
+                Float f14 = (Float) valueAnimator.getAnimatedValue();
+                f14.getClass();
+                ((ArrayList) this.f24507b.f7332f).set(this.f24508c, f14);
+                return;
         }
     }
 }

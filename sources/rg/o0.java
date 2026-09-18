@@ -3,21 +3,21 @@ package rg;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.n6;
+import org.telegram.ui.Components.p6;
 import org.telegram.ui.Components.tp;
-public final class o0 extends n6 {
-    public final int f42431s;
+public final class o0 extends p6 {
+    public final int f42658s;
     public final p0 v;
 
     public o0(p0 p0Var, Context context, int i10) {
         super(context, true, true, true);
-        this.f42431s = i10;
+        this.f42658s = i10;
         this.v = p0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f42431s) {
+        switch (this.f42658s) {
             case 0:
                 p0 p0Var = this.v;
                 if (p0Var.M > 0.0f) {

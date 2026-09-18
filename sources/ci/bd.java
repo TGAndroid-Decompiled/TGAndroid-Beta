@@ -22,7 +22,7 @@ public final class bd extends View implements x2 {
     public final Paint d;
     public final Paint e;
     public float f4418f;
-    public final org.telegram.ui.Components.c6 h;
+    public final org.telegram.ui.Components.e6 h;
     public final Path f4419n;
 
     public bd(Activity activity, int i10, int i11) {
@@ -31,7 +31,7 @@ public final class bd extends View implements x2 {
         this.d = paint;
         Paint paint2 = new Paint(3);
         this.e = paint2;
-        this.h = new org.telegram.ui.Components.c6(this, 0L, 350L, qr.h);
+        this.h = new org.telegram.ui.Components.e6(this, 0L, 350L, qr.h);
         this.f4419n = new Path();
         this.f4415a = activity.getResources().getDrawable(i10).mutate();
         this.f4416b = i11;

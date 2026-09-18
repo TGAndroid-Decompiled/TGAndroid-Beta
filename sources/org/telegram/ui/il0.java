@@ -1,113 +1,213 @@
 package org.telegram.ui;
 
 import android.text.TextUtils;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class il0 implements Runnable {
-    public final org.telegram.ui.web.d1 E;
-    public final ci.d f34622a;
-    public final ci.d f34623b;
-    public final TLRPC.TL_messages_requestUrlAuth f34624c;
-    public final String[] d;
-    public final org.telegram.ui.Cells.w8 e;
-    public final boolean[] f34625f;
-    public final int[] h;
-    public final boolean[] f34626n;
-    public final org.telegram.ui.ActionBar.g3 f34627r;
-    public final String f34628s;
-    public final org.telegram.ui.ActionBar.f6 v;
-    public final boolean f34629w;
-    public final String f34630x;
-    public final TLRPC.TL_urlAuthResultRequest f34631y;
+public final class il0 implements Utilities.Callback {
+    public final int f34549a = 1;
+    public final String f34550b;
+    public final boolean f34551c;
+    public final boolean d;
+    public final Object e;
+    public final Object f34552f;
+    public final Object f34553g;
+    public final Serializable h;
+    public final Object f34554i;
+    public final Object f34555j;
+    public final Object f34556k;
+    public final Object f34557l;
 
-    public il0(ci.d dVar, ci.d dVar2, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, org.telegram.ui.Cells.w8 w8Var, boolean[] zArr, int[] iArr, boolean[] zArr2, org.telegram.ui.ActionBar.g3 g3Var, String str, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, String str2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, org.telegram.ui.web.d1 d1Var) {
-        this.f34622a = dVar;
-        this.f34623b = dVar2;
-        this.f34624c = tL_messages_requestUrlAuth;
-        this.d = strArr;
-        this.e = w8Var;
-        this.f34625f = zArr;
-        this.h = iArr;
-        this.f34626n = zArr2;
-        this.f34627r = g3Var;
-        this.f34628s = str;
-        this.v = f6Var;
-        this.f34629w = z10;
-        this.f34630x = str2;
-        this.f34631y = tL_urlAuthResultRequest;
-        this.E = d1Var;
+    public il0(g71 g71Var, String str, boolean z10, ArrayList arrayList, HashMap hashMap, ArrayList arrayList2, LinkedHashSet linkedHashSet, LinkedHashSet linkedHashSet2, ArrayList arrayList3, ArrayList arrayList4, boolean z11) {
+        this.e = g71Var;
+        this.f34550b = str;
+        this.f34551c = z10;
+        this.f34552f = arrayList;
+        this.f34553g = hashMap;
+        this.h = arrayList2;
+        this.f34554i = linkedHashSet;
+        this.f34555j = linkedHashSet2;
+        this.f34556k = arrayList3;
+        this.f34557l = arrayList4;
+        this.d = z11;
     }
 
     @Override
-    public final void run() {
-        ci.d dVar = this.f34622a;
-        if (dVar.N || this.f34623b.N) {
-            return;
-        }
-        boolean z10 = true;
-        dVar.setLoading(true);
-        final TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth = new TLRPC.TL_messages_acceptUrlAuth();
-        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = this.f34624c;
-        if (TLObject.hasFlag(tL_messages_requestUrlAuth.flags, 2)) {
-            tL_messages_acceptUrlAuth.flags |= 2;
-            tL_messages_acceptUrlAuth.peer = tL_messages_requestUrlAuth.peer;
-            tL_messages_acceptUrlAuth.msg_id = tL_messages_requestUrlAuth.msg_id;
-            tL_messages_acceptUrlAuth.button_id = tL_messages_requestUrlAuth.button_id;
-        }
-        if (TLObject.hasFlag(tL_messages_requestUrlAuth.flags, 4)) {
-            tL_messages_acceptUrlAuth.flags |= 4;
-            tL_messages_acceptUrlAuth.url = tL_messages_requestUrlAuth.url;
-        }
-        String str = this.d[0];
-        if (str != null) {
-            tL_messages_acceptUrlAuth.match_code = str;
-        }
-        org.telegram.ui.Cells.w8 w8Var = this.e;
-        tL_messages_acceptUrlAuth.write_allowed = (w8Var == null || !w8Var.e.h) ? false : false;
-        tL_messages_acceptUrlAuth.share_phone_number = this.f34625f[0];
-        final int[] iArr = this.h;
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(iArr[0]);
-        ?? obj = new Object();
-        final boolean[] zArr = this.f34626n;
-        final org.telegram.ui.ActionBar.g3 g3Var = this.f34627r;
-        final String str2 = this.f34628s;
-        final org.telegram.ui.ActionBar.f6 f6Var = this.v;
-        final boolean z11 = this.f34629w;
-        final String str3 = this.f34630x;
-        final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = this.f34631y;
-        final org.telegram.ui.web.d1 d1Var = this.E;
-        connectionsManager.sendRequestTyped(tL_messages_acceptUrlAuth, obj, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj2, Object obj3) {
-                CharSequence replaceSingleLinkBold;
-                TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj2;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
-                zArr[0] = true;
-                g3Var.dismiss();
-                if (tL_error != null) {
-                    if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                        org.telegram.ui.Components.vc a2 = kl0.a();
-                        int i10 = R.raw.error;
-                        String string = LocaleController.getString(R.string.BotAuthLoggedInFailTitle);
-                        String str4 = str2;
-                        if (TextUtils.isEmpty(str4)) {
-                            replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
-                        } else {
-                            replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str4), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, f6Var));
+    public final void run(Object obj) {
+        switch (this.f34549a) {
+            case 0:
+                final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f34552f;
+                final org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f34553g;
+                final boolean z10 = this.f34551c;
+                final String str = this.f34550b;
+                final TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) this.f34554i;
+                final String[] strArr = (String[]) this.f34555j;
+                final boolean z11 = this.d;
+                final org.telegram.ui.web.d1 d1Var = (org.telegram.ui.web.d1) this.f34556k;
+                final String str2 = (String) this.h;
+                final org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f34557l;
+                final Integer num = (Integer) obj;
+                if (((int[]) this.e)[0] != num.intValue()) {
+                    final org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(ApplicationLoader.applicationContext, 3, null);
+                    b2Var.q(200L);
+                    ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new Utilities.Callback2() {
+                        @Override
+                        public final void run(Object obj2, Object obj3) {
+                            CharSequence replaceSingleLinkBold;
+                            TLRPC.UrlAuthResult urlAuthResult2 = (TLRPC.UrlAuthResult) obj2;
+                            TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
+                            org.telegram.ui.ActionBar.b2.this.dismiss();
+                            org.telegram.ui.ActionBar.f3 f3Var2 = f3Var;
+                            if (urlAuthResult2 != null) {
+                                f3Var2.dismiss();
+                                ll0.b(z10, num.intValue(), tL_messages_requestUrlAuth, urlAuthResult2, str, urlAuthResult, strArr[0], z11, d1Var);
+                            } else if (tL_error != null) {
+                                if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                                    f3Var2.dismiss();
+                                    org.telegram.ui.Components.xc a2 = ll0.a();
+                                    int i10 = R.raw.error;
+                                    String string = LocaleController.getString(R.string.BotAuthLoggedInFailTitle);
+                                    String str3 = str2;
+                                    if (TextUtils.isEmpty(str3)) {
+                                        replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
+                                    } else {
+                                        replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str3), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, e6Var));
+                                    }
+                                    a2.M(string, replaceSingleLinkBold, i10).j();
+                                    return;
+                                }
+                                org.telegram.ui.Cells.c1.p(f3Var2.topBulletinContainer, f3Var2.getResourcesProvider(), tL_error, false);
+                            }
                         }
-                        a2.M(string, replaceSingleLinkBold, i10).j();
-                        return;
-                    }
-                    kl0.a().d0(tL_error, false);
+                    });
                     return;
                 }
-                kl0.b(z11, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str3, tL_urlAuthResultRequest, null, tL_messages_acceptUrlAuth.share_phone_number, d1Var);
-            }
-        });
+                return;
+            default:
+                final g71 g71Var = (g71) this.e;
+                final String str3 = this.f34550b;
+                final boolean z12 = this.f34551c;
+                final ArrayList arrayList = (ArrayList) this.f34552f;
+                final HashMap hashMap = (HashMap) this.f34553g;
+                final ArrayList arrayList2 = (ArrayList) this.h;
+                final LinkedHashSet linkedHashSet = (LinkedHashSet) this.f34554i;
+                final LinkedHashSet linkedHashSet2 = (LinkedHashSet) this.f34555j;
+                final ArrayList arrayList3 = (ArrayList) this.f34556k;
+                final ArrayList arrayList4 = (ArrayList) this.f34557l;
+                final boolean z13 = this.d;
+                Runnable runnable = (Runnable) obj;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        g71 g71Var2 = g71.this;
+                        k51 k51Var = g71Var2.I1;
+                        if (k51Var != null) {
+                            AndroidUtilities.cancelRunOnUIThread(k51Var);
+                            g71Var2.I1 = null;
+                        }
+                        String str4 = g71Var2.f33769z1;
+                        String str5 = str3;
+                        if (str5 != str4) {
+                            return;
+                        }
+                        g71Var2.f33767y1 = true;
+                        g71Var2.z(true, z12);
+                        x51 x51Var = g71Var2.f33724f0;
+                        if (x51Var != null) {
+                            x51Var.d(true);
+                        }
+                        ArrayList arrayList5 = g71Var2.A1;
+                        if (arrayList5 == null) {
+                            g71Var2.A1 = new ArrayList();
+                        } else {
+                            arrayList5.clear();
+                        }
+                        ArrayList arrayList6 = g71Var2.D1;
+                        if (arrayList6 == null) {
+                            g71Var2.D1 = new ArrayList();
+                        } else {
+                            arrayList6.clear();
+                        }
+                        ArrayList arrayList7 = g71Var2.C1;
+                        if (arrayList7 == null) {
+                            g71Var2.C1 = new ArrayList();
+                        } else {
+                            arrayList7.clear();
+                        }
+                        ArrayList arrayList8 = g71Var2.B1;
+                        if (arrayList8 == null) {
+                            g71Var2.B1 = new ArrayList();
+                        } else {
+                            arrayList8.clear();
+                        }
+                        int i10 = 0;
+                        g71Var2.f33730i0.v0(0);
+                        int i11 = g71Var2.W;
+                        if (i11 == 1 || i11 == 14 || i11 == 11 || i11 == 2) {
+                            ArrayList arrayList9 = arrayList;
+                            if (!arrayList9.isEmpty()) {
+                                g71Var2.A1.addAll(arrayList9);
+                            } else {
+                                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(str5);
+                                if (tL_availableReaction != null) {
+                                    g71Var2.A1.add(zg.o0.c(tL_availableReaction));
+                                }
+                            }
+                            ArrayList arrayList10 = arrayList2;
+                            if (!arrayList10.isEmpty()) {
+                                g71Var2.B1.addAll(arrayList10);
+                            }
+                        }
+                        Iterator it = linkedHashSet.iterator();
+                        while (it.hasNext()) {
+                            Long l4 = (Long) it.next();
+                            l4.getClass();
+                            ArrayList arrayList11 = g71Var2.A1;
+                            ?? obj2 = new Object();
+                            long longValue = l4.longValue();
+                            obj2.f49378g = longValue;
+                            obj2.h = longValue;
+                            arrayList11.add(obj2);
+                        }
+                        Iterator it2 = linkedHashSet2.iterator();
+                        while (it2.hasNext()) {
+                            g71Var2.A1.add(zg.o0.b((String) it2.next()));
+                        }
+                        g71Var2.D1.addAll(arrayList3);
+                        ArrayList arrayList12 = arrayList4;
+                        int size = arrayList12.size();
+                        while (i10 < size) {
+                            Object obj3 = arrayList12.get(i10);
+                            i10++;
+                            g71Var2.C1.addAll((ArrayList) obj3);
+                        }
+                        g71Var2.f33745q0.E(true ^ z13);
+                    }
+                });
+                return;
+        }
+    }
+
+    public il0(int[] iArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.ActionBar.f3 f3Var, boolean z10, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z11, org.telegram.ui.web.d1 d1Var, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.e = iArr;
+        this.f34552f = tL_messages_requestUrlAuth;
+        this.f34553g = f3Var;
+        this.f34551c = z10;
+        this.f34550b = str;
+        this.f34554i = urlAuthResult;
+        this.f34555j = strArr;
+        this.d = z11;
+        this.f34556k = d1Var;
+        this.h = str2;
+        this.f34557l = e6Var;
     }
 }

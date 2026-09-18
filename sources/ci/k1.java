@@ -25,7 +25,7 @@ public final class k1 extends FrameLayout {
     public Bitmap d;
     public BitmapShader e;
     public Matrix f4874f;
-    public final org.telegram.ui.Components.c6 h;
+    public final org.telegram.ui.Components.e6 h;
     public final RectF f4875n;
     public Boolean f4876r;
     public final t2 f4877s;
@@ -36,23 +36,23 @@ public final class k1 extends FrameLayout {
         this.f4871a = new Paint(1);
         this.f4872b = new Paint(3);
         this.f4873c = new Paint(1);
-        this.h = new org.telegram.ui.Components.c6(this, 0L, 250L, qr.h);
+        this.h = new org.telegram.ui.Components.e6(this, 0L, 250L, qr.h);
         this.f4875n = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         float f7;
         float f10;
         int i10;
         int i11;
         boolean z10;
-        int i12 = org.telegram.ui.ActionBar.j6.f18934h5;
+        int i12 = org.telegram.ui.ActionBar.j6.f19133h5;
         t2 t2Var = this.f4877s;
         i1 i1Var = t2Var.f5549f;
-        f6Var = ((org.telegram.ui.ActionBar.g3) t2Var).resourcesProvider;
-        int v02 = org.telegram.ui.ActionBar.j6.v0(i12, f6Var);
+        e6Var = ((org.telegram.ui.ActionBar.f3) t2Var).resourcesProvider;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(i12, e6Var);
         Paint paint = this.f4871a;
         paint.setColor(v02);
         if (this.d == null) {
@@ -81,9 +81,9 @@ public final class k1 extends FrameLayout {
         float d = this.h.d(f10, false);
         float paddingTop = (t2Var.f5554x + i1Var.getPaddingTop()) - AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), i1Var.getPaddingTop(), d);
         RectF rectF = AndroidUtilities.rectTmp;
-        i10 = ((org.telegram.ui.ActionBar.g3) t2Var).backgroundPaddingLeft;
+        i10 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
         int width = getWidth();
-        i11 = ((org.telegram.ui.ActionBar.g3) t2Var).backgroundPaddingLeft;
+        i11 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
         rectF.set(i10, paddingTop, width - i11, AndroidUtilities.dp(8.0f) + getHeight());
         if (this.d != null) {
             this.f4874f.reset();
@@ -146,15 +146,15 @@ public final class k1 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        org.telegram.ui.ActionBar.f6 f6Var;
-        org.telegram.ui.ActionBar.f6 f6Var2;
+        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.ActionBar.e6 e6Var2;
         super.onLayout(z10, i10, i11, i12, i13);
         if (this.d == null) {
             t2 t2Var = this.f4877s;
-            f6Var = ((org.telegram.ui.ActionBar.g3) t2Var).resourcesProvider;
-            if (f6Var != null) {
-                f6Var2 = ((org.telegram.ui.ActionBar.g3) t2Var).resourcesProvider;
-                if (!f6Var2.a()) {
+            e6Var = ((org.telegram.ui.ActionBar.f3) t2Var).resourcesProvider;
+            if (e6Var != null) {
+                e6Var2 = ((org.telegram.ui.ActionBar.f3) t2Var).resourcesProvider;
+                if (!e6Var2.a()) {
                     return;
                 }
             } else if (!org.telegram.ui.ActionBar.j6.I.q()) {

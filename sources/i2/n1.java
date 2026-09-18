@@ -40,7 +40,7 @@ public final class n1 {
         if (fVar instanceof w2.e) {
             w2.e eVar = (w2.e) fVar;
             e2.d.g(eVar.f10693y);
-            eVar.f44507a0 = j3;
+            eVar.f44732a0 = j3;
         }
     }
 
@@ -66,7 +66,7 @@ public final class n1 {
             z11 = false;
         }
         e2.d.g(z11);
-        fVar.f10686c.h();
+        fVar.f10686c.n();
         fVar.f10688n = 0;
         fVar.f10689r = null;
         fVar.f10690s = null;
@@ -136,7 +136,7 @@ public final class n1 {
                     z11 = false;
                 }
                 e2.d.g(z11);
-                fVar.f10686c.h();
+                fVar.f10686c.n();
                 fVar.s();
                 this.e = false;
             }
@@ -147,7 +147,7 @@ public final class n1 {
                 z11 = false;
             }
             e2.d.g(z11);
-            fVar2.f10686c.h();
+            fVar2.f10686c.n();
             fVar2.s();
             this.f10802f = false;
         }
@@ -176,7 +176,7 @@ public final class n1 {
         boolean b10 = vVar.b(i12);
         if (!b10 || z10) {
             if (!fVar.f10693y) {
-                x2.r rVar = vVar.f45248c[i12];
+                x2.r rVar = vVar.f45471c[i12];
                 if (rVar != null) {
                     i10 = rVar.length();
                 } else {

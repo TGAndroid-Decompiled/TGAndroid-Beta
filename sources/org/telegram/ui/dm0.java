@@ -1,26 +1,33 @@
 package org.telegram.ui;
-public final class dm0 implements Runnable {
-    public final int f33191a;
-    public final boolean f33192b;
-    public final Object f33193c;
-    public final Object d;
 
-    public dm0(Object obj, Object obj2, boolean z10, int i10) {
-        this.f33191a = i10;
-        this.f33193c = obj;
-        this.d = obj2;
-        this.f33192b = z10;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class dm0 implements RequestDelegate {
+    public final int f33053a;
+    public final pn0 f33054b;
+
+    public dm0(pn0 pn0Var, int i10) {
+        this.f33053a = i10;
+        this.f33054b = pn0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dm0.run():void");
-    }
-
-    public dm0(Object obj, boolean z10, Object obj2, int i10) {
-        this.f33191a = i10;
-        this.f33193c = obj;
-        this.f33192b = z10;
-        this.d = obj2;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f33053a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new qf0(this.f33054b, tL_error, tLObject, 10));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new ak0(8, this.f33054b, tL_error));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new zl0(this.f33054b, 5));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new ak0(7, this.f33054b, tLObject));
+                return;
+        }
     }
 }

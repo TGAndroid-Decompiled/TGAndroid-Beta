@@ -52,7 +52,7 @@ public final class e extends Binder implements b, IInterface {
                 S(status, bVar);
                 return true;
             }
-            throw new BadParcelableException(k0.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+            throw new BadParcelableException(k0.h(dataAvail, "Parcel data not fully consumed, unread size: "));
         }
         Status status2 = (Status) a.a(parcel, Status.CREATOR);
         l8.d dVar = (l8.d) a.a(parcel, l8.d.CREATOR);
@@ -61,7 +61,7 @@ public final class e extends Binder implements b, IInterface {
             s(status2, dVar);
             return true;
         }
-        throw new BadParcelableException(k0.i(dataAvail2, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(k0.h(dataAvail2, "Parcel data not fully consumed, unread size: "));
     }
 
     @Override

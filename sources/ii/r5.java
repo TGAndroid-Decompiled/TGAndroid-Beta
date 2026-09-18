@@ -10,14 +10,14 @@ public final class r5 extends FrameLayout {
     public final i1 f11606a;
     public TL_iv.pageTableCell f11607b;
 
-    public r5(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public r5(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        i1 i1Var = new i1(context, f6Var);
+        i1 i1Var = new i1(context, e6Var);
         this.f11606a = i1Var;
         i1Var.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         i1Var.setAllowNewlines(true);
         setCompact(false);
-        addView(i1Var, w7.x5.e(-1, -2, 51));
+        addView(i1Var, w7.y5.e(-1, -2, 51));
     }
 
     public final void a() {

@@ -48,7 +48,7 @@ public final class r7 extends FrameLayout {
         this.h = k7Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.f1477s = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18934h5, dVar), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19133h5, dVar), PorterDuff.Mode.MULTIPLY));
         p7 p7Var = new p7(this, context);
         this.e = p7Var;
         l7 l7Var = new l7(this, context);
@@ -57,8 +57,8 @@ public final class r7 extends FrameLayout {
         o7 o7Var = new o7(this, jcVar, context);
         this.f1471a = o7Var;
         l7Var.setAdapter(o7Var);
-        p7Var.addView(l7Var, w7.x5.d(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(k7Var, w7.x5.c(-1.0f, -1));
+        p7Var.addView(l7Var, w7.y5.d(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(k7Var, w7.y5.c(-1.0f, -1));
         addView(p7Var);
         setVisibility(4);
     }
@@ -196,7 +196,7 @@ public final class r7 extends FrameLayout {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
             ofFloat.addUpdateListener(new a(this, 11));
-            ofFloat.setInterpolator(org.telegram.ui.ActionBar.q1.f19508w);
+            ofFloat.setInterpolator(org.telegram.ui.ActionBar.p1.f19667w);
             ofFloat.setDuration(250L);
             ofFloat.start();
         }
@@ -205,7 +205,7 @@ public final class r7 extends FrameLayout {
             currentPage.f1052r.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
             FrameLayout frameLayout = currentPage.f1049c;
             if (frameLayout.getTranslationY() != 0.0f) {
-                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.q1.f19508w);
+                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.p1.f19667w);
             }
         }
     }
@@ -235,7 +235,7 @@ public final class r7 extends FrameLayout {
                         gcVar.f917c = null;
                     }
                     zb zbVar = jcVar.f1096n0;
-                    int i12 = messageObject.storyItem.f18356id;
+                    int i12 = messageObject.storyItem.f18531id;
                     jc jcVar2 = zbVar.N0;
                     int i13 = 0;
                     while (true) {

@@ -5,12 +5,12 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.f61;
-public abstract class a extends f61 {
-    public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, f6 f6Var) {
-        super(context, i10, -1, false, callback2, callback5, null, f6Var, -1, 0);
-        this.f26214z2 = true;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.t61;
+public abstract class a extends t61 {
+    public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, e6 e6Var) {
+        super(context, i10, -1, false, callback2, callback5, null, e6Var, -1, 0);
+        this.f30110z2 = true;
         setOverScrollMode(2);
     }
 

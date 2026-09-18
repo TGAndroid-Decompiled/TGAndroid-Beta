@@ -15,12 +15,12 @@ public final class tc {
     public float h;
     public float f5582i;
     public final RectF f5583j = new RectF();
-    public final org.telegram.ui.Components.c6 f5584k;
+    public final org.telegram.ui.Components.e6 f5584k;
     public final zc f5585l;
 
     public tc(zc zcVar) {
         this.f5585l = zcVar;
-        this.f5584k = new org.telegram.ui.Components.c6(zcVar, 360L, qr.h);
+        this.f5584k = new org.telegram.ui.Components.e6(zcVar, 360L, qr.h);
     }
 
     public static void a(tc tcVar, boolean z10) {

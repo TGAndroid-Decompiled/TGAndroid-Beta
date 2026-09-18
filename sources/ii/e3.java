@@ -62,17 +62,17 @@ public final class e3 implements a6 {
         }
         switch (i10) {
             case 1:
-                u3Var.h(3);
+                u3Var.i(3);
                 return;
             case 2:
-                u3Var.h(6);
+                u3Var.i(6);
                 return;
             case 3:
                 r.U(w3Var.getContext(), "", new ai.y1(w3Var, 28), w3Var.f11712g3);
                 return;
             case 4:
             case 5:
-                u3Var.h(1);
+                u3Var.i(1);
                 return;
             case 6:
                 w3Var.u3();

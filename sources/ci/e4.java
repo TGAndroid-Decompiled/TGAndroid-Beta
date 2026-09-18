@@ -9,7 +9,7 @@ import androidx.appcompat.widget.ActionBarContainer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.h01;
+import org.telegram.ui.Components.v01;
 public final class e4 extends Drawable {
     public final int f4595a;
     public final Object f4596b;
@@ -61,7 +61,7 @@ public final class e4 extends Drawable {
                 Rect bounds = getBounds();
                 z0Var.getClass();
                 z0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, z0Var.f42583f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, z0Var.f42810f);
                 return;
             case 4:
                 ImageReceiver imageReceiver = (ImageReceiver) this.f4596b;
@@ -73,7 +73,7 @@ public final class e4 extends Drawable {
                 canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), AndroidUtilities.dp(18.0f), ((Switch) this.f4596b).J);
                 return;
             case 6:
-                ((h01) this.f4596b).c(getBounds().centerX() - (((h01) this.f4596b).f24442c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), canvas);
+                ((v01) this.f4596b).c(getBounds().centerX() - (((v01) this.f4596b).f28868c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), canvas);
                 return;
             case 7:
                 canvas.save();
@@ -250,7 +250,7 @@ public final class e4 extends Drawable {
 
     public e4(String str) {
         this.f4595a = 6;
-        this.f4596b = new h01(str.substring(0, !str.isEmpty()), 14.0f, AndroidUtilities.bold());
+        this.f4596b = new v01(str.substring(0, !str.isEmpty()), 14.0f, AndroidUtilities.bold());
     }
 
     private final void a(int i10) {

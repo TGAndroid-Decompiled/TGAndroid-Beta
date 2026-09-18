@@ -1,40 +1,39 @@
 package org.telegram.ui.ActionBar;
 
 import android.view.View;
-public final class h4 implements Runnable {
-    public final int f18716a;
-    public final j4 f18717b;
+public final class h4 {
+    public final x4 f18907a;
+    public boolean f18908b;
+    public boolean f18909c;
+    public boolean d;
+    public boolean e = true;
+    public boolean f18910f;
+    public long f18911g;
 
-    public h4(j4 j4Var, int i10) {
-        this.f18716a = i10;
-        this.f18717b = j4Var;
+    public h4(x4 x4Var) {
+        this.f18907a = x4Var;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f18716a) {
-            case 0:
-                j4 j4Var = this.f18717b;
-                View view = j4Var.f18793m;
-                if (view.getWindowVisibility() == 0 && view.isShown()) {
-                    i4 i4Var = j4Var.f18799s;
-                    i4Var.getClass();
-                    System.currentTimeMillis();
-                    i4Var.f18752c = false;
-                    j4Var.f18799s.a();
-                    return;
-                }
+    public final void a() {
+        if (this.f18910f) {
+            boolean z10 = this.f18908b;
+            x4 x4Var = this.f18907a;
+            if (!z10 && !this.f18909c && !this.d && this.e) {
+                View view = x4Var.f19887a;
+                k4 k4Var = x4Var.f19895l;
+                view.removeOnLayoutChangeListener(k4Var);
+                x4Var.f19887a.addOnLayoutChangeListener(k4Var);
+                x4Var.c();
+                this.f18911g = System.currentTimeMillis();
                 return;
-            default:
-                j4 j4Var2 = this.f18717b;
-                View view2 = j4Var2.f18793m;
-                if (view2.getWindowVisibility() == 0 && view2.isShown()) {
-                    i4 i4Var2 = j4Var2.f18799s;
-                    i4Var2.f18751b = false;
-                    i4Var2.a();
-                    return;
-                }
+            }
+            v4 v4Var = x4Var.f19888b;
+            if (!v4Var.f()) {
                 return;
+            }
+            v4Var.G = true;
+            v4Var.f19816x.start();
+            v4Var.D.setEmpty();
         }
     }
 }

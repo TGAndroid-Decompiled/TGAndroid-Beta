@@ -39,7 +39,7 @@ public final class l0 extends View {
             i10 = 0;
         }
         float f10 = f7 + i10;
-        return ((getHeight() - f10) - g0Var.f14119y) - AndroidUtilities.dp(32.0f);
+        return ((getHeight() - f10) - g0Var.f14265y) - AndroidUtilities.dp(32.0f);
     }
 
     private float getContainerWidth() {
@@ -57,7 +57,7 @@ public final class l0 extends View {
         MediaController.CropState cropState;
         float f7;
         float f10;
-        qg.a2 a2Var;
+        qg.x1 x1Var;
         float f11;
         float f12;
         m0 m0Var = this.d;
@@ -104,7 +104,7 @@ public final class l0 extends View {
                 f11 = 1.0f;
                 f12 = 1.0f;
             }
-            float lerp4 = AndroidUtilities.lerp(1.0f, (m0Var.f5023b.getScaleX() * (a2Var.getWidth() / f12)) / d7Var.getWidth(), f14);
+            float lerp4 = AndroidUtilities.lerp(1.0f, (m0Var.f5023b.getScaleX() * (x1Var.getWidth() / f12)) / d7Var.getWidth(), f14);
             canvas.scale(lerp4, lerp4);
             canvas.rotate(m0Var.f5023b.getRotation() * f14);
             canvas.translate(((m0Var.f5023b.getContentWidth() * f12) / 2.0f) * f14, ((m0Var.f5023b.getContentHeight() * f11) / 2.0f) * f14);
@@ -139,12 +139,12 @@ public final class l0 extends View {
         currentWidth = m0Var.getCurrentWidth();
         lg.g gVar = m0Var.f5031y;
         currentHeight = m0Var.getCurrentHeight();
-        int i12 = gVar.f14075i;
+        int i12 = gVar.f14221i;
         if (i12 == 90 || i12 == 270) {
             currentHeight = currentWidth;
             currentWidth = currentHeight;
         }
-        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14078l, 1.0f, f14, 1.0f);
+        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14224l, 1.0f, f14, 1.0f);
         float f16 = currentWidth;
         float containerWidth = getContainerWidth() / f16;
         float f17 = currentHeight;
@@ -152,16 +152,16 @@ public final class l0 extends View {
             containerWidth = getContainerHeight() / f17;
         }
         canvas.translate(gVar.d * 1.0f, gVar.e * 1.0f);
-        float f18 = (gVar.f14073f / z12) * containerWidth;
-        qg.a2 a2Var2 = m0Var.f5023b;
-        if (a2Var2 != null && (cropState = a2Var2.G0) != null) {
+        float f18 = (gVar.f14219f / z12) * containerWidth;
+        qg.x1 x1Var2 = m0Var.f5023b;
+        if (x1Var2 != null && (cropState = x1Var2.G0) != null) {
             lerp = AndroidUtilities.lerp(cropState.cropScale, f18, f13);
         } else {
             lerp = AndroidUtilities.lerp(1.0f, f18, f13);
         }
         canvas.scale(lerp, lerp);
-        canvas.translate(gVar.f14071b * f16 * 1.0f, gVar.f14072c * f17 * 1.0f);
-        float d = m0Var.d.d(i12, false) + m0Var.f5023b.getOrientation() + gVar.f14074g;
+        canvas.translate(gVar.f14217b * f16 * 1.0f, gVar.f14218c * f17 * 1.0f);
+        float d = m0Var.d.d(i12, false) + m0Var.f5023b.getOrientation() + gVar.f14220g;
         MediaController.CropState cropState4 = m0Var.f5023b.G0;
         if (cropState4 == null) {
             lerp2 = AndroidUtilities.lerp(0.0f, d, m0Var.f5028s);
@@ -170,7 +170,7 @@ public final class l0 extends View {
         }
         canvas.rotate(lerp2);
         canvas.rotate(m0Var.f5023b.getOrientation());
-        org.telegram.ui.Components.c6 c6Var = m0Var.f5024c;
+        org.telegram.ui.Components.e6 e6Var = m0Var.f5024c;
         if (m0Var.E) {
             MediaController.CropState cropState5 = m0Var.f5023b.G0;
             if (cropState5 != null && cropState5.mirrored) {
@@ -180,15 +180,15 @@ public final class l0 extends View {
         } else {
             lg.n nVar = g0Var.L;
             if (nVar != null) {
-                z10 = nVar.f14107j;
+                z10 = nVar.f14253j;
             }
             z10 = false;
         }
-        canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, c6Var.e(z10)), 1.0f);
+        canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, e6Var.e(z10)), 1.0f);
         canvas.translate((-m0Var.f5023b.getContentWidth()) / 2.0f, (-m0Var.f5023b.getContentHeight()) / 2.0f);
-        qg.a2 a2Var3 = m0Var.f5023b;
-        Paint paint2 = a2Var3.F0;
-        Bitmap bitmap = a2Var3.A0;
+        qg.x1 x1Var3 = m0Var.f5023b;
+        Paint paint2 = x1Var3.F0;
+        Bitmap bitmap = x1Var3.A0;
         if (bitmap != null) {
             paint2.setAlpha(255);
             canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint2);

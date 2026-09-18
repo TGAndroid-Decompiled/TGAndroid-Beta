@@ -12,8 +12,8 @@ import v7.c9;
 import v7.j8;
 import v7.x7;
 public abstract class e {
-    public static boolean f10145a = false;
-    public static int f10146b = 1;
+    public static boolean f10144a = false;
+    public static int f10145b = 1;
 
     public static final ArrayList a(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
@@ -37,7 +37,7 @@ public abstract class e {
             try {
                 l.i(context, "Context is null");
                 Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f10145a) {
+                if (f10144a) {
                     return 0;
                 }
                 try {
@@ -45,19 +45,19 @@ public abstract class e {
                     try {
                         i8.a W0 = a2.W0();
                         l.h(W0);
-                        x7.f44209a = W0;
+                        x7.f44435a = W0;
                         s7.e Y0 = a2.Y0();
-                        if (c9.f43967b == null) {
+                        if (c9.f44193b == null) {
                             l.i(Y0, "delegate must not be null");
-                            c9.f43967b = Y0;
+                            c9.f44193b = Y0;
                         }
-                        f10145a = true;
+                        f10144a = true;
                         try {
                             Parcel N0 = a2.N0(a2.O0(), 9);
                             int readInt = N0.readInt();
                             N0.recycle();
                             if (readInt == 2) {
-                                f10146b = 2;
+                                f10145b = 2;
                             }
                             x6.b bVar = new x6.b(context);
                             Parcel O0 = a2.O0();
@@ -67,7 +67,7 @@ public abstract class e {
                         } catch (RemoteException e) {
                             Log.e("e", "Failed to retrieve renderer type or log initialization.", e);
                         }
-                        int i10 = f10146b;
+                        int i10 = f10145b;
                         if (i10 != 1) {
                             if (i10 != 2) {
                                 str = "null";
@@ -83,7 +83,7 @@ public abstract class e {
                         throw new RuntimeException(e7);
                     }
                 } catch (k6.f e10) {
-                    return e10.f13513a;
+                    return e10.f13511a;
                 }
             } catch (Throwable th2) {
                 throw th2;

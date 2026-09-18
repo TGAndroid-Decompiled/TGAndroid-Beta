@@ -1,65 +1,51 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.IMapsProvider;
 public final class uc0 implements Runnable {
-    public final int f38043a;
-    public final kd0 f38044b;
+    public final int f37964a;
+    public final jd0 f37965b;
+    public final IMapsProvider.IMapView f37966c;
 
-    public uc0(kd0 kd0Var, int i10) {
-        this.f38043a = i10;
-        this.f38044b = kd0Var;
+    public uc0(jd0 jd0Var, IMapsProvider.IMapView iMapView, int i10) {
+        this.f37964a = i10;
+        this.f37965b = jd0Var;
+        this.f37966c = iMapView;
     }
 
     @Override
     public final void run() {
-        switch (this.f38043a) {
+        switch (this.f37964a) {
             case 0:
-                kd0 kd0Var = this.f38044b;
-                IMapsProvider.ICameraUpdate iCameraUpdate = kd0Var.J;
-                if (iCameraUpdate != null) {
-                    kd0Var.I.moveCamera(iCameraUpdate);
-                    kd0Var.J = null;
-                    return;
-                }
-                return;
-            case 1:
-                kd0 kd0Var2 = this.f38044b;
-                kd0Var2.getLocationController().setProximityLocation(kd0Var2.f35226e0, 0, true);
-                kd0Var2.G = false;
-                return;
-            case 2:
-                kd0 kd0Var3 = this.f38044b;
-                IMapsProvider.IMap iMap = kd0Var3.I;
-                if (iMap != null) {
-                    iMap.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
-                }
-                if (!kd0Var3.R.getRadiusSet()) {
-                    double d = kd0Var3.P;
-                    if (d > 0.0d) {
-                        kd0Var3.O.setRadius(d);
-                    } else {
-                        IMapsProvider.ICircle iCircle = kd0Var3.O;
-                        if (iCircle != null) {
-                            iCircle.remove();
-                            kd0Var3.O = null;
+                jd0 jd0Var = this.f37965b;
+                IMapsProvider.IMapView iMapView = this.f37966c;
+                if (jd0Var.K != null && jd0Var.getParentActivity() != null) {
+                    try {
+                        iMapView.onCreate(null);
+                        ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
+                        jd0Var.K.getMapAsync(new vc0(jd0Var, 0));
+                        jd0Var.f34837u0 = true;
+                        if (jd0Var.f34838v0) {
+                            jd0Var.K.onResume();
+                            return;
                         }
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
                     }
                 }
-                kd0Var3.R = null;
-                return;
-            case 3:
-                hd0 hd0Var = this.f38044b.f35249x;
-                if (hd0Var != null) {
-                    hd0Var.a();
-                    return;
-                }
-                return;
-            case 4:
-                kd0.W(this.f38044b);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new uc0(this.f38044b, 0));
+                jd0 jd0Var2 = this.f37965b;
+                IMapsProvider.IMapView iMapView2 = this.f37966c;
+                try {
+                    iMapView2.onCreate(null);
+                } catch (Exception unused) {
+                }
+                AndroidUtilities.runOnUIThread(new uc0(jd0Var2, iMapView2, 0));
                 return;
         }
     }

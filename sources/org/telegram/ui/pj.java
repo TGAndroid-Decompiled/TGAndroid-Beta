@@ -1,96 +1,160 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class pj implements View.OnTouchListener {
-    public View f36645a;
-    public org.telegram.ui.ActionBar.o1 f36646b;
-    public final Rect f36647c = new Rect();
-    public boolean d;
-    public boolean e;
-    public final org.telegram.ui.Components.j20 f36648f;
-    public final int[] h;
-    public View f36649n;
-    public float f36650r;
-    public float f36651s;
-    public final View v;
-    public final bo f36652w;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.TextureView;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class pj implements org.telegram.ui.ActionBar.s0, org.telegram.ui.ActionBar.e6, lv0, mm {
+    public final zn f36496a;
 
-    public pj(bo boVar, ImageView imageView) {
-        this.f36652w = boVar;
-        this.v = imageView;
-        org.telegram.ui.Components.j20 j20Var = new org.telegram.ui.Components.j20((Context) null, new g(this, 24));
-        this.f36648f = j20Var;
-        this.h = new int[2];
-        j20Var.v = true;
+    public pj(zn znVar) {
+        this.f36496a = znVar;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        View view2;
-        this.f36645a = view;
-        if (motionEvent.getAction() == 0) {
-            this.f36650r = motionEvent.getX();
-            this.f36651s = motionEvent.getY();
-            this.e = false;
+    public void E0(MessageObject messageObject) {
+        zn znVar = this.f36496a;
+        znVar.f40488x0.J0(true);
+        znVar.f40488x0.C0();
+        if (MediaController.getInstance().isPlayingMessage(messageObject)) {
+            znVar.X0.removeView(znVar.f40445t8);
+            znVar.f40445t8 = null;
+            znVar.f40483w8 = null;
+            znVar.f40470v8 = null;
         }
-        this.f36648f.a(motionEvent);
-        if (this.f36646b != null && !this.d && motionEvent.getAction() == 2) {
-            View view3 = this.f36645a;
-            int[] iArr = this.h;
-            view3.getLocationOnScreen(iArr);
-            float x10 = motionEvent.getX() + iArr[0];
-            float y3 = motionEvent.getY() + iArr[1];
-            this.f36646b.getContentView().getLocationOnScreen(iArr);
-            float f7 = x10 - iArr[0];
-            float f10 = y3 - iArr[1];
-            this.f36649n = null;
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f36646b.getContentView();
-            for (int i10 = 0; i10 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i10++) {
-                View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i10);
-                Rect rect = this.f36647c;
-                childAt.getHitRect(rect);
-                childAt.getTag();
-                if (childAt.getVisibility() == 0 && childAt.isClickable()) {
-                    if (!rect.contains((int) f7, (int) f10)) {
-                        childAt.setPressed(false);
-                        childAt.setSelected(false);
-                        if (Build.VERSION.SDK_INT == 21 && childAt.getBackground() != null) {
-                            childAt.getBackground().setVisible(false, false);
-                        }
-                    } else {
-                        childAt.setPressed(true);
-                        childAt.setSelected(true);
-                        if (Build.VERSION.SDK_INT == 21 && childAt.getBackground() != null) {
-                            childAt.getBackground().setVisible(true, false);
-                        }
-                        childAt.drawableHotspotChanged(f7, f10 - childAt.getTop());
-                        this.f36649n = childAt;
-                    }
+        for (int i10 = 0; i10 < znVar.f40488x0.getChildCount(); i10++) {
+            if (znVar.f40488x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) znVar.f40488x0.getChildAt(i10);
+                if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == messageObject.getId()) {
+                    u1Var.getPhotoImage().setVisible(false, true);
                 }
             }
         }
-        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f36650r) > AndroidUtilities.touchSlop * 2.0f) || Math.abs(motionEvent.getY() - this.f36651s) > AndroidUtilities.touchSlop * 2.0f) {
-            this.e = true;
-            this.f36645a.setPressed(false);
-            this.f36645a.setSelected(false);
+    }
+
+    @Override
+    public Paint G(String str) {
+        return org.telegram.ui.ActionBar.j6.S0(str);
+    }
+
+    @Override
+    public int G0(int i10) {
+        return this.f36496a.getThemedColor(i10);
+    }
+
+    @Override
+    public void H(MessageObject messageObject) {
+        Bitmap bitmap;
+        if (messageObject == null) {
+            return;
         }
-        if (motionEvent.getAction() == 1 && !this.d && !this.e) {
-            View view4 = this.f36649n;
-            if (view4 != null) {
-                view4.callOnClick();
-                this.d = true;
-                return true;
-            } else if (this.f36646b == null && (view2 = this.f36645a) != null) {
-                view2.callOnClick();
+        if (MediaController.getInstance().isPlayingMessage(messageObject)) {
+            for (int i10 = 0; i10 < this.f36496a.f40488x0.getChildCount(); i10++) {
+                if (this.f36496a.f40488x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
+                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f36496a.f40488x0.getChildAt(i10);
+                    if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == messageObject.getId()) {
+                        org.telegram.ui.Components.d6 animation = u1Var.getPhotoImage().getAnimation();
+                        if (animation.f23432b0) {
+                            animation.stop();
+                        }
+                        Bitmap m10 = animation.m();
+                        if (m10 != null) {
+                            try {
+                                uk ukVar = this.f36496a.f40485wa;
+                                int width = m10.getWidth();
+                                int height = m10.getHeight();
+                                ov0 ov0Var = ukVar.d;
+                                if (ov0Var == null) {
+                                    bitmap = null;
+                                } else {
+                                    bitmap = ov0Var.f36264b.getBitmap(width, height);
+                                }
+                                new Canvas(m10).drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+                                bitmap.recycle();
+                            } catch (Throwable th2) {
+                                FileLog.e(th2);
+                            }
+                        }
+                    }
+                }
             }
+            this.f36496a.N7(true);
+            MediaController mediaController = MediaController.getInstance();
+            zn znVar = this.f36496a;
+            mediaController.setTextureView(znVar.f40483w8, znVar.f40470v8, znVar.f40445t8, true);
         }
-        return true;
+        this.f36496a.f40488x0.invalidate();
+    }
+
+    @Override
+    public void S0(int i10) {
+        this.f36496a.F(i10, 0, 0, 0, true, true);
+    }
+
+    @Override
+    public boolean a() {
+        return org.telegram.ui.ActionBar.j6.I.q();
+    }
+
+    @Override
+    public void e() {
+        org.telegram.ui.Components.nm0.d(new af(this.f36496a, 2));
+    }
+
+    @Override
+    public int g0(int i10) {
+        return G0(i10);
+    }
+
+    @Override
+    public int g1(int i10) {
+        return G0(i10);
+    }
+
+    @Override
+    public Drawable getDrawable(String str) {
+        return null;
+    }
+
+    @Override
+    public TextureView j0() {
+        return this.f36496a.f40483w8;
+    }
+
+    @Override
+    public void m(float f7, float f10, int i10, int i11) {
+        org.telegram.ui.ActionBar.j6.q(f7, f10, i10, i11);
+    }
+
+    @Override
+    public boolean p0() {
+        return false;
+    }
+
+    @Override
+    public void s0(String str) {
+        this.f36496a.da(str, false);
+    }
+
+    @Override
+    public ColorFilter x() {
+        return org.telegram.ui.ActionBar.j6.f19390v3;
+    }
+
+    @Override
+    public void c() {
+    }
+
+    @Override
+    public void L0(int i10, int i11) {
+    }
+
+    @Override
+    public void W(boolean z10, boolean z11) {
     }
 }

@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.od1;
-public final class ep implements od1 {
-    public final mp f23641a;
+import org.telegram.ui.md1;
+public final class ep implements md1 {
+    public final mp f23943a;
 
     public ep(mp mpVar) {
-        this.f23641a = mpVar;
+        this.f23943a = mpVar;
     }
 
     @Override
@@ -16,31 +16,31 @@ public final class ep implements od1 {
 
     @Override
     public final boolean a() {
-        return this.f23641a.N;
+        return this.f23943a.N;
     }
 
     @Override
     public final void o1(boolean z10) {
         TLRPC.WallPaper wallPaper;
-        mp mpVar = this.f23641a;
-        org.telegram.ui.bo boVar = mpVar.v;
+        mp mpVar = this.f23943a;
+        org.telegram.ui.zn znVar = mpVar.v;
         mpVar.N = !mpVar.N;
         if (mpVar.M != null) {
             mpVar.P = true;
-            boVar.e7 = true;
+            znVar.e7 = true;
             if (mpVar.v()) {
                 wallPaper = null;
             } else {
-                wallPaper = mpVar.f26234n.h;
+                wallPaper = mpVar.f26485n.h;
             }
             TLRPC.WallPaper wallPaper2 = wallPaper;
-            org.telegram.ui.ActionBar.e4 e4Var = mpVar.M.f25957a;
-            if (e4Var.f18618a) {
-                mpVar.f26234n.i(null, wallPaper2, z10, Boolean.valueOf(mpVar.N), false);
+            org.telegram.ui.ActionBar.d4 d4Var = mpVar.M.f26230a;
+            if (d4Var.f18774a) {
+                mpVar.f26485n.i(null, wallPaper2, z10, Boolean.valueOf(mpVar.N), false);
             } else {
-                mpVar.f26234n.i(e4Var, wallPaper2, z10, Boolean.valueOf(mpVar.N), false);
+                mpVar.f26485n.i(d4Var, wallPaper2, z10, Boolean.valueOf(mpVar.N), false);
             }
-            boVar.e7 = false;
+            znVar.e7 = false;
         }
     }
 }

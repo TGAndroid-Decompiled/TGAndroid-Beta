@@ -68,7 +68,7 @@ public final class j3 extends q9 {
         w3 w3Var = this.L0;
         j3 j3Var = w3Var.f11724n3;
         ArrayList arrayList = w3Var.f11721l3;
-        if (!arrayList.isEmpty() && j3Var.y() && j3Var.f20629u0 == 0 && j3Var.f20630v0 == 0 && j3Var.f20631w0 <= 0 && j3Var.f20632x0 == (size = arrayList.size() - 1)) {
+        if (!arrayList.isEmpty() && j3Var.y() && j3Var.f20814u0 == 0 && j3Var.f20815v0 == 0 && j3Var.f20816w0 <= 0 && j3Var.f20817x0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
             if (d6.p(aVar.f11204b)) {
                 str = f6.l(d6.k(aVar.f11204b));
@@ -76,13 +76,13 @@ public final class j3 extends q9 {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (j3Var.f20633y0 == i10) {
+            if (j3Var.f20818y0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
                     length = d6.z(aVar.f11204b).length();
                 }
-                if (j3Var.f20634z0 >= length) {
+                if (j3Var.f20819z0 >= length) {
                     z10 = true;
                     return !z10;
                 }

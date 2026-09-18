@@ -1,161 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import j$.util.Objects;
-import java.util.ArrayList;
+import android.text.TextUtils;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public class ao0 extends ScrollView {
-    public final org.telegram.ui.ActionBar.f6 f22451a;
-    public final LinearLayout f22452b;
-    public final float f22453c;
-    public final float[] d;
-    public final float[] e;
-    public final ArrayList f22454f;
-    public final ArrayList h;
-    public final Path f22455n;
+public final class ao0 extends s4.s0 {
+    public final int f22685a;
+    public final org.telegram.ui.uy f22686b;
+    public final org.telegram.ui.ey f22687c;
 
-    public ao0(Context context, LinearLayout linearLayout, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(context);
-        float f7;
-        this.f22453c = AndroidUtilities.dp(16.0f);
-        this.f22454f = new ArrayList();
-        this.h = new ArrayList();
-        this.f22455n = new Path();
-        this.f22451a = f6Var;
-        this.f22452b = linearLayout;
-        setWillNotDraw(false);
-        int dp = AndroidUtilities.dp(12.0f);
-        if (z10) {
-            f7 = 12.0f;
-        } else {
-            f7 = 4.0f;
-        }
-        linearLayout.setPadding(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        this.d = new float[]{AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), 0.0f, 0.0f, 0.0f, 0.0f};
-        this.e = new float[]{0.0f, 0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f)};
+    public ao0(org.telegram.ui.ey eyVar, org.telegram.ui.uy uyVar, int i10) {
+        this.f22685a = i10;
+        this.f22687c = eyVar;
+        this.f22686b = uyVar;
     }
 
-    public static boolean e(View view) {
-        if (!Objects.equals(view.getTag(), -33024) && !(view instanceof org.telegram.ui.Cells.e9) && !(view instanceof org.telegram.ui.Cells.a7) && !(view instanceof org.telegram.ui.c20)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void a(Canvas canvas, View view, View view2) {
-        float f7;
-        if (view != null && view2 != null) {
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            ViewGroup.LayoutParams layoutParams2 = view2.getLayoutParams();
-            ViewParent parent = view.getParent();
-            float f10 = 0.0f;
-            LinearLayout linearLayout = this.f22452b;
-            if (parent != linearLayout && (layoutParams instanceof ViewGroup.MarginLayoutParams)) {
-                f7 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
-            } else {
-                f7 = 0.0f;
-            }
-            if (view2.getParent() != linearLayout && (layoutParams2 instanceof ViewGroup.MarginLayoutParams)) {
-                f10 = ((ViewGroup.MarginLayoutParams) layoutParams2).topMargin;
-            }
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(c(view) + linearLayout.getX(), Math.max(getScrollY() - AndroidUtilities.dp(16.0f), (d(view) + linearLayout.getY()) - f7), c(view) + linearLayout.getX() + view.getWidth(), Math.min(getScrollY() + AndroidUtilities.dp(16.0f) + getHeight(), d(view2) + linearLayout.getY() + view2.getHeight() + f10));
-            if (rectF.bottom >= rectF.top) {
-                ml0.P0(canvas, rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), view.getAlpha(), this.f22451a);
-            }
+    @Override
+    public final void a(RecyclerView recyclerView, int i10) {
+        switch (this.f22685a) {
+            case 0:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f22686b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            case 1:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f22686b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            case 2:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f22686b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            default:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f22686b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
         }
     }
 
-    public final void b(ViewGroup viewGroup, float f7, float f10) {
-        for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
-            View childAt = viewGroup.getChildAt(i10);
-            if (childAt.getVisibility() == 0) {
-                if (childAt instanceof LinearLayout) {
-                    LinearLayout linearLayout = (LinearLayout) childAt;
-                    if (linearLayout.getOrientation() == 1) {
-                        LinearLayout linearLayout2 = this.f22452b;
-                        if (childAt.getX() + f7 <= linearLayout2.getPaddingLeft() && childAt.getX() + f7 + childAt.getWidth() >= linearLayout2.getWidth() - linearLayout2.getPaddingRight()) {
-                            b(linearLayout, childAt.getX() + f7, childAt.getY() + f10);
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        org.telegram.ui.gy gyVar;
+        int i12;
+        wl0 wl0Var;
+        switch (this.f22685a) {
+            case 0:
+                org.telegram.ui.ey eyVar = this.f22687c;
+                eyVar.f26219p0.V();
+                eyVar.T(i10, i11);
+                return;
+            case 1:
+                org.telegram.ui.ey eyVar2 = this.f22687c;
+                eyVar2.f26226w0.W();
+                eyVar2.T(i10, i11);
+                return;
+            case 2:
+                org.telegram.ui.ey eyVar3 = this.f22687c;
+                eo0 eo0Var = eyVar3.f26207c0;
+                s4.c0 c0Var = eyVar3.f26208d0;
+                int L0 = c0Var.L0();
+                int N0 = c0Var.N0();
+                int abs = Math.abs(c0Var.N0() - L0) + 1;
+                int h = recyclerView.getAdapter().h();
+                if (abs > 0 && (((eo0Var.U.a() != 0 && !eo0Var.X) || !eo0Var.W) && (N0 == h - 1 || ((gyVar = eo0Var.U) != null && gyVar.a() != 0 && (i12 = eo0Var.Y) >= 0 && L0 <= i12 && N0 >= i12)))) {
+                    eo0Var.Q();
+                }
+                eyVar3.T(i10, i11);
+                return;
+            default:
+                org.telegram.ui.ey eyVar4 = this.f22687c;
+                go0 go0Var = eyVar4.f26215k0;
+                if (go0Var.Y && !go0Var.W && !TextUtils.isEmpty(go0Var.f28478b0) && (wl0Var = go0Var.d) != null) {
+                    int i13 = 0;
+                    while (true) {
+                        if (i13 < wl0Var.getChildCount()) {
+                            if (wl0Var.getChildAt(i13) instanceof t00) {
+                                if (go0Var.Y && !go0Var.W && !TextUtils.isEmpty(go0Var.f28478b0)) {
+                                    go0Var.V(true);
+                                }
+                            } else {
+                                i13++;
+                            }
                         }
                     }
                 }
-                this.h.add(childAt);
-            }
+                eyVar4.T(i10, i11);
+                return;
         }
-    }
-
-    public final float c(View view) {
-        if (view != this.f22452b && (view.getParent() instanceof View)) {
-            return view.getX() + c((View) view.getParent());
-        }
-        return view.getX();
-    }
-
-    public final float d(View view) {
-        if (view != this.f22452b && (view.getParent() instanceof View)) {
-            return view.getY() + d((View) view.getParent());
-        }
-        return view.getY();
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.h;
-        arrayList.clear();
-        b(this.f22452b, 0.0f, 0.0f);
-        int size = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            View view = null;
-            View view2 = null;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                View view3 = (View) obj;
-                if (!e(view3)) {
-                    break;
-                }
-                if (view != null && Math.abs(view2.getAlpha() - view3.getAlpha()) > 0.1f) {
-                    a(canvas, view, view2);
-                    view = null;
-                }
-                if (view == null) {
-                    view = view3;
-                }
-                view2 = view3;
-            }
-            a(canvas, view, view2);
-            super.dispatchDraw(canvas);
-            return;
-            a(canvas, view, view2);
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        ArrayList arrayList = this.f22454f;
-        int size = arrayList.size();
-        int i14 = 0;
-        while (i14 < size) {
-            Object obj = arrayList.get(i14);
-            i14++;
-            ((Runnable) obj).run();
-        }
-        invalidate();
-        this.f22452b.invalidate();
     }
 }

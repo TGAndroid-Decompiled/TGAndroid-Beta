@@ -1,69 +1,64 @@
 package org.telegram.ui;
 
-import android.graphics.SurfaceTexture;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class j51 implements org.telegram.ui.Components.e71, org.telegram.ui.Components.a71 {
-    public final k51 f34782a;
+public final class j51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34706a;
+    public final g71 f34707b;
 
-    public j51(k51 k51Var) {
-        this.f34782a = k51Var;
+    public j51(g71 g71Var, int i10) {
+        this.f34706a = i10;
+        this.f34707b = g71Var;
     }
 
     @Override
-    public boolean needUpdate() {
-        if (this.f34782a.V.f24859i != null) {
-            return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34706a) {
+            case 0:
+                g71 g71Var = this.f34707b;
+                g71Var.getClass();
+                g71Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                this.f34707b.m();
+                return;
+            case 2:
+                g71 g71Var2 = this.f34707b;
+                View view = g71Var2.f33753t0;
+                if (view != null) {
+                    view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                }
+                int v = org.telegram.ui.ActionBar.j6.v(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, g71Var2.Z0), i0.a.k(-16777216, (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f)));
+                View view2 = g71Var2.m0;
+                if (view2 != null) {
+                    view2.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
+                }
+                org.telegram.ui.Components.kn knVar = g71Var2.f33739n0;
+                if (knVar != null) {
+                    knVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
+                    return;
+                }
+                return;
+            default:
+                g71 g71Var3 = this.f34707b;
+                a61 a61Var = g71Var3.f33711a0;
+                float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g71Var3.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(8.0f));
+                View view3 = g71Var3.m0;
+                if (view3 != null) {
+                    view3.setAlpha(floatValue);
+                }
+                org.telegram.ui.Components.kn knVar2 = g71Var3.f33739n0;
+                if (knVar2 != null) {
+                    knVar2.setAlpha(floatValue * floatValue);
+                }
+                a61Var.setAlpha(floatValue);
+                a61Var.invalidate();
+                g71Var3.invalidate();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public void onRenderedFirstFrame(j2.a aVar) {
-    }
-
-    @Override
-    public void onStateChanged(boolean z10, int i10) {
-        k51 k51Var = this.f34782a;
-        if (i10 == 4) {
-            k51Var.dismiss();
-            return;
-        }
-        AndroidUtilities.cancelRunOnUIThread(k51Var.Z);
-        AndroidUtilities.runOnUIThread(k51Var.Z, 16L);
-    }
-
-    @Override
-    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        return false;
-    }
-
-    @Override
-    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
-        this.f34782a.V.e(z10, true, fArr);
-    }
-
-    @Override
-    public void onRenderedFirstFrame() {
-        AndroidUtilities.runOnUIThread(new g01(this, 12));
-    }
-
-    @Override
-    public void onSeekFinished(j2.a aVar) {
-    }
-
-    @Override
-    public void onSeekStarted(j2.a aVar) {
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-    }
-
-    @Override
-    public void onError(org.telegram.ui.Components.h71 h71Var, Exception exc) {
-    }
-
-    @Override
-    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
     }
 }

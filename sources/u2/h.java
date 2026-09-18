@@ -2,34 +2,34 @@ package u2;
 
 import java.util.ArrayList;
 public final class h extends p1 {
-    public final long f43389l;
-    public final long f43390m;
-    public final boolean f43391n;
-    public final boolean f43392o;
-    public final boolean f43393p;
-    public final boolean f43394q;
-    public final ArrayList f43395r;
-    public final b2.j1 f43396s;
-    public f f43397t;
-    public g f43398u;
+    public final long f43616l;
+    public final long f43617m;
+    public final boolean f43618n;
+    public final boolean f43619o;
+    public final boolean f43620p;
+    public final boolean f43621q;
+    public final ArrayList f43622r;
+    public final b2.j1 f43623s;
+    public f f43624t;
+    public g f43625u;
     public long v;
-    public long f43399w;
+    public long f43626w;
 
     public h(e eVar) {
-        super(eVar.f43374a);
-        this.f43389l = eVar.f43375b;
-        this.f43390m = eVar.f43376c;
-        this.f43391n = eVar.d;
-        this.f43392o = eVar.e;
-        this.f43393p = eVar.f43377f;
-        this.f43394q = eVar.f43378g;
-        this.f43395r = new ArrayList();
-        this.f43396s = new b2.j1();
+        super(eVar.f43601a);
+        this.f43616l = eVar.f43602b;
+        this.f43617m = eVar.f43603c;
+        this.f43618n = eVar.d;
+        this.f43619o = eVar.e;
+        this.f43620p = eVar.f43604f;
+        this.f43621q = eVar.f43605g;
+        this.f43622r = new ArrayList();
+        this.f43623s = new b2.j1();
     }
 
     @Override
     public final void A(b2.k1 k1Var) {
-        if (this.f43398u != null) {
+        if (this.f43625u != null) {
             return;
         }
         D(k1Var);
@@ -39,22 +39,22 @@ public final class h extends p1 {
         long j3;
         long j10;
         long j11;
-        b2.j1 j1Var = this.f43396s;
+        b2.j1 j1Var = this.f43623s;
         k1Var.n(0, j1Var);
         long j12 = j1Var.f3070p;
-        f fVar = this.f43397t;
-        long j13 = this.f43390m;
+        f fVar = this.f43624t;
+        long j13 = this.f43617m;
         long j14 = Long.MIN_VALUE;
-        ArrayList arrayList = this.f43395r;
-        if (fVar != null && !arrayList.isEmpty() && !this.f43392o) {
+        ArrayList arrayList = this.f43622r;
+        if (fVar != null && !arrayList.isEmpty() && !this.f43619o) {
             j3 = this.v - j12;
             if (j13 != Long.MIN_VALUE) {
-                j14 = this.f43399w - j12;
+                j14 = this.f43626w - j12;
             }
             j11 = j14;
         } else {
-            boolean z10 = this.f43393p;
-            j3 = this.f43389l;
+            boolean z10 = this.f43620p;
+            j3 = this.f43616l;
             if (z10) {
                 long j15 = j1Var.f3066l;
                 j3 += j15;
@@ -66,32 +66,32 @@ public final class h extends p1 {
             if (j13 != Long.MIN_VALUE) {
                 j14 = j12 + j10;
             }
-            this.f43399w = j14;
+            this.f43626w = j14;
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 d dVar = (d) arrayList.get(i10);
                 long j16 = this.v;
-                long j17 = this.f43399w;
+                long j17 = this.f43626w;
                 dVar.e = j16;
-                dVar.f43373f = j17;
+                dVar.f43600f = j17;
             }
             j11 = j10;
         }
         try {
-            f fVar2 = new f(k1Var, j3, j11, this.f43394q);
-            this.f43397t = fVar2;
+            f fVar2 = new f(k1Var, j3, j11, this.f43621q);
+            this.f43624t = fVar2;
             n(fVar2);
         } catch (g e) {
-            this.f43398u = e;
+            this.f43625u = e;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                ((d) arrayList.get(i11)).h = this.f43398u;
+                ((d) arrayList.get(i11)).h = this.f43625u;
             }
         }
     }
 
     @Override
     public final boolean a(b2.k0 k0Var) {
-        a aVar = this.f43496k;
+        a aVar = this.f43723k;
         if (aVar.i().e.equals(k0Var.e) && aVar.a(k0Var)) {
             return true;
         }
@@ -100,14 +100,14 @@ public final class h extends p1 {
 
     @Override
     public final d0 c(f0 f0Var, y2.d dVar, long j3) {
-        d dVar2 = new d(this.f43496k.c(f0Var, dVar, j3), this.f43391n, this.v, this.f43399w);
-        this.f43395r.add(dVar2);
+        d dVar2 = new d(this.f43723k.c(f0Var, dVar, j3), this.f43618n, this.v, this.f43626w);
+        this.f43622r.add(dVar2);
         return dVar2;
     }
 
     @Override
     public final void k() {
-        g gVar = this.f43398u;
+        g gVar = this.f43625u;
         if (gVar == null) {
             super.k();
             return;
@@ -117,11 +117,11 @@ public final class h extends p1 {
 
     @Override
     public final void o(d0 d0Var) {
-        ArrayList arrayList = this.f43395r;
+        ArrayList arrayList = this.f43622r;
         e2.d.g(arrayList.remove(d0Var));
-        this.f43496k.o(((d) d0Var).f43370a);
-        if (arrayList.isEmpty() && !this.f43392o) {
-            f fVar = this.f43397t;
+        this.f43723k.o(((d) d0Var).f43597a);
+        if (arrayList.isEmpty() && !this.f43619o) {
+            f fVar = this.f43624t;
             fVar.getClass();
             D(fVar.e);
         }
@@ -130,7 +130,7 @@ public final class h extends p1 {
     @Override
     public final void q() {
         super.q();
-        this.f43398u = null;
-        this.f43397t = null;
+        this.f43625u = null;
+        this.f43624t = null;
     }
 }

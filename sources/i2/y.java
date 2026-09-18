@@ -1,7 +1,7 @@
 package i2;
 
 import java.util.List;
-public final class y implements e2.m, m4.f1 {
+public final class y implements e2.m, m4.e1 {
     public final int f10919a;
     public final List f10920b;
 
@@ -11,7 +11,7 @@ public final class y implements e2.m, m4.f1 {
     }
 
     @Override
-    public Object h(m4.a0 a0Var, m4.r rVar, int i10) {
+    public Object i(m4.a0 a0Var, m4.r rVar, int i10) {
         switch (this.f10919a) {
             case 2:
                 return a0Var.l(rVar, this.f10920b);

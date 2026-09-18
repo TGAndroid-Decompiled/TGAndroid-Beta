@@ -2,10 +2,10 @@ package zd;
 
 import java.util.concurrent.CancellationException;
 public final class d2 extends CancellationException {
-    public final transient f1 f48906a;
+    public final transient f1 f49132a;
 
     public d2(String str, f1 f1Var) {
         super(str);
-        this.f48906a = f1Var;
+        this.f49132a = f1Var;
     }
 }

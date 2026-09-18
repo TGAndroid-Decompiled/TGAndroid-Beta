@@ -2,52 +2,52 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
 public final class a3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28854a;
-    public final c3 f28855b;
+    public final int f29170a;
+    public final c3 f29171b;
 
     public a3(c3 c3Var, int i10) {
-        this.f28854a = i10;
-        this.f28855b = c3Var;
+        this.f29170a = i10;
+        this.f29171b = c3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28854a) {
+        switch (this.f29170a) {
             case 0:
-                c3 c3Var = this.f28855b;
+                c3 c3Var = this.f29171b;
                 c3Var.getClass();
                 c3Var.H = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 c3Var.invalidate();
                 c3Var.T.c();
                 return;
             case 1:
-                c3 c3Var2 = this.f28855b;
+                c3 c3Var2 = this.f29171b;
                 c3Var2.getClass();
                 c3Var2.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c3Var2.invalidate();
                 c3Var2.T.c();
                 return;
             case 2:
-                c3 c3Var3 = this.f28855b;
+                c3 c3Var3 = this.f29171b;
                 c3Var3.getClass();
                 c3Var3.H = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 c3Var3.invalidate();
                 c3Var3.T.c();
                 return;
             case 3:
-                c3 c3Var4 = this.f28855b;
+                c3 c3Var4 = this.f29171b;
                 c3Var4.getClass();
                 c3Var4.E = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 c3Var4.invalidate();
                 return;
             case 4:
-                c3 c3Var5 = this.f28855b;
+                c3 c3Var5 = this.f29171b;
                 c3Var5.getClass();
                 c3Var5.F = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 c3Var5.invalidate();
                 return;
             default:
-                c3 c3Var6 = this.f28855b;
+                c3 c3Var6 = this.f29171b;
                 c3Var6.getClass();
                 c3Var6.E = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 c3Var6.invalidate();

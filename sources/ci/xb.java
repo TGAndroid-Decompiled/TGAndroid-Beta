@@ -3,7 +3,7 @@ package ci;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.cq0;
-import org.telegram.ui.xd1;
+import org.telegram.ui.vd1;
 public final class xb implements ValueAnimator.AnimatorUpdateListener {
     public final int f5785a;
     public boolean f5786b = false;
@@ -30,10 +30,10 @@ public final class xb implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                org.telegram.ui.cd cdVar = (org.telegram.ui.cd) this.f5787c;
-                cdVar.f32745n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                cdVar.m0.invalidate();
-                if (!this.f5786b && cdVar.f32745n0 > 0.5f) {
+                org.telegram.ui.bd bdVar = (org.telegram.ui.bd) this.f5787c;
+                bdVar.f32327n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bdVar.m0.invalidate();
+                if (!this.f5786b && bdVar.f32327n0 > 0.5f) {
                     this.f5786b = true;
                     return;
                 }
@@ -48,10 +48,10 @@ public final class xb implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                xd1 xd1Var = (xd1) this.f5787c;
-                xd1Var.f39565i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                xd1Var.f39562h2.invalidate();
-                if (!this.f5786b && xd1Var.f39565i2 > 0.5f) {
+                vd1 vd1Var = (vd1) this.f5787c;
+                vd1Var.f38496i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vd1Var.f38493h2.invalidate();
+                if (!this.f5786b && vd1Var.f38496i2 > 0.5f) {
                     this.f5786b = true;
                     return;
                 }

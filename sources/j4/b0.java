@@ -22,7 +22,7 @@ public final class b0 implements g0 {
             z10 = false;
         }
         if (z10) {
-            i11 = vVar.f7935b + vVar.x();
+            i11 = vVar.f7934b + vVar.x();
         } else {
             i11 = -1;
         }
@@ -41,14 +41,14 @@ public final class b0 implements g0 {
             if (i12 < 3) {
                 if (i12 == 0) {
                     int x10 = vVar.x();
-                    vVar.J(vVar.f7935b - 1);
+                    vVar.J(vVar.f7934b - 1);
                     if (x10 == 255) {
                         this.f12625f = true;
                         return;
                     }
                 }
                 int min = Math.min(vVar.a(), 3 - this.d);
-                vVar.h(this.d, min, vVar2.f7934a);
+                vVar.h(this.d, min, vVar2.f7933a);
                 int i13 = this.d + min;
                 this.d = i13;
                 if (i13 == 3) {
@@ -65,14 +65,14 @@ public final class b0 implements g0 {
                     this.e = z11;
                     int i14 = (((x11 & 15) << 8) | x12) + 3;
                     this.f12624c = i14;
-                    byte[] bArr = vVar2.f7934a;
+                    byte[] bArr = vVar2.f7933a;
                     if (bArr.length < i14) {
                         vVar2.c(Math.min(4098, Math.max(i14, bArr.length * 2)));
                     }
                 }
             } else {
                 int min2 = Math.min(vVar.a(), this.f12624c - this.d);
-                vVar.h(this.d, min2, vVar2.f7934a);
+                vVar.h(this.d, min2, vVar2.f7933a);
                 int i15 = this.d + min2;
                 this.d = i15;
                 int i16 = this.f12624c;
@@ -80,7 +80,7 @@ public final class b0 implements g0 {
                     continue;
                 } else {
                     if (this.e) {
-                        if (e2.d0.n(0, i16, -1, vVar2.f7934a) != 0) {
+                        if (e2.d0.n(0, i16, -1, vVar2.f7933a) != 0) {
                             this.f12625f = true;
                             return;
                         }

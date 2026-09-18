@@ -14,33 +14,33 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class q10 extends FrameLayout {
-    public final RectF f27191a;
-    public final FragmentContextView f27192b;
+    public final RectF f27404a;
+    public final FragmentContextView f27405b;
 
     public q10(FragmentContextView fragmentContextView, Context context) {
         super(context);
-        this.f27192b = fragmentContextView;
-        this.f27191a = new RectF();
+        this.f27405b = fragmentContextView;
+        this.f27404a = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
         super.dispatchDraw(canvas);
-        FragmentContextView fragmentContextView = this.f27192b;
-        org.telegram.ui.ActionBar.o2 o2Var = fragmentContextView.h;
-        m6 m6Var = fragmentContextView.f22058i0;
-        if (fragmentContextView.T == 4 && fragmentContextView.f22056g0) {
-            int dp = AndroidUtilities.dp(24.0f) + ((int) Math.ceil(m6Var.d()));
-            if (dp != fragmentContextView.f22053e0) {
+        FragmentContextView fragmentContextView = this.f27405b;
+        org.telegram.ui.ActionBar.n2 n2Var = fragmentContextView.h;
+        o6 o6Var = fragmentContextView.f22231i0;
+        if (fragmentContextView.T == 4 && fragmentContextView.f22229g0) {
+            int dp = AndroidUtilities.dp(24.0f) + ((int) Math.ceil(o6Var.d()));
+            if (dp != fragmentContextView.f22226e0) {
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{-10121218, -6983683}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                fragmentContextView.f22051c0 = linearGradient;
-                fragmentContextView.f22049b0.setShader(linearGradient);
-                fragmentContextView.f22053e0 = dp;
+                fragmentContextView.f22224c0 = linearGradient;
+                fragmentContextView.f22222b0.setShader(linearGradient);
+                fragmentContextView.f22226e0 = dp;
             }
-            ChatObject.Call groupCall = fragmentContextView.f22062n.getGroupCall();
-            if (o2Var != null && groupCall != null && groupCall.isScheduled()) {
-                long currentTimeMillis = (groupCall.call.schedule_date * 1000) - o2Var.getConnectionsManager().getCurrentTimeMillis();
+            ChatObject.Call groupCall = fragmentContextView.f22235n.getGroupCall();
+            if (n2Var != null && groupCall != null && groupCall.isScheduled()) {
+                long currentTimeMillis = (groupCall.call.schedule_date * 1000) - n2Var.getConnectionsManager().getCurrentTimeMillis();
                 f7 = 1.0f;
                 if (currentTimeMillis >= 0) {
                     if (currentTimeMillis < 5000) {
@@ -55,69 +55,69 @@ public final class q10 extends FrameLayout {
             } else {
                 f7 = 0.0f;
             }
-            fragmentContextView.f22052d0.reset();
-            fragmentContextView.f22052d0.postTranslate((-fragmentContextView.f22053e0) * 0.7f * f7, 0.0f);
-            fragmentContextView.f22051c0.setLocalMatrix(fragmentContextView.f22052d0);
+            fragmentContextView.f22225d0.reset();
+            fragmentContextView.f22225d0.postTranslate((-fragmentContextView.f22226e0) * 0.7f * f7, 0.0f);
+            fragmentContextView.f22224c0.setLocalMatrix(fragmentContextView.f22225d0);
             int measuredWidth = (getMeasuredWidth() - dp) - AndroidUtilities.dp(10.0f);
             int dp2 = AndroidUtilities.dp(10.0f);
             float f10 = measuredWidth;
             float f11 = dp2;
             float dp3 = AndroidUtilities.dp(28.0f) + dp2;
-            RectF rectF = this.f27191a;
+            RectF rectF = this.f27404a;
             rectF.set(f10, f11, measuredWidth + dp, dp3);
             canvas.save();
-            float a2 = fragmentContextView.f22059j0.a(0.1f);
+            float a2 = fragmentContextView.f22232j0.a(0.1f);
             canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
             canvas.translate(f10, f11);
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(0.0f, 0.0f, dp, AndroidUtilities.dp(28.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), fragmentContextView.f22049b0);
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), fragmentContextView.f22222b0);
             canvas.translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            m6Var.setBounds(0, 0, AndroidUtilities.displaySize.x, AndroidUtilities.dp(16.0f));
-            m6Var.draw(canvas);
+            o6Var.setBounds(0, 0, AndroidUtilities.displaySize.x, AndroidUtilities.dp(16.0f));
+            o6Var.draw(canvas);
             canvas.restore();
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        ah ahVar;
+        bh bhVar;
         ChatObject.Call groupCall;
         int i10;
         int i11;
-        FragmentContextView fragmentContextView = this.f27192b;
-        if (fragmentContextView.T == 4 && fragmentContextView.f22056g0 && fragmentContextView.f22059j0 != null) {
-            boolean contains = this.f27191a.contains(motionEvent.getX(), motionEvent.getY());
+        FragmentContextView fragmentContextView = this.f27405b;
+        if (fragmentContextView.T == 4 && fragmentContextView.f22229g0 && fragmentContextView.f22232j0 != null) {
+            boolean contains = this.f27404a.contains(motionEvent.getX(), motionEvent.getY());
             if (motionEvent.getAction() == 0) {
-                fragmentContextView.f22059j0.c(contains);
+                fragmentContextView.f22232j0.c(contains);
             } else if (motionEvent.getAction() == 2) {
                 if (!contains) {
-                    fragmentContextView.f22059j0.c(false);
+                    fragmentContextView.f22232j0.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
                 if (contains) {
-                    p10 p10Var = fragmentContextView.f22061l0;
-                    org.telegram.ui.ActionBar.o2 o2Var = fragmentContextView.h;
-                    if (o2Var != null && (ahVar = fragmentContextView.f22062n) != null && (groupCall = ahVar.getGroupCall()) != null && groupCall.call != null) {
+                    p10 p10Var = fragmentContextView.f22234l0;
+                    org.telegram.ui.ActionBar.n2 n2Var = fragmentContextView.h;
+                    if (n2Var != null && (bhVar = fragmentContextView.f22235n) != null && (groupCall = bhVar.getGroupCall()) != null && groupCall.call != null) {
                         if (fragmentContextView.K0 != 0) {
-                            o2Var.getConnectionsManager().cancelRequest(fragmentContextView.K0, true);
+                            n2Var.getConnectionsManager().cancelRequest(fragmentContextView.K0, true);
                             fragmentContextView.K0 = 0;
                         }
                         TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
                         togglegroupcallstartsubscription.call = groupCall.getInputGroupCall();
                         TLRPC.GroupCall groupCall2 = groupCall.call;
-                        boolean z10 = !fragmentContextView.f22057h0;
-                        fragmentContextView.f22057h0 = z10;
+                        boolean z10 = !fragmentContextView.f22230h0;
+                        fragmentContextView.f22230h0 = z10;
                         groupCall2.schedule_start_subscribed = z10;
                         togglegroupcallstartsubscription.subscribed = z10;
-                        fragmentContextView.K0 = o2Var.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, null);
-                        if (fragmentContextView.f22060k0) {
+                        fragmentContextView.K0 = n2Var.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, null);
+                        if (fragmentContextView.f22233k0) {
                             AndroidUtilities.cancelRunOnUIThread(p10Var);
-                            fragmentContextView.f22060k0 = false;
+                            fragmentContextView.f22233k0 = false;
                         }
                         p10Var.run();
-                        vc a02 = vc.a0(o2Var);
-                        boolean z11 = fragmentContextView.f22057h0;
+                        xc a02 = xc.a0(n2Var);
+                        boolean z11 = fragmentContextView.f22230h0;
                         if (z11) {
                             i10 = R.raw.silent_unmute;
                         } else {
@@ -128,21 +128,21 @@ public final class q10 extends FrameLayout {
                         } else {
                             i11 = R.string.LiveStreamWillNotNotify;
                         }
-                        org.telegram.messenger.w1.o(i11, a02, i10, 36);
+                        org.telegram.messenger.q.q(i11, a02, i10, 36);
                     }
                 }
-                fragmentContextView.f22059j0.c(false);
+                fragmentContextView.f22232j0.c(false);
             } else if (motionEvent.getAction() == 3) {
-                fragmentContextView.f22059j0.c(false);
+                fragmentContextView.f22232j0.c(false);
             }
         } else {
-            wc wcVar = fragmentContextView.f22059j0;
-            if (wcVar != null) {
-                wcVar.c(false);
+            yc ycVar = fragmentContextView.f22232j0;
+            if (ycVar != null) {
+                ycVar.c(false);
             }
         }
-        wc wcVar2 = fragmentContextView.f22059j0;
-        if ((wcVar2 != null && wcVar2.h) || super.dispatchTouchEvent(motionEvent)) {
+        yc ycVar2 = fragmentContextView.f22232j0;
+        if ((ycVar2 != null && ycVar2.h) || super.dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -151,16 +151,16 @@ public final class q10 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        FragmentContextView fragmentContextView = this.f27192b;
-        i9 i9Var = fragmentContextView.f22047a0;
-        if (i9Var != null && i9Var.getVisibility() == 0) {
-            fragmentContextView.f22047a0.invalidate();
+        FragmentContextView fragmentContextView = this.f27405b;
+        k9 k9Var = fragmentContextView.f22220a0;
+        if (k9Var != null && k9Var.getVisibility() == 0) {
+            fragmentContextView.f22220a0.invalidate();
         }
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f27192b.f22058i0 && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f27405b.f22231i0 && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

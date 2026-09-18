@@ -3,37 +3,37 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class rl0 implements TextWatcher {
-    public final int f37261a;
-    public final PasscodeActivity f37262b;
+    public final int f37084a;
+    public final PasscodeActivity f37085b;
 
     public rl0(PasscodeActivity passcodeActivity, int i10) {
-        this.f37261a = i10;
-        this.f37262b = passcodeActivity;
+        this.f37084a = i10;
+        this.f37085b = passcodeActivity;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        int i10 = this.f37261a;
+        int i10 = this.f37084a;
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f37261a) {
+        switch (this.f37084a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f37262b;
-                ll0 ll0Var = passcodeActivity.O;
+                PasscodeActivity passcodeActivity = this.f37085b;
+                ml0 ml0Var = passcodeActivity.O;
                 if (passcodeActivity.N) {
-                    passcodeActivity.f30905n.removeCallbacks(ll0Var);
-                    ll0Var.run();
+                    passcodeActivity.f31132n.removeCallbacks(ml0Var);
+                    ml0Var.run();
                     return;
                 }
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f37262b;
-                ll0 ll0Var2 = passcodeActivity2.O;
+                PasscodeActivity passcodeActivity2 = this.f37085b;
+                ml0 ml0Var2 = passcodeActivity2.O;
                 if (passcodeActivity2.N) {
-                    passcodeActivity2.f30905n.removeCallbacks(ll0Var2);
-                    ll0Var2.run();
+                    passcodeActivity2.f31132n.removeCallbacks(ml0Var2);
+                    ml0Var2.run();
                     return;
                 }
                 return;
@@ -42,7 +42,7 @@ public final class rl0 implements TextWatcher {
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f37261a;
+        int i13 = this.f37084a;
     }
 
     private final void a(Editable editable) {

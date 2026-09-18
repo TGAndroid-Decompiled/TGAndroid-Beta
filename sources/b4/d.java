@@ -11,7 +11,7 @@ import b2.s;
 import e2.d0;
 import e2.v;
 import java.util.List;
-public final class d implements w3.b {
+public final class d implements w3.c {
     public int f3384a;
     public int f3385b;
     public final Object f3386c;
@@ -88,7 +88,7 @@ public final class d implements w3.b {
         PackageInfo packageInfo;
         if (this.f3384a == 0) {
             try {
-                packageInfo = w6.b.a((Context) this.f3386c).b(0, "com.google.android.gms");
+                packageInfo = w6.b.a((Context) this.f3386c).e(0, "com.google.android.gms");
             } catch (PackageManager.NameNotFoundException e) {
                 Log.w("Metadata", "Failed to find package ".concat(e.toString()));
                 packageInfo = null;
@@ -107,7 +107,7 @@ public final class d implements w3.b {
         }
         Context context = (Context) this.f3386c;
         PackageManager packageManager = context.getPackageManager();
-        if (w6.b.a(context).f43841a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+        if (w6.b.a(context).f13516a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
             Log.e("Metadata", "Google Play services missing or without correct permission.");
             return 0;
         }
@@ -148,7 +148,7 @@ public final class d implements w3.b {
     }
 
     public d(f2.d dVar, s sVar) {
-        v vVar = dVar.f8802c;
+        v vVar = dVar.f8801c;
         this.f3386c = vVar;
         vVar.J(12);
         int B = vVar.B();

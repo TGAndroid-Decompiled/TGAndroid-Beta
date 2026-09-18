@@ -1,31 +1,52 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.TextPaint;
+import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-public final class ol extends ViewOutlineProvider {
-    public final bo f36380a;
+public final class ol extends org.telegram.ui.Components.c11 {
+    public final zn K;
 
-    public ol(bo boVar) {
-        this.f36380a = boVar;
+    public ol(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, zn znVar) {
+        super(activity);
+        this.K = znVar;
+        TextPaint textPaint = new TextPaint(1);
+        this.f23170b = textPaint;
+        Paint paint = new Paint(1);
+        this.f23171c = paint;
+        this.d = AndroidUtilities.dp(24.0f);
+        this.e = new OvershootInterpolator();
+        this.H = new org.telegram.ui.Components.xq0(this, 14);
+        this.J = new Path();
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Hi, e6Var);
+        int alpha = Color.alpha(v02);
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setColor(v02);
+        paint.setColor(v02);
+        paint.setAlpha((int) (alpha * 0.14d));
+        setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fi, e6Var)));
+    }
+
+    public final void d() {
+        int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
+        zn znVar = this.K;
+        int top = znVar.Y.getTop() - znVar.X0.getMeasuredHeight();
+        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
-        if (imageReceiver != null) {
-            int[] roundRadius = imageReceiver.getRoundRadius();
-            int i10 = 0;
-            for (int i11 = 0; i11 < 4; i11++) {
-                i10 = Math.max(i10, roundRadius[i11]);
-            }
-            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
-            return;
-        }
-        bo boVar = this.f36380a;
-        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(boVar.C9()), AndroidUtilities.roundPlayingMessageSize(boVar.C9()));
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        d();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        d();
     }
 }

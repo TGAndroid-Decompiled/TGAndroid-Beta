@@ -13,29 +13,29 @@ import le.e;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.qr;
 import yf.p;
 public final class a extends c implements le.d {
     public final le.b d;
     public final int[] e;
-    public final Drawable f42999f;
+    public final Drawable f43230f;
     public final TextPaint h;
-    public StaticLayout f43000n;
-    public int f43001r;
-    public int f43002s;
+    public StaticLayout f43231n;
+    public int f43232r;
+    public int f43233s;
 
-    public a(Context context, f6 f6Var) {
-        super(f6Var);
+    public a(Context context, e6 e6Var) {
+        super(e6Var);
         this.d = new le.b(0, this, qr.h, 320L, false);
         this.e = new int[]{16842910, 16842919};
-        this.f42999f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        this.f43230f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
         this.h = new TextPaint(j6.P2);
-        int v02 = j6.v0(j6.f18953i6, f6Var);
-        if (this.f43014b != v02) {
-            j6.B1(this.f43013a, v02, false);
-            this.f43014b = v02;
+        int v02 = j6.v0(j6.f19152i6, e6Var);
+        if (this.f43245b != v02) {
+            j6.B1(this.f43244a, v02, false);
+            this.f43245b = v02;
         }
         b();
         c();
@@ -50,19 +50,19 @@ public final class a extends c implements le.d {
 
     @Override
     public final void a(int i10) {
-        this.f43013a.setAlpha(i10);
+        this.f43244a.setAlpha(i10);
         b();
         c();
     }
 
     public final void b() {
-        Drawable drawable = this.f42999f;
-        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f43015c));
+        Drawable drawable = this.f43230f;
+        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f43246c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f43015c));
+        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f43246c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -72,21 +72,21 @@ public final class a extends c implements le.d {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f43013a.draw(canvas);
-        p.b(canvas, this.f42999f, 1.0f - this.d.e);
-        if (this.f43000n != null) {
+        this.f43244a.draw(canvas);
+        p.b(canvas, this.f43230f, 1.0f - this.d.e);
+        if (this.f43231n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
-            this.f43000n.draw(canvas);
+            this.f43231n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i10) {
-        if (this.f43002s != i10) {
-            this.f43002s = i10;
+        if (this.f43233s != i10) {
+            this.f43233s = i10;
             this.h.setColor(i10);
-            this.f42999f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            this.f43230f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -98,13 +98,13 @@ public final class a extends c implements le.d {
         float dp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
-        p.d(this.f42999f, dp, exactCenterY, 17);
+        p.d(this.f43230f, dp, exactCenterY, 17);
         int width = rect.width() - AndroidUtilities.dp(56.0f);
-        if (this.f43000n != null && this.f43001r == width) {
+        if (this.f43231n != null && this.f43232r == width) {
             return;
         }
-        this.f43001r = width;
-        this.f43000n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f43232r = width;
+        this.f43231n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override

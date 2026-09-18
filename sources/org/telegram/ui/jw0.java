@@ -1,149 +1,219 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-public final class jw0 extends FrameLayout {
-    public final int f34951a;
-    public final ow0 f34952b;
+public final class jw0 implements r0.n, org.telegram.ui.Components.v71, org.telegram.ui.Components.kq0, org.telegram.ui.Components.so0, org.telegram.ui.ActionBar.e6, org.telegram.ui.Components.ho0 {
+    public final int f34950a;
+    public final Object f34951b;
 
-    public jw0(ow0 ow0Var, Context context, int i10) {
-        super(context);
-        this.f34951a = i10;
-        this.f34952b = ow0Var;
+    public jw0(Object obj, int i10) {
+        this.f34950a = i10;
+        this.f34951b = obj;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f34951a) {
+    public void B() {
+        int i10 = this.f34950a;
+    }
+
+    @Override
+    public Paint G(String str) {
+        return ((rd1) this.f34951b).f37041f.f38467a.G(str);
+    }
+
+    @Override
+    public int G0(int i10) {
+        return ((rd1) this.f34951b).f37041f.f38467a.G0(i10);
+    }
+
+    @Override
+    public r0.m1 Q0(View view, r0.m1 m1Var) {
+        switch (this.f34950a) {
             case 0:
-                ow0 ow0Var = this.f34952b;
-                if (ow0Var.f36456y > 0.0f && ow0Var.f36454w != null) {
-                    ow0Var.f36455x.reset();
-                    float width = getWidth() / ow0Var.f36453s.getWidth();
-                    ow0Var.f36455x.postScale(width, width);
-                    ow0Var.v.setLocalMatrix(ow0Var.f36455x);
-                    ow0Var.f36454w.setAlpha((int) (ow0Var.f36456y * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), ow0Var.f36454w);
-                } else {
-                    canvas2 = canvas;
-                }
-                if (ow0Var.O && (t1Var = ow0Var.L) != null) {
-                    t1Var.L7 = ow0Var.P;
-                    t1Var.invalidate();
-                    ow0Var.O = false;
-                }
-                super.dispatchDraw(canvas2);
+                mw0 mw0Var = (mw0) this.f34951b;
+                i0.b g10 = m1Var.f42109a.g(519);
+                mw0Var.f35764r = g10;
+                mw0Var.d.setPadding(g10.f10591a, g10.f10592b, g10.f10593c, g10.d);
+                mw0Var.f35756c.requestLayout();
+                return r0.m1.f42108b;
+            default:
+                ke1 ke1Var = (ke1) this.f34951b;
+                i0.b g11 = m1Var.f42109a.g(519);
+                ke1Var.f35078n = g11;
+                ke1Var.f35073c.setPadding(g11.f10591a, g11.f10592b, g11.f10593c, g11.d);
+                ke1Var.f35071b.requestLayout();
+                return r0.m1.f42108b;
+        }
+    }
+
+    @Override
+    public void U() {
+        ((StickersActivity) this.f34951b).j0();
+    }
+
+    @Override
+    public void X(float f7, boolean z10) {
+        switch (this.f34950a) {
+            case 3:
+                vb1 vb1Var = (vb1) this.f34951b;
+                ThemeActivity.Y(vb1Var.d, Math.round((vb1Var.f38447b * f7) + 0), false);
                 return;
             default:
-                super.dispatchDraw(canvas);
+                gc1 gc1Var = (gc1) this.f34951b;
+                ThemeActivity themeActivity = gc1Var.h;
+                int i10 = gc1Var.f33810c;
+                ThemeActivity.k0(themeActivity, Math.round(((gc1Var.d - i10) * f7) + i10));
                 return;
         }
     }
 
     @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f34951a) {
-            case 0:
-                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f34952b.c(true);
-                    return true;
-                }
-                return super.dispatchKeyEventPreIme(keyEvent);
-            default:
-                return super.dispatchKeyEventPreIme(keyEvent);
+    public boolean a() {
+        return ((rd1) this.f34951b).f37041f.f38467a.a();
+    }
+
+    @Override
+    public void b(float f7) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f34951b;
+        a51 a51Var = secretMediaViewer.f31734y;
+        if (a51Var != null) {
+            long p5 = a51Var.p();
+            if (p5 != -9223372036854775807L) {
+                secretMediaViewer.f31734y.L(f7 * ((float) p5), false);
+            }
+            secretMediaViewer.f31734y.C();
         }
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f34951a) {
-            case 1:
-                ow0 ow0Var = this.f34952b;
-                if (view != ow0Var.K && view != ow0Var.J) {
-                    return super.drawChild(canvas, view, j3);
-                }
-                canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(ow0Var.M, 0.0f, ow0Var.f36456y), getWidth(), AndroidUtilities.lerp(ow0Var.N, getHeight(), ow0Var.f36456y));
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
+    public void d(float f7) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f34951b;
+        a51 a51Var = secretMediaViewer.f31734y;
+        if (a51Var != null) {
+            a51Var.B();
+            long p5 = secretMediaViewer.f31734y.p();
+            if (p5 != -9223372036854775807L) {
+                secretMediaViewer.f31734y.L(f7 * ((float) p5), false);
+            }
         }
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f34951a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f34952b.d();
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
+    public void e(float f7) {
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            ((zf1) this.f34951b).f40133u0.movePreviewFragment(f7);
         }
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f34951a) {
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                int size2 = View.MeasureSpec.getSize(i11);
-                ow0 ow0Var = this.f34952b;
-                ow0Var.e();
-                for (int i12 = 0; i12 < getChildCount(); i12++) {
-                    View childAt = getChildAt(i12);
-                    ViewGroup viewGroup = ow0Var.T;
-                    if (childAt == viewGroup) {
-                        float f7 = ow0Var.U;
-                        if (f7 > 0.0f) {
-                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f7), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    ViewGroup viewGroup2 = ow0Var.R;
-                    if (childAt == viewGroup2) {
-                        float f10 = ow0Var.S;
-                        if (f10 > 0.0f) {
-                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    org.telegram.ui.Components.gk0 gk0Var = ow0Var.Q;
-                    if (childAt == gk0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(gk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    }
-                }
-                setMeasuredDimension(size, size2);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public void f(org.telegram.ui.Cells.s2 s2Var) {
+        dg1 dg1Var = ((zf1) this.f34951b).f40133u0;
+        HashSet hashSet = dg1.f32969n1;
+        dg1Var.M0(s2Var);
+    }
+
+    @Override
+    public void finish() {
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            ((zf1) this.f34951b).f40133u0.finishPreviewFragment();
         }
     }
 
     @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f34951a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                ow0 ow0Var = this.f34952b;
-                gh.d.c(ow0Var.F, ow0Var.f36444c);
-                ow0Var.G.d();
-                return;
+    public int g0(int i10) {
+        return ((rd1) this.f34951b).f37041f.f38467a.G0(i10);
+    }
+
+    @Override
+    public int g1(int i10) {
+        return ((rd1) this.f34951b).f37041f.f38467a.g1(i10);
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        switch (this.f34950a) {
+            case 3:
+                vb1 vb1Var = (vb1) this.f34951b;
+                return String.valueOf(Math.round((vb1Var.f38446a.getProgress() * vb1Var.f38447b) + 0));
             default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
+                gc1 gc1Var = (gc1) this.f34951b;
+                int i10 = gc1Var.f33810c;
+                return String.valueOf(Math.round((gc1Var.f33809b.getProgress() * (gc1Var.d - i10)) + i10));
         }
+    }
+
+    @Override
+    public Drawable getDrawable(String str) {
+        vd1 vd1Var = ((rd1) this.f34951b).f37041f;
+        if (str.equals("drawableMsgOut")) {
+            return vd1Var.R;
+        }
+        if (str.equals("drawableMsgOutSelected")) {
+            return vd1Var.S;
+        }
+        if (str.equals("drawableMsgOutMedia")) {
+            return vd1Var.T;
+        }
+        if (str.equals("drawableMsgOutMediaSelected")) {
+            return vd1Var.U;
+        }
+        vc1 vc1Var = vd1Var.f38467a;
+        if (vc1Var != null) {
+            return vc1Var.getDrawable(str);
+        }
+        return org.telegram.ui.ActionBar.j6.O0(str);
+    }
+
+    @Override
+    public void m(float f7, float f10, int i10, int i11) {
+        vc1 vc1Var = ((rd1) this.f34951b).f37041f.f38467a;
+        if (vc1Var != null) {
+            vc1Var.m(f7, f10, i10, i11);
+        } else {
+            org.telegram.ui.ActionBar.j6.q(f7, f10, i10, i11);
+        }
+    }
+
+    @Override
+    public int m0() {
+        switch (this.f34950a) {
+            case 3:
+                return ((vb1) this.f34951b).f38447b;
+            default:
+                gc1 gc1Var = (gc1) this.f34951b;
+                return gc1Var.d - gc1Var.f33810c;
+        }
+    }
+
+    @Override
+    public boolean p0() {
+        return ((rd1) this.f34951b).f37041f.f38467a.p0();
+    }
+
+    @Override
+    public void u0() {
+        ((StickersActivity) this.f34951b).j0();
+    }
+
+    @Override
+    public ColorFilter x() {
+        return org.telegram.ui.ActionBar.j6.f19390v3;
+    }
+
+    private final void c() {
+    }
+
+    private final void g() {
+    }
+
+    @Override
+    public void L0(int i10, int i11) {
     }
 }

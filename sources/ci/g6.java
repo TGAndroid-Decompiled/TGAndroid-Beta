@@ -2,17 +2,17 @@ package ci;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-public final class g6 extends pg.c1 {
+public final class g6 extends pg.e1 {
     public final qb E;
 
-    public g6(qb qbVar, Context context, pg.q0 q0Var, Bitmap bitmap, Bitmap bitmap2, org.telegram.ui.Components.ha haVar) {
-        super(context, q0Var, bitmap, bitmap2, haVar);
+    public g6(qb qbVar, Context context, pg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2, org.telegram.ui.Components.ja jaVar) {
+        super(context, s0Var, bitmap, bitmap2, jaVar);
         this.E = qbVar;
     }
 
     @Override
     public final void g(pg.m mVar) {
-        int indexOf = pg.m.f40939a.indexOf(mVar);
+        int indexOf = pg.m.f41158a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;

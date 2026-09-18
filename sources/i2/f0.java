@@ -3,12 +3,12 @@ package i2;
 import java.util.Set;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.pf0;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.Components.ym0;
-import org.telegram.ui.h10;
-import yh.v5;
+import org.telegram.ui.Components.ln0;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.yf0;
+import org.telegram.ui.f10;
+import yh.t5;
 public final class f0 implements Runnable {
     public final int f10694a;
     public final boolean f10695b;
@@ -37,15 +37,15 @@ public final class f0 implements Runnable {
                 fVar.q(p5, 1033, new ga.a(p5, i11, i12, this.f10695b));
                 return;
             case 1:
-                ((pf0) this.d).f27023a.f27282b.x3(this.f10696c, this.f10695b);
+                ((yf0) this.d).f30569a.f30784b.x3(this.f10696c, this.f10695b);
                 return;
             case 2:
-                ym0 ym0Var = (ym0) this.d;
-                ym0Var.f30288o = null;
-                ym0Var.c(this.f10696c, this.f10695b, true);
+                ln0 ln0Var = (ln0) this.d;
+                ln0Var.f26198o = null;
+                ln0Var.c(this.f10696c, this.f10695b, true);
                 return;
             case 3:
-                vc a02 = vc.a0((h10) this.d);
+                xc a02 = xc.a0((f10) this.d);
                 boolean z10 = this.f10695b;
                 if (z10) {
                     i10 = R.raw.folder_in;
@@ -58,20 +58,20 @@ public final class f0 implements Runnable {
                 } else {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkRemovedChats", i13, new Object[0]);
                 }
-                oc M = a02.M(formatPluralString, LocaleController.getString(R.string.FolderLinkChatlistUpdate), i10);
-                M.f26705j = 5000;
+                qc M = a02.M(formatPluralString, LocaleController.getString(R.string.FolderLinkChatlistUpdate), i10);
+                M.f27550j = 5000;
                 M.j();
                 return;
             default:
-                v5 v5Var = (v5) this.d;
+                t5 t5Var = (t5) this.d;
                 if (!this.f10695b) {
-                    v5Var.getClass();
+                    t5Var.getClass();
                     return;
                 }
-                Set set = v5Var.Q;
+                Set set = t5Var.Q;
                 int i14 = this.f10696c;
                 set.remove(Integer.valueOf(i14));
-                Runnable runnable = (Runnable) v5Var.R.remove(Integer.valueOf(i14));
+                Runnable runnable = (Runnable) t5Var.R.remove(Integer.valueOf(i14));
                 if (runnable != null) {
                     runnable.run();
                     return;

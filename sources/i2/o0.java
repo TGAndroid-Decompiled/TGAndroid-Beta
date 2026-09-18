@@ -131,9 +131,9 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         this.E = new ArrayList();
         this.v = new b2.j1();
         this.f10832w = new b2.h1();
-        e2.d.g(uVar.f45243a == null);
-        uVar.f45243a = this;
-        uVar.f45244b = cVar;
+        e2.d.g(uVar.f45466a == null);
+        uVar.f45466a = this;
+        uVar.f45467b = cVar;
         this.f10823n0 = true;
         e2.z a2 = xVar.a(looper, null);
         this.N = a2;
@@ -148,11 +148,11 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         this.P = new e(context, g10, this);
         a10.a(35, new a3.y() {
             @Override
-            public final void b(long j10, long j11, b2.s sVar, MediaFormat mediaFormat) {
+            public final void a(long j10, long j11, b2.s sVar, MediaFormat mediaFormat) {
                 o0 o0Var = o0.this;
                 o0Var.getClass();
-                yVar.b(j10, j11, sVar, mediaFormat);
-                o0Var.b(j10, j11, sVar, mediaFormat);
+                yVar.a(j10, j11, sVar, mediaFormat);
+                o0Var.a(j10, j11, sVar, mediaFormat);
             }
         }).b();
     }
@@ -297,7 +297,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         Object obj;
         b2.v0 v0Var;
         boolean s02 = s0(k1Var, f0Var);
-        Object obj2 = f0Var.f43385a;
+        Object obj2 = f0Var.f43612a;
         if (!s02) {
             if (f0Var.b()) {
                 v0Var = b2.v0.d;
@@ -338,13 +338,13 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         }
         iVar.a();
         if (j3 != -9223372036854775807L) {
-            iVar.d = m(k1Var, obj2, j3);
+            iVar.d = n(k1Var, obj2, j3);
             iVar.a();
             return;
         }
         Object obj3 = j1Var.f3058a;
         if (!k1Var2.p()) {
-            obj = k1Var2.m(k1Var2.g(f0Var2.f43385a, h1Var).f3014c, j1Var, 0L).f3058a;
+            obj = k1Var2.m(k1Var2.g(f0Var2.f43612a, h1Var).f3014c, j1Var, 0L).f3058a;
         } else {
             obj = null;
         }
@@ -395,7 +395,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             } else {
                 d = t0Var.f10877a.d();
             }
-            long p5 = p(d);
+            long q6 = q(d);
             t0 t0Var2 = this.H.f10905i;
             if (s0(this.V.f10718a, t0Var.f10881g.f10891a)) {
                 j3 = this.J.h;
@@ -406,10 +406,10 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             b2.k1 k1Var = this.V.f10718a;
             float f7 = this.f10834y.h().f3336a;
             boolean z13 = this.V.f10726l;
-            p0 p0Var = new p0(kVar, p5, f7, this.f10807a0, j3);
+            p0 p0Var = new p0(kVar, q6, f7, this.f10807a0, j3);
             c10 = this.f10814f.c(p0Var);
             t0 t0Var3 = this.H.f10905i;
-            if (!c10 && t0Var3.e && p5 < 500000 && this.f10833x > 0) {
+            if (!c10 && t0Var3.e && q6 < 500000 && this.f10833x > 0) {
                 t0Var3.f10877a.i(this.V.f10733s);
                 c10 = this.f10814f.c(p0Var);
             }
@@ -441,7 +441,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                 z12 = true;
             }
             e2.d.g(z12);
-            t0Var4.f10877a.m(r0Var);
+            t0Var4.f10877a.p(r0Var);
         }
         w0();
     }
@@ -494,7 +494,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                     z12 = false;
                 }
                 e2.d.g(z12);
-                r12.m(r0Var);
+                r12.p(r0Var);
             }
         }
     }
@@ -535,10 +535,10 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                 throw e;
             }
             x2.v vVar = this.H.f10905i.f10888o;
-            e2.a.f("ExoPlayerImplInternal", "Disabling track due to error: " + b2.s.c(vVar.f45248c[i10].m()), e);
-            x2.v vVar2 = new x2.v((m1[]) vVar.f45247b.clone(), (x2.r[]) vVar.f45248c.clone(), vVar.d, vVar.e);
-            vVar2.f45247b[i10] = null;
-            vVar2.f45248c[i10] = null;
+            e2.a.f("ExoPlayerImplInternal", "Disabling track due to error: " + b2.s.c(vVar.f45471c[i10].m()), e);
+            x2.v vVar2 = new x2.v((m1[]) vVar.f45470b.clone(), (x2.r[]) vVar.f45471c.clone(), vVar.d, vVar.e);
+            vVar2.f45470b[i10] = null;
+            vVar2.f45471c[i10] = null;
             i(i10);
             t0 t0Var2 = this.H.f10905i;
             t0Var2.a(vVar2, this.V.f10733s, false, new boolean[t0Var2.f10883j.length]);
@@ -582,7 +582,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             while (min <= max) {
                 e1 e1Var = (e1) arrayList.get(min);
                 e1Var.d = i13;
-                i13 += e1Var.f10681a.f43335o.e.o();
+                i13 += e1Var.f10681a.f43562o.e.o();
                 min++;
             }
             b10 = f1Var.b();
@@ -664,7 +664,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             this.d.a();
             n0(1);
         } finally {
-            zVar.f7943a.removeCallbacksAndMessages(null);
+            zVar.f7942a.removeCallbacksAndMessages(null);
             lVar.i();
             gVar.e();
         }
@@ -755,7 +755,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             }
         }
         for (t0 t0Var2 = v0Var.f10905i; t0Var2 != null; t0Var2 = t0Var2.f10886m) {
-            for (x2.r rVar : t0Var2.f10888o.f45248c) {
+            for (x2.r rVar : t0Var2.f10888o.f45471c) {
                 if (rVar != null) {
                     rVar.r();
                 }
@@ -820,7 +820,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         } else if (this.V.e != 3 || r0()) {
             j11 = j12;
         }
-        this.f10822n.f7943a.sendEmptyMessageAtTime(2, j3 + j11);
+        this.f10822n.f7942a.sendEmptyMessageAtTime(2, j3 + j11);
     }
 
     public final void W(boolean z10) {
@@ -886,7 +886,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             v0Var.b();
             R(j3);
         }
-        u(false);
+        v(false);
         this.f10822n.e(2);
         return j3;
     }
@@ -909,8 +909,14 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
     }
 
     @Override
-    public final void a(u2.d0 d0Var) {
-        this.f10822n.a(8, d0Var).b();
+    public final void a(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
+        if (this.T) {
+            e2.z zVar = this.f10822n;
+            zVar.getClass();
+            e2.y b10 = e2.z.b();
+            b10.f7940a = zVar.f7942a.obtainMessage(37);
+            b10.b();
+        }
     }
 
     public final void a0(j1 j1Var) {
@@ -924,14 +930,8 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
     }
 
     @Override
-    public final void b(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
-        if (this.T) {
-            e2.z zVar = this.f10822n;
-            zVar.getClass();
-            e2.y b10 = e2.z.b();
-            b10.f7941a = zVar.f7943a.obtainMessage(37);
-            b10.b();
-        }
+    public final void b(u2.d0 d0Var) {
+        this.f10822n.a(8, d0Var).b();
     }
 
     public final void b0(b2.e r7, boolean r8) {
@@ -1011,7 +1011,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             v0 v0Var = this.H;
             if (v0Var.f10906j != v0Var.f10905i) {
                 W(true);
-                u(false);
+                v(false);
             }
         }
     }
@@ -1091,7 +1091,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         } else if ((r10 & 2) != 0) {
             h();
         }
-        u(false);
+        v(false);
     }
 
     @Override
@@ -1140,7 +1140,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                     x((u2.d0) message.obj);
                     break;
                 case 9:
-                    s((u2.d0) message.obj);
+                    t((u2.d0) message.obj);
                     break;
                 case 10:
                     O();
@@ -1236,10 +1236,10 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                     q0(((Float) message.obj).floatValue());
                     break;
                 case 33:
-                    q(message.arg1);
+                    r(message.arg1);
                     break;
                 case 34:
-                    r();
+                    s();
                     break;
                 case 35:
                     o0((a3.y) message.obj);
@@ -1276,9 +1276,9 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                     i11 = 3004;
                 }
             }
-            t(e, i11);
+            u(e, i11);
         } catch (g2.j e7) {
-            t(e7, e7.f9370a);
+            u(e7, e7.f9369a);
         } catch (n e10) {
             e = e10;
             int i14 = e.f10792s;
@@ -1334,8 +1334,8 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                         this.f10824o0 = e;
                     }
                     e2.y a2 = zVar.a(25, e);
-                    Handler handler = zVar.f7943a;
-                    Message message2 = a2.f7941a;
+                    Handler handler = zVar.f7942a;
+                    Message message2 = a2.f7940a;
                     message2.getClass();
                     handler.sendMessageAtFrontOfQueue(message2);
                     a2.a();
@@ -1346,16 +1346,16 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                 }
             }
         } catch (IOException e11) {
-            t(e11, 2000);
+            u(e11, 2000);
         } catch (RuntimeException e12) {
             n nVar2 = new n(2, e12, ((e12 instanceof IllegalStateException) || (e12 instanceof IllegalArgumentException)) ? 1004 : 1004);
             e2.a.f("ExoPlayerImplInternal", "Playback error", nVar2);
             u0(true, false);
             this.V = this.V.f(nVar2);
-        } catch (n2.f e13) {
-            t(e13, e13.f14909a);
+        } catch (n2.g e13) {
+            u(e13, e13.f15084a);
         } catch (u2.b e14) {
-            t(e14, 1002);
+            u(e14, 1002);
         }
         F();
         return true;
@@ -1429,8 +1429,8 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                 z11 = false;
             }
             x2.v vVar = t0Var.f10888o;
-            m1 m1Var = vVar.f45247b[i10];
-            x2.r rVar = vVar.f45248c[i10];
+            m1 m1Var = vVar.f45470b[i10];
+            x2.r rVar = vVar.f45471c[i10];
             if (r0() && this.V.e == 3) {
                 z12 = true;
             } else {
@@ -1550,18 +1550,12 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         } else if ((r10 & 2) != 0) {
             h();
         }
-        u(false);
+        v(false);
     }
 
-    public final long m(b2.k1 k1Var, Object obj, long j3) {
-        b2.h1 h1Var = this.f10832w;
-        int i10 = k1Var.g(obj, h1Var).f3014c;
-        b2.j1 j1Var = this.v;
-        k1Var.n(i10, j1Var);
-        if (j1Var.f3061f == -9223372036854775807L || !j1Var.a() || !j1Var.f3063i) {
-            return -9223372036854775807L;
-        }
-        return e2.d0.Q(e2.d0.A(j1Var.f3062g) - j1Var.f3061f) - (j3 + h1Var.e);
+    @Override
+    public final void m(u2.d1 d1Var) {
+        this.f10822n.a(9, (u2.d0) d1Var).b();
     }
 
     public final void m0(u2.g1 g1Var) {
@@ -1575,7 +1569,31 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         w(f1Var.b(), false);
     }
 
-    public final long n(t0 t0Var) {
+    public final long n(b2.k1 k1Var, Object obj, long j3) {
+        b2.h1 h1Var = this.f10832w;
+        int i10 = k1Var.g(obj, h1Var).f3014c;
+        b2.j1 j1Var = this.v;
+        k1Var.n(i10, j1Var);
+        if (j1Var.f3061f == -9223372036854775807L || !j1Var.a() || !j1Var.f3063i) {
+            return -9223372036854775807L;
+        }
+        return e2.d0.Q(e2.d0.A(j1Var.f3062g) - j1Var.f3061f) - (j3 + h1Var.e);
+    }
+
+    public final void n0(int i10) {
+        g1 g1Var = this.V;
+        if (g1Var.e != i10) {
+            if (i10 != 2) {
+                this.f10825p0 = -9223372036854775807L;
+            }
+            if (i10 != 3 && g1Var.f10730p) {
+                this.V = g1Var.i(false);
+            }
+            this.V = this.V.h(i10);
+        }
+    }
+
+    public final long o(t0 t0Var) {
         if (t0Var == null) {
             return 0L;
         }
@@ -1603,41 +1621,6 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         }
     }
 
-    public final void n0(int i10) {
-        g1 g1Var = this.V;
-        if (g1Var.e != i10) {
-            if (i10 != 2) {
-                this.f10825p0 = -9223372036854775807L;
-            }
-            if (i10 != 3 && g1Var.f10730p) {
-                this.V = g1Var.i(false);
-            }
-            this.V = this.V.h(i10);
-        }
-    }
-
-    public final Pair o(b2.k1 k1Var) {
-        long j3 = 0;
-        if (k1Var.p()) {
-            return Pair.create(g1.f10717u, 0L);
-        }
-        int a2 = k1Var.a(this.f10813e0);
-        Pair i10 = k1Var.i(this.v, this.f10832w, a2, -9223372036854775807L);
-        u2.f0 p5 = this.H.p(k1Var, i10.first, 0L);
-        long longValue = ((Long) i10.second).longValue();
-        if (p5.b()) {
-            Object obj = p5.f43385a;
-            b2.h1 h1Var = this.f10832w;
-            k1Var.g(obj, h1Var);
-            if (p5.f43387c == h1Var.e(p5.f43386b)) {
-                h1Var.f3016g.getClass();
-            }
-        } else {
-            j3 = longValue;
-        }
-        return Pair.create(p5, Long.valueOf(j3));
-    }
-
     public final void o0(a3.y yVar) {
         n1[] n1VarArr;
         for (n1 n1Var : this.f10806a) {
@@ -1652,12 +1635,26 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         }
     }
 
-    public final long p(long j3) {
-        t0 t0Var = this.H.f10908l;
-        if (t0Var == null) {
-            return 0L;
+    public final Pair p(b2.k1 k1Var) {
+        long j3 = 0;
+        if (k1Var.p()) {
+            return Pair.create(g1.f10717u, 0L);
         }
-        return Math.max(0L, j3 - (this.f10820k0 - t0Var.f10889p));
+        int a2 = k1Var.a(this.f10813e0);
+        Pair i10 = k1Var.i(this.v, this.f10832w, a2, -9223372036854775807L);
+        u2.f0 p5 = this.H.p(k1Var, i10.first, 0L);
+        long longValue = ((Long) i10.second).longValue();
+        if (p5.b()) {
+            Object obj = p5.f43612a;
+            b2.h1 h1Var = this.f10832w;
+            k1Var.g(obj, h1Var);
+            if (p5.f43614c == h1Var.e(p5.f43613b)) {
+                h1Var.f3016g.getClass();
+            }
+        } else {
+            j3 = longValue;
+        }
+        return Pair.create(p5, Long.valueOf(j3));
     }
 
     public final void p0(Object obj, e2.g gVar) {
@@ -1684,9 +1681,12 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         }
     }
 
-    public final void q(int i10) {
-        g1 g1Var = this.V;
-        z0(i10, g1Var.f10728n, g1Var.f10727m, g1Var.f10726l);
+    public final long q(long j3) {
+        t0 t0Var = this.H.f10908l;
+        if (t0Var == null) {
+            return 0L;
+        }
+        return Math.max(0L, j3 - (this.f10820k0 - t0Var.f10889p));
     }
 
     public final void q0(float f7) {
@@ -1705,8 +1705,9 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         }
     }
 
-    public final void r() {
-        q0(this.f10831t0);
+    public final void r(int i10) {
+        g1 g1Var = this.V;
+        z0(i10, g1Var.f10728n, g1Var.f10727m, g1Var.f10726l);
     }
 
     public final boolean r0() {
@@ -1717,7 +1718,24 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         return false;
     }
 
-    public final void s(u2.d0 d0Var) {
+    public final void s() {
+        q0(this.f10831t0);
+    }
+
+    public final boolean s0(b2.k1 k1Var, u2.f0 f0Var) {
+        if (!f0Var.b() && !k1Var.p()) {
+            int i10 = k1Var.g(f0Var.f43612a, this.f10832w).f3014c;
+            b2.j1 j1Var = this.v;
+            k1Var.n(i10, j1Var);
+            if (j1Var.a() && j1Var.f3063i && j1Var.f3061f != -9223372036854775807L) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void t(u2.d0 d0Var) {
         v0 v0Var = this.H;
         t0 t0Var = v0Var.f10908l;
         if (t0Var != null && t0Var.f10877a == d0Var) {
@@ -1729,30 +1747,6 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         if (t0Var2 != null && t0Var2.f10877a == d0Var) {
             E();
         }
-    }
-
-    public final boolean s0(b2.k1 k1Var, u2.f0 f0Var) {
-        if (!f0Var.b() && !k1Var.p()) {
-            int i10 = k1Var.g(f0Var.f43385a, this.f10832w).f3014c;
-            b2.j1 j1Var = this.v;
-            k1Var.n(i10, j1Var);
-            if (j1Var.a() && j1Var.f3063i && j1Var.f3061f != -9223372036854775807L) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final void t(IOException iOException, int i10) {
-        n nVar = new n(0, iOException, i10);
-        t0 t0Var = this.H.f10905i;
-        if (t0Var != null) {
-            nVar = nVar.a(t0Var.f10881g.f10891a);
-        }
-        e2.a.f("ExoPlayerImplInternal", "Playback error", nVar);
-        u0(false, false);
-        this.V = this.V.f(nVar);
     }
 
     public final void t0() {
@@ -1774,7 +1768,35 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         }
     }
 
-    public final void u(boolean z10) {
+    public final void u(IOException iOException, int i10) {
+        n nVar = new n(0, iOException, i10);
+        t0 t0Var = this.H.f10905i;
+        if (t0Var != null) {
+            nVar = nVar.a(t0Var.f10881g.f10891a);
+        }
+        e2.a.f("ExoPlayerImplInternal", "Playback error", nVar);
+        u0(false, false);
+        this.V = this.V.f(nVar);
+    }
+
+    public final void u0(boolean z10, boolean z11) {
+        boolean z12;
+        if (!z10 && this.f10815f0) {
+            z12 = false;
+        } else {
+            z12 = true;
+        }
+        P(z12, false, true, false);
+        this.W.f(z11 ? 1 : 0);
+        k kVar = this.f10814f;
+        if (kVar.h.remove(this.L) != null) {
+            kVar.d();
+        }
+        this.P.d(1, this.V.f10726l);
+        n0(1);
+    }
+
+    public final void v(boolean z10) {
         u2.f0 f0Var;
         long d;
         t0 t0Var = this.H.f10908l;
@@ -1795,32 +1817,10 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
         }
         g1Var.f10731q = d;
         g1 g1Var2 = this.V;
-        g1Var2.f10732r = p(g1Var2.f10731q);
+        g1Var2.f10732r = q(g1Var2.f10731q);
         if ((!equals || z10) && t0Var != null && t0Var.e) {
             x0(t0Var.f10888o);
         }
-    }
-
-    public final void u0(boolean z10, boolean z11) {
-        boolean z12;
-        if (!z10 && this.f10815f0) {
-            z12 = false;
-        } else {
-            z12 = true;
-        }
-        P(z12, false, true, false);
-        this.W.f(z11 ? 1 : 0);
-        k kVar = this.f10814f;
-        if (kVar.h.remove(this.L) != null) {
-            kVar.d();
-        }
-        this.P.d(1, this.V.f10726l);
-        n0(1);
-    }
-
-    @Override
-    public final void v(u2.d1 d1Var) {
-        this.f10822n.a(9, (u2.d0) d1Var).b();
     }
 
     public final void v0() {
@@ -1915,14 +1915,14 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
     public final void x0(x2.v vVar) {
         t0 t0Var = this.H.f10908l;
         t0Var.getClass();
-        p(t0Var.d());
+        q(t0Var.d());
         if (s0(this.V.f10718a, t0Var.f10881g.f10891a)) {
             long j3 = this.J.h;
         }
         b2.k1 k1Var = this.V.f10718a;
         float f7 = this.f10834y.h().f3336a;
         boolean z10 = this.V.f10726l;
-        x2.r[] rVarArr = vVar.f45248c;
+        x2.r[] rVarArr = vVar.f45471c;
         k kVar = this.f10814f;
         j jVar = (j) kVar.h.get(this.L);
         jVar.getClass();
@@ -1987,7 +1987,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             if (t0Var == null) {
                 break;
             }
-            x2.r[] rVarArr = t0Var.f10888o.f45248c;
+            x2.r[] rVarArr = t0Var.f10888o.f45471c;
             int length = rVarArr.length;
             while (i10 < length) {
                 x2.r rVar = rVarArr[i10];
@@ -2064,7 +2064,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             } else {
                 vVar = t0Var.f10888o;
             }
-            x2.r[] rVarArr = vVar.f45248c;
+            x2.r[] rVarArr = vVar.f45471c;
             ?? wVar = new com.google.android.gms.common.api.internal.w(4);
             boolean z15 = false;
             for (x2.r rVar : rVarArr) {
@@ -2081,7 +2081,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             if (z15) {
                 a1Var = wVar.i();
             } else {
-                e9.g0 g0Var = e9.i0.f8084b;
+                e9.g0 g0Var = e9.i0.f8083b;
                 a1Var = e9.a1.e;
             }
             list = a1Var;
@@ -2104,7 +2104,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
                             if (n1VarArr[i11].f10799a.f10685b != 1) {
                                 z13 = false;
                                 break;
-                            } else if (vVar2.f45247b[i11].f10790a != 0) {
+                            } else if (vVar2.f45470b[i11].f10790a != 0) {
                                 z16 = true;
                             }
                         }
@@ -2150,7 +2150,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             }
         }
         g1 g1Var2 = this.V;
-        return g1Var2.d(f0Var, j3, j10, j11, p(g1Var2.f10731q), o1Var2, vVar3, list2);
+        return g1Var2.d(f0Var, j3, j10, j11, q(g1Var2.f10731q), o1Var2, vVar3, list2);
     }
 
     public final void z0(int i10, int i11, int i12, boolean z10) {
@@ -2177,7 +2177,7 @@ public final class o0 implements Handler.Callback, u2.c0, h1, a3.y {
             C0(false, false);
             v0 v0Var = this.H;
             for (t0 t0Var = v0Var.f10905i; t0Var != null; t0Var = t0Var.f10886m) {
-                for (x2.r rVar : t0Var.f10888o.f45248c) {
+                for (x2.r rVar : t0Var.f10888o.f45471c) {
                     if (rVar != null) {
                         rVar.e(z11);
                     }

@@ -2,42 +2,42 @@ package ra;
 
 import androidx.recyclerview.widget.RecyclerView;
 import c5.b0;
+import hh.h;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import l.d;
 import org.telegram.messenger.BuildVars;
-import org.telegram.ui.Cells.ia;
-import org.telegram.ui.Cells.p6;
 public final class a {
-    public static boolean f42203i = true;
-    public final int f42204a;
-    public int f42205b;
-    public Object f42206c;
+    public static boolean f42430i = true;
+    public final int f42431a;
+    public int f42432b;
+    public Object f42433c;
     public Serializable d;
     public Object e;
-    public Object f42207f;
-    public Object f42208g;
+    public Object f42434f;
+    public Object f42435g;
     public Object h;
 
     public a(int i10) {
-        this.f42204a = i10;
+        this.f42431a = i10;
     }
 
     public b a() {
         String str;
-        if (this.f42205b == 0) {
+        if (this.f42432b == 0) {
             str = " registrationStatus";
         } else {
             str = "";
         }
-        if (((Long) this.f42208g) == null) {
+        if (((Long) this.f42435g) == null) {
             str = str.concat(" expiresInSecs");
         }
         if (((Long) this.h) == null) {
-            str = p6.t(str, " tokenCreationEpochInSecs");
+            str = t8.b.v(str, " tokenCreationEpochInSecs");
         }
         if (str.isEmpty()) {
-            return new b((String) this.f42206c, this.f42205b, (String) this.d, (String) this.e, ((Long) this.f42208g).longValue(), ((Long) this.h).longValue(), (String) this.f42207f);
+            return new b((String) this.f42433c, this.f42432b, (String) this.d, (String) this.e, ((Long) this.f42435g).longValue(), ((Long) this.h).longValue(), (String) this.f42434f);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
@@ -47,14 +47,14 @@ public final class a {
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             s4.a aVar = (s4.a) arrayList.get(i11);
-            int i12 = aVar.f42666a;
+            int i12 = aVar.f42893a;
             if (i12 == 8) {
                 if (g(aVar.d, i11 + 1) == i10) {
                     return true;
                 }
             } else {
                 if (i12 == 1) {
-                    int i13 = aVar.f42667b;
+                    int i13 = aVar.f42894b;
                     int i14 = aVar.d + i13;
                     while (i13 < i14) {
                         if (g(i13, i11 + 1) == i10) {
@@ -75,57 +75,57 @@ public final class a {
         ArrayList arrayList = (ArrayList) this.e;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
-            ((ia) this.f42207f).d((s4.a) arrayList.get(i10));
+            ((h) this.f42434f).a((s4.a) arrayList.get(i10));
         }
         m(arrayList);
-        this.f42205b = 0;
+        this.f42432b = 0;
     }
 
     public void d() {
-        ia iaVar = (ia) this.f42207f;
+        h hVar = (h) this.f42434f;
         c();
         ArrayList arrayList = (ArrayList) this.d;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             s4.a aVar = (s4.a) arrayList.get(i10);
-            int i11 = aVar.f42666a;
+            int i11 = aVar.f42893a;
             if (i11 != 1) {
                 if (i11 != 2) {
                     if (i11 != 4) {
                         if (i11 == 8) {
-                            iaVar.d(aVar);
-                            iaVar.x(aVar.f42667b, aVar.d);
+                            hVar.a(aVar);
+                            hVar.d(aVar.f42894b, aVar.d);
                         }
                     } else {
-                        iaVar.d(aVar);
-                        iaVar.q(aVar.f42667b, aVar.d, aVar.f42668c);
+                        hVar.a(aVar);
+                        hVar.b(aVar.f42894b, aVar.d, aVar.f42895c);
                     }
                 } else {
-                    iaVar.d(aVar);
-                    int i12 = aVar.f42667b;
+                    hVar.a(aVar);
+                    int i12 = aVar.f42894b;
                     int i13 = aVar.d;
-                    RecyclerView recyclerView = (RecyclerView) iaVar.f20291b;
+                    RecyclerView recyclerView = hVar.f10534a;
                     recyclerView.f0(i12, i13, true);
                     recyclerView.f2867w0 = true;
-                    recyclerView.f2863t0.f42862c += i13;
+                    recyclerView.f2863t0.f43089c += i13;
                 }
             } else {
-                iaVar.d(aVar);
-                iaVar.v(aVar.f42667b, aVar.d);
+                hVar.a(aVar);
+                hVar.c(aVar.f42894b, aVar.d);
             }
         }
         m(arrayList);
-        this.f42205b = 0;
+        this.f42432b = 0;
     }
 
     public void e(s4.a aVar) {
         int i10;
-        b0 b0Var = (b0) this.f42206c;
-        int i11 = aVar.f42666a;
+        b0 b0Var = (b0) this.f42433c;
+        int i11 = aVar.f42893a;
         if (i11 != 1 && i11 != 8) {
-            int o9 = o(aVar.f42667b, i11);
-            int i12 = aVar.f42667b;
-            int i13 = aVar.f42666a;
+            int o9 = o(aVar.f42894b, i11);
+            int i12 = aVar.f42894b;
+            int i13 = aVar.f42893a;
             if (i13 != 2) {
                 if (i13 == 4) {
                     i10 = 1;
@@ -137,29 +137,29 @@ public final class a {
             }
             int i14 = 1;
             for (int i15 = 1; i15 < aVar.d; i15++) {
-                int o10 = o((i10 * i15) + aVar.f42667b, aVar.f42666a);
-                int i16 = aVar.f42666a;
+                int o10 = o((i10 * i15) + aVar.f42894b, aVar.f42893a);
+                int i16 = aVar.f42893a;
                 if (i16 == 2 ? o10 == o9 : !(i16 != 4 || o10 != o9 + 1)) {
                     i14++;
                 } else {
-                    s4.a j3 = j(i16, o9, aVar.f42668c, i14);
+                    s4.a j3 = j(i16, o9, aVar.f42895c, i14);
                     f(j3, i12);
-                    j3.f42668c = null;
+                    j3.f42895c = null;
                     b0Var.i(j3);
-                    if (aVar.f42666a == 4) {
+                    if (aVar.f42893a == 4) {
                         i12 += i14;
                     }
                     o9 = o10;
                     i14 = 1;
                 }
             }
-            Object obj = aVar.f42668c;
-            aVar.f42668c = null;
+            Object obj = aVar.f42895c;
+            aVar.f42895c = null;
             b0Var.i(aVar);
             if (i14 > 0) {
-                s4.a j10 = j(aVar.f42666a, o9, obj, i14);
+                s4.a j10 = j(aVar.f42893a, o9, obj, i14);
                 f(j10, i12);
-                j10.f42668c = null;
+                j10.f42895c = null;
                 b0Var.i(j10);
                 return;
             }
@@ -169,21 +169,21 @@ public final class a {
     }
 
     public void f(s4.a aVar, int i10) {
-        ia iaVar = (ia) this.f42207f;
-        iaVar.d(aVar);
-        int i11 = aVar.f42666a;
+        h hVar = (h) this.f42434f;
+        hVar.a(aVar);
+        int i11 = aVar.f42893a;
         if (i11 != 2) {
             if (i11 == 4) {
-                iaVar.q(i10, aVar.d, aVar.f42668c);
+                hVar.b(i10, aVar.d, aVar.f42895c);
                 return;
             }
             throw new IllegalArgumentException("only remove and update ops can be dispatched in first pass");
         }
         int i12 = aVar.d;
-        RecyclerView recyclerView = (RecyclerView) iaVar.f20291b;
+        RecyclerView recyclerView = hVar.f10534a;
         recyclerView.f0(i10, i12, true);
         recyclerView.f2867w0 = true;
-        recyclerView.f2863t0.f42862c += i12;
+        recyclerView.f2863t0.f43089c += i12;
     }
 
     public int g(int i10, int i11) {
@@ -191,9 +191,9 @@ public final class a {
         int size = arrayList.size();
         while (i11 < size) {
             s4.a aVar = (s4.a) arrayList.get(i11);
-            int i12 = aVar.f42666a;
+            int i12 = aVar.f42893a;
             if (i12 == 8) {
-                int i13 = aVar.f42667b;
+                int i13 = aVar.f42894b;
                 if (i13 == i10) {
                     i10 = aVar.d;
                 } else {
@@ -205,7 +205,7 @@ public final class a {
                     }
                 }
             } else {
-                int i14 = aVar.f42667b;
+                int i14 = aVar.f42894b;
                 if (i14 > i10) {
                     continue;
                 } else if (i12 == 2) {
@@ -262,46 +262,46 @@ public final class a {
     }
 
     public s4.a j(int i10, int i11, Object obj, int i12) {
-        s4.a aVar = (s4.a) ((b0) this.f42206c).a();
+        s4.a aVar = (s4.a) ((b0) this.f42433c).a();
         if (aVar == null) {
             ?? obj2 = new Object();
-            obj2.f42666a = i10;
-            obj2.f42667b = i11;
+            obj2.f42893a = i10;
+            obj2.f42894b = i11;
             obj2.d = i12;
-            obj2.f42668c = obj;
+            obj2.f42895c = obj;
             return obj2;
         }
-        aVar.f42666a = i10;
-        aVar.f42667b = i11;
+        aVar.f42893a = i10;
+        aVar.f42894b = i11;
         aVar.d = i12;
-        aVar.f42668c = obj;
+        aVar.f42895c = obj;
         return aVar;
     }
 
     public void k(s4.a aVar) {
-        ia iaVar = (ia) this.f42207f;
+        h hVar = (h) this.f42434f;
         ((ArrayList) this.e).add(aVar);
-        int i10 = aVar.f42666a;
+        int i10 = aVar.f42893a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 4) {
                     if (i10 == 8) {
-                        iaVar.x(aVar.f42667b, aVar.d);
+                        hVar.d(aVar.f42894b, aVar.d);
                         return;
                     }
                     throw new IllegalArgumentException("Unknown update op type for " + aVar);
                 }
-                iaVar.q(aVar.f42667b, aVar.d, aVar.f42668c);
+                hVar.b(aVar.f42894b, aVar.d, aVar.f42895c);
                 return;
             }
-            int i11 = aVar.f42667b;
+            int i11 = aVar.f42894b;
             int i12 = aVar.d;
-            RecyclerView recyclerView = (RecyclerView) iaVar.f20291b;
+            RecyclerView recyclerView = hVar.f10534a;
             recyclerView.f0(i11, i12, false);
             recyclerView.f2867w0 = true;
             return;
         }
-        iaVar.v(aVar.f42667b, aVar.d);
+        hVar.c(aVar.f42894b, aVar.d);
     }
 
     public void l() {
@@ -312,8 +312,8 @@ public final class a {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             s4.a aVar = (s4.a) arrayList.get(i10);
-            aVar.f42668c = null;
-            ((b0) this.f42206c).i(aVar);
+            aVar.f42895c = null;
+            ((b0) this.f42433c).i(aVar);
         }
         arrayList.clear();
     }
@@ -325,13 +325,13 @@ public final class a {
     public int o(int i10, int i11) {
         int i12;
         int i13;
-        b0 b0Var = (b0) this.f42206c;
+        b0 b0Var = (b0) this.f42433c;
         ArrayList arrayList = (ArrayList) this.e;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             s4.a aVar = (s4.a) arrayList.get(size);
-            int i14 = aVar.f42666a;
+            int i14 = aVar.f42893a;
             if (i14 == 8) {
-                int i15 = aVar.f42667b;
+                int i15 = aVar.f42894b;
                 int i16 = aVar.d;
                 if (i15 < i16) {
                     i13 = i15;
@@ -350,23 +350,23 @@ public final class a {
                         i10++;
                     } else {
                         if (i11 == 1) {
-                            aVar.f42667b = i15 + 1;
+                            aVar.f42894b = i15 + 1;
                         } else if (i11 == 2) {
-                            aVar.f42667b = i15 - 1;
+                            aVar.f42894b = i15 - 1;
                         }
                         i10--;
                     }
                 } else if (i10 < i15) {
                     if (i11 == 1) {
-                        aVar.f42667b = i15 + 1;
+                        aVar.f42894b = i15 + 1;
                         aVar.d = i16 + 1;
                     } else if (i11 == 2) {
-                        aVar.f42667b = i15 - 1;
+                        aVar.f42894b = i15 - 1;
                         aVar.d = i16 - 1;
                     }
                 }
             } else {
-                int i17 = aVar.f42667b;
+                int i17 = aVar.f42894b;
                 if (i17 <= i10) {
                     if (i14 == 1) {
                         i10 -= aVar.d;
@@ -374,24 +374,24 @@ public final class a {
                         i10 += aVar.d;
                     }
                 } else if (i11 == 1) {
-                    aVar.f42667b = i17 + 1;
+                    aVar.f42894b = i17 + 1;
                 } else if (i11 == 2) {
-                    aVar.f42667b = i17 - 1;
+                    aVar.f42894b = i17 - 1;
                 }
             }
         }
         for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
             s4.a aVar2 = (s4.a) arrayList.get(size2);
-            if (aVar2.f42666a == 8) {
+            if (aVar2.f42893a == 8) {
                 int i18 = aVar2.d;
-                if (i18 == aVar2.f42667b || i18 < 0) {
+                if (i18 == aVar2.f42894b || i18 < 0) {
                     arrayList.remove(size2);
-                    aVar2.f42668c = null;
+                    aVar2.f42895c = null;
                     b0Var.i(aVar2);
                 }
             } else if (aVar2.d <= 0) {
                 arrayList.remove(size2);
-                aVar2.f42668c = null;
+                aVar2.f42895c = null;
                 b0Var.i(aVar2);
             }
         }
@@ -399,7 +399,7 @@ public final class a {
     }
 
     public String toString() {
-        switch (this.f42204a) {
+        switch (this.f42431a) {
             case 1:
                 re.b bVar = re.b.e;
                 return n();
@@ -408,14 +408,14 @@ public final class a {
         }
     }
 
-    public a(ia iaVar) {
-        this.f42204a = 3;
-        this.f42206c = new b0(30, 6);
+    public a(h hVar) {
+        this.f42431a = 3;
+        this.f42433c = new b0(30, 6);
         this.d = new ArrayList();
         this.e = new ArrayList();
-        this.f42205b = 0;
+        this.f42432b = 0;
         this.h = BuildVars.DEBUG_VERSION ? new ArrayList() : null;
-        this.f42207f = iaVar;
-        this.f42208g = new ka.c(this, 16);
+        this.f42434f = hVar;
+        this.f42435g = new d(this);
     }
 }

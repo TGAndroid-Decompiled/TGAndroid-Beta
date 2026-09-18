@@ -1,98 +1,69 @@
 package yh;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qr;
-public final class z2 extends Drawable {
-    public Drawable f48078g;
-    public int h;
-    public int f48079i;
-    public final Paint f48075b = new Paint(1);
-    public final Shader[] f48076c = new Shader[2];
-    public final Matrix d = new Matrix();
-    public final org.telegram.ui.Components.c6 e = new org.telegram.ui.Components.c6(1.0f, new y2(this, 0), 0, 420, qr.h);
-    public final RectF f48077f = new RectF();
-    public final int f48074a = 1;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.h9;
+public final class z2 extends View {
+    public final m3 f48313a;
+    public final ImageReceiver f48314b;
+    public final Drawable f48315c;
 
-    public final void a(int i10, int i11) {
-        if (this.h == i10 && this.f48079i == i11) {
-            return;
-        }
-        Shader[] shaderArr = this.f48076c;
-        shaderArr[0] = shaderArr[1];
-        if (this.f48074a == 0) {
-            this.h = i10;
-            this.f48079i = i11;
-            shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        } else {
-            this.h = i10;
-            this.f48079i = i11;
-            shaderArr[1] = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(340.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        }
-        this.e.d(0.0f, true);
-        invalidateSelf();
+    public z2(Context context, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject) {
+        super(context);
+        m3 m3Var = new m3(this, tL_starGiftUnique, 60, 0.27f);
+        this.f48313a = m3Var;
+        m3Var.f47714t = 3;
+        h9 h9Var = new h9((org.telegram.ui.ActionBar.e6) null);
+        h9Var.p(tLObject);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f48314b = imageReceiver;
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
+        imageReceiver.setForUserOrChat(tLObject, h9Var);
+        Drawable mutate = context.getDrawable(R.drawable.chats_undo).mutate();
+        this.f48315c = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19464z6, false), PorterDuff.Mode.MULTIPLY));
+        mutate.setBounds(AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f48077f;
-        rectF.set(bounds);
-        rectF.right = rectF.width() + rectF.left;
-        int i10 = 0;
-        float d = this.e.d(1.0f, false);
-        while (true) {
-            Shader[] shaderArr = this.f48076c;
-            if (i10 >= shaderArr.length) {
-                break;
-            }
-            if (shaderArr[i10] != null) {
-                float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.25d);
-                if (pow > 0.0f) {
-                    Matrix matrix = this.d;
-                    matrix.reset();
-                    if (this.f48074a == 1) {
-                        matrix.postTranslate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-                    } else {
-                        matrix.postScale(getBounds().width() / 100.0f, 1.0f);
-                    }
-                    shaderArr[i10].setLocalMatrix(matrix);
-                    Shader shader = shaderArr[i10];
-                    Paint paint = this.f48075b;
-                    paint.setShader(shader);
-                    paint.setAlpha((int) (pow * 255.0f));
-                    canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
-                }
-            }
-            i10++;
-        }
-        if (this.f48078g != null) {
-            canvas.save();
-            canvas.translate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-            j0.a(canvas, 0, this.f48078g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
-            canvas.restore();
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f48314b.onAttachedToWindow();
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f48314b.onDetachedFromWindow();
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void onDraw(Canvas canvas) {
+        int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
+        int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
+        m3 m3Var = this.f48313a;
+        m3Var.setBounds(width, height, AndroidUtilities.dp(60.0f) + width, AndroidUtilities.dp(60.0f) + height);
+        m3Var.draw(canvas);
+        canvas.save();
+        canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
+        this.f48315c.draw(canvas);
+        canvas.restore();
+        ImageReceiver imageReceiver = this.f48314b;
+        imageReceiver.setImageCoords(AndroidUtilities.dp(96.0f) + width, height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+        imageReceiver.draw(canvas);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
     }
 }

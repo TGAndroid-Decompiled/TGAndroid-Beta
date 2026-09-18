@@ -2,7 +2,7 @@ package ai;
 
 import android.content.Context;
 import org.telegram.messenger.Emoji;
-public final class a6 extends org.telegram.ui.ActionBar.k5 {
+public final class a6 extends org.telegram.ui.ActionBar.j5 {
     public final int M0;
 
     public a6(Context context, int i10) {

@@ -1,76 +1,59 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-public final class k40 extends org.telegram.ui.Components.ju {
-    public final k60 V;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.os.Build;
+import android.widget.FrameLayout;
+public final class k40 extends FrameLayout {
+    public final RectF f34985a;
+    public final RectF f34986b;
+    public final RectF f34987c;
+    public final Paint d;
+    public final i60 e;
 
-    public k40(k60 k60Var, LaunchActivity launchActivity, o50 o50Var, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(launchActivity, o50Var, o2Var, 5, true, f6Var);
-        this.V = k60Var;
+    public k40(i60 i60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.e = i60Var;
+        this.f34985a = new RectF();
+        this.f34986b = new RectF();
+        this.f34987c = new RectF();
+        this.d = new Paint(1);
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == getEditText()) {
+    public final void dispatchDraw(Canvas canvas) {
+        i60 i60Var = this.e;
+        l40 l40Var = i60Var.F;
+        float y3 = l40Var.getY() + l40Var.getMeasuredHeight();
+        le.e eVar = i60Var.B3;
+        RectF rectF = this.f34985a;
+        rectF.set(0.0f, y3 - eVar.e, getMeasuredWidth(), getMeasuredHeight());
+        RectF rectF2 = this.f34986b;
+        rectF2.set(0.0f, l40Var.getY() + l40Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+        float y10 = l40Var.getY() + l40Var.getMeasuredHeight();
+        RectF rectF3 = this.f34987c;
+        rectF3.set(0.0f, (l40Var.getY() + l40Var.getMeasuredHeight()) - eVar.e, getMeasuredWidth(), y10);
+        int i10 = Build.VERSION.SDK_INT;
+        Paint paint = this.d;
+        if (i10 >= 29 && i60Var.Q2 != null && canvas.isHardwareAccelerated()) {
+            paint.setColor(-14933463);
+            canvas.drawRect(rectF, paint);
             canvas.save();
-            k60 k60Var = this.V;
-            k60Var.H.getEditText().setTranslationY(view.getMeasuredHeight() - k60Var.B3.e);
-            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.clipRect(rectF);
+            canvas.translate(-getX(), -getY());
+            float f7 = i60Var.R2;
+            canvas.scale(f7, f7);
+            canvas.drawRenderNode(i60Var.Q2);
             canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void f() {
-        ViewGroup viewGroup;
-        super.f();
-        org.telegram.ui.Components.kz emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f25778w0 = false;
-            emojiView.f25780w2 = false;
-            emojiView.setShouldDrawBackground(false);
-            viewGroup = ((org.telegram.ui.ActionBar.g3) this.V).containerView;
-            emojiView.setBottomInset(viewGroup.getPaddingBottom());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        le.e eVar = this.V.B3;
-        if (eVar.e == 0.0f) {
-            eVar.c(getMeasuredHeight());
+            paint.setColor(234881023);
+            canvas.drawRect(rectF2, paint);
         } else {
-            eVar.a(getMeasuredHeight());
+            paint.setColor(-14933463);
+            canvas.drawRect(rectF3, paint);
+            paint.setColor(i0.a.h(234881023, -14933463));
+            canvas.drawRect(rectF2, paint);
         }
-    }
-
-    @Override
-    public final void p() {
-        int i10;
-        ph.i iVar = this.V.C1;
-        if (this.e) {
-            i10 = Math.max(0, getEmojiPadding());
-        } else if (this.N) {
-            i10 = Math.max(0, getKeyboardHeight());
-        } else {
-            i10 = 0;
-        }
-        if (i10 > 0) {
-            iVar.f(i10);
-        } else {
-            iVar.h(false);
-        }
-    }
-
-    @Override
-    public final void y() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.V).containerView;
-        viewGroup.requestApplyInsets();
+        super.dispatchDraw(canvas);
     }
 }

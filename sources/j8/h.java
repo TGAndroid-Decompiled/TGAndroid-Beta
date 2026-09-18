@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import g8.j;
 import java.util.Arrays;
 import n6.l;
-import w7.e0;
+import w7.f0;
 public class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new j(16);
     public final int f12941a;
@@ -45,10 +45,10 @@ public class h extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = e0.q(parcel, 20293);
-        e0.s(parcel, 2, 4);
+        int q6 = f0.q(parcel, 20293);
+        f0.s(parcel, 2, 4);
         parcel.writeInt(this.f12941a);
-        e0.e(parcel, 3, this.f12942b);
-        e0.r(parcel, q6);
+        f0.e(parcel, 3, this.f12942b);
+        f0.r(parcel, q6);
     }
 }

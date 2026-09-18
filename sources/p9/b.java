@@ -4,24 +4,24 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import p7.j;
-import w7.e0;
+import w7.f0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(4);
-    public final String f40770a;
-    public final String f40771b;
-    public final String f40772c;
+    public final String f40998a;
+    public final String f40999b;
+    public final String f41000c;
     public final String d;
     public final a e;
-    public final String f40773f;
+    public final String f41001f;
     public final Bundle h;
 
     public b(String str, String str2, String str3, String str4, a aVar, String str5, Bundle bundle) {
-        this.f40770a = str;
-        this.f40771b = str2;
-        this.f40772c = str3;
+        this.f40998a = str;
+        this.f40999b = str2;
+        this.f41000c = str3;
         this.d = str4;
         this.e = aVar;
-        this.f40773f = str5;
+        this.f41001f = str5;
         if (bundle != null) {
             this.h = bundle;
         } else {
@@ -39,11 +39,11 @@ public final class b extends o6.a {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ActionImpl { { actionType: '");
-        sb2.append(this.f40770a);
+        sb2.append(this.f40998a);
         sb2.append("' } { objectName: '");
-        sb2.append(this.f40771b);
+        sb2.append(this.f40999b);
         sb2.append("' } { objectUrl: '");
-        sb2.append(this.f40772c);
+        sb2.append(this.f41000c);
         sb2.append("' } ");
         String str = this.d;
         if (str != null) {
@@ -57,7 +57,7 @@ public final class b extends o6.a {
             sb2.append(aVar.toString());
             sb2.append("' } ");
         }
-        String str2 = this.f40773f;
+        String str2 = this.f41001f;
         if (str2 != null) {
             sb2.append("{ actionStatus: '");
             sb2.append(str2);
@@ -75,14 +75,14 @@ public final class b extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 1, this.f40770a);
-        e0.l(parcel, 2, this.f40771b);
-        e0.l(parcel, 3, this.f40772c);
-        e0.l(parcel, 4, this.d);
-        e0.k(parcel, 5, this.e, i10);
-        e0.l(parcel, 6, this.f40773f);
-        e0.b(parcel, 7, this.h);
-        e0.r(parcel, q6);
+        int q6 = f0.q(parcel, 20293);
+        f0.l(parcel, 1, this.f40998a);
+        f0.l(parcel, 2, this.f40999b);
+        f0.l(parcel, 3, this.f41000c);
+        f0.l(parcel, 4, this.d);
+        f0.k(parcel, 5, this.e, i10);
+        f0.l(parcel, 6, this.f41001f);
+        f0.b(parcel, 7, this.h);
+        f0.r(parcel, q6);
     }
 }

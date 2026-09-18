@@ -1,61 +1,29 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class hn0 extends zg.n0 {
-    public final in0 f24702h0;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+public final class hn0 implements View.OnClickListener {
+    public final in0 f24706a;
 
-    public hn0(in0 in0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(null, i10, view, tL_reactionCount, false, true, f6Var);
-        this.f24702h0 = in0Var;
+    public hn0(in0 in0Var) {
+        this.f24706a = in0Var;
     }
 
     @Override
-    public final boolean e() {
-        if (this.f49145w <= 0 && !this.f49144u && this.F.f29379l == 1.0f) {
-            return false;
+    public final void onClick(View view) {
+        jn0 jn0Var = this.f24706a.f25020c;
+        for (int i10 = 0; i10 < jn0Var.e.size(); i10++) {
+            MessageObject messageObject = (MessageObject) jn0Var.e.get(i10);
+            if (jn0Var.H) {
+                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
+            } else {
+                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
+                DownloadController.getInstance(jn0Var.d).updateFilesLoadingPriority();
+            }
         }
-        return true;
-    }
-
-    @Override
-    public final boolean i() {
-        return !e();
-    }
-
-    @Override
-    public final int j() {
-        return 18;
-    }
-
-    @Override
-    public final void s(float f7) {
-        int i10;
-        int i11;
-        int v02;
-        int i12 = this.f49132i;
-        in0 in0Var = this.f24702h0;
-        if (in0Var.e) {
-            i10 = org.telegram.ui.ActionBar.j6.Fj;
-        } else {
-            i10 = org.telegram.ui.ActionBar.j6.f19196va;
-        }
-        this.N = i0.a.d(f7, i12, org.telegram.ui.ActionBar.j6.v0(i10, in0Var.f24973s.f25360c));
-        int i13 = this.f49130g;
-        if (in0Var.e) {
-            i11 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Cj, in0Var.f24973s.f25360c);
-        } else {
-            i11 = 0;
-        }
-        int d = i0.a.d(f7, i13, i11);
-        this.O = d;
-        this.N = org.telegram.ui.ActionBar.j6.v(d, this.N);
-        int i14 = this.h;
-        if (in0Var.e) {
-            v02 = 1526726655;
-        } else {
-            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19215wa, in0Var.f24973s.f25360c);
-        }
-        this.P = i0.a.d(f7, i14, v02);
+        jn0Var.d(true);
     }
 }

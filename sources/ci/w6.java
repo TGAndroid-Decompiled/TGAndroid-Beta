@@ -41,37 +41,37 @@ public final class w6 extends FrameLayout {
         z5Var.e(currentUser, z5Var.getAvatarDrawable());
         b6Var.f583b.l(Emoji.replaceEmoji(UserObject.getUserName(currentUser), b6Var.f583b.getPaint().getFontMetricsInt(), false), false);
         b6Var.c(LocaleController.getString(R.string.RightNow), false);
-        v7Var.addView(b6Var, w7.x5.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
+        v7Var.addView(b6Var, w7.y5.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close_white).mutate());
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        v7Var.addView(imageView, w7.x5.d(40, 40.0f, 53, 12.0f, 15.0f, 12.0f, 0.0f));
-        addView(v7Var, w7.x5.c(-2.0f, -1));
+        v7Var.addView(imageView, w7.y5.d(40, 40.0f, 53, 12.0f, 15.0f, 12.0f, 0.0f));
+        addView(v7Var, w7.y5.c(-2.0f, -1));
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.d = frameLayout;
         ai.xa xaVar = new ai.xa(getContext(), dVar);
         this.e = xaVar;
         xaVar.f1733s0 = true;
         xaVar.setTranslationY(AndroidUtilities.dp(8.0f));
-        frameLayout.addView(xaVar, w7.x5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
+        frameLayout.addView(xaVar, w7.y5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
         ImageView imageView2 = new ImageView(activity);
         imageView2.setImageResource(R.drawable.msg_share);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        frameLayout.addView(imageView2, w7.x5.d(28, 28.0f, 85, 0.0f, 0.0f, 12.0f, 16.0f));
+        frameLayout.addView(imageView2, w7.y5.d(28, 28.0f, 85, 0.0f, 0.0f, 12.0f, 16.0f));
         FrameLayout frameLayout2 = new FrameLayout(activity);
         frameLayout2.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(22.0f), i0.a.k(-16777216, 122)));
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
         textView.setText(LocaleController.getString(R.string.ReplyPrivately));
-        frameLayout2.addView(textView, w7.x5.d(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
+        frameLayout2.addView(textView, w7.y5.d(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
         ImageView imageView3 = new ImageView(activity);
         imageView3.setImageResource(R.drawable.input_attach);
         imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        frameLayout2.addView(imageView3, w7.x5.d(28, 28.0f, 21, 0.0f, 0.0f, 9.0f, 0.0f));
-        frameLayout.addView(frameLayout2, w7.x5.d(-1, 44.0f, 87, 9.0f, 8.0f, 55.0f, 8.0f));
-        addView(frameLayout, w7.x5.c(-1.0f, -1));
+        frameLayout2.addView(imageView3, w7.y5.d(28, 28.0f, 21, 0.0f, 0.0f, 9.0f, 0.0f));
+        frameLayout.addView(frameLayout2, w7.y5.d(-1, 44.0f, 87, 9.0f, 8.0f, 55.0f, 8.0f));
+        addView(frameLayout, w7.y5.c(-1.0f, -1));
         v7Var.setAlpha(0.0f);
         frameLayout.setAlpha(0.0f);
         setImportantForAccessibility(4);
@@ -120,7 +120,7 @@ public final class w6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.e.f1717b0.b(org.telegram.ui.Components.x5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.e.f1717b0.b(org.telegram.ui.Components.z5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

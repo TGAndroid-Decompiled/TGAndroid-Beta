@@ -123,7 +123,7 @@ public final class q0 implements Utilities.Callback3 {
                     o8Var2.f5184u0 = 1.0f;
                     ocVar.u();
                     if (ocVar.X0 != null && (qbVar = ocVar.f5272v1) != null) {
-                        qg.e2 m0 = qbVar.m0(ocVar.K1.f5174p0, true);
+                        qg.b2 m0 = qbVar.m0(ocVar.K1.f5174p0, true);
                         ecVar.setHasRoundVideo(true);
                         ocVar.X0.s(ocVar.K1, m0, true);
                         AndroidUtilities.cancelRunOnUIThread(pVar.h);
@@ -148,14 +148,14 @@ public final class q0 implements Utilities.Callback3 {
                     try {
                         int i13 = Build.VERSION.SDK_INT;
                         if (i13 < 23) {
-                            str2 = rVar.f8582g;
+                            str2 = rVar.f8581g;
                         } else {
                             if (i13 >= 30) {
                                 tVar = rVar.i(true);
                             }
                             if (tVar != null) {
-                                str2 = !TextUtils.isEmpty(rVar.f8582g) ? new String(tVar.f2072b.doFinal(Utilities.hexToBytes(rVar.f8582g)), StandardCharsets.UTF_8) : rVar.f8582g;
-                            } else if (!TextUtils.isEmpty(rVar.f8582g)) {
+                                str2 = !TextUtils.isEmpty(rVar.f8581g) ? new String(tVar.f2072b.doFinal(Utilities.hexToBytes(rVar.f8581g)), StandardCharsets.UTF_8) : rVar.f8581g;
+                            } else if (!TextUtils.isEmpty(rVar.f8581g)) {
                                 throw new RuntimeException("No cryptoObject found");
                             }
                         }

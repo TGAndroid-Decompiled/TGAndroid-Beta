@@ -1,42 +1,57 @@
 package w7;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public abstract class w {
-    public static final int a(int i10, int i11, int i12) {
-        if (i12 > 0) {
-            if (i10 < i11) {
-                int i13 = i11 % i12;
-                if (i13 < 0) {
-                    i13 += i12;
-                }
-                int i14 = i10 % i12;
-                if (i14 < 0) {
-                    i14 += i12;
-                }
-                int i15 = (i13 - i14) % i12;
-                if (i15 < 0) {
-                    i15 += i12;
-                }
-                return i11 - i15;
+    public static String a(Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String i10;
+        int i11 = 0;
+        int i12 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i12 >= length) {
+                break;
             }
-        } else if (i12 < 0) {
-            if (i10 > i11) {
-                int i16 = -i12;
-                int i17 = i10 % i16;
-                if (i17 < 0) {
-                    i17 += i16;
+            Object obj = objArr[i12];
+            if (obj == null) {
+                i10 = "null";
+            } else {
+                try {
+                    i10 = obj.toString();
+                } catch (Exception e) {
+                    String C = a4.a.C(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e);
+                    i10 = org.telegram.ui.Cells.c1.i("<", C, " threw ", e.getClass().getName(), ">");
                 }
-                int i18 = i11 % i16;
-                if (i18 < 0) {
-                    i18 += i16;
-                }
-                int i19 = (i17 - i18) % i16;
-                if (i19 < 0) {
-                    i19 += i16;
-                }
-                return i19 + i11;
             }
-        } else {
-            throw new IllegalArgumentException("Step is zero.");
+            objArr[i12] = i10;
+            i12++;
         }
-        return i11;
+        StringBuilder sb2 = new StringBuilder((length * 16) + 29);
+        int i13 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i11 >= length2 || (indexOf = "expected a non-null reference".indexOf("%s", i13)) == -1) {
+                break;
+            }
+            sb2.append((CharSequence) "expected a non-null reference", i13, indexOf);
+            sb2.append(objArr[i11]);
+            i11++;
+            i13 = indexOf + 2;
+        }
+        sb2.append((CharSequence) "expected a non-null reference", i13, 29);
+        if (i11 < length2) {
+            sb2.append(" [");
+            sb2.append(objArr[i11]);
+            for (int i14 = i11 + 1; i14 < objArr.length; i14++) {
+                sb2.append(", ");
+                sb2.append(objArr[i14]);
+            }
+            sb2.append(']');
+        }
+        return sb2.toString();
     }
 }

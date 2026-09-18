@@ -1,80 +1,79 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.text.TextWatcher;
+import android.app.Activity;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class la implements TextWatcher {
-    public final ma f35491a;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class la extends FrameLayout {
+    public final EditTextBoldCursor f35315a;
+    public final TextView f35316b;
+    public final ra f35317c;
 
-    public la(ma maVar) {
-        this.f35491a = maVar;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
+    public la(ra raVar, Activity activity) {
+        super(activity);
         int i10;
-        sa saVar = this.f35491a.f35740c;
-        if (saVar.f37439r.startsWith("@")) {
-            saVar.f37439r = saVar.f37439r.substring(1);
+        this.f35317c = raVar;
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        linearLayout.setOrientation(0);
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
+        this.f35315a = editTextBoldCursor;
+        editTextBoldCursor.setTextSize(1, 17.0f);
+        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
+        int i11 = org.telegram.ui.ActionBar.j6.G6;
+        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        editTextBoldCursor.setBackgroundDrawable(null);
+        editTextBoldCursor.setMaxLines(1);
+        editTextBoldCursor.setLines(1);
+        editTextBoldCursor.setPadding(0, 0, 0, 0);
+        editTextBoldCursor.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        if (saVar.f37439r.length() > 0) {
-            StringBuilder sb2 = new StringBuilder("https://");
-            i10 = ((org.telegram.ui.ActionBar.o2) saVar).currentAccount;
-            sb2.append(MessagesController.getInstance(i10).linkPrefix);
-            sb2.append("/");
-            sb2.append(saVar.f37439r);
-            String sb3 = sb2.toString();
-            String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb3);
-            int indexOf = formatString.indexOf(sb3);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(sb3, saVar, 3), indexOf, sb3.length() + indexOf, 33);
-            }
+        editTextBoldCursor.setGravity(i10 | 48);
+        editTextBoldCursor.setInputType(180224);
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setHint(LocaleController.getString(R.string.UsernameLinkPlaceholder));
+        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(19.0f));
+        editTextBoldCursor.setCursorWidth(1.5f);
+        editTextBoldCursor.setOnEditorActionListener(new ja(this, 0));
+        String str = raVar.f37006r;
+        long j3 = raVar.f37009x;
+        editTextBoldCursor.setText(str);
+        editTextBoldCursor.addTextChangedListener(new ka(this));
+        int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+        if (i12 != 0) {
+            editTextBoldCursor.setEnabled(false);
+        }
+        TextView textView = new TextView(getContext());
+        this.f35316b = textView;
+        textView.setMaxLines(1);
+        textView.setLines(1);
+        textView.setPadding(0, 0, 0, 0);
+        textView.setSingleLine(true);
+        textView.setText(raVar.getMessagesController().linkPrefix + "/");
+        textView.setTextSize(1, 17.0f);
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        textView.setTranslationY(-AndroidUtilities.dp(3.0f));
+        linearLayout.addView(textView, w7.y5.p(-2, -2, 0.0f, 16, 21, 15, 0, 15));
+        linearLayout.addView(editTextBoldCursor, w7.y5.p(-2, -2, 1.0f, 16, 0, 15, 21, 15));
+        addView(linearLayout, w7.y5.e(-1, -1, 48));
+        if (i12 != 0) {
+            editTextBoldCursor.setAlpha(0.6f);
+            textView.setAlpha(0.6f);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ma maVar = this.f35491a;
-        sa saVar = maVar.f35740c;
-        String str = saVar.f37439r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        saVar.f37439r = charSequence2;
-        sa saVar2 = maVar.f35740c;
-        pa paVar = saVar2.E;
-        if (paVar != null && str != null) {
-            paVar.b(saVar2.f37439r);
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ma maVar = this.f35491a;
-        sa saVar = maVar.f35740c;
-        String str = saVar.f37439r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        saVar.f37439r = charSequence2;
-        sa saVar2 = maVar.f35740c;
-        pa paVar = saVar2.E;
-        if (paVar != null && str != null) {
-            paVar.b(saVar2.f37439r);
-        }
-        if (saVar.f37438n) {
-            return;
-        }
-        saVar.d0(saVar.f37439r);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
     }
 }

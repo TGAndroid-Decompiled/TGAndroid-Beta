@@ -61,20 +61,19 @@ import lf.i;
 import n6.l;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.ActionBar.p3;
-import org.telegram.ui.Cells.p6;
-import org.telegram.ui.Components.cd;
-import org.telegram.ui.Components.fk0;
-import org.telegram.ui.Components.ha;
-import org.telegram.ui.Components.la;
+import org.telegram.ui.ActionBar.o3;
+import org.telegram.ui.Components.ed;
+import org.telegram.ui.Components.ja;
+import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.pk0;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.kj1;
+import org.telegram.ui.jj1;
 import q9.p;
 import q9.r;
 import y9.s0;
 import z3.d;
-import zg.p0;
-public final class c implements fk0, d, le.d, n5.b, q9.b {
+import zg.o0;
+public final class c implements pk0, d, le.d, n5.b, q9.b {
     public Object f4260a;
     public Object f4261b;
     public Object f4262c;
@@ -101,7 +100,7 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
         x6Var.f6533b.add(y6Var);
     }
 
-    public static c s(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
+    public static c q(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
         ?? obj = new Object();
         obj.d = new ArrayDeque();
         obj.f4260a = sharedPreferences;
@@ -130,9 +129,27 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
         }
     }
 
-    @Override
-    public int A() {
-        return ((long[]) this.f4261b).length;
+    public void A(Uri uri) {
+        int i10;
+        Context context = (Context) this.f4260a;
+        if (uri == null) {
+            B();
+        } else if (!uri.equals((Uri) this.f4262c)) {
+            B();
+            this.f4262c = uri;
+            e6.b bVar = (e6.b) this.f4261b;
+            int i11 = bVar.f7987b;
+            if (i11 != 0 && (i10 = bVar.f7988c) != 0) {
+                this.d = new f6.b(context, i11, i10, this);
+            } else {
+                this.d = new f6.b(context, 0, 0, this);
+            }
+            f6.b bVar2 = (f6.b) this.d;
+            l.h(bVar2);
+            Uri uri2 = (Uri) this.f4262c;
+            l.h(uri2);
+            bVar2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, uri2);
+        }
     }
 
     public void B() {
@@ -172,7 +189,7 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
             List<y6> list3 = x6Var.f6533b;
             d6.c cVar = x6Var.f6538j;
             if (cVar != null) {
-                cVar.f7539l = null;
+                cVar.f7538l = null;
                 x6Var.f6538j = null;
             }
             long j10 = x6Var.f6537i;
@@ -215,7 +232,7 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
                     j3 = new BigInteger(replace.substring(0, Math.min(16, replace.length())), 16).longValue();
                 } catch (NumberFormatException e) {
                     g6.b bVar = x6.f6529n;
-                    Log.w(bVar.f9430a, bVar.d("receiverSessionId %s is not valid for hash", str5), e);
+                    Log.w(bVar.f9429a, bVar.d("receiverSessionId %s is not valid for hash", str5), e);
                     j3 = 0;
                 }
                 l10.c();
@@ -859,13 +876,13 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
     }
 
     @Override
-    public void h(View view, p0 p0Var, boolean z10, boolean z11) {
+    public void h(View view, o0 o0Var, boolean z10, boolean z11) {
         r6 r6Var = (r6) this.e;
-        qg.d2 d2Var = r6Var.a2;
-        if (d2Var == null) {
+        qg.a2 a2Var = r6Var.a2;
+        if (a2Var == null) {
             return;
         }
-        d2Var.s(p0Var, true);
+        a2Var.s(o0Var, true);
         r6Var.O0(false);
     }
 
@@ -887,8 +904,152 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
         return false;
     }
 
+    public byte[] l() {
+        byte[] bArr = (byte[]) this.f4262c;
+        byte[] bArr2 = (byte[]) this.f4261b;
+        SecureRandom secureRandom = new SecureRandom();
+        BigInteger bigInteger = new BigInteger(2048, secureRandom);
+        BigInteger bigInteger2 = jj1.f34898b;
+        BigInteger bigInteger3 = jj1.f34897a;
+        BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
+        BigInteger bigInteger4 = BigInteger.ONE;
+        if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
+            byte[] a2 = jj1.a(modPow);
+            BigInteger bigInteger5 = new BigInteger(1, bArr);
+            if (bigInteger5.compareTo(bigInteger4) > 0 && bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
+                byte[] a10 = jj1.a(bigInteger5.modPow(bigInteger, bigInteger3));
+                byte[] bArr3 = new byte[16];
+                secureRandom.nextBytes(bArr3);
+                byte[] b10 = jj1.b(new byte[][]{a10, bArr2, bArr3});
+                byte[] b11 = jj1.b(new byte[][]{a10, bArr});
+                this.e = b10;
+                String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "🪏", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "🫆", "🧠", "💋"};
+                ArrayList arrayList = new ArrayList(4);
+                for (int i10 = 0; i10 < 4; i10++) {
+                    int i11 = i10 * 8;
+                    arrayList.add(strArr[(int) (((b11[i11 + 7] & 255) | ((((((((b11[i11] & 127) << 56) | ((b11[i11 + 1] & 255) << 48)) | ((b11[i11 + 2] & 255) << 40)) | ((b11[i11 + 3] & 255) << 32)) | ((b11[i11 + 4] & 255) << 24)) | ((b11[i11 + 5] & 255) << 16)) | ((b11[i11 + 6] & 255) << 8))) % 200)]);
+                }
+                this.f4260a = arrayList;
+                FileLog.d("wear-auth: built answer; session " + jj1.d(bArr2) + " emojis=" + ((ArrayList) this.f4260a));
+                byte[] bArr4 = new byte[288];
+                System.arraycopy(bArr2, 0, bArr4, 0, 16);
+                System.arraycopy(bArr3, 0, bArr4, 16, 16);
+                System.arraycopy(a2, 0, bArr4, 32, 256);
+                return bArr4;
+            }
+            throw new IllegalArgumentException("peer pubkey out of range");
+        }
+        throw new IllegalStateException("our pubkey invalid (extremely unlikely)");
+    }
+
+    public s0 m() {
+        String str;
+        if (((Long) this.f4260a) == null) {
+            str = " pc";
+        } else {
+            str = "";
+        }
+        if (((String) this.f4261b) == null) {
+            str = str.concat(" symbol");
+        }
+        if (((Long) this.d) == null) {
+            str = t8.b.v(str, " offset");
+        }
+        if (((Integer) this.e) == null) {
+            str = t8.b.v(str, " importance");
+        }
+        if (str.isEmpty()) {
+            return new s0(((Long) this.f4260a).longValue(), (String) this.f4261b, (String) this.f4262c, ((Long) this.d).longValue(), ((Integer) this.e).intValue());
+        }
+        throw new IllegalStateException("Missing required properties:".concat(str));
+    }
+
     @Override
-    public List l(long j3) {
+    public void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+        Paint paint;
+        ja jaVar;
+        Path path = (Path) this.f4261b;
+        na naVar = (na) this.f4262c;
+        Paint paint2 = (Paint) this.d;
+        r6 r6Var = (r6) this.e;
+        if (!z10 && (jaVar = r6Var.f5417e2) != null && jaVar.c()) {
+            if (z10) {
+                naVar = (na) this.f4260a;
+            }
+            path.rewind();
+            path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+            naVar.b(canvas, true);
+            paint2.setAlpha((int) (i10 * 0.4f));
+            canvas.drawPaint(paint2);
+            canvas.restore();
+            return;
+        }
+        if (z10) {
+            if (((na) this.f4260a) == null) {
+                this.f4260a = new na(r6Var.f5417e2, r6Var.Z1.getReactionsWindow().f49228c, 0, false);
+            }
+            float f12 = -f10;
+            float f13 = -f11;
+            ((na) this.f4260a).e(f12, f13, r6Var.getMeasuredWidth() + f12, r6Var.getMeasuredHeight() + f13);
+            paint = ((na) this.f4260a).h;
+        } else {
+            float f14 = -f10;
+            float f15 = -f11;
+            naVar.e(f14, f15, r6Var.getMeasuredWidth() + f14, r6Var.getMeasuredHeight() + f15);
+            paint = naVar.h;
+        }
+        paint.setAlpha(i10);
+        paint2.setAlpha((int) (i10 * 0.4f));
+        canvas.drawRoundRect(rectF, f7, f7, paint);
+        canvas.drawRoundRect(rectF, f7, f7, paint2);
+    }
+
+    public void o(Canvas canvas, boolean z10, boolean z11, int i10, float f7) {
+        int i11;
+        RectF rectF = (RectF) this.f4261b;
+        float[] fArr = (float[]) this.f4262c;
+        Paint paint = (Paint) this.e;
+        o3 o3Var = (o3) this.f4260a;
+        Path path = (Path) this.d;
+        if (z11) {
+            i11 = 0;
+        } else {
+            i11 = (int) o3Var.G;
+        }
+        int i12 = (int) (i11 * f7);
+        int dp = AndroidUtilities.dp(10.0f) * Math.min(1, i12 / AndroidUtilities.dp(60.0f));
+        if (i12 <= 0) {
+            return;
+        }
+        fArr[3] = 0.0f;
+        fArr[2] = 0.0f;
+        fArr[1] = 0.0f;
+        fArr[0] = 0.0f;
+        float f10 = dp;
+        fArr[7] = f10;
+        fArr[6] = f10;
+        fArr[5] = f10;
+        fArr[4] = f10;
+        path.rewind();
+        rectF.set(0.0f, 0.0f, i10, (o3Var.getY() + o3Var.getHeight()) - i12);
+        path.addRoundRect(rectF, fArr, Path.Direction.CW);
+        paint.setAlpha(0);
+        if (z10) {
+            paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(1.0f), 268435456);
+            canvas.drawPath(path, paint);
+        }
+        canvas.clipPath(path);
+    }
+
+    @Override
+    public boolean r() {
+        return true;
+    }
+
+    @Override
+    public List s(long j3) {
         f4.a[] aVarArr;
         f4.c cVar = (f4.c) this.f4260a;
         HashMap hashMap = (HashMap) this.d;
@@ -911,14 +1072,14 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
                 Bitmap decodeByteArray = BitmapFactory.decodeByteArray(decode, 0, decode.length);
                 f fVar = (f) hashMap.get(pair.first);
                 fVar.getClass();
-                arrayList2.add(new d2.b(null, null, null, decodeByteArray, fVar.f8886c, 0, fVar.e, fVar.f8885b, 0, Integer.MIN_VALUE, -3.4028235E38f, fVar.f8887f, fVar.f8888g, false, -16777216, fVar.f8890j, 0.0f, 0));
+                arrayList2.add(new d2.b(null, null, null, decodeByteArray, fVar.f8885c, 0, fVar.e, fVar.f8884b, 0, Integer.MIN_VALUE, -3.4028235E38f, fVar.f8886f, fVar.f8887g, false, -16777216, fVar.f8889j, 0.0f, 0));
             }
         }
         for (Map.Entry entry : treeMap.entrySet()) {
             f fVar2 = (f) hashMap.get(entry.getKey());
             fVar2.getClass();
             d2.a aVar = (d2.a) entry.getValue();
-            CharSequence charSequence = aVar.f7414a;
+            CharSequence charSequence = aVar.f7413a;
             charSequence.getClass();
             SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) charSequence;
             for (f4.a aVar2 : (f4.a[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), f4.a.class)) {
@@ -962,165 +1123,21 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
             if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) == '\n') {
                 spannableStringBuilder.delete(spannableStringBuilder.length() - 1, spannableStringBuilder.length());
             }
-            float f7 = fVar2.f8886c;
+            float f7 = fVar2.f8885c;
             int i19 = fVar2.d;
             aVar.e = f7;
-            aVar.f7417f = i19;
-            aVar.f7418g = fVar2.e;
-            aVar.h = fVar2.f8885b;
-            aVar.f7422l = fVar2.f8887f;
-            float f10 = fVar2.f8889i;
+            aVar.f7416f = i19;
+            aVar.f7417g = fVar2.e;
+            aVar.h = fVar2.f8884b;
+            aVar.f7421l = fVar2.f8886f;
+            float f10 = fVar2.f8888i;
             int i20 = fVar2.h;
-            aVar.f7421k = f10;
-            aVar.f7420j = i20;
-            aVar.f7426p = fVar2.f8890j;
+            aVar.f7420k = f10;
+            aVar.f7419j = i20;
+            aVar.f7425p = fVar2.f8889j;
             arrayList2.add(aVar.a());
         }
         return arrayList2;
-    }
-
-    public byte[] m() {
-        byte[] bArr = (byte[]) this.f4262c;
-        byte[] bArr2 = (byte[]) this.f4261b;
-        SecureRandom secureRandom = new SecureRandom();
-        BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = kj1.f35300b;
-        BigInteger bigInteger3 = kj1.f35299a;
-        BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
-        BigInteger bigInteger4 = BigInteger.ONE;
-        if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-            byte[] a2 = kj1.a(modPow);
-            BigInteger bigInteger5 = new BigInteger(1, bArr);
-            if (bigInteger5.compareTo(bigInteger4) > 0 && bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-                byte[] a10 = kj1.a(bigInteger5.modPow(bigInteger, bigInteger3));
-                byte[] bArr3 = new byte[16];
-                secureRandom.nextBytes(bArr3);
-                byte[] b10 = kj1.b(new byte[][]{a10, bArr2, bArr3});
-                byte[] b11 = kj1.b(new byte[][]{a10, bArr});
-                this.e = b10;
-                String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "🪏", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "🫆", "🧠", "💋"};
-                ArrayList arrayList = new ArrayList(4);
-                for (int i10 = 0; i10 < 4; i10++) {
-                    int i11 = i10 * 8;
-                    arrayList.add(strArr[(int) (((b11[i11 + 7] & 255) | ((((((((b11[i11] & 127) << 56) | ((b11[i11 + 1] & 255) << 48)) | ((b11[i11 + 2] & 255) << 40)) | ((b11[i11 + 3] & 255) << 32)) | ((b11[i11 + 4] & 255) << 24)) | ((b11[i11 + 5] & 255) << 16)) | ((b11[i11 + 6] & 255) << 8))) % 200)]);
-                }
-                this.f4260a = arrayList;
-                FileLog.d("wear-auth: built answer; session " + kj1.d(bArr2) + " emojis=" + ((ArrayList) this.f4260a));
-                byte[] bArr4 = new byte[288];
-                System.arraycopy(bArr2, 0, bArr4, 0, 16);
-                System.arraycopy(bArr3, 0, bArr4, 16, 16);
-                System.arraycopy(a2, 0, bArr4, 32, 256);
-                return bArr4;
-            }
-            throw new IllegalArgumentException("peer pubkey out of range");
-        }
-        throw new IllegalStateException("our pubkey invalid (extremely unlikely)");
-    }
-
-    @Override
-    public void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
-        Paint paint;
-        ha haVar;
-        Path path = (Path) this.f4261b;
-        la laVar = (la) this.f4262c;
-        Paint paint2 = (Paint) this.d;
-        r6 r6Var = (r6) this.e;
-        if (!z10 && (haVar = r6Var.f5417e2) != null && haVar.c()) {
-            if (z10) {
-                laVar = (la) this.f4260a;
-            }
-            path.rewind();
-            path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            laVar.b(canvas, true);
-            paint2.setAlpha((int) (i10 * 0.4f));
-            canvas.drawPaint(paint2);
-            canvas.restore();
-            return;
-        }
-        if (z10) {
-            if (((la) this.f4260a) == null) {
-                this.f4260a = new la(r6Var.f5417e2, r6Var.Z1.getReactionsWindow().f49013c, 0, false);
-            }
-            float f12 = -f10;
-            float f13 = -f11;
-            ((la) this.f4260a).e(f12, f13, r6Var.getMeasuredWidth() + f12, r6Var.getMeasuredHeight() + f13);
-            paint = ((la) this.f4260a).h;
-        } else {
-            float f14 = -f10;
-            float f15 = -f11;
-            laVar.e(f14, f15, r6Var.getMeasuredWidth() + f14, r6Var.getMeasuredHeight() + f15);
-            paint = laVar.h;
-        }
-        paint.setAlpha(i10);
-        paint2.setAlpha((int) (i10 * 0.4f));
-        canvas.drawRoundRect(rectF, f7, f7, paint);
-        canvas.drawRoundRect(rectF, f7, f7, paint2);
-    }
-
-    public s0 p() {
-        String str;
-        if (((Long) this.f4260a) == null) {
-            str = " pc";
-        } else {
-            str = "";
-        }
-        if (((String) this.f4261b) == null) {
-            str = str.concat(" symbol");
-        }
-        if (((Long) this.d) == null) {
-            str = p6.t(str, " offset");
-        }
-        if (((Integer) this.e) == null) {
-            str = p6.t(str, " importance");
-        }
-        if (str.isEmpty()) {
-            return new s0(((Long) this.f4260a).longValue(), (String) this.f4261b, (String) this.f4262c, ((Long) this.d).longValue(), ((Integer) this.e).intValue());
-        }
-        throw new IllegalStateException("Missing required properties:".concat(str));
-    }
-
-    @Override
-    public boolean q() {
-        return true;
-    }
-
-    public void r(Canvas canvas, boolean z10, boolean z11, int i10, float f7) {
-        int i11;
-        RectF rectF = (RectF) this.f4261b;
-        float[] fArr = (float[]) this.f4262c;
-        Paint paint = (Paint) this.e;
-        p3 p3Var = (p3) this.f4260a;
-        Path path = (Path) this.d;
-        if (z11) {
-            i11 = 0;
-        } else {
-            i11 = (int) p3Var.G;
-        }
-        int i12 = (int) (i11 * f7);
-        int dp = AndroidUtilities.dp(10.0f) * Math.min(1, i12 / AndroidUtilities.dp(60.0f));
-        if (i12 <= 0) {
-            return;
-        }
-        fArr[3] = 0.0f;
-        fArr[2] = 0.0f;
-        fArr[1] = 0.0f;
-        fArr[0] = 0.0f;
-        float f10 = dp;
-        fArr[7] = f10;
-        fArr[6] = f10;
-        fArr[5] = f10;
-        fArr[4] = f10;
-        path.rewind();
-        rectF.set(0.0f, 0.0f, i10, (p3Var.getY() + p3Var.getHeight()) - i12);
-        path.addRoundRect(rectF, fArr, Path.Direction.CW);
-        paint.setAlpha(0);
-        if (z10) {
-            paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(1.0f), 268435456);
-            canvas.drawPath(path, paint);
-        }
-        canvas.clipPath(path);
     }
 
     public p t(Class cls) {
@@ -1135,7 +1152,12 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
         return str;
     }
 
-    public boolean v(Object obj) {
+    @Override
+    public int v() {
+        return ((long[]) this.f4261b).length;
+    }
+
+    public boolean w(Object obj) {
         boolean remove;
         synchronized (((ArrayDeque) this.d)) {
             remove = ((ArrayDeque) this.d).remove(obj);
@@ -1146,71 +1168,48 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
         return remove;
     }
 
-    public Set w(Class cls) {
+    public Set x(Class cls) {
         return f(r.a(cls));
     }
 
-    public void x(Bitmap bitmap) {
+    public void y(Bitmap bitmap) {
         Bitmap bitmap2;
         View view = (View) this.f4260a;
         View view2 = (View) this.f4261b;
         if (((Bitmap) this.f4262c) != bitmap) {
-            if (((cd) this.e) != null) {
+            if (((ed) this.e) != null) {
                 view.setBackground(null);
                 this.e = null;
             }
-            if (((cd) this.d) == null && ((cd) this.e) == null && (bitmap2 = (Bitmap) this.f4262c) != null) {
+            if (((ed) this.d) == null && ((ed) this.e) == null && (bitmap2 = (Bitmap) this.f4262c) != null) {
                 bitmap2.recycle();
                 this.f4262c = null;
             }
-            y();
+            z();
             this.f4262c = bitmap;
-            cd cdVar = new cd((Bitmap) this.f4262c);
-            this.e = cdVar;
-            view.setBackground(cdVar);
+            ed edVar = new ed((Bitmap) this.f4262c);
+            this.e = edVar;
+            view.setBackground(edVar);
             if (view2 != null) {
-                cd cdVar2 = new cd((Bitmap) this.f4262c);
-                this.d = cdVar2;
-                view2.setBackground(cdVar2);
+                ed edVar2 = new ed((Bitmap) this.f4262c);
+                this.d = edVar2;
+                view2.setBackground(edVar2);
             }
         }
     }
 
-    public void y() {
+    public void z() {
         Bitmap bitmap;
-        if (((cd) this.d) != null) {
+        if (((ed) this.d) != null) {
             this.d = null;
             View view = (View) this.f4261b;
             if (view != null) {
                 view.setBackground(null);
             }
         }
-        if (((cd) this.d) == null && ((cd) this.e) == null && (bitmap = (Bitmap) this.f4262c) != null) {
+        if (((ed) this.d) == null && ((ed) this.e) == null && (bitmap = (Bitmap) this.f4262c) != null) {
             bitmap.recycle();
             this.f4262c = null;
-        }
-    }
-
-    public void z(Uri uri) {
-        int i10;
-        Context context = (Context) this.f4260a;
-        if (uri == null) {
-            B();
-        } else if (!uri.equals((Uri) this.f4262c)) {
-            B();
-            this.f4262c = uri;
-            e6.b bVar = (e6.b) this.f4261b;
-            int i11 = bVar.f7988b;
-            if (i11 != 0 && (i10 = bVar.f7989c) != 0) {
-                this.d = new f6.b(context, i11, i10, this);
-            } else {
-                this.d = new f6.b(context, 0, 0, this);
-            }
-            f6.b bVar2 = (f6.b) this.d;
-            l.h(bVar2);
-            Uri uri2 = (Uri) this.f4262c;
-            l.h(uri2);
-            bVar2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, uri2);
         }
     }
 
@@ -1244,16 +1243,16 @@ public final class c implements fk0, d, le.d, n5.b, q9.b {
         this.d = new le.b(1, this, qrVar, 320L, true);
     }
 
-    public c(p3 p3Var) {
+    public c(o3 o3Var) {
         this.f4261b = new RectF();
         this.f4262c = new float[8];
         this.d = new Path();
         this.e = new Paint(1);
-        this.f4260a = p3Var;
+        this.f4260a = o3Var;
     }
 
     @Override
-    public void o() {
+    public void p() {
     }
 
     @Override

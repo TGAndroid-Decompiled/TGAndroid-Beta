@@ -1,18 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class y70 extends FrameLayout {
-    public TextView f30138a;
+import android.content.DialogInterface;
+import org.telegram.messenger.AccountInstance;
+public final class y70 implements DialogInterface.OnCancelListener {
+    public final int f30491a;
+    public final AccountInstance f30492b;
+    public final int f30493c;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public y70(AccountInstance accountInstance, int i10, int i11) {
+        this.f30491a = i11;
+        this.f30492b = accountInstance;
+        this.f30493c = i10;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f30138a.setText(charSequence);
+    @Override
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f30491a) {
+            case 0:
+                this.f30492b.getConnectionsManager().cancelRequest(this.f30493c, true);
+                return;
+            default:
+                this.f30492b.getConnectionsManager().cancelRequest(this.f30493c, true);
+                return;
+        }
     }
 }

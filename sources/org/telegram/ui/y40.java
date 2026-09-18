@@ -1,24 +1,41 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-public final class y40 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.voip.u f39791a;
-    public final k60 f39792b;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.ChatObject;
+public final class y40 implements ViewTreeObserver.OnPreDrawListener {
+    public final ChatObject.VideoParticipant f39699a;
+    public final boolean f39700b;
+    public final i60 f39701c;
 
-    public y40(k60 k60Var, org.telegram.ui.Components.voip.u uVar) {
-        this.f39792b = k60Var;
-        this.f39791a = uVar;
+    public y40(i60 i60Var, ChatObject.VideoParticipant videoParticipant, boolean z10) {
+        this.f39701c = i60Var;
+        this.f39699a = videoParticipant;
+        this.f39700b = z10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        org.telegram.ui.Components.voip.u uVar = this.f39791a;
-        if (uVar.getParent() != null) {
-            viewGroup = ((org.telegram.ui.ActionBar.g3) this.f39792b).containerView;
-            viewGroup.removeView(uVar);
+        i60 i60Var = this.f39701c;
+        o50 o50Var = i60Var.Q;
+        o50Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        i60Var.f34394q2 = null;
+        a40 a40Var = i60Var.a2;
+        ChatObject.VideoParticipant videoParticipant = this.f39699a;
+        a40Var.j(videoParticipant);
+        if (i60Var.f34402s0) {
+            i60Var.f34402s0 = false;
+            i60Var.O0(true);
+            if (this.f39700b && videoParticipant != null) {
+                o50Var.v0(0);
+            }
+            i60Var.f34402s0 = true;
+        } else {
+            i60Var.O0(true);
         }
+        viewGroup = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

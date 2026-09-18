@@ -1,141 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.content.Context;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class kb0 extends s4.s0 {
-    public final int f25612a;
-    public final Object f25613b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+public final class kb0 implements View.OnClickListener {
+    public final int f25674a;
+    public final boolean f25675b;
+    public final FrameLayout f25676c;
+    public final Object d;
+    public final Object e;
+    public final Object f25677f;
 
-    public kb0(Object obj, int i10) {
-        this.f25612a = i10;
-        this.f25613b = obj;
+    public kb0(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i10) {
+        this.f25674a = i10;
+        this.f25676c = frameLayout;
+        this.f25675b = z10;
+        this.d = obj;
+        this.e = obj2;
+        this.f25677f = obj3;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        wk0 wk0Var;
-        int i11 = this.f25612a;
-        rg.n1 n1Var = null;
-        boolean z10 = false;
-        Object obj = this.f25613b;
-        switch (i11) {
-            case 2:
-                qg0 qg0Var = (qg0) obj;
-                kg0 kg0Var = qg0Var.f27301b;
-                if (i10 == 0 && qg0.I(qg0Var) + ((qg0Var.E - qg0.H(qg0Var)) - AndroidUtilities.dp(13.0f)) < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && kg0Var.canScrollVertically(1)) {
-                    kg0Var.getChildAt(0);
-                    wk0 wk0Var2 = (wk0) kg0Var.L(0);
-                    if (wk0Var2 != null) {
-                        View view = wk0Var2.f42702a;
-                        if (view.getTop() > AndroidUtilities.dp(7.0f)) {
-                            kg0Var.w0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
-                            return;
-                        }
-                        return;
-                    }
+    public final void onClick(View view) {
+        int i10 = this.f25674a;
+        Object obj = this.f25677f;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        boolean z10 = this.f25675b;
+        FrameLayout frameLayout = this.f25676c;
+        switch (i10) {
+            case 0:
+                yb0 yb0Var = (yb0) frameLayout;
+                Context context = (Context) obj3;
+                dc0 dc0Var = (dc0) obj2;
+                dc0 dc0Var2 = (dc0) obj;
+                ec0 ec0Var = yb0Var.f30537c0;
+                MessagePreviewParams messagePreviewParams = ec0Var.d;
+                if (!z10) {
+                    new xc(ec0Var, ec0Var.F).Q(R.raw.star_premium_2, 36, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new ib0(yb0Var, context, 0))).j();
                     return;
                 }
-                return;
-            case 4:
-                ml0 ml0Var = (ml0) obj;
-                if (i10 == 0) {
-                    if (ml0Var.f26206v2) {
-                        ml0Var.f26206v2 = false;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                boolean z11 = messagePreviewParams.hideForwardSendersName;
+                messagePreviewParams.hideForwardSendersName = !z11;
+                ec0Var.f23852x = false;
+                if (z11) {
+                    messagePreviewParams.hideCaption = false;
+                    if (dc0Var != null) {
+                        dc0Var.a(false, true);
                     }
-                } else if (!ml0Var.f26206v2 && ml0Var.f26209x1) {
-                    ml0Var.f26206v2 = true;
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
                 }
-                if (i10 != 0 && ml0Var.N1 != null) {
-                    el0 el0Var = ml0Var.f26172e1;
-                    if (el0Var != null) {
-                        AndroidUtilities.cancelRunOnUIThread(el0Var);
-                        ml0Var.f26172e1 = null;
-                    }
-                    MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                    try {
-                        ml0Var.M1.y(obtain);
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                    }
-                    ml0Var.N1.onTouchEvent(obtain);
-                    obtain.recycle();
-                    View view2 = ml0Var.N1;
-                    ml0Var.i1(view2, 0.0f, 0.0f, false);
-                    ml0Var.N1 = null;
-                    ml0Var.l1(null, view2);
-                    ml0Var.P1 = false;
-                }
-                s4.s0 s0Var = ml0Var.f26165a1;
-                if (s0Var != null) {
-                    s0Var.a(recyclerView, i10);
-                }
-                z10 = (i10 == 1 || i10 == 2) ? true : true;
-                ml0Var.K1 = z10;
-                if (z10) {
-                    ml0Var.L1 = true;
-                    return;
-                }
-                return;
-            case 5:
-                wm0 wm0Var = (wm0) obj;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(wm0Var.F.getCurrentFocus());
-                }
-                wm0Var.a();
-                return;
-            case 9:
-                p61 p61Var = (p61) obj;
-                ai.w0 w0Var = p61Var.d;
-                if (i10 == 0 && p61Var.G && AndroidUtilities.dp(13.0f) + p61.m(p61Var) + p61Var.f26949y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (wk0Var = (wk0) w0Var.L(0)) != null) {
-                    View view3 = wk0Var.f42702a;
-                    if (view3.getTop() > 0) {
-                        w0Var.w0(0, view3.getTop(), null);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 13:
-                rg.s0 s0Var2 = (rg.s0) obj;
-                if (i10 == 1) {
-                    s0Var2.f42435d3 = true;
-                }
-                if (i10 == 0) {
-                    for (int i12 = 0; i12 < recyclerView.getChildCount(); i12++) {
-                        rg.n1 n1Var2 = (rg.n1) s0Var2.getChildAt(i12);
-                        if (n1Var == null || n1Var2.f42421a > n1Var.f42421a) {
-                            n1Var = n1Var2;
-                        }
-                    }
-                    if (n1Var != null) {
-                        s0Var2.x1(n1Var, true);
-                        s0Var2.f42435d3 = false;
-                        s0Var2.w0(0, n1Var.getTop() - ((s0Var2.getMeasuredHeight() - n1Var.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
-                    }
-                    s0Var2.y1();
-                    return;
-                }
-                AndroidUtilities.cancelRunOnUIThread(s0Var2.f42436e3);
-                return;
-            case 14:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((tg.a1) obj).Y.getEditText());
-                    return;
-                }
+                dc0Var2.a(messagePreviewParams.hideForwardSendersName, true);
+                yb0Var.h();
+                yb0Var.k(true);
                 return;
             default:
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
+                w70 w70Var = (w70) obj;
+                zr0 zr0Var = ((xh.o2) frameLayout).f46300a;
+                if (!z10) {
+                    yh.k5 k5Var = zr0Var.e;
+                    int i11 = tL_starGiftCollection.collection_id;
+                    k5Var.getClass();
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(savedStarGift);
+                    k5Var.a(i11, arrayList);
+                    xc.a0(zr0Var.f46369a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.y3.D1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                } else {
+                    zr0Var.e.k(tL_starGiftCollection.collection_id, savedStarGift);
+                    xc.a0(zr0Var.f46369a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, yh.y3.D1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                }
+                w70Var.u();
+                zr0Var.n();
                 return;
         }
-    }
-
-    @Override
-    public void b(androidx.recyclerview.widget.RecyclerView r12, int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kb0.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
     }
 }

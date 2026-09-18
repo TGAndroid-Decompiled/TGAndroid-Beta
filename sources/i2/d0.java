@@ -7,7 +7,7 @@ public final class d0 implements w0 {
     public d0(Object obj, u2.a0 a0Var) {
         this.f10636a = obj;
         this.f10637b = a0Var;
-        this.f10638c = a0Var.f43335o;
+        this.f10638c = a0Var.f43562o;
     }
 
     @Override

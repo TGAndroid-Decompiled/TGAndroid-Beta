@@ -11,18 +11,18 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.qr;
 public final class d extends View {
-    public final Drawable f41789a;
-    public final le.b f41790b;
-    public final int f41791c;
+    public final Drawable f42016a;
+    public final le.b f42017b;
+    public final int f42018c;
     public e d;
 
     public d(Context context, int i10) {
         super(context);
-        this.f41790b = new le.b(this, qr.h, 380L);
-        this.f41791c = i10;
+        this.f42017b = new le.b(this, qr.h, 380L);
+        this.f42018c = i10;
         Drawable mutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
-        this.f41789a = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f19066o7, false), PorterDuff.Mode.SRC_IN));
+        this.f42016a = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f19265o7, false), PorterDuff.Mode.SRC_IN));
     }
 
     public final void a(e eVar, boolean z10) {
@@ -34,7 +34,7 @@ public final class d extends View {
         } else {
             z11 = false;
         }
-        this.f41790b.a(z11, z10);
+        this.f42017b.a(z11, z10);
         if (isAttachedToWindow() && (eVar3 = this.d) != null) {
             eVar3.b();
         }
@@ -67,16 +67,16 @@ public final class d extends View {
         super.onDraw(canvas);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
-        float f7 = this.f41790b.e;
+        float f7 = this.f42017b.e;
         if (f7 < 1.0f) {
             canvas.save();
             float f10 = 1.0f - f7;
             canvas.scale(f10, f10, width, height);
-            this.f41789a.draw(canvas);
+            this.f42016a.draw(canvas);
             canvas.restore();
         }
         if (f7 > 0.0f) {
-            float f11 = this.f41791c;
+            float f11 = this.f42018c;
             int dp = AndroidUtilities.dp(f11);
             canvas.save();
             canvas.translate((getWidth() - dp) / 2, (getHeight() - dp) / 2);
@@ -95,6 +95,6 @@ public final class d extends View {
         int dp = AndroidUtilities.dp(24.0f);
         int i14 = (i10 - dp) / 2;
         int i15 = (i11 - dp) / 2;
-        this.f41789a.setBounds(i14, i15, i14 + dp, dp + i15);
+        this.f42016a.setBounds(i14, i15, i14 + dp, dp + i15);
     }
 }

@@ -5,8 +5,8 @@ import android.text.style.CharacterStyle;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.ta0;
-import org.telegram.ui.Components.ti0;
+import org.telegram.ui.Components.cb0;
+import org.telegram.ui.Components.dj0;
 public final class z5 extends CharacterStyle {
     public final int f11805a;
     public final Object f11806b;
@@ -25,19 +25,19 @@ public final class z5 extends CharacterStyle {
             case 1:
                 textPaint.setTypeface(AndroidUtilities.bold());
                 int alpha = textPaint.getAlpha();
-                int i10 = j6.f19048n6;
-                ((ta0) this.f11806b).getClass();
+                int i10 = j6.f19247n6;
+                ((cb0) this.f11806b).getClass();
                 textPaint.setColor(j6.w0(null, i10, false));
                 textPaint.setAlpha(alpha);
                 return;
             default:
-                textPaint.setColor(j6.v(j6.l1(0.55f, textPaint.getColor()), j6.l1(0.4f, ((ti0) this.f11806b).I)));
+                textPaint.setColor(j6.v(j6.l1(0.55f, textPaint.getColor()), j6.l1(0.4f, ((dj0) this.f11806b).I)));
                 return;
         }
     }
 
-    public z5(ti0 ti0Var) {
+    public z5(dj0 dj0Var) {
         this.f11805a = 2;
-        this.f11806b = ti0Var;
+        this.f11806b = dj0Var;
     }
 }

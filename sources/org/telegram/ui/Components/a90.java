@@ -1,31 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class a90 extends org.telegram.ui.ActionBar.k5 {
-    public final org.telegram.ui.ActionBar.f6 M0;
-    public final z80 N0;
-    public d90 O0;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+public final class a90 implements PopupWindow.OnDismissListener {
+    public final int f22568a;
+    public final FrameLayout f22569b;
+    public final View f22570c;
+    public final ViewTreeObserver.OnPreDrawListener d;
+    public final ViewGroup e;
 
-    public a90(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.N0 = new z80(this);
-        this.M0 = f6Var;
+    public a90(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i10) {
+        this.f22568a = i10;
+        this.e = viewGroup;
+        this.f22570c = view;
+        this.f22569b = frameLayout;
+        this.d = onPreDrawListener;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(getLayoutX(), getLayoutY());
-        if (this.N0.f(canvas)) {
-            invalidate();
+    public final void onDismiss() {
+        switch (this.f22568a) {
+            case 0:
+                ((e90) this.e).f23829s = null;
+                ci.s6 s6Var = (ci.s6) this.f22570c;
+                s6Var.animate().cancel();
+                s6Var.animate().alpha(0.0f).setDuration(150L).setListener(new r8(this, 28));
+                return;
+            default:
+                ((org.telegram.ui.a00) this.e).f38644x = null;
+                ci.s6 s6Var2 = (ci.s6) this.f22570c;
+                s6Var2.animate().cancel();
+                s6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new r81(this, 21));
+                return;
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a90.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

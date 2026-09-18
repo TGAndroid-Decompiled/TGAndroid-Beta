@@ -1,35 +1,64 @@
 package xh;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-public final class p3 extends org.telegram.ui.ActionBar.g1 {
-    public final int L;
-    public long M;
-    public n3 N;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.x51;
+public final class p3 extends w51 {
+    public static final int f46321a = 0;
 
-    public p3(Context context, int i10, f6 f6Var) {
-        super(0, context, f6Var, false, false);
-        this.L = i10;
-        setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        c(j6.v0(j6.E8, f6Var), j6.v0(j6.F8, f6Var));
-        setIconColor(-1);
-        this.f18655c.setTranslationX(AndroidUtilities.dp(2.0f));
-        this.f18655c.setScaleX(1.2f);
-        this.f18655c.setScaleY(1.2f);
-        a(2);
-        setBackground(null);
-        this.f18655c.addOnAttachStateChangeListener(new ai.u2(this, 13));
+    static {
+        w51.setup(new w51());
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            size = AndroidUtilities.dp(250.0f);
+    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+        q3 q3Var = (q3) view;
+        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) x51Var.G;
+        int i10 = x51Var.f30261z;
+        String str = (String) x51Var.f30248l;
+        boolean z11 = x51Var.e;
+        lj0 lj0Var = q3Var.f18810c;
+        o3 o3Var = q3Var.N;
+        if (o3Var == null || q3Var.M != stargiftattributemodel.document.f18302id) {
+            q3Var.M = stargiftattributemodel.document.f18302id;
+            if (o3Var != null) {
+                o3Var.o(lj0Var);
+            }
+            q3Var.N = new q5(3, q3Var.L, stargiftattributemodel.document);
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+        if (lj0Var.isAttachedToWindow()) {
+            q3Var.N.a(lj0Var);
+        }
+        SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
+        if (!TextUtils.isEmpty(str)) {
+            spannableStringBuilder = AndroidUtilities.highlightText(spannableStringBuilder, str, q3Var.F);
+        }
+        if (i10 > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
+            spannableStringBuilder2.append((CharSequence) "  ");
+            int length = spannableStringBuilder2.length();
+            spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
+            spannableStringBuilder2.setSpan(new u51(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        q3Var.g(spannableStringBuilder, 0, q3Var.N);
+        q3Var.setChecked(z11);
+    }
+
+    @Override
+    public final View createView(Context context, wl0 wl0Var, int i10, int i11, e6 e6Var) {
+        return new q3(context, i10, e6Var);
     }
 }

@@ -1,14 +1,14 @@
 package ci;
 
 import android.widget.PopupWindow;
-import org.telegram.ui.Components.rv0;
+import org.telegram.ui.Components.cw0;
 public final class j5 implements PopupWindow.OnDismissListener {
     public final int f4849a;
-    public final rv0 f4850b;
+    public final cw0 f4850b;
 
-    public j5(rv0 rv0Var, int i10) {
+    public j5(cw0 cw0Var, int i10) {
         this.f4849a = i10;
-        this.f4850b = rv0Var;
+        this.f4850b = cw0Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class j5 implements PopupWindow.OnDismissListener {
                 ((r6) this.f4850b).I1.d();
                 return;
             default:
-                ((qg.p0) this.f4850b).S1.d();
+                ((qg.m0) this.f4850b).S1.d();
                 return;
         }
     }

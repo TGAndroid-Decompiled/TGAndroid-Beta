@@ -3,18 +3,18 @@ package x3;
 import c3.b0;
 import e2.d0;
 public final class b implements g {
-    public final f f45250a;
-    public final long f45251b;
-    public final long f45252c;
+    public final f f45473a;
+    public final long f45474b;
+    public final long f45475c;
     public final i d;
     public int e;
-    public long f45253f;
+    public long f45476f;
     public long h;
-    public long f45254n;
-    public long f45255r;
-    public long f45256s;
+    public long f45477n;
+    public long f45478r;
+    public long f45479s;
     public long v;
-    public long f45257w;
+    public long f45480w;
 
     public b(i iVar, long j3, long j10, long j11, long j12, boolean z10) {
         boolean z11;
@@ -25,25 +25,25 @@ public final class b implements g {
         }
         e2.d.b(z11);
         this.d = iVar;
-        this.f45251b = j3;
-        this.f45252c = j10;
+        this.f45474b = j3;
+        this.f45475c = j10;
         if (j11 != j10 - j3 && !z10) {
             this.e = 0;
         } else {
-            this.f45253f = j12;
+            this.f45476f = j12;
             this.e = 4;
         }
-        this.f45250a = new f();
+        this.f45473a = new f();
     }
 
     @Override
     public final void B(long j3) {
-        this.f45254n = d0.i(j3, 0L, this.f45253f - 1);
+        this.f45477n = d0.i(j3, 0L, this.f45476f - 1);
         this.e = 2;
-        this.f45255r = this.f45251b;
-        this.f45256s = this.f45252c;
+        this.f45478r = this.f45474b;
+        this.f45479s = this.f45475c;
         this.v = 0L;
-        this.f45257w = this.f45253f;
+        this.f45480w = this.f45476f;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class b implements g {
 
     @Override
     public final b0 g() {
-        if (this.f45253f != 0) {
+        if (this.f45476f != 0) {
             return new a(this);
         }
         return null;

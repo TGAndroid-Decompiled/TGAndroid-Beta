@@ -11,10 +11,10 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.af0;
-import org.telegram.ui.Components.ik0;
-import org.telegram.ui.Components.kv0;
-import org.telegram.ui.Components.ye0;
+import org.telegram.ui.Components.hf0;
+import org.telegram.ui.Components.jf0;
+import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.vv0;
 public final class ac extends FrameLayout {
     public final Rect f4367a;
     public final Rect f4368b;
@@ -47,9 +47,9 @@ public final class ac extends FrameLayout {
         super.dispatchDraw(recordingCanvas);
         if (z10 && i10 >= 31) {
             this.f4369c.endRecording();
-            org.telegram.ui.Components.ha haVar = this.d.f5258r0;
-            if (haVar != null) {
-                haVar.g(this, this.f4369c);
+            org.telegram.ui.Components.ja jaVar = this.d.f5258r0;
+            if (jaVar != null) {
+                jaVar.g(this, this.f4369c);
             }
             canvas.drawRenderNode(this.f4369c);
         }
@@ -83,19 +83,19 @@ public final class ac extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         oc ocVar = this.d;
-        af0 af0Var = ocVar.F1;
-        if (af0Var != null) {
-            ik0 ik0Var = af0Var.e;
-            ik0Var.f24953a = 0.0f;
-            ik0Var.f24954b = 0.0f;
-            ik0Var.f24955c = af0Var.getMeasuredWidth();
-            ik0Var.d = ocVar.F1.getMeasuredHeight();
+        jf0 jf0Var = ocVar.F1;
+        if (jf0Var != null) {
+            sk0 sk0Var = jf0Var.e;
+            sk0Var.f28186a = 0.0f;
+            sk0Var.f28187b = 0.0f;
+            sk0Var.f28188c = jf0Var.getMeasuredWidth();
+            sk0Var.d = ocVar.F1.getMeasuredHeight();
         }
-        ye0 ye0Var = ocVar.E1;
-        if (ye0Var != null) {
-            kv0 kv0Var = ye0Var.d;
-            kv0Var.f25698a = ye0Var.getMeasuredWidth();
-            kv0Var.f25699b = ocVar.E1.getMeasuredHeight();
+        hf0 hf0Var = ocVar.E1;
+        if (hf0Var != null) {
+            vv0 vv0Var = hf0Var.d;
+            vv0Var.f29776a = hf0Var.getMeasuredWidth();
+            vv0Var.f29777b = ocVar.E1.getMeasuredHeight();
         }
     }
 

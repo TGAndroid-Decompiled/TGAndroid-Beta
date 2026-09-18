@@ -19,8 +19,8 @@ public final class y implements b0 {
             this.f3827a = b0Var;
             c5.b0 b0Var2 = new c5.b0(i10, 2);
             this.f3828b = b0Var2;
-            b0Var.b(0L);
-            b0Var2.b(0L);
+            b0Var.c(0L);
+            b0Var2.c(0L);
         } else {
             this.f3827a = new c5.b0(length, 2);
             this.f3828b = new c5.b0(length, 2);

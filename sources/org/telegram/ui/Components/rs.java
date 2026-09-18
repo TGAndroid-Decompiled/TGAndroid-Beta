@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-public class rs extends x51 {
+public class rs extends l61 {
     public final int N;
     public final int O;
     public final boolean P;
@@ -21,44 +21,44 @@ public class rs extends x51 {
     public int X;
     public int Y;
     public boolean Z;
-    public boolean f27681a0;
-    public boolean f27682b0;
-    public int f27683c0;
-    public int f27684d0;
-    public String f27685e0;
-    public final ms f27686f0;
-    public boolean f27687g0;
-    public final x2 f27688h0;
+    public boolean f27959a0;
+    public boolean f27960b0;
+    public int f27961c0;
+    public int f27962d0;
+    public String f27963e0;
+    public final ms f27964f0;
+    public boolean f27965g0;
+    public final y2 f27966h0;
 
-    public rs(ml0 ml0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(ml0Var, context, i10, 0, true, null, f6Var);
+    public rs(wl0 wl0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(wl0Var, context, i10, 0, true, null, e6Var);
         this.R = new ArrayList();
         this.S = new ArrayList();
         this.T = new ArrayList();
-        this.f27686f0 = new ms(this, 0);
-        this.f27687g0 = true;
-        this.f27688h0 = new x2(this, 3);
-        this.f29855s = new d(this, 8);
+        this.f27964f0 = new ms(this, 0);
+        this.f27965g0 = true;
+        this.f27966h0 = new y2(this, 3);
+        this.f26043s = new d(this, 8);
         this.N = i10;
         this.O = i11;
         this.P = z10;
         this.Q = new qs(i10, new ms(this, 1));
-        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ns(this, f6Var, context)), true);
+        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ns(this, e6Var, context)), true);
         N(false);
         MediaDataController.getInstance(i10).loadHints(true);
     }
 
     public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f27685e0);
-        ml0 ml0Var = this.d;
+        boolean isEmpty = TextUtils.isEmpty(this.f27963e0);
+        wl0 wl0Var = this.d;
         if (!isEmpty) {
-            if (this.f27682b0 && !this.Z && ml0Var != null) {
+            if (this.f27960b0 && !this.Z && wl0Var != null) {
                 int i10 = 0;
                 while (true) {
-                    if (i10 >= ml0Var.getChildCount()) {
+                    if (i10 >= wl0Var.getChildCount()) {
                         break;
-                    } else if (ml0Var.getChildAt(i10) instanceof t00) {
-                        if (this.f27682b0 && !this.Z && !TextUtils.isEmpty(this.f27685e0)) {
+                    } else if (wl0Var.getChildAt(i10) instanceof t00) {
+                        if (this.f27960b0 && !this.Z && !TextUtils.isEmpty(this.f27963e0)) {
                             W(true);
                         }
                     } else {
@@ -67,10 +67,10 @@ public class rs extends x51 {
                 }
             }
         } else {
-            if (!this.f27687g0) {
-                if (ml0Var != null) {
-                    for (int i11 = 0; i11 < ml0Var.getChildCount(); i11++) {
-                        if (!(ml0Var.getChildAt(i11) instanceof t00)) {
+            if (!this.f27965g0) {
+                if (wl0Var != null) {
+                    for (int i11 = 0; i11 < wl0Var.getChildCount(); i11++) {
+                        if (!(wl0Var.getChildAt(i11) instanceof t00)) {
                         }
                     }
                 }
@@ -78,7 +78,7 @@ public class rs extends x51 {
             this.Q.a();
             break;
         }
-        this.f27687g0 = false;
+        this.f27965g0 = false;
     }
 
     public final void W(boolean r10) {

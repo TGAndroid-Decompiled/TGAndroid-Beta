@@ -12,15 +12,15 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public abstract class a {
-    public static ExecutorService f7872a;
-    public static final Object f7873b = new Object();
+    public static ExecutorService f7871a;
+    public static final Object f7872b = new Object();
 
     public static String a(String str, Throwable th2) {
         String replace;
         if (th2 == null) {
             replace = null;
         } else {
-            synchronized (f7873b) {
+            synchronized (f7872b) {
                 Throwable th3 = th2;
                 while (true) {
                     if (th3 != null) {
@@ -40,10 +40,10 @@ public abstract class a {
             }
         }
         if (!TextUtils.isEmpty(replace)) {
-            StringBuilder g10 = w.f.g(str, "\n  ");
-            g10.append(replace.replace("\n", "\n  "));
-            g10.append('\n');
-            return g10.toString();
+            StringBuilder j3 = t8.b.j(str, "\n  ");
+            j3.append(replace.replace("\n", "\n  "));
+            j3.append('\n');
+            return j3.toString();
         }
         return str;
     }
@@ -81,19 +81,19 @@ public abstract class a {
     }
 
     public static void d(String str, String str2) {
-        synchronized (f7873b) {
+        synchronized (f7872b) {
             Log.d(str, a(str2, null));
         }
     }
 
     public static void e(String str, String str2) {
-        synchronized (f7873b) {
+        synchronized (f7872b) {
             Log.e(str, a(str2, null));
         }
     }
 
     public static void f(String str, String str2, Throwable th2) {
-        synchronized (f7873b) {
+        synchronized (f7872b) {
             Log.e(str, a(str2, th2));
         }
     }
@@ -102,11 +102,11 @@ public abstract class a {
         ExecutorService executorService;
         synchronized (a.class) {
             try {
-                if (f7872a == null) {
-                    String str = d0.f7888a;
-                    f7872a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
+                if (f7871a == null) {
+                    String str = d0.f7887a;
+                    f7871a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
                 }
-                executorService = f7872a;
+                executorService = f7871a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -155,7 +155,7 @@ public abstract class a {
     }
 
     public static void i(String str, String str2) {
-        synchronized (f7873b) {
+        synchronized (f7872b) {
             Log.i(str, a(str2, null));
         }
     }
@@ -280,13 +280,13 @@ public abstract class a {
     }
 
     public static void n(String str, String str2) {
-        synchronized (f7873b) {
+        synchronized (f7872b) {
             Log.w(str, a(str2, null));
         }
     }
 
     public static void o(String str, String str2, Throwable th2) {
-        synchronized (f7873b) {
+        synchronized (f7872b) {
             Log.w(str, a(str2, th2));
         }
     }

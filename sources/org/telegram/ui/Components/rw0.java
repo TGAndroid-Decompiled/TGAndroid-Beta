@@ -1,33 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class rw0 extends AnimatorListenerAdapter {
-    public final int f27711a;
-    public final sw0 f27712b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ProfileActivity;
+public final class rw0 implements Runnable {
+    public final int f27981a;
+    public final uw0 f27982b;
 
-    public rw0(sw0 sw0Var, int i10) {
-        this.f27711a = i10;
-        this.f27712b = sw0Var;
+    public rw0(uw0 uw0Var, int i10) {
+        this.f27981a = i10;
+        this.f27982b = uw0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27711a) {
+    public final void run() {
+        switch (this.f27981a) {
             case 0:
-                sw0 sw0Var = this.f27712b;
-                sw0Var.f27944y = 1.0f;
-                sw0Var.invalidate();
-                sw0Var.G = null;
-                return;
-            case 1:
-                sw0 sw0Var2 = this.f27712b;
-                sw0Var2.m(((Float) sw0Var2.v.getAnimatedValue()).floatValue());
-                sw0Var2.v = null;
+                uw0 uw0Var = this.f27982b;
+                uw0Var.invalidate();
+                AndroidUtilities.runOnUIThread(new rw0(uw0Var, 1));
                 return;
             default:
-                super.onAnimationEnd(animator);
-                this.f27712b.F = null;
+                uw0 uw0Var2 = this.f27982b;
+                tw0 tw0Var = uw0Var2.e;
+                if (tw0Var != null) {
+                    uw0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.ky0) tw0Var).f35201b;
+                    org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f31599r;
+                    j5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.Z5));
+                    j5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f31488a6));
+                    return;
+                }
                 return;
         }
     }

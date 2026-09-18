@@ -7,23 +7,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public abstract class jc {
     public float f4861b;
-    public org.telegram.ui.Cells.e7 d;
+    public org.telegram.ui.Cells.f7 d;
     public ImageReceiver e;
     public ai.a5 f4863f;
     public int f4860a = 0;
     public final RectF f4862c = new RectF();
 
-    public static hc b(org.telegram.ui.Cells.f7 f7Var) {
+    public static hc b(org.telegram.ui.Cells.g7 g7Var) {
         int i10;
-        if (f7Var == null) {
+        if (g7Var == null) {
             return null;
         }
-        org.telegram.ui.Components.u9 imageView = f7Var.getImageView();
+        org.telegram.ui.Components.w9 imageView = g7Var.getImageView();
         hc hcVar = new hc(imageView, 2);
         int[] iArr = new int[2];
         imageView.getLocationOnScreen(iArr);
         hcVar.f4862c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
-        hcVar.d = new org.telegram.ui.Cells.e7(imageView.getContext(), null, false, f7Var.f20110y);
+        hcVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f20327y);
         hcVar.f4861b = Math.max(hcVar.f4862c.width(), hcVar.f4862c.height()) / 2.0f;
         return hcVar;
     }

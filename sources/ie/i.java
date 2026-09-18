@@ -40,7 +40,7 @@ public class i {
         while (true) {
             int andDecrement = f11097f.getAndDecrement(this);
             if (andDecrement <= 1) {
-                gd.i iVar = gd.i.f9621a;
+                gd.i iVar = gd.i.f9620a;
                 if (andDecrement > 0) {
                     d.f11089g.set(dVar, null);
                     mVar.B(new b(dVar, cVar, 0), iVar);
@@ -58,7 +58,7 @@ public class i {
                         while (true) {
                             t tVar = (t) atomicReferenceFieldUpdater.get(this);
                             kVar = kVar2;
-                            if (tVar.f8199c >= b10.f8199c) {
+                            if (tVar.f8198c >= b10.f8198c) {
                                 break;
                             } else if (!b10.j()) {
                                 break;

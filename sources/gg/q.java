@@ -4,27 +4,27 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.ui.Components.sn0;
+import org.telegram.ui.Components.eo0;
 public final class q implements Runnable {
-    public final int f9894a;
-    public final i0 f9895b;
-    public final long f9896c;
+    public final int f9893a;
+    public final i0 f9894b;
+    public final long f9895c;
 
-    public q(sn0 sn0Var, long j3, int i10) {
-        this.f9894a = i10;
-        this.f9895b = sn0Var;
-        this.f9896c = j3;
+    public q(eo0 eo0Var, long j3, int i10) {
+        this.f9893a = i10;
+        this.f9894b = eo0Var;
+        this.f9895c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f9894a) {
+        switch (this.f9893a) {
             case 0:
-                long j3 = this.f9896c;
-                i0 i0Var = this.f9895b;
+                long j3 = this.f9895c;
+                i0 i0Var = this.f9894b;
                 i0Var.getClass();
                 try {
-                    SQLiteDatabase database = MessagesStorage.getInstance(i0Var.f9784s0).getDatabase();
+                    SQLiteDatabase database = MessagesStorage.getInstance(i0Var.f9783s0).getDatabase();
                     database.executeFast("DELETE FROM search_recent WHERE did = " + j3).stepThis().dispose();
                     return;
                 } catch (Exception e) {
@@ -32,11 +32,11 @@ public final class q implements Runnable {
                     return;
                 }
             default:
-                long j10 = this.f9896c;
-                i0 i0Var2 = this.f9895b;
+                long j10 = this.f9895c;
+                i0 i0Var2 = this.f9894b;
                 i0Var2.getClass();
                 try {
-                    SQLitePreparedStatement executeFast = MessagesStorage.getInstance(i0Var2.f9784s0).getDatabase().executeFast("REPLACE INTO search_recent VALUES(?, ?)");
+                    SQLitePreparedStatement executeFast = MessagesStorage.getInstance(i0Var2.f9783s0).getDatabase().executeFast("REPLACE INTO search_recent VALUES(?, ?)");
                     executeFast.requery();
                     executeFast.bindLong(1, j10);
                     executeFast.bindInteger(2, (int) (System.currentTimeMillis() / 1000));

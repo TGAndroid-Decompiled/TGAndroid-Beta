@@ -1,44 +1,34 @@
 package qg;
 
 import android.content.Context;
-import android.view.ViewGroup;
-public final class j1 extends s4.h0 {
-    public final Context f41448c;
-    public final l1 d;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class j1 extends View {
+    public final Paint f41677a;
+    public float f41678b;
 
-    public j1(l1 l1Var, Context context) {
-        this.d = l1Var;
-        this.f41448c = context;
+    public j1(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f41677a = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
     @Override
-    public final int h() {
-        return 14;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Paint paint = this.f41677a;
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-6.7f, -7.0f, this.f41678b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(0.71f, 0.0f, this.f41678b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 7.0f, this.f41678b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 0.0f, this.f41678b)), paint);
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 0.0f, this.f41678b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 7.0f, this.f41678b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(6.59f, 0.0f, this.f41678b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-4.27f, -7.0f, this.f41678b)), paint);
     }
 
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        float f7;
-        k1 k1Var = (k1) c1Var.f42702a;
-        ViewGroup.LayoutParams layoutParams = k1Var.getLayoutParams();
-        l1 l1Var = this.d;
-        layoutParams.height = ((l1Var.getHeight() - l1Var.getPaddingTop()) - l1Var.getPaddingBottom()) / 2;
-        pg.s0 s0Var = l1Var.f41475a3;
-        if (s0Var != null) {
-            k1Var.f41455a = s0Var.b(i10);
-            k1Var.invalidate();
-            if (l1Var.Z2 == i10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            k1Var.f41456b = f7;
-            k1Var.invalidate();
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new k1(this.d, this.f41448c));
+    public void setProgress(float f7) {
+        this.f41678b = f7;
+        invalidate();
     }
 }

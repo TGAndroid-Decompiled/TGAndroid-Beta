@@ -1,28 +1,28 @@
 package v7;
 public final class e8 {
-    public final String f43990a;
-    public final String f43991b;
-    public final String f43992c;
+    public final String f44216a;
+    public final String f44217b;
+    public final String f44218c;
     public final String d;
     public final j9 e;
-    public final String f43993f;
-    public final Boolean f43994g;
+    public final String f44219f;
+    public final Boolean f44220g;
     public final Boolean h;
-    public final Boolean f43995i;
-    public final Integer f43996j;
-    public final Integer f43997k;
+    public final Boolean f44221i;
+    public final Integer f44222j;
+    public final Integer f44223k;
 
     public e8(d8 d8Var) {
-        this.f43990a = d8Var.f43973a;
-        this.f43991b = d8Var.f43974b;
-        this.f43992c = d8Var.f43975c;
+        this.f44216a = d8Var.f44199a;
+        this.f44217b = d8Var.f44200b;
+        this.f44218c = d8Var.f44201c;
         this.d = d8Var.d;
-        this.e = (j9) d8Var.f43980k;
-        this.f43993f = d8Var.e;
-        this.f43994g = (Boolean) d8Var.f43976f;
-        this.h = (Boolean) d8Var.f43977g;
-        this.f43995i = (Boolean) d8Var.h;
-        this.f43996j = d8Var.f43978i;
-        this.f43997k = (Integer) d8Var.f43979j;
+        this.e = (j9) d8Var.f44206k;
+        this.f44219f = d8Var.e;
+        this.f44220g = (Boolean) d8Var.f44202f;
+        this.h = (Boolean) d8Var.f44203g;
+        this.f44221i = (Boolean) d8Var.h;
+        this.f44222j = d8Var.f44204i;
+        this.f44223k = (Integer) d8Var.f44205j;
     }
 }

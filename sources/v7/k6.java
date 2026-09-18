@@ -1,14 +1,14 @@
 package v7;
 public final class k6 {
-    public final e8 f44057a;
-    public final j6 f44058b;
-    public final h6 f44059c;
+    public final e8 f44283a;
+    public final j6 f44284b;
+    public final h6 f44285c;
     public final g7 d;
 
-    public k6(ni.f fVar) {
-        this.f44057a = (e8) fVar.f15267a;
-        this.f44058b = (j6) fVar.f15268b;
-        this.f44059c = (h6) fVar.f15269c;
+    public k6(oi.f fVar) {
+        this.f44283a = (e8) fVar.f15716a;
+        this.f44284b = (j6) fVar.f15717b;
+        this.f44285c = (h6) fVar.f15718c;
         this.d = (g7) fVar.d;
     }
 }

@@ -1,29 +1,36 @@
 package org.telegram.ui;
+public final class i01 implements Runnable {
+    public final int f34279a;
+    public final j01 f34280b;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class i01 implements mq {
-    public final wy f34409a;
-    public final j01 f34410b;
-
-    public i01(j01 j01Var, wy wyVar) {
-        this.f34410b = j01Var;
-        this.f34409a = wyVar;
+    public i01(j01 j01Var, int i10) {
+        this.f34279a = i10;
+        this.f34280b = j01Var;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        j01 j01Var = this.f34410b;
-        j01Var.f34748b.N1 = true;
-        this.f34409a.removeSelfFromStack();
-        NotificationCenter notificationCenter = j01Var.f34748b.getNotificationCenter();
-        ProfileActivity profileActivity = j01Var.f34748b;
-        int i11 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i11);
-        j01Var.f34748b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
+    public final void run() {
+        switch (this.f34279a) {
+            case 0:
+                ProfileActivity profileActivity = this.f34280b.D0;
+                vz0 vz0Var = profileActivity.B5;
+                if (vz0Var != null) {
+                    vz0Var.dismiss();
+                    profileActivity.B5 = null;
+                    return;
+                }
+                return;
+            default:
+                try {
+                    org.telegram.ui.Components.wl0 currentListView = this.f34280b.f34660x0.O.getCurrentListView();
+                    if (currentListView != null && currentListView.getAdapter() != null) {
+                        currentListView.getAdapter().l();
+                        return;
+                    }
+                    return;
+                } catch (Throwable unused) {
+                    return;
+                }
+        }
     }
 }

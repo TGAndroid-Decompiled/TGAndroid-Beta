@@ -7,12 +7,12 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 public final class p6 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     public float T;
     public float U;
-    public final org.telegram.ui.Components.wc V;
+    public final org.telegram.ui.Components.yc V;
     public boolean W;
 
     public p6(r6 r6Var, Context context) {
         super(context, r6Var.G1);
-        this.V = new org.telegram.ui.Components.wc(this);
+        this.V = new org.telegram.ui.Components.yc(this);
         this.W = true;
     }
 
@@ -33,13 +33,13 @@ public final class p6 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        org.telegram.ui.Components.wc wcVar = this.V;
+        org.telegram.ui.Components.yc ycVar = this.V;
         if (action == 0) {
             this.T = motionEvent.getX();
             this.U = motionEvent.getY();
-            wcVar.c(this.W);
+            ycVar.c(this.W);
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            wcVar.c(false);
+            ycVar.c(false);
         }
         return super.dispatchTouchEvent(motionEvent);
     }

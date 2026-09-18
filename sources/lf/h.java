@@ -2,8 +2,8 @@ package lf;
 
 import java.util.logging.Logger;
 public final class h extends jf.a {
-    public static final Logger f14030s = Logger.getLogger(h.class.getName());
-    public byte f14031r;
+    public static final Logger f14176s = Logger.getLogger(h.class.getName());
+    public byte f14177r;
 
     public static boolean b(o oVar) {
         boolean z10;
@@ -25,11 +25,11 @@ public final class h extends jf.a {
     public static g c(e eVar) {
         b b10 = eVar.b();
         eVar.c(3, b.ISO_8859_1);
-        return new g(0, eVar.d(200, b10), eVar.c((int) eVar.f14019a.e(), b10));
+        return new g(0, eVar.d(200, b10), eVar.c((int) eVar.f14165a.e(), b10));
     }
 
     public static String e(e eVar) {
-        return eVar.c((int) eVar.f14019a.e(), eVar.b());
+        return eVar.c((int) eVar.f14165a.e(), eVar.b());
     }
 
     public final void d(lf.e r12) {

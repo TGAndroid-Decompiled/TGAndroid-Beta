@@ -103,7 +103,7 @@ public final class k7 extends j1.b {
     public final void l(int i10, s0.c cVar) {
         String string;
         String string2;
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f42651a;
+        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f42878a;
         cVar.i("android.widget.Button");
         boolean z10 = false;
         Rect rect = this.f4891o;
@@ -129,7 +129,7 @@ public final class k7 extends j1.b {
                 }
                 accessibilityNodeInfo.setEnabled(z10);
                 if (z10) {
-                    cVar.b(s0.b.f42645c);
+                    cVar.b(s0.b.f42872c);
                     return;
                 }
                 return;
@@ -152,7 +152,7 @@ public final class k7 extends j1.b {
             cVar.j(string2);
             accessibilityNodeInfo.setEnabled(!l7Var.f4966u0);
             if (!l7Var.f4966u0) {
-                cVar.b(s0.b.f42645c);
+                cVar.b(s0.b.f42872c);
                 return;
             }
             return;
@@ -174,7 +174,7 @@ public final class k7 extends j1.b {
         }
         accessibilityNodeInfo.setEnabled(z10);
         if (z10) {
-            cVar.b(s0.b.f42645c);
+            cVar.b(s0.b.f42872c);
         }
     }
 }

@@ -5,18 +5,13 @@ import android.media.MediaDrmResetException;
 import b2.k0;
 import e2.m;
 import e9.i0;
-import java.util.List;
 import m4.a0;
 import m4.e1;
-import m4.f1;
-import m4.k1;
 import m4.n;
 import m4.q;
-import m4.q1;
 import m4.r;
 import m4.z;
-import v7.l8;
-public final class e implements m, d9.e, i5.g, z, f1, e1 {
+public final class e implements m, d9.e, i5.g, z, e1 {
     public final int f12574a;
 
     public e(int i10) {
@@ -27,27 +22,22 @@ public final class e implements m, d9.e, i5.g, z, f1, e1 {
         return (AudioDeviceInfo) obj;
     }
 
-    public static boolean f(Object obj) {
+    public static boolean e(Object obj) {
         return obj instanceof MediaDrmResetException;
     }
 
     @Override
-    public void a(k1 k1Var, r rVar, List list) {
-        k1Var.v0(list);
-    }
-
-    @Override
     public Object apply(Object obj) {
-        return i0.z(Integer.valueOf(((v2.h) obj).f43879a));
+        return i0.z(Integer.valueOf(((v2.h) obj).f44105a));
     }
 
     @Override
-    public void d(q qVar, int i10) {
+    public void c(q qVar, int i10) {
         switch (this.f12574a) {
-            case 21:
+            case 23:
                 qVar.getClass();
                 return;
-            case 22:
+            case 24:
                 qVar.b(i10);
                 return;
             default:
@@ -57,24 +47,19 @@ public final class e implements m, d9.e, i5.g, z, f1, e1 {
     }
 
     @Override
-    public Object h(a0 a0Var, r rVar, int i10) {
+    public Object i(a0 a0Var, r rVar, int i10) {
         switch (this.f12574a) {
-            case 24:
-                a0Var.getClass();
-                throw new ClassCastException();
-            case 25:
-                a0Var.getClass();
-                throw new ClassCastException();
             case 26:
-                return a0Var.n(rVar);
+                a0Var.getClass();
+                throw new ClassCastException();
             case 27:
                 a0Var.getClass();
                 throw new ClassCastException();
+            case 28:
+                return a0Var.n(rVar);
             default:
-                na.d dVar = a0Var.e;
-                a0Var.s(rVar);
-                dVar.getClass();
-                return l8.b(new q1(-6));
+                a0Var.getClass();
+                throw new ClassCastException();
         }
     }
 
@@ -134,10 +119,10 @@ public final class e implements m, d9.e, i5.g, z, f1, e1 {
     }
 
     public e(String str, int i10, int i11, n nVar) {
-        this.f12574a = 25;
+        this.f12574a = 27;
     }
 
     @Override
-    public void c(Exception exc) {
+    public void a(Exception exc) {
     }
 }

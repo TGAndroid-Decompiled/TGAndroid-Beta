@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class fp extends bj0 {
-    public final mp f23973r;
+public final class fp extends lj0 {
+    public final mp f24195r;
 
     public fp(mp mpVar, Context context) {
         super(context);
-        this.f23973r = mpVar;
+        this.f24195r = mpVar;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f23973r.N) {
+        if (this.f24195r.N) {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
         } else {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));

@@ -6,17 +6,17 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.qv0;
-public final class b4 extends org.telegram.ui.ActionBar.g3 {
+public final class b4 extends org.telegram.ui.ActionBar.f3 {
     public final a4 f4388b;
     public ValueAnimator f4389c;
     public o1.k d;
     public Boolean e;
     public Utilities.Callback f4390f;
 
-    public b4(Context context, org.telegram.ui.ActionBar.f6 f6Var, String str, float f7) {
-        super(1, context, f6Var, false);
+    public b4(Context context, org.telegram.ui.ActionBar.e6 e6Var, String str, float f7) {
+        super(1, context, e6Var, false);
         fixNavigationBar(-14737633);
         a4 a4Var = new a4(UserConfig.selectedAccount, context, new ai.d(), f7, str);
         this.f4388b = a4Var;
@@ -24,10 +24,10 @@ public final class b4 extends org.telegram.ui.ActionBar.g3 {
         a4Var.setMultipleOnClick(false);
         a4Var.setOnBackClickListener(new y3(this, 0));
         a4Var.setOnSelectListener(new bi.v(this, 4));
-        qv0 qv0Var = new qv0(context, null);
-        this.containerView = qv0Var;
+        bw0 bw0Var = new bw0(context, null);
+        this.containerView = bw0Var;
         int i10 = this.backgroundPaddingLeft;
-        qv0Var.setPadding(i10, 0, i10, 0);
+        bw0Var.setPadding(i10, 0, i10, 0);
         this.containerView.addView(a4Var);
     }
 
@@ -62,10 +62,10 @@ public final class b4 extends org.telegram.ui.ActionBar.g3 {
         }
         this.e = Boolean.valueOf(z10);
         if (z10) {
-            o1.k kVar = new o1.k(a4Var, o1.h.f15344n, height);
+            o1.k kVar = new o1.k(a4Var, o1.h.f15473n, height);
             this.d = kVar;
-            kVar.f15361u.a(0.75f);
-            this.d.f15361u.b(350.0f);
+            kVar.f15490u.a(0.75f);
+            this.d.f15490u.b(350.0f);
             this.d.a(new z3(this, height, y3Var));
             this.d.f();
             return;

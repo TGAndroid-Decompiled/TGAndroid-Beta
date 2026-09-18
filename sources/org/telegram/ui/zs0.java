@@ -1,11 +1,8 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class zs0 extends bv0 {
-    public final PhotoViewer f40340t;
-
-    public zs0(PhotoViewer photoViewer, View view) {
-        super(photoViewer, view);
-        this.f40340t = photoViewer;
+import android.content.Context;
+public final class zs0 extends org.telegram.ui.Components.pt {
+    public zs0(Context context, String str) {
+        super(context, str);
     }
 }

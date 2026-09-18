@@ -74,7 +74,7 @@ public final class i implements b {
 
     @Override
     public final void b(b0 b0Var) {
-        this.M = b0Var.f43362a;
+        this.M = b0Var.f43589a;
     }
 
     @Override
@@ -100,13 +100,13 @@ public final class i implements b {
     public final void e(a aVar, b0 b0Var) {
         f0 f0Var = aVar.d;
         if (f0Var != null) {
-            s sVar = b0Var.f43364c;
+            s sVar = b0Var.f43591c;
             sVar.getClass();
             int i10 = b0Var.d;
             k1 k1Var = aVar.f12564b;
             f0Var.getClass();
             a5.a aVar2 = new a5.a(sVar, i10, this.f12594c.d(k1Var, f0Var), 9);
-            int i11 = b0Var.f43363b;
+            int i11 = b0Var.f43590b;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -230,7 +230,7 @@ public final class i implements b {
     public final void r(k1 k1Var, f0 f0Var) {
         int b10;
         PlaybackMetrics.Builder builder = this.v;
-        if (f0Var == null || (b10 = k1Var.b(f0Var.f43385a)) == -1) {
+        if (f0Var == null || (b10 = k1Var.b(f0Var.f43612a)) == -1) {
             return;
         }
         h1 h1Var = this.h;
@@ -341,7 +341,7 @@ public final class i implements b {
             }
             String str5 = sVar.d;
             if (str5 != null) {
-                String str6 = d0.f7888a;
+                String str6 = d0.f7887a;
                 String[] split = str5.split("-", -1);
                 String str7 = split[0];
                 if (split.length >= 2) {

@@ -5,37 +5,37 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class n0 extends ClickableSpan {
-    public final int f35918a;
-    public final Object f35919b;
-    public final Object f35920c;
+    public final int f35785a;
+    public final Object f35786b;
+    public final Object f35787c;
     public final Object d;
 
     public n0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35918a = i10;
-        this.f35919b = obj;
-        this.f35920c = obj2;
+        this.f35785a = i10;
+        this.f35786b = obj;
+        this.f35787c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f35918a) {
+        switch (this.f35785a) {
             case 0:
-                ((w70) this.f35919b).c((f4) this.f35920c, (org.telegram.ui.Components.l01) this.d);
+                ((u70) this.f35786b).c((f4) this.f35787c, (org.telegram.ui.Components.z01) this.d);
                 return;
             default:
-                org.telegram.ui.ActionBar.c2 c2Var = ((org.telegram.ui.ActionBar.c2[]) this.f35919b)[0];
-                if (c2Var != null) {
-                    c2Var.dismiss();
+                org.telegram.ui.ActionBar.b2 b2Var = ((org.telegram.ui.ActionBar.b2[]) this.f35786b)[0];
+                if (b2Var != null) {
+                    b2Var.dismiss();
                 }
-                nf.f.s((Context) this.f35920c, "https://t.me/" + ((String) this.d));
+                nf.f.s((Context) this.f35787c, "https://t.me/" + ((String) this.d));
                 return;
         }
     }
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f35918a) {
+        switch (this.f35785a) {
             case 1:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);

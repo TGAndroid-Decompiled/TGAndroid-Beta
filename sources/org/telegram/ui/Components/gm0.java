@@ -1,103 +1,105 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.KeyEvent;
-import android.view.View;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.dc1;
-public final class gm0 extends AnimatorListenerAdapter {
-    public final int f24346a;
-    public final boolean f24347b;
-    public final float f24348c;
-    public final KeyEvent.Callback d;
+public final class gm0 extends xw0 {
+    public float d;
+    public final Paint f24459f;
+    public boolean f24456a = false;
+    public long f24457b = 0;
+    public boolean f24458c = false;
+    public int e = 1;
 
-    public gm0(KeyEvent.Callback callback, boolean z10, float f7, int i10) {
-        this.f24346a = i10;
-        this.d = callback;
-        this.f24347b = z10;
-        this.f24348c = f7;
+    public gm0(boolean z10) {
+        if (z10) {
+            this.f24459f = new Paint(1);
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void b(int i10) {
+        Paint paint = this.f24459f;
+        if (paint != null) {
+            paint.setColor(i10);
+        }
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        this.f24456a = z10;
+    }
+
+    @Override
+    public final void d() {
+        this.f24457b = System.currentTimeMillis();
+        this.f24458c = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
         float f7;
-        switch (this.f24346a) {
-            case 0:
-                jm0 jm0Var = (jm0) this.d;
-                dc1 dc1Var = jm0Var.e;
-                jm0Var.f25341h0 = null;
-                boolean z10 = this.f24347b;
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                jm0Var.f25342i0 = f7;
-                for (int i10 = 0; i10 < dc1Var.getChildCount(); i10++) {
-                    dc1Var.getChildAt(i10).invalidate();
-                }
-                dc1Var.invalidate();
-                jm0Var.p();
-                if (!z10) {
-                    float childCount = jm0Var.f25344k0 * dc1Var.getChildCount();
-                    float f10 = this.f24348c;
-                    float scrollX = (jm0Var.getScrollX() + f10) / (jm0Var.f25343j0 * dc1Var.getChildCount());
-                    float measuredWidth = (childCount - jm0Var.getMeasuredWidth()) / childCount;
-                    if (scrollX > measuredWidth) {
-                        scrollX = measuredWidth;
-                        f10 = 0.0f;
-                    }
-                    float f11 = childCount * scrollX;
-                    if (f11 - f10 < 0.0f) {
-                        f11 = f10;
-                    }
-                    jm0Var.f25345l0 = (jm0Var.getScrollX() + f10) - f11;
-                    int i11 = (int) (f11 - f10);
-                    jm0Var.m0 = i11;
-                    if (i11 < 0) {
-                        jm0Var.m0 = 0;
-                    }
-                    for (int i12 = 0; i12 < dc1Var.getChildCount(); i12++) {
-                        View childAt = dc1Var.getChildAt(i12);
-                        if (childAt instanceof ex0) {
-                            ((ex0) childAt).setExpanded(false);
-                        }
-                        childAt.getLayoutParams().width = AndroidUtilities.dp(33.0f);
-                    }
-                    jm0Var.f25340g0 = false;
-                    jm0Var.getLayoutParams().height = AndroidUtilities.dp(36.0f);
-                    dc1Var.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                if (!this.f24347b) {
-                    super/*android.app.Dialog*/.dismiss();
-                    return;
-                }
-                return;
+        Paint paint = this.f24459f;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.j6.f19040c2;
+        }
+        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
+        float dp = AndroidUtilities.dp(6.0f);
+        if (this.f24456a) {
+            f7 = 8.0f;
+        } else {
+            f7 = 9.0f;
+        }
+        canvas.drawCircle(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(4.0f), paint);
+        if (this.f24458c) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f24457b;
+            this.f24457b = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            float f10 = this.d;
+            int i10 = this.e;
+            float f11 = (((float) (i10 * j3)) / 400.0f) + f10;
+            this.d = f11;
+            if (i10 > 0 && f11 >= 1.0f) {
+                this.e = -1;
+                this.d = 1.0f;
+            } else if (i10 < 0 && f11 <= 0.0f) {
+                this.e = 1;
+                this.d = 0.0f;
+            }
+            a();
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f24346a) {
-            case 1:
-                super.onAnimationStart(animator);
-                wh.l lVar = ((wh.m) this.d).f45138y;
-                lVar.setVisibility(0);
-                if (this.f24347b) {
-                    float f7 = this.f24348c;
-                    lVar.setScaleX(f7);
-                    lVar.setScaleY(f7);
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final void e() {
+        this.f24458c = false;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(10.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(12.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

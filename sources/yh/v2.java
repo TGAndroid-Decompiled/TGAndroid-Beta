@@ -1,126 +1,323 @@
 package yh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.qr;
-public final class v2 extends View {
-    public final Paint f47912a;
-    public final Paint f47913b;
-    public final Paint f47914c;
-    public final RadialGradient[] d;
-    public final Matrix e;
-    public final org.telegram.ui.Components.c6 f47915f;
-    public final RadialGradient h;
-    public final Path f47916n;
-    public int f47917r;
-    public int f47918s;
+import org.telegram.ui.Components.w9;
+public final class v2 extends FrameLayout {
+    public final xh.f1 f48104a;
+    public final FrameLayout f48105b;
+    public final w9 f48106c;
+    public final TextView d;
+    public final FrameLayout e;
+    public final ImageView f48107f;
+    public TL_stars.StarGift h;
+    public boolean f48108n;
 
     public v2(Context context) {
         super(context);
-        this.f47912a = new Paint(1);
-        this.f47913b = new Paint(1);
-        Paint paint = new Paint(1);
-        this.f47914c = paint;
-        this.d = new RadialGradient[2];
-        this.e = new Matrix();
-        this.f47915f = new org.telegram.ui.Components.c6(1.0f, this, 0L, 420L, qr.h);
-        this.h = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{0, -1, -1, 0}, new float[]{0.15f, 0.35f, 0.65f, 0.88f}, Shader.TileMode.CLAMP);
-        this.f47916n = new Path();
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        FrameLayout frameLayout = new FrameLayout(context);
+        addView(frameLayout, w7.y5.d(-1, -1.0f, 119, 6.0f, 6.0f, 6.0f, 6.0f));
+        frameLayout.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.l1(0.12f, -4530177)));
+        frameLayout.setForeground(new l3(AndroidUtilities.dp(18.0f), 0));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(R.drawable.filled_add_album);
+        imageView.setScaleX(1.25f);
+        imageView.setScaleY(1.25f);
+        frameLayout.addView(imageView, w7.y5.e(24, 24, 17));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.f48105b = frameLayout2;
+        xh.f1 f1Var = new xh.f1(frameLayout2, null, false);
+        this.f48104a = f1Var;
+        frameLayout2.setBackground(f1Var);
+        f1Var.f46112s = AndroidUtilities.dp(18.0f);
+        f1Var.f46114u = false;
+        frameLayout.addView(frameLayout2, w7.y5.e(-1, -1, 119));
+        frameLayout2.setAlpha(0.0f);
+        frameLayout2.setScaleX(0.6f);
+        frameLayout2.setScaleY(0.6f);
+        w9 w9Var = new w9(context);
+        this.f48106c = w9Var;
+        frameLayout2.addView(w9Var, w7.y5.e(52, 52, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
+        textView.setGravity(17);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 10.0f);
+        textView.setTextColor(-1);
+        textView.setAlpha(0.0f);
+        addView(textView, w7.y5.d(-2, 15.33f, 51, 2.0f, 0.0f, 2.0f, 0.0f));
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.e = frameLayout3;
+        frameLayout3.setAlpha(0.0f);
+        addView(frameLayout3, w7.y5.d(20, 20.0f, 53, 2.0f, 0.0f, 2.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f48107f = imageView2;
+        imageView2.setImageResource(R.drawable.msg_close);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        frameLayout3.addView(imageView2, w7.y5.e(12, 12, 17));
+        b(false, false);
     }
 
-    public final void a(int i10, int i11) {
-        if (this.f47917r == i10 && this.f47918s == i11) {
+    public final void a(TL_stars.StarGift starGift, boolean z10) {
+        boolean z11;
+        this.h = starGift;
+        if (starGift != null) {
+            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) t5.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+            xh.f1 f1Var = this.f48104a;
+            f1Var.d(stargiftattributebackdrop);
+            f1Var.e((TL_stars.starGiftAttributePattern) t5.l(starGift.attributes, TL_stars.starGiftAttributePattern.class));
+            v7.Z0(this.f48106c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) t5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
+            int b10 = org.telegram.ui.ActionBar.j6.b(-0.05f, -0.15f, org.telegram.ui.ActionBar.j6.l1(0.88f, stargiftattributebackdrop.edge_color | (-16777216)));
+            String G0 = ei.l.G0(starGift.craft_chance_permille);
+            TextView textView = this.d;
+            textView.setText(G0);
+            textView.setBackground(new l3(AndroidUtilities.dp(10.0f), b10));
+            this.e.setBackground(new l3(AndroidUtilities.dp(10.0f), b10));
+        }
+        if (starGift != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        b(z11, z10);
+    }
+
+    public final void b(final boolean z10, boolean z11) {
+        float f7;
+        float f10;
+        float f11;
+        int i10;
+        float f12;
+        float f13;
+        int i11;
+        float f14;
+        FrameLayout frameLayout = this.f48105b;
+        frameLayout.animate().cancel();
+        TextView textView = this.d;
+        textView.animate().cancel();
+        FrameLayout frameLayout2 = this.e;
+        frameLayout2.animate().cancel();
+        float f15 = 0.6f;
+        float f16 = 0.0f;
+        int i12 = 0;
+        if (!z11) {
+            if (z10) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            frameLayout.setVisibility(i10);
+            if (z10) {
+                f12 = 1.0f;
+            } else {
+                f12 = 0.6f;
+            }
+            frameLayout.setScaleX(f12);
+            if (z10) {
+                f15 = 1.0f;
+            }
+            frameLayout.setScaleY(f15);
+            if (z10) {
+                f13 = 1.0f;
+            } else {
+                f13 = 0.0f;
+            }
+            frameLayout.setAlpha(f13);
+            if (z10) {
+                i11 = 0;
+            } else {
+                i11 = 8;
+            }
+            textView.setVisibility(i11);
+            if (z10) {
+                f14 = 1.0f;
+            } else {
+                f14 = 0.0f;
+            }
+            textView.setAlpha(f14);
+            if (!z10) {
+                i12 = 8;
+            }
+            frameLayout2.setVisibility(i12);
+            if (z10) {
+                f16 = 1.0f;
+            }
+            frameLayout2.setAlpha(f16);
             return;
         }
-        RadialGradient[] radialGradientArr = this.d;
-        radialGradientArr[0] = radialGradientArr[1];
-        this.f47917r = i10;
-        this.f47918s = i11;
-        radialGradientArr[1] = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f47915f.d(0.0f, true);
-        invalidate();
+        frameLayout.setVisibility(0);
+        ViewPropertyAnimator animate = frameLayout.animate();
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.6f;
+        }
+        ViewPropertyAnimator scaleX = animate.scaleX(f7);
+        if (z10) {
+            f15 = 1.0f;
+        }
+        ViewPropertyAnimator scaleY = scaleX.scaleY(f15);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        ViewPropertyAnimator alpha = scaleY.alpha(f10);
+        qr qrVar = qr.h;
+        alpha.setInterpolator(qrVar).setDuration(420L).withEndAction(new Runnable(this) {
+            public final v2 f48081b;
+
+            {
+                this.f48081b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        boolean z12 = z10;
+                        v2 v2Var = this.f48081b;
+                        if (!z12) {
+                            v2Var.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var.getClass();
+                            return;
+                        }
+                    case 1:
+                        boolean z13 = z10;
+                        v2 v2Var2 = this.f48081b;
+                        if (!z13) {
+                            v2Var2.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var2.getClass();
+                            return;
+                        }
+                    default:
+                        boolean z14 = z10;
+                        v2 v2Var3 = this.f48081b;
+                        if (!z14) {
+                            v2Var3.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var3.getClass();
+                            return;
+                        }
+                }
+            }
+        }).start();
+        textView.setVisibility(0);
+        ViewPropertyAnimator animate2 = textView.animate();
+        if (z10) {
+            f11 = 1.0f;
+        } else {
+            f11 = 0.0f;
+        }
+        animate2.alpha(f11).setInterpolator(qrVar).setDuration(420L).withEndAction(new Runnable(this) {
+            public final v2 f48081b;
+
+            {
+                this.f48081b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        boolean z12 = z10;
+                        v2 v2Var = this.f48081b;
+                        if (!z12) {
+                            v2Var.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var.getClass();
+                            return;
+                        }
+                    case 1:
+                        boolean z13 = z10;
+                        v2 v2Var2 = this.f48081b;
+                        if (!z13) {
+                            v2Var2.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var2.getClass();
+                            return;
+                        }
+                    default:
+                        boolean z14 = z10;
+                        v2 v2Var3 = this.f48081b;
+                        if (!z14) {
+                            v2Var3.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var3.getClass();
+                            return;
+                        }
+                }
+            }
+        }).start();
+        frameLayout2.setVisibility(0);
+        ViewPropertyAnimator animate3 = frameLayout2.animate();
+        if (z10) {
+            f16 = 1.0f;
+        }
+        animate3.alpha(f16).setInterpolator(qrVar).setDuration(420L).withEndAction(new Runnable(this) {
+            public final v2 f48081b;
+
+            {
+                this.f48081b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        boolean z12 = z10;
+                        v2 v2Var = this.f48081b;
+                        if (!z12) {
+                            v2Var.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var.getClass();
+                            return;
+                        }
+                    case 1:
+                        boolean z13 = z10;
+                        v2 v2Var2 = this.f48081b;
+                        if (!z13) {
+                            v2Var2.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var2.getClass();
+                            return;
+                        }
+                    default:
+                        boolean z14 = z10;
+                        v2 v2Var3 = this.f48081b;
+                        if (!z14) {
+                            v2Var3.e.setVisibility(8);
+                            return;
+                        } else {
+                            v2Var3.getClass();
+                            return;
+                        }
+                }
+            }
+        }).start();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint;
-        int i10 = 0;
-        float d = this.f47915f.d(1.0f, false);
-        float currentTimeMillis = (((float) (System.currentTimeMillis() % 15000)) / 15000.0f) * 360.0f;
-        if (getAlpha() > 0.0f) {
-            invalidate();
-        }
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint2 = this.f47913b;
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        Path path = this.f47916n;
-        path.rewind();
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float min = Math.min(getWidth(), getHeight()) / 2.0f;
-        for (int i11 = 0; i11 < 6; i11++) {
-            float a2 = org.telegram.ui.Cells.p6.a(i11, 60.0f, 12.5f, currentTimeMillis);
-            path.moveTo(width, height);
-            double d10 = ((a2 - 12.5f) / 180.0f) * 3.141592653589793d;
-            path.lineTo((((float) Math.cos(d10)) * min) + width, (((float) Math.sin(d10)) * min) + height);
-            double d11 = ((a2 + 12.5f) / 180.0f) * 3.141592653589793d;
-            path.lineTo((((float) Math.cos(d11)) * min) + width, (((float) Math.sin(d11)) * min) + height);
-            path.lineTo(width, height);
-        }
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        while (true) {
-            RadialGradient[] radialGradientArr = this.d;
-            int length = radialGradientArr.length;
-            Matrix matrix = this.e;
-            if (i10 < length) {
-                if (radialGradientArr[i10] == null) {
-                    paint = paint2;
-                } else {
-                    paint = paint2;
-                    float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
-                    if (pow > 0.0f) {
-                        matrix.reset();
-                        float f7 = min / 100.0f;
-                        matrix.postScale(f7, f7);
-                        matrix.postTranslate(width, height);
-                        radialGradientArr[i10].setLocalMatrix(matrix);
-                        RadialGradient radialGradient = radialGradientArr[i10];
-                        Paint paint3 = this.f47912a;
-                        paint3.setShader(radialGradient);
-                        float f10 = pow * 255.0f;
-                        paint3.setAlpha((int) (0.3f * f10));
-                        paint.setShader(radialGradientArr[i10]);
-                        paint.setAlpha((int) f10);
-                        canvas.drawPath(path, paint3);
-                        canvas.drawPath(path, paint);
-                    }
-                }
-                i10++;
-                paint2 = paint;
-            } else {
-                matrix.reset();
-                float f11 = min / 100.0f;
-                matrix.postScale(f11, f11);
-                matrix.postTranslate(width, height);
-                RadialGradient radialGradient2 = this.h;
-                radialGradient2.setLocalMatrix(matrix);
-                Paint paint4 = this.f47914c;
-                paint4.setShader(radialGradient2);
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint4);
-                canvas.restore();
-                return;
-            }
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824));
     }
 }

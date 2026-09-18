@@ -5,49 +5,49 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class x1 implements Utilities.Callback {
-    public final int f47984a;
-    public final a4 f47985b;
+    public final int f48197a;
+    public final y3 f48198b;
 
-    public x1(a4 a4Var, int i10) {
-        this.f47984a = i10;
-        this.f47985b = a4Var;
+    public x1(y3 y3Var, int i10) {
+        this.f48197a = i10;
+        this.f48198b = y3Var;
     }
 
     @Override
     public final void run(Object obj) {
         TLRPC.Message message;
-        switch (this.f47984a) {
+        switch (this.f48197a) {
             case 0:
-                a4 a4Var = this.f47985b;
-                a4Var.getClass();
+                y3 y3Var = this.f48198b;
+                y3Var.getClass();
                 if (((Boolean) obj).booleanValue()) {
-                    a4Var.skipDismissAnimation();
+                    y3Var.skipDismissAnimation();
                 }
-                a4Var.dismiss();
+                y3Var.dismiss();
                 return;
             case 1:
                 TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                a4 a4Var2 = this.f47985b;
-                a4Var2.getClass();
+                y3 y3Var2 = this.f48198b;
+                y3Var2.getClass();
                 if (stargiftupgradepreview != null) {
-                    a4Var2.f46988h1 = stargiftupgradepreview.sample_attributes;
-                    a4Var2.f46990i1 = stargiftupgradepreview.prices;
-                    a4Var2.f46992j1 = stargiftupgradepreview.next_prices;
-                    a4Var2.b2();
+                    y3Var2.f48271h1 = stargiftupgradepreview.sample_attributes;
+                    y3Var2.f48273i1 = stargiftupgradepreview.prices;
+                    y3Var2.f48275j1 = stargiftupgradepreview.next_prices;
+                    y3Var2.b2();
                     return;
                 }
                 return;
             case 2:
-                this.f47985b.dismiss(((Boolean) obj).booleanValue());
+                this.f48198b.dismiss(((Boolean) obj).booleanValue());
                 return;
             default:
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                a4 a4Var3 = this.f47985b;
-                a4Var3.K0 = false;
-                a4Var3.L0 = true;
+                y3 y3Var3 = this.f48198b;
+                y3Var3.K0 = false;
+                y3Var3.L0 = true;
                 if (savedStarGift != null) {
-                    a4Var3.f46984f1 = Boolean.valueOf(savedStarGift.unsaved);
-                    MessageObject messageObject = a4Var3.E0;
+                    y3Var3.f48267f1 = Boolean.valueOf(savedStarGift.unsaved);
+                    MessageObject messageObject = y3Var3.E0;
                     if (messageObject != null && (message = messageObject.messageOwner) != null) {
                         TLRPC.MessageAction messageAction = message.action;
                         if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
@@ -69,7 +69,7 @@ public final class x1 implements Utilities.Callback {
                                 return;
                             }
                         }
-                        a4Var3.i2(messageObject, null);
+                        y3Var3.i2(messageObject, null);
                         return;
                     }
                     return;

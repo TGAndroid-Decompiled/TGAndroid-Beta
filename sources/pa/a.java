@@ -1,4 +1,4 @@
 package pa;
 public interface a {
-    void j(b bVar);
+    void g(b bVar);
 }

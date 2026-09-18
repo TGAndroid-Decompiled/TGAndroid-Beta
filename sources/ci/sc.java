@@ -1,42 +1,42 @@
 package ci;
 public interface sc {
-    void C(float f7, int i10);
+    void A(float f7, int i10);
 
-    void F(float f7);
+    void D(float f7);
 
-    void H(float f7, boolean z10);
+    void F(float f7, boolean z10);
 
-    void O(long j3);
+    void J(long j3);
 
-    void Q(boolean z10);
+    void O(boolean z10);
 
-    void T(float f7, int i10);
+    void R(float f7, int i10);
 
-    void V(float f7);
+    void T(float f7);
 
-    void Z(float f7);
+    void Y(float f7);
 
-    void b(int i10);
+    void Z(float f7, int i10);
 
-    void d0(float f7, int i10);
+    void a0(float f7);
 
-    void e0(float f7);
+    void b0();
 
-    void f0();
+    void e(int i10);
 
-    void h(float f7);
+    void h0(float f7);
 
-    void i0(float f7);
+    void i(float f7);
 
-    void j0(int i10, long j3);
+    void i0(int i10, long j3);
 
-    void n(float f7);
+    void l(float f7);
 
-    void o(long j3, boolean z10);
+    void l0(long j3);
 
-    void o0(long j3);
+    void n(long j3, boolean z10);
 
-    void s();
+    void r();
 
     void u(float f7);
 

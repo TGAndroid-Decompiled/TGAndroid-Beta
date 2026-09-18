@@ -1,309 +1,923 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import android.text.style.ReplacementSpan;
+import android.util.LongSparseArray;
 import android.view.View;
-import java.lang.ref.WeakReference;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimatedFileDrawableStream;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-public final class z5 implements Runnable {
-    public final int f30397a;
-    public final b6 f30398b;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public class z5 extends ReplacementSpan {
+    private static boolean lockPositionChanging;
+    private boolean animateChanges;
+    public int cacheType;
+    public TLRPC.Document document;
+    public String documentAbsolutePath;
+    public long documentId;
+    public String emoji;
+    public float extraScale;
+    private Paint.FontMetricsInt fontMetrics;
+    public boolean fromEmojiKeyboard;
+    public boolean full;
+    public boolean invert;
+    private boolean isAdded;
+    private boolean isRemoved;
+    float lastDrawnCx;
+    float lastDrawnCy;
+    protected int measuredSize;
+    private int minimumLineHeight;
+    private ValueAnimator moveAnimator;
+    boolean positionChanged;
+    private boolean preserveFontMetrics;
+    private boolean recordPositions;
+    private Runnable removedAction;
+    private float scale;
+    private ValueAnimator scaleAnimator;
+    public float size;
+    boolean spanDrawn;
+    public boolean standard;
+    public boolean top;
 
-    public z5(b6 b6Var, int i10) {
-        this.f30397a = i10;
-        this.f30398b = b6Var;
+    public z5(TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        this(document.f18302id, 1.2f, fontMetricsInt);
+        this.document = document;
+    }
+
+    public static void a(z5 z5Var, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        z5Var.extraScale = floatValue;
+        z5Var.scale = AndroidUtilities.lerp(0.0f, 1.0f, floatValue);
+    }
+
+    public static boolean access$400(z5 z5Var) {
+        if (z5Var.moveAnimator == null && z5Var.scaleAnimator == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void applyFontMetricsForString(CharSequence charSequence, Paint paint) {
+        if (charSequence instanceof Spannable) {
+            z5[] z5VarArr = (z5[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), z5.class);
+            if (z5VarArr != null) {
+                for (z5 z5Var : z5VarArr) {
+                    z5Var.applyFontMetrics(paint.getFontMetricsInt());
+                }
+            }
+        }
+    }
+
+    public static void b(z5 z5Var, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        z5Var.extraScale = floatValue;
+        z5Var.scale = AndroidUtilities.lerp(0.2f, 1.0f, floatValue);
+        lockPositionChanging = false;
+    }
+
+    public static boolean c(Layout layout, int i10, int i11) {
+        if (layout.getText() instanceof Spanned) {
+            e11[] e11VarArr = (e11[]) ((Spanned) layout.getText()).getSpans(Math.max(0, i10), Math.min(layout.getText().length() - 1, i11), e11.class);
+            for (int i12 = 0; e11VarArr != null && i12 < e11VarArr.length; i12++) {
+                e11 e11Var = e11VarArr[i12];
+                if (e11Var != null && e11Var.c()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static z5 cloneSpan(z5 z5Var, Paint.FontMetricsInt fontMetricsInt) {
+        z5 z5Var2;
+        Paint.FontMetricsInt fontMetricsInt2;
+        Paint.FontMetricsInt fontMetricsInt3;
+        TLRPC.Document document = z5Var.document;
+        if (document != null) {
+            float f7 = z5Var.scale;
+            if (fontMetricsInt != null) {
+                fontMetricsInt3 = fontMetricsInt;
+            } else {
+                fontMetricsInt3 = z5Var.fontMetrics;
+            }
+            z5Var2 = new z5(document, f7, fontMetricsInt3);
+        } else {
+            long j3 = z5Var.documentId;
+            float f10 = z5Var.scale;
+            if (fontMetricsInt != null) {
+                fontMetricsInt2 = fontMetricsInt;
+            } else {
+                fontMetricsInt2 = z5Var.fontMetrics;
+            }
+            z5Var2 = new z5(j3, f10, fontMetricsInt2);
+        }
+        if (fontMetricsInt != null) {
+            z5Var2.size = z5Var.size;
+        }
+        z5Var2.fromEmojiKeyboard = z5Var.fromEmojiKeyboard;
+        z5Var2.isAdded = z5Var.isAdded;
+        z5Var2.isRemoved = z5Var.isRemoved;
+        return z5Var2;
+    }
+
+    public static CharSequence cloneSpans(CharSequence charSequence) {
+        return cloneSpans(charSequence, -1, null);
+    }
+
+    public static void drawAnimatedEmojis(Canvas canvas, Layout layout, v5 v5Var, float f7, List<vh.h> list, float f10, float f11, float f12, float f13) {
+        drawAnimatedEmojis(canvas, layout, v5Var, f7, list, f10, f11, f12, f13, null);
+    }
+
+    public static CharSequence onlyEmojiSpans(CharSequence charSequence) {
+        CharacterStyle[] characterStyleArr;
+        if (charSequence == null) {
+            return null;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        for (CharacterStyle characterStyle : (CharacterStyle[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), CharacterStyle.class)) {
+            if (!(characterStyle instanceof z5) && !(characterStyle instanceof Emoji.EmojiSpan)) {
+                spannableStringBuilder.removeSpan(characterStyle);
+            }
+        }
+        return spannableStringBuilder;
+    }
+
+    public static void release(View view, LongSparseArray<q5> longSparseArray) {
+        if (longSparseArray == null) {
+            return;
+        }
+        for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
+            q5 valueAt = longSparseArray.valueAt(i10);
+            if (valueAt != null) {
+                valueAt.o(view);
+            }
+        }
+        longSparseArray.clear();
+    }
+
+    public static v5 update(int i10, View view, v5 v5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList) {
+        return update(i10, view, v5Var, arrayList, false);
+    }
+
+    public void applyFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i10) {
+        this.fontMetrics = fontMetricsInt;
+        this.cacheType = i10;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        View view;
-        switch (this.f30397a) {
-            case 0:
-                this.f30398b.i();
-                return;
-            case 1:
-                yf.e eVar = this.f30398b.f22617z0;
-                return;
-            case 2:
-                b6 b6Var = this.f30398b;
-                b6Var.k();
-                b6Var.e = null;
-                if (b6Var.M >= 0 && b6Var.L == -1) {
-                    b6Var.M = -1L;
-                }
-                b6Var.x(false);
-                b6Var.t();
-                return;
-            case 3:
-                b6 b6Var2 = this.f30398b;
-                if (!b6Var2.f22588c0 && !b6Var2.f22611w && !b6Var2.C0 && b6Var2.D0 == null) {
-                    b6Var2.f22593g0 = (float) System.currentTimeMillis();
-                    if (yi0.T0 == null) {
-                        yi0.T0 = new DispatchQueue("cache generator queue");
-                    }
-                    b6Var2.C0 = true;
-                    b6Var2.e = null;
-                    yf.e.A++;
-                    DispatchQueue dispatchQueue = yi0.T0;
-                    z5 z5Var = new z5(b6Var2, 7);
-                    b6Var2.D0 = z5Var;
-                    dispatchQueue.postRunnable(z5Var);
-                    return;
-                }
-                return;
-            case 4:
-                b6 b6Var3 = this.f30398b;
-                b6Var3.k();
-                if (b6Var3.f22609u0 != null && b6Var3.N) {
-                    FileLoader.getInstance(b6Var3.J).removeLoadingVideo(b6Var3.f22609u0.getDocument(), false, false);
-                }
-                int i11 = b6Var3.O;
-                if (i11 <= 0) {
-                    b6Var3.N = true;
-                } else {
-                    b6Var3.O = i11 - 1;
-                }
-                if (!b6Var3.F) {
-                    b6Var3.E = true;
-                } else {
-                    b6Var3.F = false;
-                }
-                b6Var3.e = null;
-                if (b6Var3.M >= 0) {
-                    b6Var3.f22604r = b6Var3.v;
-                    b6Var3.f22606s = null;
-                } else if (!b6Var3.f22585b) {
-                    b6Var3.f22604r = b6Var3.v;
-                } else {
-                    y5 y5Var = b6Var3.f22604r;
-                    if (y5Var == null && b6Var3.f22606s == null) {
-                        b6Var3.f22604r = b6Var3.v;
-                    } else if (y5Var == null) {
-                        b6Var3.f22604r = b6Var3.f22606s;
-                        b6Var3.f22606s = b6Var3.v;
-                    } else {
-                        b6Var3.f22606s = b6Var3.v;
-                    }
-                }
-                b6Var3.v = null;
-                if (b6Var3.P) {
-                    b6Var3.P = false;
-                    b6Var3.f22616y0++;
-                    b6Var3.j();
-                }
-                if (b6Var3.d[3] < b6Var3.f22587c) {
-                    float f7 = b6Var3.f22593g0;
-                    if (f7 > 0.0f) {
-                        i10 = (int) (f7 * 1000.0f);
-                    } else {
-                        i10 = 0;
-                    }
-                    b6Var3.f22587c = i10;
-                }
-                if (b6Var3.M >= 0 && b6Var3.L == -1) {
-                    b6Var3.M = -1L;
-                }
-                b6Var3.f22587c = b6Var3.d[3];
-                Iterator it = b6Var3.f22607s0.iterator();
-                while (it.hasNext()) {
-                    ((View) it.next()).invalidate();
-                }
-                if ((!b6Var3.f22586b0 && b6Var3.f22615y) || (b6Var3.f22599n == null && b6Var3.f22604r != null)) {
-                    b6Var3.t();
-                }
-                b6Var3.x(false);
-                return;
-            case 5:
-                b6 b6Var4 = this.f30398b;
-                if (b6Var4.f22588c0) {
-                    AndroidUtilities.runOnUIThread(b6Var4.F0);
-                    return;
-                }
-                boolean z14 = false;
-                if (!b6Var4.f22613x && b6Var4.f22589d0 == null) {
-                    b6Var4.f22589d0 = AnimatedFileNative.a(b6Var4.G.getAbsolutePath(), b6Var4.d, b6Var4.J, b6Var4.H, b6Var4.f22609u0, false);
-                    if (b6Var4.f22589d0 == null && (!b6Var4.f22600n0 || b6Var4.G0 > 15)) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
-                    }
-                    b6Var4.f22590e0 = z12;
-                    if (b6Var4.f22589d0 != null) {
-                        int[] iArr = b6Var4.d;
-                        if (iArr[0] > 3840 || iArr[1] > 3840) {
-                            b6Var4.f22589d0.f();
-                            b6Var4.f22589d0 = null;
-                        }
-                    }
-                    b6Var4.d();
-                    b6Var4.E();
-                    if (b6Var4.f22600n0 && b6Var4.f22589d0 == null) {
-                        int i12 = b6Var4.G0;
-                        b6Var4.G0 = i12 + 1;
-                        if (i12 <= 15) {
-                            z13 = false;
-                            b6Var4.f22613x = z13;
-                            AndroidUtilities.runOnUIThread(new z5(b6Var4, 0));
-                        }
-                    }
-                    z13 = true;
-                    b6Var4.f22613x = z13;
-                    AndroidUtilities.runOnUIThread(new z5(b6Var4, 0));
-                }
-                try {
-                } catch (Throwable th2) {
-                    FileLog.e(th2);
-                }
-                if (b6Var4.f22617z0 != null) {
-                    if (b6Var4.v == null) {
-                        if (!b6Var4.h.isEmpty()) {
-                            b6Var4.v = (y5) b6Var4.h.remove(0);
-                        } else {
-                            b6Var4.v = new y5(Bitmap.createBitmap(b6Var4.f22596j0, b6Var4.f22595i0, Bitmap.Config.ARGB_8888));
-                        }
-                    }
-                    if (b6Var4.A0 == null) {
-                        b6Var4.A0 = new Object();
-                    }
-                    System.currentTimeMillis();
-                    com.google.android.gms.internal.cast.a aVar = b6Var4.A0;
-                    int i13 = aVar.f6245a;
-                    yf.e eVar2 = b6Var4.f22617z0;
-                    int f10 = eVar2.f(b6Var4.v.f30124b, eVar2.f46829i);
-                    aVar.f6245a = eVar2.f46829i;
-                    if (eVar2.f46837q && !eVar2.e.isEmpty()) {
-                        int i14 = eVar2.f46829i + 1;
-                        eVar2.f46829i = i14;
-                        if (i14 >= eVar2.e.size()) {
-                            eVar2.f46829i = 0;
-                        }
-                    }
-                    if (f10 != -1 && b6Var4.A0.f6245a < i13) {
-                        b6Var4.P = true;
-                    }
-                    int[] iArr2 = b6Var4.d;
-                    y5 y5Var2 = b6Var4.v;
-                    int max = b6Var4.A0.f6245a * Math.max(16, iArr2[4] / Math.max(1, b6Var4.f22617z0.e.size()));
-                    y5Var2.e = max;
-                    iArr2[3] = max;
-                    b6Var4.v.f30126f = false;
-                    if (b6Var4.f22617z0.g()) {
-                        AndroidUtilities.runOnUIThread(b6Var4.E0);
-                    }
-                    if (f10 == -1) {
-                        AndroidUtilities.runOnUIThread(b6Var4.B0);
-                        return;
-                    } else {
-                        AndroidUtilities.runOnUIThread(b6Var4.F0);
-                        return;
-                    }
-                }
-                if (b6Var4.f22589d0 == null) {
-                    int[] iArr3 = b6Var4.d;
-                    if (iArr3[0] != 0 && iArr3[1] != 0) {
-                        AndroidUtilities.runOnUIThread(b6Var4.B0);
-                        return;
-                    }
-                }
-                if (b6Var4.v == null) {
-                    int[] iArr4 = b6Var4.d;
-                    if (iArr4[0] > 0 && iArr4[1] > 0) {
-                        if (!b6Var4.h.isEmpty()) {
-                            b6Var4.v = (y5) b6Var4.h.remove(0);
-                        } else {
-                            int[] iArr5 = b6Var4.d;
-                            float f11 = b6Var4.m0;
-                            b6Var4.v = new y5(Bitmap.createBitmap((int) (iArr5[0] * f11), (int) (iArr5[1] * f11), Bitmap.Config.ARGB_8888));
-                        }
-                    }
-                }
-                if (b6Var4.L >= 0) {
-                    b6Var4.d[3] = (int) b6Var4.L;
-                    long j3 = b6Var4.L;
-                    synchronized (b6Var4.Q) {
-                        b6Var4.L = -1L;
-                    }
-                    AnimatedFileDrawableStream animatedFileDrawableStream = b6Var4.f22609u0;
-                    if (animatedFileDrawableStream != null) {
-                        animatedFileDrawableStream.reset();
-                    }
-                    b6Var4.f22589d0.g(j3, true);
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (b6Var4.v != null) {
-                    System.currentTimeMillis();
-                    if (b6Var4.f22589d0.c(b6Var4.v.f30124b, false, b6Var4.f22593g0, b6Var4.f22594h0, b6Var4.f22597k0) == 0) {
-                        AndroidUtilities.runOnUIThread(b6Var4.B0);
-                        return;
-                    }
-                    if (!b6Var4.f22591f) {
-                        if (b6Var4.f22589d0.f21733a[7] == 1) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        b6Var4.f22591f = z11;
-                    }
-                    int i15 = b6Var4.d[3];
-                    if (i15 < b6Var4.f22587c) {
-                        b6Var4.P = true;
-                    }
-                    if (z10) {
-                        b6Var4.f22587c = i15;
-                    }
-                    y5 y5Var3 = b6Var4.v;
-                    y5Var3.e = i15;
-                    if (b6Var4.f22589d0.f21733a[6] == 1) {
-                        z14 = true;
-                    }
-                    y5Var3.f30126f = z14;
-                }
-                AndroidUtilities.runOnUIThread(b6Var4.F0);
-                return;
-            case 6:
-                b6 b6Var5 = this.f30398b;
-                pe.b bVar = b6Var5.f22607s0;
-                Iterator it2 = bVar.iterator();
-                while (it2.hasNext()) {
-                    ((View) it2.next()).invalidate();
-                }
-                WeakReference weakReference = b6Var5.f22605r0;
-                if (weakReference != null) {
-                    view = (View) weakReference.get();
-                } else {
-                    view = null;
-                }
-                if ((bVar.isEmpty() || b6Var5.R) && view != null) {
-                    view.invalidate();
-                    return;
-                }
-                return;
-            case 7:
-                b6 b6Var6 = this.f30398b;
-                b6Var6.f22617z0.b();
-                AndroidUtilities.runOnUIThread(new z5(b6Var6, 8));
-                return;
-            default:
-                b6 b6Var7 = this.f30398b;
-                if (b6Var7.D0 != null) {
-                    yf.e.c();
-                    b6Var7.D0 = null;
-                }
-                b6Var7.C0 = false;
-                b6Var7.k();
-                b6Var7.x(false);
-                return;
+    public void draw(android.graphics.Canvas r8, java.lang.CharSequence r9, int r10, int r11, float r12, int r13, int r14, int r15, android.graphics.Paint r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z5.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    }
+
+    public long getDocumentId() {
+        TLRPC.Document document = this.document;
+        if (document != null) {
+            return document.f18302id;
         }
+        return this.documentId;
+    }
+
+    public float getExtraScale() {
+        if (this.isAdded) {
+            lockPositionChanging = true;
+            this.isAdded = false;
+            this.extraScale = 0.0f;
+            ValueAnimator valueAnimator = this.scaleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.scaleAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.extraScale, 1.0f);
+            this.scaleAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final z5 f27830b;
+
+                {
+                    this.f27830b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    switch (r2) {
+                        case 0:
+                            z5.b(this.f27830b, valueAnimator2);
+                            return;
+                        default:
+                            z5.a(this.f27830b, valueAnimator2);
+                            return;
+                    }
+                }
+            });
+            this.scaleAnimator.addListener(new t5(this, 0));
+            this.scaleAnimator.setDuration(130L);
+            this.scaleAnimator.setInterpolator(qr.f27715f);
+            this.scaleAnimator.start();
+        } else if (this.isRemoved) {
+            this.isRemoved = false;
+            this.extraScale = 1.0f;
+            ValueAnimator valueAnimator2 = this.scaleAnimator;
+            if (valueAnimator2 != null) {
+                valueAnimator2.removeAllListeners();
+                this.scaleAnimator.cancel();
+            }
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.extraScale, 0.0f);
+            this.scaleAnimator = ofFloat2;
+            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final z5 f27830b;
+
+                {
+                    this.f27830b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
+                    switch (r2) {
+                        case 0:
+                            z5.b(this.f27830b, valueAnimator22);
+                            return;
+                        default:
+                            z5.a(this.f27830b, valueAnimator22);
+                            return;
+                    }
+                }
+            });
+            this.scaleAnimator.addListener(new t5(this, 1));
+            this.scaleAnimator.setInterpolator(qr.f27715f);
+            this.scaleAnimator.setDuration(130L);
+            this.scaleAnimator.start();
+        }
+        return this.extraScale;
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        boolean z10;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        Paint.FontMetricsInt fontMetricsInt2 = fontMetricsInt;
+        if (this.preserveFontMetrics && fontMetricsInt2 != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            i12 = fontMetricsInt2.top;
+        } else {
+            i12 = 0;
+        }
+        if (z10) {
+            i13 = fontMetricsInt2.ascent;
+        } else {
+            i13 = 0;
+        }
+        if (z10) {
+            i14 = fontMetricsInt2.descent;
+        } else {
+            i14 = 0;
+        }
+        if (z10) {
+            i15 = fontMetricsInt2.bottom;
+        } else {
+            i15 = 0;
+        }
+        if (z10) {
+            i16 = fontMetricsInt2.leading;
+        } else {
+            i16 = 0;
+        }
+        if (fontMetricsInt2 == null && this.top) {
+            fontMetricsInt2 = paint.getFontMetricsInt();
+        }
+        if (fontMetricsInt2 == null) {
+            i17 = 0;
+        } else {
+            i17 = fontMetricsInt2.ascent;
+        }
+        if (fontMetricsInt2 == null) {
+            i18 = 0;
+        } else {
+            i18 = fontMetricsInt2.descent;
+        }
+        Paint.FontMetricsInt fontMetricsInt3 = this.fontMetrics;
+        if (fontMetricsInt3 == null) {
+            int i19 = (int) this.size;
+            int dp = AndroidUtilities.dp(8.0f);
+            int dp2 = AndroidUtilities.dp(10.0f);
+            if (fontMetricsInt2 != null) {
+                float f7 = (-dp2) - dp;
+                float f10 = this.scale;
+                fontMetricsInt2.top = (int) (f7 * f10);
+                float f11 = dp2 - dp;
+                fontMetricsInt2.bottom = (int) (f11 * f10);
+                fontMetricsInt2.ascent = (int) (f7 * f10);
+                fontMetricsInt2.descent = (int) (f11 * f10);
+                fontMetricsInt2.leading = 0;
+            }
+            this.measuredSize = (int) (i19 * this.scale);
+        } else {
+            this.measuredSize = (int) (this.size * this.scale);
+            if (fontMetricsInt2 != null) {
+                if (!this.full) {
+                    fontMetricsInt2.ascent = fontMetricsInt3.ascent;
+                    fontMetricsInt2.descent = fontMetricsInt3.descent;
+                    fontMetricsInt2.top = fontMetricsInt3.top;
+                    fontMetricsInt2.bottom = fontMetricsInt3.bottom;
+                } else {
+                    float abs = Math.abs(this.fontMetrics.top) + Math.abs(fontMetricsInt3.bottom);
+                    fontMetricsInt2.ascent = (int) Math.ceil((this.fontMetrics.top / abs) * this.measuredSize);
+                    fontMetricsInt2.descent = (int) Math.ceil((this.fontMetrics.bottom / abs) * this.measuredSize);
+                    fontMetricsInt2.top = (int) Math.ceil((this.fontMetrics.top / abs) * this.measuredSize);
+                    fontMetricsInt2.bottom = (int) Math.ceil((this.fontMetrics.bottom / abs) * this.measuredSize);
+                }
+            }
+        }
+        if (fontMetricsInt2 != null && this.top) {
+            int i20 = fontMetricsInt2.ascent;
+            int i21 = fontMetricsInt2.descent;
+            int i22 = ((i18 - i21) + (i17 - i20)) / 2;
+            fontMetricsInt2.ascent = i20 + i22;
+            fontMetricsInt2.descent = i21 - i22;
+        }
+        if (z10) {
+            fontMetricsInt2.top = i12;
+            fontMetricsInt2.ascent = i13;
+            fontMetricsInt2.descent = i14;
+            fontMetricsInt2.bottom = i15;
+            fontMetricsInt2.leading = i16;
+            int i23 = this.minimumLineHeight;
+            int i24 = i14 - i13;
+            if (i23 > i24) {
+                int i25 = i23 - i24;
+                int i26 = (i25 + 1) / 2;
+                int i27 = i13 - i26;
+                fontMetricsInt2.ascent = i27;
+                fontMetricsInt2.descent = i14 + (i25 - i26);
+                fontMetricsInt2.top = Math.min(i12, i27);
+                fontMetricsInt2.bottom = Math.max(fontMetricsInt2.bottom, fontMetricsInt2.descent);
+            }
+        }
+        return Math.max(0, this.measuredSize - 1);
+    }
+
+    public void replaceFontMetrics(Paint.FontMetricsInt fontMetricsInt) {
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            float abs = Math.abs(this.fontMetrics.ascent) + Math.abs(fontMetricsInt.descent);
+            this.size = abs;
+            if (abs == 0.0f) {
+                this.size = AndroidUtilities.dp(20.0f);
+            }
+        }
+    }
+
+    public void setAdded() {
+        this.isAdded = true;
+        this.extraScale = 0.0f;
+    }
+
+    public void setAnimateChanges() {
+        this.animateChanges = true;
+    }
+
+    public z5 setMinimumLineHeight(int i10) {
+        this.minimumLineHeight = i10;
+        return this;
+    }
+
+    public z5 setPreserveFontMetrics(boolean z10) {
+        this.preserveFontMetrics = z10;
+        return this;
+    }
+
+    public void setRemoved(Runnable runnable) {
+        this.removedAction = runnable;
+        this.isRemoved = true;
+        this.extraScale = 1.0f;
+    }
+
+    public z5 setSize(int i10) {
+        this.size = i10;
+        return this;
+    }
+
+    public static CharSequence cloneSpans(CharSequence charSequence, int i10) {
+        return cloneSpans(charSequence, i10, null);
+    }
+
+    public static void drawAnimatedEmojis(Canvas canvas, Layout layout, v5 v5Var, float f7, List<vh.h> list, float f10, float f11, float f12, float f13, ColorFilter colorFilter) {
+        boolean z10;
+        if (canvas == null || layout == null || v5Var == null) {
+            return;
+        }
+        ArrayList arrayList = v5Var.f28929c;
+        int i10 = 0;
+        if (Emoji.emojiDrawingYOffset == 0.0f && f7 == 0.0f) {
+            z10 = false;
+        } else {
+            canvas.save();
+            canvas.translate(0.0f, Emoji.emojiDrawingYOffset + AndroidUtilities.dp(20.0f * f7));
+            z10 = true;
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        int i11 = 0;
+        while (true) {
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            x5 x5Var = (x5) arrayList.get(i11);
+            if (x5Var.f30238a == layout) {
+                ArrayList arrayList2 = x5Var.f30239b;
+                int i12 = 0;
+                while (i12 < arrayList2.size()) {
+                    u5 u5Var = (u5) arrayList2.get(i12);
+                    if (u5Var != null) {
+                        q5 q5Var = u5Var.f28574f;
+                        if (q5Var != null) {
+                            q5Var.setColorFilter(colorFilter);
+                        }
+                        z5 z5Var = u5Var.d;
+                        if (z5Var.spanDrawn) {
+                            float f14 = z5Var.measuredSize / 2.0f;
+                            float f15 = z5Var.lastDrawnCx;
+                            float f16 = z5Var.lastDrawnCy;
+                            u5Var.e.set((int) (f15 - f14), (int) (f16 - f14), (int) (f15 + f14), (int) (f16 + f14));
+                            float max = (list == null || list.isEmpty() || !u5Var.v) ? 1.0f : Math.max(0.0f, list.get(i10).f44667n);
+                            u5Var.f28576r = f12;
+                            u5Var.f28577s = max;
+                            u5Var.getClass();
+                            if (f10 != 0.0f || f11 != 0.0f) {
+                                Rect rect = u5Var.e;
+                                if (rect.bottom < f10 || rect.top > f11) {
+                                    u5Var.f28575n = true;
+                                    i12++;
+                                    i10 = 0;
+                                }
+                            }
+                            u5Var.f28575n = false;
+                            q5 q5Var2 = u5Var.f28574f;
+                            if (q5Var2 == null) {
+                                if (u5Var.h != null) {
+                                    float extraScale = u5Var.d.getExtraScale();
+                                    u5Var.h.setAlpha((int) (u5Var.f28577s * 255.0f * f13));
+                                    u5Var.h.setBounds(u5Var.e);
+                                    if (extraScale == 1.0f && !u5Var.d.invert) {
+                                        u5Var.h.draw(canvas);
+                                    } else {
+                                        canvas.save();
+                                        canvas.scale((u5Var.d.invert ? -1 : 1) * extraScale, extraScale, u5Var.e.centerX(), u5Var.e.centerY());
+                                        u5Var.h.draw(canvas);
+                                        canvas.restore();
+                                    }
+                                }
+                            } else if (q5Var2.f27461k != null) {
+                                q5Var2.setColorFilter(colorFilter == null ? org.telegram.ui.ActionBar.j6.f19390v3 : colorFilter);
+                                u5Var.f28574f.q(currentTimeMillis);
+                                float extraScale2 = u5Var.d.getExtraScale();
+                                if (extraScale2 == 1.0f && !u5Var.d.invert) {
+                                    q5 q5Var3 = u5Var.f28574f;
+                                    Rect rect2 = u5Var.e;
+                                    float f17 = u5Var.f28577s * f13;
+                                    ai.l4 l4Var = q5Var3.f27461k;
+                                    if (l4Var != null) {
+                                        l4Var.setImageCoords(rect2);
+                                        q5Var3.f27461k.setAlpha(f17);
+                                        q5Var3.f27461k.draw(canvas);
+                                    }
+                                } else {
+                                    canvas.save();
+                                    canvas.scale((u5Var.d.invert ? -1 : 1) * extraScale2, extraScale2, u5Var.e.centerX(), u5Var.e.centerY());
+                                    q5 q5Var4 = u5Var.f28574f;
+                                    Rect rect3 = u5Var.e;
+                                    float f18 = u5Var.f28577s * f13;
+                                    ai.l4 l4Var2 = q5Var4.f27461k;
+                                    if (l4Var2 != null) {
+                                        l4Var2.setImageCoords(rect3);
+                                        q5Var4.f27461k.setAlpha(f18);
+                                        q5Var4.f27461k.draw(canvas);
+                                    }
+                                    canvas.restore();
+                                }
+                                if (access$400(u5Var.d)) {
+                                    u5Var.invalidate();
+                                }
+                            }
+                            i12++;
+                            i10 = 0;
+                        }
+                    }
+                    i12++;
+                    i10 = 0;
+                }
+            } else {
+                i11++;
+                i10 = 0;
+            }
+        }
+        if (z10) {
+            canvas.restore();
+        }
+    }
+
+    public static v5 update(int i10, View view, v5 v5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList, boolean z10) {
+        return update(i10, view, false, v5Var, arrayList, z10);
+    }
+
+    public z5(TLRPC.Document document, float f7, Paint.FontMetricsInt fontMetricsInt) {
+        this(document.f18302id, f7, fontMetricsInt);
+        this.document = document;
+    }
+
+    public static CharSequence cloneSpans(CharSequence charSequence, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        return cloneSpans(charSequence, i10, fontMetricsInt, 1.0f);
+    }
+
+    public static v5 update(int i10, View view, boolean z10, v5 v5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList) {
+        return update(i10, view, z10, v5Var, arrayList, false);
+    }
+
+    public void applyFontMetrics(Paint.FontMetricsInt fontMetricsInt) {
+        this.fontMetrics = fontMetricsInt;
+    }
+
+    public static CharSequence cloneSpans(CharSequence charSequence, int i10, Paint.FontMetricsInt fontMetricsInt, float f7) {
+        z5[] z5VarArr;
+        if (charSequence instanceof Spanned) {
+            Spanned spanned = (Spanned) charSequence;
+            CharacterStyle[] characterStyleArr = (CharacterStyle[]) spanned.getSpans(0, spanned.length(), CharacterStyle.class);
+            if (characterStyleArr != null && characterStyleArr.length > 0 && ((z5VarArr = (z5[]) spanned.getSpans(0, spanned.length(), z5.class)) == null || z5VarArr.length > 0)) {
+                charSequence = new SpannableString(spanned);
+                for (int i11 = 0; i11 < characterStyleArr.length; i11++) {
+                    CharacterStyle characterStyle = characterStyleArr[i11];
+                    if (characterStyle != null && (characterStyle instanceof z5)) {
+                        int spanStart = spanned.getSpanStart(characterStyle);
+                        int spanEnd = spanned.getSpanEnd(characterStyleArr[i11]);
+                        z5 z5Var = (z5) characterStyleArr[i11];
+                        charSequence.removeSpan(z5Var);
+                        z5 cloneSpan = cloneSpan(z5Var, fontMetricsInt);
+                        if (i10 != -1) {
+                            cloneSpan.cacheType = i10;
+                        }
+                        cloneSpan.scale = z5Var.scale * f7;
+                        charSequence.setSpan(cloneSpan, spanStart, spanEnd, 33);
+                    }
+                }
+            }
+            return charSequence;
+        }
+        return charSequence;
+    }
+
+    public static v5 update(int i10, View view, boolean z10, v5 v5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList, boolean z11) {
+        Layout[] layoutArr = new Layout[arrayList == null ? 0 : arrayList.size()];
+        if (arrayList != null) {
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                layoutArr[i11] = arrayList.get(i11).textLayout;
+            }
+        }
+        return update(i10, view, z10, v5Var, z11, layoutArr);
+    }
+
+    public void replaceFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i10, int i11) {
+        this.fontMetrics = fontMetricsInt;
+        this.size = i10;
+        this.cacheType = i11;
+    }
+
+    public z5(long j3, Paint.FontMetricsInt fontMetricsInt) {
+        this(j3, 1.2f, fontMetricsInt);
+    }
+
+    public static void release(View view, v5 v5Var) {
+        if (v5Var == null) {
+            return;
+        }
+        while (v5Var.f28927a.size() > 0) {
+            v5Var.b(0);
+        }
+    }
+
+    public z5(long j3, float f7, Paint.FontMetricsInt fontMetricsInt) {
+        this.extraScale = 1.0f;
+        this.full = false;
+        this.top = false;
+        this.invert = false;
+        this.size = AndroidUtilities.dp(20.0f);
+        this.cacheType = -1;
+        this.recordPositions = true;
+        this.documentId = j3;
+        this.scale = f7;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            float abs = Math.abs(fontMetricsInt.ascent) + Math.abs(fontMetricsInt.descent);
+            this.size = abs;
+            if (abs == 0.0f) {
+                this.size = AndroidUtilities.dp(20.0f);
+            }
+        }
+    }
+
+    public static v5 update(int i10, View view, v5 v5Var, Layout... layoutArr) {
+        return update(i10, view, false, v5Var, layoutArr);
+    }
+
+    public static v5 update(int i10, View view, boolean z10, v5 v5Var, Layout... layoutArr) {
+        return update(i10, view, z10, v5Var, false, layoutArr);
+    }
+
+    public static v5 update(int i10, View view, boolean z10, v5 v5Var, boolean z11, Layout... layoutArr) {
+        int i11;
+        z5[] z5VarArr;
+        u5 u5Var;
+        int i12;
+        int i13;
+        v5 v5Var2 = v5Var;
+        Paint.FontMetricsInt fontMetricsInt = null;
+        int i14 = 0;
+        if (layoutArr == null || layoutArr.length <= 0) {
+            if (v5Var2 != null) {
+                ArrayList arrayList = v5Var2.f28927a;
+                arrayList.clear();
+                while (arrayList.size() > 0) {
+                    v5Var2.b(0);
+                }
+                return null;
+            }
+            return null;
+        }
+        int i15 = 0;
+        while (i15 < layoutArr.length) {
+            Layout layout = layoutArr[i15];
+            if (layout == null || !(layout.getText() instanceof Spanned)) {
+                i11 = i15;
+                z5VarArr = null;
+                v5Var2 = v5Var2;
+            } else {
+                Spanned spanned = (Spanned) layout.getText();
+                z5VarArr = (z5[]) spanned.getSpans(i14, spanned.length(), z5.class);
+                int i16 = 0;
+                ?? r02 = v5Var2;
+                while (z5VarArr != null && i16 < z5VarArr.length) {
+                    z5 z5Var = z5VarArr[i16];
+                    if (z5Var == null) {
+                        i12 = i15;
+                    } else {
+                        if (z11 && (layout.getText() instanceof Spannable)) {
+                            int spanStart = spanned.getSpanStart(z5Var);
+                            int spanEnd = spanned.getSpanEnd(z5Var);
+                            Spannable spannable = (Spannable) spanned;
+                            spannable.removeSpan(z5Var);
+                            z5Var = cloneSpan(z5Var, fontMetricsInt);
+                            z5VarArr[i16] = z5Var;
+                            spannable.setSpan(z5Var, spanStart, spanEnd, 33);
+                        }
+                        if (r02 == 0) {
+                            r02 = new Object();
+                            r02.f28927a = new ArrayList();
+                            r02.f28928b = new HashMap();
+                            r02.f28929c = new ArrayList();
+                        }
+                        ArrayList arrayList2 = r02.f28927a;
+                        int i17 = 0;
+                        while (true) {
+                            if (i17 >= arrayList2.size()) {
+                                u5Var = fontMetricsInt;
+                                break;
+                            } else if (((u5) arrayList2.get(i17)).d == z5Var && ((u5) arrayList2.get(i17)).f28573c == layout) {
+                                u5Var = (u5) arrayList2.get(i17);
+                                break;
+                            } else {
+                                i17++;
+                            }
+                        }
+                        if (u5Var == 0) {
+                            u5 u5Var2 = new u5(view, z10);
+                            u5Var2.f28573c = layout;
+                            if (z5Var.standard) {
+                                i13 = 8;
+                            } else {
+                                i13 = z5Var.cacheType;
+                                if (i13 < 0) {
+                                    i13 = i10;
+                                }
+                            }
+                            if (z5Var.documentAbsolutePath != null) {
+                                i12 = i15;
+                                u5Var2.f28574f = q5.n(UserConfig.selectedAccount, z5Var.getDocumentId(), z5Var.documentAbsolutePath, i13);
+                            } else {
+                                i12 = i15;
+                                TLRPC.Document document = z5Var.document;
+                                if (document != null) {
+                                    u5Var2.f28574f = q5.m(UserConfig.selectedAccount, i13, document);
+                                } else {
+                                    long j3 = z5Var.documentId;
+                                    if (j3 != 0) {
+                                        u5Var2.f28574f = q5.n(UserConfig.selectedAccount, j3, null, i13);
+                                    }
+                                }
+                            }
+                            int i18 = z5Var.cacheType;
+                            if ((i18 == 20 || i18 == 21) && !TextUtils.isEmpty(z5Var.emoji)) {
+                                q5 q5Var = u5Var2.f28574f;
+                                if (q5Var != null) {
+                                    q5Var.r(z5Var.emoji);
+                                } else {
+                                    u5Var2.h = Emoji.getEmojiDrawable(z5Var.emoji);
+                                }
+                            }
+                            u5Var2.v = c(layout, spanned.getSpanStart(z5Var), spanned.getSpanEnd(z5Var));
+                            u5Var2.e = new Rect();
+                            u5Var2.d = z5Var;
+                            arrayList2.add(u5Var2);
+                            HashMap hashMap = r02.f28928b;
+                            x5 x5Var = (x5) hashMap.get(layout);
+                            if (x5Var == null) {
+                                x5Var = new x5(u5Var2.f28571a, layout);
+                                hashMap.put(layout, x5Var);
+                                r02.f28929c.add(x5Var);
+                            }
+                            x5Var.f30239b.add(u5Var2);
+                            x5Var.a();
+                            q5 q5Var2 = u5Var2.f28574f;
+                            if (q5Var2 != null) {
+                                q5Var2.b(u5Var2);
+                            }
+                        } else {
+                            i12 = i15;
+                            u5Var.v = c(layout, spanned.getSpanStart(z5Var), spanned.getSpanEnd(z5Var));
+                        }
+                    }
+                    i16++;
+                    i15 = i12;
+                    fontMetricsInt = null;
+                    r02 = r02;
+                }
+                i11 = i15;
+                v5Var2 = r02;
+            }
+            if (v5Var2 != null) {
+                ArrayList arrayList3 = v5Var2.f28927a;
+                int i19 = 0;
+                while (i19 < arrayList3.size()) {
+                    if (((u5) arrayList3.get(i19)).f28573c == layout) {
+                        z5 z5Var2 = ((u5) arrayList3.get(i19)).d;
+                        for (int i20 = 0; z5VarArr != null && i20 < z5VarArr.length; i20++) {
+                            if (z5VarArr[i20] == z5Var2) {
+                                break;
+                            }
+                        }
+                        v5Var2.b(i19);
+                        i19--;
+                    }
+                    i19++;
+                }
+            }
+            i15 = i11 + 1;
+            fontMetricsInt = null;
+            i14 = 0;
+        }
+        if (v5Var2 != null) {
+            ArrayList arrayList4 = v5Var2.f28927a;
+            int i21 = 0;
+            while (i21 < arrayList4.size()) {
+                Layout layout2 = ((u5) arrayList4.get(i21)).f28573c;
+                int i22 = 0;
+                while (true) {
+                    if (i22 < layoutArr.length) {
+                        if (layoutArr[i22] == layout2) {
+                            break;
+                        }
+                        i22++;
+                    } else {
+                        v5Var2.b(i21);
+                        i21--;
+                        break;
+                    }
+                }
+                i21++;
+            }
+        }
+        return v5Var2;
+    }
+
+    public static LongSparseArray<q5> update(View view, z5[] z5VarArr, LongSparseArray<q5> longSparseArray) {
+        return update(0, view, z5VarArr, longSparseArray);
+    }
+
+    public static LongSparseArray<q5> update(int i10, View view, z5[] z5VarArr, LongSparseArray<q5> longSparseArray) {
+        int i11;
+        q5 n10;
+        int i12;
+        if (z5VarArr == null) {
+            return longSparseArray;
+        }
+        if (longSparseArray == null) {
+            longSparseArray = new LongSparseArray<>();
+        }
+        int i13 = 0;
+        while (i13 < longSparseArray.size()) {
+            long keyAt = longSparseArray.keyAt(i13);
+            q5 q5Var = longSparseArray.get(keyAt);
+            if (q5Var == null) {
+                longSparseArray.remove(keyAt);
+            } else {
+                while (i12 < z5VarArr.length) {
+                    z5 z5Var = z5VarArr[i12];
+                    i12 = (z5Var == null || z5Var.getDocumentId() != keyAt) ? i12 + 1 : 0;
+                }
+                q5Var.o(view);
+                longSparseArray.remove(keyAt);
+            }
+            i13--;
+            i13++;
+        }
+        for (z5 z5Var2 : z5VarArr) {
+            if (z5Var2 != null && longSparseArray.get(z5Var2.getDocumentId()) == null) {
+                if (z5Var2.standard) {
+                    i11 = 8;
+                } else {
+                    i11 = z5Var2.cacheType;
+                    if (i11 < 0) {
+                        i11 = i10;
+                    }
+                }
+                TLRPC.Document document = z5Var2.document;
+                if (document != null) {
+                    n10 = q5.m(UserConfig.selectedAccount, i11, document);
+                } else {
+                    n10 = q5.n(UserConfig.selectedAccount, z5Var2.documentId, null, i11);
+                }
+                n10.a(view);
+                longSparseArray.put(z5Var2.getDocumentId(), n10);
+            }
+        }
+        return longSparseArray;
+    }
+
+    public static LongSparseArray<q5> update(View view, ArrayList<z5> arrayList, LongSparseArray<q5> longSparseArray) {
+        return update(0, view, arrayList, longSparseArray);
+    }
+
+    public static LongSparseArray<q5> update(int i10, View view, ArrayList<z5> arrayList, LongSparseArray<q5> longSparseArray) {
+        int i11;
+        int i12;
+        if (arrayList == null) {
+            return longSparseArray;
+        }
+        if (longSparseArray == null) {
+            longSparseArray = new LongSparseArray<>();
+        }
+        int i13 = 0;
+        while (i13 < longSparseArray.size()) {
+            long keyAt = longSparseArray.keyAt(i13);
+            q5 q5Var = longSparseArray.get(keyAt);
+            if (q5Var == null) {
+                longSparseArray.remove(keyAt);
+            } else {
+                while (i12 < arrayList.size()) {
+                    i12 = (arrayList.get(i12) == null || arrayList.get(i12).getDocumentId() != keyAt) ? i12 + 1 : 0;
+                }
+                q5Var.a(view);
+                longSparseArray.remove(keyAt);
+            }
+            i13--;
+            i13++;
+        }
+        for (int i14 = 0; i14 < arrayList.size(); i14++) {
+            z5 z5Var = arrayList.get(i14);
+            if (z5Var != null && longSparseArray.get(z5Var.getDocumentId()) == null) {
+                if (z5Var.standard) {
+                    i11 = 8;
+                } else {
+                    i11 = z5Var.cacheType;
+                    if (i11 < 0) {
+                        i11 = i10;
+                    }
+                }
+                q5 n10 = q5.n(UserConfig.selectedAccount, z5Var.documentId, null, i11);
+                n10.a(view);
+                longSparseArray.put(z5Var.getDocumentId(), n10);
+            }
+        }
+        return longSparseArray;
     }
 }

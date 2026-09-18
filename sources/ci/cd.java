@@ -10,16 +10,16 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.ij0;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.yi0;
 public final class cd extends View {
-    public final yi0 f4443a;
-    public final org.telegram.ui.Components.m6 f4444b;
+    public final ij0 f4443a;
+    public final org.telegram.ui.Components.o6 f4444b;
     public final Paint f4445c;
     public final Paint d;
-    public final org.telegram.ui.Components.wc e;
+    public final org.telegram.ui.Components.yc e;
     public boolean f4446f;
-    public final org.telegram.ui.Components.c6 h;
+    public final org.telegram.ui.Components.e6 h;
 
     public cd(Activity activity) {
         super(activity);
@@ -27,31 +27,31 @@ public final class cd extends View {
         this.f4445c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.e = new org.telegram.ui.Components.wc(this);
+        this.e = new org.telegram.ui.Components.yc(this);
         qr qrVar = qr.h;
-        this.h = new org.telegram.ui.Components.c6(this, 0L, 240L, qrVar);
+        this.h = new org.telegram.ui.Components.e6(this, 0L, 240L, qrVar);
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dpf2(2.66f));
         paint.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dp(1.66f), 805306368);
         paint2.setColor(855638016);
-        yi0 yi0Var = new yi0(R.raw.group_pip_delete_icon, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
-        this.f4443a = yi0Var;
-        yi0Var.R(this);
-        yi0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        yi0Var.h = true;
-        yi0Var.P(0);
-        yi0Var.J(true);
-        yi0Var.start();
-        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(true, true, false, false);
-        this.f4444b = m6Var;
-        m6Var.k(0.3f, 250L, qrVar);
-        m6Var.G = AndroidUtilities.displaySize.x;
-        m6Var.t(AndroidUtilities.dp(14.0f));
-        m6Var.r(-1);
-        m6Var.p(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
-        m6Var.q(LocaleController.getString(R.string.TrashHintDrag), true, true);
-        m6Var.f26070b = 17;
+        ij0 ij0Var = new ij0(R.raw.group_pip_delete_icon, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        this.f4443a = ij0Var;
+        ij0Var.R(this);
+        ij0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        ij0Var.h = true;
+        ij0Var.P(0);
+        ij0Var.J(true);
+        ij0Var.start();
+        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(true, true, false, false);
+        this.f4444b = o6Var;
+        o6Var.k(0.3f, 250L, qrVar);
+        o6Var.G = AndroidUtilities.displaySize.x;
+        o6Var.t(AndroidUtilities.dp(14.0f));
+        o6Var.r(-1);
+        o6Var.p(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
+        o6Var.q(LocaleController.getString(R.string.TrashHintDrag), true, true);
+        o6Var.f26868b = 17;
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -67,19 +67,19 @@ public final class cd extends View {
         int i11 = 0;
         z12 = (!z10 || z11) ? false : false;
         this.f4446f = z12;
-        yi0 yi0Var = this.f4443a;
+        ij0 ij0Var = this.f4443a;
         if (z12) {
-            if (yi0Var.f30222a0 > 34) {
-                yi0Var.N(0, false, false);
+            if (ij0Var.f24972a0 > 34) {
+                ij0Var.N(0, false, false);
             }
-            yi0Var.P(33);
-            yi0Var.start();
+            ij0Var.P(33);
+            ij0Var.start();
         } else {
             if (z11) {
                 i11 = 66;
             }
-            yi0Var.P(i11);
-            yi0Var.start();
+            ij0Var.P(i11);
+            ij0Var.start();
         }
         invalidate();
     }
@@ -93,15 +93,15 @@ public final class cd extends View {
         canvas.drawCircle(width, height, e, this.d);
         canvas.drawCircle(width, height, e, this.f4445c);
         float dp2 = AndroidUtilities.dp(48.0f) / 2.0f;
-        yi0 yi0Var = this.f4443a;
-        yi0Var.setBounds((int) (width - dp2), (int) (height - dp2), (int) (width + dp2), (int) (dp2 + height));
-        yi0Var.draw(canvas);
+        ij0 ij0Var = this.f4443a;
+        ij0Var.setBounds((int) (width - dp2), (int) (height - dp2), (int) (width + dp2), (int) (dp2 + height));
+        ij0Var.draw(canvas);
         int dp3 = (int) (height + dp + AndroidUtilities.dp(7.0f));
         int width2 = getWidth();
         int height2 = getHeight();
-        org.telegram.ui.Components.m6 m6Var = this.f4444b;
-        m6Var.setBounds(0, dp3, width2, height2);
-        m6Var.draw(canvas);
+        org.telegram.ui.Components.o6 o6Var = this.f4444b;
+        o6Var.setBounds(0, dp3, width2, height2);
+        o6Var.draw(canvas);
     }
 
     @Override

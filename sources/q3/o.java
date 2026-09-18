@@ -8,15 +8,15 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import v7.y7;
 public final class o extends j {
-    public final String f41162b;
-    public final i0 f41163c;
+    public final String f41396b;
+    public final i0 f41397c;
 
     public o(String str, String str2, a1 a1Var) {
         super(str);
         e2.d.b(!a1Var.isEmpty());
-        this.f41162b = str2;
+        this.f41396b = str2;
         i0 v = i0.v(a1Var);
-        this.f41163c = v;
+        this.f41397c = v;
         String str3 = (String) v.get(0);
     }
 
@@ -47,7 +47,7 @@ public final class o extends j {
     public final void b(m0 m0Var) {
         char c10;
         Integer num;
-        String str = this.f41153a;
+        String str = this.f41387a;
         switch (str.hashCode()) {
             case 82815:
                 if (str.equals("TAL")) {
@@ -214,7 +214,7 @@ public final class o extends j {
                 c10 = 65535;
                 break;
         }
-        i0 i0Var = this.f41163c;
+        i0 i0Var = this.f41397c;
         try {
             switch (c10) {
                 case 0:
@@ -247,7 +247,7 @@ public final class o extends j {
                     return;
                 case 6:
                 case 21:
-                    String str3 = d0.f7888a;
+                    String str3 = d0.f7887a;
                     String[] split = ((String) i0Var.get(0)).split("/", -1);
                     int parseInt3 = Integer.parseInt(split[0]);
                     if (split.length > 1) {
@@ -325,7 +325,7 @@ public final class o extends j {
         }
         if (obj != null && o.class == obj.getClass()) {
             o oVar = (o) obj;
-            if (Objects.equals(this.f41153a, oVar.f41153a) && Objects.equals(this.f41162b, oVar.f41162b) && this.f41163c.equals(oVar.f41163c)) {
+            if (Objects.equals(this.f41387a, oVar.f41387a) && Objects.equals(this.f41396b, oVar.f41396b) && this.f41397c.equals(oVar.f41397c)) {
                 return true;
             }
         }
@@ -334,18 +334,18 @@ public final class o extends j {
 
     public final int hashCode() {
         int i10;
-        int h = a4.a.h(527, 31, this.f41153a);
-        String str = this.f41162b;
+        int h = a4.a.h(527, 31, this.f41387a);
+        String str = this.f41396b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        return this.f41163c.hashCode() + ((h + i10) * 31);
+        return this.f41397c.hashCode() + ((h + i10) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f41153a + ": description=" + this.f41162b + ": values=" + this.f41163c;
+        return this.f41387a + ": description=" + this.f41396b + ": values=" + this.f41397c;
     }
 }

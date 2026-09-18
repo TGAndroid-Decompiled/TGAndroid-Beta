@@ -1,10 +1,8 @@
 package org.telegram.ui.Components;
-public final class ho0 {
-    public float f24706a;
-    public float f24707b;
-    public float f24708c;
-    public float d;
-    public float e;
-    public float f24709f;
-    public float f24710g;
+public interface ho0 {
+    void e(float f7);
+
+    void f(org.telegram.ui.Cells.s2 s2Var);
+
+    void finish();
 }

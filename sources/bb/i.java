@@ -36,7 +36,7 @@ public final class i extends kd.j implements p {
             case 5:
                 return new i((y) this.f3478c, (String) this.d, cVar, 5);
             default:
-                return new i((ni.f) this.f3478c, (ArrayList) this.d, cVar, 6);
+                return new i((oi.f) this.f3478c, (ArrayList) this.d, cVar, 6);
         }
     }
 
@@ -44,19 +44,19 @@ public final class i extends kd.j implements p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3476a) {
             case 0:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             case 1:
-                return ((i) create((k1.t) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((i) create((k1.t) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             case 2:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             case 3:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             case 4:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             case 5:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
             default:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
         }
     }
 

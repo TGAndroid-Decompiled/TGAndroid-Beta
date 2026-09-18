@@ -13,10 +13,10 @@ public class AudioBufferConverter {
     private void checkChannels(int i10, int i11) {
         if (i10 != 6 || (i11 != 1 && i11 != 2)) {
             if (i10 != 1 && i10 != 2) {
-                throw new UnsupportedOperationException(k0.j(i10, "Input channel count (", ") not supported."));
+                throw new UnsupportedOperationException(k0.i(i10, "Input channel count (", ") not supported."));
             }
             if (i11 != 1 && i11 != 2) {
-                throw new UnsupportedOperationException(k0.j(i11, "Output channel count (", ") not supported."));
+                throw new UnsupportedOperationException(k0.i(i11, "Output channel count (", ") not supported."));
             }
         }
     }

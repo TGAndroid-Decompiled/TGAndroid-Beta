@@ -16,17 +16,17 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 public final class h implements c6.f {
-    public static final g6.b f8013k = new g6.b("RemoteMediaClient", null);
-    public final Object f8014a;
-    public final c0 f8015b;
-    public final g6.m f8016c;
+    public static final g6.b f8012k = new g6.b("RemoteMediaClient", null);
+    public final Object f8013a;
+    public final c0 f8014b;
+    public final g6.m f8015c;
     public final aa.a d;
     public final c e;
-    public f0 f8017f;
-    public TaskCompletionSource f8018g;
+    public f0 f8016f;
+    public TaskCompletionSource f8017g;
     public final CopyOnWriteArrayList h = new CopyOnWriteArrayList();
-    public final CopyOnWriteArrayList f8019i = new CopyOnWriteArrayList();
-    public final ConcurrentHashMap f8020j;
+    public final CopyOnWriteArrayList f8018i = new CopyOnWriteArrayList();
+    public final ConcurrentHashMap f8019j;
 
     static {
         String str = g6.m.v;
@@ -34,14 +34,14 @@ public final class h implements c6.f {
 
     public h(g6.m mVar) {
         new ConcurrentHashMap();
-        this.f8020j = new ConcurrentHashMap();
-        this.f8014a = new Object();
-        this.f8015b = new c0(Looper.getMainLooper(), 0);
+        this.f8019j = new ConcurrentHashMap();
+        this.f8013a = new Object();
+        this.f8014b = new c0(Looper.getMainLooper(), 0);
         aa.a aVar = new aa.a(this);
         this.d = aVar;
-        this.f8016c = mVar;
+        this.f8015c = mVar;
         mVar.h = new xa.c(this, 17);
-        mVar.f9462c = aVar;
+        mVar.f9461c = aVar;
         this.e = new c(this);
     }
 
@@ -63,16 +63,16 @@ public final class h implements c6.f {
 
     public final long a() {
         long o9;
-        synchronized (this.f8014a) {
+        synchronized (this.f8013a) {
             n6.l.e("Must be called from the main thread.");
-            o9 = this.f8016c.o();
+            o9 = this.f8015c.o();
         }
         return o9;
     }
 
     public final int b() {
         int i10;
-        synchronized (this.f8014a) {
+        synchronized (this.f8013a) {
             try {
                 n6.l.e("Must be called from the main thread.");
                 c6.q e = e();
@@ -103,9 +103,9 @@ public final class h implements c6.f {
 
     public final MediaInfo d() {
         MediaInfo mediaInfo;
-        synchronized (this.f8014a) {
+        synchronized (this.f8013a) {
             n6.l.e("Must be called from the main thread.");
-            c6.q qVar = this.f8016c.f9439f;
+            c6.q qVar = this.f8015c.f9438f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
@@ -117,16 +117,16 @@ public final class h implements c6.f {
 
     public final c6.q e() {
         c6.q qVar;
-        synchronized (this.f8014a) {
+        synchronized (this.f8013a) {
             n6.l.e("Must be called from the main thread.");
-            qVar = this.f8016c.f9439f;
+            qVar = this.f8015c.f9438f;
         }
         return qVar;
     }
 
     public final int f() {
         int i10;
-        synchronized (this.f8014a) {
+        synchronized (this.f8013a) {
             try {
                 n6.l.e("Must be called from the main thread.");
                 c6.q e = e();
@@ -145,9 +145,9 @@ public final class h implements c6.f {
     public final long g() {
         MediaInfo mediaInfo;
         long j3;
-        synchronized (this.f8014a) {
+        synchronized (this.f8013a) {
             n6.l.e("Must be called from the main thread.");
-            c6.q qVar = this.f8016c.f9439f;
+            c6.q qVar = this.f8015c.f9438f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
@@ -242,7 +242,7 @@ public final class h implements c6.f {
     public final void p(g gVar) {
         n6.l.e("Must be called from the main thread.");
         if (gVar != null) {
-            this.f8019i.add(gVar);
+            this.f8018i.add(gVar);
         }
     }
 
@@ -297,12 +297,12 @@ public final class h implements c6.f {
     }
 
     public final void u() {
-        f0 f0Var = this.f8017f;
+        f0 f0Var = this.f8016f;
         if (f0Var == null) {
             return;
         }
         n6.l.e("Must be called from the main thread.");
-        String str = this.f8016c.f9461b;
+        String str = this.f8015c.f9460b;
         e0 e0Var = (e0) f0Var;
         g6.a.b(str);
         synchronized (e0Var.C) {
@@ -322,13 +322,13 @@ public final class h implements c6.f {
 
     public final void v(e0 e0Var) {
         c6.f fVar;
-        f0 f0Var = this.f8017f;
+        f0 f0Var = this.f8016f;
         if (f0Var != e0Var) {
             if (f0Var != null) {
-                this.f8016c.n();
+                this.f8015c.n();
                 this.e.c();
                 n6.l.e("Must be called from the main thread.");
-                String str = this.f8016c.f9461b;
+                String str = this.f8015c.f9460b;
                 e0 e0Var2 = (e0) f0Var;
                 if (!TextUtils.isEmpty(str)) {
                     synchronized (e0Var2.C) {
@@ -339,12 +339,12 @@ public final class h implements c6.f {
                     e.f6181a = 8414;
                     e0Var2.e(1, e.a());
                     this.d.f359b = null;
-                    this.f8015b.removeCallbacksAndMessages(null);
+                    this.f8014b.removeCallbacksAndMessages(null);
                 } else {
                     throw new IllegalArgumentException("Channel namespace cannot be null or empty");
                 }
             }
-            this.f8017f = e0Var;
+            this.f8016f = e0Var;
             if (e0Var != null) {
                 this.d.f359b = e0Var;
             }
@@ -352,7 +352,7 @@ public final class h implements c6.f {
     }
 
     public final boolean w() {
-        if (this.f8017f != null) {
+        if (this.f8016f != null) {
             return true;
         }
         return false;

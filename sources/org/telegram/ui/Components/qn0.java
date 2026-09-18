@@ -1,22 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class qn0 extends e40 {
-    public final org.telegram.ui.gy f27362c0;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class qn0 implements TextView.OnEditorActionListener {
+    public final pn0 f27694a;
+    public final int f27695b;
+    public final TLRPC.Reaction f27696c;
+    public final org.telegram.ui.ActionBar.b2[] d;
+    public final View e;
 
-    public qn0(org.telegram.ui.gy gyVar, ml0 ml0Var, Context context, int i10) {
-        super(ml0Var, context, i10);
-        this.f27362c0 = gyVar;
+    public qn0(pn0 pn0Var, int i10, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.b2[] b2VarArr, View view) {
+        this.f27694a = pn0Var;
+        this.f27695b = i10;
+        this.f27696c = reaction;
+        this.d = b2VarArr;
+        this.e = view;
     }
 
     @Override
-    public final void N(boolean z10) {
-        super.N(z10);
-        mn0 mn0Var = this.f27362c0.f30567t0;
-        mn0Var.e(false, z10);
-        mn0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        mn0Var.e.setVisibility(8);
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
+            return false;
+        }
+        pn0 pn0Var = this.f27694a;
+        String obj = pn0Var.getText().toString();
+        if (obj.length() > 12) {
+            AndroidUtilities.shakeView(pn0Var);
+            return true;
+        }
+        MessagesController.getInstance(this.f27695b).renameSavedReactionTag(zg.o0.d(this.f27696c), obj);
+        org.telegram.ui.ActionBar.b2[] b2VarArr = this.d;
+        org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+        if (b2Var != null) {
+            b2Var.dismiss();
+        }
+        if (b2VarArr[0] == vn0.H) {
+            vn0.H = null;
+        }
+        View view = this.e;
+        if (view != null) {
+            view.requestFocus();
+        }
+        return true;
     }
 }

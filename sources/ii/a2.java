@@ -10,14 +10,14 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.qr;
 public final class a2 extends Drawable {
     public final Paint f11230a;
-    public final org.telegram.ui.Components.c6 f11231b;
+    public final org.telegram.ui.Components.e6 f11231b;
     public boolean f11232c;
     public int d;
 
     public a2(int i10) {
         Paint paint = new Paint(1);
         this.f11230a = paint;
-        this.f11231b = new org.telegram.ui.Components.c6(new i2.g0(this, 5), 420L, qr.h, 0);
+        this.f11231b = new org.telegram.ui.Components.e6(new i2.g0(this, 5), 420L, qr.h, 0);
         this.d = 255;
         paint.setColor(i10);
     }

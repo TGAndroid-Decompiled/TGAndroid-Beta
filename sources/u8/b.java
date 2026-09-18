@@ -3,37 +3,37 @@ package u8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import p7.j;
-import w7.e0;
+import w7.f0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(26);
-    public int f43671a;
-    public int f43672b;
-    public int f43673c;
+    public int f43898a;
+    public int f43899b;
+    public int f43900c;
     public boolean d;
     public boolean e;
-    public float f43674f;
+    public float f43901f;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = e0.q(parcel, 20293);
-        int i11 = this.f43671a;
-        e0.s(parcel, 2, 4);
+        int q6 = f0.q(parcel, 20293);
+        int i11 = this.f43898a;
+        f0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        int i12 = this.f43672b;
-        e0.s(parcel, 3, 4);
+        int i12 = this.f43899b;
+        f0.s(parcel, 3, 4);
         parcel.writeInt(i12);
-        int i13 = this.f43673c;
-        e0.s(parcel, 4, 4);
+        int i13 = this.f43900c;
+        f0.s(parcel, 4, 4);
         parcel.writeInt(i13);
         boolean z10 = this.d;
-        e0.s(parcel, 5, 4);
+        f0.s(parcel, 5, 4);
         parcel.writeInt(z10 ? 1 : 0);
         boolean z11 = this.e;
-        e0.s(parcel, 6, 4);
+        f0.s(parcel, 6, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        float f7 = this.f43674f;
-        e0.s(parcel, 7, 4);
+        float f7 = this.f43901f;
+        f0.s(parcel, 7, 4);
         parcel.writeFloat(f7);
-        e0.r(parcel, q6);
+        f0.r(parcel, q6);
     }
 }

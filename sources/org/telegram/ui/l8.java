@@ -1,56 +1,42 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class l8 implements Runnable {
-    public final int f35478a;
-    public final m9 f35479b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class l8 implements r0.n, Utilities.Callback5, Utilities.Callback5Return, org.telegram.ui.Components.yk0 {
+    public final l9 f35277a;
 
-    public l8(m9 m9Var, int i10) {
-        this.f35478a = i10;
-        this.f35479b = m9Var;
+    @Override
+    public r0.m1 Q0(View view, r0.m1 m1Var) {
+        return this.f35277a.onInsetsInternal(view, m1Var);
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.vc a02;
-        switch (this.f35478a) {
-            case 0:
-                m9 m9Var = this.f35479b;
-                m9Var.f0();
-                m9Var.i0();
-                return;
-            case 1:
-                m9 m9Var2 = this.f35479b;
-                m9Var2.n0(false);
-                if (m9Var2.f35725w) {
-                    a02 = org.telegram.ui.Components.vc.X();
-                } else {
-                    a02 = org.telegram.ui.Components.vc.a0(m9Var2);
-                }
-                org.telegram.ui.Components.oc I = a02.I(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new l8(m9Var2, 5));
-                I.f26705j = 5000;
-                I.j();
-                return;
-            case 2:
-                this.f35479b.p0(true);
-                return;
-            case 3:
-                m9 m9Var3 = this.f35479b;
-                m9Var3.h0();
-                m9Var3.f0();
-                return;
-            case 4:
-                this.f35479b.n0(false);
-                return;
-            case 5:
-                this.f35479b.n0(true);
-                return;
-            default:
-                m9 m9Var4 = this.f35479b;
-                m9Var4.d.postOnAnimation(new l8(m9Var4, 3));
-                return;
+    public void a() {
+        this.f35277a.f0();
+    }
+
+    @Override
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        l9.X(this.f35277a, (org.telegram.ui.Components.x51) obj, (View) obj2);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        boolean z10;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        Object obj6 = ((org.telegram.ui.Components.x51) obj).G;
+        if (obj6 instanceof h9) {
+            this.f35277a.e0(((h9) obj6).f34106c, (g9) view);
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        return Boolean.valueOf(z10);
     }
 }

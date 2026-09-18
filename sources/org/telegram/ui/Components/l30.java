@@ -14,12 +14,12 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
-    public final z4.g f25811b;
-    public final i30 f25812c;
+public abstract class l30 extends org.telegram.ui.ActionBar.f3 {
+    public final z4.g f26001b;
+    public final i30 f26002c;
     public final LinearLayout d;
     public final TextView[] e;
-    public float f25813f;
+    public float f26003f;
     public int h;
 
     public l30(Context context, TLRPC.Chat chat, boolean z10) {
@@ -27,7 +27,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
         int i10;
         int i11;
         int i12;
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18907fg, false);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19106fg, false);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
         g30 g30Var = new g30(this, context);
         this.containerView = g30Var;
@@ -43,7 +43,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
         } else {
             textView.setText(LocaleController.getString(R.string.VoipRecordVoiceChat));
         }
-        org.telegram.messenger.w1.q(textView, -1, 1, 20.0f);
+        org.telegram.messenger.q.r(textView, -1, 1, 20.0f);
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -56,7 +56,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
         } else {
             i11 = 3;
         }
-        viewGroup2.addView(textView, w7.x5.d(-2, -2.0f, i11 | 48, 24.0f, 29.0f, 24.0f, 0.0f));
+        viewGroup2.addView(textView, w7.y5.d(-2, -2.0f, i11 | 48, 24.0f, 29.0f, 24.0f, 0.0f));
         TextView textView2 = new TextView(getContext());
         textView2.setText(LocaleController.getString(R.string.VoipRecordVoiceChatInfo));
         textView2.setTextColor(-1);
@@ -67,31 +67,31 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
             i12 = 3;
         }
         textView2.setGravity(i12 | 48);
-        this.containerView.addView(textView2, w7.x5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
+        this.containerView.addView(textView2, w7.y5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
         this.e = new TextView[3];
         z4.g gVar = new z4.g(context);
-        this.f25811b = gVar;
+        this.f26001b = gVar;
         gVar.setClipChildren(false);
         gVar.setOffscreenPageLimit(4);
         gVar.setClipToPadding(false);
         AndroidUtilities.setViewPagerEdgeEffectColor(gVar, 2130706432);
         gVar.setAdapter(new k30(this));
         gVar.setPageMargin(0);
-        this.containerView.addView(gVar, w7.x5.d(-1, -1.0f, 1, 0.0f, 100.0f, 0.0f, 130.0f));
+        this.containerView.addView(gVar, w7.y5.d(-1, -1.0f, 1, 0.0f, 100.0f, 0.0f, 130.0f));
         gVar.b(new h30(this));
         View view = new View(getContext());
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.LEFT_RIGHT;
         view.setBackground(new GradientDrawable(orientation, new int[]{w02, 0}));
-        this.containerView.addView(view, w7.x5.d(120, -1.0f, 51, 0.0f, 100.0f, 0.0f, 130.0f));
+        this.containerView.addView(view, w7.y5.d(120, -1.0f, 51, 0.0f, 100.0f, 0.0f, 130.0f));
         View view2 = new View(getContext());
         view2.setBackground(new GradientDrawable(orientation, new int[]{0, w02}));
-        this.containerView.addView(view2, w7.x5.d(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
+        this.containerView.addView(view2, w7.y5.d(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
         i30 i30Var = new i30(this, getContext());
-        this.f25812c = i30Var;
+        this.f26002c = i30Var;
         i30Var.setMinWidth(AndroidUtilities.dp(64.0f));
         i30Var.setTag(-1);
         i30Var.setTextSize(1, 14.0f);
-        int i14 = org.telegram.ui.ActionBar.j6.f19055ng;
+        int i14 = org.telegram.ui.ActionBar.j6.f19254ng;
         i30Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
         i30Var.setGravity(17);
         i30Var.setTypeface(AndroidUtilities.bold());
@@ -103,10 +103,10 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
         }
         i30Var.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
         i30Var.setOnClickListener(new f0(this, 23));
-        this.containerView.addView(i30Var, w7.x5.d(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
+        this.containerView.addView(i30Var, w7.y5.d(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.d = linearLayout;
-        this.containerView.addView(linearLayout, w7.x5.e(-2, 64, 80));
+        this.containerView.addView(linearLayout, w7.y5.e(-2, 64, 80));
         int i15 = 0;
         while (true) {
             TextView[] textViewArr = this.e;
@@ -120,7 +120,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
             this.e[i15].setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
             this.e[i15].setGravity(16);
             this.e[i15].setSingleLine(true);
-            this.d.addView(this.e[i15], w7.x5.n(-2, -1));
+            this.d.addView(this.e[i15], w7.y5.n(-2, -1));
             if (i15 == 0) {
                 this.e[i15].setText(LocaleController.getString(R.string.VoipRecordAudio));
             } else if (i15 == 1) {
@@ -132,7 +132,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
             i15++;
         }
         if (z10) {
-            this.f25811b.setCurrentItem(1);
+            this.f26001b.setCurrentItem(1);
         }
     }
 
@@ -150,7 +150,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
         float measuredWidth2 = (l30Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * l30Var.f25813f;
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * l30Var.f26003f;
         }
         for (int i11 = 0; i11 < textViewArr.length; i11++) {
             int i12 = l30Var.h;
@@ -158,11 +158,11 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
             float f10 = 0.7f;
             if (i11 >= i12 && i11 <= i12 + 1) {
                 if (i11 == i12) {
-                    float f11 = l30Var.f25813f;
+                    float f11 = l30Var.f26003f;
                     f10 = 1.0f - (0.3f * f11);
                     f7 = 1.0f - (f11 * 0.1f);
                 } else {
-                    float f12 = l30Var.f25813f;
+                    float f12 = l30Var.f26003f;
                     f10 = 0.7f + (0.3f * f12);
                     f7 = 0.9f + (f12 * 0.1f);
                 }
@@ -172,7 +172,7 @@ public abstract class l30 extends org.telegram.ui.ActionBar.g3 {
             textViewArr[i11].setScaleY(f7);
         }
         l30Var.d.setTranslationX(measuredWidth2);
-        l30Var.f25812c.invalidate();
+        l30Var.f26002c.invalidate();
     }
 
     public abstract void n(int i10);

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.l61;
 public final class x5 implements h1 {
     public final d6 f11770a;
 
@@ -20,7 +20,7 @@ public final class x5 implements h1 {
     }
 
     @Override
-    public final void D(i1 i1Var, int i10, int i11) {
+    public final void B(i1 i1Var, int i10, int i11) {
         a6 a6Var;
         q9 textSelectionHelper;
         d6 d6Var = this.f11770a;
@@ -30,7 +30,7 @@ public final class x5 implements h1 {
     }
 
     @Override
-    public final void M(CharSequence charSequence) {
+    public final void K(CharSequence charSequence) {
         a6 a6Var = this.f11770a.f11346y;
         if (a6Var != null) {
             e3 e3Var = (e3) a6Var;
@@ -41,7 +41,7 @@ public final class x5 implements h1 {
     }
 
     @Override
-    public final void W(Editable editable) {
+    public final void U(Editable editable) {
         a aVar;
         d6 d6Var = this.f11770a;
         if (d6Var.f11345x != null) {
@@ -89,7 +89,7 @@ public final class x5 implements h1 {
     }
 
     @Override
-    public final boolean b0(boolean z10) {
+    public final boolean X(boolean z10) {
         a aVar;
         d6 d6Var = this.f11770a;
         a6 a6Var = d6Var.f11346y;
@@ -164,7 +164,7 @@ public final class x5 implements h1 {
                 a aVar = d6Var.f11345x;
                 w3 w3Var = ((e3) a6Var).f11357a;
                 ArrayList arrayList = w3Var.f11729p4;
-                x51 x51Var = w3Var.Y2;
+                l61 l61Var = w3Var.Y2;
                 ArrayList arrayList2 = w3Var.f11721l3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {
@@ -192,7 +192,7 @@ public final class x5 implements h1 {
                             ArrayList arrayList3 = aVar.f11210k;
                             arrayList3.remove(arrayList3.size() - 1);
                             w3Var.t4();
-                            x51Var.N(false);
+                            l61Var.N(false);
                             h2 h2Var2 = w3Var.J3;
                             if (h2Var2 != null) {
                                 h2Var2.h();
@@ -202,7 +202,7 @@ public final class x5 implements h1 {
                         } else if (aVar.f11205c > 0) {
                             w3Var.u2(indexOf);
                             w3Var.t4();
-                            x51Var.N(false);
+                            l61Var.N(false);
                             h2 h2Var3 = w3Var.J3;
                             if (h2Var3 != null) {
                                 h2Var3.h();
@@ -241,7 +241,7 @@ public final class x5 implements h1 {
                     arrayList2.add(i12, aVar2);
                     w3Var.t4();
                     if (z10) {
-                        x51Var.N(false);
+                        l61Var.N(false);
                         h2 h2Var4 = w3Var.J3;
                         if (h2Var4 != null) {
                             h2Var4.h();
@@ -254,17 +254,17 @@ public final class x5 implements h1 {
                         text.delete(length, text.length());
                         editText.h = false;
                     }
-                    x51Var.S();
+                    l61Var.S();
                     w3Var.q4(i12);
                     int indexOf2 = arrayList.indexOf(aVar2);
                     if (indexOf2 < 0) {
-                        x51Var.l();
+                        l61Var.l();
                     } else {
                         s4.m0 itemAnimator = w3Var.getItemAnimator();
                         w3Var.setItemAnimator(null);
-                        x51Var.o(indexOf2);
+                        l61Var.o(indexOf2);
                         if (aVar.d > 0 && (i10 = indexOf2 + 1) < arrayList.size()) {
-                            x51Var.q(i10, (arrayList.size() - indexOf2) - 1);
+                            l61Var.q(i10, (arrayList.size() - indexOf2) - 1);
                         }
                         w3Var.post(new y2(w3Var, itemAnimator, 0));
                     }
@@ -279,7 +279,7 @@ public final class x5 implements h1 {
     }
 
     @Override
-    public final boolean q(i1 i1Var) {
+    public final boolean p(i1 i1Var) {
         a aVar;
         ClipData primaryClip;
         int indexOf;

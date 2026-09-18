@@ -1,64 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-public final class g81 extends View {
-    public f81 f24120a;
-    public int f24121b;
-    public final RectF f24122c;
-    public CharSequence d;
-    public h01 e;
-    public boolean f24123f;
-    public zo0 h;
-    public final c6 f24124n;
-    public final i81 f24125r;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.AsyncTask;
+import org.telegram.messenger.FileLog;
+public final class g81 extends AsyncTask {
+    public int f24334a = 0;
+    public final j81 f24335b;
 
-    public g81(i81 i81Var, Context context) {
-        super(context);
-        this.f24125r = i81Var;
-        this.f24122c = new RectF();
-        this.f24124n = new c6(this, 360L, qr.h);
+    public g81(j81 j81Var) {
+        this.f24335b = j81Var;
     }
 
     @Override
-    public int getId() {
-        return this.f24120a.f23824a;
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g81.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        int i10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        f81 f81Var = this.f24120a;
-        if (f81Var != null && (i10 = this.f24125r.G) != -1 && f81Var.f23824a == i10) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final Object doInBackground(Object[] objArr) {
+        Bitmap frameAtTime;
+        j81 j81Var = this.f24335b;
+        this.f24334a = ((Integer[]) objArr)[0].intValue();
+        Bitmap bitmap = null;
+        if (!isCancelled()) {
+            try {
+                frameAtTime = j81Var.f25242r.getFrameAtTime(j81Var.f25245x * this.f24334a * 1000, 2);
+            } catch (Exception e) {
+                e = e;
+            }
+            try {
+                if (!isCancelled()) {
+                    if (frameAtTime != null) {
+                        Bitmap createBitmap = Bitmap.createBitmap(j81Var.f25246y, j81Var.E, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(createBitmap);
+                        float max = Math.max(j81Var.f25246y / frameAtTime.getWidth(), j81Var.E / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * max);
+                        int height = (int) (frameAtTime.getHeight() * max);
+                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((j81Var.f25246y - width) / 2, (j81Var.E - height) / 2, width, height), (Paint) null);
+                        frameAtTime.recycle();
+                        return createBitmap;
+                    }
+                    return frameAtTime;
+                }
+            } catch (Exception e7) {
+                e = e7;
+                bitmap = frameAtTime;
+                FileLog.e(e);
+                return bitmap;
+            }
         }
-        accessibilityNodeInfo.setSelected(z10);
+        return null;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        f81 f81Var = this.f24120a;
-        i81 i81Var = this.f24125r;
-        setMeasuredDimension(AndroidUtilities.dp(i81Var.f24894r * 2) + f81Var.a(i81Var.f24877c) + i81Var.I, View.MeasureSpec.getSize(i11));
-    }
-
-    public void setReordering(boolean z10) {
-        if (this.f24123f == z10) {
-            return;
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        if (!isCancelled()) {
+            j81 j81Var = this.f24335b;
+            j81Var.v.add(bitmap);
+            j81Var.invalidate();
+            int i10 = this.f24334a;
+            if (i10 < j81Var.F) {
+                j81Var.b(i10 + 1);
+            } else {
+                j81Var.O = true;
+            }
         }
-        this.f24123f = z10;
-        invalidate();
     }
 }

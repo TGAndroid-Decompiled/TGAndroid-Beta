@@ -11,28 +11,27 @@ import android.widget.TextView;
 import androidx.mediarouter.app.a0;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import k2.u;
 import n6.q;
 import v7.j8;
 public final class j {
-    public aa.a f10151a;
-    public Bundle f10152b;
-    public LinkedList f10153c;
+    public aa.a f10150a;
+    public Bundle f10151b;
+    public LinkedList f10152c;
     public final d e;
-    public final Context f10154f;
-    public u f10155g;
-    public final u d = new u(this, 28);
+    public final Context f10153f;
+    public n2.e f10154g;
+    public final n2.e d = new n2.e(this, 25);
     public final ArrayList h = new ArrayList();
 
     public j(d dVar, Context context) {
         this.e = dVar;
-        this.f10154f = context;
+        this.f10153f = context;
     }
 
     public static void a(d dVar) {
         k6.d dVar2 = k6.d.d;
         Context context = dVar.getContext();
-        int d = dVar2.d(context, k6.e.f13511a);
+        int d = dVar2.d(context, k6.e.f13509a);
         String c10 = q.c(context, d);
         String b10 = q.b(context, d);
         LinearLayout linearLayout = new LinearLayout(dVar.getContext());
@@ -55,45 +54,45 @@ public final class j {
     }
 
     public final void b(int i10) {
-        while (!this.f10153c.isEmpty() && ((x6.e) this.f10153c.getLast()).a() >= i10) {
-            this.f10153c.removeLast();
+        while (!this.f10152c.isEmpty() && ((x6.e) this.f10152c.getLast()).a() >= i10) {
+            this.f10152c.removeLast();
         }
     }
 
     public final void c(Bundle bundle, x6.e eVar) {
-        if (this.f10151a != null) {
+        if (this.f10150a != null) {
             eVar.b();
             return;
         }
-        if (this.f10153c == null) {
-            this.f10153c = new LinkedList();
+        if (this.f10152c == null) {
+            this.f10152c = new LinkedList();
         }
-        this.f10153c.add(eVar);
+        this.f10152c.add(eVar);
         if (bundle != null) {
-            Bundle bundle2 = this.f10152b;
+            Bundle bundle2 = this.f10151b;
             if (bundle2 == null) {
-                this.f10152b = (Bundle) bundle.clone();
+                this.f10151b = (Bundle) bundle.clone();
             } else {
                 bundle2.putAll(bundle);
             }
         }
-        this.f10155g = this.d;
+        this.f10154g = this.d;
         ArrayList arrayList = this.h;
-        Context context = this.f10154f;
-        if (this.f10151a == null) {
+        Context context = this.f10153f;
+        if (this.f10150a == null) {
             try {
                 synchronized (e.class) {
                     e.b(context);
                 }
                 i8.g X0 = j8.a(context).X0(new x6.b(context));
                 if (X0 != null) {
-                    this.f10155g.b0(new aa.a(this.e, X0));
+                    this.f10154g.G(new aa.a(this.e, X0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        this.f10151a.p((f) obj);
+                        this.f10150a.o((f) obj);
                     }
                     arrayList.clear();
                 }

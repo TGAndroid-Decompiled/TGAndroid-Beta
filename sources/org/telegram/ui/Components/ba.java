@@ -1,103 +1,204 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.drawable.GradientDrawable;
-import android.util.Property;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class ba extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public TextView f22673a;
-    public TextView f22674b;
-    public ai.f0 f22675c;
-    public ai.f0 d;
-    public cj0 e;
-    public ScrollView f22676f;
-    public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f22677n;
-    public String f22678r;
-    public int f22679s;
-    public int v;
-    public GradientDrawable f22680w;
-    public GradientDrawable f22681x;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import java.util.Random;
+import org.telegram.messenger.LiteMode;
+public class ba {
+    public float f22900a;
+    public float f22901b;
+    public final Path f22902c;
+    public final Paint d;
+    public final float[] e;
+    public final float[] f22903f;
+    public final float[] f22904g;
+    public final float[] h;
+    public final float[] f22905i;
+    public final float[] f22906j;
+    public final float[] f22907k;
+    public final float[] f22908l;
+    public final Random f22909m;
+    public final float f22910n;
+    public final float f22911o;
+    public final float f22912p;
+    public final Matrix f22913q;
+    public final int f22914r;
+    public float f22915s;
+    public float f22916t;
+    public float f22917u;
 
-    public final void a(boolean z10) {
-        ai.f0 f0Var = this.d;
-        TextView textView = this.f22674b;
-        ai.f0 f0Var2 = this.f22675c;
-        AnimatorSet animatorSet = this.h;
-        if (animatorSet != null) {
-            animatorSet.cancel();
+    public ba(int i10) {
+        this(i10, 512);
+    }
+
+    public final void a(float f7, float f10, Canvas canvas, Paint paint) {
+        int i10;
+        if (!LiteMode.isEnabled(this.f22914r)) {
+            return;
         }
-        this.h = new AnimatorSet();
-        Property property = View.ALPHA;
-        Property property2 = View.SCALE_Y;
-        Property property3 = View.SCALE_X;
+        Path path = this.f22902c;
+        path.reset();
+        int i11 = 0;
+        while (true) {
+            float f11 = this.f22910n;
+            if (i11 < f11) {
+                float[] fArr = this.f22905i;
+                float f12 = fArr[i11];
+                int i12 = i11 + 1;
+                if (i12 < f11) {
+                    i10 = i12;
+                } else {
+                    i10 = 0;
+                }
+                float f13 = fArr[i10];
+                float[] fArr2 = this.e;
+                float f14 = 1.0f - f12;
+                float[] fArr3 = this.f22904g;
+                float f15 = (fArr3[i11] * f12) + (fArr2[i11] * f14);
+                float f16 = 1.0f - f13;
+                float f17 = (fArr3[i10] * f13) + (fArr2[i10] * f16);
+                float[] fArr4 = this.f22903f;
+                float f18 = fArr4[i11] * f14;
+                float[] fArr5 = this.h;
+                float f19 = (fArr5[i10] * f13) + (fArr4[i10] * f16);
+                float max = (((Math.max(f15, f17) - Math.min(f15, f17)) / 2.0f) + Math.min(f15, f17)) * this.f22911o * this.f22912p;
+                Matrix matrix = this.f22913q;
+                matrix.reset();
+                matrix.setRotate((fArr5[i11] * f12) + f18, f7, f10);
+                float[] fArr6 = this.f22907k;
+                fArr6[0] = f7;
+                float f20 = f10 - f15;
+                fArr6[1] = f20;
+                fArr6[2] = f7 + max;
+                fArr6[3] = f20;
+                matrix.mapPoints(fArr6);
+                float[] fArr7 = this.f22908l;
+                fArr7[0] = f7;
+                float f21 = f10 - f17;
+                fArr7[1] = f21;
+                fArr7[2] = f7 - max;
+                fArr7[3] = f21;
+                matrix.reset();
+                matrix.setRotate(f19, f7, f10);
+                matrix.mapPoints(fArr7);
+                if (i11 == 0) {
+                    path.moveTo(fArr6[0], fArr6[1]);
+                }
+                path.cubicTo(fArr6[2], fArr6[3], fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
+                i11 = i12;
+            } else {
+                canvas.save();
+                canvas.drawPath(path, paint);
+                canvas.restore();
+                return;
+            }
+        }
+    }
+
+    public final void b() {
+        for (int i10 = 0; i10 < this.f22910n; i10++) {
+            c(this.e, this.f22903f, i10);
+            c(this.f22904g, this.h, i10);
+            this.f22905i[i10] = 0.0f;
+        }
+    }
+
+    public final void c(float[] fArr, float[] fArr2, int i10) {
+        float f7 = this.f22910n;
+        float f10 = this.f22901b;
+        float f11 = this.f22900a;
+        Random random = this.f22909m;
+        fArr[i10] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f10 - f11)) + f11;
+        fArr2[i10] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f7) * 0.05f) + ((360.0f / f7) * i10);
+        this.f22906j[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+    }
+
+    public final void d(float f7, boolean z10) {
+        this.f22915s = f7;
+        if (!LiteMode.isEnabled(this.f22914r)) {
+            return;
+        }
         if (z10) {
-            f0Var2.setVisibility(0);
-            f0Var.setEnabled(false);
-            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(f0Var2, property3, 1.0f), ObjectAnimator.ofFloat(f0Var2, property2, 1.0f), ObjectAnimator.ofFloat(f0Var2, property, 1.0f));
+            float f10 = this.f22915s;
+            float f11 = this.f22916t;
+            if (f10 > f11) {
+                this.f22917u = (f10 - f11) / 205.0f;
+                return;
+            } else {
+                this.f22917u = (f10 - f11) / 275.0f;
+                return;
+            }
+        }
+        float f12 = this.f22915s;
+        float f13 = this.f22916t;
+        if (f12 > f13) {
+            this.f22917u = (f12 - f13) / 320.0f;
         } else {
-            textView.setVisibility(0);
-            f0Var.setEnabled(true);
-            this.h.playTogether(ObjectAnimator.ofFloat(f0Var2, property3, 0.1f), ObjectAnimator.ofFloat(f0Var2, property2, 0.1f), ObjectAnimator.ofFloat(f0Var2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
+            this.f22917u = (f12 - f13) / 375.0f;
         }
-        this.h.addListener(new aa(0, this, z10));
-        this.h.setDuration(150L);
-        this.h.start();
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.fileLoaded) {
-            String str = (String) objArr[0];
-            String str2 = this.f22678r;
-            if (str2 != null && str2.equals(str)) {
-                a(false);
-                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f22677n.document);
-            }
-        } else if (i10 == NotificationCenter.fileLoadFailed) {
-            String str3 = (String) objArr[0];
-            String str4 = this.f22678r;
-            if (str4 != null && str4.equals(str3)) {
-                a(false);
-            }
-        } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
-            String str5 = (String) objArr[0];
-            String str6 = this.f22678r;
-            if (str6 != null && str6.equals(str5)) {
-                this.e.e(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
+    public final void e(float f7, float f10) {
+        if (LiteMode.isEnabled(this.f22914r)) {
+            for (int i10 = 0; i10 < this.f22910n; i10++) {
+                float[] fArr = this.f22905i;
+                float f11 = fArr[i10];
+                float f12 = this.f22906j[i10];
+                float f13 = (f12 * f7 * 8.2f * f10) + (0.8f * f12) + f11;
+                fArr[i10] = f13;
+                if (f13 >= 1.0f) {
+                    fArr[i10] = 0.0f;
+                    float[] fArr2 = this.f22904g;
+                    this.e[i10] = fArr2[i10];
+                    float[] fArr3 = this.h;
+                    this.f22903f[i10] = fArr3[i10];
+                    c(fArr2, fArr3, i10);
+                }
             }
         }
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f22680w;
-        ScrollView scrollView = this.f22676f;
-        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), AndroidUtilities.dp(16.0f) + scrollView.getTop());
-        gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f22681x;
-        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - AndroidUtilities.dp(18.0f), scrollView.getRight(), scrollView.getBottom());
-        gradientDrawable2.draw(canvas);
+    public final void f(long j3) {
+        float f7 = this.f22915s;
+        float f10 = this.f22916t;
+        if (f7 != f10) {
+            float f11 = this.f22917u;
+            float f12 = (((float) j3) * f11) + f10;
+            this.f22916t = f12;
+            if (f11 > 0.0f) {
+                if (f12 > f7) {
+                    this.f22916t = f7;
+                }
+            } else if (f12 < f7) {
+                this.f22916t = f7;
+            }
+        }
     }
 
-    @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        if (i10 == 8) {
-            NotificationCenter.getInstance(this.f22679s).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.f22679s).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.f22679s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+    public ba(int i10, int i11) {
+        float f7;
+        this.f22902c = new Path();
+        this.d = new Paint(1);
+        this.f22907k = new float[4];
+        this.f22908l = new float[4];
+        this.f22909m = new Random();
+        this.f22912p = 1.0f;
+        this.f22913q = new Matrix();
+        this.f22910n = i10;
+        this.f22911o = (float) (Math.tan(3.141592653589793d / (f7 * 2.0f)) * 1.3333333333333333d);
+        this.e = new float[i10];
+        this.f22903f = new float[i10];
+        this.f22904g = new float[i10];
+        this.h = new float[i10];
+        this.f22905i = new float[i10];
+        this.f22906j = new float[i10];
+        for (int i12 = 0; i12 < this.f22910n; i12++) {
+            c(this.e, this.f22903f, i12);
+            c(this.f22904g, this.h, i12);
+            this.f22905i[i12] = 0.0f;
         }
+        this.f22914r = i11;
     }
 }

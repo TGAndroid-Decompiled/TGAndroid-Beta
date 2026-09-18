@@ -1,57 +1,33 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ha implements org.telegram.ui.Components.al0 {
-    public final sa f34224a;
+import android.app.Activity;
+import android.content.Context;
+public final class ha extends oa {
+    public final int J = 1;
+    public final org.telegram.ui.Components.vl0 K;
 
-    public ha(sa saVar) {
-        this.f34224a = saVar;
+    public ha(ia iaVar, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity, e6Var);
+        this.K = iaVar;
+        this.f36142a = true;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        int i11;
-        int i12;
-        int i13;
-        boolean z10 = view instanceof pa;
-        sa saVar = this.f34224a;
-        if (z10) {
-            pa paVar = (pa) view;
-            TLRPC.TL_username tL_username = paVar.v;
-            if (tL_username != null && !paVar.f36580r) {
-                if (tL_username.editable && saVar.f37442x == 0) {
-                    saVar.f37435b.y0(0);
-                    saVar.e0(true);
-                    return;
+    public final String getUsernameEditable() {
+        switch (this.J) {
+            case 0:
+                return ((ia) this.K).f34477c.f37006r;
+            default:
+                ci.h2 h2Var = ((gp) this.K).f33910c.f34202a3.f34570a;
+                if (h2Var == null) {
+                    return null;
                 }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(saVar.getParentActivity(), 0, saVar.getResourceProvider());
-                if (tL_username.active) {
-                    i11 = R.string.UsernameDeactivateLink;
-                } else {
-                    i11 = R.string.UsernameActivateLink;
-                }
-                alertDialog$Builder.f18447a.R = LocaleController.getString(i11);
-                if (tL_username.active) {
-                    i12 = R.string.UsernameDeactivateLinkProfileMessage;
-                } else {
-                    i12 = R.string.UsernameActivateLinkProfileMessage;
-                }
-                alertDialog$Builder.f18447a.T = LocaleController.getString(i12);
-                if (tL_username.active) {
-                    i13 = R.string.Hide;
-                } else {
-                    i13 = R.string.Show;
-                }
-                alertDialog$Builder.k(LocaleController.getString(i13), new fa(this, tL_username, i10, view, 0));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new m4.u0(19));
-                alertDialog$Builder.o();
-            }
-        } else if (view instanceof ma) {
-            saVar.e0(true);
+                return h2Var.getText().toString();
         }
+    }
+
+    public ha(gp gpVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.K = gpVar;
     }
 }

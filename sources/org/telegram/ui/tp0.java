@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class tp0 extends z61 {
+public final class tp0 extends x61 {
     public final wp0 e;
 
     public tp0(wp0 wp0Var, sp0 sp0Var) {
@@ -10,6 +10,6 @@ public final class tp0 extends z61 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f39151o0 = null;
+        this.e.f39220o0 = null;
     }
 }

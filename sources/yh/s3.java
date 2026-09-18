@@ -1,38 +1,39 @@
 package yh;
 
-import android.text.Spanned;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class s3 implements View.OnClickListener {
-    public final int f47803a;
-    public final x3 f47804b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class s3 extends AnimatorListenerAdapter {
+    public final int f47992a;
+    public final v3 f47993b;
 
-    public s3(x3 x3Var, int i10) {
-        this.f47803a = i10;
-        this.f47804b = x3Var;
+    public s3(v3 v3Var, int i10) {
+        this.f47992a = i10;
+        this.f47993b = v3Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        View.OnClickListener onClickListener;
-        switch (this.f47803a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f47992a) {
             case 0:
-                CharSequence text = this.f47804b.v.getText();
-                if (text instanceof Spanned) {
-                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
-                    if (clickableSpanArr.length > 0) {
-                        clickableSpanArr[0].onClick(view);
-                        return;
-                    }
-                    return;
-                }
+                this.f47993b.f48115d0 = false;
+                return;
+            case 1:
+                this.f47993b.f48115d0 = false;
+                return;
+            case 2:
+                this.f47993b.N.setVisibility(4);
+                return;
+            case 3:
+                v3 v3Var = this.f47993b;
+                v3Var.f48133s0 = v3Var.f48131r0;
+                v3Var.d(v3Var.U);
                 return;
             default:
-                x3 x3Var = this.f47804b;
-                if (x3Var.N.getVisibility() == 0 && (onClickListener = x3Var.T) != null) {
-                    onClickListener.onClick(view);
-                    return;
-                }
+                v3 v3Var2 = this.f47993b;
+                v3Var2.f48134t0 = 1.0f;
+                v3Var2.f48111b.setScaleX(1.0f);
+                v3Var2.f48111b.setScaleY(v3Var2.f48134t0);
+                v3Var2.invalidate();
                 return;
         }
     }

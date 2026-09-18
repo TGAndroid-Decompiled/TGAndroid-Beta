@@ -1,23 +1,35 @@
 package tg;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-public final class f implements Runnable {
-    public final int f43163a;
-    public final AtomicBoolean f43164b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class f implements Utilities.Callback {
+    public final int f43377a;
+    public final AtomicBoolean f43378b;
+    public final nf.e f43379c;
 
-    public f(AtomicBoolean atomicBoolean, int i10) {
-        this.f43163a = i10;
-        this.f43164b = atomicBoolean;
+    public f(AtomicBoolean atomicBoolean, nf.e eVar, int i10) {
+        this.f43377a = i10;
+        this.f43378b = atomicBoolean;
+        this.f43379c = eVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43163a) {
+    public final void run(Object obj) {
+        nf.e eVar;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+        switch (this.f43377a) {
             case 0:
-                this.f43164b.set(true);
+                if (!this.f43378b.get()) {
+                    this.f43379c.b();
+                    return;
+                }
                 return;
             default:
-                this.f43164b.set(true);
+                if (!this.f43378b.get() && (eVar = this.f43379c) != null) {
+                    eVar.b();
+                    return;
+                }
                 return;
         }
     }

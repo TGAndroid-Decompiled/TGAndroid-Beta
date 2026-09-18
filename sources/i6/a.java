@@ -40,7 +40,7 @@ public final class a {
         this.e = -1;
         this.d = "VISION";
         this.f11004g = jVar;
-        this.h = u6.a.f43652a;
+        this.h = u6.a.f43879a;
         this.f11003f = q1Var;
         this.f11005i = c2Var;
     }

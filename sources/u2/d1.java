@@ -4,7 +4,7 @@ public interface d1 {
 
     long d();
 
-    boolean m(i2.r0 r0Var);
+    boolean p(i2.r0 r0Var);
 
     long s();
 

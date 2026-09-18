@@ -11,9 +11,9 @@ public class c1 extends db.u {
             if (p5 <= 65535 && p5 >= -32768) {
                 return Short.valueOf((short) p5);
             }
-            StringBuilder l4 = hg.k0.l(p5, "Lossy conversion from ", " to short; at path ");
-            l4.append(aVar.j());
-            throw new RuntimeException(l4.toString());
+            StringBuilder j3 = hg.k0.j(p5, "Lossy conversion from ", " to short; at path ");
+            j3.append(aVar.j());
+            throw new RuntimeException(j3.toString());
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }

@@ -29,7 +29,7 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.wl;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.qr;
 public final class s3 extends FrameLayout {
@@ -73,7 +73,7 @@ public final class s3 extends FrameLayout {
     public static final HashMap f5497e0 = new HashMap();
     public static final r3 f5498f0 = new LruCache(45);
 
-    public s3(Context context, org.telegram.ui.ActionBar.f6 f6Var, float f7, boolean z10) {
+    public s3(Context context, org.telegram.ui.ActionBar.e6 e6Var, float f7, boolean z10) {
         super(context);
         this.f5501b = new Paint(3);
         Paint paint = new Paint(1);
@@ -101,7 +101,7 @@ public final class s3 extends FrameLayout {
         textPaint2.setTextSize(AndroidUtilities.dp(11.33f));
         textPaint2.setColor(-1);
         this.v = context.getResources().getDrawable(R.drawable.play_mini_video).mutate();
-        q3 q3Var = new q3(this, context, f6Var);
+        q3 q3Var = new q3(this, context, e6Var);
         this.J = q3Var;
         if (!z10) {
             q3Var.setDrawBackgroundAsArc(6);
@@ -111,14 +111,14 @@ public final class s3 extends FrameLayout {
         q3Var.b(org.telegram.ui.ActionBar.j6.W9, org.telegram.ui.ActionBar.j6.X9, org.telegram.ui.ActionBar.j6.V9);
         CheckBoxBase checkBoxBase = q3Var.getCheckBoxBase();
         int i10 = org.telegram.ui.ActionBar.j6.G6;
-        if (checkBoxBase.f21989u != i10) {
-            checkBoxBase.f21989u = i10;
+        if (checkBoxBase.f22162u != i10) {
+            checkBoxBase.f22162u = i10;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
         this.I = frameLayout;
-        frameLayout.addView(q3Var, w7.x5.e(26, 26, 17));
-        addView(frameLayout, w7.x5.d(36, 36.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(q3Var, w7.y5.e(26, 26, 17));
+        addView(frameLayout, w7.y5.d(36, 36.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
         frameLayout.setVisibility(0);
         frameLayout.setImportantForAccessibility(2);
         q3Var.setImportantForAccessibility(2);
@@ -451,7 +451,7 @@ public final class s3 extends FrameLayout {
             if (!z10) {
                 f11 = 0.7f;
             }
-            wl.q(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), qr.h, 320L);
+            wh.r(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), qr.h, 320L);
         }
         if (i10 >= 0) {
             q3Var.a(true, z11);
@@ -540,7 +540,7 @@ public final class s3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             q3 q3Var = this.J;
-            if (q3Var != null && q3Var.f26511a.f21985q) {
+            if (q3Var != null && q3Var.f26739a.f22158q) {
                 z10 = true;
             } else {
                 z10 = false;

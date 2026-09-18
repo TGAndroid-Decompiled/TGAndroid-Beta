@@ -20,122 +20,122 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.wl;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.b01;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.id0;
 import org.telegram.ui.Components.l40;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.qz0;
+import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.yc0;
-import org.telegram.ui.Components.za;
-public final class a0 extends za {
-    public static final int[] f46924w0 = {21600, 43200, 86400, 129600, 172800, 259200};
+public final class a0 extends bb {
+    public static final int[] f47152w0 = {21600, 43200, 86400, 129600, 172800, 259200};
     public final a X;
     public final TL_stars.TL_starGiftUnique Y;
     public final String Z;
-    public final long f46925a0;
-    public final l40 f46926b0;
-    public final yc0 f46927c0;
-    public final EditTextBoldCursor f46928d0;
-    public final TextView f46929e0;
-    public final y f46930f0;
-    public final TextView f46931g0;
-    public final ci.d f46932h0;
-    public final org.telegram.ui.Components.n6 f46933i0;
-    public final ImageView f46934j0;
-    public final ImageView f46935k0;
-    public final ka.c f46936l0;
+    public final long f47153a0;
+    public final l40 f47154b0;
+    public final id0 f47155c0;
+    public final EditTextBoldCursor f47156d0;
+    public final TextView f47157e0;
+    public final y f47158f0;
+    public final TextView f47159g0;
+    public final ci.d f47160h0;
+    public final org.telegram.ui.Components.p6 f47161i0;
+    public final ImageView f47162j0;
+    public final ImageView f47163k0;
+    public final l.d f47164l0;
     public zf.a m0;
-    public int f46937n0;
-    public int f46938o0;
-    public boolean f46939p0;
-    public final b1 f46940q0;
-    public final oq[] f46941r0;
-    public final oq[] f46942s0;
-    public boolean f46943t0;
-    public x51 f46944u0;
-    public final j51 f46945v0;
+    public int f47165n0;
+    public int f47166o0;
+    public boolean f47167p0;
+    public final b1 f47168q0;
+    public final oq[] f47169r0;
+    public final oq[] f47170s0;
+    public boolean f47171t0;
+    public l61 f47172u0;
+    public final x51 f47173v0;
 
-    public a0(final Context context, final int i10, final long j3, TL_stars.TL_starGiftUnique tL_starGiftUnique, final org.telegram.ui.ActionBar.f6 f6Var, b1 b1Var) {
-        super(context, null, true, false, 2, f6Var);
+    public a0(final Context context, final int i10, final long j3, TL_stars.TL_starGiftUnique tL_starGiftUnique, final org.telegram.ui.ActionBar.e6 e6Var, b1 b1Var) {
+        super(context, null, true, false, 2, e6Var);
         TLRPC.User user;
-        ka.c cVar = new ka.c(23);
-        n7.a1[] a1VarArr = (n7.a1[]) cVar.f13567b;
-        this.f46936l0 = cVar;
-        this.f46941r0 = new oq[1];
-        this.f46942s0 = new oq[1];
+        l.d dVar = new l.d(27);
+        n7.z0[] z0VarArr = (n7.z0[]) dVar.f13859a;
+        this.f47164l0 = dVar;
+        this.f47169r0 = new oq[1];
+        this.f47170s0 = new oq[1];
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.v = 0.2f;
-        this.f46925a0 = j3;
+        this.f47153a0 = j3;
         this.Y = tL_starGiftUnique;
         StringBuilder sb2 = new StringBuilder();
         sb2.append(tL_starGiftUnique.title);
         sb2.append(" #");
-        this.Z = hg.k0.k(tL_starGiftUnique.num, ',', sb2);
-        this.f46940q0 = b1Var;
+        this.Z = org.telegram.messenger.q.i(tL_starGiftUnique.num, ',', sb2);
+        this.f47168q0 = b1Var;
         this.waitingKeyboard = true;
         this.smoothKeyboardAnimationEnabled = true;
-        boolean j10 = v5.y(i10, true).j();
+        boolean j10 = t5.y(i10, true).j();
         if (j3 > 0 && MessagesController.getInstance(i10).getUserFull(j3) == null && (user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3))) != null) {
             MessagesController.getInstance(i10).loadFullUser(user, 0, false);
         }
         AppGlobalConfig appGlobalConfig = MessagesController.getInstance(i10).config;
         long j11 = tL_starGiftUnique.offer_min_stars;
-        zf.b bVar = zf.b.f48982a;
+        zf.b bVar = zf.b.f49208a;
         zf.a g10 = zf.a.g(j11, bVar);
         zf.a g11 = zf.a.g(Math.max(g10.a() * 2, appGlobalConfig.starsStarGiftResaleAmountMax.get()), bVar);
-        zf.b bVar2 = zf.b.f48983b;
-        zf.a i11 = zf.a.i(Math.max(g10.e(bVar2).n(2).f48981b, appGlobalConfig.tonStarGiftResaleAmountMin.get()), bVar2);
-        zf.a i12 = zf.a.i(Math.max(i11.f48981b * 2, appGlobalConfig.tonStarGiftResaleAmountMax.get()), bVar2);
-        zf.b bVar3 = g10.f48980a;
-        if (bVar3 == g11.f48980a) {
-            a1VarArr[bVar3.ordinal()] = new n7.a1(29, g10, g11);
+        zf.b bVar2 = zf.b.f49209b;
+        zf.a i11 = zf.a.i(Math.max(g10.e(bVar2).n(2).f49207b, appGlobalConfig.tonStarGiftResaleAmountMin.get()), bVar2);
+        zf.a i12 = zf.a.i(Math.max(i11.f49207b * 2, appGlobalConfig.tonStarGiftResaleAmountMax.get()), bVar2);
+        zf.b bVar3 = g10.f49206a;
+        if (bVar3 == g11.f49206a) {
+            z0VarArr[bVar3.ordinal()] = new n7.z0(29, g10, g11);
         }
-        zf.b bVar4 = i11.f48980a;
-        if (bVar4 == i12.f48980a) {
-            a1VarArr[bVar4.ordinal()] = new n7.a1(29, i11, i12);
+        zf.b bVar4 = i11.f49206a;
+        if (bVar4 == i12.f49206a) {
+            z0VarArr[bVar4.ordinal()] = new n7.z0(29, i11, i12);
         }
-        a aVar = new a(context, i10, f6Var);
+        a aVar = new a(context, i10, e6Var);
         this.X = aVar;
         aVar.setScaleX(0.6f);
         aVar.setScaleY(0.6f);
         aVar.setAlpha(0.0f);
         aVar.setEnabled(false);
         aVar.setClickable(false);
-        this.container.addView(aVar, w7.x5.d(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
-        w7.z5.a(aVar);
-        aVar.setOnClickListener(new xg.e(this, context, f6Var, 6));
-        fixNavigationBar(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18934h5, f6Var));
+        this.container.addView(aVar, w7.y5.d(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
+        w7.a6.a(aVar);
+        aVar.setOnClickListener(new xg.e(this, context, e6Var, 6));
+        fixNavigationBar(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19133h5, e6Var));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClickable(true);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(16.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f46928d0 = editTextBoldCursor;
+        this.f47156d0 = editTextBoldCursor;
         if (j10) {
-            l40 l40Var = new l40(context, f6Var);
-            this.f46926b0 = l40Var;
+            l40 l40Var = new l40(context, e6Var);
+            this.f47154b0 = l40Var;
             ArrayList arrayList = new ArrayList();
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferStars));
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferTON));
             l40Var.b(arrayList, new v(this, 0));
-            linearLayout.addView(l40Var, w7.x5.k(18.0f, 0.0f, 18.0f, 18.0f, -1, -2));
+            linearLayout.addView(l40Var, w7.y5.k(18.0f, 0.0f, 18.0f, 18.0f, -1, -2));
         } else {
-            this.f46926b0 = null;
+            this.f47154b0 = null;
         }
-        LinearLayout f7 = wl.f(context, 1);
-        linearLayout.addView(f7, w7.x5.l(1.0f, -1, -2));
-        yc0 yc0Var = new yc0(context, null);
-        this.f46927c0 = yc0Var;
+        LinearLayout e = wh.e(context, 1);
+        linearLayout.addView(e, w7.y5.l(1.0f, -1, -2));
+        id0 id0Var = new id0(context, null);
+        this.f47155c0 = id0Var;
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.setImeOptions(268435462);
@@ -146,35 +146,35 @@ public final class a0 extends za {
         int i13 = org.telegram.ui.ActionBar.j6.G6;
         editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
         editTextBoldCursor.requestFocus();
-        yc0Var.setLeftPadding(AndroidUtilities.dp(28.0f));
-        yc0Var.e(editTextBoldCursor);
-        yc0Var.b(1.0f, 0.0f, false);
-        yc0Var.setForceUseCenter2(true);
+        id0Var.setLeftPadding(AndroidUtilities.dp(28.0f));
+        id0Var.e(editTextBoldCursor);
+        id0Var.b(1.0f, 0.0f, false);
+        id0Var.setForceUseCenter2(true);
         editTextBoldCursor.setOnFocusChangeListener(new ii.v5(this, 4));
-        yc0Var.addView(editTextBoldCursor, w7.x5.e(-1, -2, 48));
-        f7.addView(yc0Var, w7.x5.k(18.0f, 0.0f, 18.0f, 0.0f, -1, 58));
+        id0Var.addView(editTextBoldCursor, w7.y5.e(-1, -2, 48));
+        e.addView(id0Var, w7.y5.k(18.0f, 0.0f, 18.0f, 0.0f, -1, 58));
         ImageView imageView = new ImageView(context);
-        this.f46934j0 = imageView;
+        this.f47162j0 = imageView;
         imageView.setImageResource(R.drawable.star_small_inner);
-        yc0Var.addView(imageView, w7.x5.d(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        id0Var.addView(imageView, w7.y5.d(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f46935k0 = imageView2;
+        this.f47163k0 = imageView2;
         imageView2.setImageResource(R.drawable.mini_gram_72);
         imageView2.setColorFilter(-13397548);
-        yc0Var.addView(imageView2, w7.x5.d(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(context, false, false, false);
-        this.f46933i0 = n6Var;
-        int i14 = org.telegram.ui.ActionBar.j6.f19245y6;
-        n6Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
-        n6Var.setTextSize(AndroidUtilities.dp(13.0f));
-        n6Var.setGravity(5);
-        yc0Var.addView(n6Var, w7.x5.d(-2, -1.0f, 21, 0.0f, 0.0f, 16.0f, 0.0f));
+        id0Var.addView(imageView2, w7.y5.d(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, false, false);
+        this.f47161i0 = p6Var;
+        int i14 = org.telegram.ui.ActionBar.j6.f19445y6;
+        p6Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
+        p6Var.setTextSize(AndroidUtilities.dp(13.0f));
+        p6Var.setGravity(5);
+        id0Var.addView(p6Var, w7.y5.d(-2, -1.0f, 21, 0.0f, 0.0f, 16.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f46929e0 = textView;
+        this.f47157e0 = textView;
         textView.setTextSize(1, 13.0f);
-        f7.addView(textView, w7.x5.t(-1, -2, 55, 33, 4, 33, 0));
+        e.addView(textView, w7.y5.t(-1, -2, 55, 33, 4, 33, 0));
         ?? editTextBoldCursor2 = new EditTextBoldCursor(context);
-        this.f46930f0 = editTextBoldCursor2;
+        this.f47158f0 = editTextBoldCursor2;
         editTextBoldCursor2.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor2.setCursorWidth(1.5f);
         editTextBoldCursor2.setTextSize(1, 17.0f);
@@ -185,59 +185,59 @@ public final class a0 extends za {
         editTextBoldCursor2.setFocusable(false);
         editTextBoldCursor2.setClickable(false);
         editTextBoldCursor2.setEnabled(false);
-        yc0 yc0Var2 = new yc0(context, null);
-        yc0Var2.setText(LocaleController.getString(R.string.GiftOfferDuration));
-        yc0Var2.e(editTextBoldCursor2);
-        yc0Var2.addView((View) editTextBoldCursor2, w7.x5.d(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
-        w7.z5.b(yc0Var2, 0.02f, 1.2f);
-        yc0Var2.setOnClickListener(new w(0, this, context));
-        f7.addView(yc0Var2, w7.x5.k(18.0f, 18.0f, 18.0f, 0.0f, -1, 58));
+        id0 id0Var2 = new id0(context, null);
+        id0Var2.setText(LocaleController.getString(R.string.GiftOfferDuration));
+        id0Var2.e(editTextBoldCursor2);
+        id0Var2.addView((View) editTextBoldCursor2, w7.y5.d(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
+        w7.a6.b(id0Var2, 0.02f, 1.2f);
+        id0Var2.setOnClickListener(new w(0, this, context));
+        e.addView(id0Var2, w7.y5.k(18.0f, 18.0f, 18.0f, 0.0f, -1, 58));
         ImageView imageView3 = new ImageView(context);
         imageView3.setImageResource(R.drawable.arrow_more);
-        imageView3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.W5, f6Var), PorterDuff.Mode.SRC_IN));
-        yc0Var2.addView(imageView3, w7.x5.d(24, 24.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
+        imageView3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.W5, e6Var), PorterDuff.Mode.SRC_IN));
+        id0Var2.addView(imageView3, w7.y5.d(24, 24.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f46931g0 = textView2;
+        this.f47159g0 = textView2;
         textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i14, false));
         textView2.setTextSize(1, 13.0f);
-        f7.addView(textView2, w7.x5.t(-1, -2, 55, 33, 4, 33, 0));
-        ci.d dVar = new ci.d(context, f6Var, true);
-        this.f46932h0 = dVar;
-        dVar.setOnClickListener(new View.OnClickListener() {
+        e.addView(textView2, w7.y5.t(-1, -2, 55, 33, 4, 33, 0));
+        ci.d dVar2 = new ci.d(context, e6Var, true);
+        this.f47160h0 = dVar2;
+        dVar2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                a0.Q(a0.this, i10, context, f6Var, j3);
+                a0.Q(a0.this, i10, context, e6Var, j3);
             }
         });
         U(zf.a.i(0L, bVar), false, true, false);
-        if (this.f46937n0 != 86400) {
-            this.f46937n0 = 86400;
+        if (this.f47165n0 != 86400) {
+            this.f47165n0 = 86400;
             editTextBoldCursor2.setText(LocaleController.formatPluralString("GiftOfferHours", 24, new Object[0]));
         }
         T(false);
         editTextBoldCursor.addTextChangedListener(new z(this));
-        FrameLayout.LayoutParams d = w7.x5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        FrameLayout.LayoutParams d = w7.y5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i15 = d.leftMargin;
         int i16 = this.backgroundPaddingLeft;
         d.leftMargin = i15 + i16;
         d.rightMargin += i16;
-        this.containerView.addView(dVar, d);
-        ml0 ml0Var = this.d;
+        this.containerView.addView(dVar2, d);
+        wl0 wl0Var = this.d;
         int i17 = this.backgroundPaddingLeft;
-        ml0Var.setPadding(i17, 0, i17, AndroidUtilities.dp(64.0f));
+        wl0Var.setPadding(i17, 0, i17, AndroidUtilities.dp(64.0f));
         this.d.setOverScrollMode(2);
-        this.f46945v0 = j51.k(linearLayout);
-        this.f46944u0.N(false);
+        this.f47173v0 = x51.k(linearLayout);
+        this.f47172u0.N(false);
     }
 
-    public static void P(a0 a0Var, long j3, boolean z10, zf.a aVar, long j10, org.telegram.ui.ActionBar.c2 c2Var) {
+    public static void P(a0 a0Var, long j3, boolean z10, zf.a aVar, long j10, org.telegram.ui.ActionBar.b2 b2Var) {
         zf.a aVar2;
         zf.a i10;
         int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i11 > 0) {
             int i12 = a0Var.currentAccount;
-            zf.b bVar = zf.b.f48982a;
-            v5 x10 = v5.x(i12, bVar);
+            zf.b bVar = zf.b.f49208a;
+            t5 x10 = t5.x(i12, bVar);
             if (x10.e) {
                 aVar2 = zf.a.l(x10.p());
             } else {
@@ -246,56 +246,56 @@ public final class a0 extends za {
             if (z10) {
                 i10 = zf.a.g(j3, bVar);
             } else {
-                i10 = zf.a.i(a0Var.m0.f48981b + aVar.f48981b, bVar);
+                i10 = zf.a.i(a0Var.m0.f49207b + aVar.f49207b, bVar);
             }
-            if (aVar2 == null || aVar2.f48981b < i10.f48981b) {
-                new n7(a0Var.getContext(), a0Var.resourcesProvider, i10.a(), 14, null, null, a0Var.f46925a0).show();
+            if (aVar2 == null || aVar2.f49207b < i10.f49207b) {
+                new k7(a0Var.getContext(), a0Var.resourcesProvider, i10.a(), 14, null, null, a0Var.f47153a0).show();
                 return;
             }
         }
-        nf.e g10 = c2Var.g(-1, true, true);
+        nf.e g10 = b2Var.g(-1, true, true);
         g10.d();
         TL_payments.TL_sendStarGiftOffer tL_sendStarGiftOffer = new TL_payments.TL_sendStarGiftOffer();
         tL_sendStarGiftOffer.price = a0Var.m0.o();
-        tL_sendStarGiftOffer.peer = MessagesController.getInstance(a0Var.currentAccount).getInputPeer(a0Var.f46925a0);
-        tL_sendStarGiftOffer.duration = a0Var.f46937n0;
+        tL_sendStarGiftOffer.peer = MessagesController.getInstance(a0Var.currentAccount).getInputPeer(a0Var.f47153a0);
+        tL_sendStarGiftOffer.duration = a0Var.f47165n0;
         tL_sendStarGiftOffer.slug = a0Var.Y.slug;
         tL_sendStarGiftOffer.random_id = j10;
         if (i11 > 0) {
             tL_sendStarGiftOffer.flags = 1 | tL_sendStarGiftOffer.flags;
             tL_sendStarGiftOffer.allow_paid_stars = j3;
         }
-        ConnectionsManager.getInstance(a0Var.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new org.telegram.tgnet.e(a0Var, g10, c2Var, 7));
+        ConnectionsManager.getInstance(a0Var.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new org.telegram.tgnet.e(a0Var, g10, b2Var, 7));
     }
 
-    public static void Q(a0 a0Var, int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3) {
+    public static void Q(a0 a0Var, int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, long j3) {
         zf.a aVar;
         String str;
         boolean z10;
         String formatString;
         ?? r14;
         boolean z11;
-        if (a0Var.f46932h0.W) {
+        if (a0Var.f47160h0.W) {
             if (MessagesController.getInstance(i10).isFrozen()) {
                 org.telegram.ui.b.b(i10);
                 return;
             }
-            v5 x10 = v5.x(i10, a0Var.m0.f48980a);
+            t5 x10 = t5.x(i10, a0Var.m0.f49206a);
             if (x10.e) {
                 aVar = zf.a.l(x10.p());
             } else {
                 aVar = null;
             }
-            zf.b bVar = zf.b.f48982a;
-            zf.b bVar2 = zf.b.f48983b;
+            zf.b bVar = zf.b.f49208a;
+            zf.b bVar2 = zf.b.f49209b;
             if (aVar != null) {
-                long j10 = aVar.f48981b;
+                long j10 = aVar.f49207b;
                 zf.a aVar2 = a0Var.m0;
-                if (j10 >= aVar2.f48981b) {
+                if (j10 >= aVar2.f49207b) {
                     String str2 = a0Var.Z;
-                    long j11 = a0Var.f46925a0;
+                    long j11 = a0Var.f47153a0;
                     String d = aVar2.d();
-                    if (a0Var.m0.f48980a == bVar2) {
+                    if (a0Var.m0.f49206a == bVar2) {
                         str = str2;
                         z10 = true;
                     } else {
@@ -306,101 +306,101 @@ public final class a0 extends za {
                     linearLayout.setOrientation(1);
                     TextView textView = new TextView(a0Var.getContext());
                     textView.setText(LocaleController.getString(R.string.GiftOfferConfirmSend));
-                    int i11 = org.telegram.ui.ActionBar.j6.f18970j5;
-                    wl.x(i11, a0Var.resourcesProvider, textView, 1, 20.0f);
-                    linearLayout.addView(textView, w7.x5.t(-1, -2, 48, 24, 4, 24, 14));
+                    int i11 = org.telegram.ui.ActionBar.j6.f19169j5;
+                    org.telegram.ui.Cells.c1.n(i11, a0Var.resourcesProvider, textView, 1, 20.0f);
+                    linearLayout.addView(textView, w7.y5.t(-1, -2, 48, 24, 4, 24, 14));
                     TextView textView2 = new TextView(a0Var.getContext());
-                    wl.n(i11, a0Var.resourcesProvider, textView2, 1, 16.0f);
-                    if (a0Var.m0.f48980a == bVar) {
+                    wh.m(i11, a0Var.resourcesProvider, textView2, 1, 16.0f);
+                    if (a0Var.m0.f49206a == bVar) {
                         formatString = LocaleController.formatString(R.string.GiftOfferTransferInfoTextStars, d, DialogObject.getShortName(j11), str);
                     } else {
                         formatString = LocaleController.formatString(R.string.GiftOfferTransferInfoTextTON, d, DialogObject.getShortName(j11), str);
                     }
                     textView2.setText(AndroidUtilities.replaceTags(formatString));
-                    linearLayout.addView(textView2, w7.x5.t(-1, -2, 48, 24, 4, 24, 4));
-                    qz0 qz0Var = new qz0(a0Var.getContext(), a0Var.resourcesProvider);
+                    linearLayout.addView(textView2, w7.y5.t(-1, -2, 48, 24, 4, 24, 4));
+                    b01 b01Var = new b01(a0Var.getContext(), a0Var.resourcesProvider);
                     final long sendPaidMessagesStars = MessagesController.getInstance(a0Var.currentAccount).getSendPaidMessagesStars(j11);
                     final zf.a g10 = zf.a.g(sendPaidMessagesStars, bVar);
-                    qz0Var.c(LocaleController.getString(R.string.GiftOfferRowOffer), y7.X0(z10, LocaleController.formatString(R.string.GiftOfferAmount, d), 0.8f, null), null, null);
+                    b01Var.c(LocaleController.getString(R.string.GiftOfferRowOffer), v7.X0(z10, LocaleController.formatString(R.string.GiftOfferAmount, d), 0.8f, null), null, null);
                     int i12 = (sendPaidMessagesStars > 0L ? 1 : (sendPaidMessagesStars == 0L ? 0 : -1));
                     if (i12 > 0) {
                         r14 = 0;
-                        qz0Var.c(LocaleController.getString(R.string.GiftOfferRowFee), y7.X0(false, LocaleController.formatString(R.string.GiftOfferAmount, g10.d()), 0.8f, null), null, null);
+                        b01Var.c(LocaleController.getString(R.string.GiftOfferRowFee), v7.X0(false, LocaleController.formatString(R.string.GiftOfferAmount, g10.d()), 0.8f, null), null, null);
                     } else {
                         r14 = 0;
                     }
-                    qz0Var.c(LocaleController.getString(R.string.GiftOfferRowDuration), LocaleController.formatPluralString("GiftOfferHours", a0Var.f46937n0 / 3600, new Object[0]), r14, r14);
-                    linearLayout.addView(qz0Var, w7.x5.t(-1, -2, 48, 23, 16, 23, 4));
+                    b01Var.c(LocaleController.getString(R.string.GiftOfferRowDuration), LocaleController.formatPluralString("GiftOfferHours", a0Var.f47165n0 / 3600, new Object[0]), r14, r14);
+                    linearLayout.addView(b01Var, w7.y5.t(-1, -2, 48, 23, 16, 23, 4));
                     final long nextRandomId = SendMessagesHelper.getInstance(a0Var.currentAccount).getNextRandomId();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     if (i12 == 0) {
-                        spannableStringBuilder.append((CharSequence) y7.S0(LocaleController.formatString(R.string.GiftOfferPay, d), z10));
+                        spannableStringBuilder.append((CharSequence) v7.S0(LocaleController.formatString(R.string.GiftOfferPay, d), z10));
                     } else if (z10) {
-                        spannableStringBuilder.append(LocaleController.formatSpannable(R.string.GiftOfferPayMulti, y7.S0(LocaleController.formatString(R.string.GiftOfferPayMultiPart, d), true), y7.Q0(LocaleController.formatString(R.string.GiftOfferPayMultiPart, g10.d()))));
+                        spannableStringBuilder.append(LocaleController.formatSpannable(R.string.GiftOfferPayMulti, v7.S0(LocaleController.formatString(R.string.GiftOfferPayMultiPart, d), true), v7.Q0(LocaleController.formatString(R.string.GiftOfferPayMultiPart, g10.d()))));
                     } else {
                         z11 = z10;
-                        spannableStringBuilder.append((CharSequence) y7.Q0(LocaleController.formatString(R.string.GiftOfferPay, zf.a.i(a0Var.m0.f48981b + g10.f48981b, bVar).d())));
+                        spannableStringBuilder.append((CharSequence) v7.Q0(LocaleController.formatString(R.string.GiftOfferPay, zf.a.i(a0Var.m0.f49207b + g10.f49207b, bVar).d())));
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a0Var.getContext(), 0, a0Var.resourcesProvider);
                         alertDialog$Builder.n(linearLayout);
                         final boolean z12 = z11;
-                        alertDialog$Builder.k(spannableStringBuilder, new org.telegram.ui.ActionBar.b2() {
+                        alertDialog$Builder.k(spannableStringBuilder, new org.telegram.ui.ActionBar.a2() {
                             @Override
-                            public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i13) {
-                                a0.P(a0.this, sendPaidMessagesStars, z12, g10, nextRandomId, c2Var);
+                            public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i13) {
+                                a0.P(a0.this, sendPaidMessagesStars, z12, g10, nextRandomId, b2Var);
                             }
                         });
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18447a;
-                        c2Var.X0 = true;
-                        c2Var.show();
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+                        b2Var.X0 = true;
+                        b2Var.show();
                         return;
                     }
                     z11 = z10;
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(a0Var.getContext(), 0, a0Var.resourcesProvider);
                     alertDialog$Builder2.n(linearLayout);
                     final boolean z122 = z11;
-                    alertDialog$Builder2.k(spannableStringBuilder, new org.telegram.ui.ActionBar.b2() {
+                    alertDialog$Builder2.k(spannableStringBuilder, new org.telegram.ui.ActionBar.a2() {
                         @Override
-                        public final void f(org.telegram.ui.ActionBar.c2 c2Var2, int i13) {
-                            a0.P(a0.this, sendPaidMessagesStars, z122, g10, nextRandomId, c2Var2);
+                        public final void f(org.telegram.ui.ActionBar.b2 b2Var2, int i13) {
+                            a0.P(a0.this, sendPaidMessagesStars, z122, g10, nextRandomId, b2Var2);
                         }
                     });
                     alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), null);
-                    org.telegram.ui.ActionBar.c2 c2Var2 = alertDialog$Builder2.f18447a;
-                    c2Var2.X0 = true;
-                    c2Var2.show();
+                    org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f18622a;
+                    b2Var2.X0 = true;
+                    b2Var2.show();
                     return;
                 }
             }
             zf.a aVar3 = a0Var.m0;
-            zf.b bVar3 = aVar3.f48980a;
+            zf.b bVar3 = aVar3.f49206a;
             if (bVar3 == bVar) {
-                new n7(context, f6Var, aVar3.a(), 14, null, null, j3).show();
+                new k7(context, e6Var, aVar3.a(), 14, null, null, j3).show();
             } else if (bVar3 == bVar2) {
-                new di.h(context, f6Var, aVar3, true, null).show();
+                new di.h(context, e6Var, aVar3, true, null).show();
             }
         }
     }
 
-    public static void R(a0 a0Var, nf.e eVar, org.telegram.ui.ActionBar.c2 c2Var, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void R(a0 a0Var, nf.e eVar, org.telegram.ui.ActionBar.b2 b2Var, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(a0Var.currentAccount).processUpdates(updates, false);
         }
-        AndroidUtilities.runOnUIThread(new u(a0Var, eVar, c2Var, updates, tL_error, 0));
+        AndroidUtilities.runOnUIThread(new u(a0Var, eVar, b2Var, updates, tL_error, 0));
     }
 
     public final void S() {
         boolean z10;
         float f7;
-        boolean z11 = this.f46943t0;
+        boolean z11 = this.f47171t0;
         a aVar = this.X;
-        if ((z11 && !isDismissed() && aVar != null && this.containerView.getY() > AndroidUtilities.dp(32.0f)) || this.f46926b0 == null) {
+        if ((z11 && !isDismissed() && aVar != null && this.containerView.getY() > AndroidUtilities.dp(32.0f)) || this.f47154b0 == null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f46939p0 != z10) {
-            this.f46939p0 = z10;
+        if (this.f47167p0 != z10) {
+            this.f47167p0 = z10;
             if (aVar != null) {
                 aVar.setEnabled(z10);
                 aVar.setClickable(z10);
@@ -420,19 +420,19 @@ public final class a0 extends za {
                 if (!z10) {
                     f11 = 0.0f;
                 }
-                scaleY.alpha(f11).setDuration(180L).start();
+                wh.q(scaleY, f11, 180L);
             }
         }
     }
 
     public final void T(boolean z10) {
         boolean z11;
-        if (this.f46938o0 == 0 && this.m0.f48981b > 0) {
+        if (this.f47166o0 == 0 && this.m0.f49207b > 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        ci.d dVar = this.f46932h0;
+        ci.d dVar = this.f47160h0;
         if (dVar.W != z11) {
             dVar.setEnabled(z11);
             dVar.setClickable(z11);
@@ -442,7 +442,7 @@ public final class a0 extends za {
                 if (z11) {
                     f7 = 1.0f;
                 }
-                animate.alpha(f7).setDuration(180L).start();
+                wh.q(animate, f7, 180L);
                 return;
             }
             if (z11) {
@@ -477,102 +477,102 @@ public final class a0 extends za {
         float f16;
         int i15;
         zf.a aVar2 = this.m0;
-        int i16 = this.f46938o0;
-        this.f46938o0 = 0;
+        int i16 = this.f47166o0;
+        this.f47166o0 = 0;
         if (aVar != null) {
             this.m0 = aVar;
         } else {
-            this.m0 = zf.a.i(0L, aVar2.f48980a);
-            this.f46938o0 |= 1;
+            this.m0 = zf.a.i(0L, aVar2.f49206a);
+            this.f47166o0 |= 1;
         }
-        zf.b bVar2 = this.m0.f48980a;
-        ka.c cVar = this.f46936l0;
-        n7.a1[] a1VarArr = (n7.a1[]) cVar.f13567b;
-        long j3 = ((zf.a) ((n7.a1[]) cVar.f13567b)[bVar2.ordinal()].f15119c).f48981b;
+        zf.b bVar2 = this.m0.f49206a;
+        l.d dVar = this.f47164l0;
+        n7.z0[] z0VarArr = (n7.z0[]) dVar.f13859a;
+        long j3 = ((zf.a) ((n7.z0[]) dVar.f13859a)[bVar2.ordinal()].f15368c).f49207b;
         zf.a aVar3 = this.m0;
-        if (j3 < aVar3.f48981b) {
-            this.f46938o0 |= 4;
+        if (j3 < aVar3.f49207b) {
+            this.f47166o0 |= 4;
         }
-        if (!aVar3.k() && ((zf.a) a1VarArr[this.m0.f48980a.ordinal()].f15118b).f48981b > this.m0.f48981b) {
-            this.f46938o0 |= 2;
+        if (!aVar3.k() && ((zf.a) z0VarArr[this.m0.f49206a.ordinal()].f15367b).f49207b > this.m0.f49207b) {
+            this.f47166o0 |= 2;
         }
-        if (!z11 && aVar2.f48980a == this.m0.f48980a) {
+        if (!z11 && aVar2.f49206a == this.m0.f49206a) {
             z13 = false;
         } else {
             z13 = true;
         }
-        if (!z11 && aVar2.f48981b == this.m0.f48981b) {
+        if (!z11 && aVar2.f49207b == this.m0.f49207b) {
             z14 = false;
         } else {
             z14 = true;
         }
-        if (!z11 && i16 == this.f46938o0) {
+        if (!z11 && i16 == this.f47166o0) {
             z15 = false;
         } else {
             z15 = true;
         }
-        zf.b bVar3 = zf.b.f48982a;
-        EditTextBoldCursor editTextBoldCursor = this.f46928d0;
-        zf.b bVar4 = zf.b.f48983b;
+        zf.b bVar3 = zf.b.f49208a;
+        EditTextBoldCursor editTextBoldCursor = this.f47156d0;
+        zf.b bVar4 = zf.b.f49209b;
         if (z13) {
-            l40 l40Var = this.f46926b0;
+            l40 l40Var = this.f47154b0;
             if (l40Var != null) {
-                if (this.m0.f48980a == bVar3) {
+                if (this.m0.f49206a == bVar3) {
                     i15 = 0;
                 } else {
                     i15 = 1;
                 }
                 l40Var.a(i15, z12);
             }
-            String shortName = DialogObject.getShortName(this.f46925a0);
-            zf.b bVar5 = this.m0.f48980a;
-            TextView textView = this.f46931g0;
+            String shortName = DialogObject.getShortName(this.f47153a0);
+            zf.b bVar5 = this.m0.f49206a;
+            TextView textView = this.f47159g0;
             if (bVar5 == bVar3) {
                 textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferDurationInfoStars, shortName)));
                 editTextBoldCursor.setInputType(2);
-                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((zf.a) a1VarArr[this.m0.f48980a.ordinal()].f15119c).a()).length())});
+                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((zf.a) z0VarArr[this.m0.f49206a.ordinal()].f15368c).a()).length())});
             } else if (bVar5 == bVar4) {
                 textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferDurationInfoTON, shortName)));
                 editTextBoldCursor.setInputType(8194);
-                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((zf.a) a1VarArr[this.m0.f48980a.ordinal()].f15119c).a()).length() + 3)});
+                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((zf.a) z0VarArr[this.m0.f49206a.ordinal()].f15368c).a()).length() + 3)});
             }
-            ImageView imageView = this.f46935k0;
-            ImageView imageView2 = this.f46934j0;
+            ImageView imageView = this.f47163k0;
+            ImageView imageView2 = this.f47162j0;
             if (z12) {
                 ViewPropertyAnimator animate = imageView2.animate();
                 c10 = 0;
-                if (this.m0.f48980a == bVar3) {
+                if (this.m0.f49206a == bVar3) {
                     f11 = 1.0f;
                 } else {
                     f11 = 0.0f;
                 }
                 ViewPropertyAnimator alpha = animate.alpha(f11);
-                if (this.m0.f48980a == bVar3) {
+                if (this.m0.f49206a == bVar3) {
                     f12 = 1.0f;
                 } else {
                     f12 = 0.0f;
                 }
                 ViewPropertyAnimator scaleX = alpha.scaleX(f12);
-                if (this.m0.f48980a == bVar3) {
+                if (this.m0.f49206a == bVar3) {
                     f13 = 1.0f;
                 } else {
                     f13 = 0.0f;
                 }
                 scaleX.scaleY(f13).setDuration(180L).start();
                 ViewPropertyAnimator animate2 = imageView.animate();
-                if (this.m0.f48980a == bVar4) {
+                if (this.m0.f49206a == bVar4) {
                     f14 = 1.0f;
                 } else {
                     f14 = 0.0f;
                 }
                 ViewPropertyAnimator alpha2 = animate2.alpha(f14);
-                if (this.m0.f48980a == bVar4) {
+                if (this.m0.f49206a == bVar4) {
                     f15 = 1.0f;
                 } else {
                     f15 = 0.0f;
                 }
                 ViewPropertyAnimator scaleX2 = alpha2.scaleX(f15);
-                if (this.m0.f48980a == bVar4) {
+                if (this.m0.f49206a == bVar4) {
                     f16 = 1.0f;
                 } else {
                     f16 = 0.0f;
@@ -580,13 +580,13 @@ public final class a0 extends za {
                 scaleX2.scaleY(f16).setDuration(180L).start();
             } else {
                 c10 = 0;
-                if (this.m0.f48980a == bVar3) {
+                if (this.m0.f49206a == bVar3) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
                 imageView2.setAlpha(f7);
-                if (this.m0.f48980a == bVar4) {
+                if (this.m0.f49206a == bVar4) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
@@ -594,7 +594,7 @@ public final class a0 extends za {
                 imageView.setAlpha(f10);
             }
             a aVar4 = this.X;
-            if (aVar4 != null && aVar4.e != (bVar = this.m0.f48980a)) {
+            if (aVar4 != null && aVar4.e != (bVar = this.m0.f49206a)) {
                 aVar4.e = bVar;
                 aVar4.a();
             }
@@ -602,17 +602,17 @@ public final class a0 extends za {
             c10 = 0;
         }
         if (z13 || z15) {
-            if (this.m0.f48980a == bVar3) {
+            if (this.m0.f49206a == bVar3) {
                 i10 = R.string.GiftOfferStarsToOffer;
             } else {
                 i10 = R.string.GiftOfferTONToOffer;
             }
-            this.f46927c0.setText(LocaleController.getString(i10));
-            zf.b bVar6 = this.m0.f48980a;
-            int i17 = this.f46938o0;
+            this.f47155c0.setText(LocaleController.getString(i10));
+            zf.b bVar6 = this.m0.f49206a;
+            int i17 = this.f47166o0;
             int i18 = i17 & 4;
             String str = this.Z;
-            TextView textView2 = this.f46929e0;
+            TextView textView2 = this.f47157e0;
             if (i18 != 0) {
                 if (bVar6 == bVar3) {
                     i14 = R.string.GiftOfferStarsToOfferInfoIsHigh;
@@ -620,9 +620,9 @@ public final class a0 extends za {
                     i14 = R.string.GiftOfferTONToOfferInfoIsHigh;
                 }
                 Object[] objArr = new Object[2];
-                objArr[c10] = ((zf.a) a1VarArr[bVar6.ordinal()].f15119c).d();
+                objArr[c10] = ((zf.a) z0VarArr[bVar6.ordinal()].f15368c).d();
                 objArr[1] = str;
-                wl.p(i14, objArr, textView2);
+                wh.p(i14, objArr, textView2);
             } else if ((i17 & 2) != 0) {
                 if (bVar6 == bVar3) {
                     i12 = R.string.GiftOfferStarsToOfferInfoIsLow;
@@ -630,9 +630,9 @@ public final class a0 extends za {
                     i12 = R.string.GiftOfferTONToOfferInfoIsLow;
                 }
                 Object[] objArr2 = new Object[2];
-                objArr2[c10] = ((zf.a) a1VarArr[bVar6.ordinal()].f15118b).d();
+                objArr2[c10] = ((zf.a) z0VarArr[bVar6.ordinal()].f15367b).d();
                 objArr2[1] = str;
-                wl.p(i12, objArr2, textView2);
+                wh.p(i12, objArr2, textView2);
             } else {
                 if (bVar6 == bVar3) {
                     i11 = R.string.GiftOfferStarsToOfferInfo;
@@ -641,18 +641,18 @@ public final class a0 extends za {
                 }
                 Object[] objArr3 = new Object[1];
                 objArr3[c10] = str;
-                wl.p(i11, objArr3, textView2);
+                wh.p(i11, objArr3, textView2);
             }
-            if ((this.f46938o0 & (-9)) == 0) {
-                i13 = org.telegram.ui.ActionBar.j6.f19245y6;
+            if ((this.f47166o0 & (-9)) == 0) {
+                i13 = org.telegram.ui.ActionBar.j6.f19445y6;
             } else {
-                i13 = org.telegram.ui.ActionBar.j6.f19101q7;
+                i13 = org.telegram.ui.ActionBar.j6.f19301q7;
             }
             textView2.setTextColor(getThemedColor(i13));
         }
         if (z13 || z14 || z15) {
             zf.a aVar5 = this.m0;
-            if (aVar5.f48980a == bVar4) {
+            if (aVar5.f49206a == bVar4) {
                 z16 = true;
             } else {
                 z16 = false;
@@ -667,23 +667,23 @@ public final class a0 extends za {
             objArr4[c10] = formatNumber;
             String formatString = LocaleController.formatString(i19, objArr4);
             if (z16) {
-                oqVarArr = this.f46942s0;
+                oqVarArr = this.f47170s0;
             } else {
-                oqVarArr = this.f46941r0;
+                oqVarArr = this.f47169r0;
             }
-            this.f46932h0.g(y7.V0(z16, formatString, oqVarArr), z12, true);
+            this.f47160h0.g(v7.V0(z16, formatString, oqVarArr), z12, true);
             T(z12);
         }
         if (z13 || z14) {
             StringBuilder sb2 = new StringBuilder(10);
             sb2.append('~');
-            if (this.m0.f48980a == bVar4) {
+            if (this.m0.f49206a == bVar4) {
                 d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
             } else {
                 d = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000 * 1.0E-5d;
             }
             sb2.append(BillingController.getInstance().formatCurrency((long) (this.m0.c() * d * 100.0d), "USD", 2));
-            this.f46933i0.c(sb2, z12, true);
+            this.f47161i0.c(sb2, z12, true);
         }
         if (z10 && z14) {
             String b10 = this.m0.b();
@@ -695,7 +695,7 @@ public final class a0 extends za {
     @Override
     public final boolean isTouchOutside(float f7, float f10) {
         a aVar;
-        if (this.f46939p0 && (aVar = this.X) != null && f7 >= aVar.getX() && f7 <= aVar.getX() + aVar.getWidth() && f10 >= aVar.getY() && f10 <= aVar.getY() + aVar.getHeight()) {
+        if (this.f47167p0 && (aVar = this.X) != null && f7 >= aVar.getX() && f7 <= aVar.getX() + aVar.getWidth() && f10 >= aVar.getY() && f10 <= aVar.getY() + aVar.getHeight()) {
             return false;
         }
         return super.isTouchOutside(f7, f10);
@@ -710,7 +710,7 @@ public final class a0 extends za {
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f46943t0 = true;
+        this.f47171t0 = true;
         S();
     }
 
@@ -721,11 +721,11 @@ public final class a0 extends za {
     }
 
     @Override
-    public final ll0 v(ml0 ml0Var) {
-        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 23), this.resourcesProvider);
-        this.f46944u0 = x51Var;
-        x51Var.f29854r = false;
-        return x51Var;
+    public final vl0 v(wl0 wl0Var) {
+        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 23), this.resourcesProvider);
+        this.f47172u0 = l61Var;
+        l61Var.f26042r = false;
+        return l61Var;
     }
 
     @Override

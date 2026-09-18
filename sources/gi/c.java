@@ -15,50 +15,50 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.u9;
-import w7.x5;
+import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.w9;
+import w7.y5;
 import yf.p;
-public final class c extends FrameLayout implements a6 {
-    public final f6 f10022a;
-    public final u9 f10023b;
-    public final TextView f10024c;
+public final class c extends FrameLayout implements z5 {
+    public final e6 f10021a;
+    public final w9 f10022b;
+    public final TextView f10023c;
     public final TextView d;
     public final ImageView e;
 
-    public c(Context context, f6 f6Var) {
+    public c(Context context, e6 e6Var) {
         super(context);
-        this.f10022a = f6Var;
-        u9 u9Var = new u9(context);
-        this.f10023b = u9Var;
-        u9Var.setRoundRadius(AndroidUtilities.dp(9.0f));
-        addView(u9Var, x5.d(32, 32.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
+        this.f10021a = e6Var;
+        w9 w9Var = new w9(context);
+        this.f10022b = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(9.0f));
+        addView(w9Var, y5.d(32, 32.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
         TextView textView = new TextView(context);
-        this.f10024c = textView;
+        this.f10023c = textView;
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, x5.n(-1, -2));
+        linearLayout.addView(textView, y5.n(-1, -2));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, x5.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        addView(linearLayout, x5.d(-1, -2.0f, 19, 67.0f, 0.0f, 48.0f, 1.0f));
+        linearLayout.addView(textView2, y5.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        addView(linearLayout, y5.d(-1, -2.0f, 19, 67.0f, 0.0f, 48.0f, 1.0f));
         ImageView imageView = new ImageView(context);
         this.e = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, x5.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
+        addView(imageView, y5.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
         e();
     }
 
@@ -67,7 +67,7 @@ public final class c extends FrameLayout implements a6 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f18121id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f18296id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -75,24 +75,24 @@ public final class c extends FrameLayout implements a6 {
             i11 = 0;
         }
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f10023b.e(chat, new f9(chat));
+        this.f10022b.e(chat, new h9(chat));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Drawable drawable = j6.S0;
-        u9 u9Var = this.f10023b;
-        p.a(canvas, drawable, (u9Var.getWidth() / 2.0f) + u9Var.getLeft(), (u9Var.getHeight() / 2.0f) + u9Var.getTop(), u9Var.getHeight());
+        w9 w9Var = this.f10022b;
+        p.a(canvas, drawable, (w9Var.getWidth() / 2.0f) + w9Var.getLeft(), (w9Var.getHeight() / 2.0f) + w9Var.getTop(), w9Var.getHeight());
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void e() {
-        int i10 = j6.f19264z6;
-        f6 f6Var = this.f10022a;
-        this.e.setColorFilter(j6.v0(i10, f6Var));
-        this.f10024c.setTextColor(j6.v0(j6.G6, f6Var));
-        this.d.setTextColor(j6.v0(i10, f6Var));
+        int i10 = j6.f19464z6;
+        e6 e6Var = this.f10021a;
+        this.e.setColorFilter(j6.v0(i10, e6Var));
+        this.f10023c.setTextColor(j6.v0(j6.G6, e6Var));
+        this.d.setTextColor(j6.v0(i10, e6Var));
     }
 
     public int[] getColorKeys() {
@@ -109,6 +109,6 @@ public final class c extends FrameLayout implements a6 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f10024c.setText(charSequence);
+        this.f10023c.setText(charSequence);
     }
 }

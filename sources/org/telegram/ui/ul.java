@@ -1,28 +1,30 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-public final class ul extends vu0 {
-    public final Bitmap f38095a;
-    public final ArrayList f38096b;
-    public final bo f38097c;
+import android.app.Activity;
+import org.telegram.ui.Components.UndoView;
+public final class ul extends org.telegram.ui.Components.n20 {
+    public final zn f38025b;
 
-    public ul(bo boVar, Bitmap bitmap, ArrayList arrayList) {
-        this.f38097c = boVar;
-        this.f38095a = bitmap;
-        this.f38096b = arrayList;
+    public ul(zn znVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(activity, n2Var);
+        this.f38025b = znVar;
     }
 
     @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return new ImageReceiver.BitmapHolder(this.f38095a, (String) null, 0);
+    public final void m() {
+        zn znVar = this.f38025b;
+        znVar.Q7();
+        UndoView undoView = znVar.y3;
+        if (undoView == null) {
+            return;
+        }
+        undoView.j(75, 0L, null);
+        znVar.getMessagesController().removeSuggestion(znVar.T5, "CONVERT_GIGAGROUP");
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f38097c.q((MediaController.PhotoEntry) this.f38096b.get(0), videoEditedInfo, z10, i11, 0, z11, 0L);
+    public final void n() {
+        zn znVar = this.f38025b;
+        znVar.getMessagesController().convertToGigaGroup(znVar.getParentActivity(), znVar.e, znVar, new y0(this, 20));
     }
 }

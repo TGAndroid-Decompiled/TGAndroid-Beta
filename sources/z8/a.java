@@ -1,5 +1,5 @@
 package z8;
 
-import v0.n;
-public final class a extends n {
+import v0.m;
+public final class a extends m {
 }

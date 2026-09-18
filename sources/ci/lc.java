@@ -3,8 +3,8 @@ package ci;
 import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.f91;
 import org.telegram.ui.Components.l20;
+import org.telegram.ui.Components.s91;
 public final class lc extends l20 {
     public final nc f4984a;
 
@@ -67,14 +67,14 @@ public final class lc extends l20 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         w7 w7Var;
         rb rbVar;
-        f91 f91Var;
+        s91 s91Var;
         bc bcVar;
         boolean z10;
         boolean z11;
         nc ncVar = this.f4984a;
         oc ocVar = ncVar.E0;
         ValueAnimator valueAnimator = ocVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((w7Var = ocVar.D0) != null && (w7Var.f5709x.h || w7Var.L)) || ocVar.O0.f4971x0 || (((rbVar = ocVar.B0) != null && rbVar.f4484s) || ncVar.A0 || (((f91Var = ocVar.V0) != null && (f91Var.F || f91Var.G)) || ocVar.I())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((w7Var = ocVar.D0) != null && (w7Var.f5709x.h || w7Var.L)) || ocVar.O0.f4971x0 || (((rbVar = ocVar.B0) != null && rbVar.f4484s) || ncVar.A0 || (((s91Var = ocVar.V0) != null && (s91Var.F || s91Var.G)) || ocVar.I())))) {
             return false;
         }
         boolean z12 = true;

@@ -5,44 +5,44 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
 public final class p extends n {
-    public final lf.i f14448j;
-    public final lf.i f14449k;
-    public final long f14450l;
+    public final lf.i f14623j;
+    public final lf.i f14624k;
+    public final long f14625l;
 
     public p(j jVar, long j3, long j10, long j11, long j12, long j13, List list, long j14, lf.i iVar, lf.i iVar2, long j15, long j16) {
         super(jVar, j3, j10, j11, j13, list, j14, j15, j16);
-        this.f14448j = iVar;
-        this.f14449k = iVar2;
-        this.f14450l = j12;
+        this.f14623j = iVar;
+        this.f14624k = iVar2;
+        this.f14625l = j12;
     }
 
     @Override
     public final j a(m mVar) {
-        lf.i iVar = this.f14448j;
+        lf.i iVar = this.f14623j;
         if (iVar != null) {
-            b2.s sVar = mVar.f14440a;
+            b2.s sVar = mVar.f14615a;
             return new j(0L, -1L, iVar.u(sVar.f3301j, sVar.f3295a, 0L, 0L));
         }
-        return this.f14453a;
+        return this.f14628a;
     }
 
     @Override
     public final long d(long j3) {
-        List list = this.f14444f;
+        List list = this.f14619f;
         if (list != null) {
             return list.size();
         }
-        long j10 = this.f14450l;
+        long j10 = this.f14625l;
         if (j10 != -1) {
             return (j10 - this.d) + 1;
         }
         if (j3 == -9223372036854775807L) {
             return -1L;
         }
-        BigInteger multiply = BigInteger.valueOf(j3).multiply(BigInteger.valueOf(this.f14454b));
+        BigInteger multiply = BigInteger.valueOf(j3).multiply(BigInteger.valueOf(this.f14629b));
         BigInteger multiply2 = BigInteger.valueOf(this.e).multiply(BigInteger.valueOf(1000000L));
         RoundingMode roundingMode = RoundingMode.CEILING;
-        int i10 = g9.a.f9528a;
+        int i10 = g9.a.f9527a;
         return new BigDecimal(multiply).divide(new BigDecimal(multiply2), 0, roundingMode).toBigIntegerExact().longValue();
     }
 
@@ -50,15 +50,15 @@ public final class p extends n {
     public final j h(k kVar, long j3) {
         long j10;
         long j11 = this.d;
-        List list = this.f14444f;
+        List list = this.f14619f;
         if (list != null) {
-            j10 = ((q) list.get((int) (j3 - j11))).f14451a;
+            j10 = ((q) list.get((int) (j3 - j11))).f14626a;
         } else {
             j10 = (j3 - j11) * this.e;
         }
         long j12 = j10;
-        b2.s sVar = kVar.f14440a;
+        b2.s sVar = kVar.f14615a;
         String str = sVar.f3295a;
-        return new j(0L, -1L, this.f14449k.u(sVar.f3301j, str, j3, j12));
+        return new j(0L, -1L, this.f14624k.u(sVar.f3301j, str, j3, j12));
     }
 }

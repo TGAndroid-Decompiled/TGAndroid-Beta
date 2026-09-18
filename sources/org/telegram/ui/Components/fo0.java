@@ -1,10 +1,13 @@
 package org.telegram.ui.Components;
-public interface fo0 {
-    void B();
+public final class fo0 extends s4.j {
+    public final org.telegram.ui.ey F;
 
-    void X(float f7, boolean z10);
+    public fo0(org.telegram.ui.ey eyVar) {
+        this.F = eyVar;
+    }
 
-    CharSequence getContentDescription();
-
-    int m0();
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
+    }
 }

@@ -1,31 +1,44 @@
 package org.telegram.ui.Components;
-
-import org.telegram.tgnet.TLRPC;
 public final class g7 implements Runnable {
-    public final int f24102a;
-    public final h8 f24103b;
-    public final TLRPC.TL_error f24104c;
+    public final int f24320a;
+    public final j8 f24321b;
+    public final w70 f24322c;
 
-    public g7(h8 h8Var, TLRPC.TL_error tL_error, int i10) {
-        this.f24102a = i10;
-        this.f24103b = h8Var;
-        this.f24104c = tL_error;
+    public g7(j8 j8Var, w70 w70Var, int i10) {
+        this.f24320a = i10;
+        this.f24321b = j8Var;
+        this.f24322c = w70Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24102a) {
+        switch (this.f24320a) {
             case 0:
-                h8.s(this.f24103b, this.f24104c);
+                j8 j8Var = this.f24321b;
+                j8Var.getClass();
+                this.f24322c.u();
+                j8Var.t0(1);
                 return;
             case 1:
-                h8.w(this.f24103b, this.f24104c);
+                j8 j8Var2 = this.f24321b;
+                j8Var2.getClass();
+                this.f24322c.u();
+                j8Var2.t0(2);
                 return;
             case 2:
-                h8.H(this.f24103b, this.f24104c);
+                j8 j8Var3 = this.f24321b;
+                j8Var3.getClass();
+                this.f24322c.u();
+                j8Var3.t0(4);
+                return;
+            case 3:
+                j8 j8Var4 = this.f24321b;
+                j8Var4.getClass();
+                this.f24322c.u();
+                j8Var4.t0(7);
                 return;
             default:
-                h8.I(this.f24103b, this.f24104c);
+                j8.q(this.f24321b, this.f24322c);
                 return;
         }
     }

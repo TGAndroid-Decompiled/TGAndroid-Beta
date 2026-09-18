@@ -1,38 +1,61 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AnimationNotificationsLocker;
-public final class hr extends s4.j {
-    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
-    public final ur G;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hr implements lr {
+    public final sr f34213a;
 
-    public hr(ur urVar) {
-        this.G = urVar;
+    public hr(sr srVar) {
+        this.f34213a = srVar;
     }
 
     @Override
-    public final void N() {
-        this.F.unlock();
+    public final void a(TLRPC.User user) {
+        sr.c0(this.f34213a, user);
     }
 
     @Override
-    public final void O() {
-        this.G.f38128c.invalidate();
-    }
-
-    @Override
-    public final void P(s4.c1 c1Var) {
-        this.G.f38128c.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f42760p.isEmpty();
-        boolean isEmpty2 = this.f42762r.isEmpty();
-        boolean isEmpty3 = this.f42763s.isEmpty();
-        boolean isEmpty4 = this.f42761q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            this.F.lock();
+    public final void b(long j3) {
+        sr srVar = this.f34213a;
+        ArrayList arrayList = srVar.F;
+        a0.i iVar = srVar.K;
+        TLRPC.User user = srVar.getMessagesController().getUser(Long.valueOf(j3));
+        if (user != null) {
+            AndroidUtilities.runOnUIThread(new qh(22, this, user), 200L);
         }
-        super.m();
+        if (iVar.f(j3) == null) {
+            mr w02 = srVar.w0();
+            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_channelParticipantAdmin.peer = tL_peerUser;
+            tL_peerUser.user_id = user.f18443id;
+            tL_channelParticipantAdmin.date = srVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantAdmin.promoted_by = srVar.getAccountInstance().getUserConfig().clientUserId;
+            arrayList.add(tL_channelParticipantAdmin);
+            iVar.k(tL_channelParticipantAdmin, user.f18443id);
+            Collections.sort(arrayList, new df(4));
+            srVar.A0(w02);
+        }
+    }
+
+    @Override
+    public final void c(long j3, TLObject tLObject) {
+        sr srVar = this.f34213a;
+        ArrayList arrayList = srVar.F;
+        a0.i iVar = srVar.K;
+        if (tLObject != null && iVar.f(j3) == null) {
+            mr w02 = srVar.w0();
+            arrayList.add(tLObject);
+            iVar.k(tLObject, j3);
+            Collections.sort(arrayList, new df(4));
+            srVar.A0(w02);
+        }
+    }
+
+    @Override
+    public final void d(long j3) {
     }
 }

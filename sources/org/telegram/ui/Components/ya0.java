@@ -1,27 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-public final class ya0 implements e2.h {
-    public final int f30163a;
-    public final ViewGroup f30164b;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class ya0 extends Drawable {
+    public Paint f30519a;
+    public Paint f30520b;
+    public long f30521c;
+    public float d;
+    public boolean e;
+    public boolean f30522f;
+    public float f30523g;
+    public float h;
+    public float f30524i;
+    public float f30525j;
+    public float f30526k;
+    public long f30527l;
+    public org.telegram.ui.Cells.u1 f30528m;
 
-    public ya0(ViewGroup viewGroup, int i10) {
-        this.f30163a = i10;
-        this.f30164b = viewGroup;
+    public final void a() {
+        int i10;
+        int i11;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f7 = bounds.left - centerX;
+        float f10 = bounds.top - centerY;
+        this.f30523g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.vision.e2.z(i11, centerY, f10, f7 * (i10 - centerX))));
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f30163a) {
-            case 0:
-                pb0 pb0Var = (pb0) this.f30164b;
-                pb0Var.f26993n.y(pb0Var.f26992f.U((View) obj));
-                return;
-            default:
-                f61 f61Var = (f61) this.f30164b;
-                f61Var.Y2.Q(f61Var.U((View) obj), f61Var.f23800c3);
-                return;
-        }
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ya0.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f30519a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        a();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f30519a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

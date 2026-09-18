@@ -2,12 +2,12 @@ package yh;
 
 import org.telegram.messenger.MessagesStorage;
 public final class v implements MessagesStorage.IntCallback {
-    public final int f47904a;
-    public final Object f47905b;
+    public final int f48096a;
+    public final Object f48097b;
 
     public v(Object obj, int i10) {
-        this.f47904a = i10;
-        this.f47905b = obj;
+        this.f48096a = i10;
+        this.f48097b = obj;
     }
 
     @Override
@@ -15,39 +15,39 @@ public final class v implements MessagesStorage.IntCallback {
         zf.b bVar;
         zf.b bVar2;
         zf.b bVar3;
-        switch (this.f47904a) {
+        switch (this.f48096a) {
             case 0:
-                a0 a0Var = (a0) this.f47905b;
+                a0 a0Var = (a0) this.f48097b;
                 a0Var.getClass();
                 if (i10 == 0) {
-                    bVar = zf.b.f48982a;
+                    bVar = zf.b.f49208a;
                 } else {
-                    bVar = zf.b.f48983b;
+                    bVar = zf.b.f49209b;
                 }
                 a0Var.U(zf.a.i(0L, bVar), true, false, true);
-                a0Var.f46928d0.setText("");
+                a0Var.f47156d0.setText("");
                 return;
             case 1:
-                e0 e0Var = (e0) this.f47905b;
+                e0 e0Var = (e0) this.f48097b;
                 e0Var.getClass();
                 if (i10 == 0) {
-                    bVar2 = zf.b.f48982a;
+                    bVar2 = zf.b.f49208a;
                 } else {
-                    bVar2 = zf.b.f48983b;
+                    bVar2 = zf.b.f49209b;
                 }
                 e0Var.q(zf.a.i(0L, bVar2), true, false, true);
                 e0Var.h.setText("");
                 return;
             default:
-                f3 f3Var = (f3) this.f47905b;
-                f3Var.getClass();
+                d3 d3Var = (d3) this.f48097b;
+                d3Var.getClass();
                 if (i10 == 0) {
-                    bVar3 = zf.b.f48982a;
+                    bVar3 = zf.b.f49208a;
                 } else {
-                    bVar3 = zf.b.f48983b;
+                    bVar3 = zf.b.f49209b;
                 }
-                f3Var.f47187q = bVar3;
-                f3Var.a(true);
+                d3Var.f47294q = bVar3;
+                d3Var.a(true);
                 return;
         }
     }

@@ -6,21 +6,21 @@ import android.graphics.Color;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class zh extends View {
-    public final int f30528a;
-    public final vi f30529b;
+    public final int f30801a;
+    public final vi f30802b;
 
     public zh(vi viVar, Context context, int i10) {
         super(context);
-        this.f30528a = i10;
-        this.f30529b = viVar;
+        this.f30801a = i10;
+        this.f30802b = viVar;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f30528a) {
+        switch (this.f30801a) {
             case 0:
                 super.draw(canvas);
-                this.f30529b.f28731b0.draw(canvas);
+                this.f30802b.f29007b0.draw(canvas);
                 return;
             default:
                 super.draw(canvas);
@@ -30,16 +30,16 @@ public final class zh extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f30528a) {
+        switch (this.f30801a) {
             case 1:
-                vi viVar = this.f30529b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, viVar.f28806y0.getSelectedItemsCount())));
+                vi viVar = this.f30802b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, viVar.f29082y0.getSelectedItemsCount())));
                 int ceil = (int) Math.ceil(viVar.J0.measureText(format));
                 int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 int themedColor = viVar.getThemedColor(org.telegram.ui.ActionBar.j6.C5);
                 viVar.J0.setColor(i0.a.k(themedColor, (int) (((viVar.V0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
-                viVar.L0.setColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f18934h5));
+                viVar.L0.setColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19133h5));
                 int i10 = max / 2;
                 int i11 = measuredWidth - i10;
                 int i12 = i10 + measuredWidth;
@@ -58,10 +58,10 @@ public final class zh extends View {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f30528a) {
+        switch (this.f30801a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                this.f30529b.f28731b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
+                this.f30802b.f29007b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);

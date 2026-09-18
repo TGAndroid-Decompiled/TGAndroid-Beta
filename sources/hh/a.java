@@ -2,7 +2,7 @@ package hh;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.vj;
+import org.telegram.ui.tj;
 public final class a {
     public RecyclerView f10497a;
     public int f10498b;
@@ -44,7 +44,7 @@ public final class a {
         this.d = i10;
     }
 
-    public final void e(vj vjVar) {
-        this.f10497a = vjVar;
+    public final void e(tj tjVar) {
+        this.f10497a = tjVar;
     }
 }

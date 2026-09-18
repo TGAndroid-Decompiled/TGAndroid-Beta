@@ -220,7 +220,7 @@ public abstract class a {
         if (i14 == 0) {
             return 0;
         }
-        return k0.g(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
+        return k0.f(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
     }
 
     public static int j(int i10) {

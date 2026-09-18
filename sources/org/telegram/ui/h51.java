@@ -1,45 +1,69 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.graphics.SurfaceTexture;
 import org.telegram.messenger.AndroidUtilities;
-public final class h51 implements r0.n, org.telegram.ui.ActionBar.b2 {
-    public final int f34183a;
-    public final k51 f34184b;
+public final class h51 implements org.telegram.ui.Components.r71, org.telegram.ui.Components.n71 {
+    public final i51 f34082a;
 
-    public h51(k51 k51Var, int i10) {
-        this.f34183a = i10;
-        this.f34184b = k51Var;
+    public h51(i51 i51Var) {
+        this.f34082a = i51Var;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        k51 k51Var = this.f34184b;
-        k51Var.e = defaultWindowInsets;
-        k51Var.f35003c.setPadding(defaultWindowInsets.f10591a, defaultWindowInsets.f10592b, defaultWindowInsets.f10593c, defaultWindowInsets.d);
-        k51Var.f35001b.requestLayout();
-        return r0.l1.f41881b;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f34183a) {
-            case 1:
-                org.telegram.ui.ActionBar.c2 c2Var2 = this.f34184b.f35004c0;
-                if (c2Var2 != null) {
-                    c2Var2.dismiss();
-                    return;
-                }
-                return;
-            default:
-                k51 k51Var = this.f34184b;
-                org.telegram.ui.ActionBar.c2 c2Var3 = k51Var.f35004c0;
-                if (c2Var3 != null) {
-                    c2Var3.dismiss();
-                    k51Var.f35004c0 = null;
-                }
-                k51Var.dismiss();
-                return;
+    public boolean needUpdate() {
+        if (this.f34082a.V.f25630i != null) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public void onRenderedFirstFrame(j2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z10, int i10) {
+        i51 i51Var = this.f34082a;
+        if (i10 == 4) {
+            i51Var.dismiss();
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(i51Var.Z);
+        AndroidUtilities.runOnUIThread(i51Var.Z, 16L);
+    }
+
+    @Override
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
+        this.f34082a.V.e(z10, true, fArr);
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        AndroidUtilities.runOnUIThread(new e01(this, 12));
+    }
+
+    @Override
+    public void onSeekFinished(j2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(j2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(org.telegram.ui.Components.u71 u71Var, Exception exc) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
     }
 }

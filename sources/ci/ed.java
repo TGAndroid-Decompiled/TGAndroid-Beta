@@ -10,9 +10,9 @@ import org.telegram.messenger.Utilities;
 public final class ed extends View implements x2 {
     public Paint f4614a;
     public Paint f4615b;
-    public org.telegram.ui.Components.m6 f4616c;
+    public org.telegram.ui.Components.o6 f4616c;
     public boolean d;
-    public org.telegram.ui.Components.c6 e;
+    public org.telegram.ui.Components.e6 e;
 
     public final void a(long j3, boolean z10) {
         long j10 = j3 % 60;
@@ -34,13 +34,13 @@ public final class ed extends View implements x2 {
         float f7;
         this.d = z10;
         if (!z11) {
-            org.telegram.ui.Components.c6 c6Var = this.e;
+            org.telegram.ui.Components.e6 e6Var = this.e;
             if (z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            c6Var.d(f7, true);
+            e6Var.d(f7, true);
         }
         invalidate();
     }
@@ -49,17 +49,17 @@ public final class ed extends View implements x2 {
     public final void onDraw(Canvas canvas) {
         float f7;
         Paint paint = this.f4615b;
-        org.telegram.ui.Components.m6 m6Var = this.f4616c;
+        org.telegram.ui.Components.o6 o6Var = this.f4616c;
         super.onDraw(canvas);
-        org.telegram.ui.Components.c6 c6Var = this.e;
+        org.telegram.ui.Components.e6 e6Var = this.e;
         if (this.d) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = c6Var.d(f7, false);
+        float d = e6Var.d(f7, false);
         float dp = AndroidUtilities.dp(12.66f) * d;
-        float d10 = m6Var.d() + dp;
+        float d10 = o6Var.d() + dp;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(((getWidth() - d10) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + d10) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f4614a);
@@ -68,8 +68,8 @@ public final class ed extends View implements x2 {
             invalidate();
             canvas.drawCircle(rectF.left + AndroidUtilities.dp(10.66f), rectF.centerY(), AndroidUtilities.dp(4.0f) * d, paint);
         }
-        m6Var.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
-        m6Var.draw(canvas);
+        o6Var.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
+        o6Var.draw(canvas);
     }
 
     @Override

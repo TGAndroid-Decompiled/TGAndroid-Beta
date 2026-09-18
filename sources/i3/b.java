@@ -42,18 +42,18 @@ public final class b implements o {
     public final boolean a(p pVar) {
         v vVar = this.f10932a;
         l lVar = (l) pVar;
-        lVar.h(vVar.f7934a, 0, 3, false);
+        lVar.h(vVar.f7933a, 0, 3, false);
         vVar.J(0);
         if (vVar.A() == 4607062) {
-            lVar.h(vVar.f7934a, 0, 2, false);
+            lVar.h(vVar.f7933a, 0, 2, false);
             vVar.J(0);
             if ((vVar.D() & 250) == 0) {
-                lVar.h(vVar.f7934a, 0, 4, false);
+                lVar.h(vVar.f7933a, 0, 4, false);
                 vVar.J(0);
                 int j3 = vVar.j();
                 lVar.f3791f = 0;
-                lVar.s(j3, false);
-                lVar.h(vVar.f7934a, 0, 4, false);
+                lVar.t(j3, false);
+                lVar.h(vVar.f7933a, 0, 4, false);
                 vVar.J(0);
                 if (vVar.j() == 0) {
                     return true;
@@ -66,14 +66,14 @@ public final class b implements o {
     public final v b(p pVar) {
         int i10 = this.f10940l;
         v vVar = this.d;
-        byte[] bArr = vVar.f7934a;
+        byte[] bArr = vVar.f7933a;
         if (i10 > bArr.length) {
             vVar.H(0, new byte[Math.max(bArr.length * 2, i10)]);
         } else {
             vVar.J(0);
         }
         vVar.I(this.f10940l);
-        pVar.readFully(vVar.f7934a, 0, this.f10940l);
+        pVar.readFully(vVar.f7933a, 0, this.f10940l);
         return vVar;
     }
 
@@ -95,7 +95,7 @@ public final class b implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8084b;
+        g0 g0Var = i0.f8083b;
         return a1.e;
     }
 

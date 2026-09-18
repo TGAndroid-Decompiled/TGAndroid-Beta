@@ -22,7 +22,7 @@ public class ad extends View implements x2 {
     public final Paint f4371b;
     public final Paint f4372c;
     public boolean d;
-    public final org.telegram.ui.Components.c6 e;
+    public final org.telegram.ui.Components.e6 e;
     public Drawable f4373f;
     public Bitmap h;
     public int f4374n;
@@ -35,7 +35,7 @@ public class ad extends View implements x2 {
         this.f4371b = paint;
         Paint paint2 = new Paint(3);
         this.f4372c = paint2;
-        this.e = new org.telegram.ui.Components.c6(this, 0L, 380L, qr.h);
+        this.e = new org.telegram.ui.Components.e6(this, 0L, 380L, qr.h);
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }

@@ -1,44 +1,23 @@
 package org.telegram.ui;
+public final class ni implements org.telegram.ui.Components.eh0 {
+    public boolean f35949a = true;
+    public final org.telegram.ui.Components.qk0 f35950b;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class ni extends ci0 {
-    public final bo e;
+    public ni(org.telegram.ui.Components.qk0 qk0Var) {
+        this.f35950b = qk0Var;
+    }
 
-    public ni(bo boVar, Context context, int i10, MessageObject messageObject) {
-        super(context);
-        this.e = boVar;
-        this.f32817a = null;
-        if (!messageObject.isRoundVideo()) {
-            messageObject.isVoice();
+    @Override
+    public final void a(float f7, float f10) {
+        org.telegram.ui.Components.qk0 qk0Var = this.f35950b;
+        if (f7 == 0.0f && !this.f35949a) {
+            qk0Var.r(false);
+            this.f35949a = true;
+        } else if (f7 == 1.0f && this.f35949a) {
+            qk0Var.setAlpha(1.0f - f10);
+            if (f10 == 1.0f) {
+                this.f35949a = false;
+            }
         }
-        org.telegram.ui.Components.t00 t00Var = new org.telegram.ui.Components.t00(context, null);
-        this.f32819c = t00Var;
-        t00Var.f(org.telegram.ui.ActionBar.j6.G8, org.telegram.ui.ActionBar.j6.f18953i6, -1);
-        t00Var.setViewType(13);
-        t00Var.setIsSingleCell(false);
-        addView(t00Var, w7.x5.c(-1.0f, -2));
-        org.telegram.ui.Components.c90 c90Var = new org.telegram.ui.Components.c90(context, null);
-        this.f32818b = c90Var;
-        c90Var.setTextSize(1, 14.0f);
-        c90Var.setGravity(19);
-        c90Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.E8, false));
-        c90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.gc, false));
-        c90Var.setEllipsize(TextUtils.TruncateAt.END);
-        c90Var.setSingleLine();
-        c90Var.setLines(1);
-        c90Var.setMaxLines(1);
-        addView(c90Var, w7.x5.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
-        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
-        tL_channels_getMessageAuthor.channel = MessagesController.getInstance(i10).getInputChannel(-messageObject.getDialogId());
-        tL_channels_getMessageAuthor.f18158id = messageObject.getId();
-        c90Var.setAlpha(0.0f);
-        ConnectionsManager.getInstance(i10).sendRequest(tL_channels_getMessageAuthor, new ai.g8(this, i10, 6));
-        setBackground(org.telegram.ui.ActionBar.j6.Y(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.I5, false), 6, 0));
-        setEnabled(false);
     }
 }

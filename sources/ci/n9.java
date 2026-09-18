@@ -77,19 +77,19 @@ public final class n9 extends og.a {
         if (this != obj) {
             if (obj != null && n9.class == obj.getClass()) {
                 n9 n9Var = (n9) obj;
-                int i10 = this.f15543a;
-                if (i10 == n9Var.f15543a) {
+                int i10 = this.f15672a;
+                if (i10 == n9Var.f15672a) {
                     if (i10 != -1 || (this.f5088o == n9Var.f5088o && this.f5089p == n9Var.f5089p)) {
                         if (i10 != 3 || (this.f5081g == n9Var.f5081g && this.h == n9Var.h && this.f5082i == n9Var.f5082i && this.f5083j == n9Var.f5083j && this.f5084k == n9Var.f5084k && this.f5086m == n9Var.f5086m && this.f5087n == n9Var.f5087n)) {
                             if (i10 != 0 || this.f5079c == n9Var.f5079c) {
                                 if (i10 != 2 || TextUtils.equals(this.e, n9Var.e)) {
-                                    if (this.f15543a != 8 || TextUtils.equals(this.e, n9Var.e)) {
-                                        int i11 = this.f15543a;
+                                    if (this.f15672a != 8 || TextUtils.equals(this.e, n9Var.e)) {
+                                        int i11 = this.f15672a;
                                         if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.e, n9Var.e) && TextUtils.equals(this.f5080f, n9Var.f5080f))) {
-                                            if (this.f15543a != 6 || (TextUtils.equals(this.e, n9Var.e) && this.f5079c == n9Var.f5079c)) {
-                                                if (this.f15543a != 7 || (this.f5079c == n9Var.f5079c && TextUtils.equals(this.e, n9Var.e) && this.f5084k == n9Var.f5084k)) {
-                                                    if (this.f15543a != 9 || (this.f5090q == n9Var.f5090q && this.d == n9Var.d && TextUtils.equals(this.e, n9Var.e) && TextUtils.equals(this.f5080f, n9Var.f5080f))) {
-                                                        if (this.f15543a != 10 || this.f5090q == n9Var.f5090q) {
+                                            if (this.f15672a != 6 || (TextUtils.equals(this.e, n9Var.e) && this.f5079c == n9Var.f5079c)) {
+                                                if (this.f15672a != 7 || (this.f5079c == n9Var.f5079c && TextUtils.equals(this.e, n9Var.e) && this.f5084k == n9Var.f5084k)) {
+                                                    if (this.f15672a != 9 || (this.f5090q == n9Var.f5090q && this.d == n9Var.d && TextUtils.equals(this.e, n9Var.e) && TextUtils.equals(this.f5080f, n9Var.f5080f))) {
+                                                        if (this.f15672a != 10 || this.f5090q == n9Var.f5090q) {
                                                             return true;
                                                         }
                                                         return false;

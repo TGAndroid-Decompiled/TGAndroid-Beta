@@ -7,20 +7,20 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.n20;
+import org.telegram.ui.l20;
 public final class x1 extends HorizontalScrollView {
-    public final n20 f11756a;
-    public final org.telegram.ui.Components.c6 f11757b;
-    public final org.telegram.ui.Components.c6 f11758c;
+    public final l20 f11756a;
+    public final org.telegram.ui.Components.e6 f11757b;
+    public final org.telegram.ui.Components.e6 f11758c;
     public final d2 d;
 
     public x1(d2 d2Var, Context context) {
         super(context);
         this.d = d2Var;
-        this.f11756a = new n20();
+        this.f11756a = new l20();
         qr qrVar = qr.h;
-        this.f11757b = new org.telegram.ui.Components.c6(this, 300L, qrVar);
-        this.f11758c = new org.telegram.ui.Components.c6(this, 300L, qrVar);
+        this.f11757b = new org.telegram.ui.Components.e6(this, 300L, qrVar);
+        this.f11758c = new org.telegram.ui.Components.e6(this, 300L, qrVar);
     }
 
     @Override
@@ -40,16 +40,16 @@ public final class x1 extends HorizontalScrollView {
             return;
         }
         canvas2.save();
-        n20 n20Var = this.f11756a;
+        l20 l20Var = this.f11756a;
         if (i10 > 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getScrollX(), 0.0f, AndroidUtilities.dp(48.0f) + getScrollX(), getHeight());
-            n20Var.b(canvas2, rectF, 0, e);
+            l20Var.b(canvas2, rectF, 0, e);
         }
         if (e7 > 0.0f) {
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set((getWidth() + getScrollX()) - AndroidUtilities.dp(48.0f), 0.0f, getWidth() + getScrollX(), getHeight());
-            n20Var.b(canvas2, rectF2, 2, e7);
+            l20Var.b(canvas2, rectF2, 2, e7);
         }
         canvas2.restore();
     }

@@ -31,7 +31,7 @@ public final class u6 extends View {
     public final int f5626f;
     public final int h;
     public final boolean f5627n;
-    public final org.telegram.ui.Components.c6 f5628r;
+    public final org.telegram.ui.Components.e6 f5628r;
     public boolean f5629s;
     public float v;
     public ValueAnimator f5630w;
@@ -47,7 +47,7 @@ public final class u6 extends View {
         this.f5623a = paint;
         Paint paint2 = new Paint(1);
         this.f5624b = paint2;
-        this.f5628r = new org.telegram.ui.Components.c6(this, 0L, 220L, qr.h);
+        this.f5628r = new org.telegram.ui.Components.e6(this, 0L, 220L, qr.h);
         this.f5629s = true;
         this.f5627n = z10;
         paint.setColor(-15098625);

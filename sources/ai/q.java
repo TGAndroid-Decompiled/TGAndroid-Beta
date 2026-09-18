@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.nx;
-public final class q extends ml0 {
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.lx;
+public final class q extends wl0 {
     public final int X2;
-    public final nx Y2;
+    public final lx Y2;
 
-    public q(nx nxVar, Context context, int i10) {
+    public q(lx lxVar, Context context, int i10) {
         super(context, null);
         this.X2 = i10;
-        this.Y2 = nxVar;
+        this.Y2 = lxVar;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class q extends ml0 {
         boolean z10;
         switch (this.X2) {
             case 1:
-                nx nxVar = this.Y2;
-                ArrayList arrayList = nxVar.P;
+                lx lxVar = this.Y2;
+                ArrayList arrayList = lxVar.P;
                 arrayList.clear();
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
@@ -42,13 +42,13 @@ public final class q extends ml0 {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (S != nxVar.f572y.size() - 1) {
+                    if (S != lxVar.f572y.size() - 1) {
                         z11 = false;
                     }
                     a0Var.f499c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, nxVar.f569w0);
+                Collections.sort(arrayList, lxVar.f569w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -77,8 +77,8 @@ public final class q extends ml0 {
         switch (this.X2) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    nx nxVar = this.Y2;
-                    if (nxVar.f545c0 > 0.2f || nxVar.getAlpha() == 0.0f) {
+                    lx lxVar = this.Y2;
+                    if (lxVar.f545c0 > 0.2f || lxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }

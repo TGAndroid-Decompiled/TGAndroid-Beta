@@ -10,9 +10,9 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.bo;
-import org.telegram.ui.ih1;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.gh1;
+import org.telegram.ui.zn;
 public final class o0 implements RequestDelegate {
     public final int f10377a;
     public final Object f10378b;
@@ -40,13 +40,13 @@ public final class o0 implements RequestDelegate {
                 ((ContactsController) this.d).lambda$deleteContact$57((ArrayList) this.f10378b, (ArrayList) this.e, this.f10379c, (String) this.f10380f, tLObject, tL_error);
                 return;
             case 2:
-                ((SendMessagesHelper) this.d).lambda$requestUrlAuth$37((TLRPC.TL_messages_requestUrlAuth) this.e, (bo) this.f10378b, (String) this.f10380f, this.f10379c, tLObject, tL_error);
+                ((SendMessagesHelper) this.d).lambda$requestUrlAuth$37((TLRPC.TL_messages_requestUrlAuth) this.e, (zn) this.f10378b, (String) this.f10380f, this.f10379c, tLObject, tL_error);
                 return;
             case 3:
-                ((SendMessagesHelper) this.d).lambda$sendEditRichMessageRequest$26(this.f10379c, (MessageObject) this.e, (TLRPC.TL_messages_editMessage) this.f10378b, (o2) this.f10380f, tLObject, tL_error);
+                ((SendMessagesHelper) this.d).lambda$sendEditRichMessageRequest$26(this.f10379c, (MessageObject) this.e, (TLRPC.TL_messages_editMessage) this.f10378b, (n2) this.f10380f, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new r0((ih1) this.d, tL_error, this.f10379c, tLObject, (byte[]) this.e, (String) this.f10378b, (TL_account.passwordInputSettings) this.f10380f));
+                AndroidUtilities.runOnUIThread(new r0((gh1) this.d, tL_error, this.f10379c, tLObject, (byte[]) this.e, (String) this.f10378b, (TL_account.passwordInputSettings) this.f10380f));
                 return;
             default:
                 wh.n nVar = (wh.n) this.d;
@@ -54,7 +54,7 @@ public final class o0 implements RequestDelegate {
                 TLRPC.User user = (TLRPC.User) this.f10380f;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f10378b;
                 if (tL_error == null) {
-                    MessagesController.getInstance(nVar.f45146k).processUpdates((TLRPC.TL_updates) tLObject, false);
+                    MessagesController.getInstance(nVar.f45369k).processUpdates((TLRPC.TL_updates) tLObject, false);
                 }
                 AndroidUtilities.runOnUIThread(new r0(nVar, tL_error, tLObject, tL_chatInviteImporter, this.f10379c, user, tL_messages_hideChatJoinRequest));
                 return;
@@ -79,11 +79,11 @@ public final class o0 implements RequestDelegate {
         this.f10380f = str;
     }
 
-    public o0(SendMessagesHelper sendMessagesHelper, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, bo boVar, String str, boolean z10) {
+    public o0(SendMessagesHelper sendMessagesHelper, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, zn znVar, String str, boolean z10) {
         this.f10377a = 2;
         this.d = sendMessagesHelper;
         this.e = tL_messages_requestUrlAuth;
-        this.f10378b = boVar;
+        this.f10378b = znVar;
         this.f10380f = str;
         this.f10379c = z10;
     }

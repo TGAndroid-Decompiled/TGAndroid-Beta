@@ -6,7 +6,7 @@ import ai.dc;
 import ai.g0;
 import ai.i7;
 import ai.jc;
-import ai.m1;
+import ai.l1;
 import ai.n1;
 import ai.n8;
 import ai.o1;
@@ -52,9 +52,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.a0;
-import com.google.firebase.messaging.d0;
-import com.google.firebase.messaging.f0;
+import com.google.firebase.messaging.c0;
+import com.google.firebase.messaging.e0;
+import com.google.firebase.messaging.z;
 import h2.i;
 import h2.j;
 import java.io.File;
@@ -70,20 +70,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.Components.bl0;
-import org.telegram.ui.Components.cl0;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.nr0;
-import org.telegram.ui.Components.ok0;
-import pg.s1;
-import r0.l1;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.yk0;
+import org.telegram.ui.Components.yr0;
+import pg.u1;
+import r0.m1;
 import r0.n;
 import s4.m0;
 import vh.h;
 import vh.l;
-public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Return, bl0, b2, t9, dc, l, n, ok0, Utilities.Callback5, s1, CameraController.VideoTakeCallback, Continuation, OnCompleteListener {
+public final class c implements OnSuccessListener, i, ml0, Utilities.Callback2Return, ll0, a2, t9, dc, l, n, yk0, Utilities.Callback5, u1, CameraController.VideoTakeCallback, Continuation, OnCompleteListener {
     public final int f36a;
     public final Object f37b;
 
@@ -93,20 +93,20 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
     }
 
     @Override
-    public l1 Q0(View view, l1 l1Var) {
+    public m1 Q0(View view, m1 m1Var) {
         int a2;
         jc jcVar = (jc) this.f37b;
         int i10 = 0;
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) jcVar.v.getLayoutParams();
         if (!jcVar.f1073c) {
-            i10 = l1Var.d();
+            i10 = m1Var.d();
         }
         marginLayoutParams.topMargin = i10;
         if (jcVar.f1073c) {
-            a2 = l1Var.f41882a.f(2).d;
+            a2 = m1Var.f42109a.f(2).d;
         } else {
-            a2 = l1Var.a();
+            a2 = m1Var.a();
         }
         marginLayoutParams.bottomMargin = a2;
         marginLayoutParams.leftMargin = defaultWindowInsets.f10591a;
@@ -119,7 +119,7 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
         if (ybVar != null) {
             ybVar.requestLayout();
         }
-        return l1.f41881b;
+        return m1.f42108b;
     }
 
     @Override
@@ -145,7 +145,7 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
         r3 r3Var = (r3) this.f37b;
         w0 w0Var = r3Var.f1330c;
         ArrayList arrayList = r3Var.f1338r;
-        n1 n1Var = ((ai.l1) view).f1174f;
+        n1 n1Var = ((l1) view).f1174f;
         int i14 = r3Var.N;
         int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
         HashSet hashSet = new HashSet();
@@ -156,7 +156,7 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
             if (i16 >= n1Var.f1282f.size()) {
                 break;
             }
-            m1 m1Var = (m1) n1Var.f1282f.get(i16);
+            ai.m1 m1Var = (ai.m1) n1Var.f1282f.get(i16);
             long j11 = m1Var.f1231g;
             if (j11 > 0 && currentTime - m1Var.d <= g0.b(i14, (int) j11, 0)) {
                 hashSet.add(Integer.valueOf(m1Var.f1227a));
@@ -170,7 +170,7 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
         int i17 = 0;
         int i18 = 0;
         while (i17 < arrayList.size()) {
-            m1 m1Var2 = (m1) arrayList.get(i17);
+            ai.m1 m1Var2 = (ai.m1) arrayList.get(i17);
             if (!m1Var2.f1228b && m1Var2.e && m1Var2.f1231g < j3) {
                 j10 = j3;
             } else {
@@ -194,7 +194,7 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
             int i19 = 0;
             while (true) {
                 if (i15 < arrayList.size()) {
-                    m1 m1Var3 = (m1) arrayList.get(i15);
+                    ai.m1 m1Var3 = (ai.m1) arrayList.get(i15);
                     if (m1Var3.f1228b || !m1Var3.e || m1Var3.f1231g >= j10) {
                         if (hashSet.contains(Integer.valueOf(m1Var3.f1227a))) {
                             i12 = m1Var3.f1227a;
@@ -263,7 +263,7 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
     }
 
     @Override
-    public void f(c2 c2Var, int i10) {
+    public void f(b2 b2Var, int i10) {
         switch (this.f36a) {
             case 5:
                 ((Runnable) this.f37b).run();
@@ -314,9 +314,9 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
                 updatestarrefprogram.bot = lVar.getMessagesController().getInputUser(lVar.P);
                 updatestarrefprogram.commission_permille = 0;
-                c2 c2Var2 = new c2(lVar.getParentActivity(), 3, null);
-                c2Var2.q(150L);
-                lVar.getConnectionsManager().sendRequest(updatestarrefprogram, new ei.b(lVar, c2Var2, 0));
+                b2 b2Var2 = new b2(lVar.getParentActivity(), 3, null);
+                b2Var2.q(150L);
+                lVar.getConnectionsManager().sendRequest(updatestarrefprogram, new ei.b(lVar, b2Var2, 0));
                 return;
         }
     }
@@ -341,11 +341,11 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
     }
 
     @Override
-    public void j(h hVar, float f7, float f10) {
+    public void l(h hVar, float f7, float f10) {
         va vaVar = (va) this.f37b;
         wa waVar = vaVar.v;
         if (!waVar.f1676x) {
-            hVar.f44445q = new ua(vaVar, 2);
+            hVar.f44670q = new ua(vaVar, 2);
             float sqrt = (float) Math.sqrt(Math.pow(waVar.getHeight(), 2.0d) + Math.pow(waVar.getWidth(), 2.0d));
             ArrayList arrayList = vaVar.f1624i;
             int size = arrayList.size();
@@ -362,10 +362,10 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
     public void onComplete(Task task) {
         switch (this.f36a) {
             case 23:
-                d0.b((Intent) this.f37b);
+                c0.b((Intent) this.f37b);
                 return;
             case 24:
-                ((f0) this.f37b).f7316b.trySetResult(null);
+                ((e0) this.f37b).f7308b.trySetResult(null);
                 return;
             default:
                 ((ScheduledFuture) this.f37b).cancel(false);
@@ -475,13 +475,13 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
                 ((b1.f) this.f37b).invoke(obj);
                 return;
             case 21:
-                a0 a0Var = (a0) obj;
-                if (((FirebaseMessaging) this.f37b).e.n() && a0Var.h.a() != null) {
-                    synchronized (a0Var) {
-                        z10 = a0Var.f7295g;
+                z zVar = (z) obj;
+                if (((FirebaseMessaging) this.f37b).e.n() && zVar.h.a() != null) {
+                    synchronized (zVar) {
+                        z10 = zVar.f7368g;
                     }
                     if (!z10) {
-                        a0Var.h(0L);
+                        zVar.h(0L);
                         return;
                     }
                     return;
@@ -499,13 +499,13 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         fb fbVar = (fb) this.f37b;
-        j51 j51Var = (j51) obj;
+        x51 x51Var = (x51) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        int i10 = j51Var.d;
-        o8 o8Var = (o8) j51Var.G;
+        int i10 = x51Var.d;
+        o8 o8Var = (o8) x51Var.G;
         fbVar.c(false, true);
         oc ocVar = fbVar.O;
         if (o8Var == ocVar.K1 || ocVar.X1) {
@@ -563,10 +563,10 @@ public final class c implements OnSuccessListener, i, cl0, Utilities.Callback2Re
                 Long l4 = (Long) obj;
                 return o1.a((o1) this.f37b, (Long) obj2);
             default:
-                nr0 nr0Var = (nr0) this.f37b;
+                yr0 yr0Var = (yr0) this.f37b;
                 Integer num = (Integer) obj2;
                 if (((Integer) obj).intValue() == -1) {
-                    new y(nr0Var.f3607a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(nr0Var, 4)).show();
+                    new y(yr0Var.f3607a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(yr0Var, 4)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;

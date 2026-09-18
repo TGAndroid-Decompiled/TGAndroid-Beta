@@ -73,12 +73,12 @@ public final class g extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.k(parcel, 1, this.f4098a, i10);
-        w7.e0.k(parcel, 2, this.f4099b, i10);
-        w7.e0.k(parcel, 3, this.f4100c, i10);
-        w7.e0.k(parcel, 4, this.d, i10);
-        w7.e0.l(parcel, 5, this.e);
-        w7.e0.r(parcel, q6);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.k(parcel, 1, this.f4098a, i10);
+        w7.f0.k(parcel, 2, this.f4099b, i10);
+        w7.f0.k(parcel, 3, this.f4100c, i10);
+        w7.f0.k(parcel, 4, this.d, i10);
+        w7.f0.l(parcel, 5, this.e);
+        w7.f0.r(parcel, q6);
     }
 }

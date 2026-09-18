@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.jf0;
-import org.telegram.ui.Components.l70;
+import org.telegram.ui.Components.sf0;
+import org.telegram.ui.Components.u70;
 public final class gc extends FrameLayout {
     public float f4730a;
     public float f4731b;
@@ -110,9 +110,9 @@ public final class gc extends FrameLayout {
             iVar.layout(0, 0, ocVar.S, ocVar.T);
             ocVar.f5213c1.y();
         }
-        jf0 jf0Var = ocVar.B1;
-        if (jf0Var != null) {
-            jf0Var.layout(0, 0, jf0Var.getMeasuredWidth(), ocVar.B1.getMeasuredHeight());
+        sf0 sf0Var = ocVar.B1;
+        if (sf0Var != null) {
+            sf0Var.layout(0, 0, sf0Var.getMeasuredWidth(), ocVar.B1.getMeasuredHeight());
         }
         qb qbVar = ocVar.f5272v1;
         if (qbVar != null) {
@@ -120,7 +120,7 @@ public final class gc extends FrameLayout {
         }
         for (int i16 = 0; i16 < getChildCount(); i16++) {
             View childAt = getChildAt(i16);
-            if (childAt instanceof l70) {
+            if (childAt instanceof u70) {
                 childAt.layout(0, 0, measuredWidth, measuredHeight);
             }
         }
@@ -148,9 +148,9 @@ public final class gc extends FrameLayout {
         if (iVar != null) {
             a(iVar, ocVar.S, ocVar.T);
         }
-        jf0 jf0Var = ocVar.B1;
-        if (jf0Var != null) {
-            a(jf0Var, size, size2);
+        sf0 sf0Var = ocVar.B1;
+        if (sf0Var != null) {
+            a(sf0Var, size, size2);
         }
         qb qbVar = ocVar.f5272v1;
         if (qbVar != null) {
@@ -158,7 +158,7 @@ public final class gc extends FrameLayout {
         }
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             View childAt = getChildAt(i12);
-            if (childAt instanceof l70) {
+            if (childAt instanceof u70) {
                 a(childAt, size, size2);
             }
         }

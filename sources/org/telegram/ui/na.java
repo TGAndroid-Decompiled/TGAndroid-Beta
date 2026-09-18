@@ -1,88 +1,37 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class na extends s4.v {
-    public final sa d;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class na implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35876a;
+    public final oa f35877b;
 
-    public na(sa saVar) {
-        this.d = saVar;
+    public na(oa oaVar, int i10) {
+        this.f35876a = i10;
+        this.f35877b = oaVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        View view = c1Var.f42702a;
-        view.setPressed(false);
-        view.setTag(R.id.dragging, null);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f42705f == 4 && ((pa) c1Var.f42702a).G) {
-            return s4.v.l(3, 0);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35876a) {
+            case 0:
+                oa oaVar = this.f35877b;
+                oaVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                oaVar.f36146n = floatValue;
+                oaVar.f36145f.setTranslationX(floatValue * AndroidUtilities.dp(16.0f));
+                oaVar.d.setAlpha(oaVar.f36146n);
+                return;
+            default:
+                oa oaVar2 = this.f35877b;
+                oaVar2.getClass();
+                oaVar2.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int i10 = org.telegram.ui.ActionBar.j6.f19464z6;
+                org.telegram.ui.ActionBar.e6 e6Var = oaVar2.f36143b;
+                int d = i0.a.d(oaVar2.E, org.telegram.ui.ActionBar.j6.v0(i10, e6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19247n6, e6Var));
+                oaVar2.e.b(d);
+                oaVar2.f36145f.setTextColor(d);
+                return;
         }
-        return s4.v.l(0, 0);
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        if (c1Var.f42705f == c1Var2.f42705f) {
-            View view = c1Var2.f42702a;
-            if (!(view instanceof pa) || ((pa) view).G) {
-                ja jaVar = this.d.f37436c;
-                int b10 = c1Var.b();
-                int b11 = c1Var2.b();
-                int i10 = b10 - 4;
-                int i11 = b11 - 4;
-                sa saVar = jaVar.f34831c;
-                ArrayList arrayList = saVar.v;
-                if (i10 < arrayList.size() && i11 < arrayList.size()) {
-                    if (b10 != b11) {
-                        saVar.d = true;
-                    }
-                    arrayList.set(i10, (TLRPC.TL_username) arrayList.get(i11));
-                    arrayList.set(i11, (TLRPC.TL_username) arrayList.get(i10));
-                    jaVar.p(b10, b11);
-                    int size = arrayList.size() + 3;
-                    if (b10 == size || b11 == size) {
-                        jaVar.n(b10, 3);
-                        jaVar.n(b11, 3);
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        Boolean bool;
-        sa saVar = this.d;
-        if (i10 == 0) {
-            sa.Y(saVar);
-        } else {
-            saVar.f37435b.J0(false);
-            c1Var.f42702a.setPressed(true);
-        }
-        if (c1Var != null) {
-            View view = c1Var.f42702a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
-        }
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
     }
 }

@@ -27,9 +27,9 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.co0;
-import org.telegram.ui.Components.g51;
-public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
+import org.telegram.ui.Components.oo0;
+import org.telegram.ui.Components.u51;
+public final class z extends a0 implements org.telegram.ui.ActionBar.z5, p9, m0, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
     public int E;
     public final int F;
     public final int G;
@@ -48,14 +48,14 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
     public boolean T;
     public final l0 U;
     public final int f11785n;
-    public final org.telegram.ui.ActionBar.f6 f11786r;
+    public final org.telegram.ui.ActionBar.e6 f11786r;
     public final Paint f11787s;
     public final TextPaint v;
     public final RadialProgress2 f11788w;
-    public final co0 f11789x;
+    public final oo0 f11789x;
     public final int f11790y;
 
-    public z(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+    public z(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.f11787s = new Paint(1);
         this.v = new TextPaint(1);
@@ -65,21 +65,21 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
         int dp2 = AndroidUtilities.dp(44.0f);
         this.G = dp2;
         this.f11785n = i10;
-        this.f11786r = f6Var;
+        this.f11786r = e6Var;
         setWillNotDraw(false);
         this.f11790y = DownloadController.getInstance(i10).generateObserverTag();
-        RadialProgress2 radialProgress2 = new RadialProgress2(this, f6Var);
+        RadialProgress2 radialProgress2 = new RadialProgress2(this, e6Var);
         this.f11788w = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i11 = this.E;
         radialProgress2.q(i11, dp, i11 + dp2, dp2 + dp);
-        co0 co0Var = new co0(this);
-        this.f11789x = co0Var;
-        co0Var.h = new xa.c(this, 26);
+        oo0 oo0Var = new oo0(this);
+        this.f11789x = oo0Var;
+        oo0Var.h = new xa.c(this, 26);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
-        l0 l0Var = new l0(context, f6Var, new a6.i(this, 26));
+        l0 l0Var = new l0(context, e6Var, new a6.i(this, 25));
         this.U = l0Var;
-        addView(l0Var.f11486a, w7.x5.e(-2, -2, 51));
+        addView(l0Var.f11486a, w7.y5.e(-2, -2, 51));
         e();
     }
 
@@ -151,7 +151,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
 
     @Override
     public final void e() {
-        this.f11787s.setColor(j6.v0(j6.f19184uf, this.f11786r));
+        this.f11787s.setColor(j6.v0(j6.f19384uf, this.f11786r));
         l0 l0Var = this.U;
         if (l0Var != null) {
             l0Var.a();
@@ -230,7 +230,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
         if (j() && this.P == null && displayDocument != null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
-            tL_message.f18142id = -Long.valueOf(displayDocument.f18127id).hashCode();
+            tL_message.f18317id = -Long.valueOf(displayDocument.f18302id).hashCode();
             tL_message.peer_id = new TLRPC.TL_peerUser();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_message.from_id = tL_peerUser;
@@ -328,7 +328,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             if (!TextUtils.isEmpty(str)) {
-                spannableStringBuilder.setSpan(new g51(AndroidUtilities.bold()), 0, str.length(), 18);
+                spannableStringBuilder.setSpan(new u51(AndroidUtilities.bold()), 0, str.length(), 18);
             }
             TextPaint textPaint = this.v;
             textPaint.setTextSize(AndroidUtilities.dp(16.0f));
@@ -344,10 +344,10 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
         File pathToAttach;
         boolean z12;
         u uVar;
-        int i10 = j6.f18961ie;
-        int i11 = j6.f18979je;
-        int i12 = j6.f19181uc;
-        int i13 = j6.f19198vc;
+        int i10 = j6.f19160ie;
+        int i11 = j6.f19178je;
+        int i12 = j6.f19381uc;
+        int i13 = j6.f19398vc;
         RadialProgress2 radialProgress2 = this.f11788w;
         radialProgress2.g(i10, i11, i12, i13);
         radialProgress2.d = j6.v0(j6.Bd, this.f11786r);
@@ -416,9 +416,9 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
         double d;
         MessageObject messageObject;
         if (!k() && (messageObject = this.P) != null) {
-            co0 co0Var = this.f11789x;
-            if (!co0Var.e) {
-                co0Var.i(messageObject.audioProgress);
+            oo0 oo0Var = this.f11789x;
+            if (!oo0Var.e) {
+                oo0Var.i(messageObject.audioProgress);
             }
         }
         int i10 = 0;
@@ -452,7 +452,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
         super.onAttachedToWindow();
         this.T = true;
         this.f11788w.m(this);
-        this.f11789x.f23108s = this;
+        this.f11789x.f27030s = this;
         m(false);
         int i10 = this.f11785n;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidStart);
@@ -479,23 +479,23 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
         int i10;
         if (getDisplayDocument() != null) {
             this.f11788w.draw(canvas);
-            int i11 = j6.f19182ud;
-            org.telegram.ui.ActionBar.f6 f6Var = this.f11786r;
-            int v02 = j6.v0(i11, f6Var);
-            int v03 = j6.v0(j6.f19199vd, f6Var);
-            int i12 = j6.f19234xd;
-            int v04 = j6.v0(i12, f6Var);
-            int v05 = j6.v0(i12, f6Var);
-            int v06 = j6.v0(j6.f19217wd, f6Var);
-            co0 co0Var = this.f11789x;
-            co0Var.h(v02, v03, v04, v05, v06);
+            int i11 = j6.f19382ud;
+            org.telegram.ui.ActionBar.e6 e6Var = this.f11786r;
+            int v02 = j6.v0(i11, e6Var);
+            int v03 = j6.v0(j6.f19399vd, e6Var);
+            int i12 = j6.f19434xd;
+            int v04 = j6.v0(i12, e6Var);
+            int v05 = j6.v0(i12, e6Var);
+            int v06 = j6.v0(j6.f19417wd, e6Var);
+            oo0 oo0Var = this.f11789x;
+            oo0Var.h(v02, v03, v04, v05, v06);
             if (!k()) {
                 canvas.save();
                 canvas.translate(this.I, this.J);
-                co0Var.b(canvas);
+                oo0Var.b(canvas);
                 canvas.restore();
             }
-            int v07 = j6.v0(j6.f19053nd, f6Var);
+            int v07 = j6.v0(j6.f19252nd, e6Var);
             TextPaint textPaint = this.v;
             textPaint.setColor(v07);
             if (this.M != null) {
@@ -505,7 +505,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
                 canvas.restore();
             }
             if (this.L != null) {
-                textPaint.setColor(j6.v0(j6.G6, f6Var));
+                textPaint.setColor(j6.v0(j6.G6, e6Var));
                 canvas.save();
                 canvas.translate(AndroidUtilities.dp(54.0f) + this.E, this.J - AndroidUtilities.dp(16.0f));
                 this.L.draw(canvas);
@@ -515,7 +515,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.a6, p9, m0,
             if (q3Var != null && (textSelectionHelper = q3Var.f11573a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
                 ((RecyclerView) getParent()).getClass();
                 int S = RecyclerView.S(this);
-                if (S >= 0 && S > textSelectionHelper.f20629u0 && S <= textSelectionHelper.f20632x0) {
+                if (S >= 0 && S > textSelectionHelper.f20814u0 && S <= textSelectionHelper.f20817x0) {
                     int i13 = 0;
                     if (this.H) {
                         i10 = 0;

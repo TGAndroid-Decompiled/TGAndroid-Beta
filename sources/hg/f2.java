@@ -13,7 +13,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.p6;
 public final class f2 {
     public static volatile f2[] e = new f2[4];
     public static final Object[] f10291f = new Object[4];
@@ -89,7 +88,7 @@ public final class f2 {
         }
         u10.append(str2);
         u10.append(i11);
-        StringBuilder u11 = a4.a.u(p6.t(u10.toString(), ":"));
+        StringBuilder u11 = a4.a.u(t8.b.v(u10.toString(), ":"));
         if (i12 < 10) {
             str3 = "0";
         }
@@ -110,7 +109,7 @@ public final class f2 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f18259id, str)) {
+            if (TextUtils.equals(tL_timezone.f18434id, str)) {
                 return tL_timezone;
             }
             i10++;

@@ -1,101 +1,33 @@
 package org.telegram.ui.Components;
+public final class bp0 implements o1.f {
+    public final int f23056a;
+    public final jp0 f23057b;
+    public final o1.k f23058c;
 
-import android.view.View;
-import android.widget.Toast;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.PhotoViewer;
-public final class bp0 implements View.OnClickListener {
-    public final int f22786a;
-    public final iq0 f22787b;
-
-    public bp0(iq0 iq0Var, int i10) {
-        this.f22786a = i10;
-        this.f22787b = iq0Var;
+    public bp0(jp0 jp0Var, o1.k kVar, int i10) {
+        this.f23056a = i10;
+        this.f23057b = jp0Var;
+        this.f23058c = kVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f22786a) {
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f23056a) {
             case 0:
-                iq0 iq0Var = this.f22787b;
-                np npVar = iq0Var.f24993e0;
-                npVar.a(!npVar.f26511a.f21985q, true);
-                iq0Var.Z0();
-                return;
-            case 1:
-                iq0 iq0Var2 = this.f22787b;
-                org.telegram.ui.ActionBar.o1 o1Var = iq0Var2.J0;
-                if (o1Var != null && o1Var.isShowing()) {
-                    iq0Var2.J0.d(true);
-                }
-                iq0Var2.V0(false);
-                return;
-            case 2:
-                iq0 iq0Var3 = this.f22787b;
-                org.telegram.ui.ActionBar.o1 o1Var2 = iq0Var3.J0;
-                if (o1Var2 != null && o1Var2.isShowing()) {
-                    iq0Var3.J0.d(true);
-                }
-                iq0Var3.V0(true);
-                return;
-            case 3:
-                iq0 iq0Var4 = this.f22787b;
-                String[] strArr = iq0Var4.f25004o0;
-                if (iq0Var4.U.m() == 0) {
-                    if (iq0Var4.f25003n0 || strArr[0] != null) {
-                        iq0Var4.dismiss();
-                        PhotoViewer.t1().G0(true, false);
-                        if (strArr[0] == null && iq0Var4.f25001l0) {
-                            iq0Var4.m0 = true;
-                            Toast.makeText(iq0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
-                            return;
-                        }
-                        iq0Var4.getContext();
-                        iq0Var4.M0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                iq0 iq0Var5 = this.f22787b;
-                String[] strArr2 = iq0Var5.f25004o0;
-                if (iq0Var5.U.m() == 0) {
-                    if (iq0Var5.f25003n0 || strArr2[0] != null) {
-                        iq0Var5.dismiss();
-                        if (strArr2[0] == null && iq0Var5.f25001l0) {
-                            iq0Var5.m0 = true;
-                            Toast.makeText(iq0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
-                            return;
-                        }
-                        iq0Var5.getContext();
-                        iq0Var5.M0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                iq0 iq0Var6 = this.f22787b;
-                String[] strArr3 = iq0Var6.f25004o0;
-                if (iq0Var6.U.m() == 0) {
-                    if (iq0Var6.f25003n0 || strArr3[0] != null) {
-                        iq0Var6.dismiss();
-                        if (strArr3[0] == null && iq0Var6.f25001l0) {
-                            iq0Var6.m0 = true;
-                            Toast.makeText(iq0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
-                            return;
-                        }
-                        iq0Var6.getContext();
-                        iq0Var6.M0();
-                        return;
-                    }
+                if (!z10) {
+                    this.f23057b.f25413z.remove(this.f23058c);
+                    hVar.c();
                     return;
                 }
                 return;
             default:
-                this.f22787b.V0(true);
+                jp0 jp0Var = this.f23057b;
+                if (!z10) {
+                    jp0Var.f25413z.remove(this.f23058c);
+                    hVar.c();
+                    return;
+                }
+                jp0Var.getClass();
                 return;
         }
     }

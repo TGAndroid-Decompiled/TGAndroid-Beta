@@ -4,7 +4,7 @@ import org.telegram.tgnet.TLRPC;
 public interface t0 {
     void J1(w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str);
 
-    org.telegram.ui.ActionBar.o2 O0();
+    org.telegram.ui.ActionBar.n2 O0();
 
     void Q0(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 

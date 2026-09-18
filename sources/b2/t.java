@@ -2,11 +2,11 @@ package b2;
 
 import java.util.List;
 public final class t implements z0 {
-    public final m4.k1 f3322a;
+    public final m4.j1 f3322a;
     public final z0 f3323b;
 
-    public t(m4.k1 k1Var, z0 z0Var) {
-        this.f3322a = k1Var;
+    public t(m4.j1 j1Var, z0 z0Var) {
+        this.f3322a = j1Var;
         this.f3323b = z0Var;
     }
 

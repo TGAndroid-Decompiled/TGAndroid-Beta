@@ -20,8 +20,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.de0;
-import org.telegram.ui.Components.h90;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.me0;
+import org.telegram.ui.Components.q90;
 public final class r2 extends View {
     public final Paint f5400a;
     public final TextPaint f5401b;
@@ -50,7 +51,7 @@ public final class r2 extends View {
         setPadding(0, 0, 0, 0);
         if (t2Var.m0(4)) {
             o2 o2Var = new o2(this, 4, R.drawable.msg_limit_links, LocaleController.getString(R.string.StoryWidgetLink));
-            i11 = ((org.telegram.ui.ActionBar.g3) t2Var).currentAccount;
+            i11 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
             if (!UserConfig.getInstance(i11).isPremium()) {
                 Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
                 o2Var.f5117j = mutate;
@@ -86,14 +87,14 @@ public final class r2 extends View {
             }
             sb2.append(a2);
             CharSequence replaceEmoji = Emoji.replaceEmoji(sb2.toString(), textPaint.getFontMetricsInt(), false);
-            i10 = ((org.telegram.ui.ActionBar.g3) t2Var).currentAccount;
+            i10 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
             SpannableStringBuilder spannableStringBuilder = replaceEmoji;
             if (MessagesController.getInstance(i10).storyWeatherPreload) {
                 spannableStringBuilder = replaceEmoji;
                 spannableStringBuilder = replaceEmoji;
-                if (de0.f("android.permission.ACCESS_COARSE_LOCATION") && ndVar == null) {
+                if (me0.f("android.permission.ACCESS_COARSE_LOCATION") && ndVar == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
-                    spannableStringBuilder2.setSpan(new h90(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
+                    spannableStringBuilder2.setSpan(new q90(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     o2VarArr[0] = new o2(this, spannableStringBuilder2);
                     od.a(false, new m2(0, this, o2VarArr));
                     spannableStringBuilder = spannableStringBuilder2;
@@ -150,7 +151,7 @@ public final class r2 extends View {
             Object obj2 = arrayList.get(i10);
             i10++;
             n2 n2Var2 = (n2) obj2;
-            n2Var2.a(canvas, com.google.android.gms.internal.vision.e2.A((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[n2Var2.e - 1], 2.0f, getPaddingLeft()) + n2Var2.d, org.telegram.messenger.w1.D(48.0f, n2Var2.e - 1, AndroidUtilities.dp(12.0f)));
+            n2Var2.a(canvas, com.google.android.gms.internal.vision.e2.A((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[n2Var2.e - 1], 2.0f, getPaddingLeft()) + n2Var2.d, wh.c(48.0f, n2Var2.e - 1, AndroidUtilities.dp(12.0f)));
         }
     }
 
@@ -225,7 +226,7 @@ public final class r2 extends View {
             float[] fArr3 = this.d;
             fArr3[i15] = fArr3[i15] + n2Var2.f5064b;
         }
-        setMeasuredDimension(size, org.telegram.messenger.w1.D(12.0f, i13 - 1, org.telegram.messenger.w1.D(36.0f, i13, AndroidUtilities.dp(24.0f))));
+        setMeasuredDimension(size, wh.c(12.0f, i13 - 1, wh.c(36.0f, i13, AndroidUtilities.dp(24.0f))));
     }
 
     @Override
@@ -260,13 +261,13 @@ public final class r2 extends View {
             }
         }
         if (n2Var != null) {
-            org.telegram.ui.Components.wc wcVar = n2Var.f5067g;
+            org.telegram.ui.Components.yc ycVar = n2Var.f5067g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            wcVar.c(z10);
+            ycVar.c(z10);
         }
         if (motionEvent.getAction() == 1 && n2Var != null && (e1Var = this.e) != null) {
             e1Var.run(Integer.valueOf(n2Var.f5063a));

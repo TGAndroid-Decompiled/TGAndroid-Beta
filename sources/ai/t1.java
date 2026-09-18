@@ -6,7 +6,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.de0;
+import org.telegram.ui.Components.me0;
 public final class t1 implements Runnable {
     public final int f1543a;
     public final d2 f1544b;
@@ -30,7 +30,7 @@ public final class t1 implements Runnable {
                 return;
             case 3:
                 d2 d2Var = this.f1544b;
-                NotificationCenter.getInstance(d2Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.v.f18131id));
+                NotificationCenter.getInstance(d2Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.v.f18306id));
                 d2Var.u(true);
                 return;
             case 4:
@@ -78,7 +78,7 @@ public final class t1 implements Runnable {
             default:
                 d2 d2Var4 = this.f1544b;
                 if (!d2Var4.f692n) {
-                    de0.d(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new y1(d2Var4, 0));
+                    me0.d(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new y1(d2Var4, 0));
                     return;
                 }
                 return;

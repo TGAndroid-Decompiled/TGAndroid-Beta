@@ -1,186 +1,141 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class tb0 extends View {
-    public final ArrayList f28056a;
-    public float f28057b;
-    public final Paint f28058c;
-    public final int d;
-    public final int e;
-    public Drawable f28059f;
-    public float h;
-    public float f28060n;
-    public final RectF f28061r;
-    public Utilities.Callback f28062s;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class tb0 extends s4.s0 {
+    public final int f28361a;
+    public final Object f28362b;
 
-    public tb0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        int[] iArr;
-        this.f28056a = new ArrayList();
-        Paint paint = new Paint(1);
-        this.f28058c = paint;
-        this.h = AndroidUtilities.dp(14.0f);
-        this.f28060n = AndroidUtilities.dp(0.0f);
-        this.f28061r = new RectF();
-        if (org.telegram.ui.ActionBar.j6.I.q()) {
-            this.d = -1862270977;
-            this.e = -1325400065;
-            paint.setColor(285212671);
-            return;
-        }
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Nd, f6Var);
-        if (f6Var instanceof org.telegram.ui.zn) {
-            org.telegram.ui.zn znVar = (org.telegram.ui.zn) f6Var;
-            if ((znVar.d() instanceof cc0) && (iArr = ((cc0) znVar.d()).f22998a) != null) {
-                v02 = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(iArr[0], iArr[1]), AndroidUtilities.getAverageColor(iArr[2], iArr[3]));
-            }
-        }
-        this.d = org.telegram.ui.ActionBar.j6.c(-1606201797, v02);
-        this.e = org.telegram.ui.ActionBar.j6.c(-448573893, v02);
-        paint.setColor(org.telegram.ui.ActionBar.j6.c(814980216, v02));
-    }
-
-    public final void a(int i10, String str) {
-        this.f28056a.add(new sb0(i10, str));
+    public tb0(Object obj, int i10) {
+        this.f28361a = i10;
+        this.f28362b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10;
-        ArrayList arrayList = this.f28056a;
-        boolean z11 = true;
-        if (arrayList.size() > 1) {
-            float f7 = this.f28057b;
-            double d = f7;
-            int floor = (int) Math.floor(d);
-            if (floor >= 0 && floor < arrayList.size()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            int ceil = (int) Math.ceil(d);
-            z11 = (ceil < 0 || ceil >= arrayList.size()) ? false : false;
-            RectF rectF = this.f28061r;
-            if (z10 && z11) {
-                AndroidUtilities.lerp(((sb0) arrayList.get(floor)).f27833c, ((sb0) arrayList.get(ceil)).f27833c, f7 - floor, rectF);
-            } else if (z10) {
-                rectF.set(((sb0) arrayList.get(floor)).f27833c);
-            } else if (z11) {
-                rectF.set(((sb0) arrayList.get(ceil)).f27833c);
-            }
-            Drawable drawable = this.f28059f;
-            if (drawable != null) {
-                drawable.draw(canvas);
-            }
-            if (z10 || z11) {
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.f28058c);
-            }
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                sb0 sb0Var = (sb0) arrayList.get(i10);
-                sb0Var.f27832b.c(sb0Var.f27833c.left + this.h, getMeasuredHeight() / 2.0f, 1.0f, i0.a.d(1.0f - Math.abs(f7 - i10), this.d, this.e), canvas);
-            }
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        Utilities.Callback callback;
-        ArrayList arrayList = this.f28056a;
-        if (arrayList.size() > 1) {
-            float x10 = motionEvent.getX();
-            float y3 = motionEvent.getY();
-            int i11 = 0;
-            while (true) {
-                if (i11 < arrayList.size()) {
-                    if (((sb0) arrayList.get(i11)).d.contains(x10, y3)) {
-                        i10 = ((sb0) arrayList.get(i11)).f27831a;
-                        break;
+    public void a(RecyclerView recyclerView, int i10) {
+        gl0 gl0Var;
+        int i11 = this.f28361a;
+        rg.n1 n1Var = null;
+        boolean z10 = false;
+        Object obj = this.f28362b;
+        switch (i11) {
+            case 2:
+                ah0 ah0Var = (ah0) obj;
+                ug0 ug0Var = ah0Var.f22608b;
+                if (i10 == 0 && ah0.I(ah0Var) + ((ah0Var.E - ah0.H(ah0Var)) - AndroidUtilities.dp(13.0f)) < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && ug0Var.canScrollVertically(1)) {
+                    ug0Var.getChildAt(0);
+                    gl0 gl0Var2 = (gl0) ug0Var.L(0);
+                    if (gl0Var2 != null) {
+                        View view = gl0Var2.f42929a;
+                        if (view.getTop() > AndroidUtilities.dp(7.0f)) {
+                            ug0Var.w0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
+                            return;
+                        }
+                        return;
                     }
-                    i11++;
-                } else {
-                    i10 = -1;
-                    break;
+                    return;
                 }
-            }
-            if (motionEvent.getAction() == 0) {
-                if (i10 != -1) {
-                    return true;
+                return;
+            case 4:
+                wl0 wl0Var = (wl0) obj;
+                if (i10 == 0) {
+                    if (wl0Var.f30102v2) {
+                        wl0Var.f30102v2 = false;
+                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                    }
+                } else if (!wl0Var.f30102v2 && wl0Var.f30105x1) {
+                    wl0Var.f30102v2 = true;
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
                 }
-            } else if (motionEvent.getAction() == 1 && i10 != -1 && (callback = this.f28062s) != null) {
-                callback.run(Integer.valueOf(i10));
-            }
+                if (i10 != 0 && wl0Var.N1 != null) {
+                    ol0 ol0Var = wl0Var.f30068e1;
+                    if (ol0Var != null) {
+                        AndroidUtilities.cancelRunOnUIThread(ol0Var);
+                        wl0Var.f30068e1 = null;
+                    }
+                    MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                    try {
+                        wl0Var.M1.g0(obtain);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                    wl0Var.N1.onTouchEvent(obtain);
+                    obtain.recycle();
+                    View view2 = wl0Var.N1;
+                    wl0Var.i1(view2, 0.0f, 0.0f, false);
+                    wl0Var.N1 = null;
+                    wl0Var.l1(null, view2);
+                    wl0Var.P1 = false;
+                }
+                s4.s0 s0Var = wl0Var.f30061a1;
+                if (s0Var != null) {
+                    s0Var.a(recyclerView, i10);
+                }
+                z10 = (i10 == 1 || i10 == 2) ? true : true;
+                wl0Var.K1 = z10;
+                if (z10) {
+                    wl0Var.L1 = true;
+                    return;
+                }
+                return;
+            case 5:
+                jn0 jn0Var = (jn0) obj;
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(jn0Var.F.getCurrentFocus());
+                }
+                jn0Var.a();
+                return;
+            case 9:
+                d71 d71Var = (d71) obj;
+                ai.w0 w0Var = d71Var.d;
+                if (i10 == 0 && d71Var.G && AndroidUtilities.dp(13.0f) + d71.m(d71Var) + d71Var.f23477y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (gl0Var = (gl0) w0Var.L(0)) != null) {
+                    View view3 = gl0Var.f42929a;
+                    if (view3.getTop() > 0) {
+                        w0Var.w0(0, view3.getTop(), null);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 13:
+                rg.s0 s0Var2 = (rg.s0) obj;
+                if (i10 == 1) {
+                    s0Var2.f42662d3 = true;
+                }
+                if (i10 == 0) {
+                    for (int i12 = 0; i12 < recyclerView.getChildCount(); i12++) {
+                        rg.n1 n1Var2 = (rg.n1) s0Var2.getChildAt(i12);
+                        if (n1Var == null || n1Var2.f42648a > n1Var.f42648a) {
+                            n1Var = n1Var2;
+                        }
+                    }
+                    if (n1Var != null) {
+                        s0Var2.x1(n1Var, true);
+                        s0Var2.f42662d3 = false;
+                        s0Var2.w0(0, n1Var.getTop() - ((s0Var2.getMeasuredHeight() - n1Var.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
+                    }
+                    s0Var2.y1();
+                    return;
+                }
+                AndroidUtilities.cancelRunOnUIThread(s0Var2.f42663e3);
+                return;
+            case 14:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(((tg.z0) obj).Y.getEditText());
+                    return;
+                }
+                return;
+            default:
+                return;
         }
-        return false;
-    }
-
-    public int getColor() {
-        return this.d;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        ArrayList arrayList;
-        super.onMeasure(i10, i11);
-        this.h = AndroidUtilities.dp(14.0f);
-        float f7 = 0.0f;
-        this.f28060n = AndroidUtilities.dp(0.0f);
-        int i12 = 0;
-        while (true) {
-            arrayList = this.f28056a;
-            if (i12 >= arrayList.size()) {
-                break;
-            }
-            if (i12 > 0) {
-                f7 += this.f28060n;
-            }
-            f7 += ((sb0) arrayList.get(i12)).f27832b.l() + this.h + this.h;
-            i12++;
-        }
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        float dp = (measuredHeight - AndroidUtilities.dp(26.0f)) / 2.0f;
-        float dp2 = (AndroidUtilities.dp(26.0f) + measuredHeight) / 2.0f;
-        float f10 = measuredWidth;
-        float f11 = (f10 - f7) / 2.0f;
-        float f12 = f11;
-        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            float l4 = ((sb0) arrayList.get(i13)).f27832b.l() + this.h + this.h;
-            ((sb0) arrayList.get(i13)).f27833c.set(f12, dp, f12 + l4, dp2);
-            ((sb0) arrayList.get(i13)).d.set(((sb0) arrayList.get(i13)).f27833c);
-            ((sb0) arrayList.get(i13)).d.inset((-this.f28060n) / 2.0f, -dp);
-            f12 += l4 + this.f28060n;
-        }
-        Drawable drawable = this.f28059f;
-        if (drawable != null) {
-            Rect rect = AndroidUtilities.rectTmp2;
-            drawable.getPadding(rect);
-            int i14 = measuredHeight / 2;
-            this.f28059f.setBounds((((int) f11) - AndroidUtilities.dp(3.0f)) - rect.left, (i14 - AndroidUtilities.dp(16.0f)) - rect.top, AndroidUtilities.dp(3.0f) + ((int) ((f10 + f7) / 2.0f)) + rect.right, AndroidUtilities.dp(16.0f) + i14 + rect.bottom);
-        }
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
-        this.f28059f = drawable;
-    }
-
-    public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.f28062s = callback;
-    }
-
-    public void setSelectedTab(float f7) {
-        this.f28057b = f7;
-        invalidate();
+    public void b(androidx.recyclerview.widget.RecyclerView r12, int r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.tb0.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
     }
 }

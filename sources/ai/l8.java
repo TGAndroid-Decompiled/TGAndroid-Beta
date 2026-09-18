@@ -62,7 +62,7 @@ public final class l8 implements Runnable {
                     MessagesController.getInstance(i13).putChats(tL_stories_stories.chats, false);
                     while (true) {
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f18356id == i12) {
+                            if (tL_stories_stories.stories.get(i11).f18531id == i12) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -117,32 +117,32 @@ public final class l8 implements Runnable {
                 ((TopicsController) obj3).lambda$loadTopics$3((TLRPC.TL_messages_savedDialogsSlice) obj2, this.f1190b, (a0.i) obj, this.f1191c);
                 return;
             case 9:
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) obj3;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj3;
                 TLRPC.User user = (TLRPC.User) obj2;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                int i15 = t1Var.I7;
+                int i15 = u1Var.I7;
                 if (user != null) {
-                    t1Var.X8[i12].m(i15, user);
-                    t1Var.W8[i12].setForUserOrChat(user, t1Var.X8[i12]);
+                    u1Var.X8[i12].m(i15, user);
+                    u1Var.W8[i12].setForUserOrChat(user, u1Var.X8[i12]);
                     return;
                 } else if (chat != null) {
-                    t1Var.X8[i12].k(i15, chat);
-                    t1Var.W8[i12].setForUserOrChat(chat, t1Var.X8[i12]);
+                    u1Var.X8[i12].k(i15, chat);
+                    u1Var.W8[i12].setForUserOrChat(chat, u1Var.X8[i12]);
                     return;
                 } else {
-                    t1Var.X8[i12].n(j3, "", "");
+                    u1Var.X8[i12].n(j3, "", "");
                     return;
                 }
             case 10:
-                new xh.y4((Context) obj3, this.f1191c, ((GiftAuctionController.Auction) obj2).gift, null, this.f1190b, (Runnable) obj, false, false).show();
+                new xh.z4((Context) obj3, this.f1191c, ((GiftAuctionController.Auction) obj2).gift, null, this.f1190b, (Runnable) obj, false, false).show();
                 return;
             case 11:
                 yh.n nVar = (yh.n) obj;
                 TLObject tLObject2 = (TLObject) obj2;
-                int i16 = ((yh.o) obj3).f47569a;
+                int i16 = ((yh.o) obj3).f47788a;
                 boolean[] zArr = nVar.d;
-                boolean[] zArr2 = nVar.f47506b;
-                ArrayList[] arrayListArr = nVar.f47505a;
+                boolean[] zArr2 = nVar.f47742b;
+                ArrayList[] arrayListArr = nVar.f47741a;
                 zArr[i12] = false;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
@@ -162,7 +162,7 @@ public final class l8 implements Runnable {
                         z11 = false;
                     }
                     zArr3[i12] = z11;
-                    String[] strArr = nVar.f47507c;
+                    String[] strArr = nVar.f47743c;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }
@@ -175,10 +175,10 @@ public final class l8 implements Runnable {
                 ci.d dVar = (ci.d) obj3;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f18347id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f18522id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
                 int i17 = this.f1191c;
-                ConnectionsManager.getInstance(i17).sendRequest(tL_fulfillStarsSubscription, new j8(dVar, (org.telegram.ui.ActionBar.g3[]) obj, i17, this.f1190b, 7));
+                ConnectionsManager.getInstance(i17).sendRequest(tL_fulfillStarsSubscription, new j8(dVar, (org.telegram.ui.ActionBar.f3[]) obj, i17, this.f1190b, 7));
                 return;
         }
     }

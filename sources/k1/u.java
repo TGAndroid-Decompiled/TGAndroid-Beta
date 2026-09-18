@@ -14,6 +14,6 @@ public final class u extends kd.c {
     public final Object invokeSuspend(Object obj) {
         this.f13204b = obj;
         this.d |= Integer.MIN_VALUE;
-        return this.f13205c.d(this);
+        return this.f13205c.e(this);
     }
 }

@@ -7,18 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class p40 implements ti {
-    public final u40 f26927a;
+    public final u40 f27102a;
 
     public p40(u40 u40Var) {
-        this.f26927a = u40Var;
+        this.f27102a = u40Var;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         vi viVar;
-        u40 u40Var = this.f26927a;
-        org.telegram.ui.ActionBar.o2 o2Var = u40Var.f28275a;
-        if (o2Var != null && o2Var.getParentActivity() != null && (viVar = u40Var.f28277c) != null) {
+        u40 u40Var = this.f27102a;
+        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f28554a;
+        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f28556c) != null) {
             if (i10 != 8 && i10 != 7) {
                 viVar.dismissWithButtonClick(i10);
                 if (i10 == 0) {
@@ -27,8 +27,8 @@ public final class p40 implements ti {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = viVar.f28757j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = u40Var.f28277c.f28757j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = viVar.f29033j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = u40Var.f28556c.f29033j0.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -91,14 +91,14 @@ public final class p40 implements ti {
             }
             u40.b(u40Var, z14, arrayList);
             if (i10 != 8) {
-                u40Var.f28277c.dismiss(true);
+                u40Var.f28556c.dismiss(true);
             }
         }
     }
 
     @Override
     public final void K0() {
-        AndroidUtilities.hideKeyboard(this.f26927a.f28275a.getFragmentView().findFocus());
+        AndroidUtilities.hideKeyboard(this.f27102a.f28554a.getFragmentView().findFocus());
     }
 
     @Override
@@ -113,12 +113,12 @@ public final class p40 implements ti {
 
     @Override
     public final void u0() {
-        this.f26927a.r();
+        this.f27102a.r();
     }
 
     @Override
-    public final void x0(fh fhVar) {
-        fhVar.run();
+    public final void x0(gh ghVar) {
+        ghVar.run();
     }
 
     @Override

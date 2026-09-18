@@ -6,20 +6,20 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.Components.w50;
+import org.telegram.ui.Components.b60;
+import org.telegram.ui.Components.qk0;
 public final class ka extends z4.a {
     public final ArrayList f1151c = new ArrayList();
     public final Context d;
     public final jc e;
-    public final org.telegram.ui.ActionBar.f6 f1152f;
+    public final org.telegram.ui.ActionBar.e6 f1152f;
     public final zb f1153g;
 
-    public ka(zb zbVar, Context context, jc jcVar, org.telegram.ui.ActionBar.f6 f6Var) {
+    public ka(zb zbVar, Context context, jc jcVar, org.telegram.ui.ActionBar.e6 e6Var) {
         this.f1153g = zbVar;
         this.d = context;
         this.e = jcVar;
-        this.f1152f = f6Var;
+        this.f1152f = e6Var;
     }
 
     @Override
@@ -55,21 +55,21 @@ public final class ka extends z4.a {
             jaVar = (f6) arrayList.remove(0);
             jaVar.f839o1.f582a.getImageReceiver().setVisible(true, true);
             if (jaVar.f812e2 != null) {
-                jaVar.f800b2.Q0();
+                jaVar.f800b2.P0();
                 jaVar.f800b2.setAlpha(1.0f - jaVar.f810d4);
             }
-            gk0 gk0Var = jaVar.f815f2;
-            if (gk0Var != null) {
-                gk0Var.n();
+            qk0 qk0Var = jaVar.f815f2;
+            if (qk0Var != null) {
+                qk0Var.n();
             }
-            gk0 gk0Var2 = jaVar.f850r3;
-            if (gk0Var2 != null) {
-                gk0Var2.n();
+            qk0 qk0Var2 = jaVar.f850r3;
+            if (qk0Var2 != null) {
+                qk0Var2.n();
             }
-            w50 w50Var = jaVar.J2;
-            if (w50Var != null) {
-                AndroidUtilities.removeFromParent(w50Var);
-                jaVar.J2.h(true);
+            b60 b60Var = jaVar.J2;
+            if (b60Var != null) {
+                AndroidUtilities.removeFromParent(b60Var);
+                jaVar.J2.d(true);
                 jaVar.J2 = null;
             }
             jaVar.setActive(false);

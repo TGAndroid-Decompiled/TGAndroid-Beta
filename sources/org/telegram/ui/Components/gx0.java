@@ -1,20 +1,42 @@
 package org.telegram.ui.Components;
 
+import org.telegram.messenger.CacheFetcher;
 import org.telegram.messenger.MessagesStorage;
-public final class gx0 implements org.telegram.ui.ActionBar.s0, MessagesStorage.StringCallback {
-    public final wx0 f24416a;
-
-    public gx0(wx0 wx0Var) {
-        this.f24416a = wx0Var;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class gx0 extends CacheFetcher {
+    @Override
+    public final void getLocal(int i10, Object obj, Utilities.Callback2 callback2) {
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new wm(i10, (Integer) obj, callback2, 19));
     }
 
     @Override
-    public void m(int i10) {
-        wx0.B(this.f24416a, i10);
+    public final void getRemote(int i10, Object obj, long j3, Utilities.Callback4 callback4) {
+        TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups;
+        Integer num = (Integer) obj;
+        if (num.intValue() == 1) {
+            TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
+            tL_messages_getEmojiStatusGroups.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiStatusGroups;
+        } else if (num.intValue() == 2) {
+            TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
+            tL_messages_getEmojiProfilePhotoGroups.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiProfilePhotoGroups;
+        } else if (num.intValue() == 3) {
+            TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
+            tL_messages_getEmojiStickerGroups.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiStickerGroups;
+        } else {
+            TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups2 = new TLRPC.TL_messages_getEmojiGroups();
+            tL_messages_getEmojiGroups2.hash = (int) j3;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiGroups2;
+        }
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getEmojiGroups, new fx0(callback4, 0));
     }
 
     @Override
-    public void run(String str) {
-        new w40(r1.getContext(), r1.f29786o0, null, this.f24416a.resourcesProvider).show();
+    public final void setLocal(int i10, Object obj, Object obj2, long j3) {
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new wm(i10, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 18));
     }
 }

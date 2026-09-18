@@ -3,14 +3,14 @@ package l5;
 import android.util.Base64;
 import java.util.Arrays;
 public final class i {
-    public final String f13907a;
-    public final byte[] f13908b;
-    public final i5.d f13909c;
+    public final String f14054a;
+    public final byte[] f14055b;
+    public final i5.d f14056c;
 
     public i(String str, byte[] bArr, i5.d dVar) {
-        this.f13907a = str;
-        this.f13908b = bArr;
-        this.f13909c = dVar;
+        this.f14054a = str;
+        this.f14055b = bArr;
+        this.f14056c = dVar;
     }
 
     public static aa.a a() {
@@ -21,10 +21,10 @@ public final class i {
 
     public final i b(i5.d dVar) {
         aa.a a2 = a();
-        a2.u(this.f13907a);
+        a2.u(this.f14054a);
         if (dVar != null) {
             a2.d = dVar;
-            a2.f360c = this.f13908b;
+            a2.f360c = this.f14055b;
             return a2.e();
         }
         throw new NullPointerException("Null priority");
@@ -36,7 +36,7 @@ public final class i {
         }
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (this.f13907a.equals(iVar.f13907a) && Arrays.equals(this.f13908b, iVar.f13908b) && this.f13909c.equals(iVar.f13909c)) {
+            if (this.f14054a.equals(iVar.f14054a) && Arrays.equals(this.f14055b, iVar.f14055b) && this.f14056c.equals(iVar.f14056c)) {
                 return true;
             }
         }
@@ -44,21 +44,21 @@ public final class i {
     }
 
     public final int hashCode() {
-        return ((((this.f13907a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f13908b)) * 1000003) ^ this.f13909c.hashCode();
+        return ((((this.f14054a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f14055b)) * 1000003) ^ this.f14056c.hashCode();
     }
 
     public final String toString() {
         String encodeToString;
-        byte[] bArr = this.f13908b;
+        byte[] bArr = this.f14055b;
         if (bArr == null) {
             encodeToString = "";
         } else {
             encodeToString = Base64.encodeToString(bArr, 2);
         }
         StringBuilder sb2 = new StringBuilder("TransportContext(");
-        sb2.append(this.f13907a);
+        sb2.append(this.f14054a);
         sb2.append(", ");
-        sb2.append(this.f13909c);
+        sb2.append(this.f14056c);
         sb2.append(", ");
         return a4.a.s(sb2, encodeToString, ")");
     }

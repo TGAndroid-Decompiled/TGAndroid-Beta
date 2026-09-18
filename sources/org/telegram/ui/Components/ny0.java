@@ -1,105 +1,136 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class ny0 extends View {
-    public String f26562a;
-    public Drawable f26563b;
-    public boolean f26564c;
-    public int d;
-    public final c6 e;
-    public final oy0 f26565f;
-
-    public ny0(oy0 oy0Var, Context context) {
-        super(context);
-        this.f26565f = oy0Var;
-        this.d = 0;
-        this.e = new c6(this, 350L, new OvershootInterpolator(5.0f));
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class ny0 {
+    public static void a(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        int i10 = UserConfig.selectedAccount;
+        Context context = n2Var.getContext();
+        ci.t2 t2Var = new ci.t2(context, e6Var, true, false);
+        t2Var.f5555y = new gg.d2(i10, context, tL_messages_stickerSet, 9);
+        if (n2Var.visibleDialog != null) {
+            t2Var.show();
+        } else {
+            n2Var.showDialog(t2Var);
+        }
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (isPressed()) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = ((1.0f - this.e.d(f7, false)) * 0.2f) + 0.8f;
-        if (this.f26563b != null) {
-            int height = getHeight() - getPaddingBottom();
-            this.f26563b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f26563b;
-            if (drawable instanceof o5) {
-                ((o5) drawable).q(System.currentTimeMillis());
+    public static void b(TLRPC.StickerSet stickerSet, org.telegram.ui.ActionBar.e6 e6Var, Context context, Runnable runnable) {
+        if (stickerSet != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+            alertDialog$Builder.f18622a.R = LocaleController.getString(R.string.StickersDeleteStickerSetTitle);
+            alertDialog$Builder.f18622a.T = LocaleController.getString(R.string.StickersDeleteStickerSetDescription);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new b3(16, runnable, stickerSet));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+            b2Var.show();
+            TextView textView = (TextView) b2Var.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19301q7, e6Var));
             }
-            this.f26563b.draw(canvas);
         }
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Drawable drawable = this.f26563b;
-        if (drawable instanceof o5) {
-            ((o5) drawable).a(this);
-        }
-        this.f26564c = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        Drawable drawable = this.f26563b;
-        if (drawable instanceof o5) {
-            ((o5) drawable).o(this);
-        }
-        this.f26564c = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
+    public static void c(TLRPC.StickerSet stickerSet, org.telegram.ui.ActionBar.e6 e6Var, Context context, Utilities.Callback2 callback2) {
+        boolean z10;
+        int i10;
         float f7;
-        int dp = AndroidUtilities.dp(3.0f);
-        float f10 = 6.66f;
-        if (this.d == 0) {
-            f7 = 0.0f;
+        int i11;
+        int i12;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+        if (stickerSet != null) {
+            z10 = true;
         } else {
-            f7 = 6.66f;
+            z10 = false;
         }
-        int dp2 = AndroidUtilities.dp(f7 + 3.0f);
-        int dp3 = AndroidUtilities.dp(3.0f);
-        if (this.d != 0) {
-            f10 = 0.0f;
+        if (z10) {
+            i10 = R.string.EditStickerPack;
+        } else {
+            i10 = R.string.NewStickerPack;
         }
-        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f10 + 3.0f));
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
-    }
-
-    public void setDirection(int i10) {
-        this.d = i10;
-        invalidate();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f26563b;
-        if (drawable2 instanceof o5) {
-            ((o5) drawable2).o(this);
+        String string = LocaleController.getString(i10);
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+        b2Var.R = string;
+        b2Var.T = LocaleController.getString(R.string.StickersChooseNameForStickerPack);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        final ?? editTextBoldCursor = new EditTextBoldCursor(context);
+        int i13 = org.telegram.ui.ActionBar.j6.f19169j5;
+        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.j6.v0(i13, e6Var));
+        editTextBoldCursor.setInputType(16385);
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.j6.v0(i13, e6Var));
+        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19401vf, e6Var));
+        editTextBoldCursor.setHeaderHintColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, e6Var));
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setFocusable(true);
+        editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50), new InputFilter() {
+            @Override
+            public final CharSequence filter(CharSequence charSequence, int i14, int i15, Spanned spanned, int i16, int i17) {
+                if (charSequence.length() > 0 && Character.isWhitespace(charSequence.charAt(0))) {
+                    if (TextUtils.isEmpty(ly0.this.getText()) || i16 == 0) {
+                        return "";
+                    }
+                    return charSequence;
+                }
+                return charSequence;
+            }
+        }});
+        editTextBoldCursor.setLineColors(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19190k6, e6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19208l6, e6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19283p7, e6Var));
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setBackground(null);
+        editTextBoldCursor.requestFocus();
+        float f10 = 0.0f;
+        if (LocaleController.isRTL) {
+            f7 = 28.0f;
+        } else {
+            f7 = 0.0f;
         }
-        this.f26563b = drawable;
-        if ((drawable instanceof o5) && this.f26564c) {
-            ((o5) drawable).a(this);
+        int dp = AndroidUtilities.dp(f7);
+        if (!LocaleController.isRTL) {
+            f10 = 28.0f;
         }
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        invalidate();
+        editTextBoldCursor.setPadding(dp, 0, AndroidUtilities.dp(f10), 0);
+        frameLayout.addView(editTextBoldCursor);
+        NumberTextView numberTextView = new NumberTextView(context);
+        numberTextView.setCenterAlign(true);
+        numberTextView.setTextSize(15);
+        numberTextView.a(50, false);
+        numberTextView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.B6, false));
+        numberTextView.setImportantForAccessibility(2);
+        if (LocaleController.isRTL) {
+            i11 = 3;
+        } else {
+            i11 = 5;
+        }
+        frameLayout.addView(numberTextView, w7.y5.d(26, 20.0f, i11 | 16, 0.0f, 2.0f, 4.0f, 0.0f));
+        editTextBoldCursor.addTextChangedListener(new my0(numberTextView, editTextBoldCursor));
+        if (z10) {
+            editTextBoldCursor.setText(stickerSet.title);
+            editTextBoldCursor.setSelection(stickerSet.title.length());
+        }
+        alertDialog$Builder.n(frameLayout);
+        b2Var.G = 4;
+        if (z10) {
+            i12 = R.string.Done;
+        } else {
+            i12 = R.string.Create;
+        }
+        alertDialog$Builder.k(LocaleController.getString(i12), new ca.b((Object) editTextBoldCursor, callback2, context, z10, 5));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new lv(editTextBoldCursor, 24));
+        org.telegram.ui.ActionBar.b2 o9 = alertDialog$Builder.o();
+        o9.f18659h0 = false;
+        editTextBoldCursor.setOnEditorActionListener(new e1(o9, 8));
     }
 }

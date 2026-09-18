@@ -1,49 +1,95 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class h20 extends FrameLayout {
-    public TextView f34112a;
-    public TextView f34113b;
-    public org.telegram.ui.Components.yh0 f34114c;
-    public boolean d;
-    public TLRPC.TL_dialogFilterSuggested e;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class h20 extends s4.v {
+    public final FiltersSetupActivity d;
 
-    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
-        return this.e;
+    public h20(FiltersSetupActivity filtersSetupActivity) {
+        this.d = filtersSetupActivity;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.j6.f18985k0);
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        View view = c1Var.f42929a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f42932f != 2) {
+            return s4.v.l(0, 0);
+        }
+        return s4.v.l(3, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        MessagesController.DialogFilter dialogFilter;
+        MessagesController.DialogFilter dialogFilter2;
+        if (c1Var.f42932f != c1Var2.f42932f) {
+            return false;
+        }
+        e20 e20Var = this.d.f31044b;
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        FiltersSetupActivity filtersSetupActivity = e20Var.e;
+        int i10 = filtersSetupActivity.f31048r;
+        ArrayList arrayList = filtersSetupActivity.f31047n;
+        if (b10 >= i10 && b11 >= i10) {
+            c20 c20Var = (c20) arrayList.get(b10);
+            c20 c20Var2 = (c20) arrayList.get(b11);
+            if (c20Var != null && c20Var2 != null && (dialogFilter = c20Var.d) != null && (dialogFilter2 = c20Var2.d) != null) {
+                int i11 = dialogFilter.order;
+                dialogFilter.order = dialogFilter2.order;
+                dialogFilter2.order = i11;
+                ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
+                try {
+                    arrayList2.set(b10 - filtersSetupActivity.f31048r, c20Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f31048r, c20Var.d);
+                } catch (Exception unused) {
+                }
+                filtersSetupActivity.e = true;
+                filtersSetupActivity.Z(true);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        Boolean bool;
+        if (i10 != 0) {
+            this.d.f31043a.J0(false);
+            c1Var.f42929a.setPressed(true);
+        } else {
+            AndroidUtilities.cancelRunOnUIThread(new g10(this, 4));
+            AndroidUtilities.runOnUIThread(new g10(this, 4), 320L);
+        }
+        if (c1Var != null) {
+            View view = c1Var.f42929a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
         }
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.f34114c.getText());
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
-        measureChildWithMargins(this.f34114c, i10, 0, i11, 0);
-        TextView textView = this.f34112a;
-        org.telegram.ui.Components.yh0 yh0Var = this.f34114c;
-        measureChildWithMargins(textView, i10, yh0Var.getMeasuredWidth(), i11, 0);
-        measureChildWithMargins(this.f34113b, i10, yh0Var.getMeasuredWidth(), i11, 0);
-    }
-
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f34114c.setOnClickListener(onClickListener);
+    public final void q(s4.c1 c1Var) {
     }
 }

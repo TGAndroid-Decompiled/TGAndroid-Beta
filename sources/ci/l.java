@@ -19,7 +19,7 @@ public final class l extends Drawable {
     public final k f4903c;
     public final k d;
     public boolean e;
-    public final org.telegram.ui.Components.c6 f4904f;
+    public final org.telegram.ui.Components.e6 f4904f;
     public final Path f4905g;
     public final int h;
     public float f4906i;
@@ -41,7 +41,7 @@ public final class l extends Drawable {
         this.e = false;
         androidx.fragment.app.a0 a0Var = new androidx.fragment.app.a0(this, 6);
         qr qrVar = qr.h;
-        this.f4904f = new org.telegram.ui.Components.c6(a0Var, 350L, qrVar, 0);
+        this.f4904f = new org.telegram.ui.Components.e6(a0Var, 350L, qrVar, 0);
         this.f4905g = new Path();
         this.f4906i = 21.0f;
         this.h = i10;
@@ -51,11 +51,11 @@ public final class l extends Drawable {
         kVar.k(0.3f, 250L, qrVar);
         kVar.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar.t(AndroidUtilities.dpf2(12.0f));
-        kVar.f26070b = 17;
+        kVar.f26868b = 17;
         kVar2.k(0.3f, 250L, qrVar);
         kVar2.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar2.t(AndroidUtilities.dpf2(12.0f));
-        kVar2.f26070b = 17;
+        kVar2.f26868b = 17;
         e(-1, -15033089, -1);
     }
 
@@ -94,7 +94,7 @@ public final class l extends Drawable {
         rect.set((int) (this.f4911n - AndroidUtilities.dp(20.0f)), (int) (this.f4912o - AndroidUtilities.dp(20.0f)), (int) (this.f4911n + AndroidUtilities.dp(20.0f)), (int) (this.f4912o + AndroidUtilities.dp(20.0f)));
         k kVar = this.f4903c;
         kVar.setBounds(rect);
-        kVar.f26087w = (int) (Color.alpha(this.f4909l) * f7);
+        kVar.f26885w = (int) (Color.alpha(this.f4909l) * f7);
         kVar.draw(canvas);
         if (i10 > 0) {
             Path path = this.f4905g;
@@ -103,7 +103,7 @@ public final class l extends Drawable {
             canvas.clipPath(path);
             k kVar2 = this.d;
             kVar2.setBounds(rect);
-            kVar2.f26087w = (int) (f7 * 255.0f);
+            kVar2.f26885w = (int) (f7 * 255.0f);
             kVar2.draw(canvas);
         }
         canvas.restore();
@@ -120,7 +120,7 @@ public final class l extends Drawable {
                 porterDuffXfermode = null;
             }
             this.f4901a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.f4903c.f26069a;
+            TextPaint textPaint = this.f4903c.f26867a;
             if (z10) {
                 porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             }

@@ -10,9 +10,9 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.qv0;
-import org.telegram.ui.Components.vc;
-public final class v1 extends qv0 {
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.xc;
+public final class v1 extends bw0 {
     public boolean f11684w0;
     public final Paint f11685x0;
     public final RectF f11686y0;
@@ -30,7 +30,7 @@ public final class v1 extends qv0 {
     public final void dispatchDraw(Canvas canvas) {
         d2 d2Var = this.f11687z0;
         Rect rect = d2Var.f11326w;
-        int l1 = j6.l1(d2Var.I, d2Var.getThemedColor(j6.f18863d6));
+        int l1 = j6.l1(d2Var.I, d2Var.getThemedColor(j6.f19062d6));
         Paint paint = this.f11685x0;
         paint.setColor(l1);
         if (d2Var.E && d2Var.f11328x != null) {
@@ -55,9 +55,9 @@ public final class v1 extends qv0 {
                 canvas.restore();
                 canvas.restore();
                 canvas.save();
-                canvas.translate(AndroidUtilities.lerp(rectF.right, (d2Var.f11331y0.getX() + (d2Var.f11299a0.getX() + (d2Var.Z.getX() + d2Var.Y.getX()))) + d2Var.f11331y0.getWidth(), d2Var.I) - d2Var.v.f21887z1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (d2Var.f11331y0.getY() + (d2Var.f11299a0.getY() + (d2Var.Z.getY() + d2Var.Y.getY()))) + d2Var.f11331y0.getHeight(), d2Var.I) - d2Var.v.f21887z1.getHeight());
-                canvas.saveLayerAlpha(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f), d2Var.v.f21887z1.getWidth(), d2Var.v.f21887z1.getHeight(), (int) ((1.0f - d2Var.I) * 255.0f), 31);
-                d2Var.v.f21887z1.draw(canvas);
+                canvas.translate(AndroidUtilities.lerp(rectF.right, (d2Var.f11331y0.getX() + (d2Var.f11299a0.getX() + (d2Var.Z.getX() + d2Var.Y.getX()))) + d2Var.f11331y0.getWidth(), d2Var.I) - d2Var.v.f22060z1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (d2Var.f11331y0.getY() + (d2Var.f11299a0.getY() + (d2Var.Z.getY() + d2Var.Y.getY()))) + d2Var.f11331y0.getHeight(), d2Var.I) - d2Var.v.f22060z1.getHeight());
+                canvas.saveLayerAlpha(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f), d2Var.v.f22060z1.getWidth(), d2Var.v.f22060z1.getHeight(), (int) ((1.0f - d2Var.I) * 255.0f), 31);
+                d2Var.v.f22060z1.draw(canvas);
                 canvas.restore();
                 canvas.restore();
             }
@@ -76,7 +76,7 @@ public final class v1 extends qv0 {
         d2 d2Var = this.f11687z0;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
             if (d2Var.q0()) {
-                org.telegram.messenger.w1.o(R.string.RichEditorDraftSaved, new vc(d2Var.X, d2Var.getResourceProvider()), R.raw.contact_check, 36);
+                org.telegram.messenger.q.q(R.string.RichEditorDraftSaved, new xc(d2Var.X, d2Var.getResourceProvider()), R.raw.contact_check, 36);
                 return true;
             }
         } else if (!d2Var.P.i3(keyEvent)) {

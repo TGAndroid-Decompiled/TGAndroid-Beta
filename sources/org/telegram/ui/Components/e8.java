@@ -1,34 +1,25 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.animation.AnimatorSet;
+import android.content.Context;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class e8 implements Runnable {
-    public final int f23508a;
-    public final g8 f23509b;
-    public final String f23510c;
+public abstract class e8 extends FrameLayout {
+    public final w9[] f23805a;
+    public int f23806b;
+    public AnimatorSet f23807c;
 
-    public e8(g8 g8Var, String str, int i10) {
-        this.f23508a = i10;
-        this.f23509b = g8Var;
-        this.f23510c = str;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f23508a) {
-            case 0:
-                g8 g8Var = this.f23509b;
-                String str = this.f23510c;
-                g8Var.f24113f = null;
-                AndroidUtilities.runOnUIThread(new e8(g8Var, str, 1));
-                return;
-            default:
-                g8 g8Var2 = this.f23509b;
-                String str2 = this.f23510c;
-                g8Var2.getClass();
-                Utilities.searchQueue.postRunnable(new f8(g8Var2, str2, new ArrayList(g8Var2.f24114n.f24576x0)));
-                return;
+    public e8(Context context) {
+        super(context);
+        this.f23805a = new w9[2];
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f23805a[i10] = new w9(context);
+            this.f23805a[i10].getImageReceiver().setDelegate(new i2.s(this, i10, 5));
+            this.f23805a[i10].setRoundRadius(AndroidUtilities.dp(4.0f));
+            if (i10 == 1) {
+                this.f23805a[i10].setVisibility(8);
+            }
+            addView(this.f23805a[i10], w7.y5.c(-1.0f, -1));
         }
     }
 }

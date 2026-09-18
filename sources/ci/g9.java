@@ -12,7 +12,7 @@ public final class g9 extends s4.s0 {
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.f4724a).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f4724a).containerView;
         viewGroup.invalidate();
     }
 }

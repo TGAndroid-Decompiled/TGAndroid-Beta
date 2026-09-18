@@ -1,83 +1,47 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public abstract class xm0 extends FrameLayout {
-    public final View f29946a;
-    public final ImageView f29947b;
-    public final ImageView f29948c;
-    public final ci.j2 d;
-    public final ci.h2 e;
-    public final org.telegram.ui.ActionBar.f6 f29949f;
+public final class xm0 extends y5 {
+    public final e6 d;
+    public final int e;
+    public final ScrollSlidingTextTabStrip f30345f;
 
-    public xm0(Context context, float f7, org.telegram.ui.ActionBar.f6 f6Var) {
+    public xm0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i10) {
         super(context);
-        this.f29949f = f6Var;
-        View view = new View(context);
-        this.f29946a = view;
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.O5, f6Var)));
-        addView(view, w7.x5.i(-1.0f, 36.0f, 8388659, f7, 11.0f, f7, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f29947b = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Q5, f6Var), PorterDuff.Mode.MULTIPLY));
-        addView(imageView, w7.x5.i(36.0f, 36.0f, 8388659, f7 + 2.0f, 11.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f29948c = imageView2;
-        imageView2.setScaleType(scaleType);
-        ci.j2 j2Var = new ci.j2(3, this);
-        this.d = j2Var;
-        imageView2.setImageDrawable(j2Var);
-        j2Var.f23979f = AndroidUtilities.dp(7.0f);
-        imageView2.setScaleX(0.1f);
-        imageView2.setScaleY(0.1f);
-        imageView2.setAlpha(0.0f);
-        addView(imageView2, w7.x5.i(36.0f, 36.0f, 8388661, f7, 11.0f, f7, 0.0f));
-        imageView2.setOnClickListener(new x70(this, 12));
-        ci.h2 h2Var = new ci.h2(this, context, 6);
-        this.e = h2Var;
-        h2Var.setTextSize(1, 16.0f);
-        h2Var.setHintTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.P5, f6Var));
-        h2Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.R5, f6Var));
-        h2Var.setBackgroundDrawable(null);
-        h2Var.setPadding(0, 0, 0, 0);
-        h2Var.setMaxLines(1);
-        h2Var.setLines(1);
-        h2Var.setSingleLine(true);
-        h2Var.setGravity(w7.x5.y() | 16);
-        h2Var.setImeOptions(268435459);
-        h2Var.setCursorColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Mh, f6Var));
-        h2Var.setCursorSize(AndroidUtilities.dp(20.0f));
-        h2Var.setCursorWidth(1.5f);
-        float f10 = f7 + 2.0f;
-        addView(h2Var, w7.x5.i(-1.0f, 40.0f, 8388659, f10 + 38.0f, 9.0f, f10 + 30.0f, 0.0f));
-        h2Var.addTextChangedListener(new ci.i2(this, 11));
-        h2Var.setOnEditorActionListener(new e1(this, 5));
+        this.f30345f = scrollSlidingTextTabStrip;
+        this.e = i10;
+        this.d = new e6(this, 360L, qr.h);
     }
 
-    public abstract void a(String str);
-
-    public fq getProgressDrawable() {
-        return this.d;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.d.e(this.f30345f.f22369n0);
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, e) * 255.0f));
+        } else {
+            canvas2 = canvas;
+        }
+        super.onDraw(canvas2);
+        if (i10 > 0) {
+            canvas2.restore();
+        }
     }
 
-    public View getSearchBackground() {
-        return this.f29946a;
-    }
-
-    public EditTextBoldCursor getSearchEditText() {
-        return this.e;
-    }
-
-    public void setHint(String str) {
-        this.e.setHint(str);
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f30345f.f22370r == this.e) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        accessibilityNodeInfo.setSelected(z10);
     }
 }

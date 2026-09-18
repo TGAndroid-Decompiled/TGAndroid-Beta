@@ -1,26 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class c7 implements Utilities.Callback {
-    public final int f22951a;
-    public final h8 f22952b;
+public final class c7 implements Runnable {
+    public final int f23210a;
+    public final j8 f23211b;
+    public final MessageObject f23212c;
 
-    public c7(h8 h8Var, int i10) {
-        this.f22951a = i10;
-        this.f22952b = h8Var;
+    public c7(j8 j8Var, MessageObject messageObject, int i10) {
+        this.f23210a = i10;
+        this.f23211b = j8Var;
+        this.f23212c = messageObject;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f22951a) {
+    public final void run() {
+        switch (this.f23210a) {
             case 0:
-                h8.u(this.f22952b, (MessageObject) obj);
+                j8.m(this.f23211b, this.f23212c);
                 return;
             default:
-                Uri uri = (Uri) obj;
-                h8.x(this.f22952b);
+                j8.p(this.f23211b, this.f23212c);
                 return;
         }
     }

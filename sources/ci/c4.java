@@ -7,19 +7,19 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 public final class c4 extends View implements x2 {
-    public final org.telegram.ui.Components.m6 f4427a;
+    public final org.telegram.ui.Components.o6 f4427a;
 
     public c4(Activity activity) {
         super(activity);
-        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(true, true, true, false);
-        this.f4427a = m6Var;
-        m6Var.k(0.35f, 300L, qr.h);
-        m6Var.r(-1);
-        m6Var.t(AndroidUtilities.dp(14.0f));
-        m6Var.p(AndroidUtilities.dp(1.4f), AndroidUtilities.dp(0.4f), 1275068416);
-        m6Var.f26070b = 1;
-        m6Var.setCallback(this);
-        m6Var.G = AndroidUtilities.displaySize.x;
+        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(true, true, true, false);
+        this.f4427a = o6Var;
+        o6Var.k(0.35f, 300L, qr.h);
+        o6Var.r(-1);
+        o6Var.t(AndroidUtilities.dp(14.0f));
+        o6Var.p(AndroidUtilities.dp(1.4f), AndroidUtilities.dp(0.4f), 1275068416);
+        o6Var.f26868b = 1;
+        o6Var.setCallback(this);
+        o6Var.G = AndroidUtilities.displaySize.x;
     }
 
     @Override
@@ -27,9 +27,9 @@ public final class c4 extends View implements x2 {
         super.draw(canvas);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Components.m6 m6Var = this.f4427a;
-        m6Var.setBounds(0, 0, width, height);
-        m6Var.draw(canvas);
+        org.telegram.ui.Components.o6 o6Var = this.f4427a;
+        o6Var.setBounds(0, 0, width, height);
+        o6Var.draw(canvas);
     }
 
     @Override

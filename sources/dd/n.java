@@ -14,29 +14,29 @@ public enum n extends b2 {
             lVar.a(b2.v);
             return;
         }
-        if (aVar.o() && lVar.f7708o != null) {
-            String str2 = "</" + lVar.f7708o;
+        if (aVar.o() && lVar.f7707o != null) {
+            String str2 = "</" + lVar.f7707o;
             Locale locale = Locale.ENGLISH;
             String lowerCase = str2.toLowerCase(locale);
             String upperCase = str2.toUpperCase(locale);
             if (aVar.p(lowerCase) <= -1 && aVar.p(upperCase) <= -1) {
                 j d = lVar.d(false);
-                String str3 = lVar.f7708o;
-                d.f7687c = str3;
+                String str3 = lVar.f7707o;
+                d.f7686c = str3;
                 if (str3 != null) {
                     str = str3.toLowerCase(locale);
                 } else {
                     str = "";
                 }
                 d.d = str;
-                lVar.f7702i = d;
+                lVar.f7701i = d;
                 lVar.k();
                 aVar.q();
-                lVar.f7699c = b2.f7649a;
+                lVar.f7698c = b2.f7648a;
                 return;
             }
         }
         lVar.h("<");
-        lVar.f7699c = b2.f7653c;
+        lVar.f7698c = b2.f7652c;
     }
 }

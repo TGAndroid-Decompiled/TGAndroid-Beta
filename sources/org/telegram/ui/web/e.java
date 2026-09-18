@@ -11,11 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import w7.x5;
+import w7.y5;
 public final class e extends FrameLayout {
-    public final ImageView f38779a;
-    public final TextView f38780b;
-    public final ImageView f38781c;
+    public final ImageView f38886a;
+    public final TextView f38887b;
+    public final ImageView f38888c;
     public final Paint d;
     public boolean e;
 
@@ -23,20 +23,20 @@ public final class e extends FrameLayout {
         super(context);
         this.d = new Paint(1);
         ImageView imageView = new ImageView(context);
-        this.f38779a = imageView;
+        this.f38886a = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.menu_clear_recent);
-        addView(imageView, x5.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        addView(imageView, y5.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         TextView textView = new TextView(context);
-        this.f38780b = textView;
+        this.f38887b = textView;
         textView.setTextSize(1, 16.0f);
-        addView(textView, x5.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        addView(textView, y5.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f38781c = imageView2;
+        this.f38888c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.menu_browser_arrowup);
-        addView(imageView2, x5.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
+        addView(imageView2, y5.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class e extends FrameLayout {
 
     public void setAsShowMore(k kVar) {
         int i10 = R.drawable.arrow_more;
-        ImageView imageView = this.f38779a;
+        ImageView imageView = this.f38886a;
         imageView.setImageResource(i10);
         imageView.setColorFilter(new PorterDuffColorFilter(kVar.H, PorterDuff.Mode.SRC_IN));
     }

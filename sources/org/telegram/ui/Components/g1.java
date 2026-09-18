@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class g1 implements qc0 {
-    public final int f24062a;
-    public final int[] f24063b;
+public final class g1 implements zc0 {
+    public final int f24286a;
+    public final int[] f24287b;
 
     public g1(int i10, int[] iArr) {
-        this.f24062a = i10;
-        this.f24063b = iArr;
+        this.f24286a = i10;
+        this.f24287b = iArr;
     }
 
     @Override
-    public final String e(int i10) {
-        switch (this.f24062a) {
+    public final String j(int i10) {
+        switch (this.f24286a) {
             case 0:
-                int i11 = this.f24063b[i10];
+                int i11 = this.f24287b[i10];
                 if (i11 == 0) {
                     return LocaleController.getString(R.string.MuteNever);
                 }
@@ -36,7 +36,7 @@ public final class g1 implements qc0 {
                 }
                 return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
             default:
-                int i12 = this.f24063b[i10];
+                int i12 = this.f24287b[i10];
                 if (i12 == 0) {
                     return LocaleController.getString(R.string.AutoDeleteNever);
                 }

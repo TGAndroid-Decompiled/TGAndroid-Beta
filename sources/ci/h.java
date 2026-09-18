@@ -25,7 +25,7 @@ public final class h implements TextWatcher {
         boolean z10;
         m mVar = this.f4738c;
         e eVar = mVar.f4992c0;
-        org.telegram.ui.Components.n6 n6Var = mVar.v;
+        org.telegram.ui.Components.p6 p6Var = mVar.v;
         mVar.f5015w = Character.codePointCount(editable, 0, editable.length());
         int captionLimit = mVar.getCaptionLimit();
         if (mVar.f5015w + 25 > captionLimit) {
@@ -33,18 +33,18 @@ public final class h implements TextWatcher {
         } else {
             str = null;
         }
-        n6Var.a();
-        n6Var.setText(str);
+        p6Var.a();
+        p6Var.setText(str);
         if (mVar.f5015w >= captionLimit) {
             i10 = -1280137;
         } else {
             i10 = -1;
         }
-        n6Var.setTextColor(i10);
+        p6Var.setTextColor(i10);
         if (mVar.f5015w > captionLimit && !UserConfig.getInstance(mVar.U).isPremium() && mVar.f5015w < mVar.getCaptionPremiumLimit() && mVar.f5015w > this.f4736a && (mVar.e() || MessagesController.getInstance(mVar.U).premiumFeaturesBlocked())) {
             int i11 = -mVar.N;
             mVar.N = i11;
-            AndroidUtilities.shakeViewSpring(n6Var, i11);
+            AndroidUtilities.shakeViewSpring(p6Var, i11);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
         }
         int i12 = mVar.f5015w;
@@ -85,7 +85,7 @@ public final class h implements TextWatcher {
             if (mVar.M == null) {
                 i iVar = new i(mVar, mVar.getContext(), mVar.f5017x, LaunchActivity.R(), new ai.d(), 0);
                 mVar.M = iVar;
-                mVar.T = new org.telegram.ui.Components.la(mVar.O, iVar, 0, false);
+                mVar.T = new org.telegram.ui.Components.na(mVar.O, iVar, 0, false);
                 mVar.M.p(new a6.i(mVar, 11));
                 ah.c cVar = mVar.f4998h0;
                 if (cVar != null) {
@@ -94,7 +94,7 @@ public final class h implements TextWatcher {
                     c10.o(eh.b.i(mVar.f4987a));
                     iVar2.setBackgroundDrawable(c10);
                 }
-                mVar.f4989b.addView(mVar.M, w7.x5.e(-1, -1, 83));
+                mVar.f4989b.addView(mVar.M, w7.y5.e(-1, -1, 83));
                 mVar.w();
             }
             if (mVar.M.getAdapter() != null) {
@@ -102,7 +102,7 @@ public final class h implements TextWatcher {
                 MessagesController.getInstance(mVar.U).getUser(Long.valueOf(mVar.f5017x));
                 TLRPC.Chat chat = MessagesController.getInstance(mVar.U).getChat(Long.valueOf(-mVar.f5017x));
                 adapter.getClass();
-                adapter.f9828l0 = chat;
+                adapter.f9827l0 = chat;
                 mVar.M.getAdapter().U(charSequence, gVar.getEditText().getSelectionStart(), null, false, false);
             }
         }

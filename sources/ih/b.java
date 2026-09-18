@@ -4,19 +4,19 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Components.tp;
 import org.telegram.ui.Components.wq;
-import w7.x5;
+import w7.y5;
 public final class b extends FrameLayout {
-    public final f6 f11199a;
+    public final e6 f11199a;
     public a f11200b;
     public wq f11201c;
     public boolean d;
 
-    public b(Context context, f6 f6Var) {
+    public b(Context context, e6 e6Var) {
         super(context);
-        this.f11199a = f6Var;
+        this.f11199a = e6Var;
     }
 
     public final void a(int i10, boolean z10) {
@@ -24,9 +24,9 @@ public final class b extends FrameLayout {
             wq wqVar = new wq(getContext(), this.f11199a);
             this.f11201c = wqVar;
             wqVar.setReverse(this.d);
-            addView(this.f11201c, x5.e(-1, 28, 48));
+            addView(this.f11201c, y5.e(-1, 28, 48));
         }
-        this.f11201c.f29728a.c(i10, z10);
+        this.f11201c.f30148a.c(i10, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -42,16 +42,16 @@ public final class b extends FrameLayout {
             }
             tp tpVar = new tp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
             aVar.e = tpVar;
-            tpVar.f28179f = 90.0f;
+            tpVar.f28459f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
             imageView.setBackground(aVar.e);
             aVar.d.setVisibility(8);
-            aVar.addView(aVar.d, x5.e(46, 46, 17));
+            aVar.addView(aVar.d, y5.e(46, 46, 17));
         }
         le.b bVar = aVar.f11194a;
-        if (!bVar.f13985f && bVar.e == 0.0f) {
-            aVar.e.f28178c = -1L;
+        if (!bVar.f14131f && bVar.e == 0.0f) {
+            aVar.e.f28458c = -1L;
         }
         bVar.a(z10, z11);
     }

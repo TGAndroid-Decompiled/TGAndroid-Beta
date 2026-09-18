@@ -1,86 +1,107 @@
 package ki;
 
-import ah.o;
-import ai.w0;
-import ai.x5;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.a7;
-import org.telegram.ui.bv;
-import org.telegram.ui.i6;
-import org.telegram.ui.x6;
-public final class a implements bh.a {
-    public final int f13652a;
-    public final Object f13653b;
-    public final Object f13654c;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCaptureSession;
+import android.hardware.camera2.CaptureRequest;
+import android.os.Handler;
+public final class a implements Runnable {
+    public final int f13650a;
+    public final g f13651b;
 
-    public a(int i10, Object obj, Object obj2) {
-        this.f13652a = i10;
-        this.f13653b = obj;
-        this.f13654c = obj2;
+    public a(g gVar, int i10) {
+        this.f13650a = i10;
+        this.f13651b = gVar;
     }
 
     @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f13652a) {
+    public final void run() {
+        i iVar;
+        boolean z10;
+        int i10;
+        switch (this.f13650a) {
             case 0:
-            case 1:
-            case 2:
-            default:
-                aVar.f417a = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f13652a) {
-            case 0:
-                ml0 ml0Var = (ml0) this.f13653b;
-                gh.d.a(ml0Var, canvas, rectF, ml0Var, (FrameLayout) this.f13654c);
+                g gVar = this.f13651b;
+                Handler handler = gVar.f13683j;
+                if (handler != null) {
+                    handler.post(new a(gVar, 1));
+                    return;
+                }
                 return;
             case 1:
-                a7 a7Var = (a7) this.f13653b;
-                i6 i6Var = (i6) this.f13654c;
-                w0 w0Var = a7Var.f31738b;
-                gh.d.a(w0Var, canvas, rectF, w0Var, i6Var);
-                x6 x6Var = a7Var.M;
-                if (x6Var != null) {
-                    int childCount = x6Var.h.getChildCount();
-                    for (int i10 = 0; i10 < childCount; i10++) {
-                        View childAt = a7Var.M.h.getChildAt(i10);
-                        if (childAt instanceof ml0) {
-                            ml0 ml0Var2 = (ml0) childAt;
-                            gh.d.a(ml0Var2, canvas, rectF, ml0Var2, i6Var);
+                g gVar2 = this.f13651b;
+                if (gVar2.B && gVar2.f13694u != null && (iVar = gVar2.f13692s) != null) {
+                    synchronized (iVar) {
+                        z10 = iVar.f13742s;
+                    }
+                    if (!z10) {
+                        try {
+                            gVar2.f13692s.n();
+                            m mVar = gVar2.f13691r;
+                            if (mVar != null) {
+                                long j3 = gVar2.f13692s.f13743t;
+                                if (j3 > 0) {
+                                    mVar.f13758f = j3;
+                                    mVar.f13775y = -1L;
+                                    mVar.f13776z = 0L;
+                                    mVar.A = -1L;
+                                    mVar.U = true;
+                                } else {
+                                    throw new IllegalArgumentException("Invalid recording time origin");
+                                }
+                            }
+                            j jVar = gVar2.f13680f;
+                            jVar.b("first camera frame received; codecs started: segmentElapsedMs=" + g.g(gVar2.I));
+                            h0 h0Var = (h0) gVar2.f13681g.f13383b;
+                            h0Var.h.post(new w(h0Var, 3));
+                            return;
+                        } catch (RuntimeException e) {
+                            gVar2.k(e);
+                            return;
                         }
                     }
                     return;
                 }
                 return;
             case 2:
-                bv bvVar = (bv) this.f13653b;
-                x5 x5Var = (x5) this.f13654c;
-                int childCount2 = bvVar.f32573a.getChildCount();
-                for (int i11 = 0; i11 < childCount2; i11++) {
-                    View childAt2 = bvVar.f32573a.getChildAt(i11);
-                    if (childAt2 instanceof ml0) {
-                        ml0 ml0Var3 = (ml0) childAt2;
-                        gh.d.a(ml0Var3, canvas, rectF, ml0Var3, x5Var);
+                this.f13651b.i();
+                return;
+            case 3:
+                g gVar3 = this.f13651b;
+                CameraCaptureSession cameraCaptureSession = gVar3.f13694u;
+                CaptureRequest.Builder builder = gVar3.v;
+                if (gVar3.B && cameraCaptureSession != null && builder != null) {
+                    try {
+                        gVar3.b(builder);
+                        CaptureRequest.Key key = CaptureRequest.FLASH_MODE;
+                        if (gVar3.A && gVar3.h()) {
+                            i10 = 2;
+                        } else {
+                            i10 = 0;
+                        }
+                        builder.set(key, Integer.valueOf(i10));
+                        cameraCaptureSession.setRepeatingRequest(builder.build(), null, gVar3.f13683j);
+                        return;
+                    } catch (CameraAccessException e7) {
+                        gVar3.k(e7);
+                        return;
                     }
                 }
                 return;
-            default:
-                ((o) this.f13654c).f(canvas, rectF);
-                jh jhVar = ((ProfileActivity) this.f13653b).O.f30619c2;
-                if (jhVar != null) {
-                    jhVar.f(canvas, rectF);
-                    return;
+            case 4:
+                g gVar4 = this.f13651b;
+                gVar4.B = false;
+                gVar4.f();
+                i iVar2 = gVar4.f13692s;
+                if (iVar2 != null) {
+                    iVar2.o();
+                    gVar4.f13692s = null;
                 }
+                gVar4.F = false;
+                h0 h0Var2 = (h0) gVar4.f13681g.f13383b;
+                h0Var2.h.post(new w(h0Var2, 2));
+                return;
+            default:
+                this.f13651b.s();
                 return;
         }
     }

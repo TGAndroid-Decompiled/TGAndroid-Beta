@@ -1,62 +1,65 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.view.WindowManager;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.mc1;
-public final class m81 implements SensorEventListener {
-    public final float[] f26110a = new float[3];
-    public final float[] f26111b = new float[3];
-    public int f26112c;
-    public final WindowManager d;
-    public final SensorManager e;
-    public final Sensor f26113f;
-    public boolean h;
-    public l81 f26114n;
+import android.util.SparseIntArray;
+public final class m81 extends w81 {
+    public final x81 f26356t0;
 
-    public m81(Context context) {
-        this.d = (WindowManager) context.getSystemService("window");
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.e = sensorManager;
-        this.f26113f = sensorManager.getDefaultSensor(1);
+    public m81(x81 x81Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i10, context, e6Var, z10);
+        this.f26356t0 = x81Var;
     }
 
-    public static float a(int i10, int i11) {
-        float f7 = i10;
-        float dp = AndroidUtilities.dp(16.0f) * 2;
-        float f10 = (f7 + dp) / f7;
-        float f11 = i11;
-        return Math.max(f10, (dp + f11) / f11);
-    }
-
-    public final void b(mc1 mc1Var) {
-        this.f26114n = mc1Var;
-    }
-
-    public final void c(boolean z10) {
-        if (this.h != z10) {
-            this.h = z10;
-            Sensor sensor = this.f26113f;
-            if (sensor != null) {
-                SensorManager sensorManager = this.e;
-                if (z10) {
-                    sensorManager.registerListener(this, sensor, 1);
-                } else {
-                    sensorManager.unregisterListener(this);
-                }
-            }
+    @Override
+    public final void e(float f7, int i10, int i11) {
+        float f10;
+        int i12;
+        boolean z10;
+        if (f7 < 0.0f) {
+            f10 = 0.0f;
+        } else if (f7 > 1.0f) {
+            f10 = 1.0f;
+        } else {
+            f10 = f7;
         }
-    }
-
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m81.onSensorChanged(android.hardware.SensorEvent):void");
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+        this.F = i10;
+        SparseIntArray sparseIntArray = this.f29963b0;
+        this.G = sparseIntArray.get(i10);
+        if (f10 > 0.0f) {
+            v81 v81Var = this.f29986y;
+            if (v81Var != null) {
+                o81 o81Var = ((x81) ((l.d) v81Var).f13859a).L;
+            }
+            this.L = i11;
+            this.M = sparseIntArray.get(i11);
+        } else {
+            this.L = -1;
+            this.M = -1;
+        }
+        this.K = f10;
+        this.v.g1();
+        invalidate();
+        c(i10);
+        if (f10 >= 1.0f) {
+            this.L = -1;
+            this.M = -1;
+            this.F = i11;
+            this.G = sparseIntArray.get(i11);
+        }
+        v81 v81Var2 = this.f29986y;
+        if (v81Var2 != null) {
+            ((x81) ((l.d) v81Var2).f13859a).s();
+        }
+        if (f7 <= 0.5f) {
+            i12 = i10;
+        } else {
+            i12 = i11;
+        }
+        if (i10 < i11) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f26356t0.z(i12, z10);
     }
 }

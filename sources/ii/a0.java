@@ -46,7 +46,7 @@ public abstract class a0 extends FrameLayout implements l4 {
             if (i13 <= 0) {
                 i11 = 0;
             } else {
-                i11 = AndroidUtilities.dp(hg.k0.g(i13, 1, 16, 10));
+                i11 = AndroidUtilities.dp(hg.k0.f(i13, 1, 16, 10));
             }
         } else {
             i11 = this.e;
@@ -55,7 +55,7 @@ public abstract class a0 extends FrameLayout implements l4 {
         if (aVar2 != null && aVar2.f11214o) {
             int i14 = aVar2.f11212m;
             if (i14 > 0) {
-                i12 = AndroidUtilities.dp(hg.k0.g(i14, 1, 16, 10));
+                i12 = AndroidUtilities.dp(hg.k0.f(i14, 1, 16, 10));
             }
         } else {
             i12 = this.h;

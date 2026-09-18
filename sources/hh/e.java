@@ -18,8 +18,8 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.vj;
-import w7.p;
+import org.telegram.ui.tj;
+import w7.q;
 public final class e extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
     public static final RectF H = new RectF();
     public ViewTreeObserver E;
@@ -67,11 +67,11 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
         }
     }
 
-    public final void b(int i10, long j3, ViewGroup viewGroup, vj vjVar) {
+    public final void b(int i10, long j3, ViewGroup viewGroup, tj tjVar) {
         this.d = j3;
         this.e = i10;
         this.f10516f = viewGroup;
-        this.h = vjVar;
+        this.h = tjVar;
     }
 
     public final void c() {
@@ -131,7 +131,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
                 RectF rectF2 = dVar.f10505c;
                 canvas.drawRect(rectF2, j6.Ml);
                 canvas.save();
-                canvas.translate(rectF2.left, p.a(p.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
+                canvas.translate(rectF2.left, q.a(q.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
                 canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), j6.Kl);
                 canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
                 canvas.save();

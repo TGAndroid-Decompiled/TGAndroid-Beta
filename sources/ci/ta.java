@@ -23,14 +23,14 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.de0;
-import org.telegram.ui.Components.e91;
-import org.telegram.ui.Components.f91;
-import org.telegram.ui.Components.jf0;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.me0;
+import org.telegram.ui.Components.r91;
+import org.telegram.ui.Components.s91;
+import org.telegram.ui.Components.sf0;
 import org.telegram.ui.Components.vz;
 import org.telegram.ui.Components.wz;
-public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.b2, e91, Utilities.CallbackVoidReturn, u61, k9, m8 {
+public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.a2, r91, Utilities.CallbackVoidReturn, i71, k9, m8 {
     public final int f5575a;
     public final oc f5576b;
 
@@ -40,8 +40,8 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+    public r0.m1 Q0(View view, r0.m1 m1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
         int i10 = defaultWindowInsets.f10591a;
         oc ocVar = this.f5576b;
         ocVar.Y = i10;
@@ -49,7 +49,7 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
         ocVar.f5205a0 = defaultWindowInsets.f10593c;
         ocVar.f5208b0 = defaultWindowInsets.d;
         ocVar.f5244n.requestLayout();
-        return r0.l1.f41881b;
+        return r0.m1.f42108b;
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
     }
 
     @Override
-    public void b(vz vzVar) {
+    public void c(vz vzVar) {
         MediaController.SavedFilterState savedFilterState;
         oc ocVar = this.f5576b;
         if (vzVar != null) {
@@ -79,12 +79,7 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
     }
 
     @Override
-    public Bitmap c(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile(this.f5576b.K1.L.getAbsolutePath(), options);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f5575a) {
             case 2:
                 oc ocVar = this.f5576b;
@@ -190,6 +185,11 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
     }
 
     @Override
+    public Bitmap g(BitmapFactory.Options options) {
+        return BitmapFactory.decodeFile(this.f5576b.K1.L.getAbsolutePath(), options);
+    }
+
+    @Override
     public void k(final ga gaVar, final boolean z10, final boolean z11, boolean z12, final boolean z13, final TLRPC.InputPeer inputPeer, final int i10, b9 b9Var, final androidx.fragment.app.a0 a0Var) {
         switch (this.f5575a) {
             case 10:
@@ -242,7 +242,7 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
                 int i15 = R.string.PermissionNoCameraMicVideo;
                 String[] strArr = z13 ? new String[0] : new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"};
                 final oc ocVar2 = this.f5576b;
-                de0.d(i14, i15, strArr, new Utilities.Callback() {
+                me0.d(i14, i15, strArr, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
                         final boolean z14;
@@ -307,10 +307,10 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
             str = C;
         }
         ocVar.e0(str);
-        f91 f91Var = ocVar.V0;
-        if (f91Var != null) {
+        s91 s91Var = ocVar.V0;
+        if (s91Var != null) {
             ocVar.T1 = 0.0f;
-            f91Var.b(0.0f, false);
+            s91Var.b(0.0f, false);
         }
         ocVar.m0(true);
     }
@@ -320,9 +320,9 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
         Bitmap bitmap;
         cc ccVar;
         oc ocVar = this.f5576b;
-        jf0 jf0Var = ocVar.B1;
-        if (jf0Var != null) {
-            bitmap = jf0Var.getUiBlurBitmap();
+        sf0 sf0Var = ocVar.B1;
+        if (sf0Var != null) {
+            bitmap = sf0Var.getUiBlurBitmap();
         } else {
             bitmap = null;
         }

@@ -5,7 +5,7 @@ public abstract class c1 {
     public static final String f2956a;
 
     static {
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         f2956a = Integer.toString(0, 36);
     }
 
@@ -28,7 +28,7 @@ public abstract class c1 {
                         }
                         return new f1();
                     }
-                    throw new IllegalArgumentException(hg.k0.i(i10, "Unknown RatingType: "));
+                    throw new IllegalArgumentException(hg.k0.h(i10, "Unknown RatingType: "));
                 }
                 String str3 = d1.d;
                 if (bundle.getInt(str, -1) == 2) {

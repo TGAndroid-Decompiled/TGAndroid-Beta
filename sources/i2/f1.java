@@ -37,7 +37,7 @@ public final class f1 {
                 ArrayList arrayList2 = this.f10698b;
                 if (i11 > 0) {
                     e1 e1Var2 = (e1) arrayList2.get(i11 - 1);
-                    e1Var.d = e1Var2.f10681a.f43335o.e.o() + e1Var2.d;
+                    e1Var.d = e1Var2.f10681a.f43562o.e.o() + e1Var2.d;
                     e1Var.e = false;
                     e1Var.f10683c.clear();
                 } else {
@@ -45,7 +45,7 @@ public final class f1 {
                     e1Var.e = false;
                     e1Var.f10683c.clear();
                 }
-                int o9 = e1Var.f10681a.f43335o.e.o();
+                int o9 = e1Var.f10681a.f43562o.e.o();
                 for (int i12 = i11; i12 < arrayList2.size(); i12++) {
                     ((e1) arrayList2.get(i12)).d += o9;
                 }
@@ -76,7 +76,7 @@ public final class f1 {
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             e1 e1Var = (e1) arrayList.get(i11);
             e1Var.d = i10;
-            i10 += e1Var.f10681a.f43335o.e.o();
+            i10 += e1Var.f10681a.f43562o.e.o();
         }
         return new l1(arrayList, this.f10703j);
     }
@@ -120,30 +120,30 @@ public final class f1 {
         };
         c1 c1Var = new c1(this, e1Var);
         this.f10700f.put(e1Var, new d1(a0Var, r12, c1Var));
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         Looper myLooper = Looper.myLooper();
         if (myLooper == null) {
             myLooper = Looper.getMainLooper();
         }
         Handler handler = new Handler(myLooper, null);
         a0Var.getClass();
-        a5.a aVar = a0Var.f43329c;
+        a5.a aVar = a0Var.f43556c;
         aVar.getClass();
         ?? obj = new Object();
-        obj.f43425a = handler;
-        obj.f43426b = c1Var;
+        obj.f43652a = handler;
+        obj.f43653b = c1Var;
         ((CopyOnWriteArrayList) aVar.d).add(obj);
         Looper myLooper2 = Looper.myLooper();
         if (myLooper2 == null) {
             myLooper2 = Looper.getMainLooper();
         }
         Handler handler2 = new Handler(myLooper2, null);
-        n2.j jVar = a0Var.d;
-        jVar.getClass();
-        CopyOnWriteArrayList copyOnWriteArrayList = jVar.f14917c;
+        n2.k kVar = a0Var.d;
+        kVar.getClass();
+        CopyOnWriteArrayList copyOnWriteArrayList = kVar.f15092c;
         ?? obj2 = new Object();
-        obj2.f14913a = handler2;
-        obj2.f14914b = c1Var;
+        obj2.f15088a = handler2;
+        obj2.f15089b = c1Var;
         copyOnWriteArrayList.add(obj2);
         a0Var.l(r12, this.f10705l, this.f10697a);
     }
@@ -153,7 +153,7 @@ public final class f1 {
         e1 e1Var = (e1) identityHashMap.remove(d0Var);
         e1Var.getClass();
         e1Var.f10681a.o(d0Var);
-        e1Var.f10683c.remove(((u2.x) d0Var).f43555a);
+        e1Var.f10683c.remove(((u2.x) d0Var).f43782a);
         if (!identityHashMap.isEmpty()) {
             c();
         }
@@ -165,7 +165,7 @@ public final class f1 {
             ArrayList arrayList = this.f10698b;
             e1 e1Var = (e1) arrayList.remove(i12);
             this.d.remove(e1Var.f10682b);
-            int i13 = -e1Var.f10681a.f43335o.e.o();
+            int i13 = -e1Var.f10681a.f43562o.e.o();
             for (int i14 = i12; i14 < arrayList.size(); i14++) {
                 ((e1) arrayList.get(i14)).d += i13;
             }

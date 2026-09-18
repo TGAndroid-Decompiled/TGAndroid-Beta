@@ -2,7 +2,7 @@ package ci;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fh;
+import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ti;
 public final class b6 implements ti {
     @Override
@@ -16,12 +16,8 @@ public final class b6 implements ti {
     }
 
     @Override
-    public final void x0(fh fhVar) {
-        fhVar.run();
-    }
-
-    @Override
-    public final void K0() {
+    public final void x0(gh ghVar) {
+        ghVar.run();
     }
 
     @Override
@@ -30,6 +26,10 @@ public final class b6 implements ti {
 
     @Override
     public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void K0() {
     }
 
     @Override

@@ -24,10 +24,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h01;
-import org.telegram.ui.Components.n70;
-import org.telegram.ui.Components.om0;
+import org.telegram.ui.Components.an0;
 import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.v01;
+import org.telegram.ui.Components.w70;
 public final class zc extends View {
     public final Paint A0;
     public final Paint B0;
@@ -70,7 +70,7 @@ public final class zc extends View {
     public float V;
     public final Paint V0;
     public boolean W;
-    public final om0 W0;
+    public final an0 W0;
     public boolean X0;
     public final ai.m3 Y0;
     public long Z0;
@@ -79,42 +79,42 @@ public final class zc extends View {
     public long f5885a1;
     public Runnable f5886b;
     public int f5887b0;
-    public final org.telegram.ui.Components.c6 f5888b1;
+    public final org.telegram.ui.Components.e6 f5888b1;
     public int f5889c;
-    public final org.telegram.ui.Components.c6 f5890c0;
+    public final org.telegram.ui.Components.e6 f5890c0;
     public long f5891c1;
     public Runnable d;
-    public final org.telegram.ui.Components.c6 f5892d0;
+    public final org.telegram.ui.Components.e6 f5892d0;
     public ai.j f5893d1;
     public long e;
-    public final org.telegram.ui.Components.c6 f5894e0;
+    public final org.telegram.ui.Components.e6 f5894e0;
     public long f5895e1;
     public long f5896f;
-    public final org.telegram.ui.Components.c6 f5897f0;
+    public final org.telegram.ui.Components.e6 f5897f0;
     public long f5898f1;
-    public final org.telegram.ui.Components.c6 f5899g0;
+    public final org.telegram.ui.Components.e6 f5899g0;
     public float f5900g1;
     public tc h;
-    public final org.telegram.ui.Components.c6 f5901h0;
+    public final org.telegram.ui.Components.e6 f5901h0;
     public int f5902h1;
-    public final org.telegram.ui.Components.c6 f5903i0;
+    public final org.telegram.ui.Components.e6 f5903i0;
     public int f5904i1;
     public boolean f5905j0;
     public int f5906j1;
-    public final org.telegram.ui.Components.ha f5907k0;
+    public final org.telegram.ui.Components.ja f5907k0;
     public int f5908k1;
-    public final org.telegram.ui.Components.la f5909l0;
+    public final org.telegram.ui.Components.na f5909l0;
     public boolean l1;
-    public final org.telegram.ui.Components.la m0;
+    public final org.telegram.ui.Components.na m0;
     public boolean f5910m1;
     public int f5911n;
-    public final org.telegram.ui.Components.la f5912n0;
+    public final org.telegram.ui.Components.na f5912n0;
     public float f5913n1;
     public final RectF f5914o0;
     public boolean f5915o1;
     public final Path f5916p0;
     public VelocityTracker f5917p1;
-    public final h01 f5918q0;
+    public final v01 f5918q0;
     public boolean f5919q1;
     public final ArrayList f5920r;
     public final Drawable f5921r0;
@@ -141,7 +141,7 @@ public final class zc extends View {
     public final Paint f5941z0;
     public int f5942z1;
 
-    public zc(Context context, ViewGroup viewGroup, ac acVar, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.ha haVar) {
+    public zc(Context context, ViewGroup viewGroup, ac acVar, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Components.ja jaVar) {
         super(context);
         this.f5911n = 0;
         this.f5920r = new ArrayList();
@@ -151,13 +151,13 @@ public final class zc extends View {
         this.f5938y = new Path();
         this.f5887b0 = 1;
         qr qrVar = qr.h;
-        this.f5890c0 = new org.telegram.ui.Components.c6(this, 0L, 360L, qrVar);
-        this.f5892d0 = new org.telegram.ui.Components.c6(this, 360L, qrVar);
-        this.f5894e0 = new org.telegram.ui.Components.c6(this, 0L, 360L, qrVar);
-        this.f5897f0 = new org.telegram.ui.Components.c6(this, 360L, qrVar);
-        this.f5899g0 = new org.telegram.ui.Components.c6(this, 0L, 360L, qrVar);
-        this.f5901h0 = new org.telegram.ui.Components.c6(this, 0L, 360L, qrVar);
-        this.f5903i0 = new org.telegram.ui.Components.c6(this, 0L, 320L, qrVar);
+        this.f5890c0 = new org.telegram.ui.Components.e6(this, 0L, 360L, qrVar);
+        this.f5892d0 = new org.telegram.ui.Components.e6(this, 360L, qrVar);
+        this.f5894e0 = new org.telegram.ui.Components.e6(this, 0L, 360L, qrVar);
+        this.f5897f0 = new org.telegram.ui.Components.e6(this, 360L, qrVar);
+        this.f5899g0 = new org.telegram.ui.Components.e6(this, 0L, 360L, qrVar);
+        this.f5901h0 = new org.telegram.ui.Components.e6(this, 0L, 360L, qrVar);
+        this.f5903i0 = new org.telegram.ui.Components.e6(this, 0L, 320L, qrVar);
         this.f5905j0 = true;
         this.f5914o0 = new RectF();
         this.f5916p0 = new Path();
@@ -196,10 +196,10 @@ public final class zc extends View {
         this.U0 = new Matrix();
         Paint paint8 = new Paint(1);
         this.V0 = paint8;
-        this.W0 = new om0(getContext(), null);
+        this.W0 = new an0(getContext(), null);
         this.Z0 = -1L;
         this.f5885a1 = -1L;
-        this.f5888b1 = new org.telegram.ui.Components.c6(0.0f, this, 0L, 340L, qrVar);
+        this.f5888b1 = new org.telegram.ui.Components.e6(0.0f, this, 0L, 340L, qrVar);
         this.f5891c1 = -1L;
         this.f5902h1 = -1;
         this.f5904i1 = -1;
@@ -228,7 +228,7 @@ public final class zc extends View {
         paint3.setColor(-16777216);
         paint5.setColor(-1);
         paint4.setColor(637534208);
-        this.f5918q0 = new h01(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
+        this.f5918q0 = new v01(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.timeline).mutate();
         this.f5921r0 = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
@@ -236,14 +236,14 @@ public final class zc extends View {
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.filled_widget_music).mutate();
         this.K0 = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        this.f5907k0 = haVar;
-        this.f5909l0 = new org.telegram.ui.Components.la(haVar, this, 0, false);
-        this.m0 = new org.telegram.ui.Components.la(haVar, this, 3, false);
-        this.f5912n0 = new org.telegram.ui.Components.la(haVar, this, 4, false);
-        this.Y0 = new ai.m3(this, viewGroup, f6Var, haVar, acVar, 5);
+        this.f5907k0 = jaVar;
+        this.f5909l0 = new org.telegram.ui.Components.na(jaVar, this, 0, false);
+        this.m0 = new org.telegram.ui.Components.na(jaVar, this, 3, false);
+        this.f5912n0 = new org.telegram.ui.Components.na(jaVar, this, 4, false);
+        this.Y0 = new ai.m3(this, viewGroup, e6Var, jaVar, acVar, 5);
     }
 
-    public static void a(final zc zcVar, ViewGroup viewGroup, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.ha haVar, View view) {
+    public static void a(final zc zcVar, ViewGroup viewGroup, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Components.ja jaVar, View view) {
         int i10;
         ArrayList arrayList = zcVar.f5923s;
         int i11 = zcVar.f5906j1;
@@ -270,7 +270,7 @@ public final class zc extends View {
                                 zcVar2.V = floatValue;
                                 sc scVar = zcVar2.f5883a;
                                 if (scVar != null) {
-                                    scVar.n(f7.floatValue());
+                                    scVar.l(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -280,7 +280,7 @@ public final class zc extends View {
                                 zcVar3.L = floatValue2;
                                 sc scVar2 = zcVar3.f5883a;
                                 if (scVar2 != null) {
-                                    scVar2.h(f7.floatValue());
+                                    scVar2.i(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -289,7 +289,7 @@ public final class zc extends View {
                                 zcVar4.h.f5582i = f7.floatValue();
                                 sc scVar3 = zcVar4.f5883a;
                                 if (scVar3 != null) {
-                                    scVar3.F(f7.floatValue());
+                                    scVar3.D(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -300,8 +300,8 @@ public final class zc extends View {
                 int i12 = zcVar.f5931v1;
                 int i13 = zcVar.f5940y1;
                 int i14 = zcVar.f5937x1;
-                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(zcVar.T, 1.0f, zcVar.f5897f0.f22940c) * ((float) zcVar.R)) + ((float) (zcVar.Q - zcVar.f5896f))) / ((float) min)) * zcVar.f5929u1) + i13 + i14);
-                n70 F = n70.F(viewGroup, f6Var, zcVar);
+                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(zcVar.T, 1.0f, zcVar.f5897f0.f23794c) * ((float) zcVar.R)) + ((float) (zcVar.Q - zcVar.f5896f))) / ((float) min)) * zcVar.f5929u1) + i13 + i14);
+                w70 F = w70.F(viewGroup, e6Var, zcVar);
                 F.q(i8Var);
                 F.o();
                 F.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryAudioRemove), new pc(zcVar, 1), false);
@@ -309,7 +309,7 @@ public final class zc extends View {
                 F.U = true;
                 F.a0((-(zcVar.f5931v1 - min2)) + AndroidUtilities.dp(18.0f), zcVar.F0.top);
                 F.Z();
-                F.R(haVar, -view.getX(), -view.getY());
+                F.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
             } else if (i11 == 1 && zcVar.E) {
                 i8 i8Var2 = new i8(zcVar.getContext(), 0);
@@ -333,7 +333,7 @@ public final class zc extends View {
                                 zcVar2.V = floatValue;
                                 sc scVar = zcVar2.f5883a;
                                 if (scVar != null) {
-                                    scVar.n(f7.floatValue());
+                                    scVar.l(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -343,7 +343,7 @@ public final class zc extends View {
                                 zcVar3.L = floatValue2;
                                 sc scVar2 = zcVar3.f5883a;
                                 if (scVar2 != null) {
-                                    scVar2.h(f7.floatValue());
+                                    scVar2.i(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -352,7 +352,7 @@ public final class zc extends View {
                                 zcVar4.h.f5582i = f7.floatValue();
                                 sc scVar3 = zcVar4.f5883a;
                                 if (scVar3 != null) {
-                                    scVar3.F(f7.floatValue());
+                                    scVar3.D(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -363,8 +363,8 @@ public final class zc extends View {
                 int i15 = zcVar.f5931v1;
                 int i16 = zcVar.f5940y1;
                 int i17 = zcVar.f5937x1;
-                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(zcVar.K, 1.0f, zcVar.f5892d0.f22940c) * ((float) zcVar.H)) + ((float) (zcVar.I - zcVar.f5896f))) / ((float) min3)) * zcVar.f5929u1) + i16 + i17);
-                n70 F2 = n70.F(viewGroup, f6Var, zcVar);
+                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(zcVar.K, 1.0f, zcVar.f5892d0.f23794c) * ((float) zcVar.H)) + ((float) (zcVar.I - zcVar.f5896f))) / ((float) min3)) * zcVar.f5929u1) + i16 + i17);
+                w70 F2 = w70.F(viewGroup, e6Var, zcVar);
                 F2.q(i8Var2);
                 F2.o();
                 F2.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryRoundRemove), new pc(zcVar, 2), false);
@@ -372,7 +372,7 @@ public final class zc extends View {
                 F2.U = true;
                 F2.a0((-(zcVar.f5931v1 - min4)) + AndroidUtilities.dp(18.0f), zcVar.f5936x0.top);
                 F2.Z();
-                F2.R(haVar, -view.getX(), -view.getY());
+                F2.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
             } else if (i11 == 0 && zcVar.h != null) {
                 i8 i8Var3 = new i8(zcVar.getContext(), 0);
@@ -396,7 +396,7 @@ public final class zc extends View {
                                 zcVar2.V = floatValue;
                                 sc scVar = zcVar2.f5883a;
                                 if (scVar != null) {
-                                    scVar.n(f7.floatValue());
+                                    scVar.l(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -406,7 +406,7 @@ public final class zc extends View {
                                 zcVar3.L = floatValue2;
                                 sc scVar2 = zcVar3.f5883a;
                                 if (scVar2 != null) {
-                                    scVar2.h(f7.floatValue());
+                                    scVar2.i(f7.floatValue());
                                     return;
                                 }
                                 return;
@@ -415,20 +415,20 @@ public final class zc extends View {
                                 zcVar4.h.f5582i = f7.floatValue();
                                 sc scVar3 = zcVar4.f5883a;
                                 if (scVar3 != null) {
-                                    scVar3.F(f7.floatValue());
+                                    scVar3.D(f7.floatValue());
                                     return;
                                 }
                                 return;
                         }
                     }
                 };
-                n70 F3 = n70.F(viewGroup, f6Var, zcVar);
+                w70 F3 = w70.F(viewGroup, e6Var, zcVar);
                 F3.q(i8Var3);
                 F3.V(5);
                 F3.U = true;
                 F3.a0(AndroidUtilities.dp(18.0f), zcVar.f5926t0.top);
                 F3.Z();
-                F3.R(haVar, -view.getX(), -view.getY());
+                F3.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
             } else if (i11 == 3 && (i10 = zcVar.f5908k1) >= 0 && i10 < arrayList.size()) {
                 tc tcVar = (tc) arrayList.get(zcVar.f5908k1);
@@ -437,13 +437,13 @@ public final class zc extends View {
                 i8Var4.f4792c = 1.5f;
                 i8Var4.d(tcVar.f5582i);
                 i8Var4.h = new m2(7, zcVar, tcVar);
-                n70 F4 = n70.F(viewGroup, f6Var, zcVar);
+                w70 F4 = w70.F(viewGroup, e6Var, zcVar);
                 F4.q(i8Var4);
                 F4.V(5);
                 F4.U = true;
                 F4.a0(AndroidUtilities.dp(18.0f), tcVar.f5583j.top);
                 F4.Z();
-                F4.R(haVar, -view.getX(), -view.getY());
+                F4.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
             }
         } catch (Exception unused) {
@@ -479,7 +479,7 @@ public final class zc extends View {
             if (f7 > 0.0f) {
                 f7 += AndroidUtilities.dp(4.0f);
             }
-            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((tc) arrayList.get(i10)).f5584k.f22940c);
+            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((tc) arrayList.get(i10)).f5584k.f23794c);
         }
         return f7;
     }
@@ -496,7 +496,7 @@ public final class zc extends View {
         if (tcVar == null) {
             return 0.0f;
         }
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), tcVar.f5584k.f22940c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), tcVar.f5584k.f23794c);
     }
 
     public final int c(android.view.MotionEvent r21) {
@@ -505,14 +505,14 @@ public final class zc extends View {
 
     @Override
     public final void computeScroll() {
-        om0 om0Var = this.W0;
-        if (om0Var.b()) {
-            int i10 = om0Var.f26814j;
+        an0 an0Var = this.W0;
+        if (an0Var.b()) {
+            int i10 = an0Var.f22671j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f5919q1) {
                 this.f5896f = Math.max(0.0f, (((i10 - this.f5940y1) - this.f5937x1) / this.f5929u1) * ((float) min));
             } else if (!this.P) {
-                om0Var.a();
+                an0Var.a();
                 return;
             } else {
                 int i11 = this.f5940y1;
@@ -618,7 +618,7 @@ public final class zc extends View {
         } else {
             f15 = 10.0f;
         }
-        float y3 = org.telegram.messenger.w1.y(AndroidUtilities.dp(f15), dp, 2.0f, f11);
+        float y3 = org.telegram.messenger.q.y(AndroidUtilities.dp(f15), dp, 2.0f, f11);
         float f19 = f7 + f10;
         float f20 = (f19 - dp2) / 2.0f;
         if (this.X0) {
@@ -644,7 +644,7 @@ public final class zc extends View {
         if (this.X0) {
             f18 = 2.5f;
         }
-        rectF.set(A, f20, org.telegram.messenger.w1.a(AndroidUtilities.dp(f18), dp, 2.0f, f12), f21);
+        rectF.set(A, f20, org.telegram.messenger.q.b(AndroidUtilities.dp(f18), dp, 2.0f, f12), f21);
         if (!this.X0) {
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), paint2);
             if (paint != null) {
@@ -705,7 +705,7 @@ public final class zc extends View {
     }
 
     public int getTimelineHeight() {
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f5942z1 + this.f5942z1, getContentHeight(), this.f5903i0.f22940c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f5942z1 + this.f5942z1, getContentHeight(), this.f5903i0.f23794c);
     }
 
     public final void h(float f7) {
@@ -732,8 +732,8 @@ public final class zc extends View {
             this.T = Utilities.clamp(this.T - (f13 / ((float) this.R)), 1.0f, 0.0f);
             sc scVar2 = this.f5883a;
             if (scVar2 != null) {
-                scVar2.Z(this.S);
-                this.f5883a.V(this.T);
+                scVar2.Y(this.S);
+                this.f5883a.T(this.T);
             }
         } else if (this.P) {
             if (tcVar != null) {
@@ -784,8 +784,8 @@ public final class zc extends View {
                 this.Q = Utilities.clamp(this.Q + j20, j14, j13);
                 sc scVar3 = this.f5883a;
                 if (scVar3 != null) {
-                    scVar3.Z(this.S);
-                    this.f5883a.V(this.T);
+                    scVar3.Y(this.S);
+                    this.f5883a.T(this.T);
                 }
             } else if (j21 < j18) {
                 float clamp5 = Utilities.clamp(((f14 - ((float) j19)) - ((float) j20)) / ((float) this.R), 1.0f - min, 0.0f);
@@ -805,8 +805,8 @@ public final class zc extends View {
                 this.Q = Utilities.clamp(this.Q + j20, j12, j11);
                 sc scVar4 = this.f5883a;
                 if (scVar4 != null) {
-                    scVar4.Z(this.S);
-                    this.f5883a.V(this.T);
+                    scVar4.Y(this.S);
+                    this.f5883a.T(this.T);
                 }
             } else {
                 this.Q = j21;
@@ -819,7 +819,7 @@ public final class zc extends View {
         invalidate();
         sc scVar5 = this.f5883a;
         if (scVar5 != null) {
-            scVar5.o0(this.Q + (this.S * ((float) this.R)));
+            scVar5.l0(this.Q + (this.S * ((float) this.R)));
         }
         boolean z10 = this.f5910m1;
         if (!z10 && (scVar = this.f5883a) != null) {
@@ -845,7 +845,7 @@ public final class zc extends View {
             }
             sc scVar6 = this.f5883a;
             this.e = clamp;
-            scVar6.o(clamp, false);
+            scVar6.n(clamp, false);
         } else if (z10 || this.f5922r1) {
             tc tcVar3 = this.h;
             if (tcVar3 != null) {
@@ -864,7 +864,7 @@ public final class zc extends View {
             }
             sc scVar7 = this.f5883a;
             if (scVar7 != null) {
-                scVar7.o(this.e, false);
+                scVar7.n(this.e, false);
             }
         }
     }
@@ -915,8 +915,8 @@ public final class zc extends View {
                         tcVar.f5580f = Utilities.clamp(tcVar.f5580f + j17, j14, j13);
                         sc scVar2 = this.f5883a;
                         if (scVar2 != null) {
-                            scVar2.T(tcVar.f5581g, tcVar.f5577a);
-                            this.f5883a.d0(tcVar.h, tcVar.f5577a);
+                            scVar2.R(tcVar.f5581g, tcVar.f5577a);
+                            this.f5883a.Z(tcVar.h, tcVar.f5577a);
                         }
                     } else if (j18 < j15) {
                         tc tcVar6 = this.v;
@@ -940,8 +940,8 @@ public final class zc extends View {
                         tcVar.f5580f = Utilities.clamp(tcVar.f5580f + j17, j12, j11);
                         sc scVar3 = this.f5883a;
                         if (scVar3 != null) {
-                            scVar3.T(tcVar.f5581g, tcVar.f5577a);
-                            this.f5883a.d0(tcVar.h, tcVar.f5577a);
+                            scVar3.R(tcVar.f5581g, tcVar.f5577a);
+                            this.f5883a.Z(tcVar.h, tcVar.f5577a);
                         }
                     } else {
                         tcVar.f5580f = j18;
@@ -955,7 +955,7 @@ public final class zc extends View {
             invalidate();
             sc scVar4 = this.f5883a;
             if (scVar4 != null) {
-                scVar4.j0(tcVar.f5577a, tcVar.f5580f);
+                scVar4.i0(tcVar.f5577a, tcVar.f5580f);
             }
             boolean z10 = this.f5910m1;
             if (!z10 && (scVar = this.f5883a) != null) {
@@ -977,7 +977,7 @@ public final class zc extends View {
                 }
                 sc scVar5 = this.f5883a;
                 this.e = clamp;
-                scVar5.o(clamp, false);
+                scVar5.n(clamp, false);
             } else if (z10 || this.f5922r1) {
                 tc tcVar10 = this.v;
                 if (tcVar10 != tcVar && tcVar10 != null) {
@@ -991,7 +991,7 @@ public final class zc extends View {
                 }
                 sc scVar6 = this.f5883a;
                 if (scVar6 != null) {
-                    scVar6.o(this.e, false);
+                    scVar6.n(this.e, false);
                 }
             }
         }
@@ -1017,7 +1017,7 @@ public final class zc extends View {
             sc scVar2 = this.f5883a;
             if (scVar2 != null) {
                 scVar2.u(this.J);
-                this.f5883a.i0(this.K);
+                this.f5883a.h0(this.K);
             }
         } else if (this.G) {
             float f11 = tcVar.h;
@@ -1056,7 +1056,7 @@ public final class zc extends View {
                 sc scVar3 = this.f5883a;
                 if (scVar3 != null) {
                     scVar3.u(this.J);
-                    this.f5883a.i0(this.K);
+                    this.f5883a.h0(this.K);
                 }
             } else if (j20 < j17) {
                 tc tcVar4 = this.h;
@@ -1081,7 +1081,7 @@ public final class zc extends View {
                 sc scVar4 = this.f5883a;
                 if (scVar4 != null) {
                     scVar4.u(this.J);
-                    this.f5883a.i0(this.K);
+                    this.f5883a.h0(this.K);
                 }
             } else {
                 this.I = j20;
@@ -1094,7 +1094,7 @@ public final class zc extends View {
         invalidate();
         sc scVar5 = this.f5883a;
         if (scVar5 != null) {
-            scVar5.O(this.I + (this.J * ((float) this.H)));
+            scVar5.J(this.I + (this.J * ((float) this.H)));
         }
         boolean z10 = this.f5910m1;
         if (!z10 && (scVar = this.f5883a) != null) {
@@ -1115,7 +1115,7 @@ public final class zc extends View {
             }
             sc scVar6 = this.f5883a;
             this.e = clamp;
-            scVar6.o(clamp, false);
+            scVar6.n(clamp, false);
         } else if (z10 || this.f5922r1) {
             tc tcVar7 = this.h;
             if (tcVar7 != null) {
@@ -1129,7 +1129,7 @@ public final class zc extends View {
             }
             sc scVar7 = this.f5883a;
             if (scVar7 != null) {
-                scVar7.o(this.e, false);
+                scVar7.n(this.e, false);
             }
         }
     }
@@ -1195,7 +1195,7 @@ public final class zc extends View {
                 invalidate();
                 sc scVar = this.f5883a;
                 if (scVar != null) {
-                    scVar.o(clamp, z10);
+                    scVar.n(clamp, z10);
                 }
                 ai.j jVar = this.f5893d1;
                 if (jVar != null) {

@@ -1,43 +1,96 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class wi implements Runnable {
-    public final int f39046a;
-    public final xi f39047b;
-    public final int f39048c;
-    public final boolean d;
-    public final org.telegram.ui.Components.gk0 e;
-    public final float f39049f;
-    public final float h;
-    public final zg.p0 f39050n;
+public final class wi extends AnimatorListenerAdapter {
+    public final int f39175a;
+    public final zn f39176b;
 
-    public wi(xi xiVar, int i10, boolean z10, org.telegram.ui.Components.gk0 gk0Var, float f7, float f10, zg.p0 p0Var, int i11) {
-        this.f39046a = i11;
-        this.f39047b = xiVar;
-        this.f39048c = i10;
-        this.d = z10;
-        this.e = gk0Var;
-        this.f39049f = f7;
-        this.h = f10;
-        this.f39050n = p0Var;
+    public wi(zn znVar, int i10) {
+        this.f39175a = i10;
+        this.f39176b = znVar;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f39046a) {
+    public final void onAnimationEnd(Animator animator) {
+        tj tjVar;
+        switch (this.f39175a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new wi(this.f39047b, this.f39048c, this.d, this.e, this.f39049f, this.h, this.f39050n, 1), 50L);
-                return;
-            default:
-                bo boVar = this.f39047b.f39656s;
-                org.telegram.ui.Cells.a0 q82 = boVar.q8(this.f39048c, true);
-                if (this.d) {
-                    i10 = ((org.telegram.ui.ActionBar.o2) boVar).currentAccount;
-                    zg.l0.d(boVar, this.e, q82, null, this.f39049f, this.h, this.f39050n, i10, 1);
-                    zg.l0.f();
+                zn znVar = this.f39176b;
+                org.telegram.ui.Components.f60 f60Var = znVar.f40216b3;
+                if (f60Var != null) {
+                    f60Var.setIsMessageTransition(false);
+                    znVar.f40216b3.d(true);
+                    znVar.f40216b3.setVisibility(4);
                     return;
                 }
+                return;
+            case 1:
+                zn znVar2 = this.f39176b;
+                znVar2.A9 = AndroidUtilities.dp(30.0f);
+                znVar2.o9();
+                return;
+            case 2:
+                zn znVar3 = this.f39176b;
+                if (znVar3.fragmentView != null && (tjVar = znVar3.f40488x0) != null) {
+                    tjVar.invalidate();
+                    znVar3.fragmentView.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                this.f39176b.P.setVisibility(4);
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new cj(this, 3), 2000L);
+                return;
+            case 5:
+                zn znVar4 = this.f39176b;
+                if (animator.equals(znVar4.f40279g3)) {
+                    znVar4.f40279g3 = null;
+                    return;
+                }
+                return;
+            case 6:
+                zn znVar5 = this.f39176b;
+                if (animator.equals(znVar5.f40279g3)) {
+                    znVar5.f40279g3 = null;
+                    return;
+                }
+                return;
+            case 7:
+                zn znVar6 = this.f39176b;
+                if (animator.equals(znVar6.f40291h3)) {
+                    znVar6.f40303i3 = 1.0f;
+                    znVar6.lc();
+                    znVar6.f40291h3 = null;
+                    return;
+                }
+                return;
+            case 8:
+                zn znVar7 = this.f39176b;
+                if (animator.equals(znVar7.f40291h3)) {
+                    znVar7.f40303i3 = 0.0f;
+                    znVar7.lc();
+                    znVar7.f40291h3 = null;
+                    return;
+                }
+                return;
+            case 9:
+                this.f39176b.T4 = null;
+                return;
+            case 10:
+                zn znVar8 = this.f39176b;
+                znVar8.Da = 1.0f;
+                znVar8.Y.setVisibility(4);
+                znVar8.O0.setVisibility(4);
+                znVar8.o9();
+                return;
+            default:
+                zn znVar9 = this.f39176b;
+                znVar9.Da = 0.0f;
+                znVar9.o9();
                 return;
         }
     }

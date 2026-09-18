@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.xp;
-import org.telegram.ui.i10;
+import org.telegram.ui.g10;
 import org.telegram.ui.sl0;
 public final class p2 extends TimerTask {
     public final int f5302a;
@@ -26,8 +26,8 @@ public final class p2 extends TimerTask {
             case 1:
                 e6.c cVar = (e6.c) this.f5303b;
                 ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f7997k == null && cVar.f7991b != 0) {
-                    e6.h hVar = cVar.f7992c;
+                if (!arrayDeque.isEmpty() && cVar.f7996k == null && cVar.f7990b != 0) {
+                    e6.h hVar = cVar.f7991c;
                     int[] e = g6.a.e(arrayDeque);
                     hVar.getClass();
                     n6.l.e("Must be called from the main thread.");
@@ -38,7 +38,7 @@ public final class p2 extends TimerTask {
                         e6.h.x(kVar);
                         basePendingResult = kVar;
                     }
-                    cVar.f7997k = basePendingResult;
+                    cVar.f7996k = basePendingResult;
                     basePendingResult.i(new e6.r(cVar, 1));
                     arrayDeque.clear();
                     return;
@@ -48,7 +48,7 @@ public final class p2 extends TimerTask {
                 AndroidUtilities.runOnUIThread(new xp(this, 24));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new i10(this, 23));
+                AndroidUtilities.runOnUIThread(new g10(this, 23));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new sl0(this, 5));

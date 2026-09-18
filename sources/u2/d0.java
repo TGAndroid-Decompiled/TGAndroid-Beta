@@ -10,7 +10,7 @@ public interface d0 extends d1 {
 
     long l();
 
-    long p(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3);
+    long q(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3);
 
     o1 r();
 

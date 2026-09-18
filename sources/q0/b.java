@@ -2,12 +2,12 @@ package q0;
 
 import j$.util.Objects;
 public final class b {
-    public final Object f41102a;
-    public final Object f41103b;
+    public final Object f41335a;
+    public final Object f41336b;
 
     public b(Object obj, Object obj2) {
-        this.f41102a = obj;
-        this.f41103b = obj2;
+        this.f41335a = obj;
+        this.f41336b = obj2;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (!Objects.equals(bVar.f41102a, this.f41102a) || !Objects.equals(bVar.f41103b, this.f41103b)) {
+        if (!Objects.equals(bVar.f41335a, this.f41335a) || !Objects.equals(bVar.f41336b, this.f41336b)) {
             return false;
         }
         return true;
@@ -24,13 +24,13 @@ public final class b {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Object obj = this.f41102a;
+        Object obj = this.f41335a;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
-        Object obj2 = this.f41103b;
+        Object obj2 = this.f41336b;
         if (obj2 != null) {
             i10 = obj2.hashCode();
         }
@@ -38,6 +38,6 @@ public final class b {
     }
 
     public final String toString() {
-        return "Pair{" + this.f41102a + " " + this.f41103b + "}";
+        return "Pair{" + this.f41335a + " " + this.f41336b + "}";
     }
 }

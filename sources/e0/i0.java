@@ -8,20 +8,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.Components.bz0;
-import org.telegram.ui.Components.zy0;
+import org.telegram.ui.Components.kz0;
+import org.telegram.ui.Components.mz0;
 public final class i0 implements j4.a0 {
-    public int f7789a;
-    public final Object f7790b;
-    public final Object f7791c;
+    public int f7788a;
+    public final Object f7789b;
+    public final Object f7790c;
     public final Object d;
     public final Object e;
 
     public i0(int i10) {
-        this.f7789a = i10;
+        this.f7788a = i10;
         int i11 = i10 * 8;
-        this.f7790b = new float[i11];
-        this.f7791c = new float[i11];
+        this.f7789b = new float[i11];
+        this.f7790c = new float[i11];
         this.d = new short[i10 * 6];
         this.e = new int[i10 * 4];
         for (short s10 = 0; s10 < i10; s10 = (short) (s10 + 1)) {
@@ -70,9 +70,9 @@ public final class i0 implements j4.a0 {
         int i13;
         int i14;
         e2.b0 b0Var3;
-        SparseArray sparseArray2 = (SparseArray) this.f7791c;
+        SparseArray sparseArray2 = (SparseArray) this.f7790c;
         SparseIntArray sparseIntArray = (SparseIntArray) this.d;
-        a4.h hVar2 = (a4.h) this.f7790b;
+        a4.h hVar2 = (a4.h) this.f7789b;
         j4.d0 d0Var = (j4.d0) this.e;
         SparseArray sparseArray3 = d0Var.h;
         SparseBooleanArray sparseBooleanArray = d0Var.f12646i;
@@ -99,7 +99,7 @@ public final class i0 implements j4.a0 {
                 hVar2.t(4);
                 vVar.K(hVar2.i(12));
                 if (i15 == 2 && d0Var.f12655r == null) {
-                    j4.g0 a10 = fVar.a(21, new j6.l(21, null, 0, null, e2.d0.f7889b));
+                    j4.g0 a10 = fVar.a(21, new j6.l(21, null, 0, null, e2.d0.f7888b));
                     d0Var.f12655r = a10;
                     if (a10 != null) {
                         a10.b(b0Var, d0Var.f12650m, new j4.f0(D, 21, 8192));
@@ -116,7 +116,7 @@ public final class i0 implements j4.a0 {
                     int i17 = hVar2.i(13);
                     hVar2.t(4);
                     int i18 = hVar2.i(12);
-                    int i19 = vVar.f7935b;
+                    int i19 = vVar.f7934b;
                     int i20 = i19 + i18;
                     int i21 = a11;
                     String str = null;
@@ -124,10 +124,10 @@ public final class i0 implements j4.a0 {
                     int i22 = -1;
                     int i23 = 0;
                     while (true) {
-                        if (vVar.f7935b < i20) {
+                        if (vVar.f7934b < i20) {
                             int x10 = vVar.x();
                             hVar = hVar2;
-                            int x11 = vVar.f7935b + vVar.x();
+                            int x11 = vVar.f7934b + vVar.x();
                             if (x11 > i20) {
                                 break;
                             }
@@ -188,7 +188,7 @@ public final class i0 implements j4.a0 {
                                 b0Var3 = b0Var;
                             } else if (x10 == 89) {
                                 ArrayList arrayList2 = new ArrayList();
-                                while (vVar.f7935b < x11) {
+                                while (vVar.f7934b < x11) {
                                     String trim = vVar.v(3, StandardCharsets.UTF_8).trim();
                                     vVar.x();
                                     e2.b0 b0Var4 = b0Var;
@@ -212,7 +212,7 @@ public final class i0 implements j4.a0 {
                                     i22 = 257;
                                 }
                             }
-                            vVar.K(i13 - vVar.f7935b);
+                            vVar.K(i13 - vVar.f7934b);
                             b0Var = b0Var3;
                             hVar2 = hVar;
                             sparseArray3 = sparseArray4;
@@ -226,7 +226,7 @@ public final class i0 implements j4.a0 {
                     int i24 = D;
                     e2.b0 b0Var5 = b0Var;
                     vVar.J(i20);
-                    j6.l lVar = new j6.l(i22, str, i23, arrayList, Arrays.copyOfRange(vVar.f7934a, i19, i20));
+                    j6.l lVar = new j6.l(i22, str, i23, arrayList, Arrays.copyOfRange(vVar.f7933a, i19, i20));
                     if (i16 == 6 || i16 == 5) {
                         i16 = i22;
                     }
@@ -295,7 +295,7 @@ public final class i0 implements j4.a0 {
                     }
                     return;
                 }
-                sparseArray7.remove(this.f7789a);
+                sparseArray7.remove(this.f7788a);
                 if (i15 == 1) {
                     i10 = 0;
                 } else {
@@ -320,17 +320,17 @@ public final class i0 implements j4.a0 {
     }
 
     public void f(int i10) {
-        zy0[] zy0VarArr;
+        kz0[] kz0VarArr;
         int[] iArr = (int[]) this.d;
         if (iArr[i10] != 0) {
             return;
         }
         iArr[i10] = 1;
-        for (zy0 zy0Var : ((zy0[][]) this.f7791c)[i10]) {
-            f(zy0Var.f30690a.f24043b);
-            int i11 = this.f7789a;
-            this.f7789a = i11 - 1;
-            ((zy0[]) this.f7790b)[i11] = zy0Var;
+        for (kz0 kz0Var : ((kz0[][]) this.f7790c)[i10]) {
+            f(kz0Var.f25968a.f27760b);
+            int i11 = this.f7788a;
+            this.f7788a = i11 - 1;
+            ((kz0[]) this.f7789b)[i11] = kz0Var;
         }
         iArr[i10] = 2;
     }
@@ -344,45 +344,45 @@ public final class i0 implements j4.a0 {
     }
 
     public i0(c3.z zVar, c3.j0 j0Var, byte[] bArr, c3.k0[] k0VarArr, int i10) {
-        this.f7790b = zVar;
-        this.f7791c = j0Var;
+        this.f7789b = zVar;
+        this.f7790c = j0Var;
         this.d = bArr;
         this.e = k0VarArr;
-        this.f7789a = i10;
+        this.f7788a = i10;
     }
 
     public i0(j4.d0 d0Var, int i10) {
         this.e = d0Var;
-        this.f7790b = new a4.h(new byte[5], 5);
-        this.f7791c = new SparseArray();
+        this.f7789b = new a4.h(new byte[5], 5);
+        this.f7790c = new SparseArray();
         this.d = new SparseIntArray();
-        this.f7789a = i10;
+        this.f7788a = i10;
     }
 
-    public i0(bz0 bz0Var, zy0[] zy0VarArr) {
-        this.e = bz0Var;
-        int length = zy0VarArr.length;
-        this.f7790b = new zy0[length];
-        this.f7789a = length - 1;
-        int e = bz0Var.e() + 1;
-        zy0[][] zy0VarArr2 = new zy0[e];
+    public i0(mz0 mz0Var, kz0[] kz0VarArr) {
+        this.e = mz0Var;
+        int length = kz0VarArr.length;
+        this.f7789b = new kz0[length];
+        this.f7788a = length - 1;
+        int e = mz0Var.e() + 1;
+        kz0[][] kz0VarArr2 = new kz0[e];
         int[] iArr = new int[e];
-        for (zy0 zy0Var : zy0VarArr) {
-            int i10 = zy0Var.f30690a.f24042a;
+        for (kz0 kz0Var : kz0VarArr) {
+            int i10 = kz0Var.f25968a.f27759a;
             iArr[i10] = iArr[i10] + 1;
         }
         for (int i11 = 0; i11 < e; i11++) {
-            zy0VarArr2[i11] = new zy0[iArr[i11]];
+            kz0VarArr2[i11] = new kz0[iArr[i11]];
         }
         Arrays.fill(iArr, 0);
-        for (zy0 zy0Var2 : zy0VarArr) {
-            int i12 = zy0Var2.f30690a.f24042a;
-            zy0[] zy0VarArr3 = zy0VarArr2[i12];
+        for (kz0 kz0Var2 : kz0VarArr) {
+            int i12 = kz0Var2.f25968a.f27759a;
+            kz0[] kz0VarArr3 = kz0VarArr2[i12];
             int i13 = iArr[i12];
             iArr[i12] = i13 + 1;
-            zy0VarArr3[i13] = zy0Var2;
+            kz0VarArr3[i13] = kz0Var2;
         }
-        this.f7791c = zy0VarArr2;
-        this.d = new int[((bz0) this.e).e() + 1];
+        this.f7790c = kz0VarArr2;
+        this.d = new int[((mz0) this.e).e() + 1];
     }
 }

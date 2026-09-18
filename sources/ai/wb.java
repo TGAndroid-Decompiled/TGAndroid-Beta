@@ -1,7 +1,7 @@
 package ai;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class wb implements org.telegram.ui.Components.mb {
+public final class wb implements org.telegram.ui.Components.ob {
     public final float[] f1678a = new float[2];
     public final xb f1679b;
 
@@ -45,7 +45,7 @@ public final class wb implements org.telegram.ui.Components.mb {
     }
 
     @Override
-    public final void b(org.telegram.ui.Components.oc ocVar) {
+    public final void b(org.telegram.ui.Components.qc qcVar) {
     }
 
     @Override
@@ -53,6 +53,6 @@ public final class wb implements org.telegram.ui.Components.mb {
     }
 
     @Override
-    public final void d(org.telegram.ui.Components.oc ocVar) {
+    public final void d(org.telegram.ui.Components.qc qcVar) {
     }
 }

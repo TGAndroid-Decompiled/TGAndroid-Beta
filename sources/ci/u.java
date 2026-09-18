@@ -11,7 +11,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bc0;
+import org.telegram.ui.Components.kc0;
 import org.telegram.ui.Components.qr;
 public final class u extends Drawable {
     public final int f5586a = 1;
@@ -31,7 +31,7 @@ public final class u extends Drawable {
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
-        this.f5590g = new org.telegram.ui.Components.c6(new bc0(this, 1), 320L, qr.h, 0);
+        this.f5590g = new org.telegram.ui.Components.e6(new kc0(this, 1), 320L, qr.h, 0);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(-1);
@@ -70,7 +70,7 @@ public final class u extends Drawable {
                 float dpf22 = AndroidUtilities.dpf2(3.32f);
                 Paint paint2 = this.e;
                 paint2.setStrokeWidth(dpf22);
-                float e = ((org.telegram.ui.Components.c6) this.f5590g).e(this.f5589f);
+                float e = ((org.telegram.ui.Components.e6) this.f5590g).e(this.f5589f);
                 float centerX = getBounds().centerX();
                 float centerY = getBounds().centerY();
                 float dpf23 = AndroidUtilities.dpf2(10.66f);
@@ -209,7 +209,7 @@ public final class u extends Drawable {
             float f15 = f14 * dpf27;
             float f16 = dpf25;
             float f17 = dpf26;
-            rectF2.set(f11 + (max * f10) + f7, f15 + (max2 * f14) + f12, org.telegram.ui.Cells.p6.a(max, i15 + 1, f7, f11), org.telegram.ui.Cells.p6.a(max2, i14 + 1, f12, f15));
+            rectF2.set(f11 + (max * f10) + f7, f15 + (max2 * f14) + f12, t8.b.d(max, i15 + 1, f7, f11), t8.b.d(max2, i14 + 1, f12, f15));
             float[] fArr = (float[]) this.f5590g;
             float f18 = 0.0f;
             float f19 = (i15 == 0 && i14 == 0) ? f17 : 0.0f;

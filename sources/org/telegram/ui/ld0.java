@@ -1,41 +1,38 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class ld0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35504a;
-    public final yg0 f35505b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ld0 implements Runnable {
+    public final int f35347a;
+    public final xg0 f35348b;
 
-    public ld0(yg0 yg0Var, int i10) {
-        this.f35504a = i10;
-        this.f35505b = yg0Var;
+    public ld0(xg0 xg0Var, int i10) {
+        this.f35347a = i10;
+        this.f35348b = xg0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35504a) {
+    public final void run() {
+        switch (this.f35347a) {
             case 0:
-                yg0 yg0Var = this.f35505b;
-                yg0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yg0Var.f39892c.setAlpha(floatValue);
-                yg0Var.f39892c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
+                xg0 xg0Var = this.f35348b;
+                xg0Var.f39483r0 = false;
+                xg0Var.x1(true, true);
                 return;
             case 1:
-                yg0 yg0Var2 = this.f35505b;
-                yg0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yg0Var2.f39892c.setAlpha(floatValue2);
-                yg0Var2.f39892c.setTranslationY((1.0f - floatValue2) * AndroidUtilities.dp(230.0f));
+                this.f35348b.f39466c0 = false;
                 return;
             default:
-                yg0 yg0Var3 = this.f35505b;
-                yg0Var3.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f7 = (0.9f * floatValue3) + 0.1f;
-                yg0Var3.V.setScaleX(f7);
-                yg0Var3.V.setScaleY(f7);
-                yg0Var3.V.setAlpha(floatValue3);
+                xg0 xg0Var2 = this.f35348b;
+                if (xg0Var2.getParentActivity() != null && !xg0Var2.getParentActivity().isFinishing() && xg0Var2.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xg0Var2.getParentActivity());
+                    alertDialog$Builder.f18622a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
+                    alertDialog$Builder.f18622a.T = LocaleController.getString(R.string.SafetyNetErrorOccurred);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new qd0(xg0Var2, 1));
+                    alertDialog$Builder.o();
+                    return;
+                }
                 return;
         }
     }

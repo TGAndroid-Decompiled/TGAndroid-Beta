@@ -6,7 +6,7 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.dm0;
+import org.telegram.ui.ja0;
 public final class e5 implements q0.a {
     public final int f4597a;
     public final Object f4598b;
@@ -29,10 +29,10 @@ public final class e5 implements q0.a {
             case 1:
                 ei.k3 k3Var = (ei.k3) obj2;
                 Float f7 = (Float) obj;
-                k3Var.f8458y.setLoadProgressAnimated(f7.floatValue());
+                k3Var.f8457y.setLoadProgressAnimated(f7.floatValue());
                 if (f7.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(qr.f27383f);
+                    duration.setInterpolator(qr.f27715f);
                     duration.addUpdateListener(new ei.d2(k3Var, 1));
                     duration.addListener(new ai.b(k3Var, 21));
                     duration.start();
@@ -45,7 +45,7 @@ public final class e5 implements q0.a {
                 q4Var.I.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(qr.f27383f);
+                    duration2.setInterpolator(qr.f27715f);
                     duration2.addUpdateListener(new ei.h4(q4Var, 0));
                     duration2.addListener(new ai.b(q4Var, 22));
                     duration2.start();
@@ -60,9 +60,9 @@ public final class e5 implements q0.a {
                 ((pg.u) obj2).h(((Integer) obj).intValue());
                 return;
             case 5:
-                xh.y4 y4Var = (xh.y4) obj2;
+                xh.z4 z4Var = (xh.z4) obj2;
                 if (((c5.h) obj).f3894a == 0) {
-                    AndroidUtilities.runOnUIThread(new xh.o4(y4Var, 1));
+                    AndroidUtilities.runOnUIThread(new xh.p4(z4Var, 1));
                     return;
                 }
                 return;
@@ -78,7 +78,7 @@ public final class e5 implements q0.a {
                     responseCodeString = BillingController.getResponseCodeString(i11);
                 }
                 FileLog.d("StarsController.buy onResult " + z10 + " " + responseCodeString);
-                AndroidUtilities.runOnUIThread(new dm0(callback2, z10, responseCodeString, 12));
+                AndroidUtilities.runOnUIThread(new ja0(callback2, z10, responseCodeString, 13));
                 return;
         }
     }

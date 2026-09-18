@@ -1,28 +1,27 @@
 package qg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class c0 extends AnimatorListenerAdapter {
-    public final int f41347a;
-    public final p0 f41348b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import org.telegram.ui.au0;
+public final class c0 extends pg.e1 {
+    public final Bitmap E;
+    public final au0 F;
 
-    public c0(p0 p0Var, int i10) {
-        this.f41347a = i10;
-        this.f41348b = p0Var;
+    public c0(au0 au0Var, Context context, pg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, s0Var, bitmap, null, null);
+        this.F = au0Var;
+        this.E = bitmap2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41347a) {
-            case 0:
-                this.f41348b.f41552f2.setTranslationY(0.0f);
-                return;
-            default:
-                p0 p0Var = this.f41348b;
-                p0Var.f41558i2 = false;
-                p0Var.f41552f2.setTranslationY(0.0f);
-                p0Var.m0();
-                return;
+    public final void g(pg.m mVar) {
+        int indexOf = pg.m.f41158a.indexOf(mVar);
+        int i10 = indexOf + 1;
+        if (i10 <= 1 || this.E != null) {
+            indexOf = i10;
         }
+        au0 au0Var = this.F;
+        au0Var.f41768t1.b(indexOf);
+        au0Var.b(mVar);
     }
 }

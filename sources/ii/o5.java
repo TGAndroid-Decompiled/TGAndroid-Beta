@@ -21,14 +21,14 @@ import org.telegram.ui.Cells.ba;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import v7.o8;
-public final class o5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
+public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, p9 {
     public c3 E;
     public h6 F;
     public boolean G;
     public final LinkedHashSet H;
     public l5 I;
     public final i J;
-    public final org.telegram.ui.ActionBar.f6 f11542n;
+    public final org.telegram.ui.ActionBar.e6 f11542n;
     public final i1 f11543r;
     public final a4 f11544s;
     public final q5 v;
@@ -36,15 +36,15 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
     public final ArrayList f11546x;
     public boolean f11547y;
 
-    public o5(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public o5(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.f11546x = new ArrayList();
         this.H = new LinkedHashSet();
         this.J = new i(this, 3);
-        this.f11542n = f6Var;
+        this.f11542n = e6Var;
         setClipChildren(false);
         setClipToPadding(false);
-        i1 i1Var = new i1(context, f6Var);
+        i1 i1Var = new i1(context, e6Var);
         this.f11543r = i1Var;
         i1Var.setAllowNewlines(false);
         i1Var.setInputType(147457);
@@ -64,8 +64,8 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         a4Var.setClipChildren(false);
         a4Var.setClipToPadding(false);
         a4Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        addView(a4Var, w7.x5.d(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 0.0f));
-        q5 q5Var = new q5(context, f6Var);
+        addView(a4Var, w7.y5.d(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 0.0f));
+        q5 q5Var = new q5(context, e6Var);
         this.v = q5Var;
         n5 n5Var = new n5(this, context);
         this.f11545w = n5Var;
@@ -529,11 +529,11 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         a aVar = this.f11220a;
         int i18 = 0;
         if (aVar != null && (i15 = aVar.f11211l) > 0) {
-            i18 = AndroidUtilities.dp(hg.k0.g(i15, 1, 16, 10));
+            i18 = AndroidUtilities.dp(hg.k0.f(i15, 1, 16, 10));
         }
         int i19 = i16 - i17;
         int i20 = measuredHeight + i18;
-        i1Var.layout(AndroidUtilities.dp(16.0f) + i14, i18, hg.k0.f(16.0f, i19, AndroidUtilities.dp(16.0f) + i14), i20);
+        i1Var.layout(AndroidUtilities.dp(16.0f) + i14, i18, org.telegram.messenger.q.c(16.0f, i19, AndroidUtilities.dp(16.0f) + i14), i20);
         int dp = AndroidUtilities.dp(9.0f) + i20;
         a4 a4Var = this.f11544s;
         a4Var.layout(i14, dp, i19, a4Var.getMeasuredHeight() + dp);
@@ -560,11 +560,11 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         if (aVar == null || (i12 = aVar.f11211l) <= 0) {
             dp = 0;
         } else {
-            dp = AndroidUtilities.dp(hg.k0.g(i12, 1, 16, 10));
+            dp = AndroidUtilities.dp(hg.k0.f(i12, 1, 16, 10));
         }
         a aVar2 = this.f11220a;
         if (aVar2 != null && (i13 = aVar2.f11212m) > 0) {
-            i14 = AndroidUtilities.dp(hg.k0.g(i13, 1, 16, 10));
+            i14 = AndroidUtilities.dp(hg.k0.f(i13, 1, 16, 10));
         }
         setMeasuredDimension(size, a4Var.getMeasuredHeight() + AndroidUtilities.dp(9.0f) + i14 + dp + measuredHeight);
     }

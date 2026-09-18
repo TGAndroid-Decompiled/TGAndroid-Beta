@@ -1,14 +1,14 @@
 package k2;
 public final class l extends Exception {
-    public final b2.s f13320a;
+    public final b2.s f13331a;
 
     public l(c2.g gVar, b2.s sVar) {
         super(gVar);
-        this.f13320a = sVar;
+        this.f13331a = sVar;
     }
 
     public l(String str, b2.s sVar) {
         super(str);
-        this.f13320a = sVar;
+        this.f13331a = sVar;
     }
 }

@@ -8,7 +8,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.fh;
+import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ti;
 public final class h4 implements ti {
     public final f6 f943a;
@@ -28,7 +28,7 @@ public final class h4 implements ti {
         String str2;
         f6 f6Var = this.f943a;
         if (f6Var.J0.m0 && (storyItem = f6Var.O1.f706a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f28757j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f29033j0.getSelectedPhotos().isEmpty())) {
                 g4 g4Var = f6Var.I2;
                 if (g4Var != null) {
                     g4Var.dismissWithButtonClick(i10);
@@ -39,8 +39,8 @@ public final class h4 implements ti {
             if (i10 != 8) {
                 f6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = f6Var.I2.f28757j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f28757j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = f6Var.I2.f29033j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f29033j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -116,7 +116,7 @@ public final class h4 implements ti {
 
     @Override
     public final void K0() {
-        this.f943a.f800b2.Q();
+        this.f943a.f800b2.P();
     }
 
     @Override
@@ -154,8 +154,8 @@ public final class h4 implements ti {
     }
 
     @Override
-    public final void x0(fh fhVar) {
-        NotificationCenter.getInstance(this.f943a.C2).doOnIdle(fhVar);
+    public final void x0(gh ghVar) {
+        NotificationCenter.getInstance(this.f943a.C2).doOnIdle(ghVar);
     }
 
     @Override

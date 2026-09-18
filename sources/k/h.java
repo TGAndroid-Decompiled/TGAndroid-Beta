@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.SubMenu;
 import java.io.IOException;
-import l.n;
+import l.o;
 import m.l1;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -99,8 +99,8 @@ public final class h extends MenuInflater {
                             gVar.f13123g = true;
                         } else if (name2.equals("item")) {
                             if (!gVar.h) {
-                                n nVar = gVar.f13140z;
-                                if (nVar != null && nVar.f13791a.hasSubMenu()) {
+                                o oVar = gVar.f13140z;
+                                if (oVar != null && oVar.f13938a.hasSubMenu()) {
                                     gVar.h = true;
                                     gVar.b(menu2.addSubMenu(gVar.f13120b, gVar.f13124i, gVar.f13125j, gVar.f13126k).getItem());
                                 } else {
@@ -124,7 +124,7 @@ public final class h extends MenuInflater {
                         boolean equals = name3.equals("group");
                         Context context = this.f13144c;
                         if (equals) {
-                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f8778p);
+                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f8777p);
                             gVar.f13120b = obtainStyledAttributes.getResourceId(1, 0);
                             gVar.f13121c = obtainStyledAttributes.getInt(3, 0);
                             gVar.d = obtainStyledAttributes.getInt(4, 0);
@@ -134,7 +134,7 @@ public final class h extends MenuInflater {
                             obtainStyledAttributes.recycle();
                         } else {
                             if (name3.equals("item")) {
-                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f8779q);
+                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f8778q);
                                 gVar.f13124i = obtainStyledAttributes2.getResourceId(2, 0);
                                 gVar.f13125j = (obtainStyledAttributes2.getInt(5, gVar.f13121c) & (-65536)) | (obtainStyledAttributes2.getInt(6, gVar.d) & 65535);
                                 gVar.f13126k = obtainStyledAttributes2.getText(7);
@@ -175,7 +175,7 @@ public final class h extends MenuInflater {
                                     z10 = false;
                                 }
                                 if (z10 && gVar.f13137w == 0 && gVar.f13138x == null) {
-                                    gVar.f13140z = (n) gVar.a(string3, f13141f, this.f13143b);
+                                    gVar.f13140z = (o) gVar.a(string3, f13141f, this.f13143b);
                                 } else {
                                     if (z10) {
                                         Log.w("SupportMenuInflater", "Ignoring attribute 'actionProviderClass'. Action view already specified.");
@@ -227,7 +227,7 @@ public final class h extends MenuInflater {
 
     @Override
     public final void inflate(int i10, Menu menu) {
-        if (!(menu instanceof l.k)) {
+        if (!(menu instanceof l.l)) {
             super.inflate(i10, menu);
             return;
         }

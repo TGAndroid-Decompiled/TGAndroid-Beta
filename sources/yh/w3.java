@@ -1,142 +1,87 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.qr;
-public final class w3 extends FrameLayout {
-    public final int f47962a = 0;
-    public Object f47963b;
-    public Object f47964c;
+import org.telegram.ui.Components.rq;
+public final class w3 extends rq {
+    public final View f48177b;
+    public final Paint f48178c;
+    public final Path d;
+    public final long e;
+    public float f48179f;
 
-    public w3(Context context) {
-        super(context);
-    }
-
-    public void b(int i10, CharSequence charSequence, boolean z10) {
-        ImageView imageView = (ImageView) this.f47963b;
-        if (z10) {
-            AndroidUtilities.updateImageViewImageAnimated(imageView, i10);
-        } else {
-            imageView.setImageResource(i10);
-        }
-        ((TextView) this.f47964c).setText(charSequence);
-    }
-
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        switch (this.f47962a) {
-            case 2:
-                if (keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 4) {
-                    zg.c0 c0Var = (zg.c0) this.f47964c;
-                    if (!c0Var.f49018k) {
-                        return true;
-                    }
-                    c0Var.d();
-                    return true;
-                }
-                return super.dispatchKeyEvent(keyEvent);
-            default:
-                return super.dispatchKeyEvent(keyEvent);
-        }
+    public w3(ci.d dVar, int i10) {
+        super(dVar);
+        Paint paint = new Paint(1);
+        this.f48178c = paint;
+        Path path = new Path();
+        this.d = path;
+        this.e = System.currentTimeMillis();
+        this.f48179f = 1.0f;
+        this.f48177b = dVar;
+        this.f27944a.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setColor(i10);
+        path.rewind();
+        path.moveTo(-AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
+        path.lineTo(0.0f, -AndroidUtilities.dpf2(1.08f));
+        path.lineTo(AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
     }
 
     @Override
-    public void dispatchSetPressed(boolean z10) {
-        switch (this.f47962a) {
-            case 2:
-                return;
-            default:
-                super.dispatchSetPressed(z10);
-                return;
+    public final void draw(Canvas canvas) {
+        float f7;
+        Paint paint = this.f27944a;
+        paint.setAlpha((int) (this.f48179f * 255.0f));
+        canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.e) % 400)) / 400.0f;
+        Paint paint2 = this.f48178c;
+        int alpha = paint2.getAlpha();
+        paint2.setAlpha((int) (alpha * this.f48179f));
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
+        canvas.save();
+        canvas.translate(getBounds().centerX(), getBounds().centerY() - (((AndroidUtilities.dpf2(1.166f) * 2.0f) + (AndroidUtilities.dpf2(2.16f) * 3.0f)) / 2.0f));
+        for (int i10 = 0; i10 < 4; i10++) {
+            if (i10 == 0) {
+                f7 = 1.0f - currentTimeMillis;
+            } else if (i10 == 3) {
+                f7 = currentTimeMillis;
+            } else {
+                f7 = 1.0f;
+            }
+            paint2.setAlpha((int) (f7 * 255.0f * this.f48179f));
+            canvas.save();
+            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f7);
+            canvas.scale(lerp, lerp);
+            canvas.drawPath(this.d, paint2);
+            canvas.restore();
+            canvas.translate(0.0f, AndroidUtilities.dpf2(3.3260002f) * f7);
         }
-    }
-
-    @Override
-    public boolean fitSystemWindows(Rect rect) {
-        switch (this.f47962a) {
-            case 2:
-                zg.c0 c0Var = (zg.c0) this.f47964c;
-                float f7 = c0Var.f49028u;
-                float f10 = rect.bottom;
-                if (f7 != f10 && c0Var.v) {
-                    c0Var.f49028u = f10;
-                    w3 w3Var = c0Var.f49013c;
-                    zg.b0 b0Var = c0Var.f49011a;
-                    if (!c0Var.f49024q) {
-                        float f11 = c0Var.f49027t;
-                        int dp = AndroidUtilities.dp(32.0f);
-                        int i10 = c0Var.f49031y;
-                        if (i10 == 1 || i10 == 2) {
-                            dp = AndroidUtilities.dp(24.0f);
-                        }
-                        float f12 = dp;
-                        if (b0Var.getMeasuredHeight() + f11 > (w3Var.getMeasuredHeight() - c0Var.f49028u) - f12) {
-                            f11 = ((w3Var.getMeasuredHeight() - c0Var.f49028u) - b0Var.getMeasuredHeight()) - f12;
-                        }
-                        if (f11 < 0.0f) {
-                            f11 = 0.0f;
-                        }
-                        b0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.w(c0Var, 1)).setInterpolator(qr.f27383f).start();
-                    }
-                }
-                return super.fitSystemWindows(rect);
-            default:
-                return super.fitSystemWindows(rect);
+        canvas.restore();
+        paint2.setAlpha(alpha);
+        View view = this.f48177b;
+        if (view != null) {
+            view.invalidate();
         }
     }
 
     @Override
-    public void onAttachedToWindow() {
-        switch (this.f47962a) {
-            case 1:
-                super.onAttachedToWindow();
-                ((zg.n) this.f47963b).c();
-                return;
-            case 2:
-                super.onAttachedToWindow();
-                oc.a(this, (ai.w4) this.f47963b);
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        switch (this.f47962a) {
-            case 1:
-                super.onDetachedFromWindow();
-                ((zg.n) this.f47963b).d();
-                return;
-            case 2:
-                super.onDetachedFromWindow();
-                oc.h(this);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
     }
 
-    public w3(zg.c0 c0Var, Context context) {
-        super(context);
-        this.f47964c = c0Var;
-        this.f47963b = new ai.w4(this, 11);
-    }
-
-    public w3(zg.q qVar, Context context) {
-        super(context);
-        this.f47964c = qVar;
-        this.f47963b = new zg.n(this, this);
-    }
-
-    private final void a(boolean z10) {
+    @Override
+    public final void setAlpha(int i10) {
+        this.f48179f = i10 / 255.0f;
     }
 }

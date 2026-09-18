@@ -1,98 +1,165 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class wr0 extends nz {
-    public final kv0 X;
-    public final vr0 Y;
-    public final zu0 Z;
+import org.telegram.messenger.Utilities;
+public final class wr0 extends s4.v {
+    public cu0 d;
+    public final kv0 e;
 
-    public wr0(zu0 zu0Var, vr0 vr0Var) {
-        super(100, false);
-        this.Z = zu0Var;
-        this.Y = vr0Var;
-        this.X = new Object();
+    public wr0(kv0 kv0Var) {
+        this.e = kv0Var;
     }
 
     @Override
-    public final int A() {
-        if (this.Y.h.getAdapter() != this.Z.O) {
-            return 0;
-        }
-        return B();
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f42929a.setPressed(false);
     }
 
     @Override
-    public final kv0 D1(int i10) {
-        TLRPC.Document document;
-        int i11;
-        int i12;
-        s4.h0 adapter = this.Y.h.getAdapter();
-        zu0 zu0Var = this.Z;
-        ou0[] ou0VarArr = zu0Var.f30655t1;
-        if (adapter == zu0Var.O && !ou0VarArr[5].f26852a.isEmpty()) {
-            document = ((MessageObject) ou0VarArr[5].f26852a.get(i10)).getDocument();
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        hv0 hv0Var;
+        s4.h0 adapter = recyclerView.getAdapter();
+        js0 js0Var = null;
+        if (adapter instanceof hv0) {
+            hv0Var = (hv0) adapter;
         } else {
-            document = null;
+            hv0Var = null;
         }
-        kv0 kv0Var = this.X;
-        kv0Var.f25699b = 100.0f;
-        kv0Var.f25698a = 100.0f;
-        if (document != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f18146w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                kv0Var.f25698a = i11;
-                kv0Var.f25699b = i12;
+        if (k() && hv0Var != null && hv0Var.M(c1Var.b())) {
+            du0 du0Var = this.e.f25824k0[0];
+            if (du0Var != null) {
+                js0Var = du0Var.h;
             }
-            ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
-            for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    kv0Var.f25698a = documentAttribute.f18128w;
-                    kv0Var.f25699b = documentAttribute.h;
-                    break;
+            this.d = js0Var;
+            if (js0Var != null) {
+                js0Var.setItemAnimator(du0Var.d);
+            }
+            return s4.v.l(15, 0);
+        }
+        return s4.v.l(0, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        kv0 kv0Var = this.e;
+        if (!kv0Var.C1) {
+            fs0 fs0Var = kv0Var.W;
+            if (fs0Var == null || !fs0Var.f31926w) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        hv0 hv0Var;
+        ai.d9 d9Var;
+        ArrayList arrayList;
+        s4.h0 adapter = recyclerView.getAdapter();
+        if (adapter instanceof hv0) {
+            hv0Var = (hv0) adapter;
+        } else {
+            hv0Var = null;
+        }
+        if (hv0Var == null || !hv0Var.M(c1Var.b()) || !hv0Var.M(c1Var2.b())) {
+            return false;
+        }
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        ArrayList arrayList2 = hv0Var.f24744y;
+        if (!hv0Var.h && (d9Var = hv0Var.f24741s) != null && b10 >= 0 && b10 < d9Var.f721i.size() && b11 >= 0 && b11 < hv0Var.f24741s.f721i.size()) {
+            if (!(hv0Var.f24741s instanceof ai.t8) && hv0Var.f24739n <= 0) {
+                arrayList = new ArrayList(hv0Var.f24741s.f720g);
+            } else {
+                arrayList = new ArrayList();
+                for (int i10 = 0; i10 < hv0Var.f24741s.f721i.size(); i10++) {
+                    arrayList.add(Integer.valueOf(((MessageObject) hv0Var.f24741s.f721i.get(i10)).getId()));
                 }
             }
-        }
-        return kv0Var;
-    }
-
-    @Override
-    public final void U(of.e eVar, s4.z0 z0Var, View view, s0.c cVar) {
-        n7.b bVar;
-        super.U(eVar, z0Var, view, cVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f42651a;
-        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-        if (collectionItemInfo != null) {
-            bVar = new n7.b(collectionItemInfo);
-        } else {
-            bVar = null;
-        }
-        if (bVar != null) {
-            Object obj = bVar.f15120a;
-            if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
+            if (!hv0Var.E) {
+                arrayList2.clear();
+                arrayList2.addAll(arrayList);
+                hv0Var.E = true;
             }
+            MessageObject messageObject = (MessageObject) hv0Var.f24741s.f721i.get(b10);
+            MessageObject messageObject2 = (MessageObject) hv0Var.f24741s.f721i.get(b11);
+            arrayList.remove(Integer.valueOf(messageObject.getId()));
+            arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
+            hv0Var.f24741s.C(arrayList, false);
+            hv0Var.p(b10, b11);
         }
+        return true;
     }
 
     @Override
-    public final void z0(s4.z0 z0Var, int[] iArr) {
-        super.z0(z0Var, iArr);
-        vr0 vr0Var = this.Y;
-        int i10 = vr0Var.F;
-        if (i10 != 0 && !zu0.p0(i10)) {
-            if (vr0Var.F == 1) {
-                iArr[1] = Math.max(iArr[1], AndroidUtilities.dp(56.0f) * 2);
+    public final void p(s4.c1 c1Var, int i10) {
+        ai.d9 d9Var;
+        ArrayList arrayList;
+        boolean z10;
+        cu0 cu0Var = this.d;
+        if (cu0Var != null && c1Var != null) {
+            cu0Var.e1(false);
+        }
+        if (i10 == 0) {
+            cu0 cu0Var2 = this.d;
+            if (cu0Var2 != null && (cu0Var2.getAdapter() instanceof hv0)) {
+                hv0 hv0Var = (hv0) this.d.getAdapter();
+                ArrayList arrayList2 = hv0Var.f24744y;
+                if (!hv0Var.h && (d9Var = hv0Var.f24741s) != null && hv0Var.E) {
+                    if (!(d9Var instanceof ai.t8) && hv0Var.f24739n <= 0) {
+                        arrayList = d9Var.f720g;
+                    } else {
+                        arrayList = new ArrayList();
+                        for (int i11 = 0; i11 < hv0Var.f24741s.f721i.size(); i11++) {
+                            arrayList.add(Integer.valueOf(((MessageObject) hv0Var.f24741s.f721i.get(i11)).getId()));
+                        }
+                    }
+                    if (arrayList2.size() != arrayList.size()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (!z10) {
+                        int i12 = 0;
+                        while (true) {
+                            if (i12 >= arrayList2.size()) {
+                                break;
+                            } else if (arrayList2.get(i12) != arrayList.get(i12)) {
+                                z10 = true;
+                                break;
+                            } else {
+                                i12++;
+                            }
+                        }
+                    }
+                    if (z10) {
+                        hv0Var.f24741s.C(arrayList, true);
+                    }
+                    hv0Var.E = false;
+                }
+            }
+            cu0 cu0Var3 = this.d;
+            if (cu0Var3 != null) {
+                cu0Var3.setItemAnimator(null);
                 return;
             }
             return;
         }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.u7.a(1) * 2);
+        cu0 cu0Var4 = this.d;
+        if (cu0Var4 != null) {
+            cu0Var4.J0(false);
+        }
+        if (c1Var != null) {
+            c1Var.f42929a.setPressed(true);
+        }
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

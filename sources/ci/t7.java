@@ -27,23 +27,23 @@ public final class t7 extends v7 {
     }
 
     @Override
-    public final void c(org.telegram.ui.ActionBar.o2 o2Var) {
+    public final void c(org.telegram.ui.ActionBar.n2 n2Var) {
         TLRPC.User user = this.f5571b;
-        if (user.f18268id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+        if (user.f18443id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.f18268id);
+            bundle.putLong("user_id", user.f18443id);
             bundle.putBoolean("my_profile", true);
-            o2Var.presentFragment(new ProfileActivity(bundle, null));
+            n2Var.presentFragment(new ProfileActivity(bundle, null));
             return;
         }
-        o2Var.presentFragment(ProfileActivity.m4(user.f18268id));
+        n2Var.presentFragment(ProfileActivity.m4(user.f18443id));
     }
 
     @Override
     public final void d(ImageReceiver imageReceiver) {
-        org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.f6) null);
+        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
         TLRPC.User user = this.f5571b;
-        f9Var.r(user);
-        imageReceiver.setForUserOrChat(user, f9Var);
+        h9Var.r(user);
+        imageReceiver.setForUserOrChat(user, h9Var);
     }
 }

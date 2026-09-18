@@ -1,7 +1,7 @@
 package ii;
 
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.dj0;
+import org.telegram.ui.cj0;
 public final class d implements Runnable {
     public final int f11293a;
     public final r f11294b;
@@ -17,9 +17,9 @@ public final class d implements Runnable {
             case 0:
                 r rVar = this.f11294b;
                 rVar.I(2147483646, true, 0, false, 0L);
-                dj0 dj0Var = rVar.O;
-                if (dj0Var != null) {
-                    dj0Var.h(false);
+                cj0 cj0Var = rVar.O;
+                if (cj0Var != null) {
+                    cj0Var.h(false);
                     rVar.O = null;
                     return;
                 }
@@ -27,9 +27,9 @@ public final class d implements Runnable {
             case 1:
                 r rVar2 = this.f11294b;
                 rVar2.I(0, false, 0, false, 0L);
-                dj0 dj0Var2 = rVar2.O;
-                if (dj0Var2 != null) {
-                    dj0Var2.h(true);
+                cj0 cj0Var2 = rVar2.O;
+                if (cj0Var2 != null) {
+                    cj0Var2.h(true);
                     rVar2.O = null;
                     return;
                 }
@@ -37,7 +37,7 @@ public final class d implements Runnable {
             case 2:
                 r rVar3 = this.f11294b;
                 if (!UserConfig.getInstance(rVar3.f11590n).isPremium()) {
-                    new rg.x0(rVar3.f26463b.f28745f0, rVar3.getContext(), rVar3.f11590n, 43, true).show();
+                    new rg.x0(rVar3.f26688b.f29021f0, rVar3.getContext(), rVar3.f11590n, 43, true).show();
                     return;
                 }
                 return;

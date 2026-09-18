@@ -1,39 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class g50 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.rp f33859u1;
-    public final k60 f33860v1;
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class g50 implements DialogInterface.OnShowListener {
+    public final int f33699a;
+    public final org.telegram.ui.ActionBar.b2 f33700b;
+    public final EditTextBoldCursor f33701c;
+    public final Object d;
 
-    public g50(k60 k60Var, LaunchActivity launchActivity, org.telegram.ui.Components.rp rpVar) {
-        super(launchActivity, null);
-        this.f33860v1 = k60Var;
-        this.f33859u1 = rpVar;
+    public g50(Object obj, org.telegram.ui.ActionBar.b2 b2Var, EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f33699a = i10;
+        this.d = obj;
+        this.f33700b = b2Var;
+        this.f33701c = editTextBoldCursor;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.rp rpVar = this.f33859u1;
-            rpVar.f27668f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            rpVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        ViewGroup viewGroup;
-        if (getAlpha() != f7) {
-            super.setAlpha(f7);
-            viewGroup = ((org.telegram.ui.ActionBar.g3) this.f33860v1).containerView;
-            viewGroup.invalidate();
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f33699a) {
+            case 0:
+                ((l50) this.d).f35254b.s1(null, this.f33700b, this.f33701c, true);
+                return;
+            default:
+                ((h50) this.d).f34081n.f35254b.s1(null, this.f33700b, this.f33701c, true);
+                return;
         }
     }
 }

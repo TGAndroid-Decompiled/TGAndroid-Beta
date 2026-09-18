@@ -83,7 +83,7 @@ public class DispatchQueueMainThreadSync extends Thread {
 
     public void recycle() {
         checkThread();
-        postRunnable(new d1(this, 18));
+        postRunnable(new e1(this, 18));
         this.isRecycled = true;
     }
 

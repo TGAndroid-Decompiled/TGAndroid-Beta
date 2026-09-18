@@ -8,7 +8,7 @@ import android.widget.PopupWindow;
 import java.lang.reflect.Method;
 public final class j2 extends d2 implements e2 {
     public static final Method T;
-    public k2.u S;
+    public l.d S;
 
     static {
         try {
@@ -21,14 +21,6 @@ public final class j2 extends d2 implements e2 {
     }
 
     @Override
-    public final void G(l.k kVar, l.m mVar) {
-        k2.u uVar = this.S;
-        if (uVar != null) {
-            uVar.G(kVar, mVar);
-        }
-    }
-
-    @Override
     public final r1 o(Context context, boolean z10) {
         i2 i2Var = new i2(context, z10);
         i2Var.setHoverListener(this);
@@ -36,10 +28,18 @@ public final class j2 extends d2 implements e2 {
     }
 
     @Override
-    public final void s(l.k kVar, MenuItem menuItem) {
-        k2.u uVar = this.S;
-        if (uVar != null) {
-            uVar.s(kVar, menuItem);
+    public final void p(l.l lVar, MenuItem menuItem) {
+        l.d dVar = this.S;
+        if (dVar != null) {
+            dVar.p(lVar, menuItem);
+        }
+    }
+
+    @Override
+    public final void v(l.l lVar, l.n nVar) {
+        l.d dVar = this.S;
+        if (dVar != null) {
+            dVar.v(lVar, nVar);
         }
     }
 }

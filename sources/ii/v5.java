@@ -3,7 +3,7 @@ package ii;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.ae;
+import org.telegram.ui.zd;
 public final class v5 implements View.OnFocusChangeListener {
     public final int f11697a;
     public final Object f11698b;
@@ -21,7 +21,7 @@ public final class v5 implements View.OnFocusChangeListener {
                 d6.a((d6) this.f11698b, z10);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f11698b).f41047c;
+                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f11698b).f41273c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
@@ -35,25 +35,25 @@ public final class v5 implements View.OnFocusChangeListener {
                 }
                 return;
             case 3:
-                ae aeVar = ((yh.g) this.f11698b).M;
+                zd zdVar = ((yh.g) this.f11698b).M;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                aeVar.b(f7, f7, true);
+                zdVar.b(f7, f7, true);
                 return;
             case 4:
                 yh.a0 a0Var = (yh.a0) this.f11698b;
-                a0Var.f46927c0.c(z10, !TextUtils.isEmpty(a0Var.f46928d0.getText()));
+                a0Var.f47155c0.c(z10, !TextUtils.isEmpty(a0Var.f47156d0.getText()));
                 return;
             case 5:
                 yh.e0 e0Var = (yh.e0) this.f11698b;
-                e0Var.f47121f.c(z10, !TextUtils.isEmpty(e0Var.h.getText()));
+                e0Var.f47312f.c(z10, !TextUtils.isEmpty(e0Var.h.getText()));
                 return;
             case 6:
                 yh.i0 i0Var = (yh.i0) this.f11698b;
-                i0Var.f47295b.c(z10, !TextUtils.isEmpty(i0Var.f47296c.getText()));
+                i0Var.f47495b.c(z10, !TextUtils.isEmpty(i0Var.f47496c.getText()));
                 return;
             default:
                 zg.o oVar = (zg.o) this.f11698b;

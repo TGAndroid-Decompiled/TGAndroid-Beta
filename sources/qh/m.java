@@ -3,46 +3,46 @@ package qh;
 import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.Components.x51;
-import org.telegram.ui.gi0;
-public final class m extends i51 {
-    public static final int f41820a = 0;
+import org.telegram.ui.fi0;
+public final class m extends w51 {
+    public static final int f42047a = 0;
 
     static {
-        i51.setup(new i51());
+        w51.setup(new w51());
     }
 
     @Override
-    public final void bindView(View view, j51 j51Var, boolean z10, x51 x51Var, f61 f61Var) {
-        gi0 gi0Var = (gi0) view;
-        gi0Var.a((TLObject) j51Var.G, true, j51Var.f25140z);
-        gi0Var.setOnClickListener(j51Var.D);
+    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+        fi0 fi0Var = (fi0) view;
+        fi0Var.a((TLObject) x51Var.G, true, x51Var.f30261z);
+        fi0Var.setOnClickListener(x51Var.D);
     }
 
     @Override
-    public final boolean contentsEquals(j51 j51Var, j51 j51Var2) {
-        if (j51Var.B == j51Var2.B) {
+    public final boolean contentsEquals(x51 x51Var, x51 x51Var2) {
+        if (x51Var.B == x51Var2.B) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, ml0 ml0Var, int i10, int i11, f6 f6Var) {
-        gi0 gi0Var = new gi0(context);
-        gi0Var.setBackground(j6.K0(false));
-        return gi0Var;
+    public final View createView(Context context, wl0 wl0Var, int i10, int i11, e6 e6Var) {
+        fi0 fi0Var = new fi0(context);
+        fi0Var.setBackground(j6.K0(false));
+        return fi0Var;
     }
 
     @Override
-    public final boolean equals(j51 j51Var, j51 j51Var2) {
-        if (j51Var.B == j51Var2.B) {
+    public final boolean equals(x51 x51Var, x51 x51Var2) {
+        if (x51Var.B == x51Var2.B) {
             return true;
         }
         return false;

@@ -7,17 +7,17 @@ import android.os.Build;
 import android.os.Bundle;
 import java.util.ArrayList;
 public final class z {
-    public final CharSequence f7857a;
-    public final long f7858b;
-    public final p0 f7859c;
+    public final CharSequence f7856a;
+    public final long f7857b;
+    public final p0 f7858c;
     public final Bundle d = new Bundle();
     public String e;
-    public Uri f7860f;
+    public Uri f7859f;
 
     public z(CharSequence charSequence, long j3, p0 p0Var) {
-        this.f7857a = charSequence;
-        this.f7858b = j3;
-        this.f7859c = p0Var;
+        this.f7856a = charSequence;
+        this.f7857b = j3;
+        this.f7858c = p0Var;
     }
 
     public static Bundle[] a(ArrayList arrayList) {
@@ -25,15 +25,15 @@ public final class z {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             z zVar = (z) arrayList.get(i10);
-            p0 p0Var = zVar.f7859c;
+            p0 p0Var = zVar.f7858c;
             Bundle bundle = new Bundle();
-            CharSequence charSequence = zVar.f7857a;
+            CharSequence charSequence = zVar.f7856a;
             if (charSequence != null) {
                 bundle.putCharSequence("text", charSequence);
             }
-            bundle.putLong("time", zVar.f7858b);
+            bundle.putLong("time", zVar.f7857b);
             if (p0Var != null) {
-                bundle.putCharSequence("sender", p0Var.f7824a);
+                bundle.putCharSequence("sender", p0Var.f7823a);
                 if (Build.VERSION.SDK_INT >= 28) {
                     bundle.putParcelable("sender_person", y.a(b5.d.E(p0Var)));
                 } else {
@@ -44,7 +44,7 @@ public final class z {
             if (str != null) {
                 bundle.putString("type", str);
             }
-            Uri uri = zVar.f7860f;
+            Uri uri = zVar.f7859f;
             if (uri != null) {
                 bundle.putParcelable("uri", uri);
             }
@@ -62,9 +62,9 @@ public final class z {
         int i10 = Build.VERSION.SDK_INT;
         CharSequence charSequence = null;
         Person person = null;
-        long j3 = this.f7858b;
-        CharSequence charSequence2 = this.f7857a;
-        p0 p0Var = this.f7859c;
+        long j3 = this.f7857b;
+        CharSequence charSequence2 = this.f7856a;
+        p0 p0Var = this.f7858c;
         if (i10 >= 28) {
             if (p0Var != null) {
                 person = b5.d.E(p0Var);
@@ -72,13 +72,13 @@ public final class z {
             a2 = y.b(charSequence2, j3, person);
         } else {
             if (p0Var != null) {
-                charSequence = p0Var.f7824a;
+                charSequence = p0Var.f7823a;
             }
             a2 = x.a(charSequence2, j3, charSequence);
         }
         String str = this.e;
         if (str != null) {
-            x.b(a2, str, this.f7860f);
+            x.b(a2, str, this.f7859f);
         }
         return a2;
     }

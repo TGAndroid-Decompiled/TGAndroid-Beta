@@ -6,15 +6,15 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.n20;
+import org.telegram.ui.l20;
 public final class j1 extends TextView {
     public int f1037a;
-    public final n20 f1038b;
+    public final l20 f1038b;
 
     public j1(Context context) {
         super(context);
         this.f1037a = -1;
-        this.f1038b = new n20();
+        this.f1038b = new l20();
     }
 
     @Override

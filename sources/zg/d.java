@@ -13,39 +13,39 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o5;
-import org.telegram.ui.Components.yi0;
-import org.telegram.ui.iz;
+import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.gz;
 public final class d {
-    public static int f49033m;
-    public o5 f49034a;
-    public Rect f49035b;
-    public ArrayList f49036c;
+    public static int f49257m;
+    public q5 f49258a;
+    public Rect f49259b;
+    public ArrayList f49260c;
     public View d;
     public long e;
-    public boolean f49037f;
-    public boolean f49038g;
+    public boolean f49261f;
+    public boolean f49262g;
     public int h;
-    public boolean f49039i;
-    public ImageReceiver f49040j;
-    public int f49041k;
-    public long f49042l;
+    public boolean f49263i;
+    public ImageReceiver f49264j;
+    public int f49265k;
+    public long f49266l;
 
-    public static d a(o5 o5Var, boolean z10, boolean z11) {
+    public static d a(q5 q5Var, boolean z10, boolean z11) {
         int i10 = UserConfig.selectedAccount;
         ?? obj = new Object();
-        obj.f49035b = new Rect();
-        obj.f49036c = new ArrayList();
-        obj.f49038g = true;
-        obj.f49041k = -1;
-        obj.f49034a = o5Var;
-        obj.f49037f = z10;
+        obj.f49259b = new Rect();
+        obj.f49260c = new ArrayList();
+        obj.f49262g = true;
+        obj.f49265k = -1;
+        obj.f49258a = q5Var;
+        obj.f49261f = z10;
         obj.h = i10;
-        obj.f49039i = z11;
+        obj.f49263i = z11;
         obj.e = System.currentTimeMillis();
         if (z11 && LiteMode.isEnabled(4112)) {
             ImageReceiver imageReceiver = new ImageReceiver();
-            obj.f49040j = imageReceiver;
+            obj.f49264j = imageReceiver;
             if (z10) {
                 imageReceiver.setAllowDrawWhileCacheGenerating(true);
             }
@@ -65,8 +65,8 @@ public final class d {
     }
 
     public final void d(View view) {
-        this.f49034a.o(view);
-        ImageReceiver imageReceiver = this.f49040j;
+        this.f49258a.o(view);
+        ImageReceiver imageReceiver = this.f49264j;
         if (imageReceiver != null) {
             imageReceiver.onDetachedFromWindow();
             imageReceiver.clearImage();
@@ -74,9 +74,9 @@ public final class d {
     }
 
     public final void e(int i10, int i11, int i12, int i13) {
-        Rect rect = this.f49035b;
+        Rect rect = this.f49259b;
         rect.set(i10, i11, i12, i13);
-        ImageReceiver imageReceiver = this.f49040j;
+        ImageReceiver imageReceiver = this.f49264j;
         if (imageReceiver != null) {
             imageReceiver.setImageCoords(rect);
         }
@@ -87,32 +87,32 @@ public final class d {
         boolean z11;
         TLRPC.TL_availableReaction tL_availableReaction;
         TLRPC.Document document;
-        boolean z12 = this.f49037f;
+        boolean z12 = this.f49261f;
         int i10 = this.h;
-        o5 o5Var = this.f49034a;
-        o5Var.a(view);
+        q5 q5Var = this.f49258a;
+        q5Var.a(view);
         this.d = view;
-        ImageReceiver imageReceiver = this.f49040j;
-        if (imageReceiver != null && this.f49039i) {
+        ImageReceiver imageReceiver = this.f49264j;
+        if (imageReceiver != null && this.f49263i) {
             imageReceiver.onAttachedToWindow();
-            TLRPC.Document document2 = o5Var.e;
+            TLRPC.Document document2 = q5Var.e;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
             String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
             if (findAnimatedEmojiEmoticon != null && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(findAnimatedEmojiEmoticon)) != null && (document = tL_availableReaction.around_animation) != null) {
                 if (z12) {
                     StringBuilder sb2 = new StringBuilder();
-                    int i11 = f49033m;
-                    f49033m = i11 + 1;
+                    int i11 = f49257m;
+                    f49257m = i11 + 1;
                     sb2.append(i11);
                     sb2.append(" ");
                     imageReceiver.setUniqKeyPrefix(sb2.toString());
-                    int f7 = iz.f();
+                    int f7 = gz.f();
                     TLRPC.Document document3 = tL_availableReaction.around_animation;
                     z10 = true;
                     imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), f7 + "_" + f7 + "_pcache_compress", null, null, document3, 0);
                 } else {
                     ImageLocation forDocument = ImageLocation.getForDocument(document);
-                    String a2 = l0.a();
+                    String a2 = k0.a();
                     TLRPC.Document document4 = tL_availableReaction.around_animation;
                     z10 = true;
                     imageReceiver.setImage(forDocument, a2, null, null, document4, 0);
@@ -128,20 +128,20 @@ public final class d {
                     tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName(str);
                 }
                 if (tL_messages_stickerSet != null) {
-                    if (this.f49041k < 0) {
-                        this.f49041k = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
+                    if (this.f49265k < 0) {
+                        this.f49265k = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
                     }
                     if (z12) {
                         StringBuilder sb3 = new StringBuilder();
-                        int i12 = f49033m;
-                        f49033m = i12 + 1;
+                        int i12 = f49257m;
+                        f49257m = i12 + 1;
                         sb3.append(i12);
                         sb3.append(" ");
                         imageReceiver.setUniqKeyPrefix(sb3.toString());
-                        int f10 = iz.f();
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f49041k)), f10 + "_" + f10 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f49041k), 0);
+                        int f10 = gz.f();
+                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f49265k)), f10 + "_" + f10 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f49265k), 0);
                     } else {
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f49041k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f49041k), 0);
+                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f49265k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f49265k), 0);
                     }
                     z11 = true;
                 }
@@ -153,7 +153,7 @@ public final class d {
                 imageReceiver.setAutoRepeat(0);
                 return;
             }
-            imageReceiver.setImageBitmap(new yi0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+            imageReceiver.setImageBitmap(new ij0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
         }
     }
 }

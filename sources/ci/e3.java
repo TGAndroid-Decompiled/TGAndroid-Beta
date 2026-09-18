@@ -13,7 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.qr;
-public final class e3 extends org.telegram.ui.ActionBar.h5 {
+public final class e3 extends org.telegram.ui.ActionBar.g5 {
     public AnimatorSet f4594f;
     public final x3 h;
 

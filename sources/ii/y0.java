@@ -12,18 +12,18 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import v7.p8;
-public final class y0 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
-    public final org.telegram.ui.ActionBar.f6 f11772n;
+public final class y0 extends a0 implements org.telegram.ui.ActionBar.z5, p9 {
+    public final org.telegram.ui.ActionBar.e6 f11772n;
     public final Paint f11773r;
     public final Paint f11774s;
     public s2 v;
     public boolean f11775w;
 
-    public y0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public y0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.f11773r = new Paint(1);
         this.f11774s = new Paint(1);
-        this.f11772n = f6Var;
+        this.f11772n = e6Var;
         setWillNotDraw(false);
         e();
     }
@@ -31,9 +31,9 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
     @Override
     public final void e() {
         int i10 = j6.vk;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f11772n;
-        this.f11773r.setColor(j6.v0(i10, f6Var));
-        this.f11774s.setColor(j6.v0(j6.f19184uf, f6Var));
+        org.telegram.ui.ActionBar.e6 e6Var = this.f11772n;
+        this.f11773r.setColor(j6.v0(i10, e6Var));
+        this.f11774s.setColor(j6.v0(j6.f19384uf, e6Var));
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         if (s2Var != null && (textSelectionHelper = s2Var.f11616a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int S = RecyclerView.S(this);
-            if (S >= 0 && S >= textSelectionHelper.f20629u0 && S <= textSelectionHelper.f20632x0) {
+            if (S >= 0 && S >= textSelectionHelper.f20814u0 && S <= textSelectionHelper.f20817x0) {
                 canvas2 = canvas;
                 canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + h10, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f11774s);
                 float dp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;

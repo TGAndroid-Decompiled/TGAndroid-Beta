@@ -1,37 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class qe0 extends Path {
-    public int f27274a;
-    public int f27275b;
-    public int f27276c;
+import android.app.Activity;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.core.widget.NestedScrollView;
+public final class qe0 extends NestedScrollView {
+    public View W;
+    public final ye0 f27582a0;
 
-    public final void a(int i10, int i11, int i12) {
-        if (this.f27274a == i10 && this.f27275b == i11 && this.f27276c == i12) {
-            return;
+    public qe0(ye0 ye0Var, Activity activity) {
+        super(activity);
+        this.f27582a0 = ye0Var;
+    }
+
+    @Override
+    public final int f(Rect rect) {
+        if (this.W != null && this.f27582a0.d.getTop() == getPaddingTop()) {
+            int f7 = super.f(rect);
+            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.W.getTop() - getScrollY()) + rect.top) + f7);
+            if (currentActionBarHeight > 0) {
+                return org.telegram.messenger.wh.z(10.0f, currentActionBarHeight, f7);
+            }
+            return f7;
         }
-        rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f7 = i10 - i12;
-        float f10 = i11 + i12;
-        rectF.set(f7, i11 - i12, i10 + i12, f10);
-        arcTo(rectF, -180.0f, 270.0f, false);
-        float f11 = i12 / 81.0f;
-        float f12 = i10;
-        float f13 = f10 - (3.0f * f11);
-        cubicTo(f12 - (13.0f * f11), f10, f12 - (25.0f * f11), f13, f12 - (36.0f * f11), f10 - (8.42f * f11));
-        float f14 = f10 - f11;
-        cubicTo(f12 - (52.0f * f11), f14, f12 - (56.5f * f11), f14, f12 - (78.02f * f11), f14);
-        cubicTo(f12 - (80.0f * f11), f14, f12 - (81.0f * f11), f13, f12 - (79.52f * f11), f10 - (4.5f * f11));
-        float f15 = f12 - (63.73f * f11);
-        cubicTo(f12 - (78.0f * f11), f10 - (6.0f * f11), f15, f10 - (15.0f * f11), f15, f10 - (31.0f * f11));
-        float f16 = i11;
-        cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f7, (f11 * 18.87f) + f16, f7, f16);
-        close();
-        this.f27274a = i10;
-        this.f27275b = i11;
-        this.f27276c = i12;
+        return 0;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
+        this.W = view2;
+        super.requestChildFocus(view, view2);
     }
 }

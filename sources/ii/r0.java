@@ -12,7 +12,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void D(i1 i1Var, int i10, int i11) {
+    public final void B(i1 i1Var, int i10, int i11) {
         d3 d3Var;
         q9 textSelectionHelper;
         u0 u0Var = this.f11596a;
@@ -24,7 +24,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void M(CharSequence charSequence) {
+    public final void K(CharSequence charSequence) {
         d3 d3Var = this.f11596a.h;
         if (d3Var != null && charSequence != null && charSequence.length() > 0) {
             d3Var.f11333a.u4(charSequence.toString());
@@ -32,7 +32,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void W(Editable editable) {
+    public final void U(Editable editable) {
         u0 u0Var = this.f11596a;
         a aVar = u0Var.f11652f;
         if (aVar != null) {
@@ -57,7 +57,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean b0(boolean z10) {
+    public final boolean X(boolean z10) {
         return false;
     }
 
@@ -103,7 +103,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean q(i1 i1Var) {
+    public final boolean p(i1 i1Var) {
         return false;
     }
 

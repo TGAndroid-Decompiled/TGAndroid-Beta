@@ -13,10 +13,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.zu0;
+import org.telegram.ui.Components.kv0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ba0;
-import org.telegram.ui.bo;
+import org.telegram.ui.aa0;
+import org.telegram.ui.zn;
 public final class y7 implements Runnable {
     public final int f1762a;
     public final int f1763b;
@@ -66,24 +66,24 @@ public final class y7 implements Runnable {
                 SendMessagesHelper.lambda$finishGroup$117((AccountInstance) this.d, this.f1764c, this.f1763b);
                 return;
             case 6:
-                BotForumHelper.BotDraftAnimationsPool botDraftAnimationsPool = ((org.telegram.ui.Cells.t1) this.d).Pd;
+                BotForumHelper.BotDraftAnimationsPool botDraftAnimationsPool = ((org.telegram.ui.Cells.u1) this.d).Pd;
                 if (botDraftAnimationsPool != null) {
                     botDraftAnimationsPool.removeAnimator(this.f1764c, this.f1763b);
                     return;
                 }
                 return;
             case 7:
-                zu0.n((zu0) this.d, this.f1764c, this.f1763b);
+                kv0.n((kv0) this.d, this.f1764c, this.f1763b);
                 return;
             default:
                 Long l4 = (Long) this.d;
-                org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    bo R9 = bo.R9(l4.longValue());
+                    zn R9 = zn.R9(l4.longValue());
                     U.presentFragment(R9);
                     TLRPC.Chat chat = MessagesController.getInstance(this.f1763b).getChat(Long.valueOf(-l4.longValue()));
                     if (chat != null) {
-                        AndroidUtilities.runOnUIThread(new ba0(R9, this.f1764c, chat, 1), 250L);
+                        AndroidUtilities.runOnUIThread(new aa0(R9, this.f1764c, chat, 1), 250L);
                         return;
                     }
                     return;

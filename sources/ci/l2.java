@@ -9,12 +9,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.tw0;
-import org.telegram.ui.Components.ym0;
+import org.telegram.ui.Components.ex0;
+import org.telegram.ui.Components.ln0;
 public final class l2 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.f6 f4918a;
+    public final org.telegram.ui.ActionBar.e6 f4918a;
     public final FrameLayout f4919b;
-    public final ym0 f4920c;
+    public final ln0 f4920c;
     public final h2 d;
     public final int e;
     public k2 f4921f;
@@ -24,33 +24,33 @@ public final class l2 extends FrameLayout {
     public boolean f4924s;
     public Utilities.Callback2 v;
 
-    public l2(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public l2(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.e = -1;
-        this.f4918a = f6Var;
+        this.f4918a = e6Var;
         FrameLayout frameLayout = new FrameLayout(context);
         this.f4919b = frameLayout;
-        frameLayout.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ie, f6Var)));
+        frameLayout.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ie, e6Var)));
         frameLayout.setClipToOutline(true);
         frameLayout.setOutlineProvider(new ai.k2(2));
-        addView(frameLayout, w7.x5.d(-1, 36.0f, 119, 10.0f, 6.0f, 10.0f, 8.0f));
+        addView(frameLayout, w7.y5.d(-1, 36.0f, 119, 10.0f, 6.0f, 10.0f, 8.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        frameLayout.addView(frameLayout2, w7.x5.d(-1, 40.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(frameLayout2, w7.y5.d(-1, 40.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ym0 ym0Var = new ym0();
-        this.f4920c = ym0Var;
-        ym0Var.c(0, false, false);
+        ln0 ln0Var = new ln0();
+        this.f4920c = ln0Var;
+        ln0Var.c(0, false, false);
         int i10 = org.telegram.ui.ActionBar.j6.Je;
-        ym0Var.a(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
-        imageView.setImageDrawable(ym0Var);
-        frameLayout.addView(imageView, w7.x5.e(36, 36, 51));
+        ln0Var.a(org.telegram.ui.ActionBar.j6.v0(i10, e6Var));
+        imageView.setImageDrawable(ln0Var);
+        frameLayout.addView(imageView, w7.y5.e(36, 36, 51));
         h2 h2Var = new h2(this, context, 0);
         this.d = h2Var;
         h2Var.setTextSize(1, 16.0f);
-        h2Var.setHintTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
-        h2Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        h2Var.setHintTextColor(org.telegram.ui.ActionBar.j6.v0(i10, e6Var));
+        h2Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, e6Var));
         h2Var.setBackgroundDrawable(null);
         h2Var.setPadding(0, 0, 0, 0);
         h2Var.setMaxLines(1);
@@ -59,18 +59,18 @@ public final class l2 extends FrameLayout {
         h2Var.setImeOptions(268435459);
         h2Var.setHint(LocaleController.getString(R.string.Search));
         int i11 = org.telegram.ui.ActionBar.j6.Mh;
-        h2Var.setCursorColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        h2Var.setHandlesColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        h2Var.setCursorColor(org.telegram.ui.ActionBar.j6.v0(i11, e6Var));
+        h2Var.setHandlesColor(org.telegram.ui.ActionBar.j6.v0(i11, e6Var));
         h2Var.setCursorSize(AndroidUtilities.dp(20.0f));
         h2Var.setCursorWidth(1.5f);
         h2Var.setTranslationY(AndroidUtilities.dp(-2.0f));
-        frameLayout2.addView(h2Var, w7.x5.d(-1, 40.0f, 51, 0.0f, 0.0f, 28.0f, 0.0f));
+        frameLayout2.addView(h2Var, w7.y5.d(-1, 40.0f, 51, 0.0f, 0.0f, 28.0f, 0.0f));
         h2Var.addTextChangedListener(new i2(this, 0));
         ImageView imageView2 = new ImageView(context);
         this.f4922n = imageView2;
         imageView2.setScaleType(scaleType);
-        imageView2.setImageDrawable(new j2(f6Var));
-        imageView2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18953i6, f6Var), 1, AndroidUtilities.dp(15.0f)));
+        imageView2.setImageDrawable(new j2(e6Var));
+        imageView2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19152i6, e6Var), 1, AndroidUtilities.dp(15.0f)));
         imageView2.setAlpha(0.0f);
         imageView2.setScaleX(0.7f);
         imageView2.setScaleY(0.7f);
@@ -90,7 +90,7 @@ public final class l2 extends FrameLayout {
                         return;
                     default:
                         l2 l2Var = this.f4622b;
-                        int i12 = l2Var.f4920c.f30284k;
+                        int i12 = l2Var.f4920c.f26194k;
                         if (i12 == 1) {
                             l2Var.b();
                             k2 k2Var = l2Var.f4921f;
@@ -108,7 +108,7 @@ public final class l2 extends FrameLayout {
                 }
             }
         });
-        frameLayout.addView(imageView2, w7.x5.e(36, 36, 53));
+        frameLayout.addView(imageView2, w7.y5.e(36, 36, 53));
         imageView.setOnClickListener(new View.OnClickListener(this) {
             public final l2 f4622b;
 
@@ -124,7 +124,7 @@ public final class l2 extends FrameLayout {
                         return;
                     default:
                         l2 l2Var = this.f4622b;
-                        int i12 = l2Var.f4920c.f30284k;
+                        int i12 = l2Var.f4920c.f26194k;
                         if (i12 == 1) {
                             l2Var.b();
                             k2 k2Var = l2Var.f4921f;
@@ -183,11 +183,11 @@ public final class l2 extends FrameLayout {
                         l2Var.d(false);
                         return;
                     default:
-                        tw0 tw0Var = (tw0) obj;
+                        ex0 ex0Var = (ex0) obj;
                         l2 l2Var2 = this.f4687b;
                         k2 k2Var3 = l2Var2.f4921f;
                         if (k2Var3 != null) {
-                            if (k2Var3.getSelectedCategory() == tw0Var) {
+                            if (k2Var3.getSelectedCategory() == ex0Var) {
                                 l2Var2.f4921f.G1(null);
                                 Utilities.Callback2 callback2 = l2Var2.v;
                                 if (callback2 != null) {
@@ -196,8 +196,8 @@ public final class l2 extends FrameLayout {
                                 }
                                 return;
                             }
-                            l2Var2.f4921f.G1(tw0Var);
-                            String str = tw0Var.f28215a;
+                            l2Var2.f4921f.G1(ex0Var);
+                            String str = ex0Var.f23978a;
                             int categoryIndex = l2Var2.f4921f.getCategoryIndex();
                             Utilities.Callback2 callback22 = l2Var2.v;
                             if (callback22 != null) {
@@ -228,11 +228,11 @@ public final class l2 extends FrameLayout {
                         l2Var.d(false);
                         return;
                     default:
-                        tw0 tw0Var = (tw0) obj;
+                        ex0 ex0Var = (ex0) obj;
                         l2 l2Var2 = this.f4687b;
                         k2 k2Var3 = l2Var2.f4921f;
                         if (k2Var3 != null) {
-                            if (k2Var3.getSelectedCategory() == tw0Var) {
+                            if (k2Var3.getSelectedCategory() == ex0Var) {
                                 l2Var2.f4921f.G1(null);
                                 Utilities.Callback2 callback2 = l2Var2.v;
                                 if (callback2 != null) {
@@ -241,8 +241,8 @@ public final class l2 extends FrameLayout {
                                 }
                                 return;
                             }
-                            l2Var2.f4921f.G1(tw0Var);
-                            String str = tw0Var.f28215a;
+                            l2Var2.f4921f.G1(ex0Var);
+                            String str = ex0Var.f23978a;
                             int categoryIndex = l2Var2.f4921f.getCategoryIndex();
                             Utilities.Callback2 callback22 = l2Var2.v;
                             if (callback22 != null) {
@@ -255,7 +255,7 @@ public final class l2 extends FrameLayout {
                 }
             }
         });
-        frameLayout.addView(this.f4921f, Math.max(0, frameLayout.getChildCount() - 1), w7.x5.d(-1, 36.0f, 51, 36.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(this.f4921f, Math.max(0, frameLayout.getChildCount() - 1), w7.y5.d(-1, 36.0f, 51, 36.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public final void b() {
@@ -288,7 +288,7 @@ public final class l2 extends FrameLayout {
         if (z11 && ((h2Var.length() != 0 || ((k2Var2 = this.f4921f) != null && k2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (h2Var.length() <= 0 && ((k2Var = this.f4921f) == null || k2Var.f30017o3 <= 0.5f || ((k2Var == null || !k2Var.j3) && k2Var.getSelectedCategory() == null))) {
+        if (h2Var.length() <= 0 && ((k2Var = this.f4921f) == null || k2Var.f25078o3 <= 0.5f || ((k2Var == null || !k2Var.j3) && k2Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;

@@ -1,40 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class fb0 extends org.telegram.ui.ActionBar.g1 {
-    public final int L;
+import android.view.View;
+public final class fb0 extends o81 {
+    public final Context f24116a;
+    public final ec0 f24117b;
 
-    public fb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
-        super(i10, context, f6Var, z10, z11);
-        this.L = i11;
+    public fb0(ec0 ec0Var, Context context) {
+        this.f24117b = ec0Var;
+        this.f24116a = context;
     }
 
     @Override
-    public final void i() {
-        switch (this.L) {
-            case 0:
-                setBackground(null);
-                return;
-            default:
-                setBackground(null);
-                return;
-        }
+    public final void b(View view, int i10, int i11) {
+        yb0 yb0Var = (yb0) view;
+        yb0Var.h();
+        yb0Var.k(false);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
-            case 0:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-            default:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-        }
+    public final View d(int i10) {
+        return new yb0(this.f24117b, this.f24116a, i10);
+    }
+
+    @Override
+    public final int e() {
+        return this.f24117b.e.f23248a.size();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return ((bc0) this.f24117b.e.f23248a.get(i10)).f22952a;
     }
 }

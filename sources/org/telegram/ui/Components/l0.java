@@ -1,28 +1,28 @@
 package org.telegram.ui.Components;
-public final class l0 implements sc0 {
-    public final int f25793a;
-    public final uc0 f25794b;
-    public final uc0 f25795c;
-    public final uc0 d;
+public final class l0 implements bd0 {
+    public final int f25972a;
+    public final dd0 f25973b;
+    public final dd0 f25974c;
+    public final dd0 d;
 
-    public l0(uc0 uc0Var, uc0 uc0Var2, uc0 uc0Var3, int i10) {
-        this.f25793a = i10;
-        this.f25794b = uc0Var;
-        this.f25795c = uc0Var2;
-        this.d = uc0Var3;
+    public l0(dd0 dd0Var, dd0 dd0Var2, dd0 dd0Var3, int i10) {
+        this.f25972a = i10;
+        this.f25973b = dd0Var;
+        this.f25974c = dd0Var2;
+        this.d = dd0Var3;
     }
 
     @Override
-    public final void q(uc0 uc0Var, int i10) {
-        switch (this.f25793a) {
+    public final void q(dd0 dd0Var, int i10) {
+        switch (this.f25972a) {
             case 0:
-                c5.b(this.f25794b, this.f25795c, this.d);
+                e5.b(this.f25973b, this.f25974c, this.d);
                 return;
             case 1:
-                c5.y0(this.f25794b, this.f25795c, this.d);
+                e5.y0(this.f25973b, this.f25974c, this.d);
                 return;
             default:
-                c5.y0(this.f25794b, this.f25795c, this.d);
+                e5.y0(this.f25973b, this.f25974c, this.d);
                 return;
         }
     }

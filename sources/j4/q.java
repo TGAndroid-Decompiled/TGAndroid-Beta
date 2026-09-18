@@ -30,10 +30,10 @@ public final class q implements i {
         int i10;
         int i11;
         e2.d.h(this.f12775j);
-        String str = e2.d0.f7888a;
-        int i12 = vVar.f7935b;
-        int i13 = vVar.f7936c;
-        byte[] bArr = vVar.f7934a;
+        String str = e2.d0.f7887a;
+        int i12 = vVar.f7934b;
+        int i13 = vVar.f7935c;
+        byte[] bArr = vVar.f7933a;
         this.f12773g += vVar.a();
         this.f12775j.d(vVar.a(), vVar);
         while (true) {
@@ -105,7 +105,7 @@ public final class q implements i {
     @Override
     public final void e(boolean z10) {
         e2.d.h(this.f12775j);
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         if (z10) {
             this.f12769a.d.c(0);
             b(this.f12773g, 0, 0, this.f12778m);

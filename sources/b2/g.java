@@ -170,7 +170,7 @@ public abstract class g implements b1 {
 
     public abstract void S0();
 
-    public abstract r0.l1 T0(r0.l1 l1Var, List list);
+    public abstract r0.m1 T0(r0.m1 m1Var, List list);
 
     public void U0() {
         synchronized (this.f3000a) {
@@ -404,7 +404,7 @@ public abstract class g implements b1 {
         if (duration == 0) {
             return 100;
         }
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         long d = p7.d(c02, 100L);
         if (d != Long.MAX_VALUE && d != Long.MIN_VALUE) {
             j3 = d / duration;

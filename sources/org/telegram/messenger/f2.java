@@ -14,62 +14,62 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.kr0;
-import org.telegram.ui.qy;
-import org.telegram.ui.vx;
-import org.telegram.ui.wy;
+import org.telegram.ui.jr0;
+import org.telegram.ui.oy;
+import org.telegram.ui.tx;
+import org.telegram.ui.uy;
 public final class f2 implements Utilities.Callback {
-    public final int f16094a;
-    public final long f16095b;
-    public final Object f16096c;
+    public final int f16263a;
+    public final long f16264b;
+    public final Object f16265c;
     public final Object d;
     public final Object e;
 
     public f2(Object obj, long j3, Object obj2, Object obj3, int i10) {
-        this.f16094a = i10;
-        this.f16096c = obj;
-        this.f16095b = j3;
+        this.f16263a = i10;
+        this.f16265c = obj;
+        this.f16264b = j3;
         this.d = obj2;
         this.e = obj3;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f16094a;
-        long j3 = this.f16095b;
+        int i10 = this.f16263a;
+        long j3 = this.f16264b;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f16096c;
+        Object obj4 = this.f16265c;
         switch (i10) {
             case 0:
-                ((FactCheckController) obj4).lambda$loadMissing$3(this.f16095b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
+                ((FactCheckController) obj4).lambda$loadMissing$3(this.f16264b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
                 return;
             case 1:
-                ((MessagesController) obj4).lambda$checkSensitive$448(this.f16095b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
+                ((MessagesController) obj4).lambda$checkSensitive$448(this.f16264b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
                 return;
             case 2:
-                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f16095b, (TLRPC.TL_textWithEntities) obj);
+                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f16264b, (TLRPC.TL_textWithEntities) obj);
                 return;
             case 3:
-                vx vxVar = (vx) obj4;
-                org.telegram.ui.ActionBar.o2[] o2VarArr = (org.telegram.ui.ActionBar.o2[]) obj2;
+                tx txVar = (tx) obj4;
+                org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) obj2;
                 Runnable runnable = (Runnable) obj;
-                vxVar.getClass();
-                ((org.telegram.ui.ActionBar.c2) obj3).dismiss();
-                wy wyVar = vxVar.f38526b;
-                wyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
-                qy qyVar = wyVar.C2;
-                wyVar.removeSelfFromStack();
-                if (o2VarArr[1] != null) {
-                    o2VarArr[0].removeSelfFromStack();
-                    o2VarArr[1].finishFragment();
+                txVar.getClass();
+                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
+                uy uyVar = txVar.f37825b;
+                uyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
+                oy oyVar = uyVar.C2;
+                uyVar.removeSelfFromStack();
+                if (n2VarArr[1] != null) {
+                    n2VarArr[0].removeSelfFromStack();
+                    n2VarArr[1].finishFragment();
                 } else {
-                    o2VarArr[0].finishFragment();
+                    n2VarArr[0].finishFragment();
                 }
-                if (qyVar != null) {
+                if (oyVar != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
-                    qyVar.u(wyVar, arrayList, null, false, wyVar.J2, wyVar.K2, wyVar.L2, null);
+                    oyVar.u(uyVar, arrayList, null, false, uyVar.J2, uyVar.K2, uyVar.L2, null);
                     return;
                 }
                 return;
@@ -80,7 +80,7 @@ public final class f2 implements Utilities.Callback {
                 Bitmap bitmap = (Bitmap) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 if (bitmap == null) {
-                    AndroidUtilities.runOnUIThread(new kr0(photoViewer, 16));
+                    AndroidUtilities.runOnUIThread(new jr0(photoViewer, 16));
                     return;
                 }
                 try {
@@ -94,35 +94,35 @@ public final class f2 implements Utilities.Callback {
                     float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
                     canvas.scale(max, max);
                     canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f16095b, str, createBitmap, 6));
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f16264b, str, createBitmap, 6));
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
-                    AndroidUtilities.runOnUIThread(new kr0(photoViewer, 17));
+                    AndroidUtilities.runOnUIThread(new jr0(photoViewer, 17));
                     return;
                 }
             default:
-                xh.b1 b1Var = (xh.b1) obj3;
+                xh.c1 c1Var = (xh.c1) obj3;
                 nf.e eVar = (nf.e) obj;
                 eVar.d();
-                b1Var.v1(j3, new ai.e4((xh.q1) obj4, eVar, (Utilities.Callback) obj2, b1Var, 17));
+                c1Var.v1(j3, new ai.e4((xh.r1) obj4, eVar, (Utilities.Callback) obj2, c1Var, 17));
                 return;
         }
     }
 
     public f2(Object obj, Dialog dialog, long j3, Object obj2, int i10) {
-        this.f16094a = i10;
-        this.f16096c = obj;
+        this.f16263a = i10;
+        this.f16265c = obj;
         this.d = dialog;
-        this.f16095b = j3;
+        this.f16264b = j3;
         this.e = obj2;
     }
 
     public f2(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f16094a = i10;
-        this.f16096c = obj;
+        this.f16263a = i10;
+        this.f16265c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f16095b = j3;
+        this.f16264b = j3;
     }
 }

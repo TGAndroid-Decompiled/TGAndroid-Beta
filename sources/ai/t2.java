@@ -3,7 +3,7 @@ package ai;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.t50;
+import org.telegram.ui.r50;
 public final class t2 extends AnimatorListenerAdapter {
     public final int f1545a;
     public final float f1546b;
@@ -63,19 +63,19 @@ public final class t2 extends AnimatorListenerAdapter {
                 ocVar.f5228h0.invalidate();
                 return;
             case 3:
-                t50 t50Var = (t50) obj;
-                t50Var.h = f7;
-                t50Var.f37659a.invalidate();
+                r50 r50Var = (r50) obj;
+                r50Var.h = f7;
+                r50Var.f36964a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                yh.e4 e4Var = (yh.e4) obj;
-                e4Var.f47145y = f7;
-                e4Var.invalidate();
-                if (animator == e4Var.E && runnable != null) {
+                yh.c4 c4Var = (yh.c4) obj;
+                c4Var.f47261y = f7;
+                c4Var.invalidate();
+                if (animator == c4Var.E && runnable != null) {
                     runnable.run();
                     return;
                 }

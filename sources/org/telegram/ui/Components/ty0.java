@@ -1,24 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class ty0 extends uc0 {
-    public final uy0 f28223w0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_account;
+public final class ty0 {
+    public final int f28504a;
+    public final org.telegram.ui.Cells.w0 f28505b;
+    public final org.telegram.ui.ActionBar.e6 f28506c;
+    public final ij0 d;
+    public TL_account.TL_birthday e;
+    public v01 f28507f;
+    public v01[] f28508g;
+    public v01[] h;
+    public boolean f28509i;
+    public v01 f28510j;
+    public final RectF f28511k = new RectF();
+    public final Paint f28512l = new Paint(1);
+    public final yc f28513m;
 
-    public ty0(uy0 uy0Var, Context context) {
-        super(context, 13, null);
-        this.f28223w0 = uy0Var;
+    public ty0(int i10, org.telegram.ui.Cells.w0 w0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f28504a = i10;
+        this.f28505b = w0Var;
+        this.f28506c = e6Var;
+        ij0 ij0Var = new ij0(R.raw.cake, AndroidUtilities.dp(66.0f), AndroidUtilities.dp(66.0f), true, null);
+        this.d = ij0Var;
+        ij0Var.H(false);
+        this.f28513m = new yc(w0Var);
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float dp = AndroidUtilities.dp(31.0f);
-        uy0 uy0Var = this.f28223w0;
-        uy0Var.d.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18936h7, false));
-        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, uy0Var.d);
-        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
-        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, uy0Var.d);
+    public final void a(Canvas canvas) {
+        int dp = AndroidUtilities.dp(66.0f);
+        org.telegram.ui.Cells.w0 w0Var = this.f28505b;
+        int width = (w0Var.getWidth() - dp) / 2;
+        ij0 ij0Var = this.d;
+        ij0Var.setBounds(width, AndroidUtilities.dp(13.0f), width + dp, AndroidUtilities.dp(13.0f) + dp);
+        ij0Var.draw(canvas);
+        this.f28507f.c((w0Var.getWidth() - this.f28507f.l()) / 2.0f, AndroidUtilities.dp(19.0f) + dp, 1.0f, -1, canvas);
+        int j3 = (int) (this.f28507f.j() + AndroidUtilities.dp(19.0f) + dp + AndroidUtilities.dp(17.0f));
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.f28508g.length; i11++) {
+            i10 = (int) (Math.max(this.f28508g[i11].l(), this.h[i11].l()) + AndroidUtilities.dp(9.0f) + AndroidUtilities.dp(9.0f) + i10);
+        }
+        int width2 = (w0Var.getWidth() - i10) / 2;
+        int i12 = 0;
+        while (i12 < this.f28508g.length) {
+            float max = Math.max(this.f28508g[i12].l(), this.h[i12].l()) + AndroidUtilities.dp(9.0f) + AndroidUtilities.dp(9.0f);
+            float f7 = width2;
+            float f10 = (max / 2.0f) + f7;
+            int i13 = (int) (f7 + max);
+            v01 v01Var = this.f28508g[i12];
+            v01Var.c(f10 - (v01Var.l() / 2.0f), j3, 0.75f, -1, canvas);
+            v01 v01Var2 = this.h[i12];
+            v01Var2.c(f10 - (v01Var2.l() / 2.0f), AndroidUtilities.dp(16.0f) + j3, 1.0f, -1, canvas);
+            i12++;
+            width2 = i13;
+        }
+        if (this.f28509i) {
+            canvas.save();
+            float l4 = this.f28510j.l() + AndroidUtilities.dp(26.0f);
+            float dp2 = AndroidUtilities.dp(30.0f);
+            float dp3 = AndroidUtilities.dp(38.0f) + j3;
+            RectF rectF = this.f28511k;
+            rectF.set((w0Var.getWidth() - l4) / 2.0f, dp3, (w0Var.getWidth() + l4) / 2.0f, dp3 + dp2);
+            float a2 = this.f28513m.a(0.1f);
+            canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
+            float f11 = dp2 / 2.0f;
+            canvas.drawRoundRect(rectF, f11, f11, this.f28512l);
+            this.f28510j.c(rectF.left + AndroidUtilities.dp(13.0f), rectF.centerY(), 1.0f, -1, canvas);
+            canvas.restore();
+        }
+    }
+
+    public final void b() {
+        e5.m(this.f28505b.getContext(), LocaleController.getString(R.string.DateOfBirth), LocaleController.getString(R.string.DateOfBirthAddToProfile), this.e, new y2(this, 11), null, true, false, this.f28506c).f18627a.show();
     }
 }

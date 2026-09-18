@@ -3,10 +3,10 @@ package gb;
 import java.util.Map;
 import v7.m8;
 public abstract class t extends db.u {
-    public final v f9592a;
+    public final v f9591a;
 
     public t(v vVar) {
-        this.f9592a = vVar;
+        this.f9591a = vVar;
     }
 
     public abstract Object a();
@@ -22,7 +22,7 @@ public abstract class t extends db.u {
             return null;
         }
         Object a2 = a();
-        Map map = this.f9592a.f9595a;
+        Map map = this.f9591a.f9594a;
         try {
             aVar.b();
             while (aVar.k()) {
@@ -51,7 +51,7 @@ public abstract class t extends db.u {
         }
         bVar.c();
         try {
-            for (s sVar : this.f9592a.f9596b) {
+            for (s sVar : this.f9591a.f9595b) {
                 sVar.a(bVar, obj);
             }
             bVar.f();

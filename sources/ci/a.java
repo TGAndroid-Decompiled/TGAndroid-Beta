@@ -31,7 +31,7 @@ public final class a extends View {
     public float f4310s;
     public float v;
 
-    public a(Context context, MediaController.PhotoEntry photoEntry, String str, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+    public a(Context context, MediaController.PhotoEntry photoEntry, String str, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         String str2;
         ImageReceiver imageReceiver = new ImageReceiver(this);
@@ -45,24 +45,24 @@ public final class a extends View {
         setMinimumWidth(AndroidUtilities.dp(196.0f));
         setLayoutParams(new LinearLayout.LayoutParams(-1, 48));
         int i11 = org.telegram.ui.ActionBar.j6.E8;
-        textPaint.setColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        textPaint.setColor(org.telegram.ui.ActionBar.j6.v0(i11, e6Var));
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        textPaint2.setColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        textPaint2.setColor(org.telegram.ui.ActionBar.j6.v0(i11, e6Var));
         textPaint2.setAlpha(102);
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         String str3 = "";
         String str4 = "" + ((Object) str);
         this.f4305b = str4;
-        this.f4306c = hg.k0.i(i10, "");
+        this.f4306c = hg.k0.h(i10, "");
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         pq pqVar = new pq(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        pqVar.f27116w = false;
+        pqVar.f27303w = false;
         int dp = AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(18.0f);
         pqVar.e = dp;
-        pqVar.f27112f = dp2;
+        pqVar.f27299f = dp2;
         if (photoEntry != null && (str2 = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str2), "30.0_30.0", (ImageLocation) null, (String) null, pqVar, (Object) null, 0);
         } else if (photoEntry != null && photoEntry.path != null) {

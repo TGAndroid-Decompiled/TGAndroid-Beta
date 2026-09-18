@@ -1,8 +1,14 @@
 package pg;
-
-import java.util.ArrayList;
 public final class j1 {
-    public int f40917a;
-    public ArrayList f40918b = new ArrayList();
-    public int f40919c;
+    public double f41140a;
+    public double f41141b;
+
+    public j1(double d, double d10) {
+        this.f41140a = d;
+        this.f41141b = d10;
+    }
+
+    public final double a(double d, double d10) {
+        return Math.sqrt(Math.pow(d10 - this.f41141b, 2.0d) + Math.pow(d - this.f41140a, 2.0d));
+    }
 }

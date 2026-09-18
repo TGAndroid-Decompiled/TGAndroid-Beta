@@ -1,177 +1,36 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationManager;
-import android.widget.ImageView;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.DialogObject;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.IMapsProvider;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class wc0 implements q0.a {
-    public final int f38687a;
-    public final kd0 f38688b;
+public final class wc0 extends org.telegram.ui.ActionBar.j {
+    public final jd0 f38794a;
 
-    public wc0(kd0 kd0Var, int i10) {
-        this.f38687a = i10;
-        this.f38688b = kd0Var;
+    public wc0(jd0 jd0Var) {
+        this.f38794a = jd0Var;
     }
 
     @Override
-    public final void accept(Object obj) {
-        int i10;
-        float maxZoomLevel;
-        ImageView imageView;
-        LocationController.SharingLocationInfo sharingLocationInfo;
-        int i11;
-        switch (this.f38687a) {
-            case 0:
-                kd0 kd0Var = this.f38688b;
-                kd0Var.I = (IMapsProvider.IMap) obj;
-                if (AndroidUtilities.computePerceivedBrightness(kd0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f18863d6)) < 0.721f) {
-                    i10 = R.raw.mapstyle_night;
-                } else {
-                    i10 = 0;
-                }
-                if (i10 != 0) {
-                    kd0Var.f35220a0 = true;
-                    kd0Var.I.setMapStyle(ApplicationLoader.getMapsProvider().loadRawResourceStyle(ApplicationLoader.applicationContext, i10));
-                }
-                kd0Var.I.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
-                if (kd0Var.I != null) {
-                    kd0Var.K.getView().animate().alpha(1.0f).setStartDelay(200L).setDuration(100L).start();
-                    if (kd0Var.N0) {
-                        maxZoomLevel = kd0Var.I.getMinZoomLevel() + 4.0f;
-                    } else {
-                        maxZoomLevel = kd0Var.I.getMaxZoomLevel() - 4.0f;
-                    }
-                    TLRPC.TL_channelLocation tL_channelLocation = kd0Var.f35253z0;
-                    if (tL_channelLocation != null) {
-                        TLRPC.GeoPoint geoPoint = tL_channelLocation.geo_point;
-                        IMapsProvider.LatLng latLng = new IMapsProvider.LatLng(geoPoint.lat, geoPoint._long);
-                        ?? obj2 = new Object();
-                        if (DialogObject.isUserDialog(kd0Var.f35226e0)) {
-                            obj2.f33372c = kd0Var.getMessagesController().getUser(Long.valueOf(kd0Var.f35226e0));
-                        } else {
-                            obj2.d = kd0Var.getMessagesController().getChat(Long.valueOf(-kd0Var.f35226e0));
-                        }
-                        obj2.f33370a = kd0Var.f35226e0;
-                        kd0Var.v0(obj2);
-                        try {
-                            IMapsProvider.IMarkerOptions position = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng);
-                            Bitmap g02 = kd0Var.g0(obj2);
-                            if (g02 != null) {
-                                position.icon(g02);
-                                position.anchor(0.5f, 0.907f);
-                                obj2.e = kd0Var.I.addMarker(position);
-                                if (!UserObject.isUserSelf(obj2.f33372c)) {
-                                    IMapsProvider.IMarkerOptions flat = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng).flat(true);
-                                    flat.icon(R.drawable.map_pin_circle);
-                                    flat.anchor(0.5f, 0.5f);
-                                    obj2.f33373f = kd0Var.I.addMarker(flat);
-                                }
-                                kd0Var.f35229g0.add(obj2);
-                                kd0Var.f35230h0.k(obj2, obj2.f33370a);
-                            }
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                        kd0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(obj2.e.getPosition(), maxZoomLevel));
-                    } else {
-                        MessageObject messageObject = kd0Var.B0;
-                        if (messageObject != null) {
-                            if (messageObject.isLiveLocation()) {
-                                ed0 c02 = kd0Var.c0(kd0Var.B0.messageOwner);
-                                if (!kd0Var.l0()) {
-                                    kd0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(c02.e.getPosition(), maxZoomLevel));
-                                }
-                            } else {
-                                IMapsProvider.LatLng latLng2 = new IMapsProvider.LatLng(kd0Var.f35250x0.getLatitude(), kd0Var.f35250x0.getLongitude());
-                                try {
-                                    kd0Var.I.addMarker(ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng2).icon(R.drawable.map_pin2));
-                                } catch (Exception e7) {
-                                    FileLog.e(e7);
-                                }
-                                kd0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng2, maxZoomLevel));
-                                kd0Var.f35228f0 = false;
-                                kd0Var.l0();
-                            }
-                        } else {
-                            Location location = new Location("network");
-                            kd0Var.f35250x0 = location;
-                            TLRPC.TL_channelLocation tL_channelLocation2 = kd0Var.A0;
-                            if (tL_channelLocation2 != null) {
-                                TLRPC.GeoPoint geoPoint2 = tL_channelLocation2.geo_point;
-                                kd0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(new IMapsProvider.LatLng(geoPoint2.lat, geoPoint2._long), maxZoomLevel));
-                                kd0Var.f35250x0.setLatitude(kd0Var.A0.geo_point.lat);
-                                kd0Var.f35250x0.setLongitude(kd0Var.A0.geo_point._long);
-                                kd0Var.f35250x0.setAccuracy(kd0Var.A0.geo_point.accuracy_radius);
-                                kd0Var.T.L(kd0Var.f35250x0);
-                            } else {
-                                location.setLatitude(20.659322d);
-                                kd0Var.f35250x0.setLongitude(-11.40625d);
-                            }
-                        }
-                    }
-                    try {
-                        kd0Var.I.setMyLocationEnabled(true);
-                    } catch (Exception e10) {
-                        FileLog.e((Throwable) e10, false);
-                    }
-                    kd0Var.I.getUiSettings().setMyLocationButtonEnabled(false);
-                    kd0Var.I.getUiSettings().setZoomControlsEnabled(false);
-                    kd0Var.I.getUiSettings().setCompassEnabled(false);
-                    kd0Var.I.setOnCameraMoveStartedListener(new sc0(kd0Var, 4));
-                    kd0Var.I.setOnMyLocationChangeListener(new wc0(kd0Var, 1));
-                    kd0Var.I.setOnMarkerClickListener(new m4.h0(kd0Var, maxZoomLevel));
-                    kd0Var.I.setOnCameraMoveListener(new uc0(kd0Var, 3));
-                    LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-                    List<String> providers = locationManager.getProviders(true);
-                    Location location2 = null;
-                    for (int size = providers.size() - 1; size >= 0; size--) {
-                        location2 = locationManager.getLastKnownLocation(providers.get(size));
-                        if (location2 != null) {
-                            kd0Var.f35248w0 = location2;
-                            kd0Var.t0(location2);
-                            if (kd0Var.f35222b0 && kd0Var.getParentActivity() != null) {
-                                kd0Var.f35222b0 = false;
-                                kd0Var.d0();
-                            }
-                            imageView = kd0Var.f35223c;
-                            if (imageView == null && imageView.getVisibility() == 0 && (sharingLocationInfo = kd0Var.getLocationController().getSharingLocationInfo(kd0Var.f35226e0)) != null && (i11 = sharingLocationInfo.proximityMeters) > 0) {
-                                kd0Var.e0(i11);
-                                return;
-                            }
-                            return;
-                        }
-                    }
-                    kd0Var.f35248w0 = location2;
-                    kd0Var.t0(location2);
-                    if (kd0Var.f35222b0) {
-                        kd0Var.f35222b0 = false;
-                        kd0Var.d0();
-                    }
-                    imageView = kd0Var.f35223c;
-                    if (imageView == null) {
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                kd0 kd0Var2 = this.f38688b;
-                Location location3 = (Location) obj;
-                kd0Var2.t0(location3);
-                kd0Var2.getLocationController().setMapLocation(location3, kd0Var2.f35225d0);
-                kd0Var2.f35225d0 = false;
-                return;
+    public final void b(int i10) {
+        jd0 jd0Var = this.f38794a;
+        if (i10 == -1) {
+            jd0Var.finishFragment();
+        } else if (i10 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = jd0Var.B0.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d10 = geoPoint._long;
+                Activity parentActivity = jd0Var.getParentActivity();
+                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        } else if (i10 == 5) {
+            jd0Var.s0(false);
+        } else if (i10 == 6) {
+            jd0Var.r0(null);
         }
     }
 }

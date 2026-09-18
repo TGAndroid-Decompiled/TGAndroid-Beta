@@ -50,44 +50,44 @@ public final class d {
                 int x11 = vVar.x() & 31;
                 for (int i18 = 0; i18 < x11; i18++) {
                     int D = vVar.D();
-                    int i19 = vVar.f7935b;
+                    int i19 = vVar.f7934b;
                     vVar.K(D);
-                    byte[] bArr = vVar.f7934a;
+                    byte[] bArr = vVar.f7933a;
                     byte[] bArr2 = new byte[D + 4];
-                    System.arraycopy(e2.e.f7897a, 0, bArr2, 0, 4);
+                    System.arraycopy(e2.e.f7896a, 0, bArr2, 0, 4);
                     System.arraycopy(bArr, i19, bArr2, 4, D);
                     arrayList.add(bArr2);
                 }
                 int x12 = vVar.x();
                 for (int i20 = 0; i20 < x12; i20++) {
                     int D2 = vVar.D();
-                    int i21 = vVar.f7935b;
+                    int i21 = vVar.f7934b;
                     vVar.K(D2);
-                    byte[] bArr3 = vVar.f7934a;
+                    byte[] bArr3 = vVar.f7933a;
                     byte[] bArr4 = new byte[D2 + 4];
-                    System.arraycopy(e2.e.f7897a, 0, bArr4, 0, 4);
+                    System.arraycopy(e2.e.f7896a, 0, bArr4, 0, 4);
                     System.arraycopy(bArr3, i21, bArr4, 4, D2);
                     arrayList.add(bArr4);
                 }
                 if (x11 > 0) {
                     f2.n j3 = f2.o.j(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
                     int i22 = j3.e;
-                    int i23 = j3.f8837f;
-                    int i24 = j3.f8846p;
-                    int i25 = j3.f8847q;
-                    int i26 = j3.f8848r;
-                    int i27 = j3.f8849s;
-                    float f10 = j3.f8838g;
-                    int i28 = j3.f8834a;
-                    int i29 = j3.f8835b;
-                    int i30 = j3.f8836c;
-                    byte[] bArr5 = e2.e.f7897a;
+                    int i23 = j3.f8836f;
+                    int i24 = j3.f8845p;
+                    int i25 = j3.f8846q;
+                    int i26 = j3.f8847r;
+                    int i27 = j3.f8848s;
+                    float f10 = j3.f8837g;
+                    int i28 = j3.f8833a;
+                    int i29 = j3.f8834b;
+                    int i30 = j3.f8835c;
+                    byte[] bArr5 = e2.e.f7896a;
                     str = String.format("avc1.%02X%02X%02X", Integer.valueOf(i28), Integer.valueOf(i29), Integer.valueOf(i30));
                     i17 = i27;
                     f7 = f10;
                     i15 = i25;
                     i16 = i26;
-                    i13 = j3.f8839i + 8;
+                    i13 = j3.f8838i + 8;
                     i14 = i24;
                     i11 = i23;
                     i12 = j3.h + 8;

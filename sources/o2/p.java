@@ -8,8 +8,8 @@ public final class p extends a1 {
     public final Map H;
     public b2.o I;
 
-    public p(y2.d dVar, n2.m mVar, n2.j jVar, Map map) {
-        super(dVar, mVar, jVar);
+    public p(y2.d dVar, n2.n nVar, n2.k kVar, Map map) {
+        super(dVar, nVar, kVar);
         this.H = map;
     }
 
@@ -32,7 +32,7 @@ public final class p extends a1 {
             while (true) {
                 if (i10 < length) {
                     o0 o0Var = o0VarArr[i10];
-                    if ((o0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) o0Var).f41160b)) {
+                    if ((o0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) o0Var).f41394b)) {
                         break;
                     }
                     i10++;

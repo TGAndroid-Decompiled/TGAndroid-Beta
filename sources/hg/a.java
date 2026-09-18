@@ -7,11 +7,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
-import org.telegram.ui.Components.b5;
-import org.telegram.ui.Components.c5;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.bo;
-public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b2 {
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.e5;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.zn;
+public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
     public final int f10207a;
     public final c f10208b;
 
@@ -21,7 +21,7 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         switch (this.f10207a) {
             case 1:
                 this.f10208b.X();
@@ -34,15 +34,15 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        j51 j51Var = (j51) obj;
+        x51 x51Var = (x51) obj;
         final View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         final c cVar = this.f10208b;
-        if (!cVar.d.h(j51Var)) {
-            int i10 = j51Var.d;
-            if (i10 != 2 && j51Var.f15543a != 17) {
+        if (!cVar.d.h(x51Var)) {
+            int i10 = x51Var.d;
+            if (i10 != 2 && x51Var.f15672a != 17) {
                 if (i10 == 1) {
                     cVar.f10244s = !cVar.f10244s;
                     cVar.f10240c.Y2.N(true);
@@ -78,7 +78,7 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b
                     cVar.V(true);
                     return;
                 } else if (i10 == 8) {
-                    c5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.F, new b5() {
+                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.F, new d5() {
                         @Override
                         public final void J(int i11, int i12, boolean z10) {
                             switch (r3) {
@@ -101,7 +101,7 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b
                     });
                     return;
                 } else if (i10 == 9) {
-                    c5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.G, new b5() {
+                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.G, new d5() {
                         @Override
                         public final void J(int i11, int i12, boolean z10) {
                             switch (r3) {
@@ -137,7 +137,7 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b
             bundle.putLong("user_id", cVar.getUserConfig().getClientUserId());
             bundle.putInt("chatMode", 5);
             bundle.putString("quick_reply", "away");
-            cVar.presentFragment(new bo(bundle));
+            cVar.presentFragment(new zn(bundle));
         }
     }
 }

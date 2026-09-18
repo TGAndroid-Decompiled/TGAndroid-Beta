@@ -1,43 +1,21 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-public final class eh implements MessagesStorage.IntCallback {
-    public final int f33401a;
-    public final bo f33402b;
+import org.telegram.messenger.Utilities;
+public final class eh implements Utilities.Callback {
+    public final int f33278a;
+    public final long f33279b;
+    public final long f33280c;
+    public final Object d;
 
-    public eh(bo boVar, int i10) {
-        this.f33401a = i10;
-        this.f33402b = boVar;
+    public eh(Object obj, long j3, long j10, int i10) {
+        this.f33278a = i10;
+        this.d = obj;
+        this.f33279b = j3;
+        this.f33280c = j10;
     }
 
     @Override
-    public final void run(int i10) {
-        switch (this.f33401a) {
-            case 0:
-                bo boVar = this.f33402b;
-                if (boVar.getParentActivity() != null && boVar.fragmentView != null && i10 > 0) {
-                    org.telegram.ui.Components.vc.a0(boVar).m(org.telegram.ui.Components.uc.f28326r, i10, 0, 0, boVar.f32279ea).j();
-                    return;
-                }
-                return;
-            case 1:
-                bo boVar2 = this.f33402b;
-                if (i10 == 0) {
-                    boVar2.f32372m6 = false;
-                    boVar2.H9();
-                    return;
-                }
-                boVar2.F(i10, 0, 0, 0, false, true);
-                return;
-            default:
-                bo boVar3 = this.f33402b;
-                if (i10 == 0) {
-                    boVar3.Qc(true);
-                    return;
-                } else {
-                    boVar3.finishFragment();
-                    return;
-                }
-        }
+    public final void run(java.lang.Object r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.eh.run(java.lang.Object):void");
     }
 }

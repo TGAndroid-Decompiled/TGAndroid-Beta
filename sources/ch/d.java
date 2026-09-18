@@ -20,8 +20,8 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.j6;
 import v7.u7;
-import w7.p;
-import yf.e0;
+import w7.q;
+import yf.f0;
 public abstract class d extends Drawable {
     public static final float[] E = new float[8];
     public static Path F = new Path();
@@ -96,13 +96,13 @@ public abstract class d extends Drawable {
         if (z10) {
             float f16 = f11 - f15;
             float f17 = f13 + f15;
-            if (canvas.clipRect(f16, f12, f17, p.a((2.0f * f7) + f12, f12, f14))) {
+            if (canvas.clipRect(f16, f12, f17, q.a((2.0f * f7) + f12, f12, f14))) {
                 canvas.drawRoundRect(f16, f12 + f15, f17, f14 + f15, f7, f7, paint);
             }
         } else {
             float f18 = f11 - f15;
             float f19 = f13 + f15;
-            if (canvas.clipRect(f18, p.a(f14 - (2.0f * f7), f12, f14), f19, f14)) {
+            if (canvas.clipRect(f18, q.a(f14 - (2.0f * f7), f12, f14), f19, f14)) {
                 canvas.drawRoundRect(f18, f12 - f15, f19, f14 - f15, f7, f7, paint);
             }
         }
@@ -110,7 +110,7 @@ public abstract class d extends Drawable {
     }
 
     public static void h(Outline outline, Rect rect, float[] fArr) {
-        if (e0.c(fArr)) {
+        if (f0.c(fArr)) {
             outline.setRoundRect(rect, Math.min(fArr[0], Math.min(rect.width(), rect.height()) / 2.0f));
             return;
         }
@@ -187,7 +187,7 @@ public abstract class d extends Drawable {
             if (Color.alpha(this.e) == 255) {
                 d(canvas, 0);
             } else if (aVar instanceof fh.c) {
-                d(canvas, ((fh.c) aVar).f9073a.getColor());
+                d(canvas, ((fh.c) aVar).f9072a.getColor());
             } else if (aVar instanceof fh.b) {
                 fh.b bVar = (fh.b) aVar;
                 Bitmap bitmap = bVar.d;
@@ -213,7 +213,7 @@ public abstract class d extends Drawable {
                     a2.draw(canvas);
                 }
                 if (this.f4301x != null && bitmap != null && !bitmap.isRecycled() && this.f4290l > 0) {
-                    Matrix matrix = bVar.f9069b;
+                    Matrix matrix = bVar.f9068b;
                     Matrix matrix2 = this.v;
                     matrix2.set(matrix);
                     matrix2.postTranslate(-this.f4282a, -this.f4283b);
@@ -231,10 +231,10 @@ public abstract class d extends Drawable {
             } else if (Build.VERSION.SDK_INT >= 29 && (aVar instanceof fh.d)) {
                 fh.d dVar = (fh.d) aVar;
                 if (!canvas.isHardwareAccelerated()) {
-                    c(canvas, dVar.f9074a);
+                    c(canvas, dVar.f9073a);
                 }
             } else if (aVar instanceof fh.e) {
-                c(canvas, ((fh.e) aVar).f9081a);
+                c(canvas, ((fh.e) aVar).f9080a);
             } else if (aVar != null && (i10 = this.f4290l) != 0) {
                 int l12 = j6.l1(i10 / 255.0f, this.e);
                 if (Color.alpha(this.d) > 0 && this.f4290l == 255) {
@@ -359,13 +359,13 @@ public abstract class d extends Drawable {
         v();
         if (aVar instanceof dh.e) {
             dh.e eVar = (dh.e) aVar;
-            float f7 = eVar.f7742f;
+            float f7 = eVar.f7741f;
             float f10 = eVar.h;
             c cVar = this.f4288j;
             cVar.f4275i = f7;
             cVar.f4276j = f10;
-            float f11 = eVar.f7743n;
-            float f12 = eVar.f7744r;
+            float f11 = eVar.f7742n;
+            float f12 = eVar.f7743r;
             this.f4292n = f11;
             this.f4293o = f12;
         }

@@ -1,29 +1,23 @@
 package org.telegram.ui;
-public final class vr implements Runnable {
-    public final int f38497a;
-    public final wr f38498b;
 
-    public vr(wr wrVar, int i10) {
-        this.f38497a = i10;
-        this.f38498b = wrVar;
+import android.view.View;
+public final class vr implements View.OnClickListener {
+    public final int f38611a;
+    public final org.telegram.ui.Components.fh0 f38612b;
+
+    public vr(org.telegram.ui.Components.fh0 fh0Var, int i10) {
+        this.f38611a = i10;
+        this.f38612b = fh0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38497a) {
+    public final void onClick(View view) {
+        switch (this.f38611a) {
             case 0:
-                org.telegram.ui.Components.z51 z51Var = this.f38498b.f22336a;
-                if (z51Var != null) {
-                    z51Var.Y2.N(true);
-                    return;
-                }
+                this.f38612b.b(true);
                 return;
             default:
-                org.telegram.ui.Components.z51 z51Var2 = this.f38498b.f22336a;
-                if (z51Var2 != null) {
-                    z51Var2.Y2.N(true);
-                    return;
-                }
+                this.f38612b.b(true);
                 return;
         }
     }

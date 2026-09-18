@@ -31,14 +31,14 @@ public final class xa implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: ci.xa.run():void");
     }
 
-    public xa(yh.v5 v5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.m4 m4Var) {
-        this.e = v5Var;
+    public xa(yh.t5 t5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.n4 n4Var) {
+        this.e = t5Var;
         this.f5782f = zArr;
         this.h = starGift;
         this.f5780b = z10;
         this.f5781c = z11;
         this.d = j3;
         this.f5783n = tL_textWithEntities;
-        this.f5784r = m4Var;
+        this.f5784r = n4Var;
     }
 }

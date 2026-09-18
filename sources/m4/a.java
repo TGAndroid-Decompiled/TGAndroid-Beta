@@ -2,7 +2,7 @@ package m4;
 
 import java.util.List;
 public abstract class a {
-    public static final int f14459a = 0;
+    public static final int f14634a = 0;
 
     static {
         e2.d0.J(0);
@@ -18,7 +18,7 @@ public abstract class a {
 
     public static e9.a1 a(List list) {
         if (list.isEmpty()) {
-            e9.g0 g0Var = e9.i0.f8084b;
+            e9.g0 g0Var = e9.i0.f8083b;
             return e9.a1.e;
         } else if (list.size() <= 0) {
             e9.f0 u10 = e9.i0.u();

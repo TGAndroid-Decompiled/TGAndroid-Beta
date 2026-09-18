@@ -112,9 +112,9 @@ public abstract class b7 {
                 createBitmap.copyPixelsFromBuffer(wrap);
                 return createBitmap;
             }
-            throw new IOException(hg.k0.i(c12, "Only 8-bit PGM supported (maxval=255), got: "));
+            throw new IOException(hg.k0.h(c12, "Only 8-bit PGM supported (maxval=255), got: "));
         }
-        throw new IOException(org.telegram.ui.Cells.p6.i("Not a binary PGM (P5), got: ", b10));
+        throw new IOException(t8.b.i("Not a binary PGM (P5), got: ", b10));
     }
 
     public static void e(Bitmap bitmap, GZIPOutputStream gZIPOutputStream, List list) {

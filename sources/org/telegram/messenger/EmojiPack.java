@@ -57,7 +57,7 @@ public final class EmojiPack {
     }
 
     private static IllegalStateException damaged(String str) {
-        return new IllegalStateException(org.telegram.ui.Cells.p6.i("Damaged emoji.pack: ", str));
+        return new IllegalStateException(t8.b.i("Damaged emoji.pack: ", str));
     }
 
     private Bitmap decode(int i10) {

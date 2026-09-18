@@ -13,13 +13,13 @@ import org.telegram.messenger.AndroidUtilities;
 public final class m6 extends FrameLayout {
     public float f5043a;
     public float f5044b;
-    public final pg.s0 f5045c;
+    public final pg.u0 f5045c;
     public final qb d;
 
-    public m6(qb qbVar, Context context, pg.s0 s0Var) {
+    public m6(qb qbVar, Context context, pg.u0 u0Var) {
         super(context);
         this.d = qbVar;
-        this.f5045c = s0Var;
+        this.f5045c = u0Var;
         new Path();
         setWillNotDraw(false);
         Paint paint = qbVar.f5453x1;
@@ -35,7 +35,7 @@ public final class m6 extends FrameLayout {
         Canvas canvas2 = canvas;
         super.onDraw(canvas);
         qb qbVar = this.d;
-        pg.q1 q1Var = qbVar.A1;
+        pg.s1 s1Var = qbVar.A1;
         Paint paint = qbVar.f5455y1;
         Paint paint2 = qbVar.f5453x1;
         Paint paint3 = qbVar.f5457z1;
@@ -50,8 +50,8 @@ public final class m6 extends FrameLayout {
             canvas2.save();
             canvas2.translate(barView.getLeft(), barView.getTop());
             View childAt = barView.getChildAt(0);
-            if (barView instanceof qg.r1) {
-                childAt = ((qg.r1) barView).getColorClickableView();
+            if (barView instanceof qg.o1) {
+                childAt = ((qg.o1) barView).getColorClickableView();
             }
             if (childAt.getAlpha() != 0.0f) {
                 canvas2.scale(childAt.getScaleX(), childAt.getScaleY(), childAt.getPivotX(), childAt.getPivotY());
@@ -60,7 +60,7 @@ public final class m6 extends FrameLayout {
                 int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
                 float x10 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
                 float y3 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
-                int i10 = q1Var.f40997a;
+                int i10 = s1Var.f41242a;
                 int i11 = qbVar.Z0;
                 View view = childAt;
                 if (i11 != -1) {
@@ -77,8 +77,8 @@ public final class m6 extends FrameLayout {
                         viewGroup2 = viewGroup;
                     }
                     View childAt2 = viewGroup2.getChildAt(0);
-                    if (viewGroup instanceof qg.r1) {
-                        childAt2 = ((qg.r1) viewGroup).getColorClickableView();
+                    if (viewGroup instanceof qg.o1) {
+                        childAt2 = ((qg.o1) viewGroup).getColorClickableView();
                     }
                     x10 = AndroidUtilities.lerp(x10, (((childAt2.getWidth() - childAt2.getPaddingLeft()) - childAt2.getPaddingRight()) / 2.0f) + childAt2.getX() + childAt2.getPaddingLeft(), qbVar.f5409a1);
                     y3 = AndroidUtilities.lerp(y3, (((childAt2.getHeight() - childAt2.getPaddingTop()) - childAt2.getPaddingBottom()) / 2.0f) + childAt2.getY() + childAt2.getPaddingTop(), qbVar.f5409a1);
@@ -87,7 +87,7 @@ public final class m6 extends FrameLayout {
                     View childAt3 = r5Var.getChildAt(0);
                     x10 = AndroidUtilities.lerp(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (r5Var.getX() - barView.getLeft()), qbVar.D1);
                     y3 = AndroidUtilities.lerp(y3, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (r5Var.getY() - barView.getTop()), qbVar.D1);
-                    i10 = i0.a.d(qbVar.D1, q1Var.f40997a, this.f5045c.b(0));
+                    i10 = i0.a.d(qbVar.D1, s1Var.f41242a, this.f5045c.b(0));
                 }
                 float f7 = x10;
                 float f10 = y3;
@@ -113,7 +113,7 @@ public final class m6 extends FrameLayout {
                 if (r5Var != null && r5Var.getSelectedColorIndex() != 0) {
                     dp = AndroidUtilities.lerp(f11 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f11, qbVar.D1);
                 }
-                qg.l1.y1(f7, f10, dp, paint.getColor(), canvas2);
+                qg.i1.y1(f7, f10, dp, paint.getColor(), canvas2);
                 if (r5Var != null && r5Var.getSelectedColorIndex() == 0) {
                     paint3.setAlpha((int) (view.getAlpha() * paint3.getAlpha() * qbVar.D1));
                     canvas2.drawCircle(f7, f10, com.google.android.gms.internal.vision.e2.b(1.0f, qbVar.D1, paint3.getStrokeWidth() + AndroidUtilities.dp(3.0f), f11), paint3);

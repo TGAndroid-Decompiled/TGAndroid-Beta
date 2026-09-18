@@ -25,7 +25,7 @@ public class sc {
         if (y3 != null && y3.stories != null) {
             int i10 = 0;
             while (i10 < y3.stories.size()) {
-                i10 = com.google.android.gms.internal.vision.e2.e(y3.stories.get(i10).f18356id, i10, 1, arrayList);
+                i10 = com.google.android.gms.internal.vision.e2.e(y3.stories.get(i10).f18531id, i10, 1, arrayList);
             }
         }
     }
@@ -58,8 +58,8 @@ public class sc {
         }
         if (this.d == 0) {
             TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews = new TL_stories.TL_stories_getStoriesViews();
-            a(tL_stories_getStoriesViews.f18364id);
-            if (!tL_stories_getStoriesViews.f18364id.isEmpty()) {
+            a(tL_stories_getStoriesViews.f18539id);
+            if (!tL_stories_getStoriesViews.f18539id.isEmpty()) {
                 int i10 = this.f1537b;
                 tL_stories_getStoriesViews.peer = MessagesController.getInstance(i10).getInputPeer(this.f1538c);
                 this.d = ConnectionsManager.getInstance(i10).sendRequest(tL_stories_getStoriesViews, new v1(4, this, tL_stories_getStoriesViews));
@@ -78,7 +78,7 @@ public class sc {
             if (y3 != null && !y3.stories.isEmpty()) {
                 for (int i10 = 0; i10 < tL_stories_storyViews.views.size(); i10++) {
                     for (int i11 = 0; i11 < y3.stories.size(); i11++) {
-                        if (y3.stories.get(i11).f18356id == ((Integer) arrayList.get(i10)).intValue()) {
+                        if (y3.stories.get(i11).f18531id == ((Integer) arrayList.get(i10)).intValue()) {
                             y3.stories.get(i11).views = tL_stories_storyViews.views.get(i10);
                         }
                     }

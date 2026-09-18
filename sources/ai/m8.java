@@ -2,6 +2,7 @@ package ai;
 
 import android.os.Build;
 import j$.util.Objects;
+import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,9 +18,8 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gr0;
-import org.telegram.ui.lb1;
-import org.telegram.ui.qb1;
+import org.telegram.ui.Components.dn0;
+import org.telegram.ui.kb1;
 public final class m8 implements RequestDelegate {
     public final int f1257a;
     public final Object f1258b;
@@ -31,9 +31,9 @@ public final class m8 implements RequestDelegate {
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        final Comparator lb1Var;
+        final Comparator kb1Var;
         Locale locale;
-        final Comparator lb1Var2;
+        final Comparator kb1Var2;
         Locale locale2;
         int i10 = this.f1257a;
         Object obj = this.f1258b;
@@ -99,10 +99,10 @@ public final class m8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new gg.x1(17, (ii.a5) obj, tLObject));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new qb1(28, (org.telegram.ui.web.g2) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.p1(2, (org.telegram.ui.web.h2) obj, tLObject));
                 return;
             case 19:
-                tg.y0 y0Var = (tg.y0) obj;
+                tg.x0 x0Var = (tg.x0) obj;
                 if (tLObject != null) {
                     TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
                     HashMap hashMap = new HashMap();
@@ -132,11 +132,11 @@ public final class m8 implements RequestDelegate {
                         }
                         Collator collator = Collator.getInstance(locale);
                         Objects.requireNonNull(collator);
-                        lb1Var = new c8(collator, 5);
+                        kb1Var = new c8(collator, 5);
                     } else {
-                        lb1Var = new lb1(7);
+                        kb1Var = new kb1(7);
                     }
-                    Collections.sort(arrayList, lb1Var);
+                    Collections.sort(arrayList, kb1Var);
                     for (List list2 : hashMap.values()) {
                         Collections.sort(list2, new Comparator() {
                             @Override
@@ -145,14 +145,14 @@ public final class m8 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return lb1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return kb1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                     default:
-                                        return lb1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return kb1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new gr0(y0Var, hashMap, arrayList, 24));
+                    AndroidUtilities.runOnUIThread(new dn0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
                     return;
                 }
                 return;
@@ -193,11 +193,11 @@ public final class m8 implements RequestDelegate {
                         }
                         Collator collator2 = Collator.getInstance(locale2);
                         Objects.requireNonNull(collator2);
-                        lb1Var2 = new c8(collator2, 5);
+                        kb1Var2 = new c8(collator2, 5);
                     } else {
-                        lb1Var2 = new lb1(7);
+                        kb1Var2 = new kb1(7);
                     }
-                    Collections.sort(arrayList2, lb1Var2);
+                    Collections.sort(arrayList2, kb1Var2);
                     for (List list4 : hashMap2.values()) {
                         Collections.sort(list4, new Comparator() {
                             @Override
@@ -206,48 +206,48 @@ public final class m8 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return lb1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return kb1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                     default:
-                                        return lb1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return kb1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new gr0(b1Var, hashMap2, arrayList2, 27));
+                    AndroidUtilities.runOnUIThread(new tg.r(b1Var, hashMap2, arrayList2, 0));
                     return;
                 }
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new p2.b(23, (tg.n1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.p1(27, (tg.m1) obj, tLObject));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new p2.b(26, (uf.c) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new uf.b(0, (uf.d) obj, tLObject));
                 return;
             case 23:
-                AndroidUtilities.runOnUIThread(new gr0((uf.d) obj, tLObject, tL_error, 28));
+                AndroidUtilities.runOnUIThread(new tg.r((uf.e) obj, tLObject, tL_error, 1));
                 return;
             case 24:
-                AndroidUtilities.runOnUIThread(new w9.v((yh.g) obj, tLObject, tL_error, 6));
+                AndroidUtilities.runOnUIThread(new tg.r((yh.g) obj, tLObject, tL_error, 9));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new uh.i(8, (yh.l) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new uf.b(12, (yh.l) obj, tLObject));
                 return;
             case 26:
-                AndroidUtilities.runOnUIThread(new uh.i(9, (yh.m) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new uf.b(13, (yh.m) obj, tLObject));
                 return;
             case 27:
-                AndroidUtilities.runOnUIThread(new uh.i(21, tLObject, (org.telegram.ui.web.b1) obj));
+                AndroidUtilities.runOnUIThread(new uf.b(tLObject, (org.telegram.ui.web.b1) obj));
                 return;
             case 28:
-                AndroidUtilities.runOnUIThread(new uh.i(23, (yh.n5) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new uf.b(27, (yh.l5) obj, tLObject));
                 return;
             default:
-                yh.q8 q8Var = (yh.q8) obj;
+                yh.o8 o8Var = (yh.o8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(q8Var.f47706c).putMessages(new ArrayList<>(Arrays.asList(q8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(o8Var.f47825c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
-                    q8Var.getClass();
+                    o8Var.getClass();
                     return;
                 }
         }

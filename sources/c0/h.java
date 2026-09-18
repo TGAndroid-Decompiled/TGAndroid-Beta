@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.ui.Cells.p6;
 import v7.d5;
 public abstract class h implements w {
     public static final boolean d = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", "false"));
@@ -260,26 +259,26 @@ public abstract class h implements w {
             t10.append(timeUnit.toString().toLowerCase(locale));
             String sb2 = t10.toString();
             if (nanos + 1000 < 0) {
-                String t11 = p6.t(sb2, " (plus ");
+                String v = t8.b.v(sb2, " (plus ");
                 long j10 = -nanos;
                 long convert = timeUnit.convert(j10, TimeUnit.NANOSECONDS);
                 long nanos2 = j10 - timeUnit.toNanos(convert);
                 int i10 = (convert > 0L ? 1 : (convert == 0L ? 0 : -1));
                 boolean z10 = i10 == 0 || nanos2 > 1000;
                 if (i10 > 0) {
-                    String str = t11 + convert + " " + lowerCase;
+                    String str = v + convert + " " + lowerCase;
                     if (z10) {
-                        str = p6.t(str, ",");
+                        str = t8.b.v(str, ",");
                     }
-                    t11 = p6.t(str, " ");
+                    v = t8.b.v(str, " ");
                 }
                 if (z10) {
-                    t11 = t11 + nanos2 + " nanoseconds ";
+                    v = v + nanos2 + " nanoseconds ";
                 }
-                sb2 = p6.t(t11, "delay)");
+                sb2 = t8.b.v(v, "delay)");
             }
             if (isDone()) {
-                throw new TimeoutException(p6.t(sb2, " but future completed as timeout expired"));
+                throw new TimeoutException(t8.b.v(sb2, " but future completed as timeout expired"));
             }
             throw new TimeoutException(a4.a.C(sb2, " for ", hVar));
         }

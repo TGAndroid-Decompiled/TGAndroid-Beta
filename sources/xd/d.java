@@ -1,5 +1,5 @@
 package xd;
 
-import w7.t8;
-public abstract class d extends t8 {
+import w7.u8;
+public abstract class d extends u8 {
 }

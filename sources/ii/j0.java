@@ -42,8 +42,8 @@ public final class j0 implements ba {
         TL_iv.PageBlock pageBlock;
         TL_iv.PageCaption pageCaption;
         TL_iv.RichText richText;
-        a N = this.d.f11488c.N();
-        if (N != null && (pageBlock = N.f11204b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
+        a M = this.d.f11488c.M();
+        if (M != null && (pageBlock = M.f11204b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
             return f6.r(richText, null, true);
         }
         return "";

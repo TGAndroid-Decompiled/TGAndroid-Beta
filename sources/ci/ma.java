@@ -16,7 +16,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.gg0;
+import org.telegram.ui.Components.qg0;
 import org.telegram.ui.Components.qr;
 public final class ma implements View.OnClickListener {
     public final int f5052a;
@@ -97,7 +97,7 @@ public final class ma implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = ocVar2.E2;
                         if (z12) {
-                            qrVar = qr.f27385i;
+                            qrVar = qr.f27717i;
                         } else {
                             qrVar = qr.h;
                         }
@@ -158,11 +158,11 @@ public final class ma implements View.OnClickListener {
                         if (f4Var.getMeasuredWidth() < 0) {
                             f4Var.G = string;
                         } else {
-                            org.telegram.ui.Components.m6 m6Var = f4Var.H;
+                            org.telegram.ui.Components.o6 o6Var = f4Var.H;
                             if (!LocaleController.isRTL && z13) {
                                 z11 = true;
                             }
-                            m6Var.q(string, z11, true);
+                            o6Var.q(string, z11, true);
                         }
                         ocVar.f5238k1.u();
                     }
@@ -174,7 +174,7 @@ public final class ma implements View.OnClickListener {
             case 3:
                 boolean k10 = ocVar.X0.k();
                 ocVar.X0.x(-9982, k10);
-                ((gg0) ocVar.f5235j1.f5517c).a(!k10, true);
+                ((qg0) ocVar.f5235j1.f5517c).a(!k10, true);
                 return;
             case 4:
                 if (ocVar.B0 != null && !ocVar.S1) {

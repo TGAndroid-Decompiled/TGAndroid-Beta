@@ -11,10 +11,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class q2 extends n2 {
-    public zg.g0 f5334i;
-    public zg.g0 f5335j;
+    public zg.f0 f5334i;
+    public zg.f0 f5335j;
     public int f5336k;
-    public final org.telegram.ui.Components.c6 f5337l;
+    public final org.telegram.ui.Components.e6 f5337l;
     public Timer f5338m;
     public final ai.ob f5339n;
     public final ArrayList f5340o;
@@ -24,22 +24,22 @@ public final class q2 extends n2 {
         super(r2Var);
         int i10;
         this.f5341p = r2Var;
-        this.f5334i = new zg.g0(r2Var);
-        this.f5335j = new zg.g0(r2Var);
-        this.f5337l = new org.telegram.ui.Components.c6(r2Var);
+        this.f5334i = new zg.f0(r2Var);
+        this.f5335j = new zg.f0(r2Var);
+        this.f5337l = new org.telegram.ui.Components.e6(r2Var);
         this.f5339n = new ai.ob(r2Var);
         this.f5340o = new ArrayList();
         this.f5063a = 3;
         this.f5064b = AndroidUtilities.dp(44.0f);
         this.f5065c = AndroidUtilities.dp(36.0f);
-        i10 = ((org.telegram.ui.ActionBar.g3) r2Var.f5403f).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) r2Var.f5403f).currentAccount;
         List<TLRPC.TL_availableReaction> reactionsList = MediaDataController.getInstance(i10).getReactionsList();
         for (int i11 = 0; i11 < Math.min(reactionsList.size(), 8); i11++) {
-            this.f5340o.add(zg.p0.c(reactionsList.get(i11)));
+            this.f5340o.add(zg.o0.c(reactionsList.get(i11)));
         }
         Collections.sort(this.f5340o, new a4.e(10));
         if (!this.f5340o.isEmpty()) {
-            this.f5334i.e((zg.p0) this.f5340o.get(this.f5336k));
+            this.f5334i.e((zg.o0) this.f5340o.get(this.f5336k));
         }
         this.f5337l.d(1.0f, true);
     }
@@ -68,15 +68,15 @@ public final class q2 extends n2 {
             canvas.save();
             float f12 = 1.0f - d;
             canvas.scale(f12, f12, rectF.centerX(), rectF.top);
-            zg.g0 g0Var = this.f5335j;
-            g0Var.h = f12;
-            g0Var.a(canvas);
+            zg.f0 f0Var = this.f5335j;
+            f0Var.h = f12;
+            f0Var.a(canvas);
             canvas.restore();
             canvas.save();
             canvas.scale(d, d, rectF.centerX(), rectF.bottom);
-            zg.g0 g0Var2 = this.f5334i;
-            g0Var2.h = d;
-            g0Var2.a(canvas);
+            zg.f0 f0Var2 = this.f5334i;
+            f0Var2.h = d;
+            f0Var2.a(canvas);
             canvas.restore();
         }
         canvas.restore();

@@ -1,4 +1,4 @@
 package s7;
 public abstract class d extends b8.b implements e {
-    public static final int f42896b = 0;
+    public static final int f43126b = 0;
 }

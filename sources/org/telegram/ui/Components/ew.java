@@ -12,18 +12,18 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessagesController;
-public final class ew implements ki.f, cl0, hm0, le.d {
-    public final int f23678a;
-    public final kz f23679b;
+public final class ew implements li.f, ml0, tm0, le.d {
+    public final int f23975a;
+    public final kz f23976b;
 
     public ew(kz kzVar, int i10) {
-        this.f23678a = i10;
-        this.f23679b = kzVar;
+        this.f23975a = i10;
+        this.f23976b = kzVar;
     }
 
     @Override
     public void D(int i10, float f7, float f10, le.e eVar) {
-        this.f23679b.R();
+        this.f23976b.R();
     }
 
     @Override
@@ -34,40 +34,40 @@ public final class ew implements ki.f, cl0, hm0, le.d {
         int i14;
         int i15;
         wy wyVar;
-        switch (this.f23678a) {
+        switch (this.f23975a) {
             case 2:
-                kz kzVar = this.f23679b;
-                qy qyVar = kzVar.f25734i0;
-                int i16 = kzVar.f25716c1;
-                py pyVar = kzVar.f25748n0;
-                sy syVar = kzVar.f25740k0;
-                if (i10 != kzVar.f25765s0 || !pyVar.f27160x.isEmpty()) {
-                    kzVar.f25731h0.C0();
-                    kzVar.f25754p0.k(i10, 0);
-                    if (i10 != kzVar.f25761r0 && i10 != kzVar.f25765s0) {
+                kz kzVar = this.f23976b;
+                qy qyVar = kzVar.f25910i0;
+                int i16 = kzVar.f25892c1;
+                py pyVar = kzVar.f25924n0;
+                sy syVar = kzVar.f25916k0;
+                if (i10 != kzVar.f25941s0 || !pyVar.f27351x.isEmpty()) {
+                    kzVar.f25907h0.C0();
+                    kzVar.f25930p0.k(i10, 0);
+                    if (i10 != kzVar.f25937r0 && i10 != kzVar.f25941s0) {
                         ArrayList<String> arrayList = MessagesController.getInstance(i16).gifSearchEmojies;
-                        kzVar.f25737j0.H(arrayList.get(i10 - kzVar.f25768t0));
-                        int i17 = i10 - kzVar.f25768t0;
+                        kzVar.f25913j0.H(arrayList.get(i10 - kzVar.f25944t0));
+                        int i17 = i10 - kzVar.f25944t0;
                         if (i17 > 0) {
                             syVar.a(arrayList.get(i17 - 1), true);
                         }
-                        if (i10 - kzVar.f25768t0 < arrayList.size() - 1) {
-                            syVar.a(arrayList.get((i10 - kzVar.f25768t0) + 1), true);
+                        if (i10 - kzVar.f25944t0 < arrayList.size() - 1) {
+                            syVar.a(arrayList.get((i10 - kzVar.f25944t0) + 1), true);
                         }
                     } else {
-                        kzVar.f25751o0.d.setText("");
-                        if (i10 == kzVar.f25765s0 && (i12 = pyVar.I) >= 1) {
+                        kzVar.f25927o0.d.setText("");
+                        if (i10 == kzVar.f25941s0 && (i12 = pyVar.I) >= 1) {
                             qyVar.h1(i12, -AndroidUtilities.dp(4.0f));
                         } else {
-                            ky kyVar = kzVar.f25769t1;
-                            if (kyVar != null && kyVar.A()) {
+                            ly lyVar = kzVar.f25945t1;
+                            if (lyVar != null && lyVar.A()) {
                                 i11 = 0;
                             } else {
                                 i11 = 1;
                             }
                             qyVar.h1(i11, 0);
                         }
-                        if (i10 == kzVar.f25765s0) {
+                        if (i10 == kzVar.f25941s0) {
                             ArrayList<String> arrayList2 = MessagesController.getInstance(i16).gifSearchEmojies;
                             if (!arrayList2.isEmpty()) {
                                 syVar.a(arrayList2.get(0), true);
@@ -79,19 +79,19 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                 }
                 return;
             default:
-                kz kzVar2 = this.f23679b;
-                vw vwVar = kzVar2.G0;
-                ArrayList arrayList3 = kzVar2.f25719d1;
-                ww wwVar = kzVar2.B0;
-                bz bzVar = kzVar2.f25786y0;
+                kz kzVar2 = this.f23976b;
+                ww wwVar = kzVar2.G0;
+                ArrayList arrayList3 = kzVar2.f25895d1;
+                xw xwVar = kzVar2.B0;
+                bz bzVar = kzVar2.f25962y0;
                 sw swVar = kzVar2.D0;
                 if (!kzVar2.S0) {
                     if (i10 == kzVar2.H1) {
-                        kzVar2.f25769t1.o(new f51(kzVar2.getContext(), new ex(kzVar2), kzVar2.f25783x1, kzVar2.f25787y1, kzVar2.f25790z1, null, kzVar2.Z1));
+                        kzVar2.f25945t1.o(new t51(kzVar2.getContext(), new fx(kzVar2), kzVar2.f25959x1, kzVar2.f25963y1, kzVar2.f25966z1, null, kzVar2.Z1));
                         return;
                     }
-                    if (vwVar != null && (wyVar = vwVar.f30032r) != null && wyVar.getSelectedCategory() != null) {
-                        vwVar.c(null, false);
+                    if (wwVar != null && (wyVar = wwVar.f30398r) != null && wyVar.getSelectedCategory() != null) {
+                        wwVar.c(null, false);
                         wyVar.G1(null);
                     }
                     if (i10 == kzVar2.F1) {
@@ -104,7 +104,7 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                         } else {
                             i15 = kzVar2.E1;
                         }
-                        wwVar.k(i18, i15);
+                        xwVar.k(i18, i15);
                         return;
                     } else if (i10 == kzVar2.G1) {
                         swVar.C0();
@@ -116,7 +116,7 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                         } else {
                             i14 = kzVar2.E1;
                         }
-                        wwVar.k(i19, i14);
+                        xwVar.k(i19, i14);
                         return;
                     } else if (i10 == kzVar2.I1) {
                         swVar.C0();
@@ -128,7 +128,7 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                         } else {
                             i13 = kzVar2.E1;
                         }
-                        wwVar.k(i20, i13);
+                        xwVar.k(i20, i13);
                         return;
                     } else {
                         int i21 = i10 - kzVar2.E1;
@@ -145,7 +145,7 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                             if (i22 <= 0 && (i22 = kzVar2.F1) <= 0) {
                                 i22 = kzVar2.E1;
                             }
-                            wwVar.k(i10, i22);
+                            xwVar.k(i10, i22);
                             kzVar2.X1 = false;
                             kzVar2.Y();
                             return;
@@ -170,30 +170,30 @@ public final class ew implements ki.f, cl0, hm0, le.d {
         int i15;
         float f10;
         boolean z11;
-        kz kzVar = this.f23679b;
+        kz kzVar = this.f23976b;
         int i16 = kzVar.C1;
-        vx vxVar = kzVar.P;
+        wx wxVar = kzVar.P;
         int[] iArr = kzVar.D1;
         xu xuVar = kzVar.B1;
         if (view instanceof ty) {
             ty tyVar = (ty) view;
             String str3 = null;
             s4.c1 c1Var = null;
-            if (tyVar.f28220c) {
-                View G = vxVar.G(view);
+            if (tyVar.f28501c) {
+                View G = wxVar.G(view);
                 if (G != null) {
-                    c1Var = vxVar.U(G);
+                    c1Var = wxVar.U(G);
                 }
                 if (c1Var != null && c1Var.b() <= kzVar.getRecentEmoji().size()) {
-                    kzVar.f25769t1.n();
+                    kzVar.f25945t1.n();
                 }
-                vxVar.y1(view);
+                wxVar.y1(view);
                 return true;
             } else if (tyVar.getSpan() != null || (str = (String) tyVar.getTag()) == null) {
                 return false;
             } else {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                if (!tyVar.f28220c) {
+                if (!tyVar.f28501c) {
                     str3 = Emoji.emojiColor.get(replace);
                 }
                 boolean isCompound = CompoundEmoji.isCompound(replace);
@@ -207,15 +207,15 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                     replace = kz.g(replace, str3);
                 } else {
                     int indexOf = CompoundEmoji.skinTones.indexOf(str3) + 1;
-                    wu wuVar = xuVar.f29996c;
-                    int[] iArr2 = wuVar.f29747n;
+                    wu wuVar = xuVar.f30380c;
+                    int[] iArr2 = wuVar.f30164n;
                     if (iArr2[0] != indexOf) {
                         iArr2[0] = indexOf;
                         wuVar.invalidate();
                     }
                 }
                 xuVar.getClass();
-                wu wuVar2 = xuVar.f29996c;
+                wu wuVar2 = xuVar.f30380c;
                 int i17 = xuVar.e;
                 if (CompoundEmoji.getCompoundEmojiDrawable(replace) != null) {
                     z10 = true;
@@ -224,9 +224,9 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                 }
                 xuVar.d = z10;
                 int i18 = 3;
-                Drawable[] drawableArr = wuVar2.f29744b;
-                int[] iArr3 = wuVar2.f29747n;
-                wuVar2.f29746f = z10;
+                Drawable[] drawableArr = wuVar2.f30161b;
+                int[] iArr3 = wuVar2.f30164n;
+                wuVar2.f30163f = z10;
                 wuVar2.e = replace;
                 int i19 = 5;
                 if (z10) {
@@ -309,7 +309,7 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                 int i23 = (i13 * i17) + dp3;
                 tyVar.getLocationOnScreen(iArr);
                 if (!xuVar.d) {
-                    int i24 = wuVar2.f29747n[0];
+                    int i24 = wuVar2.f30164n[0];
                     int i25 = i24 * i16;
                     int i26 = i24 * 4;
                     if (!AndroidUtilities.isTablet()) {
@@ -320,7 +320,7 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                     i14 = 0;
                 }
                 if (iArr[0] - i14 < AndroidUtilities.dp(5.0f)) {
-                    i14 = org.telegram.messenger.wl.D(5.0f, iArr[0] - i14, i14);
+                    i14 = org.telegram.messenger.wh.D(5.0f, iArr[0] - i14, i14);
                 } else if ((iArr[0] - i14) + dp2 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f)) {
                     i14 += ((iArr[0] - i14) + dp2) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f));
                 }
@@ -339,8 +339,8 @@ public final class ew implements ki.f, cl0, hm0, le.d {
                 xuVar.setFocusable(true);
                 xuVar.showAsDropDown(view, i27, (((view.getMeasuredHeight() - i16) / 2) + ((-view.getMeasuredHeight()) - i23)) - i15);
                 kzVar.h.requestDisallowInterceptTouchEvent(true);
-                vxVar.e1(true);
-                vxVar.y1(view);
+                wxVar.e1(true);
+                wxVar.y1(view);
                 return true;
             }
         }
@@ -350,11 +350,11 @@ public final class ew implements ki.f, cl0, hm0, le.d {
     @Override
     public void j(int i10) {
         float f7;
-        kz kzVar = this.f23679b;
-        ah.i iVar = kzVar.f25739j2;
-        RectF rectF = kzVar.f25788y2;
+        kz kzVar = this.f23976b;
+        ah.i iVar = kzVar.f25915j2;
+        RectF rectF = kzVar.f25964y2;
         if (Build.VERSION.SDK_INT >= 31 && iVar != null) {
-            hh.k.c(kzVar.f25777w, kzVar, rectF);
+            hh.k.c(kzVar.f25953w, kzVar, rectF);
             float f10 = 0.0f;
             if (LiteMode.isEnabled(262144)) {
                 f7 = 0.0f;
@@ -367,8 +367,8 @@ public final class ew implements ki.f, cl0, hm0, le.d {
             rectF.inset(f7, f10);
             rectF.right = kzVar.getMeasuredWidth();
             rectF.bottom = Math.min(rectF.bottom, kzVar.getMeasuredHeight());
-            iVar.g(!rectF.isEmpty(), kzVar.f25791z2);
-            iVar.e(kzVar.f25742k2, kzVar.getWidth(), kzVar.getHeight());
+            iVar.g(!rectF.isEmpty(), kzVar.f25967z2);
+            iVar.e(kzVar.f25918k2, kzVar.getWidth(), kzVar.getHeight());
         }
     }
 

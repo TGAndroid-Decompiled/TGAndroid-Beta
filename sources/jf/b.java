@@ -54,7 +54,7 @@ public final class b extends a {
         try {
             MediaMetadataRetriever mediaMetadataRetriever2 = this.f12993r;
             if (mediaMetadataRetriever2 != null) {
-                k0.t(mediaMetadataRetriever2);
+                k0.q(mediaMetadataRetriever2);
             }
         } catch (Exception e7) {
             FileLog.e(e7);

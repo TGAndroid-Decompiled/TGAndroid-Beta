@@ -27,7 +27,7 @@ public final class e extends kd.j implements rd.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((e) create(obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
+        return ((e) create(obj, (id.c) obj2)).invokeSuspend(gd.i.f9620a);
     }
 
     @Override

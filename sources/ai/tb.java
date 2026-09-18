@@ -54,7 +54,7 @@ public final class tb implements GestureDetector.OnGestureListener {
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float f11;
-        org.telegram.ui.Components.oc ocVar;
+        org.telegram.ui.Components.qc qcVar;
         jc jcVar = this.f1561a;
         if (!jcVar.f1089j0) {
             return false;
@@ -88,9 +88,9 @@ public final class tb implements GestureDetector.OnGestureListener {
                 jcVar.f1078e0 = f12 + f10;
             }
             xb xbVar = jcVar.f1107s;
-            org.telegram.ui.Components.oc ocVar2 = org.telegram.ui.Components.oc.f26698w;
-            if (ocVar2 != null && ocVar2.h == xbVar) {
-                ocVar2.b();
+            org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f27543w;
+            if (qcVar2 != null && qcVar2.h == xbVar) {
+                qcVar2.b();
             }
             if (jcVar.f1096n0.getCurrentPeerView() != null) {
                 jcVar.f1096n0.getCurrentPeerView().invalidate();
@@ -108,9 +108,9 @@ public final class tb implements GestureDetector.OnGestureListener {
                 f11 = 0.3f;
                 jcVar.W -= f10 * f11;
                 xb xbVar2 = jcVar.f1107s;
-                ocVar = org.telegram.ui.Components.oc.f26698w;
-                if (ocVar != null && ocVar.h == xbVar2) {
-                    ocVar.b();
+                qcVar = org.telegram.ui.Components.qc.f27543w;
+                if (qcVar != null && qcVar.h == xbVar2) {
+                    qcVar.b();
                 }
                 jc.k(jcVar);
                 return true;
@@ -119,9 +119,9 @@ public final class tb implements GestureDetector.OnGestureListener {
         f11 = 0.6f;
         jcVar.W -= f10 * f11;
         xb xbVar22 = jcVar.f1107s;
-        ocVar = org.telegram.ui.Components.oc.f26698w;
-        if (ocVar != null) {
-            ocVar.b();
+        qcVar = org.telegram.ui.Components.qc.f27543w;
+        if (qcVar != null) {
+            qcVar.b();
         }
         jc.k(jcVar);
         return true;

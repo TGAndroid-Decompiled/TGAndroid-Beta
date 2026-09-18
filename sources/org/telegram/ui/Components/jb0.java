@@ -1,59 +1,28 @@
 package org.telegram.ui.Components;
+public final class jb0 implements Runnable {
+    public final int f25286a;
+    public final yb0 f25287b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class jb0 extends ji.n {
-    public int W;
-    public Runnable X;
-    public final pb0 Y;
-
-    public jb0(pb0 pb0Var, hb0 hb0Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(null, hb0Var, f6Var);
-        this.Y = pb0Var;
-        this.W = -1;
+    public jb0(yb0 yb0Var, int i10) {
+        this.f25286a = i10;
+        this.f25287b = yb0Var;
     }
 
     @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
+    public final void run() {
+        switch (this.f25286a) {
+            case 0:
+                yb0 yb0Var = this.f25287b;
+                qb0 qb0Var = yb0Var.f30538f;
+                if (yb0Var.f30537c0.d.webpageTop) {
+                    qb0Var.x0(-qb0Var.computeVerticalScrollOffset(), 250, ji.n.V);
+                    return;
+                }
+                qb0Var.x0(qb0Var.computeVerticalScrollRange() - (qb0Var.computeVerticalScrollExtent() + qb0Var.computeVerticalScrollOffset()), 250, ji.n.V);
+                return;
+            default:
+                this.f25287b.g(true, false);
+                return;
         }
-        ib0 ib0Var = new ib0(this, 0);
-        this.X = ib0Var;
-        AndroidUtilities.runOnUIThread(ib0Var);
-        pb0 pb0Var = this.Y;
-        if (pb0Var.V) {
-            pb0Var.V = false;
-            AndroidUtilities.runOnUIThread(new ib0(this, 1));
-        }
-    }
-
-    @Override
-    public final void W() {
-        vb0 vb0Var = this.Y.f26991c0;
-        AndroidUtilities.cancelRunOnUIThread(vb0Var.f28683y);
-        vb0Var.f28683y.run();
-        if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(vb0Var.f28681w).setAnimationInProgress(this.W, null, false);
-        }
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.X = null;
-        }
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        ib0 ib0Var = new ib0(this, 2);
-        this.X = ib0Var;
-        AndroidUtilities.runOnUIThread(ib0Var);
     }
 }

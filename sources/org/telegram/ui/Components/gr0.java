@@ -1,56 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.util.Pair;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gr0 implements Runnable {
-    public final int f24392a;
-    public final Object f24393b;
-    public final Object f24394c;
-    public final Object d;
+import android.view.View;
+public final class gr0 implements View.OnClickListener {
+    public final int f24481a;
+    public final kv0 f24482b;
 
-    public gr0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f24392a = i10;
-        this.f24393b = obj;
-        this.f24394c = obj2;
-        this.d = obj3;
-    }
-
-    private final void a() {
-        ((org.telegram.ui.web.b1) this.f24393b).run(new Pair((HashMap) this.f24394c, (ArrayList) this.d));
-    }
-
-    private final void b() {
-        uf.d dVar = (uf.d) this.f24393b;
-        TLObject tLObject = (TLObject) this.f24394c;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-        String str = dVar.f43728b;
-        int i10 = dVar.f43727a;
-        if (tLObject != null) {
-            MediaDataController.getInstance(i10).onRingtoneUploaded(str, (TLRPC.Document) tLObject, false);
-        } else {
-            dVar.a();
-            MediaDataController.getInstance(i10).onRingtoneUploaded(str, null, true);
-            if (tL_error != null) {
-                NotificationCenter.getInstance(i10).doOnIdle(new p2.b(29, dVar, tL_error));
-            }
-        }
-        dVar.a();
+    public gr0(kv0 kv0Var, int i10) {
+        this.f24481a = i10;
+        this.f24482b = kv0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gr0.run():void");
-    }
-
-    public gr0(org.telegram.ui.web.g1 g1Var, ArrayList arrayList, String str) {
-        this.f24392a = 19;
-        this.f24393b = g1Var;
-        this.d = arrayList;
-        this.f24394c = str;
+    public final void onClick(View view) {
+        switch (this.f24481a) {
+            case 0:
+                this.f24482b.L(true);
+                return;
+            case 1:
+                this.f24482b.C0(102, view);
+                return;
+            case 2:
+                this.f24482b.C0(100, view);
+                return;
+            case 3:
+                this.f24482b.C0(103, view);
+                return;
+            case 4:
+                this.f24482b.C0(104, view);
+                return;
+            case 5:
+                this.f24482b.C0(101, view);
+                return;
+            case 6:
+                kv0 kv0Var = this.f24482b;
+                fs0 fs0Var = kv0Var.W;
+                zr0 zr0Var = kv0Var.V;
+                if (kv0Var.f25835q0.getAlpha() >= 0.1f) {
+                    if (zr0Var != null && zr0Var.g()) {
+                        zr0Var.i();
+                    }
+                    if (fs0Var != null && fs0Var.f31926w) {
+                        jv0 i12 = kv0Var.i1(kv0Var.h1(kv0Var.getClosestTab()));
+                        du0 W = kv0Var.W(i12.f25463a);
+                        if (W != null) {
+                            fs0Var.setReorderingAlbums(false);
+                            js0 js0Var = W.h;
+                            for (int i10 = 0; i10 < js0Var.getChildCount(); i10++) {
+                                View childAt = js0Var.getChildAt(i10);
+                                if (childAt instanceof org.telegram.ui.Cells.t7) {
+                                    ((org.telegram.ui.Cells.t7) childAt).l(false, true);
+                                }
+                            }
+                            iv0 iv0Var = i12.f25465c;
+                            if (iv0Var != null && iv0Var.f24743x) {
+                                iv0Var.f24743x = false;
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.ActionBar.n2 n2Var = this.f24482b.f25848v1;
+                n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
+                ci.oc.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
+                return;
+        }
     }
 }

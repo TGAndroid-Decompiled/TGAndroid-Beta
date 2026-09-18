@@ -1,26 +1,23 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-public final class h6 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f34185a;
-    public final Object f34186b;
+import android.content.Context;
+public final class h6 extends org.telegram.ui.Components.fg0 {
+    public final z6 F0;
 
-    public h6(Object obj, int i10) {
-        this.f34185a = i10;
-        this.f34186b = obj;
+    public h6(z6 z6Var, Context context) {
+        super(context);
+        this.F0 = z6Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        org.telegram.ui.ActionBar.k kVar;
-        switch (this.f34185a) {
-            case 0:
-                ((a7) this.f34186b).z0();
-                return true;
-            default:
-                kVar = ((org.telegram.ui.ActionBar.o2) ((cl) this.f34186b).d).actionBar;
-                kVar.invalidate();
-                return true;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.F0.f39996k0);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        getViewTreeObserver().removeOnPreDrawListener(this.F0.f39996k0);
+        super.onDetachedFromWindow();
     }
 }

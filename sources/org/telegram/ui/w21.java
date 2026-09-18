@@ -1,43 +1,29 @@
 package org.telegram.ui;
+public final class w21 implements Runnable {
+    public final int f38688a;
+    public final y21 f38689b;
+    public final int f38690c;
+    public final int d;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-public final class w21 implements v9 {
-    public final int f38565a;
-    public final org.telegram.ui.ActionBar.o2 f38566b;
-
-    public w21(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f38565a = i10;
-        this.f38566b = o2Var;
+    public w21(y21 y21Var, int i10, int i11, int i12) {
+        this.f38688a = i12;
+        this.f38689b = y21Var;
+        this.f38690c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final String J0() {
-        return null;
-    }
-
-    @Override
-    public final void K(String str) {
-        String b10 = nf.f.b(str);
-        if (!TextUtils.isEmpty(b10)) {
-            MessagesController.getInstance(this.f38565a).getUserNameResolver().resolve(b10, new zb(this.f38566b, 4));
-        } else {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.sh(27));
+    public final void run() {
+        switch (this.f38688a) {
+            case 0:
+                this.f38689b.b(this.f38690c, this.d);
+                return;
+            case 1:
+                this.f38689b.b(this.f38690c, this.d);
+                return;
+            default:
+                this.f38689b.b(this.f38690c, this.d);
+                return;
         }
-    }
-
-    @Override
-    public final boolean e1(String str, n9 n9Var) {
-        return false;
-    }
-
-    @Override
-    public final void T0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

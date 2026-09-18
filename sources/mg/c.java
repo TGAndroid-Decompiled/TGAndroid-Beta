@@ -6,29 +6,29 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import n7.a1;
+import n7.z0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.w1;
-import org.telegram.messenger.wl;
-import org.telegram.ui.ActionBar.g3;
+import org.telegram.messenger.q;
+import org.telegram.messenger.wh;
+import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.l4;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.go0;
-import org.telegram.ui.Components.qv0;
+import org.telegram.ui.ActionBar.k4;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.to0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.i5;
-import w7.x5;
+import w7.y5;
 public final class c implements Runnable {
-    public final int f14817a;
-    public final i f14818b;
+    public final int f14989a;
+    public final i f14990b;
 
     public c(i iVar, int i10) {
-        this.f14817a = i10;
-        this.f14818b = iVar;
+        this.f14989a = i10;
+        this.f14990b = iVar;
     }
 
     @Override
@@ -40,19 +40,19 @@ public final class c implements Runnable {
         int i14;
         int i15;
         int i16;
-        switch (this.f14817a) {
+        switch (this.f14989a) {
             case 0:
-                o2 R = LaunchActivity.R();
-                ?? g3Var = new g3(R.getParentActivity(), false);
-                if (R.getFragmentView() instanceof qv0) {
-                    g3Var.f34437b = (qv0) R.getFragmentView();
+                n2 R = LaunchActivity.R();
+                ?? f3Var = new f3(R.getParentActivity(), false);
+                if (R.getFragmentView() instanceof bw0) {
+                    f3Var.f34311b = (bw0) R.getFragmentView();
                 }
                 Activity parentActivity = R.getParentActivity();
-                LinearLayout f7 = w1.f(parentActivity, 1);
+                LinearLayout f7 = q.f(parentActivity, 1);
                 TextView textView = new TextView(parentActivity);
-                textView.setText("Saturation " + (i5.f34436c * 5.0f));
-                int i17 = j6.f19047n5;
-                wl.r(textView, j6.w0(null, i17, false), 1, 16.0f, 1);
+                textView.setText("Saturation " + (i5.f34310c * 5.0f));
+                int i17 = j6.f19246n5;
+                wh.s(textView, j6.w0(null, i17, false), 1, 16.0f, 1);
                 textView.setMaxLines(1);
                 textView.setSingleLine(true);
                 if (LocaleController.isRTL) {
@@ -66,14 +66,14 @@ public final class c implements Runnable {
                 } else {
                     i11 = 5;
                 }
-                f7.addView(textView, x5.d(-2, -1.0f, i11 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-                go0 go0Var = new go0(parentActivity);
-                go0Var.setDelegate(new o0.a(g3Var, textView, false, 1));
-                go0Var.setReportChanges(true);
-                f7.addView(go0Var, x5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                f7.addView(textView, y5.d(-2, -1.0f, i11 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                to0 to0Var = new to0(parentActivity);
+                to0Var.setDelegate(new o0.a(f3Var, textView, false, 1));
+                to0Var.setReportChanges(true);
+                f7.addView(to0Var, y5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
                 TextView textView2 = new TextView(parentActivity);
                 textView2.setText("Alpha " + i5.e);
-                wl.r(textView2, j6.w0(null, i17, false), 1, 16.0f, 1);
+                wh.s(textView2, j6.w0(null, i17, false), 1, 16.0f, 1);
                 textView2.setMaxLines(1);
                 textView2.setSingleLine(true);
                 if (LocaleController.isRTL) {
@@ -87,14 +87,14 @@ public final class c implements Runnable {
                 } else {
                     i13 = 5;
                 }
-                f7.addView(textView2, x5.d(-2, -1.0f, i13 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-                go0 go0Var2 = new go0(parentActivity);
-                go0Var2.setDelegate(new a1(g3Var, textView2, false, 2));
-                go0Var2.setReportChanges(true);
-                f7.addView(go0Var2, x5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                f7.addView(textView2, y5.d(-2, -1.0f, i13 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                to0 to0Var2 = new to0(parentActivity);
+                to0Var2.setDelegate(new z0(f3Var, textView2, false, 2));
+                to0Var2.setReportChanges(true);
+                f7.addView(to0Var2, y5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
                 TextView textView3 = new TextView(parentActivity);
                 textView3.setText("Blur Radius");
-                wl.r(textView3, j6.w0(null, i17, false), 1, 16.0f, 1);
+                wh.s(textView3, j6.w0(null, i17, false), 1, 16.0f, 1);
                 textView3.setMaxLines(1);
                 textView3.setSingleLine(true);
                 if (LocaleController.isRTL) {
@@ -108,20 +108,20 @@ public final class c implements Runnable {
                 } else {
                     i15 = 5;
                 }
-                f7.addView(textView3, x5.d(-2, -1.0f, i15 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-                go0 go0Var3 = new go0(parentActivity);
-                go0Var3.setDelegate(new org.telegram.ui.g(g3Var, 5));
-                go0Var3.setReportChanges(true);
-                f7.addView(go0Var3, x5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
-                f7.addOnLayoutChangeListener(new l4(go0Var, go0Var3, go0Var2));
+                f7.addView(textView3, y5.d(-2, -1.0f, i15 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                to0 to0Var3 = new to0(parentActivity);
+                to0Var3.setDelegate(new org.telegram.ui.g(f3Var, 5));
+                to0Var3.setReportChanges(true);
+                f7.addView(to0Var3, y5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                f7.addOnLayoutChangeListener(new k4(to0Var, to0Var3, to0Var2));
                 ScrollView scrollView = new ScrollView(parentActivity);
                 scrollView.addView(f7);
-                g3Var.setCustomView(scrollView);
-                g3Var.show();
-                this.f14818b.c(false);
+                f3Var.setCustomView(scrollView);
+                f3Var.show();
+                this.f14990b.c(false);
                 return;
             case 1:
-                i iVar = this.f14818b;
+                i iVar = this.f14990b;
                 iVar.getClass();
                 SharedConfig.toggleDebugWebView();
                 Context context = iVar.getContext();
@@ -133,11 +133,11 @@ public final class c implements Runnable {
                 Toast.makeText(context, LocaleController.getString(i16), 0).show();
                 return;
             case 2:
-                ProfileActivity.H4((Activity) this.f14818b.getContext(), false);
+                ProfileActivity.H4((Activity) this.f14990b.getContext(), false);
                 return;
             default:
-                i iVar2 = this.f14818b;
-                iVar2.f14838n = true;
+                i iVar2 = this.f14990b;
+                iVar2.f15010n = true;
                 try {
                     iVar2.performHapticFeedback(0);
                     return;

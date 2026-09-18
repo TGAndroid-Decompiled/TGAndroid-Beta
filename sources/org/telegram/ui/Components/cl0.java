@@ -1,6 +1,50 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public interface cl0 {
-    boolean d(int i10, View view);
+public final class cl0 extends Drawable {
+    public final Paint f23290a = new Paint(1);
+    public final View f23291b;
+    public final Path f23292c;
+    public final RectF d;
+    public final wl0 e;
+
+    public cl0(wl0 wl0Var, View view, Path path, RectF rectF) {
+        this.e = wl0Var;
+        this.f23291b = view;
+        this.f23292c = path;
+        this.d = rectF;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        View view = this.f23291b;
+        canvas.translate(-view.getX(), -view.getY());
+        canvas.clipPath(this.f23292c);
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, this.e.f30090p2);
+        Paint paint = this.f23290a;
+        paint.setColor(i0.a.k(v02, paint.getAlpha()));
+        canvas.drawRect(this.d, paint);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f23290a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
 }

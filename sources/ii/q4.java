@@ -20,9 +20,9 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import v7.p8;
-public final class q4 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
+public final class q4 extends a0 implements org.telegram.ui.ActionBar.z5, p9 {
     public final int[] E;
-    public final org.telegram.ui.ActionBar.f6 f11574n;
+    public final org.telegram.ui.ActionBar.e6 f11574n;
     public final Paint f11575r;
     public final HorizontalScrollView f11576s;
     public final ImageView v;
@@ -30,12 +30,12 @@ public final class q4 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
     public int f11578x;
     public a3 f11579y;
 
-    public q4(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public q4(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.f11575r = new Paint(1);
         this.f11578x = 0;
         this.E = new int[4];
-        this.f11574n = f6Var;
+        this.f11574n = e6Var;
         setWillNotDraw(false);
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f));
         ImageView imageView = new ImageView(context);
@@ -49,7 +49,7 @@ public final class q4 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         horizontalScrollView.setPadding(0, 0, 0, 0);
         horizontalScrollView.setFillViewport(true);
         horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
-        addView(horizontalScrollView, w7.x5.e(-1, -2, 16));
+        addView(horizontalScrollView, w7.y5.e(-1, -2, 16));
         e();
     }
 
@@ -67,10 +67,10 @@ public final class q4 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
 
     @Override
     public final void e() {
-        int i10 = j6.f19184uf;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f11574n;
-        this.f11575r.setColor(j6.v0(i10, f6Var));
-        this.f11578x = j6.v0(j6.G6, f6Var);
+        int i10 = j6.f19384uf;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f11574n;
+        this.f11575r.setColor(j6.v0(i10, e6Var));
+        this.f11578x = j6.v0(j6.G6, e6Var);
         this.v.setColorFilter(new PorterDuffColorFilter(this.f11578x, PorterDuff.Mode.SRC_IN));
         invalidate();
     }
@@ -139,7 +139,7 @@ public final class q4 extends a0 implements org.telegram.ui.ActionBar.a6, p9 {
         if (this.f11577w != null && (a3Var = this.f11579y) != null && (textSelectionHelper = a3Var.f11233a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int S = RecyclerView.S(this);
-            if (S >= 0 && S >= textSelectionHelper.f20629u0 && S <= textSelectionHelper.f20632x0) {
+            if (S >= 0 && S >= textSelectionHelper.f20814u0 && S <= textSelectionHelper.f20817x0) {
                 int[] iArr = this.E;
                 i(iArr);
                 canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f11575r);

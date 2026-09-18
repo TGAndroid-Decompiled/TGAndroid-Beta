@@ -39,7 +39,7 @@ public final class b0 {
         if (z10 && (i10 = this.f11248a) != b10) {
             ValueAnimator ofInt = ValueAnimator.ofInt(i10, b10);
             ofInt.addUpdateListener(new ai.x(6, this, d5Var));
-            ofInt.setInterpolator(qr.f27383f);
+            ofInt.setInterpolator(qr.f27715f);
             ofInt.setDuration(200L);
             this.f11250c = ofInt;
             ofInt.start();

@@ -1,34 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import org.telegram.messenger.AndroidUtilities;
-public final class xc0 extends yc0 {
-    public final ci.h2 L;
+import org.telegram.messenger.Utilities;
+public final class xc0 extends qo0 {
+    public final dd0 d;
 
-    public xc0(Context context) {
-        super(context, null);
-        ci.h2 h2Var = new ci.h2(this, context, 5);
-        this.L = h2Var;
-        h2Var.setTextSize(1, 18.0f);
-        h2Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        h2Var.setHintTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
-        h2Var.setBackground(null);
-        h2Var.setSingleLine(true);
-        h2Var.setInputType(1);
-        h2Var.setTypeface(Typeface.DEFAULT);
-        h2Var.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19009l6, false));
-        h2Var.setCursorWidth(1.5f);
-        h2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
-        e(h2Var);
-        addView(h2Var, w7.x5.e(-1, -2, 16));
+    public xc0(dd0 dd0Var) {
+        this.d = dd0Var;
     }
 
-    public EditTextBoldCursor getEditText() {
-        return this.L;
+    @Override
+    public final boolean a() {
+        return true;
     }
 
-    public void setHint(String str) {
-        setText(str);
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        this.d.a(!z10);
+    }
+
+    @Override
+    public final CharSequence d() {
+        dd0 dd0Var = this.d;
+        Utilities.CallbackReturn callbackReturn = dd0Var.f23558s0;
+        if (callbackReturn != null) {
+            return (CharSequence) callbackReturn.run(Integer.valueOf(dd0Var.G));
+        }
+        return dd0Var.d(dd0Var.G);
     }
 }

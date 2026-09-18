@@ -6,18 +6,18 @@ import android.content.Intent;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 public final class g extends BroadcastReceiver {
-    public static final AtomicReference f13545b = new AtomicReference();
-    public final Context f13546a;
+    public static final AtomicReference f13543b = new AtomicReference();
+    public final Context f13544a;
 
     public g(Context context) {
-        this.f13546a = context;
+        this.f13544a = context;
     }
 
     @Override
     public final void onReceive(Context context, Intent intent) {
-        synchronized (h.f13547k) {
+        synchronized (h.f13545k) {
             try {
-                Iterator it = ((a0.e) h.f13548l.values()).iterator();
+                Iterator it = ((a0.e) h.f13546l.values()).iterator();
                 while (it.hasNext()) {
                     ((h) it.next()).e();
                 }
@@ -25,6 +25,6 @@ public final class g extends BroadcastReceiver {
                 throw th2;
             }
         }
-        this.f13546a.unregisterReceiver(this);
+        this.f13544a.unregisterReceiver(this);
     }
 }

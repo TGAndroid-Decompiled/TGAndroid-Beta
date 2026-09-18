@@ -5,11 +5,11 @@ import j$.time.ZoneOffset;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.Components.qc0;
-import org.telegram.ui.Components.xk0;
-public final class v implements e2.m, d9.e, xk0, qc0, b2 {
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.zc0;
+public final class v implements e2.m, d9.e, hl0, zc0, a2 {
     public final int f10898a;
     public final int f10899b;
 
@@ -25,7 +25,24 @@ public final class v implements e2.m, d9.e, xk0, qc0, b2 {
     }
 
     @Override
-    public String e(int i10) {
+    public void f(b2 b2Var, int i10) {
+        MessagesController.getInstance(this.f10899b).performLogout(1);
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        switch (this.f10898a) {
+            case 0:
+                ((b2.z0) obj).onRepeatModeChanged(this.f10899b);
+                return;
+            default:
+                ((b2.z0) obj).onAudioSessionIdChanged(this.f10899b);
+                return;
+        }
+    }
+
+    @Override
+    public String j(int i10) {
         int i11 = this.f10898a;
         int i12 = this.f10899b;
         switch (i11) {
@@ -45,23 +62,6 @@ public final class v implements e2.m, d9.e, xk0, qc0, b2 {
                     return "—";
                 }
                 return String.format("%02d", Integer.valueOf(i10));
-        }
-    }
-
-    @Override
-    public void f(c2 c2Var, int i10) {
-        MessagesController.getInstance(this.f10899b).performLogout(1);
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        switch (this.f10898a) {
-            case 0:
-                ((b2.z0) obj).onRepeatModeChanged(this.f10899b);
-                return;
-            default:
-                ((b2.z0) obj).onAudioSessionIdChanged(this.f10899b);
-                return;
         }
     }
 

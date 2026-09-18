@@ -1,13 +1,13 @@
 package gg;
 public final class e2 implements Runnable {
-    public final g2 f9728a;
+    public final g2 f9727a;
 
     public e2(g2 g2Var) {
-        this.f9728a = g2Var;
+        this.f9727a = g2Var;
     }
 
     public final void a() {
-        g2 g2Var = this.f9728a;
+        g2 g2Var = this.f9727a;
         if (g2Var.Q) {
             return;
         }

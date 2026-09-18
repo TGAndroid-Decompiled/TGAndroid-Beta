@@ -1,35 +1,34 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class q91 extends ReplacementSpan {
-    public final org.telegram.ui.Components.h01 f36850a = new org.telegram.ui.Components.h01(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
-    public final Paint f36851b = new Paint(1);
-    public final org.telegram.ui.ActionBar.f6 f36852c;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class q91 implements TextWatcher {
+    public boolean f36764a;
+    public final int f36765b;
+    public final EditTextBoldCursor f36766c;
+    public final org.telegram.ui.Components.id0 d;
+    public final int[] e;
+    public final TextView f36767f;
 
-    public q91(org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f36852c = f6Var;
+    public q91(int i10, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.id0 id0Var, int[] iArr, TextView textView) {
+        this.f36765b = i10;
+        this.f36766c = editTextBoldCursor;
+        this.d = id0Var;
+        this.e = iArr;
+        this.f36767f = textView;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, this.f36852c);
-        Paint paint2 = this.f36851b;
-        paint2.setColor(v02);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f7 + this.f36850a.f24442c, AndroidUtilities.dp(9.0f) + dp);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
-        this.f36850a.c(f7 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
+    public final void afterTextChanged(android.text.Editable r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.q91.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (AndroidUtilities.dp(16.0f) + this.f36850a.f24442c);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

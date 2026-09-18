@@ -15,19 +15,18 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Cells.p6;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.UsersSelectActivity;
 public final class a0 {
     public final Context f10209a;
     public final int f10210b;
-    public final f6 f10211c;
-    public final o2 d;
+    public final e6 f10211c;
+    public final n2 d;
     public final Runnable e;
     public int f10212f;
     public int f10213g;
@@ -39,21 +38,21 @@ public final class a0 {
     public int f10218m;
     public boolean f10219n;
 
-    public a0(o2 o2Var, Runnable runnable) {
+    public a0(n2 n2Var, Runnable runnable) {
         this.f10215j = new ArrayList();
         this.f10216k = new ArrayList();
         this.f10218m = -4;
-        this.f10209a = o2Var.getContext();
-        this.f10210b = o2Var.getCurrentAccount();
-        this.d = o2Var;
+        this.f10209a = n2Var.getContext();
+        this.f10210b = n2Var.getCurrentAccount();
+        this.d = n2Var;
         this.e = runnable;
-        this.f10211c = o2Var.getResourceProvider();
+        this.f10211c = n2Var.getResourceProvider();
     }
 
-    public final void a(ArrayList arrayList, x51 x51Var, boolean z10) {
+    public final void a(ArrayList arrayList, l61 l61Var, boolean z10) {
         String str;
         String str2;
-        x51Var.U();
+        l61Var.U();
         int d = d();
         String str3 = "";
         if (!this.h) {
@@ -65,32 +64,32 @@ public final class a0 {
                 } else {
                     str2 = ", ";
                 }
-                str = org.telegram.messenger.w1.h(R.string.FilterExistingChats, a4.a.u(str2));
+                str = org.telegram.messenger.q.h(R.string.FilterExistingChats, a4.a.u(str2));
             }
             if ((d & 2) != 0) {
                 if (!TextUtils.isEmpty(str)) {
-                    str = p6.t(str, ", ");
+                    str = t8.b.v(str, ", ");
                 }
-                str = org.telegram.messenger.w1.h(R.string.FilterNewChats, a4.a.u(str));
+                str = org.telegram.messenger.q.h(R.string.FilterNewChats, a4.a.u(str));
             }
             if ((d & 4) != 0) {
                 if (!TextUtils.isEmpty(str)) {
-                    str = p6.t(str, ", ");
+                    str = t8.b.v(str, ", ");
                 }
-                str = org.telegram.messenger.w1.h(R.string.FilterContacts, a4.a.u(str));
+                str = org.telegram.messenger.q.h(R.string.FilterContacts, a4.a.u(str));
             }
             if ((d & 8) != 0) {
                 if (!TextUtils.isEmpty(str)) {
-                    str = p6.t(str, ", ");
+                    str = t8.b.v(str, ", ");
                 }
-                str = org.telegram.messenger.w1.h(R.string.FilterNonContacts, a4.a.u(str));
+                str = org.telegram.messenger.q.h(R.string.FilterNonContacts, a4.a.u(str));
             }
             ArrayList arrayList2 = this.f10215j;
             if (!arrayList2.isEmpty()) {
                 if (!TextUtils.isEmpty(str)) {
-                    StringBuilder g10 = w.f.g(str, " + ");
-                    g10.append(arrayList2.size());
-                    str = g10.toString();
+                    StringBuilder j3 = t8.b.j(str, " + ");
+                    j3.append(arrayList2.size());
+                    str = j3.toString();
                 } else {
                     StringBuilder u10 = a4.a.u(str);
                     u10.append(LocaleController.formatPluralStringComma("Chats", arrayList2.size()));
@@ -100,8 +99,8 @@ public final class a0 {
             if (TextUtils.isEmpty(str)) {
                 str = LocaleController.getString(R.string.BusinessChatsIncludedAdd2);
             }
-            j51 f7 = j51.f(LocaleController.getString(R.string.BusinessChatsIncluded), str, 101);
-            f7.f25123g = z10;
+            x51 f7 = x51.f(LocaleController.getString(R.string.BusinessChatsIncluded), str, 101);
+            f7.f30244g = z10;
             arrayList.add(f7);
         }
         boolean z11 = this.f10214i;
@@ -111,33 +110,33 @@ public final class a0 {
                     if (!TextUtils.isEmpty("")) {
                         str3 = ", ";
                     }
-                    str3 = org.telegram.messenger.w1.h(R.string.FilterExistingChats, a4.a.u(str3));
+                    str3 = org.telegram.messenger.q.h(R.string.FilterExistingChats, a4.a.u(str3));
                 }
                 if ((d & 2) != 0) {
                     if (!TextUtils.isEmpty(str3)) {
-                        str3 = p6.t(str3, ", ");
+                        str3 = t8.b.v(str3, ", ");
                     }
-                    str3 = org.telegram.messenger.w1.h(R.string.FilterNewChats, a4.a.u(str3));
+                    str3 = org.telegram.messenger.q.h(R.string.FilterNewChats, a4.a.u(str3));
                 }
                 if ((d & 4) != 0) {
                     if (!TextUtils.isEmpty(str3)) {
-                        str3 = p6.t(str3, ", ");
+                        str3 = t8.b.v(str3, ", ");
                     }
-                    str3 = org.telegram.messenger.w1.h(R.string.FilterContacts, a4.a.u(str3));
+                    str3 = org.telegram.messenger.q.h(R.string.FilterContacts, a4.a.u(str3));
                 }
                 if ((d & 8) != 0) {
                     if (!TextUtils.isEmpty(str3)) {
-                        str3 = p6.t(str3, ", ");
+                        str3 = t8.b.v(str3, ", ");
                     }
-                    str3 = org.telegram.messenger.w1.h(R.string.FilterNonContacts, a4.a.u(str3));
+                    str3 = org.telegram.messenger.q.h(R.string.FilterNonContacts, a4.a.u(str3));
                 }
             }
             ArrayList arrayList3 = this.f10216k;
             if (!arrayList3.isEmpty()) {
                 if (!TextUtils.isEmpty(str3)) {
-                    StringBuilder g11 = w.f.g(str3, " + ");
-                    g11.append(arrayList3.size());
-                    str3 = g11.toString();
+                    StringBuilder j10 = t8.b.j(str3, " + ");
+                    j10.append(arrayList3.size());
+                    str3 = j10.toString();
                 } else {
                     StringBuilder u11 = a4.a.u(str3);
                     u11.append(LocaleController.formatPluralStringComma("Chats", arrayList3.size()));
@@ -147,11 +146,11 @@ public final class a0 {
             if (TextUtils.isEmpty(str3)) {
                 str3 = LocaleController.getString(R.string.BusinessChatsExcludedAdd2);
             }
-            j51 f10 = j51.f(LocaleController.getString(R.string.BusinessChatsExcluded), str3, 103);
-            f10.f25123g = z10;
+            x51 f10 = x51.f(LocaleController.getString(R.string.BusinessChatsExcluded), str3, 103);
+            f10.f30244g = z10;
             arrayList.add(f10);
         }
-        x51Var.T();
+        l61Var.T();
     }
 
     public final TL_account.TL_inputBusinessBotRecipients b() {
@@ -431,14 +430,14 @@ public final class a0 {
         return true;
     }
 
-    public final boolean h(j51 j51Var) {
+    public final boolean h(x51 x51Var) {
         boolean z10;
         ArrayList arrayList;
         boolean z11;
         int i10;
         int i11;
-        int i12 = j51Var.d;
-        o2 o2Var = this.d;
+        int i12 = x51Var.d;
+        n2 n2Var = this.d;
         boolean z12 = false;
         if (i12 != 101 && i12 != 103) {
             Runnable runnable = this.e;
@@ -448,11 +447,11 @@ public final class a0 {
             } else if (i12 == 104) {
                 runnable.run();
                 return true;
-            } else if (j51Var.f15543a != 11) {
+            } else if (x51Var.f15672a != 11) {
                 return false;
             } else {
-                boolean z13 = j51Var.f25137w;
-                String peerName = MessagesController.getInstance(this.f10210b).getPeerName(j51Var.f25138x);
+                boolean z13 = x51Var.f30258w;
+                String peerName = MessagesController.getInstance(this.f10210b).getPeerName(x51Var.f30259x);
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f10209a, 0, this.f10211c);
                 if (!z13) {
                     i10 = R.string.BusinessRecipientsRemoveExcludeTitle;
@@ -460,21 +459,21 @@ public final class a0 {
                     i10 = R.string.BusinessRecipientsRemoveIncludeTitle;
                 }
                 String string = LocaleController.getString(i10);
-                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18447a;
-                c2Var.R = string;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+                b2Var.R = string;
                 if (!z13) {
                     i11 = R.string.BusinessRecipientsRemoveExcludeMessage;
                 } else {
                     i11 = R.string.BusinessRecipientsRemoveIncludeMessage;
                 }
-                c2Var.T = LocaleController.formatString(i11, peerName);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new com.google.firebase.messaging.i(this, z13, j51Var, 1));
+                b2Var.T = LocaleController.formatString(i11, peerName);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new com.google.firebase.messaging.i(this, z13, x51Var, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                if (o2Var != null) {
-                    o2Var.showDialog(c2Var);
+                if (n2Var != null) {
+                    n2Var.showDialog(b2Var);
                     return true;
                 }
-                c2Var.show();
+                b2Var.show();
                 return true;
             }
         }
@@ -489,7 +488,7 @@ public final class a0 {
             arrayList = this.f10216k;
         }
         UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z10);
-        usersSelectActivity.f31633x = 2;
+        usersSelectActivity.f31860x = 2;
         usersSelectActivity.G = false;
         if (this.f10214i && !this.h && !z10) {
             z11 = true;
@@ -502,17 +501,17 @@ public final class a0 {
             z12 = true;
         }
         usersSelectActivity.H = z12;
-        usersSelectActivity.f31629n = new ai.k(1, this, z10);
-        if (o2Var != null) {
-            o2Var.presentFragment(usersSelectActivity);
+        usersSelectActivity.f31856n = new ai.k(1, this, z10);
+        if (n2Var != null) {
+            n2Var.presentFragment(usersSelectActivity);
             return true;
         }
-        o2 U = LaunchActivity.U();
+        n2 U = LaunchActivity.U();
         if (U == 0) {
             return true;
         }
         ?? obj = new Object();
-        obj.f19398a = true;
+        obj.f19545a = true;
         U.showAsSheet(usersSelectActivity, obj);
         return true;
     }
@@ -592,20 +591,20 @@ public final class a0 {
         arrayList2.addAll(this.f10217l.exclude_users);
     }
 
-    public final boolean k(f61 f61Var) {
+    public final boolean k(t61 t61Var) {
         if (!this.h && this.f10215j.isEmpty() && this.f10212f == 0) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            View z12 = f61Var.z1(101);
+            View z12 = t61Var.z1(101);
             int i10 = -this.f10218m;
             this.f10218m = i10;
             AndroidUtilities.shakeViewSpring(z12, i10);
-            f61Var.y0(f61Var.y1(101));
+            t61Var.y0(t61Var.y1(101));
             return false;
         }
         return true;
     }
 
-    public a0(Context context, int i10, uc ucVar, f6 f6Var) {
+    public a0(Context context, int i10, uc ucVar, e6 e6Var) {
         this.f10215j = new ArrayList();
         this.f10216k = new ArrayList();
         this.f10218m = -4;
@@ -613,6 +612,6 @@ public final class a0 {
         this.f10210b = i10;
         this.d = null;
         this.e = ucVar;
-        this.f10211c = f6Var;
+        this.f10211c = e6Var;
     }
 }

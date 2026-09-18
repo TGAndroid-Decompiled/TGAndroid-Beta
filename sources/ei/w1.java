@@ -3,35 +3,35 @@ package ei;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.yc0;
+import org.telegram.ui.Components.id0;
 import org.telegram.ui.PasscodeActivity;
-import org.telegram.ui.is;
+import org.telegram.ui.gs;
 public final class w1 implements View.OnFocusChangeListener {
-    public final int f8702a;
-    public final Object f8703b;
-    public final EditTextBoldCursor f8704c;
+    public final int f8701a;
+    public final Object f8702b;
+    public final EditTextBoldCursor f8703c;
 
     public w1(Object obj, EditTextBoldCursor editTextBoldCursor, int i10) {
-        this.f8702a = i10;
-        this.f8703b = obj;
-        this.f8704c = editTextBoldCursor;
+        this.f8701a = i10;
+        this.f8702b = obj;
+        this.f8703c = editTextBoldCursor;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        switch (this.f8702a) {
+        switch (this.f8701a) {
             case 0:
-                ((yc0) this.f8703b).c(z10, !TextUtils.isEmpty(this.f8704c.getText()));
+                ((id0) this.f8702b).c(z10, !TextUtils.isEmpty(this.f8703c.getText()));
                 return;
             case 1:
-                ((yc0) this.f8703b).c(z10, !TextUtils.isEmpty(this.f8704c.getText()));
+                ((id0) this.f8702b).c(z10, !TextUtils.isEmpty(this.f8703c.getText()));
                 return;
             case 2:
-                ((yc0) this.f8703b).c(z10, !TextUtils.isEmpty(this.f8704c.getText()));
+                ((id0) this.f8702b).c(z10, !TextUtils.isEmpty(this.f8703c.getText()));
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f8703b;
-                passcodeActivity.v.setEditText((is) this.f8704c);
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f8702b;
+                passcodeActivity.v.setEditText((gs) this.f8703c);
                 passcodeActivity.v.setDispatchBackWhenEmpty(true);
                 return;
         }

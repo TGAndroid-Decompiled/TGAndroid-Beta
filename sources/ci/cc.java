@@ -6,8 +6,8 @@ import android.view.View;
 public final class cc extends d7 {
     public final oc C0;
 
-    public cc(oc ocVar, Activity activity, org.telegram.ui.Components.ha haVar, c7 c7Var) {
-        super(activity, haVar, c7Var);
+    public cc(oc ocVar, Activity activity, org.telegram.ui.Components.ja jaVar, c7 c7Var) {
+        super(activity, jaVar, c7Var);
         this.C0 = ocVar;
     }
 
@@ -51,8 +51,8 @@ public final class cc extends d7 {
         if (o8Var != null && o8Var.f5183u && o8Var.K && (qbVar = ocVar.f5272v1) != null && qbVar.R0 != null) {
             for (int i10 = 0; i10 < ocVar.f5272v1.R0.getChildCount(); i10++) {
                 View childAt = ocVar.f5272v1.R0.getChildAt(i10);
-                if (childAt instanceof qg.h1) {
-                    ((qg.h1) childAt).s();
+                if (childAt instanceof qg.e1) {
+                    ((qg.e1) childAt).s();
                 }
             }
         }

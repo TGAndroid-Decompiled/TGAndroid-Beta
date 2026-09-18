@@ -2,5 +2,5 @@ package org.telegram.ui.Components;
 
 import android.widget.FrameLayout;
 public abstract class qi extends FrameLayout {
-    public oh.b f27320a;
+    public oh.b f27614a;
 }

@@ -46,7 +46,7 @@ public final class e implements i {
         boolean z10;
         int i12;
         this.h.getClass();
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         while (vVar.a() > 0) {
             int i13 = this.f12665j;
             e2.v vVar2 = this.f12661c;
@@ -135,7 +135,7 @@ public final class e implements i {
                             }
                         }
                     } else {
-                        byte[] bArr3 = vVar2.f7934a;
+                        byte[] bArr3 = vVar2.f7933a;
                         int min3 = Math.min(vVar.a(), 10 - this.f12666k);
                         vVar.h(this.f12666k, min3, bArr3);
                         int i24 = this.f12666k + min3;
@@ -152,7 +152,7 @@ public final class e implements i {
                         }
                     }
                 } else if (vVar.a() != 0) {
-                    hVar.f256b[0] = vVar.f7934a[vVar.f7935b];
+                    hVar.f256b[0] = vVar.f7933a[vVar.f7934b];
                     hVar.q(2);
                     int i25 = hVar.i(4);
                     int i26 = this.f12671p;
@@ -172,9 +172,9 @@ public final class e implements i {
                     }
                 }
             } else {
-                byte[] bArr4 = vVar.f7934a;
-                int i27 = vVar.f7935b;
-                int i28 = vVar.f7936c;
+                byte[] bArr4 = vVar.f7933a;
+                int i27 = vVar.f7934b;
+                int i28 = vVar.f7935c;
                 while (true) {
                     if (i27 < i28) {
                         i11 = i27 + 1;
@@ -211,8 +211,8 @@ public final class e implements i {
                                             hVar.q(14);
                                             int i33 = hVar.i(13);
                                             if (i33 >= 7) {
-                                                byte[] bArr8 = vVar.f7934a;
-                                                int i34 = vVar.f7936c;
+                                                byte[] bArr8 = vVar.f7933a;
+                                                int i34 = vVar.f7935c;
                                                 int i35 = i30 + i33;
                                                 if (i35 >= i34) {
                                                     break;
@@ -340,7 +340,7 @@ public final class e implements i {
             rVar.f3240a = f0Var.e;
             rVar.f3252p = r0.n(this.f12662f);
             rVar.f3253q = r0.n("application/id3");
-            k0.u(rVar, Z12);
+            k0.r(rVar, Z12);
             return;
         }
         this.f12664i = new c3.n();

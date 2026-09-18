@@ -1,17 +1,33 @@
 package qg;
 
 import android.content.Context;
-public final class t2 extends r0 {
-    public final v2 f41684t0;
+import android.view.MotionEvent;
+public final class t2 extends b {
+    public final u2 E;
 
-    public t2(v2 v2Var, Context context, float f7) {
-        super(context, f7);
-        this.f41684t0 = v2Var;
+    public t2(u2 u2Var, Context context) {
+        super(context);
+        this.E = u2Var;
     }
 
     @Override
-    public final void invalidate() {
-        this.f41684t0.d.invalidate();
-        super.invalidate();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        i iVar = this.E.H;
+        if (iVar != null && iVar.getVisibility() == 0) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.E.m();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.E.m();
     }
 }

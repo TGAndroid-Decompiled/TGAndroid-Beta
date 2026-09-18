@@ -2,7 +2,7 @@ package ci;
 
 import android.app.Activity;
 import android.app.Dialog;
-public final class sb extends org.telegram.ui.ActionBar.o2 {
+public final class sb extends org.telegram.ui.ActionBar.n2 {
     public final int f5528a;
     public final oc f5529b;
 
@@ -32,7 +32,7 @@ public final class sb extends org.telegram.ui.ActionBar.o2 {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
+    public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
         switch (this.f5528a) {
             case 0:
                 return new ai.x3(7, this.f5529b.f5204a);
@@ -52,13 +52,13 @@ public final class sb extends org.telegram.ui.ActionBar.o2 {
     }
 
     @Override
-    public boolean presentFragment(org.telegram.ui.ActionBar.o2 o2Var) {
+    public boolean presentFragment(org.telegram.ui.ActionBar.n2 n2Var) {
         switch (this.f5528a) {
             case 0:
                 this.f5529b.T();
                 return false;
             default:
-                return super.presentFragment(o2Var);
+                return super.presentFragment(n2Var);
         }
     }
 

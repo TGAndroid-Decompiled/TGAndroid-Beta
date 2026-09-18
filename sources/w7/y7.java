@@ -1,23 +1,60 @@
 package w7;
 
-import java.util.Date;
-import org.json.JSONObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public abstract class y7 {
-    public static lf.i a(String str) {
-        String str2;
-        JSONObject jSONObject = new JSONObject(str);
-        String a2 = q8.a(jSONObject.getString("id"));
-        long j3 = jSONObject.getLong("created");
-        jSONObject.getBoolean("livemode");
-        if ("card".equals(q8.a(jSONObject.getString("type")))) {
-            str2 = "card";
-        } else {
-            str2 = null;
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String sb2;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
+            }
+            Object obj = objArr[i11];
+            if (obj == null) {
+                sb2 = "null";
+            } else {
+                try {
+                    sb2 = obj.toString();
+                } catch (Exception e) {
+                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e);
+                    StringBuilder v = a4.a.v("<", str2, " threw ");
+                    v.append(e.getClass().getName());
+                    v.append(">");
+                    sb2 = v.toString();
+                }
+            }
+            objArr[i11] = sb2;
+            i11++;
         }
-        Boolean valueOf = Boolean.valueOf(jSONObject.getBoolean("used"));
-        JSONObject jSONObject2 = jSONObject.getJSONObject("card");
-        uc.a aVar = new uc.a(null, Integer.valueOf(jSONObject2.getInt("exp_month")), Integer.valueOf(jSONObject2.getInt("exp_year")), null, q8.a(jSONObject2.optString("name")), q8.a(jSONObject2.optString("address_line1")), q8.a(jSONObject2.optString("address_line2")), q8.a(jSONObject2.optString("address_city")), q8.a(jSONObject2.optString("address_state")), q8.a(jSONObject2.optString("address_zip")), q8.a(jSONObject2.optString("address_country")), s8.a(q8.a(jSONObject2.optString("brand"))), q8.a(jSONObject2.optString("last4")), q8.a(jSONObject2.optString("fingerprint")), s8.b(q8.a(jSONObject2.optString("funding"))), q8.a(jSONObject2.optString("country")), q8.a(jSONObject2.optString("currency")));
-        new Date(j3 * 1000);
-        return new lf.i(a2, valueOf, aVar, str2);
+        StringBuilder sb3 = new StringBuilder((length * 16) + str.length());
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb3.append((CharSequence) str, i12, indexOf);
+            sb3.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
+        }
+        sb3.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb3.append(" [");
+            sb3.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb3.append(", ");
+                sb3.append(objArr[i13]);
+            }
+            sb3.append(']');
+        }
+        return sb3.toString();
     }
 }

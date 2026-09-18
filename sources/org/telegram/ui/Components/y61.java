@@ -1,58 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
-import java.util.ArrayList;
-public final class y61 implements Runnable {
-    public final int f30135a;
-    public final Object f30136b;
+import android.content.Context;
+import androidx.core.widget.NestedScrollView;
+public final class y61 extends NestedScrollView {
+    public boolean W;
+    public final z61 f30488a0;
 
-    public y61(Object obj, int i10) {
-        this.f30135a = i10;
-        this.f30136b = obj;
+    public y61(z61 z61Var, Context context) {
+        super(context);
+        this.f30488a0 = z61Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30135a) {
-            case 0:
-                h71 h71Var = (h71) this.f30136b;
-                i2.e0 e0Var = h71Var.d;
-                if (e0Var != null) {
-                    TextureView textureView = h71Var.f24540n;
-                    e0Var.B1();
-                    if (textureView != null && textureView == e0Var.V) {
-                        e0Var.B1();
-                        e0Var.o1();
-                        e0Var.t1(null);
-                        e0Var.m1(0, 0);
-                    }
-                    h71Var.d.v1(h71Var.f24540n);
-                    ArrayList arrayList = h71Var.N;
-                    if (arrayList != null) {
-                        h71Var.F(arrayList, h71Var.O);
-                    } else if (h71Var.U) {
-                        h71Var.G(h71Var.Q, h71Var.S, h71Var.R, h71Var.T);
-                    } else {
-                        h71Var.D(h71Var.Q, h71Var.S);
-                    }
-                    h71Var.C();
-                    return;
-                }
-                return;
-            case 1:
-                h71 h71Var2 = ((g71) this.f30136b).f24111f;
-                h71Var2.f24528a0.removeCallbacksAndMessages(null);
-                h71Var2.K.onVisualizerUpdate(false, true, null);
-                return;
-            case 2:
-                ((j71) this.f30136b).f25158g = false;
-                return;
-            case 3:
-                ((d91) ((j50) ((org.telegram.ui.Cells.fa) this.f30136b).f20124b).f25120b).v.b();
-                return;
-            default:
-                ((z81) this.f30136b).d(false, true);
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        z61.m(this.f30488a0);
+    }
+
+    @Override
+    public final void onMeasure(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y61.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        z61.m(this.f30488a0);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.W) {
+            return;
         }
+        super.requestLayout();
     }
 }

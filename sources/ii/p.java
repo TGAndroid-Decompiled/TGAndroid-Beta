@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.ky;
-public final class p implements ky {
+import org.telegram.ui.Components.ly;
+import org.telegram.ui.Components.t51;
+public final class p implements ly {
     public final r f11548a;
 
     public p(r rVar) {
@@ -103,7 +103,7 @@ public final class p implements ky {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.x5 x5Var;
+        org.telegram.ui.Components.z5 z5Var;
         r rVar = this.f11548a;
         i1 M = r.M(rVar);
         if (M != null) {
@@ -114,12 +114,12 @@ public final class p implements ky {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    x5Var = new org.telegram.ui.Components.x5(document, M.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(document, M.getPaint().getFontMetricsInt());
                 } else {
-                    x5Var = new org.telegram.ui.Components.x5(j3, M.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(j3, M.getPaint().getFontMetricsInt());
                 }
-                x5Var.cacheType = org.telegram.ui.Components.o5.g();
-                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
+                z5Var.cacheType = org.telegram.ui.Components.q5.g();
+                spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
                 M.setText(M.getText().insert(N, spannableString));
                 int length = N + spannableString.length();
                 M.setSelection(length, length);
@@ -141,15 +141,7 @@ public final class p implements ky {
     }
 
     @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void o(f51 f51Var) {
-    }
-
-    @Override
-    public final void q() {
+    public final void o(t51 t51Var) {
     }
 
     @Override
@@ -165,15 +157,23 @@ public final class p implements ky {
     }
 
     @Override
+    public final void y(long j3) {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
     public final void u() {
     }
 
     @Override
     public final void w() {
-    }
-
-    @Override
-    public final void y(long j3) {
     }
 
     @Override

@@ -1,41 +1,35 @@
 package yh;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.Utilities;
-public final class w4 implements DialogInterface.OnDismissListener {
-    public final int f47965a;
-    public final Utilities.Callback2 f47966b;
-    public final boolean[] f47967c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class w4 implements RequestDelegate {
+    public final int f48180a;
+    public final t5 f48181b;
 
-    public w4(Utilities.Callback2 callback2, boolean[] zArr, int i10) {
-        this.f47965a = i10;
-        this.f47966b = callback2;
-        this.f47967c = zArr;
+    public w4(t5 t5Var, int i10) {
+        this.f48180a = i10;
+        this.f48181b = t5Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f47965a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f48180a) {
             case 0:
-                Utilities.Callback2 callback2 = this.f47966b;
-                if (callback2 != null && !this.f47967c[0]) {
-                    callback2.run(0L, Boolean.FALSE);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new a5(this.f48181b, tLObject, 0));
                 return;
             case 1:
-                Utilities.Callback2 callback22 = this.f47966b;
-                if (callback22 != null && !this.f47967c[0]) {
-                    callback22.run(Boolean.FALSE, null);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new a5(this.f48181b, tLObject, 1));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new a5(this.f48181b, tLObject, 2));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new a5(this.f48181b, tLObject, 3));
                 return;
             default:
-                Utilities.Callback2 callback23 = this.f47966b;
-                if (callback23 != null && !this.f47967c[0]) {
-                    callback23.run(Boolean.FALSE, null);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new a5(this.f48181b, tLObject, 4));
                 return;
         }
     }

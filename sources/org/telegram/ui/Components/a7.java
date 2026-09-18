@@ -1,25 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-public final class a7 implements Runnable {
-    public final int f22339a;
-    public final h8 f22340b;
-    public final MessageObject f22341c;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class a7 implements Utilities.Callback2 {
+    public final int f22533a;
+    public final j8 f22534b;
 
-    public a7(h8 h8Var, MessageObject messageObject, int i10) {
-        this.f22339a = i10;
-        this.f22340b = h8Var;
-        this.f22341c = messageObject;
+    public a7(j8 j8Var, int i10) {
+        this.f22533a = i10;
+        this.f22534b = j8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f22339a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f22533a) {
             case 0:
-                h8.m(this.f22340b, this.f22341c);
+                j8 j8Var = this.f22534b;
+                j8Var.Y = !((Boolean) obj2).booleanValue();
+                MediaController mediaController = MediaController.getInstance();
+                org.telegram.ui.ActionBar.b1 b1Var = j8Var.X;
+                float floatValue = ((Float) obj).floatValue();
+                b1Var.getClass();
+                mediaController.setPlaybackSpeed(true, (floatValue * 2.8f) + 0.2f);
                 return;
             default:
-                h8.p(this.f22340b, this.f22341c);
+                Bitmap bitmap = (Bitmap) obj2;
+                this.f22534b.f25211i0.setBackground(new BitmapDrawable((Bitmap) obj));
                 return;
         }
     }

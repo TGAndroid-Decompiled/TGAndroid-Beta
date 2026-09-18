@@ -1,33 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class za0 implements Runnable {
-    public final int f30460a;
-    public final pb0 f30461b;
-    public final Context f30462c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+public final class za0 extends z5 {
+    public final cb0 f30763a;
 
-    public za0(pb0 pb0Var, Context context, int i10) {
-        this.f30460a = i10;
-        this.f30461b = pb0Var;
-        this.f30462c = context;
+    public za0(cb0 cb0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        super(document, fontMetricsInt);
+        this.f30763a = cb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30460a) {
-            case 0:
-                pb0 pb0Var = this.f30461b;
-                pb0Var.f26991c0.a(false);
-                AndroidUtilities.runOnUIThread(new za0(pb0Var, this.f30462c, 1));
-                return;
-            default:
-                Context context = this.f30462c;
-                if (AndroidUtilities.isContextSafe(context)) {
-                    new rg.x0(context, 43, this.f30461b.f26991c0.F).show();
-                    return;
-                }
-                return;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = i14 + i12;
+        int i16 = this.measuredSize;
+        this.f30763a.f23238c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
     }
 }

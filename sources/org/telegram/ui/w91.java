@@ -1,26 +1,59 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class w91 implements RequestDelegate {
-    public final int f38629a;
-    public final ab1 f38630b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class w91 implements bh.a {
+    public final RectF f38749a = new RectF();
+    public final x8 f38750b;
+    public final za1 f38751c;
 
-    public w91(ab1 ab1Var, int i10) {
-        this.f38629a = i10;
-        this.f38630b = ab1Var;
+    public w91(za1 za1Var, x8 x8Var) {
+        this.f38751c = za1Var;
+        this.f38750b = x8Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38629a) {
-            case 0:
-                ab1.U(this.f38630b, tLObject);
-                return;
-            default:
-                ab1.V(this.f38630b, tLObject);
-                return;
+    public final void b(ah.a aVar, RectF rectF) {
+        aVar.f417a = true;
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        ah.o oVar;
+        dc dcVar;
+        dc dcVar2;
+        za1 za1Var = this.f38751c;
+        za1Var.fragmentView.getMeasuredWidth();
+        za1Var.fragmentView.getMeasuredHeight();
+        canvas.drawColor(za1Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19062d6));
+        for (int i10 = 0; i10 < 3; i10++) {
+            if (i10 == 0) {
+                oVar = za1Var.T;
+                dcVar = za1Var.S;
+            } else if (i10 == 1 && (dcVar2 = za1Var.f40045j0) != null) {
+                oVar = dcVar2.G;
+                dcVar = dcVar2;
+            } else {
+                ke keVar = za1Var.f40046k0;
+                if (keVar != null) {
+                    oVar = keVar.f35042b1;
+                    dcVar = keVar;
+                } else {
+                    oVar = null;
+                    dcVar = null;
+                }
+            }
+            if (oVar != null && dcVar != null) {
+                x8 x8Var = this.f38750b;
+                RectF rectF2 = this.f38749a;
+                hh.k.c(dcVar, x8Var, rectF2);
+                if (rectF2.right > 0.0f) {
+                    za1Var.fragmentView.getMeasuredWidth();
+                }
+                canvas.save();
+                oVar.f(canvas, rectF);
+                canvas.restore();
+            }
         }
     }
 }

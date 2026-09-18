@@ -9,11 +9,11 @@ import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class i1 extends LinearLayout {
-    public yh.k8 f970a;
+    public yh.i8 f970a;
     public final Path f971b;
     public final Paint f972c;
     public long d;
-    public final org.telegram.ui.Components.c6 e;
+    public final org.telegram.ui.Components.e6 e;
     public final l1 f973f;
 
     public i1(l1 l1Var, Context context) {
@@ -22,7 +22,7 @@ public final class i1 extends LinearLayout {
         this.f971b = new Path();
         this.f972c = new Paint(1);
         this.d = 0L;
-        this.e = new org.telegram.ui.Components.c6(this, 0L, 1000L, new LinearInterpolator());
+        this.e = new org.telegram.ui.Components.e6(this, 0L, 1000L, new LinearInterpolator());
     }
 
     @Override
@@ -45,11 +45,11 @@ public final class i1 extends LinearLayout {
             long j3 = this.d;
             n1 n1Var3 = l1Var.f1174f;
             long j10 = n1Var3.f1280b;
-            org.telegram.ui.Components.c6 c6Var = this.e;
+            org.telegram.ui.Components.e6 e6Var = this.e;
             if (j3 != j10) {
-                c6Var.d(n1Var3.a(), true);
+                e6Var.d(n1Var3.a(), true);
             }
-            float d = c6Var.d(l1Var.f1174f.a(), false);
+            float d = e6Var.d(l1Var.f1174f.a(), false);
             this.d = l1Var.f1174f.f1280b;
             Paint paint = this.f972c;
             paint.setColor(b11);
@@ -60,12 +60,12 @@ public final class i1 extends LinearLayout {
             canvas2 = canvas;
         }
         if (this.f970a == null) {
-            this.f970a = new yh.k8(1, 250);
+            this.f970a = new yh.i8(1, 250);
         }
         this.f970a.f(0, 0, getWidth(), getHeight());
-        yh.k8 k8Var = this.f970a;
-        k8Var.h = 30.0f;
-        k8Var.d();
+        yh.i8 i8Var = this.f970a;
+        i8Var.h = 30.0f;
+        i8Var.d();
         this.f970a.b(canvas2, -1, 0.85f);
         invalidate();
         canvas2.restore();

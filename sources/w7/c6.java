@@ -1,21 +1,28 @@
 package w7;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.content.Context;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.z21;
+import org.telegram.ui.Components.l90;
 public abstract class c6 {
-    public static int a(z21 z21Var) {
-        z21Var.getClass();
-        return Math.max(1, (int) Math.ceil(0.5f * AndroidUtilities.density)) + (((int) Math.ceil(1.9f * AndroidUtilities.density)) * 2);
+    public static l90 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        int i11 = org.telegram.ui.ActionBar.j6.gc;
+        l90 l90Var = new l90(context, null);
+        l90Var.setTextSize(1, f7);
+        l90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, e6Var));
+        l90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i11, e6Var));
+        if (z10) {
+            l90Var.setTypeface(AndroidUtilities.bold());
+        }
+        return l90Var;
     }
 
-    public static void b(Canvas canvas, Bitmap bitmap, int i10, float f7, float f10, int i11, int i12, Paint paint) {
-        int min = Math.min(i10, bitmap.getWidth());
-        int i13 = (int) f7;
-        int i14 = (int) f10;
-        canvas.drawBitmap(bitmap, new Rect(0, i11, min, i11 + i12), new Rect(i13, i14, min + i13, i12 + i14), paint);
+    public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        TextView g10 = org.telegram.messenger.q.g(context, 1, f7);
+        g10.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, e6Var));
+        if (z10) {
+            g10.setTypeface(AndroidUtilities.bold());
+        }
+        return g10;
     }
 }

@@ -20,10 +20,10 @@ public final class x4 {
     public final RadialProgress2 d;
     public u e;
 
-    public x4(u4 u4Var, org.telegram.ui.ActionBar.f6 f6Var) {
+    public x4(u4 u4Var, org.telegram.ui.ActionBar.e6 e6Var) {
         this.f11767a = new ImageReceiver(u4Var);
         this.f11768b = new ImageReceiver(u4Var);
-        RadialProgress2 radialProgress2 = new RadialProgress2(u4Var, f6Var);
+        RadialProgress2 radialProgress2 = new RadialProgress2(u4Var, e6Var);
         this.d = radialProgress2;
         radialProgress2.d = -1;
         radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
@@ -59,28 +59,28 @@ public final class x4 {
                 str = "p";
             }
             if (uVar2.e != null) {
-                StringBuilder g10 = w.f.g(str, ":local:");
-                g10.append(this.e.e);
-                sb2 = g10.toString();
+                StringBuilder j3 = t8.b.j(str, ":local:");
+                j3.append(this.e.e);
+                sb2 = j3.toString();
             } else {
-                long j3 = 0;
+                long j10 = 0;
                 if (uVar2.b()) {
                     u uVar3 = this.e;
                     TLRPC.Document document2 = uVar3.h;
                     if (document2 != null) {
-                        j3 = document2.f18127id;
+                        j10 = document2.f18302id;
                     } else {
                         TLRPC.Photo photo2 = uVar3.f11642g;
                         if (photo2 != null) {
-                            j3 = photo2.f18145id;
+                            j10 = photo2.f18320id;
                         }
                     }
                 }
-                StringBuilder g11 = w.f.g(str, ":");
-                g11.append(this.e.f11638a);
-                g11.append(":");
-                g11.append(j3);
-                sb2 = g11.toString();
+                StringBuilder j11 = t8.b.j(str, ":");
+                j11.append(this.e.f11638a);
+                j11.append(":");
+                j11.append(j10);
+                sb2 = j11.toString();
             }
         }
         sb3.append(sb2);
@@ -105,7 +105,7 @@ public final class x4 {
                     photoSize = null;
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
                         TLRPC.PhotoSize photoSize4 = arrayList.get(i12);
-                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f18146w, photoSize4.h) - photoSize3)) < i11) {
+                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f18321w, photoSize4.h) - photoSize3)) < i11) {
                             photoSize = photoSize4;
                             i11 = abs;
                         }

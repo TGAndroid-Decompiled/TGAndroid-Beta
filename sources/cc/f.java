@@ -51,6 +51,6 @@ public final class f extends d {
             System.arraycopy(null, ((i10 + this.f4207f) * this.f4206c) + this.e, bArr, 0, i11);
             return bArr;
         }
-        throw new IllegalArgumentException(k0.i(i10, "Requested row is outside the image: "));
+        throw new IllegalArgumentException(k0.h(i10, "Requested row is outside the image: "));
     }
 }

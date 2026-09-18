@@ -6,18 +6,13 @@ import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 import n4.y;
-public final class d extends a implements l.i {
+public final class d extends a implements l.j {
     public Context f13111c;
     public ActionBarContextView d;
     public y e;
     public WeakReference f13112f;
     public boolean h;
-    public l.k f13113n;
-
-    @Override
-    public final boolean A(l.k kVar, MenuItem menuItem) {
-        return ((ni.f) this.e.f15004b).G(this, menuItem);
-    }
+    public l.l f13113n;
 
     @Override
     public final void a() {
@@ -38,7 +33,7 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final l.k c() {
+    public final l.l c() {
         return this.f13113n;
     }
 
@@ -59,7 +54,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void g() {
-        this.e.U(this, this.f13113n);
+        this.e.V(this, this.f13113n);
     }
 
     @Override
@@ -106,11 +101,16 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final void t(l.k kVar) {
+    public final void r(l.l lVar) {
         g();
         m.h hVar = this.d.d;
         if (hVar != null) {
             hVar.l();
         }
+    }
+
+    @Override
+    public final boolean t(l.l lVar, MenuItem menuItem) {
+        return ((oi.f) this.e.f15179b).G(this, menuItem);
     }
 }

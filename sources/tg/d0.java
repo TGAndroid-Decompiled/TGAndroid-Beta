@@ -1,122 +1,50 @@
 package tg;
 
-import ai.e4;
-import ai.t5;
-import android.content.Intent;
-import android.net.Uri;
-import ci.d9;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.qv0;
-import org.telegram.ui.Components.za;
-import org.telegram.ui.LaunchActivity;
-public final class d0 extends za {
-    public final TLRPC.TL_payments_checkedGiftCode X;
-    public final boolean Y;
-    public c0 Z;
-    public final String f43150a0;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.e6;
+public final class d0 extends ci.d {
+    public final RectF f43361h0;
+    public boolean f43362i0;
+    public float f43363j0;
+    public final org.telegram.ui.Components.voip.h f43364k0;
 
-    public d0(o2 o2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
-        super(o2Var, true);
-        boolean z10;
-        if (tL_payments_checkedGiftCode.used_date == 0) {
-            z10 = true;
+    public d0(Context context, e6 e6Var) {
+        super(context, e6Var, true);
+        this.f43361h0 = new RectF();
+        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
+        this.f43364k0 = hVar;
+        hVar.f29268n = 1.2f;
+        hVar.f29265k = false;
+        hVar.f29267m = 4.0f;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f43362i0) {
+            float f7 = this.f43363j0 + 0.016f;
+            this.f43363j0 = f7;
+            if (f7 > 3.0f) {
+                this.f43362i0 = false;
+            }
         } else {
-            z10 = false;
-        }
-        this.Y = z10;
-        this.X = tL_payments_checkedGiftCode;
-        this.f43150a0 = str;
-        setApplyTopPadding(false);
-        setApplyBottomPadding(false);
-        fixNavigationBar();
-        N();
-        c0 c0Var = this.Z;
-        e3 e3Var = this.container;
-        c0Var.getClass();
-        c0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        c0Var.e = o2Var;
-        c0Var.f43749f = tL_payments_checkedGiftCode;
-        c0Var.h = str;
-        c0Var.f43750n = e3Var;
-    }
-
-    public static boolean S(Intent intent, nf.e eVar) {
-        String scheme;
-        String path;
-        Uri data = intent.getData();
-        if (data != null && (scheme = data.getScheme()) != null) {
-            if (!scheme.equals("http") && !scheme.equals("https")) {
-                if (scheme.equals("tg")) {
-                    String uri = data.toString();
-                    String lastPathSegment = data.getLastPathSegment();
-                    if ((uri.startsWith("tg:giftcode") || uri.startsWith("tg://giftcode")) && lastPathSegment != null) {
-                        T(LaunchActivity.R(), lastPathSegment, eVar);
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
+            float f10 = this.f43363j0 - 0.016f;
+            this.f43363j0 = f10;
+            if (f10 < 1.0f) {
+                this.f43362i0 = true;
             }
-            String lowerCase = data.getHost().toLowerCase();
-            if ((lowerCase.equals("telegram.me") || lowerCase.equals("t.me") || lowerCase.equals("telegram.dog")) && (path = data.getPath()) != null) {
-                String lastPathSegment2 = data.getLastPathSegment();
-                if (path.startsWith("/giftcode") && lastPathSegment2 != null) {
-                    T(LaunchActivity.R(), lastPathSegment2, eVar);
-                    return true;
-                }
-                return false;
-            }
-            return false;
         }
-        return false;
-    }
-
-    public static void T(o2 o2Var, String str, nf.e eVar) {
-        if (o2Var == null) {
-            return;
-        }
-        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-        if (eVar != null) {
-            eVar.d();
-            eVar.f15220b = new f(atomicBoolean, 1);
-        }
-        e4 e4Var = new e4(atomicBoolean, o2Var, str, eVar, 15);
-        h hVar = new h(atomicBoolean, eVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
-        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-        TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
-        tL_payments_checkGiftCode.slug = str;
-        connectionsManager.sendRequest(tL_payments_checkGiftCode, new t5(messagesController, e4Var, hVar, 19));
-    }
-
-    @Override
-    public final void G(qv0 qv0Var) {
-        oc.a(this.container, new d9(14));
-    }
-
-    @Override
-    public final ll0 v(ml0 ml0Var) {
-        c0 c0Var = new c0(this, this.resourcesProvider);
-        this.Z = c0Var;
-        return c0Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        if (this.Y) {
-            return LocaleController.getString(R.string.BoostingGiftLink);
-        }
-        return LocaleController.getString(R.string.BoostingUsedGiftLink);
+        RectF rectF = this.f43361h0;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        rg.a1.d().f((-getMeasuredWidth()) * 0.1f * this.f43363j0, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), rg.a1.d().e());
+        int measuredWidth = getMeasuredWidth();
+        org.telegram.ui.Components.voip.h hVar = this.f43364k0;
+        hVar.f29261f = measuredWidth;
+        hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF, null);
+        super.onDraw(canvas);
+        invalidate();
     }
 }

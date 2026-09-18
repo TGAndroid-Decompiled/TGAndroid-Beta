@@ -25,7 +25,7 @@ public final class r1 implements bl, dj {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f18342w = 600;
+            pageblockmap.f18517w = 600;
             pageblockmap.h = 400;
             d2Var.P.S1(pageblockmap);
             viVar.dismiss(true);

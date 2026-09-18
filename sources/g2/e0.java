@@ -9,28 +9,28 @@ import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.SocketTimeoutException;
 public final class e0 extends c {
-    public final int f9357a;
-    public final byte[] f9358b;
-    public final DatagramPacket f9359c;
+    public final int f9356a;
+    public final byte[] f9357b;
+    public final DatagramPacket f9358c;
     public Uri d;
     public DatagramSocket e;
-    public MulticastSocket f9360f;
+    public MulticastSocket f9359f;
     public InetAddress h;
-    public boolean f9361n;
-    public int f9362r;
+    public boolean f9360n;
+    public int f9361r;
 
     public e0() {
         super(true);
-        this.f9357a = 8000;
+        this.f9356a = 8000;
         byte[] bArr = new byte[2000];
-        this.f9358b = bArr;
-        this.f9359c = new DatagramPacket(bArr, 0, 2000);
+        this.f9357b = bArr;
+        this.f9358c = new DatagramPacket(bArr, 0, 2000);
     }
 
     @Override
     public final void close() {
         this.d = null;
-        MulticastSocket multicastSocket = this.f9360f;
+        MulticastSocket multicastSocket = this.f9359f;
         if (multicastSocket != null) {
             try {
                 InetAddress inetAddress = this.h;
@@ -38,7 +38,7 @@ public final class e0 extends c {
                 multicastSocket.leaveGroup(inetAddress);
             } catch (IOException unused) {
             }
-            this.f9360f = null;
+            this.f9359f = null;
         }
         DatagramSocket datagramSocket = this.e;
         if (datagramSocket != null) {
@@ -46,9 +46,9 @@ public final class e0 extends c {
             this.e = null;
         }
         this.h = null;
-        this.f9362r = 0;
-        if (this.f9361n) {
-            this.f9361n = false;
+        this.f9361r = 0;
+        if (this.f9360n) {
+            this.f9360n = false;
             transferEnded();
         }
     }
@@ -60,7 +60,7 @@ public final class e0 extends c {
 
     @Override
     public final long open(m mVar) {
-        Uri uri = mVar.f9380a;
+        Uri uri = mVar.f9379a;
         this.d = uri;
         String host = uri.getHost();
         host.getClass();
@@ -71,14 +71,14 @@ public final class e0 extends c {
             InetSocketAddress inetSocketAddress = new InetSocketAddress(this.h, port);
             if (this.h.isMulticastAddress()) {
                 MulticastSocket multicastSocket = new MulticastSocket(inetSocketAddress);
-                this.f9360f = multicastSocket;
+                this.f9359f = multicastSocket;
                 multicastSocket.joinGroup(this.h);
-                this.e = this.f9360f;
+                this.e = this.f9359f;
             } else {
                 this.e = new DatagramSocket(inetSocketAddress);
             }
-            this.e.setSoTimeout(this.f9357a);
-            this.f9361n = true;
+            this.e.setSoTimeout(this.f9356a);
+            this.f9360n = true;
             transferStarted(mVar);
             return -1L;
         } catch (IOException e) {
@@ -93,15 +93,15 @@ public final class e0 extends c {
         if (i11 == 0) {
             return 0;
         }
-        int i12 = this.f9362r;
-        DatagramPacket datagramPacket = this.f9359c;
+        int i12 = this.f9361r;
+        DatagramPacket datagramPacket = this.f9358c;
         if (i12 == 0) {
             try {
                 DatagramSocket datagramSocket = this.e;
                 datagramSocket.getClass();
                 datagramSocket.receive(datagramPacket);
                 int length = datagramPacket.getLength();
-                this.f9362r = length;
+                this.f9361r = length;
                 bytesTransferred(length);
             } catch (SocketTimeoutException e) {
                 throw new j(e, 2002);
@@ -110,10 +110,10 @@ public final class e0 extends c {
             }
         }
         int length2 = datagramPacket.getLength();
-        int i13 = this.f9362r;
+        int i13 = this.f9361r;
         int min = Math.min(i13, i11);
-        System.arraycopy(this.f9358b, length2 - i13, bArr, i10, min);
-        this.f9362r -= min;
+        System.arraycopy(this.f9357b, length2 - i13, bArr, i10, min);
+        this.f9361r -= min;
         return min;
     }
 }

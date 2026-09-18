@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
-import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.g5;
 public class b {
     public long[] f13001a;
     public float[] f13002b;
@@ -85,7 +85,7 @@ public class b {
                 Matcher matcher = compile.matcher(optJSONObject.getString(aVar2.f12997c));
                 if (matcher.matches()) {
                     if (!TextUtils.isEmpty(matcher.group(1))) {
-                        aVar2.f12999g = h5.s("statisticChartLine_" + matcher.group(1).toLowerCase());
+                        aVar2.f12999g = g5.s("statisticChartLine_" + matcher.group(1).toLowerCase());
                     }
                     int parseColor = Color.parseColor(matcher.group(2));
                     aVar2.h = parseColor;

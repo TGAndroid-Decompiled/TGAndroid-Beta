@@ -9,23 +9,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ku0;
 import org.telegram.ui.Components.sh;
+import org.telegram.ui.Components.vu0;
 import org.telegram.ui.Components.wm;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.gm0;
-import org.telegram.ui.ij1;
-import org.telegram.ui.ni;
-import org.telegram.ui.wa0;
+import org.telegram.ui.fm0;
+import org.telegram.ui.hj1;
+import org.telegram.ui.li;
+import org.telegram.ui.va0;
 public final class g8 implements RequestDelegate {
     public final int f905a;
     public final int f906b;
     public final Object f907c;
 
-    public g8(int i10, wa0 wa0Var) {
+    public g8(int i10, va0 va0Var) {
         this.f905a = 0;
         this.f906b = i10;
-        this.f907c = wa0Var;
+        this.f907c = va0Var;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class g8 implements RequestDelegate {
         Object obj = this.f907c;
         switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new s1(tLObject, i11, (wa0) obj, 1));
+                AndroidUtilities.runOnUIThread(new s1(tLObject, i11, (va0) obj, 1));
                 return;
             case 1:
                 d9 d9Var = (d9) obj;
@@ -57,7 +57,7 @@ public final class g8 implements RequestDelegate {
                 ((VoIPService) obj).lambda$startScreenCapture$60(i11, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new wm((ku0) obj, tLObject, i11, 16));
+                AndroidUtilities.runOnUIThread(new wm((vu0) obj, tLObject, i11, 16));
                 return;
             case 5:
                 LaunchActivity launchActivity = (LaunchActivity) obj;
@@ -77,16 +77,16 @@ public final class g8 implements RequestDelegate {
                     return;
                 }
             case 6:
-                AndroidUtilities.runOnUIThread(new wm((ni) obj, tLObject, i11, 29));
+                AndroidUtilities.runOnUIThread(new wm((li) obj, tLObject, i11, 29));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new gm0((ij1) obj, i11, tLObject, 10));
+                AndroidUtilities.runOnUIThread(new fm0((hj1) obj, i11, tLObject, 10));
                 return;
             case 8:
-                yh.a4.U((yh.a4) obj, i11, tLObject);
+                yh.y3.U((yh.y3) obj, i11, tLObject);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new gm0((yh.v5) obj, i11, tLObject, 17));
+                AndroidUtilities.runOnUIThread(new fm0((yh.t5) obj, i11, tLObject, 17));
                 return;
         }
     }

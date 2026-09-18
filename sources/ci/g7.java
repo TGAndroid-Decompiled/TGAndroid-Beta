@@ -31,7 +31,7 @@ public final class g7 {
         this.f4694c = vVar;
         this.f4698j = eVar;
         this.f4697i = mVar;
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         Looper myLooper = Looper.myLooper();
         Handler handler = new Handler(myLooper == null ? Looper.getMainLooper() : myLooper, null);
         this.d = handler;
@@ -48,9 +48,9 @@ public final class g7 {
         String name;
         if (this.f4692a && !bVar.equals((k2.b) this.h)) {
             this.h = bVar;
-            k2.g0 g0Var = (k2.g0) ((k2.v) this.f4694c).f13387b;
+            k2.f0 f0Var = (k2.f0) ((k2.v) this.f4694c).f13385b;
             Looper myLooper = Looper.myLooper();
-            if (g0Var.f13273i0 == myLooper) {
+            if (f0Var.f13268i0 == myLooper) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -64,19 +64,19 @@ public final class g7 {
             }
             sb2.append(name);
             sb2.append(") is not the playback looper (");
-            Looper looper = g0Var.f13273i0;
+            Looper looper = f0Var.f13268i0;
             if (looper != null) {
                 str = looper.getThread().getName();
             }
             sb2.append(str);
             sb2.append(")");
             e2.d.f(sb2.toString(), z10);
-            k2.b bVar2 = g0Var.f13292y;
+            k2.b bVar2 = f0Var.f13287y;
             if (bVar2 != null && !bVar.equals(bVar2)) {
-                g0Var.f13292y = bVar;
-                k2.n nVar = g0Var.f13288t;
+                f0Var.f13287y = bVar;
+                k2.n nVar = f0Var.f13283t;
                 if (nVar != null) {
-                    nVar.J();
+                    nVar.G();
                 }
             }
         }
@@ -92,11 +92,11 @@ public final class g7 {
             float f10 = f7Var.f4664c;
             PointF[] pointFArr = f7Var.f4663b;
             if (!this.f4692a) {
-                ((org.telegram.ui.Components.c6) this.e).d(f10, true);
-                ((org.telegram.ui.Components.c6) this.f4695f).d(f7, true);
+                ((org.telegram.ui.Components.e6) this.e).d(f10, true);
+                ((org.telegram.ui.Components.e6) this.f4695f).d(f7, true);
                 for (int i10 = 0; i10 < Math.min(4, pointFArr.length); i10++) {
-                    ((org.telegram.ui.Components.c6[]) this.f4696g)[i10].d(pointFArr[i10].x - f10, true);
-                    ((org.telegram.ui.Components.c6[]) this.h)[i10].d(pointFArr[i10].y - f7, true);
+                    ((org.telegram.ui.Components.e6[]) this.f4696g)[i10].d(pointFArr[i10].x - f10, true);
+                    ((org.telegram.ui.Components.e6[]) this.h)[i10].d(pointFArr[i10].y - f7, true);
                 }
             }
         }
@@ -137,11 +137,11 @@ public final class g7 {
         paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
         this.f4698j = new Path();
         this.f4693b = a0Var;
-        qr qrVar = qr.f27384g;
-        this.d = new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 320L, qrVar);
-        this.e = new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar);
-        this.f4695f = new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar);
-        this.f4696g = new org.telegram.ui.Components.c6[]{new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar)};
-        this.h = new org.telegram.ui.Components.c6[]{new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.c6(0.0f, a0Var, 0L, 160L, qrVar)};
+        qr qrVar = qr.f27716g;
+        this.d = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 320L, qrVar);
+        this.e = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar);
+        this.f4695f = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar);
+        this.f4696g = new org.telegram.ui.Components.e6[]{new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar)};
+        this.h = new org.telegram.ui.Components.e6[]{new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar), new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, qrVar)};
     }
 }

@@ -5,18 +5,18 @@ public final class c0 implements a3.y, i1 {
     public a3.y f10630a;
     public c0 f10631b;
 
-    public final void a() {
-        c0 c0Var = this.f10631b;
-        if (c0Var != null) {
-            c0Var.a();
+    @Override
+    public final void a(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
+        a3.y yVar = this.f10630a;
+        if (yVar != null) {
+            yVar.a(j3, j10, sVar, mediaFormat);
         }
     }
 
-    @Override
-    public final void b(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
-        a3.y yVar = this.f10630a;
-        if (yVar != null) {
-            yVar.b(j3, j10, sVar, mediaFormat);
+    public final void b() {
+        c0 c0Var = this.f10631b;
+        if (c0Var != null) {
+            c0Var.b();
         }
     }
 

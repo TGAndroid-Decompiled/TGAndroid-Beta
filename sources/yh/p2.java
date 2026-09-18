@@ -1,112 +1,166 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.animation.ValueAnimator;
 import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
+import android.opengl.Matrix;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
-public final class p2 extends Drawable {
-    public final Paint f47635a;
-    public final LinearGradient[] f47636b;
-    public final Matrix f47637c;
-    public final org.telegram.ui.Components.c6 d;
-    public final Path e;
-    public final k8 f47638f;
-    public int f47639g;
-    public int h;
+public final class p2 {
+    public final q2 f47838a;
+    public k1 d;
+    public int f47841f;
+    public int f47842g;
+    public float f47844j;
+    public float f47845k;
+    public final ArrayList f47839b = new ArrayList();
+    public int f47840c = 0;
+    public boolean e = false;
+    public final float[] h = new float[16];
+    public float[] f47843i = new float[16];
+    public boolean f47846l = false;
 
-    public p2() {
-        Paint paint = new Paint(1);
-        Paint paint2 = new Paint(1);
-        this.f47635a = new Paint(1);
-        this.f47636b = new LinearGradient[2];
-        this.f47637c = new Matrix();
-        this.d = new org.telegram.ui.Components.c6(1.0f, new rg.w1(this, 27), 0L, 420L, qr.h);
-        this.e = new Path();
-        this.f47638f = new k8(1, 45);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setColor(117440511);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        paint2.setStyle(style);
-        paint2.setColor(301989887);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
+    public p2(q2 q2Var) {
+        this.f47838a = q2Var;
     }
 
-    public final void a(int i10, int i11) {
-        if (this.f47639g == i10 && this.h == i11) {
-            return;
-        }
-        LinearGradient[] linearGradientArr = this.f47636b;
-        linearGradientArr[0] = linearGradientArr[1];
-        this.f47639g = i10;
-        this.h = i11;
-        linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.d.d(0.0f, true);
-        invalidateSelf();
+    public final void a(int i10) {
+        this.f47839b.add(new o2(3, 0.0f, 0.0f, i10, -1, 0.0f, null, null));
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        AndroidUtilities.rectTmp.set(getBounds());
-        float dp = AndroidUtilities.dp(24.0f);
-        int i10 = 0;
-        float d = this.d.d(1.0f, false);
-        while (true) {
-            LinearGradient[] linearGradientArr = this.f47636b;
-            if (i10 < linearGradientArr.length) {
-                if (linearGradientArr[i10] != null) {
-                    float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
-                    if (pow > 0.0f) {
-                        Matrix matrix = this.f47637c;
-                        matrix.reset();
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        matrix.postScale(rectF.width() / 100.0f, 1.0f);
-                        linearGradientArr[i10].setLocalMatrix(matrix);
-                        LinearGradient linearGradient = linearGradientArr[i10];
-                        Paint paint = this.f47635a;
-                        paint.setShader(linearGradient);
-                        paint.setAlpha((int) (pow * 255.0f));
-                        canvas.drawRoundRect(rectF, dp, dp, paint);
+    public final void b() {
+        k1 k1Var;
+        boolean z10 = this.e;
+        q2 q2Var = this.f47838a;
+        if (!z10) {
+            int i10 = this.f47840c;
+            ArrayList arrayList = this.f47839b;
+            if (i10 < arrayList.size()) {
+                o2 o2Var = (o2) arrayList.get(this.f47840c);
+                boolean z11 = true;
+                this.f47840c++;
+                int i11 = o2Var.f47804a;
+                int i12 = o2Var.e;
+                float f7 = o2Var.f47805b;
+                int i13 = o2Var.d;
+                int c10 = m1.j.c(i11);
+                if (c10 != 0) {
+                    if (c10 != 1) {
+                        if (c10 != 2) {
+                            if (c10 != 3) {
+                                if (c10 != 4) {
+                                    if (c10 == 5) {
+                                        if (f7 <= 0.0f) {
+                                            z11 = false;
+                                        }
+                                        q2Var.f47900f = z11;
+                                        b();
+                                        return;
+                                    }
+                                    return;
+                                }
+                                this.f47846l = true;
+                                View view = o2Var.f47808g;
+                                ValueAnimator valueAnimator = q2Var.G;
+                                if (valueAnimator != null) {
+                                    valueAnimator.cancel();
+                                    q2Var.G = null;
+                                }
+                                RectF rectF = new RectF();
+                                rectF.left = view.getX() - q2Var.getX();
+                                rectF.top = view.getY() - q2Var.getY();
+                                rectF.right = rectF.left + view.getWidth();
+                                rectF.bottom = rectF.top + view.getHeight();
+                                AndroidUtilities.removeFromParent(view);
+                                int childCount = q2Var.getChildCount();
+                                q2Var.addView(view, w7.y5.e(64, 64, 17));
+                                q2Var.v.add(Integer.valueOf(i12));
+                                q2Var.f47904w.put(Integer.valueOf(childCount), Integer.valueOf(i12));
+                                q2Var.f47905x.put(Integer.valueOf(childCount), rectF);
+                                q2Var.F = childCount;
+                                q2Var.E = 0.0f;
+                                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                                q2Var.G = ofFloat;
+                                ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(q2Var, 22));
+                                q2Var.G.addListener(new pg.d0(q2Var, 10));
+                                q2Var.G.setDuration(i13 * 16);
+                                q2Var.G.setInterpolator(qr.h);
+                                q2Var.G.start();
+                                return;
+                            }
+                            System.arraycopy(q2Var.f47899c, 0, this.h, 0, 16);
+                            float f10 = o2Var.f47807f;
+                            float[] fArr = new float[16];
+                            Matrix.setIdentityM(fArr, 0);
+                            if (f10 != 0.0f) {
+                                Matrix.rotateM(fArr, 0, -f10, 0.0f, 0.0f, 1.0f);
+                            }
+                            if (i12 != 0) {
+                                if (i12 != 1) {
+                                    if (i12 != 2) {
+                                        if (i12 != 3) {
+                                            if (i12 == 4) {
+                                                Matrix.rotateM(fArr, 0, 180.0f, 0.0f, 1.0f, 0.0f);
+                                            }
+                                        } else {
+                                            Matrix.rotateM(fArr, 0, -90.0f, 1.0f, 0.0f, 0.0f);
+                                        }
+                                    } else {
+                                        Matrix.rotateM(fArr, 0, 90.0f, 1.0f, 0.0f, 0.0f);
+                                    }
+                                } else {
+                                    Matrix.rotateM(fArr, 0, -90.0f, 0.0f, 1.0f, 0.0f);
+                                }
+                            } else {
+                                Matrix.rotateM(fArr, 0, 90.0f, 0.0f, 1.0f, 0.0f);
+                            }
+                            this.f47843i = fArr;
+                            this.f47842g = i13;
+                            this.f47841f = i13;
+                            this.f47844j = q2Var.d;
+                            this.f47845k = q2Var.e;
+                            return;
+                        }
+                        this.f47841f = i13;
+                        this.f47842g = i13;
+                        return;
                     }
+                    q2Var.d = (o2Var.f47806c * 0.01f) + q2Var.d;
+                    q2Var.e = (f7 * 0.01f) + q2Var.e;
+                    this.f47841f = 1;
+                    this.f47842g = 1;
+                    return;
                 }
-                i10++;
-            } else {
-                Path path = this.e;
-                path.rewind();
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                path.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(path);
-                k8 k8Var = this.f47638f;
-                k8Var.g(rectF2);
-                k8Var.h = 30.0f;
-                k8Var.d();
-                k8Var.a(canvas, org.telegram.ui.ActionBar.j6.l1(0.6f, -1));
-                invalidateSelf();
-                canvas.restore();
-                AndroidUtilities.drawStroke(canvas, rectF2, dp);
+                Runnable runnable = o2Var.h;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                b();
                 return;
             }
         }
+        q2Var.H = null;
+        if (!this.e && (k1Var = this.d) != null) {
+            k1Var.run();
+        }
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
+    public final void c(float f7, float f10) {
+        this.f47839b.add(new o2(2, f7, f10, 0, -1, 0.0f, null, null));
     }
 
-    @Override
-    public final void setAlpha(int i10) {
+    public final void d(boolean z10) {
+        float f7;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = -1.0f;
+        }
+        this.f47839b.add(new o2(6, f7, 0.0f, 0, -1, 0.0f, null, null));
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void e(v2 v2Var, int i10, float f7) {
+        this.f47839b.add(new o2(5, 0.0f, 0.0f, 32, i10, f7, v2Var, null));
     }
 }

@@ -159,7 +159,7 @@ public final class yc extends Path {
                 }
                 float max2 = Math.max(f16, AndroidUtilities.lerp(AndroidUtilities.dpf2(0.66f), AndroidUtilities.dpf2(1.5f), 0.0f));
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(dp, AndroidUtilities.lerp(f14 - max2, f14 - ((f12 + max2) / 2.0f), 0.0f), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f14, org.telegram.messenger.w1.y(f12, max2, 2.0f, f14), 0.0f));
+                rectF.set(dp, AndroidUtilities.lerp(f14 - max2, f14 - ((f12 + max2) / 2.0f), 0.0f), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f14, org.telegram.messenger.q.y(f12, max2, 2.0f, f14), 0.0f));
                 addRoundRect(rectF, this.f5846b, Path.Direction.CW);
                 max++;
                 f17 = f7;
@@ -183,8 +183,8 @@ public final class yc extends Path {
             return;
         }
         int i10 = rcVar.f5472b;
-        org.telegram.ui.Components.c6 c6Var = rcVar.f5471a;
-        float d = c6Var.d(rcVar.f5473c, false);
+        org.telegram.ui.Components.e6 e6Var = rcVar.f5471a;
+        float d = e6Var.d(rcVar.f5473c, false);
         if (0 == j3 && Math.abs(this.e - f13) <= 1.0f && Math.abs(this.f5848f - f14) <= 0.01f && Math.abs(this.f5849g - f12) <= 0.1f && Math.abs(this.h - f15) <= 1.0f && Math.abs(this.f5850i - f19) <= 1.0f && Math.abs(this.f5851j - f20) <= 1.0f && Math.abs(this.f5852k - f21) <= 1.0f && (arrayList = this.f5847c) != null && arrayList.size() == 1) {
             ArrayList arrayList2 = this.d;
             if (arrayList2 != null && !arrayList2.isEmpty()) {
@@ -217,7 +217,7 @@ public final class yc extends Path {
         this.f5848f = f14;
         this.e = f13;
         this.h = f15;
-        float d10 = c6Var.d(rcVar.f5473c, false);
+        float d10 = e6Var.d(rcVar.f5473c, false);
         rewind();
         float round = Math.round(AndroidUtilities.dpf2(3.3333f));
         int max = Math.max(0, (int) (((f20 - this.f5845a) - f19) / round));
@@ -247,7 +247,7 @@ public final class yc extends Path {
             }
             float max2 = Math.max(f17, AndroidUtilities.lerp(AndroidUtilities.dpf2(0.66f), AndroidUtilities.dpf2(1.5f), f12));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(dp, AndroidUtilities.lerp(f15 - max2, f15 - ((f13 + max2) / 2.0f), f12), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f15, org.telegram.messenger.w1.y(f13, max2, 2.0f, f15), f12));
+            rectF.set(dp, AndroidUtilities.lerp(f15 - max2, f15 - ((f13 + max2) / 2.0f), f12), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f15, org.telegram.messenger.q.y(f13, max2, 2.0f, f15), f12));
             addRoundRect(rectF, this.f5846b, Path.Direction.CW);
             max++;
             f19 = f7;

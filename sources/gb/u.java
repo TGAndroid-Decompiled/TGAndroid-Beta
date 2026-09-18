@@ -1,32 +1,31 @@
 package gb;
 
 import java.lang.reflect.Field;
-import org.telegram.ui.Cells.p6;
 public final class u extends t {
-    public final fb.n f9593b;
+    public final fb.n f9592b;
 
     public u(fb.n nVar, v vVar) {
         super(vVar);
-        this.f9593b = nVar;
+        this.f9592b = nVar;
     }
 
     @Override
     public final Object a() {
-        return this.f9593b.p2();
+        return this.f9592b.p2();
     }
 
     @Override
     public final void c(Object obj, lb.a aVar, s sVar) {
-        Field field = sVar.f9588b;
-        Object read = sVar.f9590f.read(aVar);
-        if (read == null && sVar.f9591g) {
+        Field field = sVar.f9587b;
+        Object read = sVar.f9589f.read(aVar);
+        if (read == null && sVar.f9590g) {
             return;
         }
         if (!sVar.h) {
             field.set(obj, read);
             return;
         }
-        throw new RuntimeException(p6.i("Cannot set value of 'static final' ", ib.c.d(field, false)));
+        throw new RuntimeException(t8.b.i("Cannot set value of 'static final' ", ib.c.d(field, false)));
     }
 
     @Override

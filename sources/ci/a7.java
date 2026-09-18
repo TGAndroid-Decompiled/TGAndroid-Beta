@@ -1,9 +1,9 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.j71;
 import org.telegram.ui.Components.sz;
-import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.u71;
 import org.telegram.ui.Components.vz;
 public final class a7 implements Runnable {
     public final int f4352a;
@@ -30,9 +30,9 @@ public final class a7 implements Runnable {
             case 3:
                 d7 d7Var = this.f4353b;
                 a7 a7Var = d7Var.K;
-                h71 h71Var = d7Var.e;
-                if (h71Var != null && d7Var.F != null) {
-                    long n10 = h71Var.n();
+                u71 u71Var = d7Var.e;
+                if (u71Var != null && d7Var.F != null) {
+                    long n10 = u71Var.n();
                     if (d7Var.getDuration() > 1) {
                         float duration = ((float) n10) / ((float) d7Var.getDuration());
                         boolean z11 = false;
@@ -40,9 +40,9 @@ public final class a7 implements Runnable {
                             o8 o8Var = d7Var.d;
                             if ((duration < o8Var.Z || duration > o8Var.f5143a0) && System.currentTimeMillis() - d7Var.J > 500) {
                                 d7Var.J = System.currentTimeMillis();
-                                h71 h71Var2 = d7Var.e;
+                                u71 u71Var2 = d7Var.e;
                                 long duration2 = d7Var.d.Z * ((float) d7Var.getDuration());
-                                h71Var2.L(duration2, false);
+                                u71Var2.L(duration2, false);
                                 d7Var.w(true);
                                 d7Var.y(true);
                                 n10 = duration2;
@@ -83,10 +83,10 @@ public final class a7 implements Runnable {
                         float f11 = (float) o8Var2.C;
                         if ((f7 < f10 * f11 || f7 > o8Var2.F * f11) && System.currentTimeMillis() - d7Var2.J > 500) {
                             d7Var2.J = System.currentTimeMillis();
-                            h71 h71Var3 = d7Var2.f4536y;
+                            u71 u71Var3 = d7Var2.f4536y;
                             o8 o8Var3 = d7Var2.d;
                             long j3 = o8Var3.E * ((float) o8Var3.C);
-                            h71Var3.L(j3, false);
+                            u71Var3.L(j3, false);
                             n11 = j3;
                         }
                     }
@@ -111,10 +111,10 @@ public final class a7 implements Runnable {
                         float f14 = (float) o8Var4.f5176q0;
                         if ((f12 < f13 * f14 || f12 > o8Var4.f5182t0 * f14) && System.currentTimeMillis() - d7Var3.J > 500) {
                             d7Var3.J = System.currentTimeMillis();
-                            h71 h71Var4 = d7Var3.f4534x;
+                            u71 u71Var4 = d7Var3.f4534x;
                             o8 o8Var5 = d7Var3.d;
                             long j10 = o8Var5.f5180s0 * ((float) o8Var5.f5176q0);
-                            h71Var4.L(j10, false);
+                            u71Var4.L(j10, false);
                             d7Var3.w(true);
                             n12 = j10;
                         }
@@ -130,13 +130,13 @@ public final class a7 implements Runnable {
                 return;
             default:
                 d7 d7Var4 = this.f4353b;
-                v61 v61Var = d7Var4.f4520n;
-                if (v61Var != null) {
-                    vz vzVar = v61Var.f28640b;
+                j71 j71Var = d7Var4.f4520n;
+                if (j71Var != null) {
+                    vz vzVar = j71Var.f25194b;
                     if (vzVar != null) {
                         vzVar.postRunnable(new sz(vzVar, 0));
                     }
-                    v61Var.f28639a = null;
+                    j71Var.f25193a = null;
                     d7Var4.removeView(d7Var4.f4520n);
                     d7Var4.f4520n = null;
                     return;

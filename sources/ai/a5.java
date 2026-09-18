@@ -8,11 +8,11 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 public final class a5 extends i0 {
-    public final org.telegram.ui.Components.c6 d;
-    public final org.telegram.ui.Components.c6 e;
+    public final org.telegram.ui.Components.e6 d;
+    public final org.telegram.ui.Components.e6 e;
     public final org.telegram.ui.Components.voip.h f517f;
-    public final org.telegram.ui.Components.c6 h;
-    public final org.telegram.ui.Components.c6 f518n;
+    public final org.telegram.ui.Components.e6 h;
+    public final org.telegram.ui.Components.e6 f518n;
     public boolean f519r;
     public boolean f520s;
     public final c6 v;
@@ -24,16 +24,16 @@ public final class a5 extends i0 {
         this.f522x = f6Var;
         this.v = c6Var;
         this.f521w = jcVar;
-        qr qrVar = qr.f27383f;
-        this.d = new org.telegram.ui.Components.c6(this, 150L, qrVar);
-        this.e = new org.telegram.ui.Components.c6(this, 150L, qrVar);
+        qr qrVar = qr.f27715f;
+        this.d = new org.telegram.ui.Components.e6(this, 150L, qrVar);
+        this.e = new org.telegram.ui.Components.e6(this, 150L, qrVar);
         this.f517f = new org.telegram.ui.Components.voip.h(32, 102, 240);
-        org.telegram.ui.Components.c6 c6Var2 = new org.telegram.ui.Components.c6(this);
-        this.h = c6Var2;
-        org.telegram.ui.Components.c6 c6Var3 = new org.telegram.ui.Components.c6(this);
-        this.f518n = c6Var3;
-        c6Var2.f22942g = 500L;
-        c6Var3.f22942g = 100L;
+        org.telegram.ui.Components.e6 e6Var = new org.telegram.ui.Components.e6(this);
+        this.h = e6Var;
+        org.telegram.ui.Components.e6 e6Var2 = new org.telegram.ui.Components.e6(this);
+        this.f518n = e6Var2;
+        e6Var.f23796g = 500L;
+        e6Var2.f23796g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -60,8 +60,8 @@ public final class a5 extends i0 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view != this.f522x.f826j1) {
             if (this.f519r) {
-                org.telegram.ui.Components.oc ocVar = org.telegram.ui.Components.oc.f26698w;
-                if (ocVar != null && view == ocVar.e) {
+                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27543w;
+                if (qcVar != null && view == qcVar.e) {
                     if (this.f520s) {
                         return super.drawChild(canvas, view, j3);
                     }
@@ -78,7 +78,7 @@ public final class a5 extends i0 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.f522x.f828k1.j();
-        org.telegram.ui.Components.oc.a(this, new w4(this, 0));
+        org.telegram.ui.Components.qc.a(this, new w4(this, 0));
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class a5 extends i0 {
         super.onDetachedFromWindow();
         f6 f6Var = this.f522x;
         f6Var.f828k1.k();
-        org.telegram.ui.Components.oc.h(this);
+        org.telegram.ui.Components.qc.h(this);
         y5 y5Var = f6Var.Q1;
         if (y5Var != null) {
             jc jcVar = ((ac) y5Var).d;

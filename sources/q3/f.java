@@ -3,15 +3,15 @@ package q3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class f extends j {
-    public final String f41146b;
-    public final String f41147c;
+    public final String f41380b;
+    public final String f41381c;
     public final String d;
     public final byte[] e;
 
     public f(String str, byte[] bArr, String str2, String str3) {
         super("GEOB");
-        this.f41146b = str;
-        this.f41147c = str2;
+        this.f41380b = str;
+        this.f41381c = str2;
         this.d = str3;
         this.e = bArr;
     }
@@ -22,7 +22,7 @@ public final class f extends j {
         }
         if (obj != null && f.class == obj.getClass()) {
             f fVar = (f) obj;
-            if (Objects.equals(this.f41146b, fVar.f41146b) && Objects.equals(this.f41147c, fVar.f41147c) && Objects.equals(this.d, fVar.d) && Arrays.equals(this.e, fVar.e)) {
+            if (Objects.equals(this.f41380b, fVar.f41380b) && Objects.equals(this.f41381c, fVar.f41381c) && Objects.equals(this.d, fVar.d) && Arrays.equals(this.e, fVar.e)) {
                 return true;
             }
         }
@@ -33,14 +33,14 @@ public final class f extends j {
         int i10;
         int i11;
         int i12 = 0;
-        String str = this.f41146b;
+        String str = this.f41380b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (527 + i10) * 31;
-        String str2 = this.f41147c;
+        String str2 = this.f41381c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -56,6 +56,6 @@ public final class f extends j {
 
     @Override
     public final String toString() {
-        return this.f41153a + ": mimeType=" + this.f41146b + ", filename=" + this.f41147c + ", description=" + this.d;
+        return this.f41387a + ": mimeType=" + this.f41380b + ", filename=" + this.f41381c + ", description=" + this.d;
     }
 }

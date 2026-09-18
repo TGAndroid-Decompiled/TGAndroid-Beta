@@ -15,7 +15,7 @@ public final class z implements q0.a {
         switch (this.f3942a) {
             case 0:
                 s sVar = new s(new ArrayList(), new ArrayList());
-                ((org.telegram.messenger.c0) this.f3943b).a((h) obj, sVar);
+                ((org.telegram.messenger.d0) this.f3943b).a((h) obj, sVar);
                 return;
             case 1:
                 o0.g gVar = (o0.g) obj;
@@ -26,7 +26,7 @@ public final class z implements q0.a {
                 return;
             default:
                 o0.g gVar2 = (o0.g) obj;
-                synchronized (o0.h.f15327c) {
+                synchronized (o0.h.f15456c) {
                     try {
                         a0.m mVar = o0.h.d;
                         ArrayList arrayList = (ArrayList) mVar.get((String) this.f3943b);

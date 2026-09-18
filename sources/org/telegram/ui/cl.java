@@ -1,35 +1,39 @@
 package org.telegram.ui;
 
-import android.animation.LayoutTransition;
-import android.view.View;
-import android.view.ViewGroup;
-public final class cl implements LayoutTransition.TransitionListener {
-    public h6 f32828a;
-    public int f32829b;
-    public final org.telegram.ui.ActionBar.a0 f32830c;
-    public final bo d;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class cl implements org.telegram.ui.Components.pk0 {
+    public final zn f32708a;
 
-    public cl(bo boVar, org.telegram.ui.ActionBar.a0 a0Var) {
-        this.d = boVar;
-        this.f32830c = a0Var;
+    public cl(zn znVar) {
+        this.f32708a = znVar;
     }
 
     @Override
-    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        int i11 = this.f32829b - 1;
-        this.f32829b = i11;
-        if (i11 == 0 && this.f32828a != null) {
-            this.f32830c.getViewTreeObserver().removeOnPreDrawListener(this.f32828a);
-            this.f32828a = null;
-        }
+    public final void h(android.view.View r24, zg.o0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cl.h(android.view.View, zg.o0, boolean, boolean):void");
     }
 
     @Override
-    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        if (this.f32829b == 0 && this.f32828a == null) {
-            this.f32828a = new h6(this, 1);
-            this.f32830c.getViewTreeObserver().addOnPreDrawListener(this.f32828a);
-        }
-        this.f32829b++;
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean r() {
+        return false;
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

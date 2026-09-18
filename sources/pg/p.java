@@ -1,7 +1,7 @@
 package pg;
 
-import org.telegram.ui.Components.j81;
-public final class p extends j81 {
+import org.telegram.ui.Components.x81;
+public final class p extends x81 {
     @Override
     public final int H() {
         return 0;

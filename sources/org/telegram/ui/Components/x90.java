@@ -1,45 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class x90 implements lt0 {
-    public final ba0 f29889a;
+import java.util.regex.Pattern;
+public final class x90 extends ed.h {
+    public static final Pattern e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
 
-    public x90(ba0 ba0Var) {
-        this.f29889a = ba0Var;
+    @Override
+    public final bf.p b() {
+        String a2 = a(e);
+        if (a2 == null) {
+            return null;
+        }
+        ?? pVar = new bf.p();
+        pVar.f49118g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
+        return pVar;
     }
 
     @Override
-    public final void R() {
-        this.f29889a.a0();
-    }
-
-    @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final ml0 f() {
-        return null;
-    }
-
-    @Override
-    public final TLRPC.Chat g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
-        return false;
-    }
-
-    @Override
-    public final boolean p() {
-        return true;
-    }
-
-    @Override
-    public final void E() {
+    public final char d() {
+        return '$';
     }
 }

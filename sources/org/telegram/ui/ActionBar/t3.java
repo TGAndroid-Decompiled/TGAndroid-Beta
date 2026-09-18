@@ -1,48 +1,180 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.os.Build;
-import android.view.ViewGroup;
-public final class t3 extends AnimatorListenerAdapter {
-    public final o3 f19558a;
-    public final v3 f19559b;
-    public final y3 f19560c;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class t3 extends j1.b {
+    public final Rect f19739o;
+    public final x3 f19740p;
 
-    public t3(y3 y3Var, o3 o3Var, v3 v3Var) {
-        this.f19560c = y3Var;
-        this.f19558a = o3Var;
-        this.f19559b = v3Var;
+    public t3(x3 x3Var, x3 x3Var2) {
+        super(x3Var2);
+        this.f19740p = x3Var;
+        this.f19739o = new Rect();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        o3 o3Var = this.f19558a;
-        ViewGroup viewGroup = o3Var.f19455b;
-        if (viewGroup == null) {
-            viewGroup = o3Var.f19456c;
+    public final int g(float f7, float f10) {
+        x3 x3Var = this.f19740p;
+        ArrayList arrayList = x3Var.R;
+        if (x3Var.V >= 0.5f) {
+            org.telegram.ui.Cells.z zVar = x3Var.f19876i0;
+            if (zVar != null && zVar.getBounds().contains((int) f7, (int) f10)) {
+                return 1;
+            }
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                w3 w3Var = (w3) arrayList.get(size);
+                float f11 = w3Var.f19841i;
+                RectF rectF = w3Var.f19836a;
+                if (Math.abs(f11) < 0.4f && rectF.contains(f7, f10)) {
+                    Rect bounds = w3Var.d.f19555k.getBounds();
+                    if (!bounds.isEmpty() && bounds.contains((int) (f7 - rectF.left), (int) ((f10 - rectF.top) - AndroidUtilities.dp(24.0f)))) {
+                        return size + 2000;
+                    }
+                    return size + 1000;
+                }
+            }
+            return -1;
         }
-        y3 y3Var = this.f19560c;
-        v3 v3Var = this.f19559b;
-        if (viewGroup != null && o3Var.f19463m == null && (i10 = o3Var.f19458g) > 0 && (i11 = o3Var.h) > 0) {
-            if (Build.VERSION.SDK_INT >= 26) {
-                y3.g(viewGroup, -o3Var.f19459i, new ci.m2(24, o3Var, v3Var));
-                y3Var.f19707b = null;
-                y3Var.invalidate();
+        return -1;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        x3 x3Var = this.f19740p;
+        ArrayList arrayList2 = x3Var.R;
+        if (x3Var.V >= 0.5f) {
+            org.telegram.ui.Cells.z zVar = x3Var.f19876i0;
+            if (zVar != null && !zVar.getBounds().isEmpty()) {
+                arrayList.add(1);
+            }
+            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                w3 w3Var = (w3) arrayList2.get(i10);
+                if (Math.abs(w3Var.f19841i) < 0.4f && !w3Var.f19836a.isEmpty()) {
+                    arrayList.add(Integer.valueOf(i10 + 1000));
+                    l3 l3Var = w3Var.d;
+                    if (l3Var != null && !l3Var.f19555k.getBounds().isEmpty()) {
+                        arrayList.add(Integer.valueOf(i10 + 2000));
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean k(int i10, int i11) {
+        int i12;
+        boolean z10;
+        x3 x3Var = this.f19740p;
+        ArrayList arrayList = x3Var.R;
+        if (i11 == 16) {
+            if (i10 == 1) {
+                o3 o3Var = x3Var.f19864a;
+                if (o3Var != null) {
+                    o3Var.f();
+                }
+                x3Var.a(false);
+                return true;
+            }
+            if (i10 >= 2000) {
+                i12 = i10 - 2000;
+                z10 = true;
+            } else if (i10 >= 1000) {
+                i12 = i10 - 1000;
+                z10 = false;
+            }
+            if (i12 >= 0 && i12 < arrayList.size()) {
+                w3 w3Var = (w3) arrayList.get(i12);
+                if (z10) {
+                    o3 o3Var2 = x3Var.f19864a;
+                    if (o3Var2 != null) {
+                        o3Var2.g(w3Var.f19838c, new ci.m2(25, this, w3Var));
+                        return true;
+                    }
+                } else if (x3Var.f19864a != null) {
+                    x3Var.a(false);
+                    w3Var.getClass();
+                    x3Var.f19864a.e(w3Var.f19838c);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void l(int i10, s0.c cVar) {
+        int i11;
+        boolean z10;
+        String str;
+        String str2;
+        String str3;
+        x3 x3Var = this.f19740p;
+        ArrayList arrayList = x3Var.R;
+        cVar.i("android.widget.Button");
+        cVar.b(s0.b.f42872c);
+        Rect rect = this.f19739o;
+        if (i10 == 1) {
+            org.telegram.ui.Cells.z zVar = x3Var.f19876i0;
+            if (zVar != null) {
+                rect.set(zVar.getBounds());
+            } else {
+                rect.set(0, 0, 1, 1);
+                cVar.p(false);
+            }
+            cVar.h(rect);
+            cVar.j(LocaleController.getString(R.string.BotCloseAllTabs));
+            return;
+        }
+        if (i10 >= 2000) {
+            i11 = i10 - 2000;
+            z10 = true;
+        } else if (i10 >= 1000) {
+            i11 = i10 - 1000;
+            z10 = false;
+        } else {
+            rect.set(0, 0, 1, 1);
+            cVar.h(rect);
+            cVar.p(false);
+            return;
+        }
+        if (i11 >= 0 && i11 < arrayList.size()) {
+            w3 w3Var = (w3) arrayList.get(i11);
+            n3 n3Var = w3Var.f19838c;
+            RectF rectF = w3Var.f19836a;
+            if (n3Var != null && n3Var.b() != null) {
+                str = w3Var.f19838c.b();
+            } else {
+                str = "";
+            }
+            if (z10) {
+                Rect bounds = w3Var.d.f19555k.getBounds();
+                rect.set((int) (rectF.left + bounds.left), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.bottom));
+                cVar.h(rect);
+                if (TextUtils.isEmpty(str)) {
+                    str3 = LocaleController.getString(R.string.Close);
+                } else {
+                    str3 = LocaleController.getString(R.string.Close) + ", " + str;
+                }
+                cVar.j(str3);
                 return;
             }
-            o3Var.f19463m = Bitmap.createBitmap(i10, i11, Bitmap.Config.RGB_565);
-            Canvas canvas = new Canvas(o3Var.f19463m);
-            canvas.translate(0.0f, -o3Var.f19459i);
-            viewGroup.draw(canvas);
+            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            cVar.h(rect);
+            if (TextUtils.isEmpty(str)) {
+                str2 = LocaleController.getString(R.string.Open);
+            } else {
+                str2 = LocaleController.getString(R.string.Open) + ", " + str;
+            }
+            cVar.j(str2);
+            return;
         }
-        v3Var.mo37getWindowView().setDrawingFromOverlay(false);
-        v3Var.release();
-        y3Var.f19707b = null;
-        y3Var.invalidate();
+        rect.set(0, 0, 1, 1);
+        cVar.h(rect);
+        cVar.p(false);
     }
 }

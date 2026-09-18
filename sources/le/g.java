@@ -1,38 +1,38 @@
 package le;
 
 import android.graphics.RectF;
-import w7.p;
+import w7.q;
 public final class g implements Comparable {
-    public final Object f13994a;
-    public int f13995b;
-    public final m f13996c;
+    public final Object f14140a;
+    public int f14141b;
+    public final m f14142c;
     public final m d;
     public final n e;
-    public final m f13997f;
+    public final m f14143f;
     public boolean h = false;
 
     public g(int i10, Object obj, boolean z10) {
         float f7;
-        this.f13994a = obj;
-        this.f13995b = i10;
+        this.f14140a = obj;
+        this.f14141b = i10;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         this.d = new m(f7);
-        this.f13996c = new m(i10);
+        this.f14142c = new m(i10);
         this.e = new n();
-        this.f13997f = new m(0.0f);
+        this.f14143f = new m(0.0f);
         a(false);
     }
 
     public final void a(boolean z10) {
-        this.f13996c.c(z10);
+        this.f14142c.c(z10);
         this.d.c(z10);
         this.e.c(z10);
-        this.f13997f.c(z10);
-        Object obj = this.f13994a;
+        this.f14143f.c(z10);
+        Object obj = this.f14140a;
         if (obj instanceof n) {
             ((n) obj).c(z10);
         }
@@ -41,16 +41,16 @@ public final class g implements Comparable {
     public final RectF b() {
         n nVar = this.e;
         RectF rectF = nVar.e;
-        rectF.set(nVar.f14011a.f14008a, nVar.f14012b.f14008a, nVar.f14013c.f14008a, nVar.d.f14008a);
+        rectF.set(nVar.f14157a.f14154a, nVar.f14158b.f14154a, nVar.f14159c.f14154a, nVar.d.f14154a);
         return rectF;
     }
 
     public final float c() {
-        return p.a(this.d.f14008a, 0.0f, 1.0f);
+        return q.a(this.d.f14154a, 0.0f, 1.0f);
     }
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f13995b, ((g) obj).f13995b);
+        return Integer.compare(this.f14141b, ((g) obj).f14141b);
     }
 }

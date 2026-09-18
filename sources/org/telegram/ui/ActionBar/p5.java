@@ -1,36 +1,62 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class p5 extends Drawable {
-    public final int f19501a;
-    public final int f19502b;
-
-    public p5(int i10, int i11) {
-        this.f19501a = i10;
-        this.f19502b = i11;
+import ai.z9;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.os.SystemClock;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MediaController;
+public final class p5 implements SensorEventListener {
+    @Override
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        float f7 = sensorEvent.values[0];
+        if (f7 <= 0.0f) {
+            f7 = 0.1f;
+        }
+        if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
+            if (f7 > 500.0f) {
+                j6.h = 1.0f;
+            } else {
+                j6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
+            }
+            long j3 = 1800;
+            if (j6.h <= j6.f19294q) {
+                if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
+                    if (j6.f19164j) {
+                        j6.f19164j = false;
+                        AndroidUtilities.cancelRunOnUIThread(j6.f19203l);
+                    }
+                    if (!j6.f19183k) {
+                        j6.f19183k = true;
+                        z9 z9Var = j6.f19221m;
+                        if (Math.abs(j6.f19145i - SystemClock.elapsedRealtime()) < 12000) {
+                            j3 = 12000;
+                        }
+                        AndroidUtilities.runOnUIThread(z9Var, j3);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            if (j6.f19183k) {
+                j6.f19183k = false;
+                AndroidUtilities.cancelRunOnUIThread(j6.f19221m);
+            }
+            if (!j6.f19164j) {
+                j6.f19164j = true;
+                z9 z9Var2 = j6.f19203l;
+                if (Math.abs(j6.f19145i - SystemClock.elapsedRealtime()) < 12000) {
+                    j3 = 12000;
+                }
+                AndroidUtilities.runOnUIThread(z9Var2, j3);
+            }
+        }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        int i10 = this.f19501a;
-        int i11 = this.f19502b;
-        canvas.drawCircle((bounds.centerX() - i10) + i11, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i10 + i11, j6.f19257z);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

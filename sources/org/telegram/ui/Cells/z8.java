@@ -8,24 +8,24 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wl;
+import org.telegram.messenger.wh;
 public final class z8 extends FrameLayout {
     public static Paint d;
-    public final TextView f21716a;
-    public int f21717b;
-    public float f21718c;
+    public final TextView f21888a;
+    public int f21889b;
+    public float f21890c;
 
     public z8(Context context) {
         super(context);
         int i10;
         int i11;
-        this.f21718c = 1.0f;
+        this.f21890c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f21716a = textView;
-        wl.r(textView, -14606047, 1, 16.0f, 1);
+        this.f21888a = textView;
+        wh.s(textView, -14606047, 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         if (LocaleController.isRTL) {
@@ -42,21 +42,21 @@ public final class z8 extends FrameLayout {
         } else {
             i11 = 57;
         }
-        addView(textView, w7.x5.d(-1, -1.0f, i12, i11, 0.0f, z10 ? 57 : 21, 0.0f));
+        addView(textView, w7.y5.d(-1, -1.0f, i12, i11, 0.0f, z10 ? 57 : 21, 0.0f));
     }
 
     @Override
     public float getAlpha() {
-        return this.f21718c;
+        return this.f21890c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int measuredWidth;
-        int i10 = this.f21717b;
+        int i10 = this.f21889b;
         if (i10 != 0) {
             d.setColor(i10);
-            d.setAlpha((int) (this.f21718c * 255.0f));
+            d.setAlpha((int) (this.f21890c * 255.0f));
             if (!LocaleController.isRTL) {
                 measuredWidth = AndroidUtilities.dp(28.0f);
             } else {
@@ -73,7 +73,7 @@ public final class z8 extends FrameLayout {
 
     @Override
     public void setAlpha(float f7) {
-        this.f21718c = f7;
+        this.f21890c = f7;
         invalidate();
     }
 }

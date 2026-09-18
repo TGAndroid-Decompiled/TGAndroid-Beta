@@ -6,23 +6,23 @@ import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 public final class l implements ma.b, ma.a {
-    public final HashMap f41222a = new HashMap();
-    public ArrayDeque f41223b = new ArrayDeque();
-    public final Executor f41224c;
+    public final HashMap f41456a = new HashMap();
+    public ArrayDeque f41457b = new ArrayDeque();
+    public final Executor f41458c;
 
     public l(Executor executor) {
-        this.f41224c = executor;
+        this.f41458c = executor;
     }
 
     public final void a(w1 w1Var) {
-        Executor executor = this.f41224c;
+        Executor executor = this.f41458c;
         synchronized (this) {
             try {
                 executor.getClass();
-                if (!this.f41222a.containsKey(k9.b.class)) {
-                    this.f41222a.put(k9.b.class, new ConcurrentHashMap());
+                if (!this.f41456a.containsKey(k9.b.class)) {
+                    this.f41456a.put(k9.b.class, new ConcurrentHashMap());
                 }
-                ((ConcurrentHashMap) this.f41222a.get(k9.b.class)).put(w1Var, executor);
+                ((ConcurrentHashMap) this.f41456a.get(k9.b.class)).put(w1Var, executor);
             } catch (Throwable th2) {
                 throw th2;
             }

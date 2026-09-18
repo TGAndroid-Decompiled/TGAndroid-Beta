@@ -14,18 +14,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.g90;
-import w7.x5;
+import org.telegram.ui.Components.p90;
+import w7.y5;
 public final class k1 extends LinearLayout {
-    public final f6 f10339a;
-    public final g90 f10340b;
+    public final e6 f10339a;
+    public final p90 f10340b;
     public final ImageReceiver f10341c;
     public final TextView d;
     public boolean e;
 
-    public k1(Context context, f6 f6Var) {
+    public k1(Context context, e6 e6Var) {
         super(context);
         int i10;
         int i11;
@@ -34,15 +34,15 @@ public final class k1 extends LinearLayout {
         int i14;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f10341c = imageReceiver;
-        this.f10339a = f6Var;
+        this.f10339a = e6Var;
         setOrientation(1);
-        g90 g90Var = new g90();
-        this.f10340b = g90Var;
+        p90 p90Var = new p90();
+        this.f10340b = p90Var;
         int i15 = j6.G6;
-        int v02 = j6.v0(i15, f6Var);
-        g90Var.f(j6.l1(0.05f, v02), j6.l1(0.15f, v02), j6.l1(0.1f, v02), j6.l1(0.3f, v02));
-        g90Var.j(4.0f);
-        g90Var.f24151w.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        int v02 = j6.v0(i15, e6Var);
+        p90Var.f(j6.l1(0.05f, v02), j6.l1(0.15f, v02), j6.l1(0.1f, v02), j6.l1(0.3f, v02));
+        p90Var.j(4.0f);
+        p90Var.f27157w.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -52,7 +52,7 @@ public final class k1 extends LinearLayout {
             i10 = 3;
         }
         textView.setGravity(i10);
-        textView.setTextColor(j6.v0(i15, f6Var));
+        textView.setTextColor(j6.v0(i15, e6Var));
         textView.setTextSize(1, 16.0f);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -65,10 +65,10 @@ public final class k1 extends LinearLayout {
         } else {
             i12 = 70;
         }
-        addView(textView, x5.t(-1, -2, 55, i11, 10, i12, 4));
+        addView(textView, y5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(j6.v0(j6.f19264z6, f6Var));
+        textView2.setTextColor(j6.v0(j6.f19464z6, e6Var));
         textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
         textView2.setTextSize(1, 13.0f);
         boolean z11 = LocaleController.isRTL;
@@ -82,7 +82,7 @@ public final class k1 extends LinearLayout {
         } else {
             i14 = 70;
         }
-        addView(textView2, x5.t(-1, -2, 55, i13, 0, i14, 8));
+        addView(textView2, y5.t(-1, -2, 55, i13, 0, i14, 8));
         setWillNotDraw(false);
     }
 
@@ -117,7 +117,7 @@ public final class k1 extends LinearLayout {
         if (this.e) {
             Paint T0 = j6.T0("paintDivider", this.f10339a);
             if (T0 == null) {
-                T0 = j6.f18985k0;
+                T0 = j6.f19184k0;
             }
             Paint paint = T0;
             float f11 = 21.33f;

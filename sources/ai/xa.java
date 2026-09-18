@@ -19,9 +19,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.m70;
 import org.telegram.ui.Components.qr;
-public class xa extends NestedScrollView implements m70 {
+import org.telegram.ui.Components.v70;
+public class xa extends NestedScrollView implements v70 {
     public final org.telegram.ui.Cells.aa W;
     public final o1.k f1716a0;
     public final wa f1717b0;
@@ -47,7 +47,7 @@ public class xa extends NestedScrollView implements m70 {
     public boolean f1736v0;
     public boolean f1737w0;
 
-    public xa(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public xa(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         Paint paint = new Paint(1);
         this.f1731q0 = -1;
@@ -59,21 +59,21 @@ public class xa extends NestedScrollView implements m70 {
         NotificationCenter.listenEmojiLoading(this);
         wa waVar = new wa(this, getContext());
         this.f1717b0 = waVar;
-        org.telegram.ui.Cells.aa aaVar = new org.telegram.ui.Cells.aa(waVar, f6Var);
+        org.telegram.ui.Cells.aa aaVar = new org.telegram.ui.Cells.aa(waVar, e6Var);
         this.W = aaVar;
-        aaVar.f19964i0 = false;
+        aaVar.f20133i0 = false;
         frameLayout.addView(waVar, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
         setFadingEdgeLength(AndroidUtilities.dp(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        o1.k kVar = new o1.k(waVar, o1.h.f15344n, 0.0f);
+        o1.k kVar = new o1.k(waVar, o1.h.f15473n, 0.0f);
         this.f1716a0 = kVar;
-        kVar.f15361u.b(100.0f);
-        kVar.f15357j = 1.0f;
+        kVar.f15490u.b(100.0f);
+        kVar.f15486j = 1.0f;
         kVar.b(new qa(0, this));
-        kVar.f15361u.a(1.0f);
+        kVar.f15490u.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("d", null).setAccessible(true);
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class xa extends NestedScrollView implements m70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(qr.f27383f);
+        ofFloat.setInterpolator(qr.f27715f);
         ofFloat.start();
     }
 
@@ -122,7 +122,7 @@ public class xa extends NestedScrollView implements m70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(qr.f27383f);
+        ofFloat.setInterpolator(qr.f27715f);
         ofFloat.start();
     }
 
@@ -136,8 +136,8 @@ public class xa extends NestedScrollView implements m70 {
 
     public final void K(float f7) {
         o1.k kVar = this.f1716a0;
-        if (!kVar.f15354f) {
-            kVar.f15351a = f7;
+        if (!kVar.f15483f) {
+            kVar.f15480a = f7;
             kVar.f();
         }
         if (getScrollY() < AndroidUtilities.dp(2.0f)) {
@@ -286,7 +286,7 @@ public class xa extends NestedScrollView implements m70 {
                 boolean z10 = this.f1718c0;
                 wa waVar = this.f1717b0;
                 if (!z10) {
-                    if (!this.f1716a0.f15354f) {
+                    if (!this.f1716a0.f15483f) {
                         OverScroller overScroller = this.f1726k0;
                         if (overScroller != null) {
                             f7 = overScroller.getCurrVelocity();
@@ -371,7 +371,7 @@ public class xa extends NestedScrollView implements m70 {
         return true;
     }
 
-    public void F(org.telegram.ui.Components.x5 x5Var) {
+    public void F(org.telegram.ui.Components.z5 z5Var) {
     }
 
     public void I(sa saVar) {

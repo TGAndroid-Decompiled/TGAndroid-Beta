@@ -3,10 +3,10 @@ package wh;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 public final class k extends GestureDetector.SimpleOnGestureListener {
-    public final l f45125a;
+    public final l f45348a;
 
     public k(l lVar) {
-        this.f45125a = lVar;
+        this.f45348a = lVar;
     }
 
     @Override
@@ -16,8 +16,8 @@ public final class k extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        l lVar = this.f45125a;
-        if (!lVar.e.f45131c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (lVar.e.f45132f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= lVar.e.f45132f.getRight() || lVar.e.f45132f.getTop() >= motionEvent.getY() || motionEvent.getY() >= lVar.e.f45132f.getBottom())) {
+        l lVar = this.f45348a;
+        if (!lVar.e.f45354c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (lVar.e.f45355f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= lVar.e.f45355f.getRight() || lVar.e.f45355f.getTop() >= motionEvent.getY() || motionEvent.getY() >= lVar.e.f45355f.getBottom())) {
             lVar.e.e(false);
         }
         return super.onSingleTapUp(motionEvent);

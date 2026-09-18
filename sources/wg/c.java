@@ -30,21 +30,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.w1;
+import org.telegram.messenger.q;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j3;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.k3;
-import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Cells.z;
-import org.telegram.ui.Components.d90;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.kw0;
-import org.telegram.ui.Components.w80;
-import org.telegram.ui.Components.yi0;
-import org.telegram.ui.Components.z80;
+import org.telegram.ui.Components.f90;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.i90;
+import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.m90;
+import org.telegram.ui.Components.vw0;
 import org.telegram.ui.web.b1;
-import tg.t;
+import tg.s;
 public final class c {
     public TextPaint A;
     public Paint B;
@@ -63,39 +63,39 @@ public final class c {
     public SpannableStringBuilder R;
     public int S;
     public int T;
-    public z80 U;
-    public ImageReceiver[] f45077a;
-    public f9[] f45078b;
-    public final t1 f45079c;
+    public i90 U;
+    public ImageReceiver[] f45300a;
+    public h9[] f45301b;
+    public final u1 f45302c;
     public ImageReceiver d;
-    public yi0 e;
-    public CharSequence[] f45080f;
-    public TLRPC.User[] f45081g;
+    public ij0 e;
+    public CharSequence[] f45303f;
+    public TLRPC.User[] f45304g;
     public float[] h;
-    public boolean[] f45082i;
-    public Rect[] f45083j;
-    public boolean[] f45084k;
-    public int f45087n;
-    public int f45088o;
-    public Drawable f45089p;
-    public String f45090q;
-    public int f45091r;
-    public StaticLayout f45092s;
-    public StaticLayout f45093t;
-    public StaticLayout f45094u;
+    public boolean[] f45305i;
+    public Rect[] f45306j;
+    public boolean[] f45307k;
+    public int f45310n;
+    public int f45311o;
+    public Drawable f45312p;
+    public String f45313q;
+    public int f45314r;
+    public StaticLayout f45315s;
+    public StaticLayout f45316t;
+    public StaticLayout f45317u;
     public TextPaint v;
-    public TextPaint f45095w;
-    public TextPaint f45096x;
-    public TextPaint f45097y;
-    public TextPaint f45098z;
-    public int f45085l = 0;
-    public int f45086m = 0;
+    public TextPaint f45318w;
+    public TextPaint f45319x;
+    public TextPaint f45320y;
+    public TextPaint f45321z;
+    public int f45308l = 0;
+    public int f45309m = 0;
     public int O = -1;
     public boolean P = false;
     public boolean Q = false;
 
-    public c(t1 t1Var) {
-        this.f45079c = t1Var;
+    public c(u1 u1Var) {
+        this.f45302c = u1Var;
     }
 
     public final boolean a(MotionEvent motionEvent) {
@@ -103,30 +103,30 @@ public final class c {
         int i10;
         MessageObject messageObject = this.M;
         if (messageObject != null && messageObject.isGiveawayResults()) {
-            z80 z80Var = this.U;
-            t1 t1Var = this.f45079c;
-            if (z80Var == null) {
-                this.U = new z80(t1Var);
+            i90 i90Var = this.U;
+            u1 u1Var = this.f45302c;
+            if (i90Var == null) {
+                this.U = new i90(u1Var);
             }
             int action = motionEvent.getAction();
             int x10 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
-            if ((action == 1 || action == 0) && this.R != null && (staticLayout = this.f45093t) != null && (i10 = y3 - this.S) > 0) {
-                int offsetForHorizontal = this.f45093t.getOffsetForHorizontal(staticLayout.getLineForVertical(i10 - AndroidUtilities.dp(10.0f)), x10 - this.T);
+            if ((action == 1 || action == 0) && this.R != null && (staticLayout = this.f45316t) != null && (i10 = y3 - this.S) > 0) {
+                int offsetForHorizontal = this.f45316t.getOffsetForHorizontal(staticLayout.getLineForVertical(i10 - AndroidUtilities.dp(10.0f)), x10 - this.T);
                 ClickableSpan[] clickableSpanArr = (ClickableSpan[]) this.R.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
                 if (clickableSpanArr.length != 0) {
                     if (action == 1) {
                         this.U.d(true);
-                        clickableSpanArr[0].onClick(t1Var);
+                        clickableSpanArr[0].onClick(u1Var);
                         return true;
                     }
-                    d90 d90Var = new d90(clickableSpanArr[0], null, x10, y3, 0);
-                    this.U.a(d90Var, null);
+                    m90 m90Var = new m90(clickableSpanArr[0], null, x10, y3, 0);
+                    this.U.a(m90Var, null);
                     try {
                         int spanStart = this.R.getSpanStart(clickableSpanArr[0]);
-                        w80 b10 = d90Var.b();
-                        b10.e(this.f45093t, spanStart, this.T, this.S);
-                        this.f45093t.getSelectionPath(spanStart, this.R.getSpanEnd(clickableSpanArr[0]), b10);
+                        f90 b10 = m90Var.b();
+                        b10.e(this.f45316t, spanStart, this.T, this.S);
+                        this.f45316t.getSelectionPath(spanStart, this.R.getSpanEnd(clickableSpanArr[0]), b10);
                         return true;
                     } catch (Exception e) {
                         FileLog.e(e);
@@ -134,12 +134,12 @@ public final class c {
                     }
                 }
                 this.U.d(true);
-                t1Var.invalidate();
+                u1Var.invalidate();
             }
             if (action == 0) {
                 int i11 = 0;
                 while (true) {
-                    Rect[] rectArr = this.f45083j;
+                    Rect[] rectArr = this.f45306j;
                     if (i11 < rectArr.length) {
                         if (rectArr[i11].contains(x10, y3)) {
                             this.O = i11;
@@ -156,10 +156,10 @@ public final class c {
                 }
             } else if (action == 1) {
                 if (this.P) {
-                    if (t1Var.getDelegate() != null) {
-                        t1Var.getDelegate().M(this.O, t1Var);
+                    if (u1Var.getDelegate() != null) {
+                        u1Var.getDelegate().M(this.O, u1Var);
                     }
-                    t1Var.playSoundEffect(0);
+                    u1Var.playSoundEffect(0);
                     c(false);
                     this.P = false;
                 }
@@ -167,7 +167,7 @@ public final class c {
                     this.Q = false;
                     MessageObject messageObject2 = this.M;
                     if (messageObject2 != null && messageObject2.messageOwner != null) {
-                        t.d(messageObject2, new b1(messageObject2, 10), new k3(6));
+                        s.d(messageObject2, new b1(messageObject2, 10), new j3(6));
                         return false;
                     }
                 }
@@ -183,7 +183,7 @@ public final class c {
         return false;
     }
 
-    public final void b(Canvas canvas, int i10, int i11, f6 f6Var) {
+    public final void b(Canvas canvas, int i10, int i11, e6 e6Var) {
         float f7;
         TextPaint textPaint;
         float f10;
@@ -194,41 +194,41 @@ public final class c {
         MessageObject messageObject = this.M;
         if (messageObject != null && messageObject.isGiveawayResults()) {
             z zVar = this.L;
-            t1 t1Var = this.f45079c;
+            u1 u1Var = this.f45302c;
             if (zVar == null) {
-                int w02 = j6.w0(null, j6.f18953i6, false);
+                int w02 = j6.w0(null, j6.f19152i6, false);
                 this.K = w02;
                 z Y = j6.Y(w02, 12, 12);
                 this.L = Y;
-                Y.setCallback(t1Var);
+                Y.setCallback(u1Var);
             }
-            this.f45097y.setColor(j6.f19061o2.getColor());
-            this.f45098z.setColor(j6.w0(null, j6.f19100q5, false));
-            this.A.setColor(j6.f19061o2.getColor());
+            this.f45320y.setColor(j6.f19260o2.getColor());
+            this.f45321z.setColor(j6.w0(null, j6.f19300q5, false));
+            this.A.setColor(j6.f19260o2.getColor());
             if (this.M.isOutOwner()) {
-                TextPaint textPaint2 = this.f45096x;
+                TextPaint textPaint2 = this.f45319x;
                 int i13 = j6.Xa;
-                textPaint2.setColor(j6.v0(i13, f6Var));
-                this.B.setColor(j6.v0(i13, f6Var));
-                this.C.setColor(j6.v0(j6.f18811ab, f6Var));
+                textPaint2.setColor(j6.v0(i13, e6Var));
+                this.B.setColor(j6.v0(i13, e6Var));
+                this.C.setColor(j6.v0(j6.f19010ab, e6Var));
             } else {
-                TextPaint textPaint3 = this.f45096x;
+                TextPaint textPaint3 = this.f45319x;
                 int i14 = j6.Kc;
-                textPaint3.setColor(j6.v0(i14, f6Var));
-                this.B.setColor(j6.v0(i14, f6Var));
-                this.C.setColor(j6.v0(j6.Uc, f6Var));
+                textPaint3.setColor(j6.v0(i14, e6Var));
+                this.B.setColor(j6.v0(i14, e6Var));
+                this.C.setColor(j6.v0(j6.Uc, e6Var));
             }
             if (this.N) {
-                this.B.setColor(j6.v0(j6.fk, f6Var));
+                this.B.setColor(j6.v0(j6.fk, e6Var));
             }
             canvas.save();
             int dp = i11 - AndroidUtilities.dp(4.0f);
             float f11 = dp;
             canvas.translate(f11, i10);
-            this.I.set(dp, i10, this.f45086m + dp, this.f45085l + i10);
-            canvas.saveLayer(0.0f, 0.0f, this.f45086m, this.f45085l, this.D, 31);
+            this.I.set(dp, i10, this.f45309m + dp, this.f45308l + i10);
+            canvas.saveLayer(0.0f, 0.0f, this.f45309m, this.f45308l, this.D, 31);
             this.d.draw(canvas);
-            float f12 = this.f45086m / 2.0f;
+            float f12 = this.f45309m / 2.0f;
             float dp2 = AndroidUtilities.dp(106.0f);
             int dp3 = AndroidUtilities.dp(12.0f) + this.H.width();
             int dp4 = AndroidUtilities.dp(10.0f) + this.H.height();
@@ -238,12 +238,12 @@ public final class c {
             float f14 = dp4 / 2.0f;
             this.F.set(f12 - f13, dp2 - f14, f12 + f13, dp2 + f14);
             canvas.drawRoundRect(this.F, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.B);
-            Drawable drawable = this.f45089p;
+            Drawable drawable = this.f45312p;
             if (drawable != null) {
                 drawable.setBounds(AndroidUtilities.dp(5.0f) + ((int) this.F.left), ((int) this.F.centerY()) - AndroidUtilities.dp(6.96f), AndroidUtilities.dp(21.24f) + ((int) this.F.left), AndroidUtilities.dp(6.96f) + ((int) this.F.centerY()));
-                this.f45089p.draw(canvas);
+                this.f45312p.draw(canvas);
             }
-            String str = this.f45090q;
+            String str = this.f45313q;
             float centerX = this.F.centerX();
             if (this.N) {
                 f7 = 8.0f;
@@ -253,7 +253,7 @@ public final class c {
             float dp5 = centerX + AndroidUtilities.dp(f7);
             float centerY = this.F.centerY() + AndroidUtilities.dp(4.0f);
             if (this.N) {
-                textPaint = this.f45095w;
+                textPaint = this.f45318w;
             } else {
                 textPaint = this.v;
             }
@@ -261,20 +261,20 @@ public final class c {
             canvas.restore();
             canvas.translate(0.0f, AndroidUtilities.dp(128.0f));
             int dp6 = AndroidUtilities.dp(128.0f) + i10;
-            this.S = this.f45087n + dp6;
-            this.T = (int) ((this.f45091r / 2.0f) + f11);
+            this.S = this.f45310n + dp6;
+            this.T = (int) ((this.f45314r / 2.0f) + f11);
             canvas.save();
-            canvas.translate(this.f45091r / 2.0f, 0.0f);
-            this.f45092s.draw(canvas);
-            canvas.translate(0.0f, this.f45087n);
-            this.f45093t.draw(canvas);
+            canvas.translate(this.f45314r / 2.0f, 0.0f);
+            this.f45315s.draw(canvas);
+            canvas.translate(0.0f, this.f45310n);
+            this.f45316t.draw(canvas);
             canvas.restore();
-            canvas.translate(0.0f, AndroidUtilities.dp(6.0f) + this.f45088o);
-            int C = w1.C(6.0f, this.f45088o, dp6);
+            canvas.translate(0.0f, AndroidUtilities.dp(6.0f) + this.f45311o);
+            int D = q.D(6.0f, this.f45311o, dp6);
             int i15 = 0;
             int i16 = 0;
             while (true) {
-                boolean[] zArr2 = this.f45084k;
+                boolean[] zArr2 = this.f45307k;
                 if (i15 >= zArr2.length) {
                     break;
                 } else if (zArr2[i15]) {
@@ -284,8 +284,8 @@ public final class c {
                     do {
                         f15 += this.h[i17] + AndroidUtilities.dp(40.0f);
                         i17++;
-                        zArr = this.f45084k;
-                        if (i17 >= zArr.length || this.f45082i[i17]) {
+                        zArr = this.f45307k;
+                        if (i17 >= zArr.length || this.f45305i[i17]) {
                             break;
                         }
                     } while (zArr[i17]);
@@ -294,13 +294,13 @@ public final class c {
                     int i18 = ((int) f16) + dp;
                     int i19 = i15;
                     while (true) {
-                        TLRPC.User user = this.f45081g[i19];
+                        TLRPC.User user = this.f45304g[i19];
                         if (this.M.isOutOwner()) {
-                            v02 = j6.v0(j6.Xa, f6Var);
+                            v02 = j6.v0(j6.Xa, e6Var);
                         } else {
                             int colorId = UserObject.getColorId(user);
                             if (colorId < 7) {
-                                v02 = j6.v0(j6.f19121r8[colorId], f6Var);
+                                v02 = j6.v0(j6.f19321r8[colorId], e6Var);
                             } else {
                                 MessagesController.PeerColors peerColors = MessagesController.getInstance(UserConfig.selectedAccount).peerColors;
                                 if (peerColors == null) {
@@ -311,7 +311,7 @@ public final class c {
                                 if (color != null) {
                                     v02 = color.getColor1();
                                 } else {
-                                    v02 = j6.v0(j6.f19121r8[0], f6Var);
+                                    v02 = j6.v0(j6.f19321r8[0], e6Var);
                                 }
                             }
                         }
@@ -321,29 +321,29 @@ public final class c {
                         } else {
                             i12 = i16;
                         }
-                        this.f45096x.setColor(v02);
+                        this.f45319x.setColor(v02);
                         this.C.setColor(v02);
                         this.C.setAlpha(25);
-                        this.f45077a[i19].draw(canvas);
-                        CharSequence charSequence = this.f45080f[i19];
+                        this.f45300a[i19].draw(canvas);
+                        CharSequence charSequence = this.f45303f[i19];
                         int i21 = i18;
-                        canvas.drawText(charSequence, 0, charSequence.length(), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(16.0f), this.f45096x);
+                        canvas.drawText(charSequence, 0, charSequence.length(), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(16.0f), this.f45319x);
                         this.G.set(0.0f, 0.0f, this.h[i19] + AndroidUtilities.dp(40.0f), AndroidUtilities.dp(24.0f));
                         canvas.drawRoundRect(this.G, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.C);
                         float f17 = i21;
-                        this.f45083j[i19].set(i21, C, (int) (this.G.width() + f17), AndroidUtilities.dp(24.0f) + C);
+                        this.f45306j[i19].set(i21, D, (int) (this.G.width() + f17), AndroidUtilities.dp(24.0f) + D);
                         canvas.translate(this.G.width() + AndroidUtilities.dp(6.0f), 0.0f);
                         i18 = (int) (this.G.width() + AndroidUtilities.dp(6.0f) + f17);
                         i19++;
-                        boolean[] zArr3 = this.f45084k;
-                        if (i19 >= zArr3.length || this.f45082i[i19] || !zArr3[i19]) {
+                        boolean[] zArr3 = this.f45307k;
+                        if (i19 >= zArr3.length || this.f45305i[i19] || !zArr3[i19]) {
                             break;
                         }
                         i16 = i12;
                     }
                     canvas.restore();
                     canvas.translate(0.0f, AndroidUtilities.dp(30.0f));
-                    C += AndroidUtilities.dp(30.0f);
+                    D += AndroidUtilities.dp(30.0f);
                     i15 = i19;
                     i16 = i12;
                 } else {
@@ -352,8 +352,8 @@ public final class c {
             }
             canvas.translate(0.0f, AndroidUtilities.dp(6.0f));
             canvas.save();
-            canvas.translate(this.f45091r / 2.0f, 0.0f);
-            this.f45094u.draw(canvas);
+            canvas.translate(this.f45314r / 2.0f, 0.0f);
+            this.f45317u.draw(canvas);
             canvas.restore();
             canvas.restore();
             if (this.O >= 0) {
@@ -368,12 +368,12 @@ public final class c {
                     this.K = l1;
                     j6.B1(zVar2, l1, true);
                 }
-                this.L.setBounds(this.f45083j[this.O]);
-                this.L.setCallback(t1Var);
+                this.L.setBounds(this.f45306j[this.O]);
+                this.L.setCallback(u1Var);
             }
-            z80 z80Var = this.U;
-            if (z80Var != null && z80Var.f(canvas)) {
-                t1Var.invalidate();
+            i90 i90Var = this.U;
+            if (i90Var != null && i90Var.f(canvas)) {
+                u1Var.invalidate();
             }
         }
     }
@@ -381,19 +381,19 @@ public final class c {
     public final void c(boolean z10) {
         MessageObject messageObject = this.M;
         if (messageObject != null && messageObject.isGiveawayResults() && this.L != null) {
-            z80 z80Var = this.U;
-            if (z80Var != null) {
-                z80Var.d(true);
+            i90 i90Var = this.U;
+            if (i90Var != null) {
+                i90Var.d(true);
             }
-            t1 t1Var = this.f45079c;
+            u1 u1Var = this.f45302c;
             if (z10) {
                 this.L.setCallback(new d(this, 8));
                 this.L.setState(this.J);
-                t1Var.invalidate();
+                u1Var.invalidate();
                 return;
             }
             this.L.setState(StateSet.NOTHING);
-            t1Var.invalidate();
+            u1Var.invalidate();
         }
     }
 
@@ -403,20 +403,20 @@ public final class c {
         boolean z11;
         TLRPC.User user2 = null;
         this.M = null;
-        this.f45092s = null;
-        this.f45093t = null;
-        this.f45094u = null;
-        this.f45085l = 0;
-        this.f45086m = 0;
+        this.f45315s = null;
+        this.f45316t = null;
+        this.f45317u = null;
+        this.f45308l = 0;
+        this.f45309m = 0;
         this.N = false;
         if (messageObject.isGiveawayResults()) {
             this.M = messageObject;
             if (this.v == null) {
                 this.v = new TextPaint(1);
-                this.f45095w = new TextPaint(1);
-                this.f45096x = new TextPaint(1);
-                this.f45097y = new TextPaint(1);
-                this.f45098z = new TextPaint(1);
+                this.f45318w = new TextPaint(1);
+                this.f45319x = new TextPaint(1);
+                this.f45320y = new TextPaint(1);
+                this.f45321z = new TextPaint(1);
                 this.A = new TextPaint(1);
                 this.B = new Paint(1);
                 this.C = new Paint(1);
@@ -427,12 +427,12 @@ public final class c {
                 this.H = new Rect();
                 this.I = new Rect();
                 this.J = new int[]{16842910, 16842919};
-                this.f45080f = new CharSequence[10];
-                this.f45081g = new TLRPC.User[10];
+                this.f45303f = new CharSequence[10];
+                this.f45304g = new TLRPC.User[10];
                 this.h = new float[10];
-                this.f45082i = new boolean[10];
-                this.f45083j = new Rect[10];
-                ImageReceiver imageReceiver = new ImageReceiver(this.f45079c);
+                this.f45305i = new boolean[10];
+                this.f45306j = new Rect[10];
+                ImageReceiver imageReceiver = new ImageReceiver(this.f45302c);
                 this.d = imageReceiver;
                 imageReceiver.setAllowLoadingOnAttachedOnly(true);
                 Paint paint = this.E;
@@ -444,61 +444,61 @@ public final class c {
                 TextPaint textPaint = this.v;
                 Paint.Align align = Paint.Align.CENTER;
                 textPaint.setTextAlign(align);
-                this.f45095w.setTypeface(AndroidUtilities.bold());
-                this.f45095w.setTextSize(AndroidUtilities.dp(12.0f));
-                this.f45095w.setTextAlign(align);
-                this.f45095w.setColor(-1);
-                this.f45096x.setTypeface(AndroidUtilities.bold());
-                this.f45096x.setTextSize(AndroidUtilities.dp(13.0f));
+                this.f45318w.setTypeface(AndroidUtilities.bold());
+                this.f45318w.setTextSize(AndroidUtilities.dp(12.0f));
+                this.f45318w.setTextAlign(align);
+                this.f45318w.setColor(-1);
+                this.f45319x.setTypeface(AndroidUtilities.bold());
+                this.f45319x.setTextSize(AndroidUtilities.dp(13.0f));
                 this.A.setTextSize(AndroidUtilities.dp(13.0f));
-                this.f45097y.setTextSize(AndroidUtilities.dp(14.0f));
-                this.f45098z.setTextSize(AndroidUtilities.dp(14.0f));
-                this.f45098z.setTextAlign(align);
+                this.f45320y.setTextSize(AndroidUtilities.dp(14.0f));
+                this.f45321z.setTextSize(AndroidUtilities.dp(14.0f));
+                this.f45321z.setTextAlign(align);
             }
-            if (this.f45077a == null) {
-                this.f45077a = new ImageReceiver[10];
-                this.f45078b = new f9[10];
-                this.f45084k = new boolean[10];
+            if (this.f45300a == null) {
+                this.f45300a = new ImageReceiver[10];
+                this.f45301b = new h9[10];
+                this.f45307k = new boolean[10];
                 int i11 = 0;
                 while (true) {
-                    ImageReceiver[] imageReceiverArr = this.f45077a;
+                    ImageReceiver[] imageReceiverArr = this.f45300a;
                     if (i11 >= imageReceiverArr.length) {
                         break;
                     }
-                    imageReceiverArr[i11] = new ImageReceiver(this.f45079c);
-                    this.f45077a[i11].setAllowLoadingOnAttachedOnly(true);
-                    this.f45077a[i11].setRoundRadius(AndroidUtilities.dp(12.0f));
-                    this.f45078b[i11] = new f9((f6) null);
-                    this.f45078b[i11].u(AndroidUtilities.dp(18.0f));
-                    this.f45083j[i11] = new Rect();
+                    imageReceiverArr[i11] = new ImageReceiver(this.f45302c);
+                    this.f45300a[i11].setAllowLoadingOnAttachedOnly(true);
+                    this.f45300a[i11].setRoundRadius(AndroidUtilities.dp(12.0f));
+                    this.f45301b[i11] = new h9((e6) null);
+                    this.f45301b[i11].u(AndroidUtilities.dp(18.0f));
+                    this.f45306j[i11] = new Rect();
                     i11++;
                 }
             }
             this.d.setAllowStartLottieAnimation(false);
             if (this.e == null) {
-                this.e = new yi0(R.raw.giveaway_results, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
+                this.e = new ij0(R.raw.giveaway_results, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
             }
             this.d.setImageBitmap(this.e);
             TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageObject.messageOwner.media;
             int size = tL_messageMediaGiveawayResults.winners.size();
-            ImageReceiver[] imageReceiverArr2 = this.f45077a;
+            ImageReceiver[] imageReceiverArr2 = this.f45300a;
             if (imageReceiverArr2.length < size) {
                 int length = imageReceiverArr2.length;
-                this.f45077a = (ImageReceiver[]) Arrays.copyOf(imageReceiverArr2, size);
-                this.f45078b = (f9[]) Arrays.copyOf(this.f45078b, size);
-                this.f45084k = Arrays.copyOf(this.f45084k, size);
-                this.f45080f = (CharSequence[]) Arrays.copyOf(this.f45080f, size);
+                this.f45300a = (ImageReceiver[]) Arrays.copyOf(imageReceiverArr2, size);
+                this.f45301b = (h9[]) Arrays.copyOf(this.f45301b, size);
+                this.f45307k = Arrays.copyOf(this.f45307k, size);
+                this.f45303f = (CharSequence[]) Arrays.copyOf(this.f45303f, size);
                 this.h = Arrays.copyOf(this.h, size);
-                this.f45082i = Arrays.copyOf(this.f45082i, size);
-                this.f45083j = (Rect[]) Arrays.copyOf(this.f45083j, size);
-                this.f45081g = (TLRPC.User[]) Arrays.copyOf(this.f45081g, size);
+                this.f45305i = Arrays.copyOf(this.f45305i, size);
+                this.f45306j = (Rect[]) Arrays.copyOf(this.f45306j, size);
+                this.f45304g = (TLRPC.User[]) Arrays.copyOf(this.f45304g, size);
                 for (int i12 = length - 1; i12 < size; i12++) {
-                    this.f45077a[i12] = new ImageReceiver(this.f45079c);
-                    this.f45077a[i12].setAllowLoadingOnAttachedOnly(true);
-                    this.f45077a[i12].setRoundRadius(AndroidUtilities.dp(12.0f));
-                    this.f45078b[i12] = new f9((f6) null);
-                    this.f45078b[i12].u(AndroidUtilities.dp(18.0f));
-                    this.f45083j[i12] = new Rect();
+                    this.f45300a[i12] = new ImageReceiver(this.f45302c);
+                    this.f45300a[i12].setAllowLoadingOnAttachedOnly(true);
+                    this.f45300a[i12].setRoundRadius(AndroidUtilities.dp(12.0f));
+                    this.f45301b[i12] = new h9((e6) null);
+                    this.f45301b[i12].u(AndroidUtilities.dp(18.0f));
+                    this.f45306j[i12] = new Rect();
                 }
             }
             int dp = AndroidUtilities.dp(90.0f);
@@ -531,46 +531,46 @@ public final class c {
             } else {
                 spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.BoostingGiveawayResultsMsgAllWinnersReceivedLinks));
             }
-            TextPaint textPaint2 = this.f45097y;
+            TextPaint textPaint2 = this.f45320y;
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            this.f45092s = kw0.c(spannableStringBuilder, textPaint2, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
-            this.f45093t = kw0.c(this.R, this.f45097y, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
-            this.f45094u = kw0.c(spannableStringBuilder2, this.f45097y, dp2, alignment, AndroidUtilities.dp(3.0f), false, truncateAt, dp2, 10, true);
+            this.f45315s = vw0.c(spannableStringBuilder, textPaint2, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
+            this.f45316t = vw0.c(this.R, this.f45320y, dp2, alignment, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10, true);
+            this.f45317u = vw0.c(spannableStringBuilder2, this.f45320y, dp2, alignment, AndroidUtilities.dp(3.0f), false, truncateAt, dp2, 10, true);
             int max = Math.max(i10, dp2);
-            this.f45091r = max - dp2;
+            this.f45314r = max - dp2;
             float f7 = max;
             float f10 = dp;
             float f11 = f10 / 2.0f;
             this.d.setImageCoords((f7 / 2.0f) - f11, AndroidUtilities.dp(70.0f) - f11, f10, f10);
-            StaticLayout staticLayout = this.f45092s;
+            StaticLayout staticLayout = this.f45315s;
             int dp3 = AndroidUtilities.dp(5.0f) + staticLayout.getLineBottom(staticLayout.getLineCount() - 1);
-            this.f45087n = dp3;
-            StaticLayout staticLayout2 = this.f45093t;
-            this.f45088o = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1) + dp3;
-            StaticLayout staticLayout3 = this.f45094u;
-            int lineBottom = this.f45085l + this.f45088o + staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
-            this.f45085l = lineBottom;
-            this.f45085l = AndroidUtilities.dp(128.0f) + lineBottom;
-            this.f45086m = max;
+            this.f45310n = dp3;
+            StaticLayout staticLayout2 = this.f45316t;
+            this.f45311o = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1) + dp3;
+            StaticLayout staticLayout3 = this.f45317u;
+            int lineBottom = this.f45308l + this.f45311o + staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
+            this.f45308l = lineBottom;
+            this.f45308l = AndroidUtilities.dp(128.0f) + lineBottom;
+            this.f45309m = max;
             if (this.N) {
-                if (this.f45089p == null) {
-                    this.f45089p = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.filled_giveaway_stars).mutate();
+                if (this.f45312p == null) {
+                    this.f45312p = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.filled_giveaway_stars).mutate();
                 }
-                this.f45090q = LocaleController.formatNumber((int) tL_messageMediaGiveawayResults.stars, ',');
+                this.f45313q = LocaleController.formatNumber((int) tL_messageMediaGiveawayResults.stars, ',');
             } else {
-                this.f45089p = null;
-                this.f45090q = "x" + tL_messageMediaGiveawayResults.winners_count;
+                this.f45312p = null;
+                this.f45313q = "x" + tL_messageMediaGiveawayResults.winners_count;
             }
             TextPaint textPaint3 = this.v;
-            String str = this.f45090q;
+            String str = this.f45313q;
             textPaint3.getTextBounds(str, 0, str.length(), this.H);
             if (this.N) {
                 Rect rect = this.H;
                 rect.right = AndroidUtilities.dp(20.0f) + rect.right;
             }
-            Arrays.fill(this.f45084k, false);
-            this.f45085l = AndroidUtilities.dp(30.0f) + this.f45085l;
+            Arrays.fill(this.f45307k, false);
+            this.f45308l = AndroidUtilities.dp(30.0f) + this.f45308l;
             ArrayList arrayList = new ArrayList(tL_messageMediaGiveawayResults.winners.size());
             ArrayList<Long> arrayList2 = tL_messageMediaGiveawayResults.winners;
             int size2 = arrayList2.size();
@@ -590,18 +590,18 @@ public final class c {
                 long longValue = l11.longValue();
                 TLRPC.User user3 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(l11);
                 if (user3 != null) {
-                    this.f45084k[i14] = true;
-                    this.f45081g[i14] = user3;
+                    this.f45307k[i14] = true;
+                    this.f45304g[i14] = user3;
                     user = user2;
-                    this.f45080f[i14] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user3), this.f45096x.getFontMetricsInt(), false), this.f45096x, 0.8f * f7, TextUtils.TruncateAt.END);
+                    this.f45303f[i14] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user3), this.f45319x.getFontMetricsInt(), false), this.f45319x, 0.8f * f7, TextUtils.TruncateAt.END);
                     float[] fArr = this.h;
-                    TextPaint textPaint4 = this.f45096x;
-                    CharSequence charSequence = this.f45080f[i14];
+                    TextPaint textPaint4 = this.f45319x;
+                    CharSequence charSequence = this.f45303f[i14];
                     fArr[i14] = textPaint4.measureText(charSequence, 0, charSequence.length());
                     float dp4 = this.h[i14] + AndroidUtilities.dp(40.0f);
                     f12 += dp4;
                     if (i14 > 0) {
-                        boolean[] zArr = this.f45082i;
+                        boolean[] zArr = this.f45305i;
                         if (f12 > 0.9f * f7) {
                             z11 = true;
                         } else {
@@ -609,23 +609,23 @@ public final class c {
                         }
                         zArr[i14] = z11;
                         if (z11) {
-                            this.f45085l = AndroidUtilities.dp(30.0f) + this.f45085l;
+                            this.f45308l = AndroidUtilities.dp(30.0f) + this.f45308l;
                             f12 = dp4;
                         }
                     } else {
-                        this.f45082i[i14] = false;
+                        this.f45305i[i14] = false;
                     }
-                    this.f45078b[i14].r(user3);
-                    this.f45077a[i14].setForUserOrChat(user3, this.f45078b[i14]);
-                    this.f45077a[i14].setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+                    this.f45301b[i14].r(user3);
+                    this.f45300a[i14].setForUserOrChat(user3, this.f45301b[i14]);
+                    this.f45300a[i14].setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                 } else {
                     user = user2;
-                    this.f45081g[i14] = user;
-                    this.f45084k[i14] = false;
-                    this.f45080f[i14] = "";
-                    this.f45082i[i14] = false;
+                    this.f45304g[i14] = user;
+                    this.f45307k[i14] = false;
+                    this.f45303f[i14] = "";
+                    this.f45305i[i14] = false;
                     this.h[i14] = AndroidUtilities.dp(20.0f);
-                    this.f45078b[i14].n(longValue, "", "");
+                    this.f45301b[i14].n(longValue, "", "");
                 }
                 i14++;
                 user2 = user;

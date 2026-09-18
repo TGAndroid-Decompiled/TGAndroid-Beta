@@ -11,7 +11,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void D(i1 i1Var, int i10, int i11) {
+    public final void B(i1 i1Var, int i10, int i11) {
         a6 a6Var;
         q9 textSelectionHelper;
         d6 d6Var = this.f11784a;
@@ -21,7 +21,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void M(CharSequence charSequence) {
+    public final void K(CharSequence charSequence) {
         a6 a6Var = this.f11784a.f11346y;
         if (a6Var != null) {
             e3 e3Var = (e3) a6Var;
@@ -32,7 +32,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void W(Editable editable) {
+    public final void U(Editable editable) {
         d6 d6Var = this.f11784a;
         if (d6Var.f11345x != null) {
             d6Var.w();
@@ -62,7 +62,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final boolean b0(boolean z10) {
+    public final boolean X(boolean z10) {
         return false;
     }
 
@@ -107,7 +107,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final boolean q(i1 i1Var) {
+    public final boolean p(i1 i1Var) {
         return false;
     }
 

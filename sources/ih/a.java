@@ -13,18 +13,18 @@ import android.widget.ImageView;
 import le.d;
 import le.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.tp;
-import w7.x5;
+import w7.y5;
 public final class a extends FrameLayout implements d {
     public final le.b f11194a;
     public final le.b f11195b;
     public ImageView f11196c;
     public ImageView d;
     public tp e;
-    public f6 f11197f;
+    public e6 f11197f;
     public float h;
     public ch.d f11198n;
 
@@ -36,10 +36,10 @@ public final class a extends FrameLayout implements d {
         this.h = 1.0f;
     }
 
-    public static a c(c cVar, Context context, dh.a aVar, f6 f6Var) {
-        int v02 = j6.v0(j6.Wk, f6Var);
+    public static a c(c cVar, Context context, dh.a aVar, e6 e6Var) {
+        int v02 = j6.v0(j6.Wk, e6Var);
         a aVar2 = new a(context);
-        aVar2.f11197f = f6Var;
+        aVar2.f11197f = e6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.setIconColor(v02);
         int dp = AndroidUtilities.dp(22.0f);
@@ -49,10 +49,10 @@ public final class a extends FrameLayout implements d {
         return aVar2;
     }
 
-    public static a d(Context context, c cVar, dh.a aVar, f6 f6Var, int i10, int i11) {
-        int v02 = j6.v0(j6.Wk, f6Var);
+    public static a d(Context context, c cVar, dh.a aVar, e6 e6Var, int i10, int i11) {
+        int v02 = j6.v0(j6.Wk, e6Var);
         a aVar2 = new a(context);
-        aVar2.f11197f = f6Var;
+        aVar2.f11197f = e6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.f(i10, i11);
         aVar2.setIconColor(v02);
@@ -110,7 +110,7 @@ public final class a extends FrameLayout implements d {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.e.f28178c = -1L;
+                this.e.f28458c = -1L;
             }
         }
     }
@@ -139,7 +139,7 @@ public final class a extends FrameLayout implements d {
             ImageView imageView = new ImageView(getContext());
             this.f11196c = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.f11196c, x5.e(i11, i11, 17));
+            addView(this.f11196c, y5.e(i11, i11, 17));
             a();
         }
         this.f11196c.setImageResource(i10);

@@ -3,7 +3,7 @@ package ai;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class h0 extends org.telegram.ui.Components.i9 {
+public final class h0 extends org.telegram.ui.Components.k9 {
     public final int e;
 
     public h0(int i10, Context context, boolean z10) {
@@ -30,16 +30,16 @@ public final class h0 extends org.telegram.ui.Components.i9 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        int g10;
+        int f7;
         switch (this.e) {
             case 1:
-                int i12 = this.f24900a.f24592n;
+                int i12 = this.f25645a.f25257n;
                 if (i12 == 0) {
-                    g10 = 0;
+                    f7 = 0;
                 } else {
-                    g10 = hg.k0.g(i12, 1, 20, 24);
+                    f7 = hg.k0.f(i12, 1, 20, 24);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(g10), 1073741824), i11);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824), i11);
                 return;
             default:
                 super.onMeasure(i10, i11);

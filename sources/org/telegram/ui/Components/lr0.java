@@ -1,165 +1,80 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class lr0 extends s4.v {
-    public rt0 d;
-    public final zu0 e;
+import java.util.Collections;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class lr0 implements Runnable {
+    public final int f26236a;
+    public final kv0 f26237b;
+    public final TLRPC.TL_error f26238c;
+    public final int d;
+    public final int e;
+    public final TLObject f26239f;
 
-    public lr0(zu0 zu0Var) {
-        this.e = zu0Var;
+    public lr0(kv0 kv0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
+        this.f26236a = i12;
+        this.f26237b = kv0Var;
+        this.f26238c = tL_error;
+        this.d = i10;
+        this.e = i11;
+        this.f26239f = tLObject;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        c1Var.f42702a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        wu0 wu0Var;
-        s4.h0 adapter = recyclerView.getAdapter();
-        yr0 yr0Var = null;
-        if (adapter instanceof wu0) {
-            wu0Var = (wu0) adapter;
-        } else {
-            wu0Var = null;
-        }
-        if (k() && wu0Var != null && wu0Var.M(c1Var.b())) {
-            st0 st0Var = this.e.f30635k0[0];
-            if (st0Var != null) {
-                yr0Var = st0Var.h;
-            }
-            this.d = yr0Var;
-            if (yr0Var != null) {
-                yr0Var.setItemAnimator(st0Var.d);
-            }
-            return s4.v.l(15, 0);
-        }
-        return s4.v.l(0, 0);
-    }
-
-    @Override
-    public final boolean k() {
-        zu0 zu0Var = this.e;
-        if (!zu0Var.C1) {
-            ur0 ur0Var = zu0Var.W;
-            if (ur0Var == null || !ur0Var.f32652w) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        wu0 wu0Var;
-        ai.d9 d9Var;
-        ArrayList arrayList;
-        s4.h0 adapter = recyclerView.getAdapter();
-        if (adapter instanceof wu0) {
-            wu0Var = (wu0) adapter;
-        } else {
-            wu0Var = null;
-        }
-        if (wu0Var == null || !wu0Var.M(c1Var.b()) || !wu0Var.M(c1Var2.b())) {
-            return false;
-        }
-        int b10 = c1Var.b();
-        int b11 = c1Var2.b();
-        ArrayList arrayList2 = wu0Var.f29758y;
-        if (!wu0Var.h && (d9Var = wu0Var.f29755s) != null && b10 >= 0 && b10 < d9Var.f721i.size() && b11 >= 0 && b11 < wu0Var.f29755s.f721i.size()) {
-            if (!(wu0Var.f29755s instanceof ai.t8) && wu0Var.f29753n <= 0) {
-                arrayList = new ArrayList(wu0Var.f29755s.f720g);
-            } else {
-                arrayList = new ArrayList();
-                for (int i10 = 0; i10 < wu0Var.f29755s.f721i.size(); i10++) {
-                    arrayList.add(Integer.valueOf(((MessageObject) wu0Var.f29755s.f721i.get(i10)).getId()));
-                }
-            }
-            if (!wu0Var.E) {
-                arrayList2.clear();
-                arrayList2.addAll(arrayList);
-                wu0Var.E = true;
-            }
-            MessageObject messageObject = (MessageObject) wu0Var.f29755s.f721i.get(b10);
-            MessageObject messageObject2 = (MessageObject) wu0Var.f29755s.f721i.get(b11);
-            arrayList.remove(Integer.valueOf(messageObject.getId()));
-            arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
-            wu0Var.f29755s.C(arrayList, false);
-            wu0Var.p(b10, b11);
-        }
-        return true;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        ai.d9 d9Var;
-        ArrayList arrayList;
-        boolean z10;
-        rt0 rt0Var = this.d;
-        if (rt0Var != null && c1Var != null) {
-            rt0Var.e1(false);
-        }
-        if (i10 == 0) {
-            rt0 rt0Var2 = this.d;
-            if (rt0Var2 != null && (rt0Var2.getAdapter() instanceof wu0)) {
-                wu0 wu0Var = (wu0) this.d.getAdapter();
-                ArrayList arrayList2 = wu0Var.f29758y;
-                if (!wu0Var.h && (d9Var = wu0Var.f29755s) != null && wu0Var.E) {
-                    if (!(d9Var instanceof ai.t8) && wu0Var.f29753n <= 0) {
-                        arrayList = d9Var.f720g;
-                    } else {
-                        arrayList = new ArrayList();
-                        for (int i11 = 0; i11 < wu0Var.f29755s.f721i.size(); i11++) {
-                            arrayList.add(Integer.valueOf(((MessageObject) wu0Var.f29755s.f721i.get(i11)).getId()));
-                        }
-                    }
-                    if (arrayList2.size() != arrayList.size()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (!z10) {
-                        int i12 = 0;
-                        while (true) {
-                            if (i12 >= arrayList2.size()) {
-                                break;
-                            } else if (arrayList2.get(i12) != arrayList.get(i12)) {
-                                z10 = true;
-                                break;
-                            } else {
-                                i12++;
+    public final void run() {
+        switch (this.f26236a) {
+            case 0:
+                kv0 kv0Var = this.f26237b;
+                NotificationCenter.getInstance(kv0Var.f25848v1.getCurrentAccount()).doOnIdle(new lr0(kv0Var, this.f26238c, this.d, this.e, this.f26239f, 1));
+                return;
+            default:
+                kv0 kv0Var2 = this.f26237b;
+                zu0[] zu0VarArr = kv0Var2.f25844t1;
+                if (this.f26238c == null) {
+                    int i10 = this.e;
+                    zu0 zu0Var = zu0VarArr[i10];
+                    if (this.d == zu0Var.f30889p) {
+                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f26239f;
+                        zu0Var.e.clear();
+                        int size = tL_messages_searchResultsPositions.positions.size();
+                        int i11 = 0;
+                        for (int i12 = 0; i12 < size; i12++) {
+                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i12);
+                            int i13 = tL_searchResultPosition.date;
+                            if (i13 != 0) {
+                                ?? obj = new Object();
+                                obj.f25045c = i13;
+                                obj.d = tL_searchResultPosition.msg_id;
+                                obj.f25044b = tL_searchResultPosition.offset;
+                                obj.f25043a = LocaleController.formatYearMont(i13, true);
+                                zu0VarArr[i10].e.add(obj);
                             }
                         }
+                        Collections.sort(zu0VarArr[i10].e, new org.telegram.ui.df(17));
+                        zu0 zu0Var2 = zu0VarArr[i10];
+                        zu0Var2.f30880f[0] = tL_messages_searchResultsPositions.count;
+                        zu0Var2.h = true;
+                        if (!zu0Var2.e.isEmpty()) {
+                            while (true) {
+                                du0[] du0VarArr = kv0Var2.f25824k0;
+                                if (i11 < du0VarArr.length) {
+                                    du0 du0Var = du0VarArr[i11];
+                                    if (du0Var.F == i10) {
+                                        du0Var.f23681b = true;
+                                        kv0Var2.o1(du0Var, true);
+                                    }
+                                    i11++;
+                                }
+                            }
+                        }
+                        kv0Var2.H.l();
+                        return;
                     }
-                    if (z10) {
-                        wu0Var.f29755s.C(arrayList, true);
-                    }
-                    wu0Var.E = false;
+                    return;
                 }
-            }
-            rt0 rt0Var3 = this.d;
-            if (rt0Var3 != null) {
-                rt0Var3.setItemAnimator(null);
                 return;
-            }
-            return;
         }
-        rt0 rt0Var4 = this.d;
-        if (rt0Var4 != null) {
-            rt0Var4.J0(false);
-        }
-        if (c1Var != null) {
-            c1Var.f42702a.setPressed(true);
-        }
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
     }
 }

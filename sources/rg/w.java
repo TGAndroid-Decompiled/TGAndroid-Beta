@@ -8,39 +8,39 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.u50;
+import org.telegram.ui.s50;
 public final class w implements Runnable {
-    public final int f42553a;
-    public final j0 f42554b;
+    public final int f42780a;
+    public final j0 f42781b;
 
     public w(j0 j0Var, int i10) {
-        this.f42553a = i10;
-        this.f42554b = j0Var;
+        this.f42780a = i10;
+        this.f42781b = j0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f42553a;
-        j0 j0Var = this.f42554b;
+        int i10 = this.f42780a;
+        j0 j0Var = this.f42781b;
         switch (i10) {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f19398a = true;
+                    obj.f19545a = true;
                     j0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                j0Var.f42359x0.e(j0Var.f42338b0, false);
+                j0Var.f42586x0.e(j0Var.f42565b0, false);
                 j0Var.z1();
                 return;
             case 2:
-                HashSet hashSet = j0Var.f42360y0;
-                vc X = vc.X();
+                HashSet hashSet = j0Var.f42587y0;
+                xc X = xc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
                         X.Q(R.raw.voip_invite, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.InviteLinkSentSingle, ContactsController.formatName((TLRPC.User) hashSet.iterator().next())))).j();
@@ -61,8 +61,8 @@ public final class w implements Runnable {
                     if (j0Var.E0.getParent() != null) {
                         ((ViewGroup) j0Var.E0.getParent()).removeView(j0Var.E0);
                     }
-                    u50 u50Var = j0Var.L0;
-                    if (u50Var != null && u50Var.getParent() != null) {
+                    s50 s50Var = j0Var.L0;
+                    if (s50Var != null && s50Var.getParent() != null) {
                         ((ViewGroup) j0Var.L0.getParent()).removeView(j0Var.L0);
                     }
                     j0Var.d.setPadding(0, 0, 0, 0);

@@ -21,12 +21,11 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.w1;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.ka1;
-import org.telegram.ui.nl0;
+import org.telegram.ui.ja1;
+import org.telegram.ui.ol0;
 public abstract class g extends View implements i {
     public static final boolean A1;
     public static final boolean B1;
@@ -88,7 +87,7 @@ public abstract class g extends View implements i {
     public final Rect V;
     public float V0;
     public final Path W;
-    public final f6 W0;
+    public final e6 W0;
     public int X0;
     public int Y0;
     public final Rect Z0;
@@ -160,7 +159,7 @@ public abstract class g extends View implements i {
         C1 = new u1.a();
     }
 
-    public g(Context context, f6 f6Var) {
+    public g(Context context, e6 e6Var) {
         super(context);
         this.f11133b = new ArrayList(10);
         this.f11136c = new ArrayList(25);
@@ -271,7 +270,7 @@ public abstract class g extends View implements i {
         arrayList.add(rect);
         this.f11135b1 = 0L;
         this.f11151i1 = false;
-        this.W0 = f6Var;
+        this.W0 = e6Var;
         t();
         this.A0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
@@ -410,9 +409,9 @@ public abstract class g extends View implements i {
                 e eVar = this.Q0;
                 if (eVar != null) {
                     getSelectedDate();
-                    ka1 ka1Var = (ka1) ((nl0) eVar).f36131b;
-                    ka1Var.f();
-                    ka1Var.f35179b.f11165t0.d(false, false);
+                    ja1 ja1Var = (ja1) ((ol0) eVar).f36206b;
+                    ja1Var.f();
+                    ja1Var.f34771b.f11165t0.d(false, false);
                 }
                 B();
                 invalidate();
@@ -506,7 +505,7 @@ public abstract class g extends View implements i {
         }
         if ((Math.abs(((float) (((long) Math.ceil(((float) j11) / 5.0f)) * 5)) - this.f11170x) >= this.E && j3 != 0) || ((float) j3) != this.f11172y) {
             kg.d f10 = f(this.f11148h0.f13006i, j3, j10);
-            long[] jArr = f10.f13606a;
+            long[] jArr = f10.f13604a;
             long j12 = jArr[jArr.length - 1];
             long j13 = jArr[0];
             if (!z12) {
@@ -566,7 +565,7 @@ public abstract class g extends View implements i {
                 this.f11168w = f15;
                 arrayList.clear();
                 arrayList.add(f10);
-                f10.f13609f = 255;
+                f10.f13607f = 255;
                 return;
             }
             arrayList.add(f10);
@@ -589,7 +588,7 @@ public abstract class g extends View implements i {
             for (int i10 = 0; i10 < size; i10++) {
                 kg.d dVar = (kg.d) arrayList.get(i10);
                 if (dVar != f10) {
-                    dVar.f13610g = dVar.f13609f;
+                    dVar.f13608g = dVar.f13607f;
                 }
             }
             ValueAnimator e = e(0.0f, 255.0f, new x(3, this, f10));
@@ -612,7 +611,7 @@ public abstract class g extends View implements i {
                     this.v = f11;
                 } else {
                     float f13 = this.T0;
-                    this.v = (qr.f27384g.getInterpolation(f12) * (f11 - f13)) + f13;
+                    this.v = (qr.f27716g.getInterpolation(f12) * (f11 - f13)) + f13;
                 }
                 invalidate();
             }
@@ -627,7 +626,7 @@ public abstract class g extends View implements i {
                         this.f11168w = f15;
                     } else {
                         float f17 = this.U0;
-                        this.f11168w = (qr.f27384g.getInterpolation(f16) * (f15 - f17)) + f17;
+                        this.f11168w = (qr.f27716g.getInterpolation(f16) * (f15 - f17)) + f17;
                     }
                     invalidate();
                 }
@@ -643,8 +642,8 @@ public abstract class g extends View implements i {
         } else {
             i10 = j6.Yi;
         }
-        f6 f6Var = this.W0;
-        int v02 = j6.v0(i10, f6Var);
+        e6 e6Var = this.W0;
+        int v02 = j6.v0(i10, e6Var);
         TextPaint textPaint = this.N;
         textPaint.setColor(v02);
         if (this.f11171x0) {
@@ -652,20 +651,20 @@ public abstract class g extends View implements i {
         } else {
             i11 = j6.Yi;
         }
-        this.O.setColor(j6.v0(i11, f6Var));
-        int v03 = j6.v0(j6.Yi, f6Var);
+        this.O.setColor(j6.v0(i11, e6Var));
+        int v03 = j6.v0(j6.Yi, e6Var);
         TextPaint textPaint2 = this.P;
         textPaint2.setColor(v03);
-        int v04 = j6.v0(j6.aj, f6Var);
+        int v04 = j6.v0(j6.aj, e6Var);
         Paint paint = this.L;
         paint.setColor(v04);
-        int v05 = j6.v0(j6.bj, f6Var);
+        int v05 = j6.v0(j6.bj, e6Var);
         Paint paint2 = this.M;
         paint2.setColor(v05);
-        this.Q.setColor(j6.v0(j6.dj, f6Var));
-        this.R.setColor(j6.v0(j6.cj, f6Var));
-        this.S.setColor(j6.v0(j6.f18863d6, f6Var));
-        this.T.setColor(j6.v0(j6.ej, f6Var));
+        this.Q.setColor(j6.v0(j6.dj, e6Var));
+        this.R.setColor(j6.v0(j6.cj, e6Var));
+        this.S.setColor(j6.v0(j6.f19062d6, e6Var));
+        this.T.setColor(j6.v0(j6.ej, e6Var));
         this.f11165t0.b();
         this.f11156n = paint.getAlpha();
         this.f11161r = paint2.getAlpha();
@@ -719,10 +718,10 @@ public abstract class g extends View implements i {
             if (f7 != 0.0f) {
                 int i10 = (int) ((f7 / (this.G0 * bVar.f13005g)) / 6.0f);
                 kg.b bVar2 = this.f11150i0;
-                if (bVar2 == null || i10 >= bVar2.f13598b || i10 <= bVar2.f13599c) {
+                if (bVar2 == null || i10 >= bVar2.f13596b || i10 <= bVar2.f13597c) {
                     int highestOneBit = Integer.highestOneBit(i10) << 1;
                     kg.b bVar3 = this.f11150i0;
-                    if (bVar3 == null || bVar3.f13597a != highestOneBit) {
+                    if (bVar3 == null || bVar3.f13595a != highestOneBit) {
                         ValueAnimator valueAnimator = this.f11137c0;
                         if (valueAnimator != null) {
                             valueAnimator.removeAllListeners();
@@ -793,8 +792,8 @@ public abstract class g extends View implements i {
                 Object obj = arrayList.get(i10);
                 i10++;
                 kg.f fVar = (kg.f) obj;
-                boolean z10 = fVar.f13631n;
-                jg.a aVar = fVar.f13621a;
+                boolean z10 = fVar.f13629n;
+                jg.a aVar = fVar.f13619a;
                 if (z10) {
                     long j11 = aVar.e;
                     if (j11 > j10) {
@@ -919,11 +918,11 @@ public abstract class g extends View implements i {
             int i10 = this.f11173y0;
             float f7 = 1.0f;
             if (i10 == 2) {
-                f7 = 1.0f - this.f11174z0.f13640f;
+                f7 = 1.0f - this.f11174z0.f13638f;
             } else if (i10 == 1) {
-                f7 = this.f11174z0.f13640f;
+                f7 = this.f11174z0.f13638f;
             } else if (i10 == 3) {
-                f7 = this.f11174z0.f13640f;
+                f7 = this.f11174z0.f13638f;
             }
             Paint paint = this.L;
             paint.setAlpha((int) (this.f11156n * f7));
@@ -950,11 +949,11 @@ public abstract class g extends View implements i {
             float f10 = 1.0f;
             int i12 = 1;
             if (i11 == 2) {
-                f7 = 1.0f - this.f11174z0.f13640f;
+                f7 = 1.0f - this.f11174z0.f13638f;
             } else if (i11 == 1) {
-                f7 = this.f11174z0.f13640f;
+                f7 = this.f11174z0.f13638f;
             } else if (i11 == 3) {
-                f7 = this.f11174z0.f13640f;
+                f7 = this.f11174z0.f13638f;
             } else {
                 f7 = 1.0f;
             }
@@ -964,7 +963,7 @@ public abstract class g extends View implements i {
                 int i13 = this.f11157n0;
                 if (i13 < this.m0) {
                     int i14 = ((kg.b) arrayList.get(i13)).d;
-                    int i15 = ((kg.b) arrayList.get(this.f11157n0)).f13597a;
+                    int i15 = ((kg.b) arrayList.get(this.f11157n0)).f13595a;
                     if (i15 == 0) {
                         i15 = 1;
                     }
@@ -1004,9 +1003,9 @@ public abstract class g extends View implements i {
                                         float f17 = f11119p1;
                                         TextPaint textPaint = this.P;
                                         if (f15 < f17) {
-                                            textPaint.setAlpha((int) (i10 * w1.y(f17, f15, f17, f10) * this.h * f7));
+                                            textPaint.setAlpha((int) (i10 * org.telegram.messenger.q.y(f17, f15, f17, f10) * this.h * f7));
                                         } else if (f15 > f16) {
-                                            textPaint.setAlpha((int) (i10 * w1.y(f15, f16, f12, f10) * this.h * f7));
+                                            textPaint.setAlpha((int) (i10 * org.telegram.messenger.q.y(f15, f16, f12, f10) * this.h * f7));
                                         } else {
                                             textPaint.setAlpha((int) (i10 * this.h * f7));
                                         }
@@ -1084,15 +1083,15 @@ public abstract class g extends View implements i {
                         int i13 = this.f11157n0;
                         if (i13 < this.m0) {
                             kg.f fVar = (kg.f) arrayList.get(i13);
-                            boolean z10 = fVar.f13631n;
+                            boolean z10 = fVar.f13629n;
                             Paint paint2 = fVar.d;
-                            if (z10 || fVar.f13632o != 0.0f) {
-                                float f15 = (float) fVar.f13621a.f12995a[this.f11164s0];
+                            if (z10 || fVar.f13630o != 0.0f) {
+                                float f15 = (float) fVar.f13619a.f12995a[this.f11164s0];
                                 float f16 = this.f11168w;
                                 float measuredHeight = (getMeasuredHeight() - this.f11163s) - (((f15 - f16) / (this.v - f16)) * ((getMeasuredHeight() - this.f11163s) - f11117n1));
-                                paint2.setAlpha((int) (fVar.f13632o * 255.0f * this.f11167v0));
+                                paint2.setAlpha((int) (fVar.f13630o * 255.0f * this.f11167v0));
                                 Paint paint3 = this.S;
-                                paint3.setAlpha((int) (fVar.f13632o * 255.0f * this.f11167v0));
+                                paint3.setAlpha((int) (fVar.f13630o * 255.0f * this.f11167v0));
                                 canvas.drawPoint(f14, measuredHeight, paint2);
                                 canvas.drawPoint(f14, measuredHeight, paint3);
                             }
@@ -1307,8 +1306,8 @@ public abstract class g extends View implements i {
         int size = arrayList.size();
         long j3 = 0;
         for (int i12 = 0; i12 < size; i12++) {
-            if (((kg.f) arrayList.get(i12)).f13631n) {
-                long rMaxQ = ((kg.f) arrayList.get(i12)).f13621a.f12996b.rMaxQ(i10, i11);
+            if (((kg.f) arrayList.get(i12)).f13629n) {
+                long rMaxQ = ((kg.f) arrayList.get(i12)).f13619a.f12996b.rMaxQ(i10, i11);
                 if (rMaxQ > j3) {
                     j3 = rMaxQ;
                 }
@@ -1322,8 +1321,8 @@ public abstract class g extends View implements i {
         int size = arrayList.size();
         long j3 = Long.MAX_VALUE;
         for (int i12 = 0; i12 < size; i12++) {
-            if (((kg.f) arrayList.get(i12)).f13631n) {
-                long rMinQ = ((kg.f) arrayList.get(i12)).f13621a.f12996b.rMinQ(i10, i11);
+            if (((kg.f) arrayList.get(i12)).f13629n) {
+                long rMinQ = ((kg.f) arrayList.get(i12)).f13619a.f12996b.rMinQ(i10, i11);
                 if (rMinQ < j3) {
                     j3 = rMinQ;
                 }
@@ -1381,8 +1380,8 @@ public abstract class g extends View implements i {
             Object obj = arrayList.get(i10);
             i10++;
             kg.f fVar = (kg.f) obj;
-            boolean z10 = fVar.f13631n;
-            jg.a aVar = fVar.f13621a;
+            boolean z10 = fVar.f13629n;
+            jg.a aVar = fVar.f13619a;
             if (z10) {
                 long j3 = aVar.e;
                 if (((float) j3) > this.f11152j0) {
@@ -1482,16 +1481,16 @@ public abstract class g extends View implements i {
                 break;
             }
             final kg.f fVar = (kg.f) arrayList.get(i11);
-            if (fVar.f13631n && (valueAnimator3 = fVar.f13626i) != null) {
+            if (fVar.f13629n && (valueAnimator3 = fVar.f13624i) != null) {
                 valueAnimator3.cancel();
             }
-            if (!fVar.f13631n && (valueAnimator2 = fVar.h) != null) {
+            if (!fVar.f13629n && (valueAnimator2 = fVar.h) != null) {
                 valueAnimator2.cancel();
             }
-            if (fVar.f13631n && fVar.f13632o != 1.0f) {
+            if (fVar.f13629n && fVar.f13630o != 1.0f) {
                 ValueAnimator valueAnimator4 = fVar.h;
                 if (valueAnimator4 == null || !valueAnimator4.isRunning()) {
-                    ValueAnimator e = e(fVar.f13632o, 1.0f, new ValueAnimator.AnimatorUpdateListener(this) {
+                    ValueAnimator e = e(fVar.f13630o, 1.0f, new ValueAnimator.AnimatorUpdateListener(this) {
                         public final g f11106b;
 
                         {
@@ -1504,14 +1503,14 @@ public abstract class g extends View implements i {
                                 case 0:
                                     g gVar = this.f11106b;
                                     gVar.getClass();
-                                    fVar.f13632o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
+                                    fVar.f13630o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
                                     gVar.H = true;
                                     gVar.invalidate();
                                     return;
                                 default:
                                     g gVar2 = this.f11106b;
                                     gVar2.getClass();
-                                    fVar.f13632o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
+                                    fVar.f13630o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
                                     gVar2.H = true;
                                     gVar2.invalidate();
                                     return;
@@ -1524,8 +1523,8 @@ public abstract class g extends View implements i {
                     i10 = this.f11157n0 + 1;
                 }
             }
-            if (!fVar.f13631n && fVar.f13632o != 0.0f && ((valueAnimator = fVar.f13626i) == null || !valueAnimator.isRunning())) {
-                ValueAnimator e7 = e(fVar.f13632o, 0.0f, new ValueAnimator.AnimatorUpdateListener(this) {
+            if (!fVar.f13629n && fVar.f13630o != 0.0f && ((valueAnimator = fVar.f13624i) == null || !valueAnimator.isRunning())) {
+                ValueAnimator e7 = e(fVar.f13630o, 0.0f, new ValueAnimator.AnimatorUpdateListener(this) {
                     public final g f11106b;
 
                     {
@@ -1538,21 +1537,21 @@ public abstract class g extends View implements i {
                             case 0:
                                 g gVar = this.f11106b;
                                 gVar.getClass();
-                                fVar.f13632o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
+                                fVar.f13630o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
                                 gVar.H = true;
                                 gVar.invalidate();
                                 return;
                             default:
                                 g gVar2 = this.f11106b;
                                 gVar2.getClass();
-                                fVar.f13632o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
+                                fVar.f13630o = ((Float) valueAnimator5.getAnimatedValue()).floatValue();
                                 gVar2.H = true;
                                 gVar2.invalidate();
                                 return;
                         }
                     }
                 });
-                fVar.f13626i = e7;
+                fVar.f13624i = e7;
                 e7.start();
             }
             i10 = this.f11157n0 + 1;

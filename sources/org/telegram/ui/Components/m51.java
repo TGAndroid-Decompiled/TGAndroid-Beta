@@ -1,54 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class m51 extends MetricAffectingSpan {
-    public final CharSequence f26066a;
-    public final int f26067b;
-    public final int f26068c;
-    public final byte d;
-    public final p01 e;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class m51 extends s4.s0 {
+    public final t51 f26341a;
 
-    public m51(CharSequence charSequence, int i10, int i11, byte b10, p01 p01Var) {
-        this.f26066a = charSequence;
-        this.f26067b = i10;
-        this.f26068c = i11;
-        this.d = b10;
-        this.e = p01Var;
+    public m51(t51 t51Var) {
+        this.f26341a = t51Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18904fc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.ec, false));
+    public final void a(RecyclerView recyclerView, int i10) {
+        s4.s0 s0Var = this.f26341a.f28332y;
+        if (s0Var != null) {
+            s0Var.a(recyclerView, i10);
         }
-        p01 p01Var = this.e;
-        if (p01Var != null) {
-            p01Var.a(textPaint);
-            return;
-        }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        p01 p01Var = this.e;
-        if (p01Var != null) {
-            p01Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        t51 t51Var = this.f26341a;
+        s51 s51Var = t51Var.f28329s;
+        j51 j51Var = t51Var.f28327n;
+        s4.s0 s0Var = t51Var.f28332y;
+        if (s0Var != null) {
+            s0Var.b(j51Var, i10, i11);
+        }
+        if (i11 > 0 && j51Var.getAdapter() == s51Var && t51Var.J && !s51Var.f28059r && !s51Var.f28060s) {
+            if (t51Var.f28328r.N0() >= ((s51Var.f28061w + 1) - ((s51Var.v + 1) * 10)) - 1) {
+                t51 t51Var2 = s51Var.f28062x;
+                if (t51Var2.J && !s51Var.f28059r && !s51Var.f28060s) {
+                    s51Var.f28059r = true;
+                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
+                    tL_messages_getOldFeaturedStickers.offset = s51Var.f28058n.size();
+                    tL_messages_getOldFeaturedStickers.limit = 40;
+                    ConnectionsManager.getInstance(t51Var2.f28323a).sendRequest(tL_messages_getOldFeaturedStickers, new x1(s51Var, 17));
+                }
+            }
         }
     }
 }

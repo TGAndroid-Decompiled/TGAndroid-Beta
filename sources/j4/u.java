@@ -21,7 +21,7 @@ public final class u implements i {
     public u(String str, int i10, String str2) {
         e2.v vVar = new e2.v(4);
         this.f12820a = vVar;
-        vVar.f7934a[0] = -1;
+        vVar.f7933a[0] = -1;
         this.f12821b = new Object();
         this.f12830n = -9223372036854775807L;
         this.f12822c = str;
@@ -60,7 +60,7 @@ public final class u implements i {
                     }
                 } else {
                     int min2 = Math.min(vVar.a(), 4 - this.f12825i);
-                    vVar.h(this.f12825i, min2, vVar2.f7934a);
+                    vVar.h(this.f12825i, min2, vVar2.f7933a);
                     int i12 = this.f12825i + min2;
                     this.f12825i = i12;
                     if (i12 >= 4) {
@@ -93,9 +93,9 @@ public final class u implements i {
                     }
                 }
             } else {
-                byte[] bArr = vVar.f7934a;
-                int i13 = vVar.f7935b;
-                int i14 = vVar.f7936c;
+                byte[] bArr = vVar.f7933a;
+                int i13 = vVar.f7934b;
+                int i14 = vVar.f7935c;
                 while (true) {
                     if (i13 < i14) {
                         byte b10 = bArr[i13];
@@ -113,7 +113,7 @@ public final class u implements i {
                         if (z11) {
                             vVar.J(i13 + 1);
                             this.f12827k = false;
-                            vVar2.f7934a[1] = bArr[i13];
+                            vVar2.f7933a[1] = bArr[i13];
                             this.f12825i = 2;
                             this.h = 1;
                             break;

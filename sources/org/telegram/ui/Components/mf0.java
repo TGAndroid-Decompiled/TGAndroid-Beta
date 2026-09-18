@@ -1,22 +1,41 @@
 package org.telegram.ui.Components;
-public final class mf0 implements Runnable {
-    public final int f26144a;
-    public final qf0 f26145b;
 
-    public mf0(qf0 qf0Var, int i10) {
-        this.f26144a = i10;
-        this.f26145b = qf0Var;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.view.TextureView;
+import android.view.View;
+public final class mf0 extends TextureView {
+    public final sf0 f26403a;
+
+    public mf0(sf0 sf0Var, Context context) {
+        super(context);
+        this.f26403a = sf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26144a) {
-            case 0:
-                this.f26145b.e();
-                return;
-            default:
-                this.f26145b.g();
-                return;
+    public final void onMeasure(int i10, int i11) {
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void setTransform(Matrix matrix) {
+        super.setTransform(matrix);
+        vz vzVar = this.f26403a.f28146l0;
+        if (vzVar != null) {
+            int width = getWidth();
+            int height = getHeight();
+            pa paVar = vzVar.I;
+            if (paVar != null) {
+                Matrix matrix2 = paVar.v;
+                matrix.invert(matrix2);
+                float f7 = width;
+                float f10 = height;
+                matrix2.preScale(f7, f10);
+                matrix2.postScale(1.0f / f7, 1.0f / f10);
+                paVar.c(matrix2);
+                vzVar.e(false, false, false);
+            }
         }
     }
 }

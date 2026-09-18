@@ -8,18 +8,18 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class jv extends View {
-    public ImageReceiver.BackgroundThreadDrawHolder[] f25450a;
-    public ai.l4 f25451b;
-    public x5 f25452c;
+    public ImageReceiver.BackgroundThreadDrawHolder[] f25460a;
+    public ai.l4 f25461b;
+    public z5 f25462c;
     public ValueAnimator d;
     public float e;
 
     public TLRPC.Document getDocument() {
-        x5 x5Var = this.f25452c;
-        if (x5Var != null) {
-            TLRPC.Document document = x5Var.document;
+        z5 z5Var = this.f25462c;
+        if (z5Var != null) {
+            TLRPC.Document document = z5Var.document;
             if (document == null) {
-                return o5.f(UserConfig.selectedAccount, x5Var.getDocumentId());
+                return q5.f(UserConfig.selectedAccount, z5Var.getDocumentId());
             }
             return document;
         }
@@ -47,8 +47,8 @@ public final class jv extends View {
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
                     this.d = ofFloat;
-                    ofFloat.addUpdateListener(new i6(this, 17));
-                    this.d.addListener(new p8(this, 18));
+                    ofFloat.addUpdateListener(new k6(this, 17));
+                    this.d.addListener(new r8(this, 18));
                     this.d.setInterpolator(new OvershootInterpolator(5.0f));
                     this.d.setDuration(350L);
                     this.d.start();

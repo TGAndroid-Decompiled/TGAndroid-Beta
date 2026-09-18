@@ -1,9 +1,9 @@
 package v7;
 public final class k3 implements ia.d {
-    public static final k3 f44055a = new Object();
+    public static final k3 f44281a = new Object();
 
     static {
-        org.telegram.ui.Cells.p6.s(org.telegram.ui.Cells.p6.k(h.class, org.telegram.ui.Cells.p6.m(2, org.telegram.ui.Cells.p6.k(h.class, new e(1)))));
+        t8.b.t(t8.b.l(h.class, t8.b.p(2, t8.b.l(h.class, new e(1)))));
     }
 
     @Override

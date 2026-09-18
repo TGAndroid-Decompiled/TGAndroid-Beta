@@ -1,15 +1,59 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.CacheFetcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
-public final class ww0 extends CacheFetcher {
-    @Override
-    public final void getRemote(int i10, Object obj, long j3, Utilities.Callback4 callback4) {
-        TLRPC.TL_messages_searchCustomEmoji tL_messages_searchCustomEmoji = new TLRPC.TL_messages_searchCustomEmoji();
-        tL_messages_searchCustomEmoji.emoticon = (String) obj;
-        tL_messages_searchCustomEmoji.hash = j3;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_searchCustomEmoji, new uw0(callback4, 1));
+public final class ww0 {
+    public final o5 f30176a;
+    public Drawable f30177b;
+
+    public ww0(FrameLayout frameLayout) {
+        this(18, frameLayout);
+    }
+
+    public final o5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
+        o5 o5Var = this.f30176a;
+        if (chat != null && chat.verified) {
+            Drawable drawable = this.f30177b;
+            if (drawable == null) {
+                drawable = new pq(org.telegram.ui.ActionBar.j6.f19093f1, org.telegram.ui.ActionBar.j6.f19147i1);
+            }
+            this.f30177b = drawable;
+            o5Var.g(drawable, z10);
+            o5Var.k(null);
+            return o5Var;
+        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
+            o5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
+            o5Var.k(Integer.valueOf(i10));
+            return o5Var;
+        } else if (user != null && user.verified) {
+            Drawable drawable2 = this.f30177b;
+            if (drawable2 == null) {
+                drawable2 = new pq(org.telegram.ui.ActionBar.j6.f19093f1, org.telegram.ui.ActionBar.j6.f19147i1);
+            }
+            this.f30177b = drawable2;
+            o5Var.g(drawable2, z10);
+            o5Var.k(null);
+            return o5Var;
+        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
+            o5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
+            o5Var.k(Integer.valueOf(i10));
+            return o5Var;
+        } else if (user != null && user.premium) {
+            o5Var.g(rg.a1.d().e, z10);
+            o5Var.k(Integer.valueOf(i10));
+            return o5Var;
+        } else {
+            o5Var.g(null, z10);
+            o5Var.k(null);
+            return o5Var;
+        }
+    }
+
+    public ww0(int i10, View view) {
+        this.f30176a = new o5(AndroidUtilities.dp(i10), view);
     }
 }

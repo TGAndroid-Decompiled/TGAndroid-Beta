@@ -1,38 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.view.View;
-import java.lang.ref.WeakReference;
-import org.telegram.messenger.Emoji;
-public final class s5 implements u5 {
-    public final WeakReference f27769a;
-    public final boolean f27770b;
-    public Layout f27771c;
-    public x5 d;
-    public Rect e;
-    public o5 f27772f;
-    public Emoji.EmojiDrawable h;
-    public boolean f27773n;
-    public float f27774r;
-    public float f27775s;
-    public boolean v;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class s5 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28050a;
+    public final float f28051b;
+    public final float f28052c;
+    public final float d;
+    public final float e;
+    public final Object f28053f;
 
-    public s5(View view, boolean z10) {
-        this.f27769a = new WeakReference(view);
-        this.f27770b = z10;
+    public s5(Object obj, float f7, float f10, float f11, float f12, int i10) {
+        this.f28050a = i10;
+        this.f28053f = obj;
+        this.f28051b = f7;
+        this.f28052c = f10;
+        this.d = f11;
+        this.e = f12;
     }
 
     @Override
-    public final void invalidate() {
-        View view = (View) this.f27769a.get();
-        if (view == null) {
-            return;
-        }
-        if (this.f27770b && view.getParent() != null) {
-            ((View) view.getParent()).invalidate();
-        } else {
-            view.invalidate();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f28050a;
+        float f7 = this.e;
+        float f10 = this.d;
+        float f11 = this.f28052c;
+        float f12 = this.f28051b;
+        Object obj = this.f28053f;
+        switch (i10) {
+            case 0:
+                z5 z5Var = (z5) obj;
+                z5Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z5Var.lastDrawnCy = AndroidUtilities.lerp(f12, f11, floatValue);
+                z5Var.lastDrawnCx = AndroidUtilities.lerp(f10, f7, floatValue);
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
+                int i11 = ChatActivityEnterView.f21917m5;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float z10 = com.google.android.gms.internal.vision.e2.z(f11, f12, floatValue2, f12);
+                kp0 kp0Var = chatActivityEnterView.f22005p0;
+                if (kp0Var != null) {
+                    kp0Var.setAlpha(((f7 - f10) * floatValue2) + f10);
+                    chatActivityEnterView.f22005p0.setTranslationX(z10);
+                }
+                chatActivityEnterView.Q0.setTranslationX(z10);
+                chatActivityEnterView.G = z10;
+                chatActivityEnterView.I1();
+                return;
         }
     }
 }

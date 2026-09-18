@@ -1,13 +1,12 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-public class rt0 extends ga implements ai.s9 {
-    public int f27692d3;
-    public int f27693e3;
-
+public final class rt0 extends ViewOutlineProvider {
     @Override
-    public final void a(int[] iArr) {
-        iArr[0] = (getPaddingTop() - AndroidUtilities.dp(2.0f)) - this.f27692d3;
-        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f27693e3;
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), AndroidUtilities.dp(24.0f) + view.getHeight(), AndroidUtilities.dp(24.0f));
     }
 }

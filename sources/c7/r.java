@@ -32,7 +32,7 @@ public enum r implements Parcelable {
             }
         }
         Locale locale = Locale.US;
-        throw new Exception(hg.k0.j(i10, "Error code ", " is not supported"));
+        throw new Exception(hg.k0.i(i10, "Error code ", " is not supported"));
     }
 
     @Override
