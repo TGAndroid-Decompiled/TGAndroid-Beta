@@ -46,28 +46,9 @@ public final class a {
         }
     }
 
-    public final String b(Context context, int i10) {
-        if (context != null && i10 != 0) {
-            if (f15423b == null) {
-                try {
-                    BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
-                    SerializedData serializedData = new SerializedData(bufferedInputStream);
-                    int readInt32 = serializedData.readInt32(true);
-                    SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
-                    for (int i11 = 0; i11 < readInt32; i11++) {
-                        sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
-                    }
-                    bufferedInputStream.close();
-                    f15423b = sparseIntArray;
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            int i12 = f15423b.get(i10);
-            if (i12 != 0) {
-                return (String) this.f15425a.get(i12);
-            }
-            return null;
+    public final String b(String str) {
+        if (str != null) {
+            return (String) this.f15425a.get(str.hashCode());
         }
         return null;
     }
@@ -75,12 +56,33 @@ public final class a {
     public final String c(Context context, String str, int i10) {
         String str2;
         if (str != null) {
-            str2 = (String) this.f15425a.get(str.hashCode());
+            str2 = b(str);
         } else {
             str2 = null;
         }
         if (str2 == null && i10 != 0) {
-            return b(context, i10);
+            if (context != null && i10 != 0) {
+                if (f15423b == null) {
+                    try {
+                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
+                        SerializedData serializedData = new SerializedData(bufferedInputStream);
+                        int readInt32 = serializedData.readInt32(true);
+                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
+                        for (int i11 = 0; i11 < readInt32; i11++) {
+                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
+                        }
+                        bufferedInputStream.close();
+                        f15423b = sparseIntArray;
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                int i12 = f15423b.get(i10);
+                if (i12 != 0) {
+                    return (String) this.f15425a.get(i12);
+                }
+            }
+            return null;
         }
         return str2;
     }

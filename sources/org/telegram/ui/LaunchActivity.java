@@ -24,6 +24,7 @@ import android.provider.Settings;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.ActionMode;
 import android.view.KeyEvent;
@@ -2903,7 +2904,10 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.a5, 
                 iVar.e.edit().putFloat("x", (float) iVar.f15008c.f15490u.f15496i).putFloat("y", (float) iVar.d.f15490u.f15496i).commit();
             }
             w7.y.f45124a = null;
-            org.telegram.ui.Components.q5.f27448q.clear();
+            SparseArray sparseArray = org.telegram.ui.Components.q5.f27448q;
+            if (sparseArray != null) {
+                sparseArray.clear();
+            }
         }
         MediaController.getInstance().setBaseActivity(this, false);
         MediaController.getInstance().setFeedbackView(this.f31093s1, false);

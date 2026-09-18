@@ -7,6 +7,10 @@ import g6.x;
 public final class i implements Parcelable.Creator {
     public final int f8020a;
 
+    public i(int i10) {
+        this.f8020a = i10;
+    }
+
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r43) {
         throw new UnsupportedOperationException("Method not decompiled: e6.i.createFromParcel(android.os.Parcel):java.lang.Object");

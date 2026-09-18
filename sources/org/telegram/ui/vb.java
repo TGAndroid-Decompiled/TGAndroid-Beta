@@ -558,10 +558,6 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
         messageObject.measureInlineBotButtons();
     }
 
-    public static org.telegram.ui.ActionBar.k a0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
     public static CharSequence a1(SpannableStringBuilder spannableStringBuilder) {
         int charSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(spannableStringBuilder, "\n\n");
         if (charSequenceIndexOf >= 0 && Build.VERSION.SDK_INT >= 29) {
@@ -572,42 +568,6 @@ public final class vb extends org.telegram.ui.ActionBar.n2 implements Notificati
             spannableStringBuilder.setSpan(ah.f.g(AndroidUtilities.dp(8.0f)), charSequenceIndexOf + 1, charSequenceIndexOf + 2, 33);
         }
         return spannableStringBuilder;
-    }
-
-    public static org.telegram.ui.ActionBar.k b0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k c0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k d0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k e0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k f0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k g0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k h0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k i0(vb vbVar) {
-        return vbVar.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k j0(vb vbVar) {
-        return vbVar.actionBar;
     }
 
     public static int l0(vb vbVar) {

@@ -230,24 +230,34 @@ public final class x5 extends FrameLayout {
 
     public x5(h41 h41Var, Context context, int i10, String str, CharSequence charSequence) {
         super(context);
+        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.ActionBar.e6 e6Var2;
+        org.telegram.ui.ActionBar.e6 e6Var3;
+        org.telegram.ui.ActionBar.e6 e6Var4;
         this.f1699a = 29;
         boolean z10 = LocaleController.isRTL;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
         int i11 = org.telegram.ui.ActionBar.j6.G6;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, h41.P(h41Var)), PorterDuff.Mode.MULTIPLY));
+        e6Var = ((org.telegram.ui.ActionBar.f3) h41Var).resourcesProvider;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, e6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setImageDrawable(mutate);
         addView(imageView, w7.y5.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
         textView.setText(str);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, h41.Q(h41Var)));
+        e6Var2 = ((org.telegram.ui.ActionBar.f3) h41Var).resourcesProvider;
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, e6Var2));
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
         addView(textView, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
         l90 l90Var = new l90(getContext(), null);
         l90Var.setText(charSequence);
         l90Var.setTextSize(1, 14.0f);
-        l90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Pi, h41.R(h41Var)));
-        l90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, h41.S(h41Var)));
+        int i12 = org.telegram.ui.ActionBar.j6.Pi;
+        e6Var3 = ((org.telegram.ui.ActionBar.f3) h41Var).resourcesProvider;
+        l90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, e6Var3));
+        int i13 = org.telegram.ui.ActionBar.j6.gc;
+        e6Var4 = ((org.telegram.ui.ActionBar.f3) h41Var).resourcesProvider;
+        l90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i13, e6Var4));
         l90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(l90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 18.0f, z10 ? 68.0f : 27.0f, 0.0f));
     }

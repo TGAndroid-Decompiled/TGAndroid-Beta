@@ -16,10 +16,10 @@ public final class n implements Runnable {
     public final void run() {
         switch (this.f16046a) {
             case 0:
-                this.f16047b.lambda$createCamera$10(this.f16048c);
+                CameraView.d(this.f16047b, this.f16048c);
                 return;
             default:
-                this.f16047b.lambda$createCamera$8(this.f16048c);
+                CameraView.c(this.f16047b, this.f16048c);
                 return;
         }
     }

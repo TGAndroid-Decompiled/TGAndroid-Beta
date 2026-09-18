@@ -7,6 +7,10 @@ import com.google.android.gms.wallet.wobs.CommonWalletObject;
 public final class r implements Parcelable.Creator {
     public final int f44518a;
 
+    public r(int i10) {
+        this.f44518a = i10;
+    }
+
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r27) {
         throw new UnsupportedOperationException("Method not decompiled: v8.r.createFromParcel(android.os.Parcel):java.lang.Object");

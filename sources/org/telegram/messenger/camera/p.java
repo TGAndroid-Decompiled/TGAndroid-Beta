@@ -14,22 +14,22 @@ public final class p implements Runnable {
     public final void run() {
         switch (this.f16050a) {
             case 0:
-                this.f16051b.lambda$onDraw$4();
+                CameraView.CameraGLThread.g(this.f16051b);
                 return;
             case 1:
-                this.f16051b.lambda$onDraw$5();
+                CameraView.CameraGLThread.b(this.f16051b);
                 return;
             case 2:
-                this.f16051b.lambda$new$0();
+                CameraView.CameraGLThread.h(this.f16051b);
                 return;
             case 3:
-                this.f16051b.lambda$new$1();
+                CameraView.CameraGLThread.c(this.f16051b);
                 return;
             case 4:
-                this.f16051b.lambda$new$2();
+                CameraView.CameraGLThread.e(this.f16051b);
                 return;
             default:
-                this.f16051b.lambda$new$3();
+                CameraView.CameraGLThread.i(this.f16051b);
                 return;
         }
     }

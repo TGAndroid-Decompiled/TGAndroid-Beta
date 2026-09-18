@@ -7,6 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.ui.ActionBar.p1;
 import org.telegram.ui.web.b1;
+import r0.j1;
 import r0.m1;
 public final class i implements g, f, d {
     public View E;
@@ -156,7 +157,8 @@ public final class i implements g, f, d {
         this.f41330r = m1Var;
         i0.b bVar3 = i0.b.e;
         if (m1Var != null) {
-            bVar = m1Var.f42109a.g(647);
+            j1 j1Var = m1Var.f42109a;
+            bVar = i0.b.a(j1Var.f(647), j1Var.g(647));
         } else {
             bVar = bVar3;
         }

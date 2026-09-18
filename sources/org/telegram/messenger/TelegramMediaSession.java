@@ -196,6 +196,7 @@ public class TelegramMediaSession {
     }
 
     public void lambda$loadBrowseChildren$4(MessagesStorage messagesStorage, BrowseChildrenCallback browseChildrenCallback, String str) {
+        NativeByteBuffer byteBufferValue;
         try {
             ArrayList<Long> arrayList = new ArrayList<>();
             ArrayList arrayList2 = new ArrayList();
@@ -216,18 +217,16 @@ public class TelegramMediaSession {
             }
             queryFinalized.dispose();
             if (!this.dialogs.isEmpty()) {
-                String join = TextUtils.join(",", this.dialogs);
                 SQLiteDatabase database2 = messagesStorage.getDatabase();
                 Locale locale2 = Locale.US;
-                SQLiteCursor queryFinalized2 = database2.queryFinalized("SELECT uid, data, mid FROM media_v4 WHERE uid IN (" + join + ") AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
+                SQLiteCursor queryFinalized2 = database2.queryFinalized("SELECT uid, data, mid FROM media_v4 WHERE uid != 0 AND mid > 0 AND type = 4 ORDER BY uid, date DESC, mid DESC", new Object[0]);
                 while (queryFinalized2.next()) {
-                    NativeByteBuffer byteBufferValue = queryFinalized2.byteBufferValue(1);
-                    if (byteBufferValue != null) {
+                    long longValue2 = queryFinalized2.longValue(0);
+                    if (!DialogObject.isEncryptedDialog(longValue2) && (byteBufferValue = queryFinalized2.byteBufferValue(1)) != null) {
                         TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
                         byteBufferValue.reuse();
                         if (MessageObject.isMusicMessage(TLdeserialize)) {
-                            long longValue2 = queryFinalized2.longValue(0);
                             TLdeserialize.f18317id = queryFinalized2.intValue(2);
                             TLdeserialize.dialog_id = longValue2;
                             ArrayList arrayList3 = (ArrayList) this.musicObjects.f(longValue2);
@@ -239,20 +238,26 @@ public class TelegramMediaSession {
                                 this.musicQueues.k(arrayList4, longValue2);
                             }
                             MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
-                            arrayList3.add(0, messageObject);
-                            arrayList4.add(0, new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(longValue2 + "_" + arrayList3.size(), messageObject.getMusicTitle(), messageObject.getMusicAuthor(), null, null, null, null, null), arrayList4.size()));
+                            arrayList3.add(messageObject);
+                            arrayList4.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(longValue2 + "_" + arrayList3.size(), messageObject.getMusicTitle(), messageObject.getMusicAuthor(), null, null, null, null, null), arrayList4.size()));
                         }
                     }
                 }
                 queryFinalized2.dispose();
+                for (int i11 = 0; i11 < this.musicObjects.m(); i11++) {
+                    Collections.reverse((List) this.musicObjects.n(i11));
+                }
+                for (int i12 = 0; i12 < this.musicQueues.m(); i12++) {
+                    Collections.reverse((List) this.musicQueues.n(i12));
+                }
                 if (!arrayList.isEmpty()) {
                     ArrayList<TLRPC.User> arrayList5 = new ArrayList<>();
                     messagesStorage.getUsersInternal(arrayList, arrayList5);
                     int size = arrayList5.size();
-                    int i11 = 0;
-                    while (i11 < size) {
-                        TLRPC.User user = arrayList5.get(i11);
-                        i11++;
+                    int i13 = 0;
+                    while (i13 < size) {
+                        TLRPC.User user = arrayList5.get(i13);
+                        i13++;
                         TLRPC.User user2 = user;
                         this.users.k(user2, user2.f18443id);
                     }

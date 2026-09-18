@@ -2195,10 +2195,12 @@ public class AndroidUtilities {
 
     public static i0.b getDefaultWindowInsets(r0.m1 m1Var, boolean z10) {
         i0.b g10 = m1Var.f42109a.g(647);
+        r0.j1 j1Var = m1Var.f42109a;
+        i0.b a2 = i0.b.a(g10, j1Var.f(647));
         if (z10) {
-            return i0.b.a(g10, m1Var.f42109a.f(8));
+            return i0.b.a(a2, j1Var.f(8));
         }
-        return g10;
+        return a2;
     }
 
     public static int getDominantColor(Bitmap bitmap) {

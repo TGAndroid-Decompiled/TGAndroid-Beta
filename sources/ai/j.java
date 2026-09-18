@@ -49,9 +49,10 @@ public final class j implements Runnable {
 
     @Override
     public final void run() {
+        org.telegram.ui.ActionBar.e6 e6Var;
         ci.jc jcVar;
         int i10 = this.f1034a;
-        org.telegram.ui.ActionBar.e6 e6Var = null;
+        org.telegram.ui.ActionBar.e6 e6Var2 = null;
         boolean z10 = false;
         r7 = 0;
         int i11 = 0;
@@ -101,7 +102,9 @@ public final class j implements Runnable {
                 ci.ba baVar = (ci.ba) obj;
                 Context context = baVar.getContext();
                 ci.ia iaVar = baVar.W;
-                org.telegram.ui.Components.e5.S(context, iaVar.attachedFragment, ((org.telegram.ui.ActionBar.f3) iaVar).resourcesProvider, new z1(baVar, j3, 1));
+                org.telegram.ui.ActionBar.n2 n2Var = iaVar.attachedFragment;
+                e6Var = ((org.telegram.ui.ActionBar.f3) iaVar).resourcesProvider;
+                org.telegram.ui.Components.e5.S(context, n2Var, e6Var, new z1(baVar, j3, 1));
                 return;
             case 6:
                 ci.oc ocVar2 = (ci.oc) obj;
@@ -226,12 +229,12 @@ public final class j implements Runnable {
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (!PhotoViewer.t1().Q1() && (U2 == null || !U2.hasShownSheet())) {
                     if (U2 != null) {
-                        e6Var = U2.getResourceProvider();
+                        e6Var2 = U2.getResourceProvider();
                     }
                 } else {
-                    e6Var = new d();
+                    e6Var2 = new d();
                 }
-                new yh.k7(activity2, e6Var, this.f1035b, 15, "", new gh0(jh0Var, 0), 0L).show();
+                new yh.k7(activity2, e6Var2, this.f1035b, 15, "", new gh0(jh0Var, 0), 0L).show();
                 return;
             case 23:
                 uy uyVar = (uy) obj;
