@@ -6945,7 +6945,6 @@ Enable camera access in Settings > Permissions > Camera.";
 "VoipEditTitleHint" = "Title";
 "ImportStickersImportingTitle" = "Importing stickers";
 "QuoteCollapse" = "Collapse";
-"UseProxyForCalls" = "Use proxy for calls";
 "VoipGroupCancelReminderShort" = "Don't Remind";
 "ActionSuggestPhotoFromYouDescription" = "You suggested %s to use this photo for their account";
 "DescriptionOptionalPlaceholder" = "Description (optional)";
@@ -8593,7 +8592,6 @@ a **Telegram Premium** subscription.";
 "AutoDeleteDisable" = "Disable";
 "DiscardVoiceMessageTitle" = "Discard Voice Message";
 "EventLogFilterGroupInfo" = "Group info";
-"UseProxyForCallsInfo" = "Proxy servers may degrade the quality of your calls.";
 "AutoDeleteMediaNever" = "Never";
 "EnableAllStreamingInfo" = "Some videos can't be streamed – e.g., all videos that were sent from Android using Telegram 4.7 and earlier versions.
 ";
