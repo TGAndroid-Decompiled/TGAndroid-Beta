@@ -1,49 +1,43 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class iz0 extends s4.c0 {
-    public final ProfileActivity I;
+public final class iz0 extends s4.j {
+    public int F = -1;
+    public final ProfileActivity G;
 
     public iz0(ProfileActivity profileActivity) {
-        this.I = profileActivity;
+        this.G = profileActivity;
     }
 
     @Override
-    public final int o0(int i10, pf.e eVar, s4.z0 z0Var) {
-        ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f33872c.m(0);
-        if (m10 != null && !profileActivity.F0) {
-            int top = m10.getTop() - profileActivity.T3();
-            boolean z10 = profileActivity.f33958o2;
-            boolean z11 = true;
-            if (!z10 && top > i10) {
-                if (!profileActivity.f33949n0.X0.isEmpty() && profileActivity.f33888e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f33951n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
-                    if (profileActivity.J2 != null) {
-                        z11 = false;
-                    }
-                    profileActivity.f33958o2 = z11;
-                }
-            } else if (z10) {
-                if (i10 >= top) {
-                    profileActivity.f33958o2 = false;
-                } else if (profileActivity.f33857a.getScrollState() == 1 && !profileActivity.f33965p2) {
-                    i10 /= 2;
-                }
-            }
-            i10 = top;
-        }
-        if (profileActivity.O1 && !profileActivity.f33857a.O0) {
-            return 0;
-        }
-        return super.o0(i10, eVar, z0Var);
+    public final long K(long j3, long j10, long j11) {
+        return 0L;
     }
 
     @Override
-    public final boolean y0() {
-        if (this.I.f33969q0 != null) {
-            return true;
+    public final void N() {
+        AndroidUtilities.runOnUIThread(new sl0(this, 28));
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.G.U4();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f42760p.isEmpty();
+        boolean isEmpty2 = this.f42762r.isEmpty();
+        boolean isEmpty3 = this.f42763s.isEmpty();
+        boolean isEmpty4 = this.f42761q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new b3(this, 25));
+            ofFloat.setDuration(this.e);
+            ofFloat.start();
+            this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
         }
-        return false;
+        super.m();
     }
 }

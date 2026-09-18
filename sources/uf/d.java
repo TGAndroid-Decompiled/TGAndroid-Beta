@@ -1,6 +1,6 @@
 package uf;
 
-import bi.v7;
+import ai.m8;
 import java.io.File;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.NotificationCenter;
@@ -8,20 +8,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class d implements NotificationCenter.NotificationCenterDelegate {
-    public final int f47036a;
-    public final String f47037b;
-    public boolean f47038c;
+    public final int f43727a;
+    public final String f43728b;
+    public boolean f43729c;
 
     public d(String str, int i10) {
-        this.f47036a = i10;
-        this.f47037b = str;
+        this.f43727a = i10;
+        this.f43728b = str;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadFailed);
         FileLoader.getInstance(i10).uploadFile(str, false, true, 50331648);
     }
 
     public final void a() {
-        int i10 = this.f47036a;
+        int i10 = this.f43727a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploaded);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploadFailed);
     }
@@ -30,7 +30,7 @@ public final class d implements NotificationCenter.NotificationCenterDelegate {
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.fileUploaded) {
             String str = (String) objArr[0];
-            if (!this.f47038c && str.equals(this.f47037b)) {
+            if (!this.f43729c && str.equals(this.f43728b)) {
                 TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
                 TL_account.uploadRingtone uploadringtone = new TL_account.uploadRingtone();
                 uploadringtone.file = inputFile;
@@ -42,7 +42,7 @@ public final class d implements NotificationCenter.NotificationCenterDelegate {
                 } else {
                     uploadringtone.mime_type = "audio/mpeg";
                 }
-                ConnectionsManager.getInstance(this.f47036a).sendRequest(uploadringtone, new v7(this, 20));
+                ConnectionsManager.getInstance(this.f43727a).sendRequest(uploadringtone, new m8(this, 23));
             }
         }
     }

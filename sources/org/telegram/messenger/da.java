@@ -1,43 +1,29 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class da implements Runnable {
-    public final int f17468a;
-    public final MessagesController f17469b;
-    public final ArrayList f17470c;
+    public final int f15965a;
+    public final MessagesController f15966b;
+    public final int f15967c;
 
-    public da(MessagesController messagesController, ArrayList arrayList, int i10) {
-        this.f17468a = i10;
-        this.f17469b = messagesController;
-        this.f17470c = arrayList;
+    public da(MessagesController messagesController, int i10, int i11) {
+        this.f15965a = i11;
+        this.f15966b = messagesController;
+        this.f15967c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17468a) {
+        switch (this.f15965a) {
             case 0:
-                this.f17469b.lambda$processUpdateArray$397(this.f17470c);
+                this.f15966b.lambda$updateTimerProc$157(this.f15967c);
                 return;
             case 1:
-                this.f17469b.lambda$processUpdates$379(this.f17470c);
+                this.f15966b.lambda$onFolderEmpty$197(this.f15967c);
                 return;
             case 2:
-                this.f17469b.lambda$processUpdates$378(this.f17470c);
-                return;
-            case 3:
-                this.f17469b.lambda$getChannelDifference$341(this.f17470c);
-                return;
-            case 4:
-                this.f17469b.lambda$processUpdateArray$398(this.f17470c);
-                return;
-            case 5:
-                this.f17469b.lambda$checkChatInviter$372(this.f17470c);
-                return;
-            case 6:
-                this.f17469b.lambda$reloadMentionsCountForChannels$222(this.f17470c);
+                this.f15966b.lambda$ensureMessagesLoaded$462(this.f15967c);
                 return;
             default:
-                this.f17469b.lambda$checkChatInviter$373(this.f17470c);
+                this.f15966b.lambda$didAddedNewTask$81(this.f15967c);
                 return;
         }
     }

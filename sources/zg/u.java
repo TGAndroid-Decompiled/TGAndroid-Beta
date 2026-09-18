@@ -1,0 +1,43 @@
+package zg;
+
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.bc0;
+import yh.w3;
+public final class u implements Runnable {
+    public final int f49206a;
+    public final c0 f49207b;
+
+    public u(c0 c0Var, int i10) {
+        this.f49206a = i10;
+        this.f49207b = c0Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f49206a) {
+            case 0:
+                this.f49207b.f49011a.invalidate();
+                return;
+            default:
+                c0 c0Var = this.f49207b;
+                w3 w3Var = c0Var.f49013c;
+                if (w3Var.getParent() != null) {
+                    if (c0Var.d) {
+                        AndroidUtilities.removeFromParent(w3Var);
+                    } else {
+                        try {
+                            c0Var.f49012b.removeView(w3Var);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    bc0 bc0Var = c0Var.f49023p;
+                    if (bc0Var != null) {
+                        bc0Var.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+}

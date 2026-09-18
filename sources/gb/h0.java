@@ -11,10 +11,10 @@ public class h0 extends db.u {
         String v = aVar.v();
         try {
             return fb.d.i(v);
-        } catch (NumberFormatException e7) {
+        } catch (NumberFormatException e) {
             StringBuilder v9 = a4.a.v("Failed parsing '", v, "' as BigDecimal; at path ");
             v9.append(aVar.j());
-            throw new RuntimeException(v9.toString(), e7);
+            throw new RuntimeException(v9.toString(), e);
         }
     }
 

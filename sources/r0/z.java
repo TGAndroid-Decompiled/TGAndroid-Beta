@@ -5,33 +5,33 @@ import android.view.View;
 import android.view.WindowInsets;
 import java.util.WeakHashMap;
 public final class z implements View.OnApplyWindowInsetsListener {
-    public l1 f44750a = null;
-    public final View f44751b;
-    public final n f44752c;
+    public l1 f41914a = null;
+    public final View f41915b;
+    public final n f41916c;
 
     public z(View view, n nVar) {
-        this.f44751b = view;
-        this.f44752c = nVar;
+        this.f41915b = view;
+        this.f41916c = nVar;
     }
 
     @Override
     public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
         l1 h = l1.h(view, windowInsets);
         int i10 = Build.VERSION.SDK_INT;
-        n nVar = this.f44752c;
+        n nVar = this.f41916c;
         if (i10 < 30) {
-            a0.a(windowInsets, this.f44751b);
-            if (h.equals(this.f44750a)) {
-                return nVar.T0(view, h).g();
+            a0.a(windowInsets, this.f41915b);
+            if (h.equals(this.f41914a)) {
+                return nVar.Q0(view, h).g();
             }
         }
-        this.f44750a = h;
-        l1 T0 = nVar.T0(view, h);
+        this.f41914a = h;
+        l1 Q0 = nVar.Q0(view, h);
         if (i10 >= 30) {
-            return T0.g();
+            return Q0.g();
         }
-        WeakHashMap weakHashMap = i0.f44698a;
+        WeakHashMap weakHashMap = i0.f41870a;
         y.c(view);
-        return T0.g();
+        return Q0.g();
     }
 }

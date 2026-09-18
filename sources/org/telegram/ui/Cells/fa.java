@@ -5,100 +5,100 @@ import android.graphics.Bitmap;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.b91;
 import org.telegram.ui.Components.d30;
+import org.telegram.ui.Components.d91;
 import org.telegram.ui.Components.f30;
 import org.telegram.ui.Components.j50;
-import org.telegram.ui.Components.mu;
-import org.telegram.ui.Components.x61;
+import org.telegram.ui.Components.ou;
+import org.telegram.ui.Components.y61;
 import org.telegram.ui.Components.z20;
 public final class fa implements ViewTreeObserver.OnPreDrawListener {
-    public final int f21955a;
-    public final Object f21956b;
+    public final int f20123a;
+    public final Object f20124b;
 
     public fa(Object obj, int i10) {
-        this.f21955a = i10;
-        this.f21956b = obj;
+        this.f20123a = i10;
+        this.f20124b = obj;
     }
 
     @Override
     public final boolean onPreDraw() {
         boolean z10;
-        int i10 = this.f21955a;
-        Object obj = this.f21956b;
+        int i10 = this.f20123a;
+        Object obj = this.f20124b;
         switch (i10) {
             case 0:
-                ha haVar = ((ga) obj).f21999a;
+                ha haVar = ((ga) obj).f20168a;
                 haVar.getViewTreeObserver().removeOnPreDrawListener(this);
                 haVar.getTransitionParams().j();
                 haVar.getTransitionParams().f();
-                haVar.getTransitionParams().f22736g = true;
+                haVar.getTransitionParams().f20865g = true;
                 haVar.getTransitionParams().K1 = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new r(this, 8));
-                ofFloat.addListener(new org.telegram.ui.s0(this, 16));
+                ofFloat.addListener(new org.telegram.ui.t4(this, 13));
                 ofFloat.start();
                 return false;
             case 1:
-                ((mu) obj).f28516a.f30709c.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((ou) obj).f26851a.f29413c.getViewTreeObserver().removeOnPreDrawListener(this);
                 return true;
             case 2:
                 z20 z20Var = (z20) obj;
-                d30 d30Var = z20Var.f33064f;
-                org.telegram.ui.u7 u7Var = z20Var.f33063e;
-                u7Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                d30 d30Var = z20Var.f30384f;
+                org.telegram.ui.w7 w7Var = z20Var.e;
+                w7Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 int[] iArr = z20Var.G;
-                u7Var.getLocationOnScreen(iArr);
-                float f7 = z20Var.f33066r.x + z20Var.Q;
+                w7Var.getLocationOnScreen(iArr);
+                float f7 = z20Var.f30386r.x + z20Var.Q;
                 f30 f30Var = z20Var.U;
                 float measuredWidth = ((f30Var.getMeasuredWidth() / 2.0f) + f7) - iArr[0];
-                float measuredWidth2 = ((f30Var.getMeasuredWidth() / 2.0f) + (z20Var.f33066r.y + z20Var.R)) - iArr[1];
-                if (measuredWidth2 - AndroidUtilities.dp(61.0f) > 0.0f && AndroidUtilities.dp(61.0f) + measuredWidth2 < u7Var.getMeasuredHeight()) {
+                float measuredWidth2 = ((f30Var.getMeasuredWidth() / 2.0f) + (z20Var.f30386r.y + z20Var.R)) - iArr[1];
+                if (measuredWidth2 - AndroidUtilities.dp(61.0f) > 0.0f && AndroidUtilities.dp(61.0f) + measuredWidth2 < w7Var.getMeasuredHeight()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (AndroidUtilities.dp(61.0f) + measuredWidth + d30Var.getMeasuredWidth() < u7Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f) && z10) {
+                if (AndroidUtilities.dp(61.0f) + measuredWidth + d30Var.getMeasuredWidth() < w7Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f) && z10) {
                     d30Var.setTranslationX(AndroidUtilities.dp(61.0f) + measuredWidth);
                     float dp = AndroidUtilities.dp(40.0f) / d30Var.getMeasuredHeight();
-                    d30Var.setTranslationY((int) (measuredWidth2 - (d30Var.getMeasuredHeight() * Math.max(dp, Math.min(measuredWidth2 / u7Var.getMeasuredHeight(), 1.0f - dp)))));
+                    d30Var.setTranslationY((int) (measuredWidth2 - (d30Var.getMeasuredHeight() * Math.max(dp, Math.min(measuredWidth2 / w7Var.getMeasuredHeight(), 1.0f - dp)))));
                     d30Var.c(measuredWidth, measuredWidth2, 0);
                 } else if ((measuredWidth - AndroidUtilities.dp(61.0f)) - d30Var.getMeasuredWidth() > AndroidUtilities.dp(16.0f) && z10) {
                     float dp2 = AndroidUtilities.dp(40.0f) / d30Var.getMeasuredHeight();
-                    float max = Math.max(dp2, Math.min(measuredWidth2 / u7Var.getMeasuredHeight(), 1.0f - dp2));
+                    float max = Math.max(dp2, Math.min(measuredWidth2 / w7Var.getMeasuredHeight(), 1.0f - dp2));
                     d30Var.setTranslationX((int) ((measuredWidth - AndroidUtilities.dp(61.0f)) - d30Var.getMeasuredWidth()));
                     d30Var.setTranslationY((int) (measuredWidth2 - (d30Var.getMeasuredHeight() * max)));
                     d30Var.c(measuredWidth, measuredWidth2, 1);
-                } else if (measuredWidth2 > u7Var.getMeasuredHeight() * 0.3f) {
+                } else if (measuredWidth2 > w7Var.getMeasuredHeight() * 0.3f) {
                     float dp3 = AndroidUtilities.dp(40.0f) / d30Var.getMeasuredWidth();
-                    d30Var.setTranslationX((int) (measuredWidth - (d30Var.getMeasuredWidth() * Math.max(dp3, Math.min(measuredWidth / u7Var.getMeasuredWidth(), 1.0f - dp3)))));
+                    d30Var.setTranslationX((int) (measuredWidth - (d30Var.getMeasuredWidth() * Math.max(dp3, Math.min(measuredWidth / w7Var.getMeasuredWidth(), 1.0f - dp3)))));
                     d30Var.setTranslationY((int) ((measuredWidth2 - d30Var.getMeasuredHeight()) - AndroidUtilities.dp(61.0f)));
                     d30Var.c(measuredWidth, measuredWidth2, 3);
                 } else {
                     float dp4 = AndroidUtilities.dp(40.0f) / d30Var.getMeasuredWidth();
-                    d30Var.setTranslationX((int) (measuredWidth - (d30Var.getMeasuredWidth() * Math.max(dp4, Math.min(measuredWidth / u7Var.getMeasuredWidth(), 1.0f - dp4)))));
+                    d30Var.setTranslationX((int) (measuredWidth - (d30Var.getMeasuredWidth() * Math.max(dp4, Math.min(measuredWidth / w7Var.getMeasuredWidth(), 1.0f - dp4)))));
                     d30Var.setTranslationY((int) (AndroidUtilities.dp(61.0f) + measuredWidth2));
                     d30Var.c(measuredWidth, measuredWidth2, 2);
                 }
                 return false;
             case 3:
-                ((di.r6) obj).invalidate();
+                ((ci.s6) obj).invalidate();
                 return true;
             default:
-                b91 b91Var = (b91) ((j50) obj).f27356b;
-                b91Var.f24635n.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = b91Var.f24626e;
+                d91 d91Var = (d91) ((j50) obj).f25120b;
+                d91Var.f23282n.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = d91Var.e;
                 if (imageView != null) {
                     imageView.setVisibility(4);
-                    b91Var.f24626e.setImageDrawable(null);
-                    Bitmap bitmap = b91Var.h;
+                    d91Var.e.setImageDrawable(null);
+                    Bitmap bitmap = d91Var.h;
                     if (bitmap != null) {
                         bitmap.recycle();
-                        b91Var.h = null;
+                        d91Var.h = null;
                     }
                 }
-                AndroidUtilities.runOnUIThread(new x61(this, 3));
-                b91Var.f24636r = 0;
+                AndroidUtilities.runOnUIThread(new y61(this, 3));
+                d91Var.f23283r = 0;
                 return true;
         }
     }

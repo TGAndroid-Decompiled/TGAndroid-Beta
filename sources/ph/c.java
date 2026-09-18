@@ -1,38 +1,29 @@
 package ph;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import w7.x5;
-public abstract class c extends FrameLayout {
-    public final LinearLayout f44097a;
-    public float f44098b;
-    public final Rect f44099c;
-    public final Rect d;
-    public final Paint f44100e;
+import org.telegram.ui.web.b1;
+import org.telegram.ui.web.u0;
+public final class c {
+    public final b1 f41084a;
+    public b f41086c = b.f41081a;
+    public final u0 d = new u0(this, 13);
+    public final long f41085b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
 
-    public c(Context context) {
-        super(context);
-        this.f44099c = new Rect();
-        this.d = new Rect();
-        this.f44100e = new Paint(1);
-        setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f44097a = linearLayout;
-        linearLayout.setOrientation(0);
-        addView(linearLayout, x5.c(-1.0f, -1));
+    public c(b1 b1Var) {
+        this.f41084a = b1Var;
     }
 
-    public void setLensVisibility(float f7) {
-        this.f44098b = f7;
-        int dp = AndroidUtilities.dp(f7 * 7.0f);
-        Rect rect = this.f44099c;
-        Rect rect2 = this.d;
-        rect2.set(rect);
-        int i10 = -dp;
-        rect2.inset(i10, i10);
+    public final void a(b bVar, boolean z10) {
+        if (this.f41086c != bVar) {
+            u0 u0Var = this.d;
+            AndroidUtilities.cancelRunOnUIThread(u0Var);
+            this.f41086c = bVar;
+            if (z10) {
+                this.f41084a.run(bVar);
+            }
+            if (bVar == b.f41082b || bVar == b.f41083c) {
+                AndroidUtilities.runOnUIThread(u0Var, this.f41085b);
+            }
+        }
     }
 }

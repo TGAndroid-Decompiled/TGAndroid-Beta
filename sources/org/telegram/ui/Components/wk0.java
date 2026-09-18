@@ -1,4 +1,3 @@
 package org.telegram.ui.Components;
-public interface wk0 {
-    int run();
+public final class wk0 extends s4.c1 {
 }

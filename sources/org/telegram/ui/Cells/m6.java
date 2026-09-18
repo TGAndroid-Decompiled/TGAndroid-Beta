@@ -3,8 +3,8 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.bc0;
-public final class m6 extends org.telegram.ui.Components.x9 {
+import org.telegram.ui.Components.ac0;
+public final class m6 extends org.telegram.ui.Components.u9 {
     public final int G;
     public final n6 H;
 
@@ -17,11 +17,11 @@ public final class m6 extends org.telegram.ui.Components.x9 {
     @Override
     public final void onDraw(Canvas canvas) {
         n6 n6Var = this.H;
-        l6 l6Var = n6Var.f22344y;
-        bc0 bc0Var = n6.G;
+        l6 l6Var = n6Var.f20490y;
+        ac0 ac0Var = n6.G;
         if (this.G == 1) {
             l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            bi.p9.h(n6Var.f22343x, canvas, getImageReceiver(), l6Var);
+            ai.ia.h(n6Var.f20489x, canvas, getImageReceiver(), l6Var);
             return;
         }
         super.onDraw(canvas);
@@ -29,6 +29,6 @@ public final class m6 extends org.telegram.ui.Components.x9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.H.f22344y.a(motionEvent, this);
+        return this.H.f20490y.a(motionEvent, this);
     }
 }

@@ -11,48 +11,48 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 public final class d extends pb.a {
-    public static final Set f407g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
+    public static final Set f392g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
     public static final Set h = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
-    public static final Set f408i = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
-    public final qb.b f409a;
-    public final rb.a f410b;
-    public final ArrayList f411c = new ArrayList(0);
+    public static final Set f393i = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
+    public final qb.b f394a;
+    public final rb.a f395b;
+    public final ArrayList f396c = new ArrayList(0);
     public a d = new a("", 0, Collections.EMPTY_MAP, null);
-    public boolean f412e;
-    public boolean f413f;
+    public boolean e;
+    public boolean f397f;
 
     public d(qb.b bVar, rb.a aVar) {
-        this.f409a = bVar;
-        this.f410b = aVar;
+        this.f394a = bVar;
+        this.f395b = aVar;
     }
 
     public static Map a(i iVar) {
         boolean z10;
-        cd.c cVar = iVar.v;
-        int i10 = cVar.f4755a;
+        cd.c cVar = iVar.f7692k;
+        int i10 = cVar.f4223a;
         if (i10 > 0) {
             HashMap hashMap = new HashMap(i10);
             int i11 = 0;
             while (true) {
-                if (i11 < cVar.f4755a) {
+                if (i11 < cVar.f4223a) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (z10) {
-                    String str = cVar.f4757c[i11];
-                    String str2 = cVar.f4756b[i11];
+                    String str = cVar.f4225c[i11];
+                    String str2 = cVar.f4224b[i11];
                     if (str == null) {
                         str = "";
                     }
                     ?? obj = new Object();
                     if (str2 != null) {
-                        obj.f4749a = str2.trim();
+                        obj.f4217a = str2.trim();
                         if (str2.length() != 0) {
-                            obj.f4750b = str;
-                            obj.f4751c = cVar;
+                            obj.f4218b = str;
+                            obj.f4219c = cVar;
                             i11++;
-                            hashMap.put(obj.f4749a.toLowerCase(Locale.US), obj.f4750b);
+                            hashMap.put(obj.f4217a.toLowerCase(Locale.US), obj.f4218b);
                         } else {
                             throw new IllegalArgumentException("String must not be empty");
                         }

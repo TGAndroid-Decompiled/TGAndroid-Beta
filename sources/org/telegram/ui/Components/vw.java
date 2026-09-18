@@ -1,31 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class vw extends g.p {
-    public final kz f31993c;
+import android.content.Context;
+public final class vw extends xy {
+    public final kz H;
 
-    public vw(kz kzVar) {
-        this.f31993c = kzVar;
+    public vw(kz kzVar, Context context) {
+        super(kzVar, context, 0);
+        this.H = kzVar;
     }
 
     @Override
-    public final int i(int i10) {
-        kz kzVar = this.f31993c;
-        fz fzVar = kzVar.f28007z0;
-        s4.h0 adapter = kzVar.D0.getAdapter();
-        bz bzVar = kzVar.f28004y0;
-        if (adapter == bzVar) {
-            if (i10 == 0) {
-                return bzVar.d;
-            }
-            if (i10 == bzVar.f24830s || (bzVar.h.get(i10) != null && !(bzVar.h.get(i10) instanceof TLRPC.Document))) {
-                return bzVar.d;
-            }
-            return 1;
-        } else if (i10 != fzVar.f26210x && (fzVar.f26207r.get(i10) == null || (fzVar.f26207r.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        } else {
-            return bzVar.d;
+    public final void setTranslationY(float f7) {
+        if (f7 != getTranslationY()) {
+            super.setTranslationY(f7);
+            this.H.f25782x0.invalidate();
         }
     }
 }

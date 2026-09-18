@@ -46,7 +46,7 @@ public class LocationSharingService extends Service implements NotificationCente
 
     public void lambda$onCreate$1() {
         this.handler.postDelayed(this.runnable, 1000L);
-        Utilities.stageQueue.postRunnable(new u1(13));
+        Utilities.stageQueue.postRunnable(new u1(15));
     }
 
     private void updateNotification(boolean z10) {
@@ -87,7 +87,7 @@ public class LocationSharingService extends Service implements NotificationCente
     public void didReceivedNotification(int i10, int i11, Object... objArr) {
         Handler handler;
         if (i10 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
-            handler.post(new t5(this, 1));
+            handler.post(new u5(this, 1));
         }
     }
 
@@ -101,9 +101,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        t5 t5Var = new t5(this, 0);
-        this.runnable = t5Var;
-        handler.postDelayed(t5Var, 1000L);
+        u5 u5Var = new u5(this, 0);
+        this.runnable = u5Var;
+        handler.postDelayed(u5Var, 1000L);
     }
 
     @Override
@@ -134,10 +134,10 @@ public class LocationSharingService extends Service implements NotificationCente
                 tVar.E.when = System.currentTimeMillis();
                 e0.t tVar2 = this.builder;
                 tVar2.E.icon = R.drawable.live_loc;
-                tVar2.f8684g = activity;
+                tVar2.f7839g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.t tVar3 = this.builder;
-                tVar3.f8700y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                tVar3.f7855y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 tVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }

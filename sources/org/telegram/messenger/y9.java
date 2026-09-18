@@ -1,40 +1,37 @@
 package org.telegram.messenger;
+public final class y9 implements Runnable {
+    public final int f17967a;
+    public final MessagesController f17968b;
+    public final long f17969c;
+    public final int d;
+    public final boolean e;
+    public final int f17970f;
+    public final int h;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class y9 implements Utilities.Callback2 {
-    public final int f19720a;
-    public final MessagesController f19721b;
-
-    public y9(MessagesController messagesController, int i10) {
-        this.f19720a = i10;
-        this.f19721b = messagesController;
+    public y9(MessagesController messagesController, long j3, int i10, boolean z10, int i11, int i12, int i13) {
+        this.f17967a = i13;
+        this.f17968b = messagesController;
+        this.f17969c = j3;
+        this.d = i10;
+        this.e = z10;
+        this.f17970f = i11;
+        this.h = i12;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f19720a) {
+    public final void run() {
+        switch (this.f17967a) {
             case 0:
-                this.f19721b.lambda$updateWebBrowserSettings$517((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                this.f19721b.lambda$removeWebBrowserException$515((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 2:
-                this.f19721b.lambda$addWebBrowserException$513((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 3:
-                this.f19721b.lambda$loadStakeDiceInfo$507((TLRPC.EmojiGameInfo) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 4:
-                this.f19721b.lambda$deleteReactionsFromMessage$132((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 5:
-                this.f19721b.lambda$loadWebBrowserConfig$509((Long) obj, (TL_account.TL_webBrowserSettings) obj2);
+                int i10 = this.f17970f;
+                int i11 = this.h;
+                int i12 = this.d;
+                this.f17968b.lambda$markDialogAsRead$243(this.f17969c, i12, this.e, i10, i11);
                 return;
             default:
-                this.f19721b.lambda$clearAllWebBrowserExceptions$516((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
+                int i13 = this.f17970f;
+                int i14 = this.h;
+                int i15 = this.d;
+                this.f17968b.lambda$markDialogAsRead$244(this.f17969c, i15, this.e, i13, i14);
                 return;
         }
     }

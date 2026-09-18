@@ -1,46 +1,38 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class dq0 implements ar0 {
-    public final HashMap f35842a;
-    public final ArrayList f35843b;
-    public final kq0 f35844c;
+import android.view.KeyEvent;
+public final class dq0 implements org.telegram.ui.Components.b5, org.telegram.ui.ActionBar.m1 {
+    public final int f33212a;
+    public final lq0 f33213b;
 
-    public dq0(kq0 kq0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f35844c = kq0Var;
-        this.f35842a = hashMap;
-        this.f35843b = arrayList;
+    public dq0(lq0 lq0Var, int i10) {
+        this.f33212a = i10;
+        this.f33213b = lq0Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        kq0 kq0Var = this.f35844c;
-        org.telegram.ui.Components.hu huVar = kq0Var.M;
-        kq0Var.f38105a = editable;
-        huVar.setText(editable);
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void h(int i10, boolean z10, boolean z11) {
-        kq0 kq0Var = this.f35844c;
-        kq0Var.removeSelfFromStack();
-        if (!z10) {
-            kq0Var.V(this.f35842a, this.f35843b, z11, i10);
+    public void J(int i10, int i11, boolean z10) {
+        switch (this.f33212a) {
+            case 0:
+                lq0 lq0Var = this.f33213b;
+                lq0Var.V(lq0Var.f35606b, lq0Var.f35607c, z10, i10);
+                lq0Var.finishFragment();
+                return;
+            default:
+                lq0 lq0Var2 = this.f33213b;
+                lq0Var2.V(lq0Var2.f35606b, lq0Var2.f35607c, z10, i10);
+                lq0Var2.finishFragment();
+                return;
         }
     }
 
     @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void g() {
+    public void o(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.o1 o1Var;
+        lq0 lq0Var = this.f33213b;
+        lq0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = lq0Var.I) != null && o1Var.isShowing()) {
+            lq0Var.I.d(true);
+        }
     }
 }

@@ -1,38 +1,29 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
+import android.view.KeyEvent;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class rf0 implements RequestDelegate {
-    public final int f40165a;
-    public final zf0 f40166b;
-    public final Bundle f40167c;
+public final class rf0 implements Runnable {
+    public final int f37222a;
+    public final Object f37223b;
+    public final Object f37224c;
+    public final Object d;
 
-    public rf0(zf0 zf0Var, Bundle bundle, int i10) {
-        this.f40165a = i10;
-        this.f40166b = zf0Var;
-        this.f40167c = bundle;
+    public rf0(KeyEvent.Callback callback, TLObject tLObject, Object obj, int i10) {
+        this.f37222a = i10;
+        this.f37223b = callback;
+        this.f37224c = tLObject;
+        this.d = obj;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40165a) {
-            case 0:
-                zf0 zf0Var = this.f40166b;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new pf0(zf0Var, this.f40167c, tLObject, 1));
-                    return;
-                } else if (tL_error != null && tL_error.text != null) {
-                    AndroidUtilities.runOnUIThread(new r80(24, zf0Var, tL_error));
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.in0(this.f40166b, tL_error, this.f40167c, tLObject, 20));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rf0.run():void");
+    }
+
+    public rf0(Object obj, Object obj2, Object obj3, int i10) {
+        this.f37222a = i10;
+        this.f37223b = obj;
+        this.d = obj2;
+        this.f37224c = obj3;
     }
 }

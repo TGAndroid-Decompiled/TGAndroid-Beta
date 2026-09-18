@@ -5,19 +5,19 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.view.ViewGroup;
 public final class e extends AnimatorListenerAdapter {
-    public final int f20370a;
-    public final k f20371b;
+    public final int f18599a;
+    public final k f18600b;
 
     public e(k kVar, int i10) {
-        this.f20370a = i10;
-        this.f20371b = kVar;
+        this.f18599a = i10;
+        this.f18600b = kVar;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f20370a) {
+        switch (this.f18599a) {
             case 0:
-                k kVar = this.f20371b;
+                k kVar = this.f18600b;
                 AnimatorSet animatorSet = kVar.P;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     kVar.P = null;
@@ -32,9 +32,9 @@ public final class e extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f20370a) {
+        switch (this.f18599a) {
             case 0:
-                k kVar = this.f20371b;
+                k kVar = this.f18600b;
                 AnimatorSet animatorSet = kVar.P;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     kVar.P = null;
@@ -43,16 +43,16 @@ public final class e extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                k kVar2 = this.f20371b;
-                j5 j5Var = kVar2.f21103n[1];
-                if (j5Var != null && j5Var.getParent() != null) {
-                    ((ViewGroup) kVar2.f21103n[1].getParent()).removeView(kVar2.f21103n[1]);
+                k kVar2 = this.f18600b;
+                k5 k5Var = kVar2.f19304n[1];
+                if (k5Var != null && k5Var.getParent() != null) {
+                    ((ViewGroup) kVar2.f19304n[1].getParent()).removeView(kVar2.f19304n[1]);
                 }
-                kVar2.N0.s(kVar2.f21103n[1]);
-                kVar2.f21103n[1] = null;
-                kVar2.Y0 = false;
-                Object[] objArr = kVar2.f21091g0;
-                kVar2.K((String) objArr[0], ((Integer) objArr[1]).intValue(), (Runnable) kVar2.f21091g0[2]);
+                kVar2.O0.s(kVar2.f19304n[1]);
+                kVar2.f19304n[1] = null;
+                kVar2.Z0 = false;
+                Object[] objArr = kVar2.f19292g0;
+                kVar2.K((String) objArr[0], ((Integer) objArr[1]).intValue(), (Runnable) kVar2.f19292g0[2]);
                 return;
         }
     }

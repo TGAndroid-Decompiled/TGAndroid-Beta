@@ -1,28 +1,27 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class je implements RequestDelegate {
-    public final int f18093a;
-    public final Utilities.Callback4 f18094b;
+import java.util.function.ToLongFunction;
+import org.telegram.messenger.NotificationsController;
+public final class je implements ToLongFunction {
+    public final int f16499a;
 
-    public je(Utilities.Callback4 callback4, int i10) {
-        this.f18093a = i10;
-        this.f18094b = callback4;
+    public je(int i10) {
+        this.f16499a = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18093a) {
+    public final long applyAsLong(Object obj) {
+        long j3;
+        long j10;
+        switch (this.f16499a) {
             case 0:
-                MessagesController.AnonymousClass1.lambda$getRemote$0(this.f18094b, tLObject, tL_error);
-                return;
+                return Long.parseLong((String) obj);
+            case 1:
+                j3 = ((NotificationsController.StoryNotification) obj).date;
+                return j3;
             default:
-                MessagesController.AnonymousClass4.lambda$getRemote$0(this.f18094b, tLObject, tL_error);
-                return;
+                j10 = ((NotificationsController.StoryNotification) obj).date;
+                return j10;
         }
     }
 }

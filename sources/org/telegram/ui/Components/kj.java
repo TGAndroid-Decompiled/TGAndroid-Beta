@@ -3,18 +3,25 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class kj implements bl0, pj {
-    public final yj f27837a;
+public final class kj implements cl0, pj {
+    public final yj f25639a;
 
     public kj(yj yjVar) {
-        this.f27837a = yjVar;
+        this.f25639a = yjVar;
     }
 
     @Override
-    public boolean a(int i10, View view) {
+    public void a(TLRPC.User user, boolean z10, int i10, long j3) {
+        yj yjVar = this.f25639a;
+        yjVar.f26463b.dismiss(true);
+        yjVar.J.a(user, z10, i10, j3);
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
         Object O;
-        yj yjVar = this.f27837a;
-        s4.h0 adapter = yjVar.f32934s.getAdapter();
+        yj yjVar = this.f25639a;
+        s4.h0 adapter = yjVar.f30258s.getAdapter();
         uj ujVar = yjVar.F;
         if (adapter == ujVar) {
             O = ujVar.E(i10);
@@ -30,13 +37,6 @@ public final class kj implements bl0, pj {
     }
 
     @Override
-    public void b(TLRPC.User user, boolean z10, int i10, long j3) {
-        yj yjVar = this.f27837a;
-        yjVar.f28754b.dismiss(true);
-        yjVar.J.b(user, z10, i10, j3);
-    }
-
-    @Override
-    public void c(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
+    public void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
     }
 }

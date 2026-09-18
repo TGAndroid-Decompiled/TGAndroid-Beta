@@ -1,30 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class vo extends org.telegram.ui.Cells.r8 {
-    public vo(Context context) {
-        super(context);
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class vo extends ClickableSpan {
+    public final int f38486a;
+
+    public vo(int i10) {
+        this.f38486a = i10;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (LocaleController.isRTL) {
-            dp = 0.0f;
-        } else {
-            dp = AndroidUtilities.dp(20.0f);
+    public final void onClick(View view) {
+        switch (this.f38486a) {
+            case 0:
+                nf.f.s(view.getContext(), "https://t.me/BotFather");
+                return;
+            default:
+                return;
         }
-        float measuredHeight = getMeasuredHeight() - 1;
-        int measuredWidth = getMeasuredWidth();
-        if (LocaleController.isRTL) {
-            i10 = AndroidUtilities.dp(20.0f);
-        } else {
-            i10 = 0;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f38486a) {
+            case 0:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            default:
+                textPaint.setUnderlineText(false);
+                textPaint.setColor(-1);
+                return;
         }
-        canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20786k0);
+    }
+
+    private final void a(View view) {
     }
 }

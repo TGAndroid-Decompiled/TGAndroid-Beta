@@ -4,29 +4,29 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 import java.util.ArrayList;
-import n7.z0;
+import n7.a1;
 public final class a {
-    public final String f48370a;
-    public final String f48371b;
-    public final ArrayList f48372c;
+    public final String f44934a;
+    public final String f44935b;
+    public final ArrayList f44936c;
     public final String d;
-    public final String f48373e;
-    public final String f48374f;
-    public final String f48375g;
-    public final z0 h;
+    public final String e;
+    public final String f44937f;
+    public final String f44938g;
+    public final a1 h;
 
-    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, z0 z0Var) {
-        this.f48370a = str;
-        this.f48371b = str2;
-        this.f48372c = arrayList;
+    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, a1 a1Var) {
+        this.f44934a = str;
+        this.f44935b = str2;
+        this.f44936c = arrayList;
         this.d = str3;
-        this.f48373e = str4;
-        this.f48374f = str5;
-        this.f48375g = str6;
-        this.h = z0Var;
+        this.e = str4;
+        this.f44937f = str5;
+        this.f44938g = str6;
+        this.h = a1Var;
     }
 
-    public static a a(Context context, u uVar, String str, String str2, ArrayList arrayList, z0 z0Var) {
+    public static a a(Context context, u uVar, String str, String str2, ArrayList arrayList, a1 a1Var) {
         String num;
         String packageName = context.getPackageName();
         String c10 = uVar.c();
@@ -41,6 +41,6 @@ public final class a {
         if (str4 == null) {
             str4 = "0.0";
         }
-        return new a(str, str2, arrayList, c10, packageName, str3, str4, z0Var);
+        return new a(str, str2, arrayList, c10, packageName, str3, str4, a1Var);
     }
 }

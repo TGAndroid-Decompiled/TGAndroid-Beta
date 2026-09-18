@@ -1,25 +1,42 @@
 package yh;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.NinePatchDrawable;
-import java.util.Arrays;
-import org.telegram.messenger.AndroidUtilities;
-public final class l1 {
-    public NinePatchDrawable f50393b;
-    public NinePatchDrawable d;
-    public NinePatchDrawable f50396f;
-    public final float[] f50397g;
-    public int h;
-    public int f50398i;
-    public int f50399j;
-    public int f50400k;
-    public final Bitmap[] f50392a = new Bitmap[1];
-    public final Bitmap[] f50394c = new Bitmap[1];
-    public final Bitmap[] f50395e = new Bitmap[1];
+import android.os.Bundle;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.ab1;
+public final class l1 implements Runnable {
+    public final int f47424a = 0;
+    public final org.telegram.ui.ActionBar.o2 f47425b;
+    public final long f47426c;
 
-    public l1() {
-        float[] fArr = new float[8];
-        this.f50397g = fArr;
-        Arrays.fill(fArr, AndroidUtilities.dp(11.0f));
+    public l1(long j3, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f47426c = j3;
+        this.f47425b = o2Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f47424a) {
+            case 0:
+                Bundle bundle = new Bundle();
+                long j3 = this.f47426c;
+                if (j3 >= 0) {
+                    bundle.putLong("user_id", j3);
+                } else {
+                    bundle.putLong("chat_id", -j3);
+                }
+                bundle.putBoolean("my_profile", true);
+                bundle.putBoolean("open_gifts", true);
+                this.f47425b.presentFragment(new ProfileActivity(bundle, null));
+                return;
+            default:
+                org.telegram.ui.ActionBar.o2 o2Var = this.f47425b;
+                o2Var.presentFragment(ab1.d0(o2Var.getMessagesController().getChat(Long.valueOf(-this.f47426c)), true));
+                return;
+        }
+    }
+
+    public l1(org.telegram.ui.ActionBar.o2 o2Var, long j3) {
+        this.f47425b = o2Var;
+        this.f47426c = j3;
     }
 }

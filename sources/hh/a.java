@@ -1,53 +1,50 @@
 package hh;
 
-import android.graphics.Bitmap;
-import java.lang.ref.WeakReference;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.MessageObject;
+import org.telegram.ui.vj;
 public final class a {
-    public WeakReference f11333a;
-    public long f11334b;
-    public boolean f11335c = true;
+    public RecyclerView f10497a;
+    public int f10498b;
+    public long f10499c;
+    public int d;
+    public boolean e;
 
-    public final boolean a(Bitmap bitmap) {
-        Bitmap bitmap2;
-        long j3;
-        if (!this.f11335c) {
-            WeakReference weakReference = this.f11333a;
-            if (weakReference != null) {
-                bitmap2 = (Bitmap) weakReference.get();
-            } else {
-                bitmap2 = null;
-            }
-            if (bitmap2 == bitmap) {
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    j3 = bitmap.getGenerationId();
-                } else {
-                    j3 = 0;
-                }
-                if (j3 != this.f11334b) {
+    public final boolean a(MessageObject messageObject) {
+        if (messageObject != null) {
+            if (messageObject.getId() != this.f10498b) {
+                if (this.f10499c != 0 && messageObject.getGroupId() == this.f10499c) {
                     return true;
                 }
                 return false;
             }
             return true;
         }
+        return false;
+    }
+
+    public final boolean b() {
+        return this.e;
+    }
+
+    public final boolean c(int i10, long j3) {
+        if (this.f10498b == i10 && this.f10499c == j3) {
+            return false;
+        }
+        this.f10498b = i10;
+        this.f10499c = j3;
+        if (i10 == 0) {
+            this.e = false;
+            return true;
+        }
         return true;
     }
 
-    public final void b(Bitmap bitmap) {
-        WeakReference weakReference;
-        long j3;
-        if (bitmap != null) {
-            weakReference = new WeakReference(bitmap);
-        } else {
-            weakReference = null;
-        }
-        this.f11333a = weakReference;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            j3 = bitmap.getGenerationId();
-        } else {
-            j3 = 0;
-        }
-        this.f11334b = j3;
-        this.f11335c = false;
+    public final void d(int i10) {
+        this.d = i10;
+    }
+
+    public final void e(vj vjVar) {
+        this.f10497a = vjVar;
     }
 }

@@ -1,71 +1,44 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class y7 extends FrameLayout {
-    public final RectF f32857a;
-    public boolean f32858b;
-    public int f32859c;
-    public int d;
-    public final k8 f32860e;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class y7 extends b8 {
+    public final Context E;
+    public final h8 F;
+    public final int f30137y;
 
-    public y7(k8 k8Var, Context context) {
+    public y7(h8 h8Var, Context context, Context context2, int i10) {
         super(context);
-        this.f32860e = k8Var;
-        this.f32857a = new RectF();
-        this.f32858b = false;
+        this.f30137y = i10;
+        this.F = h8Var;
+        this.E = context2;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        qc.a(this, new ah.n0(this, 5));
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        qc.h(this);
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y7.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(android.view.MotionEvent r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y7.onInterceptTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        k8 k8Var = this.f32860e;
-        k8.P(k8Var);
-        k8Var.E0();
-    }
-
-    @Override
-    public final void onMeasure(int r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y7.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f32860e.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
+    public final TextView a() {
+        switch (this.f30137y) {
+            case 0:
+                r90 r90Var = new r90(this.E);
+                r90Var.setTextColor(this.F.getThemedColor(org.telegram.ui.ActionBar.j6.Oi));
+                r90Var.setTextSize(1, 17.0f);
+                r90Var.setTypeface(AndroidUtilities.bold());
+                r90Var.setEllipsize(TextUtils.TruncateAt.END);
+                r90Var.setSingleLine(true);
+                return r90Var;
+            default:
+                r90 r90Var2 = new r90(this.E);
+                int i10 = org.telegram.ui.ActionBar.j6.Si;
+                h8 h8Var = this.F;
+                r90Var2.setTextColor(h8Var.getThemedColor(i10));
+                r90Var2.setTextSize(1, 13.0f);
+                r90Var2.setEllipsize(TextUtils.TruncateAt.END);
+                r90Var2.setSingleLine(true);
+                r90Var2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f));
+                r90Var2.setBackground(org.telegram.ui.ActionBar.j6.Y(h8Var.getThemedColor(org.telegram.ui.ActionBar.j6.f18953i6), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+                r90Var2.setOnClickListener(new org.telegram.ui.tf(18, this, r90Var2));
+                return r90Var2;
         }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f32858b) {
-            return;
-        }
-        super.requestLayout();
     }
 }

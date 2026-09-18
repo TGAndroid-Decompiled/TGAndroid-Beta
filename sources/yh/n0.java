@@ -1,10 +1,29 @@
 package yh;
 
-import android.view.ViewTreeObserver;
-public final class n0 implements ViewTreeObserver.OnPreDrawListener {
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
+public final class n0 extends x51 {
+    public final s0 N;
+
+    public n0(s0 s0Var, ml0 ml0Var, Context context, int i10, hi.a aVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(ml0Var, context, i10, 0, true, aVar, f6Var);
+        this.N = s0Var;
+    }
+
     @Override
-    public final boolean onPreDraw() {
-        int i10 = p1.f50483v0;
-        return false;
+    public final void v(s4.c1 c1Var, int i10) {
+        super.v(c1Var, i10);
+        View view = c1Var.f42702a;
+        if (!(view instanceof q0)) {
+            return;
+        }
+        q0 q0Var = (q0) view;
+        o0 o0Var = q0Var.v;
+        boolean R = this.N.R(o0Var);
+        q0Var.f47670c.f(R, false);
+        q0Var.f47673r.a(R, false);
+        q0Var.setOnClickListener(new w(3, this, o0Var));
     }
 }

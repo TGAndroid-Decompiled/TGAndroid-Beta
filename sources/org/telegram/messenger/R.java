@@ -12548,8 +12548,6 @@ public final class R {
         public static int UseLessDataOnRoaming = 0x7f0fd4f5;
         public static int UsePIN = 0x7f0fd4f4;
         public static int UseProxyAddress = 0x7f0fd4f3;
-        public static int UseProxyForCalls = 0x7f0fd4f2;
-        public static int UseProxyForCallsInfo = 0x7f0fd4f1;
         public static int UseProxyInfo = 0x7f0fd4f0;
         public static int UseProxyPassword = 0x7f0fd4ef;
         public static int UseProxyPort = 0x7f0fd4ee;

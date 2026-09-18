@@ -1,105 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class ly0 extends View {
-    public String f28315a;
-    public Drawable f28316b;
-    public boolean f28317c;
-    public int d;
-    public final e6 f28318e;
-    public final my0 f28319f;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+public final class ly0 extends ll0 {
+    public final oy0 f25988c;
+    public final oy0 d;
 
-    public ly0(my0 my0Var, Context context) {
-        super(context);
-        this.f28319f = my0Var;
-        this.d = 0;
-        this.f28318e = new e6(this, 350L, new OvershootInterpolator(5.0f));
+    public ly0(oy0 oy0Var, oy0 oy0Var2) {
+        this.d = oy0Var;
+        this.f25988c = oy0Var2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (isPressed()) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.f25988c.f26896w;
+        if (arrayList == null) {
+            return 0;
         }
-        float d = ((1.0f - this.f28318e.d(f7, false)) * 0.2f) + 0.8f;
-        if (this.f28316b != null) {
-            int height = getHeight() - getPaddingBottom();
-            this.f28316b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f28316b;
-            if (drawable instanceof q5) {
-                ((q5) drawable).q(System.currentTimeMillis());
+        return arrayList.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        ArrayList arrayList = this.f25988c.f26896w;
+        if (arrayList == null) {
+            return 0L;
+        }
+        return ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.hashCode();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        String str;
+        ny0 ny0Var = (ny0) c1Var.f42702a;
+        oy0 oy0Var = this.f25988c;
+        ArrayList arrayList = oy0Var.f26896w;
+        if (arrayList == null) {
+            str = null;
+        } else {
+            str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
+        }
+        int direction = oy0Var.getDirection();
+        ny0Var.f26562a = str;
+        if (str != null && str.startsWith("animated_")) {
+            try {
+                long parseLong = Long.parseLong(str.substring(9));
+                Drawable drawable = ny0Var.f26563b;
+                if (!(drawable instanceof o5) || ((o5) drawable).i() != parseLong) {
+                    ny0Var.setImageDrawable(o5.n(UserConfig.selectedAccount, parseLong, null, ny0Var.f26565f.d()));
+                }
+            } catch (Exception unused) {
+                ny0Var.setImageDrawable(null);
             }
-            this.f28316b.draw(canvas);
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Drawable drawable = this.f28316b;
-        if (drawable instanceof q5) {
-            ((q5) drawable).a(this);
-        }
-        this.f28317c = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        Drawable drawable = this.f28316b;
-        if (drawable instanceof q5) {
-            ((q5) drawable).o(this);
-        }
-        this.f28317c = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int dp = AndroidUtilities.dp(3.0f);
-        float f10 = 6.66f;
-        if (this.d == 0) {
-            f7 = 0.0f;
         } else {
-            f7 = 6.66f;
+            ny0Var.setImageDrawable(Emoji.getEmojiBigDrawable(str));
         }
-        int dp2 = AndroidUtilities.dp(f7 + 3.0f);
-        int dp3 = AndroidUtilities.dp(3.0f);
-        if (this.d != 0) {
-            f10 = 0.0f;
-        }
-        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f10 + 3.0f));
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
-    }
-
-    public void setDirection(int i10) {
-        this.d = i10;
-        invalidate();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f28316b;
-        if (drawable2 instanceof q5) {
-            ((q5) drawable2).o(this);
-        }
-        this.f28316b = drawable;
-        if ((drawable instanceof q5) && this.f28317c) {
-            ((q5) drawable).a(this);
+        if (ny0Var.d != direction) {
+            ny0Var.d = direction;
+            ny0Var.requestLayout();
         }
     }
 
     @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        invalidate();
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new ny0(this.d, this.f25988c.getContext()));
     }
 }

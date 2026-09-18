@@ -1,116 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class aw extends Drawable {
-    public final int f24460a;
-    public RectF f24461b;
-    public Paint f24462c;
+import org.telegram.ui.dc1;
+public final class aw extends nm0 {
+    public long h;
+    public boolean f22495n;
+    public float f22496r;
+    public final cw f22497s;
 
-    public aw(int i10, byte b10) {
-        this.f24460a = i10;
+    public aw(cw cwVar, Context context) {
+        super(context);
+        float f7;
+        this.f22497s = cwVar;
+        boolean z10 = cwVar.f23143n;
+        this.f22495n = z10;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        this.f22496r = f7;
+        setSmoothScrollingEnabled(true);
+        int i10 = 0;
+        setHorizontalScrollBarEnabled(false);
+        setVerticalScrollBarEnabled(false);
+        setNestedScrollingEnabled(true);
+        dc1 dc1Var = new dc1(this, context, 6);
+        this.f26505b = dc1Var;
+        dc1Var.setOrientation(0);
+        addView(this.f26505b, new FrameLayout.LayoutParams(-2, -1));
+        while (true) {
+            int[] iArr = cw.f23137e0;
+            if (i10 < 8) {
+                zv zvVar = new zv(this, context, iArr[i10], cw.f23138f0[i10]);
+                zvVar.setContentDescription(cw.f(i10));
+                this.f26505b.addView(zvVar);
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f24460a) {
-            case 0:
-                RectF rectF = this.f24461b;
-                rectF.set(0.0f, 0.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.0f), AndroidUtilities.dpf2(8.0f), this.f24462c);
-                return;
-            case 1:
-                RectF rectF2 = this.f24461b;
-                rectF2.set(getBounds());
-                float height = rectF2.height() * 0.2f;
-                canvas.drawRoundRect(rectF2, height, height, this.f24462c);
-                return;
-            case 2:
-                RectF rectF3 = this.f24461b;
-                rectF3.set(getBounds());
-                rectF3.inset(AndroidUtilities.dp(1.0f), (rectF3.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
-                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f24462c);
-                return;
-            default:
-                RectF rectF4 = this.f24461b;
-                rectF4.set(getBounds());
-                rectF4.inset(0.0f, (rectF4.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
-                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f24462c);
-                return;
+    public final void d(MotionEvent motionEvent) {
+        if (this.f22495n && !this.d) {
+            int action = motionEvent.getAction();
+            if (action != 0) {
+                if (action != 1) {
+                    if (action != 2) {
+                        return;
+                    }
+                } else {
+                    this.f26504a = false;
+                    return;
+                }
+            }
+            this.f26504a = true;
+            if (!this.d) {
+                this.e = -1;
+            }
+            this.f22497s.requestDisallowInterceptTouchEvent(true);
         }
     }
 
     @Override
-    public final int getOpacity() {
-        switch (this.f24460a) {
-            case 0:
-                return -3;
-            case 1:
-                return -3;
-            case 2:
-                return -2;
-            default:
-                return -2;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(Math.min(5.7f, this.f26505b.getChildCount()) * 32.0f), this.f22496r), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        switch (this.f24460a) {
-            case 0:
-                this.f24462c.setAlpha(i10);
-                return;
-            case 1:
-                this.f24462c.setAlpha(i10);
-                return;
-            case 2:
-                this.f24462c.setAlpha(i10);
-                return;
-            default:
-                this.f24462c.setAlpha(i10);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f24460a) {
-            case 0:
-                return;
-            case 1:
-                this.f24462c.setColorFilter(colorFilter);
-                return;
-            case 2:
-            default:
-                return;
-        }
-    }
-
-    public aw() {
-        this.f24460a = 1;
-        this.f24461b = new RectF();
-        this.f24462c = new Paint(1);
-    }
-
-    public aw(int i10) {
-        this.f24460a = 0;
-        Paint paint = new Paint();
-        this.f24462c = paint;
-        this.f24461b = new RectF();
-        paint.setAlpha(45);
-        paint.setColor(i10);
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        d(motionEvent);
+        return super.onTouchEvent(motionEvent);
     }
 }

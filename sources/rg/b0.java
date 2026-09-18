@@ -1,24 +1,20 @@
 package rg;
 
-import z7.hb;
-import z7.wf;
-public final class b0 implements Runnable {
-    public final int f45136a;
-    public final Object f45137b;
+import android.view.View;
+import java.util.ArrayList;
+public final class b0 implements View.OnClickListener {
+    public final c0 f42282a;
 
-    public b0(Object obj, int i10) {
-        this.f45136a = i10;
-        this.f45137b = obj;
+    public b0(c0 c0Var) {
+        this.f42282a = c0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: rg.b0.run():void");
-    }
-
-    public b0(wf wfVar) {
-        this.f45136a = 12;
-        hb hbVar = hb.UNKNOWN_EVENT;
-        this.f45137b = wfVar;
+    public final void onClick(View view) {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel());
+        j0 j0Var = this.f42282a.f42293c;
+        int i10 = j0.V0;
+        j0Var.D1(arrayList);
     }
 }

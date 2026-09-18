@@ -1,44 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class vi implements Runnable {
-    public final int f41567a;
-    public final wi f41568b;
-    public final int f41569c;
-    public final boolean d;
-    public final org.telegram.ui.Components.fk0 f41570e;
-    public final float f41571f;
-    public final float h;
-    public final ah.j1 f41572n;
+import android.app.Activity;
+public final class vi extends org.telegram.ui.Cells.w0 {
+    public final bo f38437l2;
 
-    public vi(wi wiVar, int i10, boolean z10, org.telegram.ui.Components.fk0 fk0Var, float f7, float f10, ah.j1 j1Var, int i11) {
-        this.f41567a = i11;
-        this.f41568b = wiVar;
-        this.f41569c = i10;
-        this.d = z10;
-        this.f41570e = fk0Var;
-        this.f41571f = f7;
-        this.h = f10;
-        this.f41572n = j1Var;
+    public vi(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, bo boVar) {
+        super(activity, f6Var, false);
+        this.f38437l2 = boVar;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f41567a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new vi(this.f41568b, this.f41569c, this.d, this.f41570e, this.f41571f, this.h, this.f41572n, 1), 50L);
-                return;
-            default:
-                co coVar = this.f41568b.f42408s;
-                org.telegram.ui.Cells.a0 q82 = coVar.q8(this.f41569c, true);
-                if (this.d) {
-                    i10 = ((org.telegram.ui.ActionBar.n2) coVar).currentAccount;
-                    ah.e1.d(coVar, this.f41570e, q82, null, this.f41571f, this.h, this.f41572n, i10, 1);
-                    ah.e1.f();
-                    return;
-                }
-                return;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        float y3 = getY();
+        bo boVar = this.f38437l2;
+        W(boVar.R0.getY() + y3, boVar.X0.getBackgroundSizeY());
     }
 }

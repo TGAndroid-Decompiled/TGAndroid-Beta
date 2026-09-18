@@ -1,31 +1,14 @@
 package org.telegram.ui;
 
-import com.google.android.gms.common.api.Status;
-public final class v9 implements com.google.android.gms.common.api.o {
-    public final int f41453a;
+import org.telegram.messenger.MrzRecognizer;
+public interface v9 {
+    String J0();
 
-    public v9(int i10) {
-        this.f41453a = i10;
-    }
+    void K(String str);
 
-    @Override
-    public final void a(Status status) {
-        switch (this.f41453a) {
-            case 0:
-                b5.d.f2487b.decrementAndGet();
-                return;
-            case 1:
-                b5.d.f2487b.decrementAndGet();
-                return;
-            case 2:
-                b5.d.f2487b.decrementAndGet();
-                return;
-            case 3:
-                b5.d.f2487b.decrementAndGet();
-                return;
-            default:
-                b5.d.f2487b.decrementAndGet();
-                return;
-        }
-    }
+    void T0(MrzRecognizer.Result result);
+
+    boolean e1(String str, n9 n9Var);
+
+    void onDismiss();
 }

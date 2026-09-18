@@ -1,73 +1,28 @@
 package zg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class a extends Drawable {
-    public final TextPaint f51628a;
-    public final TextPaint f51629b;
-    public final RectF f51630c;
-    public final Drawable d;
-    public float f51631e;
-    public String f51632f;
+import android.animation.ValueAnimator;
+public final class a implements ValueAnimator.AnimatorUpdateListener {
+    public final int f48985a;
+    public final b f48986b;
+    public final e0 f48987c;
 
-    public a(Context context) {
-        TextPaint textPaint = new TextPaint(1);
-        this.f51628a = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.f51629b = textPaint2;
-        this.f51630c = new RectF();
-        textPaint.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint2.setColor(-6915073);
-        this.d = context.getDrawable(R.drawable.mini_boost_badge);
+    public a(b bVar, e0 e0Var, int i10) {
+        this.f48985a = i10;
+        this.f48986b = bVar;
+        this.f48987c = e0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f51630c;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f51629b);
-        int dp = AndroidUtilities.dp(2.0f) + bounds.left;
-        int dp2 = AndroidUtilities.dp(1.0f) + bounds.top;
-        int dp3 = AndroidUtilities.dp(2.0f) + bounds.left;
-        Drawable drawable = this.d;
-        drawable.setBounds(dp, dp2, drawable.getIntrinsicWidth() + dp3, drawable.getIntrinsicHeight() + AndroidUtilities.dp(1.0f) + getBounds().top);
-        drawable.draw(canvas);
-        String str = this.f51632f;
-        if (str != null) {
-            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.f51628a);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f48985a) {
+            case 0:
+                this.f48986b.f48993f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f48987c.invalidate();
+                return;
+            default:
+                this.f48986b.f48993f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f48987c.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (AndroidUtilities.dp(23.0f) + this.f51631e);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -1;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

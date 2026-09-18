@@ -1,233 +1,87 @@
 package fi;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.webkit.JsPromptResult;
-import android.widget.EditText;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
+import ai.v0;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.lb;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.vc0;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.ExternalActionActivity;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ui1;
-import org.telegram.ui.y51;
-import org.telegram.ui.zo0;
-public final class e0 implements DialogInterface.OnDismissListener {
-    public final int f9626a;
-    public final Object f9627b;
-    public final Object f9628c;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.f61;
+import w7.x5;
+public final class e0 extends h0 {
+    public final k0 h;
 
-    public e0(int i10, Object obj, Object obj2) {
-        this.f9626a = i10;
-        this.f9627b = obj;
-        this.f9628c = obj2;
+    public e0(k0 k0Var, Context context) {
+        super(k0Var, context);
+        int i10;
+        f6 f6Var;
+        f6 f6Var2;
+        int i11;
+        f6 f6Var3;
+        this.h = k0Var;
+        AndroidUtilities.removeFromParent(this.f9111b);
+        i10 = ((g3) k0Var).currentAccount;
+        t tVar = new t(k0Var, 3);
+        u uVar = new u(k0Var, 2);
+        f6Var = ((g3) k0Var).resourcesProvider;
+        f61 f61Var = new f61(context, i10, 0, false, tVar, uVar, null, f6Var);
+        this.d = f61Var;
+        f61Var.q1();
+        f61 f61Var2 = this.d;
+        f61Var2.Y2.f29854r = false;
+        f61Var2.setClipToPadding(false);
+        this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
+        this.f9112c.addView(k0Var.G, x5.g());
+        this.f9112c.addView(this.d, 0, x5.c(-1.0f, -1));
+        this.f9112c.addView(k0Var.I, x5.g());
+        f6Var2 = ((g3) k0Var).resourcesProvider;
+        org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, f6Var2);
+        this.f9110a = kVar;
+        kVar.setOccupyStatusBar(false);
+        this.f9110a.setTitleColor(k0Var.getThemedColor(j6.G6));
+        this.f9110a.A(k0Var.getThemedColor(j6.f19266z8), false);
+        org.telegram.ui.ActionBar.k kVar2 = this.f9110a;
+        boolean z10 = k0Var.N;
+        if (z10) {
+            i11 = R.drawable.ic_ab_close;
+        } else {
+            i11 = R.drawable.ic_ab_back;
+        }
+        kVar2.setBackButtonImage(i11);
+        this.f9110a.B(k0Var.getThemedColor(j6.f19247y8), false);
+        this.f9110a.setTitle(LocaleController.getString(R.string.CommunityAddAChatToCommunity));
+        this.f9110a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
+        this.f9110a.setActionBarMenuOnItemClick(new ei.t(this, 6));
+        this.f9112c.addView(this.f9110a, x5.e(-1, 56, 48));
+        this.f9112c.addView(k0Var.E, x5.d(-1, 40.0f, 48, 11.0f, 0.0f, 11.0f, 0.0f));
+        org.telegram.ui.ActionBar.a0 n10 = this.f9110a.n();
+        n10.setGlassMode(true);
+        n10.setTranslationX(-AndroidUtilities.dp(7.0f));
+        n10.a(3, R.drawable.outline_header_search);
+        Context context2 = getContext();
+        f6Var3 = ((g3) k0Var).resourcesProvider;
+        ci.d dVar = new ci.d(context2, f6Var3, true);
+        k0Var.f9129r = dVar;
+        dVar.e();
+        k0Var.f9129r.setText(LocaleController.getString(R.string.OK));
+        k0Var.f9129r.setOnClickListener(new v0(this, 18));
+        if (z10) {
+            k0Var.f9129r.setVisibility(8);
+        }
+        this.f9112c.addView(k0Var.f9129r, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        a();
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        Runnable runnable;
-        org.telegram.ui.ActionBar.n2 lastFragment;
-        HashMap hashMap;
-        HashMap hashMap2;
-        int i10 = this.f9626a;
-        Object obj = this.f9627b;
-        Object obj2 = this.f9628c;
-        switch (i10) {
-            case 0:
-                boolean[] zArr = (boolean[]) obj;
-                bi.r3 r3Var = (bi.r3) obj2;
-                if (!zArr[0]) {
-                    r3Var.run(Boolean.FALSE);
-                    zArr[0] = true;
-                    return;
-                }
-                return;
-            case 1:
-                boolean[] zArr2 = (boolean[]) obj;
-                org.telegram.ui.web.b0 b0Var = (org.telegram.ui.web.b0) obj2;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    b0Var.run(null);
-                    return;
-                }
-                return;
-            case 2:
-                hg.k1 k1Var = (hg.k1) obj2;
-                k1Var.getClass();
-                if (!((boolean[]) obj)[0]) {
-                    k1Var.Q();
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
-                DialogInterface.OnDismissListener onDismissListener = (DialogInterface.OnDismissListener) obj2;
-                n2Var.getClass();
-                if (onDismissListener != null) {
-                    onDismissListener.onDismiss(dialogInterface);
-                }
-                n2Var.onDialogDismiss((Dialog) dialogInterface);
-                if (dialogInterface == n2Var.visibleDialog) {
-                    n2Var.visibleDialog = null;
-                    return;
-                }
-                return;
-            case 4:
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) obj;
-                org.telegram.ui.ActionBar.l2 l2Var = (org.telegram.ui.ActionBar.l2) obj2;
-                n2Var2.onPause();
-                n2Var2.onFragmentDestroy();
-                if (l2Var != null && (runnable = l2Var.f21144b) != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 5:
-                q0.a aVar = (q0.a) obj2;
-                if (!((AtomicBoolean) obj).get()) {
-                    aVar.accept(Boolean.FALSE);
-                    return;
-                }
-                return;
-            case 6:
-                AndroidUtilities.hideKeyboard((EditText) obj);
-                AndroidUtilities.hideKeyboard((EditText) obj2);
-                return;
-            case 7:
-                ((org.telegram.ui.web.b1) obj).run(Integer.valueOf(((vc0) obj2).getValue()));
-                return;
-            case 8:
-                ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
-                ArrayList arrayList = ExternalActionActivity.f33396x;
-                externalActionActivity.getClass();
-                externalActionActivity.setResult(1, new Intent().putExtra("error", ((TLRPC.TL_error) obj2).text));
-                externalActionActivity.finish();
-                return;
-            case 9:
-                LaunchActivity launchActivity = (LaunchActivity) obj;
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                if (b2Var == launchActivity.H0) {
-                    ActionBarLayout actionBarLayout = launchActivity.f33454q0;
-                    if (actionBarLayout == null) {
-                        lastFragment = null;
-                    } else {
-                        lastFragment = actionBarLayout.getLastFragment();
-                    }
-                    try {
-                        String str = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
-                        if (lastFragment != null) {
-                            yc a02 = yc.a0(lastFragment);
-                            int i11 = R.raw.msg_translate;
-                            if (str.equals("en")) {
-                                hashMap2 = launchActivity.K0;
-                            } else {
-                                hashMap2 = launchActivity.J0;
-                            }
-                            qc Q = a02.Q(i11, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap2));
-                            Q.f29680j = 5000;
-                            Q.j();
-                        } else {
-                            yc ycVar = new yc(lb.a(launchActivity), null);
-                            int i12 = R.raw.msg_translate;
-                            if (str.equals("en")) {
-                                hashMap = launchActivity.K0;
-                            } else {
-                                hashMap = launchActivity.J0;
-                            }
-                            qc Q2 = ycVar.Q(i12, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap));
-                            Q2.f29680j = 5000;
-                            Q2.j();
-                        }
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                    }
-                    launchActivity.H0 = null;
-                } else if (b2Var == launchActivity.F0) {
-                    MessagesController.getGlobalMainSettings();
-                    SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                    edit.putBoolean("proxy_enabled", false);
-                    edit.putBoolean("proxy_enabled_calls", false);
-                    edit.commit();
-                    ConnectionsManager.setProxySettings(false, null);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
-                    launchActivity.F0 = null;
-                }
-                launchActivity.E0.remove(b2Var);
-                return;
-            case 10:
-                zo0 zo0Var = (zo0) obj2;
-                if (!((boolean[]) obj)[0]) {
-                    zo0Var.run(Boolean.FALSE);
-                    return;
-                }
-                return;
-            case 11:
-                y51 y51Var = (y51) obj2;
-                if (!((boolean[]) obj)[0]) {
-                    y51Var.c(true);
-                }
-                y51Var.f36318w = null;
-                return;
-            case 12:
-                ui1 ui1Var = (ui1) obj2;
-                if (!((boolean[]) obj)[0]) {
-                    ui1Var.f41147u0.b();
-                    return;
-                }
-                return;
-            case 13:
-                org.telegram.ui.web.d1 d1Var = (org.telegram.ui.web.d1) obj;
-                Runnable runnable2 = (Runnable) obj2;
-                if (runnable2 != null) {
-                    d1Var.getClass();
-                    runnable2.run();
-                }
-                d1Var.f42041c0 = null;
-                return;
-            case 14:
-                boolean[] zArr3 = (boolean[]) obj;
-                JsPromptResult jsPromptResult = (JsPromptResult) obj2;
-                if (!zArr3[0]) {
-                    zArr3[0] = true;
-                    jsPromptResult.cancel();
-                    return;
-                }
-                return;
-            case 15:
-                bi.g gVar = (bi.g) obj2;
-                if (!((AtomicBoolean) obj).get()) {
-                    gVar.run();
-                    return;
-                }
-                return;
-            default:
-                yh.l4 l4Var = (yh.l4) obj2;
-                if (!((boolean[]) obj)[0]) {
-                    l4Var.run(Boolean.FALSE, null);
-                    return;
-                }
-                return;
-        }
+    public final float b() {
+        return yf.e0.b(this.h.f9126c.e) * super.b();
     }
 
-    public e0(Object obj, boolean[] zArr, int i10) {
-        this.f9626a = i10;
-        this.f9628c = obj;
-        this.f9627b = zArr;
+    @Override
+    public final void c() {
+        super.c();
+        this.h.E.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, b() + AndroidUtilities.dp(4.0f)));
     }
 }

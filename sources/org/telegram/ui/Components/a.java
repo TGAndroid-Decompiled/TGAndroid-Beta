@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.LanguageDetector;
 public final class a implements LanguageDetector.StringCallback {
-    public final int f24199a;
-    public final f0 f24200b;
+    public final int f22257a;
+    public final e0 f22258b;
 
-    public a(f0 f0Var, int i10) {
-        this.f24199a = i10;
-        this.f24200b = f0Var;
+    public a(e0 e0Var, int i10) {
+        this.f22257a = i10;
+        this.f22258b = e0Var;
     }
 
     @Override
     public final void run(String str) {
-        switch (this.f24199a) {
+        switch (this.f22257a) {
             case 0:
-                f0 f0Var = this.f24200b;
-                f0Var.f25836r0 = str;
-                f0Var.O0.N(true);
+                e0 e0Var = this.f22258b;
+                e0Var.f23434r0 = str;
+                e0Var.O0.N(true);
                 return;
             default:
-                f0 f0Var2 = this.f24200b;
-                f0Var2.f25836r0 = str;
-                f0Var2.O0.N(true);
+                e0 e0Var2 = this.f22258b;
+                e0Var2.f23434r0 = str;
+                e0Var2.O0.N(true);
                 return;
         }
     }

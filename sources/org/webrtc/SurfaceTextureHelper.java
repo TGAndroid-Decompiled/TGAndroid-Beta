@@ -4,6 +4,7 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
+import hg.k0;
 import java.util.concurrent.Callable;
 import org.webrtc.EglBase;
 import org.webrtc.TextureBufferImpl;
@@ -47,8 +48,8 @@ public class SurfaceTextureHelper {
             public SurfaceTextureHelper call() {
                 try {
                     return new SurfaceTextureHelper(context, handler, z10, yuvConverter, frameRefMonitor);
-                } catch (RuntimeException e7) {
-                    Logging.e("SurfaceTextureHelper", str + " create failure", e7);
+                } catch (RuntimeException e) {
+                    Logging.e("SurfaceTextureHelper", str + " create failure", e);
                     return null;
                 }
             }
@@ -197,12 +198,12 @@ public class SurfaceTextureHelper {
         if (i10 > 0) {
             if (i11 > 0) {
                 this.surfaceTexture.setDefaultBufferSize(i10, i11);
-                this.handler.post(new hg.n(this, i10, i11, 12));
+                this.handler.post(new gg.n(this, i10, i11, 12));
                 return;
             }
-            throw new IllegalArgumentException(i2.g.i(i11, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(k0.i(i11, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(i2.g.i(i10, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(k0.i(i10, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {
@@ -291,10 +292,10 @@ public class SurfaceTextureHelper {
                     }
                 }, handler);
                 return;
-            } catch (RuntimeException e7) {
+            } catch (RuntimeException e) {
                 this.eglBase.release();
                 handler.getLooper().quit();
-                throw e7;
+                throw e;
             }
         }
         throw new IllegalStateException("SurfaceTextureHelper must be created on the handler thread");

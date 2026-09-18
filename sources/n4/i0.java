@@ -6,13 +6,13 @@ import android.os.Parcelable;
 import android.util.Log;
 public final class i0 implements Parcelable {
     public static final Parcelable.Creator<i0> CREATOR = new m8.h(11);
-    public final int f16452a;
-    public final float f16453b;
-    public Rating f16454c;
+    public final int f14964a;
+    public final float f14965b;
+    public Rating f14966c;
 
     public i0(int i10, float f7) {
-        this.f16452a = i10;
-        this.f16453b = f7;
+        this.f14964a = i10;
+        this.f14965b = f7;
     }
 
     public static i0 c(float f7) {
@@ -46,15 +46,15 @@ public final class i0 implements Parcelable {
     }
 
     public final float a() {
-        int i10 = this.f16452a;
+        int i10 = this.f14964a;
         if ((i10 == 3 || i10 == 4 || i10 == 5) && b()) {
-            return this.f16453b;
+            return this.f14965b;
         }
         return -1.0f;
     }
 
     public final boolean b() {
-        if (this.f16453b >= 0.0f) {
+        if (this.f14965b >= 0.0f) {
             return true;
         }
         return false;
@@ -62,15 +62,15 @@ public final class i0 implements Parcelable {
 
     @Override
     public final int describeContents() {
-        return this.f16452a;
+        return this.f14964a;
     }
 
     public final String toString() {
         String valueOf;
         StringBuilder sb2 = new StringBuilder("Rating:style=");
-        sb2.append(this.f16452a);
+        sb2.append(this.f14964a);
         sb2.append(" rating=");
-        float f7 = this.f16453b;
+        float f7 = this.f14965b;
         if (f7 < 0.0f) {
             valueOf = "unrated";
         } else {
@@ -82,7 +82,7 @@ public final class i0 implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f16452a);
-        parcel.writeFloat(this.f16453b);
+        parcel.writeInt(this.f14964a);
+        parcel.writeFloat(this.f14965b);
     }
 }

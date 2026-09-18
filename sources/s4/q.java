@@ -7,56 +7,57 @@ import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import rg.w1;
 public final class q implements Runnable {
-    public static final ThreadLocal f45861e = new ThreadLocal();
-    public static final fb.i f45862f = new fb.i(5);
-    public ArrayList f45863a;
-    public long f45864b;
-    public long f45865c;
+    public static final ThreadLocal e = new ThreadLocal();
+    public static final fb.i f42811f = new fb.i(5);
+    public ArrayList f42812a;
+    public long f42813b;
+    public long f42814c;
     public ArrayList d;
 
     public static c1 c(RecyclerView recyclerView, int i10, long j3) {
-        int E = recyclerView.f1872e.E();
-        for (int i11 = 0; i11 < E; i11++) {
-            c1 U = RecyclerView.U(recyclerView.f1872e.D(i11));
-            if (U.f45741c == i10 && !U.h()) {
+        int L = recyclerView.e.L();
+        for (int i11 = 0; i11 < L; i11++) {
+            c1 V = RecyclerView.V(recyclerView.e.K(i11));
+            if (V.f42704c == i10 && !V.h()) {
                 return null;
             }
         }
-        pf.e eVar = recyclerView.f1867b;
+        of.e eVar = recyclerView.f2840b;
         try {
             try {
-                recyclerView.g0();
+                recyclerView.h0();
                 c1 j10 = eVar.j(i10, j3);
                 if (j10 != null) {
                     if (j10.g() && !j10.h()) {
-                        eVar.g(j10.f45739a);
+                        eVar.g(j10.f42702a);
                     } else {
                         eVar.a(j10, false);
                     }
                 }
-                recyclerView.h0(false);
+                recyclerView.i0(false);
                 return j10;
             } catch (Exception e7) {
                 FileLog.e(e7);
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.b(recyclerView, 27));
-                recyclerView.h0(false);
+                AndroidUtilities.runOnUIThread(new w1(recyclerView, 1));
+                recyclerView.i0(false);
                 return null;
             }
         } catch (Throwable th2) {
-            recyclerView.h0(false);
+            recyclerView.i0(false);
             throw th2;
         }
     }
 
     public final void a(RecyclerView recyclerView, int i10, int i11) {
-        if (recyclerView.G && this.f45864b == 0) {
-            this.f45864b = recyclerView.getNanoTime();
+        if (recyclerView.G && this.f42813b == 0) {
+            this.f42813b = recyclerView.getNanoTime();
             recyclerView.post(this);
         }
-        a0.h hVar = recyclerView.f1890s0;
-        hVar.f16a = i10;
-        hVar.f17b = i11;
+        a0.h hVar = recyclerView.f2862s0;
+        hVar.f14a = i10;
+        hVar.f15b = i11;
     }
 
     public final void b(long j3) {
@@ -67,13 +68,13 @@ public final class q implements Runnable {
         p pVar2;
         boolean z10;
         ArrayList arrayList = this.d;
-        ArrayList arrayList2 = this.f45863a;
+        ArrayList arrayList2 = this.f42812a;
         int size = arrayList2.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             RecyclerView recyclerView3 = (RecyclerView) arrayList2.get(i11);
             int windowVisibility = recyclerView3.getWindowVisibility();
-            a0.h hVar = recyclerView3.f1890s0;
+            a0.h hVar = recyclerView3.f2862s0;
             if (windowVisibility == 0) {
                 hVar.c(recyclerView3, false);
                 i10 += hVar.d;
@@ -84,8 +85,8 @@ public final class q implements Runnable {
         for (int i13 = 0; i13 < size; i13++) {
             RecyclerView recyclerView4 = (RecyclerView) arrayList2.get(i13);
             if (recyclerView4.getWindowVisibility() == 0) {
-                a0.h hVar2 = recyclerView4.f1890s0;
-                int abs = Math.abs(hVar2.f17b) + Math.abs(hVar2.f16a);
+                a0.h hVar2 = recyclerView4.f2862s0;
+                int abs = Math.abs(hVar2.f15b) + Math.abs(hVar2.f14a);
                 for (int i14 = 0; i14 < hVar2.d * 2; i14 += 2) {
                     if (i12 >= arrayList.size()) {
                         Object obj = new Object();
@@ -94,76 +95,76 @@ public final class q implements Runnable {
                     } else {
                         pVar2 = (p) arrayList.get(i12);
                     }
-                    int[] iArr = (int[]) hVar2.f18c;
+                    int[] iArr = (int[]) hVar2.f16c;
                     int i15 = iArr[i14 + 1];
                     if (i15 <= abs) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    pVar2.f45854a = z10;
-                    pVar2.f45855b = abs;
-                    pVar2.f45856c = i15;
+                    pVar2.f42805a = z10;
+                    pVar2.f42806b = abs;
+                    pVar2.f42807c = i15;
                     pVar2.d = recyclerView4;
-                    pVar2.f45857e = iArr[i14];
+                    pVar2.e = iArr[i14];
                     i12++;
                 }
             }
         }
-        Collections.sort(arrayList, f45862f);
+        Collections.sort(arrayList, f42811f);
         for (int i16 = 0; i16 < arrayList.size() && (recyclerView = (pVar = (p) arrayList.get(i16)).d) != null; i16++) {
-            if (pVar.f45854a) {
+            if (pVar.f42805a) {
                 j10 = Long.MAX_VALUE;
             } else {
                 j10 = j3;
             }
-            c1 c10 = c(recyclerView, pVar.f45857e, j10);
-            if (c10 != null && c10.f45740b != null && c10.g() && !c10.h() && (recyclerView2 = (RecyclerView) c10.f45740b.get()) != null) {
-                if (recyclerView2.Q && recyclerView2.f1872e.E() != 0) {
-                    recyclerView2.o0();
+            c1 c10 = c(recyclerView, pVar.e, j10);
+            if (c10 != null && c10.f42703b != null && c10.g() && !c10.h() && (recyclerView2 = (RecyclerView) c10.f42703b.get()) != null) {
+                if (recyclerView2.Q && recyclerView2.e.L() != 0) {
+                    recyclerView2.p0();
                 }
-                a0.h hVar3 = recyclerView2.f1890s0;
+                a0.h hVar3 = recyclerView2.f2862s0;
                 hVar3.c(recyclerView2, true);
                 if (hVar3.d != 0) {
                     try {
-                        int i17 = n0.g.f16346a;
+                        int i17 = n0.g.f14863a;
                         Trace.beginSection("RV Nested Prefetch");
-                        z0 z0Var = recyclerView2.f1891t0;
-                        h0 h0Var = recyclerView2.f1894w;
+                        z0 z0Var = recyclerView2.f2863t0;
+                        h0 h0Var = recyclerView2.f2866w;
                         z0Var.d = 1;
-                        z0Var.f45919e = h0Var.h();
-                        z0Var.f45921g = false;
+                        z0Var.e = h0Var.h();
+                        z0Var.f42864g = false;
                         z0Var.h = false;
-                        z0Var.f45922i = false;
+                        z0Var.f42865i = false;
                         for (int i18 = 0; i18 < hVar3.d * 2; i18 += 2) {
-                            c(recyclerView2, ((int[]) hVar3.f18c)[i18], j3);
+                            c(recyclerView2, ((int[]) hVar3.f16c)[i18], j3);
                         }
                         Trace.endSection();
-                        pVar.f45854a = false;
-                        pVar.f45855b = 0;
-                        pVar.f45856c = 0;
+                        pVar.f42805a = false;
+                        pVar.f42806b = 0;
+                        pVar.f42807c = 0;
                         pVar.d = null;
-                        pVar.f45857e = 0;
+                        pVar.e = 0;
                     } catch (Throwable th2) {
-                        int i19 = n0.g.f16346a;
+                        int i19 = n0.g.f14863a;
                         Trace.endSection();
                         throw th2;
                     }
                 }
             }
-            pVar.f45854a = false;
-            pVar.f45855b = 0;
-            pVar.f45856c = 0;
+            pVar.f42805a = false;
+            pVar.f42806b = 0;
+            pVar.f42807c = 0;
             pVar.d = null;
-            pVar.f45857e = 0;
+            pVar.e = 0;
         }
     }
 
     @Override
     public final void run() {
-        ArrayList arrayList = this.f45863a;
+        ArrayList arrayList = this.f42812a;
         try {
-            int i10 = n0.g.f16346a;
+            int i10 = n0.g.f14863a;
             Trace.beginSection("RV Prefetch");
             if (!arrayList.isEmpty()) {
                 int size = arrayList.size();
@@ -175,14 +176,14 @@ public final class q implements Runnable {
                     }
                 }
                 if (j3 != 0) {
-                    b(TimeUnit.MILLISECONDS.toNanos(j3) + this.f45865c);
+                    b(TimeUnit.MILLISECONDS.toNanos(j3) + this.f42814c);
                 }
             }
-            this.f45864b = 0L;
+            this.f42813b = 0L;
             Trace.endSection();
         } catch (Throwable th2) {
-            this.f45864b = 0L;
-            int i12 = n0.g.f16346a;
+            this.f42813b = 0L;
+            int i12 = n0.g.f14863a;
             Trace.endSection();
             throw th2;
         }

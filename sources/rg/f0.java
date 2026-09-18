@@ -1,68 +1,86 @@
 package rg;
 
-import org.telegram.ui.ir0;
-import org.telegram.ui.zt0;
-public final class f0 implements qg.b1 {
-    public final ir0 f45183a;
-    public final zt0 f45184b;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.k5;
+import org.telegram.ui.t5;
+import w7.x5;
+public final class f0 extends FrameLayout {
+    public final ImageView f42313a;
+    public final k5 f42314b;
+    public final t5 f42315c;
+    public final k5 d;
+    public e0 e;
+    public d0 f42316f;
 
-    public f0(zt0 zt0Var, ir0 ir0Var) {
-        this.f45184b = zt0Var;
-        this.f45183a = ir0Var;
-    }
-
-    @Override
-    public final void a() {
-        this.f45183a.run();
-    }
-
-    @Override
-    public final void b() {
-        g0 g0Var = this.f45184b.X0;
-        if (g0Var != null) {
-            g0Var.invalidate();
-        }
-    }
-
-    @Override
-    public final void c() {
-        zt0 zt0Var = this.f45184b;
-        if (zt0Var.f45358k1) {
-            zt0Var.f45358k1 = false;
-            return;
-        }
-        zt0Var.f45370t1.b(1);
-        zt0Var.o((qg.m) qg.m.f44481a.get(0));
-    }
-
-    @Override
-    public final boolean d() {
-        boolean z10;
-        zt0 zt0Var = this.f45184b;
-        if (zt0Var.S0 == null) {
-            z10 = true;
+    public f0(j0 j0Var, Context context, f6 f6Var) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        float f7;
+        float f10;
+        i10 = ((g3) j0Var).backgroundPaddingLeft;
+        i11 = ((g3) j0Var).backgroundPaddingLeft;
+        setPadding(i10, 0, i11, 0);
+        ImageView imageView = new ImageView(context);
+        this.f42313a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.Lj, f6Var), PorterDuff.Mode.SRC_IN));
+        if (LocaleController.isRTL) {
+            i12 = 5;
         } else {
-            z10 = false;
+            i12 = 3;
         }
-        if (!z10) {
-            zt0Var.r0(null, true);
+        addView(imageView, x5.d(24, 24.0f, i12 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
+        k5 k5Var = new k5(context);
+        this.f42314b = k5Var;
+        k5Var.setWidthWrapContent(true);
+        k5Var.setTextColor(j6.v0(j6.f18970j5, f6Var));
+        k5Var.setTextSize(14);
+        boolean z10 = LocaleController.isRTL;
+        int i13 = (z10 ? 5 : 3) | 16;
+        if (z10) {
+            f7 = 30.0f;
+        } else {
+            f7 = 60.0f;
         }
-        return z10;
+        if (z10) {
+            f10 = 60.0f;
+        } else {
+            f10 = 30.0f;
+        }
+        addView(k5Var, x5.d(-2, -2.0f, i13, f7, 0.0f, f10, 0.0f));
+        k5 k5Var2 = new k5(context);
+        this.d = k5Var2;
+        k5Var2.setTextColor(-1);
+        k5Var2.setWidthWrapContent(true);
+        k5Var2.setTypeface(AndroidUtilities.bold());
+        k5Var2.setTextSize(14);
+        t5 t5Var = new t5(this, context, f6Var);
+        this.f42315c = t5Var;
+        t5Var.setWillNotDraw(false);
+        t5Var.addView(k5Var2, x5.e(-2, -2, 17));
+        addView(t5Var, x5.c(-1.0f, -1));
     }
 
     @Override
-    public final void e() {
-        zt0 zt0Var = this.f45184b;
-        zt0Var.F0.f44590a.f();
-        zt0Var.l1.setViewHidden(false);
-    }
-
-    @Override
-    public final void f() {
-        zt0 zt0Var = this.f45184b;
-        if (zt0Var.S0 != null) {
-            zt0Var.r0(null, true);
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        if (this.f42316f != null) {
+            f7 = 49.0f;
+        } else {
+            f7 = 36.0f;
         }
-        zt0Var.l1.setViewHidden(true);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824));
     }
 }

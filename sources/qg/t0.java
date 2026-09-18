@@ -1,104 +1,119 @@
 package qg;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.PointF;
-import org.telegram.ui.Components.iv0;
-public final class t0 {
-    public final float f44584a;
-    public final float f44585b;
-    public final PointF f44586c;
-    public final PointF d;
-    public final float f44587e;
-    public final PointF f44588f;
-    public final PointF f44589g;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.wl;
+import org.telegram.ui.Components.ik0;
+import w7.x5;
+public final class t0 extends j {
+    public final r0 f41679q0;
+    public int f41680r0;
+    public int f41681s0;
+    public boolean f41682t0;
+    public q0 f41683u0;
 
-    public t0(t8.a aVar, Bitmap bitmap, iv0 iv0Var, boolean z10) {
-        float degrees;
-        PointF pointF = null;
-        PointF pointF2 = null;
-        PointF pointF3 = null;
-        PointF pointF4 = null;
-        for (t8.d dVar : aVar.f46467b) {
-            PointF pointF5 = dVar.f46475a;
-            int i10 = dVar.f46476b;
-            if (i10 != 4) {
-                if (i10 != 5) {
-                    if (i10 != 10) {
-                        if (i10 == 11) {
-                            pointF4 = b(pointF5, bitmap, iv0Var, z10);
-                        }
-                    } else {
-                        pointF2 = b(pointF5, bitmap, iv0Var, z10);
-                    }
-                } else {
-                    pointF3 = b(pointF5, bitmap, iv0Var, z10);
-                }
-            } else {
-                pointF = b(pointF5, bitmap, iv0Var, z10);
-            }
-        }
-        if (pointF != null && pointF2 != null) {
-            if (pointF.x < pointF2.x) {
-                PointF pointF6 = pointF2;
-                pointF2 = pointF;
-                pointF = pointF6;
-            }
-            PointF pointF7 = new PointF((pointF2.x * 0.5f) + (pointF.x * 0.5f), (pointF2.y * 0.5f) + (pointF.y * 0.5f));
-            this.d = pointF7;
-            float hypot = (float) Math.hypot(pointF2.x - pointF.x, pointF2.y - pointF.y);
-            this.f44587e = hypot;
-            this.f44585b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
-            this.f44584a = 2.35f * hypot;
-            float f7 = hypot * 0.8f;
-            float f10 = pointF7.x;
-            double radians = (float) Math.toRadians(degrees - 90.0f);
-            this.f44586c = new PointF((((float) Math.cos(radians)) * f7) + f10, (f7 * ((float) Math.sin(radians))) + pointF7.y);
-        }
-        if (pointF3 != null && pointF4 != null) {
-            if (pointF3.x < pointF4.x) {
-                PointF pointF8 = pointF4;
-                pointF4 = pointF3;
-                pointF3 = pointF8;
-            }
-            PointF pointF9 = new PointF((pointF4.x * 0.5f) + (pointF3.x * 0.5f), (pointF4.y * 0.5f) + (pointF3.y * 0.5f));
-            this.f44588f = pointF9;
-            float f11 = this.f44587e * 0.7f;
-            float f12 = pointF9.x;
-            double radians2 = (float) Math.toRadians(this.f44585b + 90.0f);
-            this.f44589g = new PointF((((float) Math.cos(radians2)) * f11) + f12, (f11 * ((float) Math.sin(radians2))) + pointF9.y);
-        }
+    public t0(Context context, PointF pointF, int i10, q0 q0Var, float f7, int i11) {
+        super(context, pointF);
+        r0 r0Var = new r0(context, f7);
+        this.f41679q0 = r0Var;
+        r0Var.setMaxWidth(i11);
+        this.f41683u0 = q0Var;
+        r0Var.b(i10, q0Var, false);
+        m();
+        this.f41681s0 = 3;
+        r0Var.c(3, this.f41680r0);
+        addView(r0Var, x5.e(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        k();
     }
 
-    public static PointF b(PointF pointF, Bitmap bitmap, iv0 iv0Var, boolean z10) {
-        int width;
-        int height;
-        if (z10) {
-            width = bitmap.getHeight();
-        } else {
-            width = bitmap.getWidth();
-        }
-        float f7 = width;
-        if (z10) {
-            height = bitmap.getWidth();
-        } else {
-            height = bitmap.getHeight();
-        }
-        return new PointF((iv0Var.f27272a * pointF.x) / f7, (iv0Var.f27273b * pointF.y) / height);
+    @Override
+    public final i a() {
+        return new s0(this, getContext());
     }
 
-    public final PointF a(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        return null;
-                    }
-                    return this.f44589g;
-                }
-                return this.f44588f;
-            }
-            return this.d;
+    public int getColor() {
+        return this.f41680r0;
+    }
+
+    @Override
+    public float getMaxScale() {
+        return 1.5f;
+    }
+
+    public int getNextType() {
+        int i10 = this.f41681s0 + 1;
+        if (i10 == 4) {
+            return !this.f41682t0 ? 1 : 0;
         }
-        return this.f44586c;
+        return i10;
+    }
+
+    @Override
+    public ik0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float u10 = wl.u(dp, 2.0f, getPositionX(), scaleX);
+        return new ik0(u10, wl.u(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + u10) - u10, dp2 * scaleX);
+    }
+
+    @Override
+    public float getStickyPaddingBottom() {
+        return this.f41679q0.h;
+    }
+
+    @Override
+    public float getStickyPaddingLeft() {
+        return this.f41679q0.f41635f;
+    }
+
+    @Override
+    public float getStickyPaddingRight() {
+        return this.f41679q0.f41635f;
+    }
+
+    @Override
+    public float getStickyPaddingTop() {
+        return this.f41679q0.h;
+    }
+
+    public int getType() {
+        return this.f41681s0;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        k();
+    }
+
+    public void setColor(int i10) {
+        this.f41682t0 = true;
+        this.f41680r0 = i10;
+    }
+
+    public void setMaxWidth(int i10) {
+        this.f41679q0.setMaxWidth(i10);
+    }
+
+    public void setType(int i10) {
+        this.f41681s0 = i10;
+        this.f41679q0.c(i10, this.f41680r0);
     }
 }

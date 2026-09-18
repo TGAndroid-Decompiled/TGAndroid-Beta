@@ -1,25 +1,114 @@
 package xh;
-public final class e implements Runnable {
-    public final int f49412a;
-    public final n f49413b;
 
-    public e(n nVar, int i10) {
-        this.f49412a = i10;
-        this.f49413b = nVar;
+import android.content.Context;
+import android.util.LongSparseArray;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.GiftAuctionController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.za;
+import w7.x5;
+public final class e extends za implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
+    public final j51 X;
+    public final LongSparseArray Y;
+    public ArrayList Z;
+    public boolean f45859a0;
+    public x51 f45860b0;
+
+    public e(Context context) {
+        super(context, null, false, false, 2, null);
+        int i10 = 0;
+        this.Y = new LongSparseArray();
+        this.Z = new ArrayList();
+        setBackgroundColor(j6.w0(null, j6.f18807a7, false));
+        GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
+        this.L = false;
+        this.K = AndroidUtilities.dp(12.0f);
+        fixNavigationBar();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setClickable(true);
+        this.X = j51.j(-1, linearLayout);
+        this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
+        this.d.setOverScrollMode(2);
+        this.f45860b0.N(false);
+        ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
+        int size = activeAuctions.size();
+        while (i10 < size) {
+            GiftAuctionController.Auction auction = activeAuctions.get(i10);
+            i10++;
+            GiftAuctionController.Auction auction2 = auction;
+            d dVar = new d(context, auction2);
+            dVar.f45849a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            linearLayout.addView(dVar, x5.n(-1, -2));
+            this.Y.put(auction2.giftId, dVar);
+        }
+        onActiveAuctionsUpdate(activeAuctions);
     }
 
     @Override
-    public final void run() {
-        switch (this.f49412a) {
-            case 0:
-                this.f49413b.e();
-                return;
-            case 1:
-                n.k(this.f49413b.f49457q, true, true);
-                return;
-            default:
-                this.f49413b.e();
-                return;
+    public final void dismiss() {
+        GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
+        super.dismiss();
+    }
+
+    @Override
+    public final void onActiveAuctionsUpdate(List list) {
+        int i10;
+        this.Z = new ArrayList(list);
+        this.e.setTitle(y());
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            GiftAuctionController.Auction auction = (GiftAuctionController.Auction) it.next();
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
+            if (tL_starGiftAuctionState != null) {
+                i10 = tL_starGiftAuctionState.next_round_at;
+            } else {
+                i10 = 0;
+            }
+            d dVar = (d) this.Y.get(auction.giftId);
+            if (dVar != null) {
+                dVar.b(this.f45859a0);
+                long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
+                dVar.a(max, this.f45859a0);
+                dVar.f45852f.a(max);
+            }
         }
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        super.onOpenAnimationEnd();
+        this.f45859a0 = true;
+    }
+
+    @Override
+    public final ll0 v(ml0 ml0Var) {
+        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
+        this.f45860b0 = x51Var;
+        x51Var.f29854r = false;
+        return x51Var;
+    }
+
+    @Override
+    public final CharSequence y() {
+        ArrayList arrayList = this.Z;
+        if (arrayList == null) {
+            return null;
+        }
+        return LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(arrayList.size()));
     }
 }

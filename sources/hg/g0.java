@@ -1,6 +1,73 @@
 package hg;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-public interface g0 {
-    void b(a0.i iVar, ArrayList arrayList);
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ll0;
+public final class g0 extends ll0 {
+    public final Context f10297c;
+    public final ArrayList d = new ArrayList();
+    public String e;
+    public final i0 f10298f;
+
+    public g0(i0 i0Var, Context context) {
+        this.f10298f = i0Var;
+        this.f10297c = context;
+    }
+
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f42705f == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.size() + 2;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        if (i10 == h() - 1) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void l() {
+        super.l();
+        this.f10298f.L();
+    }
+
+    @Override
+    public final void v(s4.c1 r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: hg.g0.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View x1Var;
+        Context context = this.f10297c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                x1Var = new View(context);
+                x1Var.setTag(-33024);
+            } else {
+                x1Var = new View(context);
+                x1Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
+                x1Var.setTag(-33024);
+            }
+        } else {
+            x1Var = new x1(context, this.f10298f.f26462a, false);
+        }
+        return new s4.c1(x1Var);
+    }
 }

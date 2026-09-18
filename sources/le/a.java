@@ -1,16 +1,16 @@
 package le;
 
 import android.view.View;
-import org.telegram.ui.Components.aa;
-public final class a implements d, aa {
-    public final View f15364a;
+import org.telegram.ui.Components.x9;
+public final class a implements d, x9 {
+    public final View f13981a;
 
     @Override
-    public void E(int i10, float f7, float f10, e eVar) {
-        this.f15364a.invalidate();
+    public void D(int i10, float f7, float f10, e eVar) {
+        this.f13981a.invalidate();
     }
 
     @Override
-    public void z(float f7, int i10) {
+    public void C(float f7, int i10) {
     }
 }

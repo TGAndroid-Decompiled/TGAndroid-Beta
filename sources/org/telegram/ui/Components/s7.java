@@ -1,36 +1,50 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class s7 extends aj0 {
-    public final r7 E;
-    public long F;
-    public final float G;
-    public final k8 H;
-    public float f30212r;
-    public float f30213s;
-    public int v;
-    public long f30214w;
-    public long f30215x;
-    public final r7 f30216y;
+public final class s7 extends ml0 {
+    public boolean X2;
+    public final h8 Y2;
 
-    public s7(k8 k8Var, Context context, float f7) {
-        super(context);
-        this.H = k8Var;
-        this.G = f7;
-        this.v = 0;
-        this.f30216y = new r7(this, 0);
-        this.E = new r7(this, 1);
+    public s7(h8 h8Var, Context context) {
+        super(context, null);
+        this.Y2 = h8Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.addAction(16);
+    public final boolean F0(float f7) {
+        h8 h8Var = this.Y2;
+        if (f7 < h8Var.E.getY() - h8Var.f24561n.getTop()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s7.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        h8 h8Var = this.Y2;
+        int i14 = h8Var.f24569s0;
+        if (i14 != -1 && !h8Var.f24549c.f19305n0) {
+            this.X2 = true;
+            h8Var.f24566r.h1(i14, h8Var.f24570t0 - h8Var.f24561n.getPaddingTop());
+            super.onLayout(false, i10, i11, i12, i13);
+            this.X2 = false;
+            h8Var.f24569s0 = -1;
+        } else if (h8Var.f24567r0) {
+            h8Var.f24567r0 = false;
+            this.X2 = true;
+            if (h8Var.w0(true)) {
+                super.onLayout(false, i10, i11, i12, i13);
+            }
+            this.X2 = false;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.X2) {
+            return;
+        }
+        super.requestLayout();
     }
 }

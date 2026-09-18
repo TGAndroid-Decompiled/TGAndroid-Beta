@@ -1,111 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class y11 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.f6 f32821a;
-    public final x9 f32822b;
-    public final d90 f32823c;
-    public final d90 d;
-    public int f32824e;
-    public int f32825f;
+import org.telegram.messenger.Utilities;
+public final class y11 {
+    public long f30085a;
+    public boolean f30086b;
+    public final ArrayList f30087c;
+    public final ArrayList d;
+    public final int e;
+    public boolean f30088f;
+    public float f30089g;
+    public float h;
 
-    public y11(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f32824e = 90;
-        this.f32821a = f6Var;
-        setOrientation(1);
-        x9 x9Var = new x9(context);
-        this.f32822b = x9Var;
-        x9Var.getImageReceiver().setAutoRepeatCount(1);
-        x9Var.getImageReceiver().setAutoRepeat(1);
-        x9Var.setOnClickListener(new x70(this, 22));
-        addView(x9Var, w7.x5.t(90, 90, 17, 0, 9, 0, 9));
-        d90 d90Var = new d90(context, null);
-        this.f32823c = d90Var;
-        d90Var.setTextSize(1, 20.0f);
-        d90Var.setGravity(17);
-        d90Var.setTypeface(AndroidUtilities.bold());
-        d90Var.setTextAlignment(4);
-        addView(d90Var, w7.x5.t(-1, -2, 17, 48, 0, 48, 10));
-        d90 d90Var2 = new d90(context, null);
-        this.d = d90Var2;
-        d90Var2.setTextSize(1, 14.0f);
-        d90Var2.setGravity(17);
-        d90Var2.setTextAlignment(4);
-        addView(d90Var2, w7.x5.t(-1, -2, 17, 48, 0, 48, 17));
-        d();
+    public y11() {
+        this(40);
     }
 
-    @Override
-    public final void d() {
-        int i10;
-        int i11 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f32821a;
-        int v02 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
-        d90 d90Var = this.f32823c;
-        d90Var.setTextColor(v02);
-        int i12 = org.telegram.ui.ActionBar.j6.gc;
-        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-        if (d90Var.getVisibility() != 0) {
-            i11 = org.telegram.ui.ActionBar.j6.B6;
+    public final void a(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
+        x11 x11Var;
+        ArrayList arrayList = this.f30087c;
+        int size = arrayList.size();
+        int i10 = 0;
+        for (int i11 = 0; i11 < size; i11++) {
+            x11 x11Var2 = (x11) arrayList.get(i11);
+            paint.setAlpha((int) (x11Var2.f29823f * 255.0f * f10));
+            canvas.drawPoint(x11Var2.f29820a, x11Var2.f29821b, paint);
         }
-        int v03 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
-        d90 d90Var2 = this.d;
-        d90Var2.setTextColor(v03);
-        d90Var2.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-        int i13 = this.f32824e;
-        if (d90Var.getVisibility() == 0) {
+        double d = (f7 - 90.0f) * 0.017453292519943295d;
+        double sin = Math.sin(d);
+        double d10 = -Math.cos(d);
+        double width = rectF.width() / 2.0f;
+        float centerX = (float) (((-d10) * width) + rectF.centerX());
+        float centerY = (float) ((width * sin) + rectF.centerY());
+        ArrayList arrayList2 = this.d;
+        int clamp = Utilities.clamp(arrayList2.size() / 12, 3, 1);
+        int i12 = 0;
+        while (i12 < clamp) {
+            if (!arrayList2.isEmpty()) {
+                arrayList2.remove(i10);
+                x11Var = (x11) arrayList2.get(i10);
+            } else {
+                x11Var = new Object();
+            }
+            if (this.f30086b && this.f30088f) {
+                float f11 = (i12 + 1) / clamp;
+                x11Var.f29820a = AndroidUtilities.lerp(this.f30089g, centerX, f11);
+                x11Var.f29821b = AndroidUtilities.lerp(this.h, centerY, f11);
+            } else {
+                x11Var.f29820a = centerX;
+                x11Var.f29821b = centerY;
+            }
+            double d11 = sin;
+            double nextInt = (Utilities.random.nextInt(140) - 70) * 0.017453292519943295d;
+            if (nextInt < 0.0d) {
+                nextInt += 6.283185307179586d;
+            }
+            x11Var.f29822c = (float) ((Math.cos(nextInt) * d11) - (Math.sin(nextInt) * d10));
+            x11 x11Var3 = x11Var;
+            x11Var3.d = (float) hg.k0.e(nextInt, d10, Math.sin(nextInt) * d11);
+            x11Var3.f29823f = 1.0f;
+            x11Var3.h = 0.0f;
+            if (this.f30086b) {
+                x11Var3.f29824g = Utilities.random.nextInt(200) + 600;
+                x11Var3.e = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
+            } else {
+                x11Var3.f29824g = Utilities.random.nextInt(100) + 400;
+                x11Var3.e = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
+            }
+            arrayList.add(x11Var3);
+            i12++;
+            sin = d11;
             i10 = 0;
-        } else {
-            i10 = 9;
         }
-        this.f32822b.setLayoutParams(w7.x5.t(i13, i13, 17, 0, i10, 0, 9));
-    }
-
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-    }
-
-    public void setEmoji(int i10) {
-        if (this.f32825f != i10) {
-            this.f32825f = i10;
-            xi0 xi0Var = new xi0(i10, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
-            x9 x9Var = this.f32822b;
-            x9Var.setImageDrawable(xi0Var);
-            x9Var.getImageReceiver().setAutoRepeat(2);
+        this.f30088f = true;
+        this.f30089g = centerX;
+        this.h = centerY;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long min = Math.min(20L, elapsedRealtime - this.f30085a);
+        int size2 = arrayList.size();
+        int i13 = 0;
+        while (i13 < size2) {
+            x11 x11Var4 = (x11) arrayList.get(i13);
+            float f12 = x11Var4.h;
+            float f13 = x11Var4.f29824g;
+            if (f12 >= f13) {
+                if (arrayList2.size() < this.e) {
+                    arrayList2.add(x11Var4);
+                }
+                arrayList.remove(i13);
+                i13--;
+                size2--;
+            } else {
+                x11Var4.f29823f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f12 / f13);
+                float f14 = x11Var4.f29820a;
+                float f15 = x11Var4.f29822c;
+                float f16 = x11Var4.e;
+                float f17 = (float) min;
+                x11Var4.f29820a = a4.a.A(f15 * f16, f17, 200.0f, f14);
+                x11Var4.f29821b = (((x11Var4.d * f16) * f17) / 200.0f) + x11Var4.f29821b;
+                x11Var4.h += f17;
+            }
+            i13++;
         }
+        this.f30085a = elapsedRealtime;
     }
 
-    public void setEmojiSize(int i10) {
-        if (this.f32824e != i10) {
-            this.f32824e = i10;
-            d();
+    public y11(int i10) {
+        this.f30087c = new ArrayList();
+        this.d = new ArrayList();
+        this.e = i10;
+        for (int i11 = 0; i11 < i10; i11++) {
+            this.d.add(new Object());
         }
-    }
-
-    public void setEmojiStatic(int i10) {
-        if (this.f32825f != i10) {
-            x9 x9Var = this.f32822b;
-            x9Var.b();
-            this.f32825f = i10;
-            x9Var.setImageResource(i10);
-        }
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f32823c.setVisibility(8);
-        d90 d90Var = this.d;
-        d90Var.setText(charSequence);
-        d90Var.setMaxWidth(di.f4.a(charSequence, d90Var.getPaint()));
-        d90Var.requestLayout();
-        d();
     }
 }

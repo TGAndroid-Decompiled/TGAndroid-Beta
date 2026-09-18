@@ -8,119 +8,119 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraSessionWrapper;
 import org.telegram.ui.LaunchActivity;
-public final class rl implements cv0 {
-    public File f30042a;
-    public boolean f30043b;
-    public final org.telegram.ui.ActionBar.f6 f30044c;
-    public final org.telegram.ui.ActionBar.d3 d;
-    public final ChatAttachAlertPhotoLayout f30045e;
+public final class rl implements ev0 {
+    public File f27641a;
+    public boolean f27642b;
+    public final org.telegram.ui.ActionBar.f6 f27643c;
+    public final org.telegram.ui.ActionBar.e3 d;
+    public final ChatAttachAlertPhotoLayout e;
 
-    public rl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.d3 d3Var) {
-        this.f30045e = chatAttachAlertPhotoLayout;
-        this.f30044c = f6Var;
-        this.d = d3Var;
+    public rl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.e3 e3Var) {
+        this.e = chatAttachAlertPhotoLayout;
+        this.f27643c = f6Var;
+        this.d = e3Var;
     }
 
     public final boolean a() {
         boolean z10;
         boolean z11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30045e;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
         bm bmVar = chatAttachAlertPhotoLayout.R;
-        vi viVar = chatAttachAlertPhotoLayout.f28754b;
+        vi viVar = chatAttachAlertPhotoLayout.f26463b;
         int i10 = viVar.Q0;
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31280f0;
-        if ((i10 == 2 || (n2Var instanceof org.telegram.ui.co)) && !chatAttachAlertPhotoLayout.f23872s0 && !viVar.V && chatAttachAlertPhotoLayout.P != null && !viVar.G) {
-            if (n2Var == null) {
-                n2Var = LaunchActivity.R();
+        org.telegram.ui.ActionBar.o2 o2Var = viVar.f28745f0;
+        if ((i10 == 2 || (o2Var instanceof org.telegram.ui.bo)) && !chatAttachAlertPhotoLayout.f21951s0 && !viVar.V && chatAttachAlertPhotoLayout.P != null && !viVar.G) {
+            if (o2Var == null) {
+                o2Var = LaunchActivity.R();
             }
-            if (n2Var != null && n2Var.getParentActivity() != null) {
-                if (!chatAttachAlertPhotoLayout.f23877w0) {
-                    org.telegram.messenger.w1.p(R.string.GlobalAttachVideoRestricted, new yc(chatAttachAlertPhotoLayout.P, this.f30044c), null);
+            if (o2Var != null && o2Var.getParentActivity() != null) {
+                if (!chatAttachAlertPhotoLayout.f21956w0) {
+                    org.telegram.messenger.w1.p(R.string.GlobalAttachVideoRestricted, new vc(chatAttachAlertPhotoLayout.P, this.f27643c), null);
                     return false;
                 } else if (Build.VERSION.SDK_INT >= 23 && chatAttachAlertPhotoLayout.getContext().checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                     chatAttachAlertPhotoLayout.Q0 = true;
-                    n2Var.getParentActivity().requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 21);
+                    o2Var.getParentActivity().requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 21);
                     return false;
                 } else {
                     for (int i11 = 0; i11 < 2; i11++) {
-                        chatAttachAlertPhotoLayout.S[i11].animate().alpha(0.0f).translationX(AndroidUtilities.dp(30.0f)).setDuration(150L).setInterpolator(pr.f29467f).start();
+                        chatAttachAlertPhotoLayout.S[i11].animate().alpha(0.0f).translationX(AndroidUtilities.dp(30.0f)).setDuration(150L).setInterpolator(qr.f27383f).start();
                     }
-                    ViewPropertyAnimator duration = chatAttachAlertPhotoLayout.f23870r0.animate().alpha(0.0f).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
-                    pr prVar = pr.f29467f;
-                    duration.setInterpolator(prVar).start();
-                    chatAttachAlertPhotoLayout.f23868q0.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
-                    org.telegram.ui.ActionBar.n2 n2Var2 = viVar.f31280f0;
-                    if ((n2Var2 instanceof org.telegram.ui.co) && ((org.telegram.ui.co) n2Var2).v()) {
+                    ViewPropertyAnimator duration = chatAttachAlertPhotoLayout.f21949r0.animate().alpha(0.0f).translationX(-AndroidUtilities.dp(30.0f)).setDuration(150L);
+                    qr qrVar = qr.f27383f;
+                    duration.setInterpolator(qrVar).start();
+                    chatAttachAlertPhotoLayout.f21947q0.animate().alpha(0.0f).setDuration(150L).setInterpolator(qrVar).start();
+                    org.telegram.ui.ActionBar.o2 o2Var2 = viVar.f28745f0;
+                    if ((o2Var2 instanceof org.telegram.ui.bo) && ((org.telegram.ui.bo) o2Var2).v()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    this.f30042a = AndroidUtilities.generateVideoPath(z10);
+                    this.f27641a = AndroidUtilities.generateVideoPath(z10);
                     AndroidUtilities.updateViewVisibilityAnimated(bmVar, true);
                     bmVar.setText(AndroidUtilities.formatLongDuration(0));
-                    chatAttachAlertPhotoLayout.f23849g0 = 0;
-                    chatAttachAlertPhotoLayout.f23851h0 = new Runnable(this) {
-                        public final rl f29761b;
+                    chatAttachAlertPhotoLayout.f21928g0 = 0;
+                    chatAttachAlertPhotoLayout.f21930h0 = new Runnable(this) {
+                        public final rl f27343b;
 
                         {
-                            this.f29761b = this;
+                            this.f27343b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f29761b.f30045e;
-                                    if (chatAttachAlertPhotoLayout2.f23851h0 != null) {
-                                        int i12 = chatAttachAlertPhotoLayout2.f23849g0 + 1;
-                                        chatAttachAlertPhotoLayout2.f23849g0 = i12;
+                                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f27343b.e;
+                                    if (chatAttachAlertPhotoLayout2.f21930h0 != null) {
+                                        int i12 = chatAttachAlertPhotoLayout2.f21928g0 + 1;
+                                        chatAttachAlertPhotoLayout2.f21928g0 = i12;
                                         chatAttachAlertPhotoLayout2.R.setText(AndroidUtilities.formatLongDuration(i12));
-                                        AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f23851h0, 1000L);
+                                        AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f21930h0, 1000L);
                                         return;
                                     }
                                     return;
                                 default:
-                                    AndroidUtilities.runOnUIThread(this.f29761b.f30045e.f23851h0, 1000L);
+                                    AndroidUtilities.runOnUIThread(this.f27343b.e.f21930h0, 1000L);
                                     return;
                             }
                         }
                     };
-                    AndroidUtilities.lockOrientation(n2Var.getParentActivity());
+                    AndroidUtilities.lockOrientation(o2Var.getParentActivity());
                     CameraController cameraController = CameraController.getInstance();
                     Object cameraSessionObject = chatAttachAlertPhotoLayout.P.getCameraSessionObject();
-                    File file = this.f30042a;
+                    File file = this.f27641a;
                     if (viVar.Q0 != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    cameraController.recordVideo(cameraSessionObject, file, z11, new t(this, 21), new Runnable(this) {
-                        public final rl f29761b;
+                    cameraController.recordVideo(cameraSessionObject, file, z11, new s(this, 21), new Runnable(this) {
+                        public final rl f27343b;
 
                         {
-                            this.f29761b = this;
+                            this.f27343b = this;
                         }
 
                         @Override
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f29761b.f30045e;
-                                    if (chatAttachAlertPhotoLayout2.f23851h0 != null) {
-                                        int i12 = chatAttachAlertPhotoLayout2.f23849g0 + 1;
-                                        chatAttachAlertPhotoLayout2.f23849g0 = i12;
+                                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f27343b.e;
+                                    if (chatAttachAlertPhotoLayout2.f21930h0 != null) {
+                                        int i12 = chatAttachAlertPhotoLayout2.f21928g0 + 1;
+                                        chatAttachAlertPhotoLayout2.f21928g0 = i12;
                                         chatAttachAlertPhotoLayout2.R.setText(AndroidUtilities.formatLongDuration(i12));
-                                        AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f23851h0, 1000L);
+                                        AndroidUtilities.runOnUIThread(chatAttachAlertPhotoLayout2.f21930h0, 1000L);
                                         return;
                                     }
                                     return;
                                 default:
-                                    AndroidUtilities.runOnUIThread(this.f29761b.f30045e.f23851h0, 1000L);
+                                    AndroidUtilities.runOnUIThread(this.f27343b.e.f21930h0, 1000L);
                                     return;
                             }
                         }
                     }, chatAttachAlertPhotoLayout.P);
-                    chatAttachAlertPhotoLayout.f23857k0.a(dv0.f25470b);
+                    chatAttachAlertPhotoLayout.f21936k0.a(fv0.f24019b);
                     chatAttachAlertPhotoLayout.P.runHaptic();
                     return true;
                 }
@@ -133,19 +133,19 @@ public final class rl implements cv0 {
         dm dmVar;
         boolean z10;
         boolean z11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30045e;
-        vi viVar = chatAttachAlertPhotoLayout.f28754b;
-        ShutterButton shutterButton = chatAttachAlertPhotoLayout.f23857k0;
-        if (!chatAttachAlertPhotoLayout.f23872s0 && (dmVar = chatAttachAlertPhotoLayout.P) != null && dmVar.getCameraSession() != null) {
-            if (shutterButton.getState() == dv0.f25470b) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
+        vi viVar = chatAttachAlertPhotoLayout.f26463b;
+        ShutterButton shutterButton = chatAttachAlertPhotoLayout.f21936k0;
+        if (!chatAttachAlertPhotoLayout.f21951s0 && (dmVar = chatAttachAlertPhotoLayout.P) != null && dmVar.getCameraSession() != null) {
+            if (shutterButton.getState() == fv0.f24019b) {
                 chatAttachAlertPhotoLayout.l0();
                 CameraController.getInstance().stopVideoRecording(chatAttachAlertPhotoLayout.P.getCameraSession(), false);
-                shutterButton.a(dv0.f25469a);
-            } else if (!chatAttachAlertPhotoLayout.f23879x0) {
-                org.telegram.messenger.w1.p(R.string.GlobalAttachPhotoRestricted, new yc(chatAttachAlertPhotoLayout.P, this.f30044c), null);
+                shutterButton.a(fv0.f24018a);
+            } else if (!chatAttachAlertPhotoLayout.f21958x0) {
+                org.telegram.messenger.w1.p(R.string.GlobalAttachPhotoRestricted, new vc(chatAttachAlertPhotoLayout.P, this.f27643c), null);
             } else {
-                org.telegram.ui.ActionBar.n2 n2Var = viVar.f31280f0;
-                if ((n2Var instanceof org.telegram.ui.co) && ((org.telegram.ui.co) n2Var).v()) {
+                org.telegram.ui.ActionBar.o2 o2Var = viVar.f28745f0;
+                if ((o2Var instanceof org.telegram.ui.bo) && ((org.telegram.ui.bo) o2Var).v()) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -153,13 +153,13 @@ public final class rl implements cv0 {
                 File generatePicturePath = AndroidUtilities.generatePicturePath(z10, null);
                 boolean isSameTakePictureOrientation = chatAttachAlertPhotoLayout.P.getCameraSession().isSameTakePictureOrientation();
                 CameraSessionWrapper cameraSession = chatAttachAlertPhotoLayout.P.getCameraSession();
-                if (!(viVar.f31280f0 instanceof org.telegram.ui.co) && viVar.Q0 != 2) {
+                if (!(viVar.f28745f0 instanceof org.telegram.ui.bo) && viVar.Q0 != 2) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 cameraSession.setFlipFront(z11);
-                chatAttachAlertPhotoLayout.f23872s0 = CameraController.getInstance().takePicture(generatePicturePath, false, chatAttachAlertPhotoLayout.P.getCameraSessionObject(), new di.hd(this, generatePicturePath, isSameTakePictureOrientation));
+                chatAttachAlertPhotoLayout.f21951s0 = CameraController.getInstance().takePicture(generatePicturePath, false, chatAttachAlertPhotoLayout.P.getCameraSessionObject(), new ci.hd(this, generatePicturePath, isSameTakePictureOrientation));
                 chatAttachAlertPhotoLayout.P.startTakePictureAnimation(true);
             }
         }

@@ -1,23 +1,23 @@
 package m4;
-public final class c0 implements j0 {
-    public final int f15861a;
-    public final k0 f15862b;
-    public final long f15863c;
+public final class c0 implements k0 {
+    public final int f14495a;
+    public final l0 f14496b;
+    public final long f14497c;
 
-    public c0(k0 k0Var, long j3, int i10) {
-        this.f15861a = i10;
-        this.f15862b = k0Var;
-        this.f15863c = j3;
+    public c0(l0 l0Var, long j3, int i10) {
+        this.f14495a = i10;
+        this.f14496b = l0Var;
+        this.f14497c = j3;
     }
 
     @Override
-    public final void f(r rVar) {
-        switch (this.f15861a) {
+    public final void g(r rVar) {
+        switch (this.f14495a) {
             case 0:
-                this.f15862b.f15970g.f15843t.Y((int) this.f15863c);
+                this.f14496b.f14606g.f14476t.Y((int) this.f14497c);
                 return;
             default:
-                this.f15862b.f15970g.f15843t.g(this.f15863c);
+                this.f14496b.f14606g.f14476t.g(this.f14497c);
                 return;
         }
     }

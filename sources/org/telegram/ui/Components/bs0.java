@@ -1,34 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-public final class bs0 extends org.telegram.ui.co {
-    public boolean Qc;
-    public final int Rc;
-    public final xu0 Sc;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class bs0 extends s4.n0 {
+    public final vr0 f22799a;
 
-    public bs0(xu0 xu0Var, Bundle bundle, int i10) {
-        super(bundle);
-        this.Sc = xu0Var;
-        this.Rc = i10;
-        this.Qc = true;
+    public bs0(vr0 vr0Var) {
+        this.f22799a = vr0Var;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        xu0 xu0Var = this.Sc;
-        iu0 iu0Var = xu0Var.S;
-        if (this.Qc) {
-            if (this.f35299j0 != null) {
-                la("");
-                this.f35299j0.H(iu0Var.f27265w, false);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        boolean z10;
+        boolean z11;
+        if (view instanceof org.telegram.ui.Cells.t7) {
+            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
+            vr0 vr0Var = this.f22799a;
+            vr0Var.f27925r.getClass();
+            int S = RecyclerView.S(t7Var);
+            int i10 = vr0Var.f27926s.J;
+            boolean z12 = true;
+            if (S < i10) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            org.telegram.ui.yk ykVar = this.f35360o1;
-            if (ykVar != null) {
-                ykVar.e(iu0Var.f27266x, false);
+            t7Var.f21383a0 = z10;
+            int i11 = S % i10;
+            if (i11 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
             }
-            xu0Var.f32727v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iu0Var.f27266x, iu0Var.f27265w, iu0Var.f27262n, iu0Var.h, this.Rc, iu0Var.v, iu0Var.f27264s);
-            this.Qc = false;
+            t7Var.V = z11;
+            if (i11 != i10 - 1) {
+                z12 = false;
+            }
+            t7Var.W = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+            return;
         }
-        super.onTransitionAnimationStart(z10, z11);
+        rect.left = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        rect.right = 0;
     }
 }

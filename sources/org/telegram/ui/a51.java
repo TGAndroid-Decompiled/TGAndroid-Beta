@@ -6,47 +6,47 @@ import android.view.ViewGroup;
 import java.lang.reflect.Method;
 import org.telegram.messenger.FileLog;
 public final class a51 extends AnimatorListenerAdapter {
-    public final int f34337a;
-    public final org.telegram.ui.Components.em0 f34338b;
+    public final int f31727a;
+    public final org.telegram.ui.Components.fm0 f31728b;
 
-    public a51(org.telegram.ui.Components.em0 em0Var, int i10) {
-        this.f34337a = i10;
-        this.f34338b = em0Var;
+    public a51(org.telegram.ui.Components.fm0 fm0Var, int i10) {
+        this.f31727a = i10;
+        this.f31728b = fm0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f34337a) {
+        switch (this.f31727a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f34338b.f25735b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f31728b.f23966b;
                 secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                au0 au0Var = secretMediaViewer.f34059a0;
-                au0Var.f39033l0 = false;
-                if (au0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) au0Var.f39035o0.getLayoutParams()).topMargin = au0Var.m0;
-                    au0Var.m0 = -1;
-                    au0Var.requestLayout();
+                du0 du0Var = secretMediaViewer.f31454a0;
+                du0Var.f37037l0 = false;
+                if (du0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) du0Var.f37039o0.getLayoutParams()).topMargin = du0Var.m0;
+                    du0Var.m0 = -1;
+                    du0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f34338b.f25735b).Z.setTranslationY(0.0f);
+                ((SecretMediaViewer) this.f31728b.f23966b).Z.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f34337a) {
+        switch (this.f31727a) {
             case 0:
-                au0 au0Var = ((SecretMediaViewer) this.f34338b.f25735b).f34059a0;
-                Method method = au0Var.f39027f0;
+                du0 du0Var = ((SecretMediaViewer) this.f31728b.f23966b).f31454a0;
+                Method method = du0Var.f37031f0;
                 if (method != null) {
                     try {
-                        method.invoke(au0Var, null);
+                        method.invoke(du0Var, null);
                         return;
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                         return;
                     }
                 }

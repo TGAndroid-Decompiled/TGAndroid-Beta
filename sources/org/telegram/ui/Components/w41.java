@@ -1,43 +1,68 @@
 package org.telegram.ui.Components;
 
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class w41 extends s4.s0 {
-    public final d51 f32123a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class w41 extends oz {
+    public final f51 Y;
 
-    public w41(d51 d51Var) {
-        this.f32123a = d51Var;
+    public w41(f51 f51Var, int i10, v41 v41Var) {
+        super(5, i10, v41Var);
+        this.Y = f51Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        s4.s0 s0Var = this.f32123a.f25240y;
-        if (s0Var != null) {
-            s0Var.a(recyclerView, i10);
+    public final boolean D1() {
+        f51 f51Var = this.Y;
+        if (f51Var.f23785n.getAdapter() == f51Var.v) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        d51 d51Var = this.f32123a;
-        c51 c51Var = d51Var.f25237s;
-        t41 t41Var = d51Var.f25235n;
-        s4.s0 s0Var = d51Var.f25240y;
-        if (s0Var != null) {
-            s0Var.b(t41Var, i10, i11);
+    public final boolean Y0() {
+        return LocaleController.isRTL;
+    }
+
+    @Override
+    public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
+        int i11;
+        View m10;
+        f51 f51Var = this.Y;
+        if (f51Var.N) {
+            return super.o0(i10, eVar, z0Var);
         }
-        if (i11 > 0 && t41Var.getAdapter() == c51Var && d51Var.J && !c51Var.f24900r && !c51Var.f24901s) {
-            if (d51Var.f25236r.N0() >= ((c51Var.f24902w + 1) - ((c51Var.v + 1) * 10)) - 1) {
-                d51 d51Var2 = c51Var.f24903x;
-                if (d51Var2.J && !c51Var.f24900r && !c51Var.f24901s) {
-                    c51Var.f24900r = true;
-                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
-                    tL_messages_getOldFeaturedStickers.offset = c51Var.f24899n.size();
-                    tL_messages_getOldFeaturedStickers.limit = 40;
-                    ConnectionsManager.getInstance(d51Var2.f25230a).sendRequest(tL_messages_getOldFeaturedStickers, new y1(c51Var, 17));
+        int i12 = 0;
+        if (f51Var.L != null) {
+            return 0;
+        }
+        if (f51Var.M) {
+            while (true) {
+                i11 = 1;
+                if (i12 >= r()) {
+                    break;
                 }
+                v41 v41Var = f51Var.f23785n;
+                View q6 = q(i12);
+                v41Var.getClass();
+                int S = RecyclerView.S(q6);
+                if (S < 1) {
+                    i11 = S;
+                    break;
+                }
+                i12++;
+            }
+            if (i11 == 0 && (m10 = f51Var.f23786r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
             }
         }
+        return super.o0(i10, eVar, z0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

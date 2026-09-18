@@ -1,314 +1,142 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.FileLog;
-public final class o70 extends org.telegram.ui.ActionBar.j {
-    public final int f39127a;
-    public final Object f39128b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class o70 extends org.telegram.ui.Components.ll0 {
+    public final Context f36245c;
+    public final p70 d;
 
-    public o70(Object obj, int i10) {
-        this.f39127a = i10;
-        this.f39128b = obj;
+    public o70(p70 p70Var, Context context) {
+        this.d = p70Var;
+        this.f36245c = context;
     }
 
     @Override
-    public final void b(int i10) {
-        Bitmap bitmap;
-        int i11 = this.f39127a;
-        Object obj = this.f39128b;
-        switch (i11) {
-            case 0:
-                if (i10 == -1) {
-                    ((u70) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 1:
-                if (i10 == -1) {
-                    ((w70) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 2:
-                if (i10 == -1) {
-                    ((l80) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 3:
-                if (i10 == -1) {
-                    ((LanguageSelectActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 4:
-                xb0 xb0Var = (xb0) obj;
-                if (i10 == -1) {
-                    xb0Var.finishFragment();
-                    AndroidUtilities.hideKeyboard(xb0Var.F);
-                    return;
-                }
-                return;
-            case 5:
-                if (i10 == -1) {
-                    ((nc0) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 6:
-                wg0 wg0Var = (wg0) obj;
-                if (i10 == 1) {
-                    wg0Var.p1();
-                    return;
-                } else if (i10 == -1 && wg0Var.onBackPressed(true)) {
-                    wg0Var.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
-            case 7:
-                if (i10 == -1) {
-                    ((yg0) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 8:
-                if (i10 == -1) {
-                    ((yh0) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 9:
-                if (i10 == -1) {
-                    ((zh0) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 10:
-                lj0 lj0Var = (lj0) obj;
-                if (i10 == -1) {
-                    lj0Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", lj0Var.f38382b);
-                    lj0Var.presentFragment(new bb1(bundle));
-                    return;
-                } else {
-                    return;
-                }
-            case 11:
-                if (i10 == -1) {
-                    ((NotificationsCustomSettingsActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 12:
-                if (i10 == -1) {
-                    ((NotificationsSettingsActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 13:
-                if (i10 == -1) {
-                    ((PasscodeActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 14:
-                if (i10 == -1) {
-                    ((PasskeysActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 15:
-                nq0 nq0Var = (nq0) obj;
-                if (i10 == -1) {
-                    nq0Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    if (nq0Var.f39006c != null && !nq0Var.f39008f) {
-                        lq0 lq0Var = nq0Var.d;
-                        float f7 = lq0Var.f38462f - lq0Var.f38467x;
-                        float f10 = lq0Var.v;
-                        float f11 = (lq0Var.h - lq0Var.f38468y) / lq0Var.f38466w;
-                        float f12 = lq0Var.d / f10;
-                        float f13 = lq0Var.f38461e / f10;
-                        nq0 nq0Var2 = lq0Var.H;
-                        int width = (int) ((f7 / f10) * nq0Var2.f39004a.getWidth());
-                        int height = (int) (f11 * nq0Var2.f39004a.getHeight());
-                        int width2 = (int) (f12 * nq0Var2.f39004a.getWidth());
-                        int width3 = (int) (f13 * nq0Var2.f39004a.getWidth());
-                        if (width < 0) {
-                            width = 0;
-                        }
-                        if (height < 0) {
-                            height = 0;
-                        }
-                        if (width + width2 > nq0Var2.f39004a.getWidth()) {
-                            width2 = nq0Var2.f39004a.getWidth() - width;
-                        }
-                        if (height + width3 > nq0Var2.f39004a.getHeight()) {
-                            width3 = nq0Var2.f39004a.getHeight() - height;
-                        }
-                        try {
-                            bitmap = Bitmaps.createBitmap(nq0Var2.f39004a, width, height, width2, width3);
-                        } catch (Throwable th2) {
-                            FileLog.e(th2);
-                            System.gc();
-                            try {
-                                bitmap = Bitmaps.createBitmap(nq0Var2.f39004a, width, height, width2, width3);
-                            } catch (Throwable th3) {
-                                FileLog.e(th3);
-                                bitmap = null;
-                            }
-                        }
-                        if (bitmap == nq0Var.f39004a) {
-                            nq0Var.f39007e = true;
-                        }
-                        ((org.telegram.ui.Components.u40) nq0Var.f39006c).s(false, bitmap, null);
-                        nq0Var.f39008f = true;
-                    }
-                    nq0Var.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
-            case 16:
-                br0 br0Var = (br0) obj;
-                if (i10 == -1) {
-                    br0Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    boolean z10 = br0Var.Y;
-                    br0Var.Y = !z10;
-                    if (!z10) {
-                        br0Var.K.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
-                    } else {
-                        br0Var.K.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(50.0f));
-                    }
-                    br0Var.K.B0();
-                    br0Var.M.h1(0, 0);
-                    br0Var.L.l();
-                    return;
-                } else if (i10 == 2) {
-                    ar0 ar0Var = br0Var.f34907s0;
-                    if (ar0Var != null) {
-                        ar0Var.g();
-                    }
-                    br0Var.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
-            case 17:
-                if (i10 == -1) {
-                    ((gr0) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 18:
-                PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) obj;
-                if (i10 == -1) {
-                    popupNotificationActivity.i();
-                    popupNotificationActivity.finish();
-                    return;
-                } else if (i10 == 1) {
-                    int i12 = PopupNotificationActivity.f33758b0;
-                    popupNotificationActivity.k();
-                    return;
-                } else if (i10 == 2) {
-                    int i13 = PopupNotificationActivity.f33758b0;
-                    popupNotificationActivity.p();
-                    return;
-                } else {
-                    return;
-                }
-            case 19:
-                tw0 tw0Var = (tw0) obj;
-                if (i10 == -1) {
-                    if (tw0Var.onBackPressed(true)) {
-                        tw0Var.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    tw0Var.Y();
-                    return;
-                } else {
-                    return;
-                }
-            case 20:
-                if (i10 == -1) {
-                    ((PremiumPreviewFragment) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 21:
-                PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj;
-                if (i10 == -1) {
-                    if (privacyControlActivity.v0(true)) {
-                        privacyControlActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    privacyControlActivity.z0();
-                    return;
-                } else {
-                    return;
-                }
-            case 22:
-                if (i10 == -1) {
-                    ((PrivacySettingsActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 23:
-                if (i10 == -1) {
-                    ((hy0) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 24:
-                if (i10 == -1) {
-                    ((ProxyListActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 25:
-                if (i10 == -1) {
-                    ((i31) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 26:
-                if (i10 == -1) {
-                    ((n31) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 27:
-                if (i10 == -1) {
-                    ((h41) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 28:
-                if (i10 == -1) {
-                    ((SaveToGallerySettingsActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == -1) {
-                    ((SecretMediaViewer) obj).e(true, false);
-                    return;
-                }
-                return;
+    public final boolean D(s4.c1 c1Var) {
+        int b10 = c1Var.b();
+        p70 p70Var = this.d;
+        if (b10 != p70Var.f36554r && b10 != p70Var.f36553n && b10 != p70Var.f36555s && b10 != 0) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        p70 p70Var = this.d;
+        if (p70Var.e) {
+            return 0;
+        }
+        return p70Var.f36556w;
+    }
+
+    @Override
+    public final int j(int i10) {
+        p70 p70Var = this.d;
+        if (i10 != p70Var.f36553n && i10 != p70Var.f36555s && i10 != p70Var.f36554r) {
+            if (i10 != p70Var.v && i10 != p70Var.h) {
+                if (i10 == 0) {
+                    return 2;
+                }
+                return 0;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        String str;
+        int i11 = c1Var.f42705f;
+        View view = c1Var.f42702a;
+        p70 p70Var = this.d;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    org.telegram.ui.Cells.p8 p8Var = (org.telegram.ui.Cells.p8) view;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = p70Var.f36552f;
+                    if (tL_chatInviteExported != null) {
+                        str = tL_chatInviteExported.link;
+                    } else {
+                        str = "error";
+                    }
+                    p8Var.f20604a.setText(str);
+                    p8Var.setWillNotDraw(true);
+                    return;
+                }
+                return;
+            }
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+            int i12 = p70Var.v;
+            Context context = this.f36245c;
+            if (i10 == i12) {
+                e9Var.setText("");
+                e9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.V0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f18827b7));
+                return;
+            } else if (i10 == p70Var.h) {
+                TLRPC.Chat chat = p70Var.getMessagesController().getChat(Long.valueOf(p70Var.d));
+                if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                    e9Var.setText(LocaleController.getString(R.string.ChannelLinkInfo));
+                } else {
+                    e9Var.setText(LocaleController.getString(R.string.LinkInfo));
+                }
+                e9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.V0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.j6.f18827b7));
+                return;
+            } else {
+                return;
+            }
+        }
+        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
+        if (i10 == p70Var.f36553n) {
+            eaVar.b(LocaleController.getString(R.string.CopyLink), true);
+        } else if (i10 == p70Var.f36555s) {
+            eaVar.b(LocaleController.getString(R.string.ShareLink), false);
+        } else if (i10 == p70Var.f36554r) {
+            eaVar.b(LocaleController.getString(R.string.RevokeLink), true);
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout frameLayout;
+        int i11;
+        Context context = this.f36245c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                ?? frameLayout2 = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout2.f20604a = textView;
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+                textView.setTextSize(1, 16.0f);
+                int i12 = 3;
+                if (LocaleController.isRTL) {
+                    i11 = 5;
+                } else {
+                    i11 = 3;
+                }
+                textView.setGravity(i11 | 16);
+                if (LocaleController.isRTL) {
+                    i12 = 5;
+                }
+                frameLayout2.addView(textView, w7.x5.d(-1, -2.0f, i12 | 48, 23.0f, 10.0f, 23.0f, 10.0f));
+                frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18863d6, false));
+                frameLayout = frameLayout2;
+            } else {
+                frameLayout = new org.telegram.ui.Cells.e9(context);
+            }
+        } else {
+            FrameLayout eaVar = new org.telegram.ui.Cells.ea(context);
+            eaVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18863d6, false));
+            frameLayout = eaVar;
+        }
+        return new s4.c1(frameLayout);
     }
 }

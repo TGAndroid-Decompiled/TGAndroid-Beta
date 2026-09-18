@@ -1,59 +1,34 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class ql0 implements TextWatcher {
-    public final int f39904a;
-    public final PasscodeActivity f39905b;
+import org.telegram.messenger.AndroidUtilities;
+public final class ql0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.g1 f36936a;
+    public final PasscodeActivity f36937b;
 
-    public ql0(PasscodeActivity passcodeActivity, int i10) {
-        this.f39904a = i10;
-        this.f39905b = passcodeActivity;
+    public ql0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.g1 g1Var) {
+        this.f36937b = passcodeActivity;
+        this.f36936a = g1Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f39904a;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f39904a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f39905b;
-                ml0 ml0Var = passcodeActivity.O;
-                if (passcodeActivity.N) {
-                    passcodeActivity.f33501n.removeCallbacks(ml0Var);
-                    ml0Var.run();
-                    return;
-                }
-                return;
-            default:
-                PasscodeActivity passcodeActivity2 = this.f39905b;
-                ml0 ml0Var2 = passcodeActivity2.O;
-                if (passcodeActivity2.N) {
-                    passcodeActivity2.f33501n.removeCallbacks(ml0Var2);
-                    ml0Var2.run();
-                    return;
-                }
-                return;
+    public final void b(int i10) {
+        PasscodeActivity passcodeActivity = this.f36937b;
+        if (i10 == -1) {
+            passcodeActivity.finishFragment();
+            return;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f39904a;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+        int i11 = 1;
+        if (i10 == 1) {
+            if (passcodeActivity.f30910y != 0) {
+                i11 = 0;
+            }
+            passcodeActivity.f30910y = i11;
+            AndroidUtilities.runOnUIThread(new pl0(0, this, this.f36936a), 150L);
+            passcodeActivity.h.setText("");
+            for (is isVar : passcodeActivity.f30905n.f33753f) {
+                isVar.setText("");
+            }
+            passcodeActivity.l0();
+        }
     }
 }

@@ -1,5 +1,5 @@
 package y7;
 
-import v7.a6;
-public final class a extends a6 {
+import v7.r1;
+public final class a extends r1 {
 }

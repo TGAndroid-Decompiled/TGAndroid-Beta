@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 public final class n5 extends org.telegram.ui.Cells.x4 {
-    public final int f38830f;
+    public final int f35948f;
 
     public n5(Context context, int i10) {
         super(context);
-        this.f38830f = i10;
+        this.f35948f = i10;
     }
 
     @Override
     public final int getFullHeight() {
-        switch (this.f38830f) {
+        switch (this.f35948f) {
             case 0:
                 return AndroidUtilities.dp(50.0f);
             default:

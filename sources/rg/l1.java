@@ -1,34 +1,43 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class l1 extends View {
-    public final Paint f45275a;
-    public float f45276b;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ll0;
+public final class l1 extends ll0 {
+    public final s0 f42406c;
 
-    public l1(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f45275a = paint;
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    public l1(s0 s0Var) {
+        this.f42406c = s0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        Paint paint = this.f45275a;
-        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-6.7f, -7.0f, this.f45276b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(0.71f, 0.0f, this.f45276b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 7.0f, this.f45276b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 0.0f, this.f45276b)), paint);
-        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 0.0f, this.f45276b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 7.0f, this.f45276b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(6.59f, 0.0f, this.f45276b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-4.27f, -7.0f, this.f45276b)), paint);
+    public final boolean D(s4.c1 c1Var) {
+        return false;
     }
 
-    public void setProgress(float f7) {
-        this.f45276b = f7;
-        invalidate();
+    @Override
+    public final int h() {
+        return Integer.MAX_VALUE;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        s0 s0Var = this.f42406c;
+        ArrayList arrayList = s0Var.X2;
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        n1 n1Var = (n1) c1Var.f42702a;
+        n1Var.f42426r = (TLRPC.Document) arrayList.get(i10 % arrayList.size());
+        n1Var.f42427s = true;
+        n1Var.a(true ^ s0Var.f42434c3, false, false);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        n1 n1Var = new n1(this.f42406c, viewGroup.getContext());
+        n1Var.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(n1Var);
     }
 }

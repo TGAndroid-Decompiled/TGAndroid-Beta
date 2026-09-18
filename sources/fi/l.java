@@ -1,63 +1,59 @@
 package fi;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.vl;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import w7.x5;
-public final class l extends FrameLayout {
-    public final ImageView f9794a;
-    public final TextView f9795b;
-    public final TextView f9796c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.c5;
+import org.telegram.ui.bo;
+public final class l implements Runnable {
+    public final int f9134a;
+    public final boolean f9135b;
+    public final boolean f9136c;
+    public final long d;
+    public final NotificationCenter.NotificationCenterDelegate e;
 
-    public l(Context context, f6 f6Var, boolean z10) {
-        super(context);
-        float f7;
-        float f10;
-        ImageView imageView = new ImageView(context);
-        this.f9794a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i10 = j6.G6;
-        imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(i10, f6Var), PorterDuff.Mode.SRC_IN));
-        addView(imageView, x5.d(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        if (z10) {
-            f7 = 2.0f;
-        } else {
-            f7 = 9.8f;
-        }
-        if (z10) {
-            f10 = 4.0f;
-        } else {
-            f10 = 9.8f;
-        }
-        addView(linearLayout, x5.d(-1, -2.0f, 23, 64.0f, f7, 24.0f, f10));
-        TextView textView = new TextView(context);
-        this.f9795b = textView;
-        textView.setTextColor(j6.v0(i10, f6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 14.0f);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.t(-1, -2, 55, 0, 0, 0, 1), context);
-        this.f9796c = h;
-        vl.n(j6.f21062z6, f6Var, h, 1, 14.0f);
-        linearLayout.addView(h, x5.t(-1, -2, 55, 0, 0, 0, 0));
+    public l(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, boolean z10, boolean z11, long j3, int i10) {
+        this.f9134a = i10;
+        this.e = notificationCenterDelegate;
+        this.f9135b = z10;
+        this.f9136c = z11;
+        this.d = j3;
     }
 
-    public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f9794a.setImageResource(i10);
-        this.f9795b.setText(charSequence);
-        this.f9796c.setText(charSequence2);
+    @Override
+    public final void run() {
+        int i10;
+        switch (this.f9134a) {
+            case 0:
+                p pVar = (p) this.e;
+                String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
+                if (this.f9135b) {
+                    i10 = R.string.CommunityMenuRemoveBotFromCommunityConfirm;
+                } else if (this.f9136c) {
+                    i10 = R.string.CommunityMenuRemoveChannelFromCommunityConfirm;
+                } else {
+                    i10 = R.string.CommunityMenuRemoveGroupFromCommunityConfirm;
+                }
+                c5.v0(pVar, string, LocaleController.getString(i10), LocaleController.getString(R.string.Remove), true, new g(pVar, this.d, 0));
+                return;
+            case 1:
+                k0.q((k0) this.e, this.f9135b, this.f9136c, this.d);
+                return;
+            case 2:
+                ((MessagesController) this.e).lambda$setLastCreatedDialogId$55(this.f9135b, this.f9136c, this.d);
+                return;
+            default:
+                bo.c1((bo) this.e, this.d, this.f9135b, this.f9136c);
+                return;
+        }
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f9796c.setText(charSequence);
+    public l(bo boVar, long j3, boolean z10, boolean z11) {
+        this.f9134a = 3;
+        this.e = boVar;
+        this.d = j3;
+        this.f9135b = z10;
+        this.f9136c = z11;
     }
 }

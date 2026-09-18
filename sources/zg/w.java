@@ -1,0 +1,26 @@
+package zg;
+
+import android.animation.ValueAnimator;
+public final class w implements ValueAnimator.AnimatorUpdateListener {
+    public final int f49211a;
+    public final c0 f49212b;
+
+    public w(c0 c0Var, int i10) {
+        this.f49211a = i10;
+        this.f49212b = c0Var;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f49211a) {
+            case 0:
+                c0 c0Var = this.f49212b;
+                c0Var.getClass();
+                c0Var.f49011a.setAlpha(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                this.f49212b.f49011a.invalidate();
+                return;
+        }
+    }
+}

@@ -7,24 +7,24 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import org.telegram.messenger.NotificationCenter;
 public final class y20 extends AnimatorListenerAdapter {
-    public final View f32828a;
-    public final View f32829b;
-    public final WindowManager f32830c;
+    public final View f30094a;
+    public final View f30095b;
+    public final WindowManager f30096c;
     public final View d;
-    public final View f32831e;
-    public final z20 f32832f;
+    public final View e;
+    public final z20 f30097f;
 
-    public y20(z20 z20Var, x20 x20Var, ah.y yVar, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.u7 u7Var) {
-        this.f32832f = z20Var;
-        this.f32828a = x20Var;
-        this.f32829b = yVar;
-        this.f32830c = windowManager;
+    public y20(z20 z20Var, x20 x20Var, ai.f0 f0Var, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.w7 w7Var) {
+        this.f30097f = z20Var;
+        this.f30094a = x20Var;
+        this.f30095b = f0Var;
+        this.f30096c = windowManager;
         this.d = frameLayout;
-        this.f32831e = u7Var;
+        this.e = w7Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        NotificationCenter.getInstance(this.f32832f.h).doOnIdle(new bi.z2(this.f32828a, this.f32829b, this.f32830c, this.d, this.f32831e, 22));
+        NotificationCenter.getInstance(this.f30097f.h).doOnIdle(new ai.m3(this.f30094a, this.f30095b, this.f30096c, this.d, this.e, 22));
     }
 }

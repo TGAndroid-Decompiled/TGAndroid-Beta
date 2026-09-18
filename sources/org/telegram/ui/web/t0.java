@@ -1,37 +1,33 @@
 package org.telegram.ui.web;
 
-import android.content.DialogInterface;
-import android.webkit.JsResult;
-public final class t0 implements DialogInterface.OnDismissListener {
-    public final int f42245a;
-    public final boolean[] f42246b;
-    public final JsResult f42247c;
+import android.view.KeyEvent;
+import android.webkit.JsPromptResult;
+import android.widget.TextView;
+import org.telegram.ui.Components.bu;
+public final class t0 implements TextView.OnEditorActionListener {
+    public final boolean[] f38936a;
+    public final JsPromptResult f38937b;
+    public final bu f38938c;
+    public final org.telegram.ui.ActionBar.c2 d;
 
-    public t0(boolean[] zArr, JsResult jsResult, int i10) {
-        this.f42245a = i10;
-        this.f42246b = zArr;
-        this.f42247c = jsResult;
+    public t0(boolean[] zArr, JsPromptResult jsPromptResult, bu buVar, org.telegram.ui.ActionBar.c2 c2Var) {
+        this.f38936a = zArr;
+        this.f38937b = jsPromptResult;
+        this.f38938c = buVar;
+        this.d = c2Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f42245a) {
-            case 0:
-                boolean[] zArr = this.f42246b;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    this.f42247c.cancel();
-                    return;
-                }
-                return;
-            default:
-                boolean[] zArr2 = this.f42246b;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    this.f42247c.cancel();
-                    return;
-                }
-                return;
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
+            return false;
         }
+        boolean[] zArr = this.f38936a;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            this.f38937b.confirm(this.f38938c.getText().toString());
+            this.d.dismiss();
+        }
+        return true;
     }
 }

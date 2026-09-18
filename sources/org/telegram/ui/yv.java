@@ -1,26 +1,161 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class yv implements ValueAnimator.AnimatorUpdateListener {
-    public final int f43226a;
-    public final uy f43227b;
-    public final float f43228c;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.XiaomiUtilities;
+import org.telegram.ui.Components.UndoView;
+public final class yv implements org.telegram.ui.Components.mq0, org.telegram.ui.Components.bl0, org.telegram.ui.Components.cl0, q10, org.telegram.ui.ActionBar.b2, r0.n, org.telegram.ui.Components.ok0 {
+    public final int f40029a;
+    public final wy f40030b;
 
-    public yv(uy uyVar, float f7, int i10) {
-        this.f43226a = i10;
-        this.f43227b = uyVar;
-        this.f43228c = f7;
+    public yv(wy wyVar, int i10) {
+        this.f40029a = i10;
+        this.f40030b = wyVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f43226a) {
-            case 0:
-                uy.V(this.f43227b, this.f43228c, valueAnimator);
-                return;
-            default:
-                uy.E0(this.f43227b, this.f43228c, valueAnimator);
-                return;
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        UndoView[] undoViewArr;
+        wy wyVar = this.f40030b;
+        wyVar.v.i(l1Var);
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        wyVar.f39225e4 = defaultWindowInsets.f10592b;
+        wyVar.f39231f4 = defaultWindowInsets.d;
+        int i10 = l1Var.f41882a.f(8).d;
+        if (wyVar.f39236g4 != i10) {
+            wyVar.f39236g4 = i10;
+            wyVar.fragmentView.requestLayout();
         }
+        wyVar.F0.setPadding(0, wyVar.f39225e4, 0, 0);
+        wyVar.X4();
+        for (UndoView undoView : wyVar.f39322y0) {
+            if (undoView != null) {
+                int i11 = wyVar.f39231f4 + wyVar.f39241h4;
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) undoView.getLayoutParams();
+                if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
+                    marginLayoutParams.bottomMargin = i11;
+                    undoView.setLayoutParams(marginLayoutParams);
+                }
+            }
+        }
+        qx qxVar = wyVar.F3;
+        if (qxVar != null) {
+            r0.i0.b(qxVar, l1Var);
+        }
+        return r0.l1.f41881b;
+    }
+
+    @Override
+    public void a() {
+        wy wyVar = this.f40030b;
+        wyVar.Q = true;
+        wyVar.fragmentView.invalidate();
+    }
+
+    @Override
+    public void c(float r7, float r8, int r9, android.view.View r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yv.c(float, float, int, android.view.View):void");
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        wy.o0(this.f40030b, i10);
+        return false;
+    }
+
+    @Override
+    public boolean d1(View view) {
+        switch (this.f40029a) {
+            case 1:
+                return false;
+            case 2:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f40029a) {
+            case 6:
+                wy.g0(this.f40030b);
+                return;
+            case 7:
+            default:
+                wy wyVar = this.f40030b;
+                wyVar.getMessagesController().hidePromoDialog();
+                wyVar.b4(false);
+                return;
+            case 8:
+                wy wyVar2 = this.f40030b;
+                wyVar2.getClass();
+                Intent permissionManagerIntent = XiaomiUtilities.getPermissionManagerIntent();
+                if (permissionManagerIntent != null) {
+                    try {
+                        try {
+                            wyVar2.getParentActivity().startActivity(permissionManagerIntent);
+                            return;
+                        } catch (Exception unused) {
+                            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                            wyVar2.getParentActivity().startActivity(intent);
+                            return;
+                        }
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
+                }
+                return;
+            case 9:
+                wy wyVar3 = this.f40030b;
+                wyVar3.getClass();
+                Intent intent2 = new Intent("android.settings.MANAGE_APP_USE_FULL_SCREEN_INTENT");
+                intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                try {
+                    wyVar3.getParentActivity().startActivity(intent2);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+        }
+    }
+
+    public void h(int i10) {
+        gx gxVar = this.f40030b.B1;
+        if (gxVar == null) {
+            return;
+        }
+        if (i10 == 0) {
+            gxVar.r0(true);
+        } else {
+            gxVar.x1(true, false);
+        }
+    }
+
+    public void i(boolean z10, ArrayList arrayList, ArrayList arrayList2, boolean z11) {
+        this.f40030b.W4(z10, arrayList, arrayList2, z11, true);
+    }
+
+    @Override
+    public void r0(View view, float f7, float f10) {
+        int i10 = this.f40029a;
+    }
+
+    private final void b(View view, float f7, float f10) {
+    }
+
+    private final void e(View view, float f7, float f10) {
+    }
+
+    private final void g(View view, float f7, float f10) {
     }
 }

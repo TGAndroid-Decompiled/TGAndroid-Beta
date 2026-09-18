@@ -1,98 +1,42 @@
 package org.telegram.ui.Components;
+public final class og implements Runnable {
+    public final int f26728a;
+    public final qg f26729b;
+    public final ci.f4 f26730c;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public interface og {
-    void B0(int i10, int i11);
+    public og(qg qgVar, ci.f4 f4Var, int i10) {
+        this.f26728a = i10;
+        this.f26729b = qgVar;
+        this.f26730c = f4Var;
+    }
 
-    void C();
-
-    void D0();
-
-    void G(CharSequence charSequence, boolean z10, int i10, int i11, long j3);
-
-    void G0();
-
-    TLRPC.TL_channels_sendAsPeers H();
-
-    void J(float f7, int i10);
-
-    void P0();
-
-    void U();
-
-    void V0(int i10);
-
-    void V1();
-
-    void W(boolean z10);
-
-    int W0();
-
-    void X1(int i10);
-
-    TL_stories.StoryItem Y0();
-
-    boolean a1(long j3);
-
-    void a2();
-
-    void b2(boolean z10);
-
-    void c2(int i10, int i11, int i12, long j3, long j10, boolean z10);
-
-    boolean d1();
-
-    void f1(CharSequence charSequence, boolean z10, boolean z11);
-
-    void g2();
-
-    void h();
-
-    void h1();
-
-    boolean i1();
-
-    void k();
-
-    void k1();
-
-    boolean l();
-
-    void l0();
-
-    void l1();
-
-    void m1();
-
-    void n1(View view, CharSequence charSequence, boolean z10);
-
-    void n2();
-
-    org.telegram.ui.sn o0();
-
-    int p();
-
-    void p1(CharSequence charSequence);
-
-    TLRPC.Peer q();
-
-    boolean q1();
-
-    void r0();
-
-    void r2();
-
-    void t1();
-
-    void v();
-
-    void x(float f7);
-
-    void x1();
-
-    void z(boolean z10);
-
-    boolean z0();
+    @Override
+    public final void run() {
+        switch (this.f26728a) {
+            case 0:
+                qg qgVar = this.f26729b;
+                ci.f4 f4Var = this.f26730c;
+                qgVar.removeView(f4Var);
+                if (qgVar.f27292b == f4Var) {
+                    qgVar.f27292b = null;
+                    return;
+                }
+                return;
+            case 1:
+                this.f26729b.removeView(this.f26730c);
+                return;
+            case 2:
+                this.f26729b.removeView(this.f26730c);
+                return;
+            default:
+                qg qgVar2 = this.f26729b;
+                ci.f4 f4Var2 = this.f26730c;
+                qgVar2.removeView(f4Var2);
+                if (qgVar2.f27291a == f4Var2) {
+                    qgVar2.f27291a = null;
+                    return;
+                }
+                return;
+        }
+    }
 }

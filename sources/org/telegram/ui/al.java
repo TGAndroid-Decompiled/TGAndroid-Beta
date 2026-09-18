@@ -1,13 +1,11 @@
 package org.telegram.ui;
-public final class al extends xo {
-    public boolean T0;
 
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.T0) {
-            i0();
-            this.T0 = true;
-        }
+import android.app.Activity;
+public final class al extends org.telegram.ui.Components.n41 {
+    public final bo f31916s;
+
+    public al(bo boVar, Activity activity, bo boVar2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(activity, f6Var, boVar2);
+        this.f31916s = boVar;
     }
 }

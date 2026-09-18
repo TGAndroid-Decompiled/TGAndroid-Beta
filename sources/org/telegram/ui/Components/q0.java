@@ -1,28 +1,58 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class q0 implements Runnable {
-    public final int f29528a;
-    public final EditTextBoldCursor f29529b;
-    public final org.telegram.ui.ActionBar.b2 f29530c;
-    public final org.telegram.ui.ActionBar.n2 d;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class q0 implements View.OnClickListener {
+    public final int f27175a = 1;
+    public final LinearLayout f27176b;
+    public final int[] f27177c;
 
-    public q0(EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.b2 b2Var, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
-        this.f29528a = i10;
-        this.f29529b = editTextBoldCursor;
-        this.f29530c = b2Var;
-        this.d = n2Var;
+    public q0(LinearLayout linearLayout, int[] iArr) {
+        this.f27176b = linearLayout;
+        this.f27177c = iArr;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29528a) {
+    public final void onClick(View view) {
+        boolean z10;
+        boolean z11;
+        switch (this.f27175a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new q0(this.f29529b, this.f29530c, this.d, 1));
+                this.f27177c[0] = ((Integer) view.getTag()).intValue();
+                LinearLayout linearLayout = this.f27176b;
+                int childCount = linearLayout.getChildCount();
+                for (int i10 = 0; i10 < childCount; i10++) {
+                    View childAt = linearLayout.getChildAt(i10);
+                    if (childAt instanceof org.telegram.ui.Cells.k6) {
+                        org.telegram.ui.Cells.k6 k6Var = (org.telegram.ui.Cells.k6) childAt;
+                        if (childAt == view) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        k6Var.f20375c.a(z10, true);
+                    }
+                }
                 return;
             default:
-                e5.e0(this.f29529b, this.f29530c, this.d);
+                LinearLayout linearLayout2 = this.f27176b;
+                int childCount2 = linearLayout2.getChildCount();
+                for (int i11 = 0; i11 < childCount2; i11++) {
+                    org.telegram.ui.Cells.k6 k6Var2 = (org.telegram.ui.Cells.k6) linearLayout2.getChildAt(i11);
+                    if (k6Var2 == view) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    k6Var2.f20375c.a(z11, true);
+                }
+                this.f27177c[0] = org.telegram.ui.Cells.y8.f21676f[((Integer) view.getTag()).intValue()];
                 return;
         }
+    }
+
+    public q0(int[] iArr, LinearLayout linearLayout) {
+        this.f27177c = iArr;
+        this.f27176b = linearLayout;
     }
 }

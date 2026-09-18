@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
-
-import android.view.View;
-public final class lh0 extends View {
+public final class lh0 {
+    public boolean f25905a;
+    public mh0 f25906b;
+    public jh0 f25907c;
 }

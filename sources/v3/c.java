@@ -5,22 +5,22 @@ import c3.a0;
 import c3.c0;
 import e2.d0;
 public final class c implements f {
-    public final long[] f47329a;
-    public final long[] f47330b;
-    public final long f47331c;
+    public final long[] f43897a;
+    public final long[] f43898b;
+    public final long f43899c;
 
     public c(long j3, long[] jArr, long[] jArr2) {
-        this.f47329a = jArr;
-        this.f47330b = jArr2;
-        this.f47331c = j3 == -9223372036854775807L ? d0.Q(jArr2[jArr2.length - 1]) : j3;
+        this.f43897a = jArr;
+        this.f43898b = jArr2;
+        this.f43899c = j3 == -9223372036854775807L ? d0.Q(jArr2[jArr2.length - 1]) : j3;
     }
 
-    public static Pair b(long j3, long[] jArr, long[] jArr2) {
+    public static Pair a(long j3, long[] jArr, long[] jArr2) {
         double d;
-        int e7 = d0.e(jArr, j3, true);
-        long j10 = jArr[e7];
-        long j11 = jArr2[e7];
-        int i10 = e7 + 1;
+        int e = d0.e(jArr, j3, true);
+        long j10 = jArr[e];
+        long j11 = jArr2[e];
+        int i10 = e + 1;
         if (i10 == jArr.length) {
             return Pair.create(Long.valueOf(j10), Long.valueOf(j11));
         }
@@ -35,8 +35,8 @@ public final class c implements f {
     }
 
     @Override
-    public final long a(long j3) {
-        return d0.Q(((Long) b(j3, this.f47329a, this.f47330b).second).longValue());
+    public final long b(long j3) {
+        return d0.Q(((Long) a(j3, this.f43897a, this.f43898b).second).longValue());
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class c implements f {
 
     @Override
     public final a0 j(long j3) {
-        Pair b10 = b(d0.e0(d0.i(j3, 0L, this.f47331c)), this.f47330b, this.f47329a);
-        c0 c0Var = new c0(d0.Q(((Long) b10.first).longValue()), ((Long) b10.second).longValue());
+        Pair a2 = a(d0.e0(d0.i(j3, 0L, this.f43899c)), this.f43898b, this.f43897a);
+        c0 c0Var = new c0(d0.Q(((Long) a2.first).longValue()), ((Long) a2.second).longValue());
         return new a0(c0Var, c0Var);
     }
 
@@ -68,6 +68,6 @@ public final class c implements f {
 
     @Override
     public final long l() {
-        return this.f47331c;
+        return this.f43899c;
     }
 }

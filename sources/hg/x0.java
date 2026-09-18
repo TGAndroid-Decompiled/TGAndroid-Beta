@@ -1,53 +1,60 @@
 package hg;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import android.location.Address;
+import android.location.Geocoder;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-public final class x0 implements RequestDelegate {
-    public final int f11305a = 0;
-    public final boolean f11306b;
-    public final NotificationCenter.NotificationCenterDelegate f11307c;
-    public final Serializable d;
-    public final Object f11308e;
-    public final Serializable f11309f;
-    public final Object f11310g;
-    public final Object h;
+import org.telegram.ui.kd0;
+public final class x0 implements Runnable {
+    public final int f10472a = 0;
+    public final e1 f10473b;
+    public final kd0 f10474c;
+    public final org.telegram.ui.ActionBar.c2 d;
 
-    public x0(k1 k1Var, String str, boolean z10, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
-        this.f11307c = k1Var;
-        this.d = str;
-        this.f11306b = z10;
-        this.f11310g = user;
-        this.f11308e = str2;
-        this.h = messagesStorage;
-        this.f11309f = str3;
+    public x0(e1 e1Var, org.telegram.ui.ActionBar.c2 c2Var, kd0 kd0Var) {
+        this.f10473b = e1Var;
+        this.d = c2Var;
+        this.f10474c = kd0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f11305a) {
+    public final void run() {
+        switch (this.f10472a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new y0((k1) this.f11307c, (String) this.d, this.f11306b, tLObject, (TLRPC.User) this.f11310g, (String) this.f11308e, (MessagesStorage) this.h, (String) this.f11309f));
+                e1 e1Var = this.f10473b;
+                e1Var.getClass();
+                this.d.dismiss();
+                e1Var.presentFragment(this.f10474c);
                 return;
             default:
-                ((SendMessagesHelper) this.f11307c).lambda$performSendMessageRequestMulti$74((ArrayList) this.d, (TLObject) this.f11308e, (ArrayList) this.f11309f, (ArrayList) this.f11310g, (SendMessagesHelper.DelayedMessage) this.h, this.f11306b, tLObject, tL_error);
+                e1 e1Var2 = this.f10473b;
+                kd0 kd0Var = this.f10474c;
+                try {
+                    List<Address> fromLocationName = new Geocoder(e1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(e1Var2.f10275y, 1);
+                    if (!fromLocationName.isEmpty()) {
+                        Address address = fromLocationName.get(0);
+                        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+                        tL_channelLocation.address = e1Var2.f10275y;
+                        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                        tL_channelLocation.geo_point = tL_geoPoint;
+                        tL_geoPoint.lat = address.getLatitude();
+                        tL_channelLocation.geo_point._long = address.getLongitude();
+                        kd0Var.A0 = tL_channelLocation;
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                AndroidUtilities.runOnUIThread(new x0(e1Var2, this.d, kd0Var));
                 return;
         }
     }
 
-    public x0(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, SendMessagesHelper sendMessagesHelper, TLObject tLObject, boolean z10) {
-        this.f11307c = sendMessagesHelper;
-        this.d = arrayList;
-        this.f11308e = tLObject;
-        this.f11309f = arrayList2;
-        this.f11310g = arrayList3;
-        this.h = delayedMessage;
-        this.f11306b = z10;
+    public x0(e1 e1Var, kd0 kd0Var, org.telegram.ui.ActionBar.c2 c2Var) {
+        this.f10473b = e1Var;
+        this.f10474c = kd0Var;
+        this.d = c2Var;
     }
 }

@@ -1,22 +1,19 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class i0 extends AnimatorListenerAdapter {
-    public final t f31544a;
-    public final l0 f31545b;
+import android.content.Context;
+import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.c40;
+public final class i0 extends UndoView {
+    public final c40 f28970f0;
 
-    public i0(l0 l0Var, t tVar) {
-        this.f31545b = l0Var;
-        this.f31544a = tVar;
+    public i0(c40 c40Var, Context context) {
+        super(context);
+        this.f28970f0 = c40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        t tVar = this.f31544a;
-        if (tVar.getParent() != null) {
-            this.f31545b.removeView(tVar);
-            tVar.e();
-        }
+    public final void invalidate() {
+        super.invalidate();
+        this.f28970f0.invalidate();
     }
 }

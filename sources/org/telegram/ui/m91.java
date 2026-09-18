@@ -1,19 +1,30 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 public final class m91 implements View.OnClickListener {
-    public final Context f38600a;
+    public final int f35735a;
+    public final Context f35736b;
+    public final org.telegram.ui.ActionBar.f6 f35737c;
 
-    public m91(Activity activity) {
-        this.f38600a = activity;
+    public m91(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f35735a = i10;
+        this.f35736b = context;
+        this.f35737c = f6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        of.f.s(this.f38600a, LocaleController.getString(R.string.SponsoredMessageAlertLearnMoreUrl));
+        switch (this.f35735a) {
+            case 0:
+                new yh.o7(this.f35736b, this.f35737c).show();
+                return;
+            case 1:
+                new yh.o7(this.f35736b, this.f35737c).show();
+                return;
+            default:
+                new yh.o7(this.f35736b, this.f35737c).show();
+                return;
+        }
     }
 }

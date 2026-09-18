@@ -1,28 +1,24 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class h3 extends FrameLayout implements v3 {
-    public final v3 f20482a;
+import android.view.View;
+import android.view.WindowInsets;
+public final class h3 implements View.OnApplyWindowInsetsListener {
+    public final int f18715a;
 
-    public h3(v3 v3Var) {
-        super(v3Var.getContext());
-        this.f20482a = v3Var;
+    public h3(int i10) {
+        this.f18715a = i10;
     }
 
     @Override
-    public RectF getRect() {
-        return this.f20482a.getRect();
-    }
-
-    @Override
-    public void setDrawingFromOverlay(boolean z10) {
-        this.f20482a.setDrawingFromOverlay(z10);
-    }
-
-    @Override
-    public final float z(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10) {
-        return this.f20482a.z(canvas, rectF, f7, rectF2, f10);
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        switch (this.f18715a) {
+            case 0:
+                return j3.a(view, windowInsets);
+            case 1:
+                return org.telegram.ui.h4.e(windowInsets);
+            default:
+                view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+                return windowInsets;
+        }
     }
 }

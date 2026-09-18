@@ -1,56 +1,49 @@
 package org.telegram.ui;
-public final class ak implements Runnable {
-    public final int f34464a;
-    public final co f34465b;
 
-    public ak(co coVar, int i10) {
-        this.f34464a = i10;
-        this.f34465b = coVar;
-    }
-
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class ak extends s4.n0 {
     @Override
-    public final void run() {
-        int i10 = this.f34464a;
-        co coVar = this.f34465b;
-        switch (i10) {
-            case 0:
-                co.i2(coVar);
-                return;
-            case 1:
-                co.i2(coVar);
-                return;
-            case 2:
-                int i11 = co.Hc;
-                coVar.Ma();
-                return;
-            case 3:
-                int i12 = co.Hc;
-                coVar.Ma();
-                return;
-            case 4:
-                int i13 = co.Hc;
-                coVar.Ma();
-                return;
-            case 5:
-                int i14 = co.Hc;
-                coVar.Ma();
-                return;
-            case 6:
-                int i15 = co.Hc;
-                coVar.Ma();
-                return;
-            case 7:
-                int i16 = co.Hc;
-                coVar.Ma();
-                return;
-            case 8:
-                int i17 = co.Hc;
-                coVar.Ma();
-                return;
-            default:
-                int i18 = co.Hc;
-                coVar.Ma();
-                return;
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        org.telegram.ui.Cells.t1 t1Var;
+        MessageObject.GroupedMessages currentMessagesGroup;
+        MessageObject.GroupedMessagePosition currentPosition;
+        int i10 = 0;
+        rect.bottom = 0;
+        if ((view instanceof org.telegram.ui.Cells.t1) && (currentMessagesGroup = (t1Var = (org.telegram.ui.Cells.t1) view).getCurrentMessagesGroup()) != null && (currentPosition = t1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int extraInsetHeight = t1Var.getExtraInsetHeight();
+            int i11 = 0;
+            while (true) {
+                float[] fArr = currentPosition.siblingHeights;
+                if (i11 >= fArr.length) {
+                    break;
+                }
+                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
+                i11++;
+            }
+            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+            int size = currentMessagesGroup.posArray.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
+                    byte b10 = groupedMessagePosition.minY;
+                    byte b11 = currentPosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
+                        round = org.telegram.messenger.w1.z(4.0f, (int) Math.ceil(max * groupedMessagePosition.f15610ph), round);
+                        break;
+                    }
+                    i10++;
+                } else {
+                    break;
+                }
+            }
+            rect.bottom = -round;
         }
     }
 }

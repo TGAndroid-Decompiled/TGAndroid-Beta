@@ -1,86 +1,59 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class r7 implements Runnable {
-    public final int f29966a;
-    public final s7 f29967b;
+import android.content.Context;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.PhotoViewer;
+public final class r7 extends kd {
+    public final int f27572b;
+    public final NotificationCenter.NotificationCenterDelegate f27573c;
 
-    public r7(s7 s7Var, int i10) {
-        this.f29966a = i10;
-        this.f29967b = s7Var;
+    public r7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
+        super(context);
+        this.f27572b = i10;
+        this.f27573c = notificationCenterDelegate;
     }
 
     @Override
-    public final void run() {
-        long j3;
-        switch (this.f29966a) {
+    public final void c(boolean z10) {
+        boolean z11;
+        int i10;
+        switch (this.f27572b) {
             case 0:
-                s7 s7Var = this.f29967b;
-                int i10 = s7Var.v + 1;
-                s7Var.v = i10;
-                if (i10 == 1) {
-                    k8 k8Var = s7Var.H;
-                    k8Var.H0 = -1;
-                    k8Var.I0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
-                    s7Var.f30214w = System.currentTimeMillis();
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    AndroidUtilities.runOnUIThread(s7Var.E);
-                    return;
-                } else if (i10 == 2) {
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    return;
-                } else {
+                h8 h8Var = (h8) this.f27573c;
+                h8Var.D0();
+                org.telegram.ui.as asVar = h8Var.O;
+                if (asVar != null) {
+                    asVar.a(b5.d.u());
                     return;
                 }
+                return;
             default:
-                s7 s7Var2 = this.f29967b;
-                k8 k8Var2 = s7Var2.H;
-                long duration = MediaController.getInstance().getDuration();
-                if (duration != 0 && duration != -9223372036854775807L) {
-                    float f7 = k8Var2.I0;
-                    long currentTimeMillis = System.currentTimeMillis();
-                    long j10 = currentTimeMillis - s7Var2.f30214w;
-                    s7Var2.f30214w = currentTimeMillis;
-                    long j11 = currentTimeMillis - s7Var2.f30215x;
-                    int i11 = s7Var2.v;
-                    if (i11 == 1) {
-                        j3 = 3;
-                    } else if (i11 == 2) {
-                        j3 = 6;
+                PhotoViewer photoViewer = (PhotoViewer) this.f27573c;
+                org.telegram.ui.ActionBar.g1 g1Var = photoViewer.F0;
+                if (g1Var != null) {
+                    g1Var.d(z10);
+                    org.telegram.ui.ActionBar.g1 g1Var2 = photoViewer.F0;
+                    if (z10) {
+                        i10 = 259241196;
                     } else {
-                        j3 = 12;
+                        i10 = 268435455;
                     }
-                    float f10 = (float) duration;
-                    float f11 = ((f7 * f10) - ((float) (j10 * j3))) / f10;
-                    if (f11 < 0.0f) {
-                        f11 = 0.0f;
+                    g1Var2.setSelectorColor(i10);
+                }
+                h71 h71Var = photoViewer.F2;
+                if (h71Var != null) {
+                    if (!b5.d.u() && !photoViewer.f31065r) {
+                        z11 = false;
+                    } else {
+                        z11 = true;
                     }
-                    k8Var2.I0 = f11;
-                    MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                    if (playingMessageObject != null && playingMessageObject.isMusic()) {
-                        k8Var2.G0(playingMessageObject, false);
-                    }
-                    if (k8Var2.H0 == -1 && s7Var2.v > 0) {
-                        if (j11 > 200 || k8Var2.I0 == 0.0f) {
-                            s7Var2.f30215x = currentTimeMillis;
-                            if (k8Var2.I0 == 0.0f) {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
-                                MediaController.getInstance().pauseByRewind();
-                            } else {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f11);
-                            }
-                        }
-                        if (s7Var2.v > 0 && k8Var2.I0 > 0.0f) {
-                            AndroidUtilities.runOnUIThread(s7Var2.E, 16L);
-                            return;
-                        }
-                        return;
-                    }
+                    h71Var.O(z11);
+                }
+                org.telegram.ui.as asVar2 = photoViewer.f31113w0;
+                if (asVar2 != null) {
+                    asVar2.a(b5.d.u());
                     return;
                 }
-                s7Var2.f30214w = System.currentTimeMillis();
                 return;
         }
     }

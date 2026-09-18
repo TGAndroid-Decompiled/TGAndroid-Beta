@@ -1,66 +1,38 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-public final class g30 extends s4.s0 {
-    public final j60 f36538a;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class g30 implements Utilities.Callback2 {
+    public final int f33830a;
+    public final k60 f33831b;
 
-    public g30(j60 j60Var) {
-        this.f36538a = j60Var;
+    public g30(k60 k60Var, int i10) {
+        this.f33830a = i10;
+        this.f33831b = k60Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        int i11;
-        j60 j60Var = this.f36538a;
-        p50 p50Var = j60Var.Q;
-        if (i10 == 0) {
-            int dp = AndroidUtilities.dp(74.0f);
-            i11 = ((org.telegram.ui.ActionBar.f3) j60Var).backgroundPaddingTop;
-            if ((j60Var.f37615y0 - dp) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && p50Var.canScrollVertically(1)) {
-                p50Var.getChildAt(0);
-                org.telegram.ui.Components.vk0 vk0Var = (org.telegram.ui.Components.vk0) p50Var.K(0);
-                if (vk0Var != null) {
-                    View view = vk0Var.f45739a;
-                    if (view.getTop() > 0) {
-                        p50Var.v0(0, view.getTop(), null);
-                        return;
-                    }
+    public final void run(Object obj, Object obj2) {
+        TLRPC.Updates updates = (TLRPC.Updates) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+        switch (this.f33830a) {
+            case 0:
+                k60 k60Var = this.f33831b;
+                if (updates != null) {
+                    k60Var.d.getMessagesController().processUpdates(updates, false);
+                }
+                AndroidUtilities.runOnUIThread(new x20(k60Var, 10));
+                return;
+            default:
+                k60 k60Var2 = this.f33831b;
+                if (updates != null) {
+                    k60Var2.d.getMessagesController().processUpdates(updates, false);
+                    return;
+                } else {
+                    k60Var2.getClass();
                     return;
                 }
-                return;
-            }
-            return;
-        }
-        org.telegram.ui.Components.i40 i40Var = j60Var.m0;
-        if (i40Var != null) {
-            i40Var.b(true);
-        }
-        org.telegram.ui.Components.i40 i40Var2 = j60Var.f37566n0;
-        if (i40Var2 != null) {
-            i40Var2.b(true);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ChatObject.Call call;
-        ViewGroup viewGroup;
-        j60 j60Var = this.f36538a;
-        if (j60Var.Q.getChildCount() > 0 && (call = j60Var.f37514a1) != null) {
-            if (!call.loadingMembers && !call.membersLoadEndReached && j60Var.Y.N0() > j60Var.P.F - 5) {
-                j60Var.f37514a1.loadMembers(false);
-            }
-            j60.J0(j60Var);
-            y50 y50Var = j60Var.U0;
-            if (y50Var != null) {
-                y50Var.invalidate();
-            }
-            viewGroup = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
-            viewGroup.invalidate();
         }
     }
 }

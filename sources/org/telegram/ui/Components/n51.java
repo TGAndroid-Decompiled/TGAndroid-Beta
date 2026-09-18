@@ -4,38 +4,53 @@ import android.net.Uri;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class n51 extends URLSpan {
-    public final n01 f28625a;
-    public boolean f28626b;
+import org.telegram.tgnet.TLObject;
+public class n51 extends URLSpan {
+    public final boolean f26341a;
+    public final p01 f26342b;
+    public TLObject f26343c;
+    public String d;
 
-    public n51(String str, n01 n01Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f28625a = n01Var;
+    public n51(String str) {
+        this(str, (p01) null);
     }
 
     @Override
-    public final void onClick(View view) {
-        if (this.f28626b && (view.getContext() instanceof LaunchActivity)) {
-            ((LaunchActivity) view.getContext()).X0 = true;
+    public void onClick(View view) {
+        String url = getURL();
+        if (url.startsWith("@")) {
+            nf.f.p(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
+            return;
         }
-        of.f.p(view.getContext(), Uri.parse(getURL()), true, true);
+        nf.f.s(view.getContext(), url);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         boolean z10;
+        int i10 = textPaint.linkColor;
         int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        n01 n01Var = this.f28625a;
-        if (n01Var != null) {
-            n01Var.a(textPaint);
-            if (textPaint.linkColor == color) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            textPaint.setUnderlineText(z10);
+        p01 p01Var = this.f26342b;
+        if (p01Var != null) {
+            p01Var.a(textPaint);
         }
+        if (i10 == color && !this.f26341a) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public n51(String str, int i10) {
+        this(str, (p01) null);
+        this.f26341a = true;
+    }
+
+    public n51(String str, p01 p01Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f26341a = false;
+        this.f26342b = p01Var;
     }
 }

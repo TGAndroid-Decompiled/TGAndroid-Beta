@@ -74,7 +74,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         int i16;
         int i17;
         int i18;
-        org.telegram.ui.Components.i9 i9Var;
+        org.telegram.ui.Components.f9 f9Var;
         TLRPC.UserProfilePhoto userProfilePhoto;
         int i19;
         if (this.deleted) {
@@ -165,19 +165,19 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                     Canvas canvas = new Canvas(createBitmap);
                     if (decodeFile == null) {
                         if (user != null) {
-                            i9Var = new org.telegram.ui.Components.i9(0, user);
+                            f9Var = new org.telegram.ui.Components.f9(0, user);
                             if (UserObject.isReplyUser(user)) {
-                                i9Var.g(12);
+                                f9Var.g(12);
                             } else if (UserObject.isUserSelf(user)) {
-                                i9Var.g(1);
+                                f9Var.g(1);
                             }
                         } else {
-                            org.telegram.ui.Components.i9 i9Var2 = new org.telegram.ui.Components.i9((org.telegram.ui.ActionBar.f6) null);
-                            i9Var2.k(this.accountInstance.getCurrentAccount(), chat);
-                            i9Var = i9Var2;
+                            org.telegram.ui.Components.f9 f9Var2 = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.f6) null);
+                            f9Var2.k(this.accountInstance.getCurrentAccount(), chat);
+                            f9Var = f9Var2;
                         }
-                        i9Var.setBounds(0, 0, dp, dp);
-                        i9Var.draw(canvas);
+                        f9Var.setBounds(0, 0, dp, dp);
+                        f9Var.draw(canvas);
                     } else {
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);

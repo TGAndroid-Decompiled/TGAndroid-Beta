@@ -5,36 +5,36 @@ import c3.h0;
 import e2.d0;
 import e2.v;
 public final class g {
-    public final h0 f47932a;
+    public final h0 f44522a;
     public r d;
-    public d f47935e;
-    public int f47936f;
-    public int f47937g;
+    public d e;
+    public int f44525f;
+    public int f44526g;
     public int h;
-    public int f47938i;
-    public final s f47939j;
-    public boolean f47942m;
-    public final q f47933b = new q();
-    public final v f47934c = new v();
-    public final v f47940k = new v(1);
-    public final v f47941l = new v();
+    public int f44527i;
+    public final s f44528j;
+    public boolean f44531m;
+    public final q f44523b = new q();
+    public final v f44524c = new v();
+    public final v f44529k = new v(1);
+    public final v f44530l = new v();
 
     public g(h0 h0Var, r rVar, d dVar, s sVar) {
-        this.f47932a = h0Var;
+        this.f44522a = h0Var;
         this.d = rVar;
-        this.f47935e = dVar;
-        this.f47939j = sVar;
+        this.e = dVar;
+        this.f44528j = sVar;
         this.d = rVar;
-        this.f47935e = dVar;
+        this.e = dVar;
         h0Var.b(sVar);
         e();
     }
 
     public final int a() {
         int i10;
-        if (!this.f47942m) {
-            i10 = this.d.f48037g[this.f47936f];
-        } else if (this.f47933b.f48024j[this.f47936f]) {
+        if (!this.f44531m) {
+            i10 = this.d.f44618g[this.f44525f];
+        } else if (this.f44523b.f44606j[this.f44525f]) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -46,16 +46,16 @@ public final class g {
     }
 
     public final p b() {
-        if (this.f47942m) {
-            q qVar = this.f47933b;
-            d dVar = qVar.f48017a;
-            String str = d0.f8737a;
-            int i10 = dVar.f47925a;
-            p pVar = qVar.f48027m;
+        if (this.f44531m) {
+            q qVar = this.f44523b;
+            d dVar = qVar.f44600a;
+            String str = d0.f7888a;
+            int i10 = dVar.f44515a;
+            p pVar = qVar.f44609m;
             if (pVar == null) {
-                pVar = this.d.f48032a.f48012l[i10];
+                pVar = this.d.f44614a.f44596l[i10];
             }
-            if (pVar != null && pVar.f48013a) {
+            if (pVar != null && pVar.f44597a) {
                 return pVar;
             }
             return null;
@@ -64,19 +64,19 @@ public final class g {
     }
 
     public final boolean c() {
-        this.f47936f++;
-        if (!this.f47942m) {
+        this.f44525f++;
+        if (!this.f44531m) {
             return false;
         }
-        int i10 = this.f47937g + 1;
-        this.f47937g = i10;
-        int[] iArr = this.f47933b.f48022g;
+        int i10 = this.f44526g + 1;
+        this.f44526g = i10;
+        int[] iArr = this.f44523b.f44604g;
         int i11 = this.h;
         if (i10 != iArr[i11]) {
             return true;
         }
         this.h = i11 + 1;
-        this.f47937g = 0;
+        this.f44526g = 0;
         return false;
     }
 
@@ -90,20 +90,20 @@ public final class g {
             return 0;
         }
         int i13 = b10.d;
-        q qVar = this.f47933b;
+        q qVar = this.f44523b;
         if (i13 != 0) {
-            vVar = qVar.f48028n;
+            vVar = qVar.f44610n;
         } else {
-            byte[] bArr = b10.f48016e;
-            String str = d0.f8737a;
+            byte[] bArr = b10.e;
+            String str = d0.f7888a;
             int length = bArr.length;
-            v vVar2 = this.f47941l;
+            v vVar2 = this.f44530l;
             vVar2.H(length, bArr);
             i13 = bArr.length;
             vVar = vVar2;
         }
-        int i14 = this.f47936f;
-        if (qVar.f48025k && qVar.f48026l[i14]) {
+        int i14 = this.f44525f;
+        if (qVar.f44607k && qVar.f44608l[i14]) {
             z10 = true;
         } else {
             z10 = false;
@@ -113,8 +113,8 @@ public final class g {
         } else {
             z11 = true;
         }
-        v vVar3 = this.f47940k;
-        byte[] bArr2 = vVar3.f8789a;
+        v vVar3 = this.f44529k;
+        byte[] bArr2 = vVar3.f7934a;
         if (z11) {
             i12 = 128;
         } else {
@@ -122,16 +122,16 @@ public final class g {
         }
         bArr2[0] = (byte) (i12 | i13);
         vVar3.J(0);
-        h0 h0Var = this.f47932a;
+        h0 h0Var = this.f44522a;
         h0Var.f(vVar3, 1, 1);
         h0Var.f(vVar, i13, 1);
         if (!z11) {
             return i13 + 1;
         }
-        v vVar4 = this.f47934c;
+        v vVar4 = this.f44524c;
         if (!z10) {
             vVar4.G(8);
-            byte[] bArr3 = vVar4.f8789a;
+            byte[] bArr3 = vVar4.f7934a;
             bArr3[0] = 0;
             bArr3[1] = 1;
             bArr3[2] = (byte) 0;
@@ -143,13 +143,13 @@ public final class g {
             h0Var.f(vVar4, 8, 1);
             return i13 + 9;
         }
-        v vVar5 = qVar.f48028n;
+        v vVar5 = qVar.f44610n;
         int D = vVar5.D();
         vVar5.K(-2);
         int i15 = (D * 6) + 2;
         if (i11 != 0) {
             vVar4.G(i15);
-            byte[] bArr4 = vVar4.f8789a;
+            byte[] bArr4 = vVar4.f7934a;
             vVar5.h(0, i15, bArr4);
             int i16 = (((bArr4[2] & 255) << 8) | (bArr4[3] & 255)) + i11;
             bArr4[2] = (byte) ((i16 >> 8) & 255);
@@ -162,17 +162,17 @@ public final class g {
     }
 
     public final void e() {
-        q qVar = this.f47933b;
+        q qVar = this.f44523b;
         qVar.d = 0;
-        qVar.f48030p = 0L;
-        qVar.f48031q = false;
-        qVar.f48025k = false;
-        qVar.f48029o = false;
-        qVar.f48027m = null;
-        this.f47936f = 0;
+        qVar.f44612p = 0L;
+        qVar.f44613q = false;
+        qVar.f44607k = false;
+        qVar.f44611o = false;
+        qVar.f44609m = null;
+        this.f44525f = 0;
         this.h = 0;
-        this.f47937g = 0;
-        this.f47938i = 0;
-        this.f47942m = false;
+        this.f44526g = 0;
+        this.f44527i = 0;
+        this.f44531m = false;
     }
 }

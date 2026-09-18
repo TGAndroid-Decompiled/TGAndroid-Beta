@@ -1,17 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class u01 extends org.telegram.ui.Cells.c9 {
-    public final a11 f40880r;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_fragment;
+public final class u01 extends ClickableSpan {
+    public final TLRPC.TL_username f37905a;
+    public final String f37906b;
+    public final b11 f37907c;
 
-    public u01(a11 a11Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
-        super(18, context, f6Var, z10, z11);
-        this.f40880r = a11Var;
+    public u01(b11 b11Var, TLRPC.TL_username tL_username, String str) {
+        this.f37907c = b11Var;
+        this.f37905a = tL_username;
+        this.f37906b = str;
     }
 
     @Override
-    public final int a(int i10) {
-        this.f40880r.f34292e.getClass();
-        return i10;
+    public final void onClick(View view) {
+        ProfileActivity profileActivity = this.f37907c.e;
+        TLRPC.TL_username tL_username = this.f37905a;
+        if (!tL_username.editable) {
+            if (profileActivity.f31319i5 != this) {
+                profileActivity.M4(this);
+                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
+                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
+                tL_inputCollectibleUsername.username = tL_username.username;
+                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
+                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new dc0(18, this, tL_username)), profileActivity.getClassGuid());
+                return;
+            }
+            return;
+        }
+        profileActivity.M4(null);
+        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f37906b;
+        TLRPC.Chat chat = profileActivity.E2;
+        if (chat != null && chat.noforwards) {
+            return;
+        }
+        AndroidUtilities.addToClipboard(str);
+        profileActivity.M.j(56, 0L, null);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
+        textPaint.setColor(textPaint.linkColor);
     }
 }

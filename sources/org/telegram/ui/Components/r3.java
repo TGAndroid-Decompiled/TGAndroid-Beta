@@ -1,47 +1,46 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Point;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 public final class r3 extends LinearLayout {
-    public final f01 f29909a;
-    public boolean f29910b;
-    public f01 f29911c;
-    public final q3 d;
+    public boolean f27509a;
+    public final o3 f27510b;
+    public final q3 f27511c;
 
-    public r3(Context context, q3 q3Var) {
+    public r3(Context context, o3 o3Var, q3 q3Var) {
         super(context);
-        this.d = q3Var;
-        this.f29909a = new f01(":", 18.0f, null);
+        this.f27510b = o3Var;
+        this.f27511c = q3Var;
+        this.f27509a = false;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10;
-        String str;
-        float width = (getWidth() - this.f29909a.f25848c) / 2.0f;
-        float height = getHeight() / 2.0f;
-        int i10 = org.telegram.ui.ActionBar.j6.G6;
-        this.f29909a.c(width, height, 1.0f, org.telegram.ui.ActionBar.j6.w0(null, i10, false), canvas);
-        if (!LocaleController.is24HourFormat) {
-            if (this.d.getValue() % 24 < 12) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (this.f29910b != z10 || this.f29911c == null) {
-                this.f29910b = z10;
-                if (z10) {
-                    str = "AM";
-                } else {
-                    str = "PM";
-                }
-                this.f29911c = new f01(str, 18.0f, null);
-            }
-            this.f29911c.c((getWidth() / 2.0f) + AndroidUtilities.dp(43.0f), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), 1.0f, org.telegram.ui.ActionBar.j6.w0(null, i10, false), canvas);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        this.f27509a = true;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            i12 = 3;
+        } else {
+            i12 = 5;
         }
-        super.dispatchDraw(canvas);
+        o3 o3Var = this.f27510b;
+        o3Var.setItemCount(i12);
+        q3 q3Var = this.f27511c;
+        q3Var.setItemCount(i12);
+        o3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        q3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        this.f27509a = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f27509a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

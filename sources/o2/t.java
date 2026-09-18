@@ -10,6 +10,7 @@ import e2.v;
 import e9.a1;
 import e9.g0;
 import e9.i0;
+import hg.k0;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -17,57 +18,57 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class t implements c3.o {
-    public static final Pattern f16941i = Pattern.compile("LOCAL:([^,]+)");
-    public static final Pattern f16942j = Pattern.compile("MPEGTS:(-?\\d+)");
-    public final String f16943a;
-    public final b0 f16944b;
+    public static final Pattern f15469i = Pattern.compile("LOCAL:([^,]+)");
+    public static final Pattern f15470j = Pattern.compile("MPEGTS:(-?\\d+)");
+    public final String f15471a;
+    public final b0 f15472b;
     public final z3.k d;
-    public final boolean f16946e;
-    public c3.q f16947f;
+    public final boolean e;
+    public c3.q f15474f;
     public int h;
-    public final v f16945c = new v();
-    public byte[] f16948g = new byte[1024];
+    public final v f15473c = new v();
+    public byte[] f15475g = new byte[1024];
 
     public t(String str, b0 b0Var, z3.k kVar, boolean z10) {
-        this.f16943a = str;
-        this.f16944b = b0Var;
+        this.f15471a = str;
+        this.f15472b = b0Var;
         this.d = kVar;
-        this.f16946e = z10;
-    }
-
-    public final h0 a(long j3) {
-        h0 R1 = this.f16947f.R1(0, 3);
-        b2.r rVar = new b2.r();
-        rVar.f2312q = r0.n("text/vtt");
-        rVar.d = this.f16943a;
-        rVar.v = j3;
-        i2.g.u(rVar, R1);
-        this.f16947f.Z0();
-        return R1;
+        this.e = z10;
     }
 
     @Override
-    public final boolean b(c3.p pVar) {
+    public final boolean a(c3.p pVar) {
         c3.l lVar = (c3.l) pVar;
-        lVar.j(this.f16948g, 0, 6, false);
-        byte[] bArr = this.f16948g;
-        v vVar = this.f16945c;
+        lVar.h(this.f15475g, 0, 6, false);
+        byte[] bArr = this.f15475g;
+        v vVar = this.f15473c;
         vVar.H(6, bArr);
         if (i4.i.a(vVar)) {
             return true;
         }
-        lVar.j(this.f16948g, 6, 3, false);
-        vVar.H(9, this.f16948g);
+        lVar.h(this.f15475g, 6, 3, false);
+        vVar.H(9, this.f15475g);
         return i4.i.a(vVar);
+    }
+
+    public final h0 b(long j3) {
+        h0 Z1 = this.f15474f.Z1(0, 3);
+        b2.r rVar = new b2.r();
+        rVar.f3253q = r0.n("text/vtt");
+        rVar.d = this.f15471a;
+        rVar.v = j3;
+        k0.u(rVar, Z1);
+        this.f15474f.e1();
+        return Z1;
     }
 
     @Override
     public final void g(c3.q qVar) {
-        if (this.f16946e) {
+        if (this.e) {
             qVar = new com.google.firebase.messaging.m(qVar, this.d);
         }
-        this.f16947f = qVar;
-        qVar.P1(new c3.t(-9223372036854775807L));
+        this.f15474f = qVar;
+        qVar.X1(new c3.t(-9223372036854775807L));
     }
 
     @Override
@@ -77,27 +78,27 @@ public final class t implements c3.o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8957b;
-        return a1.f8920e;
+        g0 g0Var = i0.f8084b;
+        return a1.e;
     }
 
     @Override
     public final int m(c3.p pVar, c3.s sVar) {
         String k10;
         int length;
-        this.f16947f.getClass();
+        this.f15474f.getClass();
         int length2 = (int) pVar.getLength();
         int i10 = this.h;
-        byte[] bArr = this.f16948g;
+        byte[] bArr = this.f15475g;
         if (i10 == bArr.length) {
             if (length2 != -1) {
                 length = length2;
             } else {
                 length = bArr.length;
             }
-            this.f16948g = Arrays.copyOf(bArr, (length * 3) / 2);
+            this.f15475g = Arrays.copyOf(bArr, (length * 3) / 2);
         }
-        byte[] bArr2 = this.f16948g;
+        byte[] bArr2 = this.f15475g;
         int i11 = this.h;
         int read = pVar.read(bArr2, i11, bArr2.length - i11);
         if (read != -1) {
@@ -107,7 +108,7 @@ public final class t implements c3.o {
                 return 0;
             }
         }
-        v vVar = new v(this.f16948g);
+        v vVar = new v(this.f15475g);
         i4.i.d(vVar);
         String k11 = vVar.k(StandardCharsets.UTF_8);
         long j3 = 0;
@@ -116,9 +117,9 @@ public final class t implements c3.o {
             Matcher matcher = null;
             if (!TextUtils.isEmpty(k11)) {
                 if (k11.startsWith("X-TIMESTAMP-MAP")) {
-                    Matcher matcher2 = f16941i.matcher(k11);
+                    Matcher matcher2 = f15469i.matcher(k11);
                     if (matcher2.find()) {
-                        Matcher matcher3 = f16942j.matcher(k11);
+                        Matcher matcher3 = f15470j.matcher(k11);
                         if (matcher3.find()) {
                             String group = matcher2.group(1);
                             group.getClass();
@@ -126,7 +127,7 @@ public final class t implements c3.o {
                             String group2 = matcher3.group(1);
                             group2.getClass();
                             long parseLong = Long.parseLong(group2);
-                            String str = d0.f8737a;
+                            String str = d0.f7888a;
                             j3 = d0.Y(parseLong, 1000000L, 90000L, RoundingMode.DOWN);
                         } else {
                             throw s0.a(null, "X-TIMESTAMP-MAP doesn't contain media timestamp: ".concat(k11));
@@ -141,14 +142,14 @@ public final class t implements c3.o {
                     String k12 = vVar.k(StandardCharsets.UTF_8);
                     if (k12 == null) {
                         break;
-                    } else if (i4.i.f11853a.matcher(k12).matches()) {
+                    } else if (i4.i.f10990a.matcher(k12).matches()) {
                         do {
                             k10 = vVar.k(StandardCharsets.UTF_8);
                             if (k10 != null) {
                             }
                         } while (!k10.isEmpty());
                     } else {
-                        Matcher matcher4 = i4.h.f11850a.matcher(k12);
+                        Matcher matcher4 = i4.h.f10987a.matcher(k12);
                         if (matcher4.matches()) {
                             matcher = matcher4;
                             break;
@@ -156,21 +157,21 @@ public final class t implements c3.o {
                     }
                 }
                 if (matcher == null) {
-                    a(0L);
+                    b(0L);
                     return -1;
                 }
                 String group3 = matcher.group(1);
                 group3.getClass();
                 long c10 = i4.i.c(group3);
-                String str2 = d0.f8737a;
-                long b10 = this.f16944b.b(d0.Y((j3 + c10) - j10, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
-                h0 a2 = a(b10 - c10);
-                byte[] bArr3 = this.f16948g;
+                String str2 = d0.f7888a;
+                long b10 = this.f15472b.b(d0.Y((j3 + c10) - j10, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
+                h0 b11 = b(b10 - c10);
+                byte[] bArr3 = this.f15475g;
                 int i13 = this.h;
-                v vVar2 = this.f16945c;
+                v vVar2 = this.f15473c;
                 vVar2.H(i13, bArr3);
-                a2.d(this.h, vVar2);
-                a2.c(b10, 1, this.h, 0, null);
+                b11.d(this.h, vVar2);
+                b11.c(b10, 1, this.h, 0, null);
                 return -1;
             }
         }

@@ -1,201 +1,136 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableString;
-import android.view.KeyEvent;
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
+import java.util.HashMap;
+import java.util.regex.Pattern;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class wm implements ly {
-    public final tn f32292a;
+import org.telegram.ui.LaunchActivity;
+public final class wm implements Runnable {
+    public final int f29694a;
+    public final int f29695b;
+    public final Object f29696c;
+    public final Object d;
 
-    public wm(tn tnVar) {
-        this.f32292a = tnVar;
+    public wm(int i10, Object obj, Object obj2, int i11) {
+        this.f29694a = i11;
+        this.f29695b = i10;
+        this.f29696c = obj;
+        this.d = obj2;
     }
 
-    @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void i(int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    private final void a() {
+        MessageObject messageObject = (MessageObject) this.f29696c;
+        org.telegram.ui.Cells.k1 k1Var = (org.telegram.ui.Cells.k1) this.d;
+        HashMap hashMap = f31.P;
+        if (hashMap != null) {
+            hashMap.remove(Integer.valueOf(f31.o(messageObject)));
         }
-        tn tnVar = this.f32292a;
-        tnVar.f30640h1 = z10;
-        tnVar.f28754b.f31317r1.requestLayout();
+        if (k1Var != null) {
+            k1Var.d0(3);
+        }
+        int i10 = this.f29695b;
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
     }
 
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        EditTextBoldCursor editField;
-        org.telegram.ui.Cells.c6 c6Var = this.f32292a.f30638g1;
-        if (c6Var == null || (editField = c6Var.getEditField()) == null) {
-            return false;
-        }
-        editField.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
-    }
-
-    @Override
-    public final void l(String str) {
-        EditTextBoldCursor editField;
-        org.telegram.ui.Cells.c6 c6Var = this.f32292a.f30638g1;
-        if (c6Var == null || (editField = c6Var.getEditField()) == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(str, editField.getPaint().getFontMetricsInt(), false);
-            editField.setText(editField.getText().insert(selectionEnd, replaceEmoji));
-            int length = selectionEnd + replaceEmoji.length();
-            editField.setSelection(length, length);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+    private final void b() {
+        int i10;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        org.telegram.ui.wy wyVar = ((org.telegram.ui.ay) this.f29696c).f32004f0;
+        ArrayList arrayList = wyVar.R1;
+        if (arrayList != null && (i10 = this.f29695b) >= 0 && i10 < arrayList.size()) {
+            wyVar.R1.add(i10, dialog);
+            wyVar.f39221e0[0].q(true);
         }
     }
 
-    @Override
-    public final void n() {
-        tn tnVar = this.f32292a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(tnVar.getContext(), 0, tnVar.f28753a);
-        alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new t(this, 24));
-        i2.g.r(R.string.Cancel, alertDialog$Builder, null);
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        EditTextBoldCursor editField;
-        z5 z5Var;
-        org.telegram.ui.Cells.c6 c6Var = this.f32292a.f30638g1;
-        if (c6Var == null || (editField = c6Var.getEditField()) == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            SpannableString spannableString = new SpannableString(str);
-            if (document != null) {
-                z5Var = new z5(document, editField.getPaint().getFontMetricsInt());
-            } else {
-                z5Var = new z5(j3, editField.getPaint().getFontMetricsInt());
+    private final void c() {
+        org.telegram.ui.uy uyVar = (org.telegram.ui.uy) this.f29696c;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        org.telegram.ui.vy vyVar = uyVar.f38247g;
+        org.telegram.ui.wy wyVar = uyVar.h;
+        wyVar.S1 = true;
+        wyVar.getMessagesController().addDialogToFolder(dialog.f18125id, 0, this.f29695b, 0L);
+        wyVar.S1 = false;
+        ArrayList<TLRPC.Dialog> dialogs = wyVar.getMessagesController().getDialogs(0);
+        int indexOf = dialogs.indexOf(dialog);
+        if (indexOf >= 0) {
+            ArrayList<TLRPC.Dialog> dialogs2 = wyVar.getMessagesController().getDialogs(1);
+            if (!dialogs2.isEmpty() || indexOf != 1) {
+                wyVar.A4(true, true);
+                vyVar.f38535x.D();
+                vyVar.q(true);
+                wyVar.o3();
             }
-            z5Var.cacheType = 3;
-            spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
-            editField.setText(editField.getText().insert(selectionEnd, spannableString));
-            int length = selectionEnd + spannableString.length();
-            editField.setSelection(length, length);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+            if (dialogs2.isEmpty()) {
+                dialogs.remove(0);
+                if (indexOf == 1) {
+                    wyVar.A4(true, true);
+                    vyVar.q(true);
+                    wyVar.o3();
+                    return;
+                }
+                if (!wyVar.R1.isEmpty()) {
+                    wyVar.R1.remove(0);
+                }
+                vyVar.f38535x.D();
+                vyVar.q(true);
+                return;
+            }
+            return;
+        }
+        vyVar.q(false);
+    }
+
+    private final void e() {
+        org.telegram.ui.k60 k60Var = (org.telegram.ui.k60) this.f29696c;
+        org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) this.d;
+        org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+        if (c2Var == null) {
+            return;
+        }
+        c2Var.setOnCancelListener(new org.telegram.ui.da(k60Var, this.f29695b, 5));
+        c2VarArr[0].show();
+    }
+
+    private final void f() {
+        LaunchActivity launchActivity = (LaunchActivity) this.f29696c;
+        TLRPC.TL_help_appUpdate tL_help_appUpdate = (TLRPC.TL_help_appUpdate) this.d;
+        Pattern pattern = LaunchActivity.B1;
+        TLRPC.TL_help_appUpdate tL_help_appUpdate2 = SharedConfig.pendingAppUpdate;
+        if ((tL_help_appUpdate2 == null || !tL_help_appUpdate2.version.equals(tL_help_appUpdate.version)) && SharedConfig.setNewAppVersionAvailable(tL_help_appUpdate)) {
+            boolean z10 = tL_help_appUpdate.can_not_skip;
+            int i10 = this.f29695b;
+            if (z10) {
+                launchActivity.I0(i10, tL_help_appUpdate, false);
+            } else if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
+                ApplicationLoader.applicationLoaderInstance.showUpdateAppPopup(launchActivity, tL_help_appUpdate, i10);
+            }
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
         }
     }
 
     @Override
-    public final boolean z() {
-        return this.f32292a.f30640h1;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wm.run():void");
     }
 
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    public wm(Object obj, int i10, Object obj2, int i11) {
+        this.f29694a = i11;
+        this.f29696c = obj;
+        this.f29695b = i10;
+        this.d = obj2;
     }
 
-    @Override
-    public final void o(d51 d51Var) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
+    public wm(Object obj, Object obj2, int i10, int i11) {
+        this.f29694a = i11;
+        this.f29696c = obj;
+        this.d = obj2;
+        this.f29695b = i10;
     }
 }

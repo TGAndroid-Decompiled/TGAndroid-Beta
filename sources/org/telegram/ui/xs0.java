@@ -1,45 +1,23 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import org.telegram.messenger.SharedConfig;
-public final class xs0 extends org.telegram.ui.Components.r71 {
-    public final org.telegram.ui.Components.na f42886g0;
-    public final PhotoViewer f42887h0;
+import org.telegram.messenger.ImageReceiver;
+public final class xs0 implements org.telegram.ui.Components.u30 {
+    public final PhotoViewer f39699a;
 
-    public xs0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f42887h0 = photoViewer;
-        new Path();
-        this.f42886g0 = new org.telegram.ui.Components.na(photoViewer.f33521b0, this, 0, false);
+    public xs0(PhotoViewer photoViewer) {
+        this.f39699a = photoViewer;
     }
 
-    @Override
-    public final void b(Canvas canvas, RectF rectF) {
-        canvas.save();
-        canvas.clipRect(rectF);
-        PhotoViewer photoViewer = this.f42887h0;
-        canvas.translate((-getX()) - photoViewer.Q7.getX(), (-getY()) - photoViewer.Q7.getY());
-        photoViewer.T0(canvas, this.f42886g0, -14803426, 855638016, false, true, false);
-        canvas.restore();
-    }
-
-    @Override
-    public final void invalidate() {
-        int i10;
-        if (SharedConfig.photoViewerBlur && ((i10 = this.f42887h0.f33631n4) == 1 || i10 == 2 || i10 == 3)) {
-            return;
+    public final void a(int i10) {
+        PhotoViewer photoViewer = this.f39699a;
+        photoViewer.P4 = -1;
+        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f31002j5;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            photoViewer.f31002j5 = null;
         }
-        super.invalidate();
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            super.setTranslationY(f7);
-            this.f42887h0.f33550e0.invalidate();
-        }
+        photoViewer.f31018l5 = true;
+        photoViewer.A2(i10);
+        photoViewer.f31018l5 = false;
     }
 }

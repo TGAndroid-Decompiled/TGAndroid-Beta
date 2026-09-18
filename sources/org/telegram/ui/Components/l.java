@@ -1,37 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class l implements TextWatcher {
-    public final f0 f28015a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class l extends iq0 {
+    public final e0 f25792b1;
 
-    public l(f0 f0Var) {
-        this.f28015a = f0Var;
+    public l(e0 e0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null, str, false, str2, false, f6Var);
+        this.f25792b1 = e0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        e0 e0Var;
-        f0 f0Var = this.f28015a;
-        e0 e0Var2 = f0Var.f25841w0;
-        if (e0Var2 != null) {
-            i10 = e0Var2.getSelectedTab();
-        } else {
-            i10 = 0;
+    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        String str;
+        FrameLayout frameLayout = this.f25792b1.G0;
+        if (z10) {
+            vc vcVar = new vc(frameLayout, this.resourcesProvider);
+            if (iVar.m() == 1) {
+                long j3 = iVar.j(0);
+                if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                    oc G = vcVar.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AIEditorStyleSharedToSavedMessages, new Object[0])));
+                    G.f26713r = false;
+                    G.j();
+                } else if (j3 < 0) {
+                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
+                    int i11 = R.raw.forward;
+                    int i12 = R.string.AIEditorStyleSharedTo;
+                    if (tL_forumTopic != null) {
+                        str = tL_forumTopic.title;
+                    } else {
+                        str = chat.title;
+                    }
+                    oc G2 = vcVar.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f26713r = false;
+                    G2.j();
+                } else {
+                    oc G3 = vcVar.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AIEditorStyleSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
+                    G3.f26713r = false;
+                    G3.j();
+                }
+            } else {
+                oc Q = vcVar.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("AIEditorStyleSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
+                Q.f26713r = false;
+                Q.j();
+            }
+            try {
+                frameLayout.performHapticFeedback(3);
+            } catch (Exception unused) {
+            }
         }
-        if (i10 == 1 && (e0Var = f0Var.f25842x0) != null && (e0Var.getSelectedTone() instanceof a0)) {
-            f0Var.c0();
-            f0Var.q0();
-            f0Var.p0(true);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

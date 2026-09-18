@@ -3,6 +3,7 @@ package ye;
 import bf.p;
 import bf.r;
 import bf.t;
+import hg.k0;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,23 +13,23 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 public final class d {
-    public static final LinkedHashSet f49984p = new LinkedHashSet(Arrays.asList(bf.b.class, bf.i.class, bf.h.class, bf.j.class, t.class, bf.n.class, bf.l.class));
-    public static final Map f49985q;
-    public CharSequence f49986a;
+    public static final LinkedHashSet f46745p = new LinkedHashSet(Arrays.asList(bf.b.class, bf.i.class, bf.h.class, bf.j.class, t.class, bf.n.class, bf.l.class));
+    public static final Map f46746q;
+    public CharSequence f46747a;
     public boolean d;
     public boolean h;
-    public final List f49992i;
-    public final cf.b f49993j;
-    public final List f49994k;
-    public final c f49995l;
-    public final ArrayList f49997n;
-    public final LinkedHashSet f49998o;
-    public int f49987b = 0;
-    public int f49988c = 0;
-    public int f49989e = 0;
-    public int f49990f = 0;
-    public int f49991g = 0;
-    public final LinkedHashMap f49996m = new LinkedHashMap();
+    public final List f46752i;
+    public final cf.b f46753j;
+    public final List f46754k;
+    public final c f46755l;
+    public final ArrayList f46757n;
+    public final LinkedHashSet f46758o;
+    public int f46748b = 0;
+    public int f46749c = 0;
+    public int e = 0;
+    public int f46750f = 0;
+    public int f46751g = 0;
+    public final LinkedHashMap f46756m = new LinkedHashMap();
 
     static {
         HashMap hashMap = new HashMap();
@@ -39,19 +40,19 @@ public final class d {
         hashMap.put(t.class, new xe.a(7));
         hashMap.put(bf.n.class, new xe.a(6));
         hashMap.put(bf.l.class, new xe.a(5));
-        f49985q = DesugarCollections.unmodifiableMap(hashMap);
+        f46746q = DesugarCollections.unmodifiableMap(hashMap);
     }
 
     public d(ArrayList arrayList, cf.b bVar, ArrayList arrayList2) {
         ArrayList arrayList3 = new ArrayList();
-        this.f49997n = arrayList3;
+        this.f46757n = arrayList3;
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        this.f49998o = linkedHashSet;
-        this.f49992i = arrayList;
-        this.f49993j = bVar;
-        this.f49994k = arrayList2;
+        this.f46758o = linkedHashSet;
+        this.f46752i = arrayList;
+        this.f46753j = bVar;
+        this.f46754k = arrayList2;
         c cVar = new c(0);
-        this.f49995l = cVar;
+        this.f46755l = cVar;
         arrayList3.add(cVar);
         linkedHashSet.add(cVar);
     }
@@ -61,36 +62,36 @@ public final class d {
             e(h());
         }
         h().e().b(aVar.e());
-        this.f49997n.add(aVar);
-        this.f49998o.add(aVar);
+        this.f46757n.add(aVar);
+        this.f46758o.add(aVar);
     }
 
     public final void b(m mVar) {
-        i iVar = mVar.f50043b;
+        i iVar = mVar.f46800b;
         iVar.a();
-        ArrayList arrayList = iVar.f50029c;
+        ArrayList arrayList = iVar.f46787c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             bf.m mVar2 = (bf.m) obj;
-            r rVar = mVar.f50042a;
+            r rVar = mVar.f46799a;
             mVar2.g();
-            p pVar = (p) rVar.f2640e;
-            mVar2.f2640e = pVar;
+            p pVar = (p) rVar.e;
+            mVar2.e = pVar;
             if (pVar != null) {
-                pVar.f2641f = mVar2;
+                pVar.f3554f = mVar2;
             }
-            mVar2.f2641f = rVar;
-            rVar.f2640e = mVar2;
-            p pVar2 = (p) rVar.f2638b;
-            mVar2.f2638b = pVar2;
-            if (((p) mVar2.f2640e) == null) {
-                pVar2.f2639c = mVar2;
+            mVar2.f3554f = rVar;
+            rVar.e = mVar2;
+            p pVar2 = (p) rVar.f3552b;
+            mVar2.f3552b = pVar2;
+            if (((p) mVar2.e) == null) {
+                pVar2.f3553c = mVar2;
             }
-            String str = mVar2.f2635g;
-            LinkedHashMap linkedHashMap = this.f49996m;
+            String str = mVar2.f3549g;
+            LinkedHashMap linkedHashMap = this.f46756m;
             if (!linkedHashMap.containsKey(str)) {
                 linkedHashMap.put(str, mVar2);
             }
@@ -100,9 +101,9 @@ public final class d {
     public final void c() {
         CharSequence subSequence;
         if (this.d) {
-            CharSequence charSequence = this.f49986a;
-            CharSequence subSequence2 = charSequence.subSequence(this.f49987b + 1, charSequence.length());
-            int i10 = 4 - (this.f49988c % 4);
+            CharSequence charSequence = this.f46747a;
+            CharSequence subSequence2 = charSequence.subSequence(this.f46748b + 1, charSequence.length());
+            int i10 = 4 - (this.f46749c % 4);
             StringBuilder sb2 = new StringBuilder(subSequence2.length() + i10);
             for (int i11 = 0; i11 < i10; i11++) {
                 sb2.append(' ');
@@ -110,26 +111,26 @@ public final class d {
             sb2.append(subSequence2);
             subSequence = sb2.toString();
         } else {
-            CharSequence charSequence2 = this.f49986a;
-            subSequence = charSequence2.subSequence(this.f49987b, charSequence2.length());
+            CharSequence charSequence2 = this.f46747a;
+            subSequence = charSequence2.subSequence(this.f46748b, charSequence2.length());
         }
         h().a(subSequence);
     }
 
     public final void d() {
-        if (this.f49986a.charAt(this.f49987b) == '\t') {
-            this.f49987b++;
-            int i10 = this.f49988c;
-            this.f49988c = (4 - (i10 % 4)) + i10;
+        if (this.f46747a.charAt(this.f46748b) == '\t') {
+            this.f46748b++;
+            int i10 = this.f46749c;
+            this.f46749c = (4 - (i10 % 4)) + i10;
             return;
         }
-        this.f49987b++;
-        this.f49988c++;
+        this.f46748b++;
+        this.f46749c++;
     }
 
     public final void e(df.a aVar) {
         if (h() == aVar) {
-            a4.a.x(1, this.f49997n);
+            a4.a.x(1, this.f46757n);
         }
         if (aVar instanceof m) {
             b((m) aVar);
@@ -144,15 +145,15 @@ public final class d {
     }
 
     public final void g() {
-        int i10 = this.f49987b;
-        int i11 = this.f49988c;
+        int i10 = this.f46748b;
+        int i11 = this.f46749c;
         this.h = true;
-        int length = this.f49986a.length();
+        int length = this.f46747a.length();
         while (true) {
             if (i10 >= length) {
                 break;
             }
-            char charAt = this.f49986a.charAt(i10);
+            char charAt = this.f46747a.charAt(i10);
             if (charAt != '\t') {
                 if (charAt != ' ') {
                     this.h = false;
@@ -166,37 +167,37 @@ public final class d {
                 i11 += 4 - (i11 % 4);
             }
         }
-        this.f49989e = i10;
-        this.f49990f = i11;
-        this.f49991g = i11 - this.f49988c;
+        this.e = i10;
+        this.f46750f = i11;
+        this.f46751g = i11 - this.f46749c;
     }
 
     public final df.a h() {
-        return (df.a) i2.g.h(1, this.f49997n);
+        return (df.a) k0.h(1, this.f46757n);
     }
 
-    public final void i(java.lang.String r23) {
+    public final void i(java.lang.String r24) {
         throw new UnsupportedOperationException("Method not decompiled: ye.d.i(java.lang.String):void");
     }
 
     public final void j(int i10) {
         int i11;
-        int i12 = this.f49990f;
+        int i12 = this.f46750f;
         if (i10 >= i12) {
-            this.f49987b = this.f49989e;
-            this.f49988c = i12;
+            this.f46748b = this.e;
+            this.f46749c = i12;
         }
-        int length = this.f49986a.length();
+        int length = this.f46747a.length();
         while (true) {
-            i11 = this.f49988c;
-            if (i11 >= i10 || this.f49987b == length) {
+            i11 = this.f46749c;
+            if (i11 >= i10 || this.f46748b == length) {
                 break;
             }
             d();
         }
         if (i11 > i10) {
-            this.f49987b--;
-            this.f49988c = i10;
+            this.f46748b--;
+            this.f46749c = i10;
             this.d = true;
             return;
         }
@@ -204,14 +205,14 @@ public final class d {
     }
 
     public final void k(int i10) {
-        int i11 = this.f49989e;
+        int i11 = this.e;
         if (i10 >= i11) {
-            this.f49987b = i11;
-            this.f49988c = this.f49990f;
+            this.f46748b = i11;
+            this.f46749c = this.f46750f;
         }
-        int length = this.f49986a.length();
+        int length = this.f46747a.length();
         while (true) {
-            int i12 = this.f49987b;
+            int i12 = this.f46748b;
             if (i12 >= i10 || i12 == length) {
                 break;
             }

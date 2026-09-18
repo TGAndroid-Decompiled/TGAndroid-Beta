@@ -1,61 +1,142 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class qd implements View.OnClickListener {
-    public final int f39841a = 1;
-    public final int f39842b;
-    public final long f39843c;
-    public final FrameLayout d;
-    public final Object f39844e;
+import android.widget.EditText;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class qd implements View.OnFocusChangeListener {
+    public final int f36902a;
+    public final Object f36903b;
 
-    public qd(int i10, di.d dVar, org.telegram.ui.ActionBar.f3 f3Var, long j3) {
-        this.f39842b = i10;
-        this.d = dVar;
-        this.f39844e = f3Var;
-        this.f39843c = j3;
+    public qd(Object obj, int i10) {
+        this.f36902a = i10;
+        this.f36903b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39841a) {
+    public final void onFocusChange(View view, boolean z10) {
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        float f16;
+        switch (this.f36902a) {
             case 0:
-                ke keVar = (ke) this.d;
-                Context context = (Context) this.f39844e;
-                if (view.isEnabled()) {
-                    di.d dVar = keVar.T0;
-                    if (!dVar.N) {
-                        dVar.setLoading(true);
-                        TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-                        int i10 = this.f39842b;
-                        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i10).getInputPeer(this.f39843c);
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new bi.m1(24, keVar, context));
-                        return;
-                    }
+                ae aeVar = ((le) this.f36903b).U0;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                aeVar.b(f7, f7, true);
+                return;
+            case 1:
+                wy wyVar = (wy) this.f36903b;
+                if (z10) {
+                    wyVar.Y.b(true);
                     return;
                 }
                 return;
+            case 2:
+                yg0 yg0Var = ((ie0) this.f36903b).W;
+                if (z10) {
+                    yg0Var.f39892c.setEditText((EditText) view);
+                    yg0Var.f39892c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.Components.yc0 yc0Var = (org.telegram.ui.Components.yc0) this.f36903b;
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                yc0Var.b(f10, f10, true);
+                return;
+            case 4:
+                org.telegram.ui.Components.yc0 yc0Var2 = ((re0) this.f36903b).f37212x;
+                if (z10) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                yc0Var2.b(f11, f11, true);
+                return;
+            case 5:
+                org.telegram.ui.Components.yc0 yc0Var3 = ((ze0) this.f36903b).f40234b;
+                if (z10) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                yc0Var3.b(f12, f12, true);
+                return;
+            case 6:
+                yg0 yg0Var2 = ((cf0) this.f36903b).f32789y;
+                if (z10) {
+                    yg0Var2.f39892c.setEditText((EditText) view);
+                    yg0Var2.f39892c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.Components.yc0 yc0Var4 = ((nf0) this.f36903b).f36093a;
+                if (z10) {
+                    f13 = 1.0f;
+                } else {
+                    f13 = 0.0f;
+                }
+                yc0Var4.b(f13, f13, true);
+                return;
+            case 8:
+                yg0 yg0Var3 = ((bg0) this.f36903b).f32157s0;
+                if (z10) {
+                    yg0Var3.f39892c.setEditText((EditText) view);
+                    yg0Var3.f39892c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.ui.Components.yc0 yc0Var5 = ((xg0) this.f36903b).e;
+                if (z10) {
+                    f14 = 1.0f;
+                } else {
+                    f14 = 0.0f;
+                }
+                yc0Var5.b(f14, f14, true);
+                return;
+            case 10:
+                org.telegram.ui.Components.yc0 yc0Var6 = ((PasscodeActivity) this.f36903b).f30904f;
+                if (z10) {
+                    f15 = 1.0f;
+                } else {
+                    f15 = 0.0f;
+                }
+                yc0Var6.b(f15, f15, true);
+                return;
+            case 11:
+                ce1 ce1Var = (ce1) this.f36903b;
+                if (z10) {
+                    ce1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+                    return;
+                } else {
+                    ce1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+                    return;
+                }
             default:
-                di.d dVar2 = (di.d) this.d;
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f39844e;
-                TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-                createconferencecall.random_id = Utilities.random.nextInt();
-                int i11 = this.f39842b;
-                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new bi.s7(i11, dVar2, f3Var, this.f39843c));
+                org.telegram.ui.Components.yc0 yc0Var7 = ((TwoStepVerificationActivity) this.f36903b).v;
+                if (z10) {
+                    f16 = 1.0f;
+                } else {
+                    f16 = 0.0f;
+                }
+                yc0Var7.b(f16, f16, true);
                 return;
         }
-    }
-
-    public qd(ke keVar, int i10, long j3, Context context) {
-        this.d = keVar;
-        this.f39842b = i10;
-        this.f39843c = j3;
-        this.f39844e = context;
     }
 }

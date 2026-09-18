@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class di extends hu {
+public final class di extends ju {
     public final vi V;
 
     public di(vi viVar, Context context, li liVar, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -18,8 +18,8 @@ public final class di extends hu {
         super.f();
         kz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f27996w0 = false;
-            emojiView.f28002x2 = false;
+            emojiView.f25778w0 = false;
+            emojiView.f25780w2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -27,9 +27,9 @@ public final class di extends hu {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.V.f31280f0;
-        if (n2Var instanceof org.telegram.ui.co) {
-            org.telegram.ui.co.k8(menu, ((org.telegram.ui.co) n2Var).h, true, true, true, true);
+        org.telegram.ui.ActionBar.o2 o2Var = this.V.f28745f0;
+        if (o2Var instanceof org.telegram.ui.bo) {
+            org.telegram.ui.bo.k8(menu, ((org.telegram.ui.bo) o2Var).h, true, true, true, true);
         }
     }
 
@@ -37,7 +37,7 @@ public final class di extends hu {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         vi viVar = this.V;
         di diVar = viVar.P0;
-        if (!viVar.f31327u1) {
+        if (!viVar.f28792u1) {
             if (motionEvent.getX() > diVar.getEditText().getLeft() && motionEvent.getX() < diVar.getEditText().getRight() && motionEvent.getY() > diVar.getEditText().getTop() && motionEvent.getY() < diVar.getEditText().getBottom()) {
                 viVar.t1(diVar.getEditText(), true);
             } else {
@@ -58,7 +58,7 @@ public final class di extends hu {
         boolean z10;
         vi viVar = this.V;
         viVar.b2();
-        if (viVar.f31269c0) {
+        if (viVar.f28735c0) {
             if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             } else {

@@ -1,45 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class xq0 extends org.telegram.ui.Components.t00 {
-    public final int U;
+import org.telegram.messenger.MediaController;
+public final class xq0 implements org.telegram.ui.Components.nl0 {
+    public final cr0 f39694a;
 
-    public xq0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.U = i10;
+    public xq0(cr0 cr0Var) {
+        this.f39694a = cr0Var;
     }
 
     @Override
-    public int getColumnsCount() {
-        switch (this.U) {
-            case 0:
-                return 3;
-            default:
-                return super.getColumnsCount();
+    public final void a(boolean z10) {
+        org.telegram.ui.ActionBar.e5 e5Var;
+        cr0 cr0Var = this.f39694a;
+        cr0Var.W = z10 ? 1 : 0;
+        if (z10) {
+            e5Var = ((org.telegram.ui.ActionBar.o2) cr0Var).parentLayout;
+            e5Var.getView().requestDisallowInterceptTouchEvent(true);
+        }
+        cr0Var.K.e1(true);
+    }
+
+    @Override
+    public final boolean b(int i10) {
+        if (this.f39694a.L.j(i10) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(View view, boolean z10) {
+        if (z10 == this.f39694a.X && (view instanceof org.telegram.ui.Cells.s5)) {
+            org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+            s5Var.f20967w.b(s5Var);
         }
     }
 
     @Override
-    public int getViewType() {
-        switch (this.U) {
-            case 0:
-                return 2;
-            default:
-                return super.getViewType();
+    public final boolean d(int i10) {
+        Object obj;
+        cr0 cr0Var = this.f39694a;
+        MediaController.AlbumEntry albumEntry = cr0Var.J;
+        if (albumEntry != null) {
+            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
+        } else {
+            obj = ((MediaController.SearchImage) cr0Var.f32883f.get(i10)).f15607id;
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.U) {
-            case 1:
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
+        return cr0Var.f32877b.containsKey(obj);
     }
 }

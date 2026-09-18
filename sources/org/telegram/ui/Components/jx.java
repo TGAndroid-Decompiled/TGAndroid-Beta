@@ -1,35 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class jx extends FrameLayout {
-    public final kz f27583a;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class jx extends s4.s {
+    public final kz Q;
 
-    public jx(kz kzVar, Context context) {
-        super(context);
-        this.f27583a = kzVar;
+    public jx(kz kzVar) {
+        super(8);
+        this.Q = kzVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        kz kzVar = this.f27583a;
-        jw jwVar = kzVar.I;
-        kw kwVar = kzVar.V;
-        kx kxVar = kzVar.P;
-        if (view != kxVar && view != kwVar) {
-            return super.drawChild(canvas, view, j3);
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        try {
+            ci.m1 m1Var = new ci.m1(this, recyclerView.getContext(), 2);
+            m1Var.f42852a = i10;
+            w0(m1Var);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        canvas.save();
-        float y3 = jwVar.getY() + jwVar.getMeasuredHeight() + 1.0f;
-        if (view == kxVar && kwVar != null) {
-            y3 = Math.max(y3, kwVar.getY() + kwVar.getMeasuredHeight() + 1.0f);
-        }
-        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * kzVar.f27927b.f15368e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
     }
 }

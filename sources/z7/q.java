@@ -1,24 +1,24 @@
 package z7;
 public final class q extends i {
-    public final transient Object[] f51200c;
+    public final transient Object[] f48604c;
     public final transient int d;
-    public final transient int f51201e = 1;
+    public final transient int e = 1;
 
     public q(int i10, Object[] objArr) {
-        this.f51200c = objArr;
+        this.f48604c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
-        w7.j9.a(i10, this.f51201e);
-        Object obj = this.f51200c[i10 + i10 + this.d];
+        w7.j9.a(i10, this.e);
+        Object obj = this.f48604c[i10 + i10 + this.d];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int size() {
-        return this.f51201e;
+        return this.e;
     }
 }

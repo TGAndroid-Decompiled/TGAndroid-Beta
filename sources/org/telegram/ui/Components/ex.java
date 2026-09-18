@@ -1,36 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
+import android.view.MotionEvent;
 import org.telegram.tgnet.TLRPC;
-public final class ex extends rv {
-    public final TLRPC.StickerSet W;
-    public final kz X;
+public final class ex extends c51 {
+    public final kz f23683b;
 
-    public ex(kz kzVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(n2Var, context, f6Var, arrayList);
-        this.X = kzVar;
-        this.W = stickerSet;
+    public ex(kz kzVar) {
+        this.f23683b = kzVar;
     }
 
     @Override
-    public final void X(boolean z10) {
-        kz kzVar = this.X;
-        ArrayList arrayList = kzVar.f27973p1;
-        TLRPC.StickerSet stickerSet = this.W;
+    public final boolean a() {
+        return this.f23683b.f25769t1.b();
+    }
+
+    @Override
+    public final String[] b() {
+        return this.f23683b.W0;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f23683b.f25769t1.c();
+    }
+
+    @Override
+    public final boolean d(v41 v41Var, MotionEvent motionEvent) {
+        org.telegram.ui.ut q6 = org.telegram.ui.ut.q();
+        kz kzVar = this.f23683b;
+        kzVar.getMeasuredHeight();
+        return q6.r(motionEvent, v41Var, kzVar.f25730g2, kzVar.Z1);
+    }
+
+    @Override
+    public final boolean e(v41 v41Var, j jVar, MotionEvent motionEvent) {
+        org.telegram.ui.ut q6 = org.telegram.ui.ut.q();
+        kz kzVar = this.f23683b;
+        kzVar.getMeasuredHeight();
+        return q6.s(motionEvent, v41Var, jVar, kzVar.f25730g2, kzVar.Z1);
+    }
+
+    @Override
+    public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+        this.f23683b.f25769t1.m(null, document, null, obj, null, z10, i10);
+    }
+
+    @Override
+    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
+        kz kzVar = this.f23683b;
+        kzVar.f25769t1.r(stickerSetCovered);
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f19896id))) {
-                arrayList.add(Long.valueOf(stickerSet.f19896id));
-            }
-        } else {
-            arrayList.remove(Long.valueOf(stickerSet.f19896id));
+            kzVar.X(true);
         }
-        kzVar.V();
     }
 
     @Override
-    public final void dismiss() {
-        this.X.f27998w2 = false;
-        super.dismiss();
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+        this.f23683b.f25769t1.h(stickerSetCovered);
+    }
+
+    @Override
+    public final void i(String[] strArr) {
+        this.f23683b.W0 = strArr;
     }
 }

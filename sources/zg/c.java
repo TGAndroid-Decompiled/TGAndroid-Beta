@@ -1,80 +1,106 @@
 package zg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.za;
-import org.telegram.ui.Components.i9;
-import ug.t;
-public final class c extends za {
-    public final a f51639a0;
-    public TL_stories.PrepaidGiveaway f51640b0;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.p6;
+public final class c {
+    public float f49002a;
+    public float f49003b;
+    public float f49004c;
+    public float d;
+    public float e;
+    public float f49005f;
+    public float f49006g;
+    public float h;
+    public long f49007i;
+    public boolean f49008j;
+    public float f49009k;
+    public final d f49010l;
 
-    public c(Context context) {
-        super(context, 0, 0, false);
-        this.f51639a0 = new a(context);
+    public c(d dVar) {
+        this.f49010l = dVar;
     }
 
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
-        return this.f51640b0;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.S) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(70.0f);
+    public final void a() {
+        d dVar;
+        float f7;
+        float f10 = 0.0f;
+        this.h = 0.0f;
+        float b10 = b();
+        float c10 = c();
+        int i10 = 0;
+        while (true) {
+            dVar = this.f49010l;
+            if (i10 >= 20) {
+                break;
             }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(70.0f);
-            } else {
-                i10 = 0;
+            float b11 = b();
+            float c11 = c();
+            float f11 = 2.1474836E9f;
+            for (int i11 = 0; i11 < dVar.f49036c.size(); i11++) {
+                float f12 = ((c) dVar.f49036c.get(i11)).f49004c - b11;
+                float f13 = ((c) dVar.f49036c.get(i11)).d - c11;
+                float f14 = (f13 * f13) + (f12 * f12);
+                if (f14 < f11) {
+                    f11 = f14;
+                }
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, j6.f20786k0);
+            if (f11 > f10) {
+                b10 = b11;
+                c10 = c11;
+                f10 = f11;
+            }
+            i10++;
         }
+        if (dVar.f49037f) {
+            f7 = 0.8f;
+        } else {
+            f7 = 0.5f;
+        }
+        this.f49004c = b10;
+        if (b10 > dVar.f49035b.width() * f7) {
+            this.f49002a = dVar.f49035b.width() * f7;
+        } else {
+            float width = dVar.f49035b.width() * f7;
+            this.f49002a = width;
+            if (this.f49004c > width) {
+                this.f49004c = width - 0.1f;
+            }
+        }
+        float height = dVar.f49035b.height() * 0.1f;
+        this.f49003b = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, height, dVar.f49035b.height() * 0.45f);
+        if (dVar.f49037f) {
+            float width2 = dVar.f49035b.width() * 0.1f;
+            float e = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, width2, dVar.f49035b.width() * 0.05f);
+            this.f49005f = e;
+            this.f49006g = (((p6.c(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * e;
+            float height2 = dVar.f49035b.height() * 0.1f;
+            this.d = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, height2, this.f49005f / 2.0f);
+            this.e = dVar.f49035b.height() + this.f49005f;
+            this.f49007i = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
+        } else {
+            float width3 = dVar.f49035b.width() * 0.1f;
+            float e7 = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, width3, dVar.f49035b.width() * 0.05f);
+            this.f49005f = e7;
+            this.f49006g = (((p6.c(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * e7;
+            this.d = c10;
+            this.e = c10 + dVar.f49035b.height();
+            this.f49007i = 1800L;
+        }
+        this.f49007i = ((float) this.f49007i) / 1.75f;
+        this.f49008j = Utilities.fastRandom.nextBoolean();
+        this.f49009k = ((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 20.0f;
     }
 
-    public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f51640b0 = prepaidGiveaway;
-        boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        i9 i9Var = this.E;
-        if (z10) {
-            i9Var.g(26);
-            String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-            a aVar = this.f51639a0;
-            aVar.f51632f = valueOf;
-            aVar.f51631e = aVar.f51628a.measureText(valueOf);
-            aVar.invalidateSelf();
-        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            i9Var.g(16);
-            int i10 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
-            if (i10 == 12) {
-                i9Var.i(-31392, -2796986);
-            } else if (i10 == 6) {
-                i9Var.i(-10703110, -12481584);
-            } else {
-                i9Var.i(-6631068, -11945404);
-            }
-            String valueOf2 = String.valueOf(t.g() * prepaidGiveaway.quantity);
-            a aVar2 = this.f51639a0;
-            aVar2.f51632f = valueOf2;
-            aVar2.f51631e = aVar2.f51628a.measureText(valueOf2);
-            aVar2.invalidateSelf();
+    public final float b() {
+        d dVar = this.f49010l;
+        if (dVar.f49037f) {
+            float width = dVar.f49035b.width() * 1.5f;
+            return a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, width, dVar.f49035b.width() * (-0.25f));
         }
-        this.f23634b.i(this.f51639a0);
+        return (p6.c(Utilities.fastRandom, 100) / 100.0f) * dVar.f49035b.width();
+    }
+
+    public final float c() {
+        return (p6.c(Utilities.fastRandom, 100) / 100.0f) * this.f49010l.f49035b.height() * 0.5f;
     }
 }

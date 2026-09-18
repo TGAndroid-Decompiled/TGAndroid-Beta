@@ -3,16 +3,16 @@ package m;
 import android.widget.AbsListView;
 import java.lang.reflect.Field;
 public abstract class q1 {
-    public static final Field f15642a;
+    public static final Field f14299a;
 
     static {
         Field field = null;
         try {
             field = AbsListView.class.getDeclaredField("mIsChildViewEnabled");
             field.setAccessible(true);
-        } catch (NoSuchFieldException e7) {
-            e7.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
         }
-        f15642a = field;
+        f14299a = field;
     }
 }

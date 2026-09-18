@@ -1,43 +1,43 @@
 package q9;
 
-import org.telegram.ui.qv0;
-import org.telegram.ui.sw0;
+import org.telegram.ui.bs0;
+import org.telegram.ui.tv0;
 public final class p implements pa.b {
-    public static final sw0 f44241c = new sw0(15);
+    public static final bs0 f41230c = new bs0(22);
     public static final f d = new f(1);
-    public pa.a f44242a;
-    public volatile pa.b f44243b;
+    public pa.a f41231a;
+    public volatile pa.b f41232b;
 
-    public p(sw0 sw0Var, pa.b bVar) {
-        this.f44242a = sw0Var;
-        this.f44243b = bVar;
+    public p(bs0 bs0Var, pa.b bVar) {
+        this.f41231a = bs0Var;
+        this.f41232b = bVar;
     }
 
     public final void a(pa.a aVar) {
         pa.b bVar;
         pa.b bVar2;
-        pa.b bVar3 = this.f44243b;
+        pa.b bVar3 = this.f41232b;
         f fVar = d;
         if (bVar3 != fVar) {
-            aVar.h(bVar3);
+            aVar.j(bVar3);
             return;
         }
         synchronized (this) {
-            bVar = this.f44243b;
+            bVar = this.f41232b;
             if (bVar != fVar) {
                 bVar2 = bVar;
             } else {
-                this.f44242a = new qv0(25, this.f44242a, aVar);
+                this.f41231a = new tv0(24, this.f41231a, aVar);
                 bVar2 = null;
             }
         }
         if (bVar2 != null) {
-            aVar.h(bVar);
+            aVar.j(bVar);
         }
     }
 
     @Override
     public final Object get() {
-        return this.f44243b.get();
+        return this.f41232b.get();
     }
 }

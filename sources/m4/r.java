@@ -3,18 +3,18 @@ package m4;
 import android.os.Bundle;
 import j$.util.Objects;
 public final class r {
-    public final n4.a0 f16058a;
-    public final int f16059b;
-    public final int f16060c;
+    public final n4.a0 f14677a;
+    public final int f14678b;
+    public final int f14679c;
     public final q d;
-    public final Bundle f16061e;
+    public final Bundle e;
 
     public r(n4.a0 a0Var, int i10, int i11, boolean z10, q qVar, Bundle bundle) {
-        this.f16058a = a0Var;
-        this.f16059b = i10;
-        this.f16060c = i11;
+        this.f14677a = a0Var;
+        this.f14678b = i10;
+        this.f14679c = i11;
         this.d = qVar;
-        this.f16061e = bundle;
+        this.e = bundle;
     }
 
     public final boolean equals(Object obj) {
@@ -28,20 +28,20 @@ public final class r {
         q qVar = rVar.d;
         q qVar2 = this.d;
         if (qVar2 == null && qVar == null) {
-            return this.f16058a.equals(rVar.f16058a);
+            return this.f14677a.equals(rVar.f14677a);
         }
         return Objects.equals(qVar2, qVar);
     }
 
     public final int hashCode() {
-        return Objects.hash(this.d, this.f16058a);
+        return Objects.hash(this.d, this.f14677a);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
-        n4.a0 a0Var = this.f16058a;
-        sb2.append(a0Var.f16425a.f16426a);
+        n4.a0 a0Var = this.f14677a;
+        sb2.append(a0Var.f14939a.f14940a);
         sb2.append(", uid=");
-        return a4.a.n(a0Var.f16425a.f16428c, "}", sb2);
+        return a4.a.n(a0Var.f14939a.f14942c, "}", sb2);
     }
 }

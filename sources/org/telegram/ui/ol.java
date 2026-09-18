@@ -7,10 +7,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 public final class ol extends ViewOutlineProvider {
-    public final co f39274a;
+    public final bo f36380a;
 
-    public ol(co coVar) {
-        this.f39274a = coVar;
+    public ol(bo boVar) {
+        this.f36380a = boVar;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class ol extends ViewOutlineProvider {
             outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
             return;
         }
-        co coVar = this.f39274a;
-        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(coVar.C9()), AndroidUtilities.roundPlayingMessageSize(coVar.C9()));
+        bo boVar = this.f36380a;
+        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(boVar.C9()), AndroidUtilities.roundPlayingMessageSize(boVar.C9()));
     }
 }

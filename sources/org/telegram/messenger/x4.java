@@ -1,63 +1,74 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
+import android.text.Spannable;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x4 implements Runnable {
-    public final int f19586a = 0;
-    public final long f19587b;
-    public final int f19588c;
+    public final int f17836a;
+    public final int f17837b;
+    public final int f17838c;
     public final Object d;
-    public final Object f19589e;
-    public final Object f19590f;
-    public final Object h;
-    public final Object f19591n;
+    public final Object e;
 
-    public x4(int i10, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j3) {
-        this.f19588c = i10;
-        this.d = str;
-        this.f19589e = inputFile;
-        this.f19590f = inputEncryptedFile;
-        this.h = bArr;
-        this.f19591n = bArr2;
-        this.f19587b = j3;
+    public x4(Object obj, int i10, int i11, Serializable serializable, int i12) {
+        this.f17836a = i12;
+        this.e = obj;
+        this.f17837b = i10;
+        this.f17838c = i11;
+        this.d = serializable;
     }
 
     @Override
     public final void run() {
-        switch (this.f19586a) {
+        switch (this.f17836a) {
             case 0:
-                long j3 = this.f19587b;
-                ImageLoader.AnonymousClass5.lambda$fileDidUploaded$1(this.f19588c, (String) this.d, (TLRPC.InputFile) this.f19589e, (TLRPC.InputEncryptedFile) this.f19590f, (byte[]) this.h, (byte[]) this.f19591n, j3);
+                ((ImageLoader.AnonymousClass5) this.e).lambda$fileDidFailedLoad$6((String) this.d, this.f17837b, this.f17838c);
                 return;
             case 1:
-                ((MessagesController) this.d).lambda$ensureMessagesLoaded$459((boolean[]) this.f19589e, (TLRPC.Chat) this.f19590f, (Runnable[]) this.h, this.f19587b, this.f19588c, (MessagesController.MessagesLoadedCallback) this.f19591n);
+                CodeHighlighting.lambda$highlight$5((Spannable) this.e, this.f17837b, this.f17838c, (String) this.d);
+                return;
+            case 2:
+                ((MediaDataController) this.e).lambda$loadReactions$11((List) this.d, this.f17837b, this.f17838c);
+                return;
+            case 3:
+                ((MediaDataController) this.e).lambda$putReactionsToCache$16((ArrayList) this.d, this.f17837b, this.f17838c);
+                return;
+            case 4:
+                ((MessagesController) this.e).lambda$getDifference$350((TLRPC.updates_Difference) this.d, this.f17837b, this.f17838c);
+                return;
+            case 5:
+                ((MessagesController.DialogPhotos) this.e).lambda$load$0((TLRPC.photos_Photos) this.d, this.f17837b, this.f17838c);
+                return;
+            case 6:
+                ((MessagesController.DialogPhotos) this.e).lambda$load$2((TLRPC.messages_Messages) this.d, this.f17837b, this.f17838c);
+                return;
+            case 7:
+                ((MessagesStorage) this.e).lambda$saveSecretParams$7(this.f17837b, this.f17838c, (byte[]) this.d);
                 return;
             default:
-                ((MessagesController) this.f19589e).lambda$reloadWebPages$186((HashMap) this.f19590f, (String) this.d, (TLObject) this.h, (a0.i) this.f19591n, this.f19587b, this.f19588c);
+                int i10 = this.f17838c;
+                ((NotificationCenter) this.e).lambda$postNotificationDebounced$2(this.f17837b, (Object[]) this.d, i10);
                 return;
         }
     }
 
-    public x4(MessagesController messagesController, HashMap hashMap, String str, TLObject tLObject, a0.i iVar, long j3, int i10) {
-        this.f19589e = messagesController;
-        this.f19590f = hashMap;
-        this.d = str;
-        this.h = tLObject;
-        this.f19591n = iVar;
-        this.f19587b = j3;
-        this.f19588c = i10;
+    public x4(Object obj, Object obj2, int i10, int i11, int i12) {
+        this.f17836a = i12;
+        this.e = obj;
+        this.d = obj2;
+        this.f17837b = i10;
+        this.f17838c = i11;
     }
 
-    public x4(MessagesController messagesController, boolean[] zArr, TLRPC.Chat chat, Runnable[] runnableArr, long j3, int i10, MessagesController.MessagesLoadedCallback messagesLoadedCallback) {
-        this.d = messagesController;
-        this.f19589e = zArr;
-        this.f19590f = chat;
-        this.h = runnableArr;
-        this.f19587b = j3;
-        this.f19588c = i10;
-        this.f19591n = messagesLoadedCallback;
+    public x4(NotificationCenter notificationCenter, int i10, Object[] objArr, int i11) {
+        this.f17836a = 8;
+        this.e = notificationCenter;
+        this.f17837b = i10;
+        this.d = objArr;
+        this.f17838c = i11;
     }
 }

@@ -1,28 +1,45 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class wd0 implements RequestDelegate {
-    public final int f41912a;
-    public final ge0 f41913b;
-    public final String f41914c;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class wd0 implements Runnable {
+    public final int f38695a;
+    public final jf0 f38696b;
 
-    public wd0(ge0 ge0Var, String str, int i10) {
-        this.f41912a = i10;
-        this.f41913b = ge0Var;
-        this.f41914c = str;
+    public wd0(jf0 jf0Var, int i10) {
+        this.f38695a = i10;
+        this.f38696b = jf0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41912a) {
+    public final void run() {
+        switch (this.f38695a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new yd0(this.f41913b, tL_error, this.f41914c, tLObject));
+                this.f38696b.L.n();
+                return;
+            case 1:
+                jf0 jf0Var = this.f38696b;
+                jf0Var.M = null;
+                jf0Var.N = null;
+                jf0Var.p(true);
+                jf0Var.e.h(null, null, jf0Var.f34871f, null);
+                kd kdVar = jf0Var.f34872n;
+                org.telegram.ui.Components.yi0 yi0Var = jf0Var.I;
+                kdVar.setAnimation(yi0Var);
+                yi0Var.M(0);
+                jf0Var.K = true;
+                return;
+            case 2:
+                this.f38696b.K = true;
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new yd0(this.f41913b, tL_error, tLObject, this.f41914c));
+                EditTextBoldCursor editTextBoldCursor = this.f38696b.f34870c;
+                if (editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                    AndroidUtilities.showKeyboard(editTextBoldCursor);
+                    return;
+                }
                 return;
         }
     }

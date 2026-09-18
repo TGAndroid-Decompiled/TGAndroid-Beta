@@ -1,85 +1,55 @@
 package k6;
 
+import a3.k0;
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.content.pm.ServiceInfo;
 import android.content.pm.Signature;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
-import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
-import ji.u4;
-import k2.g0;
-import m2.t;
-import n4.y;
-import v0.p;
-public final class h {
-    public static h f14822b;
-    public Context f14823a;
+import b2.p;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import v7.w;
+public final class h implements androidx.emoji2.text.k {
+    public static h f13517b;
+    public final Context f13518a;
 
     public h(Context context, int i10) {
         switch (i10) {
+            case 1:
+                this.f13518a = context.getApplicationContext();
+                return;
             case 2:
-                kotlin.jvm.internal.i.e(context, "context");
-                this.f14823a = context;
+                this.f13518a = context.getApplicationContext();
                 return;
             case 3:
-                this.f14823a = context;
+                this.f13518a = context;
                 return;
             default:
-                this.f14823a = context.getApplicationContext();
+                this.f13518a = context.getApplicationContext();
                 return;
         }
-    }
-
-    public static v0.j b(h hVar, Object obj) {
-        if (obj.equals("androidx.credentials.TYPE_CLEAR_RESTORE_CREDENTIAL")) {
-            return hVar.e();
-        }
-        if (obj instanceof v0.n) {
-            for (p pVar : ((v0.n) obj).f47272a) {
-            }
-        }
-        Context ctx = hVar.f14823a;
-        kotlin.jvm.internal.i.e(ctx, "ctx");
-        if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
-            int i10 = Build.VERSION.SDK_INT;
-            v0.l lVar = null;
-            if (i10 >= 34) {
-                v0.l lVar2 = new v0.l(ctx);
-                if (lVar2.isAvailableOnDevice()) {
-                    lVar = lVar2;
-                }
-                if (lVar == null) {
-                    return hVar.e();
-                }
-                return lVar;
-            } else if (i10 > 33) {
-                return null;
-            } else {
-                return hVar.e();
-            }
-        }
-        return hVar.e();
     }
 
     public static h c(Context context) {
         n6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f14822b == null) {
+                if (f13517b == null) {
                     o.a(context);
-                    f14822b = new h(context, 0);
+                    f13517b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f14822b;
+        return f13517b;
     }
 
-    public static final l f(PackageInfo packageInfo, l... lVarArr) {
+    public static final l d(PackageInfo packageInfo, l... lVarArr) {
         Signature[] signatureArr = packageInfo.signatures;
         if (signatureArr != null) {
             if (signatureArr.length != 1) {
@@ -96,91 +66,39 @@ public final class h {
         return null;
     }
 
-    public static final boolean g(android.content.pm.PackageInfo r4, boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: k6.h.g(android.content.pm.PackageInfo, boolean):boolean");
+    public static final boolean e(android.content.pm.PackageInfo r4, boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: k6.h.e(android.content.pm.PackageInfo, boolean):boolean");
     }
 
-    public l5.j a() {
-        Context context = this.f14823a;
-        if (context != null) {
-            ?? obj = new Object();
-            obj.f15286a = n5.a.a(l5.m.f15293a);
-            l.d dVar = new l.d(context, 6);
-            obj.f15287b = dVar;
-            obj.f15288c = n5.a.a(new y(25, dVar, new u4(dVar, 5)));
-            l.d dVar2 = obj.f15287b;
-            obj.d = new g0(dVar2, 22);
-            fd.a a2 = n5.a.a(new o0.a(16, obj.d, n5.a.a(new mg.n(dVar2, 16))));
-            obj.f15289e = a2;
-            rb.a aVar = new rb.a(19);
-            l.d dVar3 = obj.f15287b;
-            t tVar = new t(dVar3, a2, aVar, 19);
-            fd.a aVar2 = obj.f15286a;
-            fd.a aVar3 = obj.f15288c;
-            ?? obj2 = new Object();
-            obj2.f4796a = aVar2;
-            obj2.f4797b = aVar3;
-            obj2.f4798c = tVar;
-            obj2.d = a2;
-            obj2.f4799e = a2;
-            ?? obj3 = new Object();
-            obj3.f15634a = dVar3;
-            obj3.f15635b = aVar3;
-            obj3.f15636c = a2;
-            obj3.d = tVar;
-            obj3.f15637e = aVar2;
-            obj3.f15638f = a2;
-            obj3.h = a2;
-            ?? obj4 = new Object();
-            obj4.f9492a = aVar2;
-            obj4.f9493b = a2;
-            obj4.f9494c = tVar;
-            obj4.d = a2;
-            obj.f15290f = n5.a.a(new aa.a(obj2, obj3, obj4, false, 27));
-            return obj;
-        }
-        throw new IllegalStateException(Context.class.getCanonicalName() + " must be set");
+    @Override
+    public void a(w wVar) {
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(0, 1, 15L, TimeUnit.SECONDS, new LinkedBlockingDeque(), new androidx.emoji2.text.a("EmojiCompatInitializer", 0));
+        threadPoolExecutor.allowCoreThreadTimeOut(true);
+        threadPoolExecutor.execute(new k0(this, wVar, threadPoolExecutor, 11));
     }
 
-    public PackageInfo d(int i10, String str) {
-        return this.f14823a.getPackageManager().getPackageInfo(str, i10);
-    }
-
-    public v0.j e() {
-        String string;
-        Context context = this.f14823a;
-        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
-        ArrayList arrayList = new ArrayList();
-        ServiceInfo[] serviceInfoArr = packageInfo.services;
-        if (serviceInfoArr != null) {
-            for (ServiceInfo serviceInfo : serviceInfoArr) {
-                Bundle bundle = serviceInfo.metaData;
-                if (bundle != null && (string = bundle.getString("androidx.credentials.CREDENTIAL_PROVIDER_KEY")) != null) {
-                    arrayList.add(string);
+    public void b(aa.a aVar, p pVar, a6.m mVar) {
+        CancellationSignal cancellationSignal;
+        FingerprintManager g10;
+        if (pVar != null) {
+            synchronized (pVar) {
+                try {
+                    if (((CancellationSignal) pVar.f3177c) == null) {
+                        CancellationSignal cancellationSignal2 = new CancellationSignal();
+                        pVar.f3177c = cancellationSignal2;
+                        if (pVar.f3176b) {
+                            cancellationSignal2.cancel();
+                        }
+                    }
+                    cancellationSignal = (CancellationSignal) pVar.f3177c;
+                } finally {
                 }
             }
+        } else {
+            cancellationSignal = null;
         }
-        List<String> m10 = hd.g.m(arrayList);
-        if (m10.isEmpty()) {
-            return null;
+        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f13518a)) != null) {
+            e0.b.a(g10, e0.b.M(aVar), cancellationSignal, new k0.a(mVar));
         }
-        v0.j jVar = null;
-        for (String str : m10) {
-            try {
-                Object newInstance = Class.forName(str).getConstructor(Context.class).newInstance(context);
-                kotlin.jvm.internal.i.c(newInstance, "null cannot be cast to non-null type androidx.credentials.CredentialProvider");
-                v0.j jVar2 = (v0.j) newInstance;
-                if (!jVar2.isAvailableOnDevice()) {
-                    continue;
-                } else if (jVar != null) {
-                    Log.i("CredProviderFactory", "Only one active OEM CredentialProvider allowed");
-                    return null;
-                } else {
-                    jVar = jVar2;
-                }
-            } catch (Throwable unused) {
-            }
-        }
-        return jVar;
     }
 }

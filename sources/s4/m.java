@@ -1,7 +1,7 @@
 package s4;
 public final class m {
-    public int f45824a;
-    public int f45825b;
-    public int f45826c;
+    public int f42778a;
+    public int f42779b;
+    public int f42780c;
     public int d;
 }

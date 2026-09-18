@@ -1,22 +1,44 @@
 package org.telegram.ui.Components;
-public final class m7 implements Runnable {
-    public final int f28399a;
-    public final k8 f28400b;
 
-    public m7(k8 k8Var, int i10) {
-        this.f28399a = i10;
-        this.f28400b = k8Var;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class m7 implements fo0 {
+    public final h8 f26095a;
+
+    public m7(h8 h8Var) {
+        this.f26095a = h8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28399a) {
-            case 0:
-                k8.n(this.f28400b);
-                return;
-            default:
-                k8.G(this.f28400b);
-                return;
+    public final void X(float f7, boolean z10) {
+        if (z10) {
+            MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
         }
+        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+        if (playingMessageObject != null && playingMessageObject.isMusic()) {
+            this.f26095a.G0(playingMessageObject, false);
+        }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        StringBuilder sb2 = new StringBuilder();
+        h8 h8Var = this.f26095a;
+        sb2.append(LocaleController.formatPluralString("Minutes", h8Var.D0 / 60, new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", h8Var.D0 % 60, new Object[0]));
+        String sb3 = sb2.toString();
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, LocaleController.formatPluralString("Minutes", h8Var.E0 / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", h8Var.E0 % 60, new Object[0]));
+    }
+
+    @Override
+    public final int m0() {
+        return 0;
+    }
+
+    @Override
+    public final void B() {
     }
 }

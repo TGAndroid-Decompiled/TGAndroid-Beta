@@ -7,11 +7,11 @@ import android.os.WorkSource;
 import android.util.Log;
 import java.lang.reflect.Method;
 public abstract class f {
-    public static final Method f46961a;
-    public static final Method f46962b;
-    public static final Method f46963c;
+    public static final Method f43660a;
+    public static final Method f43661b;
+    public static final Method f43662c;
     public static final Method d;
-    public static Boolean f46964e;
+    public static Boolean e;
 
     static {
         Method method;
@@ -25,19 +25,19 @@ public abstract class f {
         } catch (Exception unused) {
             method = null;
         }
-        f46961a = method;
+        f43660a = method;
         try {
             method2 = WorkSource.class.getMethod("add", cls, String.class);
         } catch (Exception unused2) {
             method2 = null;
         }
-        f46962b = method2;
+        f43661b = method2;
         try {
             method3 = WorkSource.class.getMethod("size", null);
         } catch (Exception unused3) {
             method3 = null;
         }
-        f46963c = method3;
+        f43662c = method3;
         try {
             WorkSource.class.getMethod("get", cls);
         } catch (Exception unused4) {
@@ -70,15 +70,15 @@ public abstract class f {
             } catch (Exception unused7) {
             }
             d = method4;
-            f46964e = null;
+            e = null;
         }
         method4 = null;
         d = method4;
-        f46964e = null;
+        e = null;
     }
 
     public static void a(WorkSource workSource, int i10, String str) {
-        Method method = f46962b;
+        Method method = f43661b;
         if (method != null) {
             if (str == null) {
                 str = "";
@@ -91,7 +91,7 @@ public abstract class f {
                 return;
             }
         }
-        Method method2 = f46961a;
+        Method method2 = f43660a;
         if (method2 != null) {
             try {
                 method2.invoke(workSource, Integer.valueOf(i10));
@@ -103,7 +103,7 @@ public abstract class f {
 
     public static synchronized boolean b(Context context) {
         synchronized (f.class) {
-            Boolean bool = f46964e;
+            Boolean bool = e;
             if (bool != null) {
                 return bool.booleanValue();
             }
@@ -114,7 +114,7 @@ public abstract class f {
             if (f0.e.b(context, "android.permission.UPDATE_DEVICE_STATS") == 0) {
                 z10 = true;
             }
-            f46964e = Boolean.valueOf(z10);
+            e = Boolean.valueOf(z10);
             return z10;
         }
     }

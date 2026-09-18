@@ -8,27 +8,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class kl extends FrameLayout {
-    public float f38086a;
-    public float f38087b;
-    public final co f38088c;
+    public float f35307a;
+    public float f35308b;
+    public final bo f35309c;
 
-    public kl(co coVar, Activity activity) {
+    public kl(bo boVar, Activity activity) {
         super(activity);
-        this.f38088c = coVar;
+        this.f35309c = boVar;
         setOnLongClickListener(new u(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        co coVar = this.f38088c;
-        if (view == coVar.f35501z2) {
+        bo boVar = this.f35309c;
+        if (view == boVar.f32533z2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
-        org.telegram.ui.ActionBar.j5[] j5VarArr = coVar.D2;
-        if (view != j5VarArr[0] && view != j5VarArr[1]) {
+        org.telegram.ui.ActionBar.k5[] k5VarArr = boVar.D2;
+        if (view != k5VarArr[0] && view != k5VarArr[1]) {
             boolean drawChild = super.drawChild(canvas, view, j3);
-            if (view == coVar.f35501z2) {
+            if (view == boVar.f32533z2) {
                 canvas.restore();
             }
             return drawChild;
@@ -43,11 +43,11 @@ public final class kl extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        co coVar = this.f38088c;
-        if (coVar.A2) {
+        bo boVar = this.f35309c;
+        if (boVar.A2) {
             int i12 = 0;
             while (true) {
-                AnimatorSet[] animatorSetArr = coVar.H2;
+                AnimatorSet[] animatorSetArr = boVar.H2;
                 if (i12 < animatorSetArr.length) {
                     AnimatorSet animatorSet = animatorSetArr[i12];
                     if (animatorSet != null) {
@@ -55,7 +55,7 @@ public final class kl extends FrameLayout {
                     }
                     i12++;
                 } else {
-                    coVar.A2 = false;
+                    boVar.A2 = false;
                     return;
                 }
             }
@@ -64,16 +64,16 @@ public final class kl extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f38086a = motionEvent.getY();
+        this.f35307a = motionEvent.getY();
         int action = motionEvent.getAction();
-        co coVar = this.f38088c;
+        bo boVar = this.f35309c;
         if (action == 1) {
-            coVar.finishPreviewFragment();
+            boVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f38087b - this.f38086a;
-            coVar.movePreviewFragment(f7);
+            float f7 = this.f35308b - this.f35307a;
+            boVar.movePreviewFragment(f7);
             if (f7 < 0.0f) {
-                this.f38087b = this.f38086a;
+                this.f35308b = this.f35307a;
             }
         }
         return super.onTouchEvent(motionEvent);

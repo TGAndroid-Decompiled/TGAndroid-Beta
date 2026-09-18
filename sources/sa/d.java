@@ -3,23 +3,24 @@ package sa;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import qa.j;
+import t7.u;
 public final class d {
     public static final long d = TimeUnit.HOURS.toMillis(24);
-    public static final long f45978e = TimeUnit.MINUTES.toMillis(30);
-    public final j f45979a;
-    public long f45980b;
-    public int f45981c;
+    public static final long e = TimeUnit.MINUTES.toMillis(30);
+    public final j f42916a;
+    public long f42917b;
+    public int f42918c;
 
     public d() {
-        if (na.d.f16716a == null) {
-            Pattern pattern = j.f44268c;
-            na.d.f16716a = new Object();
+        if (u.f43064b == null) {
+            Pattern pattern = j.f41256c;
+            u.f43064b = new Object();
         }
-        na.d dVar = na.d.f16716a;
+        u uVar = u.f43064b;
         if (j.d == null) {
-            j.d = new j(dVar);
+            j.d = new j(uVar);
         }
-        this.f45979a = j.d;
+        this.f42916a = j.d;
     }
 
     public final synchronized long a(int i10) {
@@ -32,16 +33,16 @@ public final class d {
         if (!z10) {
             return d;
         }
-        double pow = Math.pow(2.0d, this.f45981c);
-        this.f45979a.getClass();
-        return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), f45978e);
+        double pow = Math.pow(2.0d, this.f42918c);
+        this.f42916a.getClass();
+        return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), e);
     }
 
     public final synchronized boolean b() {
         boolean z10;
-        if (this.f45981c != 0) {
-            this.f45979a.f44269a.getClass();
-            if (System.currentTimeMillis() <= this.f45980b) {
+        if (this.f42918c != 0) {
+            this.f42916a.f41257a.getClass();
+            if (System.currentTimeMillis() <= this.f42917b) {
                 z10 = false;
             }
         }
@@ -50,15 +51,15 @@ public final class d {
     }
 
     public final synchronized void c() {
-        this.f45981c = 0;
+        this.f42918c = 0;
     }
 
     public final synchronized void d(int i10) {
         if ((i10 < 200 || i10 >= 300) && i10 != 401 && i10 != 404) {
-            this.f45981c++;
+            this.f42918c++;
             long a2 = a(i10);
-            this.f45979a.f44269a.getClass();
-            this.f45980b = System.currentTimeMillis() + a2;
+            this.f42916a.f41257a.getClass();
+            this.f42917b = System.currentTimeMillis() + a2;
             return;
         }
         c();

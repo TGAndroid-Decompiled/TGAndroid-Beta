@@ -1,10 +1,10 @@
 package v2;
 public interface l {
-    public static final ob.a B = new ob.a(24);
+    public static final na.d B = new na.d(24);
 
     long a();
 
-    long d();
+    long g();
 
     boolean next();
 }

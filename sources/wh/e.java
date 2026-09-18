@@ -1,18 +1,25 @@
 package wh;
+public final class e implements Runnable {
+    public final int f45112a;
+    public final n f45113b;
 
-import android.content.Context;
-import android.view.TextureView;
-public final class e extends TextureView {
-    public final g f48590a;
-
-    public e(g gVar, Context context) {
-        super(context);
-        this.f48590a = gVar;
+    public e(n nVar, int i10) {
+        this.f45112a = i10;
+        this.f45113b = nVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        g gVar = this.f48590a;
-        setMeasuredDimension(gVar.f48608g, gVar.h);
+    public final void run() {
+        switch (this.f45112a) {
+            case 0:
+                this.f45113b.e();
+                return;
+            case 1:
+                n.k(this.f45113b.f45152q, true, true);
+                return;
+            default:
+                this.f45113b.e();
+                return;
+        }
     }
 }

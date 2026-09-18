@@ -1,16 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class w51 extends l61 {
-    public final j71 f41775f3;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class w51 extends s4.s {
+    public final int Q;
+    public final i71 R;
 
-    public w51(j71 j71Var, Context context) {
-        super(j71Var, context);
-        this.f41775f3 = j71Var;
+    public w51(i71 i71Var, int i10) {
+        super(40);
+        this.Q = i10;
+        this.R = i71Var;
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        this.f41775f3.h();
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        switch (this.Q) {
+            case 0:
+                try {
+                    ci.m1 m1Var = new ci.m1(this, recyclerView.getContext(), 3);
+                    m1Var.f42852a = i10;
+                    w0(m1Var);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            default:
+                try {
+                    ci.m1 m1Var2 = new ci.m1(this, recyclerView.getContext(), 5);
+                    m1Var2.f42852a = i10;
+                    w0(m1Var2);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+        }
     }
 }

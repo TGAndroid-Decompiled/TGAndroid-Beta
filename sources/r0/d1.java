@@ -2,39 +2,39 @@ package r0;
 
 import android.view.WindowInsets;
 public class d1 extends c1 {
-    public i0.c f44676n;
+    public i0.b f41850n;
 
     public d1(l1 l1Var, WindowInsets windowInsets) {
         super(l1Var, windowInsets);
-        this.f44676n = null;
+        this.f41850n = null;
     }
 
     @Override
     public l1 b() {
-        return l1.h(null, this.f44672c.consumeStableInsets());
+        return l1.h(null, this.f41847c.consumeStableInsets());
     }
 
     @Override
     public l1 c() {
-        return l1.h(null, this.f44672c.consumeSystemWindowInsets());
+        return l1.h(null, this.f41847c.consumeSystemWindowInsets());
     }
 
     @Override
-    public final i0.c i() {
-        if (this.f44676n == null) {
-            WindowInsets windowInsets = this.f44672c;
-            this.f44676n = i0.c.b(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+    public final i0.b i() {
+        if (this.f41850n == null) {
+            WindowInsets windowInsets = this.f41847c;
+            this.f41850n = i0.b.b(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
         }
-        return this.f44676n;
+        return this.f41850n;
     }
 
     @Override
     public boolean n() {
-        return this.f44672c.isConsumed();
+        return this.f41847c.isConsumed();
     }
 
     @Override
-    public void s(i0.c cVar) {
-        this.f44676n = cVar;
+    public void s(i0.b bVar) {
+        this.f41850n = bVar;
     }
 }

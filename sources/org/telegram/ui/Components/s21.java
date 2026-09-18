@@ -1,25 +1,59 @@
 package org.telegram.ui.Components;
-public final class s21 {
-    public static final s21 f30177a;
-    public static final s21 f30178b;
-    public static final s21 f30179c;
-    public static final s21[] d;
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class s21 extends i51 {
+    public static final int f27758a = 0;
 
     static {
-        ?? r02 = new Enum("TOP", 0);
-        f30177a = r02;
-        ?? r12 = new Enum("LEFT", 1);
-        f30178b = r12;
-        ?? r32 = new Enum("BOTTOM", 2);
-        f30179c = r32;
-        d = new s21[]{r02, r12, r32};
+        i51.setup(new i51());
     }
 
-    public static s21 valueOf(String str) {
-        return (s21) Enum.valueOf(s21.class, str);
+    @Override
+    public final void bindView(View view, j51 j51Var, boolean z10, x51 x51Var, f61 f61Var) {
+        boolean z11;
+        int i10;
+        t21 t21Var = (t21) view;
+        boolean z12 = false;
+        if (j51Var.f25133r) {
+            t21Var.f();
+        } else {
+            Object obj = j51Var.G;
+            if (obj == null) {
+                if (j51Var.d == -2) {
+                    t21Var.c();
+                } else {
+                    if ((j51Var.f25139y & 1) != 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    t21Var.d(z11, j51Var.f25132q, j51Var.e);
+                }
+            } else if (obj instanceof TLRPC.TL_forumTopic) {
+                if (!j51Var.I) {
+                    t21Var.g(j51Var.f25138x, (TLRPC.TL_forumTopic) obj, j51Var.e);
+                } else {
+                    t21Var.b(j51Var.f25138x, (TLRPC.TL_forumTopic) obj, j51Var.e);
+                }
+            }
+        }
+        if (w7.c0.a(j51Var.f25139y, 8)) {
+            i10 = AndroidUtilities.dp(10.0f);
+        } else {
+            i10 = 0;
+        }
+        t21Var.L = i10;
+        if (f61Var != null && f61Var.f23800c3 && t21Var.f28008s) {
+            z12 = true;
+        }
+        t21Var.setReorder(z12);
     }
 
-    public static s21[] values() {
-        return (s21[]) d.clone();
+    @Override
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new t21(context, i10, f6Var);
     }
 }

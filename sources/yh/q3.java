@@ -1,70 +1,41 @@
 package yh;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.aj0;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.v51;
-public final class q3 extends g51 {
-    public static final int f50527a = 0;
+import org.telegram.messenger.Emoji;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.yc;
+import org.telegram.ui.gm0;
+public final class q3 extends xc {
+    public final org.telegram.ui.ActionBar.f6 N;
+    public String O;
+    public int P;
 
-    static {
-        g51.setup(new g51());
+    public q3(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null);
+        this.N = f6Var;
+        setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        setTextSize(1, 14.0f);
+        setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
     }
 
-    @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        r3 r3Var = (r3) view;
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) h51Var.G;
-        int i10 = h51Var.f26608z;
-        String str = (String) h51Var.f26595l;
-        boolean z11 = h51Var.f26589e;
-        f6 f6Var = r3Var.F;
-        aj0 aj0Var = r3Var.f20404c;
-        p3 p3Var = r3Var.N;
-        if (p3Var == null || r3Var.M != stargiftattributepattern.document.f19875id) {
-            r3Var.M = stargiftattributepattern.document.f19875id;
-            if (p3Var != null) {
-                p3Var.o(aj0Var);
-            }
-            ?? q5Var = new q5(3, r3Var.L, stargiftattributepattern.document);
-            r3Var.N = q5Var;
-            q5Var.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.E8, f6Var), PorterDuff.Mode.SRC_IN));
+    public final void e(String str, int i10, x0 x0Var) {
+        gm0 gm0Var;
+        if (str == this.O && this.P == i10) {
+            return;
         }
-        if (aj0Var.isAttachedToWindow()) {
-            r3Var.N.a(aj0Var);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(Emoji.replaceEmoji(str, getPaint().getFontMetricsInt(), false));
+        SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
+        String G0 = ei.l.G0(i10);
+        if (x0Var != null) {
+            gm0Var = new gm0(this, x0Var, i10, 16);
+        } else {
+            gm0Var = null;
         }
-        SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
-        if (!TextUtils.isEmpty(str)) {
-            spannableStringBuilder = AndroidUtilities.highlightText(spannableStringBuilder, str, f6Var);
-        }
-        if (i10 > 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
-            spannableStringBuilder2.append((CharSequence) "  ");
-            int length = spannableStringBuilder2.length();
-            spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
-            spannableStringBuilder2.setSpan(new e51(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        r3Var.g(spannableStringBuilder, 0, r3Var.N);
-        r3Var.setChecked(z11);
-    }
-
-    @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, f6 f6Var) {
-        return new r3(context, i10, f6Var);
+        append.append((CharSequence) yc.b(G0, gm0Var, this.N, null));
+        setText(spannableStringBuilder);
+        this.O = str;
+        this.P = i10;
     }
 }

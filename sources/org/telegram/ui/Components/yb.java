@@ -1,84 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public class yb extends nb {
-    public final aj0 f32876a;
-    public TextView f32877b;
-    public int f32878c;
+public final class yb implements fk0 {
+    public final zb f30165a;
 
-    public yb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        ?? imageView = new ImageView(context);
-        this.f32876a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, w7.x5.h(56.0f, 48.0f, 8388627));
-        xb xbVar = new xb(context, 0, null);
-        xbVar.setDisablePaddingsOffset(true);
-        this.f32877b = xbVar;
-        NotificationCenter.listenEmojiLoading(xbVar);
-        this.f32877b.setSingleLine();
-        this.f32877b.setTypeface(Typeface.SANS_SERIF);
-        this.f32877b.setTextSize(1, 15.0f);
-        this.f32877b.setEllipsize(TextUtils.TruncateAt.END);
-        this.f32877b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        addView(this.f32877b, w7.x5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        this.f32877b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
-        setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
-    }
-
-    public final void c(int i10, int i11, int i12, String... strArr) {
-        aj0 aj0Var = this.f32876a;
-        aj0Var.f(i10, i11, i12, null);
-        for (String str : strArr) {
-            aj0Var.h(this.f32878c, str);
-        }
-    }
-
-    public final void d(int i10, String... strArr) {
-        c(i10, 32, 32, strArr);
-    }
-
-    public final void e(TLRPC.Document document, String... strArr) {
-        aj0 aj0Var = this.f32876a;
-        aj0Var.setAutoRepeat(true);
-        aj0Var.g(36, 36, document);
-        for (String str : strArr) {
-            aj0Var.h(this.f32878c, str);
-        }
+    public yb(zb zbVar) {
+        this.f30165a = zbVar;
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f32877b.getText();
+    public final void h(View view, zg.p0 p0Var, boolean z10, boolean z11) {
+        boolean z12;
+        zb zbVar = this.f30165a;
+        org.telegram.ui.ActionBar.o2 o2Var = zbVar.f30463f;
+        if (zbVar.e == null) {
+            return;
+        }
+        long clientUserId = UserConfig.getInstance(o2Var.getCurrentAccount()).getClientUserId();
+        if ((o2Var instanceof org.telegram.ui.bo) && ((org.telegram.ui.bo) o2Var).a() == clientUserId) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        int i10 = 0;
+        for (int i11 = 0; i11 < zbVar.e.size(); i11++) {
+            int keyAt = zbVar.e.keyAt(i11);
+            TLRPC.Message message = new TLRPC.Message();
+            message.dialog_id = o2Var.getUserConfig().getClientUserId();
+            message.f18142id = keyAt;
+            MessageObject messageObject = new MessageObject(o2Var.getCurrentAccount(), message, false, false);
+            ArrayList<zg.p0> arrayList = new ArrayList<>();
+            arrayList.add(p0Var);
+            o2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, p0Var, false, false, zbVar.f30463f, null);
+            i10 = message.f18142id;
+        }
+        zbVar.f();
+        oc.e();
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.sj(this, p0Var, !z12, o2Var.getCurrentAccount(), i10), 300L);
     }
 
     @Override
-    public final void onShow() {
-        super.onShow();
-        this.f32876a.d();
+    public final boolean j() {
+        return true;
     }
 
-    public void setIconPaddingBottom(int i10) {
-        this.f32876a.setLayoutParams(w7.x5.i(56.0f, 48 - i10, 8388627, 0.0f, 0.0f, 0.0f, i10));
+    @Override
+    public final boolean k() {
+        return false;
     }
 
-    public void setTextColor(int i10) {
-        this.f32878c = i10;
-        this.f32877b.setTextColor(i10);
+    @Override
+    public final boolean q() {
+        return false;
     }
 
-    public yb(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        this(context, f6Var);
-        setBackground(i10);
-        setTextColor(i11);
+    @Override
+    public final void o() {
+    }
+
+    @Override
+    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

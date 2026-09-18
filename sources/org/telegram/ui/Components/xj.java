@@ -14,20 +14,20 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class xj extends FrameLayout {
-    public final x9 f32587a;
-    public final bi.j5 f32588b;
-    public final org.telegram.ui.ActionBar.j5 f32589c;
-    public final mp d;
-    public final i9 f32590e;
-    public TLRPC.User f32591f;
+    public final u9 f29920a;
+    public final ai.a6 f29921b;
+    public final org.telegram.ui.ActionBar.k5 f29922c;
+    public final np d;
+    public final f9 e;
+    public TLRPC.User f29923f;
     public int h;
-    public CharSequence f32592n;
-    public CharSequence f32593r;
-    public TLRPC.User f32594s;
+    public CharSequence f29924n;
+    public CharSequence f29925r;
+    public TLRPC.User f29926s;
     public String v;
-    public String f32595w;
-    public final int f32596x;
-    public boolean f32597y;
+    public String f29927w;
+    public final int f29928x;
+    public boolean f29929y;
 
     public xj(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -44,11 +44,11 @@ public final class xj extends FrameLayout {
         float f14;
         float f15;
         float f16;
-        this.f32596x = UserConfig.selectedAccount;
-        this.f32590e = new i9(f6Var);
-        x9 x9Var = new x9(context);
-        this.f32587a = x9Var;
-        x9Var.setRoundRadius(AndroidUtilities.dp(23.0f));
+        this.f29928x = UserConfig.selectedAccount;
+        this.e = new f9(f6Var);
+        u9 u9Var = new u9(context);
+        this.f29920a = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(23.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i10 = 5;
@@ -66,19 +66,19 @@ public final class xj extends FrameLayout {
         } else {
             f10 = 0.0f;
         }
-        addView(x9Var, w7.x5.d(46, 46.0f, i15, f7, 9.0f, f10, 0.0f));
-        bi.j5 j5Var = new bi.j5(context, 4);
-        this.f32588b = j5Var;
-        NotificationCenter.listenEmojiLoading(j5Var);
-        j5Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20771j5, f6Var));
-        j5Var.setTypeface(AndroidUtilities.bold());
-        j5Var.setTextSize(16);
+        addView(u9Var, w7.x5.d(46, 46.0f, i15, f7, 9.0f, f10, 0.0f));
+        ai.a6 a6Var = new ai.a6(context, 4);
+        this.f29921b = a6Var;
+        NotificationCenter.listenEmojiLoading(a6Var);
+        a6Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18970j5, f6Var));
+        a6Var.setTypeface(AndroidUtilities.bold());
+        a6Var.setTextSize(16);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        j5Var.setGravity(i11 | 48);
+        a6Var.setGravity(i11 | 48);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i12 = 5;
@@ -96,17 +96,17 @@ public final class xj extends FrameLayout {
         } else {
             f12 = 28.0f;
         }
-        addView(j5Var, w7.x5.d(-1, 20.0f, i16, f11, 12.0f, f12, 0.0f));
-        org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(context);
-        this.f32589c = j5Var2;
-        j5Var2.setTextSize(13);
-        j5Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20898q5, f6Var));
+        addView(a6Var, w7.x5.d(-1, 20.0f, i16, f11, 12.0f, f12, 0.0f));
+        org.telegram.ui.ActionBar.k5 k5Var = new org.telegram.ui.ActionBar.k5(context);
+        this.f29922c = k5Var;
+        k5Var.setTextSize(13);
+        k5Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19100q5, f6Var));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
             i13 = 3;
         }
-        j5Var2.setGravity(i13 | 48);
+        k5Var.setGravity(i13 | 48);
         boolean z12 = LocaleController.isRTL;
         if (z12) {
             i14 = 5;
@@ -124,12 +124,12 @@ public final class xj extends FrameLayout {
         } else {
             f14 = 28.0f;
         }
-        addView(j5Var2, w7.x5.d(-1, 20.0f, i17, f13, 36.0f, f14, 0.0f));
-        mp mpVar = new mp(context, 21, f6Var);
-        this.d = mpVar;
-        mpVar.b(-1, org.telegram.ui.ActionBar.j6.f20664d6, org.telegram.ui.ActionBar.j6.f20793k7);
-        mpVar.setDrawUnchecked(false);
-        mpVar.setDrawBackgroundAsArc(3);
+        addView(k5Var, w7.x5.d(-1, 20.0f, i17, f13, 36.0f, f14, 0.0f));
+        np npVar = new np(context, 21, f6Var);
+        this.d = npVar;
+        npVar.b(-1, org.telegram.ui.ActionBar.j6.f18863d6, org.telegram.ui.ActionBar.j6.f18992k7);
+        npVar.setDrawUnchecked(false);
+        npVar.setDrawBackgroundAsArc(3);
         boolean z13 = LocaleController.isRTL;
         int i18 = (z13 ? 5 : 3) | 48;
         if (z13) {
@@ -142,65 +142,65 @@ public final class xj extends FrameLayout {
         } else {
             f16 = 0.0f;
         }
-        addView(mpVar, w7.x5.d(24, 24.0f, i18, f15, 37.0f, f16, 0.0f));
+        addView(npVar, w7.x5.d(24, 24.0f, i18, f15, 37.0f, f16, 0.0f));
     }
 
     public final void a(TLRPC.User user, CharSequence charSequence, wj wjVar, boolean z10) {
         if (user == null && charSequence == null) {
-            this.f32593r = null;
-            this.f32592n = null;
-            this.f32588b.l("", false);
-            this.f32589c.l("", false);
-            this.f32587a.setImageDrawable(null);
+            this.f29925r = null;
+            this.f29924n = null;
+            this.f29921b.l("", false);
+            this.f29922c.l("", false);
+            this.f29920a.setImageDrawable(null);
         } else {
-            this.f32593r = null;
-            this.f32592n = charSequence;
-            this.f32591f = user;
-            this.f32597y = z10;
+            this.f29925r = null;
+            this.f29924n = charSequence;
+            this.f29923f = user;
+            this.f29929y = z10;
             setWillNotDraw(!z10);
             b();
         }
-        Utilities.globalQueue.postRunnable(new uc(12, this, wjVar));
+        Utilities.globalQueue.postRunnable(new oh(6, this, wjVar));
     }
 
     public final void b() {
-        TLRPC.User user = this.f32591f;
+        TLRPC.User user = this.f29923f;
         if (user != null) {
             TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
         }
-        i9 i9Var = this.f32590e;
+        f9 f9Var = this.e;
         if (user != null) {
-            i9Var.m(this.f32596x, user);
-            TLRPC.UserStatus userStatus = this.f32591f.status;
+            f9Var.m(this.f29928x, user);
+            TLRPC.UserStatus userStatus = this.f29923f.status;
         } else {
-            CharSequence charSequence = this.f32592n;
+            CharSequence charSequence = this.f29924n;
             if (charSequence != null) {
-                i9Var.n(this.h, charSequence.toString(), null);
+                f9Var.n(this.h, charSequence.toString(), null);
             } else {
-                i9Var.n(this.h, "#", null);
+                f9Var.n(this.h, "#", null);
             }
         }
-        CharSequence charSequence2 = this.f32592n;
-        bi.j5 j5Var = this.f32588b;
+        CharSequence charSequence2 = this.f29924n;
+        ai.a6 a6Var = this.f29921b;
         if (charSequence2 != null) {
-            this.f32595w = null;
-            j5Var.l(charSequence2, false);
+            this.f29927w = null;
+            a6Var.l(charSequence2, false);
         } else {
-            TLRPC.User user2 = this.f32591f;
+            TLRPC.User user2 = this.f29923f;
             if (user2 != null) {
-                this.f32595w = UserObject.getUserName(user2);
+                this.f29927w = UserObject.getUserName(user2);
             } else {
-                this.f32595w = "";
+                this.f29927w = "";
             }
-            j5Var.l(this.f32595w, false);
+            a6Var.l(this.f29927w, false);
         }
-        setStatus(this.f32593r);
-        TLRPC.User user3 = this.f32591f;
-        x9 x9Var = this.f32587a;
+        setStatus(this.f29925r);
+        TLRPC.User user3 = this.f29923f;
+        u9 u9Var = this.f29920a;
         if (user3 != null) {
-            x9Var.e(user3, i9Var);
+            u9Var.e(user3, f9Var);
         } else {
-            x9Var.setImageDrawable(i9Var);
+            u9Var.setImageDrawable(f9Var);
         }
     }
 
@@ -213,7 +213,7 @@ public final class xj extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float dp;
         int i10;
-        if (this.f32597y) {
+        if (this.f29929y) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -226,13 +226,13 @@ public final class xj extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20786k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f18985k0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.f32597y ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.f29929y ? 1 : 0), 1073741824));
     }
 
     public void setCurrentId(int i10) {
@@ -241,19 +241,19 @@ public final class xj extends FrameLayout {
 
     public void setStatus(CharSequence charSequence) {
         String str;
-        this.f32593r = charSequence;
+        this.f29925r = charSequence;
         if (charSequence != null) {
-            this.f32589c.l(charSequence, false);
+            this.f29922c.l(charSequence, false);
             return;
         }
-        TLRPC.User user = this.f32591f;
+        TLRPC.User user = this.f29923f;
         if (user != null) {
             if (TextUtils.isEmpty(user.phone)) {
-                this.f32589c.l(LocaleController.getString(R.string.NumberUnknown), false);
-            } else if (this.f32594s != this.f32591f && (str = this.v) != null) {
-                this.f32589c.l(str, false);
+                this.f29922c.l(LocaleController.getString(R.string.NumberUnknown), false);
+            } else if (this.f29926s != this.f29923f && (str = this.v) != null) {
+                this.f29922c.l(str, false);
             } else {
-                this.f32589c.l("", false);
+                this.f29922c.l("", false);
                 Utilities.globalQueue.postRunnable(new vj(this, 0));
             }
         }

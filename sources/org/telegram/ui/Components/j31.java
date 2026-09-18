@@ -1,24 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class j31 extends s4.j {
-    public final u31 F;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class j31 extends ml0 {
+    public final w31 X2;
 
-    public j31(u31 u31Var) {
-        this.F = u31Var;
+    public j31(w31 w31Var, Context context) {
+        super(context, null);
+        this.X2 = w31Var;
     }
 
     @Override
-    public final void O() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
-        viewGroup.invalidate();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            w31 w31Var = this.X2;
+            if (y3 < w31Var.z(true) - getTop()) {
+                w31Var.dismiss();
+                return true;
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
-        viewGroup.invalidate();
+    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        return true;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
     }
 }

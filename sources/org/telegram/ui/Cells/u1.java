@@ -9,40 +9,40 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.g61;
-public final class u1 extends View implements org.telegram.ui.ActionBar.z5 {
-    public final g61 f23311a;
-    public final org.telegram.ui.ActionBar.f6 f23312b;
-    public int f23313c;
+import org.telegram.ui.Components.i61;
+public final class u1 extends View implements org.telegram.ui.ActionBar.a6 {
+    public final i61 f21430a;
+    public final org.telegram.ui.ActionBar.f6 f21431b;
+    public int f21432c;
     public int d;
-    public k1 f23314e;
-    public float f23315f;
+    public k1 e;
+    public float f21433f;
     public int h;
 
     public u1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f23312b = f6Var;
-        g61 g61Var = new g61();
-        this.f23311a = g61Var;
-        g61Var.setCallback(this);
-        g61Var.f26278n = LocaleController.getString(R.string.UnsupportedMessageTitle);
-        g61Var.f26279o = LocaleController.getString(R.string.UnsupportedMessageMessage);
-        g61Var.f26280p = LocaleController.getString(R.string.UnsupportedUpdate);
-        g61Var.f26274j = new g(this, 1);
+        this.f21431b = f6Var;
+        i61 i61Var = new i61();
+        this.f21430a = i61Var;
+        i61Var.setCallback(this);
+        i61Var.f24839n = LocaleController.getString(R.string.UnsupportedMessageTitle);
+        i61Var.f24840o = LocaleController.getString(R.string.UnsupportedMessageMessage);
+        i61Var.f24841p = LocaleController.getString(R.string.UnsupportedUpdate);
+        i61Var.f24835j = new g(this, 1);
     }
 
     public final void a(Canvas canvas) {
         Paint paint;
         boolean a12;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f23312b;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f21431b;
         if (f6Var != null) {
-            f6Var.l(0.0f, this.f23315f, getMeasuredWidth(), this.h);
+            f6Var.m(0.0f, this.f21433f, getMeasuredWidth(), this.h);
         } else {
-            org.telegram.ui.ActionBar.j6.q(0.0f, this.f23315f, getMeasuredWidth(), this.h);
+            org.telegram.ui.ActionBar.j6.q(0.0f, this.f21433f, getMeasuredWidth(), this.h);
         }
         float dp = AndroidUtilities.dp(18.0f);
         float dp2 = AndroidUtilities.dp(6.0f);
-        float dp3 = AndroidUtilities.dp(18.0f) + this.f23313c;
+        float dp3 = AndroidUtilities.dp(18.0f) + this.f21432c;
         float dp4 = AndroidUtilities.dp(6.0f) + this.d;
         float dp5 = AndroidUtilities.dp(18.0f);
         float dp6 = AndroidUtilities.dp(18.0f);
@@ -56,23 +56,23 @@ public final class u1 extends View implements org.telegram.ui.ActionBar.z5 {
         }
         canvas.drawRoundRect(dp, dp2, dp3, dp4, dp5, dp6, paint);
         if (f6Var != null) {
-            a12 = f6Var.o0();
+            a12 = f6Var.p0();
         } else {
             a12 = org.telegram.ui.ActionBar.j6.a1();
         }
         if (a12) {
-            canvas.drawRoundRect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(18.0f) + this.f23313c, AndroidUtilities.dp(6.0f) + this.d, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.f20732h2);
+            canvas.drawRoundRect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(18.0f) + this.f21432c, AndroidUtilities.dp(6.0f) + this.d, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.f18931h2);
         }
     }
 
     public final void b(float f7, int i10) {
-        this.f23315f = f7;
+        this.f21433f = f7;
         this.h = i10;
     }
 
     @Override
-    public final void d() {
-        this.f23311a.b();
+    public final void e() {
+        this.f21430a.b();
     }
 
     public int[] getColorKeys() {
@@ -83,35 +83,35 @@ public final class u1 extends View implements org.telegram.ui.ActionBar.z5 {
     public final void onDraw(Canvas canvas) {
         int dp = AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
-        int dp3 = AndroidUtilities.dp(18.0f) + this.f23313c;
+        int dp3 = AndroidUtilities.dp(18.0f) + this.f21432c;
         int dp4 = AndroidUtilities.dp(6.0f) + this.d;
-        g61 g61Var = this.f23311a;
-        g61Var.setBounds(dp, dp2, dp3, dp4);
-        g61Var.draw(canvas);
+        i61 i61Var = this.f21430a;
+        i61Var.setBounds(dp, dp2, dp3, dp4);
+        i61Var.draw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int dp = size - AndroidUtilities.dp(36.0f);
-        this.f23313c = dp;
-        int a2 = this.f23311a.a(dp);
+        this.f21432c = dp;
+        int a2 = this.f21430a.a(dp);
         this.d = a2;
         setMeasuredDimension(size, AndroidUtilities.dp(12.0f) + a2);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f23311a.f26273i.a(motionEvent, this);
+        return this.f21430a.f24834i.a(motionEvent, this);
     }
 
     public void setDelegate(k1 k1Var) {
-        this.f23314e = k1Var;
+        this.e = k1Var;
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f23311a) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f21430a) {
             return false;
         }
         return true;

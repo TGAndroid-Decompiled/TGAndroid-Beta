@@ -1,63 +1,118 @@
 package rg;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class g implements ValueAnimator.AnimatorUpdateListener {
-    public final int f45187a;
-    public final k f45188b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.wl;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.o20;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.gg0;
+import w7.x5;
+public final class g extends FrameLayout {
+    public final u9 f42319a;
+    public final o20 f42320b;
+    public final int f42321c;
+    public final j d;
 
-    public g(k kVar, int i10) {
-        this.f45187a = i10;
-        this.f45188b = kVar;
+    public g(j jVar, Context context) {
+        super(context);
+        this.d = jVar;
+        o20 o20Var = new o20();
+        this.f42320b = o20Var;
+        int i10 = jVar.f42336f;
+        f6 f6Var = jVar.f42279a;
+        if (i10 == 0) {
+            this.f42321c = AndroidUtilities.dp(150.0f);
+            u9 u9Var = new u9(context);
+            this.f42319a = u9Var;
+            u9Var.setRoundRadius((int) (AndroidUtilities.dp(65.0f) / 2.0f));
+            addView(u9Var, x5.d(65, 65.0f, 1, 0.0f, 32.0f, 0.0f, 0.0f));
+            TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
+            f9 f9Var = new f9((f6) null);
+            f9Var.r(currentUser);
+            u9Var.getImageReceiver().setForUserOrChat(currentUser, f9Var);
+            TextView textView = new TextView(context);
+            e2.l(20.0f, 1, textView);
+            textView.setTextColor(j6.v0(j6.G6, f6Var));
+            textView.setText(LocaleController.getString(R.string.UpgradedStories));
+            addView(textView, x5.d(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
+            o20Var.f26612m = true;
+            o20Var.f26603a = true;
+            o20Var.d(j6.w0(null, j6.Mj, false), j6.w0(null, j6.Lj, false), 0, 0);
+            o20Var.f26605c.setStyle(Paint.Style.STROKE);
+            o20Var.f26605c.setStrokeCap(Paint.Cap.ROUND);
+            o20Var.f26605c.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
+        } else if (i10 == 1) {
+            ei.f fVar = new ei.f(context, 4);
+            addView(fVar, x5.e(-1, 190, 55));
+            gg0 gg0Var = new gg0(context, 1, 1, 1);
+            gg0Var.setStarParticlesView(fVar);
+            Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            int i11 = j6.Mj;
+            canvas.drawColor(i0.a.d(0.5f, j6.v0(i11, f6Var), j6.v0(j6.f18934h5, f6Var)));
+            gg0Var.setBackgroundBitmap(createBitmap);
+            sg.a aVar = gg0Var.f42964b;
+            aVar.f42952w = i11;
+            aVar.f42953x = j6.Lj;
+            aVar.b();
+            addView(gg0Var, x5.e(160, 160, 1));
+            gg0Var.j(100L);
+            TextView g10 = org.telegram.messenger.w1.g(context, 1, 20.0f);
+            g10.setTypeface(AndroidUtilities.bold());
+            g10.setTextColor(j6.v0(j6.G6, f6Var));
+            wl.k(R.string.TelegramBusiness, g10, 17);
+            addView(g10, x5.d(-2, -2.0f, 1, 33.0f, 150.0f, 33.0f, 0.0f));
+            TextView textView2 = new TextView(context);
+            textView2.setTextSize(1, 14.0f);
+            textView2.setTextColor(j6.v0(j6.f19264z6, f6Var));
+            wl.k(R.string.TelegramBusinessSubtitle2, textView2, 17);
+            addView(textView2, x5.d(-2, -2.0f, 1, 33.0f, 183.0f, 33.0f, 20.0f));
+        }
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f45187a) {
-            case 0:
-                k kVar = this.f45188b;
-                kVar.g(AndroidUtilities.lerpAngle(kVar.L, kVar.f45252i0, kVar.Q.getAnimatedFraction()));
-                return;
-            case 1:
-                k kVar2 = this.f45188b;
-                kVar2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kVar2.f45257n0 = floatValue;
-                kVar2.setAlpha(floatValue);
-                j jVar = kVar2.H;
-                if (jVar != null) {
-                    jVar.setScaleX(Utilities.clamp(kVar2.f45257n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, kVar2.f45253j0));
-                    kVar2.H.setScaleY(Utilities.clamp(kVar2.f45257n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, kVar2.f45253j0));
-                    kVar2.H.setAlpha(Math.max(0.0f, kVar2.f45257n0 - 0.8f) * kVar2.f45253j0 * 5.0f);
-                }
-                kVar2.invalidate();
-                return;
-            case 2:
-                k kVar3 = this.f45188b;
-                kVar3.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kVar3.f45253j0 = floatValue2;
-                j jVar2 = kVar3.H;
-                if (jVar2 != null) {
-                    jVar2.setScaleX(Utilities.clamp(kVar3.f45257n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, floatValue2));
-                    kVar3.H.setScaleY(Utilities.clamp(kVar3.f45257n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, kVar3.f45253j0));
-                    kVar3.H.setAlpha(Math.max(0.0f, kVar3.f45257n0 - 0.8f) * kVar3.f45253j0 * 5.0f);
-                    return;
-                }
-                return;
-            case 3:
-                this.f45188b.k();
-                return;
-            case 4:
-                this.f45188b.k();
-                return;
-            default:
-                k kVar4 = this.f45188b;
-                float lerpAngle = AndroidUtilities.lerpAngle(kVar4.f45252i0, kVar4.L, valueAnimator.getAnimatedFraction());
-                kVar4.O = lerpAngle;
-                kVar4.g(lerpAngle);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.d.f42336f == 0) {
+            Rect rect = AndroidUtilities.rectTmp2;
+            this.f42319a.getHitRect(rect);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(rect);
+            rectF.inset(-AndroidUtilities.dp(5.0f), -AndroidUtilities.dp(5.0f));
+            o20 o20Var = this.f42320b;
+            o20Var.c(rectF);
+            float f7 = 360.0f / 7;
+            for (int i10 = 0; i10 < 7; i10++) {
+                float f10 = (i10 * f7) - 90.0f;
+                float f11 = 5;
+                float f12 = f10 + f11;
+                canvas.drawArc(AndroidUtilities.rectTmp, f12, ((f10 + f7) - f11) - f12, false, o20Var.f26605c);
+            }
         }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12 = this.f42321c;
+        if (i12 > 0) {
+            i11 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        }
+        super.onMeasure(i10, i11);
     }
 }

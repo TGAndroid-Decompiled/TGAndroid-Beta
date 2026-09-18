@@ -1,36 +1,38 @@
 package yh;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-public final class a2 implements TextWatcher {
-    public boolean f50202a;
-    public final y1 f50203b;
+import com.google.firebase.sessions.FirebaseSessionsRegistrar;
+public final class a2 implements org.telegram.ui.ActionBar.b2, d9.e, q9.d {
+    public final int f46949a;
 
-    public a2(y1 y1Var) {
-        this.f50203b = y1Var;
+    public a2(int i10) {
+        this.f46949a = i10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        if (!this.f50202a && editable.length() > 12) {
-            this.f50202a = true;
-            editable.delete(12, editable.length());
-            y1 y1Var = this.f50203b;
-            AndroidUtilities.shakeView(y1Var);
-            try {
-                y1Var.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
-            }
-            this.f50202a = false;
+    public Object G(cf.c cVar) {
+        switch (this.f46949a) {
+            case 10:
+                return FirebaseSessionsRegistrar.e(cVar);
+            case 11:
+                return FirebaseSessionsRegistrar.f(cVar);
+            case 12:
+                return FirebaseSessionsRegistrar.a(cVar);
+            case 13:
+                return FirebaseSessionsRegistrar.b(cVar);
+            case 14:
+                return FirebaseSessionsRegistrar.d(cVar);
+            default:
+                return FirebaseSessionsRegistrar.c(cVar);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public java.lang.Object apply(java.lang.Object r26) {
+        throw new UnsupportedOperationException("Method not decompiled: yh.a2.apply(java.lang.Object):java.lang.Object");
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        int i11 = a4.f46972q1;
     }
 }

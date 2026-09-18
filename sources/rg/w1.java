@@ -1,65 +1,15 @@
 package rg;
+public final class w1 implements Runnable {
+    public final int f42560a;
+    public final Object f42561b;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-public final class w1 extends GestureDetector.SimpleOnGestureListener {
-    public float f45539a;
-    public boolean f45540b;
-    public float f45541c;
-    public final y1 d;
-
-    public w1(y1 y1Var) {
-        this.d = y1Var;
+    public w1(Object obj, int i10) {
+        this.f42560a = i10;
+        this.f42561b = obj;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        float f7;
-        y1 y1Var = this.d;
-        boolean contains = y1Var.f45567e.contains(motionEvent.getX(), motionEvent.getY());
-        if (y1Var.f45568f != contains) {
-            y1Var.f45568f = contains;
-            y1Var.invalidate();
-            if (contains) {
-                x1 x1Var = y1Var.K;
-                if (x1Var != null) {
-                    f7 = x1Var.get();
-                } else {
-                    f7 = y1Var.H.f44544c;
-                }
-                this.f45539a = f7;
-                this.f45540b = false;
-            }
-        }
-        return y1Var.f45568f;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        y1 y1Var = this.d;
-        if (y1Var.f45568f) {
-            if (!this.f45540b) {
-                this.f45541c = motionEvent.getY() - motionEvent2.getY();
-                this.f45540b = true;
-            }
-            float f11 = this.f45539a;
-            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f45541c) / y1Var.f45567e.height();
-            float f12 = y1Var.G;
-            float f13 = y1Var.F;
-            float a2 = w7.p.a(com.google.android.gms.internal.vision.e2.z(f12, f13, y3, f11), f13, f12);
-            x1 x1Var = y1Var.K;
-            if (x1Var != null) {
-                x1Var.H(a2);
-            } else {
-                y1Var.H.f44544c = a2;
-            }
-            y1Var.f45572w.d(a2, true);
-            Runnable runnable = y1Var.I;
-            if (runnable != null) {
-                runnable.run();
-            }
-            y1Var.invalidate();
-        }
-        return y1Var.f45568f;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: rg.w1.run():void");
     }
 }

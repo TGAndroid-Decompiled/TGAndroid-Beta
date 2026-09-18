@@ -8,32 +8,32 @@ import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.tgnet.TLRPC;
 public final class h6 {
-    public int f20491a;
-    public i6 f20492b;
-    public int f20493c;
+    public int f18721a;
+    public i6 f18722b;
+    public int f18723c;
     public int d;
-    public int f20494e;
-    public int f20495f;
-    public int f20496g;
+    public int e;
+    public int f18724f;
+    public int f18725g;
     public int h;
-    public boolean f20497i;
-    public long f20498j;
-    public long f20499k;
-    public long f20500l;
-    public long f20501m;
-    public float f20504p;
-    public boolean f20505q;
-    public TLRPC.TL_theme f20506r;
-    public TLRPC.TL_wallPaper f20507s;
-    public int f20508t;
-    public String f20509u;
+    public boolean f18726i;
+    public long f18727j;
+    public long f18728k;
+    public long f18729l;
+    public long f18730m;
+    public float f18733p;
+    public boolean f18734q;
+    public TLRPC.TL_theme f18735r;
+    public TLRPC.TL_wallPaper f18736s;
+    public int f18737t;
+    public String f18738u;
     public String v;
-    public TLRPC.InputFile f20510w;
-    public TLRPC.InputFile f20511x;
-    public b6 f20512y;
-    public boolean f20513z;
-    public int f20502n = 45;
-    public String f20503o = "";
+    public TLRPC.InputFile f18739w;
+    public TLRPC.InputFile f18740x;
+    public c6 f18741y;
+    public boolean f18742z;
+    public int f18731n = 45;
+    public String f18732o = "";
     public final float[] A = new float[3];
 
     public static int a(SparseIntArray sparseIntArray, int... iArr) {
@@ -60,7 +60,7 @@ public final class h6 {
     }
 
     public static void g(SparseIntArray sparseIntArray) {
-        for (int i10 = j6.f21066za; i10 < j6.Ga; i10++) {
+        for (int i10 = j6.f19268za; i10 < j6.Ga; i10++) {
             sparseIntArray.delete(i10);
             sparseIntArray.put(i10, j6.nl[i10]);
         }
@@ -68,7 +68,7 @@ public final class h6 {
             sparseIntArray.delete(i11);
             sparseIntArray.put(i11, j6.nl[i11]);
         }
-        for (int i12 = j6.Ub; i12 < j6.f20651cc; i12++) {
+        for (int i12 = j6.Ub; i12 < j6.f18850cc; i12++) {
             sparseIntArray.delete(i12);
             sparseIntArray.put(i12, j6.nl[i12]);
         }
@@ -93,24 +93,24 @@ public final class h6 {
     }
 
     public final File d() {
-        if (this.f20491a < 100) {
-            if (TextUtils.isEmpty(this.f20503o)) {
+        if (this.f18721a < 100) {
+            if (TextUtils.isEmpty(this.f18732o)) {
                 return null;
             }
             File filesDirFixed = ApplicationLoader.getFilesDirFixed();
             Locale locale = Locale.US;
-            String m10 = this.f20492b.m();
-            int i10 = this.f20491a;
-            String str = this.f20503o;
+            String m10 = this.f18722b.m();
+            int i10 = this.f18721a;
+            String str = this.f18732o;
             return new File(filesDirFixed, m10 + "_" + i10 + "_" + str + "_v5.jpg");
-        } else if (TextUtils.isEmpty(this.f20503o)) {
+        } else if (TextUtils.isEmpty(this.f18732o)) {
             return null;
         } else {
             File filesDirFixed2 = ApplicationLoader.getFilesDirFixed();
             Locale locale2 = Locale.US;
-            String m11 = this.f20492b.m();
-            int i11 = this.f20491a;
-            String str2 = this.f20503o;
+            String m11 = this.f18722b.m();
+            int i11 = this.f18721a;
+            String str2 = this.f18732o;
             return new File(filesDirFixed2, m11 + "_" + i11 + "_" + str2 + "_v8_debug.jpg");
         }
     }

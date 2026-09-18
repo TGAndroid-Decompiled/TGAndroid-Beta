@@ -1,87 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-public final class df extends AnimatorListenerAdapter {
-    public final int f25377a;
-    public final boolean f25378b;
-    public final ChatActivityEnterView f25379c;
+import android.view.ViewTreeObserver;
+public final class df implements ViewTreeObserver.OnDrawListener {
+    public final gv0 f23345a;
+    public final vo0 f23346b;
 
-    public df(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
-        this.f25377a = i10;
-        this.f25379c = chatActivityEnterView;
-        this.f25378b = z10;
+    public df(gv0 gv0Var, vo0 vo0Var) {
+        this.f23345a = gv0Var;
+        this.f23346b = vo0Var;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f25377a) {
-            case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f25379c;
-                if (animator.equals(chatActivityEnterView.f23764r2)) {
-                    chatActivityEnterView.f23764r2 = null;
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        af afVar;
-        float f7;
-        switch (this.f25377a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f25379c;
-                if (chatActivityEnterView.f23731k5) {
-                    ImageView imageView = chatActivityEnterView.f23784v1;
-                    if (this.f25378b) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
-                    }
-                    imageView.setVisibility(i10);
-                    return;
-                }
-                return;
-            case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f25379c;
-                if (animator.equals(chatActivityEnterView2.f23764r2)) {
-                    chatActivityEnterView2.f23747o1.setVisibility(8);
-                    if (this.f25378b && (afVar = chatActivityEnterView2.I1) != null) {
-                        afVar.setVisibility(8);
-                    }
-                    chatActivityEnterView2.f23764r2 = null;
-                    return;
-                }
-                return;
-            case 2:
-                ChatActivityEnterView chatActivityEnterView3 = this.f25379c;
-                chatActivityEnterView3.L1 = null;
-                if (!this.f25378b) {
-                    chatActivityEnterView3.I1.setVisibility(8);
-                    return;
-                }
-                return;
-            default:
-                if (this.f25378b) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                ChatActivityEnterView chatActivityEnterView4 = this.f25379c;
-                chatActivityEnterView4.f23789w0 = f7;
-                eg egVar = chatActivityEnterView4.U0;
-                if (egVar != null) {
-                    egVar.a0();
-                    return;
-                }
-                return;
-        }
+    public final void onDraw() {
+        gv0 gv0Var = this.f23345a;
+        gv0Var.post(new org.telegram.ui.ActionBar.q(this, gv0Var, this.f23346b, 8));
     }
 }

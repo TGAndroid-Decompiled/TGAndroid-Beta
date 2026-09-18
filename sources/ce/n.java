@@ -1,9 +1,10 @@
 package ce;
 
+import ee.v;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class n extends de.b implements l, b {
-    public static final AtomicReferenceFieldUpdater f4792e = AtomicReferenceFieldUpdater.newUpdater(n.class, Object.class, "_state$volatile");
+    public static final AtomicReferenceFieldUpdater e = AtomicReferenceFieldUpdater.newUpdater(n.class, Object.class, "_state$volatile");
     private volatile Object _state$volatile;
     public int d;
 
@@ -12,14 +13,19 @@ public final class n extends de.b implements l, b {
     }
 
     @Override
+    public final java.lang.Object H(ce.c r18, kd.c r19) {
+        throw new UnsupportedOperationException("Method not decompiled: ce.n.H(ce.c, kd.c):java.lang.Object");
+    }
+
+    @Override
     public final Object a(Object obj, kd.c cVar) {
         d(obj);
-        return gd.i.f10588a;
+        return gd.i.f9621a;
     }
 
     public final Object c() {
-        Object obj = f4792e.get(this);
-        if (obj == de.e.f6798a) {
+        Object obj = e.get(this);
+        if (obj == de.e.f7718a) {
             return null;
         }
         return obj;
@@ -28,12 +34,12 @@ public final class n extends de.b implements l, b {
     public final void d(Object obj) {
         int i10;
         p[] pVarArr;
-        d9.f fVar;
+        v vVar;
         if (obj == null) {
-            obj = de.e.f6798a;
+            obj = de.e.f7718a;
         }
         synchronized (this) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f4792e;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = e;
             if (kotlin.jvm.internal.i.a(atomicReferenceFieldUpdater.get(this), obj)) {
                 return;
             }
@@ -42,29 +48,29 @@ public final class n extends de.b implements l, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                p[] pVarArr2 = this.f6792a;
+                p[] pVarArr2 = this.f7712a;
                 while (true) {
                     if (pVarArr2 != null) {
                         for (p pVar : pVarArr2) {
                             if (pVar != null) {
-                                AtomicReference atomicReference = pVar.f4795a;
+                                AtomicReference atomicReference = pVar.f4259a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (fVar = o.f4794b)) {
-                                        d9.f fVar2 = o.f4793a;
-                                        if (obj2 == fVar2) {
-                                            while (!atomicReference.compareAndSet(obj2, fVar)) {
+                                    if (obj2 != null && obj2 != (vVar = o.f4258b)) {
+                                        v vVar2 = o.f4257a;
+                                        if (obj2 == vVar2) {
+                                            while (!atomicReference.compareAndSet(obj2, vVar)) {
                                                 if (atomicReference.get() != obj2) {
                                                     break;
                                                 }
                                             }
                                         } else {
-                                            while (!atomicReference.compareAndSet(obj2, fVar2)) {
+                                            while (!atomicReference.compareAndSet(obj2, vVar2)) {
                                                 if (atomicReference.get() != obj2) {
                                                     break;
                                                 }
                                             }
-                                            ((zd.m) obj2).resumeWith(gd.i.f10588a);
+                                            ((zd.m) obj2).resumeWith(gd.i.f9621a);
                                             break;
                                         }
                                     }
@@ -78,7 +84,7 @@ public final class n extends de.b implements l, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        pVarArr = this.f6792a;
+                        pVarArr = this.f7712a;
                     }
                     pVarArr2 = pVarArr;
                     i12 = i10;
@@ -87,10 +93,5 @@ public final class n extends de.b implements l, b {
                 this.d = i11 + 2;
             }
         }
-    }
-
-    @Override
-    public final java.lang.Object z(ce.c r18, kd.c r19) {
-        throw new UnsupportedOperationException("Method not decompiled: ce.n.z(ce.c, kd.c):java.lang.Object");
     }
 }

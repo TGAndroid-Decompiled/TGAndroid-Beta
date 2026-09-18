@@ -2,18 +2,18 @@ package z2;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
-import org.telegram.ui.web.n;
+import org.telegram.ui.web.m;
 public final class a implements Executor {
-    public final Executor f50677a;
-    public final n f50678b;
+    public final Executor f48103a;
+    public final m f48104b;
 
-    public a(ExecutorService executorService, n nVar) {
-        this.f50677a = executorService;
-        this.f50678b = nVar;
+    public a(ExecutorService executorService, m mVar) {
+        this.f48103a = executorService;
+        this.f48104b = mVar;
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        this.f50677a.execute(runnable);
+        this.f48103a.execute(runnable);
     }
 }

@@ -1,27 +1,42 @@
 package org.telegram.ui.Components;
-public final class r01 implements Runnable {
-    public final int f29875a;
-    public final u01 f29876b;
-    public final t01 f29877c;
 
-    public r01(u01 u01Var, t01 t01Var, int i10) {
-        this.f29875a = i10;
-        this.f29876b = u01Var;
-        this.f29877c = t01Var;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+public class r01 extends ViewSwitcher {
+    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
+        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
+            if (z10) {
+                getNextView().setText(charSequence);
+                showNext();
+                return;
+            }
+            getCurrentView().setText(charSequence);
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f29875a) {
-            case 0:
-                this.f29876b.b(this.f29877c);
-                return;
-            case 1:
-                this.f29876b.b(this.f29877c);
-                return;
-            default:
-                this.f29876b.b(this.f29877c);
-                return;
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        if (view instanceof TextView) {
+            super.addView(view, i10, layoutParams);
+            return;
         }
+        throw new IllegalArgumentException();
+    }
+
+    public void setText(CharSequence charSequence) {
+        a(charSequence, true, false);
+    }
+
+    @Override
+    public TextView getCurrentView() {
+        return (TextView) super.getCurrentView();
+    }
+
+    @Override
+    public TextView getNextView() {
+        return (TextView) super.getNextView();
     }
 }

@@ -1,57 +1,142 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class gu0 implements ViewTreeObserver.OnPreDrawListener {
-    public final av0 f36789a;
-    public final Integer f36790b;
-    public final PhotoViewer f36791c;
+import android.text.TextUtils;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class gu0 extends vu0 {
+    public final ImageReceiver.BitmapHolder f34049a;
+    public final dv0 f34050b;
+    public final MessageObject f34051c;
+    public final MediaController.PhotoEntry d;
+    public final boolean e;
+    public final boolean f34052f;
+    public final PhotoViewer f34053g;
 
-    public gu0(PhotoViewer photoViewer, av0 av0Var, Integer num) {
-        this.f36791c = photoViewer;
-        this.f36789a = av0Var;
-        this.f36790b = num;
+    public gu0(PhotoViewer photoViewer, dv0 dv0Var, MessageObject messageObject, MediaController.PhotoEntry photoEntry, boolean z10, boolean z11) {
+        this.f34053g = photoViewer;
+        this.f34050b = dv0Var;
+        this.f34051c = messageObject;
+        this.d = photoEntry;
+        this.e = z10;
+        this.f34052f = z11;
+        this.f34049a = photoViewer.C4.getBitmapSafe();
     }
 
     @Override
-    public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f36791c;
-        photoViewer.f33567g0.getViewTreeObserver().removeOnPreDrawListener(this);
-        photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
-        ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29467f;
-        duration.setInterpolator(prVar).start();
-        photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar).start();
-        photoViewer.O0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar).start();
-        photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(prVar).start();
-        photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.S0.setAlpha(0.0f);
-        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar).start();
-        photoViewer.f33675s3.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.f33675s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar).start();
-        photoViewer.f33550e0.setAlpha(0.0f);
-        photoViewer.L0.setAlpha(0);
-        photoViewer.f33631n4 = 4;
-        photoViewer.f33550e0.invalidate();
-        AnimatorSet animatorSet = new AnimatorSet();
-        t5 t5Var = photoViewer.P0;
-        ObjectAnimator duration2 = ObjectAnimator.ofFloat(t5Var, View.TRANSLATION_Y, t5Var.getTranslationY(), 0.0f).setDuration(220L);
-        duration2.setInterpolator(prVar);
-        t5 t5Var2 = photoViewer.P0;
-        Property property = View.ALPHA;
-        ObjectAnimator duration3 = ObjectAnimator.ofFloat(t5Var2, property, 1.0f).setDuration(220L);
-        duration3.setInterpolator(prVar);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f33550e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f33594j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
-        animatorSet.addListener(new fu0(this));
-        animatorSet.start();
-        return true;
+    public final fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        dv0 dv0Var = this.f34050b;
+        if (dv0Var != null) {
+            return dv0Var.E(this.f34051c, null, 0, z10, false);
+        }
+        return null;
+    }
+
+    @Override
+    public final void L(VideoEditedInfo videoEditedInfo) {
+        MediaController.PhotoEntry photoEntry = this.d;
+        if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null && TextUtils.isEmpty(photoEntry.caption)) {
+            return;
+        }
+        c0(videoEditedInfo, false, 0, true, false);
+    }
+
+    @Override
+    public final MessageObject U() {
+        return this.f34051c;
+    }
+
+    public final void c0(VideoEditedInfo videoEditedInfo, boolean z10, int i10, boolean z11, boolean z12) {
+        MessageObject messageObject;
+        PhotoViewer photoViewer = this.f34053g;
+        if (photoViewer.l4 != null) {
+            rn rnVar = null;
+            MessageObject messageObject2 = this.f34051c;
+            if (z11) {
+                messageObject = messageObject2;
+            } else {
+                messageObject = null;
+            }
+            MediaController.PhotoEntry photoEntry = this.d;
+            if (messageObject != null && !TextUtils.isEmpty(photoEntry.caption)) {
+                messageObject.editingMessage = photoEntry.caption;
+                messageObject.editingMessageEntities = photoEntry.entities;
+            }
+            if (z11 || messageObject2 == null) {
+                bo boVar = photoViewer.l4;
+                messageObject2 = boVar.f32385n5;
+                rnVar = boVar.f32359l5;
+            }
+            rn rnVar2 = rnVar;
+            MessageObject messageObject3 = messageObject2;
+            if (photoEntry.isVideo) {
+                if (videoEditedInfo != null) {
+                    AccountInstance accountInstance = photoViewer.l4.getAccountInstance();
+                    String str = photoEntry.path;
+                    long a2 = photoViewer.l4.a();
+                    bo boVar2 = photoViewer.l4;
+                    SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, null, null, a2, messageObject3, boVar2.X3, null, rnVar2, photoEntry.entities, photoEntry.ttl, messageObject, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, boVar2.C8(), 0L, 0L, photoViewer.l4.N8(), photoViewer.l4.f32299g5);
+                    return;
+                }
+                MessageObject messageObject4 = messageObject;
+                AccountInstance accountInstance2 = photoViewer.l4.getAccountInstance();
+                String str2 = photoEntry.path;
+                long a10 = photoViewer.l4.a();
+                bo boVar3 = photoViewer.l4;
+                SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, null, null, a10, messageObject3, boVar3.X3, null, rnVar2, photoEntry.entities, photoEntry.ttl, messageObject4, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, boVar3.C8(), 0L, 0L, photoViewer.l4.N8(), photoViewer.l4.f32299g5);
+                return;
+            }
+            MessageObject messageObject5 = messageObject;
+            if (photoEntry.imagePath != null) {
+                AccountInstance accountInstance3 = photoViewer.l4.getAccountInstance();
+                String str3 = photoEntry.imagePath;
+                String str4 = photoEntry.thumbPath;
+                long a11 = photoViewer.l4.a();
+                bo boVar4 = photoViewer.l4;
+                SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, a11, messageObject3, boVar4.X3, null, rnVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, boVar4.C8(), 0L, 0L, photoViewer.l4.N8(), photoViewer.l4.f32299g5);
+            } else if (photoEntry.path != null) {
+                AccountInstance accountInstance4 = photoViewer.l4.getAccountInstance();
+                String str5 = photoEntry.path;
+                String str6 = photoEntry.thumbPath;
+                long a12 = photoViewer.l4.a();
+                bo boVar5 = photoViewer.l4;
+                SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, a12, messageObject3, boVar5.X3, null, rnVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, boVar5.C8(), 0L, 0L, photoViewer.l4.N8(), photoViewer.l4.f32299g5);
+            }
+        }
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return this.f34049a;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        c0(videoEditedInfo, z10, i11, false, z11);
+    }
+
+    @Override
+    public final boolean p() {
+        if (this.f34050b != null && this.e) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean r() {
+        if (this.f34050b != null && this.f34052f) {
+            return true;
+        }
+        return false;
     }
 }

@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public interface t40 {
-    void C(float f7);
+    void B(float f7);
 
     void L(boolean z10, boolean z11);
 
@@ -12,7 +12,7 @@ public interface t40 {
 
     boolean e();
 
-    org.telegram.ui.cv0 getCloseIntoObject();
+    org.telegram.ui.fv0 getCloseIntoObject();
 
     String getInitialSearchString();
 

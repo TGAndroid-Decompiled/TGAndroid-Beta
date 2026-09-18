@@ -1,25 +1,14 @@
 package qg;
-public abstract class o1 {
-    public final boolean f44498a;
-    public boolean f44499b;
-    public boolean f44500c;
-    public float d;
-    public float f44501e;
+public final class o1 {
+    public final int f41533a;
+    public final int f41534b;
+    public final int f41535c;
+    public final int d;
 
-    public o1() {
-        this.f44499b = true;
-        this.f44500c = true;
-        a();
-    }
-
-    public abstract void a();
-
-    public abstract void b(float f7, float f10);
-
-    public o1(int i10) {
-        this.f44499b = true;
-        this.f44500c = true;
-        this.f44498a = true;
-        a();
+    public o1(int i10, int i11, int i12, int i13) {
+        this.f41533a = i10;
+        this.f41534b = i11;
+        this.f41535c = i12;
+        this.d = i13;
     }
 }

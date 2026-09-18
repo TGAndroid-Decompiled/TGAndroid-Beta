@@ -10,22 +10,22 @@ import android.util.Log;
 import android.util.SparseArray;
 import org.telegram.ui.Cells.p6;
 public final class m0 implements IBinder.DeathRecipient {
-    public final Messenger f43869a;
-    public final g.d f43870b;
-    public final Messenger f43871c;
-    public int f43873f;
-    public int f43874g;
-    public final r0 f43875i;
+    public final Messenger f40641a;
+    public final g.d f40642b;
+    public final Messenger f40643c;
+    public int f40644f;
+    public int f40645g;
+    public final r0 f40646i;
     public int d = 1;
-    public int f43872e = 1;
+    public int e = 1;
     public final SparseArray h = new SparseArray();
 
     public m0(r0 r0Var, Messenger messenger) {
-        this.f43875i = r0Var;
-        this.f43869a = messenger;
+        this.f40646i = r0Var;
+        this.f40641a = messenger;
         g.d dVar = new g.d(this);
-        this.f43870b = dVar;
-        this.f43871c = new Messenger(dVar);
+        this.f40642b = dVar;
+        this.f40643c = new Messenger(dVar);
     }
 
     public final void a(int i10) {
@@ -41,15 +41,15 @@ public final class m0 implements IBinder.DeathRecipient {
         obtain.arg2 = i12;
         obtain.obj = bundle;
         obtain.setData(bundle2);
-        obtain.replyTo = this.f43871c;
+        obtain.replyTo = this.f40643c;
         try {
-            this.f43869a.send(obtain);
+            this.f40641a.send(obtain);
             return true;
         } catch (DeadObjectException unused) {
             return false;
-        } catch (RemoteException e7) {
+        } catch (RemoteException e) {
             if (i10 != 2) {
-                Log.e("MediaRouteProviderProxy", "Could not send message to service.", e7);
+                Log.e("MediaRouteProviderProxy", "Could not send message to service.", e);
                 return false;
             }
             return false;
@@ -58,20 +58,20 @@ public final class m0 implements IBinder.DeathRecipient {
 
     @Override
     public final void binderDied() {
-        this.f43875i.f43905s.post(new l0(this, 1));
+        this.f40646i.f40673s.post(new l0(this, 1));
     }
 
     public final void c(int i10, int i11) {
-        Bundle e7 = p6.e(i11, "volume");
+        Bundle e = p6.e(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(7, i12, i10, null, e7);
+        b(7, i12, i10, null, e);
     }
 
     public final void d(int i10, int i11) {
-        Bundle e7 = p6.e(i11, "volume");
+        Bundle e = p6.e(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(8, i12, i10, null, e7);
+        b(8, i12, i10, null, e);
     }
 }

@@ -3,26 +3,26 @@ package u7;
 import j$.util.Objects;
 import w7.r7;
 public final class e extends d {
-    public static final e f46971e = new e(0, new Object[0]);
-    public final transient Object[] f46972c;
+    public static final e e = new e(0, new Object[0]);
+    public final transient Object[] f43668c;
     public final transient int d;
 
     public e(int i10, Object[] objArr) {
-        this.f46972c = objArr;
+        this.f43668c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         r7.a(i10, this.d);
-        Object obj = this.f46972c[i10];
+        Object obj = this.f43668c[i10];
         Objects.requireNonNull(obj);
         return obj;
     }
 
     @Override
     public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f46972c;
+        Object[] objArr2 = this.f43668c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -40,7 +40,7 @@ public final class e extends d {
 
     @Override
     public final Object[] p() {
-        return this.f46972c;
+        return this.f43668c;
     }
 
     @Override

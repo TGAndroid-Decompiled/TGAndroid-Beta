@@ -1,5 +1,5 @@
 package c5;
 public final class f {
-    public String f4375a;
-    public int f4376b;
+    public String f3874a;
+    public int f3875b;
 }

@@ -1,19 +1,19 @@
 package s4;
 public final class z0 {
-    public int f45916a;
-    public int f45917b;
-    public int f45918c;
+    public int f42860a;
+    public int f42861b;
+    public int f42862c;
     public int d;
-    public int f45919e;
-    public boolean f45920f;
-    public boolean f45921g;
+    public int e;
+    public boolean f42863f;
+    public boolean f42864g;
     public boolean h;
-    public boolean f45922i;
-    public boolean f45923j;
-    public boolean f45924k;
-    public int f45925l;
-    public long f45926m;
-    public int f45927n;
+    public boolean f42865i;
+    public boolean f42866j;
+    public boolean f42867k;
+    public int f42868l;
+    public long f42869m;
+    public int f42870n;
 
     public final void a(int i10) {
         if ((this.d & i10) != 0) {
@@ -23,13 +23,13 @@ public final class z0 {
     }
 
     public final int b() {
-        if (this.f45921g) {
-            return this.f45917b - this.f45918c;
+        if (this.f42864g) {
+            return this.f42861b - this.f42862c;
         }
-        return this.f45919e;
+        return this.e;
     }
 
     public final String toString() {
-        return "State{mTargetPosition=" + this.f45916a + ", mData=null, mItemCount=" + this.f45919e + ", mIsMeasuring=" + this.f45922i + ", mPreviousLayoutItemCount=" + this.f45917b + ", mDeletedInvisibleItemCountSincePreviousLayout=" + this.f45918c + ", mStructureChanged=" + this.f45920f + ", mInPreLayout=" + this.f45921g + ", mRunSimpleAnimations=" + this.f45923j + ", mRunPredictiveAnimations=" + this.f45924k + '}';
+        return "State{mTargetPosition=" + this.f42860a + ", mData=null, mItemCount=" + this.e + ", mIsMeasuring=" + this.f42865i + ", mPreviousLayoutItemCount=" + this.f42861b + ", mDeletedInvisibleItemCountSincePreviousLayout=" + this.f42862c + ", mStructureChanged=" + this.f42863f + ", mInPreLayout=" + this.f42864g + ", mRunSimpleAnimations=" + this.f42866j + ", mRunPredictiveAnimations=" + this.f42867k + '}';
     }
 }

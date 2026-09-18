@@ -1,52 +1,28 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class wq0 implements org.telegram.ui.Components.ml0 {
-    public final br0 f42462a;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+public final class wq0 extends g.p {
+    public final cr0 f39161c;
 
-    public wq0(br0 br0Var) {
-        this.f42462a = br0Var;
+    public wq0(cr0 cr0Var) {
+        this.f39161c = cr0Var;
     }
 
     @Override
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.d5 d5Var;
-        br0 br0Var = this.f42462a;
-        br0Var.W = z10 ? 1 : 0;
-        if (z10) {
-            d5Var = ((org.telegram.ui.ActionBar.n2) br0Var).parentLayout;
-            d5Var.getView().requestDisallowInterceptTouchEvent(true);
+    public final int i(int i10) {
+        int i11;
+        cr0 cr0Var = this.f39161c;
+        if (cr0Var.L.j(i10) != 1 && !cr0Var.Y && (cr0Var.J != null || !TextUtils.isEmpty(cr0Var.v))) {
+            int i12 = cr0Var.R;
+            int i13 = cr0Var.f32885g0;
+            if (i10 % i13 != i13 - 1) {
+                i11 = AndroidUtilities.dp(2.0f);
+            } else {
+                i11 = 0;
+            }
+            return i12 + i11;
         }
-        br0Var.K.c1(true);
-    }
-
-    @Override
-    public final boolean b(int i10) {
-        if (this.f42462a.L.j(i10) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f42462a.X && (view instanceof org.telegram.ui.Cells.s5)) {
-            org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-            s5Var.f22840w.c(s5Var);
-        }
-    }
-
-    @Override
-    public final boolean d(int i10) {
-        Object obj;
-        br0 br0Var = this.f42462a;
-        MediaController.AlbumEntry albumEntry = br0Var.J;
-        if (albumEntry != null) {
-            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
-        } else {
-            obj = ((MediaController.SearchImage) br0Var.f34891f.get(i10)).f17074id;
-        }
-        return br0Var.f34884b.containsKey(obj);
+        return cr0Var.M.J;
     }
 }

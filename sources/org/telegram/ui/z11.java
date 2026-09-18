@@ -1,31 +1,31 @@
 package org.telegram.ui;
 public final class z11 implements Runnable {
-    public final int f43266a;
-    public final d21 f43267b;
-    public final int f43268c;
+    public final int f40101a;
+    public final c21 f40102b;
+    public final int f40103c;
 
-    public z11(d21 d21Var, int i10, int i11) {
-        this.f43266a = i11;
-        this.f43267b = d21Var;
-        this.f43268c = i10;
+    public z11(c21 c21Var, int i10, int i11) {
+        this.f40101a = i11;
+        this.f40102b = c21Var;
+        this.f40103c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f43266a) {
+        switch (this.f40101a) {
             case 0:
-                d21 d21Var = this.f43267b;
-                org.telegram.ui.Components.h81 h81Var = d21Var.f35627n;
-                c21 c21Var = d21Var.f35629s;
-                int i10 = this.f43268c;
-                h81Var.d(i10, c21Var.i(i10));
+                c21 c21Var = this.f40102b;
+                org.telegram.ui.Components.i81 i81Var = c21Var.f32649n;
+                b21 b21Var = c21Var.f32651s;
+                int i10 = this.f40103c;
+                i81Var.d(i10, b21Var.i(i10));
                 return;
             default:
-                d21 d21Var2 = this.f43267b;
-                org.telegram.ui.Components.h81 h81Var2 = d21Var2.f35627n;
-                c21 c21Var2 = d21Var2.f35629s;
-                int i11 = this.f43268c;
-                h81Var2.d(i11, c21Var2.i(i11));
+                c21 c21Var2 = this.f40102b;
+                org.telegram.ui.Components.i81 i81Var2 = c21Var2.f32649n;
+                b21 b21Var2 = c21Var2.f32651s;
+                int i11 = this.f40103c;
+                i81Var2.d(i11, b21Var2.i(i11));
                 return;
         }
     }

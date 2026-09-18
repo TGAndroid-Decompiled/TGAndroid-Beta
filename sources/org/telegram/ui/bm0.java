@@ -6,61 +6,61 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class bm0 implements View.OnTouchListener {
-    public final int f34842a;
-    public final pn0 f34843b;
+    public final int f32209a;
+    public final qn0 f32210b;
 
-    public bm0(pn0 pn0Var, int i10) {
-        this.f34842a = i10;
-        this.f34843b = pn0Var;
+    public bm0(qn0 qn0Var, int i10) {
+        this.f32209a = i10;
+        this.f32210b = qn0Var;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f34842a;
-        pn0 pn0Var = this.f34843b;
+        int i10 = this.f32209a;
+        qn0 qn0Var = this.f32210b;
         switch (i10) {
             case 0:
-                if (pn0Var.getParentActivity() == null) {
+                if (qn0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    bu buVar = new bu(null, false);
-                    buVar.f34930r = new z10(23, pn0Var, view);
-                    pn0Var.presentFragment(buVar);
+                    cu cuVar = new cu(null, false);
+                    cuVar.f32922r = new f20(22, qn0Var, view);
+                    qn0Var.presentFragment(cuVar);
                 }
                 return true;
             case 1:
-                if (pn0Var.getParentActivity() == null) {
+                if (qn0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pn0Var.getParentActivity());
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qn0Var.getParentActivity());
                     String string = LocaleController.getString(R.string.PassportSelectGender);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20199a;
-                    b2Var.R = string;
-                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new vv(pn0Var, 2));
+                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18447a;
+                    c2Var.R = string;
+                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new wv(qn0Var, 2));
                     alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
-                    pn0Var.showDialog(b2Var);
+                    qn0Var.showDialog(c2Var);
                 }
                 return true;
             case 2:
-                if (pn0Var.getParentActivity() == null) {
+                if (qn0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    bu buVar2 = new bu(null, false);
-                    buVar2.f34930r = new cm0(pn0Var, 2);
-                    pn0Var.presentFragment(buVar2);
+                    cu cuVar2 = new cu(null, false);
+                    cuVar2.f32922r = new cm0(qn0Var, 2);
+                    qn0Var.presentFragment(cuVar2);
                 }
                 return true;
             default:
-                if (pn0Var.getParentActivity() == null) {
+                if (qn0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    bu buVar3 = new bu(null, false);
-                    buVar3.f34930r = new cm0(pn0Var, 3);
-                    pn0Var.presentFragment(buVar3);
+                    cu cuVar3 = new cu(null, false);
+                    cuVar3.f32922r = new cm0(qn0Var, 3);
+                    qn0Var.presentFragment(cuVar3);
                 }
                 return true;
         }

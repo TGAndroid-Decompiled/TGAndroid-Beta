@@ -71,7 +71,7 @@ public class AudioRecoder {
             for (int i11 = 0; i11 < this.audioInputs.size() && isInputAvailable(); i11++) {
                 ag.a aVar = this.audioInputs.get(i11);
                 if (aVar.c()) {
-                    s10 = (short) ((((short) (aVar.a() * aVar.f425a)) / this.audioInputs.size()) + s10);
+                    s10 = (short) ((((short) (aVar.a() * aVar.f408a)) / this.audioInputs.size()) + s10);
                     z10 = true;
                 }
             }
@@ -87,8 +87,8 @@ public class AudioRecoder {
             for (int i10 = 0; i10 < this.audioInputs.size(); i10++) {
                 this.audioInputs.get(i10).d();
             }
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 

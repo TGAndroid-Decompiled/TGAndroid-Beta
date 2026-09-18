@@ -7,11 +7,11 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import org.telegram.ui.Cells.p6;
-import v7.e5;
+import v7.f5;
 public abstract class l {
-    public static final Object f16572a = new Object();
-    public static boolean f16573b;
-    public static int f16574c;
+    public static final Object f15074a = new Object();
+    public static boolean f15075b;
+    public static int f15076c;
 
     public static void a(String str, boolean z10) {
         if (z10) {
@@ -107,15 +107,15 @@ public abstract class l {
     }
 
     public static com.google.android.gms.common.api.f m(Status status) {
-        if (status.f4948c != null) {
+        if (status.f6024c != null) {
             return new com.google.android.gms.common.api.f(status);
         }
         return new com.google.android.gms.common.api.f(status);
     }
 
-    public static Task n(e5 e5Var, k kVar) {
+    public static Task n(f5 f5Var, k kVar) {
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        e5Var.b(new t(e5Var, taskCompletionSource, kVar));
+        f5Var.b(new t(f5Var, taskCompletionSource, kVar));
         return taskCompletionSource.getTask();
     }
 }

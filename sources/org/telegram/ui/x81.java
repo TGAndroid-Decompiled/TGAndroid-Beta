@@ -1,44 +1,144 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class x81 implements View.OnClickListener {
-    public final int f42618a;
-    public final i91 f42619b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class x81 extends org.telegram.ui.ActionBar.j {
+    public final int f39442a;
+    public final Object f39443b;
 
-    public x81(i91 i91Var, int i10) {
-        this.f42618a = i10;
-        this.f42619b = i91Var;
+    public x81(Object obj, int i10) {
+        this.f39442a = i10;
+        this.f39443b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f42618a) {
+    public final void b(int i10) {
+        switch (this.f39442a) {
             case 0:
-                i91 i91Var = this.f42619b;
-                of.f.s(i91Var.getParentActivity(), i91Var.getMessagesController().premiumManageSubscriptionUrl);
-                i91Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                return;
+                g91 g91Var = (g91) this.f39443b;
+                if (i10 == -1) {
+                    g91Var.finishFragment();
+                    return;
+                } else if (i10 == 2) {
+                    g91Var.l0(new org.telegram.ui.ActionBar.o2(null));
+                    return;
+                } else {
+                    return;
+                }
             case 1:
-                i91 i91Var2 = this.f42619b;
-                i91Var2.getClass();
-                i91Var2.presentFragment(new h(3));
+                if (i10 == -1) {
+                    ((ab1) this.f39443b).finishFragment();
+                    return;
+                }
                 return;
             case 2:
-                this.f42619b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
+                StickersActivity stickersActivity = (StickersActivity) this.f39443b;
+                if (i10 == -1) {
+                    if (stickersActivity.onBackPressed(true)) {
+                        stickersActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                }
+                StickersActivity.d0(stickersActivity, i10);
                 return;
             case 3:
-                i91 i91Var3 = this.f42619b;
-                i91Var3.getClass();
-                i91Var3.presentFragment(new hh1(8, null));
-                return;
+                ce1 ce1Var = (ce1) this.f39443b;
+                if (i10 == -1) {
+                    ce1Var.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    ce1.Y(ce1Var);
+                    return;
+                } else {
+                    return;
+                }
             case 4:
-                this.f42619b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                if (i10 == -1) {
+                    ((ue1) this.f39443b).finishFragment();
+                    return;
+                }
                 return;
             case 5:
-                i91.W(this.f42619b);
+                if (i10 == -1) {
+                    ((lg1) this.f39443b).finishFragment();
+                    return;
+                }
+                return;
+            case 6:
+                if (i10 == -1) {
+                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f39443b;
+                    if (twoStepVerificationActivity.X >= 0) {
+                        twoStepVerificationActivity.x0();
+                        return;
+                    } else {
+                        twoStepVerificationActivity.finishFragment();
+                        return;
+                    }
+                }
+                return;
+            case 7:
+                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f39443b;
+                if (i10 == -1) {
+                    if (userInfoActivity.onBackPressed(true)) {
+                        userInfoActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    userInfoActivity.c0(true);
+                    return;
+                } else {
+                    return;
+                }
+            case 8:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f39443b;
+                if (i10 == -1) {
+                    usersSelectActivity.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    usersSelectActivity.X();
+                    return;
+                } else {
+                    return;
+                }
+            case 9:
+                org.telegram.ui.web.h1 h1Var = (org.telegram.ui.web.h1) this.f39443b;
+                if (i10 == -1) {
+                    if (org.telegram.ui.web.h1.Y(h1Var).s()) {
+                        org.telegram.ui.web.h1.Z(h1Var).r();
+                        h1Var.v.clear();
+                        AndroidUtilities.forEachViews((RecyclerView) h1Var.f22336a, (e2.h) new org.telegram.ui.web.m(1));
+                        return;
+                    }
+                    h1Var.finishFragment();
+                    return;
+                }
+                return;
+            case 10:
+                if (i10 == -1) {
+                    ((rg.x0) this.f39443b).dismiss();
+                    return;
+                }
+                return;
+            case 11:
+                if (i10 == -1) {
+                    ((xh.h4) this.f39443b).finishFragment();
+                    return;
+                }
+                return;
+            case 12:
+                if (i10 == -1) {
+                    ((yh.g) this.f39443b).finishFragment();
+                    return;
+                }
                 return;
             default:
-                i91.Z(this.f42619b);
+                zg.q qVar = (zg.q) this.f39443b;
+                if (i10 == -1 && !qVar.X(true)) {
+                    qVar.finishFragment();
+                    return;
+                }
                 return;
         }
     }

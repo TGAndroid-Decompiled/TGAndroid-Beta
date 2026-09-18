@@ -1,63 +1,47 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-public final class nb0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.rv0 {
-    public final int f38910a;
-    public final xb0 f38911b;
+import android.content.ComponentName;
+import android.content.Context;
+import org.telegram.messenger.R;
+public final class nb0 {
+    public static final nb0 h;
+    public static final nb0[] f36014n;
+    public final String f36015a;
+    public final int f36016b;
+    public final int f36017c;
+    public final int d;
+    public final boolean e;
+    public ComponentName f36018f;
 
-    public nb0(xb0 xb0Var, int i10) {
-        this.f38910a = i10;
-        this.f38911b = xb0Var;
+    static {
+        int i10 = R.drawable.icon_background_sa;
+        int i11 = R.mipmap.icon_foreground_sa;
+        nb0 nb0Var = new nb0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
+        h = nb0Var;
+        f36014n = new nb0[]{nb0Var, new nb0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new nb0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new nb0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new nb0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new nb0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
     }
 
-    @Override
-    public void J(int i10, int i11, boolean z10) {
-        this.f38911b.V(i10);
+    public nb0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
+        this.f36015a = str2;
+        this.f36016b = i11;
+        this.f36017c = i12;
+        this.d = i13;
+        this.e = z10;
     }
 
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        xb0 xb0Var = this.f38911b;
-        xb0Var.T.a(xb0Var.f42675e);
-        xb0Var.finishFragment();
+    public static nb0 valueOf(String str) {
+        return (nb0) Enum.valueOf(nb0.class, str);
     }
 
-    @Override
-    public void i(int i10) {
-        switch (this.f38910a) {
-            case 2:
-                xb0 xb0Var = this.f38911b;
-                ArrayList arrayList = xb0Var.P;
-                if (i10 < arrayList.size()) {
-                    xb0Var.f42680w.setText(LocaleController.formatDateAudio(xb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
-                    return;
-                }
-                xb0Var.f42680w.setText("");
-                return;
-            default:
-                xb0 xb0Var2 = this.f38911b;
-                xb0Var2.F.clearFocus();
-                xb0Var2.O = true;
-                ArrayList arrayList2 = xb0Var2.R;
-                if (i10 < arrayList2.size()) {
-                    xb0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
-                } else {
-                    xb0Var2.F.setText("");
-                }
-                xb0Var2.O = false;
-                return;
+    public static nb0[] values() {
+        return (nb0[]) f36014n.clone();
+    }
+
+    public final ComponentName a(Context context) {
+        if (this.f36018f == null) {
+            String packageName = context.getPackageName();
+            this.f36018f = new ComponentName(packageName, "org.telegram.messenger." + this.f36015a);
         }
-    }
-
-    @Override
-    public void l() {
-        int i10 = this.f38910a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
+        return this.f36018f;
     }
 }

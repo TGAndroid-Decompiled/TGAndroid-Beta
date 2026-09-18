@@ -1,19 +1,136 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
 import android.content.Context;
-public final class eu extends Dialog {
-    public final bi.l3 f25786a;
+import android.graphics.drawable.Drawable;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.XiaomiUtilities;
+public final class eu extends bu {
+    public Drawable f23673c;
+    public final int d;
+    public final ju e;
 
-    public eu(bi.l3 l3Var, Context context) {
-        super(context);
-        this.f25786a = l3Var;
+    public eu(ju juVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.e = juVar;
+        this.d = i10;
+        this.f23673c = null;
     }
 
     @Override
-    public final void dismiss() {
-        fu fuVar = (fu) this.f25786a.f3240b;
-        fuVar.f26184a.k(false);
-        fuVar.f26184a.e();
+    public final int emojiCacheType() {
+        return this.e.h();
+    }
+
+    @Override
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
+        boolean z10;
+        ju juVar = this.e;
+        if (juVar.a()) {
+            if (juVar.L == 3) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            org.telegram.ui.bo.k8(menu, null, z10, true, true, true);
+            return;
+        }
+        juVar.i(menu);
+    }
+
+    @Override
+    public final int getActionModeStyle() {
+        int i10 = this.d;
+        if (i10 == 2 || i10 == 3) {
+            return 2;
+        }
+        return super.getActionModeStyle();
+    }
+
+    @Override
+    public final void onLineCountChanged(int i10, int i11) {
+        this.e.q(i10, i11);
+    }
+
+    @Override
+    public final void onSelectionChanged(int i10, int i11) {
+        boolean z10;
+        super.onSelectionChanged(i10, i11);
+        ju juVar = this.e;
+        rl0 rl0Var = juVar.f25435c;
+        if (rl0Var != null) {
+            boolean z11 = false;
+            if (i11 != i10) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (juVar.a() && z10) {
+                XiaomiUtilities.isMIUI();
+                z11 = true;
+            }
+            if (juVar.f25437n != z11) {
+                juVar.f25437n = z11;
+                if (z11) {
+                    this.f23673c = rl0Var.d;
+                    rl0Var.a(R.drawable.msg_edit, true);
+                    return;
+                }
+                rl0Var.b(this.f23673c, true);
+                this.f23673c = null;
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i10;
+        fu fuVar;
+        ju juVar = this.e;
+        if (juVar.e && motionEvent.getAction() == 0) {
+            juVar.u();
+            if (juVar.f25441x && (fuVar = juVar.d) != null) {
+                fuVar.t(false);
+                juVar.f25441x = false;
+                juVar.k(true);
+                AndroidUtilities.showKeyboard(this);
+            } else {
+                if (AndroidUtilities.usingHardwareInput) {
+                    i10 = 0;
+                } else {
+                    i10 = 2;
+                }
+                juVar.x(i10);
+            }
+            juVar.v();
+        }
+        if (motionEvent.getAction() == 0) {
+            boolean isFocused = isFocused();
+            requestFocus();
+            if (!AndroidUtilities.showKeyboard(this)) {
+                clearFocus();
+                requestFocus();
+            }
+            if (!isFocused) {
+                setSelection(getText().length());
+            }
+        }
+        try {
+            return super.onTouchEvent(motionEvent);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    @Override
+    public final void scrollTo(int i10, int i11) {
+        if (this.e.t(i11)) {
+            super.scrollTo(i10, i11);
+        }
     }
 }

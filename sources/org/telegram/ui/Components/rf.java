@@ -1,15 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class rf implements View.OnKeyListener {
-    public final ChatActivityEnterView f30022a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class rf extends AnimatorListenerAdapter {
+    public final ChatActivityEnterView f27604a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f30022a = chatActivityEnterView;
+        this.f27604a = chatActivityEnterView;
     }
 
     @Override
-    public final boolean onKey(android.view.View r6, int r7, android.view.KeyEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rf.onKey(android.view.View, int, android.view.KeyEvent):boolean");
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.f27604a;
+        w71 w71Var = chatActivityEnterView.f21778f1;
+        if (w71Var != null) {
+            w71Var.setVisibility(8);
+        }
+        hk0 hk0Var = chatActivityEnterView.f21790h1;
+        if (hk0Var != null) {
+            hk0Var.setVisibility(8);
+        }
+        chatActivityEnterView.f21831o4 = 0.0f;
+        chatActivityEnterView.y0();
+        chatActivityEnterView.q0();
+        ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.M1;
+        if (recordCircle != null) {
+            recordCircle.d();
+        }
     }
 }

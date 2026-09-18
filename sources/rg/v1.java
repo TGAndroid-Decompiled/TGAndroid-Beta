@@ -2,71 +2,149 @@ package rg;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.vl;
-import org.telegram.ui.Components.ll0;
-public final class v1 extends ll0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Path X2;
-    public q0.a Y2;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SharedConfig;
+public class v1 extends View {
+    public u1 f42549a;
+    public int f42550b;
+    public org.telegram.ui.web.b1 f42551c;
+    public boolean d;
+    public Paint e;
+    public LinearGradient f42552f;
+    public Matrix h;
 
     public v1(Context context) {
-        super(context, null);
-        this.X2 = new Path();
-        setWillNotDraw(false);
-        setLayoutManager(new s4.c0());
-        setAdapter(new s4.h0());
-        setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        setClipToPadding(false);
-    }
-
-    @Override
-    public final Integer V0(int i10) {
-        return 285212671;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.customTypefacesLoaded) {
-            getAdapter().l();
+        super(context);
+        int i10;
+        if (SharedConfig.getDevicePerformanceClass() == 2) {
+            i10 = 200;
+        } else if (SharedConfig.getDevicePerformanceClass() == 1) {
+            i10 = 100;
+        } else {
+            i10 = 50;
         }
+        this.d = true;
+        this.f42549a = new u1(i10);
+        a();
+    }
+
+    public void a() {
+        u1 u1Var = this.f42549a;
+        u1Var.N = 100;
+        u1Var.M = true;
+        u1Var.G = true;
+        u1Var.K = true;
+        u1Var.H = true;
+        u1Var.f42537r = 4;
+        u1Var.f42541w = 0.98f;
+        u1Var.v = 0.98f;
+        u1Var.f42540u = 0.98f;
+        u1Var.c();
+    }
+
+    public final void b() {
+        Paint paint = new Paint(1);
+        this.e = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f42552f = linearGradient;
+        this.e.setShader(linearGradient);
+        this.h = new Matrix();
+    }
+
+    public int getStarsRectWidth() {
+        return AndroidUtilities.dp(140.0f);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        q0.a aVar = this.Y2;
-        if (aVar != null) {
-            Path path = this.X2;
-            aVar.accept(path);
-            canvas.save();
-            canvas.clipPath(path);
-        }
-        super.draw(canvas);
-        if (this.Y2 != null) {
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
+        org.telegram.ui.web.b1 b1Var = new org.telegram.ui.web.b1(this, 9);
+        this.f42551c = b1Var;
+        LiteMode.addOnPowerSaverAppliedListener(b1Var);
+        boolean isEnabled = LiteMode.isEnabled(131072);
+        if (this.d != isEnabled) {
+            this.d = isEnabled;
+            invalidate();
+        }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
+        org.telegram.ui.web.b1 b1Var = this.f42551c;
+        if (b1Var != null) {
+            LiteMode.removeOnPowerSaverAppliedListener(b1Var);
+        }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, vl.C(16.0f, AndroidUtilities.dp(48.0f) * Math.min(qg.j0.c().size(), 6), 1073741824));
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        super.onDraw(canvas);
+        if (this.d) {
+            if (this.e != null) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas2 = canvas;
+            } else {
+                canvas2 = canvas;
+            }
+            this.f42549a.d(canvas2);
+            if (this.e != null) {
+                canvas2.save();
+                this.h.reset();
+                this.h.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
+                this.f42552f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.e);
+                this.h.reset();
+                this.h.postRotate(180.0f);
+                this.h.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
+                this.f42552f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.e);
+                canvas2.restore();
+                canvas2.restore();
+            }
+            if (!this.f42549a.f42527g) {
+                invalidate();
+            }
+        }
     }
 
-    public void setMaskProvider(q0.a aVar) {
-        this.Y2 = aVar;
+    @Override
+    public void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
+        this.f42549a.f42523a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
+        this.f42549a.f42523a.offset((getMeasuredWidth() - this.f42549a.f42523a.width()) / 2.0f, (getMeasuredHeight() - this.f42549a.f42523a.height()) / 2.0f);
+        this.f42549a.f42524b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
+        if (this.f42550b != measuredHeight) {
+            this.f42550b = measuredHeight;
+            this.f42549a.f();
+        }
+    }
+
+    public void setPaused(boolean z10) {
+        u1 u1Var = this.f42549a;
+        if (z10 == u1Var.f42527g) {
+            return;
+        }
+        u1Var.f42527g = z10;
+        if (z10) {
+            u1Var.Q = System.currentTimeMillis();
+            return;
+        }
+        for (int i10 = 0; i10 < this.f42549a.f42533n.size(); i10++) {
+            t1 t1Var = (t1) this.f42549a.f42533n.get(i10);
+            t1Var.f42502a = (System.currentTimeMillis() - this.f42549a.Q) + t1Var.f42502a;
+        }
         invalidate();
     }
 }

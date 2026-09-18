@@ -1,17 +1,39 @@
 package org.telegram.ui.Components;
-public abstract class up extends z4.a {
-    public abstract int j();
+public final class up implements z4.e {
+    public int f28462a;
+    public final ph0 f28463b;
 
-    public final int k(int i10) {
-        int size = ((nh0) this).f28749c.size();
-        int j3 = j();
-        if (i10 < j3) {
-            return ((size - (j3 * 2)) - ((j3 - i10) - 1)) - 1;
+    public up(ph0 ph0Var) {
+        this.f28463b = ph0Var;
+    }
+
+    @Override
+    public final void b(float f7, int i10, int i11) {
+        if (i10 == this.f28463b.getCurrentItem() && f7 == 0.0f && this.f28462a == 1) {
+            d();
         }
-        int i11 = size - j3;
-        if (i10 >= i11) {
-            return i10 - i11;
+    }
+
+    @Override
+    public final void c(int i10) {
+        if (i10 == 0) {
+            d();
         }
-        return i10 - j3;
+        this.f28462a = i10;
+    }
+
+    public final void d() {
+        ph0 ph0Var = this.f28463b;
+        if (ph0Var.f29724w0 != null) {
+            int currentItem = ph0Var.getCurrentItem();
+            int k10 = ph0Var.f29724w0.k(currentItem) + ph0Var.f29724w0.j();
+            if (currentItem != k10) {
+                ph0Var.x(k10, false);
+            }
+        }
+    }
+
+    @Override
+    public final void a(int i10) {
     }
 }

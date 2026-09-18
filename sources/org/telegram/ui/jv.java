@@ -1,58 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import android.graphics.drawable.ColorDrawable;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class jv extends org.telegram.ui.Components.cy0 {
-    public final o0.a I;
+public final class jv extends org.telegram.ui.Components.ll0 {
+    public final lv f34946c;
 
-    public jv(Context context, long j3, o0.a aVar) {
-        super(context);
-        this.I = aVar;
-        this.f25129a = new RectF();
-        this.f25133f = 0.0f;
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true, false);
-        this.f25135r = p6Var;
-        org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(false, true, false, false);
-        this.f25136s = p6Var2;
-        p6Var.setCallback(this);
-        p6Var2.setCallback(this);
-        this.f25134n = Long.valueOf(j3);
-        org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9((org.telegram.ui.ActionBar.f6) null);
-        i9Var.f27039p = 1.5f;
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.h = imageReceiver;
-        imageReceiver.setParentView(this);
-        if (j3 == Long.MAX_VALUE) {
-            this.v = LocaleController.getString(R.string.CacheOtherChats);
-            i9Var.g(14);
-            imageReceiver.setForUserOrChat(null, i9Var);
-            return;
-        }
-        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, i9Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j3));
-        this.v = dialogPhotoTitle;
-        this.v = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
+    public jv(lv lvVar) {
+        this.f34946c = lvVar;
     }
 
     @Override
-    public final void b() {
-        o0.a aVar = this.I;
-        z6 z6Var = (z6) aVar.f16770c;
-        z6Var.T.dismiss();
-        Bundle bundle = new Bundle();
-        long j3 = ((s6) aVar.f16769b).f40313a;
-        if (j3 > 0) {
-            bundle.putLong("user_id", j3);
-        } else {
-            bundle.putLong("chat_id", -j3);
+    public final boolean D(s4.c1 c1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        if (this.f34946c.f35639g0.h()) {
+            return 1;
         }
-        z6Var.presentFragment(new ProfileActivity(bundle, null));
+        return 3;
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        int i11;
+        int i12;
+        lv lvVar = this.f34946c;
+        if (i10 == 0) {
+            view = lvVar.f35636d0;
+        } else if (i10 == 2) {
+            view = lvVar.f35637e0;
+            s4.p0 p0Var = new s4.p0(-1, -2);
+            i11 = ((org.telegram.ui.ActionBar.g3) lvVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) p0Var).leftMargin = i11;
+            i12 = ((org.telegram.ui.ActionBar.g3) lvVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) p0Var).rightMargin = i12;
+            view.setLayoutParams(p0Var);
+        } else {
+            org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(viewGroup.getContext());
+            e9Var.setFixedSize(12);
+            org.telegram.ui.Components.pq pqVar = new org.telegram.ui.Components.pq(new ColorDrawable(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18807a7, false)), org.telegram.ui.ActionBar.j6.V0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f18827b7));
+            pqVar.f27116w = true;
+            e9Var.setBackgroundDrawable(pqVar);
+            view = e9Var;
+        }
+        return new s4.c1(view);
+    }
+
+    @Override
+    public final int j(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
     }
 }

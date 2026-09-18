@@ -7,10 +7,10 @@ public class r0 extends db.u {
         String v = aVar.v();
         try {
             return Currency.getInstance(v);
-        } catch (IllegalArgumentException e7) {
+        } catch (IllegalArgumentException e) {
             StringBuilder v9 = a4.a.v("Failed parsing '", v, "' as Currency; at path ");
             v9.append(aVar.j());
-            throw new RuntimeException(v9.toString(), e7);
+            throw new RuntimeException(v9.toString(), e);
         }
     }
 

@@ -1,84 +1,77 @@
 package org.telegram.messenger;
-public final class oa implements Runnable {
-    public final int f18589a;
-    public final MessagesController f18590b;
-    public final long f18591c;
 
-    public oa(MessagesController messagesController, long j3, int i10) {
-        this.f18589a = i10;
-        this.f18590b = messagesController;
-        this.f18591c = j3;
+import java.util.HashSet;
+import java.util.Set;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class oa implements RequestDelegate {
+    public final int f16935a;
+    public final boolean f16936b;
+    public final long f16937c;
+    public final BaseController d;
+    public final Object e;
+    public final Object f16938f;
+
+    public oa(BaseController baseController, Object obj, boolean z10, long j3, Object obj2, int i10) {
+        this.f16935a = i10;
+        this.d = baseController;
+        this.e = obj;
+        this.f16936b = z10;
+        this.f16937c = j3;
+        this.f16938f = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18589a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f16935a) {
             case 0:
-                this.f18590b.lambda$setChannelSlowMode$93(this.f18591c);
+                boolean z10 = this.f16936b;
+                ((MessagesController) this.d).lambda$getSendAsPeers$443((a0.i) this.e, this.f16937c, (MessagesController.SendAsPeersInfo) this.f16938f, z10, tLObject, tL_error);
                 return;
             case 1:
-                this.f18590b.lambda$setChatReactions$470(this.f18591c);
+                long j3 = this.f16937c;
+                ((TranslateController) this.d).lambda$pushToTranslate$23((TranslateController.PendingTranslation) this.e, this.f16936b, j3, (Set) this.f16938f, tLObject, tL_error);
                 return;
             case 2:
-                this.f18590b.lambda$getChannelDifference$343(this.f18591c);
+                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$17(this.f16937c, this.f16936b, (String) this.e, (Runnable) this.f16938f, tLObject, tL_error);
                 return;
             case 3:
-                this.f18590b.lambda$deleteDialog$140(this.f18591c);
-                return;
-            case 4:
-                this.f18590b.lambda$setDefaultBannedRole$97(this.f18591c);
-                return;
-            case 5:
-                this.f18590b.lambda$processUpdateArray$383(this.f18591c);
-                return;
-            case 6:
-                this.f18590b.lambda$getSavedReactionTags$488(this.f18591c);
-                return;
-            case 7:
-                this.f18590b.lambda$getChannelDifference$334(this.f18591c);
-                return;
-            case 8:
-                this.f18590b.lambda$getChannelDifference$335(this.f18591c);
-                return;
-            case 9:
-                this.f18590b.lambda$getChannelDifference$336(this.f18591c);
-                return;
-            case 10:
-                this.f18590b.lambda$getChannelDifference$337(this.f18591c);
-                return;
-            case 11:
-                this.f18590b.lambda$removeDialog$134(this.f18591c);
-                return;
-            case 12:
-                this.f18590b.lambda$deleteParticipantFromChat$312(this.f18591c);
-                return;
-            case 13:
-                this.f18590b.lambda$setParticipantBannedRole$90(this.f18591c);
-                return;
-            case 14:
-                this.f18590b.lambda$deleteDialog$139(this.f18591c);
-                return;
-            case 15:
-                this.f18590b.lambda$setBoostsToUnblockRestrictions$95(this.f18591c);
-                return;
-            case 16:
-                this.f18590b.lambda$deleteParticipantFromChat$315(this.f18591c);
-                return;
-            case 17:
-                this.f18590b.lambda$addUserToChat$298(this.f18591c);
-                return;
-            case 18:
-                this.f18590b.lambda$addUserToChat$309(this.f18591c);
-                return;
-            case 19:
-                this.f18590b.lambda$addUserToChat$307(this.f18591c);
-                return;
-            case 20:
-                this.f18590b.lambda$getChannelDifference$344(this.f18591c);
+                long j10 = this.f16937c;
+                ((MemberRequestsController) this.d).lambda$getImporters$1((TLRPC.TL_chatInviteImporter) this.e, this.f16936b, j10, (RequestDelegate) this.f16938f, tLObject, tL_error);
                 return;
             default:
-                this.f18590b.lambda$getChannelDifference$345(this.f18591c);
+                ((TopicsController) this.d).lambda$reloadTopics$16(this.f16936b, this.f16937c, (HashSet) this.e, (Runnable) this.f16938f, tLObject, tL_error);
                 return;
         }
+    }
+
+    public oa(ChatThemeController chatThemeController, long j3, boolean z10, String str, Runnable runnable) {
+        this.f16935a = 2;
+        this.d = chatThemeController;
+        this.f16937c = j3;
+        this.f16936b = z10;
+        this.e = str;
+        this.f16938f = runnable;
+    }
+
+    public oa(MessagesController messagesController, a0.i iVar, long j3, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
+        this.f16935a = 0;
+        this.d = messagesController;
+        this.e = iVar;
+        this.f16937c = j3;
+        this.f16938f = sendAsPeersInfo;
+        this.f16936b = z10;
+    }
+
+    public oa(TopicsController topicsController, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
+        this.f16935a = 4;
+        this.d = topicsController;
+        this.f16936b = z10;
+        this.f16937c = j3;
+        this.e = hashSet;
+        this.f16938f = runnable;
     }
 }

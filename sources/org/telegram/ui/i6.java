@@ -1,13 +1,23 @@
 package org.telegram.ui;
-public final class i6 extends s4.j {
-    public final z6 F;
 
-    public i6(z6 z6Var) {
-        this.F = z6Var;
+import android.content.Context;
+public final class i6 extends org.telegram.ui.Components.wf0 {
+    public final a7 F0;
+
+    public i6(a7 a7Var, Context context) {
+        super(context);
+        this.F0 = a7Var;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        this.F.f43306b.invalidate();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.F0.f31750k0);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        getViewTreeObserver().removeOnPreDrawListener(this.F0.f31750k0);
+        super.onDetachedFromWindow();
     }
 }

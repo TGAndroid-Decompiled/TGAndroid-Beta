@@ -1,63 +1,66 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class wn0 implements Runnable {
-    public final int f42442a;
-    public final xo0 f42443b;
-    public final TLRPC.TL_error f42444c;
-    public final TLObject d;
+import android.widget.FrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.messenger.FileLog;
+public final class wn0 implements OnCompleteListener, org.telegram.ui.ActionBar.b2, bu {
+    public final int f39085a;
+    public final yo0 f39086b;
 
-    public wn0(xo0 xo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f42442a = i10;
-        this.f42443b = xo0Var;
-        this.f42444c = tL_error;
-        this.d = tLObject;
+    public wn0(yo0 yo0Var, int i10) {
+        this.f39085a = i10;
+        this.f39086b = yo0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42442a) {
-            case 0:
-                xo0 xo0Var = this.f42443b;
-                xo0Var.f42818e0 = false;
-                if (this.f42444c == null) {
-                    TL_account.Password password = (TL_account.Password) this.d;
-                    xo0Var.f42807a0 = password;
-                    if (!TwoStepVerificationActivity.i0(password, false)) {
-                        org.telegram.ui.Components.e5.x0(xo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                        return;
-                    }
-                    TLRPC.PaymentForm paymentForm = xo0Var.C0;
-                    if (paymentForm != null && xo0Var.f42807a0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        xo0Var.K0();
-                    }
-                    TwoStepVerificationActivity.m0(xo0Var.f42807a0);
-                    xo0 xo0Var2 = xo0Var.f42821f0;
-                    if (xo0Var2 != null) {
-                        xo0Var2.C0(xo0Var.f42807a0);
-                    }
-                    if (!xo0Var.f42807a0.has_password && xo0Var.f42815d0 == null) {
-                        un0 un0Var = new un0(xo0Var, 3);
-                        xo0Var.f42815d0 = un0Var;
-                        AndroidUtilities.runOnUIThread(un0Var, 5000L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                xo0.V(this.f42443b, this.f42444c, this.d);
+    public void a1(xt xtVar) {
+        switch (this.f39085a) {
+            case 2:
+                yo0 yo0Var = this.f39086b;
+                yo0Var.A0 = xtVar;
+                yo0Var.f39962f[4].setText(xtVar.f39700a);
                 return;
             default:
-                xo0.X(this.f42443b, this.f42444c, this.d);
+                yo0 yo0Var2 = this.f39086b;
+                yo0Var2.A0 = xtVar;
+                yo0Var2.f39962f[4].setText(xtVar.f39700a);
+                yo0Var2.B0 = xtVar.d;
                 return;
         }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f39085a) {
+            case 1:
+                yo0 yo0Var = this.f39086b;
+                yo0Var.I0(yo0Var.R0[0]);
+                return;
+            case 2:
+            default:
+                yo0 yo0Var2 = this.f39086b;
+                yo0Var2.D0(true);
+                yo0Var2.z0();
+                return;
+            case 3:
+                this.f39086b.A0(true);
+                return;
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        yo0 yo0Var = this.f39086b;
+        yo0Var.getClass();
+        if (task.isSuccessful()) {
+            FrameLayout frameLayout = yo0Var.O;
+            if (frameLayout != null) {
+                frameLayout.setVisibility(0);
+                return;
+            }
+            return;
+        }
+        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

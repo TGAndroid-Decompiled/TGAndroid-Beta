@@ -1,37 +1,30 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.SharedConfig;
-public final class kz0 implements DialogInterface.OnClickListener {
-    public final int f38155a;
-    public final int f38156b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class kz0 implements RequestDelegate {
+    public final int f35386a;
+    public final nz0 f35387b;
 
-    public kz0(int i10, int i11) {
-        this.f38155a = i11;
-        this.f38156b = i10;
+    public kz0(nz0 nz0Var, int i10) {
+        this.f35386a = i10;
+        this.f35387b = nz0Var;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f38155a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35386a) {
             case 0:
-                int i11 = 2 - i10;
-                if (i11 == this.f38156b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i11);
-                    return;
-                }
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                nz0 nz0Var = this.f35387b;
+                nz0Var.f36191c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new kz0(nz0Var, 1));
+                return;
             default:
-                int i12 = 2 - i10;
-                if (i12 == this.f38156b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i12);
-                    return;
-                }
+                this.f35387b.f36191c.getMessagesController().loadAppConfig();
+                return;
         }
     }
 }

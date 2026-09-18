@@ -1,61 +1,53 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class jc0 extends org.telegram.ui.Components.x50 {
-    public final lc0 d;
+import android.text.TextUtils;
+public final class jc0 extends og.a {
+    public final CharSequence f34845c;
+    public final int d;
+    public final int e;
+    public final int f34846f;
 
-    public jc0(lc0 lc0Var) {
-        this.d = lc0Var;
+    public jc0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
+        super(i10, false);
+        this.f34845c = charSequence;
+        this.d = i11;
+        this.e = i12;
+        this.f34846f = i13;
     }
 
-    @Override
-    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.e(view, accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
+    public static jc0 b(int i10, String str) {
+        return new jc0(4, 0, str, i10, 0);
     }
 
-    @Override
-    public final int h() {
-        return 5;
+    public static jc0 c(int i10, int i11, String str) {
+        return new jc0(3, i10, str, i11, 0);
     }
 
-    @Override
-    public final int i() {
-        return 100;
-    }
-
-    @Override
-    public final int j() {
-        return LiteMode.getPowerSaverLevel();
-    }
-
-    @Override
-    public final void k(int i10) {
-        lc0 lc0Var = this.d;
-        float f7 = i10 / 100.0f;
-        lc0Var.h.f26159w.X(f7, true);
-        lc0Var.h.setProgress(f7);
-    }
-
-    @Override
-    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-        super.onPopulateAccessibilityEvent(view, accessibilityEvent);
-        StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
-        sb2.append(", ");
-        int powerSaverLevel = LiteMode.getPowerSaverLevel();
-        if (powerSaverLevel <= 0) {
-            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
-        } else if (powerSaverLevel >= 100) {
-            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
-        } else {
-            sb2.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof jc0) {
+                jc0 jc0Var = (jc0) obj;
+                int i10 = jc0Var.f15543a;
+                int i11 = this.f15543a;
+                if (i10 == i11) {
+                    if (i11 != 3 || jc0Var.d == this.d) {
+                        if (i11 != 5 || jc0Var.f34846f == this.f34846f) {
+                            if ((i11 != 3 && i11 != 4) || jc0Var.e == this.e) {
+                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(jc0Var.f34845c, this.f34845c)) {
+                                    return false;
+                                }
+                                return true;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
-        accessibilityEvent.setContentDescription(sb2);
-        this.d.setContentDescription(sb2);
+        return true;
     }
 }

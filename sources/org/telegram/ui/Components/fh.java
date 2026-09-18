@@ -1,34 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class fh implements ValueAnimator.AnimatorUpdateListener {
-    public final int f26044a;
-    public final vi f26045b;
+import android.text.TextUtils;
+public final class fh implements Runnable {
+    public final int f23937a;
+    public final vi f23938b;
 
     public fh(vi viVar, int i10) {
-        this.f26044a = i10;
-        this.f26045b = viVar;
+        this.f23937a = i10;
+        this.f23938b = viVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f26044a) {
+    public final void run() {
+        ju juVar;
+        boolean z10;
+        long j3;
+        boolean G1;
+        switch (this.f23937a) {
             case 0:
-                this.f26045b.b2();
+                vi viVar = this.f23938b;
+                if (viVar.f28735c0) {
+                    juVar = viVar.P0;
+                } else {
+                    juVar = viVar.E0;
+                }
+                if (juVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(juVar.getText().toString().trim())) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                viVar.M1(z10);
                 return;
             case 1:
-                this.f26045b.D0.invalidate();
+                vi viVar2 = this.f23938b;
+                kf kfVar = viVar2.f28751h0;
+                if (kfVar != null) {
+                    j3 = kfVar.k();
+                } else {
+                    j3 = 0;
+                }
+                long j10 = j3;
+                fi fiVar = viVar2.I0;
+                viVar2.N0 = j10;
+                fiVar.setEffect(j10);
+                ni niVar = viVar2.f28806y0;
+                if (niVar != viVar2.f28757j0 && niVar != viVar2.f28777q0) {
+                    if (!niVar.I(0, false, 0, viVar2.s1(), j10)) {
+                        viVar2.dismiss();
+                    }
+                    G1 = false;
+                } else {
+                    G1 = viVar2.G1(0, false, 0, viVar2.s1(), j10);
+                }
+                kf kfVar2 = viVar2.f28751h0;
+                if (kfVar2 != null) {
+                    kfVar2.h(!G1);
+                    viVar2.f28751h0 = null;
+                    return;
+                }
                 return;
             case 2:
-                vi.m(this.f26045b, valueAnimator);
-                return;
-            case 3:
-                vi viVar = this.f26045b;
-                viVar.getClass();
-                viVar.K1(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f23938b.F1();
                 return;
             default:
-                this.f26045b.b2();
+                vi.w(this.f23938b);
                 return;
         }
     }

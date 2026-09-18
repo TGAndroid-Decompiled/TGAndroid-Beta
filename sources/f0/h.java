@@ -4,17 +4,17 @@ import android.content.LocusId;
 import android.os.Build;
 import android.text.TextUtils;
 public final class h {
-    public final String f9164a;
-    public final LocusId f9165b;
+    public final String f8792a;
+    public final LocusId f8793b;
 
     public h(String str) {
         if (!TextUtils.isEmpty(str)) {
-            this.f9164a = str;
+            this.f8792a = str;
             if (Build.VERSION.SDK_INT >= 29) {
-                this.f9165b = g.a(str);
+                this.f8793b = g.a(str);
                 return;
             } else {
-                this.f9165b = null;
+                this.f8793b = null;
                 return;
             }
         }
@@ -28,8 +28,8 @@ public final class h {
         if (obj == null || h.class != obj.getClass()) {
             return false;
         }
-        String str = ((h) obj).f9164a;
-        String str2 = this.f9164a;
+        String str = ((h) obj).f8792a;
+        String str2 = this.f8792a;
         if (str2 == null) {
             if (str == null) {
                 return true;
@@ -41,7 +41,7 @@ public final class h {
 
     public final int hashCode() {
         int hashCode;
-        String str = this.f9164a;
+        String str = this.f8792a;
         if (str == null) {
             hashCode = 0;
         } else {
@@ -52,7 +52,7 @@ public final class h {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("LocusIdCompat[");
-        int length = this.f9164a.length();
+        int length = this.f8792a.length();
         sb2.append(length + "_chars");
         sb2.append("]");
         return sb2.toString();

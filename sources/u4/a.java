@@ -2,16 +2,16 @@ package u4;
 
 import android.content.ComponentName;
 public final class a implements Comparable {
-    public final g0.c f46932a;
-    public final ComponentName f46933b;
+    public final g0.c f43632a;
+    public final ComponentName f43633b;
 
     public a(g0.c cVar, ComponentName componentName) {
-        this.f46932a = cVar;
-        this.f46933b = componentName;
+        this.f43632a = cVar;
+        this.f43633b = componentName;
     }
 
     @Override
     public final int compareTo(Object obj) {
-        return this.f46932a.f10283m - ((a) obj).f46932a.f10283m;
+        return this.f43632a.f9339m - ((a) obj).f43632a.f9339m;
     }
 }

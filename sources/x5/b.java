@@ -8,15 +8,15 @@ import v8.r;
 import w7.e0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new r(28);
-    public final boolean f48894a;
-    public final String f48895b;
+    public final boolean f45358a;
+    public final String f45359b;
 
     public b(String str, boolean z10) {
         if (z10) {
             l.h(str);
         }
-        this.f48894a = z10;
-        this.f48895b = str;
+        this.f45358a = z10;
+        this.f45359b = str;
     }
 
     public final boolean equals(Object obj) {
@@ -27,22 +27,22 @@ public final class b extends o6.a {
             return false;
         }
         b bVar = (b) obj;
-        if (this.f48894a == bVar.f48894a && l.l(this.f48895b, bVar.f48895b)) {
+        if (this.f45358a == bVar.f45358a && l.l(this.f45359b, bVar.f45359b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f48894a), this.f48895b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f45358a), this.f45359b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
         e0.s(parcel, 1, 4);
-        parcel.writeInt(this.f48894a ? 1 : 0);
-        e0.l(parcel, 2, this.f48895b);
+        parcel.writeInt(this.f45358a ? 1 : 0);
+        e0.l(parcel, 2, this.f45359b);
         e0.r(parcel, q6);
     }
 }

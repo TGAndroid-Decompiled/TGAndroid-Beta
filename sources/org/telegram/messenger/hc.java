@@ -1,26 +1,46 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_update;
+import java.util.ArrayList;
 public final class hc implements Runnable {
-    public final int f17885a;
-    public final MessagesController f17886b;
-    public final TL_update.TL_updatePeerBlocked f17887c;
+    public final int f16333a = 1;
+    public final MessagesController f16334b;
+    public final long f16335c;
+    public final long d;
+    public final ArrayList e;
 
-    public hc(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
-        this.f17885a = i10;
-        this.f17886b = messagesController;
-        this.f17887c = tL_updatePeerBlocked;
+    public hc(MessagesController messagesController, long j3, long j10, ArrayList arrayList) {
+        this.f16334b = messagesController;
+        this.f16335c = j3;
+        this.d = j10;
+        this.e = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f17885a) {
+        switch (this.f16333a) {
             case 0:
-                this.f17886b.lambda$processUpdateArray$391(this.f17887c);
+                this.f16334b.lambda$processUpdateArray$419(this.f16335c, this.e, this.d);
+                return;
+            case 1:
+                this.f16334b.lambda$checkUnreadPollVotesInternal2$431(this.f16335c, this.d, 0, this.e);
                 return;
             default:
-                this.f17886b.lambda$processUpdateArray$390(this.f17887c);
+                this.f16334b.lambda$deleteMessagesByPush$370(this.e, this.f16335c, this.d);
                 return;
         }
+    }
+
+    public hc(MessagesController messagesController, long j3, ArrayList arrayList, long j10) {
+        this.f16334b = messagesController;
+        this.f16335c = j3;
+        this.e = arrayList;
+        this.d = j10;
+    }
+
+    public hc(MessagesController messagesController, ArrayList arrayList, long j3, long j10) {
+        this.f16334b = messagesController;
+        this.e = arrayList;
+        this.f16335c = j3;
+        this.d = j10;
     }
 }

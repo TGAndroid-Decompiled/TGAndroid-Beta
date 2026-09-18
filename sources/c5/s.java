@@ -2,11 +2,11 @@ package c5;
 
 import java.util.List;
 public final class s {
-    public final List f4429a;
-    public final List f4430b;
+    public final List f3923a;
+    public final List f3924b;
 
     public s(List list, List list2) {
-        this.f4429a = list;
-        this.f4430b = list2;
+        this.f3923a = list;
+        this.f3924b = list2;
     }
 }

@@ -1,73 +1,73 @@
 package u2;
 public final class i1 implements b1 {
-    public int f46705a;
-    public boolean f46706b;
-    public final k1 f46707c;
+    public int f43419a;
+    public boolean f43420b;
+    public final k1 f43421c;
 
     public i1(k1 k1Var) {
-        this.f46707c = k1Var;
-    }
-
-    public final void a() {
-        if (!this.f46706b) {
-            k1 k1Var = this.f46707c;
-            k1Var.f46722e.j(b2.r0.h(k1Var.f46726s.f2370r), k1Var.f46726s, 0, null, 0L);
-            this.f46706b = true;
-        }
+        this.f43421c = k1Var;
     }
 
     @Override
-    public final void b() {
-        k1 k1Var = this.f46707c;
+    public final void a() {
+        k1 k1Var = this.f43421c;
         if (!k1Var.v) {
-            k1Var.f46725r.b();
+            k1Var.f43438r.a();
+        }
+    }
+
+    public final void b() {
+        if (!this.f43420b) {
+            k1 k1Var = this.f43421c;
+            k1Var.e.k(b2.r0.h(k1Var.f43439s.f3309r), k1Var.f43439s, 0, null, 0L);
+            this.f43420b = true;
         }
     }
 
     @Override
     public final boolean e() {
-        return this.f46707c.f46727w;
+        return this.f43421c.f43440w;
     }
 
     @Override
-    public final int f(n4.y yVar, h2.g gVar, int i10) {
-        a();
-        k1 k1Var = this.f46707c;
-        boolean z10 = k1Var.f46727w;
-        if (z10 && k1Var.f46728x == null) {
-            this.f46705a = 2;
+    public final int f(n4.y yVar, h2.h hVar, int i10) {
+        b();
+        k1 k1Var = this.f43421c;
+        boolean z10 = k1Var.f43440w;
+        if (z10 && k1Var.f43441x == null) {
+            this.f43419a = 2;
         }
-        int i11 = this.f46705a;
+        int i11 = this.f43419a;
         if (i11 == 2) {
-            gVar.a(4);
+            hVar.addFlag(4);
             return -4;
         } else if ((i10 & 2) == 0 && i11 != 0) {
             if (!z10) {
                 return -3;
             }
-            k1Var.f46728x.getClass();
-            gVar.a(1);
-            gVar.h = 0L;
+            k1Var.f43441x.getClass();
+            hVar.addFlag(1);
+            hVar.e = 0L;
             if ((i10 & 4) == 0) {
-                gVar.l(k1Var.f46729y);
-                gVar.f10847e.put(k1Var.f46728x, 0, k1Var.f46729y);
+                hVar.b(k1Var.f43442y);
+                hVar.f10097c.put(k1Var.f43441x, 0, k1Var.f43442y);
             }
             if ((i10 & 1) == 0) {
-                this.f46705a = 2;
+                this.f43419a = 2;
             }
             return -4;
         } else {
-            yVar.f16497c = k1Var.f46726s;
-            this.f46705a = 1;
+            yVar.f15005c = k1Var.f43439s;
+            this.f43419a = 1;
             return -5;
         }
     }
 
     @Override
-    public final int m(long j3) {
-        a();
-        if (j3 > 0 && this.f46705a != 2) {
-            this.f46705a = 2;
+    public final int j(long j3) {
+        b();
+        if (j3 > 0 && this.f43419a != 2) {
+            this.f43419a = 2;
             return 1;
         }
         return 0;

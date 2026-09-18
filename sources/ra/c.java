@@ -10,9 +10,9 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 public final class c {
-    public static final String[] f45075c = {"*", "FCM", "GCM", ""};
-    public final SharedPreferences f45076a;
-    public final String f45077b;
+    public static final String[] f42214c = {"*", "FCM", "GCM", ""};
+    public final SharedPreferences f42215a;
+    public final String f42216b;
 
     public c(k9.h r4) {
         throw new UnsupportedOperationException("Method not decompiled: ra.c.<init>(k9.h):void");
@@ -20,24 +20,24 @@ public final class c {
 
     public final String a() {
         String string;
-        synchronized (this.f45076a) {
-            string = this.f45076a.getString("|S|id", null);
+        synchronized (this.f42215a) {
+            string = this.f42215a.getString("|S|id", null);
         }
         return string;
     }
 
     public final String b() {
         PublicKey publicKey;
-        synchronized (this.f45076a) {
+        synchronized (this.f42215a) {
             String str = null;
-            String string = this.f45076a.getString("|S||P|", null);
+            String string = this.f42215a.getString("|S||P|", null);
             if (string == null) {
                 return null;
             }
             try {
                 publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(string, 8)));
-            } catch (IllegalArgumentException | NoSuchAlgorithmException | InvalidKeySpecException e7) {
-                Log.w("ContentValues", "Invalid key stored " + e7);
+            } catch (IllegalArgumentException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+                Log.w("ContentValues", "Invalid key stored " + e);
                 publicKey = null;
             }
             if (publicKey == null) {

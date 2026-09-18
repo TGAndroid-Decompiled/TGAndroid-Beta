@@ -1,38 +1,28 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.j6;
-public final class o extends ScrollView {
-    public final LinearLayout f44493a;
-    public final x f44494b;
+import android.animation.ValueAnimator;
+public final class o implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41525a;
+    public final p0 f41526b;
 
-    public o(x xVar, Context context, LinearLayout linearLayout) {
-        super(context);
-        this.f44494b = xVar;
-        this.f44493a = linearLayout;
-        setWillNotDraw(false);
+    public o(p0 p0Var, int i10) {
+        this.f41525a = i10;
+        this.f41526b = p0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float y3 = this.f44493a.getY() + AndroidUtilities.dp(1.0f);
-        int dp = AndroidUtilities.dp(36.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getMeasuredWidth() - dp) / 2.0f, y3, (getMeasuredWidth() + dp) / 2.0f, AndroidUtilities.dp(4.0f) + y3);
-        j6.f20949t0.setColor(-10790053);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), j6.f20949t0);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        ((LinearLayout.LayoutParams) this.f44494b.f44617b.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(24.0f)) * 0.8333333f) + AndroidUtilities.dp(88.0f));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41525a) {
+            case 0:
+                p0 p0Var = this.f41526b;
+                p0Var.getClass();
+                p0Var.f41552f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                p0 p0Var2 = this.f41526b;
+                p0Var2.getClass();
+                p0Var2.f41552f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+        }
     }
 }

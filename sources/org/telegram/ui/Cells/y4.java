@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
-public final class y4 extends org.telegram.ui.Components.x9 {
+public final class y4 extends org.telegram.ui.Components.u9 {
     public final org.telegram.ui.ActionBar.f6 G;
     public final a5 H;
 
@@ -18,18 +18,18 @@ public final class y4 extends org.telegram.ui.Components.x9 {
     public final void onDraw(Canvas canvas) {
         int dp;
         a5 a5Var = this.H;
-        if (a5Var.f21609r != null) {
+        if (a5Var.f19803r != null) {
             float dp2 = AndroidUtilities.dp(1.0f);
             a5Var.N.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
-            bi.j9 j9Var = a5Var.N;
-            j9Var.f3147a = false;
-            j9Var.f3148b = false;
-            j9Var.v = true;
-            j9Var.f3159o = false;
-            j9Var.J = this.G;
-            TL_stories.StoryItem storyItem = a5Var.f21609r;
-            j9Var.d = storyItem;
-            bi.p9.h(storyItem.dialogId, canvas, this.f32477a, j9Var);
+            ai.ca caVar = a5Var.N;
+            caVar.f650a = false;
+            caVar.f651b = false;
+            caVar.v = true;
+            caVar.f661o = false;
+            caVar.J = this.G;
+            TL_stories.StoryItem storyItem = a5Var.f19803r;
+            caVar.d = storyItem;
+            ai.ia.h(storyItem.dialogId, canvas, this.f28304a, caVar);
             return;
         }
         super.onDraw(canvas);

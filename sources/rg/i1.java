@@ -1,44 +1,25 @@
 package rg;
 
 import android.content.Context;
-import android.view.ViewGroup;
-public final class i1 extends s4.h0 {
-    public final Context f45216c;
-    public final k1 d;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class i1 extends View {
+    public final int f42335a;
 
-    public i1(k1 k1Var, Context context) {
-        this.d = k1Var;
-        this.f45216c = context;
+    public i1(Context context, int i10) {
+        super(context);
+        this.f42335a = i10;
     }
 
     @Override
-    public final int h() {
-        return 14;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        float f7;
-        j1 j1Var = (j1) c1Var.f45739a;
-        ViewGroup.LayoutParams layoutParams = j1Var.getLayoutParams();
-        k1 k1Var = this.d;
-        layoutParams.height = ((k1Var.getHeight() - k1Var.getPaddingTop()) - k1Var.getPaddingBottom()) / 2;
-        qg.s0 s0Var = k1Var.f45269a3;
-        if (s0Var != null) {
-            j1Var.f45225a = s0Var.b(i10);
-            j1Var.invalidate();
-            if (k1Var.Z2 == i10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            j1Var.f45226b = f7;
-            j1Var.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f42335a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+                return;
         }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new j1(this.d, this.f45216c));
     }
 }

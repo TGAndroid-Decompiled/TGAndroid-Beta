@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
 public final class sm implements Runnable {
-    public final int f30375a;
-    public final tn f30376b;
-    public final int f30377c;
+    public final int f27887a;
+    public final un f27888b;
+    public final int f27889c;
 
-    public sm(tn tnVar, int i10, int i11) {
-        this.f30375a = i11;
-        this.f30376b = tnVar;
-        this.f30377c = i10;
+    public sm(un unVar, int i10, int i11) {
+        this.f27887a = i11;
+        this.f27888b = unVar;
+        this.f27889c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f30375a) {
+        switch (this.f27887a) {
             case 0:
-                this.f30376b.e0(this.f30377c, null);
+                this.f27888b.e0(this.f27889c, null);
                 return;
             case 1:
-                this.f30376b.b0(this.f30377c);
+                this.f27888b.b0(this.f27889c);
                 return;
             default:
-                this.f30376b.e0(this.f30377c, null);
+                this.f27888b.e0(this.f27889c, null);
                 return;
         }
     }

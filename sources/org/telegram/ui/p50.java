@@ -1,82 +1,46 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class p50 extends org.telegram.ui.Components.ll0 {
-    public final LongSparseIntArray X2;
-    public final j60 Y2;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Shader;
+public final class p50 extends org.telegram.ui.ActionBar.k5 {
+    public LinearGradient M0;
+    public int N0;
+    public final Matrix O0;
+    public float P0;
+    public float Q0;
+    public float R0;
+    public float S0;
+    public float T0;
+    public long U0;
+    public final k60 V0;
 
-    public p50(j60 j60Var, LaunchActivity launchActivity) {
-        super(launchActivity, null);
-        this.Y2 = j60Var;
-        this.X2 = new LongSparseIntArray();
+    public p50(k60 k60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.V0 = k60Var;
+        this.O0 = new Matrix();
+        this.P0 = -1.0f;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p50.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.Y2.X2) {
-            return false;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        super.onLayout(z10, i10, i11, i12, i13);
-        x50 x50Var = this.Y2.X;
-        HashSet hashSet = x50Var.I;
-        j60 j60Var = x50Var.L;
-        HashSet hashSet2 = x50Var.H;
-        if (x50Var.G == null) {
-            hashSet2.clear();
-            hashSet2.addAll(x50Var.f45806q);
-            hashSet.clear();
-            hashSet.addAll(x50Var.f45805p);
-            x50Var.J = 0.0f;
-            x50Var.K = Float.MAX_VALUE;
-            if (hashSet2.isEmpty() && hashSet.isEmpty()) {
-                return;
-            }
-            p50 p50Var = j60Var.Q;
-            int childCount = p50Var.getChildCount();
-            for (int i15 = 0; i15 < childCount; i15++) {
-                View childAt = p50Var.getChildAt(i15);
-                s4.c1 G = p50Var.G(childAt);
-                if (G != null && (i14 = G.f45743f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
-                    x50Var.J = Math.max(x50Var.J, childAt.getY() + childAt.getMeasuredHeight());
-                    x50Var.K = Math.min(x50Var.K, Math.max(0.0f, childAt.getY()));
-                }
-            }
-            x50Var.F = 0.0f;
-            p50Var.invalidate();
+    public final void d(int i10) {
+        super.d(i10);
+        int textWidth = getTextWidth();
+        if (textWidth != this.N0) {
+            float f7 = textWidth;
+            this.T0 = 1.3f * f7;
+            float f10 = f7 * 2.0f;
+            int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18963ih, false);
+            int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19002kh, false);
+            int i11 = org.telegram.ui.ActionBar.j6.f18982jh;
+            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{w02, w03, org.telegram.ui.ActionBar.j6.w0(null, i11, false), org.telegram.ui.ActionBar.j6.w0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
+            getPaint().setShader(this.M0);
+            this.N0 = textWidth;
         }
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        if (getVisibility() != i10) {
-            for (int i11 = 0; i11 < getChildCount(); i11++) {
-                View childAt = getChildAt(i11);
-                if (childAt instanceof org.telegram.ui.Components.voip.l) {
-                    org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) childAt;
-                    if (childAt.isAttachedToWindow() && i10 == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    j60.N(this.Y2, lVar, z10);
-                }
-            }
-        }
-        super.setVisibility(i10);
+    public final void onDraw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p50.onDraw(android.graphics.Canvas):void");
     }
 }

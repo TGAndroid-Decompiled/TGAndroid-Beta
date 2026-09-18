@@ -9,18 +9,18 @@ import c3.h0;
 import e2.d0;
 import e2.v;
 import n4.y;
-import org.telegram.ui.Components.ho0;
+import org.telegram.ui.Components.io0;
 import u2.a1;
 public final class n implements h0 {
-    public final a1 f15248a;
-    public final y f15249b = new y(17, false);
-    public final l3.a f15250c = new l3.a();
+    public final a1 f13875a;
+    public final y f13876b = new y(17);
+    public final l3.a f13877c = new l3.a();
     public long d = -9223372036854775807L;
-    public final o f15251e;
+    public final o e;
 
     public n(o oVar, y2.d dVar) {
-        this.f15251e = oVar;
-        this.f15248a = new a1(dVar, null, null);
+        this.e = oVar;
+        this.f13875a = new a1(dVar, null, null);
     }
 
     @Override
@@ -30,55 +30,55 @@ public final class n implements h0 {
 
     @Override
     public final void b(s sVar) {
-        this.f15248a.b(sVar);
+        this.f13875a.b(sVar);
     }
 
     @Override
     public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
         long i13;
         long j10;
-        this.f15248a.c(j3, i10, i11, i12, g0Var);
-        while (this.f15248a.x(false)) {
-            l3.a aVar = this.f15250c;
-            aVar.i();
-            if (this.f15248a.C(this.f15249b, aVar, 0, false) == -4) {
-                aVar.m();
+        this.f13875a.c(j3, i10, i11, i12, g0Var);
+        while (this.f13875a.x(false)) {
+            l3.a aVar = this.f13877c;
+            aVar.clear();
+            if (this.f13875a.C(this.f13876b, aVar, 0, false) == -4) {
+                aVar.c();
             } else {
                 aVar = null;
             }
             if (aVar != null) {
-                long j11 = aVar.h;
-                p0 a2 = this.f15251e.f15254c.a(aVar);
+                long j11 = aVar.e;
+                p0 a2 = this.e.f13880c.a(aVar);
                 if (a2 != null) {
-                    n3.a aVar2 = (n3.a) a2.f2234a[0];
-                    String str = aVar2.f16419a;
-                    String str2 = aVar2.f16420b;
+                    n3.a aVar2 = (n3.a) a2.f3178a[0];
+                    String str = aVar2.f14934a;
+                    String str2 = aVar2.f14935b;
                     if ("urn:mpeg:dash:event:2012".equals(str) && ("1".equals(str2) || "2".equals(str2) || "3".equals(str2))) {
                         try {
-                            j10 = d0.T(d0.p(aVar2.f16422e));
+                            j10 = d0.T(d0.p(aVar2.e));
                         } catch (s0 unused) {
                             j10 = -9223372036854775807L;
                         }
                         if (j10 != -9223372036854775807L) {
                             m mVar = new m(j11, j10);
-                            Handler handler = this.f15251e.d;
+                            Handler handler = this.e.d;
                             handler.sendMessage(handler.obtainMessage(1, mVar));
                         }
                     }
                 }
             }
         }
-        a1 a1Var = this.f15248a;
-        ho0 ho0Var = a1Var.f46619a;
+        a1 a1Var = this.f13875a;
+        io0 io0Var = a1Var.f43340a;
         synchronized (a1Var) {
-            int i14 = a1Var.f46635s;
+            int i14 = a1Var.f43355s;
             if (i14 == 0) {
                 i13 = -1;
             } else {
                 i13 = a1Var.i(i14);
             }
         }
-        ho0Var.b(i13);
+        io0Var.b(i13);
     }
 
     @Override
@@ -88,14 +88,14 @@ public final class n implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        a1 a1Var = this.f15248a;
+        a1 a1Var = this.f13875a;
         a1Var.getClass();
         return a1Var.e(kVar, i10, z10);
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        a1 a1Var = this.f15248a;
+        a1 a1Var = this.f13875a;
         a1Var.getClass();
         a1Var.f(vVar, i10, 0);
     }

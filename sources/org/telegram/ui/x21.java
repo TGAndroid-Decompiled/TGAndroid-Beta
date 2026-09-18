@@ -9,30 +9,30 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class x21 implements Runnable {
-    public final int f42578a;
-    public final a31 f42579b;
+    public final int f39357a;
+    public final a31 f39358b;
 
     public x21(a31 a31Var, int i10) {
-        this.f42578a = i10;
-        this.f42579b = a31Var;
+        this.f39357a = i10;
+        this.f39358b = a31Var;
     }
 
     @Override
     public final void run() {
         long j3;
         String str;
-        switch (this.f42578a) {
+        switch (this.f39357a) {
             case 0:
-                a31 a31Var = this.f42579b;
+                a31 a31Var = this.f39358b;
                 AndroidUtilities.cancelRunOnUIThread(a31Var.N);
-                boolean z10 = a31Var.f34321r;
+                boolean z10 = a31Var.f31710r;
                 if (z10) {
                     if (z10 && a31Var.F == null) {
-                        org.telegram.ui.Components.xi0 xi0Var = new org.telegram.ui.Components.xi0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
-                        a31Var.F = xi0Var;
-                        xi0Var.f32579v0 = a31Var;
-                        xi0Var.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-                        a31Var.F.I(1);
+                        org.telegram.ui.Components.yi0 yi0Var = new org.telegram.ui.Components.yi0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
+                        a31Var.F = yi0Var;
+                        yi0Var.R(a31Var);
+                        a31Var.F.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+                        a31Var.F.K(1);
                         a31Var.F.start();
                     }
                     String str2 = "";
@@ -40,7 +40,7 @@ public final class x21 implements Runnable {
                         if (a31Var.J != 0) {
                             a31Var.I = null;
                             Utilities.themeQueue.postRunnable(new y21(a31Var, a31Var.getWidth(), a31Var.getHeight(), 2));
-                            a31Var.f34322s.q("", true, true);
+                            a31Var.f31711s.q("", true, true);
                         }
                         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                         if (a31Var.J == 0) {
@@ -48,14 +48,14 @@ public final class x21 implements Runnable {
                         } else {
                             j3 = 1750;
                         }
-                        messagesController.requestContactToken(j3, new t3(a31Var, 18));
+                        messagesController.requestContactToken(j3, new s3(a31Var, 18));
                     }
                     int i10 = a31Var.J;
                     if (i10 > 0 && a31Var.I != null) {
                         long max = Math.max(0L, (i10 - (System.currentTimeMillis() / 1000)) - 1);
                         int i11 = (int) (max % 60);
                         int min = Math.min(99, (int) (max / 60));
-                        org.telegram.ui.Components.jo0 jo0Var = a31Var.f34322s;
+                        org.telegram.ui.Components.ko0 ko0Var = a31Var.f31711s;
                         StringBuilder sb2 = new StringBuilder();
                         if (min >= 10) {
                             str = "";
@@ -70,7 +70,7 @@ public final class x21 implements Runnable {
                         }
                         sb2.append(str2);
                         sb2.append(i11);
-                        jo0Var.q(sb2.toString(), true, false);
+                        ko0Var.q(sb2.toString(), true, false);
                     }
                     if (a31Var.isAttachedToWindow()) {
                         AndroidUtilities.runOnUIThread(a31Var.N, 1000L);
@@ -80,17 +80,17 @@ public final class x21 implements Runnable {
                 }
                 return;
             default:
-                a31 a31Var2 = this.f42579b;
+                a31 a31Var2 = this.f39358b;
                 a31Var2.S = false;
                 Bitmap bitmap = a31Var2.h;
                 if (bitmap != null) {
                     a31Var2.h = null;
-                    a31Var2.f34324x.d(0.0f, true);
-                    Bitmap bitmap2 = a31Var2.f34320n;
+                    a31Var2.f31713x.d(0.0f, true);
+                    Bitmap bitmap2 = a31Var2.f31709n;
                     if (bitmap2 != null) {
                         bitmap2.recycle();
                     }
-                    a31Var2.f34320n = bitmap;
+                    a31Var2.f31709n = bitmap;
                     a31Var2.invalidate();
                     return;
                 }

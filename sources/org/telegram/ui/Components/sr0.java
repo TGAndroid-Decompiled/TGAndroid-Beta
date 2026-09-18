@@ -1,37 +1,16 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Rect;
-public final class sr0 extends org.telegram.ui.d21 {
-    public final xu0 H;
+public final class sr0 {
+    public final Context f27913a;
+    public final org.telegram.ui.ActionBar.o2 f27914b;
+    public final org.telegram.ui.ActionBar.f6 f27915c;
+    public final zu0 d;
 
-    public sr0(xu0 xu0Var, Context context, ov0 ov0Var, bi.f8 f8Var, rr0 rr0Var) {
-        super(context, ov0Var, f8Var, rr0Var);
-        this.H = xu0Var;
-    }
-
-    @Override
-    public final void a() {
-        wr0 wr0Var;
-        Rect rect = this.F;
-        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
-        setClipBounds(rect);
-        invalidate();
-        xu0 xu0Var = this.H;
-        qt0[] qt0VarArr = xu0Var.f32703k0;
-        if (qt0VarArr != null) {
-            for (qt0 qt0Var : qt0VarArr) {
-                if (qt0Var != null && (wr0Var = qt0Var.h) != null) {
-                    int paddingLeft = wr0Var.getPaddingLeft();
-                    int Z = xu0Var.Z(qt0Var.F);
-                    int paddingRight = qt0Var.h.getPaddingRight();
-                    wr0 wr0Var2 = qt0Var.h;
-                    int Y = xu0Var.Y(xu0Var.v0());
-                    wr0Var2.f29490e3 = Y;
-                    wr0Var.setPadding(paddingLeft, Z, paddingRight, Y);
-                }
-            }
-        }
-        xu0Var.K();
+    public sr0(zu0 zu0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.d = zu0Var;
+        this.f27913a = context;
+        this.f27914b = o2Var;
+        this.f27915c = f6Var;
     }
 }

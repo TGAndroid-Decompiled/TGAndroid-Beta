@@ -1,52 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class af extends ImageView {
-    public float f24352a;
-    public final ChatActivityEnterView f24353b;
+public final class af extends AnimatorListenerAdapter {
+    public final int f22397a;
+    public final boolean f22398b;
+    public final ChatActivityEnterView f22399c;
 
-    public af(ChatActivityEnterView chatActivityEnterView, Context context) {
-        super(context);
-        this.f24353b = chatActivityEnterView;
+    public af(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
+        this.f22397a = i10;
+        this.f22399c = chatActivityEnterView;
+        this.f22398b = z10;
     }
 
     @Override
-    public final float getTranslationX() {
-        return this.f24352a;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f22397a) {
+            case 1:
+                ChatActivityEnterView chatActivityEnterView = this.f22399c;
+                if (animator.equals(chatActivityEnterView.f21845r2)) {
+                    chatActivityEnterView.f21845r2 = null;
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        float f10;
-        float alpha;
-        this.f24352a = f7;
-        float f11 = -44.0f;
-        float dp = AndroidUtilities.dp(-44.0f) + this.f24352a;
-        ChatActivityEnterView chatActivityEnterView = this.f24353b;
-        float f12 = dp + chatActivityEnterView.f23800y + chatActivityEnterView.f23794x;
-        cf cfVar = chatActivityEnterView.J1;
-        float f13 = 0.0f;
-        if (cfVar != null && cfVar.getVisibility() == 0) {
-            f10 = -44.0f;
-        } else {
-            f10 = 0.0f;
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        xe xeVar;
+        float f7;
+        switch (this.f22397a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f22399c;
+                if (chatActivityEnterView.f21815l5) {
+                    ImageView imageView = chatActivityEnterView.f21865v1;
+                    if (this.f22398b) {
+                        i10 = 0;
+                    } else {
+                        i10 = 8;
+                    }
+                    imageView.setVisibility(i10);
+                    return;
+                }
+                return;
+            case 1:
+                ChatActivityEnterView chatActivityEnterView2 = this.f22399c;
+                if (animator.equals(chatActivityEnterView2.f21845r2)) {
+                    chatActivityEnterView2.f21828o1.setVisibility(8);
+                    if (this.f22398b && (xeVar = chatActivityEnterView2.I1) != null) {
+                        xeVar.setVisibility(8);
+                    }
+                    chatActivityEnterView2.f21845r2 = null;
+                    return;
+                }
+                return;
+            case 2:
+                ChatActivityEnterView chatActivityEnterView3 = this.f22399c;
+                chatActivityEnterView3.L1 = null;
+                if (!this.f22398b) {
+                    chatActivityEnterView3.I1.setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                if (this.f22398b) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                ChatActivityEnterView chatActivityEnterView4 = this.f22399c;
+                chatActivityEnterView4.f21870w0 = f7;
+                cg cgVar = chatActivityEnterView4.U0;
+                if (cgVar != null) {
+                    cgVar.Y();
+                    return;
+                }
+                return;
         }
-        float dp2 = AndroidUtilities.dp(f10);
-        cf cfVar2 = chatActivityEnterView.J1;
-        if (cfVar2 == null) {
-            alpha = 0.0f;
-        } else {
-            alpha = cfVar2.getAlpha();
-        }
-        float f14 = (dp2 * alpha) + f12;
-        cf cfVar3 = chatActivityEnterView.f23790w1;
-        float dp3 = AndroidUtilities.dp((cfVar3 == null || cfVar3.getVisibility() != 0) ? 0.0f : 0.0f);
-        cf cfVar4 = chatActivityEnterView.f23790w1;
-        if (cfVar4 != null) {
-            f13 = cfVar4.getAlpha();
-        }
-        super.setTranslationX((dp3 * f13) + f14);
     }
 }

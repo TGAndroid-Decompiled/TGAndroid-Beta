@@ -7,41 +7,41 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class fj extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.f6 f26065a;
-    public final TextView f26066b;
-    public final TextView f26067c;
+public final class fj extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public final org.telegram.ui.ActionBar.f6 f23952a;
+    public final TextView f23953b;
+    public final TextView f23954c;
 
     public fj(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f26065a = f6Var;
+        this.f23952a = f6Var;
         setPadding(0, AndroidUtilities.dp(42.0f), 0, AndroidUtilities.dp(42.0f));
         setTag(-33024);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.x5.q(-1, -2, 17));
-        x9 x9Var = new x9(context);
-        x9Var.setImageDrawable(new xi0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
-        linearLayout.addView(x9Var, w7.x5.t(120, 120, 17, 0, 0, 0, 0));
+        u9 u9Var = new u9(context);
+        u9Var.setImageDrawable(new yi0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+        linearLayout.addView(u9Var, w7.x5.t(120, 120, 17, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f26066b = textView;
+        this.f23953b = textView;
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.f26067c = h;
+        this.f23954c = h;
         h.setTextSize(1, 14.0f);
         h.setGravity(17);
         linearLayout.addView(h, w7.x5.t(-1, -2, 17, 32, 0, 32, 0));
-        d();
+        e();
     }
 
     @Override
-    public final void d() {
+    public final void e() {
         int i10 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f26065a;
-        this.f26066b.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
-        this.f26067c.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21043y6, f6Var));
+        org.telegram.ui.ActionBar.f6 f6Var = this.f23952a;
+        this.f23953b.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
+        this.f23954c.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19245y6, f6Var));
     }
 
     public int[] getColorKeys() {

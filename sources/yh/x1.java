@@ -1,64 +1,80 @@
 package yh;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.hq0;
-import org.telegram.ui.Components.nr0;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.yc;
-public final class x1 extends hq0 {
-    public final org.telegram.ui.ActionBar.n2 f50624b1;
-    public final nr0 f50625c1;
+import org.telegram.tgnet.tl.TL_stars;
+public final class x1 implements Utilities.Callback {
+    public final int f47984a;
+    public final a4 f47985b;
 
-    public x1(nr0 nr0Var, Context context, String str, String str2, f6 f6Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(context, null, str, false, str2, false, f6Var);
-        this.f50625c1 = nr0Var;
-        this.f50624b1 = n2Var;
+    public x1(a4 a4Var, int i10) {
+        this.f47984a = i10;
+        this.f47985b = a4Var;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        yc a02;
-        String str;
-        if (z10 && (a02 = yc.a0(this.f50624b1)) != null) {
-            if (iVar.m() == 1) {
-                long j3 = iVar.j(0);
-                if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    qc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
-                    G.f29688r = false;
-                    G.j();
-                } else if (j3 < 0) {
-                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-                    int i11 = R.raw.forward;
-                    int i12 = R.string.GiftCollectionSharedTo;
-                    if (tL_forumTopic != null) {
-                        str = tL_forumTopic.title;
-                    } else {
-                        str = chat.title;
-                    }
-                    qc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f29688r = false;
-                    G2.j();
-                } else {
-                    qc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f29688r = false;
-                    G3.j();
+    public final void run(Object obj) {
+        TLRPC.Message message;
+        switch (this.f47984a) {
+            case 0:
+                a4 a4Var = this.f47985b;
+                a4Var.getClass();
+                if (((Boolean) obj).booleanValue()) {
+                    a4Var.skipDismissAnimation();
                 }
-            } else {
-                qc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f29688r = false;
-                Q.j();
-            }
-            try {
-                this.f50625c1.performHapticFeedback(3);
-            } catch (Exception unused) {
-            }
+                a4Var.dismiss();
+                return;
+            case 1:
+                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
+                a4 a4Var2 = this.f47985b;
+                a4Var2.getClass();
+                if (stargiftupgradepreview != null) {
+                    a4Var2.f46988h1 = stargiftupgradepreview.sample_attributes;
+                    a4Var2.f46990i1 = stargiftupgradepreview.prices;
+                    a4Var2.f46992j1 = stargiftupgradepreview.next_prices;
+                    a4Var2.b2();
+                    return;
+                }
+                return;
+            case 2:
+                this.f47985b.dismiss(((Boolean) obj).booleanValue());
+                return;
+            default:
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
+                a4 a4Var3 = this.f47985b;
+                a4Var3.K0 = false;
+                a4Var3.L0 = true;
+                if (savedStarGift != null) {
+                    a4Var3.f46984f1 = Boolean.valueOf(savedStarGift.unsaved);
+                    MessageObject messageObject = a4Var3.E0;
+                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
+                        TLRPC.MessageAction messageAction = message.action;
+                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
+                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
+                            boolean z10 = tL_messageActionStarGiftUnique.saved;
+                            boolean z11 = !savedStarGift.unsaved;
+                            if (z10 != z11) {
+                                tL_messageActionStarGiftUnique.saved = z11;
+                            } else {
+                                return;
+                            }
+                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
+                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
+                            boolean z12 = tL_messageActionStarGift.saved;
+                            boolean z13 = !savedStarGift.unsaved;
+                            if (z12 != z13) {
+                                tL_messageActionStarGift.saved = z13;
+                            } else {
+                                return;
+                            }
+                        }
+                        a4Var3.i2(messageObject, null);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

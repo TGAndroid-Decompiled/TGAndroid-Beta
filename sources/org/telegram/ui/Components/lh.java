@@ -1,85 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class lh implements ch.a {
-    public final int f28174a;
-    public final Object f28175b;
+import android.view.KeyEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class lh implements Utilities.Callback4 {
+    public final int f25903a;
+    public final KeyEvent.Callback f25904b;
 
-    public lh(Object obj, int i10) {
-        this.f28174a = i10;
-        this.f28175b = obj;
+    public lh(KeyEvent.Callback callback, int i10) {
+        this.f25903a = i10;
+        this.f25904b = callback;
     }
 
     @Override
-    public final void e(bh.a aVar, RectF rectF) {
-        switch (this.f28174a) {
+    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+        switch (this.f25903a) {
             case 0:
-            case 1:
-            default:
-                aVar.f2648a = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        ni niVar;
-        Canvas canvas2;
-        RectF rectF2;
-        float alpha;
-        ni niVar2;
-        di.z7 z7Var;
-        switch (this.f28174a) {
-            case 0:
-                vi viVar = (vi) this.f28175b;
-                int i10 = 0;
-                while (i10 < 2) {
-                    if (i10 == 0) {
-                        niVar = viVar.f31341y0;
-                    } else {
-                        niVar = viVar.f31344z0;
-                    }
-                    if (niVar != null && niVar.f28755c != null && niVar.getVisibility() == 0) {
-                        if (i10 == 0 && (niVar2 = viVar.f31344z0) != null && niVar2.getVisibility() == 0) {
-                            alpha = (1.0f - viVar.f31344z0.getAlpha()) * niVar.getAlpha();
-                        } else {
-                            alpha = niVar.getAlpha();
-                        }
-                        canvas2 = canvas;
-                        rectF2 = rectF;
-                        hh.d.a(niVar.f28755c, canvas2, rectF2, niVar.d, viVar.getContainerView(), (int) (alpha * 255.0f));
-                    } else {
-                        canvas2 = canvas;
-                        rectF2 = rectF;
-                    }
-                    i10++;
-                    canvas = canvas2;
-                    rectF = rectF2;
-                }
+                vi viVar = (vi) this.f25904b;
+                CharSequence charSequence = (CharSequence) obj;
+                Integer num = (Integer) obj2;
+                Integer num2 = (Integer) obj3;
+                Boolean bool = (Boolean) obj4;
+                ai aiVar = viVar.E0;
+                aiVar.setText(charSequence);
+                aiVar.w(charSequence.length(), charSequence.length());
+                viVar.z1();
                 return;
             case 1:
-                ch.a[] aVarArr = (ch.a[]) this.f28175b;
-                for (int i11 = 0; i11 < 3; i11++) {
-                    ch.a aVar = aVarArr[i11];
-                    if (aVar != null) {
-                        aVar.f(canvas, rectF);
-                    }
-                }
+                vi viVar2 = (vi) this.f25904b;
+                CharSequence charSequence2 = (CharSequence) obj;
+                Integer num3 = (Integer) obj2;
+                Integer num4 = (Integer) obj3;
+                Boolean bool2 = (Boolean) obj4;
+                di diVar = viVar2.P0;
+                diVar.setText(charSequence2);
+                diVar.w(charSequence2.length(), charSequence2.length());
+                viVar2.z1();
                 return;
             default:
-                xu0 xu0Var = (xu0) this.f28175b;
-                for (qt0 qt0Var : xu0Var.f32703k0) {
-                    bh.l lVar = qt0Var.f29821n;
-                    if (lVar != null) {
-                        lVar.f(canvas, rectF);
-                    }
-                }
-                nr0 nr0Var = xu0Var.V;
-                if (nr0Var != null && (z7Var = nr0Var.R) != null) {
-                    z7Var.f(canvas, rectF);
-                    return;
-                }
+                jd jdVar = (jd) this.f25904b;
+                Integer num5 = (Integer) obj2;
+                Integer num6 = (Integer) obj3;
+                Boolean bool3 = (Boolean) obj4;
+                ci.g gVar = jdVar.f4995f;
+                gVar.setText((CharSequence) obj);
+                gVar.d();
+                gVar.k(true);
+                ci.e eVar = jdVar.f4992c0;
+                AndroidUtilities.cancelRunOnUIThread(eVar);
+                eVar.run();
                 return;
         }
     }

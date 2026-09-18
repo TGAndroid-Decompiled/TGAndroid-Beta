@@ -1,25 +1,10 @@
 package org.telegram.ui.Components;
+public interface u80 {
+    void a();
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class u80 extends l9 {
-    public final bi.e7 f30833e;
+    void c();
 
-    public u80(bi.e7 e7Var, Context context) {
-        super(context, false);
-        this.f30833e = e7Var;
-    }
+    void i();
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int w10;
-        int min = Math.min(3, ((w80) this.f30833e.d).f32208w);
-        if (min == 0) {
-            w10 = 0;
-        } else {
-            w10 = com.google.android.gms.internal.vision.e2.w(min, 1, 20, 32);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(w10), 1073741824), i11);
-    }
+    void j();
 }

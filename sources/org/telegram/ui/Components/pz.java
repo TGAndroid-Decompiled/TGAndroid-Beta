@@ -18,28 +18,28 @@ public class pz extends s4.c0 {
     public int S;
     public final boolean T;
 
-    public pz(ll0 ll0Var, int i10) {
+    public pz(ml0 ml0Var, int i10) {
         this.I = new SparseArray();
         this.J = -1;
         this.P = true;
         this.Q = true;
         this.T = true;
-        this.N = ll0Var;
+        this.N = ml0Var;
         this.M = i10;
     }
 
     @Override
     public final void P(View view) {
-        s4.c1 T;
+        s4.c1 U;
         if (this.T) {
             RecyclerView recyclerView = this.N;
-            View F = recyclerView.F(view);
-            if (F == null) {
-                T = null;
+            View G = recyclerView.G(view);
+            if (G == null) {
+                U = null;
             } else {
-                T = recyclerView.T(F);
+                U = recyclerView.U(G);
             }
-            if (T.b() == B() - 1) {
+            if (U.b() == B() - 1) {
                 ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).height = Math.max(this.J, 0);
             }
         }
@@ -85,7 +85,7 @@ public class pz extends s4.c0 {
     }
 
     @Override
-    public final void d0(pf.e eVar, s4.z0 z0Var, int i10, int i11) {
+    public final void d0(of.e eVar, s4.z0 z0Var, int i10, int i11) {
         int i12 = this.K;
         this.L = View.MeasureSpec.getSize(i10);
         int size = View.MeasureSpec.getSize(i11);
@@ -116,18 +116,18 @@ public class pz extends s4.c0 {
             s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
             if (c1Var == null) {
                 c1Var = adapter.g(recyclerView, j3);
-                View view = c1Var.f45739a;
+                View view = c1Var.f42702a;
                 sparseArray.put(j3, c1Var);
                 if (view.getLayoutParams() == null) {
                     view.setLayoutParams(n());
                 }
             }
-            View view2 = c1Var.f45739a;
+            View view2 = c1Var.f42702a;
             if (this.P) {
                 adapter.v(c1Var, i12);
             }
             s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
-            view2.measure(s4.o0.s(d(), this.L, this.f45850k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.Q, this.K, this.f45851l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
+            view2.measure(s4.o0.s(d(), this.L, this.f42801k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.Q, this.K, this.f42802l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
             i10 += view2.getMeasuredHeight();
             if (i12 == 0) {
                 i11 = view2.getMeasuredHeight();
@@ -147,14 +147,14 @@ public class pz extends s4.c0 {
         }
     }
 
-    public pz(int i10, int i11, ll0 ll0Var) {
+    public pz(int i10, int i11, ml0 ml0Var) {
         super(1, false);
         this.I = new SparseArray();
         this.J = -1;
         this.P = true;
         this.Q = true;
         this.T = true;
-        this.N = ll0Var;
+        this.N = ml0Var;
         this.M = i10;
     }
 }

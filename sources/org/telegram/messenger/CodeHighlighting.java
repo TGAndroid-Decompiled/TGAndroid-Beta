@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.n01;
+import org.telegram.ui.Components.p01;
 public class CodeHighlighting {
     public static final int MATCH_COMMENT = 6;
     public static final int MATCH_CONSTANT = 3;
@@ -325,9 +325,9 @@ public class CodeHighlighting {
         public final float decrementSize;
         public final String lng;
         public final boolean smallerSize;
-        public final n01 style;
+        public final p01 style;
 
-        public Span(boolean z10, int i10, n01 n01Var, String str, String str2) {
+        public Span(boolean z10, int i10, p01 p01Var, String str, String str2) {
             int length;
             this.smallerSize = z10;
             this.lng = str;
@@ -339,7 +339,7 @@ public class CodeHighlighting {
             }
             this.decrementSize = CodeHighlighting.getTextSizeDecrement(length);
             this.currentType = i10;
-            this.style = n01Var;
+            this.style = p01Var;
         }
 
         @Override
@@ -351,13 +351,13 @@ public class CodeHighlighting {
             if (i10 == 2) {
                 textPaint.setColor(-1);
             } else if (i10 == 1) {
-                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20706fc, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18904fc, false));
             } else {
                 textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.ec, false));
             }
-            n01 n01Var = this.style;
-            if (n01Var != null) {
-                n01Var.a(textPaint);
+            p01 p01Var = this.style;
+            if (p01Var != null) {
+                p01Var.a(textPaint);
                 return;
             }
             textPaint.setTypeface(Typeface.MONOSPACE);
@@ -395,10 +395,6 @@ public class CodeHighlighting {
 
     public static void a(LockedSpannableString lockedSpannableString) {
         lambda$highlight$3(lockedSpannableString);
-    }
-
-    public static void c(Spannable spannable, int i10, int i11, String str) {
-        lambda$highlight$5(spannable, i10, i11, str);
     }
 
     private static void colorize(Spannable spannable, int i10, int i11, StringToken[] stringTokenArr, int i12, ArrayList<CachedToSpan> arrayList) {
@@ -443,10 +439,6 @@ public class CodeHighlighting {
                 arrayList = arrayList2;
             }
         }
-    }
-
-    public static void f() {
-        lambda$prepare$2();
     }
 
     private static TokenPattern[] flatRest(TokenPattern[] tokenPatternArr) {
@@ -517,11 +509,11 @@ public class CodeHighlighting {
         return 2;
     }
 
-    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, n01 n01Var, boolean z10) {
+    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, p01 p01Var, boolean z10) {
         if (spannable == null) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new w4(spannable, i10, i11, str, 1));
+        Utilities.searchQueue.postRunnable(new x4(spannable, i10, i11, str, 1));
     }
 
     public static void highlightEditable(CharSequence charSequence, String str, Utilities.Callback<SpannableString> callback) {
@@ -533,7 +525,7 @@ public class CodeHighlighting {
         }
         SpannableString spannableString = new SpannableString(charSequence);
         if (!TextUtils.isEmpty(str) && spannableString.length() != 0) {
-            Utilities.searchQueue.postRunnable(new pk(spannableString.toString(), str, spannableString, callback, 5));
+            Utilities.searchQueue.postRunnable(new qk(spannableString.toString(), str, spannableString, callback, 5));
             return;
         }
         callback.run(spannableString);
@@ -570,8 +562,8 @@ public class CodeHighlighting {
                 tokenPatternArr = hashMap.get(str);
             }
             stringTokenArr[0] = tokenize(charSequence, tokenPatternArr, 0).toArray();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         FileLog.d("[CodeHighlighter] tokenize took " + (System.currentTimeMillis() - currentTimeMillis) + "ms");
         long currentTimeMillis2 = System.currentTimeMillis();
@@ -616,14 +608,14 @@ public class CodeHighlighting {
                 tokenPatternArr = hashMap.get(str2);
             }
             spannableString2 = spannableString;
-        } catch (Exception e7) {
-            e = e7;
+        } catch (Exception e) {
+            e = e;
             spannableString2 = spannableString;
         }
         try {
             colorize(spannableString2, 0, spannableString.length(), tokenize(str, tokenPatternArr, 0).toArray(), -1, arrayList);
-        } catch (Exception e10) {
-            e = e10;
+        } catch (Exception e7) {
+            e = e7;
             FileLog.e(e);
             AndroidUtilities.runOnUIThread(new f0(13, spannableString2, callback, arrayList));
         }
@@ -658,8 +650,8 @@ public class CodeHighlighting {
             match.length = i12;
             match.string = str.substring(i11, i12 + i11);
             return match;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -672,7 +664,7 @@ public class CodeHighlighting {
         if (compiledPatterns != null) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new u1(7));
+        Utilities.searchQueue.postRunnable(new u1(9));
     }
 
     private static TokenPattern[] readTokens(StreamReader streamReader, ParsedPattern[] parsedPatternArr, HashMap<Integer, String[]> hashMap) {

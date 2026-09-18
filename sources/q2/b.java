@@ -1,31 +1,90 @@
 package q2;
 
 import android.content.Context;
-import android.os.Build;
-import b2.r0;
+import android.graphics.Point;
 import b2.s;
-import com.google.firebase.messaging.n;
+import b2.s0;
 import e2.d0;
-import n7.z0;
-import r2.k;
-import r2.l;
-import t7.u;
-public final class b implements k {
-    public final Context f44124a;
+import h2.h;
+import h2.j;
+import h2.l;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import v7.l7;
+public final class b extends l {
+    public final Context f41126o;
+    public final int f41127p;
 
-    public static int a(b2.s r5) {
-        throw new UnsupportedOperationException("Method not decompiled: q2.b.a(b2.s):int");
+    public b(Context context) {
+        super(new h[1], new a[1]);
+        this.f41126o = context;
+        this.f41127p = -1;
     }
 
     @Override
-    public l p(n nVar) {
-        Context context;
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 23 && (i10 >= 31 || ((context = this.f44124a) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen")))) {
-            int h = r0.h(((s) nVar.f6376c).f2370r);
-            e2.a.i("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + d0.G(h));
-            return new z0(14, new r2.b(h, 0), new r2.b(h, 1)).p(nVar);
+    public final h f() {
+        return new h(1, 0);
+    }
+
+    @Override
+    public final j g() {
+        return new a(this);
+    }
+
+    @Override
+    public final String getName() {
+        return "BitmapFactoryImageDecoder";
+    }
+
+    @Override
+    public final h2.f h(Throwable th2) {
+        return new Exception("Unexpected decode error", th2);
+    }
+
+    @Override
+    public final h2.f i(h hVar, j jVar, boolean z10) {
+        boolean z11;
+        a aVar = (a) jVar;
+        ByteBuffer byteBuffer = hVar.f10097c;
+        byteBuffer.getClass();
+        e2.d.g(byteBuffer.hasArray());
+        if (byteBuffer.arrayOffset() == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        return new u(20).p(nVar);
+        e2.d.b(z11);
+        try {
+            int i10 = this.f41127p;
+            if (i10 == -1) {
+                Context context = this.f41126o;
+                if (context != null) {
+                    Point w10 = d0.w(context);
+                    int i11 = w10.x;
+                    int i12 = w10.y;
+                    s sVar = hVar.f10095a;
+                    if (sVar != null) {
+                        int i13 = sVar.Q;
+                        if (i13 != -1) {
+                            i11 *= i13;
+                        }
+                        int i14 = sVar.R;
+                        if (i14 != -1) {
+                            i12 *= i14;
+                        }
+                    }
+                    i10 = (Math.max(i11, i12) * 2) - 1;
+                } else {
+                    i10 = 4096;
+                }
+            }
+            aVar.f41124a = l7.a(byteBuffer.remaining(), i10, byteBuffer.array());
+            aVar.timeUs = hVar.e;
+            return null;
+        } catch (s0 e) {
+            return new Exception("Could not decode image data with BitmapFactory.", e);
+        } catch (IOException e7) {
+            return new Exception(e7);
+        }
     }
 }

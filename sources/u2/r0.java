@@ -6,33 +6,33 @@ import java.util.Collections;
 import java.util.Map;
 import v7.m7;
 public final class r0 implements y2.j {
-    public final Uri f46789a;
-    public final g2.b0 f46790b;
-    public final m2.t f46791c;
+    public final Uri f43498a;
+    public final g2.b0 f43499b;
+    public final lf.i f43500c;
     public final u0 d;
-    public final e2.g f46792e;
+    public final e2.g e;
     public volatile boolean h;
-    public long f46795r;
-    public g2.m f46796s;
+    public long f43503r;
+    public g2.m f43504s;
     public c3.h0 v;
-    public boolean f46797w;
-    public final u0 f46798x;
-    public final c3.s f46793f = new Object();
-    public boolean f46794n = true;
+    public boolean f43505w;
+    public final u0 f43506x;
+    public final c3.s f43501f = new Object();
+    public boolean f43502n = true;
 
-    public r0(u0 u0Var, Uri uri, g2.h hVar, m2.t tVar, u0 u0Var2, e2.g gVar) {
-        this.f46798x = u0Var;
-        this.f46789a = uri;
-        this.f46790b = new g2.b0(hVar);
-        this.f46791c = tVar;
+    public r0(u0 u0Var, Uri uri, g2.h hVar, lf.i iVar, u0 u0Var2, e2.g gVar) {
+        this.f43506x = u0Var;
+        this.f43498a = uri;
+        this.f43499b = new g2.b0(hVar);
+        this.f43500c = iVar;
         this.d = u0Var2;
-        this.f46792e = gVar;
-        t.f46805b.getAndIncrement();
-        this.f46796s = b(0L);
+        this.e = gVar;
+        t.f43512b.getAndIncrement();
+        this.f43504s = b(0L);
     }
 
     @Override
-    public final void W() {
+    public final void H() {
         this.h = true;
     }
 
@@ -44,71 +44,71 @@ public final class r0 implements y2.j {
         int i11 = 0;
         while (i11 == 0 && !this.h) {
             try {
-                long j3 = this.f46793f.f4294a;
+                long j3 = this.f43501f.f3798a;
                 g2.m b10 = b(j3);
-                this.f46796s = b10;
-                long open = this.f46790b.open(b10);
+                this.f43504s = b10;
+                long open = this.f43499b.open(b10);
                 if (this.h) {
-                    if (i11 != 1 && this.f46791c.z() != -1) {
-                        this.f46793f.f4294a = this.f46791c.z();
+                    if (i11 != 1 && this.f43500c.E() != -1) {
+                        this.f43501f.f3798a = this.f43500c.E();
                     }
-                    m7.a(this.f46790b);
+                    m7.a(this.f43499b);
                     return;
                 }
                 if (open != -1) {
                     open += j3;
-                    u0 u0Var = this.f46798x;
+                    u0 u0Var = this.f43506x;
                     u0Var.H.post(new p0(u0Var, 0));
                 }
                 long j10 = open;
-                this.f46798x.J = p3.b.d(this.f46790b.f10296a.getResponseHeaders());
-                g2.b0 b0Var = this.f46790b;
-                p3.b bVar = this.f46798x.J;
-                if (bVar != null && (i10 = bVar.f43794f) != -1) {
+                this.f43506x.J = p3.b.d(this.f43499b.f9350a.getResponseHeaders());
+                g2.b0 b0Var = this.f43499b;
+                p3.b bVar = this.f43506x.J;
+                if (bVar != null && (i10 = bVar.f40567f) != -1) {
                     hVar = new s(b0Var, i10, this);
-                    c3.h0 A = this.f46798x.A(new t0(0, true));
-                    this.v = A;
-                    A.b(u0.f46811h0);
+                    c3.h0 z10 = this.f43506x.z(new t0(0, true));
+                    this.v = z10;
+                    z10.b(u0.f43518h0);
                 } else {
                     hVar = b0Var;
                 }
-                this.f46791c.H(hVar, this.f46789a, this.f46790b.f10296a.getResponseHeaders(), j3, j10, this.d);
-                if (this.f46798x.J != null && (oVar = (c3.o) this.f46791c.f15818c) != null) {
+                this.f43500c.O(hVar, this.f43498a, this.f43499b.f9350a.getResponseHeaders(), j3, j10, this.d);
+                if (this.f43506x.J != null && (oVar = (c3.o) this.f43500c.f14034c) != null) {
                     c3.o c10 = oVar.c();
                     if (c10 instanceof v3.d) {
-                        ((v3.d) c10).f47348s = true;
+                        ((v3.d) c10).f43915s = true;
                     }
                 }
-                if (this.f46794n) {
-                    m2.t tVar = this.f46791c;
-                    long j11 = this.f46795r;
-                    c3.o oVar2 = (c3.o) tVar.f15818c;
+                if (this.f43502n) {
+                    lf.i iVar = this.f43500c;
+                    long j11 = this.f43503r;
+                    c3.o oVar2 = (c3.o) iVar.f14034c;
                     oVar2.getClass();
                     oVar2.h(j3, j11);
-                    this.f46794n = false;
+                    this.f43502n = false;
                 }
                 while (i11 == 0 && !this.h) {
                     try {
-                        e2.g gVar = this.f46792e;
+                        e2.g gVar = this.e;
                         synchronized (gVar) {
-                            while (!gVar.f8754b) {
-                                gVar.f8753a.getClass();
+                            while (!gVar.f7904b) {
+                                gVar.f7903a.getClass();
                                 gVar.wait();
                             }
                         }
-                        m2.t tVar2 = this.f46791c;
-                        c3.s sVar = this.f46793f;
-                        c3.o oVar3 = (c3.o) tVar2.f15818c;
+                        lf.i iVar2 = this.f43500c;
+                        c3.s sVar = this.f43501f;
+                        c3.o oVar3 = (c3.o) iVar2.f14034c;
                         oVar3.getClass();
-                        c3.l lVar = (c3.l) tVar2.d;
+                        c3.l lVar = (c3.l) iVar2.d;
                         lVar.getClass();
                         i11 = oVar3.m(lVar, sVar);
-                        long z10 = this.f46791c.z();
-                        if (z10 > this.f46798x.f46825s + j3) {
-                            this.f46792e.d();
-                            u0 u0Var2 = this.f46798x;
+                        long E = this.f43500c.E();
+                        if (E > this.f43506x.f43531s + j3) {
+                            this.e.d();
+                            u0 u0Var2 = this.f43506x;
                             u0Var2.H.post(u0Var2.G);
-                            j3 = z10;
+                            j3 = E;
                         }
                     } catch (InterruptedException unused) {
                         throw new InterruptedIOException();
@@ -116,15 +116,15 @@ public final class r0 implements y2.j {
                 }
                 if (i11 == 1) {
                     i11 = 0;
-                } else if (this.f46791c.z() != -1) {
-                    this.f46793f.f4294a = this.f46791c.z();
+                } else if (this.f43500c.E() != -1) {
+                    this.f43501f.f3798a = this.f43500c.E();
                 }
-                m7.a(this.f46790b);
+                m7.a(this.f43499b);
             } catch (Throwable th2) {
-                if (i11 != 1 && this.f46791c.z() != -1) {
-                    this.f46793f.f4294a = this.f46791c.z();
+                if (i11 != 1 && this.f43500c.E() != -1) {
+                    this.f43501f.f3798a = this.f43500c.E();
                 }
-                m7.a(this.f46790b);
+                m7.a(this.f43499b);
                 throw th2;
             }
         }
@@ -132,9 +132,9 @@ public final class r0 implements y2.j {
 
     public final g2.m b(long j3) {
         Map map = Collections.EMPTY_MAP;
-        String str = this.f46798x.f46824r;
-        Map map2 = u0.f46810g0;
-        Uri uri = this.f46789a;
+        String str = this.f43506x.f43530r;
+        Map map2 = u0.f43517g0;
+        Uri uri = this.f43498a;
         e2.d.i(uri, "The uri must be set.");
         return new g2.m(uri, 1, null, map2, j3, -1L, str, 6);
     }

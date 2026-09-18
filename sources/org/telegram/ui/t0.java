@@ -1,85 +1,56 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
-public final class t0 extends org.telegram.ui.Components.s6 {
-    public final int f40579b;
+public final class t0 extends AnimatorListenerAdapter {
+    public final int f37597a;
+    public final int f37598b;
+    public final Object f37599c;
 
-    public t0(String str, int i10) {
-        super(str, 0);
-        this.f40579b = i10;
+    public t0(Object obj, int i10, int i11) {
+        this.f37597a = i11;
+        this.f37599c = obj;
+        this.f37598b = i10;
     }
 
     @Override
-    public final void b(Object obj, float f7) {
-        switch (this.f40579b) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37597a) {
             case 0:
-                ((ArticleViewer$WindowView) obj).setInnerTranslationX(f7);
+                h4 h4Var = (h4) this.f37599c;
+                h4Var.f34173u0[1].b();
+                h4Var.f34173u0[1].setVisibility(8);
+                h4Var.O0.T(h4Var.f34173u0[0].f35435b);
+                org.telegram.ui.Cells.q9 q9Var = h4Var.O0;
+                l3[] l3VarArr = h4Var.f34173u0;
+                q9Var.E0 = l3VarArr[0].d;
+                int i10 = this.f37598b;
+                l3VarArr[i10].setBackgroundDrawable(null);
+                h4Var.f34173u0[i10].setLayerType(0, null);
+                h4Var.f34174v0 = null;
+                h4Var.f34159f0.f19767f = false;
                 return;
             case 1:
-                co.Hc = (int) f7;
+                ((fv) this.f37599c).f33766c.d.setColorFilter(new PorterDuffColorFilter(this.f37598b, PorterDuff.Mode.SRC_IN));
+                super.onAnimationEnd(animator);
                 return;
             case 2:
-                ((org.telegram.ui.Cells.t1) obj).setTimeAlpha(f7);
-                return;
-            case 3:
-                ((n01) obj).setCrossfadeProgress(f7);
-                return;
-            case 4:
-                ((SecretMediaViewer) obj).setVideoCrossfadeAlpha(f7);
-                return;
-            case 5:
-                ((SecretMediaViewer) obj).setAnimationValue(f7);
-                return;
-            default:
-                e51 e51Var = (e51) obj;
-                if (e51Var.f35935a != f7) {
-                    e51Var.f35935a = f7;
-                    SecretMediaViewer secretMediaViewer = e51Var.f35941r;
-                    secretMediaViewer.S.setAlpha(f7);
-                    if (e51Var.f35936b) {
-                        org.telegram.ui.ActionBar.j5 j5Var = secretMediaViewer.S;
-                        j5Var.setPivotX(j5Var.getWidth());
-                        org.telegram.ui.ActionBar.j5 j5Var2 = secretMediaViewer.S;
-                        j5Var2.setPivotY(j5Var2.getHeight());
-                        float f10 = 1.0f - f7;
-                        float f11 = 1.0f - (0.1f * f10);
-                        secretMediaViewer.S.setScaleX(f11);
-                        secretMediaViewer.S.setScaleY(f11);
-                        org.telegram.ui.Components.i71 i71Var = secretMediaViewer.Q;
-                        if (i71Var.f27007y != f10) {
-                            i71Var.f27007y = f10;
-                            i71Var.v.invalidate();
-                            return;
-                        }
-                        return;
-                    }
-                    if (e51Var.f35937c) {
-                        e51Var.setTranslationY((1.0f - f7) * AndroidUtilities.dpf2(24.0f));
-                    }
-                    secretMediaViewer.R.setAlpha(f7);
-                    return;
+                Activity activity = (Activity) this.f37599c;
+                int i11 = this.f37598b;
+                boolean z10 = false;
+                AndroidUtilities.setNavigationBarColor(activity, i11, false);
+                if (AndroidUtilities.computePerceivedBrightness(i11) >= 0.721f) {
+                    z10 = true;
                 }
+                AndroidUtilities.setLightNavigationBar(activity, z10);
                 return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f40579b) {
-            case 0:
-                return Float.valueOf(((ArticleViewer$WindowView) obj).getInnerTranslationX());
-            case 1:
-                return Float.valueOf(co.Hc);
-            case 2:
-                return Float.valueOf(((org.telegram.ui.Cells.t1) obj).getTimeAlpha());
-            case 3:
-                return Float.valueOf(((n01) obj).S);
-            case 4:
-                return Float.valueOf(((SecretMediaViewer) obj).getVideoCrossfadeAlpha());
-            case 5:
-                return Float.valueOf(((SecretMediaViewer) obj).getAnimationValue());
             default:
-                return Float.valueOf(((e51) obj).f35935a);
+                ((LaunchActivity) this.f37599c).z0(this.f37598b);
+                return;
         }
     }
 }

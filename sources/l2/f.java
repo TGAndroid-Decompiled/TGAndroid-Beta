@@ -13,15 +13,15 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class f implements y2.o {
-    public static final Pattern f15205a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
+    public static final Pattern f13835a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
 
     @Override
-    public final Object f2(Uri uri, g2.k kVar) {
+    public final Object n2(Uri uri, g2.k kVar) {
         long j3;
         long parseLong;
         String readLine = new BufferedReader(new InputStreamReader(kVar, StandardCharsets.UTF_8)).readLine();
         try {
-            Matcher matcher = f15205a.matcher(readLine);
+            Matcher matcher = f13835a.matcher(readLine);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
@@ -45,8 +45,8 @@ public final class f implements y2.o {
                 return Long.valueOf(time);
             }
             throw s0.b("Couldn't parse timestamp: " + readLine, null);
-        } catch (ParseException e7) {
-            throw s0.b(null, e7);
+        } catch (ParseException e) {
+            throw s0.b(null, e);
         }
     }
 }

@@ -3,18 +3,19 @@ package m;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import w7.l6;
+import org.telegram.ui.Cells.ia;
+import w7.o6;
 public final class t {
-    public final TextView f15667a;
-    public final l.d f15668b;
+    public final TextView f14322a;
+    public final ia f14323b;
 
     public t(TextView textView) {
-        this.f15667a = textView;
-        this.f15668b = new l.d(textView);
+        this.f14322a = textView;
+        this.f14323b = new ia(textView);
     }
 
     public final void a(AttributeSet attributeSet, int i10) {
-        TypedArray obtainStyledAttributes = this.f15667a.getContext().obtainStyledAttributes(attributeSet, f.a.f9143i, i10, 0);
+        TypedArray obtainStyledAttributes = this.f14322a.getContext().obtainStyledAttributes(attributeSet, f.a.f8771i, i10, 0);
         try {
             boolean z10 = true;
             if (obtainStyledAttributes.hasValue(14)) {
@@ -29,10 +30,10 @@ public final class t {
     }
 
     public final void b(boolean z10) {
-        ((l6) this.f15668b.f15072b).b(z10);
+        ((o6) this.f14323b.f20291b).b(z10);
     }
 
     public final void c(boolean z10) {
-        ((l6) this.f15668b.f15072b).c(z10);
+        ((o6) this.f14323b.f20291b).c(z10);
     }
 }

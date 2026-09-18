@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 public final class vd0 {
-    public float f31202a;
-    public float f31203b;
-    public float f31204c;
+    public float f28689a;
+    public float f28690b;
+    public float f28691c;
     public float d;
-    public float f31205e;
-    public float f31206f;
+    public float e;
+    public float f28692f;
 }

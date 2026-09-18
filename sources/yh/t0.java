@@ -1,21 +1,49 @@
 package yh;
 
-import android.view.View;
-import org.telegram.ui.Components.o5;
-public final class t0 implements View.OnAttachStateChangeListener {
-    public final o5 f50550a;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class t0 implements Runnable {
+    public final int f47839a = 0;
+    public final a4 f47840b;
+    public final TLRPC.TL_error f47841c;
+    public final TwoStepVerificationActivity d;
+    public final TLObject e;
 
-    public t0(o5 o5Var) {
-        this.f50550a = o5Var;
+    public t0(a4 a4Var, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) {
+        this.f47840b = a4Var;
+        this.f47841c = tL_error;
+        this.e = tLObject;
+        this.d = twoStepVerificationActivity;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f50550a.a();
+    public final void run() {
+        switch (this.f47839a) {
+            case 0:
+                a4 a4Var = this.f47840b;
+                a4Var.getClass();
+                if (this.f47841c == null) {
+                    TL_account.Password password = (TL_account.Password) this.e;
+                    TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+                    twoStepVerificationActivity.I = password;
+                    TwoStepVerificationActivity.m0(password);
+                    a4Var.M1(twoStepVerificationActivity.l0(), twoStepVerificationActivity);
+                    return;
+                }
+                return;
+            default:
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.d;
+                a4.W0(this.f47840b, this.f47841c, this.e, twoStepVerificationActivity2);
+                return;
+        }
     }
 
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.f50550a.b();
+    public t0(a4 a4Var, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, TLObject tLObject) {
+        this.f47840b = a4Var;
+        this.f47841c = tL_error;
+        this.d = twoStepVerificationActivity;
+        this.e = tLObject;
     }
 }

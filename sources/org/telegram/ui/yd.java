@@ -1,165 +1,61 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
-import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public class yd extends LinearLayout {
-    public static float f43080b = 1.0f;
-    public final int f43081a;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class yd implements org.telegram.ui.ActionBar.b2, Utilities.Callback5, Utilities.Callback5Return {
+    public final le f39862a;
 
-    public yd(Context context, int i10) {
-        super(context);
-        this.f43081a = i10;
+    public yd(le leVar) {
+        this.f39862a = leVar;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        View childAt;
-        boolean z10;
-        boolean z11;
-        switch (this.f43081a) {
-            case 4:
-                if (getParent() instanceof org.telegram.ui.Components.zn0) {
-                    org.telegram.ui.Components.zn0 zn0Var = (org.telegram.ui.Components.zn0) getParent();
-                    canvas.save();
-                    LinearLayout linearLayout = zn0Var.f33190b;
-                    Path path = zn0Var.f33194n;
-                    if (view != null && org.telegram.ui.Components.zn0.e(view)) {
-                        int indexOfChild = linearLayout.indexOfChild(view);
-                        int i10 = indexOfChild - 1;
-                        View view2 = null;
-                        if (i10 < 0) {
-                            childAt = null;
-                        } else {
-                            childAt = linearLayout.getChildAt(i10);
-                        }
-                        boolean z12 = true;
-                        int i11 = indexOfChild + 1;
-                        if (i11 < linearLayout.getChildCount()) {
-                            view2 = linearLayout.getChildAt(i11);
-                        }
-                        if (childAt != null && org.telegram.ui.Components.zn0.e(childAt)) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        if (view2 != null && org.telegram.ui.Components.zn0.e(view2)) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        float x10 = view.getX();
-                        float max = Math.max(zn0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
-                        float x11 = view.getX() + view.getWidth();
-                        int height = zn0Var.getHeight();
-                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + zn0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
-                        if (z10 && z11) {
-                            if (view.getY() >= rectF.top) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            if (view.getY() + view.getHeight() > rectF.bottom) {
-                                z12 = false;
-                            }
-                            if (!z10 || !z12) {
-                                z11 = z12;
-                            }
-                        }
-                        if (!z10 && !z11) {
-                            path.rewind();
-                            float f7 = zn0Var.f33191c;
-                            path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
-                            canvas.clipPath(path);
-                        } else if (!z10) {
-                            path.rewind();
-                            path.addRoundRect(rectF, zn0Var.d, Path.Direction.CW);
-                            canvas.clipPath(path);
-                        } else if (!z11) {
-                            path.rewind();
-                            path.addRoundRect(rectF, zn0Var.f33192e, Path.Direction.CW);
-                            canvas.clipPath(path);
-                        }
-                    }
-                    boolean drawChild = super.drawChild(canvas, view, j3);
-                    canvas.restore();
-                    return drawChild;
-                }
-                return super.drawChild(canvas, view, j3);
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        this.f39862a.f35530w0.presentFragment(new ih1(6, null));
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f43081a) {
-            case 2:
-                super.onLayout(z10, i10, i11, i12, i13);
-                setPivotX(getWidth());
-                return;
-            case 3:
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-            case 4:
-                super.onLayout(z10, i10, i11, i12, i13);
-                if (getParent() instanceof org.telegram.ui.Components.zn0) {
-                    ((org.telegram.ui.Components.zn0) getParent()).invalidate();
-                    return;
-                }
-                return;
-        }
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        org.telegram.ui.Components.j51 j51Var = (org.telegram.ui.Components.j51) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        this.f39862a.getClass();
+        return Boolean.FALSE;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f43081a) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        le leVar = this.f39862a;
+        pd pdVar = leVar.f35529v1;
+        int i10 = leVar.f35533y0;
+        long j3 = leVar.f35534z0;
+        int i11 = ((org.telegram.ui.Components.j51) obj).d;
+        if (i11 != 1) {
+            if (i11 == 4) {
+                leVar.f35530w0.presentFragment(new ei.e4(j3));
+            }
+        } else if (leVar.B0 < MessagesController.getInstance(i10).channelRestrictSponsoredLevelMin) {
+            if (leVar.A0 == null) {
                 return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 2:
-            case 4:
-            case 5:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)), i11);
-                return;
-            case 6:
-                super.onMeasure(i10, i11);
-                setPivotY(0.0f);
-                setPivotX(0.0f);
-                return;
-            case 7:
-                super.onMeasure(i10, i11);
-                setPivotY(0.0f);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 8:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(800.0f)), 1073741824));
-                return;
-            case 9:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            case 10:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
+            }
+            ab1 ab1Var = leVar.f35530w0;
+            rg.j0 j0Var = new rg.j0(30, leVar.f35533y0, leVar.getContext(), ab1Var, leVar.f35532x0);
+            j0Var.H1(j3);
+            j0Var.F1(leVar.A0, true);
+            MessagesController.getInstance(i10).getBoostsController().userCanBoostChannel(j3, leVar.A0, new ai.g3(5, leVar, j0Var));
+        } else {
+            leVar.f35520m1 = !leVar.f35520m1;
+            AndroidUtilities.cancelRunOnUIThread(pdVar);
+            AndroidUtilities.runOnUIThread(pdVar, 1000L);
+            leVar.f35509a1.Y2.N(true);
         }
-    }
-
-    public yd(Context context) {
-        super(context);
-        this.f43081a = 4;
-        setWillNotDraw(false);
     }
 }

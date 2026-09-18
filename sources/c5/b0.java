@@ -15,27 +15,28 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertController$RecycleListView;
 import b2.q0;
 import com.google.android.gms.internal.play_billing.h4;
+import hg.k0;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 public final class b0 implements r2.u {
-    public final int f4345a;
-    public int f4346b;
-    public Object f4347c;
+    public final int f3845a;
+    public int f3846b;
+    public Object f3847c;
 
     public b0(char c10, int i10) {
-        this.f4345a = i10;
+        this.f3845a = i10;
     }
 
     @Override
-    public boolean K0() {
-        return true;
+    public boolean Z(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureRequired(str);
     }
 
     public Object a() {
-        Object[] objArr = (Object[]) this.f4347c;
-        int i10 = this.f4346b;
+        Object[] objArr = (Object[]) this.f3847c;
+        int i10 = this.f3846b;
         if (i10 <= 0) {
             return null;
         }
@@ -43,135 +44,143 @@ public final class b0 implements r2.u {
         Object obj = objArr[i11];
         kotlin.jvm.internal.i.c(obj, "null cannot be cast to non-null type T of androidx.core.util.Pools.SimplePool");
         objArr[i11] = null;
-        this.f4346b--;
+        this.f3846b--;
         return obj;
     }
 
-    @Override
-    public MediaCodecInfo b(int i10) {
-        if (((MediaCodecInfo[]) this.f4347c) == null) {
-            this.f4347c = new MediaCodecList(this.f4346b).getCodecInfos();
+    public void b(long j3) {
+        int i10 = this.f3846b;
+        long[] jArr = (long[]) this.f3847c;
+        if (i10 == jArr.length) {
+            this.f3847c = Arrays.copyOf(jArr, i10 * 2);
         }
-        return ((MediaCodecInfo[]) this.f4347c)[i10];
+        int i11 = this.f3846b;
+        this.f3846b = i11 + 1;
+        ((long[]) this.f3847c)[i11] = j3;
     }
 
-    public void c(long j3) {
-        int i10 = this.f4346b;
-        long[] jArr = (long[]) this.f4347c;
-        if (i10 == jArr.length) {
-            this.f4347c = Arrays.copyOf(jArr, i10 * 2);
+    @Override
+    public MediaCodecInfo c(int i10) {
+        if (((MediaCodecInfo[]) this.f3847c) == null) {
+            this.f3847c = new MediaCodecList(this.f3846b).getCodecInfos();
         }
-        int i11 = this.f4346b;
-        this.f4346b = i11 + 1;
-        ((long[]) this.f4347c)[i11] = j3;
+        return ((MediaCodecInfo[]) this.f3847c)[i10];
     }
 
     public void d(long[] jArr) {
-        int length = this.f4346b + jArr.length;
-        long[] jArr2 = (long[]) this.f4347c;
+        int length = this.f3846b + jArr.length;
+        long[] jArr2 = (long[]) this.f3847c;
         if (length > jArr2.length) {
-            this.f4347c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
+            this.f3847c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
         }
-        System.arraycopy(jArr, 0, (long[]) this.f4347c, this.f4346b, jArr.length);
-        this.f4346b = length;
+        System.arraycopy(jArr, 0, (long[]) this.f3847c, this.f3846b, jArr.length);
+        this.f3846b = length;
     }
 
     public g.g e() {
         int i10;
         Message message;
-        g.c cVar = (g.c) this.f4347c;
-        g.g gVar = new g.g(cVar.f10163a, this.f4346b);
-        View view = cVar.f10166e;
-        g.f fVar = gVar.f10199f;
+        g.c cVar = (g.c) this.f3847c;
+        g.g gVar = new g.g(cVar.f9228a, this.f3846b);
+        View view = cVar.e;
+        g.f fVar = gVar.f9262f;
         if (view != null) {
-            fVar.f10191r = view;
+            fVar.f9254r = view;
         } else {
             CharSequence charSequence = cVar.d;
             if (charSequence != null) {
                 fVar.d = charSequence;
-                TextView textView = fVar.f10189p;
+                TextView textView = fVar.f9252p;
                 if (textView != null) {
                     textView.setText(charSequence);
                 }
             }
-            Drawable drawable = cVar.f10165c;
+            Drawable drawable = cVar.f9230c;
             if (drawable != null) {
-                fVar.f10187n = drawable;
-                ImageView imageView = fVar.f10188o;
+                fVar.f9250n = drawable;
+                ImageView imageView = fVar.f9251o;
                 if (imageView != null) {
                     imageView.setVisibility(0);
-                    fVar.f10188o.setImageDrawable(drawable);
+                    fVar.f9251o.setImageDrawable(drawable);
                 }
             }
         }
-        CharSequence charSequence2 = cVar.f10167f;
+        CharSequence charSequence2 = cVar.f9231f;
         if (charSequence2 != null) {
-            androidx.biometric.x xVar = cVar.f10168g;
+            androidx.biometric.w wVar = cVar.f9232g;
             fVar.getClass();
-            if (xVar != null) {
-                message = fVar.f10198z.obtainMessage(-2, xVar);
+            if (wVar != null) {
+                message = fVar.f9261z.obtainMessage(-2, wVar);
             } else {
                 message = null;
             }
-            fVar.f10183j = charSequence2;
-            fVar.f10184k = message;
+            fVar.f9246j = charSequence2;
+            fVar.f9247k = message;
         }
-        if (cVar.f10169i != null) {
-            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) cVar.f10164b.inflate(fVar.v, (ViewGroup) null);
-            if (cVar.f10172l) {
-                i10 = fVar.f10195w;
+        if (cVar.f9233i != null) {
+            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) cVar.f9229b.inflate(fVar.v, (ViewGroup) null);
+            if (cVar.f9236l) {
+                i10 = fVar.f9258w;
             } else {
-                i10 = fVar.f10196x;
+                i10 = fVar.f9259x;
             }
-            Object obj = cVar.f10169i;
+            Object obj = cVar.f9233i;
             ArrayAdapter arrayAdapter = obj;
             if (obj == null) {
-                arrayAdapter = new ArrayAdapter(cVar.f10163a, i10, 16908308, (Object[]) null);
+                arrayAdapter = new ArrayAdapter(cVar.f9228a, i10, 16908308, (Object[]) null);
             }
-            fVar.f10192s = arrayAdapter;
-            fVar.f10193t = cVar.f10173m;
-            if (cVar.f10170j != null) {
+            fVar.f9255s = arrayAdapter;
+            fVar.f9256t = cVar.f9237m;
+            if (cVar.f9234j != null) {
                 alertController$RecycleListView.setOnItemClickListener(new g.b(cVar, fVar));
             }
-            if (cVar.f10172l) {
+            if (cVar.f9236l) {
                 alertController$RecycleListView.setChoiceMode(1);
             }
-            fVar.f10179e = alertController$RecycleListView;
+            fVar.e = alertController$RecycleListView;
         }
-        View view2 = cVar.f10171k;
+        View view2 = cVar.f9235k;
         if (view2 != null) {
-            fVar.f10180f = view2;
-            fVar.f10181g = false;
+            fVar.f9243f = view2;
+            fVar.f9244g = false;
         }
         gVar.setCancelable(true);
         gVar.setCanceledOnTouchOutside(true);
         gVar.setOnCancelListener(null);
         gVar.setOnDismissListener(null);
-        l.m mVar = cVar.h;
-        if (mVar != null) {
-            gVar.setOnKeyListener(mVar);
+        l.l lVar = cVar.h;
+        if (lVar != null) {
+            gVar.setOnKeyListener(lVar);
         }
         return gVar;
     }
 
     public long f(int i10) {
-        if (i10 >= 0 && i10 < this.f4346b) {
-            return ((long[]) this.f4347c)[i10];
+        if (i10 >= 0 && i10 < this.f3846b) {
+            return ((long[]) this.f3847c)[i10];
         }
-        StringBuilder l4 = i2.g.l(i10, "Invalid index ", ", size is ");
-        l4.append(this.f4346b);
+        StringBuilder l4 = k0.l(i10, "Invalid index ", ", size is ");
+        l4.append(this.f3846b);
         throw new IndexOutOfBoundsException(l4.toString());
     }
 
     public synchronized List g() {
-        return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f4347c));
+        return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f3847c));
+    }
+
+    @Override
+    public int g0() {
+        if (((MediaCodecInfo[]) this.f3847c) == null) {
+            this.f3847c = new MediaCodecList(this.f3846b).getCodecInfos();
+        }
+        return ((MediaCodecInfo[]) this.f3847c).length;
     }
 
     public long h(c3.l lVar) {
-        e2.v vVar = (e2.v) this.f4347c;
+        e2.v vVar = (e2.v) this.f3847c;
         int i10 = 0;
-        lVar.j(vVar.f8789a, 0, 1, false);
-        int i11 = vVar.f8789a[0] & 255;
+        lVar.h(vVar.f7934a, 0, 1, false);
+        int i11 = vVar.f7934a[0] & 255;
         if (i11 == 0) {
             return Long.MIN_VALUE;
         }
@@ -182,35 +191,35 @@ public final class b0 implements r2.u {
             i13++;
         }
         int i14 = i11 & (~i12);
-        lVar.j(vVar.f8789a, 1, i13, false);
+        lVar.h(vVar.f7934a, 1, i13, false);
         while (i10 < i13) {
             i10++;
-            i14 = (vVar.f8789a[i10] & 255) + (i14 << 8);
+            i14 = (vVar.f7934a[i10] & 255) + (i14 << 8);
         }
-        this.f4346b = i13 + 1 + this.f4346b;
+        this.f3846b = i13 + 1 + this.f3846b;
         return i14;
     }
 
     public void i(Object instance) {
-        Object[] objArr = (Object[]) this.f4347c;
+        Object[] objArr = (Object[]) this.f3847c;
         kotlin.jvm.internal.i.e(instance, "instance");
-        int i10 = this.f4346b;
+        int i10 = this.f3846b;
         for (int i11 = 0; i11 < i10; i11++) {
             if (objArr[i11] == instance) {
                 throw new IllegalStateException("Already in the pool!");
             }
         }
-        int i12 = this.f4346b;
+        int i12 = this.f3846b;
         if (i12 < objArr.length) {
             objArr[i12] = instance;
-            this.f4346b = i12 + 1;
+            this.f3846b = i12 + 1;
         }
     }
 
     public String j(h4 h4Var) {
         String str;
-        d0 d0Var = (d0) this.f4347c;
-        int i10 = this.f4346b;
+        d0 d0Var = (d0) this.f3847c;
+        int i10 = this.f3846b;
         try {
             if (d0Var.E != null) {
                 com.google.android.gms.internal.play_billing.g gVar = d0Var.E;
@@ -241,113 +250,105 @@ public final class b0 implements r2.u {
                 Parcel U0 = eVar.U0();
                 U0.writeString(packageName);
                 U0.writeString(str);
-                int i11 = com.google.android.gms.internal.play_billing.d.f5747a;
+                int i11 = com.google.android.gms.internal.play_billing.d.f6759a;
                 U0.writeStrongBinder(c0Var);
-                eVar.f324b.transact(1, U0, null, 1);
+                eVar.f315b.transact(1, U0, null, 1);
                 U0.recycle();
                 return "billingOverrideService.getBillingOverride";
             }
             throw null;
-        } catch (Exception e7) {
-            d0Var.F(95, 28, g0.f4396p);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e7);
+        } catch (Exception e) {
+            d0Var.F(95, 28, g0.f3893p);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e);
             h4Var.a(0);
             return "billingOverrideService.getBillingOverride";
         }
     }
 
     @Override
-    public boolean p(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        return codecCapabilities.isFeatureSupported(str);
-    }
-
-    @Override
-    public boolean q0(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        return codecCapabilities.isFeatureRequired(str);
-    }
-
-    @Override
-    public int r0() {
-        if (((MediaCodecInfo[]) this.f4347c) == null) {
-            this.f4347c = new MediaCodecList(this.f4346b).getCodecInfos();
-        }
-        return ((MediaCodecInfo[]) this.f4347c).length;
+    public boolean p0() {
+        return true;
     }
 
     public String toString() {
-        switch (this.f4345a) {
+        switch (this.f3845a) {
             case 5:
-                return new String((char[]) this.f4347c, 0, this.f4346b);
+                return new String((char[]) this.f3847c, 0, this.f3846b);
             default:
                 return super.toString();
         }
     }
 
+    @Override
+    public boolean v(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported(str);
+    }
+
     public b0(Object obj, int i10, int i11) {
-        this.f4345a = i11;
-        this.f4347c = obj;
-        this.f4346b = i10;
+        this.f3845a = i11;
+        this.f3847c = obj;
+        this.f3846b = i10;
     }
 
     public b0(k6.a aVar, int i10) {
-        this.f4345a = 1;
+        this.f3845a = 1;
         n6.l.h(aVar);
-        this.f4347c = aVar;
-        this.f4346b = i10;
+        this.f3847c = aVar;
+        this.f3846b = i10;
     }
 
     public b0(int i10, byte b10) {
         this(32, 2);
-        this.f4345a = i10;
+        this.f3845a = i10;
         switch (i10) {
             case 8:
-                this.f4347c = new e2.v(8);
+                this.f3847c = new e2.v(8);
                 return;
             case 9:
             case 11:
             default:
                 return;
             case 10:
-                this.f4347c = new ArrayList();
-                this.f4346b = 128;
+                this.f3847c = new ArrayList();
+                this.f3846b = 128;
                 return;
             case 12:
-                this.f4346b = 0;
-                this.f4347c = new StringBuilder();
+                this.f3846b = 0;
+                this.f3847c = new StringBuilder();
                 return;
         }
     }
 
     public b0(int i10, int i11) {
-        this.f4345a = i11;
+        this.f3845a = i11;
         switch (i11) {
             case 6:
                 if (i10 > 0) {
-                    this.f4347c = new Object[i10];
+                    this.f3847c = new Object[i10];
                     return;
                 }
                 throw new IllegalArgumentException("The max pool size must be > 0");
             default:
-                this.f4347c = new long[i10];
+                this.f3847c = new long[i10];
                 return;
         }
     }
 
     public b0(int i10, q0[] q0VarArr) {
-        this.f4345a = 4;
-        this.f4346b = i10;
-        this.f4347c = q0VarArr;
+        this.f3845a = 4;
+        this.f3846b = i10;
+        this.f3847c = q0VarArr;
     }
 
     public b0(Context context) {
-        this.f4345a = 3;
-        int e7 = g.g.e(context, 0);
-        this.f4347c = new g.c(new ContextThemeWrapper(context, g.g.e(context, e7)));
-        this.f4346b = e7;
+        this.f3845a = 3;
+        int e = g.g.e(context, 0);
+        this.f3847c = new g.c(new ContextThemeWrapper(context, g.g.e(context, e)));
+        this.f3846b = e;
     }
 
     public b0(boolean z10, boolean z11, boolean z12) {
-        this.f4345a = 7;
-        this.f4346b = (z10 || z11 || z12) ? 1 : 0;
+        this.f3845a = 7;
+        this.f3846b = (z10 || z11 || z12) ? 1 : 0;
     }
 }

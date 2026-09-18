@@ -1,10 +1,10 @@
 package bc;
 public final class b {
-    public final c f2574a;
-    public final qb.d f2575b;
+    public final c f3493a;
+    public final qb.d f3494b;
 
     public b(c cVar, qb.d dVar) {
-        this.f2574a = cVar;
-        this.f2575b = dVar;
+        this.f3493a = cVar;
+        this.f3494b = dVar;
     }
 }

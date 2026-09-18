@@ -1,52 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-public final class jd1 extends su0 {
-    public final MediaController.PhotoEntry f37752a;
-    public final kd1 f37753b;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class jd1 extends org.telegram.ui.Components.iq0 {
+    public final ld1 f34855b1;
 
-    public jd1(kd1 kd1Var, MediaController.PhotoEntry photoEntry) {
-        this.f37753b = kd1Var;
-        this.f37752a = photoEntry;
+    public jd1(ld1 ld1Var, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.f34855b1 = ld1Var;
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        wd1 wd1Var = this.f37753b.f38011a;
-        MediaController.PhotoEntry photoEntry = this.f37752a;
-        if (photoEntry.imagePath != null) {
-            File directory = FileLoader.getDirectory(4);
-            File file = new File(directory, Utilities.random.nextInt() + ".jpg");
-            Point realScreenSize = AndroidUtilities.getRealScreenSize();
-            Bitmap loadBitmap = ImageLoader.loadBitmap(photoEntry.imagePath, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-            try {
-                loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-            } catch (FileNotFoundException e7) {
-                e7.printStackTrace();
-            }
-            File file2 = new File(photoEntry.imagePath);
-            wd1Var.B1 = new hj1(file2, file2, "");
-            wd1Var.C1 = loadBitmap;
-            wd1Var.f41921b2 = 0;
-            wd1Var.f41978x0.requestLayout();
-            wd1Var.b1(false);
-            wd1Var.f41976w1 = null;
-            wd1Var.i1();
+    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+        int m10 = iVar.m();
+        ld1 ld1Var = this.f34855b1;
+        if (m10 == 1) {
+            ld1Var.f35506a.f39571l0.m(((TLRPC.Dialog) iVar.n(0)).f18125id, Integer.valueOf(i10), 61);
+        } else {
+            ld1Var.f35506a.f39571l0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+        }
     }
 }

@@ -73,8 +73,8 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             }
             try {
                 mediaCodecInfo = MediaCodecList.getCodecInfoAt(i10);
-            } catch (IllegalArgumentException e7) {
-                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e7);
+            } catch (IllegalArgumentException e) {
+                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e);
             }
             if (mediaCodecInfo != null && mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
                 return mediaCodecInfo;

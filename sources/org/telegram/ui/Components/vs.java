@@ -2,78 +2,56 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
 public final class vs extends AnimatorListenerAdapter {
-    public final int f31972a = 1;
-    public final s4.c1 f31973b;
-    public final View f31974c;
-    public final ViewPropertyAnimator d;
-    public final zs f31975e;
+    public final int f29398a;
+    public final s4.c1 f29399b;
+    public final org.telegram.ui.Cells.r2 f29400c;
+    public final at d;
 
-    public vs(zs zsVar, s4.c1 c1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.f31975e = zsVar;
-        this.f31973b = c1Var;
-        this.d = viewPropertyAnimator;
-        this.f31974c = view;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f31972a) {
-            case 1:
-                this.f31974c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public vs(at atVar, s4.c1 c1Var, org.telegram.ui.Cells.r2 r2Var, int i10) {
+        this.f29398a = i10;
+        this.d = atVar;
+        this.f29399b = c1Var;
+        this.f29400c = r2Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f31972a) {
+        switch (this.f29398a) {
             case 0:
-                this.d.setListener(null);
-                this.f31974c.setAlpha(1.0f);
-                zs zsVar = this.f31975e;
-                s4.c1 c1Var = this.f31973b;
-                zsVar.d(c1Var);
-                zsVar.f33225x.remove(c1Var);
-                zsVar.A();
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.r2 r2Var = this.f29400c;
+                r2Var.setClipProgress(0.0f);
+                r2Var.setElevation(0.0f);
+                at atVar = this.d;
+                s4.c1 c1Var = this.f29399b;
+                atVar.d(c1Var);
+                atVar.f22482x.remove(c1Var);
+                atVar.A();
                 return;
             default:
-                this.d.setListener(null);
-                zs zsVar2 = this.f31975e;
-                s4.c1 c1Var2 = this.f31973b;
-                zsVar2.u(c1Var2);
-                zsVar2.v.remove(c1Var2);
-                zsVar2.A();
-                View view = c1Var2.f45739a;
-                if (view instanceof org.telegram.ui.Cells.r2) {
-                    ((org.telegram.ui.Cells.r2) view).setMoving(false);
-                    return;
-                }
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.r2 r2Var2 = this.f29400c;
+                r2Var2.setClipProgress(0.0f);
+                r2Var2.setElevation(0.0f);
+                at atVar2 = this.d;
+                s4.c1 c1Var2 = this.f29399b;
+                atVar2.d(c1Var2);
+                atVar2.f22482x.remove(c1Var2);
+                atVar2.A();
                 return;
         }
     }
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f31972a) {
+        switch (this.f29398a) {
             case 0:
-                this.f31975e.y();
+                this.d.y();
                 return;
             default:
-                this.f31975e.getClass();
+                this.d.y();
                 return;
         }
-    }
-
-    public vs(zs zsVar, s4.c1 c1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.f31975e = zsVar;
-        this.f31973b = c1Var;
-        this.f31974c = view;
-        this.d = viewPropertyAnimator;
     }
 }

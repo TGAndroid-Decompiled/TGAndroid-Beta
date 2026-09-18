@@ -1,36 +1,8 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ax extends ImageView {
-    public final kz f24465a;
-
-    public ax(kz kzVar, Context context) {
-        super(context);
-        this.f24465a = kzVar;
-    }
-
+import android.view.View;
+public final class ax implements View.OnClickListener {
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ly lyVar;
-        int action = motionEvent.getAction();
-        kz kzVar = this.f24465a;
-        if (action == 0) {
-            kzVar.P1 = true;
-            kzVar.Q1 = false;
-            AndroidUtilities.runOnUIThread(new m8(kzVar, 350, 4), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            kzVar.P1 = false;
-            if (!kzVar.Q1 && (lyVar = kzVar.f27987t1) != null && lyVar.k()) {
-                try {
-                    kzVar.f27999x.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-            }
-        }
-        super.onTouchEvent(motionEvent);
-        return true;
+    public final void onClick(View view) {
     }
 }

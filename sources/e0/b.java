@@ -27,13 +27,12 @@ import android.widget.CompoundButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.core.graphics.drawable.IconCompat;
-import di.g7;
+import ci.g7;
 import java.io.InputStream;
 import java.math.RoundingMode;
 import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
-import ji.u4;
 import m.z0;
 import org.telegram.messenger.FileLog;
 public abstract class b {
@@ -61,12 +60,12 @@ public abstract class b {
         popupWindow.setOverlapAnchor(z10);
     }
 
-    public static void G(AudioTrack audioTrack, u4 u4Var) {
+    public static void G(AudioTrack audioTrack, a6.m mVar) {
         AudioDeviceInfo audioDeviceInfo;
-        if (u4Var == null) {
+        if (mVar == null) {
             audioDeviceInfo = null;
         } else {
-            audioDeviceInfo = (AudioDeviceInfo) u4Var.f14221b;
+            audioDeviceInfo = (AudioDeviceInfo) mVar.f307b;
         }
         audioTrack.setPreferredDevice(audioDeviceInfo);
     }
@@ -77,30 +76,30 @@ public abstract class b {
 
     public static Icon I(IconCompat iconCompat, Context context) {
         Icon createWithBitmap;
-        switch (iconCompat.f1168a) {
+        switch (iconCompat.f2168a) {
             case -1:
-                return (Icon) iconCompat.f1169b;
+                return (Icon) iconCompat.f2169b;
             case 0:
             default:
                 throw new IllegalArgumentException("Unknown type");
             case 1:
-                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f1169b);
+                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f2169b);
                 break;
             case 2:
-                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.f1171e);
+                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.e);
                 break;
             case 3:
-                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f1169b, iconCompat.f1171e, iconCompat.f1172f);
+                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f2169b, iconCompat.e, iconCompat.f2171f);
                 break;
             case 4:
-                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f1169b);
+                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f2169b);
                 break;
             case 5:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    createWithBitmap = c2.d.c((Bitmap) iconCompat.f1169b);
+                    createWithBitmap = c2.d.c((Bitmap) iconCompat.f2169b);
                     break;
                 } else {
-                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f1169b, false));
+                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f2169b, false));
                     break;
                 }
             case 6:
@@ -125,12 +124,12 @@ public abstract class b {
                     throw new IllegalArgumentException("Context is required to resolve the file uri of the icon: " + iconCompat.j());
                 }
         }
-        ColorStateList colorStateList = iconCompat.f1173g;
+        ColorStateList colorStateList = iconCompat.f2172g;
         if (colorStateList != null) {
             createWithBitmap.setTintList(colorStateList);
         }
         PorterDuff.Mode mode = iconCompat.h;
-        if (mode != IconCompat.f1167k) {
+        if (mode != IconCompat.f2167k) {
             createWithBitmap.setTintMode(mode);
         }
         return createWithBitmap;
@@ -174,8 +173,8 @@ public abstract class b {
             return null;
         }
         Mac mac = (Mac) aVar.d;
-        Signature signature = (Signature) aVar.f371b;
-        Cipher cipher = (Cipher) aVar.f372c;
+        Signature signature = (Signature) aVar.f359b;
+        Cipher cipher = (Cipher) aVar.f360c;
         if (cipher != null) {
             return new FingerprintManager.CryptoObject(cipher);
         }
@@ -196,13 +195,13 @@ public abstract class b {
         return new Notification.Action.Builder(icon, charSequence, pendingIntent);
     }
 
-    public static long c(AudioTrack audioTrack, k2.v vVar) {
+    public static long c(AudioTrack audioTrack, k2.x xVar) {
         boolean z10;
-        if (vVar.f14677c == 0) {
-            return e2.d0.W(vVar.f14678e, audioTrack.getBufferSizeInFrames());
+        if (xVar.f13391c == 0) {
+            return e2.d0.W(xVar.e, audioTrack.getBufferSizeInFrames());
         }
         long bufferSizeInFrames = audioTrack.getBufferSizeInFrames();
-        int i10 = c3.b.i(vVar.f14680g);
+        int i10 = c3.b.i(xVar.f13393g);
         if (i10 != -2147483647) {
             z10 = true;
         } else {
@@ -258,8 +257,8 @@ public abstract class b {
                 return false;
             }
             return a2.hasEnrolledFingerprints();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return false;
         }
     }
@@ -272,27 +271,27 @@ public abstract class b {
         return textPaint.hasGlyph(str);
     }
 
-    public static boolean o(AudioManager audioManager, u4 u4Var) {
+    public static boolean o(AudioManager audioManager, a6.m mVar) {
         AudioDeviceInfo[] audioDeviceInfoArr;
-        if (u4Var == null) {
+        if (mVar == null) {
             audioManager.getClass();
             audioDeviceInfoArr = audioManager.getDevices(2);
         } else {
-            audioDeviceInfoArr = new AudioDeviceInfo[]{(AudioDeviceInfo) u4Var.f14221b};
+            audioDeviceInfoArr = new AudioDeviceInfo[]{(AudioDeviceInfo) mVar.f307b};
         }
         ?? wVar = new com.google.android.gms.common.api.internal.w(4);
         Integer[] numArr = {8, 7};
         e9.q.d(2, numArr);
         wVar.g(2);
-        System.arraycopy(numArr, 0, wVar.f5120c, wVar.f5118a, 2);
-        wVar.f5118a += 2;
+        System.arraycopy(numArr, 0, wVar.f6186c, wVar.f6184a, 2);
+        wVar.f6184a += 2;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 31) {
             Integer[] numArr2 = {26, 27};
             e9.q.d(2, numArr2);
             wVar.g(2);
-            System.arraycopy(numArr2, 0, wVar.f5120c, wVar.f5118a, 2);
-            wVar.f5118a += 2;
+            System.arraycopy(numArr2, 0, wVar.f6186c, wVar.f6184a, 2);
+            wVar.f6184a += 2;
         }
         if (i10 >= 33) {
             wVar.b(30);
@@ -313,8 +312,8 @@ public abstract class b {
                 return false;
             }
             return a2.isHardwareDetected();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return false;
         }
     }
@@ -324,7 +323,7 @@ public abstract class b {
     }
 
     public static boolean r(Throwable th2) {
-        return j2.e.g(th2);
+        return j2.e.f(th2);
     }
 
     public static int s(AppOpsManager appOpsManager, String str, String str2) {
@@ -344,44 +343,44 @@ public abstract class b {
     }
 
     public static void w(k2.p pVar, Object obj) {
-        u4 u4Var;
-        AudioDeviceInfo d = j2.e.d(obj);
-        k2.d0 d0Var = (k2.d0) pVar;
-        if (d == null) {
-            u4Var = null;
+        a6.m mVar;
+        AudioDeviceInfo b10 = j2.e.b(obj);
+        k2.g0 g0Var = (k2.g0) pVar;
+        if (b10 == null) {
+            mVar = null;
         } else {
-            d0Var.getClass();
-            u4Var = new u4(d, 1);
+            g0Var.getClass();
+            mVar = new a6.m(b10, 29);
         }
-        d0Var.f14536c0 = u4Var;
-        g7 g7Var = d0Var.f14566z;
+        g0Var.f13264c0 = mVar;
+        g7 g7Var = g0Var.f13293z;
         if (g7Var != null) {
-            g7Var.c(d);
+            g7Var.c(b10);
         }
-        AudioTrack audioTrack = d0Var.f14564x;
+        AudioTrack audioTrack = g0Var.f13291x;
         if (audioTrack != null) {
-            G(audioTrack, d0Var.f14536c0);
+            G(audioTrack, g0Var.f13264c0);
         }
     }
 
     public static void x(k2.p pVar, Object obj) {
-        u4 u4Var;
-        AudioDeviceInfo d = j2.e.d(obj);
-        k2.d0 d0Var = (k2.d0) pVar;
-        if (d == null) {
-            u4Var = null;
+        a6.m mVar;
+        AudioDeviceInfo b10 = j2.e.b(obj);
+        k2.g0 g0Var = (k2.g0) pVar;
+        if (b10 == null) {
+            mVar = null;
         } else {
-            d0Var.getClass();
-            u4Var = new u4(d, 1);
+            g0Var.getClass();
+            mVar = new a6.m(b10, 29);
         }
-        d0Var.f14536c0 = u4Var;
-        g7 g7Var = d0Var.f14566z;
+        g0Var.f13264c0 = mVar;
+        g7 g7Var = g0Var.f13293z;
         if (g7Var != null) {
-            g7Var.c(d);
+            g7Var.c(b10);
         }
-        AudioTrack audioTrack = d0Var.f14564x;
+        AudioTrack audioTrack = g0Var.f13291x;
         if (audioTrack != null) {
-            G(audioTrack, d0Var.f14536c0);
+            G(audioTrack, g0Var.f13264c0);
         }
     }
 

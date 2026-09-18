@@ -10,10 +10,10 @@ public final class e extends f implements j0.b {
     public int H;
     public int I;
     public boolean J;
-    public b f11411y;
+    public b f10580y;
 
     public e(b bVar, Resources resources) {
-        this.f11416e = 255;
+        this.e = 255;
         this.h = -1;
         this.H = -1;
         this.I = -1;
@@ -34,24 +34,24 @@ public final class e extends f implements j0.b {
 
     @Override
     public final void d(b bVar) {
-        this.f11413a = bVar;
+        this.f10582a = bVar;
         int i10 = this.h;
         if (i10 >= 0) {
             Drawable d = bVar.d(i10);
-            this.f11415c = d;
+            this.f10584c = d;
             if (d != null) {
                 b(d);
             }
         }
         this.d = null;
-        this.f11411y = bVar;
+        this.f10580y = bVar;
         this.F = bVar;
     }
 
     public final Drawable f() {
         if (!this.E) {
             super.mutate();
-            b bVar = this.f11411y;
+            b bVar = this.f10580y;
             bVar.I = bVar.I.clone();
             bVar.J = bVar.J.clone();
             this.E = true;

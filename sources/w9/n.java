@@ -3,51 +3,52 @@ package w9;
 import android.util.Log;
 import java.io.File;
 import java.util.concurrent.Callable;
+import n7.a1;
 public final class n implements Callable {
-    public final int f48418a;
-    public final o f48419b;
+    public final int f44978a;
+    public final o f44979b;
 
     public n(o oVar, int i10) {
-        this.f48418a = i10;
-        this.f48419b = oVar;
+        this.f44978a = i10;
+        this.f44979b = oVar;
     }
 
     @Override
     public final Object call() {
-        switch (this.f48418a) {
+        switch (this.f44978a) {
             case 0:
                 try {
-                    o0.a aVar = this.f48419b.d;
-                    ba.c cVar = (ba.c) aVar.f16770c;
+                    a1 a1Var = this.f44979b.d;
+                    ba.c cVar = (ba.c) a1Var.f15119c;
                     cVar.getClass();
-                    boolean delete = new File(cVar.f2527b, (String) aVar.f16769b).delete();
+                    boolean delete = new File(cVar.f3452b, (String) a1Var.f15118b).delete();
                     if (!delete) {
                         Log.w("FirebaseCrashlytics", "Initialization marker file was not properly removed.", null);
                     }
                     return Boolean.valueOf(delete);
-                } catch (Exception e7) {
-                    Log.e("FirebaseCrashlytics", "Problem encountered deleting Crashlytics initialization marker.", e7);
+                } catch (Exception e) {
+                    Log.e("FirebaseCrashlytics", "Problem encountered deleting Crashlytics initialization marker.", e);
                     return Boolean.FALSE;
                 }
             default:
-                m mVar = this.f48419b.f48424f;
-                o0.a aVar2 = mVar.f48405c;
-                ba.c cVar2 = (ba.c) aVar2.f16770c;
-                String str = (String) aVar2.f16769b;
+                m mVar = this.f44979b.f44983f;
+                a1 a1Var2 = mVar.f44966c;
+                ba.c cVar2 = (ba.c) a1Var2.f15119c;
+                String str = (String) a1Var2.f15118b;
                 cVar2.getClass();
                 boolean z10 = true;
-                if (!new File(cVar2.f2527b, str).exists()) {
-                    String e10 = mVar.e();
-                    if (e10 == null || !mVar.f48410j.c(e10)) {
+                if (!new File(cVar2.f3452b, str).exists()) {
+                    String e7 = mVar.e();
+                    if (e7 == null || !mVar.f44970j.c(e7)) {
                         z10 = false;
                     }
                 } else {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Found previous crash marker.", null);
                     }
-                    ba.c cVar3 = (ba.c) aVar2.f16770c;
+                    ba.c cVar3 = (ba.c) a1Var2.f15119c;
                     cVar3.getClass();
-                    new File(cVar3.f2527b, str).delete();
+                    new File(cVar3.f3452b, str).delete();
                 }
                 return Boolean.valueOf(z10);
         }

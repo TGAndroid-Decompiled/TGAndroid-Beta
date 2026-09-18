@@ -1,72 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import java.io.File;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.TextureView;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class y01 implements o81 {
-    public final ThemeEditorView f32808a;
+import org.telegram.messenger.MessagesController;
+public final class y01 extends TextureView {
+    public static Boolean f30069f;
+    public w01 f30070a;
+    public final o1.a f30071b;
+    public final ArrayList f30072c;
+    public Runnable d;
+    public boolean e;
 
-    public y01(ThemeEditorView themeEditorView) {
-        this.f32808a = themeEditorView;
+    public y01(Context context, Runnable runnable) {
+        super(context);
+        this.f30071b = new o1.a(this, 1);
+        this.f30072c = new ArrayList();
+        this.d = runnable;
+        setOpaque(false);
+        setSurfaceTextureListener(new j50(this, 2));
     }
 
-    @Override
-    public final void a() {
-        int i10 = 0;
-        while (true) {
-            ThemeEditorView themeEditorView = this.f32808a;
-            if (i10 < themeEditorView.f24163c.size()) {
-                org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) themeEditorView.f24163c.get(i10);
-                int w02 = org.telegram.ui.ActionBar.j6.w0(l6Var.f21181j, l6Var.f21178f, false);
-                l6Var.f21180i = w02;
-                if (i10 == 0) {
-                    themeEditorView.f24170l.f24172b.c(w02);
-                }
-                i10++;
-            } else {
-                ThemeEditorView.EditorAlert editorAlert = themeEditorView.f24170l;
-                int i11 = ThemeEditorView.EditorAlert.M;
-                editorAlert.L(true);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void b(File file, Bitmap bitmap, boolean z10) {
-        org.telegram.ui.ActionBar.i6 i6Var = this.f32808a.f24171m;
-        org.telegram.ui.ActionBar.j6.rl.delete(org.telegram.ui.ActionBar.j6.Nd);
-        org.telegram.ui.ActionBar.j6.rl.delete(org.telegram.ui.ActionBar.j6.Od);
-        org.telegram.ui.ActionBar.j6.rl.delete(org.telegram.ui.ActionBar.j6.Pd);
-        org.telegram.ui.ActionBar.j6.rl.delete(org.telegram.ui.ActionBar.j6.Qd);
-        org.telegram.ui.ActionBar.j6.rl.delete(org.telegram.ui.ActionBar.j6.Rd);
-        org.telegram.ui.ActionBar.j6.f20730h0 = null;
-        i6Var.v(null);
-        if (bitmap != null) {
-            org.telegram.ui.ActionBar.j6.f20695f0 = new BitmapDrawable(bitmap);
-            org.telegram.ui.ActionBar.j6.r1(i6Var, false, false, false);
-            int[] calcDrawableColor = AndroidUtilities.calcDrawableColor(org.telegram.ui.ActionBar.j6.f20695f0);
-            int i10 = calcDrawableColor[0];
-            org.telegram.ui.ActionBar.j6.f20640c0 = i10;
-            org.telegram.ui.ActionBar.j6.X = i10;
-            int i11 = calcDrawableColor[1];
-            org.telegram.ui.ActionBar.j6.f20658d0 = i11;
-            org.telegram.ui.ActionBar.j6.f20621b0 = i11;
-            Drawable drawable = org.telegram.ui.ActionBar.j6.f20678e0;
-            if (drawable != null) {
-                org.telegram.ui.ActionBar.j6.i(drawable);
-            }
-            org.telegram.ui.ActionBar.j6.h(org.telegram.ui.ActionBar.j6.f20678e0);
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
+    public static void b(Runnable runnable) {
+        if (runnable == null) {
             return;
         }
-        org.telegram.ui.ActionBar.j6.f20695f0 = null;
-        org.telegram.ui.ActionBar.j6.f20678e0 = null;
-        org.telegram.ui.ActionBar.j6.r1(i6Var, false, false, false);
-        org.telegram.ui.ActionBar.j6.o1(true);
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+            AndroidUtilities.runOnUIThread(runnable);
+        } else {
+            runnable.run();
+        }
+    }
+
+    public static boolean c() {
+        if (f30069f == null) {
+            f30069f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
+        }
+        Boolean bool = f30069f;
+        if (bool != null && bool.booleanValue()) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a(View view) {
+        int i10 = 0;
+        int i11 = 0;
+        boolean z10 = false;
+        while (true) {
+            ArrayList arrayList = this.f30072c;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            x01 x01Var = (x01) arrayList.get(i11);
+            if (x01Var.f29802a == view) {
+                Runnable runnable = x01Var.d;
+                if (runnable != null) {
+                    b(runnable);
+                    x01Var.d = null;
+                }
+                arrayList.remove(i11);
+                i11--;
+                z10 = true;
+            }
+            i11++;
+        }
+        if (!z10) {
+            w01 w01Var = this.f30070a;
+            ArrayList arrayList2 = w01Var.W;
+            if (w01Var.f29460b.get()) {
+                Handler handler = w01Var.getHandler();
+                if (handler == null) {
+                    while (i10 < arrayList2.size()) {
+                        v01 v01Var = (v01) arrayList2.get(i10);
+                        if (v01Var.f28538a.contains(view)) {
+                            Runnable runnable2 = v01Var.f28541f;
+                            if (runnable2 != null) {
+                                b(runnable2);
+                                v01Var.f28541f = null;
+                            }
+                            arrayList2.remove(i10);
+                            i10--;
+                        }
+                        i10++;
+                    }
+                    return;
+                }
+                handler.sendMessage(handler.obtainMessage(5, view));
+            }
+        }
     }
 }

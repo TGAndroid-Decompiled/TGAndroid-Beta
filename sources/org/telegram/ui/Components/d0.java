@@ -1,89 +1,202 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_aicompose;
-public final class d0 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final int f25161a;
-    public final org.telegram.ui.ActionBar.f6 f25162b;
-    public int f25163c;
-    public boolean d;
-    public TL_aicompose.AiComposeTone f25164e;
-    public boolean f25165f;
-    public final x9 h;
-    public final TextView f25166n;
-    public float f25167r;
+public final class d0 extends FrameLayout {
+    public final int f23166a;
+    public final org.telegram.ui.ActionBar.f6 f23167b;
+    public final b0 f23168c;
+    public int d;
+    public boolean e;
+    public int f23169f;
+    public final c6 h;
+    public ci.p5 f23170n;
 
-    public d0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+    public d0(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context);
-        this.d = true;
-        this.f25161a = i10;
-        this.f25162b = f6Var;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setClipToPadding(false);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.x5.d(-2, -2.0f, 17, 0.0f, 2.0f, 0.0f, 2.0f));
-        x9 x9Var = new x9(context);
-        this.h = x9Var;
-        NotificationCenter.listenEmojiLoading(x9Var);
-        linearLayout.addView(x9Var, w7.x5.t(24, 24, 49, 0, 4, 0, 0));
-        TextView textView = new TextView(context);
-        this.f25166n = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 12.0f);
-        textView.setGravity(17);
-        textView.setSingleLine();
-        linearLayout.addView(textView, w7.x5.t(-2, -2, 49, 0, 2, 0, 0));
-        w7.z5.b(this, 0.05f, 1.5f);
-        a(0.0f, true);
-    }
-
-    public final void a(float f7, boolean z10) {
-        PorterDuffColorFilter porterDuffColorFilter;
-        if (!z10 && Math.abs(f7 - this.f25167r) < 0.01f) {
+        this.f23166a = i10;
+        this.f23167b = f6Var;
+        b0 b0Var = new b0(this, context, f6Var);
+        this.f23168c = b0Var;
+        b0Var.setOrientation(0);
+        this.h = new c6(b0Var, 0L, 320L, qr.h);
+        if (z10) {
+            HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
+            horizontalScrollView.setFillViewport(true);
+            horizontalScrollView.addView(b0Var);
+            addView(horizontalScrollView, w7.x5.e(-1, -1, 119));
             return;
         }
-        this.f25167r = f7;
-        int i10 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f25162b;
-        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
-        int i11 = org.telegram.ui.ActionBar.j6.Oh;
-        int d = i0.a.d(f7, v02, org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        int d10 = i0.a.d(f7, org.telegram.ui.ActionBar.j6.v0(i10, f6Var), org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        if (!this.f25165f) {
-            porterDuffColorFilter = new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN);
+        addView(b0Var, w7.x5.e(-1, -1, 119));
+    }
+
+    public final void a(int i10, String str, Utilities.Callback callback) {
+        b0 b0Var = this.f23168c;
+        int childCount = b0Var.getChildCount();
+        c0 c0Var = new c0(getContext(), this.f23166a, this.f23167b);
+        c0Var.f22856c = this.d;
+        c0Var.e();
+        c0Var.f22857f = false;
+        c0Var.h.setImageResource(i10);
+        c0Var.f22858n.setText(str);
+        c0Var.setOnClickListener(new a0(childCount, 0, callback));
+        b0Var.addView(c0Var, w7.x5.o(0, -1, 1.0f, 119));
+    }
+
+    public final void b(TL_aicompose.AiComposeTone aiComposeTone, Utilities.Callback callback) {
+        int i10;
+        c0 c0Var = new c0(getContext(), this.f23166a, this.f23167b);
+        c0Var.e = aiComposeTone;
+        c0Var.f22856c = this.d;
+        c0Var.e();
+        int i11 = 0;
+        TextView textView = c0Var.f22858n;
+        u9 u9Var = c0Var.h;
+        if (aiComposeTone == null) {
+            c0Var.d = false;
+            c0Var.e();
+            int i12 = R.drawable.tone_create;
+            String string = LocaleController.getString(R.string.AIEditorStyleNewCreate);
+            c0Var.f22857f = false;
+            u9Var.setImageResource(i12);
+            textView.setText(string);
+        } else if (aiComposeTone instanceof z) {
+            c0Var.d = false;
+            c0Var.e();
+            int i13 = R.drawable.iv_prompt;
+            String string2 = LocaleController.getString(R.string.AIEditorStylePrompt);
+            c0Var.f22857f = false;
+            u9Var.setImageResource(i13);
+            textView.setText(string2);
         } else {
-            porterDuffColorFilter = null;
+            String str = aiComposeTone.title;
+            long j3 = aiComposeTone.emoji_id;
+            c0Var.f22857f = true;
+            u9Var.setColorFilter(null);
+            u9Var.setImageDrawable(Emoji.getEmojiDrawable(null));
+            textView.setText(str);
+            int i14 = c0Var.f22854a;
+            if (ConnectionsManager.getInstance(i14).isTestBackend()) {
+                for (int i15 = 0; i15 < 4 && (!UserConfig.getInstance(i15).isClientActivated() || ConnectionsManager.getInstance(i15).isTestBackend()); i15++) {
+                }
+            }
+            u9Var.setAnimatedEmojiDrawable(new o5(9, i14, j3));
         }
-        x9 x9Var = this.h;
-        x9Var.setColorFilter(porterDuffColorFilter);
-        x9Var.setEmojiColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
-        x9Var.invalidate();
-        this.f25166n.setTextColor(d10);
+        c0Var.setOnClickListener(new org.telegram.ui.tf(10, callback, aiComposeTone));
+        c0Var.setOnLongClickListener(new ai.q3(1, this, c0Var));
+        b0 b0Var = this.f23168c;
+        if (b0Var.getOrientation() == 0) {
+            i10 = 0;
+        } else {
+            i10 = -1;
+        }
+        if (b0Var.getOrientation() != 1) {
+            i11 = -1;
+        }
+        b0Var.addView(c0Var, w7.x5.o(i10, i11, 1.0f, 119));
+    }
+
+    public final void c(int i10) {
+        if (this.f23169f == i10) {
+            return;
+        }
+        this.f23169f = i10;
+        b0 b0Var = this.f23168c;
+        if (i10 >= 0 && i10 < b0Var.getChildCount()) {
+            View childAt = b0Var.getChildAt(i10);
+            if (childAt instanceof c0) {
+                u9 u9Var = ((c0) childAt).h;
+                if (u9Var.getAnimatedEmojiDrawable() != null) {
+                    ai.l4 l4Var = u9Var.getAnimatedEmojiDrawable().f26639k;
+                    if (l4Var != null) {
+                        l4Var.startAnimation();
+                    }
+                } else {
+                    u9Var.getImageReceiver().startAnimation();
+                }
+            }
+        }
+        b0Var.invalidate();
+    }
+
+    public final void d(TL_aicompose.AiComposeTone aiComposeTone) {
+        TL_aicompose.AiComposeTone aiComposeTone2;
+        int i10 = 0;
+        while (true) {
+            b0 b0Var = this.f23168c;
+            if (i10 < b0Var.getChildCount()) {
+                View childAt = b0Var.getChildAt(i10);
+                if ((childAt instanceof c0) && (aiComposeTone2 = ((c0) childAt).e) != null && aiComposeTone2 == aiComposeTone) {
+                    c(i10);
+                    return;
+                }
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 
     @Override
-    public final void d() {
-        int v02;
-        a(this.f25167r, true);
-        boolean z10 = this.d;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f25162b;
-        if (z10) {
-            v02 = org.telegram.ui.ActionBar.j6.l1(0.1f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var));
-        } else {
-            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20754i6, f6Var);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.e) {
+            Paint T0 = org.telegram.ui.ActionBar.j6.T0("paintDivider", this.f23167b);
+            if (T0 == null) {
+                T0 = org.telegram.ui.ActionBar.j6.f18985k0;
+            }
+            canvas.drawRect(AndroidUtilities.dp(10.0f), getHeight() - 1, getWidth() - AndroidUtilities.dp(10.0f), getHeight(), T0);
         }
-        int i10 = this.f25163c;
-        setBackground(org.telegram.ui.ActionBar.j6.Y(v02, i10, i10));
     }
 
-    public int[] getColorKeys() {
+    public int getSelectedTab() {
+        return this.f23169f;
+    }
+
+    public TL_aicompose.AiComposeTone getSelectedTone() {
+        int i10 = this.f23169f;
+        if (i10 >= 0) {
+            b0 b0Var = this.f23168c;
+            if (i10 < b0Var.getChildCount()) {
+                View childAt = b0Var.getChildAt(this.f23169f);
+                if (childAt instanceof c0) {
+                    return ((c0) childAt).e;
+                }
+                return null;
+            }
+            return null;
+        }
         return null;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void setDivider(boolean z10) {
+        this.e = z10;
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        this.f23168c.setPadding(i10, i11, i12, i13);
+    }
+
+    public void setRoundRadius(int i10) {
+        this.d = i10;
     }
 }

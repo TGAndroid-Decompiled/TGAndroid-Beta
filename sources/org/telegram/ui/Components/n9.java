@@ -1,200 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class n9 extends Drawable {
-    public final ViewGroup f28691a;
-    public final int f28692b;
-    public boolean d;
-    public final int f28694e;
-    public final int f28695f;
-    public final float f28696g;
-    public final le.j f28693c = new le.j(new ji.u4(this, 10), pr.h, 380);
-    public final ArrayList h = new ArrayList();
-    public int f28697i = 255;
+import android.graphics.drawable.GradientDrawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class n9 implements Runnable {
+    public final int f26402a = 0;
+    public final t9 f26403b;
+    public final Runnable[] f26404c;
+    public final y50 d;
+    public final int e;
+    public final w7.i0[] f26405f;
 
-    public n9(int i10, ViewGroup viewGroup, int i11, int i12, float f7) {
-        this.f28692b = i10;
-        this.f28691a = viewGroup;
-        this.f28694e = i11;
-        this.f28695f = i12;
-        this.f28696g = f7;
+    public n9(t9 t9Var, y50 y50Var, Runnable[] runnableArr, int i10, w7.i0[] i0VarArr) {
+        this.f26403b = t9Var;
+        this.d = y50Var;
+        this.f26404c = runnableArr;
+        this.e = i10;
+        this.f26405f = i0VarArr;
     }
 
-    public final void a() {
-        if (!this.d) {
-            this.d = true;
-            ArrayList arrayList = this.h;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                m9 m9Var = (m9) obj;
-                if (m9Var.f28419c != 0 && !m9Var.d) {
-                    m9Var.d = true;
-                    m9Var.f28417a.onAttachedToWindow();
+    @Override
+    public final void run() {
+        switch (this.f26402a) {
+            case 0:
+                t9 t9Var = this.f26403b;
+                y50 y50Var = this.d;
+                Runnable[] runnableArr = this.f26404c;
+                int i10 = this.e;
+                w7.i0[] i0VarArr = this.f26405f;
+                try {
+                    GradientDrawable.Orientation orientation = t9Var.getOrientation();
+                    int[] iArr = t9Var.f28039a;
+                    int i11 = y50Var.f30127a;
+                    int i12 = y50Var.f30128b;
+                    Rect e = t9.e(orientation, i11, i12);
+                    Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
+                    Utilities.drawDitheredGradient(createBitmap, iArr, e.left, e.top, e.right, e.bottom);
+                    AndroidUtilities.runOnUIThread(new ai.cb(t9Var, runnableArr, createBitmap, y50Var, i10, i0VarArr, 7));
+                    return;
+                } catch (Throwable th2) {
+                    AndroidUtilities.runOnUIThread(new n9(t9Var, runnableArr, y50Var, i10, i0VarArr));
+                    throw th2;
                 }
-            }
+            default:
+                t9.a(this.f26403b, this.f26404c, null, this.d, this.e, this.f26405f);
+                return;
         }
     }
 
-    public final void b() {
-        if (this.d) {
-            this.d = false;
-            ArrayList arrayList = this.h;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                m9 m9Var = (m9) obj;
-                if (m9Var.d) {
-                    m9Var.d = false;
-                    m9Var.f28417a.onDetachedFromWindow();
-                }
-            }
-        }
-    }
-
-    public final void c(Canvas canvas) {
-        Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f28697i != 0) {
-            float f7 = bounds.left;
-            float f10 = bounds.top;
-            le.j jVar = this.f28693c;
-            canvas.saveLayer(f7, f10, f7 + jVar.d.f15388f.f15396a, f10 + this.f28694e, null);
-            for (int size = jVar.f15391b.size() - 1; size >= 0; size--) {
-                le.g n10 = jVar.n(size);
-                RectF b10 = n10.b();
-                Object obj = n10.f15379a;
-                float f11 = n10.f15383f.f15396a;
-                float c10 = n10.c();
-                float width = b10.width() - f11;
-                float f12 = f7 + b10.left + f11;
-                float f13 = width / 2.0f;
-                float f14 = f12 + f13;
-                float f15 = f10 + f13;
-                canvas.save();
-                canvas.scale(c10, c10, f14, f15);
-                canvas.drawCircle(f14, f15, f13 + this.f28696g, org.telegram.ui.ActionBar.j6.Il);
-                m9 m9Var = (m9) obj;
-                m9Var.f28417a.setImageCoords(f12, f10, width, width);
-                m9Var.f28417a.setAlpha((this.f28697i / 255.0f) * n10.c());
-                m9Var.f28417a.draw(canvas);
-                canvas.restore();
-            }
-            canvas.restore();
-        }
-    }
-
-    public final void d(List list, boolean z10) {
-        m9 m9Var;
-        le.j jVar = this.f28693c;
-        if (list != null && !list.isEmpty()) {
-            if (!z10) {
-                jVar.r(null, false);
-            }
-            ArrayList arrayList = new ArrayList(list.size());
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                long peerDialogId = DialogObject.getPeerDialogId((TLRPC.Peer) it.next());
-                ArrayList arrayList2 = this.h;
-                int size = arrayList2.size();
-                int i10 = 0;
-                while (true) {
-                    if (i10 < size) {
-                        Object obj = arrayList2.get(i10);
-                        i10++;
-                        m9Var = (m9) obj;
-                        if (m9Var.f28419c == peerDialogId) {
-                            break;
-                        }
-                    } else {
-                        m9Var = null;
-                        break;
-                    }
-                }
-                if (m9Var == null) {
-                    int size2 = arrayList2.size();
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 < size2) {
-                            Object obj2 = arrayList2.get(i11);
-                            i11++;
-                            m9Var = (m9) obj2;
-                            if (m9Var.f28419c == 0) {
-                                break;
-                            }
-                        } else {
-                            m9Var = null;
-                            break;
-                        }
-                    }
-                }
-                if (m9Var == null) {
-                    m9Var = new m9(this, this.f28691a);
-                    arrayList2.add(m9Var);
-                }
-                ImageReceiver imageReceiver = m9Var.f28417a;
-                i9 i9Var = m9Var.f28418b;
-                if (m9Var.f28419c != peerDialogId) {
-                    m9Var.f28419c = peerDialogId;
-                    int i12 = this.f28692b;
-                    TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(peerDialogId);
-                    if (userOrChat != null) {
-                        i9Var.j(i12, userOrChat);
-                        imageReceiver.setForUserOrChat(userOrChat, i9Var);
-                    } else {
-                        i9Var.n(peerDialogId, "", "");
-                        imageReceiver.clearImage();
-                    }
-                }
-                arrayList.add(m9Var);
-                if (this.d && !m9Var.d) {
-                    m9Var.d = true;
-                    imageReceiver.onAttachedToWindow();
-                }
-            }
-            jVar.r(arrayList, z10);
-            return;
-        }
-        jVar.r(null, z10);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        c(canvas);
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f28697i;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f28697i = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public n9(t9 t9Var, Runnable[] runnableArr, y50 y50Var, int i10, w7.i0[] i0VarArr) {
+        this.f26403b = t9Var;
+        this.f26404c = runnableArr;
+        this.d = y50Var;
+        this.e = i10;
+        this.f26405f = i0VarArr;
     }
 }

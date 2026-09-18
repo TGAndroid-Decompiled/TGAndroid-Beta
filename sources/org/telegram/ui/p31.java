@@ -6,97 +6,97 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class p31 implements Runnable {
-    public final int f39400a;
-    public final co f39401b;
-    public final Activity f39402c;
+    public final int f36531a;
+    public final bo f36532b;
+    public final Activity f36533c;
     public final org.telegram.ui.ActionBar.f6 d;
-    public final MessageObject f39403e;
+    public final MessageObject e;
 
-    public p31(co coVar, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, MessageObject messageObject, int i10) {
-        this.f39400a = i10;
-        this.f39401b = coVar;
-        this.f39402c = activity;
+    public p31(bo boVar, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, MessageObject messageObject, int i10) {
+        this.f36531a = i10;
+        this.f36532b = boVar;
+        this.f36533c = activity;
         this.d = f6Var;
-        this.f39403e = messageObject;
+        this.e = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f39400a) {
+        switch (this.f36531a) {
             case 0:
-                co coVar = this.f39401b;
-                org.telegram.ui.Components.yc a02 = org.telegram.ui.Components.yc.a0(coVar);
+                bo boVar = this.f36532b;
+                org.telegram.ui.Components.vc a02 = org.telegram.ui.Components.vc.a0(boVar);
                 String string = LocaleController.getString(R.string.AdReported);
-                final Activity activity = this.f39402c;
+                final Activity activity = this.f36533c;
                 a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
                                 return;
                             case 1:
-                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
                                 return;
                             default:
-                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
                                 return;
                         }
                     }
                 }, this.d)).j();
-                MessageObject messageObject = this.f39403e;
-                coVar.Fa(messageObject);
-                coVar.Ha(messageObject);
+                MessageObject messageObject = this.e;
+                boVar.Fa(messageObject);
+                boVar.Ha(messageObject);
                 return;
             case 1:
-                co coVar2 = this.f39401b;
-                org.telegram.ui.Components.yc a03 = org.telegram.ui.Components.yc.a0(coVar2);
+                bo boVar2 = this.f36532b;
+                org.telegram.ui.Components.vc a03 = org.telegram.ui.Components.vc.a0(boVar2);
                 String string2 = LocaleController.getString(R.string.AdReported);
-                final Activity activity2 = this.f39402c;
+                final Activity activity2 = this.f36533c;
                 a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
                                 return;
                             case 1:
-                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
                                 return;
                             default:
-                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
                                 return;
                         }
                     }
                 }, this.d)).j();
-                MessageObject messageObject2 = this.f39403e;
-                coVar2.Fa(messageObject2);
-                coVar2.Ha(messageObject2);
+                MessageObject messageObject2 = this.e;
+                boVar2.Fa(messageObject2);
+                boVar2.Ha(messageObject2);
                 return;
             default:
-                co coVar3 = this.f39401b;
-                org.telegram.ui.Components.yc a04 = org.telegram.ui.Components.yc.a0(coVar3);
+                bo boVar3 = this.f36532b;
+                org.telegram.ui.Components.vc a04 = org.telegram.ui.Components.vc.a0(boVar3);
                 String string3 = LocaleController.getString(R.string.AdReported);
-                final Activity activity3 = this.f39402c;
+                final Activity activity3 = this.f36533c;
                 a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
                                 return;
                             case 1:
-                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
                                 return;
                             default:
-                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
                                 return;
                         }
                     }
                 }, this.d)).j();
-                MessageObject messageObject3 = this.f39403e;
-                coVar3.Fa(messageObject3);
-                coVar3.Ha(messageObject3);
+                MessageObject messageObject3 = this.e;
+                boVar3.Fa(messageObject3);
+                boVar3.Ha(messageObject3);
                 return;
         }
     }

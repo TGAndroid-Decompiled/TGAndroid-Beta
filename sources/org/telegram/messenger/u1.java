@@ -4,15 +4,15 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SvgHelper;
 public final class u1 implements Runnable {
-    public final int f19122a;
+    public final int f17436a;
 
     public u1(int i10) {
-        this.f19122a = i10;
+        this.f17436a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19122a) {
+        switch (this.f17436a) {
             case 0:
                 ContactsController.MyContentObserver.lambda$new$0();
                 return;
@@ -23,60 +23,66 @@ public final class u1 implements Runnable {
                 AppStartReceiver.a();
                 return;
             case 3:
-                FileLog.dumpANR();
+                ApplicationLoader.lambda$new$1();
                 return;
             case 4:
-                ApplicationLoader.startPushService();
+                NotificationCenter.sanitize();
                 return;
             case 5:
-                ApplicationLoader.lambda$initPushServices$0();
+                FileLog.dumpANR();
                 return;
             case 6:
-                BotGuardHelper.a();
+                ApplicationLoader.startPushService();
                 return;
             case 7:
-                CodeHighlighting.f();
+                ApplicationLoader.lambda$initPushServices$2();
                 return;
             case 8:
-                Emoji.lambda$static$0();
+                BotGuardHelper.a();
                 return;
             case 9:
-                KeepAliveJob.b();
+                CodeHighlighting.lambda$prepare$2();
                 return;
             case 10:
-                KeepAliveJob.a();
+                Emoji.lambda$static$0();
                 return;
             case 11:
-                LocaleController.lambda$applyLanguage$9();
+                KeepAliveJob.b();
                 return;
             case 12:
-                LocationController.lambda$setLastKnownLocation$10();
+                KeepAliveJob.a();
                 return;
             case 13:
-                LocationSharingService.lambda$onCreate$0();
+                LocaleController.lambda$applyLanguage$9();
                 return;
             case 14:
-                MediaDataController.lambda$cleanup$1();
+                LocationController.lambda$setLastKnownLocation$10();
                 return;
             case 15:
-                org.telegram.ui.ActionBar.j6.E(false);
+                LocationSharingService.lambda$onCreate$0();
                 return;
             case 16:
-                NotificationCenter.lambda$listen$3();
+                MediaDataController.lambda$cleanup$1();
                 return;
             case 17:
-                NotificationsController.lambda$dismissNotification$37();
+                org.telegram.ui.ActionBar.j6.E(false);
                 return;
             case 18:
-                SharedConfig.saveConfig();
+                NotificationCenter.lambda$listen$3();
                 return;
             case 19:
-                SharedConfig.lambda$checkSdCard$0();
+                NotificationsController.lambda$dismissNotification$37();
                 return;
             case 20:
-                SharedConfig.lambda$checkSdCard$2();
+                SharedConfig.saveConfig();
                 return;
             case 21:
+                SharedConfig.lambda$checkSdCard$0();
+                return;
+            case 22:
+                SharedConfig.lambda$checkSdCard$2();
+                return;
+            case 23:
                 SharedConfig.lambda$checkSaveToGalleryFiles$5();
                 return;
             default:

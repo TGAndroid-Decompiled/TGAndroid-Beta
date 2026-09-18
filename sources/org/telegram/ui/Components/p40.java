@@ -7,33 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class p40 implements ti {
-    public final u40 f29272a;
+    public final u40 f26927a;
 
     public p40(u40 u40Var) {
-        this.f29272a = u40Var;
+        this.f26927a = u40Var;
     }
 
     @Override
-    public final void B(hh hhVar) {
-        hhVar.run();
-    }
-
-    @Override
-    public final boolean D0() {
-        return false;
-    }
-
-    @Override
-    public final void H() {
-        AndroidUtilities.hideKeyboard(this.f29272a.f30800a.getFragmentView().findFocus());
-    }
-
-    @Override
-    public final void l0(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         vi viVar;
-        u40 u40Var = this.f29272a;
-        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f30800a;
-        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f30802c) != null) {
+        u40 u40Var = this.f26927a;
+        org.telegram.ui.ActionBar.o2 o2Var = u40Var.f28275a;
+        if (o2Var != null && o2Var.getParentActivity() != null && (viVar = u40Var.f28277c) != null) {
             if (i10 != 8 && i10 != 7) {
                 viVar.dismissWithButtonClick(i10);
                 if (i10 == 0) {
@@ -42,8 +27,8 @@ public final class p40 implements ti {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = viVar.f31292j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = u40Var.f30802c.f31292j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = viVar.f28757j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = u40Var.f28277c.f28757j0.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -106,30 +91,45 @@ public final class p40 implements ti {
             }
             u40.b(u40Var, z14, arrayList);
             if (i10 != 8) {
-                u40Var.f30802c.dismiss(true);
+                u40Var.f28277c.dismiss(true);
             }
         }
     }
 
     @Override
-    public final boolean q() {
+    public final void K0() {
+        AndroidUtilities.hideKeyboard(this.f26927a.f28275a.getFragmentView().findFocus());
+    }
+
+    @Override
+    public final boolean S1() {
         return false;
     }
 
     @Override
-    public final void x() {
-        this.f29272a.r();
+    public final boolean c0() {
+        return false;
     }
 
     @Override
-    public final void K(Object obj) {
+    public final void u0() {
+        this.f26927a.r();
     }
 
     @Override
-    public final void X(TLRPC.User user) {
+    public final void x0(fh fhVar) {
+        fhVar.run();
     }
 
     @Override
-    public final void E0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final void U0(Object obj) {
+    }
+
+    @Override
+    public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

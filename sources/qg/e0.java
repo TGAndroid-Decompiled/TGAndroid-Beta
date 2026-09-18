@@ -1,35 +1,27 @@
 package qg;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
-public final class e0 implements Runnable {
-    public final int f44424a;
-    public final ArrayList f44425b;
+import org.telegram.ui.cu0;
+public final class e0 extends pg.c1 {
+    public final Bitmap E;
+    public final cu0 F;
 
-    public e0(ArrayList arrayList, int i10) {
-        this.f44424a = i10;
-        this.f44425b = arrayList;
+    public e0(cu0 cu0Var, Context context, pg.q0 q0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, q0Var, bitmap, null, null);
+        this.F = cu0Var;
+        this.E = bitmap2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44424a) {
-            case 0:
-                j0.h = this.f44425b;
-                j0.f44454i = false;
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);
-                return;
-            default:
-                ArrayList arrayList = this.f44425b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((Bitmap) obj).recycle();
-                }
-                return;
+    public final void g(pg.m mVar) {
+        int indexOf = pg.m.f40939a.indexOf(mVar);
+        int i10 = indexOf + 1;
+        if (i10 <= 1 || this.E != null) {
+            indexOf = i10;
         }
+        cu0 cu0Var = this.F;
+        cu0Var.f41573t1.b(indexOf);
+        cu0Var.b(mVar);
     }
 }

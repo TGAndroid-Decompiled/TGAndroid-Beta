@@ -1,47 +1,65 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import org.telegram.messenger.NotificationCenter;
-public final class c3 extends AnimatorListenerAdapter {
-    public final int f20315a;
-    public final d3 f20316b;
+import android.animation.ValueAnimator;
+public final class c3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f18528a;
+    public final e3 f18529b;
 
-    public c3(d3 d3Var, int i10) {
-        this.f20315a = i10;
-        this.f20316b = d3Var;
+    public c3(e3 e3Var, int i10) {
+        this.f18528a = i10;
+        this.f18529b = e3Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f20315a;
-        d3 d3Var = this.f20316b;
-        switch (i10) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10;
+        switch (this.f18528a) {
             case 0:
-                d3Var.f20361y = 0.0f;
-                d3Var.G.containerView.setTranslationX(0.0f);
-                d3Var.G.container.invalidate();
+                e3 e3Var = this.f18529b;
+                g3 g3Var = e3Var.G;
+                g3Var.containerView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                g3Var.onContainerViewTranslation();
+                g3Var.onSmoothContainerViewLayout(g3Var.containerView.getTranslationY());
+                e3Var.invalidate();
                 return;
             case 1:
-                d3Var.G.skipDismissAnimation = true;
-                d3Var.G.containerView.setTranslationX(d3Var.getMeasuredWidth());
-                d3Var.G.dismiss();
-                d3Var.G.container.invalidate();
+                e3 e3Var2 = this.f18529b;
+                e3Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e3Var2.f18617y = floatValue;
+                g3 g3Var2 = e3Var2.G;
+                g3Var2.containerView.setTranslationX(floatValue);
+                g3Var2.container.invalidate();
                 return;
             case 2:
-                d3Var.G.containerView.setTranslationY(0.0f);
-                d3Var.G.onContainerViewTranslation();
-                f3 f3Var = d3Var.G;
-                f3Var.onSmoothContainerViewLayout(f3Var.containerView.getTranslationY());
-                d3Var.invalidate();
+                e3 e3Var3 = this.f18529b;
+                e3Var3.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e3Var3.f18617y = floatValue2;
+                g3 g3Var3 = e3Var3.G;
+                g3Var3.containerView.setTranslationX(floatValue2);
+                g3Var3.container.invalidate();
+                return;
+            case 3:
+                e3 e3Var4 = this.f18529b;
+                e3Var4.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g3 g3Var4 = e3Var4.G;
+                f3 f3Var = g3Var4.backDrawable;
+                if (g3Var4.dimBehind) {
+                    i10 = (int) (g3Var4.dimBehindAlpha * floatValue3);
+                } else {
+                    i10 = 0;
+                }
+                f3Var.setAlpha(i10);
                 return;
             default:
-                AnimatorSet animatorSet = d3Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    d3Var.h = null;
+                g3 g3Var5 = this.f18529b.G;
+                e3 e3Var5 = g3Var5.container;
+                if (e3Var5 != null) {
+                    e3Var5.invalidate();
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                g3Var5.onContainerViewTranslation();
                 return;
         }
     }

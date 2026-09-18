@@ -1,9 +1,20 @@
 package w7;
+
+import android.util.Log;
 public abstract class p6 {
-    public static int a(long j3) {
-        if (j3 <= 2147483647L && j3 >= -2147483648L) {
-            return (int) j3;
+    public static void a(Exception exc, String str, Object... objArr) {
+        if (Log.isLoggable("Vision", 6)) {
+            if (Log.isLoggable("Vision", 3)) {
+                Log.e("Vision", String.format(str, objArr), exc);
+                return;
+            }
+            String format = String.format(str, objArr);
+            String valueOf = String.valueOf(exc);
+            StringBuilder sb2 = new StringBuilder(valueOf.length() + format.length() + 2);
+            sb2.append(format);
+            sb2.append(": ");
+            sb2.append(valueOf);
+            Log.e("Vision", sb2.toString());
         }
-        throw new RuntimeException(org.telegram.ui.Cells.p6.h(j3, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
     }
 }

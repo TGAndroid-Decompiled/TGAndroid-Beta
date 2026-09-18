@@ -1,43 +1,13 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class p40 extends TextView {
-    public final RectF f39405a;
-    public final Paint f39406b;
-
+import org.telegram.messenger.LocaleController;
+public final class p40 extends org.telegram.ui.Components.uc0 {
     public p40(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f39405a = new RectF();
-        Paint paint = new Paint(1);
-        this.f39406b = paint;
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(-16711936);
+        super(launchActivity, null);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f39405a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f39406b);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint = this.f39406b;
-        paint.setColor(-16711936);
-        RectF rectF = this.f39405a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Hours", i10, new Object[0]);
     }
 }

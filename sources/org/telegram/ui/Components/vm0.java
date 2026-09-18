@@ -1,398 +1,197 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.text.SpannableString;
-import android.text.TextUtils;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class vm0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public int E;
-    public final Activity F;
-    public final org.telegram.ui.ActionBar.n2 G;
-    public boolean H;
-    public org.telegram.ui.w10 I;
-    public final org.telegram.ui.p10 J;
-    public String K;
-    public String L;
-    public om0 M;
-    public final qk0 N;
-    public boolean O;
-    public boolean P;
-    public final xw0 f31364a;
-    public final bi.o0 f31365b;
-    public final um0 f31366c;
-    public final int d;
-    public final ArrayList f31367e;
-    public final ArrayList f31368f;
-    public final ArrayList h;
-    public final ArrayList f31369n;
-    public int f31370r;
-    public int f31371s;
-    public int v;
-    public int f31372w;
-    public int f31373x;
-    public int f31374y;
+public final class vm0 extends ll0 {
+    public final wm0 f28831c;
 
-    public vm0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(n2Var.getParentActivity());
-        um0 um0Var = new um0(this);
-        this.f31366c = um0Var;
-        ArrayList<MessageObject> arrayList = new ArrayList<>();
-        this.f31367e = arrayList;
-        this.f31368f = new ArrayList();
-        this.h = new ArrayList();
-        this.f31369n = new ArrayList();
-        this.f31371s = -1;
-        this.v = -1;
-        this.f31372w = -1;
-        this.f31373x = -1;
-        this.f31374y = -1;
-        this.E = -1;
-        this.J = new org.telegram.ui.p10(0, 0L);
-        this.G = n2Var;
-        this.F = n2Var.getParentActivity();
-        this.d = i10;
-        bi.o0 o0Var = new bi.o0(this, getContext(), 19);
-        this.f31365b = o0Var;
-        new s4.y(new ci.f(this, 3)).d(o0Var);
-        addView(o0Var);
-        n2Var.getParentActivity();
-        o0Var.setLayoutManager(new hg.b0(10));
-        o0Var.setAdapter(um0Var);
-        o0Var.setOnScrollListener(new lb0(this, 4));
-        s4.j jVar = new s4.j();
-        jVar.C = false;
-        jVar.f45778m = false;
-        o0Var.setItemAnimator(jVar);
-        o0Var.setOnItemClickListener(new pm0(this, i10, 0));
-        o0Var.setOnItemLongClickListener(new kv(this, 16));
-        this.N = new qk0(o0Var, true);
-        t00 t00Var = new t00(getContext(), null);
-        addView(t00Var);
-        t00Var.setUseHeaderOffset(true);
-        t00Var.setViewType(3);
-        t00Var.setVisibility(8);
-        xw0 xw0Var = new xw0(getContext(), t00Var, 1, null);
-        this.f31364a = xw0Var;
-        addView(xw0Var);
-        o0Var.setEmptyView(xw0Var);
-        FileLoader.getInstance(i10).getCurrentLoadingFiles(arrayList);
+    public vm0(wm0 wm0Var) {
+        this.f28831c = wm0Var;
     }
 
-    public final void a() {
-        bi.o0 o0Var;
-        MessageObject message;
-        int i10 = this.d;
-        if (!UserConfig.getInstance(i10).isPremium() && (o0Var = this.f31365b) != null) {
-            for (int i11 = 0; i11 < o0Var.getChildCount(); i11++) {
-                try {
-                    View childAt = o0Var.getChildAt(i11);
-                    if ((childAt instanceof rm0) && (message = ((rm0) childAt).f30053a.getMessage()) != null) {
-                        if (FileLoader.getInstance(i10).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
-                            c(false);
-                        } else if (FileLoader.getInstance(i10).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
-                            c(true);
-                        } else {
-                            continue;
-                        }
-                        return;
-                    }
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                }
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        int i10 = c1Var.f42705f;
+        if (i10 == 1 || i10 == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public final MessageObject E(int i10) {
+        wm0 wm0Var = this.f28831c;
+        int i11 = wm0Var.v;
+        if (i10 >= i11 && i10 < wm0Var.f29704w) {
+            return (MessageObject) wm0Var.e.get(i10 - i11);
+        }
+        int i12 = wm0Var.f29706y;
+        if (i10 >= i12 && i10 < wm0Var.E) {
+            return (MessageObject) wm0Var.f29700f.get(i10 - i12);
+        }
+        return null;
+    }
+
+    @Override
+    public final int h() {
+        return this.f28831c.f29702r;
+    }
+
+    @Override
+    public final int j(int i10) {
+        wm0 wm0Var = this.f28831c;
+        if (i10 != wm0Var.f29703s && i10 != wm0Var.f29705x) {
+            MessageObject E = E(i10);
+            if (E == null || !E.isMusic()) {
+                return 1;
             }
+            return 2;
         }
+        return 0;
     }
 
-    public final void b(int i10, int i11, boolean z10) {
-        setClipToPadding(false);
-        this.P = z10;
-        setPadding(0, i10, 0, i11);
-        bi.o0 o0Var = this.f31365b;
-        if (z10) {
-            o0Var.n1(0, i10, 0, i11);
-        } else {
-            o0Var.setPadding(0, i10, 0, i11);
-        }
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) o0Var.getLayoutParams();
-        marginLayoutParams.topMargin = -i10;
-        marginLayoutParams.bottomMargin = -i11;
-        this.P = false;
-    }
-
-    public final void c(boolean z10) {
-        float f7;
-        int i10;
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        int id2;
+        boolean z11;
+        int id3;
+        boolean z12;
         int i11;
-        org.telegram.ui.ActionBar.n2 n2Var = this.G;
-        if (n2Var != null && this.f31365b.G) {
-            long currentTimeMillis = System.currentTimeMillis();
-            int i12 = this.d;
-            if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown >= MessagesController.getInstance(i12).uploadPremiumSpeedupNotifyPeriod * 1000) {
-                ConnectionsManager.lastPremiumFloodWaitShown = currentTimeMillis;
-                if (!UserConfig.getInstance(i12).isPremium() && !MessagesController.getInstance(i12).premiumFeaturesBlocked()) {
-                    if (z10) {
-                        f7 = MessagesController.getInstance(i12).uploadPremiumSpeedupUpload;
+        int i12;
+        wm0 wm0Var = this.f28831c;
+        org.telegram.ui.r10 r10Var = wm0Var.J;
+        int i13 = c1Var.f42705f;
+        View view = c1Var.f42702a;
+        boolean z13 = false;
+        if (i13 == 0) {
+            org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) view;
+            if (i10 == wm0Var.f29703s) {
+                String string = LocaleController.getString(R.string.Downloading);
+                if (u3Var.getText().equals(string)) {
+                    if (wm0Var.H) {
+                        i12 = R.string.PauseAll;
                     } else {
-                        f7 = MessagesController.getInstance(i12).uploadPremiumSpeedupDownload;
+                        i12 = R.string.ResumeAll;
                     }
-                    SpannableString spannableString = new SpannableString(Double.toString(Math.round(f7 * 10.0f) / 10.0d).replaceAll("\\.0$", ""));
-                    spannableString.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
-                    if (!n2Var.hasStoryViewer()) {
-                        yc a02 = yc.a0(n2Var);
-                        int i13 = R.raw.speed_limit;
-                        if (z10) {
-                            i10 = R.string.UploadSpeedLimited;
-                        } else {
-                            i10 = R.string.DownloadSpeedLimited;
-                        }
-                        String string = LocaleController.getString(i10);
-                        if (z10) {
-                            i11 = R.string.UploadSpeedLimitedMessage;
-                        } else {
-                            i11 = R.string.DownloadSpeedLimitedMessage;
-                        }
-                        qc M = a02.M(string, AndroidUtilities.replaceCharSequence("%d", AndroidUtilities.premiumText(LocaleController.getString(i11), new ah.u(28, this, z10)), spannableString), i13);
-                        M.f29680j = 8000;
-                        M.k(false);
-                    }
-                }
-            }
-        }
-    }
-
-    public final void d(boolean z10) {
-        long j3;
-        um0 um0Var = this.f31366c;
-        um0Var.q(0, um0Var.f30925c.f31370r);
-        if (!TextUtils.isEmpty(this.K)) {
-            int i10 = this.d;
-            if (!DownloadController.getInstance(i10).downloadingFiles.isEmpty() || !DownloadController.getInstance(i10).recentDownloadingFiles.isEmpty()) {
-                this.f31364a.setStickerType(1);
-                ArrayList<MessageObject> arrayList = new ArrayList<>();
-                ArrayList<MessageObject> arrayList2 = new ArrayList<>();
-                FileLoader.getInstance(this.d).getCurrentLoadingFiles(arrayList);
-                FileLoader.getInstance(this.d).getRecentLoadingFiles(arrayList2);
-                String lowerCase = this.K.toLowerCase();
-                boolean equals = lowerCase.equals(this.L);
-                this.L = lowerCase;
-                Utilities.searchQueue.cancelRunnable(this.M);
-                DispatchQueue dispatchQueue = Utilities.searchQueue;
-                om0 om0Var = new om0(this, arrayList, lowerCase, arrayList2);
-                this.M = om0Var;
-                if (equals) {
-                    j3 = 0;
-                } else {
-                    j3 = 300;
-                }
-                dispatchQueue.postRunnable(om0Var, j3);
-                this.f31369n.clear();
-                this.h.clear();
-                if (!equals) {
-                    this.f31364a.e(true, true);
-                    e(this.h, this.f31369n, z10);
+                    String string2 = LocaleController.getString(i12);
+                    boolean z14 = wm0Var.H;
+                    org.telegram.ui.Cells.t3 t3Var = u3Var.f21436b;
+                    t3Var.c(string2, true, z14);
+                    t3Var.setVisibility(0);
                     return;
                 }
+                if (wm0Var.H) {
+                    i11 = R.string.PauseAll;
+                } else {
+                    i11 = R.string.ResumeAll;
+                }
+                u3Var.c(string, LocaleController.getString(i11), new um0(this));
+                return;
+            } else if (i10 == wm0Var.f29705x) {
+                u3Var.c(LocaleController.getString(R.string.RecentlyDownloaded), LocaleController.getString(R.string.Settings), new x70(this, 11));
+                return;
+            } else {
                 return;
             }
         }
-        if (this.f31370r == 0) {
-            this.N.b(0);
-        }
-        if (this.O) {
-            this.h.clear();
-            this.f31369n.clear();
-        }
-        FileLoader.getInstance(this.d).getCurrentLoadingFiles(this.h);
-        FileLoader.getInstance(this.d).getRecentLoadingFiles(this.f31369n);
-        for (int i11 = 0; i11 < this.f31367e.size(); i11++) {
-            ((MessageObject) this.f31367e.get(i11)).setQuery(null);
-        }
-        for (int i12 = 0; i12 < this.f31368f.size(); i12++) {
-            ((MessageObject) this.f31368f.get(i12)).setQuery(null);
-        }
-        this.L = null;
-        e(this.h, this.f31369n, z10);
-        if (this.f31370r == 0) {
-            this.f31364a.e(false, false);
-            this.f31364a.d.setText(LocaleController.getString(R.string.SearchEmptyViewDownloads));
-            this.f31364a.f32756e.setVisibility(8);
-        }
-        this.f31364a.setStickerType(9);
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.onDownloadingFilesChanged) {
-            if (getVisibility() == 0) {
-                DownloadController.getInstance(this.d).clearUnviewedDownloads();
+        MessageObject E = E(i10);
+        if (E != null) {
+            if (wm0Var.I.g() && i10 >= wm0Var.v && i10 < wm0Var.f29704w) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            d(true);
-        } else if (i10 == NotificationCenter.premiumFloodWaitReceived) {
-            a();
-        }
-    }
-
-    public final void e(ArrayList arrayList, ArrayList arrayList2, boolean z10) {
-        s4.c1 T;
-        um0 um0Var = this.f31366c;
-        if (z10) {
-            int i10 = this.f31371s;
-            int i11 = this.v;
-            int i12 = this.f31372w;
-            int i13 = this.f31373x;
-            int i14 = this.f31374y;
-            int i15 = this.E;
-            int i16 = this.f31370r;
-            ArrayList arrayList3 = new ArrayList(this.f31367e);
-            ArrayList arrayList4 = new ArrayList(this.f31368f);
-            f(arrayList, arrayList2);
-            s4.o.c(new qm0(this, i16, i10, i13, i11, i12, arrayList3, i14, i15, arrayList4), true).b(um0Var);
-            int i17 = 0;
-            while (true) {
-                bi.o0 o0Var = this.f31365b;
-                if (i17 < o0Var.getChildCount()) {
-                    View childAt = o0Var.getChildAt(i17);
-                    int R = RecyclerView.R(childAt);
-                    if (R >= 0 && (T = o0Var.T(childAt)) != null && !T.r()) {
-                        if (childAt instanceof org.telegram.ui.Cells.u3) {
-                            um0Var.v(T, R);
-                        } else if (childAt instanceof rm0) {
-                            org.telegram.ui.Cells.j7 j7Var = ((rm0) childAt).f30053a;
-                            j7Var.f(true);
-                            int id2 = j7Var.getMessage().getId();
-                            long dialogId = j7Var.getMessage().getDialogId();
-                            org.telegram.ui.p10 p10Var = this.J;
-                            p10Var.f39382a = dialogId;
-                            p10Var.f39383b = id2;
-                            j7Var.b(this.I.b(p10Var), true);
+            float f7 = 0.0f;
+            if (i13 == 1) {
+                sm0 sm0Var = (sm0) view;
+                sm0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18863d6, false));
+                org.telegram.ui.Cells.j7 j7Var = sm0Var.f27890a;
+                if (j7Var.getMessage() == null) {
+                    id3 = 0;
+                } else {
+                    id3 = j7Var.getMessage().getId();
+                }
+                j7Var.c(E, true);
+                int id4 = j7Var.getMessage().getId();
+                r10Var.f37067a = j7Var.getMessage().getDialogId();
+                r10Var.f37068b = id4;
+                boolean c10 = wm0Var.I.c(r10Var);
+                if (id3 == E.getId()) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                j7Var.b(c10, z12);
+                if (id3 == E.getId()) {
+                    z13 = true;
+                }
+                if (j7Var.O != z10) {
+                    j7Var.O = z10;
+                    if (!z13) {
+                        if (z10) {
+                            f7 = 1.0f;
                         }
+                        j7Var.P = f7;
                     }
-                    i17++;
+                    j7Var.invalidate();
+                }
+            } else if (i13 == 2) {
+                org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view;
+                if (i7Var.getMessage() == null) {
+                    id2 = 0;
                 } else {
-                    return;
+                    id2 = i7Var.getMessage().getId();
+                }
+                i7Var.f(E, true);
+                int id5 = i7Var.getMessage().getId();
+                r10Var.f37067a = i7Var.getMessage().getDialogId();
+                r10Var.f37068b = id5;
+                boolean c11 = wm0Var.I.c(r10Var);
+                if (id2 == E.getId()) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                i7Var.e(c11, z11);
+                if (id2 == E.getId()) {
+                    z13 = true;
+                }
+                if (i7Var.f20273d0 != z10) {
+                    i7Var.f20273d0 = z10;
+                    if (!z13) {
+                        if (z10) {
+                            f7 = 1.0f;
+                        }
+                        i7Var.f20274e0 = f7;
+                    }
+                    i7Var.invalidate();
                 }
             }
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout frameLayout;
+        if (i10 == 0) {
+            frameLayout = new org.telegram.ui.Cells.u3(viewGroup.getContext(), null);
+        } else if (i10 == 1) {
+            Context context = viewGroup.getContext();
+            ?? frameLayout2 = new FrameLayout(context);
+            org.telegram.ui.Cells.j7 j7Var = new org.telegram.ui.Cells.j7(context, 2, null);
+            frameLayout2.f27890a = j7Var;
+            j7Var.f20339r.setVisibility(8);
+            frameLayout2.addView(j7Var);
+            frameLayout = frameLayout2;
         } else {
-            f(arrayList, arrayList2);
-            um0Var.l();
+            frameLayout = new org.telegram.ui.Cells.i7(viewGroup.getContext());
         }
-    }
-
-    public final void f(ArrayList arrayList, ArrayList arrayList2) {
-        ArrayList arrayList3 = this.f31367e;
-        arrayList3.clear();
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            MessageObject messageObject = (MessageObject) obj;
-            if (!messageObject.isRoundVideo() && !messageObject.isVoice()) {
-                arrayList3.add(messageObject);
-            }
-        }
-        ArrayList arrayList4 = this.f31368f;
-        arrayList4.clear();
-        int size2 = arrayList2.size();
-        int i12 = 0;
-        while (i12 < size2) {
-            Object obj2 = arrayList2.get(i12);
-            i12++;
-            MessageObject messageObject2 = (MessageObject) obj2;
-            if (!messageObject2.isRoundVideo() && !messageObject2.isVoice()) {
-                arrayList4.add(messageObject2);
-            }
-        }
-        this.f31370r = 0;
-        this.f31371s = -1;
-        this.v = -1;
-        this.f31372w = -1;
-        this.f31373x = -1;
-        this.f31374y = -1;
-        this.E = -1;
-        this.H = false;
-        if (!arrayList3.isEmpty()) {
-            int i13 = this.f31370r;
-            int i14 = i13 + 1;
-            this.f31370r = i14;
-            this.f31371s = i13;
-            this.v = i14;
-            int size3 = arrayList3.size() + i14;
-            this.f31370r = size3;
-            this.f31372w = size3;
-            while (true) {
-                if (i10 >= arrayList3.size()) {
-                    break;
-                } else if (FileLoader.getInstance(this.d).isLoadingFile(((MessageObject) arrayList3.get(i10)).getFileName())) {
-                    this.H = true;
-                    break;
-                } else {
-                    i10++;
-                }
-            }
-        }
-        if (!arrayList4.isEmpty()) {
-            int i15 = this.f31370r;
-            int i16 = i15 + 1;
-            this.f31370r = i16;
-            this.f31373x = i15;
-            this.f31374y = i16;
-            int size4 = arrayList4.size() + i16;
-            this.f31370r = size4;
-            this.E = size4;
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.d).addObserver(this, NotificationCenter.onDownloadingFilesChanged);
-        NotificationCenter.getInstance(this.d).addObserver(this, NotificationCenter.premiumFloodWaitReceived);
-        if (getVisibility() == 0) {
-            DownloadController.getInstance(this.d).clearUnviewedDownloads();
-        }
-        if (!this.O) {
-            this.O = true;
-            Utilities.searchQueue.postRunnable(new cc0(this, 20));
-        }
-        d(false);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        int i10 = this.d;
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.onDownloadingFilesChanged);
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.premiumFloodWaitReceived);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.P) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    public void setUiCallback(org.telegram.ui.w10 w10Var) {
-        this.I = w10Var;
+        frameLayout.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(frameLayout);
     }
 }

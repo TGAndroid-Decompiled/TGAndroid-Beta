@@ -1,44 +1,30 @@
 package org.telegram.messenger;
-public final class ze implements Runnable {
-    public final int f19843a = 2;
-    public final MessagesStorage f19844b;
-    public final boolean f19845c;
-    public final int d;
-    public final long f19846e;
 
-    public ze(MessagesStorage messagesStorage, int i10, boolean z10, long j3) {
-        this.f19844b = messagesStorage;
-        this.d = i10;
-        this.f19845c = z10;
-        this.f19846e = j3;
+import org.telegram.messenger.Utilities;
+public final class ze implements Runnable {
+    public final int f18091a;
+    public final MessagesStorage f18092b;
+    public final Utilities.Callback f18093c;
+    public final long d;
+    public final long e;
+
+    public ze(MessagesStorage messagesStorage, Utilities.Callback callback, long j3, long j10, int i10) {
+        this.f18091a = i10;
+        this.f18092b = messagesStorage;
+        this.f18093c = callback;
+        this.d = j3;
+        this.e = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19843a) {
+        switch (this.f18091a) {
             case 0:
-                this.f19844b.lambda$markMessagesAsDeleted$231(this.f19846e, this.d, this.f19845c);
-                return;
-            case 1:
-                this.f19844b.lambda$removeFromDownloadQueue$182(this.f19845c, this.d, this.f19846e);
+                this.f18092b.lambda$getEphemeralMessages$208(this.f18093c, this.d, this.e);
                 return;
             default:
-                this.f19844b.lambda$loadPendingTasks$31(this.d, this.f19845c, this.f19846e);
+                this.f18092b.lambda$getEphemeralMessages$207(this.f18093c, this.d, this.e);
                 return;
         }
-    }
-
-    public ze(MessagesStorage messagesStorage, long j3, int i10, boolean z10) {
-        this.f19844b = messagesStorage;
-        this.f19846e = j3;
-        this.d = i10;
-        this.f19845c = z10;
-    }
-
-    public ze(MessagesStorage messagesStorage, boolean z10, int i10, long j3) {
-        this.f19844b = messagesStorage;
-        this.f19845c = z10;
-        this.d = i10;
-        this.f19846e = j3;
     }
 }

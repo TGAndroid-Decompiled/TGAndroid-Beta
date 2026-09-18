@@ -2,15 +2,15 @@ package v7;
 
 import android.graphics.Path;
 public abstract class g8 {
-    public static boolean a(i0.e[] eVarArr, i0.e[] eVarArr2) {
-        if (eVarArr == null || eVarArr2 == null || eVarArr.length != eVarArr2.length) {
+    public static boolean a(i0.d[] dVarArr, i0.d[] dVarArr2) {
+        if (dVarArr == null || dVarArr2 == null || dVarArr.length != dVarArr2.length) {
             return false;
         }
-        for (int i10 = 0; i10 < eVarArr.length; i10++) {
-            i0.e eVar = eVarArr[i10];
-            char c10 = eVar.f11429a;
-            i0.e eVar2 = eVarArr2[i10];
-            if (c10 != eVar2.f11429a || eVar.f11430b.length != eVar2.f11430b.length) {
+        for (int i10 = 0; i10 < dVarArr.length; i10++) {
+            i0.d dVar = dVarArr[i10];
+            char c10 = dVar.f10595a;
+            i0.d dVar2 = dVarArr2[i10];
+            if (c10 != dVar2.f10595a || dVar.f10596b.length != dVar2.f10596b.length) {
                 return false;
             }
         }
@@ -31,25 +31,25 @@ public abstract class g8 {
         throw new IllegalArgumentException();
     }
 
-    public static i0.e[] c(java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: v7.g8.c(java.lang.String):i0.e[]");
+    public static i0.d[] c(java.lang.String r17) {
+        throw new UnsupportedOperationException("Method not decompiled: v7.g8.c(java.lang.String):i0.d[]");
     }
 
     public static Path d(String str) {
         Path path = new Path();
         try {
-            i0.e.b(c(str), path);
+            i0.d.b(c(str), path);
             return path;
-        } catch (RuntimeException e7) {
-            throw new RuntimeException("Error in parsing ".concat(str), e7);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error in parsing ".concat(str), e);
         }
     }
 
-    public static i0.e[] e(i0.e[] eVarArr) {
-        i0.e[] eVarArr2 = new i0.e[eVarArr.length];
-        for (int i10 = 0; i10 < eVarArr.length; i10++) {
-            eVarArr2[i10] = new i0.e(eVarArr[i10]);
+    public static i0.d[] e(i0.d[] dVarArr) {
+        i0.d[] dVarArr2 = new i0.d[dVarArr.length];
+        for (int i10 = 0; i10 < dVarArr.length; i10++) {
+            dVarArr2[i10] = new i0.d(dVarArr[i10]);
         }
-        return eVarArr2;
+        return dVarArr2;
     }
 }

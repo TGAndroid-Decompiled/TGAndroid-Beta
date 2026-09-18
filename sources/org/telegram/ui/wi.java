@@ -1,44 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.AndroidUtilities;
 public final class wi implements Runnable {
-    public final boolean f42401a;
-    public final boolean f42402b;
-    public final int f42403c;
+    public final int f39046a;
+    public final xi f39047b;
+    public final int f39048c;
     public final boolean d;
-    public final org.telegram.ui.Components.fk0 f42404e;
-    public final float f42405f;
+    public final org.telegram.ui.Components.gk0 e;
+    public final float f39049f;
     public final float h;
-    public final ah.j1 f42406n;
-    public final MessageObject f42407r;
-    public final co f42408s;
+    public final zg.p0 f39050n;
 
-    public wi(co coVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.fk0 fk0Var, float f7, float f10, ah.j1 j1Var, MessageObject messageObject) {
-        this.f42408s = coVar;
-        this.f42401a = z10;
-        this.f42402b = z11;
-        this.f42403c = i10;
-        this.d = z12;
-        this.f42404e = fk0Var;
-        this.f42405f = f7;
+    public wi(xi xiVar, int i10, boolean z10, org.telegram.ui.Components.gk0 gk0Var, float f7, float f10, zg.p0 p0Var, int i11) {
+        this.f39046a = i11;
+        this.f39047b = xiVar;
+        this.f39048c = i10;
+        this.d = z10;
+        this.e = gk0Var;
+        this.f39049f = f7;
         this.h = f10;
-        this.f42406n = j1Var;
-        this.f42407r = messageObject;
+        this.f39050n = p0Var;
     }
 
     @Override
     public final void run() {
-        if (!this.f42401a) {
-            co coVar = this.f42408s;
-            if (coVar.f35224cc != null) {
-                coVar.f35224cc = null;
-                if (this.f42402b) {
-                    coVar.h8(new vi(this, this.f42403c, this.d, this.f42404e, this.f42405f, this.h, this.f42406n, 0));
-                } else {
-                    coVar.h8(new fh(10, this, this.f42407r));
+        int i10;
+        switch (this.f39046a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new wi(this.f39047b, this.f39048c, this.d, this.e, this.f39049f, this.h, this.f39050n, 1), 50L);
+                return;
+            default:
+                bo boVar = this.f39047b.f39656s;
+                org.telegram.ui.Cells.a0 q82 = boVar.q8(this.f39048c, true);
+                if (this.d) {
+                    i10 = ((org.telegram.ui.ActionBar.o2) boVar).currentAccount;
+                    zg.l0.d(boVar, this.e, q82, null, this.f39049f, this.h, this.f39050n, i10, 1);
+                    zg.l0.f();
+                    return;
                 }
-                coVar.A7(true);
-            }
+                return;
         }
     }
 }

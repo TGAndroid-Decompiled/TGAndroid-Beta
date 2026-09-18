@@ -8,18 +8,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class f80 extends org.telegram.ui.co {
-    public boolean Qc;
-    public final boolean Rc;
-    public final long Sc;
-    public final g80 Tc;
+public final class f80 extends org.telegram.ui.bo {
+    public boolean Pc;
+    public final boolean Qc;
+    public final long Rc;
+    public final g80 Sc;
 
     public f80(g80 g80Var, Bundle bundle, boolean z10, long j3) {
         super(bundle);
-        this.Tc = g80Var;
-        this.Rc = z10;
-        this.Sc = j3;
-        this.Qc = false;
+        this.Sc = g80Var;
+        this.Qc = z10;
+        this.Rc = j3;
+        this.Pc = false;
     }
 
     public static void Xc(f80 f80Var, long j3, TLRPC.Chat chat) {
@@ -38,26 +38,26 @@ public final class f80 extends org.telegram.ui.co {
             z10 = false;
         }
         boolean z11 = chat.creator;
-        f6Var = ((org.telegram.ui.ActionBar.f3) f80Var.Tc).resourcesProvider;
-        a01.c(parentActivity, i10, j10, currentUser, null, z10, z11, f6Var);
+        f6Var = ((org.telegram.ui.ActionBar.g3) f80Var.Sc).resourcesProvider;
+        c01.c(parentActivity, i10, j10, currentUser, null, z10, z11, f6Var);
     }
 
     @Override
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (!this.Qc && this.Rc) {
-            this.Qc = true;
+        if (!this.Pc && this.Qc) {
+            this.Pc = true;
             MessagesController messagesController = getMessagesController();
-            long j3 = this.Sc;
+            long j3 = this.Rc;
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
-                qc J = yc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.g0(this, j3, chat, 21));
-                J.f29688r = false;
+                oc J = vc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
+                J.f26713r = false;
                 J.k(true);
                 return;
             }
-            qc Q = yc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f29688r = false;
+            oc Q = vc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
+            Q.f26713r = false;
             Q.k(true);
         }
     }

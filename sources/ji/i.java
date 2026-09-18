@@ -1,48 +1,19 @@
 package ji;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-public final class i implements ViewTreeObserver.OnGlobalFocusChangeListener {
-    public final int f13972a;
-    public final Object f13973b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.MessageObject;
+public final class i extends AnimatorListenerAdapter {
+    public final MessageObject.GroupedMessages.TransitionParams f13073a;
 
-    public i(Object obj, int i10) {
-        this.f13972a = i10;
-        this.f13973b = obj;
+    public i(MessageObject.GroupedMessages.TransitionParams transitionParams) {
+        this.f13073a = transitionParams;
     }
 
     @Override
-    public final void onGlobalFocusChanged(View view, View view2) {
-        boolean z10;
-        switch (this.f13972a) {
-            case 0:
-                ((r) this.f13973b).Z();
-                return;
-            case 1:
-                ((c2) this.f13973b).w0();
-                return;
-            case 2:
-                v3 v3Var = (v3) this.f13973b;
-                if (view2 != null && v3Var.F(view2) != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                v3Var.f25280a3 = z10;
-                if (view2 instanceof h1) {
-                    v3Var.L3 = (h1) view2;
-                    return;
-                }
-                return;
-            default:
-                s5 s5Var = (s5) this.f13973b;
-                s5Var.x();
-                u5 u5Var = s5Var.v;
-                if (u5Var != null) {
-                    u5Var.invalidate();
-                    return;
-                }
-                return;
-        }
+    public final void onAnimationEnd(Animator animator) {
+        MessageObject.GroupedMessages.TransitionParams transitionParams = this.f13073a;
+        transitionParams.backgroundChangeBounds = false;
+        transitionParams.drawBackgroundForDeletedItems = false;
     }
 }

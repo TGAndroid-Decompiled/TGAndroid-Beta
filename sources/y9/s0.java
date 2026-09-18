@@ -1,17 +1,17 @@
 package y9;
 public final class s0 extends q1 {
-    public final long f49879a;
-    public final String f49880b;
-    public final String f49881c;
+    public final long f46651a;
+    public final String f46652b;
+    public final String f46653c;
     public final long d;
-    public final int f49882e;
+    public final int e;
 
     public s0(long j3, String str, String str2, long j10, int i10) {
-        this.f49879a = j3;
-        this.f49880b = str;
-        this.f49881c = str2;
+        this.f46651a = j3;
+        this.f46652b = str;
+        this.f46653c = str2;
         this.d = j10;
-        this.f49882e = i10;
+        this.e = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -21,8 +21,8 @@ public final class s0 extends q1 {
         }
         if (obj instanceof q1) {
             s0 s0Var = (s0) ((q1) obj);
-            String str2 = s0Var.f49881c;
-            if (this.f49879a == s0Var.f49879a && this.f49880b.equals(s0Var.f49880b) && ((str = this.f49881c) != null ? str.equals(str2) : str2 == null) && this.d == s0Var.d && this.f49882e == s0Var.f49882e) {
+            String str2 = s0Var.f46653c;
+            if (this.f46651a == s0Var.f46651a && this.f46652b.equals(s0Var.f46652b) && ((str = this.f46653c) != null ? str.equals(str2) : str2 == null) && this.d == s0Var.d && this.e == s0Var.e) {
                 return true;
             }
         }
@@ -31,28 +31,28 @@ public final class s0 extends q1 {
 
     public final int hashCode() {
         int hashCode;
-        long j3 = this.f49879a;
-        int hashCode2 = (((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f49880b.hashCode()) * 1000003;
-        String str = this.f49881c;
+        long j3 = this.f46651a;
+        int hashCode2 = (((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f46652b.hashCode()) * 1000003;
+        String str = this.f46653c;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
         long j10 = this.d;
-        return this.f49882e ^ ((((hashCode2 ^ hashCode) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
+        return this.e ^ ((((hashCode2 ^ hashCode) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Frame{pc=");
-        sb2.append(this.f49879a);
+        sb2.append(this.f46651a);
         sb2.append(", symbol=");
-        sb2.append(this.f49880b);
+        sb2.append(this.f46652b);
         sb2.append(", file=");
-        sb2.append(this.f49881c);
+        sb2.append(this.f46653c);
         sb2.append(", offset=");
         sb2.append(this.d);
         sb2.append(", importance=");
-        return a4.a.n(this.f49882e, "}", sb2);
+        return a4.a.n(this.e, "}", sb2);
     }
 }

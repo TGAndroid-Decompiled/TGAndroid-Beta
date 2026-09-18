@@ -8,10 +8,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 public final class k30 extends z4.a {
-    public final l30 f27682c;
+    public final l30 f25557c;
 
     public k30(l30 l30Var) {
-        this.f27682c = l30Var;
+        this.f25557c = l30Var;
     }
 
     @Override
@@ -21,14 +21,14 @@ public final class k30 extends z4.a {
 
     @Override
     public final int b() {
-        return this.f27682c.f28039e.length;
+        return this.f25557c.e.length;
     }
 
     @Override
     public final Object e(z4.g gVar, int i10) {
         int i11;
-        j30 j30Var = new j30(this, this.f27682c.getContext(), i10, 0);
-        j30Var.setOnClickListener(new di.o4(this, i10, 10));
+        j30 j30Var = new j30(this, this.f25557c.getContext(), i10, 0);
+        j30Var.setOnClickListener(new ci.o4(this, i10, 10));
         j30Var.setFocusable(true);
         j30Var.setTag(Integer.valueOf(i10));
         j30Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);

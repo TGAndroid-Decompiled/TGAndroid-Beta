@@ -1,15 +1,15 @@
 package org.telegram.ui;
-public final class l31 extends a71 {
-    public final n31 f38181e;
+public final class l31 extends z61 {
+    public final n31 e;
 
     public l31(n31 n31Var, k31 k31Var) {
         super(k31Var);
-        this.f38181e = n31Var;
+        this.e = n31Var;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f38181e.f38826n = null;
+        this.e.f35937n = null;
     }
 }

@@ -1,31 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class bx0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24818a;
-    public final View f24819b;
-    public final FrameLayout f24820c;
-
-    public bx0(FrameLayout frameLayout, View view, int i10) {
-        this.f24818a = i10;
-        this.f24820c = frameLayout;
-        this.f24819b = view;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class bx0 extends kc {
+    public bx0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
+        this(launchActivity, null, 1, i10, document, null);
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24818a) {
-            case 0:
-                cx0 cx0Var = (cx0) this.f24820c;
-                cx0Var.f25108b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                cx0Var.invalidate();
-                ((im0) this.f24819b).invalidate();
-                return;
-            default:
-                ((i81) this.f24820c).E(this.f24819b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-        }
+    public bx0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.f6 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bx0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.f6):void");
     }
 }

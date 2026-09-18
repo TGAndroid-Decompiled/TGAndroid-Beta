@@ -1,121 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class fc extends GestureDetector.SimpleOnGestureListener {
-    public final ub f26010a;
-    public final ib f26011b;
-
-    public fc(ib ibVar, ub ubVar) {
-        this.f26011b = ibVar;
-        this.f26010a = ubVar;
-    }
+import android.view.ViewPropertyAnimator;
+public final class fc extends lb {
+    public float f23865a;
+    public ec f23866b;
+    public u9 f23867c;
+    public n6 d;
+    public boolean e;
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        ib ibVar = this.f26011b;
-        if (ibVar.f27066s) {
-            return false;
-        }
-        ub ubVar = this.f26010a;
-        ibVar.v = ub.access$1400(ubVar, true);
-        ibVar.f27067w = ub.access$1400(ubVar, false);
-        return true;
+    public CharSequence getAccessibilityText() {
+        return this.d.getText();
     }
 
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        boolean z10 = false;
-        if (Math.abs(f7) <= 2000.0f) {
-            return false;
-        }
-        ib ibVar = this.f26011b;
-        if ((f7 < 0.0f && ibVar.v) || (f7 > 0.0f && ibVar.f27067w)) {
+    public void setProgress(float f7) {
+        boolean z10;
+        float f10;
+        boolean z11 = this.e;
+        boolean z12 = false;
+        float f11 = 1.0f;
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        if (i10 < 0) {
             z10 = true;
+        } else {
+            z10 = false;
         }
-        float signum = Math.signum(f7);
-        ub ubVar = this.f26010a;
-        o1.k kVar = new o1.k(ubVar, o1.h.f16806m, signum * ubVar.getWidth() * 2.0f);
-        if (!z10) {
-            kVar.a(new o1.f(this) {
-                public final fc f25339b;
-
-                {
-                    this.f25339b = this;
-                }
-
-                @Override
-                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
-                    switch (r2) {
-                        case 0:
-                            this.f25339b.f26011b.f27069y.b();
-                            return;
-                        default:
-                            this.f25339b.f26011b.f27069y.b();
-                            return;
-                    }
-                }
-            });
-            kVar.b(new l7(ubVar, 2));
+        if (z11 != z10) {
+            if (i10 < 0) {
+                z12 = true;
+            }
+            this.e = z12;
+            ViewPropertyAnimator animate = this.f23867c.animate();
+            if (this.e) {
+                f10 = 0.78f;
+            } else {
+                f10 = 1.0f;
+            }
+            ViewPropertyAnimator scaleX = animate.scaleX(f10);
+            if (this.e) {
+                f11 = 0.78f;
+            }
+            scaleX.scaleY(f11).setDuration(320L).setInterpolator(qr.h).start();
         }
-        kVar.f16825u.a(1.0f);
-        kVar.f16825u.b(100.0f);
-        kVar.f16814a = f7;
-        kVar.f();
-        if (z10) {
-            o1.k kVar2 = new o1.k(ubVar, o1.h.f16813t, 0.0f);
-            kVar2.a(new o1.f(this) {
-                public final fc f25339b;
-
-                {
-                    this.f25339b = this;
-                }
-
-                @Override
-                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
-                    switch (r2) {
-                        case 0:
-                            this.f25339b.f26011b.f27069y.b();
-                            return;
-                        default:
-                            this.f25339b.f26011b.f27069y.b();
-                            return;
-                    }
-                }
-            });
-            kVar2.b(new Object());
-            kVar.f16825u.a(1.0f);
-            kVar.f16825u.b(10.0f);
-            kVar.f16814a = f7;
-            kVar2.f();
-        }
-        ibVar.f27066s = true;
-        return true;
+        this.f23865a = f7;
+        this.f23866b.invalidate();
     }
 
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        ib ibVar = this.f26011b;
-        float f11 = ibVar.h + f7;
-        ibVar.h = f11;
-        float f12 = ibVar.f27064n + f10;
-        ibVar.f27064n = f12;
-        if (Utilities.dist(0.0f, 0.0f, f11, f12) > AndroidUtilities.touchSlop) {
-            ibVar.f27065r = true;
-        }
-        if (!ibVar.d) {
-            return false;
-        }
-        float f13 = ibVar.f27063f - f7;
-        ibVar.f27063f = f13;
-        ub ubVar = this.f26010a;
-        ubVar.setTranslationX(f13);
-        float f14 = ibVar.f27063f;
-        if (f14 == 0.0f || ((f14 < 0.0f && ibVar.v) || (f14 > 0.0f && ibVar.f27067w))) {
-            ubVar.setAlpha(1.0f - (Math.abs(f14) / ubVar.getWidth()));
-        }
-        return true;
+    public void setTextColor(int i10) {
+        this.d.setTextColor(i10);
     }
 }

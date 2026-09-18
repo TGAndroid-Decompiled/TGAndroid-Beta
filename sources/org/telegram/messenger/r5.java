@@ -1,25 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class r5 implements Runnable {
-    public final int f18872a;
-    public final LocationController f18873b;
-    public final ArrayList f18874c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class r5 implements RequestDelegate {
+    public final int f17215a;
+    public final LocationController f17216b;
 
-    public r5(LocationController locationController, ArrayList arrayList, int i10) {
-        this.f18872a = i10;
-        this.f18873b = locationController;
-        this.f18874c = arrayList;
+    public r5(LocationController locationController, int i10) {
+        this.f17215a = i10;
+        this.f17216b = locationController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18872a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17215a) {
             case 0:
-                this.f18873b.lambda$loadSharingLocations$14(this.f18874c);
+                this.f17216b.lambda$removeSharingLocation$19(tLObject, tL_error);
+                return;
+            case 1:
+                this.f17216b.lambda$removeAllLocationSharings$22(tLObject, tL_error);
                 return;
             default:
-                this.f18873b.lambda$loadSharingLocations$15(this.f18874c);
+                this.f17216b.lambda$markLiveLoactionsAsRead$27(tLObject, tL_error);
                 return;
         }
     }

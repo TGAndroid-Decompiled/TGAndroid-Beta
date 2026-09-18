@@ -6,7 +6,7 @@ import android.os.Build;
 public abstract class q {
     public static KeyguardManager a(Context context) {
         if (Build.VERSION.SDK_INT >= 23) {
-            return androidx.biometric.h0.a(context);
+            return androidx.biometric.g0.a(context);
         }
         Object systemService = context.getSystemService("keyguard");
         if (systemService instanceof KeyguardManager) {
@@ -21,8 +21,8 @@ public abstract class q {
             return false;
         }
         if (Build.VERSION.SDK_INT >= 23) {
-            return androidx.biometric.h0.b(a2);
+            return androidx.biometric.g0.b(a2);
         }
-        return androidx.biometric.g0.a(a2);
+        return androidx.biometric.f0.a(a2);
     }
 }

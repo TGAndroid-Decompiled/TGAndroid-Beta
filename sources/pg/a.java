@@ -1,14 +1,24 @@
 package pg;
-public abstract class a {
-    public int f44072a;
-    public boolean f44073b;
 
-    public a(int i10, boolean z10) {
-        this.f44072a = i10;
-        this.f44073b = z10;
+import org.telegram.messenger.R;
+public final class a extends m {
+    @Override
+    public final int c() {
+        return -30208;
     }
 
-    public boolean a(a aVar) {
-        return false;
+    @Override
+    public final float d() {
+        return 0.25f;
+    }
+
+    @Override
+    public final int e() {
+        return R.raw.photo_arrow;
+    }
+
+    @Override
+    public final float j() {
+        return 0.25f;
     }
 }

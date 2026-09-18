@@ -3,22 +3,22 @@ package za;
 import android.util.Log;
 import v7.t7;
 public final class w extends kd.j implements rd.q {
-    public int f51481a;
-    public ce.c f51482b;
-    public Throwable f51483c;
+    public int f48860a;
+    public ce.c f48861b;
+    public Throwable f48862c;
 
     @Override
     public final Object c(Object obj, Object obj2, kd.c cVar) {
         ?? jVar = new kd.j(3, cVar);
-        jVar.f51482b = (ce.c) obj;
-        jVar.f51483c = (Throwable) obj2;
-        return jVar.invokeSuspend(gd.i.f10588a);
+        jVar.f48861b = (ce.c) obj;
+        jVar.f48862c = (Throwable) obj2;
+        return jVar.invokeSuspend(gd.i.f9621a);
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        jd.a aVar = jd.a.f13614a;
-        int i10 = this.f51481a;
+        jd.a aVar = jd.a.f12970a;
+        int i10 = this.f48860a;
         if (i10 != 0) {
             if (i10 == 1) {
                 t7.b(obj);
@@ -27,15 +27,15 @@ public final class w extends kd.j implements rd.q {
             }
         } else {
             t7.b(obj);
-            ce.c cVar = this.f51482b;
-            Log.e("FirebaseSessionsRepo", "Error reading stored session data.", this.f51483c);
+            ce.c cVar = this.f48861b;
+            Log.e("FirebaseSessionsRepo", "Error reading stored session data.", this.f48862c);
             n1.b bVar = new n1.b(true);
-            this.f51482b = null;
-            this.f51481a = 1;
+            this.f48861b = null;
+            this.f48860a = 1;
             if (cVar.a(bVar, this) == aVar) {
                 return aVar;
             }
         }
-        return gd.i.f10588a;
+        return gd.i.f9621a;
     }
 }

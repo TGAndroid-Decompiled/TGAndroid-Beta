@@ -7,6 +7,7 @@ import android.graphics.SurfaceTexture;
 import android.os.Looper;
 import android.view.TextureView;
 import android.view.View;
+import hg.k0;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
@@ -142,7 +143,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             sb2.append(", frame size: ");
             sb2.append(this.rotatedFrameWidth);
             sb2.append("x");
-            i2.g.v(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            k0.v(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb2.append(min2);
             sb2.append(", old surface size: ");
             sb2.append(this.surfaceWidth);
@@ -211,7 +212,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        hg.n nVar = new hg.n(this, i12, i14, 14);
+                        gg.n nVar = new gg.n(this, i12, i14, 14);
                         this.updateScreenRunnable = nVar;
                         postOrRun(nVar);
                     } catch (Throwable th2) {
@@ -614,7 +615,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new org.telegram.ui.ActionBar.q(countDownLatch, 16), false);
+            releaseEglSurface(new org.telegram.ui.ActionBar.r(countDownLatch, 16), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }

@@ -6,15 +6,15 @@ import java.util.NoSuchElementException;
 import kd.i;
 import v7.t7;
 public final class c implements Iterator, id.c {
-    public int f48486a;
-    public Object f48487b;
-    public id.c f48488c;
+    public int f45043a;
+    public Object f45044b;
+    public id.c f45045c;
 
     public final RuntimeException a() {
-        int i10 = this.f48486a;
+        int i10 = this.f45043a;
         if (i10 != 4) {
             if (i10 != 5) {
-                return new IllegalStateException("Unexpected state of the iterator: " + this.f48486a);
+                return new IllegalStateException("Unexpected state of the iterator: " + this.f45043a);
             }
             return new IllegalStateException("Iterator has failed.");
         }
@@ -22,30 +22,30 @@ public final class c implements Iterator, id.c {
     }
 
     public final void c(Object obj, i iVar) {
-        this.f48487b = obj;
-        this.f48486a = 3;
-        this.f48488c = iVar;
-        jd.a aVar = jd.a.f13614a;
+        this.f45044b = obj;
+        this.f45043a = 3;
+        this.f45045c = iVar;
+        jd.a aVar = jd.a.f12970a;
     }
 
     @Override
     public final h getContext() {
-        return id.i.f11954a;
+        return id.i.f11084a;
     }
 
     @Override
     public final boolean hasNext() {
         int i10;
         while (true) {
-            i10 = this.f48486a;
+            i10 = this.f45043a;
             if (i10 != 0) {
                 break;
             }
-            this.f48486a = 5;
-            id.c cVar = this.f48488c;
+            this.f45043a = 5;
+            id.c cVar = this.f45045c;
             kotlin.jvm.internal.i.b(cVar);
-            this.f48488c = null;
-            cVar.resumeWith(gd.i.f10588a);
+            this.f45045c = null;
+            cVar.resumeWith(gd.i.f9621a);
         }
         if (i10 != 1) {
             if (i10 == 2 || i10 == 3) {
@@ -62,18 +62,18 @@ public final class c implements Iterator, id.c {
 
     @Override
     public final Object next() {
-        int i10 = this.f48486a;
+        int i10 = this.f45043a;
         if (i10 != 0 && i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
-                    this.f48486a = 0;
-                    Object obj = this.f48487b;
-                    this.f48487b = null;
+                    this.f45043a = 0;
+                    Object obj = this.f45044b;
+                    this.f45044b = null;
                     return obj;
                 }
                 throw a();
             }
-            this.f48486a = 1;
+            this.f45043a = 1;
             kotlin.jvm.internal.i.b(null);
             throw null;
         } else if (hasNext()) {
@@ -91,6 +91,6 @@ public final class c implements Iterator, id.c {
     @Override
     public final void resumeWith(Object obj) {
         t7.b(obj);
-        this.f48486a = 4;
+        this.f45043a = 4;
     }
 }

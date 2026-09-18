@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class tl extends su0 {
-    public final co f40792a;
+public final class tl extends vu0 {
+    public final bo f37833a;
 
-    public tl(co coVar) {
-        this.f40792a = coVar;
+    public tl(bo boVar) {
+        this.f37833a = boVar;
     }
 
     @Override
-    public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return co.A1(this.f40792a, messageObject, fileLocation, i10, z10, false);
+    public final fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return bo.A1(this.f37833a, messageObject, fileLocation, i10, z10, false);
     }
 
     @Override

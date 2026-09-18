@@ -1,43 +1,67 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class sz0 extends ProfileStoriesView {
-    public final Context f40576t0;
-    public final ProfileActivity f40577u0;
+import org.telegram.messenger.AndroidUtilities;
+public final class sz0 extends org.telegram.ui.Components.x80 {
+    public final ProfileActivity P0;
 
-    public sz0(ProfileActivity profileActivity, Context context, int i10, long j3, boolean z10, j0 j0Var, pz0 pz0Var, org.telegram.ui.ActionBar.f6 f6Var, Context context2) {
-        super(context, i10, j3, z10, j0Var, pz0Var, f6Var);
-        this.f40577u0 = profileActivity;
-        this.f40576t0 = context2;
+    public sz0(ProfileActivity profileActivity, Context context) {
+        super(context);
+        this.P0 = profileActivity;
     }
 
     @Override
-    public final void e(a6.i iVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f40577u0;
-        long a2 = profileActivity.a();
-        bi.u8 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f40576t0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f34007v2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33889e1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34007v2.stories, iVar);
-                return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f34000u2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34000u2.stories, iVar);
-                return;
-            } else {
-                profileActivity.K3();
-                return;
-            }
+    public final void setAlpha(float f7) {
+        super.setAlpha(f7);
+        this.P0.B3();
+    }
+
+    @Override
+    public final void setTextColor(int i10) {
+        int l1;
+        super.setTextColor(i10);
+        ProfileActivity profileActivity = this.P0;
+        org.telegram.ui.ActionBar.k5[] k5VarArr = profileActivity.f31372r;
+        org.telegram.ui.ActionBar.k5 k5Var = k5VarArr[2];
+        if (k5Var != null) {
+            k5Var.setTextColor(i10);
+            k5VarArr[3].setTextColor(i10);
         }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, iVar);
+        m11 m11Var = profileActivity.f31269b6;
+        if (m11Var != null && m11Var.f35670c != (l1 = org.telegram.ui.ActionBar.j6.l1(1.4f, org.telegram.ui.ActionBar.j6.b(-0.02f, 0.15f, i10)))) {
+            m11Var.f35670c = l1;
+            m11Var.invalidateSelf();
+        }
+    }
+
+    @Override
+    public final void setTranslationX(float f7) {
+        super.setTranslationX(f7);
+        ProfileActivity profileActivity = this.P0;
+        profileActivity.Z3();
+        profileActivity.getClass();
+        profileActivity.f31372r[2].setTranslationX(f7);
+        profileActivity.f31372r[3].setTranslationX(f7);
+        org.telegram.ui.Components.jw0 jw0Var = profileActivity.T;
+        if (jw0Var != null) {
+            jw0Var.setTranslationX(f7 - profileActivity.Z3());
+        }
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        ProfileActivity profileActivity = this.P0;
+        org.telegram.ui.ActionBar.k5[] k5VarArr = profileActivity.f31372r;
+        if (profileActivity.T != null) {
+            AndroidUtilities.dp(3.0f);
+            profileActivity.T.getVisibilityFactor();
+        }
+        k5VarArr[2].setTranslationY(f7);
+        k5VarArr[3].setTranslationY(f7);
+        org.telegram.ui.Components.jw0 jw0Var = profileActivity.T;
+        if (jw0Var != null) {
+            jw0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
+        }
     }
 }

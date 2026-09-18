@@ -1,59 +1,24 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.messenger.FileLog;
-public final class cu0 extends AnimatorListenerAdapter {
-    public final int f35539a;
-    public final org.telegram.ui.Components.em0 f35540b;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+public final class cu0 extends qg.p0 {
+    public final PhotoViewer f32924o2;
 
-    public cu0(org.telegram.ui.Components.em0 em0Var, int i10) {
-        this.f35539a = i10;
-        this.f35540b = em0Var;
+    public cu0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, MediaController.CropState cropState, kr0 kr0Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, cropState, kr0Var, f6Var);
+        this.f32924o2 = photoViewer;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35539a) {
-            case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f35540b.f25735b;
-                photoViewer.Q1.getNextView().setText((CharSequence) null);
-                au0 au0Var = photoViewer.T1;
-                au0Var.f39033l0 = false;
-                if (au0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) au0Var.f39035o0.getLayoutParams()).topMargin = au0Var.m0;
-                    au0Var.m0 = -1;
-                    au0Var.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                ((PhotoViewer) this.f35540b.f25735b).Q1.setTranslationY(0.0f);
-                return;
+    public final int getPKeyboardHeight() {
+        ci.j4 j4Var = this.f32924o2.K1;
+        if (j4Var != null) {
+            return j4Var.f4848l;
         }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f35539a) {
-            case 0:
-                au0 au0Var = ((PhotoViewer) this.f35540b.f25735b).T1;
-                Method method = au0Var.f39027f0;
-                if (method != null) {
-                    try {
-                        method.invoke(au0Var, null);
-                        return;
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+        return 0;
     }
 }

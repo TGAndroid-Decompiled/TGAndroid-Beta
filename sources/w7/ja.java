@@ -1,4 +1,4 @@
 package w7;
 public interface ja {
-    void a(o0.a aVar);
+    void a(n7.a1 a1Var);
 }

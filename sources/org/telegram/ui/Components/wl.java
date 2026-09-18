@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import org.telegram.messenger.R;
 import org.telegram.messenger.camera.CameraView;
 public final class wl implements CameraView.CameraViewDelegate {
-    public final ChatAttachAlertPhotoLayout f32279a;
+    public final ChatAttachAlertPhotoLayout f29689a;
 
     public wl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f32279a = chatAttachAlertPhotoLayout;
+        this.f29689a = chatAttachAlertPhotoLayout;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class wl implements CameraView.CameraViewDelegate {
         int i10;
         float f7;
         int i11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32279a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f23870r0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f29689a;
+        ImageView imageView = chatAttachAlertPhotoLayout.f21949r0;
         ImageView[] imageViewArr = chatAttachAlertPhotoLayout.S;
         String currentFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode();
         String nextFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getNextFlashMode();
@@ -42,7 +42,7 @@ public final class wl implements CameraView.CameraViewDelegate {
                     }
                     imageView2.setVisibility(i10);
                     ImageView imageView3 = imageViewArr[i14];
-                    if (i14 == 0 && chatAttachAlertPhotoLayout.f23839b0) {
+                    if (i14 == 0 && chatAttachAlertPhotoLayout.f21918b0) {
                         f7 = 1.0f;
                     } else {
                         f7 = 0.0f;
@@ -61,12 +61,12 @@ public final class wl implements CameraView.CameraViewDelegate {
                 i12 = 0;
             }
             imageView.setVisibility(i12);
-            if (!chatAttachAlertPhotoLayout.f23839b0) {
+            if (!chatAttachAlertPhotoLayout.f21918b0) {
                 AnimatorSet animatorSet = new AnimatorSet();
                 chatAttachAlertPhotoLayout.O = animatorSet;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.P, View.ALPHA, 0.0f, 1.0f));
                 chatAttachAlertPhotoLayout.O.setDuration(180L);
-                chatAttachAlertPhotoLayout.O.addListener(new j6(this, 12));
+                chatAttachAlertPhotoLayout.O.addListener(new p8(this, 9));
                 chatAttachAlertPhotoLayout.O.start();
             }
         }

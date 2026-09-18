@@ -31,8 +31,8 @@ public final class EncryptedFileDataSource extends c {
     public void close() {
         try {
             this.fileInputStream.close();
-        } catch (IOException e7) {
-            e7.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         if (this.opened) {
             this.opened = false;
@@ -54,11 +54,11 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(m mVar) {
-        Uri uri = mVar.f10330a;
-        long j3 = mVar.f10334f;
-        long j10 = mVar.f10333e;
+        Uri uri = mVar.f9380a;
+        long j3 = mVar.f9383f;
+        long j10 = mVar.e;
         this.uri = uri;
-        File file = new File(mVar.f10330a.getPath());
+        File file = new File(mVar.f9380a.getPath());
         EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), p6.t(file.getName(), ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(j10);
@@ -92,8 +92,8 @@ public final class EncryptedFileDataSource extends c {
         int min = Math.min(i11, i12);
         try {
             this.fileInputStream.read(bArr, i10, min);
-        } catch (IOException e7) {
-            e7.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         this.bytesRemaining -= min;
         bytesTransferred(min);

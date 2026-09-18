@@ -1,65 +1,52 @@
 package org.telegram.ui;
-public final class zm implements Runnable {
-    public final int f43463a;
-    public final on f43464b;
 
-    public zm(on onVar, int i10) {
-        this.f43463a = i10;
-        this.f43464b = onVar;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.Components.UndoView;
+public final class zm implements Runnable {
+    public final int f40276a;
+    public final nn f40277b;
+    public final MessageObject f40278c;
+
+    public zm(nn nnVar, MessageObject messageObject, int i10) {
+        this.f40276a = i10;
+        this.f40277b = nnVar;
+        this.f40278c = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f43463a) {
+        int i10;
+        switch (this.f40276a) {
             case 0:
-                co coVar = this.f43464b.f39284a;
-                coVar.f35230d5 = null;
-                coVar.f35244e5 = null;
+                nn nnVar = this.f40277b;
+                bo boVar = nnVar.f36139a;
+                boVar.Q7();
+                UndoView undoView = boVar.y3;
+                if (undoView != null) {
+                    if (boVar.Y.getVisibility() == 0 && boVar.R.getVisibility() != 0) {
+                        i10 = 16;
+                    } else {
+                        i10 = 17;
+                    }
+                    MessageObject messageObject = this.f40278c;
+                    undoView.k(0L, i10, messageObject.getDiceEmoji(), null, null, new zm(nnVar, messageObject, 2));
+                    return;
+                }
                 return;
             case 1:
-                on onVar = this.f43464b;
-                onVar.getClass();
-                co coVar2 = onVar.f39284a;
-                new sg.a1((org.telegram.ui.ActionBar.n2) coVar2, 8, true).show();
-                coVar2.getMessagesController().pressTranscribeButton();
-                return;
-            case 2:
-                on onVar2 = this.f43464b;
-                onVar2.getClass();
-                co coVar3 = onVar2.f39284a;
-                new sg.a1((org.telegram.ui.ActionBar.n2) coVar3, 8, true).show();
-                coVar3.getMessagesController().pressTranscribeButton();
-                return;
-            case 3:
-                on onVar3 = this.f43464b;
-                onVar3.getClass();
-                co coVar4 = onVar3.f39284a;
-                new sg.a1((org.telegram.ui.ActionBar.n2) coVar4, 8, true).show();
-                coVar4.getMessagesController().pressTranscribeButton();
-                return;
-            case 4:
-                this.f43464b.f39284a.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
-                return;
-            case 5:
-                co coVar5 = this.f43464b.f39284a;
-                coVar5.f35230d5 = null;
-                coVar5.f35244e5 = null;
-                return;
-            case 6:
-                this.f43464b.f39284a.Y.H0();
-                return;
-            case 7:
-                this.f43464b.f39284a.Y.H0();
-                return;
-            case 8:
-                co coVar6 = this.f43464b.f39284a;
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.T0 = true;
-                coVar6.presentFragment(themeActivity);
+                bo boVar2 = this.f40277b.f36139a;
+                boVar2.f32490vb = this.f40278c.getId();
+                boVar2.f32504wb = 0;
                 return;
             default:
-                co coVar7 = this.f43464b.f39284a;
-                coVar7.showDialog(new sg.a1((org.telegram.ui.ActionBar.n2) coVar7, 39, false));
+                bo boVar3 = this.f40277b.f36139a;
+                if (boVar3.f7()) {
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f40278c.getDiceEmoji(), boVar3.T5, boVar3.f32385n5, boVar3.X3, null, false, null, null, null, true, 0, 0, null, false);
+                    of2.sendMessageChatArguments = boVar3.C8();
+                    boVar3.getSendMessagesHelper().sendMessage(of2);
+                    return;
+                }
                 return;
         }
     }

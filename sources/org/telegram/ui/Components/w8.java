@@ -1,32 +1,61 @@
 package org.telegram.ui.Components;
-public final class w8 extends org.telegram.ui.ActionBar.j {
-    public final int f32198a;
-    public final f9 f32199b;
 
-    public w8(f9 f9Var, int i10) {
-        this.f32198a = i10;
-        this.f32199b = f9Var;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class w8 extends org.telegram.ui.i71 {
+    public boolean f29596d2;
+    public final c9 f29597e2;
+
+    public w8(c9 c9Var, c9 c9Var2, Activity activity, int i10) {
+        super(c9Var2, activity, false, null, 4, true, null, 16, i10);
+        this.f29597e2 = c9Var;
+        this.f29596d2 = true;
     }
 
     @Override
-    public final void b(int i10) {
-        switch (this.f32198a) {
-            case 0:
-                if (i10 == -1) {
-                    f9.U(this.f32199b);
-                    return;
-                }
-                return;
-            default:
-                f9 f9Var = this.f32199b;
-                if (i10 == -1) {
-                    f9.U(f9Var);
-                }
-                if (i10 == 1) {
-                    f9Var.f0();
-                    return;
-                }
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.f29596d2) {
+            this.f29596d2 = false;
+            this.f29597e2.f22968b.s(null);
         }
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        TLRPC.TL_emojiList tL_emojiList;
+        boolean z10;
+        long j3;
+        int i11;
+        boolean z11 = this.R;
+        c9 c9Var = this.f29597e2;
+        if (z11) {
+            i11 = ((org.telegram.ui.ActionBar.o2) c9Var).currentAccount;
+            tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
+        } else {
+            i10 = ((org.telegram.ui.ActionBar.o2) c9Var).currentAccount;
+            tL_emojiList = MediaDataController.getInstance(i10).groupAvatarConstructorDefault;
+        }
+        long j10 = 0;
+        if (tL_emojiList != null) {
+            if (document != null) {
+                j3 = document.f18127id;
+            } else if (l4 != null) {
+                j3 = l4.longValue();
+            } else {
+                j3 = 0;
+            }
+            z10 = tL_emojiList.document_id.contains(Long.valueOf(j3));
+        } else {
+            z10 = false;
+        }
+        if (l4 != null) {
+            j10 = l4.longValue();
+        }
+        c9Var.h0(z10, j10, document);
     }
 }

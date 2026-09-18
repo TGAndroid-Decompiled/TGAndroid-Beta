@@ -10,37 +10,37 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class qz extends View {
-    public final Paint f29839a;
-    public final Paint f29840b;
-    public final Path f29841c;
+    public final Paint f27458a;
+    public final Paint f27459b;
+    public final Path f27460c;
     public int d;
-    public int f29842e;
-    public f01[] f29843f;
+    public int e;
+    public h01[] f27461f;
     public RectF[] h;
-    public float f29844n;
-    public org.telegram.ui.zo0 f29845r;
-    public int f29846s;
+    public float f27462n;
+    public org.telegram.ui.ap0 f27463r;
+    public int f27464s;
 
     public qz(Context context) {
         super(context);
-        this.f29839a = new Paint(1);
-        this.f29840b = new Paint(1);
-        this.f29841c = new Path();
+        this.f27458a = new Paint(1);
+        this.f27459b = new Paint(1);
+        this.f27460c = new Path();
         this.d = -1;
-        this.f29842e = -1;
-        this.f29846s = -1;
+        this.e = -1;
+        this.f27464s = -1;
     }
 
     public final void a(float f7, int i10, int i11, Canvas canvas) {
-        f01[] f01VarArr = this.f29843f;
-        int length = f01VarArr.length;
+        h01[] h01VarArr = this.f27461f;
+        int length = h01VarArr.length;
         int i12 = 0;
         float f10 = f7;
         while (i12 < length) {
-            f01 f01Var = f01VarArr[i12];
+            h01 h01Var = h01VarArr[i12];
             int i13 = i11;
-            f01Var.c(f10, i10 / 2.0f, 1.0f, i13, canvas);
-            f10 += f01Var.l() + AndroidUtilities.dp(24.0f);
+            h01Var.c(f10, i10 / 2.0f, 1.0f, i13, canvas);
+            f10 += h01Var.l() + AndroidUtilities.dp(24.0f);
             i12++;
             i11 = i13;
         }
@@ -48,19 +48,19 @@ public final class qz extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f29843f == null) {
+        if (this.f27461f == null) {
             return;
         }
         int width = getWidth();
         int height = getHeight();
-        int dp = AndroidUtilities.dp(4.0f) + org.telegram.messenger.w1.D(24.0f, this.f29843f.length, AndroidUtilities.dp(4.0f));
+        int dp = AndroidUtilities.dp(4.0f) + org.telegram.messenger.w1.D(24.0f, this.f27461f.length, AndroidUtilities.dp(4.0f));
         int i10 = 0;
         while (true) {
-            f01[] f01VarArr = this.f29843f;
-            if (i10 >= f01VarArr.length) {
+            h01[] h01VarArr = this.f27461f;
+            if (i10 >= h01VarArr.length) {
                 break;
             }
-            dp = (int) (f01VarArr[i10].l() + dp);
+            dp = (int) (h01VarArr[i10].l() + dp);
             i10++;
         }
         float dp2 = (height - AndroidUtilities.dp(36.0f)) / 2.0f;
@@ -69,40 +69,40 @@ public final class qz extends View {
         float dp4 = AndroidUtilities.dp(16.0f) + f7;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(f7, dp2, dp + f7, dp3);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f29839a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f27458a);
         float dp5 = f7 + AndroidUtilities.dp(16.0f);
-        for (int i11 = 0; i11 < this.f29843f.length; i11++) {
-            this.h[i11].set(dp5 - AndroidUtilities.dp(16.0f), dp2, this.f29843f[i11].l() + dp5 + AndroidUtilities.dp(16.0f), dp3);
-            dp5 += this.f29843f[i11].l() + AndroidUtilities.dp(24.0f);
+        for (int i11 = 0; i11 < this.f27461f.length; i11++) {
+            this.h[i11].set(dp5 - AndroidUtilities.dp(16.0f), dp2, this.f27461f[i11].l() + dp5 + AndroidUtilities.dp(16.0f), dp3);
+            dp5 += this.f27461f[i11].l() + AndroidUtilities.dp(24.0f);
         }
         AndroidUtilities.dp(4.0f);
-        int clamp = Utilities.clamp((int) Math.floor(this.f29844n), this.f29843f.length - 1, 0);
-        int clamp2 = Utilities.clamp((int) Math.ceil(this.f29844n), this.f29843f.length - 1, 0);
+        int clamp = Utilities.clamp((int) Math.floor(this.f27462n), this.f27461f.length - 1, 0);
+        int clamp2 = Utilities.clamp((int) Math.ceil(this.f27462n), this.f27461f.length - 1, 0);
         float dp6 = this.h[clamp].left + AndroidUtilities.dp(4.0f);
         float dp7 = this.h[clamp2].left + AndroidUtilities.dp(4.0f);
-        float f10 = this.f29844n;
+        float f10 = this.f27462n;
         float lerp = AndroidUtilities.lerp(dp6, dp7, (float) (f10 - Math.floor(f10)));
         float dp8 = this.h[clamp].right - AndroidUtilities.dp(4.0f);
         float dp9 = this.h[clamp2].right - AndroidUtilities.dp(4.0f);
-        float f11 = this.f29844n;
+        float f11 = this.f27462n;
         float lerp2 = AndroidUtilities.lerp(dp8, dp9, (float) (f11 - Math.floor(f11)));
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(lerp, (height - AndroidUtilities.dp(28.0f)) / 2.0f, lerp2, (AndroidUtilities.dp(28.0f) + height) / 2.0f);
-        Path path = this.f29841c;
+        Path path = this.f27460c;
         path.rewind();
         path.addRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Path.Direction.CW);
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.f29840b);
+        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.f27459b);
         a(dp4, height, this.d, canvas);
         canvas.save();
         canvas.clipPath(path);
-        a(dp4, height, this.f29842e, canvas);
+        a(dp4, height, this.e, canvas);
         canvas.restore();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i10 = 0;
-        if (this.f29843f == null || this.h == null) {
+        if (this.f27461f == null || this.h == null) {
             return false;
         }
         while (true) {
@@ -117,15 +117,15 @@ public final class qz extends View {
                 break;
             }
         }
-        if (i10 >= 0 && i10 != this.f29846s) {
-            this.f29846s = i10;
-            org.telegram.ui.zo0 zo0Var = this.f29845r;
-            if (zo0Var != null) {
-                zo0Var.run(Integer.valueOf(i10));
+        if (i10 >= 0 && i10 != this.f27464s) {
+            this.f27464s = i10;
+            org.telegram.ui.ap0 ap0Var = this.f27463r;
+            if (ap0Var != null) {
+                ap0Var.run(Integer.valueOf(i10));
             }
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.f29846s = -1;
+            this.f27464s = -1;
         }
         if (motionEvent.getAction() == 0 && i10 >= 0) {
             return true;
@@ -135,32 +135,32 @@ public final class qz extends View {
 
     @Override
     public void setBackgroundColor(int i10) {
-        this.f29839a.setColor(i10);
+        this.f27458a.setColor(i10);
         invalidate();
     }
 
     public void setSelected(float f7) {
-        if (Math.abs(f7 - this.f29844n) > 0.001f) {
+        if (Math.abs(f7 - this.f27462n) > 0.001f) {
             invalidate();
         }
-        this.f29844n = f7;
+        this.f27462n = f7;
     }
 
     public void setSelectedColor(int i10) {
-        this.f29840b.setColor(i10);
+        this.f27459b.setColor(i10);
         invalidate();
     }
 
     public void setSelectedTextColor(int i10) {
-        this.f29842e = i10;
+        this.e = i10;
         invalidate();
     }
 
     public void setTabs(CharSequence... charSequenceArr) {
-        this.f29843f = new f01[charSequenceArr.length];
+        this.f27461f = new h01[charSequenceArr.length];
         this.h = new RectF[charSequenceArr.length];
         for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
-            this.f29843f[i10] = new f01(charSequenceArr[i10], 14.0f, AndroidUtilities.bold());
+            this.f27461f[i10] = new h01(charSequenceArr[i10], 14.0f, AndroidUtilities.bold());
             this.h[i10] = new RectF();
         }
         invalidate();

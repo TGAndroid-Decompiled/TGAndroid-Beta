@@ -1,20 +1,20 @@
 package n4;
 
 import android.media.AudioAttributes;
-public final class b extends mg.n {
+public final class b extends ka.c {
     @Override
-    public final a d() {
-        return new a(((AudioAttributes.Builder) this.f16292b).build());
+    public final a a() {
+        return new a(((AudioAttributes.Builder) this.f13567b).build());
     }
 
     @Override
-    public final mg.n x(int i10) {
-        ((AudioAttributes.Builder) this.f16292b).setUsage(i10);
+    public final ka.c i(int i10) {
+        ((AudioAttributes.Builder) this.f13567b).setUsage(i10);
         return this;
     }
 
     @Override
-    public final void z(int i10) {
-        ((AudioAttributes.Builder) this.f16292b).setUsage(i10);
+    public final void j(int i10) {
+        ((AudioAttributes.Builder) this.f13567b).setUsage(i10);
     }
 }

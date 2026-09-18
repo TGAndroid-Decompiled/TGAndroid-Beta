@@ -1,12 +1,10 @@
 package f2;
 public final class m {
-    public final int f9207a;
-    public final int f9208b;
-    public final int f9209c;
+    public final int f8832a;
+    public final boolean f8833b;
 
-    public m(int i10, int i11, int i12) {
-        this.f9207a = i10;
-        this.f9208b = i11;
-        this.f9209c = i12;
+    public m(int i10, int i11, boolean z10) {
+        this.f8832a = i11;
+        this.f8833b = z10;
     }
 }

@@ -1,22 +1,18 @@
 package xh;
 
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.ea0;
-public final class b extends ea0 {
-    public final d f49400a0;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+public final class b extends FrameLayout {
+    public static final int f45830c = 0;
+    public final f6 f45831a;
+    public final int f45832b;
 
-    public b(d dVar, n2 n2Var, long j3) {
-        super(n2Var, j3);
-        this.f49400a0 = dVar;
-    }
-
-    @Override
-    public final void dismiss() {
-        d dVar = this.f49400a0;
-        b bVar = dVar.f49407i;
-        if (bVar != null && !bVar.U.f49444b) {
-            dVar.f49407i = null;
-        }
-        super.dismiss();
+    public b(Context context, int i10, f6 f6Var) {
+        super(context);
+        this.f45832b = i10;
+        this.f45831a = f6Var;
+        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
     }
 }

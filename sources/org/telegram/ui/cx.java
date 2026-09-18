@@ -1,48 +1,27 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class cx extends org.telegram.ui.Components.s6 {
-    public final int f35566b;
-    public final uy f35567c;
+import android.text.SpannableStringBuilder;
+public final class cx extends org.telegram.ui.Components.ji0 {
+    public final int f32969f0 = 0;
+    public final Object f32970g0;
 
-    public cx(uy uyVar, int i10) {
-        super("animationValue", 0);
-        this.f35566b = i10;
-        switch (i10) {
-            case 1:
-                this.f35567c = uyVar;
-                super("viewPagerTranslation", 0);
-                return;
-            default:
-                this.f35567c = uyVar;
-                return;
-        }
+    public cx(fg1 fg1Var, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
+        super(spannableStringBuilder, spannableStringBuilder2);
+        this.f32970g0 = fg1Var;
     }
 
     @Override
-    public final void b(Object obj, float f7) {
-        switch (this.f35566b) {
+    public final float d() {
+        switch (this.f32969f0) {
             case 0:
-                ((uy) obj).C4(f7);
-                return;
+                return ((vy) this.f32970g0).f38527a.getViewOffset();
             default:
-                uy uyVar = this.f35567c;
-                uyVar.I0 = f7;
-                ((View) obj).setTranslationY(uyVar.J0 + f7);
-                uyVar.F3();
-                return;
+                return ((fg1) this.f32970g0).N.f33125f3;
         }
     }
 
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f35566b) {
-            case 0:
-                uy uyVar = (uy) obj;
-                return Float.valueOf(this.f35567c.N);
-            default:
-                View view = (View) obj;
-                return Float.valueOf(this.f35567c.I0);
-        }
+    public cx(String str, String str2, vy vyVar) {
+        super(str, str2);
+        this.f32970g0 = vyVar;
     }
 }

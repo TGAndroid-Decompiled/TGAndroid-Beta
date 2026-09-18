@@ -3,46 +3,46 @@ package org.telegram.ui.Components;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowInsets;
-public final class cp0 implements r0.n, org.telegram.ui.ActionBar.l1 {
-    public final int f25074a;
-    public final hq0 f25075b;
+public final class cp0 implements r0.n, org.telegram.ui.ActionBar.m1 {
+    public final int f23117a;
+    public final iq0 f23118b;
 
-    public cp0(hq0 hq0Var, int i10) {
-        this.f25074a = i10;
-        this.f25075b = hq0Var;
+    public cp0(iq0 iq0Var, int i10) {
+        this.f23117a = i10;
+        this.f23118b = iq0Var;
     }
 
     @Override
-    public r0.l1 T0(View view, r0.l1 l1Var) {
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
         WindowInsets g10 = l1Var.g();
-        hq0 hq0Var = this.f25075b;
-        hq0Var.processLegacyContainerInsets(g10);
-        i0.c f7 = l1Var.f44712a.f(519);
-        if (!hq0Var.G0.equals(f7)) {
-            hq0Var.G0 = f7;
-            hq0Var.container.requestLayout();
+        iq0 iq0Var = this.f23118b;
+        iq0Var.processLegacyContainerInsets(g10);
+        i0.b f7 = l1Var.f41882a.f(519);
+        if (!iq0Var.G0.equals(f7)) {
+            iq0Var.G0 = f7;
+            iq0Var.container.requestLayout();
         }
-        return r0.l1.f44711b;
+        return r0.l1.f41881b;
     }
 
     @Override
-    public void n(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f25074a) {
+    public void o(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.o1 o1Var;
+        org.telegram.ui.ActionBar.o1 o1Var2;
+        switch (this.f23117a) {
             case 1:
-                hq0 hq0Var = this.f25075b;
-                hq0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = hq0Var.J0) != null && n1Var.isShowing()) {
-                    hq0Var.J0.d(true);
+                iq0 iq0Var = this.f23118b;
+                iq0Var.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = iq0Var.J0) != null && o1Var.isShowing()) {
+                    iq0Var.J0.d(true);
                     return;
                 }
                 return;
             default:
-                hq0 hq0Var2 = this.f25075b;
-                hq0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var2 = hq0Var2.J0) != null && n1Var2.isShowing()) {
-                    hq0Var2.J0.d(true);
+                iq0 iq0Var2 = this.f23118b;
+                iq0Var2.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var2 = iq0Var2.J0) != null && o1Var2.isShowing()) {
+                    iq0Var2.J0.d(true);
                     return;
                 }
                 return;

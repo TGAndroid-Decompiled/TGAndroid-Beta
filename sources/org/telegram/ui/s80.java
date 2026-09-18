@@ -1,62 +1,25 @@
 package org.telegram.ui;
+public final class s80 implements Runnable {
+    public final int f37418a;
+    public final LanguageSelectActivity f37419b;
 
-import android.telephony.PhoneNumberUtils;
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-public final class s80 implements Predicate {
-    public final int f40347a;
-    public final Object f40348b;
-
-    public s80(Object obj, int i10) {
-        this.f40347a = i10;
-        this.f40348b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f40347a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f40347a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            case 2:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f40347a;
-        return Predicate$CC.$default$or(this, predicate);
+    public s80(LanguageSelectActivity languageSelectActivity, int i10) {
+        this.f37418a = i10;
+        this.f37419b = languageSelectActivity;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f40347a) {
+    public final void run() {
+        switch (this.f37418a) {
             case 0:
-                String str = (String) this.f40348b;
-                String str2 = (String) obj;
-                if (str2 != null && str2.equals(str)) {
-                    return true;
-                }
-                return false;
+                LanguageSelectActivity.Y(this.f37419b);
+                return;
             case 1:
-                return PhoneNumberUtils.compare((String) this.f40348b, (String) obj);
-            case 2:
-                String str3 = (String) this.f40348b;
-                String str4 = (String) obj;
-                if (str4 != null && str4.equals(str3)) {
-                    return true;
-                }
-                return false;
+                LanguageSelectActivity.W(this.f37419b);
+                return;
             default:
-                return co.v1((co) this.f40348b, (TLRPC.MessageEntity) obj);
+                this.f37419b.f30825a.l();
+                return;
         }
     }
 }

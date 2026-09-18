@@ -4,50 +4,50 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class g40 extends AnimatorListenerAdapter {
-    public final int f26250a;
-    public final i40 f26251b;
+    public final int f24082a;
+    public final i40 f24083b;
 
     public g40(i40 i40Var, int i10) {
-        this.f26250a = i10;
-        this.f26251b = i40Var;
+        this.f24082a = i10;
+        this.f24083b = i40Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         long j3;
-        switch (this.f26250a) {
+        switch (this.f24082a) {
             case 0:
-                i40 i40Var = this.f26251b;
-                i40Var.f26961f = null;
+                i40 i40Var = this.f24083b;
+                i40Var.f24814f = null;
                 if (!i40Var.H) {
-                    wp wpVar = new wp(this, 21);
-                    i40Var.h = wpVar;
-                    if (i40Var.f26962n == 0) {
+                    xp xpVar = new xp(this, 21);
+                    i40Var.h = xpVar;
+                    if (i40Var.f24815n == 0) {
                         j3 = 10000;
                     } else {
                         j3 = 2000;
                     }
-                    AndroidUtilities.runOnUIThread(wpVar, j3);
+                    AndroidUtilities.runOnUIThread(xpVar, j3);
                     return;
                 }
                 return;
             case 1:
-                i40 i40Var2 = this.f26251b;
-                i40Var2.f26961f = null;
+                i40 i40Var2 = this.f24083b;
+                i40Var2.f24814f = null;
                 if (!i40Var2.H) {
-                    wp wpVar2 = new wp(this, 22);
-                    i40Var2.h = wpVar2;
-                    AndroidUtilities.runOnUIThread(wpVar2, i40Var2.E);
+                    xp xpVar2 = new xp(this, 22);
+                    i40Var2.h = xpVar2;
+                    AndroidUtilities.runOnUIThread(xpVar2, i40Var2.E);
                     return;
                 }
                 return;
             default:
-                i40 i40Var3 = this.f26251b;
+                i40 i40Var3 = this.f24083b;
                 i40Var3.setVisibility(4);
                 i40Var3.getClass();
-                i40Var3.f26960e = null;
+                i40Var3.e = null;
                 i40Var3.d = null;
-                i40Var3.f26961f = null;
+                i40Var3.f24814f = null;
                 return;
         }
     }

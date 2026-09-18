@@ -2,9 +2,9 @@ package s4;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class p {
-    public boolean f45854a;
-    public int f45855b;
-    public int f45856c;
+    public boolean f42805a;
+    public int f42806b;
+    public int f42807c;
     public RecyclerView d;
-    public int f45857e;
+    public int e;
 }

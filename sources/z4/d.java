@@ -2,10 +2,10 @@ package z4;
 
 import android.view.ViewGroup;
 public final class d extends ViewGroup.LayoutParams {
-    public boolean f50720a;
-    public int f50721b;
-    public float f50722c;
+    public boolean f48144a;
+    public int f48145b;
+    public float f48146c;
     public boolean d;
-    public int f50723e;
-    public int f50724f;
+    public int e;
+    public int f48147f;
 }

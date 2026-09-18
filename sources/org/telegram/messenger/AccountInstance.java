@@ -32,8 +32,8 @@ public class AccountInstance {
         return accountInstance2;
     }
 
-    public qg.s0 getColorPalette() {
-        return qg.s0.e(this.currentAccount);
+    public pg.s0 getColorPalette() {
+        return pg.s0.e(this.currentAccount);
     }
 
     public ConnectionsManager getConnectionsManager() {

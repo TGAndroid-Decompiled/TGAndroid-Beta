@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.lv0;
-public abstract class a0 extends ViewGroup implements lv0 {
-    public boolean f21593a;
-    public androidx.emoji2.text.j f21594b;
-    public int f21595c;
-    public androidx.activity.i d;
-    public Runnable f21596e;
+import org.telegram.ui.Components.nv0;
+public abstract class a0 extends ViewGroup implements nv0 {
+    public boolean f19789a;
+    public androidx.emoji2.text.j f19790b;
+    public int f19791c;
+    public ai.q4 d;
+    public Runnable e;
 
     public a0(Context context) {
         super(context);
-        this.f21593a = false;
-        this.f21594b = null;
-        this.f21595c = 0;
+        this.f19789a = false;
+        this.f19790b = null;
+        this.f19791c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements lv0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f21596e = runnable;
+        this.e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements lv0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f21596e;
+        Runnable runnable = this.e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,14 +69,14 @@ public abstract class a0 extends ViewGroup implements lv0 {
     }
 
     public final void k() {
-        this.f21593a = false;
-        androidx.emoji2.text.j jVar = this.f21594b;
+        this.f19789a = false;
+        androidx.emoji2.text.j jVar = this.f19790b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
-        androidx.activity.i iVar = this.d;
-        if (iVar != null) {
-            removeCallbacks(iVar);
+        ai.q4 q4Var = this.d;
+        if (q4Var != null) {
+            removeCallbacks(q4Var);
         }
     }
 
@@ -89,12 +89,12 @@ public abstract class a0 extends ViewGroup implements lv0 {
     }
 
     public final void q() {
-        if (this.f21593a) {
+        if (this.f19789a) {
             return;
         }
-        this.f21593a = true;
+        this.f19789a = true;
         if (this.d == null) {
-            this.d = new androidx.activity.i(this, 27);
+            this.d = new ai.q4(this, 27);
         }
         postDelayed(this.d, ViewConfiguration.getTapTimeout());
     }

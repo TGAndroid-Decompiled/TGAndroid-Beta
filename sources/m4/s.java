@@ -1,16 +1,16 @@
 package m4;
 
 import java.util.List;
-import v7.y7;
+import v7.z7;
 public final class s {
-    public final e9.i0 f16081a;
-    public final int f16082b;
-    public final long f16083c;
+    public final e9.i0 f14686a;
+    public final int f14687b;
+    public final long f14688c;
 
     public s(long j3, int i10, List list) {
-        this.f16081a = e9.i0.v(list);
-        this.f16082b = i10;
-        this.f16083c = j3;
+        this.f14686a = e9.i0.v(list);
+        this.f14687b = i10;
+        this.f14688c = j3;
     }
 
     public final boolean equals(Object obj) {
@@ -21,13 +21,13 @@ public final class s {
             return false;
         }
         s sVar = (s) obj;
-        if (this.f16081a.equals(sVar.f16081a) && this.f16082b == sVar.f16082b && this.f16083c == sVar.f16083c) {
+        if (this.f14686a.equals(sVar.f14686a) && this.f14687b == sVar.f14687b && this.f14688c == sVar.f14688c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return y7.b(this.f16083c) + (((this.f16081a.hashCode() * 31) + this.f16082b) * 31);
+        return z7.b(this.f14688c) + (((this.f14686a.hashCode() * 31) + this.f14687b) * 31);
     }
 }

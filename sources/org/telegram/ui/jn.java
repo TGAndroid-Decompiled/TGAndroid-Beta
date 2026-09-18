@@ -1,26 +1,31 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-public final class jn implements MessagesController.MessagesLoadedCallback {
-    public final aj f37816a;
-    public final co f37817b;
-    public final on f37818c;
+import org.telegram.messenger.AndroidUtilities;
+public final class jn extends nf.e {
+    public final org.telegram.ui.Cells.t1 d;
+    public final nn e;
 
-    public jn(on onVar, aj ajVar, co coVar) {
-        this.f37818c = onVar;
-        this.f37816a = ajVar;
-        this.f37817b = coVar;
+    public jn(nn nnVar, org.telegram.ui.Cells.t1 t1Var) {
+        this.e = nnVar;
+        this.d = t1Var;
     }
 
     @Override
-    public final void onError() {
-        this.f37816a.c(false);
-        this.f37818c.f39284a.presentFragment(this.f37817b);
+    public final void c(boolean z10) {
+        if (!z10) {
+            AndroidUtilities.runOnUIThread(new bk(this.e.f36139a, 8), 250L);
+        }
     }
 
     @Override
-    public final void onMessagesLoaded(boolean z10) {
-        this.f37816a.c(false);
-        this.f37818c.f39284a.presentFragment(this.f37817b);
+    public final void d() {
+        nn nnVar = this.e;
+        bo boVar = nnVar.f36139a;
+        org.telegram.ui.Cells.t1 t1Var = this.d;
+        boVar.f32490vb = t1Var.getMessageObject().getId();
+        bo boVar2 = nnVar.f36139a;
+        boVar2.f32504wb = 2;
+        boVar2.f32517xb = null;
+        t1Var.invalidate();
     }
 }

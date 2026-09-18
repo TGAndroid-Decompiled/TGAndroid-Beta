@@ -1,75 +1,87 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
+import android.graphics.PorterDuff;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.CheckBoxBase;
 public final class h9 extends FrameLayout {
-    public static final int f36927e = 0;
-    public final TextView f36928a;
-    public final TextView f36929b;
-    public final View f36930c;
-    public final org.telegram.ui.Components.aj0 d;
+    public final int f34217a;
+    public final org.telegram.ui.Components.i9 f34218b;
+    public final ImageView f34219c;
+    public final org.telegram.ui.Cells.h6 d;
+    public final org.telegram.ui.Components.np e;
 
-    public h9(k9 k9Var, Context context, org.telegram.ui.Components.t00 t00Var) {
+    public h9(Context context, int i10) {
         super(context);
-        addView(t00Var, w7.x5.c(-1.0f, -1));
-        this.f36930c = t00Var;
-        ?? imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.f(R.raw.utyan_call, 110, 110, null);
-        imageView.setAutoRepeat(false);
-        addView((View) imageView, w7.x5.d(110, 110.0f, 17, 52.0f, 17.0f, 52.0f, 60.0f));
-        imageView.setOnClickListener(new a(this, 10));
-        TextView textView = new TextView(context);
-        this.f36928a = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        textView.setText(LocaleController.getString(R.string.MakeYourFirstCall));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        addView(textView, w7.x5.d(-1, -2.0f, 17, 17.0f, 40.0f, 17.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f36929b = textView2;
-        String formatString = LocaleController.formatString(R.string.MakeYourFirstCallHint, Integer.valueOf(k9Var.getMessagesController().conferenceCallSizeLimit));
-        if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
-            formatString = formatString.replace('\n', ' ');
+        int i11;
+        int dp;
+        float f7;
+        int i12;
+        int i13;
+        this.f34217a = i10;
+        org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, null);
+        this.d = h6Var;
+        h6Var.M0 = true;
+        h6Var.E0 = true;
+        if (LocaleController.isRTL) {
+            i11 = AndroidUtilities.dp(32.0f);
+        } else {
+            i11 = 0;
         }
-        textView2.setText(formatString);
-        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20647c7, false));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView2, w7.x5.d(-1, -2.0f, 17, 17.0f, 80.0f, 17.0f, 0.0f));
-        t00Var.setAlpha(0.0f);
-        imageView.setAlpha(0.0f);
-        textView.setAlpha(0.0f);
-        textView2.setAlpha(0.0f);
-        setOnTouchListener(new ci.d(4));
-    }
-
-    public final void a() {
-        this.d.animate().alpha(0.0f).setDuration(150L).start();
-        this.f36928a.animate().alpha(0.0f).setDuration(150L).start();
-        this.f36929b.animate().alpha(0.0f).setDuration(150L).start();
-        this.f36930c.animate().alpha(1.0f).setDuration(150L).start();
-    }
-
-    public final void b() {
-        org.telegram.ui.Components.aj0 aj0Var = this.d;
-        aj0Var.animate().alpha(1.0f).setDuration(150L).start();
-        this.f36928a.animate().alpha(1.0f).setDuration(150L).start();
-        this.f36929b.animate().alpha(1.0f).setDuration(150L).start();
-        this.f36930c.animate().alpha(0.0f).setDuration(150L).start();
-        aj0Var.d();
-    }
-
-    @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+        if (LocaleController.isRTL) {
+            dp = 0;
+        } else {
+            dp = AndroidUtilities.dp(32.0f);
+        }
+        h6Var.setPadding(i11, 0, dp, 0);
+        if (LocaleController.isRTL) {
+            f7 = 2.0f;
+        } else {
+            f7 = -2.0f;
+        }
+        h6Var.f20195b0 = AndroidUtilities.dp(f7);
+        h6Var.f20196c0 = -AndroidUtilities.dp(7.0f);
+        addView(h6Var, w7.x5.c(-1.0f, -1));
+        org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context, false);
+        this.f34218b = i9Var;
+        i9Var.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
+        i9Var.setStepFactor(0.4f);
+        i9Var.setSize(AndroidUtilities.dp(29.0f));
+        i9Var.setCentered(true);
+        i9Var.setVisibility(8);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        addView(i9Var, w7.x5.d(72, -1.0f, i12, -2.0f, 0.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f34219c = imageView;
+        imageView.setColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.il, false), PorterDuff.Mode.SRC_IN);
+        imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18953i6, false), 1, -1));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setContentDescription(LocaleController.getString(R.string.Call));
+        if (LocaleController.isRTL) {
+            i13 = 3;
+        } else {
+            i13 = 5;
+        }
+        addView(imageView, w7.x5.d(48, 48.0f, i13 | 16, 8.0f, 0.0f, 8.0f, 0.0f));
+        org.telegram.ui.Components.np npVar = new org.telegram.ui.Components.np(context, 21, null);
+        this.e = npVar;
+        CheckBoxBase checkBoxBase = npVar.getCheckBoxBase();
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.hl, false);
+        if (checkBoxBase.f21991x != w02) {
+            checkBoxBase.f21991x = w02;
+            checkBoxBase.b();
+        }
+        npVar.b(-1, org.telegram.ui.ActionBar.j6.f18863d6, org.telegram.ui.ActionBar.j6.f18992k7);
+        npVar.setDrawUnchecked(false);
+        npVar.setDrawBackgroundAsArc(3);
+        addView(npVar, w7.x5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 48, 42.0f, 32.0f, 42.0f, 0.0f));
     }
 }

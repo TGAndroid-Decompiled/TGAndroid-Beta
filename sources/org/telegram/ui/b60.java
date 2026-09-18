@@ -1,8 +1,23 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class b60 extends org.telegram.ui.Cells.v3 {
+public final class b60 extends org.telegram.ui.Cells.d4 {
+    public final e60 f32060f0;
+
+    public b60(e60 e60Var, Context context) {
+        super(context);
+        this.f32060f0 = e60Var;
+    }
+
+    @Override
+    public final void d(org.telegram.ui.Cells.d4 d4Var) {
+        k60 k60Var = this.f32060f0.M;
+        k60 k60Var2 = k60.D3;
+        k60Var.F1(d4Var);
+    }
+
     @Override
     public final void onMeasure(int i10, int i11) {
         if (AndroidUtilities.isTablet()) {

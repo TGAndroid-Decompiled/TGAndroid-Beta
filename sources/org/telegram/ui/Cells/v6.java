@@ -3,32 +3,32 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.MessagesController;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.x51;
 import org.telegram.ui.k11;
-public final class v6 extends g51 {
-    public static final int f23375a = 0;
+public final class v6 extends i51 {
+    public static final int f21487a = 0;
 
     static {
-        g51.setup(new g51());
+        i51.setup(new i51());
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        Object obj = h51Var.G;
+    public final void bindView(View view, j51 j51Var, boolean z10, x51 x51Var, f61 f61Var) {
+        Object obj = j51Var.G;
         if (obj instanceof k11) {
             k11 k11Var = (k11) obj;
-            ((x6) view).b(h51Var.f26595l, k11Var.d, k11Var.f37892e, z10);
+            ((x6) view).b(j51Var.f25127l, k11Var.d, k11Var.e, z10);
         } else if (obj instanceof MessagesController.FaqSearchResult) {
-            ((x6) view).a(h51Var.f26595l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
+            ((x6) view).a(j51Var.f25127l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
         }
     }
 
     @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
         return new x6(context);
     }
 }

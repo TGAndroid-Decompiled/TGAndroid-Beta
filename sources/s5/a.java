@@ -1,18 +1,18 @@
 package s5;
 public final class a {
-    public static final a f45928f = new a(200, 10485760, 604800000, 10000, 81920);
-    public final long f45929a;
-    public final int f45930b;
-    public final int f45931c;
+    public static final a f42871f = new a(200, 10485760, 604800000, 10000, 81920);
+    public final long f42872a;
+    public final int f42873b;
+    public final int f42874c;
     public final long d;
-    public final int f45932e;
+    public final int e;
 
     public a(int i10, long j3, long j10, int i11, int i12) {
-        this.f45929a = j3;
-        this.f45930b = i10;
-        this.f45931c = i11;
+        this.f42872a = j3;
+        this.f42873b = i10;
+        this.f42874c = i11;
         this.d = j10;
-        this.f45932e = i12;
+        this.e = i12;
     }
 
     public final boolean equals(Object obj) {
@@ -21,7 +21,7 @@ public final class a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.f45929a == aVar.f45929a && this.f45930b == aVar.f45930b && this.f45931c == aVar.f45931c && this.d == aVar.d && this.f45932e == aVar.f45932e) {
+            if (this.f42872a == aVar.f42872a && this.f42873b == aVar.f42873b && this.f42874c == aVar.f42874c && this.d == aVar.d && this.e == aVar.e) {
                 return true;
             }
         }
@@ -29,21 +29,21 @@ public final class a {
     }
 
     public final int hashCode() {
-        long j3 = this.f45929a;
+        long j3 = this.f42872a;
         long j10 = this.d;
-        return this.f45932e ^ ((((((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f45930b) * 1000003) ^ this.f45931c) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
+        return this.e ^ ((((((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f42873b) * 1000003) ^ this.f42874c) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("EventStoreConfig{maxStorageSizeInBytes=");
-        sb2.append(this.f45929a);
+        sb2.append(this.f42872a);
         sb2.append(", loadBatchSize=");
-        sb2.append(this.f45930b);
+        sb2.append(this.f42873b);
         sb2.append(", criticalSectionEnterTimeoutMs=");
-        sb2.append(this.f45931c);
+        sb2.append(this.f42874c);
         sb2.append(", eventCleanUpAge=");
         sb2.append(this.d);
         sb2.append(", maxBlobByteSizePerRow=");
-        return a4.a.n(this.f45932e, "}", sb2);
+        return a4.a.n(this.e, "}", sb2);
     }
 }

@@ -21,45 +21,45 @@ import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 public abstract class o {
-    public static androidx.biometric.u a() {
+    public static androidx.biometric.t a() {
         try {
             KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
             keyStore.load(null);
-            KeyGenParameterSpec.Builder b10 = androidx.biometric.a0.b("androidxBiometric", 3);
-            androidx.biometric.a0.d(b10);
-            androidx.biometric.a0.e(b10);
+            KeyGenParameterSpec.Builder b10 = androidx.biometric.z.b("androidxBiometric", 3);
+            androidx.biometric.z.d(b10);
+            androidx.biometric.z.e(b10);
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-            androidx.biometric.a0.c(keyGenerator, androidx.biometric.a0.a(b10));
+            androidx.biometric.z.c(keyGenerator, androidx.biometric.z.a(b10));
             keyGenerator.generateKey();
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             cipher.init(1, (SecretKey) keyStore.getKey("androidxBiometric", null));
-            return new androidx.biometric.u(cipher);
-        } catch (IOException | InvalidAlgorithmParameterException | InvalidKeyException | KeyStoreException | NoSuchAlgorithmException | NoSuchProviderException | UnrecoverableKeyException | CertificateException | NoSuchPaddingException e7) {
-            Log.w("CryptoObjectUtils", "Failed to create fake crypto object.", e7);
+            return new androidx.biometric.t(cipher);
+        } catch (IOException | InvalidAlgorithmParameterException | InvalidKeyException | KeyStoreException | NoSuchAlgorithmException | NoSuchProviderException | UnrecoverableKeyException | CertificateException | NoSuchPaddingException e) {
+            Log.w("CryptoObjectUtils", "Failed to create fake crypto object.", e);
             return null;
         }
     }
 
-    public static BiometricPrompt.CryptoObject b(androidx.biometric.u uVar) {
+    public static BiometricPrompt.CryptoObject b(androidx.biometric.t tVar) {
         IdentityCredential identityCredential;
-        if (uVar == null) {
+        if (tVar == null) {
             return null;
         }
-        Cipher cipher = uVar.f1059b;
+        Cipher cipher = tVar.f2072b;
         if (cipher != null) {
-            return androidx.biometric.b0.b(cipher);
+            return androidx.biometric.a0.b(cipher);
         }
-        Signature signature = uVar.f1058a;
+        Signature signature = tVar.f2071a;
         if (signature != null) {
-            return androidx.biometric.b0.a(signature);
+            return androidx.biometric.a0.a(signature);
         }
-        Mac mac = uVar.f1060c;
+        Mac mac = tVar.f2073c;
         if (mac != null) {
-            return androidx.biometric.b0.c(mac);
+            return androidx.biometric.a0.c(mac);
         }
-        if (Build.VERSION.SDK_INT < 30 || (identityCredential = uVar.d) == null) {
+        if (Build.VERSION.SDK_INT < 30 || (identityCredential = tVar.d) == null) {
             return null;
         }
-        return androidx.biometric.c0.a(identityCredential);
+        return androidx.biometric.b0.a(identityCredential);
     }
 }

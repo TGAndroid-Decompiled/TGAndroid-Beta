@@ -1,10 +1,19 @@
 package org.telegram.ui;
-public final class o80 {
-    public final org.telegram.ui.ActionBar.f1 f39134a;
-    public final int f39135b;
 
-    public o80(org.telegram.ui.ActionBar.f1 f1Var, int i10) {
-        this.f39134a = f1Var;
-        this.f39135b = i10;
+import android.os.Bundle;
+public final class o80 extends b6 {
+    public final wy f36249f;
+
+    public o80(Bundle bundle, wy wyVar) {
+        super(bundle);
+        this.f36249f = wyVar;
+    }
+
+    @Override
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        super.onTransitionAnimationEnd(z10, z11);
+        if (z10 && !z11) {
+            this.f36249f.removeSelfFromStack();
+        }
     }
 }

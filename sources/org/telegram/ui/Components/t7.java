@@ -1,30 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class t7 extends aj0 {
-    public float f30542r;
-    public float f30543s;
-    public boolean v;
-    public final org.telegram.ui.Cells.l7 f30544w;
-    public final float f30545x;
-    public final k8 f30546y;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.R;
+public final class t7 extends s4.v {
+    public final h8 d;
 
-    public t7(k8 k8Var, Context context, float f7) {
-        super(context);
-        this.f30546y = k8Var;
-        this.f30545x = f7;
-        this.f30544w = new org.telegram.ui.Cells.l7(this, 3);
+    public t7(h8 h8Var) {
+        this.d = h8Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.addAction(16);
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        View view = c1Var.f42702a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t7.onTouchEvent(android.view.MotionEvent):boolean");
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f42705f != 0) {
+            return 0;
+        }
+        return s4.v.l(3, 0);
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        h8 h8Var = this.d;
+        if (h8Var.f24572v0) {
+            if (b10 > 0 && b11 > 0) {
+                h8Var.f24574w0.move(b10 - 1, b11 - 1);
+            } else {
+                return false;
+            }
+        } else {
+            h8Var.f24574w0.move(b10, b11);
+        }
+        h8Var.f24576x0.clear();
+        h8Var.f24576x0.addAll(h8Var.f24574w0.list);
+        h8Var.f24568s.p(b10, b11);
+        return true;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        Boolean bool;
+        s7 s7Var = this.d.f24561n;
+        if (c1Var != null) {
+            s7Var.e1(false);
+        }
+        if (i10 != 0) {
+            s7Var.J0(false);
+            if (c1Var != null) {
+                c1Var.f42702a.setPressed(true);
+            }
+        }
+        if (c1Var != null) {
+            View view = c1Var.f42702a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
+        }
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

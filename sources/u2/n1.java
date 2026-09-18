@@ -1,86 +1,78 @@
 package u2;
 public final class n1 implements d0, c0 {
-    public final d0 f46758a;
-    public final long f46759b;
-    public c0 f46760c;
+    public final d0 f43470a;
+    public final long f43471b;
+    public c0 f43472c;
 
     public n1(d0 d0Var, long j3) {
-        this.f46758a = d0Var;
-        this.f46759b = j3;
+        this.f43470a = d0Var;
+        this.f43471b = j3;
     }
 
     @Override
     public final void a(d0 d0Var) {
-        c0 c0Var = this.f46760c;
+        c0 c0Var = this.f43472c;
         c0Var.getClass();
         c0Var.a(this);
     }
 
     @Override
-    public final void b(d1 d1Var) {
-        d0 d0Var = (d0) d1Var;
-        c0 c0Var = this.f46760c;
-        c0Var.getClass();
-        c0Var.b(this);
-    }
-
-    @Override
     public final boolean c() {
-        return this.f46758a.c();
+        return this.f43470a.c();
     }
 
     @Override
     public final long d() {
-        long d = this.f46758a.d();
+        long d = this.f43470a.d();
         if (d == Long.MIN_VALUE) {
             return Long.MIN_VALUE;
         }
-        return d + this.f46759b;
+        return d + this.f43471b;
     }
 
     @Override
-    public final void j() {
-        this.f46758a.j();
+    public final void g() {
+        this.f43470a.g();
     }
 
     @Override
-    public final long k(long j3) {
-        long j10 = this.f46759b;
-        return this.f46758a.k(j3 - j10) + j10;
+    public final long h(long j3) {
+        long j10 = this.f43471b;
+        return this.f43470a.h(j3 - j10) + j10;
     }
 
     @Override
-    public final void l(long j3) {
-        this.f46758a.l(j3 - this.f46759b);
+    public final void i(long j3) {
+        this.f43470a.i(j3 - this.f43471b);
     }
 
     @Override
-    public final void n(c0 c0Var, long j3) {
-        this.f46760c = c0Var;
-        this.f46758a.n(this, j3 - this.f46759b);
+    public final void k(c0 c0Var, long j3) {
+        this.f43472c = c0Var;
+        this.f43470a.k(this, j3 - this.f43471b);
     }
 
     @Override
-    public final long o() {
-        long o9 = this.f46758a.o();
-        if (o9 == -9223372036854775807L) {
+    public final long l() {
+        long l4 = this.f43470a.l();
+        if (l4 == -9223372036854775807L) {
             return -9223372036854775807L;
         }
-        return o9 + this.f46759b;
+        return l4 + this.f43471b;
     }
 
     @Override
-    public final boolean p(i2.r0 r0Var) {
+    public final boolean m(i2.r0 r0Var) {
         ?? obj = new Object();
-        long j3 = r0Var.f11727a;
-        obj.f11720b = r0Var.f11728b;
-        obj.f11721c = r0Var.f11729c;
-        obj.f11719a = j3 - this.f46759b;
-        return this.f46758a.p(new i2.r0(obj));
+        long j3 = r0Var.f10869a;
+        obj.f10864b = r0Var.f10870b;
+        obj.f10865c = r0Var.f10871c;
+        obj.f10863a = j3 - this.f43471b;
+        return this.f43470a.m(new i2.r0(obj));
     }
 
     @Override
-    public final long q(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
+    public final long p(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
         b1[] b1VarArr2 = new b1[b1VarArr.length];
         int i10 = 0;
         while (true) {
@@ -90,50 +82,58 @@ public final class n1 implements d0, c0 {
             }
             m1 m1Var = (m1) b1VarArr[i10];
             if (m1Var != null) {
-                b1Var = m1Var.f46752a;
+                b1Var = m1Var.f43464a;
             }
             b1VarArr2[i10] = b1Var;
             i10++;
         }
-        d0 d0Var = this.f46758a;
-        long j10 = this.f46759b;
-        long q6 = d0Var.q(rVarArr, zArr, b1VarArr2, zArr2, j3 - j10);
+        d0 d0Var = this.f43470a;
+        long j10 = this.f43471b;
+        long p5 = d0Var.p(rVarArr, zArr, b1VarArr2, zArr2, j3 - j10);
         for (int i11 = 0; i11 < b1VarArr.length; i11++) {
             b1 b1Var2 = b1VarArr2[i11];
             if (b1Var2 == null) {
                 b1VarArr[i11] = null;
             } else {
                 b1 b1Var3 = b1VarArr[i11];
-                if (b1Var3 == null || ((m1) b1Var3).f46752a != b1Var2) {
+                if (b1Var3 == null || ((m1) b1Var3).f43464a != b1Var2) {
                     b1VarArr[i11] = new m1(b1Var2, j10);
                 }
             }
         }
-        return q6 + j10;
+        return p5 + j10;
     }
 
     @Override
     public final o1 r() {
-        return this.f46758a.r();
+        return this.f43470a.r();
     }
 
     @Override
     public final long s() {
-        long s10 = this.f46758a.s();
+        long s10 = this.f43470a.s();
         if (s10 == Long.MIN_VALUE) {
             return Long.MIN_VALUE;
         }
-        return s10 + this.f46759b;
+        return s10 + this.f43471b;
     }
 
     @Override
     public final long t(long j3, i2.p1 p1Var) {
-        long j10 = this.f46759b;
-        return this.f46758a.t(j3 - j10, p1Var) + j10;
+        long j10 = this.f43471b;
+        return this.f43470a.t(j3 - j10, p1Var) + j10;
     }
 
     @Override
     public final void u(long j3) {
-        this.f46758a.u(j3 - this.f46759b);
+        this.f43470a.u(j3 - this.f43471b);
+    }
+
+    @Override
+    public final void v(d1 d1Var) {
+        d0 d0Var = (d0) d1Var;
+        c0 c0Var = this.f43472c;
+        c0Var.getClass();
+        c0Var.v(this);
     }
 }

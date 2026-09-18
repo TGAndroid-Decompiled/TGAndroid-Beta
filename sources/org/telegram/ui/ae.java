@@ -1,54 +1,49 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-public final class ae implements TextWatcher {
-    public final ke f34391a;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ae extends org.telegram.ui.Components.yc0 {
+    public final int L;
+    public final Object M;
 
-    public ae(ke keVar) {
-        this.f34391a = keVar;
+    public ae(Object obj, Context context, int i10) {
+        super(context, null);
+        this.L = i10;
+        this.M = obj;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        long parseLong;
-        ke keVar = this.f34391a;
-        nd ndVar = keVar.f38022i1;
-        gi.o oVar = keVar.Y0;
-        if (keVar.V0) {
-            return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.L) {
+            case 0:
+                le leVar = (le) this.M;
+                org.telegram.ui.Components.f61 f61Var = leVar.f35509a1;
+                fi.o oVar = leVar.Y0;
+                if (oVar != null && !oVar.isFocusable()) {
+                    oVar.setFocusable(true);
+                    oVar.setFocusableInTouchMode(true);
+                    int y12 = f61Var.y1(3);
+                    if (y12 >= 0 && y12 < f61Var.Y2.f29857x.size()) {
+                        f61Var.C0();
+                        f61Var.y0(y12);
+                    }
+                    oVar.requestFocus();
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                yh.g gVar = (yh.g) this.M;
+                fi.o oVar2 = gVar.Q;
+                if (oVar2 != null && !oVar2.isFocusable()) {
+                    gVar.Q.setFocusable(true);
+                    gVar.Q.setFocusableInTouchMode(true);
+                    int y13 = gVar.e.y1(1);
+                    if (y13 >= 0 && y13 < gVar.e.Y2.f29857x.size()) {
+                        gVar.e.C0();
+                        gVar.e.y0(y13);
+                    }
+                    gVar.Q.requestFocus();
+                }
+                return super.dispatchTouchEvent(motionEvent);
         }
-        if (TextUtils.isEmpty(editable)) {
-            parseLong = 0;
-        } else {
-            parseLong = Long.parseLong(editable.toString());
-        }
-        keVar.X0 = parseLong;
-        long j3 = keVar.N0.amount;
-        boolean z10 = true;
-        if (parseLong > j3) {
-            keVar.X0 = j3;
-            keVar.V0 = true;
-            oVar.setText(Long.toString(j3));
-            oVar.setSelection(oVar.getText().length());
-            keVar.V0 = false;
-        }
-        if (keVar.X0 != keVar.N0.amount) {
-            z10 = false;
-        }
-        keVar.W0 = z10;
-        AndroidUtilities.cancelRunOnUIThread(ndVar);
-        ndVar.run();
-        keVar.W0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

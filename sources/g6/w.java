@@ -37,8 +37,8 @@ public final class w extends n6.g {
             } finally {
                 super.disconnect();
             }
-        } catch (RemoteException | IllegalStateException e7) {
-            Y.a(e7, "Error while disconnecting the controller interface", new Object[0]);
+        } catch (RemoteException | IllegalStateException e) {
+            Y.a(e, "Error while disconnecting the controller interface", new Object[0]);
         }
     }
 
@@ -61,7 +61,7 @@ public final class w extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return y.f4588e;
+        return y.e;
     }
 
     @Override

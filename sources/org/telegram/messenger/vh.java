@@ -1,34 +1,28 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.Window;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.Spanned;
+import java.util.Comparator;
 import org.telegram.messenger.RichMessageLayout;
-import org.telegram.ui.Components.g71;
-public final class vh implements ValueAnimator.AnimatorUpdateListener {
-    public final int f19248a;
-    public final Object f19249b;
-    public final Object f19250c;
+public final class vh implements Comparator {
+    public final int f17561a;
+    public final Spanned f17562b;
 
-    public vh(int i10, Object obj, Object obj2) {
-        this.f19248a = i10;
-        this.f19249b = obj;
-        this.f19250c = obj2;
+    public vh(Spanned spanned, int i10) {
+        this.f17561a = i10;
+        this.f17562b = spanned;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f19248a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$withReplacements$0;
+        int lambda$new$0;
+        switch (this.f17561a) {
             case 0:
-                ((RichMessageLayout.SpoilerReveal) this.f19249b).lambda$start$0((View) this.f19250c, valueAnimator);
-                return;
-            case 1:
-                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19249b, (Window) this.f19250c, valueAnimator);
-                return;
+                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f17562b, (org.telegram.ui.Cells.w9) obj, (org.telegram.ui.Cells.w9) obj2);
+                return lambda$withReplacements$0;
             default:
-                ((MediaController) this.f19249b).lambda$cleanupPlayer$10((g71) this.f19250c, valueAnimator);
-                return;
+                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f17562b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
+                return lambda$new$0;
         }
     }
 }

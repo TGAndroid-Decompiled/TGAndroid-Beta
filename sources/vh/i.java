@@ -1,94 +1,51 @@
 package vh;
 
-import android.app.Activity;
-import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Cells.t1;
-public final class i extends View {
-    public final HashMap f47895a;
-    public final ArrayList f47896b;
-    public final ArrayList f47897c;
-    public final int d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class i implements Runnable {
+    public final int f44454a;
+    public final j f44455b;
+    public final int f44456c;
 
-    public i(Activity activity) {
-        super(activity);
-        this.f47895a = new HashMap();
-        this.f47896b = new ArrayList();
-        this.f47897c = new ArrayList();
-        this.d = UserConfig.selectedAccount;
-    }
-
-    public static String b(t1 t1Var) {
-        MessageObject messageObject = t1Var.getMessageObject();
-        if (messageObject == null) {
-            return null;
-        }
-        return messageObject.getChatId() + "_" + messageObject.getId();
-    }
-
-    public final boolean a() {
-        for (Map.Entry entry : this.f47895a.entrySet()) {
-            if (!((h) entry.getValue()).O) {
-                return true;
-            }
-        }
-        return false;
+    public i(j jVar, int i10, int i11) {
+        this.f44454a = i11;
+        this.f44455b = jVar;
+        this.f44456c = i10;
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        super.invalidateDrawable(drawable);
-        if (drawable instanceof h) {
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        HashMap hashMap = this.f47895a;
-        for (Map.Entry entry : hashMap.entrySet()) {
-            ((h) entry.getValue()).d();
-        }
-        hashMap.clear();
-        this.f47896b.clear();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        HashMap hashMap = this.f47895a;
-        for (Map.Entry entry : hashMap.entrySet()) {
-            ((h) entry.getValue()).draw(canvas);
-        }
-        ArrayList arrayList = this.f47896b;
-        if (!arrayList.isEmpty()) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                h hVar = (h) hashMap.remove((String) obj);
-                if (hVar != null) {
-                    hVar.d();
+    public final void run() {
+        switch (this.f44454a) {
+            case 0:
+                j jVar = this.f44455b;
+                int i10 = jVar.f44465k;
+                o0.a[] aVarArr = jVar.f44460c;
+                int i11 = this.f44456c;
+                if (aVarArr[i11] == null) {
+                    aVarArr[i11] = new o0.a(i10);
                 }
-            }
-            arrayList.clear();
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        for (Map.Entry entry : this.f47895a.entrySet()) {
-            ((h) entry.getValue()).setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                Bitmap bitmap = jVar.e;
+                if (bitmap == null) {
+                    jVar.e = Bitmap.createBitmap(i10, i10, Bitmap.Config.ALPHA_8);
+                    jVar.f44461f = new Canvas(jVar.e);
+                } else {
+                    bitmap.eraseColor(0);
+                }
+                jVar.a(jVar.f44461f, jVar.f44469o);
+                Utilities.copyBitmaps(jVar.e, (Bitmap) aVarArr[i11].f15310b);
+                AndroidUtilities.runOnUIThread(new i(jVar, i11, 1));
+                return;
+            default:
+                j jVar2 = this.f44455b;
+                int i12 = this.f44456c;
+                jVar2.d = i12;
+                jVar2.f44462g.setShader((BitmapShader) jVar2.f44460c[i12].f15311c);
+                jVar2.f44464j = false;
+                jVar2.f44470p = true;
+                return;
         }
     }
 }

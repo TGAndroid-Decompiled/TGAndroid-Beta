@@ -8,19 +8,18 @@ import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
-import n7.z0;
 public final class k implements Callable {
-    public final long f48396a;
-    public final Throwable f48397b;
-    public final Thread f48398c;
+    public final long f44958a;
+    public final Throwable f44959b;
+    public final Thread f44960c;
     public final da.b d;
-    public final m f48399e;
+    public final m e;
 
     public k(m mVar, long j3, Throwable th2, Thread thread, da.b bVar) {
-        this.f48399e = mVar;
-        this.f48396a = j3;
-        this.f48397b = th2;
-        this.f48398c = thread;
+        this.e = mVar;
+        this.f44958a = j3;
+        this.f44959b = th2;
+        this.f44960c = thread;
         this.d = bVar;
     }
 
@@ -28,40 +27,40 @@ public final class k implements Callable {
     public final Object call() {
         ba.c cVar;
         String str;
-        long j3 = this.f48396a;
+        long j3 = this.f44958a;
         long j10 = j3 / 1000;
-        m mVar = this.f48399e;
-        String e7 = mVar.e();
-        if (e7 == null) {
+        m mVar = this.e;
+        String e = mVar.e();
+        if (e == null) {
             Log.e("FirebaseCrashlytics", "Tried to write a fatal exception while no session was open.", null);
             return Tasks.forResult(null);
         }
-        mVar.f48405c.p();
-        com.google.firebase.messaging.n nVar = mVar.f48413m;
+        mVar.f44966c.k();
+        com.google.firebase.messaging.n nVar = mVar.f44973m;
         nVar.getClass();
-        String concat = "Persisting fatal event for session ".concat(e7);
+        String concat = "Persisting fatal event for session ".concat(e);
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", concat, null);
         }
-        nVar.v(this.f48397b, this.f48398c, e7, "crash", j10, true);
+        nVar.v(this.f44959b, this.f44960c, e, "crash", j10, true);
         try {
-            cVar = mVar.f48408g;
+            cVar = mVar.f44968g;
             str = ".ae" + j3;
             cVar.getClass();
-        } catch (IOException e10) {
-            Log.w("FirebaseCrashlytics", "Could not create app exception marker file.", e10);
+        } catch (IOException e7) {
+            Log.w("FirebaseCrashlytics", "Could not create app exception marker file.", e7);
         }
-        if (!new File(cVar.f2527b, str).createNewFile()) {
+        if (!new File(cVar.f3452b, str).createNewFile()) {
             throw new IOException("Create new file failed.");
         }
         da.b bVar = this.d;
         mVar.c(false, bVar);
-        new f(mVar.f48407f);
-        m.a(mVar, f.f48385b, Boolean.FALSE);
-        if (!mVar.f48404b.a()) {
+        new f(mVar.f44967f);
+        m.a(mVar, f.f44948b, Boolean.FALSE);
+        if (!mVar.f44965b.a()) {
             return Tasks.forResult(null);
         }
-        Executor executor = (Executor) mVar.f48406e.f6391b;
-        return ((TaskCompletionSource) ((AtomicReference) bVar.f6657i).get()).getTask().onSuccessTask(executor, new z0(this, executor, e7));
+        Executor executor = (Executor) mVar.e.f7352b;
+        return ((TaskCompletionSource) ((AtomicReference) bVar.f7586i).get()).getTask().onSuccessTask(executor, new o0.a(this, executor, e));
     }
 }

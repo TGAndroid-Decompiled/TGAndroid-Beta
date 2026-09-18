@@ -11,59 +11,59 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class m31 extends FrameLayout {
-    public final org.telegram.ui.Components.o5 f38563a;
-    public final n31 f38564b;
+    public final org.telegram.ui.Components.m5 f35680a;
+    public final n31 f35681b;
 
     public m31(n31 n31Var, Context context) {
         super(context);
-        this.f38564b = n31Var;
+        this.f35681b = n31Var;
         TextView g10 = org.telegram.messenger.w1.g(context, 1, 16.0f);
         g10.setTextColor(n31Var.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
         g10.setText(LocaleController.getString(R.string.DoubleTapSetting));
         addView(g10, w7.x5.d(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
-        this.f38563a = new org.telegram.ui.Components.o5(AndroidUtilities.dp(24.0f), this);
+        this.f35680a = new org.telegram.ui.Components.m5(AndroidUtilities.dp(24.0f), this);
     }
 
     public final void a(boolean z10) {
-        n31 n31Var = this.f38564b;
+        n31 n31Var = this.f35681b;
         String doubleTapReaction = MediaDataController.getInstance(n31.Y(n31Var)).getDoubleTapReaction();
-        org.telegram.ui.Components.o5 o5Var = this.f38563a;
+        org.telegram.ui.Components.m5 m5Var = this.f35680a;
         if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
             try {
-                o5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
+                m5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
                 return;
             } catch (Exception unused) {
             }
         }
         TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(n31.Z(n31Var)).getReactionsMap().get(doubleTapReaction);
         if (tL_availableReaction != null) {
-            o5Var.i(tL_availableReaction.static_icon, z10);
+            m5Var.i(tL_availableReaction.static_icon, z10);
         }
     }
 
     public final void b() {
         int width = getWidth();
-        org.telegram.ui.Components.o5 o5Var = this.f38563a;
-        o5Var.setBounds((width - o5Var.f28965s) - AndroidUtilities.dp(21.0f), (getHeight() - o5Var.f28965s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + o5Var.f28965s) / 2);
+        org.telegram.ui.Components.m5 m5Var = this.f35680a;
+        m5Var.setBounds((width - m5Var.f26060s) - AndroidUtilities.dp(21.0f), (getHeight() - m5Var.f26060s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + m5Var.f26060s) / 2);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         b();
-        this.f38563a.draw(canvas);
+        this.f35680a.draw(canvas);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f38563a.a();
+        this.f35680a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f38563a.b();
+        this.f35680a.b();
     }
 
     @Override

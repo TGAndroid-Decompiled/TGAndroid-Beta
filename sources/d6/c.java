@@ -12,128 +12,128 @@ import com.google.android.gms.internal.cast.q4;
 import com.google.android.gms.tasks.Task;
 import java.util.HashSet;
 public final class c extends f {
-    public static final g6.b f6598m = new g6.b("CastSession", null);
-    public final Context f6599c;
+    public static final g6.b f7532m = new g6.b("CastSession", null);
+    public final Context f7533c;
     public final HashSet d;
-    public final q f6600e;
-    public final b f6601f;
-    public final com.google.android.gms.internal.cast.r f6602g;
+    public final q e;
+    public final b f7534f;
+    public final com.google.android.gms.internal.cast.r f7535g;
     public final f6.i h;
-    public e0 f6603i;
-    public e6.h f6604j;
-    public CastDevice f6605k;
-    public q4 f6606l;
+    public e0 f7536i;
+    public e6.h f7537j;
+    public CastDevice f7538k;
+    public q4 f7539l;
 
     public c(Context context, String str, String str2, b bVar, com.google.android.gms.internal.cast.r rVar, f6.i iVar) {
         super(context, str, str2);
         this.d = new HashSet();
-        this.f6599c = context.getApplicationContext();
-        this.f6601f = bVar;
-        this.f6602g = rVar;
+        this.f7533c = context.getApplicationContext();
+        this.f7534f = bVar;
+        this.f7535g = rVar;
         this.h = iVar;
         x6.a f7 = f();
         j jVar = new j(this);
-        g6.b bVar2 = com.google.android.gms.internal.cast.e.f5277a;
+        g6.b bVar2 = com.google.android.gms.internal.cast.e.f6329a;
         q qVar = null;
         if (f7 != null) {
             try {
                 qVar = com.google.android.gms.internal.cast.e.b(context).W0(bVar, f7, jVar);
-            } catch (RemoteException | d e7) {
-                com.google.android.gms.internal.cast.e.f5277a.a(e7, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
+            } catch (RemoteException | d e) {
+                com.google.android.gms.internal.cast.e.f6329a.a(e, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
             }
         }
-        this.f6600e = qVar;
+        this.e = qVar;
     }
 
     public static void g(c cVar, int i10) {
         f6.i iVar = cVar.h;
-        if (iVar.f9407q) {
-            iVar.f9407q = false;
-            e6.h hVar = iVar.f9404n;
+        if (iVar.f9006q) {
+            iVar.f9006q = false;
+            e6.h hVar = iVar.f9003n;
             if (hVar != null) {
-                c0 c0Var = iVar.f9403m;
+                c0 c0Var = iVar.f9002m;
                 n6.l.e("Must be called from the main thread.");
                 if (c0Var != null) {
-                    hVar.f8882i.remove(c0Var);
+                    hVar.f8019i.remove(c0Var);
                 }
             }
-            iVar.f9395c.L0(null);
+            iVar.f8995c.L0(null);
             cf.c cVar2 = iVar.h;
             if (cVar2 != null) {
-                cVar2.x();
-                cVar2.f4799e = null;
+                cVar2.B();
+                cVar2.e = null;
             }
-            cf.c cVar3 = iVar.f9399i;
+            cf.c cVar3 = iVar.f8998i;
             if (cVar3 != null) {
-                cVar3.x();
-                cVar3.f4799e = null;
+                cVar3.B();
+                cVar3.e = null;
             }
-            android.support.v4.media.session.c0 c0Var2 = iVar.f9406p;
-            if (c0Var2 != null) {
-                c0Var2.d(null, null);
-                iVar.f9406p.e(new MediaMetadataCompat(new Bundle()));
+            android.support.v4.media.session.b0 b0Var = iVar.f9005p;
+            if (b0Var != null) {
+                b0Var.d(null, null);
+                iVar.f9005p.e(new MediaMetadataCompat(new Bundle()));
                 iVar.j(0, null);
             }
-            android.support.v4.media.session.c0 c0Var3 = iVar.f9406p;
-            if (c0Var3 != null) {
-                c0Var3.c(false);
-                iVar.f9406p.b();
-                iVar.f9406p = null;
+            android.support.v4.media.session.b0 b0Var2 = iVar.f9005p;
+            if (b0Var2 != null) {
+                b0Var2.c(false);
+                iVar.f9005p.b();
+                iVar.f9005p = null;
             }
-            iVar.f9404n = null;
-            iVar.f9405o = null;
+            iVar.f9003n = null;
+            iVar.f9004o = null;
             iVar.h();
             if (i10 == 0) {
                 iVar.i();
             }
         }
-        e0 e0Var = cVar.f6603i;
+        e0 e0Var = cVar.f7536i;
         if (e0Var != null) {
-            com.google.android.gms.common.api.internal.v e7 = com.google.android.gms.common.api.internal.w.e();
-            e7.f5117c = c6.z.f4589b;
-            e7.f5115a = 8403;
-            e0Var.e(1, e7.a());
+            com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
+            e.f6183c = c6.z.f4070b;
+            e.f6181a = 8403;
+            e0Var.e(1, e.a());
             e0Var.h();
-            com.google.android.gms.common.api.internal.n nVar = a6.m.U(e0Var.f5149f, e0Var.f4490k, "castDeviceControllerListenerKey").f5076c;
+            com.google.android.gms.common.api.internal.n nVar = xa.c.o(e0Var.f6212f, e0Var.f3980k, "castDeviceControllerListenerKey").f6145c;
             n6.l.i(nVar, "Key must not be null");
             e0Var.c(nVar, 8415);
-            cVar.f6603i = null;
+            cVar.f7536i = null;
         }
-        cVar.f6605k = null;
-        e6.h hVar2 = cVar.f6604j;
+        cVar.f7538k = null;
+        e6.h hVar2 = cVar.f7537j;
         if (hVar2 != null) {
             hVar2.v(null);
-            cVar.f6604j = null;
+            cVar.f7537j = null;
         }
     }
 
     public static void h(c cVar, String str, Task task) {
-        g6.b bVar = f6598m;
-        q qVar = cVar.f6600e;
+        g6.b bVar = f7532m;
+        q qVar = cVar.e;
         if (qVar == null) {
             return;
         }
         try {
             if (task.isSuccessful()) {
                 g6.t tVar = (g6.t) task.getResult();
-                Status status = tVar.f10425a;
+                Status status = tVar.f9466a;
                 if (status.b()) {
                     bVar.b("%s() -> success result", str);
                     e6.h hVar = new e6.h(new g6.m());
-                    cVar.f6604j = hVar;
-                    hVar.v(cVar.f6603i);
-                    cVar.f6604j.p(new c0(cVar, 0));
-                    cVar.f6604j.u();
+                    cVar.f7537j = hVar;
+                    hVar.v(cVar.f7536i);
+                    cVar.f7537j.p(new c0(cVar, 0));
+                    cVar.f7537j.u();
                     f6.i iVar = cVar.h;
-                    e6.h hVar2 = cVar.f6604j;
+                    e6.h hVar2 = cVar.f7537j;
                     n6.l.e("Must be called from the main thread.");
-                    iVar.a(hVar2, cVar.f6605k);
-                    c6.d dVar = tVar.f10426b;
+                    iVar.a(hVar2, cVar.f7538k);
+                    c6.d dVar = tVar.f9467b;
                     n6.l.h(dVar);
-                    String str2 = tVar.f10427c;
+                    String str2 = tVar.f9468c;
                     String str3 = tVar.d;
                     n6.l.h(str3);
-                    boolean z10 = tVar.f10428e;
+                    boolean z10 = tVar.e;
                     o oVar = (o) qVar;
                     Parcel O0 = oVar.O0();
                     com.google.android.gms.internal.cast.v.c(O0, dVar);
@@ -144,7 +144,7 @@ public final class c extends f {
                     return;
                 }
                 bVar.b("%s() -> failure result", str);
-                int i10 = status.f4946a;
+                int i10 = status.f6022a;
                 o oVar2 = (o) qVar;
                 Parcel O02 = oVar2.O0();
                 O02.writeInt(i10);
@@ -164,8 +164,8 @@ public final class c extends f {
             Parcel O04 = oVar4.O0();
             O04.writeInt(2476);
             oVar4.S0(O04, 5);
-        } catch (RemoteException e7) {
-            bVar.a(e7, "Unable to call %s on %s.", "methods", q.class.getSimpleName());
+        } catch (RemoteException e) {
+            bVar.a(e, "Unable to call %s on %s.", "methods", q.class.getSimpleName());
         }
     }
 

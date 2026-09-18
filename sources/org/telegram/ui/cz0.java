@@ -1,29 +1,27 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class cz0 implements Utilities.Callback {
-    public final int f35579a;
-    public final ProfileActivity f35580b;
+import android.view.View;
+public final class cz0 implements View.OnClickListener {
+    public final int f32976a;
+    public final Runnable f32977b;
 
-    public cz0(ProfileActivity profileActivity, int i10) {
-        this.f35579a = i10;
-        this.f35580b = profileActivity;
+    public cz0(int i10, Runnable runnable) {
+        this.f32976a = i10;
+        this.f32977b = runnable;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f35579a) {
+    public final void onClick(View view) {
+        switch (this.f32976a) {
             case 0:
-                ProfileActivity profileActivity = this.f35580b;
-                profileActivity.getClass();
-                ArrayList arrayList = new ArrayList(1);
-                arrayList.add((TLRPC.InputStickerSet) obj);
-                profileActivity.showDialog(new org.telegram.ui.Components.rv(profileActivity, profileActivity.getParentActivity(), profileActivity.f34032z0, arrayList));
+                this.f32977b.run();
                 return;
             default:
-                ProfileActivity.e0(this.f35580b, (Boolean) obj);
+                Runnable runnable = this.f32977b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
         }
     }

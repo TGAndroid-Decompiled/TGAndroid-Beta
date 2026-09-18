@@ -1,29 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import yf.r;
 public final class qa implements Runnable {
-    public final int f18798a;
-    public final MessagesController f18799b;
-    public final TLObject f18800c;
-    public final org.telegram.ui.ActionBar.i6 d;
-    public final org.telegram.ui.ActionBar.h6 f18801e;
+    public final int f17136a;
+    public final MessagesController f17137b;
+    public final r f17138c;
 
-    public qa(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.ActionBar.h6 h6Var, int i10) {
-        this.f18798a = i10;
-        this.f18799b = messagesController;
-        this.f18800c = tLObject;
-        this.d = i6Var;
-        this.f18801e = h6Var;
+    public qa(MessagesController messagesController, r rVar, int i10) {
+        this.f17136a = i10;
+        this.f17137b = messagesController;
+        this.f17138c = rVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f18798a) {
+        switch (this.f17136a) {
             case 0:
-                this.f18799b.lambda$didReceivedNotification$46(this.f18800c, this.d, this.f18801e);
+                this.f17137b.lambda$processUpdateArray$402(this.f17138c);
+                return;
+            case 1:
+                this.f17137b.lambda$processUpdateArray$404(this.f17138c);
                 return;
             default:
-                this.f18799b.lambda$didReceivedNotification$48(this.f18800c, this.d, this.f18801e);
+                this.f17137b.lambda$processUpdateArray$399(this.f17138c);
                 return;
         }
     }

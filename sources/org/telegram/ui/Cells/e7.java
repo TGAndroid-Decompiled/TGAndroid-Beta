@@ -14,15 +14,15 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.yi0;
 public final class e7 extends Drawable {
-    public final Paint f21862a;
-    public final xi0 f21863b;
-    public final Drawable f21864c;
+    public final Paint f20042a;
+    public final yi0 f20043b;
+    public final Drawable f20044c;
     public int d;
 
-    public e7(Context context, org.telegram.ui.Components.x9 x9Var, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
-        this(context, x9Var, z10, R.drawable.large_repost_story, f6Var);
+    public e7(Context context, org.telegram.ui.Components.u9 u9Var, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
+        this(context, u9Var, z10, R.drawable.large_repost_story, f6Var);
     }
 
     @Override
@@ -33,12 +33,12 @@ public final class e7 extends Drawable {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getBounds().width(), getBounds().height());
         int i10 = this.d;
-        Paint paint = this.f21862a;
+        Paint paint = this.f20042a;
         paint.setAlpha(i10);
         float min = (this.d / 255.0f) * (Math.min(getBounds().width(), getBounds().height()) / 2.0f);
         canvas.drawRoundRect(rectF, min, min, paint);
         canvas.restore();
-        Drawable drawable = this.f21863b;
+        Drawable drawable = this.f20043b;
         if (drawable != null) {
             f7 = 20.0f;
         } else {
@@ -48,7 +48,7 @@ public final class e7 extends Drawable {
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
         if (drawable == null) {
-            drawable = this.f21864c;
+            drawable = this.f20044c;
         }
         if (drawable != null) {
             drawable.setBounds(rect);
@@ -79,20 +79,20 @@ public final class e7 extends Drawable {
 
     public e7(Context context, View view, boolean z10, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         Paint paint = new Paint(1);
-        this.f21862a = paint;
+        this.f20042a = paint;
         this.d = 255;
         paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), new int[]{org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.hk, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.ik, f6Var)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         if (z10) {
-            xi0 xi0Var = new xi0(R.raw.story_repost, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
-            this.f21863b = xi0Var;
-            xi0Var.f32579v0 = view;
-            AndroidUtilities.runOnUIThread(new q0(xi0Var, 1), 450L);
-            this.f21864c = null;
+            yi0 yi0Var = new yi0(R.raw.story_repost, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
+            this.f20043b = yi0Var;
+            yi0Var.R(view);
+            AndroidUtilities.runOnUIThread(new q0(yi0Var, 1), 450L);
+            this.f20044c = null;
             return;
         }
-        this.f21863b = null;
+        this.f20043b = null;
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.f21864c = mutate;
+        this.f20044c = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
     }
 

@@ -1,30 +1,30 @@
 package yh;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.d80;
 public final class o4 implements Runnable {
-    public final int f50476a;
-    public final TLRPC.User f50477b;
+    public final int f47605a;
+    public final d80 f47606b;
 
-    public o4(int i10, TLRPC.User user) {
-        this.f50476a = i10;
-        this.f50477b = user;
+    public o4(d80 d80Var, int i10) {
+        this.f47605a = i10;
+        this.f47606b = d80Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f50476a;
-        TLRPC.User user = this.f50477b;
-        switch (i10) {
+        switch (this.f47605a) {
             case 0:
-                ug.k0.c0(new ArrayList(Arrays.asList(user)));
+                AndroidUtilities.runOnUIThread(new o4(this.f47606b, 3));
                 return;
             case 1:
-                ug.k0.c0(new ArrayList(Arrays.asList(user)));
+                this.f47606b.run(Boolean.FALSE, "PRODUCT_NOT_FOUND");
+                return;
+            case 2:
+                this.f47606b.run(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
                 return;
             default:
-                ug.k0.c0(new ArrayList(Arrays.asList(user)));
+                this.f47606b.run(Boolean.FALSE, null);
                 return;
         }
     }

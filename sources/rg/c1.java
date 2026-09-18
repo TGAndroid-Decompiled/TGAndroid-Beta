@@ -1,90 +1,49 @@
 package rg;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import di.c6;
-import di.c7;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.ja;
-import org.telegram.ui.Components.kl0;
-public final class c1 extends kl0 {
-    public final Context f45142c;
-    public final ja d;
-    public final c7 f45143e;
-    public final boolean f45144f;
-    public final c6 h;
-
-    public c1(c6 c6Var, Context context, ja jaVar, c7 c7Var, boolean z10) {
-        this.h = c6Var;
-        this.f45142c = context;
-        this.d = jaVar;
-        this.f45143e = c7Var;
-        this.f45144f = z10;
-    }
-
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.h.f45192s0.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        ArrayList arrayList = this.h.f45192s0;
-        return ((MessageObject) arrayList.get((arrayList.size() - 1) - i10)).contentType;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        boolean z10;
-        boolean z11;
-        MessageObject.GroupedMessagePosition position;
-        boolean z12;
-        c6 c6Var = this.h;
-        ArrayList arrayList = c6Var.f45192s0;
-        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
-        View view = c1Var.f45739a;
-        if (view instanceof org.telegram.ui.Cells.t1) {
-            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
-            MessageObject.GroupedMessages groupedMessages = c6Var.f45193t0;
-            if (groupedMessages != null && (position = groupedMessages.getPosition(messageObject)) != null) {
-                if (position.minY != 0) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                z10 = z12;
-            } else {
-                z10 = false;
-            }
-            MessageObject.GroupedMessages groupedMessages2 = c6Var.f45193t0;
-            if (groupedMessages2 != null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            t1Var.X3(messageObject, groupedMessages2, z11, z10, false, false);
-        } else if (view instanceof org.telegram.ui.Cells.w0) {
-            ((org.telegram.ui.Cells.w0) view).setMessageObject(messageObject);
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        com.google.firebase.messaging.n nVar = this.h.D0;
-        Context context = this.f45142c;
-        if (i10 == 1) {
-            return new s4.c1(new a1(this, context, nVar));
-        }
-        b1 b1Var = new b1(this, context, UserConfig.selectedAccount, nVar);
-        b1Var.N7 = true;
-        return new s4.c1(b1Var);
+import ai.e2;
+import android.app.Activity;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.z5;
+import w7.x5;
+public final class c1 extends g3 {
+    public c1(o2 o2Var) {
+        super(o2Var.getParentActivity(), false);
+        Activity parentActivity = o2Var.getParentActivity();
+        LinearLayout f7 = org.telegram.messenger.w1.f(parentActivity, 1);
+        TextView textView = new TextView(parentActivity);
+        textView.setGravity(8388611);
+        int i10 = j6.f18970j5;
+        org.telegram.messenger.w1.q(textView, j6.w0(null, i10, false), 1, 20.0f);
+        f7.addView(textView, x5.d(-1, -2.0f, 0, 21.0f, 16.0f, 21.0f, 0.0f));
+        TextView textView2 = new TextView(parentActivity);
+        textView2.setGravity(8388611);
+        textView2.setTextSize(1, 16.0f);
+        textView2.setTextColor(j6.w0(null, i10, false));
+        f7.addView(textView2, x5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+        TextView textView3 = new TextView(parentActivity);
+        textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        textView3.setGravity(17);
+        org.telegram.messenger.w1.q(textView3, j6.w0(null, j6.Sh, false), 1, 14.0f);
+        textView3.setBackground(z5.f(new float[]{8.0f}, j6.Oh));
+        textView3.setText(LocaleController.getString(R.string.InstallOfficialApp));
+        textView3.setOnClickListener(new e2(23));
+        FrameLayout frameLayout = new FrameLayout(parentActivity);
+        frameLayout.addView(textView3, x5.d(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        frameLayout.setBackgroundColor(getThemedColor(j6.f18934h5));
+        f7.addView(frameLayout, x5.q(-1, 68, 80));
+        org.telegram.messenger.w1.n(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeededDescription)));
+        ScrollView scrollView = new ScrollView(parentActivity);
+        scrollView.addView(f7);
+        setCustomView(scrollView);
     }
 }

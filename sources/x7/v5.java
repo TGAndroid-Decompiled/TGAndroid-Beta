@@ -1,38 +1,38 @@
 package x7;
 public final class v5 implements ia.d {
-    public static final v5 f49237a = new Object();
-    public static final ia.c f49238b = new ia.c("appId", i2.g.n(w.f.j(c0.class, new z(1))));
-    public static final ia.c f49239c = new ia.c("appVersion", i2.g.n(w.f.j(c0.class, new z(2))));
-    public static final ia.c d = new ia.c("firebaseProjectId", i2.g.n(w.f.j(c0.class, new z(3))));
-    public static final ia.c f49240e = new ia.c("mlSdkVersion", i2.g.n(w.f.j(c0.class, new z(4))));
-    public static final ia.c f49241f = new ia.c("tfliteSchemaVersion", i2.g.n(w.f.j(c0.class, new z(5))));
-    public static final ia.c f49242g = new ia.c("gcmSenderId", i2.g.n(w.f.j(c0.class, new z(6))));
-    public static final ia.c h = new ia.c("apiKey", i2.g.n(w.f.j(c0.class, new z(7))));
-    public static final ia.c f49243i = new ia.c("languages", i2.g.n(w.f.j(c0.class, new z(8))));
-    public static final ia.c f49244j = new ia.c("mlSdkInstanceId", i2.g.n(w.f.j(c0.class, new z(9))));
-    public static final ia.c f49245k = new ia.c("isClearcutClient", i2.g.n(w.f.j(c0.class, new z(10))));
-    public static final ia.c f49246l = new ia.c("isStandaloneMlkit", i2.g.n(w.f.j(c0.class, new z(11))));
-    public static final ia.c f49247m = new ia.c("isJsonLogging", i2.g.n(w.f.j(c0.class, new z(12))));
-    public static final ia.c f49248n = new ia.c("buildLevel", i2.g.n(w.f.j(c0.class, new z(13))));
-    public static final ia.c f49249o = new ia.c("optionalModuleVersion", i2.g.n(w.f.j(c0.class, new z(14))));
+    public static final v5 f45677a = new Object();
+    public static final ia.c f45678b = new ia.c("appId", hg.k0.o(w.f.j(c0.class, new z(1))));
+    public static final ia.c f45679c = new ia.c("appVersion", hg.k0.o(w.f.j(c0.class, new z(2))));
+    public static final ia.c d = new ia.c("firebaseProjectId", hg.k0.o(w.f.j(c0.class, new z(3))));
+    public static final ia.c e = new ia.c("mlSdkVersion", hg.k0.o(w.f.j(c0.class, new z(4))));
+    public static final ia.c f45680f = new ia.c("tfliteSchemaVersion", hg.k0.o(w.f.j(c0.class, new z(5))));
+    public static final ia.c f45681g = new ia.c("gcmSenderId", hg.k0.o(w.f.j(c0.class, new z(6))));
+    public static final ia.c h = new ia.c("apiKey", hg.k0.o(w.f.j(c0.class, new z(7))));
+    public static final ia.c f45682i = new ia.c("languages", hg.k0.o(w.f.j(c0.class, new z(8))));
+    public static final ia.c f45683j = new ia.c("mlSdkInstanceId", hg.k0.o(w.f.j(c0.class, new z(9))));
+    public static final ia.c f45684k = new ia.c("isClearcutClient", hg.k0.o(w.f.j(c0.class, new z(10))));
+    public static final ia.c f45685l = new ia.c("isStandaloneMlkit", hg.k0.o(w.f.j(c0.class, new z(11))));
+    public static final ia.c f45686m = new ia.c("isJsonLogging", hg.k0.o(w.f.j(c0.class, new z(12))));
+    public static final ia.c f45687n = new ia.c("buildLevel", hg.k0.o(w.f.j(c0.class, new z(13))));
+    public static final ia.c f45688o = new ia.c("optionalModuleVersion", hg.k0.o(w.f.j(c0.class, new z(14))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         i9 i9Var = (i9) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f49238b, i9Var.f49031a);
-        eVar.a(f49239c, i9Var.f49032b);
+        eVar.a(f45678b, i9Var.f45486a);
+        eVar.a(f45679c, i9Var.f45487b);
         eVar.a(d, null);
-        eVar.a(f49240e, i9Var.f49033c);
-        eVar.a(f49241f, i9Var.d);
-        eVar.a(f49242g, null);
+        eVar.a(e, i9Var.f45488c);
+        eVar.a(f45680f, i9Var.d);
+        eVar.a(f45681g, null);
         eVar.a(h, null);
-        eVar.a(f49243i, i9Var.f49034e);
-        eVar.a(f49244j, i9Var.f49035f);
-        eVar.a(f49245k, i9Var.f49036g);
-        eVar.a(f49246l, i9Var.h);
-        eVar.a(f49247m, i9Var.f49037i);
-        eVar.a(f49248n, i9Var.f49038j);
-        eVar.a(f49249o, i9Var.f49039k);
+        eVar.a(f45682i, i9Var.e);
+        eVar.a(f45683j, i9Var.f45489f);
+        eVar.a(f45684k, i9Var.f45490g);
+        eVar.a(f45685l, i9Var.h);
+        eVar.a(f45686m, i9Var.f45491i);
+        eVar.a(f45687n, i9Var.f45492j);
+        eVar.a(f45688o, i9Var.f45493k);
     }
 }

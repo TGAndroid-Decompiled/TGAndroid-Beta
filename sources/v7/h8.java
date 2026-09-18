@@ -58,7 +58,7 @@ public abstract class h8 {
         int i11;
         boolean z10;
         int i12;
-        new qb.b(10);
+        new ob.a(10);
         if ((i10 & 1) == 0) {
             i11 = 400;
         } else {
@@ -72,7 +72,7 @@ public abstract class h8 {
         o0.i iVar = null;
         int i13 = Integer.MAX_VALUE;
         for (o0.i iVar2 : iVarArr) {
-            int abs = Math.abs(iVar2.f16791c - i11) * 2;
+            int abs = Math.abs(iVar2.f15330c - i11) * 2;
             if (iVar2.d == z10) {
                 i12 = 0;
             } else {

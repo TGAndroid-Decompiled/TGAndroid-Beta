@@ -6,32 +6,32 @@ public enum s1 extends b2 {
 
     @Override
     public final void d(l lVar, a aVar) {
-        f fVar = lVar.f6786m;
+        f fVar = lVar.f7706m;
         char d = aVar.d();
         if (d != 0) {
             if (d != '\"') {
-                w wVar = b2.f6726a;
+                w wVar = b2.f7649a;
                 if (d != '>') {
                     if (d != 65535) {
-                        fVar.f6765e.append(d);
+                        fVar.e.append(d);
                         return;
                     }
                     lVar.l(this);
                     fVar.getClass();
                     lVar.j();
-                    lVar.f6778c = wVar;
+                    lVar.f7699c = wVar;
                     return;
                 }
                 lVar.m(this);
                 fVar.getClass();
                 lVar.j();
-                lVar.f6778c = wVar;
+                lVar.f7699c = wVar;
                 return;
             }
-            lVar.f6778c = b2.B0;
+            lVar.f7699c = b2.B0;
             return;
         }
         lVar.m(this);
-        fVar.f6765e.append((char) 65533);
+        fVar.e.append((char) 65533);
     }
 }

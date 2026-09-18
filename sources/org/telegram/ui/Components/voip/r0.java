@@ -1,132 +1,218 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import ai.l4;
+import ai.z5;
 import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.x9;
-import w7.x5;
-public final class r0 extends FrameLayout {
-    public final q0 f31755a;
-    public final x9 f31756b;
-    public AnimatorSet f31757c;
-    public boolean d;
-    public boolean f31758e;
-    public final boolean f31759f;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.bu0;
+import org.telegram.ui.mi1;
+import org.telegram.ui.u00;
+import org.telegram.ui.zd;
+import yh.a4;
+import yh.e4;
+import yh.m7;
+import yh.n8;
+public final class r0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f29164a;
+    public final Object f29165b;
 
-    public r0(Activity activity) {
-        super(activity);
-        q0 q0Var = new q0(AndroidUtilities.dp(104.0f), AndroidUtilities.dp(111.0f), AndroidUtilities.dp(12.0f), 8);
-        this.f31755a = q0Var;
-        q0Var.b(3.0d);
-        if (!q0Var.f31727e) {
-            invalidate();
-        }
-        q0Var.f31727e = true;
-        x9 x9Var = new x9(activity);
-        this.f31756b = x9Var;
-        addView(x9Var, x5.e(135, 135, 17));
-        setWillNotDraw(false);
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.f31757c = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
-        this.f31757c.setInterpolator(pr.f29468g);
-        this.f31757c.setDuration(3000L);
-        boolean isEnabled = LiteMode.isEnabled(512);
-        this.f31759f = isEnabled;
-        if (isEnabled) {
-            this.f31757c.start();
-        }
-        setClipChildren(false);
-    }
-
-    public final void a() {
-        if (this.d) {
-            return;
-        }
-        AnimatorSet animatorSet = this.f31757c;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.d = true;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f31757c = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, getScaleX(), 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, getScaleY(), 1.05f, 1.0f));
-        this.f31757c.setInterpolator(pr.f29468g);
-        this.f31757c.setDuration(400L);
-        this.f31757c.start();
-    }
-
-    public final void b(boolean z10, boolean z11) {
-        if (this.f31758e != z10) {
-            this.f31758e = z10;
-            q0 q0Var = this.f31755a;
-            if (z10) {
-                q0Var.b(3.0d);
-            }
-            if (q0Var.h != z10) {
-                q0Var.h = z10;
-                ValueAnimator valueAnimator = q0Var.f31731j;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllUpdateListeners();
-                    q0Var.f31731j.cancel();
-                }
-                if (z10) {
-                    q0Var.f31731j = ValueAnimator.ofFloat(q0Var.f31730i, 0.0f);
-                    q0Var.f31732k = (int) (2000.0f / AndroidUtilities.screenRefreshTime);
-                } else {
-                    q0Var.f31732k = 0;
-                    q0Var.f31731j = ValueAnimator.ofFloat(q0Var.f31730i, 1.0f);
-                }
-                q0Var.f31731j.addUpdateListener(new ki.a(q0Var, 1));
-                if (z11) {
-                    q0Var.f31731j.setDuration(150L);
-                } else {
-                    q0Var.f31731j.setDuration(1000L);
-                }
-                q0Var.f31731j.start();
-                invalidate();
-            }
-        }
+    public r0(a6.i iVar, View view) {
+        this.f29164a = 14;
+        this.f29165b = iVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f31759f) {
-            q0 q0Var = this.f31755a;
-            q0Var.c();
-            q0Var.a(canvas, getWidth() / 2, getHeight() / 2, this);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float f7;
+        yh.r2 r2Var;
+        boolean z10;
+        int i10 = this.f29164a;
+        Object obj = this.f29165b;
+        switch (i10) {
+            case 0:
+                s0 s0Var = (s0) obj;
+                s0Var.getClass();
+                s0Var.f29177i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 1:
+                mi1 mi1Var = (mi1) obj;
+                mi1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int dp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
+                b1 b1Var = mi1Var.f28887c;
+                b1Var.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp * mi1Var.E));
+                b1Var.requestLayout();
+                return;
+            case 2:
+                j1 j1Var = (j1) obj;
+                j1Var.getClass();
+                j1Var.h.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 3:
+                u1 u1Var = (u1) obj;
+                u1Var.getClass();
+                u1Var.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var.invalidate();
+                return;
+            case 4:
+                m2 m2Var = (m2) obj;
+                m2Var.getClass();
+                m2Var.f29077s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m2Var.f29072b.invalidate();
+                return;
+            case 5:
+                l4 l4Var = (l4) obj;
+                ((z5) l4Var.f1180b).f28304a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                l4Var.invalidate();
+                return;
+            case 6:
+                org.telegram.ui.web.v1 v1Var = (org.telegram.ui.web.v1) obj;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v1Var.U = floatValue;
+                v1Var.V.setAlpha(floatValue);
+                v1Var.invalidate();
+                return;
+            case 7:
+                org.telegram.ui.k0 k0Var = (org.telegram.ui.k0) obj;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k0Var.f38955a0 = floatValue2;
+                k0Var.j(floatValue2);
+                k0Var.f38957b0.setAlpha(k0Var.f38955a0);
+                k0Var.R.setTranslationX(AndroidUtilities.dp(56.0f) * k0Var.f38955a0);
+                k0Var.O.setTranslationX(AndroidUtilities.dp(112.0f) * k0Var.f38955a0);
+                k0Var.invalidate();
+                return;
+            case 8:
+                ((bu0) ((qg.z0) obj)).K.f30954e0.invalidate();
+                return;
+            case 9:
+                qg.u1 u1Var2 = (qg.u1) obj;
+                u1Var2.getClass();
+                u1Var2.f41695n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var2.invalidate();
+                return;
+            case 10:
+                qg.b2 b2Var = (qg.b2) obj;
+                b2Var.getClass();
+                b2Var.f41346x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b2Var.invalidate();
+                return;
+            case 11:
+                pg.n nVar = (pg.n) obj;
+                nVar.f41346x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                nVar.invalidate();
+                return;
+            case 12:
+                qg.p2 p2Var = (qg.p2) obj;
+                p2Var.getClass();
+                p2Var.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 13:
+                qg.v2 v2Var = (qg.v2) obj;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v2Var.f41720y = floatValue3;
+                zd zdVar = v2Var.f41713c;
+                zdVar.setAlpha(floatValue3);
+                zdVar.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, v2Var.f41720y));
+                zdVar.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, v2Var.f41720y));
+                v2Var.f41712b.invalidate();
+                return;
+            case 14:
+                ((View) ((g.b0) ((a6.i) obj).f303b).d.getParent()).invalidate();
+                return;
+            case 15:
+                LimitPreviewView limitPreviewView = (LimitPreviewView) obj;
+                int i11 = LimitPreviewView.f22113l0;
+                limitPreviewView.getClass();
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (floatValue4 < 0.5f) {
+                    f7 = (floatValue4 / 0.5f) * (-7.0f);
+                } else {
+                    f7 = (1.0f - ((floatValue4 - 0.5f) / 0.5f)) * (-7.0f);
+                }
+                limitPreviewView.f22117b0 = f7;
+                return;
+            case 16:
+                rg.p0 p0Var = (rg.p0) obj;
+                p0Var.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p0Var.d.invalidate();
+                rg.o0 o0Var = p0Var.e;
+                if (o0Var != null) {
+                    o0Var.invalidate();
+                    return;
+                }
+                return;
+            case 17:
+                ((rg.v1) obj).f42549a.f42534o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 18:
+                tg.b bVar = (tg.b) obj;
+                bVar.getClass();
+                bVar.f43113b = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                bVar.invalidate();
+                return;
+            case 19:
+                xg.i iVar = (xg.i) obj;
+                iVar.getClass();
+                iVar.setContainerHeight(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 20:
+                a4 a4Var = (a4) obj;
+                a4Var.Y0.f8877c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a4Var.T1();
+                return;
+            case 21:
+                ((yh.a3) obj).h.invalidate();
+                return;
+            case 22:
+                yh.s2 s2Var = (yh.s2) obj;
+                s2Var.getClass();
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s2Var.E = floatValue5;
+                if (floatValue5 >= 0.8f && (r2Var = s2Var.H) != null && (z10 = r2Var.f47732l) && z10) {
+                    r2Var.f47732l = false;
+                    r2Var.b();
+                }
+                s2Var.invalidate();
+                return;
+            case 23:
+                View view = (View) obj;
+                float sin = (((float) Math.sin(((Float) valueAnimator.getAnimatedValue()).floatValue() * 3.141592653589793d)) * 0.03f) + 1.0f;
+                view.setScaleX(sin);
+                view.setScaleY(sin);
+                return;
+            case 24:
+                e4 e4Var = (e4) obj;
+                e4Var.getClass();
+                e4Var.f47145y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e4Var.invalidate();
+                return;
+            case 25:
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u00 u00Var = ((m7) obj).f47498c;
+                u00Var.setScaleX(floatValue6);
+                u00Var.setScaleY(floatValue6);
+                return;
+            case 26:
+                n8 n8Var = (n8) obj;
+                n8Var.getClass();
+                n8Var.f47550c0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n8Var.invalidate();
+                return;
+            default:
+                float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zg.s sVar = ((zg.t) obj).f49197b;
+                if (sVar != null) {
+                    sVar.setAlpha(floatValue7);
+                    return;
+                }
+                return;
         }
-        super.onDraw(canvas);
     }
 
-    public void setAmplitude(double d) {
-        if (this.f31758e) {
-            return;
-        }
-        q0 q0Var = this.f31755a;
-        if (d > 1.5d) {
-            q0Var.b(d);
-        } else {
-            q0Var.b(0.0d);
-        }
-    }
-
-    public void setRoundRadius(int i10) {
-        this.f31756b.setRoundRadius(i10);
-    }
-
-    public void setShowWaves(boolean z10) {
-        q0 q0Var = this.f31755a;
-        if (q0Var.f31727e != z10) {
-            invalidate();
-        }
-        q0Var.f31727e = z10;
+    public r0(Object obj, int i10) {
+        this.f29164a = i10;
+        this.f29165b = obj;
     }
 }

@@ -1,9 +1,9 @@
 package zd;
 public final class d implements k {
-    public final c[] f51530a;
+    public final c[] f48903a;
 
     public d(c[] cVarArr) {
-        this.f51530a = cVarArr;
+        this.f48903a = cVarArr;
     }
 
     @Override
@@ -12,8 +12,8 @@ public final class d implements k {
     }
 
     public final void b() {
-        for (c cVar : this.f51530a) {
-            o0 o0Var = cVar.f51527f;
+        for (c cVar : this.f48903a) {
+            o0 o0Var = cVar.f48900f;
             if (o0Var != null) {
                 o0Var.dispose();
             } else {
@@ -24,6 +24,6 @@ public final class d implements k {
     }
 
     public final String toString() {
-        return "DisposeHandlersOnCancel[" + this.f51530a + ']';
+        return "DisposeHandlersOnCancel[" + this.f48903a + ']';
     }
 }

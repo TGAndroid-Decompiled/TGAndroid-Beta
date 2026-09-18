@@ -1,35 +1,36 @@
 package nh;
 
-import android.text.SpannableStringBuilder;
-import android.util.SparseArray;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.nq;
-public abstract class a {
-    public static final SparseArray f16754a = new SparseArray(6);
+import ai.s1;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.f61;
+public abstract class a extends f61 {
+    public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, f6 f6Var) {
+        super(context, i10, -1, false, callback2, callback5, null, f6Var, -1, 0);
+        this.f26214z2 = true;
+        setOverScrollMode(2);
+    }
 
-    public static SpannableStringBuilder a(int i10, CharSequence charSequence, boolean z10) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (charSequence instanceof SpannableStringBuilder) {
-            spannableStringBuilder = (SpannableStringBuilder) charSequence;
-        } else {
-            spannableStringBuilder = new SpannableStringBuilder(charSequence);
+    public final void J1(View view) {
+        int i10;
+        if (view != null) {
+            float dp = AndroidUtilities.dp(92.0f);
+            float width = getWidth() - dp;
+            float x10 = view.getX();
+            float width2 = view.getWidth() + x10;
+            if (x10 < dp) {
+                i10 = (int) (x10 - dp);
+            } else if (width2 > width) {
+                i10 = (int) (width2 - width);
+            } else {
+                i10 = 0;
+            }
+            if (i10 != 0) {
+                AndroidUtilities.doOnLayout(this, new s1(this, view, i10, 17));
+            }
         }
-        if (z10) {
-            spannableStringBuilder.insert(0, (CharSequence) "* \u2068");
-        } else {
-            spannableStringBuilder.insert(0, (CharSequence) "* ");
-        }
-        SparseArray sparseArray = f16754a;
-        nq nqVar = (nq) sparseArray.get(i10);
-        if (nqVar == null) {
-            nqVar = new nq(i10, 0);
-            nqVar.setColorKey(j6.il);
-            sparseArray.put(i10, nqVar);
-        }
-        spannableStringBuilder.setSpan(nqVar, 0, 1, 33);
-        if (z10) {
-            spannableStringBuilder.append((char) 8297);
-        }
-        return spannableStringBuilder;
     }
 }

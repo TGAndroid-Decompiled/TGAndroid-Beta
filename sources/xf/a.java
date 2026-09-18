@@ -2,7 +2,7 @@ package xf;
 
 import android.content.Context;
 public interface a {
-    boolean E0(Context context);
+    boolean H0(Context context);
 
-    boolean e(Context context);
+    boolean c(Context context);
 }

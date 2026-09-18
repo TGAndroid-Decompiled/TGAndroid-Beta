@@ -1,6 +1,6 @@
 package org.telegram.ui;
 public interface x11 {
-    void b0();
+    void c0();
 
-    void v(wk0 wk0Var);
+    void v(vk0 vk0Var);
 }

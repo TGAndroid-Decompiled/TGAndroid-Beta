@@ -1,15 +1,37 @@
 package org.telegram.ui;
-public final class ap0 implements Runnable {
-    public final int f34503a;
-    public final bq0 f34504b;
 
-    public ap0(bq0 bq0Var, int i10) {
-        this.f34503a = i10;
-        this.f34504b = bq0Var;
+import org.telegram.messenger.Utilities;
+public final class ap0 implements Utilities.Callback {
+    public final int f31947a;
+    public final cq0 f31948b;
+
+    public ap0(cq0 cq0Var, int i10) {
+        this.f31947a = i10;
+        this.f31948b = cq0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ap0.run():void");
+    public final void run(Object obj) {
+        switch (this.f31947a) {
+            case 0:
+                cq0 cq0Var = this.f31948b;
+                cq0Var.f32867r = false;
+                cq0Var.Q.setLoading(false);
+                if (((Boolean) obj).booleanValue()) {
+                    cq0Var.x0();
+                    cq0Var.finishFragment();
+                    cq0Var.E0();
+                    return;
+                }
+                return;
+            default:
+                Integer num = (Integer) obj;
+                ci.i1 i1Var = this.f31948b.I;
+                if (i1Var != null) {
+                    i1Var.E(num.intValue());
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,44 +1,36 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class p7 implements eo0 {
-    public final k8 f29311a;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class p7 extends bj0 {
+    public final o7 E;
+    public long F;
+    public final float G;
+    public final h8 H;
+    public float f26950r;
+    public float f26951s;
+    public int v;
+    public long f26952w;
+    public long f26953x;
+    public final o7 f26954y;
 
-    public p7(k8 k8Var) {
-        this.f29311a = k8Var;
+    public p7(h8 h8Var, Context context, float f7) {
+        super(context);
+        this.H = h8Var;
+        this.G = f7;
+        this.v = 0;
+        this.f26954y = new o7(this, 0);
+        this.E = new o7(this, 1);
     }
 
     @Override
-    public final void X(float f7, boolean z10) {
-        if (z10) {
-            MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
-        }
-        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-        if (playingMessageObject != null && playingMessageObject.isMusic()) {
-            this.f29311a.G0(playingMessageObject, false);
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
     }
 
     @Override
-    public final CharSequence getContentDescription() {
-        StringBuilder sb2 = new StringBuilder();
-        k8 k8Var = this.f29311a;
-        sb2.append(LocaleController.formatPluralString("Minutes", k8Var.D0 / 60, new Object[0]));
-        sb2.append(' ');
-        sb2.append(LocaleController.formatPluralString("Seconds", k8Var.D0 % 60, new Object[0]));
-        String sb3 = sb2.toString();
-        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, LocaleController.formatPluralString("Minutes", k8Var.E0 / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", k8Var.E0 % 60, new Object[0]));
-    }
-
-    @Override
-    public final int l0() {
-        return 0;
-    }
-
-    @Override
-    public final void B() {
+    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

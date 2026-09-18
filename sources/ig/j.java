@@ -1,132 +1,238 @@
 package ig;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
+import android.animation.ValueAnimator;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.view.MotionEvent;
+import ci.o7;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.vi;
-import org.telegram.ui.l20;
-public final class j extends FrameLayout {
-    public final int f12104a = 0;
-    public int f12105b;
-    public final Object f12106c;
-    public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate f12107e;
+public final class j {
+    public g f11180a;
+    public float f11181b;
+    public boolean f11182c;
+    public float d;
+    public float e;
+    public long f11183f;
+    public ValueAnimator f11184g;
+    public Rect h;
+    public Rect f11185i;
+    public Rect f11186j;
+    public float f11187k;
+    public float f11188l;
+    public float f11189m;
+    public h[] f11190n;
 
-    public j(m mVar, Context context) {
-        super(context);
-        this.f12107e = mVar;
-        this.f12105b = -1;
-        this.f12106c = new Rect();
-        this.d = new e6(this, 220L, pr.h);
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f12104a) {
-            case 1:
-                l20 l20Var = (l20) this.d;
-                Path path = (Path) this.f12106c;
-                vi viVar = (vi) this.f12107e;
-                dh.d dVar = viVar.B0;
-                if (dVar != null) {
-                    dVar.setBounds(0, (int) viVar.V1, getMeasuredWidth(), getMeasuredHeight());
-                    viVar.B0.draw(canvas);
+    public final boolean a(int i10, int i11, int i12) {
+        h hVar;
+        Rect rect = this.f11185i;
+        Rect rect2 = this.h;
+        h[] hVarArr = this.f11190n;
+        if (i12 == 0) {
+            if (rect2.contains(i10, i11)) {
+                h hVar2 = hVarArr[0];
+                if (hVar2 != null) {
+                    hVarArr[1] = hVar2;
                 }
-                float dp = AndroidUtilities.dp(20.0f);
-                int dp2 = AndroidUtilities.dp(7.0f);
-                int dp3 = AndroidUtilities.dp(7.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f7 = dp2;
-                rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), getHeight() - dp3);
-                path.rewind();
-                path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(path);
-                canvas.saveLayerAlpha(rectF, 255, 31);
-                super.dispatchDraw(canvas);
-                rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), AndroidUtilities.dp(6.0f) + dp2);
-                l20Var.b(canvas, rectF, 1, 1.0f);
-                rectF.set(getPaddingLeft(), (getHeight() - dp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - dp3);
-                l20Var.b(canvas, rectF, 3, 1.0f);
-                canvas.restore();
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f12104a) {
-            case 0:
-                float width = getWidth() / 2.0f;
-                m mVar = (m) this.f12107e;
-                float d = ((e6) this.d).d(mVar.f12144n.getWidth(), false);
-                Rect rect = (Rect) this.f12106c;
-                float f7 = d / 2.0f;
-                rect.set((int) (width - (mVar.f12144n.getScaleX() * f7)), (int) (((1.0f - mVar.f12144n.getScaleY()) * mVar.f12144n.getHeight()) + mVar.f12144n.getY()), (int) ((mVar.f12144n.getScaleX() * f7) + width), (int) (mVar.f12144n.getY() + mVar.f12144n.getHeight()));
-                mVar.f12145r.setBounds(rect);
-                mVar.f12145r.draw(canvas);
-                return super.drawChild(canvas, view, j3);
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f12104a) {
-            case 1:
-                int i14 = this.f12105b;
-                vi viVar = (vi) this.f12107e;
-                int top = i14 - viVar.f31332w.getTop();
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f12105b = getHeight();
-                if (viVar.f31332w.getVisibility() == 0 && getHeight() - viVar.f31332w.getTop() != top) {
-                    viVar.f31332w.setTranslationY(viVar.f31332w.getTranslationY() + ((getHeight() - viVar.f31332w.getTop()) - top));
-                    viVar.f31332w.animate().translationY(0.0f).setDuration(320L).setInterpolator(pr.h).start();
-                    return;
+                h hVar3 = new h(this, 1);
+                hVarArr[0] = hVar3;
+                hVar3.f11177c = this.f11187k;
+                hVar3.f11176b = i10;
+                hVar3.a();
+                ValueAnimator valueAnimator = this.f11184g;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    return true;
                 }
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f12104a) {
-            case 0:
-                m mVar = (m) this.f12107e;
-                mVar.f12144n.measure(i10, i11);
-                invalidate();
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f12105b, AndroidUtilities.dp(36.0f) + mVar.f12144n.getMeasuredHeight()), 1073741824));
-                if (this.f12105b < 0) {
-                    this.f12105b = getMeasuredHeight();
-                    return;
+            } else if (rect.contains(i10, i11)) {
+                h hVar4 = hVarArr[0];
+                if (hVar4 != null) {
+                    hVarArr[1] = hVar4;
                 }
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+                h hVar5 = new h(this, 2);
+                hVarArr[0] = hVar5;
+                hVar5.d = this.f11188l;
+                hVar5.f11176b = i10;
+                hVar5.a();
+                ValueAnimator valueAnimator2 = this.f11184g;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.cancel();
+                    return true;
+                }
+            } else if (this.f11186j.contains(i10, i11)) {
+                h hVar6 = new h(this, 4);
+                hVarArr[0] = hVar6;
+                hVar6.d = this.f11188l;
+                hVar6.f11177c = this.f11187k;
+                hVar6.f11176b = i10;
+                hVar6.a();
+                ValueAnimator valueAnimator3 = this.f11184g;
+                if (valueAnimator3 != null) {
+                    valueAnimator3.cancel();
+                    return true;
+                }
+            } else {
+                if (i11 < rect2.bottom && i11 > rect2.top) {
+                    this.f11182c = true;
+                    this.d = i10;
+                    this.e = i11;
+                    this.f11183f = System.currentTimeMillis();
+                    ValueAnimator valueAnimator4 = this.f11184g;
+                    if (valueAnimator4 != null) {
+                        if (valueAnimator4.isRunning()) {
+                            this.f11180a.a(this.f11187k, this.f11188l, true);
+                        }
+                        this.f11184g.cancel();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return true;
         }
+        if (i12 == 1 && (hVar = hVarArr[0]) != null && hVar.f11175a != 4) {
+            if (rect2.contains(i10, i11) && hVarArr[0].f11175a != 1) {
+                h hVar7 = new h(this, 1);
+                hVarArr[1] = hVar7;
+                hVar7.f11177c = this.f11187k;
+                hVar7.f11176b = i10;
+                hVar7.a();
+                ValueAnimator valueAnimator5 = this.f11184g;
+                if (valueAnimator5 != null) {
+                    valueAnimator5.cancel();
+                    return true;
+                }
+            } else if (rect.contains(i10, i11) && hVarArr[0].f11175a != 2) {
+                h hVar8 = new h(this, 2);
+                hVarArr[1] = hVar8;
+                hVar8.d = this.f11188l;
+                hVar8.f11176b = i10;
+                hVar8.a();
+                ValueAnimator valueAnimator6 = this.f11184g;
+                if (valueAnimator6 != null) {
+                    valueAnimator6.cancel();
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
-    public j(vi viVar, Context context) {
-        super(context);
-        this.f12107e = viVar;
-        this.f12106c = new Path();
-        this.d = new l20();
+    public final boolean b(int i10, int i11) {
+        h hVar;
+        boolean z10;
+        if (this.f11182c || (hVar = this.f11190n[i11]) == null) {
+            return false;
+        }
+        int i12 = hVar.f11175a;
+        float f7 = hVar.f11177c;
+        float f10 = hVar.d;
+        int i13 = hVar.f11176b;
+        if (i12 == 1) {
+            float f11 = f7 - ((i13 - i10) / this.f11181b);
+            this.f11187k = f11;
+            if (f11 < 0.0f) {
+                this.f11187k = 0.0f;
+            }
+            float f12 = this.f11188l;
+            float f13 = this.f11189m;
+            if (f12 - this.f11187k < f13) {
+                this.f11187k = f12 - f13;
+            }
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i12 == 2) {
+            float f14 = f10 - ((i13 - i10) / this.f11181b);
+            this.f11188l = f14;
+            if (f14 > 1.0f) {
+                this.f11188l = 1.0f;
+            }
+            float f15 = this.f11188l;
+            float f16 = this.f11187k;
+            float f17 = this.f11189m;
+            if (f15 - f16 < f17) {
+                this.f11188l = f16 + f17;
+            }
+            z10 = true;
+        }
+        if (i12 == 4) {
+            float f18 = (i13 - i10) / this.f11181b;
+            float f19 = f7 - f18;
+            this.f11187k = f19;
+            this.f11188l = f10 - f18;
+            if (f19 < 0.0f) {
+                this.f11187k = 0.0f;
+                this.f11188l = f10 - f7;
+            }
+            if (this.f11188l > 1.0f) {
+                this.f11188l = 1.0f;
+                this.f11187k = 1.0f - (f10 - f7);
+            }
+            z10 = true;
+        }
+        if (z10) {
+            this.f11180a.A(true, false, false);
+        }
+        return true;
+    }
+
+    public final boolean c(int i10, MotionEvent motionEvent) {
+        ValueAnimator valueAnimator;
+        ValueAnimator valueAnimator2;
+        float f7;
+        float f10;
+        h[] hVarArr = this.f11190n;
+        if (i10 == 0) {
+            if (this.f11182c) {
+                this.f11182c = false;
+                float x10 = this.d - motionEvent.getX();
+                float y3 = this.e - motionEvent.getY();
+                if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.f11183f < 300) {
+                    if (Math.sqrt((y3 * y3) + (x10 * x10)) < AndroidUtilities.dp(10.0f)) {
+                        float f11 = (this.d - g.f11115k1) / this.f11181b;
+                        float f12 = this.f11188l;
+                        float f13 = this.f11187k;
+                        float f14 = f12 - f13;
+                        float f15 = f14 / 2.0f;
+                        float f16 = f11 - f15;
+                        float f17 = f11 + f15;
+                        if (f16 < 0.0f) {
+                            f7 = f14;
+                            f10 = 0.0f;
+                        } else if (f17 > 1.0f) {
+                            f10 = 1.0f - f14;
+                            f7 = 1.0f;
+                        } else {
+                            f7 = f17;
+                            f10 = f16;
+                        }
+                        this.f11184g = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        this.f11180a.a(f10, f7, true);
+                        this.f11184g.addUpdateListener(new o7(this, f13, f10, f12, f7, 1));
+                        this.f11184g.setInterpolator(g.C1);
+                        this.f11184g.start();
+                        return true;
+                    }
+                }
+                return true;
+            }
+            h hVar = hVarArr[0];
+            if (hVar != null && (valueAnimator2 = hVar.e) != null) {
+                valueAnimator2.cancel();
+            }
+            hVarArr[0] = null;
+            h hVar2 = hVarArr[1];
+            if (hVar2 != null) {
+                hVarArr[0] = hVar2;
+                hVarArr[1] = null;
+            }
+            return false;
+        }
+        h hVar3 = hVarArr[1];
+        if (hVar3 != null && (valueAnimator = hVar3.e) != null) {
+            valueAnimator.cancel();
+        }
+        hVarArr[1] = null;
+        return false;
     }
 }

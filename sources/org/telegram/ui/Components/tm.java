@@ -2,21 +2,21 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class tm implements bl, org.telegram.ui.ActionBar.a2 {
-    public final Utilities.Callback f30622a;
+public final class tm implements bl, org.telegram.ui.ActionBar.b2 {
+    public final Utilities.Callback f28171a;
 
     public tm(Utilities.Callback callback) {
-        this.f30622a = callback;
+        this.f28171a = callback;
     }
 
     @Override
     public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        this.f30622a.run(new sh.f(messageMedia));
+        this.f28171a.run(new rh.f(messageMedia));
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        Utilities.Callback callback = this.f30622a;
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        Utilities.Callback callback = this.f28171a;
         if (callback != null) {
             callback.run(Boolean.FALSE);
         }

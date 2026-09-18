@@ -5,11 +5,11 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import w7.e0;
 public final class g extends o6.a {
-    public final String f43967a;
-    public final l f43968b;
-    public final int f43969c;
+    public final String f40728a;
+    public final l f40729b;
+    public final int f40730c;
     public final byte[] d;
-    public static final int f43966e = Integer.parseInt("-1");
+    public static final int e = Integer.parseInt("-1");
     public static final Parcelable.Creator<g> CREATOR = new m8.h(28);
 
     static {
@@ -24,10 +24,10 @@ public final class g extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 1, this.f43967a);
-        e0.k(parcel, 3, this.f43968b, i10);
+        e0.l(parcel, 1, this.f40728a);
+        e0.k(parcel, 3, this.f40729b, i10);
         e0.s(parcel, 4, 4);
-        parcel.writeInt(this.f43969c);
+        parcel.writeInt(this.f40730c);
         e0.c(parcel, 5, this.d);
         e0.r(parcel, q6);
     }

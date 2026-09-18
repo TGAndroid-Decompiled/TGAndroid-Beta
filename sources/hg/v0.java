@@ -1,64 +1,70 @@
 package hg;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.j6;
-public final class v0 implements Runnable {
-    public final int f11282a = 0;
-    public final boolean f11283b;
-    public final int f11284c;
-    public final boolean d;
-    public final Object f11285e;
-    public final Object f11286f;
-    public final Object h;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.bo;
+public final class v0 implements org.telegram.ui.ActionBar.b2, Utilities.Callback5 {
+    public final int f10447a;
+    public final w0 f10448b;
 
-    public v0(k1 k1Var, CharSequence charSequence, int i10, ArrayList arrayList, boolean z10, boolean z11) {
-        this.f11285e = k1Var;
-        this.f11286f = charSequence;
-        this.f11284c = i10;
-        this.h = arrayList;
-        this.f11283b = z10;
-        this.d = z11;
+    public v0(w0 w0Var, int i10) {
+        this.f10447a = i10;
+        this.f10448b = w0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f11282a) {
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f10447a) {
             case 0:
-                boolean z10 = this.f11283b;
-                boolean z11 = this.d;
-                ((k1) this.f11285e).U((CharSequence) this.f11286f, this.f11284c, (ArrayList) this.h, z10, z11);
-                return;
-            case 1:
-                boolean z12 = this.d;
-                ((MediaDataController) this.f11285e).lambda$processLoadedDiceStickers$89(this.f11283b, (TLRPC.TL_messages_stickerSet) this.f11286f, this.f11284c, (String) this.h, z12);
+                this.f10448b.X();
                 return;
             default:
-                boolean z13 = this.d;
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q(j6.k1((b6) this.f11285e, (File) this.f11286f, this.f11284c, this.f11283b, (TLRPC.Document) this.h, z13), 15));
+                this.f10448b.finishFragment();
                 return;
         }
     }
 
-    public v0(MediaDataController mediaDataController, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10, String str, boolean z11) {
-        this.f11285e = mediaDataController;
-        this.f11283b = z10;
-        this.f11286f = tL_messages_stickerSet;
-        this.f11284c = i10;
-        this.h = str;
-        this.d = z11;
-    }
-
-    public v0(b6 b6Var, File file, int i10, boolean z10, TLRPC.Document document, boolean z11) {
-        this.f11285e = b6Var;
-        this.f11286f = file;
-        this.f11284c = i10;
-        this.f11283b = z10;
-        this.h = document;
-        this.d = z11;
+    @Override
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        j51 j51Var = (j51) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        w0 w0Var = this.f10448b;
+        if (!w0Var.d.h(j51Var)) {
+            int i10 = j51Var.d;
+            if (i10 != 2 && j51Var.f15543a != 17) {
+                if (i10 == 1) {
+                    w0Var.f10465s = !w0Var.f10465s;
+                    w0Var.f10461c.Y2.N(true);
+                    w0Var.V(true);
+                    return;
+                } else if (i10 == 3) {
+                    a0 a0Var = w0Var.d;
+                    w0Var.v = true;
+                    a0Var.h = true;
+                    w0Var.f10461c.Y2.N(true);
+                    w0Var.V(true);
+                    return;
+                } else if (i10 == 4) {
+                    a0 a0Var2 = w0Var.d;
+                    w0Var.v = false;
+                    a0Var2.h = false;
+                    w0Var.f10461c.Y2.N(true);
+                    w0Var.V(true);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", w0Var.getUserConfig().getClientUserId());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "hello");
+            w0Var.presentFragment(new bo(bundle));
+        }
     }
 }

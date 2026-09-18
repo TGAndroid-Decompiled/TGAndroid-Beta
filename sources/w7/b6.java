@@ -3,18 +3,18 @@ package w7;
 import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.c90;
 public abstract class b6 {
-    public static d90 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
+    public static c90 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
         int i11 = org.telegram.ui.ActionBar.j6.gc;
-        d90 d90Var = new d90(context, null);
-        d90Var.setTextSize(1, f7);
-        d90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
-        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        c90 c90Var = new c90(context, null);
+        c90Var.setTextSize(1, f7);
+        c90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
+        c90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
         if (z10) {
-            d90Var.setTypeface(AndroidUtilities.bold());
+            c90Var.setTypeface(AndroidUtilities.bold());
         }
-        return d90Var;
+        return c90Var;
     }
 
     public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {

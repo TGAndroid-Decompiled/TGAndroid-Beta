@@ -1,97 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class xi extends AnimatorListenerAdapter {
-    public final int f42737a;
-    public final co f42738b;
+import org.telegram.messenger.MessageObject;
+public final class xi implements Runnable {
+    public final boolean f39650a;
+    public final boolean f39651b;
+    public final int f39652c;
+    public final boolean d;
+    public final org.telegram.ui.Components.gk0 e;
+    public final float f39653f;
+    public final float h;
+    public final zg.p0 f39654n;
+    public final MessageObject f39655r;
+    public final bo f39656s;
 
-    public xi(co coVar, int i10) {
-        this.f42737a = i10;
-        this.f42738b = coVar;
+    public xi(bo boVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.gk0 gk0Var, float f7, float f10, zg.p0 p0Var, MessageObject messageObject) {
+        this.f39656s = boVar;
+        this.f39650a = z10;
+        this.f39651b = z11;
+        this.f39652c = i10;
+        this.d = z12;
+        this.e = gk0Var;
+        this.f39653f = f7;
+        this.h = f10;
+        this.f39654n = p0Var;
+        this.f39655r = messageObject;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        uj ujVar;
-        switch (this.f42737a) {
-            case 0:
-                co coVar = this.f42738b;
-                gl glVar = coVar.f35202b3;
-                if (glVar != null) {
-                    glVar.setIsMessageTransition(false);
-                    coVar.f35202b3.h(true);
-                    coVar.f35202b3.setVisibility(4);
-                    return;
+    public final void run() {
+        if (!this.f39650a) {
+            bo boVar = this.f39656s;
+            if (boVar.f32243bc != null) {
+                boVar.f32243bc = null;
+                if (this.f39651b) {
+                    boVar.h8(new wi(this, this.f39652c, this.d, this.e, this.f39653f, this.h, this.f39654n, 0));
+                } else {
+                    boVar.h8(new wh(4, this, this.f39655r));
                 }
-                return;
-            case 1:
-                co coVar2 = this.f42738b;
-                coVar2.A9 = AndroidUtilities.dp(30.0f);
-                coVar2.o9();
-                return;
-            case 2:
-                co coVar3 = this.f42738b;
-                if (coVar3.fragmentView != null && (ujVar = coVar3.f35474x0) != null) {
-                    ujVar.invalidate();
-                    coVar3.fragmentView.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                this.f42738b.P.setVisibility(4);
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new dj(this, 3), 2000L);
-                return;
-            case 5:
-                co coVar4 = this.f42738b;
-                if (animator.equals(coVar4.f35266g3)) {
-                    coVar4.f35266g3 = null;
-                    return;
-                }
-                return;
-            case 6:
-                co coVar5 = this.f42738b;
-                if (animator.equals(coVar5.f35266g3)) {
-                    coVar5.f35266g3 = null;
-                    return;
-                }
-                return;
-            case 7:
-                co coVar6 = this.f42738b;
-                if (animator.equals(coVar6.f35277h3)) {
-                    coVar6.f35289i3 = 1.0f;
-                    coVar6.lc();
-                    coVar6.f35277h3 = null;
-                    return;
-                }
-                return;
-            case 8:
-                co coVar7 = this.f42738b;
-                if (animator.equals(coVar7.f35277h3)) {
-                    coVar7.f35289i3 = 0.0f;
-                    coVar7.lc();
-                    coVar7.f35277h3 = null;
-                    return;
-                }
-                return;
-            case 9:
-                this.f42738b.T4 = null;
-                return;
-            case 10:
-                co coVar8 = this.f42738b;
-                coVar8.Da = 1.0f;
-                coVar8.Y.setVisibility(4);
-                coVar8.O0.setVisibility(4);
-                coVar8.o9();
-                return;
-            default:
-                co coVar9 = this.f42738b;
-                coVar9.Da = 0.0f;
-                coVar9.o9();
-                return;
+                boVar.A7(true);
+            }
         }
     }
 }

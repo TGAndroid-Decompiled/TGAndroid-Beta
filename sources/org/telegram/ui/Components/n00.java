@@ -19,33 +19,33 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class n00 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
-    public static final int f28584w = 0;
-    public final bi.o0 f28585b;
-    public final m00 f28586c;
+public final class n00 extends org.telegram.ui.ActionBar.g3 implements NotificationCenter.NotificationCenterDelegate {
+    public static final int f26294w = 0;
+    public final ai.w0 f26295b;
+    public final m00 f26296c;
     public final TextView d;
-    public AnimatorSet f28587e;
-    public final View f28588f;
+    public AnimatorSet e;
+    public final View f26297f;
     public int h;
-    public boolean f28589n;
-    public org.telegram.ui.iu f28590r;
-    public final ArrayList f28591s;
+    public boolean f26298n;
+    public org.telegram.ui.gu f26299r;
+    public final ArrayList f26300s;
     public final ArrayList v;
 
-    public n00(org.telegram.ui.uy uyVar, ArrayList arrayList) {
-        super(uyVar.getParentActivity(), false);
+    public n00(org.telegram.ui.wy wyVar, ArrayList arrayList) {
+        super(wyVar.getParentActivity(), false);
         fixNavigationBar();
         this.v = arrayList;
-        this.f28591s = new ArrayList(uyVar.getMessagesController().dialogFilters);
+        this.f26300s = new ArrayList(wyVar.getMessagesController().dialogFilters);
         int i10 = 0;
-        while (i10 < this.f28591s.size()) {
-            if (((MessagesController.DialogFilter) this.f28591s.get(i10)).isDefault()) {
-                this.f28591s.remove(i10);
+        while (i10 < this.f26300s.size()) {
+            if (((MessagesController.DialogFilter) this.f26300s.get(i10)).isDefault()) {
+                this.f26300s.remove(i10);
                 i10--;
             }
             i10++;
         }
-        Activity parentActivity = uyVar.getParentActivity();
+        Activity parentActivity = wyVar.getParentActivity();
         l00 l00Var = new l00(this, parentActivity);
         this.containerView = l00Var;
         l00Var.setWillNotDraw(false);
@@ -55,35 +55,35 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
         layoutParams.topMargin = AndroidUtilities.dp(48.0f);
         View view = new View(parentActivity);
-        this.f28588f = view;
+        this.f26297f = view;
         view.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.V5, false));
         view.setAlpha(0.0f);
         view.setVisibility(4);
         view.setTag(1);
         this.containerView.addView(view, layoutParams);
-        bi.o0 o0Var = new bi.o0(this, parentActivity, 17);
-        this.f28585b = o0Var;
-        o0Var.setTag(14);
+        ai.w0 w0Var = new ai.w0(this, parentActivity, 17);
+        this.f26295b = w0Var;
+        w0Var.setTag(14);
         getContext();
-        o0Var.setLayoutManager(new s4.c0(1, false));
+        w0Var.setLayoutManager(new s4.c0(1, false));
         m00 m00Var = new m00(this, parentActivity);
-        this.f28586c = m00Var;
-        o0Var.setAdapter(m00Var);
-        o0Var.setVerticalScrollBarEnabled(false);
-        o0Var.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-        o0Var.setClipToPadding(false);
-        o0Var.setGlowColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.A5, false));
-        o0Var.setOnScrollListener(new ah.e0(this, 28));
-        o0Var.setOnItemClickListener(new k(this, 7));
-        this.containerView.addView(o0Var, w7.x5.d(-1, -1.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
+        this.f26296c = m00Var;
+        w0Var.setAdapter(m00Var);
+        w0Var.setVerticalScrollBarEnabled(false);
+        w0Var.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        w0Var.setClipToPadding(false);
+        w0Var.setGlowColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.A5, false));
+        w0Var.setOnScrollListener(new ai.r(this, 28));
+        w0Var.setOnItemClickListener(new j(this, 7));
+        this.containerView.addView(w0Var, w7.x5.d(-1, -1.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
         TextView textView = new TextView(parentActivity);
         this.d = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20771j5, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18970j5, false));
         textView.setTextSize(1, 20.0f);
-        textView.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20791k5, false));
-        textView.setHighlightColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20809l5, false));
+        textView.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18990k5, false));
+        textView.setHighlightColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19008l5, false));
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         textView.setGravity(16);
@@ -93,19 +93,15 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
     }
 
-    public static org.telegram.ui.ActionBar.f6 A(n00 n00Var) {
-        return n00Var.resourcesProvider;
-    }
-
-    public static int B(n00 n00Var) {
+    public static int A(n00 n00Var) {
         return n00Var.backgroundPaddingLeft;
     }
 
-    public static int C(n00 n00Var) {
+    public static int B(n00 n00Var) {
         return n00Var.currentAccount;
     }
 
-    public static int D(n00 n00Var) {
+    public static int E(n00 n00Var) {
         return n00Var.backgroundPaddingTop;
     }
 
@@ -114,23 +110,23 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
     }
 
     public static void G(n00 n00Var) {
-        View view = n00Var.f28588f;
+        View view = n00Var.f26297f;
         TextView textView = n00Var.d;
-        bi.o0 o0Var = n00Var.f28585b;
-        if (o0Var.getChildCount() <= 0) {
-            int paddingTop = o0Var.getPaddingTop();
+        ai.w0 w0Var = n00Var.f26295b;
+        if (w0Var.getChildCount() <= 0) {
+            int paddingTop = w0Var.getPaddingTop();
             n00Var.h = paddingTop;
-            o0Var.setTopGlowOffset(paddingTop);
+            w0Var.setTopGlowOffset(paddingTop);
             textView.setTranslationY(n00Var.h);
             view.setTranslationY(n00Var.h);
             n00Var.containerView.invalidate();
             return;
         }
         int i10 = 0;
-        View childAt = o0Var.getChildAt(0);
-        vk0 vk0Var = (vk0) o0Var.G(childAt);
+        View childAt = w0Var.getChildAt(0);
+        wk0 wk0Var = (wk0) w0Var.H(childAt);
         int top = childAt.getTop();
-        if (top >= 0 && vk0Var != null && vk0Var.b() == 0) {
+        if (top >= 0 && wk0Var != null && wk0Var.b() == 0) {
             n00Var.J(false);
             i10 = top;
         } else {
@@ -138,7 +134,7 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
         }
         if (n00Var.h != i10) {
             n00Var.h = i10;
-            o0Var.setTopGlowOffset(i10);
+            w0Var.setTopGlowOffset(i10);
             textView.setTranslationY(n00Var.h);
             view.setTranslationY(n00Var.h);
             n00Var.containerView.invalidate();
@@ -149,13 +145,13 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
         return n00Var.backgroundPaddingTop;
     }
 
-    public static ArrayList I(org.telegram.ui.ActionBar.n2 n2Var, MessagesController.DialogFilter dialogFilter, ArrayList arrayList, boolean z10, boolean z11) {
+    public static ArrayList I(org.telegram.ui.ActionBar.o2 o2Var, MessagesController.DialogFilter dialogFilter, ArrayList arrayList, boolean z10, boolean z11) {
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             long longValue = ((Long) arrayList.get(i10)).longValue();
             if (DialogObject.isEncryptedDialog(longValue)) {
-                TLRPC.EncryptedChat m10 = org.telegram.messenger.w1.m(n2Var.getMessagesController(), longValue);
+                TLRPC.EncryptedChat m10 = org.telegram.messenger.w1.m(o2Var.getMessagesController(), longValue);
                 if (m10 != null) {
                     longValue = m10.user_id;
                     if (arrayList2.contains(Long.valueOf(longValue))) {
@@ -227,10 +223,14 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
         return n00Var.backgroundPaddingLeft;
     }
 
+    public static org.telegram.ui.ActionBar.f6 z(n00 n00Var) {
+        return n00Var.resourcesProvider;
+    }
+
     public final void J(boolean z10) {
         Integer num;
         float f7;
-        View view = this.f28588f;
+        View view = this.f26297f;
         if ((z10 && view.getTag() != null) || (!z10 && view.getTag() == null)) {
             if (z10) {
                 num = null;
@@ -241,12 +241,12 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
             if (z10) {
                 view.setVisibility(0);
             }
-            AnimatorSet animatorSet = this.f28587e;
+            AnimatorSet animatorSet = this.e;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f28587e = animatorSet2;
+            this.e = animatorSet2;
             Property property = View.ALPHA;
             if (z10) {
                 f7 = 1.0f;
@@ -254,9 +254,9 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
                 f7 = 0.0f;
             }
             animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, f7));
-            this.f28587e.setDuration(150L);
-            this.f28587e.addListener(new org.telegram.ui.to(9, this, z10));
-            this.f28587e.start();
+            this.e.setDuration(150L);
+            this.e.addListener(new aa(8, this, z10));
+            this.e.start();
         }
     }
 
@@ -268,7 +268,7 @@ public final class n00 extends org.telegram.ui.ActionBar.f3 implements Notificat
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.emojiLoaded) {
-            AndroidUtilities.forEachViews((RecyclerView) this.f28585b, (e2.h) new bi.f(23));
+            AndroidUtilities.forEachViews((RecyclerView) this.f26295b, (e2.h) new ai.i(23));
         }
     }
 

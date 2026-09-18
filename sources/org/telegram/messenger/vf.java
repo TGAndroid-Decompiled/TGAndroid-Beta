@@ -1,41 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 public final class vf implements Runnable {
-    public final int f19242a;
-    public final MessagesStorage f19243b;
-    public final ArrayList f19244c;
-    public final int d;
+    public final int f17556a;
+    public final MessagesStorage f17557b;
+    public final long f17558c;
+    public final boolean[] d;
+    public final CountDownLatch e;
 
-    public vf(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f19242a = 1;
-        this.f19243b = messagesStorage;
-        this.f19244c = arrayList;
-        this.d = i10;
+    public vf(int i10, long j3, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
+        this.f17556a = i10;
+        this.f17557b = messagesStorage;
+        this.f17558c = j3;
+        this.d = zArr;
+        this.e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f19242a) {
+        switch (this.f17556a) {
             case 0:
-                this.f19243b.lambda$putWallpapers$78(this.d, this.f19244c);
+                this.f17557b.lambda$checkMessageByRandomId$153(this.f17558c, this.d, this.e);
                 return;
             case 1:
-                this.f19243b.lambda$unpinAllDialogsExceptNew$247(this.f19244c, this.d);
-                return;
-            case 2:
-                this.f19243b.lambda$getDownloadQueue$185(this.d, this.f19244c);
+                this.f17557b.lambda$isMigratedChat$141(this.f17558c, this.d, this.e);
                 return;
             default:
-                this.f19243b.lambda$putWidgetDialogs$166(this.d, this.f19244c);
+                this.f17557b.lambda$hasInviteMeMessage$143(this.f17558c, this.d, this.e);
                 return;
         }
-    }
-
-    public vf(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11) {
-        this.f19242a = i11;
-        this.f19243b = messagesStorage;
-        this.d = i10;
-        this.f19244c = arrayList;
     }
 }

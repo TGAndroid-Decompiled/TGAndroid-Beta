@@ -1,134 +1,34 @@
 package org.telegram.ui;
 
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bg implements org.telegram.ui.Components.oj0 {
-    public final int f34791a;
-    public final co f34792b;
-    public final boolean f34793c;
-    public final MessageObject d;
+public final class bg implements View.OnClickListener {
+    public final int f32129a;
+    public final bo f32130b;
+    public final ArrayList f32131c;
 
-    public bg(co coVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f34791a = i10;
-        this.f34792b = coVar;
-        this.f34793c = z10;
-        this.d = messageObject;
+    public bg(bo boVar, ArrayList arrayList, int i10) {
+        this.f32129a = i10;
+        this.f32130b = boVar;
+        this.f32131c = arrayList;
     }
 
     @Override
-    public final void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f34791a) {
+    public final void onClick(View view) {
+        switch (this.f32129a) {
             case 0:
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final co coVar = this.f34792b;
-                    if (j3 != coVar.getUserConfig().getClientUserId() && this.f34793c) {
-                        final ArrayList arrayList = new ArrayList(1);
-                        arrayList.add(this.d);
-                        TLObject userOrChat = coVar.getMessagesController().getUserOrChat(j3);
-                        final ArrayList arrayList2 = new ArrayList(1);
-                        arrayList2.add(userOrChat);
-                        final TLRPC.ChannelParticipant[] channelParticipantArr = new TLRPC.ChannelParticipant[1];
-                        TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
-                        tL_channels_getParticipant.channel = MessagesController.getInputChannel(coVar.f35238e);
-                        tL_channels_getParticipant.participant = MessagesController.getInputPeer(userOrChat);
-                        coVar.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new Object(), new Utilities.Callback2() {
-                            @Override
-                            public final void run(Object obj, Object obj2) {
-                                TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
-                                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                                switch (r5) {
-                                    case 0:
-                                        co coVar2 = coVar;
-                                        TLRPC.ChannelParticipant[] channelParticipantArr2 = channelParticipantArr;
-                                        if (tL_channels_channelParticipant != null) {
-                                            coVar2.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                            coVar2.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                            channelParticipantArr2[0] = tL_channels_channelParticipant.participant;
-                                        } else {
-                                            coVar2.getClass();
-                                        }
-                                        int i10 = coVar2.R3;
-                                        ah.j jVar = new ah.j(18);
-                                        new org.telegram.ui.Components.es(coVar2, coVar2.f35238e, arrayList, arrayList2, channelParticipantArr2, coVar2.L6, (int) coVar2.d(), i10, true, jVar).show();
-                                        return;
-                                    default:
-                                        co coVar3 = coVar;
-                                        TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr;
-                                        if (tL_channels_channelParticipant != null) {
-                                            coVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                            coVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                            channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
-                                        } else {
-                                            coVar3.getClass();
-                                        }
-                                        int i11 = coVar3.R3;
-                                        ah.j jVar2 = new ah.j(18);
-                                        new org.telegram.ui.Components.es(coVar3, coVar3.f35238e, arrayList, arrayList2, channelParticipantArr3, coVar3.L6, (int) coVar3.d(), i11, true, jVar2).show();
-                                        return;
-                                }
-                            }
-                        });
-                        coVar.A7(true);
-                        return;
-                    }
-                    return;
-                }
+                bo boVar = this.f32130b;
+                qi qiVar = new qi(boVar, boVar, boVar.getParentActivity(), boVar.f32279ea, this.f32131c);
+                qiVar.setCalcMandatoryInsets(boVar.x9());
+                qiVar.setDimBehind(false);
+                boVar.A7(false);
+                boVar.showDialog(qiVar);
                 return;
             default:
-                final co coVar2 = this.f34792b;
-                coVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != coVar2.getUserConfig().getClientUserId() && this.f34793c) {
-                    final ArrayList arrayList3 = new ArrayList(1);
-                    arrayList3.add(this.d);
-                    TLObject userOrChat2 = coVar2.getMessagesController().getUserOrChat(j3);
-                    final ArrayList arrayList4 = new ArrayList(1);
-                    arrayList4.add(userOrChat2);
-                    final TLRPC.ChannelParticipant[] channelParticipantArr2 = new TLRPC.ChannelParticipant[1];
-                    TLRPC.TL_channels_getParticipant tL_channels_getParticipant2 = new TLRPC.TL_channels_getParticipant();
-                    tL_channels_getParticipant2.channel = MessagesController.getInputChannel(coVar2.f35238e);
-                    tL_channels_getParticipant2.participant = MessagesController.getInputPeer(userOrChat2);
-                    coVar2.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant2, new Object(), new Utilities.Callback2() {
-                        @Override
-                        public final void run(Object obj, Object obj2) {
-                            TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
-                            TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                            switch (r5) {
-                                case 0:
-                                    co coVar22 = coVar2;
-                                    TLRPC.ChannelParticipant[] channelParticipantArr22 = channelParticipantArr2;
-                                    if (tL_channels_channelParticipant != null) {
-                                        coVar22.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                        coVar22.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                        channelParticipantArr22[0] = tL_channels_channelParticipant.participant;
-                                    } else {
-                                        coVar22.getClass();
-                                    }
-                                    int i10 = coVar22.R3;
-                                    ah.j jVar = new ah.j(18);
-                                    new org.telegram.ui.Components.es(coVar22, coVar22.f35238e, arrayList3, arrayList4, channelParticipantArr22, coVar22.L6, (int) coVar22.d(), i10, true, jVar).show();
-                                    return;
-                                default:
-                                    co coVar3 = coVar2;
-                                    TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr2;
-                                    if (tL_channels_channelParticipant != null) {
-                                        coVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                        coVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                        channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
-                                    } else {
-                                        coVar3.getClass();
-                                    }
-                                    int i11 = coVar3.R3;
-                                    ah.j jVar2 = new ah.j(18);
-                                    new org.telegram.ui.Components.es(coVar3, coVar3.f35238e, arrayList3, arrayList4, channelParticipantArr3, coVar3.L6, (int) coVar3.d(), i11, true, jVar2).show();
-                                    return;
-                            }
-                        }
-                    });
-                    coVar2.A7(true);
+                bo boVar2 = this.f32130b;
+                if (boVar2.getParentActivity() != null && boVar2.getParentActivity() != null) {
+                    new org.telegram.ui.Components.sv(boVar2, boVar2.getParentActivity(), boVar2.f32279ea, this.f32131c).show();
+                    boVar2.A7(true);
                     return;
                 }
                 return;

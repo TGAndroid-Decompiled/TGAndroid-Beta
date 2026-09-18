@@ -7,5 +7,5 @@ public interface m7 {
 
     void b(TLRPC.WebPage webPage, MessageObject messageObject);
 
-    boolean c();
+    boolean e();
 }

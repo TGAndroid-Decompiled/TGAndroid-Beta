@@ -2,89 +2,89 @@ package org.telegram.ui.Cells;
 
 import android.view.MotionEvent;
 import org.telegram.messenger.video.OldVideoPlayerRewinder;
-import org.telegram.ui.Components.dg0;
 import org.telegram.ui.Components.eg0;
-import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.fg0;
+import org.telegram.ui.Components.x61;
 import org.telegram.ui.PhotoViewer;
 public final class g1 extends OldVideoPlayerRewinder {
-    public final int f21964a;
-    public final Object f21965b;
+    public final int f20138a;
+    public final Object f20139b;
 
     public g1(Object obj, int i10) {
-        this.f21964a = i10;
-        this.f21965b = obj;
+        this.f20138a = i10;
+        this.f20139b = obj;
     }
 
     @Override
     public final void onRewindCanceled() {
-        switch (this.f21964a) {
+        switch (this.f20138a) {
             case 0:
-                t1 t1Var = (t1) this.f21965b;
+                t1 t1Var = (t1) this.f20139b;
                 t1Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
                 t1Var.Gd.f(false);
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f21965b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f20139b;
                 PhotoViewer.k(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                photoViewer.f33738z1.f(false);
-                eg0.f25676p0.Q.f(false);
+                photoViewer.f31142z1.f(false);
+                fg0.f23914p0.Q.f(false);
                 return;
         }
     }
 
     @Override
     public final void onRewindStart(boolean z10) {
-        switch (this.f21964a) {
+        switch (this.f20138a) {
             case 0:
-                t1 t1Var = (t1) this.f21965b;
-                w61 w61Var = t1Var.Gd;
-                w61Var.f32182n = new l.d(this, 9);
-                w61Var.e(false);
+                t1 t1Var = (t1) this.f20139b;
+                x61 x61Var = t1Var.Gd;
+                x61Var.f29875n = new k2.c0(this, 9);
+                x61Var.e(false);
                 t1Var.Gd.d(!z10);
                 t1Var.Gd.f(true);
                 t1Var.invalidate();
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f21965b;
-                photoViewer.f33738z1.e(false);
-                photoViewer.f33738z1.d(!z10);
-                photoViewer.f33738z1.f(true);
-                photoViewer.f33550e0.invalidate();
-                eg0.v(z10);
+                PhotoViewer photoViewer = (PhotoViewer) this.f20139b;
+                photoViewer.f31142z1.e(false);
+                photoViewer.f31142z1.d(!z10);
+                photoViewer.f31142z1.f(true);
+                photoViewer.f30954e0.invalidate();
+                fg0.v(z10);
                 return;
         }
     }
 
     @Override
     public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
-        switch (this.f21964a) {
+        switch (this.f20138a) {
             case 0:
-                t1 t1Var = (t1) this.f21965b;
+                t1 t1Var = (t1) this.f20139b;
                 t1Var.Gd.g(Math.abs(j3));
                 if (z10) {
-                    t1Var.f23206y7.audioProgress = f7;
+                    t1Var.f21333y7.audioProgress = f7;
                     t1Var.q4();
                     return;
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f21965b;
-                photoViewer.f33738z1.g(Math.abs(j3));
+                PhotoViewer photoViewer = (PhotoViewer) this.f20139b;
+                photoViewer.f31142z1.g(Math.abs(j3));
                 if (z10) {
-                    photoViewer.f33656q3.h(f7, false);
-                    photoViewer.f33665r3.invalidate();
+                    photoViewer.f31060q3.h(f7, false);
+                    photoViewer.f31069r3.invalidate();
                 }
-                eg0 eg0Var = eg0.f25676p0;
-                eg0Var.Q.g(0L);
+                fg0 fg0Var = fg0.f23914p0;
+                fg0Var.Q.g(0L);
                 if (z10) {
-                    eg0Var.Z = f7;
-                    bi.a4 a4Var = eg0Var.f25680b0;
-                    if (a4Var != null) {
-                        a4Var.invalidate();
+                    fg0Var.Z = f7;
+                    ai.n4 n4Var = fg0Var.f23918b0;
+                    if (n4Var != null) {
+                        n4Var.invalidate();
                     }
-                    dg0 dg0Var = eg0Var.h;
-                    if (dg0Var != null) {
-                        dg0Var.invalidate();
+                    eg0 eg0Var = fg0Var.h;
+                    if (eg0Var != null) {
+                        eg0Var.invalidate();
                         return;
                     }
                     return;

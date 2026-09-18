@@ -11,7 +11,7 @@ public final class a implements ef.a {
 
     @Override
     public final int b(b bVar, b bVar2) {
-        if (bVar.f49981g >= 2 && bVar2.f49981g >= 2) {
+        if (bVar.f46742g >= 2 && bVar2.f46742g >= 2) {
             return 2;
         }
         return 0;
@@ -25,20 +25,20 @@ public final class a implements ef.a {
     @Override
     public final void d(s sVar, s sVar2, int i10) {
         p pVar = new p();
-        for (p pVar2 = (p) sVar.f2641f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f2641f) {
+        for (p pVar2 = (p) sVar.f3554f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f3554f) {
             pVar.b(pVar2);
         }
         pVar.g();
-        p pVar3 = (p) sVar.f2641f;
-        pVar.f2641f = pVar3;
+        p pVar3 = (p) sVar.f3554f;
+        pVar.f3554f = pVar3;
         if (pVar3 != null) {
-            pVar3.f2640e = pVar;
+            pVar3.e = pVar;
         }
-        pVar.f2640e = sVar;
-        sVar.f2641f = pVar;
-        p pVar4 = (p) sVar.f2638b;
-        pVar.f2638b = pVar4;
-        if (((p) pVar.f2641f) == null) {
+        pVar.e = sVar;
+        sVar.f3554f = pVar;
+        p pVar4 = (p) sVar.f3552b;
+        pVar.f3552b = pVar4;
+        if (((p) pVar.f3554f) == null) {
             pVar4.d = pVar;
         }
     }

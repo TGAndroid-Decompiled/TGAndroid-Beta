@@ -1,25 +1,41 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mo0 {
-    public final xo0 f38744a;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class mo0 implements wo0 {
+    public final yo0 f35861a;
 
-    public mo0(xo0 xo0Var) {
-        this.f38744a = xo0Var;
+    public mo0(yo0 yo0Var) {
+        this.f35861a = yo0Var;
     }
 
-    public final void a(Exception exc) {
-        xo0 xo0Var = this.f38744a;
-        if (xo0Var.Q0) {
-            return;
+    @Override
+    public final void a(TL_account.Password password) {
+        this.f35861a.f39950a0 = password;
+    }
+
+    @Override
+    public final void b() {
+        this.f35861a.f39963f0 = null;
+    }
+
+    @Override
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        yo0 yo0Var = this.f35861a;
+        wo0 wo0Var = yo0Var.T;
+        if (wo0Var != null) {
+            wo0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
         }
-        xo0Var.H0(true, false);
-        xo0Var.D0(false);
-        if (!(exc instanceof tc.a) && !(exc instanceof tc.b)) {
-            org.telegram.ui.Components.e5.w0(xo0Var, exc.getMessage());
-        } else {
-            org.telegram.ui.Components.e5.w0(xo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        if (yo0Var.S0) {
+            yo0Var.removeSelfFromStack();
         }
+        if (yo0Var.T != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

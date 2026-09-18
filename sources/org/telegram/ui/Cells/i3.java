@@ -11,36 +11,36 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.qr;
 public class i3 extends FrameLayout {
-    public boolean f22074a;
-    public final g3 f22075b;
-    public final int f22076c;
+    public boolean f20239a;
+    public final g3 f20240b;
+    public final int f20241c;
     public boolean d;
-    public int f22077e;
-    public boolean f22078f;
+    public int e;
+    public boolean f20242f;
     public boolean h;
-    public boolean f22079n;
-    public final org.telegram.ui.Components.h5 f22080r;
-    public int f22081s;
-    public final org.telegram.ui.Components.p6 v;
-    public boolean f22082w;
+    public boolean f20243n;
+    public final org.telegram.ui.Components.f5 f20244r;
+    public int f20245s;
+    public final org.telegram.ui.Components.m6 v;
+    public boolean f20246w;
 
     public i3(Context context, String str, boolean z10, boolean z11, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int i11;
         int i12;
-        this.f22077e = -1;
-        this.f22080r = new org.telegram.ui.Components.h5(this);
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true, false);
-        this.v = p6Var;
-        p6Var.k(0.2f, 160L, pr.h);
-        p6Var.t(AndroidUtilities.dp(15.33f));
-        p6Var.f29286b = 5;
-        this.f22076c = i10;
+        this.e = -1;
+        this.f20244r = new org.telegram.ui.Components.f5(this);
+        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, true, true, false);
+        this.v = m6Var;
+        m6Var.k(0.2f, 160L, qr.h);
+        m6Var.t(AndroidUtilities.dp(15.33f));
+        m6Var.f26070b = 5;
+        this.f20241c = i10;
         g3 g3Var = new g3(this, context, f6Var, i10, f6Var, z11);
-        this.f22075b = g3Var;
-        p6Var.setCallback(g3Var);
+        this.f20240b = g3Var;
+        m6Var.setCallback(g3Var);
         g3Var.setTextSize(1, 17.0f);
         g3Var.setHintTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.H6, f6Var));
         int i13 = org.telegram.ui.ActionBar.j6.G6;
@@ -81,19 +81,19 @@ public class i3 extends FrameLayout {
 
     public final void c() {
         int i10;
-        if (this.f22075b == null) {
+        if (this.f20240b == null) {
             return;
         }
-        this.f22081s = this.f22076c - getText().length();
+        this.f20245s = this.f20241c - getText().length();
         String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22078f || (this.f22079n && !this.h)) && ((i10 = this.f22077e) == -1 || this.f22081s <= i10))) {
-            str = "" + this.f22081s;
+        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f20242f || (this.f20243n && !this.h)) && ((i10 = this.e) == -1 || this.f20245s <= i10))) {
+            str = "" + this.f20245s;
         }
         this.v.q(str, true, true);
     }
 
     public CharSequence getText() {
-        return this.f22075b.getText();
+        return this.f20240b.getText();
     }
 
     public TLRPC.TL_textWithEntities getTextWithEntities() {
@@ -109,7 +109,7 @@ public class i3 extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f22082w) {
+        if (this.f20246w) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -122,17 +122,17 @@ public class i3 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20786k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f18985k0);
         }
     }
 
     public void setDivider(boolean z10) {
-        this.f22082w = z10;
+        this.f20246w = z10;
         setWillNotDraw(!z10);
     }
 
     public void setShowLimitOnFocus(boolean z10) {
-        this.f22078f = z10;
+        this.f20242f = z10;
     }
 
     public void setShowLimitWhenEmpty(boolean z10) {
@@ -143,25 +143,25 @@ public class i3 extends FrameLayout {
     }
 
     public void setShowLimitWhenNear(int i10) {
-        this.f22077e = i10;
+        this.e = i10;
         c();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f22074a = true;
-        g3 g3Var = this.f22075b;
+        this.f20239a = true;
+        g3 g3Var = this.f20240b;
         g3Var.setText(charSequence);
         g3Var.setSelection(g3Var.getText().length());
-        this.f22074a = false;
+        this.f20239a = false;
     }
 
     public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f22074a = true;
+        this.f20239a = true;
         CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false);
-        g3 g3Var = this.f22075b;
+        g3 g3Var = this.f20240b;
         g3Var.setText(formatTextWithEntities);
         g3Var.setSelection(g3Var.getText().length());
-        this.f22074a = false;
+        this.f20239a = false;
     }
 
     public void a(boolean z10) {

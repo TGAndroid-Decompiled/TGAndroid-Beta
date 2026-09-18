@@ -5,5 +5,5 @@ import android.graphics.RectF;
 public interface m70 {
     void a(RectF rectF);
 
-    void c(Canvas canvas, float f7);
+    void b(Canvas canvas, float f7);
 }

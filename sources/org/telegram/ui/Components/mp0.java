@@ -3,85 +3,111 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.TextUtils;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
 import android.widget.FrameLayout;
-public final class mp0 extends hu {
-    public boolean V;
-    public int W;
-    public int f28481a0;
-    public ValueAnimator f28482b0;
-    public final hq0 f28483c0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class mp0 extends FrameLayout {
+    public final int f26240a;
+    public final iq0 f26241b;
 
-    public mp0(hq0 hq0Var, Context context, sp0 sp0Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, sp0Var, null, 1, true, f6Var);
-        this.f28483c0 = hq0Var;
+    public mp0(iq0 iq0Var, Context context, int i10) {
+        super(context);
+        this.f26240a = i10;
+        this.f26241b = iq0Var;
     }
 
     @Override
-    public final void c(float f7) {
-        this.f28483c0.Y0();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.V) {
-            zt editText = this.f28483c0.d.getEditText();
-            editText.setOffsetY(editText.getOffsetY() - ((this.f28481a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
-            ofFloat.addUpdateListener(new h70(editText, 18));
-            ValueAnimator valueAnimator = this.f28482b0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.f28482b0 = ofFloat;
-            ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(pr.f29467f);
-            ofFloat.start();
-            this.V = false;
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void f() {
-        super.f();
-        kz emojiView = getEmojiView();
-        hq0 hq0Var = this.f28483c0;
-        if (emojiView != null) {
-            emojiView.f27996w0 = false;
-            emojiView.f28002x2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(hq0Var.G0.d);
-        }
-        FrameLayout frameLayout = hq0Var.f26792c0;
-        if (frameLayout != null) {
-            frameLayout.bringToFront();
-        }
-        lp0 lp0Var = hq0Var.f26791c;
-        if (lp0Var != null) {
-            lp0Var.bringToFront();
-        }
-        lp0 lp0Var2 = hq0Var.f26796f;
-        if (lp0Var2 != null) {
-            lp0Var2.bringToFront();
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f26240a) {
+            case 0:
+                iq0 iq0Var = this.f26241b;
+                iq0Var.X0.setBounds(0, (int) iq0Var.f25012u0, getMeasuredWidth(), getMeasuredHeight());
+                iq0Var.X0.draw(canvas);
+                canvas.save();
+                canvas.clipRect(0.0f, iq0Var.f25012u0, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void q(int i10, int i11) {
-        hq0 hq0Var = this.f28483c0;
-        lp0 lp0Var = hq0Var.f26791c;
-        if (!TextUtils.isEmpty(getEditText().getText())) {
-            this.V = true;
-            this.W = getEditText().getMeasuredHeight();
-            this.f28481a0 = getEditText().getScrollY();
-            invalidate();
-        } else {
-            getEditText().animate().cancel();
-            getEditText().setOffsetY(0.0f);
-            this.V = false;
+    public void onDraw(Canvas canvas) {
+        switch (this.f26240a) {
+            case 0:
+                iq0 iq0Var = this.f26241b;
+                mp0 mp0Var = iq0Var.f24990c;
+                float f7 = iq0Var.f25013v0;
+                if (f7 != 0.0f && f7 != mp0Var.getTop() + iq0Var.f25013v0) {
+                    ValueAnimator valueAnimator = iq0Var.f25015w0;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                    }
+                    float top = iq0Var.f25013v0 - (mp0Var.getTop() + iq0Var.f25012u0);
+                    iq0Var.f25012u0 = top;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                    iq0Var.f25015w0 = ofFloat;
+                    ofFloat.addUpdateListener(new h70(this, 17));
+                    iq0Var.f25015w0.setInterpolator(qr.f27383f);
+                    iq0Var.f25015w0.setDuration(200L);
+                    iq0Var.f25015w0.start();
+                    iq0Var.f25013v0 = 0.0f;
+                }
+                iq0Var.S[1].setTranslationY((-(mp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + iq0Var.f25012u0 + iq0Var.f25011t0 + ((1.0f - getAlpha()) * (mp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        hq0Var.f26815v0 = lp0Var.getTop() + hq0Var.f26814u0;
-        lp0Var.invalidate();
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f26240a) {
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f26241b.U.m(), new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        switch (this.f26240a) {
+            case 0:
+                super.setAlpha(f7);
+                invalidate();
+                return;
+            default:
+                super.setAlpha(f7);
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f26240a) {
+            case 0:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    this.f26241b.S[1].setTranslationY(0.0f);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
     }
 }

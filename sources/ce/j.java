@@ -2,23 +2,23 @@ package ce;
 
 import za.y;
 public final class j implements c {
-    public final int f4781a;
-    public final Object f4782b;
+    public final int f4247a;
+    public final Object f4248b;
 
     public j(Object obj, int i10) {
-        this.f4781a = i10;
-        this.f4782b = obj;
+        this.f4247a = i10;
+        this.f4248b = obj;
     }
 
     @Override
     public final Object a(Object obj, kd.c cVar) {
-        switch (this.f4781a) {
+        switch (this.f4247a) {
             case 0:
-                ((kotlin.jvm.internal.p) this.f4782b).f15053a = obj;
+                ((kotlin.jvm.internal.p) this.f4248b).f13696a = obj;
                 throw new de.a(this);
             default:
-                ((y) this.f4782b).f51491c.set((za.m) obj);
-                return gd.i.f10588a;
+                ((y) this.f4248b).f48869c.set((za.m) obj);
+                return gd.i.f9621a;
         }
     }
 }

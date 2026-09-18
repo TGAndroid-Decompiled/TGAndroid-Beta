@@ -1,13 +1,13 @@
 package sc;
 
-import m2.t;
+import lf.i;
 import tc.g;
 public final class b {
-    public final t f45986a;
-    public final Exception f45987b;
+    public final i f42923a;
+    public final Exception f42924b;
 
-    public b(t tVar, g gVar) {
-        this.f45987b = gVar;
-        this.f45986a = tVar;
+    public b(i iVar, g gVar) {
+        this.f42924b = gVar;
+        this.f42923a = iVar;
     }
 }

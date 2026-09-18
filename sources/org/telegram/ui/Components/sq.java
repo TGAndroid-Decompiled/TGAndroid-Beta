@@ -1,107 +1,50 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
+import android.text.SpannableStringBuilder;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class sq extends View {
-    public final Paint f30393a;
-    public final Paint f30394b;
-    public final RectF f30395c;
-    public int d;
-    public long f30396e;
-    public int f30397f;
-    public int h;
-    public int f30398n;
-    public int f30399r;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class sq extends LinearLayout {
+    public final u9 f27908a;
 
-    public sq(Context context, int i10) {
+    public sq(Context context) {
         super(context);
-        Paint paint = new Paint(1);
-        this.f30393a = paint;
-        Paint paint2 = new Paint(1);
-        this.f30394b = paint2;
-        this.f30395c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i10 == 0) {
-            this.f30397f = org.telegram.ui.ActionBar.j6.B7;
-            this.h = org.telegram.ui.ActionBar.j6.C7;
-        } else if (i10 == 1) {
-            this.f30397f = org.telegram.ui.ActionBar.j6.D7;
-            this.h = org.telegram.ui.ActionBar.j6.E7;
-        } else if (i10 == 2) {
-            this.f30397f = org.telegram.ui.ActionBar.j6.F7;
-            this.h = org.telegram.ui.ActionBar.j6.G7;
-        } else if (i10 == 3) {
-            this.f30397f = org.telegram.ui.ActionBar.j6.H7;
-            this.h = org.telegram.ui.ActionBar.j6.I7;
+        setOrientation(1);
+        u9 u9Var = new u9(context);
+        this.f27908a = u9Var;
+        u9Var.setImageDrawable(new i90(u9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
+        if (!AndroidUtilities.isTablet()) {
+            addView(u9Var, w7.x5.q(110, 110, 49));
         }
-        b();
-    }
-
-    public final void a(int i10, int i11) {
-        this.f30397f = -1;
-        this.h = -1;
-        this.f30398n = i10;
-        this.f30399r = i11;
-        b();
-    }
-
-    public final void b() {
-        int i10 = this.f30397f;
-        Paint paint = this.f30393a;
-        if (i10 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        } else {
-            paint.setColor(this.f30398n);
-        }
-        int i11 = this.h;
-        Paint paint2 = this.f30394b;
-        if (i11 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
-        } else {
-            paint2.setColor(this.f30399r);
-        }
-        invalidate();
+        TextView g10 = org.telegram.messenger.w1.g(context, 1, 20.0f);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.G6, null, false, g10, 1);
+        g10.setText(LocaleController.getString(R.string.NoContactsYet3));
+        g10.setTypeface(AndroidUtilities.bold());
+        addView(g10, w7.x5.t(-2, -2, 49, 0, 15, 0, 7));
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 14.0f);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f18846c7, null, false, textView, 1);
+        textView.setText(LocaleController.getString(R.string.NoContactsYet3Sub));
+        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
+        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(textView, w7.x5.t(-2, -2, 49, 0, 0, 0, 19));
+        ci.d dVar = new ci.d(context, null, true);
+        dVar.setUseWrapContent(true);
+        dVar.e();
+        dVar.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
+        spannableStringBuilder.setSpan(new oq(R.drawable.filled_new_contact_24, 0), 0, 1, 33);
+        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.NewContact));
+        dVar.g(spannableStringBuilder, false, true);
+        addView(dVar, w7.x5.q(-2, 44, 49));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f30396e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f30396e;
-        this.f30396e = currentTimeMillis;
-        this.d = (int) ((((float) (j3 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f30395c;
-        rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f30393a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f30394b);
-        invalidate();
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.f30396e = System.currentTimeMillis();
-        invalidate();
+        this.f27908a.setImageDrawable(new yi0(R.raw.utyan_empty, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
     }
 }

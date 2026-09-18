@@ -1,0 +1,264 @@
+package ei;
+
+import android.content.Context;
+import android.util.Pair;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.io.File;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.kb;
+import org.telegram.ui.Components.lb;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.yi0;
+import org.telegram.ui.LaunchActivity;
+import w7.x5;
+public final class j0 extends lb {
+    public final f6 f8401a;
+    public final h0 f8402b;
+    public final i0 f8403c;
+    public final TextView d;
+    public final TextView e;
+    public k0 f8404f;
+    public int h;
+
+    public j0(Context context, f6 f6Var) {
+        super(context, f6Var);
+        this.h = 0;
+        this.f8401a = f6Var;
+        h0 h0Var = new h0(AndroidUtilities.dp(10.0f));
+        h0Var.f8369a.setColor(j6.v0(j6.Fi, f6Var));
+        this.f8402b = h0Var;
+        setBackground(h0Var);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        i0 i0Var = new i0(context, imageView);
+        this.f8403c = i0Var;
+        imageView.setImageDrawable(i0Var);
+        addView(imageView, x5.d(40, 40.0f, 23, 7.0f, 0.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, x5.d(-1, -2.0f, 23, 54.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 14.0f);
+        int i10 = j6.Hi;
+        textView.setTextColor(j6.v0(i10, f6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.t(-1, -2, 55, 0, 0, 0, 2), context);
+        this.e = h;
+        h.setTextSize(1, 13.0f);
+        h.setTextColor(j6.v0(i10, f6Var));
+        linearLayout.addView(h, x5.t(-1, -2, 55, 0, 0, 0, 0));
+    }
+
+    private void setButton(int i10) {
+        if (this.h != i10) {
+            this.h = i10;
+            if (i10 == 0) {
+                setButton((kb) null);
+                return;
+            }
+            f6 f6Var = this.f8401a;
+            if (i10 == 1) {
+                mc mcVar = new mc(getContext(), f6Var, true);
+                mcVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
+                mcVar.f26125a = new Runnable(this) {
+                    public final j0 f8356b;
+
+                    {
+                        this.f8356b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        File file;
+                        switch (r2) {
+                            case 0:
+                                j0 j0Var = this.f8356b;
+                                oc bulletin = j0Var.getBulletin();
+                                if (bulletin != null) {
+                                    bulletin.f26705j = 2750;
+                                    bulletin.i(true);
+                                }
+                                k0 k0Var = j0Var.f8404f;
+                                if (k0Var != null) {
+                                    k0Var.a();
+                                    return;
+                                }
+                                return;
+                            default:
+                                j0 j0Var2 = this.f8356b;
+                                oc bulletin2 = j0Var2.getBulletin();
+                                if (bulletin2 != null) {
+                                    bulletin2.b();
+                                }
+                                k0 k0Var2 = j0Var2.f8404f;
+                                if (k0Var2 != null && (file = k0Var2.d) != null && file.exists()) {
+                                    File file2 = k0Var2.d;
+                                    AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.G1, null, true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                };
+                if (getBulletin() != null) {
+                    mcVar.f26127c = getBulletin();
+                }
+                setButton(mcVar);
+            } else if (i10 == 2) {
+                mc mcVar2 = new mc(getContext(), f6Var, true);
+                mcVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
+                mcVar2.f26125a = new Runnable(this) {
+                    public final j0 f8356b;
+
+                    {
+                        this.f8356b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        File file;
+                        switch (r2) {
+                            case 0:
+                                j0 j0Var = this.f8356b;
+                                oc bulletin = j0Var.getBulletin();
+                                if (bulletin != null) {
+                                    bulletin.f26705j = 2750;
+                                    bulletin.i(true);
+                                }
+                                k0 k0Var = j0Var.f8404f;
+                                if (k0Var != null) {
+                                    k0Var.a();
+                                    return;
+                                }
+                                return;
+                            default:
+                                j0 j0Var2 = this.f8356b;
+                                oc bulletin2 = j0Var2.getBulletin();
+                                if (bulletin2 != null) {
+                                    bulletin2.b();
+                                }
+                                k0 k0Var2 = j0Var2.f8404f;
+                                if (k0Var2 != null && (file = k0Var2.d) != null && file.exists()) {
+                                    File file2 = k0Var2.d;
+                                    AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.G1, null, true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                };
+                if (getBulletin() != null) {
+                    mcVar2.f26127c = getBulletin();
+                }
+                setButton(mcVar2);
+            }
+        }
+    }
+
+    public final boolean c(k0 k0Var) {
+        boolean z10;
+        k0 k0Var2 = this.f8404f;
+        i0 i0Var = this.f8403c;
+        if (k0Var2 != k0Var) {
+            c6 c6Var = i0Var.f8392k;
+            i0Var.h = false;
+            c6Var.getClass();
+            c6Var.d(0.0f, true);
+            yi0 yi0Var = i0Var.f8393l;
+            if (yi0Var != null) {
+                yi0Var.C(true);
+                i0Var.f8393l = null;
+            }
+            c6 c6Var2 = i0Var.f8390i;
+            i0Var.f8388f = false;
+            c6Var2.getClass();
+            c6Var2.d(0.0f, true);
+        }
+        this.f8404f = k0Var;
+        this.d.setText(k0Var.f8416c);
+        boolean c10 = k0Var.c();
+        TextView textView = this.e;
+        if (c10) {
+            Pair b10 = k0Var.b();
+            i0Var.getClass();
+            if (((Long) b10.second).longValue() > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            i0Var.f8388f = z10;
+            if (z10) {
+                i0Var.f8389g = Utilities.clamp(((float) ((Long) b10.first).longValue()) / ((float) ((Long) b10.second).longValue()), 1.0f, 0.0f);
+            }
+            i0Var.invalidateSelf();
+            if (((Long) b10.first).longValue() <= 0) {
+                textView.setText(LocaleController.getString(R.string.BotFileDownloading));
+            } else if (((Long) b10.second).longValue() <= 0) {
+                textView.setText(AndroidUtilities.formatFileSize(((Long) b10.first).longValue()));
+            } else {
+                textView.setText(AndroidUtilities.formatFileSize(((Long) b10.first).longValue()) + " / " + AndroidUtilities.formatFileSize(((Long) b10.second).longValue()));
+            }
+            setButton(1);
+            return false;
+        } else if (k0Var.f8419i) {
+            oc bulletin = getBulletin();
+            if (bulletin != null) {
+                bulletin.b();
+            }
+            return true;
+        } else {
+            if (k0Var.h) {
+                textView.setText(LocaleController.getString(R.string.BotFileDownloaded));
+                setButton(2);
+                if (!i0Var.h) {
+                    i0Var.h = true;
+                    yi0 yi0Var2 = new yi0(R.raw.contact_check, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+                    i0Var.f8393l = yi0Var2;
+                    yi0Var2.R(i0Var.f8385a);
+                    i0Var.f8393l.J(true);
+                    i0Var.f8393l.start();
+                    i0Var.f8389g = 1.0f;
+                }
+                oc bulletin2 = getBulletin();
+                if (bulletin2 != null) {
+                    bulletin2.i(false);
+                    bulletin2.f26705j = 5000;
+                    bulletin2.i(true);
+                }
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+    }
+
+    public void setArrow(int i10) {
+        boolean z10;
+        h0 h0Var = this.f8402b;
+        h0Var.getClass();
+        if (i10 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        h0Var.e = z10;
+        if (z10) {
+            h0Var.f8372f = i10;
+        }
+        h0Var.invalidateSelf();
+    }
+}

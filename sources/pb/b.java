@@ -1,8 +1,8 @@
 package pb;
 public final class b {
-    public final pa.b f44021a;
+    public final pa.b f40776a;
 
     public b(pa.b bVar) {
-        this.f44021a = bVar;
+        this.f40776a = bVar;
     }
 }

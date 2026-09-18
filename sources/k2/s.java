@@ -15,43 +15,43 @@ public final class s {
     public boolean G;
     public long H;
     public e2.x I;
-    public final xa.c f14649a;
-    public final long[] f14650b;
-    public AudioTrack f14651c;
+    public final c0 f13360a;
+    public final long[] f13361b;
+    public AudioTrack f13362c;
     public int d;
-    public r f14652e;
-    public int f14653f;
-    public boolean f14654g;
+    public r e;
+    public int f13363f;
+    public boolean f13364g;
     public long h;
-    public float f14655i;
-    public boolean f14656j;
-    public long f14657k;
-    public int f14658l;
-    public long f14659m;
-    public long f14660n;
-    public Method f14661o;
-    public long f14662p;
-    public boolean f14663q;
-    public boolean f14664r;
-    public long f14665s;
-    public long f14666t;
-    public long f14667u;
+    public float f13365i;
+    public boolean f13366j;
+    public long f13367k;
+    public int f13368l;
+    public long f13369m;
+    public long f13370n;
+    public Method f13371o;
+    public long f13372p;
+    public boolean f13373q;
+    public boolean f13374r;
+    public long f13375s;
+    public long f13376t;
+    public long f13377u;
     public long v;
-    public long f14668w;
-    public int f14669x;
-    public int f14670y;
-    public long f14671z;
+    public long f13378w;
+    public int f13379x;
+    public int f13380y;
+    public long f13381z;
 
-    public s(xa.c cVar) {
-        this.f14649a = cVar;
+    public s(c0 c0Var) {
+        this.f13360a = c0Var;
         try {
-            this.f14661o = AudioTrack.class.getMethod("getLatency", null);
+            this.f13371o = AudioTrack.class.getMethod("getLatency", null);
         } catch (NoSuchMethodException unused) {
         }
-        this.f14650b = new long[10];
+        this.f13361b = new long[10];
         this.F = -9223372036854775807L;
         this.E = -9223372036854775807L;
-        this.I = e2.x.f8795a;
+        this.I = e2.x.f7940a;
     }
 
     public final long a() {
@@ -59,25 +59,25 @@ public final class s {
     }
 
     public final long b() {
-        if (this.f14671z != -9223372036854775807L) {
+        if (this.f13381z != -9223372036854775807L) {
             return Math.min(this.C, d());
         }
         this.I.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (elapsedRealtime - this.f14666t >= 5) {
-            AudioTrack audioTrack = this.f14651c;
+        if (elapsedRealtime - this.f13376t >= 5) {
+            AudioTrack audioTrack = this.f13362c;
             audioTrack.getClass();
             int playState = audioTrack.getPlayState();
             if (playState != 1) {
                 long playbackHeadPosition = audioTrack.getPlaybackHeadPosition() & 4294967295L;
-                if (this.f14654g) {
+                if (this.f13364g) {
                     if (playState == 2 && playbackHeadPosition == 0) {
-                        this.f14668w = this.f14667u;
+                        this.f13378w = this.f13377u;
                     }
-                    playbackHeadPosition += this.f14668w;
+                    playbackHeadPosition += this.f13378w;
                 }
                 if (Build.VERSION.SDK_INT <= 29) {
-                    if (playbackHeadPosition == 0 && this.f14667u > 0 && playState == 3) {
+                    if (playbackHeadPosition == 0 && this.f13377u > 0 && playState == 3) {
                         if (this.A == -9223372036854775807L) {
                             this.A = elapsedRealtime;
                         }
@@ -85,7 +85,7 @@ public final class s {
                         this.A = -9223372036854775807L;
                     }
                 }
-                long j3 = this.f14667u;
+                long j3 = this.f13377u;
                 if (j3 > playbackHeadPosition) {
                     if (this.G) {
                         this.H += j3;
@@ -94,48 +94,48 @@ public final class s {
                         this.v++;
                     }
                 }
-                this.f14667u = playbackHeadPosition;
+                this.f13377u = playbackHeadPosition;
             }
-            this.f14666t = elapsedRealtime;
+            this.f13376t = elapsedRealtime;
         }
-        return this.f14667u + this.H + (this.v << 32);
+        return this.f13377u + this.H + (this.v << 32);
     }
 
     public final long c(long j3) {
         long z10;
-        if (this.f14670y == 0) {
-            if (this.f14671z != -9223372036854775807L) {
-                z10 = e2.d0.W(this.f14653f, d());
+        if (this.f13380y == 0) {
+            if (this.f13381z != -9223372036854775807L) {
+                z10 = e2.d0.W(this.f13363f, d());
             } else {
-                z10 = e2.d0.W(this.f14653f, b());
+                z10 = e2.d0.W(this.f13363f, b());
             }
         } else {
-            z10 = e2.d0.z(j3 + this.f14659m, this.f14655i);
+            z10 = e2.d0.z(j3 + this.f13369m, this.f13365i);
         }
-        long max = Math.max(0L, z10 - this.f14662p);
-        if (this.f14671z != -9223372036854775807L) {
-            return Math.min(e2.d0.W(this.f14653f, this.C), max);
+        long max = Math.max(0L, z10 - this.f13372p);
+        if (this.f13381z != -9223372036854775807L) {
+            return Math.min(e2.d0.W(this.f13363f, this.C), max);
         }
         return max;
     }
 
     public final long d() {
-        AudioTrack audioTrack = this.f14651c;
+        AudioTrack audioTrack = this.f13362c;
         audioTrack.getClass();
         if (audioTrack.getPlayState() == 2) {
             return this.B;
         }
         this.I.getClass();
-        return this.B + e2.d0.Y(e2.d0.z(e2.d0.Q(SystemClock.elapsedRealtime()) - this.f14671z, this.f14655i), this.f14653f, 1000000L, RoundingMode.UP);
+        return this.B + e2.d0.Y(e2.d0.z(e2.d0.Q(SystemClock.elapsedRealtime()) - this.f13381z, this.f13365i), this.f13363f, 1000000L, RoundingMode.UP);
     }
 
     public final boolean e(long j3) {
         long a2 = a();
-        int i10 = this.f14653f;
-        String str = e2.d0.f8737a;
+        int i10 = this.f13363f;
+        String str = e2.d0.f7888a;
         if (j3 <= e2.d0.Y(a2, i10, 1000000L, RoundingMode.UP)) {
-            if (this.f14654g) {
-                AudioTrack audioTrack = this.f14651c;
+            if (this.f13364g) {
+                AudioTrack audioTrack = this.f13362c;
                 audioTrack.getClass();
                 if (audioTrack.getPlayState() != 2 || b() != 0) {
                     return false;
@@ -149,27 +149,27 @@ public final class s {
 
     public final void f(long j3) {
         if (this.D) {
-            long j10 = this.f14657k;
+            long j10 = this.f13367k;
             if (j10 != -9223372036854775807L && j3 >= j10) {
-                long D = e2.d0.D(j3 - j10, this.f14655i);
+                long D = e2.d0.D(j3 - j10, this.f13365i);
                 this.I.getClass();
                 long currentTimeMillis = System.currentTimeMillis() - e2.d0.e0(D);
-                this.f14657k = -9223372036854775807L;
-                n nVar = ((d0) this.f14649a.f49332b).f14561t;
+                this.f13367k = -9223372036854775807L;
+                n nVar = ((g0) this.f13360a.f13237b).f13288t;
                 if (nVar != null) {
-                    nVar.b(currentTimeMillis);
+                    nVar.e(currentTimeMillis);
                 }
             }
         }
     }
 
     public final void g() {
-        this.f14659m = 0L;
-        this.f14670y = 0;
-        this.f14669x = 0;
-        this.f14660n = 0L;
+        this.f13369m = 0L;
+        this.f13380y = 0;
+        this.f13379x = 0;
+        this.f13370n = 0L;
         this.E = -9223372036854775807L;
         this.F = -9223372036854775807L;
-        this.f14656j = false;
+        this.f13366j = false;
     }
 }

@@ -1,263 +1,94 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class ag1 extends org.telegram.ui.Components.i81 implements w10 {
-    public final FrameLayout T;
-    public final org.telegram.ui.Components.ll0 U;
-    public final s4.c0 V;
-    public final xf1 W;
-    public w81 f34428a0;
-    public String f34429b0;
-    public final ArrayList f34430c0;
-    public final ArrayList f34431d0;
-    public int f34432e0;
-    public int f34433f0;
-    public int f34434g0;
-    public int f34435h0;
-    public int f34436i0;
-    public int f34437j0;
-    public int f34438k0;
-    public boolean f34439l0;
-    public boolean m0;
-    public final org.telegram.ui.Components.xw0 f34440n0;
-    public final org.telegram.ui.Components.qk0 f34441o0;
-    public boolean f34442p0;
-    public final zf1 f34443q0;
-    public final iw0 f34444r0;
-    public final ArrayList f34445s0;
-    public final eg1 f34446t0;
+public final class ag1 extends org.telegram.ui.Components.b81 {
+    public final ArrayList f31858a;
+    public final bg1 f31859b;
 
-    public ag1(eg1 eg1Var, Context context) {
-        super(context, null);
-        this.f34446t0 = eg1Var;
-        this.f34429b0 = "empty";
-        this.f34430c0 = new ArrayList();
-        this.f34431d0 = new ArrayList();
-        this.f34445s0 = new ArrayList();
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.T = frameLayout;
-        this.f34444r0 = new iw0(this, 7);
-        org.telegram.ui.Components.ll0 ll0Var = new org.telegram.ui.Components.ll0(context, null);
-        this.U = ll0Var;
-        xf1 xf1Var = new xf1(this);
-        this.W = xf1Var;
-        ll0Var.setAdapter(xf1Var);
-        s4.c0 c0Var = new s4.c0();
-        this.V = c0Var;
-        ll0Var.setLayoutManager(c0Var);
-        ll0Var.setOnItemClickListener(new b31(this, 10));
-        ll0Var.setOnScrollListener(new oe1(this, 1));
-        org.telegram.ui.Components.t00 t00Var = new org.telegram.ui.Components.t00(context, null);
-        t00Var.setViewType(7);
-        t00Var.f30466w = false;
-        t00Var.setUseHeaderOffset(true);
-        org.telegram.ui.Components.xw0 xw0Var = new org.telegram.ui.Components.xw0(context, t00Var, 1, null);
-        this.f34440n0 = xw0Var;
-        xw0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        xw0Var.f32756e.setVisibility(8);
-        xw0Var.setVisibility(8);
-        xw0Var.addView(t00Var, 0);
-        xw0Var.setAnimateLayoutChange(true);
-        ll0Var.setEmptyView(xw0Var);
-        ll0Var.Y1 = true;
-        ll0Var.Z1 = 0;
-        frameLayout.addView(xw0Var);
-        frameLayout.addView(ll0Var);
-        L();
-        org.telegram.ui.Components.qk0 qk0Var = new org.telegram.ui.Components.qk0(ll0Var, true);
-        this.f34441o0 = qk0Var;
-        ll0Var.setItemsEnterAnimator(qk0Var);
-        zf1 zf1Var = new zf1(this);
-        this.f34443q0 = zf1Var;
-        setAdapter(zf1Var);
-    }
-
-    public final void J(String str) {
-        int i10;
-        if (this.f34442p0) {
-            return;
-        }
-        TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
-        eg1 eg1Var = this.f34446t0;
-        tL_messages_search.peer = eg1Var.getMessagesController().getInputPeer(-eg1Var.f36026a);
-        tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-        tL_messages_search.limit = 20;
-        tL_messages_search.f19978q = str;
-        ArrayList arrayList = this.f34431d0;
-        if (!arrayList.isEmpty()) {
-            tL_messages_search.offset_id = ((MessageObject) i2.g.h(1, arrayList)).getId();
-        }
-        this.f34442p0 = true;
-        i10 = ((org.telegram.ui.ActionBar.n2) eg1Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_search, new bc0(27, this, str));
-    }
-
-    public final void K(View view, int i10, String str, boolean z10) {
-        this.f34429b0 = str;
-        FrameLayout frameLayout = this.T;
-        eg1 eg1Var = this.f34446t0;
-        int i11 = 0;
-        if (view == frameLayout) {
-            w81 w81Var = this.f34428a0;
-            if (w81Var != null) {
-                AndroidUtilities.cancelRunOnUIThread(w81Var);
-                this.f34428a0 = null;
-            }
-            this.f34442p0 = false;
-            this.m0 = false;
-            ArrayList arrayList = this.f34430c0;
-            arrayList.clear();
-            this.f34431d0.clear();
-            L();
-            if (TextUtils.isEmpty(str)) {
-                this.f34439l0 = false;
-                arrayList.clear();
-                while (true) {
-                    ArrayList arrayList2 = eg1Var.f36029b;
-                    if (i11 < arrayList2.size()) {
-                        if (((vf1) arrayList2.get(i11)).f41534c != null) {
-                            arrayList.add(((vf1) arrayList2.get(i11)).f41534c);
-                            ((vf1) arrayList2.get(i11)).f41534c.searchQuery = null;
-                        }
-                        i11++;
-                    } else {
-                        L();
-                        return;
-                    }
-                }
-            } else {
-                L();
-                this.f34439l0 = true;
-                this.f34440n0.e(true, true);
-                w81 w81Var2 = new w81(13, this, str);
-                this.f34428a0 = w81Var2;
-                AndroidUtilities.runOnUIThread(w81Var2, 200L);
-            }
-        } else if (view instanceof x10) {
-            x10 x10Var = (x10) view;
-            x10Var.f42540c.b(0, false);
-            x10Var.h(-eg1Var.f36026a, 0L, 0L, 0L, hg.s0.f11237c3[((wf1) this.f34443q0.f43426a.get(i10)).f42355b], false, str, z10);
-        } else if (view instanceof org.telegram.ui.Components.vm0) {
-            org.telegram.ui.Components.vm0 vm0Var = (org.telegram.ui.Components.vm0) view;
-            vm0Var.f31364a.b(0, false);
-            vm0Var.K = str;
-            vm0Var.d(false);
-        }
-    }
-
-    public final void L() {
-        this.f34432e0 = -1;
-        this.f34433f0 = -1;
-        this.f34434g0 = -1;
-        this.f34435h0 = -1;
-        this.f34436i0 = -1;
-        this.f34437j0 = -1;
-        this.f34438k0 = 0;
-        ArrayList arrayList = this.f34430c0;
-        if (!arrayList.isEmpty()) {
-            int i10 = this.f34438k0;
-            int i11 = i10 + 1;
-            this.f34438k0 = i11;
-            this.f34432e0 = i10;
-            this.f34433f0 = i11;
-            int size = arrayList.size() + i11;
-            this.f34438k0 = size;
-            this.f34434g0 = size;
-        }
-        ArrayList arrayList2 = this.f34431d0;
-        if (!arrayList2.isEmpty()) {
-            int i12 = this.f34438k0;
-            int i13 = i12 + 1;
-            this.f34438k0 = i13;
-            this.f34435h0 = i12;
-            this.f34436i0 = i13;
-            int size2 = arrayList2.size() + i13;
-            this.f34438k0 = size2;
-            this.f34437j0 = size2;
-        }
-        this.W.l();
+    public ag1(bg1 bg1Var) {
+        this.f31859b = bg1Var;
+        ArrayList arrayList = new ArrayList();
+        this.f31858a = arrayList;
+        arrayList.add(new xf1(0));
+        xf1 xf1Var = new xf1(2);
+        xf1Var.f39616b = 0;
+        arrayList.add(xf1Var);
+        xf1 xf1Var2 = new xf1(2);
+        xf1Var2.f39616b = 1;
+        arrayList.add(xf1Var2);
+        xf1 xf1Var3 = new xf1(2);
+        xf1Var3.f39616b = 2;
+        arrayList.add(xf1Var3);
+        xf1 xf1Var4 = new xf1(2);
+        xf1Var4.f39616b = 3;
+        arrayList.add(xf1Var4);
+        xf1 xf1Var5 = new xf1(2);
+        xf1Var5.f39616b = 4;
+        arrayList.add(xf1Var5);
     }
 
     @Override
-    public final void a() {
-        org.telegram.ui.ActionBar.k kVar;
-        kVar = ((org.telegram.ui.ActionBar.n2) this.f34446t0).actionBar;
-        kVar.O(null, null);
+    public final void b(View view, int i10, int i11) {
+        bg1 bg1Var = this.f31859b;
+        bg1Var.L(view, i10, bg1Var.f32163c0, true);
     }
 
     @Override
-    public final boolean b(p10 p10Var) {
-        if (p10Var == null) {
-            return false;
+    public final View d(int i10) {
+        int i11;
+        bg1 bg1Var = this.f31859b;
+        fg1 fg1Var = bg1Var.f32180u0;
+        if (i10 == 1) {
+            return bg1Var.U;
         }
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f34445s0;
-            if (i10 >= arrayList.size()) {
-                return false;
-            }
-            MessageObject messageObject = (MessageObject) arrayList.get(i10);
-            if (messageObject != null && messageObject.getId() == p10Var.f39383b && messageObject.getDialogId() == p10Var.f39382a) {
-                return true;
-            }
-            i10++;
+        if (i10 == 2) {
+            i11 = ((org.telegram.ui.ActionBar.o2) fg1Var).currentAccount;
+            org.telegram.ui.Components.wm0 wm0Var = new org.telegram.ui.Components.wm0(i11, fg1Var);
+            wm0Var.f29698b.j(new zf1(0));
+            wm0Var.setUiCallback(bg1Var);
+            return wm0Var;
         }
+        z10 z10Var = new z10(fg1Var);
+        z10Var.setChatPreviewDelegate(bg1Var.f32178s0);
+        z10Var.setUiCallback(bg1Var);
+        z10Var.f40076b.j(new zf1(1));
+        return z10Var;
     }
 
     @Override
-    public final void c(MessageObject messageObject) {
-        int i10;
-        Bundle bundle = new Bundle();
-        long dialogId = messageObject.getDialogId();
-        boolean isEncryptedDialog = DialogObject.isEncryptedDialog(dialogId);
-        eg1 eg1Var = this.f34446t0;
-        if (isEncryptedDialog) {
-            bundle.putInt("enc_id", DialogObject.getEncryptedChatId(dialogId));
-        } else if (!DialogObject.isUserDialog(dialogId)) {
-            i10 = ((org.telegram.ui.ActionBar.n2) eg1Var).currentAccount;
-            TLRPC.Chat chat = AccountInstance.getInstance(i10).getMessagesController().getChat(Long.valueOf(-dialogId));
-            if (chat != null && chat.migrated_to != null) {
-                bundle.putLong("migrated_to", dialogId);
-                dialogId = -chat.migrated_to.channel_id;
-            }
-            bundle.putLong("chat_id", -dialogId);
-        } else {
-            bundle.putLong("user_id", dialogId);
-        }
-        bundle.putInt("message_id", messageObject.getId());
-        eg1Var.presentFragment(new co(bundle));
+    public final int e() {
+        return this.f31858a.size();
     }
 
     @Override
-    public final void d(MessageObject messageObject, View view, int i10) {
-        org.telegram.ui.ActionBar.k kVar;
-        ArrayList arrayList = this.f34445s0;
-        if (!arrayList.remove(messageObject)) {
-            arrayList.add(messageObject);
+    public final CharSequence g(int i10) {
+        ArrayList arrayList = this.f31858a;
+        if (((xf1) arrayList.get(i10)).f39615a == 0) {
+            return LocaleController.getString(R.string.SearchMessages);
         }
-        if (arrayList.isEmpty()) {
-            kVar = ((org.telegram.ui.ActionBar.n2) this.f34446t0).actionBar;
-            kVar.r();
+        if (((xf1) arrayList.get(i10)).f39615a == 1) {
+            return LocaleController.getString(R.string.DownloadsTabs);
         }
+        gg.q0 q0Var = gg.s0.f9915c3[((xf1) arrayList.get(i10)).f39616b];
+        String str = q0Var.f9899c;
+        if (str != null) {
+            return str;
+        }
+        return LocaleController.getString(q0Var.f9898b);
     }
 
     @Override
-    public final boolean g() {
-        org.telegram.ui.ActionBar.k kVar;
-        kVar = ((org.telegram.ui.ActionBar.n2) this.f34446t0).actionBar;
-        return kVar.s();
+    public final int h(int i10) {
+        ArrayList arrayList = this.f31858a;
+        if (((xf1) arrayList.get(i10)).f39615a == 0) {
+            return 1;
+        }
+        if (((xf1) arrayList.get(i10)).f39615a == 1) {
+            return 2;
+        }
+        return ((xf1) arrayList.get(i10)).f39615a + i10;
     }
 }

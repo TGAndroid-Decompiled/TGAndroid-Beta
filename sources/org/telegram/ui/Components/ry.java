@@ -11,32 +11,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ry extends FrameLayout {
-    public final ImageView f30115a;
-    public final TextView f30116b;
-    public final RadialProgressView f30117c;
+    public final ImageView f27716a;
+    public final TextView f27717b;
+    public final RadialProgressView f27718c;
     public boolean d;
-    public final kz f30118e;
+    public final kz e;
 
     public ry(kz kzVar, Context context) {
         super(context);
-        this.f30118e = kzVar;
+        this.e = kzVar;
         ImageView imageView = new ImageView(getContext());
-        this.f30115a = imageView;
+        this.f27716a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.gif_empty);
         int i10 = org.telegram.ui.ActionBar.j6.Le;
-        imageView.setColorFilter(new PorterDuffColorFilter(kzVar.A(i10), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(kzVar.z(i10), PorterDuff.Mode.MULTIPLY));
         addView(imageView, w7.x5.d(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
-        this.f30116b = textView;
+        this.f27717b = textView;
         textView.setText(LocaleController.getString(R.string.NoGIFsFound));
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(kzVar.A(i10));
+        textView.setTextColor(kzVar.z(i10));
         addView(textView, w7.x5.d(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
         RadialProgressView radialProgressView = new RadialProgressView(context, kzVar.Z1);
-        this.f30117c = radialProgressView;
+        this.f27718c = radialProgressView;
         radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(kzVar.A(org.telegram.ui.ActionBar.j6.f20736h6));
+        radialProgressView.setProgressColor(kzVar.z(org.telegram.ui.ActionBar.j6.f18935h6));
         addView(radialProgressView, w7.x5.e(-2, -2, 17));
     }
 
@@ -51,27 +51,27 @@ public final class ry extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            this.f30115a.setVisibility(i10);
+            this.f27716a.setVisibility(i10);
             if (z10) {
                 i11 = 8;
             } else {
                 i11 = 0;
             }
-            this.f30116b.setVisibility(i11);
+            this.f27717b.setVisibility(i11);
             if (!z10) {
                 i12 = 8;
             }
-            this.f30117c.setVisibility(i12);
+            this.f27718c.setVisibility(i12);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int dp;
-        kz kzVar = this.f30118e;
-        int measuredHeight = kzVar.f27949h0.getMeasuredHeight();
+        kz kzVar = this.e;
+        int measuredHeight = kzVar.f25731h0.getMeasuredHeight();
         if (!this.d) {
-            dp = (int) (org.telegram.messenger.vl.y(8.0f, measuredHeight - kzVar.f27929b1, 3) * 1.7f);
+            dp = (int) (org.telegram.messenger.wl.y(8.0f, measuredHeight - kzVar.f25712b1, 3) * 1.7f);
         } else {
             dp = measuredHeight - AndroidUtilities.dp(80.0f);
         }

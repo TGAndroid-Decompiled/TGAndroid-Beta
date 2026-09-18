@@ -1,28 +1,24 @@
 package qg;
 
-import org.telegram.messenger.AndroidUtilities;
+import z7.hb;
+import z7.wf;
 public final class b0 implements Runnable {
-    public final int f44380a;
-    public final d0 f44381b;
-    public final r0 f44382c;
+    public final int f41333a;
+    public final Object f41334b;
 
-    public b0(d0 d0Var, r0 r0Var, int i10) {
-        this.f44380a = i10;
-        this.f44381b = d0Var;
-        this.f44382c = r0Var;
+    public b0(Object obj, int i10) {
+        this.f41333a = i10;
+        this.f41334b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f44380a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new b0(this.f44381b, this.f44382c, 1));
-                return;
-            default:
-                d0 d0Var = this.f44381b;
-                d0Var.getClass();
-                d0Var.f44405i = this.f44382c.f44549a;
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: qg.b0.run():void");
+    }
+
+    public b0(wf wfVar) {
+        this.f41333a = 12;
+        hb hbVar = hb.UNKNOWN_EVENT;
+        this.f41334b = wfVar;
     }
 }

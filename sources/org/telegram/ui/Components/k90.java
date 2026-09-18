@@ -1,68 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class k90 extends View {
-    public final TextPaint f27780a;
-    public final Paint f27781b;
-    public final String f27782c;
-    public final Rect d;
-    public View f27783e;
+import org.telegram.tgnet.tl.TL_iv;
+public final class k90 {
+    public final TL_iv.PageBlock f25604a;
+    public final int f25605b;
 
-    public k90(Context context) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f27780a = textPaint;
-        this.f27781b = new Paint(1);
-        this.d = new Rect();
-        this.f27782c = LocaleController.getString(R.string.LoginOrSingInWithGoogle);
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        a();
-    }
-
-    public final void a() {
-        this.f27780a.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21043y6, false));
-        this.f27781b.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Ii, false));
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        super.onDraw(canvas);
-        View view = this.f27783e;
-        Rect rect = this.d;
-        if (view != null) {
-            dp = ((((getWidth() - rect.width()) - AndroidUtilities.dp(8.0f)) - this.f27783e.getPaddingLeft()) - this.f27783e.getPaddingRight()) / 2.0f;
-        } else {
-            dp = AndroidUtilities.dp(64.0f);
-        }
-        Paint paint = this.f27781b;
-        canvas.drawLine((((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - dp, getHeight() / 2.0f, ((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
-        canvas.drawLine(((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f) + dp, getHeight() / 2.0f, paint);
-        int height = getHeight();
-        canvas.drawText(this.f27782c, (getWidth() - rect.width()) / 2.0f, (rect.height() + height) / 2.0f, this.f27780a);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        View view = this.f27783e;
-        if (view != null) {
-            i10 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(view.getMeasuredWidth()), 1073741824);
-        }
-        super.onMeasure(i10, i11);
-        String str = this.f27782c;
-        this.f27780a.getTextBounds(str, 0, str.length(), this.d);
-    }
-
-    public void setMeasureAfter(View view) {
-        this.f27783e = view;
+    public k90(int i10, TL_iv.PageBlock pageBlock) {
+        this.f25604a = pageBlock;
+        this.f25605b = i10;
     }
 }

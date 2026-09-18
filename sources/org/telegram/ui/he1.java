@@ -1,46 +1,70 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.MessageObject;
-public final class he1 implements org.telegram.ui.Components.ek0 {
-    public final co f36975a;
-    public final MessageObject f36976b;
-    public final org.telegram.ui.Components.fk0 f36977c;
-    public final le1 d;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class he1 implements View.OnClickListener {
+    public final hi0 f34255a;
+    public final bo f34256b;
+    public final org.telegram.ui.Components.ml0 f34257c;
+    public final LinearLayout d;
+    public final org.telegram.ui.Components.n70 e;
+    public final org.telegram.ui.Components.n70 f34258f;
+    public final me1 h;
 
-    public he1(le1 le1Var, co coVar, MessageObject messageObject, org.telegram.ui.Components.fk0 fk0Var) {
-        this.d = le1Var;
-        this.f36975a = coVar;
-        this.f36976b = messageObject;
-        this.f36977c = fk0Var;
+    public he1(me1 me1Var, hi0 hi0Var, bo boVar, org.telegram.ui.Components.ml0 ml0Var, LinearLayout linearLayout, org.telegram.ui.Components.n70 n70Var, org.telegram.ui.Components.n70 n70Var2) {
+        this.h = me1Var;
+        this.f34255a = hi0Var;
+        this.f34256b = boVar;
+        this.f34257c = ml0Var;
+        this.d = linearLayout;
+        this.e = n70Var;
+        this.f34258f = n70Var2;
     }
 
     @Override
-    public final void B(android.view.View r13, ah.j1 r14, boolean r15, boolean r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.he1.B(android.view.View, ah.j1, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean S() {
-        return false;
-    }
-
-    @Override
-    public final boolean n() {
-        return true;
-    }
-
-    @Override
-    public final boolean t() {
-        return false;
-    }
-
-    @Override
-    public final void J() {
-    }
-
-    @Override
-    public final void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void onClick(View view) {
+        hi0 hi0Var = this.f34255a;
+        ArrayList arrayList = hi0Var.f34283b;
+        ArrayList arrayList2 = hi0Var.f34284c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            me1 me1Var = this.h;
+            bo boVar = this.f34256b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f18268id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f18121id);
+                }
+                boVar.presentFragment(new ProfileActivity(bundle, null));
+                me1Var.c(false);
+                return;
+            }
+            if (SharedConfig.messageSeenHintCount > 0 && boVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                org.telegram.ui.Components.oc t10 = new org.telegram.ui.Components.vc(org.telegram.ui.Components.jb.a(me1Var.getContext()), me1Var.f35778a).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                boVar.f32381n1 = t10;
+                t10.f26705j = 4000;
+                t10.j();
+                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
+            }
+            org.telegram.ui.Components.ml0 ml0Var = this.f34257c;
+            ml0Var.requestLayout();
+            this.d.requestLayout();
+            ml0Var.getAdapter().l();
+            this.e.K(this.f34258f);
+        }
     }
 }

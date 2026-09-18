@@ -15,29 +15,29 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class d51 extends FrameLayout {
-    public final Paint f35663a;
-    public final Paint f35664b;
-    public final RectF f35665c;
-    public final org.telegram.ui.Components.w11 d;
-    public boolean f35666e;
-    public long f35667f;
+    public final Paint f33013a;
+    public final Paint f33014b;
+    public final RectF f33015c;
+    public final org.telegram.ui.Components.y11 d;
+    public boolean e;
+    public long f33016f;
     public long h;
-    public final org.telegram.ui.Components.xi0 f35668n;
-    public final TextPaint f35669r;
-    public StaticLayout f35670s;
+    public final org.telegram.ui.Components.yi0 f33017n;
+    public final TextPaint f33018r;
+    public StaticLayout f33019s;
     public float v;
-    public float f35671w;
-    public final SecretMediaViewer f35672x;
+    public float f33020w;
+    public final SecretMediaViewer f33021x;
 
     public d51(SecretMediaViewer secretMediaViewer, Activity activity) {
         super(activity);
-        this.f35672x = secretMediaViewer;
-        this.f35665c = new RectF();
-        this.d = new org.telegram.ui.Components.w11();
-        this.f35669r = new TextPaint(1);
+        this.f33021x = secretMediaViewer;
+        this.f33015c = new RectF();
+        this.d = new org.telegram.ui.Components.y11();
+        this.f33018r = new TextPaint(1);
         setWillNotDraw(false);
         Paint paint = new Paint(1);
-        this.f35664b = paint;
+        this.f33014b = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
         paint.setColor(-1644826);
         Paint.Cap cap = Paint.Cap.ROUND;
@@ -45,41 +45,41 @@ public final class d51 extends FrameLayout {
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         Paint paint2 = new Paint(1);
-        this.f35663a = paint2;
+        this.f33013a = paint2;
         paint2.setStyle(style);
         paint2.setStrokeCap(cap);
         paint2.setColor(-1644826);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         new Paint(1).setColor(2130706432);
-        org.telegram.ui.Components.xi0 xi0Var = new org.telegram.ui.Components.xi0(R.raw.fire_on, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        this.f35668n = xi0Var;
-        xi0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        xi0Var.f32579v0 = this;
-        xi0Var.start();
+        org.telegram.ui.Components.yi0 yi0Var = new org.telegram.ui.Components.yi0(R.raw.fire_on, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        this.f33017n = yi0Var;
+        yi0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        yi0Var.R(this);
+        yi0Var.start();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         SecretMediaViewer secretMediaViewer;
         float max;
-        MessageObject messageObject = this.f35672x.f34077h0;
+        MessageObject messageObject = this.f33021x.f31471h0;
         if (messageObject != null) {
             TLRPC.Message message = messageObject.messageOwner;
             if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                if (this.f35667f == 0) {
+                if (this.f33016f == 0) {
                     max = 1.0f;
                 } else {
-                    max = ((float) Math.max(0L, this.f35667f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f34058a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
+                    max = ((float) Math.max(0L, this.f33016f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f31453a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
                 }
-                boolean z10 = this.f35666e;
-                Paint paint = this.f35664b;
-                Paint paint2 = this.f35663a;
+                boolean z10 = this.e;
+                Paint paint = this.f33014b;
+                Paint paint2 = this.f33013a;
                 float f7 = max;
-                RectF rectF = this.f35665c;
+                RectF rectF = this.f33015c;
                 if (z10) {
                     canvas.save();
-                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f35671w / 2.0f));
-                    this.f35670s.draw(canvas);
+                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f33020w / 2.0f));
+                    this.f33019s.draw(canvas);
                     canvas.restore();
                     canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
                     float f10 = 19.285715f;
@@ -92,9 +92,9 @@ public final class d51 extends FrameLayout {
                     float centerX = rectF.centerX();
                     float centerY = rectF.centerY() - AndroidUtilities.dp(1.0f);
                     float dp = AndroidUtilities.dp(8.0f);
-                    org.telegram.ui.Components.xi0 xi0Var = this.f35668n;
-                    xi0Var.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
-                    xi0Var.draw(canvas);
+                    org.telegram.ui.Components.yi0 yi0Var = this.f33017n;
+                    yi0Var.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
+                    yi0Var.draw(canvas);
                     float f11 = f7 * (-360.0f);
                     canvas.drawArc(rectF, -90.0f, f11, false, paint2);
                     this.d.a(f11, 1.0f, canvas, paint, rectF);
@@ -110,7 +110,7 @@ public final class d51 extends FrameLayout {
         float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
         float measuredHeight = getMeasuredHeight() / 2.0f;
         float dpf2 = AndroidUtilities.dpf2(10.5f);
-        this.f35665c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
+        this.f33015c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
         setPivotX(measuredWidth);
         setPivotY(measuredHeight);
     }

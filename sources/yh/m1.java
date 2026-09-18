@@ -1,115 +1,78 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import org.telegram.messenger.LiteMode;
-import zh.h8;
-public final class m1 extends Drawable {
-    public final int f50433a;
-    public final RectF f50434b;
-    public final Path f50435c;
-    public final Paint d;
-    public final h8 f50436e;
-    public boolean f50437f;
-    public sg.p0 f50438g;
-    public org.telegram.ui.web.b1 h;
-    public boolean f50439i;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+public final class m1 implements Runnable {
+    public final int f47462a;
+    public final a4 f47463b;
+    public final TL_stars.TL_starGiftUnique f47464c;
+    public final zf.a d;
+    public final Runnable e;
 
-    public m1(int i10) {
-        this(i0.a.k(i10, 128), i10);
+    public m1(a4 a4Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, zf.a aVar, Runnable runnable, int i10) {
+        this.f47462a = i10;
+        this.f47463b = a4Var;
+        this.f47464c = tL_starGiftUnique;
+        this.d = aVar;
+        this.e = runnable;
     }
 
-    public final void a() {
+    @Override
+    public final void run() {
         boolean z10;
-        if (this.f50436e != null && this.f50439i && LiteMode.isEnabled(131072)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (this.f50437f == z10) {
-            return;
-        }
-        this.f50437f = z10;
-        if (z10) {
-            yf.h d = yf.h.d();
-            sg.p0 p0Var = new sg.p0(this, 21);
-            this.f50438g = p0Var;
-            d.a(15, p0Var);
-        } else {
-            yf.h.d().f(this.f50438g);
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.d;
-        Path path = this.f50435c;
-        canvas.drawPath(path, paint);
-        h8 h8Var = this.f50436e;
-        if (h8Var != null) {
-            if (this.f50437f || !this.f50439i) {
-                canvas.save();
-                canvas.clipPath(path);
-                if (this.f50438g == null) {
-                    h8Var.d();
+        int i10 = this.f47462a;
+        zf.b bVar = zf.b.f48982a;
+        zf.b bVar2 = zf.b.f48983b;
+        Runnable runnable = this.e;
+        zf.a aVar = this.d;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f47464c;
+        a4 a4Var = this.f47463b;
+        boolean z11 = false;
+        switch (i10) {
+            case 0:
+                a4Var.getClass();
+                tL_starGiftUnique.flags |= 16;
+                if (aVar.f48980a == bVar2) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                h8Var.a(canvas, this.f50433a);
-                canvas.restore();
-                if (this.f50438g == null) {
-                    invalidateSelf();
+                tL_starGiftUnique.resale_ton_only = z10;
+                ArrayList<TL_stars.StarsAmount> arrayList = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList;
+                arrayList.add(aVar.e(bVar).o());
+                tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
+                a4Var.f46981e0.setResellPrice(aVar);
+                xh.c2 c2Var = a4Var.f46980d1;
+                if (c2Var != null) {
+                    c2Var.run();
                 }
-            }
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        float min = Math.min(rect.width(), rect.height()) / 2.0f;
-        RectF rectF = this.f50434b;
-        rectF.set(rect);
-        Path path = this.f50435c;
-        path.rewind();
-        path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        h8 h8Var = this.f50436e;
-        if (h8Var != null) {
-            h8Var.g(rectF);
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.d.setColorFilter(colorFilter);
-    }
-
-    public m1(int i10, int i11) {
-        this.f50434b = new RectF();
-        this.f50435c = new Path();
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f50433a = i10;
-        paint.setColor(i11);
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f50436e = new h8(1, 25);
-        } else {
-            this.f50436e = null;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                hg.k0.s(R.string.Gift2ResaleEnable, new Object[]{a4Var.C1()}, a4Var.getBulletinFactory(), R.raw.contact_check, 36);
+                return;
+            default:
+                tL_starGiftUnique.flags |= 16;
+                if (aVar.f48980a == bVar2) {
+                    z11 = true;
+                }
+                tL_starGiftUnique.resale_ton_only = z11;
+                ArrayList<TL_stars.StarsAmount> arrayList2 = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList2;
+                arrayList2.add(aVar.e(bVar).o());
+                tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
+                a4Var.f46981e0.setResellPrice(aVar);
+                xh.c2 c2Var2 = a4Var.f46980d1;
+                if (c2Var2 != null) {
+                    c2Var2.run();
+                }
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
     }
 }

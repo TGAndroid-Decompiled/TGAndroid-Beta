@@ -6,57 +6,71 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class f60 extends Drawable {
-    public long f36273b;
-    public int d;
-    public final View f36275e;
-    public final Paint f36272a = new Paint(1);
-    public float f36274c = 1.0f;
+    public final Paint f33562a;
+    public final Paint f33563b;
+    public long f33564c;
+    public float d;
+    public int e;
+    public boolean f33565f;
+    public View f33566g;
 
-    public f60(View view) {
-        this.f36275e = view;
+    public f60() {
+        Paint paint = new Paint(1);
+        this.f33562a = paint;
+        this.f33563b = new Paint(1);
+        this.d = 1.0f;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+    }
+
+    public final void a(ImageView imageView) {
+        this.f33566g = imageView;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int dp;
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        View view = this.f36275e;
-        if (view instanceof org.telegram.ui.ActionBar.j5) {
-            dp = AndroidUtilities.dp(1.0f) + centerY;
-            centerX -= AndroidUtilities.dp(3.0f);
+        int i10;
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f), this.f33562a);
+        if (this.f33565f) {
+            i10 = -1147527;
         } else {
-            dp = AndroidUtilities.dp(2.0f) + centerY;
+            i10 = -1;
         }
-        Paint paint = this.f36272a;
-        paint.setColor(-1147527);
-        paint.setAlpha((int) (this.f36274c * 255.0f));
-        canvas.drawCircle(centerX, dp, AndroidUtilities.dp(4.0f), paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = elapsedRealtime - this.f36273b;
-        if (j3 > 17) {
-            j3 = 17;
-        }
-        this.f36273b = elapsedRealtime;
-        int i10 = this.d;
-        if (i10 == 0) {
-            float f7 = (((float) j3) / 2000.0f) + this.f36274c;
-            this.f36274c = f7;
-            if (f7 >= 1.0f) {
-                this.f36274c = 1.0f;
-                this.d = 1;
+        Paint paint = this.f33563b;
+        paint.setColor(i10);
+        paint.setAlpha((int) (this.d * 255.0f));
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(5.0f), paint);
+        if (this.f33565f) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long j3 = elapsedRealtime - this.f33564c;
+            if (j3 > 17) {
+                j3 = 17;
             }
-        } else if (i10 == 1) {
-            float f10 = this.f36274c - (((float) j3) / 2000.0f);
-            this.f36274c = f10;
-            if (f10 < 0.5f) {
-                this.f36274c = 0.5f;
-                this.d = 0;
+            this.f33564c = elapsedRealtime;
+            int i11 = this.e;
+            if (i11 == 0) {
+                float f7 = (((float) j3) / 2000.0f) + this.d;
+                this.d = f7;
+                if (f7 >= 1.0f) {
+                    this.d = 1.0f;
+                    this.e = 1;
+                }
+            } else if (i11 == 1) {
+                float f10 = this.d - (((float) j3) / 2000.0f);
+                this.d = f10;
+                if (f10 < 0.5f) {
+                    this.d = 0.5f;
+                    this.e = 0;
+                }
             }
+            this.f33566g.invalidate();
         }
-        view.invalidate();
     }
 
     @Override

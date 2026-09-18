@@ -11,21 +11,21 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class xh extends FrameLayout {
-    public final int f32542a;
-    public final vi f32543b;
+    public final int f29914a;
+    public final vi f29915b;
 
     public xh(vi viVar, Context context, int i10) {
         super(context);
-        this.f32542a = i10;
-        this.f32543b = viVar;
+        this.f29914a = i10;
+        this.f29915b = viVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 2:
                 canvas.save();
-                canvas.clipRect(0.0f, this.f32543b.V1, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(0.0f, this.f29915b.V1, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 return;
@@ -37,9 +37,9 @@ public final class xh extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 2:
-                vi viVar = this.f32543b;
+                vi viVar = this.f29915b;
                 xh xhVar = viVar.D0;
                 if (viVar.C0.getAlpha() > 0.0f) {
                     float f7 = viVar.W1;
@@ -52,8 +52,8 @@ public final class xh extends FrameLayout {
                         viVar.V1 = top;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
                         viVar.X1 = ofFloat;
-                        ofFloat.addUpdateListener(new l6(this, 10));
-                        viVar.X1.setInterpolator(pr.f29467f);
+                        ofFloat.addUpdateListener(new i6(this, 10));
+                        viVar.X1.setInterpolator(qr.f27383f);
                         viVar.X1.setDuration(200L);
                         viVar.X1.start();
                         viVar.W1 = 0.0f;
@@ -70,20 +70,20 @@ public final class xh extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                vi viVar = this.f32543b;
-                ni niVar = viVar.f31341y0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f31292j0;
+                vi viVar = this.f29915b;
+                ni niVar = viVar.f28806y0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f28757j0;
                 if (niVar == chatAttachAlertPhotoLayout) {
                     accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
                 } else {
-                    ok okVar = viVar.f31309p0;
+                    ok okVar = viVar.f28774p0;
                     if (niVar == okVar) {
                         accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", okVar.getSelectedItemsCount(), new Object[0]));
                     } else {
-                        gj gjVar = viVar.f31298l0;
+                        gj gjVar = viVar.f28763l0;
                         if (niVar == gjVar) {
                             accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", gjVar.getSelectedItemsCount(), new Object[0]));
                         }
@@ -101,9 +101,9 @@ public final class xh extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 0:
-                if (this.f32543b.f31290i1.getVisibility() != 0) {
+                if (this.f29915b.f28755i1.getVisibility() != 0) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -114,9 +114,9 @@ public final class xh extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 1:
-                vi viVar = this.f32543b;
+                vi viVar = this.f29915b;
                 if (viVar.H && viVar.I != 0) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(viVar.I))), 1073741824), i11);
                     return;
@@ -131,9 +131,9 @@ public final class xh extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 0:
-                if (this.f32543b.f31290i1.getVisibility() != 0) {
+                if (this.f29915b.f28755i1.getVisibility() != 0) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -144,10 +144,10 @@ public final class xh extends FrameLayout {
 
     @Override
     public void setAlpha(float f7) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 0:
                 super.setAlpha(f7);
-                vi viVar = this.f32543b;
+                vi viVar = this.f29915b;
                 viVar.a2(0);
                 vi.O(viVar).invalidate();
                 return;
@@ -164,10 +164,10 @@ public final class xh extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f32542a) {
+        switch (this.f29914a) {
             case 1:
                 super.setTranslationY(f7);
-                this.f32543b.f31341y0.j();
+                this.f29915b.f28806y0.j();
                 return;
             default:
                 super.setTranslationY(f7);

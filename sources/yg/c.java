@@ -2,120 +2,79 @@ package yg;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import ji.m4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.vl;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.g2;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.j6;
-import w7.x5;
-public class c extends FrameLayout {
-    public final f6 f50163a;
-    public final ImageView f50164b;
-    public final TextView f50165c;
-    public Runnable d;
-    public final g2 f50166e;
-    public final Paint f50167f;
+import org.telegram.ui.Cells.ab;
+import org.telegram.ui.Components.f9;
+import tg.t;
+public final class c extends ab {
+    public final a f46918a0;
+    public TL_stories.PrepaidGiveaway f46919b0;
 
-    public c(Context context, f6 f6Var) {
-        super(context);
-        int i10;
-        float f7;
-        float f10;
-        this.f50167f = new Paint(1);
-        this.f50163a = f6Var;
-        TextView textView = new TextView(context);
-        this.f50165c = textView;
-        vl.j(20.0f, 1, textView);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        textView.setGravity(i10);
-        int i11 = j6.f20771j5;
-        textView.setTextColor(j6.v0(i11, f6Var));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            f7 = 16.0f;
-        } else {
-            f7 = 53.0f;
-        }
-        if (z10) {
-            f10 = 53.0f;
-        } else {
-            f10 = 16.0f;
-        }
-        addView(textView, x5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f50164b = imageView;
-        g2 g2Var = new g2(false);
-        this.f50166e = g2Var;
-        imageView.setImageDrawable(g2Var);
-        g2Var.a(j6.v0(i11, f6Var));
-        g2Var.b(j6.v0(i11, f6Var));
-        g2Var.f20463k = 220.0f;
-        addView(imageView, x5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new m4(this, 15));
+    public c(Context context) {
+        super(context, 0, 0, false);
+        this.f46918a0 = new a(context);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int v02 = j6.v0(j6.f20665d7, this.f50163a);
-        Paint paint = this.f50167f;
-        paint.setColor(v02);
-        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
+    public int[] getColorKeys() {
+        return null;
     }
 
-    public int getHeaderHeight() {
-        return AndroidUtilities.dp(56.0f);
+    public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
+        return this.f46919b0;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
-    }
-
-    public void setBackImage(int i10) {
-        this.f50164b.setImageResource(i10);
-    }
-
-    public void setCloseImageVisible(boolean z10) {
+    public final void onDraw(Canvas canvas) {
+        float dp;
         int i10;
-        float f7;
-        float f10;
+        if (this.S) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(70.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(70.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, j6.f18985k0);
+        }
+    }
+
+    public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        this.f46919b0 = prepaidGiveaway;
+        boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
+        f9 f9Var = this.E;
         if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 8;
+            f9Var.g(26);
+            String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
+            a aVar = this.f46918a0;
+            aVar.f46911f = valueOf;
+            aVar.e = aVar.f46908a.measureText(valueOf);
+            aVar.invalidateSelf();
+        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
+            f9Var.g(16);
+            int i10 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
+            if (i10 == 12) {
+                f9Var.i(-31392, -2796986);
+            } else if (i10 == 6) {
+                f9Var.i(-10703110, -12481584);
+            } else {
+                f9Var.i(-6631068, -11945404);
+            }
+            String valueOf2 = String.valueOf(t.g() * prepaidGiveaway.quantity);
+            a aVar2 = this.f46918a0;
+            aVar2.f46911f = valueOf2;
+            aVar2.e = aVar2.f46908a.measureText(valueOf2);
+            aVar2.invalidateSelf();
         }
-        this.f50164b.setVisibility(i10);
-        boolean z11 = LocaleController.isRTL;
-        if (!z11 && z10) {
-            f7 = 53.0f;
-        } else {
-            f7 = 22.0f;
-        }
-        if (z11 && z10) {
-            f10 = 53.0f;
-        } else {
-            f10 = 22.0f;
-        }
-        this.f50165c.setLayoutParams(x5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
-    }
-
-    public void setOnCloseClickListener(Runnable runnable) {
-        this.d = runnable;
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f50165c.setText(charSequence);
+        this.f19817b.i(this.f46918a0);
     }
 }

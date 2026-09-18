@@ -1,40 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class d9 extends View {
-    public b9 f25295a;
-    public final e6 f25296b;
-    public boolean f25297c;
-    public boolean d;
-    public final o20 f25298e;
-    public Drawable f25299f;
-    public Drawable h;
-    public boolean f25300n;
-    public Paint f25301r;
-    public Paint f25302s;
-    public boolean v;
-    public final f9 f25303w;
+import org.telegram.tgnet.TLRPC;
+public final class d9 implements Runnable {
+    public final gm f23236a;
 
-    public d9(f9 f9Var, Context context) {
-        super(context);
-        this.f25303w = f9Var;
-        e6 e6Var = new e6(400L, AndroidUtilities.overshootInterpolator);
-        this.f25296b = e6Var;
-        this.f25298e = new o20();
-        e6Var.f25564a = this;
+    public d9(gm gmVar) {
+        this.f23236a = gmVar;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d9.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f25303w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final void run() {
+        ai.l4 l4Var;
+        gm gmVar = this.f23236a;
+        AndroidUtilities.runOnUIThread(gmVar.f23522y, 1000L);
+        TLRPC.TL_emojiList tL_emojiList = gmVar.f23517n;
+        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty() && gmVar.f23520w == 1.0f) {
+            if (gmVar.f23521x || ((l4Var = gmVar.f23514b.f26639k) != null && l4Var.hasImageLoaded())) {
+                int i10 = gmVar.v + 1;
+                gmVar.v = i10;
+                gmVar.f23519s++;
+                if (i10 > tL_emojiList.document_id.size() - 1) {
+                    gmVar.v = 0;
+                }
+                if (gmVar.f23519s > 6) {
+                    gmVar.f23519s = 0;
+                }
+                o5 o5Var = new o5(4, gmVar.f23518r, tL_emojiList.document_id.get(gmVar.v).longValue());
+                gmVar.f23513a = o5Var;
+                gmVar.d.setAnimatedEmojiDrawable(o5Var);
+                int[] iArr = c9.f22964c0[gmVar.f23519s];
+                int i11 = iArr[0];
+                int i12 = iArr[1];
+                int i13 = iArr[2];
+                int i14 = iArr[3];
+                o20 o20Var = new o20();
+                gmVar.f23516f = o20Var;
+                o20Var.d(i11, i12, i13, i14);
+                gmVar.f23520w = 0.0f;
+                gmVar.b();
+                gmVar.invalidate();
+            }
+        }
     }
 }

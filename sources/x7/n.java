@@ -1,41 +1,41 @@
 package x7;
 public final class n extends o {
-    public final transient int f49084c;
+    public final transient int f45535c;
     public final transient int d;
-    public final o f49085e;
+    public final o e;
 
     public n(o oVar, int i10, int i11) {
-        this.f49085e = oVar;
-        this.f49084c = i10;
+        this.e = oVar;
+        this.f45535c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
         w7.m8.a(i10, this.d);
-        return this.f49085e.get(i10 + this.f49084c);
+        return this.e.get(i10 + this.f45535c);
     }
 
     @Override
     public final int n() {
-        return this.f49085e.o() + this.f49084c + this.d;
+        return this.e.o() + this.f45535c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.f49085e.o() + this.f49084c;
+        return this.e.o() + this.f45535c;
     }
 
     @Override
     public final Object[] p() {
-        return this.f49085e.p();
+        return this.e.p();
     }
 
     @Override
     public final o subList(int i10, int i11) {
         w7.m8.b(i10, i11, this.d);
-        int i12 = this.f49084c;
-        return this.f49085e.subList(i10 + i12, i11 + i12);
+        int i12 = this.f45535c;
+        return this.e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

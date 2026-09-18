@@ -1,28 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.wd1;
-public final class zo extends wd1 {
-    public final int f33195k2;
+public final class zo implements wd1 {
+    public final int f30574a;
+    public final vi f30575b;
+    public final org.telegram.ui.s3 f30576c;
 
-    public zo(Object obj, Bitmap bitmap, boolean z10, int i10) {
-        super(obj, bitmap, z10);
-        this.f33195k2 = i10;
+    public zo(vi viVar, org.telegram.ui.s3 s3Var, int i10) {
+        this.f30574a = i10;
+        this.f30575b = viVar;
+        this.f30576c = s3Var;
     }
 
     @Override
-    public final boolean U0() {
-        switch (this.f33195k2) {
+    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        switch (this.f30574a) {
             case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
+                this.f30575b.dismissInternal();
+                this.f30576c.run(tL_wallPaper);
+                return;
             default:
-                return true;
+                this.f30575b.dismissInternal();
+                this.f30576c.run(tL_wallPaper);
+                return;
         }
     }
 }

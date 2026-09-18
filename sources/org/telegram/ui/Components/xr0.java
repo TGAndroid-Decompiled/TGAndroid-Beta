@@ -1,13 +1,15 @@
 package org.telegram.ui.Components;
-public final class xr0 extends org.telegram.ui.su0 {
-    public final xu0 f32655a;
+public final class xr0 extends g.p {
+    public final vr0 f29981c;
+    public final zu0 d;
 
-    public xr0(xu0 xu0Var) {
-        this.f32655a = xu0Var;
+    public xr0(zu0 zu0Var, vr0 vr0Var) {
+        this.d = zu0Var;
+        this.f29981c = vr0Var;
     }
 
     @Override
-    public final org.telegram.ui.cv0 E(org.telegram.messenger.MessageObject r19, org.telegram.tgnet.TLRPC.FileLocation r20, int r21, boolean r22, boolean r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xr0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.cv0");
+    public final int i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xr0.i(int):int");
     }
 }

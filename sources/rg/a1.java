@@ -1,68 +1,107 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.text.TextPaint;
-import di.c6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.na;
-public final class a1 extends org.telegram.ui.Cells.w0 {
-    public final na f45113k2;
-    public final TextPaint f45114l2;
-    public final c1 f45115m2;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.j6;
+public final class a1 {
+    public static a1 f42272j;
+    public final z0 f42273a;
+    public final Paint f42274b;
+    public Paint f42275c;
+    public final Drawable d;
+    public final Drawable e;
+    public y0 f42276f;
+    public y0 f42277g;
+    public final y0 h;
+    public int f42278i;
 
-    public a1(c1 c1Var, Context context, com.google.firebase.messaging.n nVar) {
-        super(context, nVar, false);
-        this.f45115m2 = c1Var;
-        this.f45113k2 = new na(c1Var.d, this, 10, false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f45114l2 = textPaint;
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-        textPaint.setColor(-1);
+    public a1() {
+        z0 z0Var = new z0(j6.Lj, j6.Mj, j6.Nj, j6.Oj, null);
+        this.f42273a = z0Var;
+        z0 z0Var2 = new z0(j6.fk, j6.gk, -1, -1, null);
+        this.f42274b = z0Var.f42583f;
+        this.e = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
+        this.f42276f = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), z0Var);
+        this.h = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), z0Var2);
+        this.f42277g = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_normal), z0Var);
+        this.d = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
+        z0Var.a();
+        b();
     }
 
-    @Override
-    public final Paint H(String str) {
-        float f7;
-        float f10;
-        if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
-            if ("paintChatActionBackground".equals(str)) {
-                c6 c6Var = this.f45115m2.h;
-                c6Var.f45195v0 = true;
-                boolean z10 = c6Var.B0;
-                na naVar = this.f45113k2;
-                if (naVar.f28718r != z10) {
-                    naVar.f28718r = z10;
-                    if (naVar.f28709i == 10) {
-                        ColorMatrix colorMatrix = new ColorMatrix();
-                        colorMatrix.setSaturation(1.6f);
-                        if (naVar.f28718r) {
-                            f7 = 0.97f;
-                        } else {
-                            f7 = 0.92f;
-                        }
-                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, f7);
-                        if (naVar.f28718r) {
-                            f10 = 0.12f;
-                        } else {
-                            f10 = -0.06f;
-                        }
-                        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f10);
-                        naVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                        naVar.f28708g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                    }
-                }
-                Paint c10 = naVar.c(1.0f);
-                if (c10 != null) {
-                    return c10;
-                }
-            }
-            return super.H(str);
+    public static y0 c(Drawable drawable, z0 z0Var) {
+        if (drawable == null) {
+            return null;
         }
-        return this.f45114l2;
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int minimumHeight = drawable.getMinimumHeight();
+        Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, minimumHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
+        drawable.draw(canvas);
+        z0Var.f42583f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        z0Var.d(0, -intrinsicWidth, 0, intrinsicWidth, 0.0f, minimumHeight);
+        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, z0Var.f42583f);
+        z0Var.f42583f.setXfermode(null);
+        int[] iArr = z0Var.f42588l;
+        ?? bitmapDrawable = new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), createBitmap);
+        bitmapDrawable.f42578b = drawable;
+        int[] iArr2 = new int[iArr.length];
+        bitmapDrawable.f42577a = iArr2;
+        System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
+        return bitmapDrawable;
+    }
+
+    public static a1 d() {
+        if (f42272j == null) {
+            f42272j = new a1();
+        }
+        return f42272j;
+    }
+
+    public final y0 a(y0 y0Var) {
+        z0 z0Var = this.f42273a;
+        int[] iArr = z0Var.f42588l;
+        int i10 = iArr[0];
+        int[] iArr2 = y0Var.f42577a;
+        if (i10 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
+            return y0Var;
+        }
+        return c(y0Var.f42578b, z0Var);
+    }
+
+    public final void b() {
+        int i10 = j6.f19267z9;
+        if (j6.w0(null, i10, false) != this.f42278i) {
+            this.f42278i = j6.w0(null, i10, false);
+            this.e.setColorFilter(new PorterDuffColorFilter(this.f42278i, PorterDuff.Mode.MULTIPLY));
+        }
+        this.f42276f = a(this.f42276f);
+        this.f42277g = a(this.f42277g);
+    }
+
+    public final Paint e() {
+        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
+            if (this.f42275c == null) {
+                this.f42275c = new Paint(1);
+            }
+            this.f42275c.setColor(j6.w0(null, j6.Oh, false));
+            return this.f42275c;
+        }
+        return this.f42274b;
+    }
+
+    public final void f(float f7, float f10, int i10, int i11) {
+        this.f42273a.d(0, f7, 0, i10, f10, i11);
     }
 }

@@ -3,21 +3,21 @@ package b5;
 import android.os.Build;
 import java.util.HashSet;
 public abstract class c implements e {
-    public static final HashSet f2483c = new HashSet();
-    public final String f2484a;
-    public final String f2485b;
+    public static final HashSet f3412c = new HashSet();
+    public final String f3413a;
+    public final String f3414b;
 
     public c(String str, String str2) {
-        this.f2484a = str;
-        this.f2485b = str2;
-        f2483c.add(this);
+        this.f3413a = str;
+        this.f3414b = str2;
+        f3412c.add(this);
     }
 
     public abstract boolean a();
 
     public boolean b() {
-        HashSet hashSet = a.f2482a;
-        String str = this.f2485b;
+        HashSet hashSet = a.f3411a;
+        String str = this.f3414b;
         if (!hashSet.contains(str)) {
             String str2 = Build.TYPE;
             if ("eng".equals(str2) || "userdebug".equals(str2)) {

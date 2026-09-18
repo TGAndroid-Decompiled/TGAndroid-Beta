@@ -3,43 +3,43 @@ package y9;
 import java.util.List;
 import org.telegram.ui.Cells.p6;
 public final class g0 {
-    public String f49758a;
-    public String f49759b;
-    public String f49760c;
+    public String f46547a;
+    public String f46548b;
+    public String f46549c;
     public Long d;
-    public Long f49761e;
-    public Boolean f49762f;
-    public l1 f49763g;
+    public Long e;
+    public Boolean f46550f;
+    public l1 f46551g;
     public c2 h;
-    public b2 f49764i;
-    public m1 f49765j;
-    public List f49766k;
-    public Integer f49767l;
+    public b2 f46552i;
+    public m1 f46553j;
+    public List f46554k;
+    public Integer f46555l;
 
     public final h0 a() {
         String str;
-        if (this.f49758a == null) {
+        if (this.f46547a == null) {
             str = " generator";
         } else {
             str = "";
         }
-        if (this.f49759b == null) {
+        if (this.f46548b == null) {
             str = str.concat(" identifier");
         }
         if (this.d == null) {
             str = p6.t(str, " startedAt");
         }
-        if (this.f49762f == null) {
+        if (this.f46550f == null) {
             str = p6.t(str, " crashed");
         }
-        if (this.f49763g == null) {
+        if (this.f46551g == null) {
             str = p6.t(str, " app");
         }
-        if (this.f49767l == null) {
+        if (this.f46555l == null) {
             str = p6.t(str, " generatorType");
         }
         if (str.isEmpty()) {
-            return new h0(this.f49758a, this.f49759b, this.f49760c, this.d.longValue(), this.f49761e, this.f49762f.booleanValue(), this.f49763g, this.h, this.f49764i, this.f49765j, this.f49766k, this.f49767l.intValue());
+            return new h0(this.f46547a, this.f46548b, this.f46549c, this.d.longValue(), this.e, this.f46550f.booleanValue(), this.f46551g, this.h, this.f46552i, this.f46553j, this.f46554k, this.f46555l.intValue());
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }

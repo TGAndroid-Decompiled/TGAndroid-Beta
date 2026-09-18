@@ -1,30 +1,27 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class si implements Runnable {
-    public final int f19010a;
-    public final SendMessagesHelper f19011b;
-    public final long f19012c;
-    public final ArrayList d;
+    public final int f17337a;
+    public final SendMessagesHelper f17338b;
+    public final TLRPC.Message f17339c;
+    public final int d;
 
-    public si(SendMessagesHelper sendMessagesHelper, long j3, ArrayList arrayList, int i10) {
-        this.f19010a = i10;
-        this.f19011b = sendMessagesHelper;
-        this.f19012c = j3;
-        this.d = arrayList;
+    public si(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11) {
+        this.f17337a = i11;
+        this.f17338b = sendMessagesHelper;
+        this.f17339c = message;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19010a) {
+        switch (this.f17337a) {
             case 0:
-                SendMessagesHelper.u(this.f19011b, this.f19012c, this.d);
-                return;
-            case 1:
-                SendMessagesHelper.k1(this.f19011b, this.f19012c, this.d);
+                this.f17338b.lambda$performSendMessageRequest$102(this.f17339c, this.d);
                 return;
             default:
-                SendMessagesHelper.R0(this.f19011b, this.f19012c, this.d);
+                this.f17338b.lambda$sendMessage$15(this.f17339c, this.d);
                 return;
         }
     }

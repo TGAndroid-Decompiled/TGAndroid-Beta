@@ -1,40 +1,16 @@
 package org.telegram.ui.Components;
+public final class hn extends s4.j {
+    public final un F;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class hn extends s4.d0 {
-    public final ig.e0 f26762r;
-
-    public hn(ig.e0 e0Var, Context context) {
-        super(context);
-        this.f26762r = e0Var;
+    public hn(un unVar) {
+        this.F = unVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int i11;
-        tn tnVar = (tn) this.f26762r.V;
-        if (tnVar.V0) {
-            i10 = -1;
+    public final void P(s4.c1 c1Var) {
+        if (c1Var.b() == 0) {
+            un unVar = this.F;
+            unVar.f26463b.X1(unVar, 0);
         }
-        int k10 = super.k(i10, view);
-        if (tnVar.V0) {
-            k10 += AndroidUtilities.dp(160.0f);
-        }
-        if (!tnVar.V0) {
-            k10 = org.telegram.messenger.w1.z(7.0f, tnVar.R0 - AndroidUtilities.statusBarHeight, k10);
-        }
-        if (tnVar.V0 && k10 == 0 && (i11 = tnVar.W0) >= 0) {
-            tn.K(tnVar, i11);
-            tnVar.W0 = -1;
-        }
-        tnVar.V0 = false;
-        return k10;
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
     }
 }

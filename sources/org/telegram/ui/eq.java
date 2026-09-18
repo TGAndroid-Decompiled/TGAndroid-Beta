@@ -1,556 +1,79 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-public final class eq extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
-    public org.telegram.ui.Cells.j6 E;
-    public ArrayList F;
-    public boolean G;
-    public TLRPC.Chat f36138a;
-    public TLRPC.ChatFull f36139b;
-    public long f36140c;
-    public ArrayList d;
-    public LinearLayout f36141e;
-    public org.telegram.ui.Components.ll0 f36142f;
-    public dq h;
-    public org.telegram.ui.Cells.w8 f36143n;
-    public ArrayList f36144r;
-    public LinearLayout f36145s;
-    public int v;
-    public int f36146w;
-    public org.telegram.ui.Cells.j6 f36147x;
-    public org.telegram.ui.Cells.j6 f36148y;
+public final class eq implements org.telegram.ui.ActionBar.b2, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
+    public final int f33458a;
+    public final pq f33459b;
 
-    public final void V(int i10, boolean z10) {
-        dq dqVar;
-        boolean z11;
-        boolean z12;
-        int i11;
-        ArrayList arrayList = this.F;
-        ArrayList arrayList2 = this.f36144r;
-        if (this.v != i10) {
-            org.telegram.ui.Cells.w8 w8Var = this.f36143n;
-            if (w8Var != null) {
-                if (i10 != 1 && i10 != 0) {
-                    z12 = false;
-                } else {
-                    z12 = true;
-                }
-                w8Var.setChecked(z12);
-                if (z12) {
-                    i11 = org.telegram.ui.ActionBar.j6.f20701f6;
-                } else {
-                    i11 = org.telegram.ui.ActionBar.j6.f20684e6;
-                }
-                int w02 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
-                if (z12) {
-                    this.f36143n.b(w02, z12);
-                } else {
-                    this.f36143n.setBackgroundColorAnimatedReverse(w02);
-                }
-            }
-            this.v = i10;
-            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                org.telegram.ui.Cells.j6 j6Var = (org.telegram.ui.Cells.j6) arrayList.get(i12);
-                if (i10 == i12) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                j6Var.a(z11, z10);
-            }
-            int i13 = 2;
-            if (i10 == 1) {
-                if (z10) {
-                    this.d.clear();
-                    int size = arrayList2.size();
-                    int i14 = 0;
-                    while (i14 < size) {
-                        Object obj = arrayList2.get(i14);
-                        i14++;
-                        TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj;
-                        if (tL_availableReaction.reaction.equals("👍") || tL_availableReaction.reaction.equals("👎")) {
-                            this.d.add(tL_availableReaction.reaction);
-                        }
-                    }
-                    if (this.d.isEmpty() && arrayList2.size() >= 2) {
-                        this.d.add(((TLRPC.TL_availableReaction) arrayList2.get(0)).reaction);
-                        this.d.add(((TLRPC.TL_availableReaction) arrayList2.get(1)).reaction);
-                    }
-                }
-                dq dqVar2 = this.h;
-                if (dqVar2 != null && z10) {
-                    if (this.G) {
-                        i13 = 1;
-                    }
-                    dqVar2.s(i13, arrayList2.size() + 1);
-                }
-            } else if (!this.d.isEmpty()) {
-                this.d.clear();
-                dq dqVar3 = this.h;
-                if (dqVar3 != null && z10) {
-                    if (this.G) {
-                        i13 = 1;
-                    }
-                    dqVar3.t(i13, arrayList2.size() + 1);
-                }
-            }
-            if (!this.G && (dqVar = this.h) != null && z10) {
-                dqVar.m(1);
-            }
-            dq dqVar4 = this.h;
-            if (dqVar4 != null && !z10) {
-                dqVar4.l();
-            }
-        }
-    }
-
-    public final void W() {
-        this.f36141e.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20608a7, false));
-        org.telegram.ui.Cells.w8 w8Var = this.f36143n;
-        if (w8Var != null) {
-            w8Var.d(org.telegram.ui.ActionBar.j6.f20719g6, org.telegram.ui.ActionBar.j6.O6, org.telegram.ui.ActionBar.j6.P6, org.telegram.ui.ActionBar.j6.Q6, org.telegram.ui.ActionBar.j6.R6);
-        }
-        this.h.l();
+    public eq(pq pqVar, int i10) {
+        this.f33458a = i10;
+        this.f33459b = pqVar;
     }
 
     @Override
-    public final View createView(Context context) {
-        int i10;
-        ArrayList arrayList = this.F;
-        this.G = ChatObject.isChannelAndNotMegaGroup(this.f36140c, this.currentAccount);
-        this.actionBar.setTitle(LocaleController.getString(R.string.Reactions));
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new ic(this, 4));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        this.f36144r.addAll(getMediaDataController().getEnabledReactionsList());
-        if (this.G) {
-            org.telegram.ui.Cells.w8 w8Var = new org.telegram.ui.Cells.w8(context);
-            this.f36143n = w8Var;
-            w8Var.setHeight(56);
-            this.f36143n.f(LocaleController.getString(R.string.EnableReactions), !this.d.isEmpty(), false);
-            org.telegram.ui.Cells.w8 w8Var2 = this.f36143n;
-            if (w8Var2.f23491e.h) {
-                i10 = org.telegram.ui.ActionBar.j6.f20701f6;
-            } else {
-                i10 = org.telegram.ui.ActionBar.j6.f20684e6;
-            }
-            w8Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-            this.f36143n.setTypeface(AndroidUtilities.bold());
-            this.f36143n.setOnClickListener(new View.OnClickListener(this) {
-                public final eq f34857b;
-
-                {
-                    this.f34857b = this;
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        TLRPC.TL_chatAdminRights o02;
+        switch (this.f33458a) {
+            case 0:
+                this.f33459b.r0(true);
+                return;
+            case 1:
+                pq pqVar = this.f33459b;
+                pqVar.t0(true);
+                hq hqVar = new hq(pqVar, 0);
+                if (!pqVar.K && !pqVar.L) {
+                    pqVar.getMessagesController().addUserToChat(pqVar.f36711w.f18121id, pqVar.v, 0, pqVar.Y0, pqVar, true, hqVar, new eq(pqVar, 3));
+                    return;
                 }
-
-                @Override
-                public final void onClick(View view) {
-                    int i11;
-                    switch (r2) {
-                        case 0:
-                            eq eqVar = this.f34857b;
-                            if (eqVar.f36143n.f23491e.h) {
-                                i11 = 2;
-                            } else {
-                                i11 = 1;
-                            }
-                            eqVar.V(i11, true);
-                            return;
-                        case 1:
-                            final eq eqVar2 = this.f34857b;
-                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    switch (r2) {
-                                        case 0:
-                                            eqVar2.V(0, true);
-                                            return;
-                                        case 1:
-                                            eqVar2.V(1, true);
-                                            return;
-                                        default:
-                                            eqVar2.V(2, true);
-                                            return;
-                                    }
-                                }
-                            });
-                            return;
-                        case 2:
-                            final eq eqVar3 = this.f34857b;
-                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    switch (r2) {
-                                        case 0:
-                                            eqVar3.V(0, true);
-                                            return;
-                                        case 1:
-                                            eqVar3.V(1, true);
-                                            return;
-                                        default:
-                                            eqVar3.V(2, true);
-                                            return;
-                                    }
-                                }
-                            });
-                            return;
-                        default:
-                            final eq eqVar4 = this.f34857b;
-                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    switch (r2) {
-                                        case 0:
-                                            eqVar4.V(0, true);
-                                            return;
-                                        case 1:
-                                            eqVar4.V(1, true);
-                                            return;
-                                        default:
-                                            eqVar4.V(2, true);
-                                            return;
-                                    }
-                                }
-                            });
-                            return;
-                    }
-                }
-            });
-            linearLayout.addView(this.f36143n, w7.x5.n(-1, -2));
-        }
-        org.telegram.ui.Cells.l4 l4Var = new org.telegram.ui.Cells.l4(context);
-        l4Var.setText(LocaleController.getString(R.string.AvailableReactions));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f36145s = linearLayout2;
-        linearLayout2.setOrientation(1);
-        org.telegram.ui.Cells.j6 j6Var = new org.telegram.ui.Cells.j6(context, null);
-        this.f36147x = j6Var;
-        j6Var.c(LocaleController.getString(R.string.AllReactions), false, true);
-        org.telegram.ui.Cells.j6 j6Var2 = new org.telegram.ui.Cells.j6(context, null);
-        this.f36148y = j6Var2;
-        j6Var2.c(LocaleController.getString(R.string.SomeReactions), false, true);
-        org.telegram.ui.Cells.j6 j6Var3 = new org.telegram.ui.Cells.j6(context, null);
-        this.E = j6Var3;
-        j6Var3.c(LocaleController.getString(R.string.NoReactions), false, false);
-        this.f36145s.addView(l4Var, w7.x5.n(-1, -2));
-        this.f36145s.addView(this.f36147x, w7.x5.n(-1, -2));
-        this.f36145s.addView(this.f36148y, w7.x5.n(-1, -2));
-        this.f36145s.addView(this.E, w7.x5.n(-1, -2));
-        arrayList.clear();
-        arrayList.add(this.f36147x);
-        arrayList.add(this.f36148y);
-        arrayList.add(this.E);
-        this.f36147x.setOnClickListener(new View.OnClickListener(this) {
-            public final eq f34857b;
-
-            {
-                this.f34857b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                int i11;
-                switch (r2) {
-                    case 0:
-                        eq eqVar = this.f34857b;
-                        if (eqVar.f36143n.f23491e.h) {
-                            i11 = 2;
-                        } else {
-                            i11 = 1;
-                        }
-                        eqVar.V(i11, true);
-                        return;
-                    case 1:
-                        final eq eqVar2 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar2.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar2.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar2.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    case 2:
-                        final eq eqVar3 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar3.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar3.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar3.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    default:
-                        final eq eqVar4 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar4.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar4.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar4.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                }
-            }
-        });
-        this.f36148y.setOnClickListener(new View.OnClickListener(this) {
-            public final eq f34857b;
-
-            {
-                this.f34857b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                int i11;
-                switch (r2) {
-                    case 0:
-                        eq eqVar = this.f34857b;
-                        if (eqVar.f36143n.f23491e.h) {
-                            i11 = 2;
-                        } else {
-                            i11 = 1;
-                        }
-                        eqVar.V(i11, true);
-                        return;
-                    case 1:
-                        final eq eqVar2 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar2.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar2.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar2.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    case 2:
-                        final eq eqVar3 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar3.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar3.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar3.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    default:
-                        final eq eqVar4 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar4.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar4.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar4.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                }
-            }
-        });
-        this.E.setOnClickListener(new View.OnClickListener(this) {
-            public final eq f34857b;
-
-            {
-                this.f34857b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                int i11;
-                switch (r2) {
-                    case 0:
-                        eq eqVar = this.f34857b;
-                        if (eqVar.f36143n.f23491e.h) {
-                            i11 = 2;
-                        } else {
-                            i11 = 1;
-                        }
-                        eqVar.V(i11, true);
-                        return;
-                    case 1:
-                        final eq eqVar2 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar2.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar2.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar2.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    case 2:
-                        final eq eqVar3 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar3.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar3.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar3.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    default:
-                        final eq eqVar4 = this.f34857b;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        eqVar4.V(0, true);
-                                        return;
-                                    case 1:
-                                        eqVar4.V(1, true);
-                                        return;
-                                    default:
-                                        eqVar4.V(2, true);
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                }
-            }
-        });
-        int i11 = org.telegram.ui.ActionBar.j6.f20664d6;
-        l4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
-        org.telegram.ui.Cells.j6 j6Var4 = this.f36147x;
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
-        int i12 = org.telegram.ui.ActionBar.j6.f20754i6;
-        j6Var4.setBackground(org.telegram.ui.ActionBar.j6.g0(w02, org.telegram.ui.ActionBar.j6.w0(null, i12, false)));
-        this.f36148y.setBackground(org.telegram.ui.ActionBar.j6.g0(org.telegram.ui.ActionBar.j6.w0(null, i11, false), org.telegram.ui.ActionBar.j6.w0(null, i12, false)));
-        this.E.setBackground(org.telegram.ui.ActionBar.j6.g0(org.telegram.ui.ActionBar.j6.w0(null, i11, false), org.telegram.ui.ActionBar.j6.w0(null, i12, false)));
-        V(this.f36146w, false);
-        org.telegram.ui.Components.ll0 ll0Var = new org.telegram.ui.Components.ll0(context, null);
-        this.f36142f = ll0Var;
-        ll0Var.setLayoutManager(new s4.c0());
-        org.telegram.ui.Components.ll0 ll0Var2 = this.f36142f;
-        dq dqVar = new dq(this, context);
-        this.h = dqVar;
-        ll0Var2.setAdapter(dqVar);
-        this.f36142f.setOnItemClickListener(new i(this, 4));
-        linearLayout.addView(this.f36142f, w7.x5.l(1.0f, -1, 0));
-        this.f36142f.o1();
-        this.actionBar.setAdaptiveBackground(this.f36142f);
-        this.f36141e = linearLayout;
-        this.fragmentView = linearLayout;
-        W();
-        return this.f36141e;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        ArrayList arrayList = this.f36144r;
-        if (i11 == this.currentAccount) {
-            if (i10 == NotificationCenter.reactionsDidLoad) {
-                arrayList.clear();
-                arrayList.addAll(getMediaDataController().getEnabledReactionsList());
-                this.h.l();
-            } else if (i10 == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.f36140c)) {
-                org.telegram.ui.ActionBar.d5 d5Var = this.parentLayout;
-                if (d5Var != null && d5Var.getLastFragment() == this) {
-                    finishFragment();
+                MessagesController messagesController = pqVar.getMessagesController();
+                long j3 = pqVar.f36711w.f18121id;
+                TLRPC.User user = pqVar.v;
+                if (pqVar.K) {
+                    o02 = pqVar.M;
                 } else {
-                    removeSelfFromStack();
+                    o02 = pq.o0(false);
                 }
-            }
+                messagesController.setUserAdminRole(j3, user, o02, pqVar.S, false, pqVar, pqVar.Z0, pqVar.K, pqVar.Y0, hqVar, new eq(pqVar, 2));
+                return;
+            case 2:
+            case 3:
+            default:
+                pq pqVar2 = this.f33459b;
+                pqVar2.getClass();
+                pqVar2.presentFragment(new ih1(6, null));
+                return;
+            case 4:
+                this.f33459b.finishFragment();
+                return;
+            case 5:
+                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+                pq pqVar3 = this.f33459b;
+                x5 x5Var = new x5(16, pqVar3, twoStepVerificationActivity);
+                twoStepVerificationActivity.Z = 0;
+                twoStepVerificationActivity.f31608b0 = x5Var;
+                pqVar3.presentFragment(twoStepVerificationActivity);
+                return;
         }
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        return w7.a6.a(new e(this, 8), org.telegram.ui.ActionBar.j6.f20664d6, org.telegram.ui.ActionBar.j6.G6, org.telegram.ui.ActionBar.j6.f21062z6, org.telegram.ui.ActionBar.j6.f20754i6, org.telegram.ui.ActionBar.j6.f20608a7, org.telegram.ui.ActionBar.j6.B6, org.telegram.ui.ActionBar.j6.f20881p7, org.telegram.ui.ActionBar.j6.f20701f6, org.telegram.ui.ActionBar.j6.f20719g6, org.telegram.ui.ActionBar.j6.O6, org.telegram.ui.ActionBar.j6.P6, org.telegram.ui.ActionBar.j6.Q6, org.telegram.ui.ActionBar.j6.R6);
+    public void run(long j3) {
+        pq.U(this.f33459b, j3);
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.eq.onFragmentCreate():boolean");
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        getMessagesController().setChatReactions(this.f36140c, this.v, this.d);
-        getNotificationCenter().removeObserver(this, NotificationCenter.reactionsDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
+    public boolean run(TLRPC.TL_error tL_error) {
+        switch (this.f33458a) {
+            case 2:
+                this.f33459b.t0(false);
+                return true;
+            case 3:
+                this.f33459b.t0(false);
+                return true;
+            default:
+                return pq.W(this.f33459b, tL_error);
+        }
     }
 }

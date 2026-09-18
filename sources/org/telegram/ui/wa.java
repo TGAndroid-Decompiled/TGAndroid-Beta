@@ -1,46 +1,64 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class wa implements ch.a {
-    public final int f41863a;
-    public final Object f41864b;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+public final class wa implements MessagesStorage.IntCallback {
+    public final int f38631a;
+    public final Object f38632b;
 
     public wa(Object obj, int i10) {
-        this.f41863a = i10;
-        this.f41864b = obj;
+        this.f38631a = i10;
+        this.f38632b = obj;
     }
 
     @Override
-    public final void e(bh.a aVar, RectF rectF) {
-        switch (this.f41863a) {
+    public final void run(int i10) {
+        xu0 xu0Var;
+        int i11 = this.f38631a;
+        Object obj = this.f38632b;
+        switch (i11) {
             case 0:
-            case 1:
-            default:
-                aVar.f2648a = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f41863a) {
-            case 0:
-                ((rb) this.f41864b).Z(canvas, rectF);
+                ((wb) obj).U0(true);
                 return;
             case 1:
-                bq0 bq0Var = (bq0) this.f41864b;
-                j0 j0Var = bq0Var.d;
-                mp0 mp0Var = bq0Var.h.f41602b;
-                hh.d.b(mp0Var, canvas, rectF, mp0Var, j0Var);
-                mp0 mp0Var2 = bq0Var.f34874n.f41602b;
-                hh.d.b(mp0Var2, canvas, rectF, mp0Var2, j0Var);
+                bo boVar = ((nn) obj).f36139a;
+                if (i10 > 0 && boVar.getParentActivity() != null && boVar.fragmentView != null) {
+                    org.telegram.ui.Components.vc.a0(boVar).m(org.telegram.ui.Components.uc.I, i10, 0, 0, boVar.f32279ea).j();
+                    return;
+                }
+                return;
+            case 2:
+                ((NotificationsCustomSettingsActivity) obj).l0(true);
+                return;
+            case 3:
+                PhotoViewer photoViewer = (PhotoViewer) obj;
+                if (photoViewer.f31132y != null && (xu0Var = photoViewer.f30954e0) != null && i10 > 0) {
+                    org.telegram.ui.Components.vc.F(xu0Var, true).j();
+                    return;
+                }
+                return;
+            case 4:
+                ProfileActivity profileActivity = (ProfileActivity) obj;
+                if (i10 == 1) {
+                    NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
+                    int i12 = NotificationCenter.closeChats;
+                    notificationCenter.removeObserver(profileActivity, i12);
+                    profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i12, new Object[0]);
+                    profileActivity.J1 = 0;
+                    profileActivity.finishFragment();
+                    return;
+                }
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f31286e1));
                 return;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f41864b;
-                org.telegram.ui.Components.ll0 ll0Var = premiumPreviewFragment.f33771a;
-                hh.d.b(ll0Var, canvas, rectF, ll0Var, premiumPreviewFragment.f33777d0);
-                return;
+                fg1 fg1Var = ((kf1) obj).f35275a;
+                if (i10 == 0) {
+                    fg1Var.O0(false);
+                    return;
+                } else {
+                    fg1Var.finishFragment();
+                    return;
+                }
         }
     }
 }

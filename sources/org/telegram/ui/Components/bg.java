@@ -1,20 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class bg extends fi.p0 {
-    public final ChatActivityEnterView f24695y;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class bg extends org.telegram.ui.bo {
+    public boolean Pc;
+    public final TLRPC.User Qc;
+    public final TLRPC.User Rc;
+    public final long Sc;
 
-    public bg(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.f24695y = chatActivityEnterView;
+    public bg(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j3) {
+        super(bundle);
+        this.Qc = user;
+        this.Rc = user2;
+        this.Sc = j3;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ChatActivityEnterView chatActivityEnterView = this.f24695y;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23744n3 == 1) {
-            chatActivityEnterView.Y2.x(f7);
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Pc) {
+            this.Pc = true;
+            vc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Rc)), new ai.j(this, this.Sc, 20)), R.raw.contact_check).j();
         }
     }
 }

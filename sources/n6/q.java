@@ -8,13 +8,13 @@ import android.util.Log;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class q {
-    public static final a0.l f16586a = new a0.l(0);
-    public static Locale f16587b;
+    public static final a0.m f15087a = new a0.m(0);
+    public static Locale f15088b;
 
     public static String a(Context context) {
         String packageName = context.getPackageName();
         try {
-            Context context2 = w6.b.a(context).f14823a;
+            Context context2 = w6.b.a(context).f43841a;
             return context2.getPackageManager().getApplicationLabel(context2.getPackageManager().getApplicationInfo(packageName, 0)).toString();
         } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;
@@ -140,19 +140,19 @@ public abstract class q {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.l lVar = f16586a;
-        synchronized (lVar) {
+        a0.m mVar = f15087a;
+        synchronized (mVar) {
             try {
-                Locale locale = w7.y.a(context.getResources().getConfiguration()).f16341a.get(0);
-                if (!locale.equals(f16587b)) {
-                    lVar.clear();
-                    f16587b = locale;
+                Locale locale = w7.z.a(context.getResources().getConfiguration()).f14858a.get(0);
+                if (!locale.equals(f15088b)) {
+                    mVar.clear();
+                    f15088b = locale;
                 }
-                String str2 = (String) lVar.get(str);
+                String str2 = (String) mVar.get(str);
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = k6.g.f14818a;
+                AtomicBoolean atomicBoolean = k6.g.f13514a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {
@@ -167,7 +167,7 @@ public abstract class q {
                         if (TextUtils.isEmpty(string)) {
                             Log.w("GoogleApiAvailability", "Got empty resource: ".concat(str));
                         } else {
-                            f16586a.put(str, string);
+                            f15087a.put(str, string);
                             return string;
                         }
                     }

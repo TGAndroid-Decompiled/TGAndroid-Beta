@@ -1,61 +1,64 @@
 package org.telegram.ui;
 
-import android.os.Build;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class hf1 extends s4.s0 {
-    public final int f36992a;
-    public final eg1 f36993b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class hf1 extends s4.c0 {
+    public boolean I;
+    public final fg1 J;
 
-    public hf1(eg1 eg1Var, int i10) {
-        this.f36992a = i10;
-        this.f36993b = eg1Var;
+    public hf1(fg1 fg1Var) {
+        this.J = fg1Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        eg1 eg1Var;
-        bh.f fVar;
-        switch (this.f36992a) {
-            case 0:
-                eg1 eg1Var2 = this.f36993b;
-                int L0 = eg1Var2.F.L0();
-                if (L0 != -1) {
-                    s4.c1 K = recyclerView.K(L0);
-                    boolean z11 = false;
-                    if (K != null) {
-                        i12 = K.f45739a.getTop();
-                    } else {
-                        i12 = 0;
-                    }
-                    if (L0 == 0) {
-                        int i13 = 0 - i12;
-                        if (i12 < 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        Math.abs(i13);
-                    } else if (L0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    eg1Var2.G0((z10 || !eg1Var2.K) ? true : true, true);
-                    return;
-                }
+    public final void b0(of.e eVar, s4.z0 z0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            try {
+                super.b0(eVar, z0Var);
                 return;
-            case 1:
-                this.f36993b.y0();
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = (eg1Var = this.f36993b).f36042f1) != null) {
-                    fVar.f(i10, i11);
-                    eg1Var.x0();
-                    return;
-                }
-                return;
+            } catch (IndexOutOfBoundsException unused) {
+                throw new RuntimeException("Inconsistency detected. ");
+            }
         }
+        try {
+            super.b0(eVar, z0Var);
+        } catch (IndexOutOfBoundsException e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new g01(this, 18));
+        }
+    }
+
+    @Override
+    public final void b1(View view, View view2, int i10, int i11) {
+        this.I = true;
+        super.b1(view, view2, i10, i11);
+        this.I = false;
+    }
+
+    @Override
+    public final void h1(int i10, int i11) {
+        if (this.I) {
+            i11 -= this.J.N.getPaddingTop();
+        }
+        super.h1(i10, i11);
+    }
+
+    @Override
+    public final int o0(int r19, of.e r20, s4.z0 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hf1.o0(int, of.e, s4.z0):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        if (this.J.f33682x > 0 && i10 == 1) {
+            super.v0(recyclerView, z0Var, i10);
+            return;
+        }
+        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
+        oVar.f42852a = i10;
+        w0(oVar);
     }
 }

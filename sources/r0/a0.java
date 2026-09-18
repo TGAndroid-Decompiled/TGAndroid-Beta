@@ -40,10 +40,10 @@ public abstract class a0 {
         b1 x0Var;
         if (w0.d && view.isAttachedToWindow()) {
             try {
-                Object obj = w0.f44741a.get(view.getRootView());
+                Object obj = w0.f41906a.get(view.getRootView());
                 if (obj != null) {
-                    Rect rect = (Rect) w0.f44742b.get(obj);
-                    Rect rect2 = (Rect) w0.f44743c.get(obj);
+                    Rect rect = (Rect) w0.f41907b.get(obj);
+                    Rect rect2 = (Rect) w0.f41908c.get(obj);
                     if (rect != null && rect2 != null) {
                         int i10 = Build.VERSION.SDK_INT;
                         if (i10 >= 34) {
@@ -55,16 +55,16 @@ public abstract class a0 {
                         } else {
                             x0Var = new x0();
                         }
-                        x0Var.e(i0.c.b(rect.left, rect.top, rect.right, rect.bottom));
-                        x0Var.g(i0.c.b(rect2.left, rect2.top, rect2.right, rect2.bottom));
+                        x0Var.e(i0.b.b(rect.left, rect.top, rect.right, rect.bottom));
+                        x0Var.g(i0.b.b(rect2.left, rect2.top, rect2.right, rect2.bottom));
                         l1 b10 = x0Var.b();
-                        b10.f44712a.r(b10);
-                        b10.f44712a.d(view.getRootView());
+                        b10.f41882a.r(b10);
+                        b10.f41882a.d(view.getRootView());
                         return b10;
                     }
                 }
-            } catch (IllegalAccessException e7) {
-                Log.w("WindowInsetsCompat", "Failed to get insets from AttachInfo. " + e7.getMessage(), e7);
+            } catch (IllegalAccessException e) {
+                Log.w("WindowInsetsCompat", "Failed to get insets from AttachInfo. " + e.getMessage(), e);
             }
         }
         return null;

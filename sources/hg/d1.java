@@ -1,61 +1,44 @@
 package hg;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class d1 implements Comparator {
-    public final a0.i f11018a;
-    public final ArrayList f11019b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.f9;
+public final class d1 extends View {
+    public final Drawable f10253a;
+    public final ImageReceiver f10254b;
 
-    public d1(a0.i iVar, ArrayList arrayList) {
-        this.f11018a = iVar;
-        this.f11019b = arrayList;
+    public d1(e1 e1Var, Context context) {
+        super(context);
+        this.f10253a = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
+        f9 f9Var = new f9((f6) null);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f10254b = imageReceiver;
+        f9Var.r(e1Var.getUserConfig().getCurrentUser());
+        imageReceiver.setForUserOrChat(e1Var.getUserConfig().getCurrentUser(), f9Var);
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        long j3;
-        long j10;
-        TLObject tLObject = (TLObject) obj;
-        TLObject tLObject2 = (TLObject) obj2;
-        if (tLObject instanceof TLRPC.User) {
-            j3 = ((TLRPC.User) tLObject).f20016id;
-        } else {
-            j3 = -((TLRPC.Chat) tLObject).f19869id;
-        }
-        if (tLObject2 instanceof TLRPC.User) {
-            j10 = ((TLRPC.User) tLObject2).f20016id;
-        } else {
-            j10 = -((TLRPC.Chat) tLObject2).f19869id;
-        }
-        a0.i iVar = this.f11018a;
-        if (iVar.h(j3) < 0 || iVar.h(j10) < 0) {
-            if (iVar.h(j3) < 0) {
-                if (iVar.h(j10) < 0) {
-                    Long valueOf = Long.valueOf(j3);
-                    ArrayList arrayList = this.f11019b;
-                    int indexOf = arrayList.indexOf(valueOf);
-                    int indexOf2 = arrayList.indexOf(Long.valueOf(j10));
-                    if (indexOf != -1 && indexOf2 != -1) {
-                        if (indexOf >= indexOf2) {
-                            if (indexOf != indexOf2) {
-                                return 1;
-                            }
-                            return 0;
-                        }
-                    } else if (indexOf == -1 || indexOf2 != -1) {
-                        if (indexOf == -1 && indexOf2 != -1) {
-                            return 1;
-                        }
-                        return 0;
-                    }
-                } else {
-                    return 1;
-                }
-            }
-            return -1;
-        }
-        return 0;
+    public final void dispatchDraw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(62.0f);
+        int dp2 = AndroidUtilities.dp(85.0f);
+        Drawable drawable = this.f10253a;
+        drawable.setBounds(0, 0, dp, dp2);
+        drawable.draw(canvas);
+        int dp3 = AndroidUtilities.dp(62.0f);
+        ImageReceiver imageReceiver = this.f10254b;
+        imageReceiver.setRoundRadius(dp3);
+        imageReceiver.setImageCoords(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+        imageReceiver.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(85.0f), 1073741824));
     }
 }

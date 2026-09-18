@@ -1,4 +1,9 @@
 package org.telegram.ui;
-public interface k70 {
-    void a(l70 l70Var, long j3);
+public final class k70 extends og.a {
+    public final String f35129c;
+
+    public k70(String str) {
+        super(5, true);
+        this.f35129c = str;
+    }
 }

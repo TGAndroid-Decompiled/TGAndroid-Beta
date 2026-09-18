@@ -1,40 +1,73 @@
 package org.telegram.ui.web;
 
-import bi.k9;
+import ai.da;
 import org.json.JSONObject;
-import org.telegram.messenger.Utilities;
-public final class t implements Utilities.Callback {
-    public final int f42242a;
-    public final d1 f42243b;
-    public final k9 f42244c;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.LaunchActivity;
+public final class t implements Runnable {
+    public final int f38934a;
+    public final d1 f38935b;
 
-    public t(d1 d1Var, k9 k9Var, int i10) {
-        this.f42242a = i10;
-        this.f42243b = d1Var;
-        this.f42244c = k9Var;
+    public t(d1 d1Var, int i10) {
+        this.f38934a = i10;
+        this.f38935b = d1Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f42242a) {
+    public final void run() {
+        boolean z10;
+        switch (this.f38934a) {
             case 0:
-                this.f42243b.y(this.f42244c, "location_requested", (JSONObject) obj);
+                h0 h0Var = this.f38935b.f38745c;
+                if (h0Var != null) {
+                    h0Var.b();
+                }
+                LaunchActivity.L();
                 return;
             case 1:
-                this.f42243b.y(this.f42244c, "location_requested", (JSONObject) obj);
+                d1 d1Var = this.f38935b;
+                da daVar = d1Var.I0;
+                ei.w0 w0Var = d1Var.f38755k0;
+                w0Var.getClass();
+                JSONObject jSONObject = new JSONObject();
+                try {
+                    jSONObject.put("available", w0Var.d());
+                    if (w0Var.d()) {
+                        jSONObject.put("access_requested", w0Var.d);
+                        if (w0Var.d) {
+                            if (w0Var.e && w0Var.a()) {
+                                z10 = true;
+                            } else {
+                                z10 = false;
+                            }
+                            jSONObject.put("access_granted", z10);
+                        }
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                d1Var.y(daVar, "location_checked", jSONObject);
                 return;
             default:
-                d1 d1Var = this.f42243b;
-                d1Var.getClass();
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                k9 k9Var = this.f42244c;
-                if (booleanValue) {
-                    d1Var.y(k9Var, "home_screen_added", null);
-                    return;
-                } else {
-                    d1Var.y(k9Var, "home_screen_failed", d1.B("UNSUPPORTED", "error"));
+                d1 d1Var2 = this.f38935b;
+                if (d1Var2.S) {
+                    d1Var2.S = false;
+                    h0 h0Var2 = d1Var2.f38745c;
+                    if (h0Var2 != null) {
+                        h0Var2.t(false);
+                    }
+                }
+                d1Var2.c();
+                d1Var2.N = false;
+                d1Var2.P = 0L;
+                d1Var2.T = false;
+                z0 z0Var = d1Var2.f38741a;
+                if (z0Var != null) {
+                    z0Var.onResume();
+                    d1Var2.f38741a.reload();
                     return;
                 }
+                return;
         }
     }
 }

@@ -1,53 +1,28 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class re implements Runnable {
-    public final int f18904a;
-    public final MessagesStorage f18905b;
-    public final ArrayList f18906c;
+    public final int f17246a;
+    public final MessagesStorage f17247b;
+    public final long f17248c;
     public final long d;
+    public final String e;
 
-    public re(MessagesStorage messagesStorage, long j3, ArrayList arrayList, int i10) {
-        this.f18904a = i10;
-        this.f18905b = messagesStorage;
-        this.d = j3;
-        this.f18906c = arrayList;
+    public re(MessagesStorage messagesStorage, long j3, long j10, String str, int i10) {
+        this.f17246a = i10;
+        this.f17247b = messagesStorage;
+        this.f17248c = j3;
+        this.d = j10;
+        this.e = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f18904a) {
+        switch (this.f17246a) {
             case 0:
-                this.f18905b.lambda$deleteUserChatHistory$86(this.f18906c, this.d);
-                return;
-            case 1:
-                this.f18905b.lambda$emptyMessagesMedia$99(this.f18906c, this.d);
-                return;
-            case 2:
-                this.f18905b.lambda$deleteSavedDialog$54(this.d, this.f18906c);
-                return;
-            case 3:
-                this.f18905b.lambda$updateChannelUsers$125(this.d, this.f18906c);
-                return;
-            case 4:
-                this.f18905b.lambda$markVoiceMessageContentAsRead$217(this.f18906c, this.d);
-                return;
-            case 5:
-                this.f18905b.lambda$markMessagesAsDeletedInternal$226(this.f18906c, this.d);
-                return;
-            case 6:
-                this.f18905b.lambda$removeTopics$58(this.f18906c, this.d);
+                this.f17247b.lambda$updateRanksInLastMessages$45(this.f17248c, this.d, this.e);
                 return;
             default:
-                this.f18905b.lambda$createTaskForSecretChat$117(this.d, this.f18906c);
+                this.f17247b.lambda$updateRanksInLastMessages$46(this.f17248c, this.d, this.e);
                 return;
         }
-    }
-
-    public re(MessagesStorage messagesStorage, ArrayList arrayList, long j3, int i10) {
-        this.f18904a = i10;
-        this.f18905b = messagesStorage;
-        this.f18906c = arrayList;
-        this.d = j3;
     }
 }

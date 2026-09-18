@@ -1,43 +1,40 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class rw0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
-    public final int f40251a;
-    public final tw0 f40252b;
+import android.widget.RelativeLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class rw0 extends RelativeLayout {
+    public final PopupNotificationActivity f37340a;
 
-    public rw0(tw0 tw0Var, int i10) {
-        this.f40251a = i10;
-        this.f40252b = tw0Var;
+    public rw0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
+        super(popupNotificationActivity2);
+        this.f37340a = popupNotificationActivity;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40251a) {
-            case 0:
-                this.f40252b.Y();
-                return;
-            default:
-                this.f40252b.finishFragment();
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getTag() instanceof String) {
+                int left = childAt.getLeft();
+                PopupNotificationActivity popupNotificationActivity = this.f37340a;
+                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f31163b.getTop(), childAt.getRight(), popupNotificationActivity.f31163b.getBottom());
+            }
         }
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        tw0 tw0Var = this.f40252b;
-        tw0Var.getClass();
-        if (((org.telegram.ui.Components.h51) obj).d == 1) {
-            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
-            boolean z10 = !w8Var.f23491e.h;
-            tw0Var.f40849r = z10;
-            w8Var.setChecked(z10);
-            tw0Var.d.Y2.N(true);
-            tw0Var.V(true);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        PopupNotificationActivity popupNotificationActivity = this.f37340a;
+        int measuredWidth = popupNotificationActivity.f31163b.getMeasuredWidth();
+        int measuredHeight = popupNotificationActivity.f31163b.getMeasuredHeight();
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt.getTag() instanceof String) {
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - AndroidUtilities.dp(3.0f), 1073741824));
+            }
         }
     }
 }
