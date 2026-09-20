@@ -8,16 +8,16 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class b4 implements Utilities.Callback {
-    public final Utilities.Callback f18685a;
-    public final TLRPC.WallPaper f18686b;
-    public final int f18687c;
+    public final Utilities.Callback f18717a;
+    public final TLRPC.WallPaper f18718b;
+    public final int f18719c;
     public final int d;
     public final long e;
 
     public b4(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j3) {
-        this.f18685a = callback;
-        this.f18686b = wallPaper;
-        this.f18687c = i10;
+        this.f18717a = callback;
+        this.f18718b = wallPaper;
+        this.f18719c = i10;
         this.d = i11;
         this.e = j3;
     }
@@ -25,12 +25,12 @@ public final class b4 implements Utilities.Callback {
     @Override
     public final void run(Object obj) {
         dg.a aVar = (dg.a) obj;
-        Utilities.Callback callback = this.f18685a;
+        Utilities.Callback callback = this.f18717a;
         if (aVar != null) {
             callback.run(aVar);
             return;
         }
-        TLRPC.WallPaper wallPaper = this.f18686b;
+        TLRPC.WallPaper wallPaper = this.f18718b;
         ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
         ImageReceiver imageReceiver = new ImageReceiver();
         imageReceiver.setAllowLoadingOnAttachedOnly(false);
@@ -39,7 +39,7 @@ public final class b4 implements Utilities.Callback {
         Point point2 = AndroidUtilities.displaySize;
         int max = Math.max(point2.x, point2.y);
         imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (max / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
-        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f18687c, this.d, this.e, callback));
+        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f18719c, this.d, this.e, callback));
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 }

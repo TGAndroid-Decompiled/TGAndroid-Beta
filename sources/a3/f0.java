@@ -22,9 +22,9 @@ public final class f0 {
         this.f104b = a0Var;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f7921a = 0;
-        obj.f7922b = -1;
-        obj.f7923c = 0;
+        obj.f7922a = 0;
+        obj.f7923b = -1;
+        obj.f7924c = 0;
         obj.e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
         this.f106f = obj;
@@ -39,15 +39,15 @@ public final class f0 {
         long j11;
         b2.s sVar;
         n4.y yVar = this.f103a;
-        f fVar = (f) yVar.f15180c;
+        f fVar = (f) yVar.f15218b;
         while (true) {
             e2.q qVar = this.f106f;
-            int i10 = qVar.f7923c;
+            int i10 = qVar.f7924c;
             if (i10 == 0) {
                 return;
             }
             if (i10 != 0) {
-                long j12 = ((long[]) qVar.e)[qVar.f7921a];
+                long j12 = ((long[]) qVar.e)[qVar.f7922a];
                 Long l4 = (Long) this.e.g(j12);
                 a0 a0Var = this.f104b;
                 if (l4 != null && l4.longValue() != this.f110k) {
@@ -90,7 +90,7 @@ public final class f0 {
                         rVar.f3259x = x1Var.f3352a;
                         rVar.f3260y = x1Var.f3353b;
                         rVar.f3253q = r0.n("video/raw");
-                        yVar.f15179b = new b2.s(rVar);
+                        yVar.f15217a = new b2.s(rVar);
                         fVar.h.execute(new e(yVar, x1Var));
                     }
                     if (z10) {
@@ -108,7 +108,7 @@ public final class f0 {
                     if (z11 && fVar.d != null) {
                         fVar.h.execute(new e(0, yVar));
                     }
-                    b2.s sVar2 = (b2.s) yVar.f15179b;
+                    b2.s sVar2 = (b2.s) yVar.f15217a;
                     if (sVar2 == null) {
                         sVar = new b2.s(new b2.r());
                     } else {

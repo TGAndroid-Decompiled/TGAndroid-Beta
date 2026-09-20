@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.messenger.MessagesController;
-public final class qc extends org.telegram.ui.Components.vl0 {
-    public final Context f36788c;
-    public final org.telegram.ui.ActionBar.e6 d;
+public final class qc extends org.telegram.ui.Components.ul0 {
+    public final Context f36877c;
+    public final org.telegram.ui.ActionBar.f6 d;
     public final int e;
-    public final sc f36789f;
+    public final sc f36878f;
 
-    public qc(sc scVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        this.f36789f = scVar;
-        this.f36788c = context;
-        this.d = e6Var;
+    public qc(sc scVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        this.f36878f = scVar;
+        this.f36877c = context;
+        this.d = f6Var;
         this.e = i10;
     }
 
@@ -33,14 +33,14 @@ public final class qc extends org.telegram.ui.Components.vl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        rc rcVar = (rc) c1Var.f42929a;
-        rcVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, this.d));
-        if (i10 == this.f36789f.e) {
+        rc rcVar = (rc) c1Var.f42974a;
+        rcVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19094d6, this.d));
+        if (i10 == this.f36878f.e) {
             z10 = true;
         } else {
             z10 = false;
         }
-        rcVar.f37031s = z10;
+        rcVar.f37113s = z10;
         rcVar.v.f(z10, true);
         rcVar.invalidate();
         MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
@@ -51,6 +51,6 @@ public final class qc extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new rc(this.f36789f, this.f36788c));
+        return new s4.c1(new rc(this.f36878f, this.f36877c));
     }
 }

@@ -32,7 +32,7 @@ public final class y implements b0 {
 
     @Override
     public final boolean f() {
-        if (this.f3828b.f3846b > 0) {
+        if (this.f3828b.f3847b > 0) {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public final class y implements b0 {
     @Override
     public final a0 j(long j3) {
         c5.b0 b0Var = this.f3828b;
-        if (b0Var.f3846b == 0) {
+        if (b0Var.f3847b == 0) {
             c0 c0Var = c0.f3739c;
             return new a0(c0Var, c0Var);
         }
@@ -49,7 +49,7 @@ public final class y implements b0 {
         long f7 = b0Var.f(b10);
         c5.b0 b0Var2 = this.f3827a;
         c0 c0Var2 = new c0(f7, b0Var2.f(b10));
-        if (f7 != j3 && b10 != b0Var.f3846b - 1) {
+        if (f7 != j3 && b10 != b0Var.f3847b - 1) {
             int i10 = b10 + 1;
             return new a0(c0Var2, new c0(b0Var.f(i10), b0Var2.f(i10)));
         }

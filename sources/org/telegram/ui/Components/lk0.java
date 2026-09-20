@@ -1,33 +1,32 @@
 package org.telegram.ui.Components;
-public final class lk0 implements Runnable {
-    public final int f26177a;
-    public final ok0 f26178b;
 
-    public lk0(ok0 ok0Var, int i10) {
-        this.f26177a = i10;
-        this.f26178b = ok0Var;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class lk0 extends ImageReceiver {
+    public final int f26175a;
+
+    public lk0(int i10, View view) {
+        super(view);
+        this.f26175a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26177a) {
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
+        switch (this.f26175a) {
             case 0:
-                if (this.f26178b.f26973a.getImageReceiver().getLottieAnimation() != null && !this.f26178b.f26973a.getImageReceiver().getLottieAnimation().f24985k0 && !this.f26178b.f26973a.getImageReceiver().getLottieAnimation().y()) {
-                    this.f26178b.f26973a.getImageReceiver().getLottieAnimation().start();
+                if (drawable instanceof hj0) {
+                    ((hj0) drawable).N(0, false, true);
                 }
-                this.f26178b.E = false;
-                return;
+                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             default:
-                ok0 ok0Var = this.f26178b;
-                qk0 qk0Var = ok0Var.P;
-                try {
-                    ok0Var.performHapticFeedback(0);
-                } catch (Exception unused) {
+                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                if (imageBitmapByKey && (drawable instanceof hj0)) {
+                    hj0 hj0Var = (hj0) drawable;
+                    hj0Var.N(0, false, true);
+                    hj0Var.stop();
                 }
-                qk0Var.m0 = qk0Var.T.indexOf(ok0Var.e);
-                qk0Var.f27659l0 = ok0Var.e;
-                qk0Var.invalidate();
-                return;
+                return imageBitmapByKey;
         }
     }
 }

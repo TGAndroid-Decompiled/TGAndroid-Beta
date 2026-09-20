@@ -35,7 +35,7 @@ public interface ly {
 
     void n();
 
-    void o(t51 t51Var);
+    void o(s51 s51Var);
 
     float p();
 

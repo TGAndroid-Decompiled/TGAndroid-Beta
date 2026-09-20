@@ -13,8 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.v70;
-public final class h1 extends FrameLayout implements v70 {
+import org.telegram.ui.Components.u70;
+public final class h1 extends FrameLayout implements u70 {
     public final TextView E;
     public final TextView F;
     public final oq[] G;
@@ -34,8 +34,8 @@ public final class h1 extends FrameLayout implements v70 {
     public final vh.o f934r;
     public final vh.o f935s;
     public CharSequence v;
-    public final org.telegram.ui.Components.w9 f936w;
-    public final org.telegram.ui.Components.h9 f937x;
+    public final org.telegram.ui.Components.v9 f936w;
+    public final org.telegram.ui.Components.g9 f937x;
     public final vh.o f938y;
 
     public h1(int i10, Context context, boolean z10) {
@@ -52,11 +52,11 @@ public final class h1 extends FrameLayout implements v70 {
         this.h = d1Var;
         d1Var.setOrientation(0);
         addView(d1Var, w7.y5.d(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
-        this.f937x = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f936w = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
-        d1Var.addView(w9Var, w7.y5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
+        this.f937x = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
+        org.telegram.ui.Components.v9 v9Var = new org.telegram.ui.Components.v9(context);
+        this.f936w = v9Var;
+        v9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
+        d1Var.addView(v9Var, w7.y5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         d1Var.addView(linearLayout, w7.y5.p(-2, -2, 1.0f, 51, 4, 3, 7, 3));

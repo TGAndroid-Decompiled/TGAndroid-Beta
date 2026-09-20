@@ -1,9 +1,9 @@
 package w7;
 public final class s3 implements ia.d {
-    public static final s3 f45083a = new Object();
+    public static final s3 f45127a = new Object();
 
     static {
-        t8.b.t(t8.b.m(d.class, new a(1)));
+        v7.j0.q(v7.j0.j(d.class, new a(1)));
     }
 
     @Override

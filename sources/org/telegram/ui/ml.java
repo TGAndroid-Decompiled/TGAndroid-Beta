@@ -11,14 +11,14 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class ml implements org.telegram.ui.Components.ti {
-    public final zn f35691a;
+    public final zn f35766a;
 
     public ml(zn znVar) {
-        this.f35691a = znVar;
+        this.f35766a = znVar;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         ai.g4 g4Var;
         HashMap<Object, Object> hashMap;
         boolean z14;
@@ -33,7 +33,7 @@ public final class ml implements org.telegram.ui.Components.ti {
         boolean z18;
         String str2;
         TLRPC.Message message;
-        zn znVar = this.f35691a;
+        zn znVar = this.f35766a;
         if (znVar.getParentActivity() != null && (g4Var = znVar.J1) != null) {
             boolean z19 = g4Var.G;
             MessageObject messageObject = g4Var.H1;
@@ -41,7 +41,7 @@ public final class ml implements org.telegram.ui.Components.ti {
             if (messageObject != null && (message = messageObject.messageOwner) != null) {
                 message.invert_media = z12;
             }
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || g4Var.f29033j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || g4Var.f29110j0.getSelectedPhotos().isEmpty())) {
                 ai.g4 g4Var2 = znVar.J1;
                 if (g4Var2 != null) {
                     g4Var2.dismissWithButtonClick(i10);
@@ -53,8 +53,8 @@ public final class ml implements org.telegram.ui.Components.ti {
             if (g4Var3 != null && i10 != 8) {
                 g4Var3.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = znVar.J1.f29033j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = znVar.J1.f29033j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = znVar.J1.f29110j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = znVar.J1.f29110j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
                 int i15 = 0;
@@ -137,7 +137,7 @@ public final class ml implements org.telegram.ui.Components.ti {
                     }
                     MessageObject messageObject2 = znVar.p5;
                     if (messageObject2 != null && messageObject2.needResendWhenEdit()) {
-                        MessageSuggestionParams messageSuggestionParams = znVar.f40281g5;
+                        MessageSuggestionParams messageSuggestionParams = znVar.f40323g5;
                         if (messageSuggestionParams == null) {
                             messageSuggestionParams = MessageSuggestionParams.of(znVar.p5.messageOwner.suggested_post);
                         }
@@ -148,7 +148,7 @@ public final class ml implements org.telegram.ui.Components.ti {
                         MessageObject messageObject3 = znVar.p5;
                         int i20 = i15;
                         MessageObject messageObject4 = znVar.X3;
-                        pn pnVar = znVar.f40341l5;
+                        pn pnVar = znVar.f40383l5;
                         if (i10 != 4 && !z13) {
                             arrayList = arrayList2;
                             z16 = false;
@@ -164,15 +164,15 @@ public final class ml implements org.telegram.ui.Components.ti {
                         i14 = i15;
                         AccountInstance accountInstance2 = znVar.getAccountInstance();
                         long j12 = znVar.T5;
-                        MessageObject messageObject5 = znVar.f40367n5;
+                        MessageObject messageObject5 = znVar.f40409n5;
                         MessageObject messageObject6 = znVar.X3;
-                        pn pnVar2 = znVar.f40341l5;
+                        pn pnVar2 = znVar.f40383l5;
                         if (i10 != 4 && !z13) {
                             z15 = false;
                         } else {
                             z15 = true;
                         }
-                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j12, messageObject5, messageObject6, null, pnVar2, z15, z10, znVar.p5, z11, i11, i12, znVar.R3, z14, null, znVar.C8(), j3, z12, j10, znVar.N8(), znVar.f40281g5);
+                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j12, messageObject5, messageObject6, null, pnVar2, z15, z10, znVar.p5, z11, i11, i12, znVar.R3, z14, null, znVar.C8(), j3, z12, j10, znVar.N8(), znVar.f40323g5);
                     }
                     i15 = i14 + 1;
                     ceil = i13;
@@ -196,8 +196,8 @@ public final class ml implements org.telegram.ui.Components.ti {
     }
 
     @Override
-    public final void K0() {
-        this.f35691a.Y.P();
+    public final void L0() {
+        this.f35766a.Y.P();
     }
 
     @Override
@@ -206,14 +206,14 @@ public final class ml implements org.telegram.ui.Components.ti {
     }
 
     @Override
-    public final boolean c0() {
-        return this.f35691a.P9();
+    public final boolean f0() {
+        return this.f35766a.P9();
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void k1(TLRPC.User user) {
         String publicUsername = UserObject.getPublicUsername(user);
-        zn znVar = this.f35691a;
+        zn znVar = this.f35766a;
         if (znVar.Y != null && user != null && !TextUtils.isEmpty(publicUsername)) {
             lk lkVar = znVar.Y;
             lkVar.setFieldText("@" + publicUsername + " ");
@@ -222,16 +222,16 @@ public final class ml implements org.telegram.ui.Components.ti {
     }
 
     @Override
-    public final void x0(org.telegram.ui.Components.gh ghVar) {
-        this.f35691a.h8(ghVar);
+    public final void y0(org.telegram.ui.Components.gh ghVar) {
+        this.f35766a.h8(ghVar);
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void V0(Object obj) {
     }
 
     @Override
-    public final void u0() {
+    public final void v0() {
     }
 
     @Override

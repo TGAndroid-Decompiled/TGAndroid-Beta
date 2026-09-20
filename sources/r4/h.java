@@ -7,15 +7,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 public final class h {
-    public final int f42286a;
-    public final int f42287b;
-    public final long f42288c;
+    public final int f42330a;
+    public final int f42331b;
+    public final long f42332c;
     public final long d;
 
     public h(long j3, int i10, int i11, long j10) {
-        this.f42286a = i10;
-        this.f42287b = i11;
-        this.f42288c = j3;
+        this.f42330a = i10;
+        this.f42331b = i11;
+        this.f42332c = j3;
         this.d = j10;
     }
 
@@ -39,9 +39,9 @@ public final class h {
         file.delete();
         DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file));
         try {
-            dataOutputStream.writeInt(this.f42286a);
-            dataOutputStream.writeInt(this.f42287b);
-            dataOutputStream.writeLong(this.f42288c);
+            dataOutputStream.writeInt(this.f42330a);
+            dataOutputStream.writeInt(this.f42331b);
+            dataOutputStream.writeLong(this.f42332c);
             dataOutputStream.writeLong(this.d);
             dataOutputStream.close();
         } catch (Throwable th2) {
@@ -60,7 +60,7 @@ public final class h {
         }
         if (obj != null && (obj instanceof h)) {
             h hVar = (h) obj;
-            if (this.f42287b == hVar.f42287b && this.f42288c == hVar.f42288c && this.f42286a == hVar.f42286a && this.d == hVar.d) {
+            if (this.f42331b == hVar.f42331b && this.f42332c == hVar.f42332c && this.f42330a == hVar.f42330a && this.d == hVar.d) {
                 return true;
             }
         }
@@ -68,6 +68,6 @@ public final class h {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f42287b), Long.valueOf(this.f42288c), Integer.valueOf(this.f42286a), Long.valueOf(this.d));
+        return Objects.hash(Integer.valueOf(this.f42331b), Long.valueOf(this.f42332c), Integer.valueOf(this.f42330a), Long.valueOf(this.d));
     }
 }

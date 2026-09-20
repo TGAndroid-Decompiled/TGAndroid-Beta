@@ -1,18 +1,18 @@
 package ci;
 public final class ob implements sc {
-    public final bi.v f5203a;
+    public final bi.v f5204a;
 
     public ob(bi.v vVar) {
-        this.f5203a = vVar;
+        this.f5204a = vVar;
     }
 
     @Override
     public final void F(float f7, boolean z10) {
-        this.f5203a.run(Boolean.FALSE, Float.valueOf(f7));
+        this.f5204a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override
-    public final void D(float f7) {
+    public final void C(float f7) {
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class ob implements sc {
     }
 
     @Override
-    public final void Y(float f7) {
+    public final void X(float f7) {
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class ob implements sc {
     }
 
     @Override
-    public final void h0(float f7) {
+    public final void g0(float f7) {
     }
 
     @Override
@@ -84,10 +84,10 @@ public final class ob implements sc {
     }
 
     @Override
-    public final void i0(int i10, long j3) {
+    public final void h0(int i10, long j3) {
     }
 
     @Override
-    public final void n(long j3, boolean z10) {
+    public final void m(long j3, boolean z10) {
     }
 }

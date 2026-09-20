@@ -48,7 +48,7 @@ public final class h3 implements Runnable {
     @Override
     public final void run() {
         SpannableStringBuilder replaceTags;
-        org.telegram.ui.Components.z5 z5Var;
+        org.telegram.ui.Components.y5 y5Var;
         int i10 = this.f939a;
         long j3 = this.f941c;
         boolean z10 = this.f940b;
@@ -66,8 +66,8 @@ public final class h3 implements Runnable {
                 final long j10 = this.f941c;
                 final boolean z11 = this.f940b;
                 storiesController.i0(j10, z11, false);
-                o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f15439b = new Runnable() {
+                m5.e eVar = new m5.e((char) 0, 7);
+                eVar.f14953b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -80,7 +80,7 @@ public final class h3 implements Runnable {
                         }
                     }
                 };
-                aVar.f15440c = new Runnable() {
+                eVar.f14954c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -98,15 +98,15 @@ public final class h3 implements Runnable {
                 } else {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
-                org.telegram.ui.Components.qc V = new xc(f6Var.f807d1, f6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
-                V.f27544a = 2;
+                org.telegram.ui.Components.pc V = new xc(f6Var.f807d1, f6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, eVar);
+                V.f27246a = 2;
                 V.k(true);
                 return;
             case 1:
                 l9 l9Var = (l9) obj4;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                 e2.h hVar = (e2.h) obj;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj2;
+                org.telegram.ui.ActionBar.f6 f6Var2 = (org.telegram.ui.ActionBar.f6) obj2;
                 if (tL_error != null) {
                     if (tL_error.text.contains("BOOSTS_REQUIRED")) {
                         if (z10) {
@@ -121,12 +121,12 @@ public final class h3 implements Runnable {
                     } else if (tL_error.text.startsWith("STORY_LIVE_ALREADY_")) {
                         org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                         if (z10 && R != null) {
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, e6Var);
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, f6Var2);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
                             b2Var.R = string;
                             b2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
-                            org.telegram.messenger.q.p(R.string.OK, alertDialog$Builder, null);
+                            org.telegram.messenger.l0.n(R.string.OK, alertDialog$Builder, null);
                         }
                         hVar.accept(Boolean.FALSE);
                         return;
@@ -152,7 +152,7 @@ public final class h3 implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                ChatActivityEnterView chatActivityEnterView = ((gg) obj4).f24382a;
+                ChatActivityEnterView chatActivityEnterView = ((gg) obj4).f24351a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -166,15 +166,15 @@ public final class h3 implements Runnable {
                             }
                             SpannableString spannableString = new SpannableString(str2);
                             if (document != null) {
-                                z5Var = new org.telegram.ui.Components.z5(document, editTextBoldCursor.getPaint().getFontMetricsInt());
+                                y5Var = new org.telegram.ui.Components.y5(document, editTextBoldCursor.getPaint().getFontMetricsInt());
                             } else {
-                                z5Var = new org.telegram.ui.Components.z5(j3, editTextBoldCursor.getPaint().getFontMetricsInt());
+                                y5Var = new org.telegram.ui.Components.y5(j3, editTextBoldCursor.getPaint().getFontMetricsInt());
                             }
                             if (!z10) {
-                                z5Var.fromEmojiKeyboard = true;
+                                y5Var.fromEmojiKeyboard = true;
                             }
-                            z5Var.cacheType = org.telegram.ui.Components.q5.g();
-                            spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
+                            y5Var.cacheType = org.telegram.ui.Components.p5.g();
+                            spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
                             editTextBoldCursor.setText(editTextBoldCursor.getText().insert(selectionEnd, spannableString));
                             editTextBoldCursor.setSelection(spannableString.length() + selectionEnd, selectionEnd + spannableString.length());
                         } catch (Exception e) {
@@ -193,8 +193,8 @@ public final class h3 implements Runnable {
                 return;
             case 4:
                 h01 h01Var = (h01) obj4;
-                ProfileActivity profileActivity = h01Var.f34003b;
-                nq nqVar = new nq(profileActivity.f31513e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = h01Var.f34039b;
+                nq nqVar = new nq(profileActivity.f31553e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 nqVar.X0 = new g01(h01Var, (uy) obj2);
                 profileActivity.presentFragment(nqVar);
                 return;
@@ -213,13 +213,13 @@ public final class h3 implements Runnable {
         }
     }
 
-    public h3(l9 l9Var, TLRPC.TL_error tL_error, boolean z10, long j3, e2.h hVar, org.telegram.ui.ActionBar.e6 e6Var) {
+    public h3(l9 l9Var, TLRPC.TL_error tL_error, boolean z10, long j3, e2.h hVar, org.telegram.ui.ActionBar.f6 f6Var) {
         this.d = l9Var;
         this.e = tL_error;
         this.f940b = z10;
         this.f941c = j3;
         this.f942f = hVar;
-        this.h = e6Var;
+        this.h = f6Var;
     }
 
     public h3(gg ggVar, EditTextBoldCursor editTextBoldCursor, String str, TLRPC.Document document, long j3, boolean z10) {

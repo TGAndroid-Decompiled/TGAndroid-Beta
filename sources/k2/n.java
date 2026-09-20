@@ -10,7 +10,7 @@ public interface n {
 
     void b(long j3);
 
-    void f0();
+    void e0();
 
     void j0(k kVar);
 
@@ -22,5 +22,5 @@ public interface n {
 
     void q();
 
-    void y(int i10, long j3, long j10);
+    void x(int i10, long j3, long j10);
 }

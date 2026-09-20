@@ -1,93 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLObject;
-public class k9 extends View {
-    public final j9 f25645a;
-    public rg.z0 f25646b;
-    public v01 f25647c;
-    public Paint d;
+import org.telegram.messenger.ImageReceiver;
+public final class k9 implements le.h, oe.a {
+    public final ImageReceiver f25709a;
+    public final g9 f25710b;
+    public long f25711c;
+    public boolean d;
+    public final l9 e;
 
-    public k9(Context context, boolean z10) {
-        super(context);
-        this.f25645a = new j9(this, z10);
-    }
-
-    public final void a(boolean z10) {
-        this.f25645a.b(z10, true);
-    }
-
-    public final void b(int i10, TLObject tLObject, int i11) {
-        this.f25645a.l(i10, tLObject, i11);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f25645a.g();
+    public k9(l9 l9Var, ViewGroup viewGroup) {
+        this.e = l9Var;
+        ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
+        this.f25709a = imageReceiver;
+        imageReceiver.setRoundRadius(l9Var.e / 2);
+        g9 g9Var = new g9((org.telegram.ui.ActionBar.f6) null);
+        this.f25710b = g9Var;
+        g9Var.u(AndroidUtilities.dp(22.0f));
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f25645a.h();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        this.f25645a.i(canvas);
-        if (this.f25647c != null) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(getWidth() - AndroidUtilities.dp(22.0f), getHeight() - AndroidUtilities.dp(22.0f), getWidth() - AndroidUtilities.dp(0.0f), getHeight() - AndroidUtilities.dp(0.0f));
-            this.f25646b.e(rectF);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.d);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f25646b.f42810f);
-            this.f25647c.c(rectF.centerX() - (this.f25647c.f28868c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
+    public final void a() {
+        if (this.d) {
+            this.d = false;
+            this.f25709a.onDetachedFromWindow();
         }
+        this.f25711c = 0L;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int measuredWidth = getMeasuredWidth();
-        j9 j9Var = this.f25645a;
-        j9Var.f25259p = measuredWidth;
-        j9Var.f25258o = getMeasuredHeight();
+    public final int b(boolean z10) {
+        if (z10) {
+            return 0;
+        }
+        return -this.e.f26060f;
     }
 
-    public void setAvatarsTextSize(int i10) {
-        this.f25645a.j(i10);
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof k9) || this.f25711c != ((k9) obj).f25711c) {
+            return false;
+        }
+        return true;
     }
 
-    public void setCentered(boolean z10) {
-        this.f25645a.f25255l = z10;
+    @Override
+    public final int getHeight() {
+        return this.e.e;
     }
 
-    public void setCount(int i10) {
-        this.f25645a.k(i10);
-    }
-
-    public void setDelegate(Runnable runnable) {
-        this.f25645a.f25253j = runnable;
-    }
-
-    public void setSize(int i10) {
-        this.f25645a.f25262s = i10;
-    }
-
-    public void setStepFactor(float f7) {
-        this.f25645a.f25263t = f7;
-    }
-
-    public void setStyle(int i10) {
-        j9 j9Var = this.f25645a;
-        j9Var.f25254k = i10;
-        j9Var.f();
+    @Override
+    public final int getWidth() {
+        return this.e.e;
     }
 }

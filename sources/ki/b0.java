@@ -1,124 +1,119 @@
 package ki;
 
-import android.text.TextUtils;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.LaunchActivity;
-import yh.t5;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.ui.Components.n01;
+import org.telegram.ui.Components.o01;
+import org.telegram.ui.Components.p01;
+import org.telegram.ui.Components.y50;
+import org.telegram.ui.Components.z50;
 public final class b0 implements Runnable {
-    public final int f13656a = 2;
-    public final boolean f13657b;
-    public final boolean f13658c;
-    public final int d;
-    public final Object e;
-    public final Object f13659f;
-    public final Object h;
-    public final Object f13660n;
+    public final int f13657a = 1;
+    public final o0 f13658b;
+    public final k0 f13659c;
+    public final long d;
+    public final File e;
+    public final boolean f13660f;
 
-    public b0(int i10, ci.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, f3[] f3VarArr) {
-        this.e = dVar;
-        this.f13659f = f3VarArr;
-        this.d = i10;
-        this.f13657b = z10;
-        this.h = starsSubscription;
-        this.f13658c = z11;
-        this.f13660n = tLObject;
+    public b0(o0 o0Var, k0 k0Var, long j3, File file, boolean z10) {
+        this.f13658b = o0Var;
+        this.f13659c = k0Var;
+        this.d = j3;
+        this.e = file;
+        this.f13660f = z10;
+    }
+
+    private final void a() {
+        o0 o0Var = this.f13658b;
+        k0 k0Var = this.f13659c;
+        File file = this.e;
+        long j3 = this.d;
+        boolean z10 = this.f13660f;
+        if (k0Var.d) {
+            return;
+        }
+        l0 l0Var = o0Var.d;
+        long j10 = k0Var.f13762a;
+        long length = file.length();
+        p01 p01Var = (p01) l0Var;
+        synchronized (p01Var) {
+            n01 n01Var = (n01) p01Var.f27108c.get(Long.valueOf(j10));
+            if (!p01Var.d && n01Var != null && !n01Var.e) {
+                p01Var.c(n01Var);
+                n01Var.f26528b = Math.max(n01Var.f26528b, length);
+                n01Var.f26529c = length;
+                FileLoader.getInstance(p01Var.f27106a).checkUploadNewDataAvailable(file.getAbsolutePath(), p01Var.f27107b, n01Var.f26528b, length);
+            }
+        }
+        o0Var.h.post(new b0(o0Var, k0Var, j3, file, z10));
     }
 
     @Override
     public final void run() {
-        File file;
-        String formatString;
-        switch (this.f13656a) {
+        o01 o01Var;
+        o01 o01Var2;
+        switch (this.f13657a) {
             case 0:
-                h0 h0Var = (h0) this.e;
-                o oVar = (o) this.f13659f;
-                boolean z10 = this.f13657b;
-                File file2 = (File) this.h;
-                boolean z11 = this.f13658c;
-                int i10 = this.d;
-                e0 e0Var = (e0) this.f13660n;
-                h0Var.getClass();
-                long nanoTime = System.nanoTime();
-                try {
-                    oVar.c();
-                    j jVar = h0Var.f13713l;
-                    jVar.b("preview output finalized: size=" + oVar.f13780a.length() + ", replace=" + z10 + ", elapsedMs=" + h0.e(nanoTime));
-                    h0Var.f();
-                    if (z10) {
-                        h0Var.q(file2, h0Var.A, h0Var.B, z11, i10);
-                        file = file2;
-                        w7.k.c(oVar.f13780a);
-                    } else {
-                        file = file2;
-                        h0Var.b(e0Var, oVar.f13780a, h0Var.f13725y, true);
-                    }
-                    w7.k.c(file);
-                    h0Var.K = null;
-                    return;
-                } catch (Exception e) {
-                    h0Var.h.post(new x(h0Var, e, 0));
-                    return;
-                }
-            case 1:
-                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$95(this.f13657b, (TLRPC.Message) this.f13659f, (ArrayList) this.h, this.f13658c, (ArrayList) this.f13660n, this.d);
+                a();
                 return;
             default:
-                int i11 = this.d;
-                boolean z12 = this.f13657b;
-                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.h;
-                boolean z13 = this.f13658c;
-                TLObject tLObject = (TLObject) this.f13660n;
-                ((ci.d) this.e).setLoading(false);
-                f3 f3Var = ((f3[]) this.f13659f)[0];
-                if (f3Var != null) {
-                    f3Var.dismiss();
-                }
-                t5.y(i11, false).S();
-                n2 U = LaunchActivity.U();
-                if (U != null) {
-                    if (z12 && !TextUtils.isEmpty(starsSubscription.title)) {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBizToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
-                    } else if (z13 && !TextUtils.isEmpty(starsSubscription.title)) {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBotToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
-                    } else {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(starsSubscription.until_date));
+                o0 o0Var = this.f13658b;
+                k0 k0Var = this.f13659c;
+                long j3 = this.d;
+                File file = this.e;
+                boolean z10 = this.f13660f;
+                int i10 = o0Var.U;
+                if (i10 != 10 && i10 != 9) {
+                    o0Var.u(8);
+                    o0Var.f13808l.b("output completed: generation=" + k0Var.f13762a + ", durationMs=" + j3 + ", size=" + file.length() + ", hasAudio=" + z10);
+                    o0Var.l("completed");
+                    l.d dVar = o0Var.f13802c;
+                    long j10 = k0Var.f13762a;
+                    z50 z50Var = (z50) dVar.f13898a;
+                    y50 y50Var = z50Var.Q;
+                    if (y50Var != null) {
+                        z50Var.Q = null;
+                        z50Var.f30717d0 = true;
+                        p01 p01Var = z50Var.O;
+                        if (p01Var == null) {
+                            o01Var2 = null;
+                        } else {
+                            synchronized (p01Var) {
+                                n01 n01Var = (n01) p01Var.f27108c.get(Long.valueOf(j10));
+                                if (n01Var != null && !n01Var.e) {
+                                    o01Var = new o01(Math.max(n01Var.f26529c, file.length()), n01Var.f26530f, n01Var.f26531g, n01Var.h, n01Var.f26532i);
+                                }
+                                o01Var = new o01(file.length(), null, null, null, null);
+                            }
+                            o01Var2 = o01Var;
+                        }
+                        VideoEditedInfo n10 = z50Var.n(file, j3, o01Var2);
+                        n10.muted = !z10;
+                        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, true, 0, 0, 0L);
+                        photoEntry.ttl = y50Var.f30459c;
+                        photoEntry.effectId = y50Var.d;
+                        z50Var.d.q(photoEntry, n10, y50Var.f30457a, y50Var.f30458b, 0, false, y50Var.e);
+                        p01 p01Var2 = z50Var.O;
+                        if (p01Var2 != null) {
+                            p01Var2.b(false);
+                        }
+                        z50Var.O = null;
+                        MediaController.getInstance().requestRecordAudioFocus(false);
+                        return;
                     }
-                    xc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(formatString), null).k(false);
                     return;
                 }
                 return;
         }
     }
 
-    public b0(h0 h0Var, o oVar, boolean z10, File file, boolean z11, int i10, e0 e0Var) {
-        this.e = h0Var;
-        this.f13659f = oVar;
-        this.f13657b = z10;
-        this.h = file;
-        this.f13658c = z11;
-        this.d = i10;
-        this.f13660n = e0Var;
-    }
-
-    public b0(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
-        this.e = sendMessagesHelper;
-        this.f13657b = z10;
-        this.f13659f = message;
-        this.h = arrayList;
-        this.f13658c = z11;
-        this.f13660n = arrayList2;
-        this.d = i10;
+    public b0(o0 o0Var, k0 k0Var, File file, long j3, boolean z10) {
+        this.f13658b = o0Var;
+        this.f13659c = k0Var;
+        this.e = file;
+        this.d = j3;
+        this.f13660f = z10;
     }
 }

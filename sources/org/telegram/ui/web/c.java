@@ -1,12 +1,12 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
-import org.telegram.ui.Components.t61;
-public final class c extends t61 {
+import org.telegram.ui.Components.s61;
+public final class c extends s61 {
     public final k f38840f3;
 
-    public c(k kVar, Context context, int i10, hi.a aVar, a aVar2, o0.a aVar3) {
-        super(context, i10, 0, false, aVar, aVar2, null, aVar3);
+    public c(k kVar, Context context, int i10, hi.a aVar, a aVar2, m5.e eVar) {
+        super(context, i10, 0, false, aVar, aVar2, null, eVar);
         this.f38840f3 = kVar;
     }
 

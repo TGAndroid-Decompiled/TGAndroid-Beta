@@ -8,10 +8,10 @@ import org.telegram.ui.Components.lo0;
 import org.telegram.ui.p10;
 import org.telegram.ui.w10;
 public final class a0 implements w10 {
-    public final k0 f9084a;
+    public final k0 f9085a;
 
     public a0(k0 k0Var) {
-        this.f9084a = k0Var;
+        this.f9085a = k0Var;
     }
 
     @Override
@@ -22,8 +22,8 @@ public final class a0 implements w10 {
     @Override
     public final void d(MessageObject messageObject) {
         int i10;
-        k0 k0Var = this.f9084a;
-        n2 n2Var = k0Var.f9129s;
+        k0 k0Var = this.f9085a;
+        n2 n2Var = k0Var.f9130s;
         i10 = ((f3) k0Var).currentAccount;
         n2Var.presentFragment(lo0.L(messageObject, i10));
         k0Var.dismiss();

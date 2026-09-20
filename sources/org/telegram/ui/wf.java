@@ -23,7 +23,7 @@ public final class wf implements Utilities.CallbackReturn {
                 zn znVar = (zn) this.f39138b;
                 View view = (View) this.f39139c;
                 URLSpan uRLSpan = (URLSpan) obj;
-                MessageObject messageObject = znVar.f40244d5;
+                MessageObject messageObject = znVar.f40286d5;
                 if (view instanceof org.telegram.ui.Cells.u1) {
                     u1Var = (org.telegram.ui.Cells.u1) view;
                 } else {

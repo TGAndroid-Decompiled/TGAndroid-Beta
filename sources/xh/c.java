@@ -12,23 +12,23 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.m7;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.ab;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l7;
+import org.telegram.ui.Components.ul0;
 import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.wl0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.y5;
-public final class c extends bb {
-    public static final int f46066a0 = 0;
+public final class c extends ab {
+    public static final int f46113a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public l61 Z;
+    public k61 Z;
 
-    public c(Context context, e6 e6Var, GiftAuctionController.Auction auction, List list) {
-        super(context, null, false, false, 2, e6Var);
+    public c(Context context, f6 f6Var, GiftAuctionController.Auction auction, List list) {
+        super(context, null, false, false, 2, f6Var);
         this.Y = auction;
         this.X = list;
         this.v = 0.2f;
@@ -37,9 +37,9 @@ public final class c extends bb {
         this.e.setTitle(y());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new m7(3));
+        this.d.setOnItemClickListener(new l7(3));
         this.d.setOverScrollMode(2);
-        ci.d dVar = new ci.d(context, e6Var, true);
+        ci.d dVar = new ci.d(context, f6Var, true);
         dVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 15));
         dVar.g(LocaleController.getString(R.string.OK), false, true);
         FrameLayout.LayoutParams d = y5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
@@ -71,11 +71,11 @@ public final class c extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
-        this.Z = l61Var;
-        l61Var.f26042r = false;
-        return l61Var;
+    public final ul0 v(vl0 vl0Var) {
+        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
+        this.Z = k61Var;
+        k61Var.f25678r = false;
+        return k61Var;
     }
 
     @Override

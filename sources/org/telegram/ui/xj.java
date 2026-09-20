@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessageObject;
 public final class xj extends g.p {
-    public final zn f39502c;
+    public final zn f39599c;
 
     public xj(zn znVar) {
-        this.f39502c = znVar;
+        this.f39599c = znVar;
     }
 
     @Override
@@ -13,7 +13,7 @@ public final class xj extends g.p {
         int i11;
         MessageObject messageObject;
         MessageObject.GroupedMessages X8;
-        zn znVar = this.f39502c;
+        zn znVar = this.f39599c;
         lm lmVar = znVar.A0;
         int i12 = lmVar.J;
         if (i10 >= i12 && i10 < lmVar.K && (i11 = i10 - i12) >= 0 && i11 < lmVar.L().size() && (X8 = znVar.X8((messageObject = (MessageObject) znVar.A0.L().get(i11)))) != null) {

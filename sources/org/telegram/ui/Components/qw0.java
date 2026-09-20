@@ -1,49 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class qw0 extends bb {
-    public rs X;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ProfileActivity;
+public final class qw0 implements Runnable {
+    public final int f27677a;
+    public final tw0 f27678b;
 
-    public qw0(Context context) {
-        super(context, null, true, false, null);
-        fixNavigationBar();
-        this.E = true;
-        this.f22948y = true;
-        K();
-        wl0 wl0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i10, 0, i10, 0);
-        this.d.j(new tb0(this, 7));
-        this.d.setOnItemClickListener(new j(this, 14));
-    }
-
-    public static void P(qw0 qw0Var, int i10) {
-        Object obj;
-        x51 G = qw0Var.X.G(i10 - 1);
-        if (G != null) {
-            obj = G.G;
-        } else {
-            obj = null;
-        }
-        if (obj instanceof TLRPC.User) {
-            MessagesController.getInstance(qw0Var.currentAccount).openApp(qw0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
-        }
+    public qw0(tw0 tw0Var, int i10) {
+        this.f27677a = i10;
+        this.f27678b = tw0Var;
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        rs rsVar = new rs(wl0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
-        this.X = rsVar;
-        rsVar.f26042r = false;
-        return rsVar;
-    }
-
-    @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.SearchAppsExamples);
+    public final void run() {
+        switch (this.f27677a) {
+            case 0:
+                tw0 tw0Var = this.f27678b;
+                tw0Var.invalidate();
+                AndroidUtilities.runOnUIThread(new qw0(tw0Var, 1));
+                return;
+            default:
+                tw0 tw0Var2 = this.f27678b;
+                sw0 sw0Var = tw0Var2.e;
+                if (sw0Var != null) {
+                    tw0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.ky0) sw0Var).f35264b;
+                    org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f31639r;
+                    j5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.Z5));
+                    j5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f31528a6));
+                    return;
+                }
+                return;
+        }
     }
 }

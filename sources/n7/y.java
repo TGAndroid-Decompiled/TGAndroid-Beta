@@ -2,32 +2,32 @@ package n7;
 
 import java.util.Iterator;
 public final class y extends o {
-    public static final Object[] f15360r;
-    public static final y f15361s;
+    public static final Object[] f15396r;
+    public static final y f15397s;
     public final transient Object[] d;
     public final transient int e;
-    public final transient Object[] f15362f;
+    public final transient Object[] f15398f;
     public final transient int h;
-    public final transient int f15363n;
+    public final transient int f15399n;
 
     static {
         Object[] objArr = new Object[0];
-        f15360r = objArr;
-        f15361s = new y(0, 0, 0, objArr, objArr);
+        f15396r = objArr;
+        f15397s = new y(0, 0, 0, objArr, objArr);
     }
 
     public y(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
         this.e = i10;
-        this.f15362f = objArr2;
+        this.f15398f = objArr2;
         this.h = i11;
-        this.f15363n = i12;
+        this.f15399n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f15362f;
+            Object[] objArr = this.f15398f;
             if (objArr.length != 0) {
                 int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
                 while (true) {
@@ -58,7 +58,7 @@ public final class y extends o {
     @Override
     public final int i(Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i10 = this.f15363n;
+        int i10 = this.f15399n;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
     }
@@ -70,7 +70,7 @@ public final class y extends o {
 
     @Override
     public final int n() {
-        return this.f15363n;
+        return this.f15399n;
     }
 
     @Override
@@ -90,11 +90,11 @@ public final class y extends o {
 
     @Override
     public final int size() {
-        return this.f15363n;
+        return this.f15399n;
     }
 
     @Override
     public final m u() {
-        return m.t(this.f15363n, this.d);
+        return m.t(this.f15399n, this.d);
     }
 }

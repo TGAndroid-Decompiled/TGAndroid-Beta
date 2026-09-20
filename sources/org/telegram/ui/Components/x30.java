@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class x30 implements wt0 {
+public final class x30 implements vt0 {
     @Override
     public final boolean T() {
         return false;
     }
 
     @Override
-    public final wl0 f() {
+    public final vl0 f() {
         return null;
     }
 

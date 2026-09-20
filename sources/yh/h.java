@@ -7,22 +7,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class h implements RequestDelegate {
-    public final int f47454a;
-    public final o f47455b;
-    public final long f47456c;
+    public final int f47498a;
+    public final o f47499b;
+    public final long f47500c;
 
     public h(o oVar, long j3, int i10) {
-        this.f47454a = i10;
-        this.f47455b = oVar;
-        this.f47456c = j3;
+        this.f47498a = i10;
+        this.f47499b = oVar;
+        this.f47500c = j3;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f47454a) {
+        switch (this.f47498a) {
             case 0:
-                final o oVar = this.f47455b;
-                final long j3 = this.f47456c;
+                final o oVar = this.f47499b;
+                final long j3 = this.f47500c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,25 +39,25 @@ public final class h implements RequestDelegate {
                                     hashMap.put(Long.valueOf(j10), null);
                                 }
                                 oVar2.d.put(Long.valueOf(j10), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(oVar2.f47788a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j10));
+                                NotificationCenter.getInstance(oVar2.f47827a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j10));
                                 return;
                             default:
-                                HashMap hashMap2 = oVar2.f47790c;
+                                HashMap hashMap2 = oVar2.f47829c;
                                 if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
                                     hashMap2.put(Long.valueOf(j10), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
                                 } else {
                                     hashMap2.put(Long.valueOf(j10), null);
                                 }
-                                oVar2.f47789b.put(Long.valueOf(j10), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(oVar2.f47788a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j10));
+                                oVar2.f47828b.put(Long.valueOf(j10), Long.valueOf(System.currentTimeMillis()));
+                                NotificationCenter.getInstance(oVar2.f47827a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j10));
                                 return;
                         }
                     }
                 });
                 return;
             default:
-                final o oVar2 = this.f47455b;
-                final long j10 = this.f47456c;
+                final o oVar2 = this.f47499b;
+                final long j10 = this.f47500c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -74,17 +74,17 @@ public final class h implements RequestDelegate {
                                     hashMap.put(Long.valueOf(j102), null);
                                 }
                                 oVar22.d.put(Long.valueOf(j102), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(oVar22.f47788a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j102));
+                                NotificationCenter.getInstance(oVar22.f47827a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j102));
                                 return;
                             default:
-                                HashMap hashMap2 = oVar22.f47790c;
+                                HashMap hashMap2 = oVar22.f47829c;
                                 if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
                                     hashMap2.put(Long.valueOf(j102), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
                                 } else {
                                     hashMap2.put(Long.valueOf(j102), null);
                                 }
-                                oVar22.f47789b.put(Long.valueOf(j102), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(oVar22.f47788a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j102));
+                                oVar22.f47828b.put(Long.valueOf(j102), Long.valueOf(System.currentTimeMillis()));
+                                NotificationCenter.getInstance(oVar22.f47827a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j102));
                                 return;
                         }
                     }

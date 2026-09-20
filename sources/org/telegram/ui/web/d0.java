@@ -3,7 +3,7 @@ package org.telegram.ui.web;
 import ai.da;
 import android.content.DialogInterface;
 import org.telegram.messenger.Utilities;
-import yh.t5;
+import yh.u5;
 public final class d0 implements DialogInterface.OnDismissListener {
     public final int f38848a;
     public final boolean[] f38849b;
@@ -65,7 +65,7 @@ public final class d0 implements DialogInterface.OnDismissListener {
         }
     }
 
-    public d0(t5 t5Var, Utilities.Callback callback, boolean[] zArr, boolean[] zArr2, Object obj, int i10) {
+    public d0(u5 u5Var, Utilities.Callback callback, boolean[] zArr, boolean[] zArr2, Object obj, int i10) {
         this.f38848a = i10;
         this.f38850c = callback;
         this.f38849b = zArr;

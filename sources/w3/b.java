@@ -5,18 +5,18 @@ import java.util.concurrent.TimeoutException;
 import w9.w;
 import za.a0;
 public final class b {
-    public final Object f44739a;
+    public final Object f44783a;
 
     public b(Object obj) {
-        this.f44739a = obj;
+        this.f44783a = obj;
     }
 
     public void a(a0 a0Var) {
-        ((l5.q) ((i5.f) ((pa.b) this.f44739a).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new r5.d(this, 28)).a(new i5.a(null, a0Var, i5.d.f10996a, null), new j2.e(20));
+        ((l5.q) ((i5.f) ((pa.b) this.f44783a).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new r5.d(this, 28)).a(new i5.a(null, a0Var, i5.d.f10997a, null), new j2.e(22));
     }
 
     public void b(da.b bVar, Thread thread, Throwable th2) {
-        w9.m mVar = (w9.m) this.f44739a;
+        w9.m mVar = (w9.m) this.f44783a;
         synchronized (mVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {

@@ -13,7 +13,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.v01;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.Components.yc;
 public final class sa {
     public static CharSequence[] f1512y;
@@ -26,15 +26,15 @@ public final class sa {
     public SpannableStringBuilder f1520k;
     public String f1521l;
     public boolean f1522m;
-    public v01 f1523n;
-    public v01 f1524o;
+    public u01 f1523n;
+    public u01 f1524o;
     public boolean f1525p;
     public boolean f1526q;
     public View f1527r;
     public Runnable f1528s;
     public int f1532x;
     public boolean f1516f = true;
-    public final org.telegram.ui.Components.e6 h = new org.telegram.ui.Components.e6(0, 350, qr.h);
+    public final org.telegram.ui.Components.d6 h = new org.telegram.ui.Components.d6(0, 350, qr.h);
     public final yc f1518i = new yc((View) null);
     public final org.telegram.ui.Cells.z f1519j = org.telegram.ui.ActionBar.j6.Y(553648127, 0, 0);
     public final Paint f1529t = new Paint(1);
@@ -78,19 +78,19 @@ public final class sa {
             } else {
                 bold = AndroidUtilities.bold();
             }
-            this.f1523n = new v01(spannableStringBuilder, f10, bold);
+            this.f1523n = new u01(spannableStringBuilder, f10, bold);
         }
         if (this.f1524o == null || this.f1522m) {
             String str2 = this.f1521l;
             if (str2 != null) {
                 str = str2;
             }
-            this.f1524o = new v01(str, 14.0f, null);
+            this.f1524o = new u01(str, 14.0f, null);
         }
         float e = this.h.e(this.f1516f);
         Paint paint = this.f1529t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f1523n.f28868c, this.f1524o.f28868c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        int min = (int) Math.min(f7, Math.max(this.f1523n.f28493c, this.f1524o.f28493c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
         this.f1532x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
@@ -124,13 +124,13 @@ public final class sa {
         if (f11 < f7) {
             dp = (int) Math.min(AndroidUtilities.dp(12.0f) + dp, f7 - AndroidUtilities.dp(20.0f));
         }
-        v01 v01Var = this.f1523n;
+        u01 u01Var = this.f1523n;
         float f13 = dp;
-        v01Var.f28878p = f13;
-        v01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
-        v01 v01Var2 = this.f1524o;
-        v01Var2.f28878p = f13;
-        v01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
+        u01Var.f28503p = f13;
+        u01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
+        u01 u01Var2 = this.f1524o;
+        u01Var2.f28503p = f13;
+        u01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }
 

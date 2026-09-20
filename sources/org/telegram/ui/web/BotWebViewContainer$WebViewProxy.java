@@ -3,7 +3,7 @@ package org.telegram.ui.web;
 import android.webkit.JavascriptInterface;
 import java.io.Serializable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.dn0;
+import org.telegram.ui.Components.cn0;
 public class BotWebViewContainer$WebViewProxy {
     public d1 f38811a;
     public final z0 f38812b;
@@ -18,7 +18,7 @@ public class BotWebViewContainer$WebViewProxy {
         if (this.f38811a == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new dn0(this, str, str2, 21));
+        AndroidUtilities.runOnUIThread(new cn0(this, str, str2, 21));
     }
 
     @JavascriptInterface

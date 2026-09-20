@@ -8,23 +8,23 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.j2;
-import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Components.vl0;
-public class c0 extends vl0 {
-    public final Context f9685c;
+import org.telegram.ui.Cells.o4;
+import org.telegram.ui.Components.ul0;
+public class c0 extends ul0 {
+    public final Context f9686c;
     public final int d;
     public final boolean e;
-    public final boolean f9686f;
-    public final e6 h;
+    public final boolean f9687f;
+    public final f6 h;
 
-    public c0(int i10, Context context, e6 e6Var, boolean z10, boolean z11) {
+    public c0(int i10, Context context, f6 f6Var, boolean z10, boolean z11) {
         this.e = z10;
-        this.f9685c = context;
+        this.f9686c = context;
         this.d = i10;
-        this.f9686f = z11;
-        this.h = e6Var;
+        this.f9687f = z11;
+        this.h = f6Var;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class c0 extends vl0 {
     public void v(s4.c1 c1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        n4 n4Var = (n4) c1Var.f42929a;
+        o4 o4Var = (o4) c1Var.f42974a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();
@@ -67,7 +67,7 @@ public class c0 extends vl0 {
                 }
             }
         }
-        n4Var.setTag(Long.valueOf(j3));
+        o4Var.setTag(Long.valueOf(j3));
         if (user != null) {
             str = UserObject.getFirstName(user);
         } else if (chat != null) {
@@ -79,18 +79,18 @@ public class c0 extends vl0 {
         } else {
             str = "";
         }
-        n4Var.a(j3, str);
+        o4Var.a(j3, str);
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         boolean z10 = this.e;
-        n4 n4Var = new n4(this.f9685c, this.h, z10);
-        if (this.f9686f && !n4Var.f20658x) {
-            n4Var.f20658x = true;
-            NotificationCenter.getInstance(n4Var.h).listen(n4Var, NotificationCenter.userIsPremiumBlockedUpadted, new j2(n4Var, 1));
+        o4 o4Var = new o4(this.f9686c, this.h, z10);
+        if (this.f9687f && !o4Var.f20751x) {
+            o4Var.f20751x = true;
+            NotificationCenter.getInstance(o4Var.h).listen(o4Var, NotificationCenter.userIsPremiumBlockedUpadted, new j2(o4Var, 1));
         }
-        n4Var.setLayoutParams(new s4.p0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));
-        return new s4.c1(n4Var);
+        o4Var.setLayoutParams(new s4.p0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));
+        return new s4.c1(o4Var);
     }
 }

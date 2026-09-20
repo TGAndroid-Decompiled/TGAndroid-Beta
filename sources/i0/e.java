@@ -6,34 +6,34 @@ import android.os.Build;
 import android.os.Trace;
 import android.util.Log;
 import java.lang.reflect.Method;
-import v7.h8;
-import w7.a8;
+import v7.i8;
+import w7.b8;
 public abstract class e {
-    public static final h8 f10597a;
-    public static final k f10598b;
+    public static final i8 f10598a;
+    public static final k f10599b;
 
     static {
-        a8.a("TypefaceCompat static init");
+        b8.a("TypefaceCompat static init");
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 29) {
-            f10597a = new h8();
+            f10598a = new i8();
         } else if (i10 >= 28) {
-            f10597a = new h();
+            f10598a = new h();
         } else if (i10 >= 26) {
-            f10597a = new h();
+            f10598a = new h();
         } else {
             if (i10 >= 24) {
-                Method method = g.f10604c;
+                Method method = g.f10605c;
                 if (method == null) {
                     Log.w("TypefaceCompatApi24Impl", "Unable to collect necessary private methods.Fallback to legacy implementation.");
                 }
                 if (method != null) {
-                    f10597a = new h8();
+                    f10598a = new i8();
                 }
             }
-            f10597a = new h8();
+            f10598a = new i8();
         }
-        f10598b = new k(16);
+        f10599b = new k(16);
         Trace.endSection();
     }
 

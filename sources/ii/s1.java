@@ -10,25 +10,25 @@ import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.vi;
 public final class s1 implements ti {
-    public final vi f11614a;
-    public final d2 f11615b;
+    public final vi f11615a;
+    public final d2 f11616b;
 
     public s1(d2 d2Var, vi viVar) {
-        this.f11615b = d2Var;
-        this.f11614a = viVar;
+        this.f11616b = d2Var;
+        this.f11615a = viVar;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        vi viVar = this.f11614a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29033j0;
-        d2 d2Var = this.f11615b;
+    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        vi viVar = this.f11615a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29110j0;
+        d2 d2Var = this.f11616b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             w3 w3Var = d2Var.P;
-            a aVar = w3Var.f11706b4;
-            w3Var.f11706b4 = null;
+            a aVar = w3Var.f11707b4;
+            w3Var.f11707b4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -46,7 +46,7 @@ public final class s1 implements ti {
                 }
             }
         }
-        d2Var.P.f11706b4 = null;
+        d2Var.P.f11707b4 = null;
         viVar.dismiss(true);
     }
 
@@ -56,29 +56,29 @@ public final class s1 implements ti {
     }
 
     @Override
-    public final boolean c0() {
+    public final boolean f0() {
         return false;
     }
 
     @Override
-    public final void x0(gh ghVar) {
-        NotificationCenter.getInstance(this.f11615b.getCurrentAccount()).doOnIdle(ghVar);
+    public final void y0(gh ghVar) {
+        NotificationCenter.getInstance(this.f11616b.getCurrentAccount()).doOnIdle(ghVar);
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void V0(Object obj) {
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void k1(TLRPC.User user) {
     }
 
     @Override
-    public final void K0() {
+    public final void L0() {
     }
 
     @Override
-    public final void u0() {
+    public final void v0() {
     }
 
     @Override

@@ -1,18 +1,18 @@
 package za;
 public final class x extends kd.c {
-    public Object f49089a;
-    public int f49090b;
-    public final k1.p f49091c;
+    public Object f49135a;
+    public int f49136b;
+    public final k1.p f49137c;
 
     public x(k1.p pVar, kd.c cVar) {
         super(cVar);
-        this.f49091c = pVar;
+        this.f49137c = pVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f49089a = obj;
-        this.f49090b |= Integer.MIN_VALUE;
-        return this.f49091c.a(null, this);
+        this.f49135a = obj;
+        this.f49136b |= Integer.MIN_VALUE;
+        return this.f49137c.a(null, this);
     }
 }

@@ -21,7 +21,7 @@ public class kb extends View {
     public long F;
     public final Path G;
     public final a3.d H;
-    public final org.telegram.ui.Components.e6 f1154a;
+    public final org.telegram.ui.Components.d6 f1154a;
     public final TL_stories.MediaArea f1155b;
     public final Paint f1156c;
     public final Paint d;
@@ -73,7 +73,7 @@ public class kb extends View {
         this.f1161w = z12;
         this.f1163y = z12;
         this.f1162x = z12;
-        this.f1154a = new org.telegram.ui.Components.e6(view, 0L, 120L, new LinearInterpolator());
+        this.f1154a = new org.telegram.ui.Components.d6(view, 0L, 120L, new LinearInterpolator());
         paint.setStyle(Paint.Style.STROKE);
         f02.setCallback(this);
     }
@@ -107,7 +107,7 @@ public class kb extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                ycVar.f30548f = new nu(1, view);
+                ycVar.f30499f = new nu(1, view);
             }
             ycVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());

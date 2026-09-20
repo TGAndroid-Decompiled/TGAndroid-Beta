@@ -7,24 +7,24 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.oq;
-import w7.a6;
+import w7.b6;
 public final class m3 extends TextView {
-    public final oq f46265a;
+    public final oq f46312a;
 
-    public m3(Context context, e6 e6Var) {
+    public m3(Context context, f6 f6Var) {
         super(context);
-        int v02 = j6.v0(j6.f19447y8, e6Var);
+        int v02 = j6.v0(j6.f19479y8, f6Var);
         setTextColor(v02);
         setBackground(j6.Z(j6.l1(0.08f, v02), j6.l1(0.15f, v02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f)));
         setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
         setGravity(17);
         setTypeface(AndroidUtilities.bold());
-        a6.a(this);
+        b6.a(this);
         oq oqVar = new oq(R.drawable.arrows_select, 0);
-        this.f46265a = oqVar;
+        this.f46312a = oqVar;
         oqVar.spaceScaleX = 0.8f;
         oqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
@@ -61,7 +61,7 @@ public final class m3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f46265a, append.length() - 1, length, 33);
+        append.setSpan(this.f46312a, append.length() - 1, length, 33);
         setText(append);
     }
 }

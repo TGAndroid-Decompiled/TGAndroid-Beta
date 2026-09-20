@@ -7,20 +7,20 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.rk;
 public final class t2 extends FrameLayout {
-    public final int f19737a;
-    public final Dialog f19738b;
+    public final int f19769a;
+    public final Dialog f19770b;
 
     public t2(Dialog dialog, Context context, int i10) {
         super(context);
-        this.f19737a = i10;
-        this.f19738b = dialog;
+        this.f19769a = i10;
+        this.f19770b = dialog;
     }
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f19737a) {
+        switch (this.f19769a) {
             case 0:
                 return false;
             default:
@@ -36,12 +36,12 @@ public final class t2 extends FrameLayout {
         int left;
         int measuredWidth;
         int i16;
-        switch (this.f19737a) {
+        switch (this.f19769a) {
             case 1:
                 int childCount = getChildCount();
                 int i17 = i12 - i10;
                 int i18 = -1;
-                if (((b2) this.f19738b).K0) {
+                if (((b2) this.f19770b).K0) {
                     View findViewWithTag = findViewWithTag(-3);
                     View findViewWithTag2 = findViewWithTag(-4);
                     View findViewWithTag3 = findViewWithTag(-2);
@@ -92,13 +92,13 @@ public final class t2 extends FrameLayout {
                             if (LocaleController.isRTL) {
                                 int paddingLeft2 = getPaddingLeft();
                                 if (view != null) {
-                                    paddingLeft2 = org.telegram.messenger.q.D(8.0f, view.getMeasuredWidth(), paddingLeft2);
+                                    paddingLeft2 = org.telegram.messenger.l0.C(8.0f, view.getMeasuredWidth(), paddingLeft2);
                                 }
                                 childAt.layout(paddingLeft2, getPaddingTop(), childAt.getMeasuredWidth() + paddingLeft2, childAt.getMeasuredHeight() + getPaddingTop());
                             } else {
                                 int paddingRight2 = (i17 - getPaddingRight()) - childAt.getMeasuredWidth();
                                 if (view != null) {
-                                    paddingRight2 = wh.z(8.0f, view.getMeasuredWidth(), paddingRight2);
+                                    paddingRight2 = rk.x(8.0f, view.getMeasuredWidth(), paddingRight2);
                                 }
                                 childAt.layout(paddingRight2, getPaddingTop(), childAt.getMeasuredWidth() + paddingRight2, childAt.getMeasuredHeight() + getPaddingTop());
                             }
@@ -153,13 +153,13 @@ public final class t2 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f19737a) {
+        switch (this.f19769a) {
             case 1:
                 super.onMeasure(i10, i11);
                 int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
                 int childCount = getChildCount();
                 int i12 = 0;
-                if (((b2) this.f19738b).K0) {
+                if (((b2) this.f19770b).K0) {
                     int max = Math.max(0, (measuredWidth - AndroidUtilities.dp(8.0f)) / 2);
                     while (i12 < childCount) {
                         View childAt = getChildAt(i12);
@@ -211,10 +211,10 @@ public final class t2 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f19737a) {
+        switch (this.f19769a) {
             case 0:
                 super.setTranslationY(f7);
-                f3 f3Var = (f3) this.f19738b;
+                f3 f3Var = (f3) this.f19770b;
                 FrameLayout frameLayout = f3Var.topBulletinContainer;
                 if (frameLayout != null) {
                     frameLayout.setTranslationY((-(f3Var.container.getHeight() - f3Var.containerView.getY())) + f3Var.backgroundPaddingTop);

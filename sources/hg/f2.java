@@ -15,27 +15,27 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public final class f2 {
     public static volatile f2[] e = new f2[4];
-    public static final Object[] f10291f = new Object[4];
-    public final int f10292a;
-    public boolean f10293b;
-    public boolean f10294c;
+    public static final Object[] f10292f = new Object[4];
+    public final int f10293a;
+    public boolean f10294b;
+    public boolean f10295c;
     public final ArrayList d = new ArrayList();
 
     static {
         for (int i10 = 0; i10 < 4; i10++) {
-            f10291f[i10] = new Object();
+            f10292f[i10] = new Object();
         }
     }
 
     public f2(int i10) {
-        this.f10292a = i10;
+        this.f10293a = i10;
     }
 
     public static f2 b(int i10) {
         f2 f2Var;
         f2 f2Var2 = e[i10];
         if (f2Var2 == null) {
-            synchronized (f10291f[i10]) {
+            synchronized (f10292f[i10]) {
                 try {
                     f2Var = e[i10];
                     if (f2Var == null) {
@@ -88,7 +88,7 @@ public final class f2 {
         }
         u10.append(str2);
         u10.append(i11);
-        StringBuilder u11 = a4.a.u(t8.b.v(u10.toString(), ":"));
+        StringBuilder u11 = a4.a.u(v7.j0.s(u10.toString(), ":"));
         if (i12 < 10) {
             str3 = "0";
         }
@@ -109,7 +109,7 @@ public final class f2 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f18434id, str)) {
+            if (TextUtils.equals(tL_timezone.f18466id, str)) {
                 return tL_timezone;
             }
             i10++;
@@ -150,9 +150,9 @@ public final class f2 {
     }
 
     public final void g() {
-        if (!this.f10293b && !this.f10294c) {
-            this.f10293b = true;
-            int i10 = this.f10292a;
+        if (!this.f10294b && !this.f10295c) {
+            this.f10294b = true;
+            int i10 = this.f10293a;
             SharedPreferences mainSettings = MessagesController.getInstance(i10).getMainSettings();
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = mainSettings.getString("timezones", null);

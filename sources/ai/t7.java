@@ -9,10 +9,10 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.k00;
-import org.telegram.ui.Components.u01;
+import org.telegram.ui.Components.t01;
 import org.telegram.ui.Components.xw;
-import org.telegram.ui.ag0;
-import org.telegram.ui.d81;
+import org.telegram.ui.bg0;
+import org.telegram.ui.g81;
 import org.telegram.ui.hp;
 import org.telegram.ui.ln0;
 import org.telegram.ui.sl0;
@@ -40,7 +40,7 @@ public final class t7 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new f(18));
                 return;
             case 4:
-                int[] iArr = ci.d1.f4477a0;
+                int[] iArr = ci.d1.f4478a0;
                 return;
             case 5:
                 AndroidUtilities.runOnUIThread(new f(13));
@@ -57,13 +57,13 @@ public final class t7 implements RequestDelegate {
                 Paint paint = org.telegram.ui.ra.H;
                 return;
             case 10:
-                int i10 = hp.f34201b3;
+                int i10 = hp.f34249b3;
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new f(18));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.e5.f23785a;
+                Pattern pattern = org.telegram.ui.Components.d5.f23492a;
                 return;
             case 13:
                 int i11 = xw.H0;
@@ -75,10 +75,10 @@ public final class t7 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new f(18));
                 return;
             case 16:
-                int i13 = u01.e;
+                int i13 = t01.e;
                 return;
             case 17:
-                int i14 = ag0.f32029t0;
+                int i14 = bg0.f32411t0;
                 return;
             case 18:
                 AndroidUtilities.runOnUIThread(new sl0(tLObject, 2));
@@ -87,10 +87,10 @@ public final class t7 implements RequestDelegate {
                 int i15 = ln0.R;
                 return;
             case 20:
-                List list = xo0.f39536g1;
+                List list = xo0.f39641g1;
                 return;
             default:
-                int i16 = d81.e;
+                int i16 = g81.e;
                 return;
         }
     }

@@ -1,50 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class u7 extends wl0 {
-    public boolean X2;
-    public final j8 Y2;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.R;
+public final class u7 extends s4.v {
+    public final i8 d;
 
-    public u7(j8 j8Var, Context context) {
-        super(context, null);
-        this.Y2 = j8Var;
+    public u7(i8 i8Var) {
+        this.d = i8Var;
     }
 
     @Override
-    public final boolean F0(float f7) {
-        j8 j8Var = this.Y2;
-        if (f7 < j8Var.E.getY() - j8Var.f25215n.getTop()) {
-            return true;
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        View view = c1Var.f42974a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f42977f != 0) {
+            return 0;
         }
-        return false;
+        return s4.v.l(3, 0);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        j8 j8Var = this.Y2;
-        int i14 = j8Var.f25223s0;
-        if (i14 != -1 && !j8Var.f25203c.f19505n0) {
-            this.X2 = true;
-            j8Var.f25220r.h1(i14, j8Var.f25224t0 - j8Var.f25215n.getPaddingTop());
-            super.onLayout(false, i10, i11, i12, i13);
-            this.X2 = false;
-            j8Var.f25223s0 = -1;
-        } else if (j8Var.f25221r0) {
-            j8Var.f25221r0 = false;
-            this.X2 = true;
-            if (j8Var.w0(true)) {
-                super.onLayout(false, i10, i11, i12, i13);
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        i8 i8Var = this.d;
+        if (i8Var.f24935v0) {
+            if (b10 > 0 && b11 > 0) {
+                i8Var.f24937w0.move(b10 - 1, b11 - 1);
+            } else {
+                return false;
             }
-            this.X2 = false;
+        } else {
+            i8Var.f24937w0.move(b10, b11);
+        }
+        i8Var.f24939x0.clear();
+        i8Var.f24939x0.addAll(i8Var.f24937w0.list);
+        i8Var.f24931s.p(b10, b11);
+        return true;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        Boolean bool;
+        t7 t7Var = this.d.f24924n;
+        if (c1Var != null) {
+            t7Var.e1(false);
+        }
+        if (i10 != 0) {
+            t7Var.J0(false);
+            if (c1Var != null) {
+                c1Var.f42974a.setPressed(true);
+            }
+        }
+        if (c1Var != null) {
+            View view = c1Var.f42974a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
         }
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.X2) {
-            return;
-        }
-        super.requestLayout();
+    public final void q(s4.c1 c1Var) {
     }
 }

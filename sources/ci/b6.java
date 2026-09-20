@@ -11,33 +11,33 @@ public final class b6 implements ti {
     }
 
     @Override
-    public final boolean c0() {
+    public final boolean f0() {
         return false;
     }
 
     @Override
-    public final void x0(gh ghVar) {
+    public final void y0(gh ghVar) {
         ghVar.run();
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void V0(Object obj) {
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void k1(TLRPC.User user) {
     }
 
     @Override
-    public final void K0() {
+    public final void L0() {
     }
 
     @Override
-    public final void u0() {
+    public final void v0() {
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
     }
 
     @Override

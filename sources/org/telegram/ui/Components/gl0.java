@@ -1,3 +1,4 @@
 package org.telegram.ui.Components;
-public final class gl0 extends s4.c1 {
+public interface gl0 {
+    int run();
 }

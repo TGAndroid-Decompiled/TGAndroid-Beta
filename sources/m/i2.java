@@ -10,18 +10,18 @@ import androidx.appcompat.view.menu.ListMenuItemView;
 public final class i2 extends r1 {
     public e2 E;
     public l.n F;
-    public final int f14387x;
-    public final int f14388y;
+    public final int f14423x;
+    public final int f14424y;
 
     public i2(Context context, boolean z10) {
         super(context, z10);
         if (1 == h2.a(context.getResources().getConfiguration())) {
-            this.f14387x = 21;
-            this.f14388y = 22;
+            this.f14423x = 21;
+            this.f14424y = 22;
             return;
         }
-        this.f14387x = 22;
-        this.f14388y = 21;
+        this.f14423x = 22;
+        this.f14424y = 21;
     }
 
     @Override
@@ -48,13 +48,13 @@ public final class i2 extends r1 {
             }
             l.n nVar2 = this.F;
             if (nVar2 != nVar) {
-                l.l lVar = iVar.f13888a;
+                l.l lVar = iVar.f13927a;
                 if (nVar2 != null) {
                     this.E.p(lVar, nVar2);
                 }
                 this.F = nVar;
                 if (nVar != null) {
-                    this.E.v(lVar, nVar);
+                    this.E.u(lVar, nVar);
                 }
             }
         }
@@ -65,12 +65,12 @@ public final class i2 extends r1 {
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         l.i iVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f14387x) {
+        if (listMenuItemView != null && i10 == this.f14423x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i10 == this.f14388y) {
+        } else if (listMenuItemView != null && i10 == this.f14424y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
@@ -78,7 +78,7 @@ public final class i2 extends r1 {
             } else {
                 iVar = (l.i) adapter;
             }
-            iVar.f13888a.c(false);
+            iVar.f13927a.c(false);
             return true;
         } else {
             return super.onKeyDown(i10, keyEvent);

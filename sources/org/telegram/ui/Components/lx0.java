@@ -1,52 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.NotificationCenter;
-public final class lx0 extends w9 implements NotificationCenter.NotificationCenterDelegate {
-    public final int G;
-    public int H;
-    public String I;
-
-    public lx0(Context context, int i10) {
-        super(context);
-        this.I = "tg_placeholders_android";
-        this.G = i10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class lx0 extends lc {
+    public lx0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
+        this(launchActivity, null, 1, i10, document, null);
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.diceStickersDidLoad) {
-            if (this.I.equals((String) objArr[0])) {
-                t();
-            }
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        t();
-        NotificationCenter.getInstance(this.G).addObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    public void setStickerNum(int i10) {
-        if (this.H != i10) {
-            this.H = i10;
-            t();
-        }
-    }
-
-    public void setStickerPackName(String str) {
-        this.I = str;
-    }
-
-    public final void t() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lx0.t():void");
+    public lx0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.f6 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lx0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.f6):void");
     }
 }

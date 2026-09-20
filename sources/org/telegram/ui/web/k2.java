@@ -10,25 +10,25 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 public final class k2 implements Runnable {
-    public final int f38970a;
-    public final o2 f38971b;
+    public final int f38972a;
+    public final o2 f38973b;
 
     public k2(o2 o2Var, int i10) {
-        this.f38970a = i10;
-        this.f38971b = o2Var;
+        this.f38972a = i10;
+        this.f38973b = o2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f38970a) {
+        switch (this.f38972a) {
             case 0:
-                final o2 o2Var = this.f38971b;
+                final o2 o2Var = this.f38973b;
                 if (!o2Var.d) {
                     o2Var.d = true;
                     long currentTimeMillis = System.currentTimeMillis();
                     final ArrayList arrayList = new ArrayList();
                     for (n2 n2Var : o2Var.f39004a.values()) {
-                        if (!TextUtils.isEmpty(n2Var.f38992b) && currentTimeMillis - n2Var.f38991a <= 604800000) {
+                        if (!TextUtils.isEmpty(n2Var.f38995b) && currentTimeMillis - n2Var.f38994a <= 604800000) {
                             arrayList.add(0, n2Var);
                             if (arrayList.size() >= 100) {
                                 Utilities.globalQueue.postRunnable(new Runnable() {
@@ -43,7 +43,7 @@ public final class k2 implements Runnable {
                                                     ArrayList arrayList2 = arrayList;
                                                     if (i10 < arrayList2.size()) {
                                                         n2 n2Var2 = (n2) arrayList2.get(i10);
-                                                        o2Var2.f39004a.put(n2Var2.f38992b, n2Var2);
+                                                        o2Var2.f39004a.put(n2Var2.f38995b, n2Var2);
                                                         i10++;
                                                     } else {
                                                         o2Var2.f39005b = true;
@@ -65,7 +65,7 @@ public final class k2 implements Runnable {
                                                     }
                                                 }
                                                 m2 m2Var = new m2();
-                                                m2Var.f38986a.addAll(arrayList);
+                                                m2Var.f38987a.addAll(arrayList);
                                                 SerializedData serializedData = new SerializedData(m2Var.getObjectSize());
                                                 m2Var.serializeToStream(serializedData);
                                                 try {
@@ -96,7 +96,7 @@ public final class k2 implements Runnable {
                                         ArrayList arrayList2 = arrayList;
                                         if (i10 < arrayList2.size()) {
                                             n2 n2Var2 = (n2) arrayList2.get(i10);
-                                            o2Var2.f39004a.put(n2Var2.f38992b, n2Var2);
+                                            o2Var2.f39004a.put(n2Var2.f38995b, n2Var2);
                                             i10++;
                                         } else {
                                             o2Var2.f39005b = true;
@@ -118,7 +118,7 @@ public final class k2 implements Runnable {
                                         }
                                     }
                                     m2 m2Var = new m2();
-                                    m2Var.f38986a.addAll(arrayList);
+                                    m2Var.f38987a.addAll(arrayList);
                                     SerializedData serializedData = new SerializedData(m2Var.getObjectSize());
                                     m2Var.serializeToStream(serializedData);
                                     try {
@@ -137,7 +137,7 @@ public final class k2 implements Runnable {
                 }
                 return;
             case 1:
-                final o2 o2Var2 = this.f38971b;
+                final o2 o2Var2 = this.f38973b;
                 File file = new File(FileLoader.getDirectory(4), "webmetacache.dat");
                 if (!file.exists()) {
                     o2Var2.f39005b = true;
@@ -148,7 +148,7 @@ public final class k2 implements Runnable {
                     SerializedData serializedData = new SerializedData(file);
                     m2 m2Var = new m2();
                     m2Var.readParams(serializedData, true);
-                    arrayList2.addAll(m2Var.f38986a);
+                    arrayList2.addAll(m2Var.f38987a);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -164,7 +164,7 @@ public final class k2 implements Runnable {
                                     ArrayList arrayList22 = arrayList2;
                                     if (i10 < arrayList22.size()) {
                                         n2 n2Var2 = (n2) arrayList22.get(i10);
-                                        o2Var22.f39004a.put(n2Var2.f38992b, n2Var2);
+                                        o2Var22.f39004a.put(n2Var2.f38995b, n2Var2);
                                         i10++;
                                     } else {
                                         o2Var22.f39005b = true;
@@ -186,7 +186,7 @@ public final class k2 implements Runnable {
                                     }
                                 }
                                 m2 m2Var2 = new m2();
-                                m2Var2.f38986a.addAll(arrayList2);
+                                m2Var2.f38987a.addAll(arrayList2);
                                 SerializedData serializedData2 = new SerializedData(m2Var2.getObjectSize());
                                 m2Var2.serializeToStream(serializedData2);
                                 try {
@@ -203,7 +203,7 @@ public final class k2 implements Runnable {
                 });
                 return;
             default:
-                this.f38971b.d = false;
+                this.f38973b.d = false;
                 return;
         }
     }

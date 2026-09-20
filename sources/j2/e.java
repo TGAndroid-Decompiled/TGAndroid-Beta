@@ -12,32 +12,32 @@ import m4.q;
 import m4.r;
 import m4.z;
 public final class e implements m, d9.e, i5.g, z, e1 {
-    public final int f12574a;
+    public final int f12575a;
 
     public e(int i10) {
-        this.f12574a = i10;
+        this.f12575a = i10;
     }
 
-    public static AudioDeviceInfo b(Object obj) {
+    public static AudioDeviceInfo d(Object obj) {
         return (AudioDeviceInfo) obj;
     }
 
-    public static boolean e(Object obj) {
+    public static boolean f(Object obj) {
         return obj instanceof MediaDrmResetException;
     }
 
     @Override
     public Object apply(Object obj) {
-        return i0.z(Integer.valueOf(((v2.h) obj).f44105a));
+        return i0.z(Integer.valueOf(((v2.h) obj).f44149a));
     }
 
     @Override
     public void c(q qVar, int i10) {
-        switch (this.f12574a) {
-            case 23:
+        switch (this.f12575a) {
+            case 25:
                 qVar.getClass();
                 return;
-            case 24:
+            case 26:
                 qVar.b(i10);
                 return;
             default:
@@ -47,16 +47,11 @@ public final class e implements m, d9.e, i5.g, z, e1 {
     }
 
     @Override
-    public Object i(a0 a0Var, r rVar, int i10) {
-        switch (this.f12574a) {
-            case 26:
-                a0Var.getClass();
-                throw new ClassCastException();
-            case 27:
-                a0Var.getClass();
-                throw new ClassCastException();
+    public Object h(a0 a0Var, r rVar, int i10) {
+        switch (this.f12575a) {
             case 28:
-                return a0Var.n(rVar);
+                a0Var.getClass();
+                throw new ClassCastException();
             default:
                 a0Var.getClass();
                 throw new ClassCastException();
@@ -66,7 +61,7 @@ public final class e implements m, d9.e, i5.g, z, e1 {
     @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f12574a) {
+        switch (this.f12575a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -94,32 +89,32 @@ public final class e implements m, d9.e, i5.g, z, e1 {
         }
     }
 
-    public e(int i10, Object obj, Object obj2) {
-        this.f12574a = i10;
-    }
-
     public e(a aVar, float f7) {
-        this.f12574a = 7;
+        this.f12575a = 7;
     }
 
     public e(a aVar, int i10) {
-        this.f12574a = 5;
+        this.f12575a = 5;
     }
 
     public e(a aVar, k0 k0Var, int i10) {
-        this.f12574a = 6;
+        this.f12575a = 6;
+    }
+
+    public e(a aVar, Object obj, int i10) {
+        this.f12575a = i10;
     }
 
     public e(a aVar, boolean z10) {
-        this.f12574a = 3;
+        this.f12575a = 3;
     }
 
     public e(Object obj, int i10) {
-        this.f12574a = i10;
+        this.f12575a = i10;
     }
 
     public e(String str, int i10, int i11, n nVar) {
-        this.f12574a = 27;
+        this.f12575a = 29;
     }
 
     @Override

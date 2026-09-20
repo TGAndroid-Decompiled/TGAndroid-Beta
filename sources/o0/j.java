@@ -1,17 +1,9 @@
 package o0;
 
-import android.os.Process;
-public final class j extends Thread {
-    public final int f15460a;
-
-    public j(Runnable runnable) {
-        super(runnable, "fonts-androidx");
-        this.f15460a = 10;
-    }
-
+import java.util.concurrent.ThreadFactory;
+public final class j implements ThreadFactory {
     @Override
-    public final void run() {
-        Process.setThreadPriority(this.f15460a);
-        super.run();
+    public final Thread newThread(Runnable runnable) {
+        return new i(runnable);
     }
 }

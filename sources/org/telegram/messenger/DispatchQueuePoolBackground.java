@@ -83,12 +83,12 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(remove);
                 this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
-                if (zg.e0.f49272b) {
+                if (zg.e0.f49318b) {
                     remove.setPriority(1);
                 } else if (remove.getPriority() != 10) {
                     remove.setPriority(10);
                 }
-                remove.postRunnable(new g0(this, runnable, remove, 17));
+                remove.postRunnable(new f0(this, runnable, remove, 17));
             }
         }
     }
@@ -149,7 +149,7 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = (ArrayList) hg.k0.v(1, arrayList);
+                updateTaskCollection = (ArrayList) hg.k0.x(1, arrayList);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }

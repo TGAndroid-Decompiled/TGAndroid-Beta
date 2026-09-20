@@ -8,38 +8,38 @@ import ci.o4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.wq;
-import w7.a6;
+import w7.b6;
 import w7.y5;
 public final class h extends FrameLayout implements le.d {
-    public static final int[] f13035s;
-    public final String[] f13036a;
-    public final e6 f13037b;
-    public final dh.a f13038c;
+    public static final int[] f13036s;
+    public final String[] f13037a;
+    public final f6 f13038b;
+    public final dh.a f13039c;
     public final ah.c d;
     public final aa.a[] e;
-    public final n1[] f13039f;
+    public final n1[] f13040f;
     public a h;
-    public b f13040n;
-    public int f13041r;
+    public b f13041n;
+    public int f13042r;
 
     static {
         int i10 = R.drawable.msg_input_attach2;
         int i11 = R.drawable.pagedown;
-        f13035s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
+        f13036s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
     }
 
-    public h(Context context, e6 e6Var, dh.b bVar, ah.c cVar) {
+    public h(Context context, f6 f6Var, dh.b bVar, ah.c cVar) {
         super(context);
-        this.f13036a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.f13037a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
         this.e = new aa.a[7];
-        this.f13039f = new n1[7];
-        this.f13041r = 83;
+        this.f13040f = new n1[7];
+        this.f13042r = 83;
         this.d = cVar;
-        this.f13038c = bVar;
-        this.f13037b = e6Var;
+        this.f13039c = bVar;
+        this.f13038b = f6Var;
     }
 
     @Override
@@ -90,7 +90,7 @@ public final class h extends FrameLayout implements le.d {
     }
 
     public final n1 b(int i10) {
-        n1[] n1VarArr = this.f13039f;
+        n1[] n1VarArr = this.f13040f;
         if (n1VarArr[i10] == 0) {
             ?? obj = new Object();
             obj.f3164a = 0;
@@ -143,7 +143,7 @@ public final class h extends FrameLayout implements le.d {
             if (i10 == 0) {
                 interpolator = qr.h;
             } else {
-                interpolator = ke.a.f13588a;
+                interpolator = ke.a.f13589a;
             }
             if (i10 == 0) {
                 j3 = 300;
@@ -155,7 +155,7 @@ public final class h extends FrameLayout implements le.d {
             if (i10 == 0) {
                 interpolator2 = qr.h;
             } else {
-                interpolator2 = ke.a.f13588a;
+                interpolator2 = ke.a.f13589a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {
@@ -172,37 +172,37 @@ public final class h extends FrameLayout implements le.d {
                 i12 = 48;
             }
             Context context = getContext();
-            int i16 = f13035s[i10];
-            e6 e6Var = this.f13037b;
-            ih.b bVar3 = new ih.b(context, e6Var);
-            ih.a d = ih.a.d(context, this.d, this.f13038c, e6Var, i16, i12);
-            bVar3.f11200b = d;
+            int i16 = f13036s[i10];
+            f6 f6Var = this.f13038b;
+            ih.b bVar3 = new ih.b(context, f6Var);
+            ih.a d = ih.a.d(context, this.d, this.f13039c, f6Var, i16, i12);
+            bVar3.f11201b = d;
             bVar3.addView(d, y5.e(i11, i11, 80));
             d.setIconPadding(AndroidUtilities.dp(2.0f));
-            a6.b(bVar3, 0.13f, 2.0f);
+            b6.b(bVar3, 0.13f, 2.0f);
             float f7 = i11 / 2.0f;
             bVar3.setPivotX(AndroidUtilities.dp(f7));
             bVar3.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
             bVar3.setVisibility(8);
-            bVar3.setContentDescription(this.f13036a[i10]);
+            bVar3.setContentDescription(this.f13037a[i10]);
             bVar3.setOnClickListener(new o4(this, i10, 4));
             bVar3.setOnLongClickListener(new g(this, i10, 0));
             if (i10 == 6) {
-                ih.a aVar2 = bVar3.f11200b;
+                ih.a aVar2 = bVar3.f11201b;
                 aVar2.h = -1.0f;
                 aVar2.a();
             }
             boolean z12 = true;
             if (i10 == 1) {
                 bVar3.d = true;
-                wq wqVar = bVar3.f11201c;
+                wq wqVar = bVar3.f11202c;
                 if (wqVar != null) {
                     wqVar.setReverse(true);
                 }
             }
-            addView(bVar3, y5.e(i11, i11 + 8, this.f13041r));
+            addView(bVar3, y5.e(i11, i11 + 8, this.f13042r));
             aVarArr[i10] = new aa.a(bVar3, bVar, bVar2, false, 24);
-            n1 n1Var = this.f13039f[i10];
+            n1 n1Var = this.f13040f[i10];
             if (n1Var != null) {
                 bVar3.a(n1Var.f3164a, false);
                 bVar.a(false, false);
@@ -224,7 +224,7 @@ public final class h extends FrameLayout implements le.d {
     }
 
     public void setGravity(int i10) {
-        this.f13041r = i10;
+        this.f13042r = i10;
     }
 
     public void setOnClickListener(a aVar) {
@@ -232,7 +232,7 @@ public final class h extends FrameLayout implements le.d {
     }
 
     public void setOnLongClickListener(b bVar) {
-        this.f13040n = bVar;
+        this.f13041n = bVar;
     }
 
     @Override

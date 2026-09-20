@@ -1,10 +1,6 @@
 package v7;
 public abstract class x5 {
-    public static void a(int i10, Object[] objArr) {
-        for (int i11 = 0; i11 < i10; i11++) {
-            if (objArr[i11] == null) {
-                throw new NullPointerException(hg.k0.h(i11, "at index "));
-            }
-        }
+    public static int a(int i10) {
+        return (int) (Integer.rotateLeft((int) (i10 * (-862048943)), 15) * 461845907);
     }
 }

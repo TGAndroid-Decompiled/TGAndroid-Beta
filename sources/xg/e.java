@@ -8,10 +8,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.Components.w70;
-import org.telegram.ui.Components.zr0;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.yr0;
 import xh.g2;
 import xh.m;
 import xh.o2;
@@ -19,27 +19,27 @@ import xh.s2;
 import xh.v;
 import yh.a0;
 import yh.g5;
-import yh.l7;
+import yh.m7;
 import yh.x4;
 public final class e implements View.OnClickListener {
-    public final int f46013a;
-    public final Object f46014b;
-    public final Object f46015c;
+    public final int f46060a;
+    public final Object f46061b;
+    public final Object f46062c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f46013a = i10;
-        this.f46014b = obj;
-        this.f46015c = obj2;
+        this.f46060a = i10;
+        this.f46061b = obj;
+        this.f46062c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f46013a;
+        int i10 = this.f46060a;
         Object obj = this.d;
-        Object obj2 = this.f46015c;
-        Object obj3 = this.f46014b;
+        Object obj2 = this.f46062c;
+        Object obj3 = this.f46061b;
         switch (i10) {
             case 0:
                 ((i) obj3).a(view, (HashSet) obj2, (Runnable) obj);
@@ -49,27 +49,27 @@ public final class e implements View.OnClickListener {
                 ((xh.e) obj3).dismiss();
                 return;
             case 2:
-                m.R((m) obj3, (boolean[]) obj2, (e6) obj);
+                m.R((m) obj3, (boolean[]) obj2, (f6) obj);
                 return;
             case 3:
-                v.R((v) obj3, (Context) obj2, (e6) obj);
+                v.R((v) obj3, (Context) obj2, (f6) obj);
                 return;
             case 4:
-                v.P((v) obj3, (boolean[]) obj2, (e6) obj);
+                v.P((v) obj3, (boolean[]) obj2, (f6) obj);
                 return;
             case 5:
                 o2 o2Var = (o2) obj3;
-                ((w70) obj2).u();
-                zr0 zr0Var = o2Var.f46300a;
+                ((v70) obj2).u();
+                yr0 yr0Var = o2Var.f46347a;
                 g2 g2Var = new g2(o2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = s2.T;
-                zr0Var.h(null, g2Var);
+                yr0Var.h(null, g2Var);
                 return;
             case 6:
                 Context context = (Context) obj2;
-                e6 e6Var = (e6) obj;
-                if (((a0) obj3).m0.f49206a == zf.b.f49208a) {
-                    new l7(context, e6Var).show();
+                f6 f6Var = (f6) obj;
+                if (((a0) obj3).m0.f49252a == zf.b.f49254a) {
+                    new m7(context, f6Var).show();
                     return;
                 }
                 return;

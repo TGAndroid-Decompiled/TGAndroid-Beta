@@ -14,17 +14,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.dg1;
-public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceiver.ImageReceiverDelegate, MessagesStorage.BooleanCallback, t5.b, s5.f, x2.m, org.telegram.ui.oy {
-    public final int f27831a;
-    public final Object f27832b;
-    public final Object f27833c;
+import org.telegram.ui.fg1;
+public final class r50 implements c5, org.telegram.ui.ActionBar.a2, ImageReceiver.ImageReceiverDelegate, MessagesStorage.BooleanCallback, t5.b, s5.f, x2.n, org.telegram.ui.oy {
+    public final int f27769a;
+    public final Object f27770b;
+    public final Object f27771c;
     public final Object d;
 
     public r50(Object obj, Object obj2, Object obj3, int i10) {
-        this.f27831a = i10;
-        this.f27832b = obj;
-        this.f27833c = obj2;
+        this.f27769a = i10;
+        this.f27770b = obj;
+        this.f27771c = obj2;
         this.d = obj3;
     }
 
@@ -39,17 +39,17 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
         int i12;
         int i13;
         long j3;
-        u50 u50Var = (u50) this.f27832b;
-        p50 p50Var = (p50) this.f27833c;
+        u50 u50Var = (u50) this.f27770b;
+        p50 p50Var = (p50) this.f27771c;
         VideoEditedInfo videoEditedInfo = (VideoEditedInfo) this.d;
-        b60 b60Var = u50Var.H0;
-        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, u50Var.f28578a.getAbsolutePath(), 0, true, 0, 0, 0L);
+        a60 a60Var = u50Var.H0;
+        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, u50Var.f28556a.getAbsolutePath(), 0, true, 0, 0, 0L);
         if (p50Var != null) {
-            photoEntry.ttl = p50Var.f27108c;
+            photoEntry.ttl = p50Var.f27170c;
             photoEntry.effectId = p50Var.d;
         }
-        n50 n50Var = b60Var.f22838f;
-        if (!z10 && p50Var != null && !p50Var.f27106a) {
+        n50 n50Var = a60Var.f22543f;
+        if (!z10 && p50Var != null && !p50Var.f27168a) {
             z11 = false;
         } else {
             z11 = true;
@@ -57,7 +57,7 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
         if (i10 != 0) {
             i12 = i10;
         } else if (p50Var != null) {
-            i12 = p50Var.f27107b;
+            i12 = p50Var.f27169b;
         } else {
             i12 = 0;
         }
@@ -72,7 +72,7 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
             j3 = 0;
         }
         n50Var.q(photoEntry, videoEditedInfo, z11, i12, i13, false, j3);
-        b60Var.r(false, false);
+        a60Var.q(false, false);
     }
 
     @Override
@@ -87,12 +87,12 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
 
     @Override
     public e9.a1 b(int i10, b2.l1 l1Var, int[] iArr) {
-        x2.i iVar = (x2.i) this.f27832b;
-        String str = (String) this.f27833c;
+        x2.j jVar = (x2.j) this.f27770b;
+        String str = (String) this.f27771c;
         String str2 = (String) this.d;
         e9.f0 u10 = e9.i0.u();
         for (int i11 = 0; i11 < l1Var.f3091a; i11++) {
-            u10.b(new x2.l(i10, l1Var, i11, iVar, iArr[i11], str, str2));
+            u10.b(new x2.m(i10, l1Var, i11, jVar, iArr[i11], str, str2));
         }
         return u10.i();
     }
@@ -101,23 +101,23 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap bitmap;
         int i10;
-        j21 j21Var = (j21) this.f27832b;
-        lp lpVar = (lp) this.f27833c;
+        i21 i21Var = (i21) this.f27770b;
+        lp lpVar = (lp) this.f27771c;
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null && (bitmap = bitmapSafe.bitmap) != null) {
-            Drawable drawable = lpVar.f26231b;
-            if (drawable instanceof lc0) {
-                lc0 lc0Var = (lc0) drawable;
+            Drawable drawable = lpVar.f26220b;
+            if (drawable instanceof kc0) {
+                kc0 kc0Var = (kc0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
                 if (wallPaperSettings != null && wallPaperSettings.intensity < 0) {
                     i10 = -100;
                 } else {
                     i10 = 100;
                 }
-                lc0Var.t(j21.e(bitmap), i10);
-                lc0Var.u(j21Var.L);
-                j21Var.invalidate();
+                kc0Var.t(i21.e(bitmap), i10);
+                kc0Var.u(i21Var.L);
+                i21Var.invalidate();
             }
         }
     }
@@ -128,18 +128,37 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f27831a) {
+    public Object i() {
+        q5.a aVar = (q5.a) this.f27770b;
+        l5.i iVar = (l5.i) this.f27771c;
+        l5.h hVar = (l5.h) this.d;
+        s5.h hVar2 = (s5.h) aVar.d;
+        hVar2.getClass();
+        i5.d dVar = iVar.f14095c;
+        String str = hVar.f14089a;
+        String str2 = iVar.f14093a;
+        String c10 = w7.h6.c("SQLiteEventStore");
+        if (Log.isLoggable(c10, 3)) {
+            Log.d(c10, "Storing event with priority=" + dVar + ", name=" + str + " for destination " + str2);
+        }
+        ((Long) hVar2.c(new r50(hVar2, hVar, iVar, 7))).getClass();
+        aVar.f41466a.V(iVar, 1, false);
+        return null;
+    }
+
+    @Override
+    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f27769a) {
             case 1:
-                kv0 kv0Var = (kv0) this.f27832b;
+                jv0 jv0Var = (jv0) this.f27770b;
                 ArrayList arrayList = (ArrayList) this.d;
-                ((ai.t8) this.f27833c).F(arrayList);
-                xc.a0(kv0Var.f25848v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
-                kv0Var.L(false);
+                ((ai.t8) this.f27771c).F(arrayList);
+                xc.a0(jv0Var.f25528v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
+                jv0Var.L(false);
                 return;
             case 4:
-                boolean[] zArr = (boolean[]) this.f27832b;
-                JsPromptResult jsPromptResult = (JsPromptResult) this.f27833c;
+                boolean[] zArr = (boolean[]) this.f27770b;
+                JsPromptResult jsPromptResult = (JsPromptResult) this.f27771c;
                 bu buVar = (bu) this.d;
                 if (!zArr[0]) {
                     zArr[0] = true;
@@ -148,28 +167,9 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
                 }
                 return;
             default:
-                rg.j0.P((rg.j0) this.f27832b, (ArrayList) this.f27833c, (TLRPC.User) this.d);
+                rg.j0.P((rg.j0) this.f27770b, (ArrayList) this.f27771c, (TLRPC.User) this.d);
                 return;
         }
-    }
-
-    @Override
-    public Object h() {
-        q5.a aVar = (q5.a) this.f27832b;
-        l5.i iVar = (l5.i) this.f27833c;
-        l5.h hVar = (l5.h) this.d;
-        s5.h hVar2 = (s5.h) aVar.d;
-        hVar2.getClass();
-        i5.d dVar = iVar.f14056c;
-        String str = hVar.f14050a;
-        String str2 = iVar.f14054a;
-        String c10 = w7.g6.c("SQLiteEventStore");
-        if (Log.isLoggable(c10, 3)) {
-            Log.d(c10, "Storing event with priority=" + dVar + ", name=" + str + " for destination " + str2);
-        }
-        ((Long) hVar2.c(new r50(hVar2, hVar, iVar, 7))).getClass();
-        aVar.f41425a.V(iVar, 1, false);
-        return null;
     }
 
     @Override
@@ -179,13 +179,13 @@ public final class r50 implements d5, org.telegram.ui.ActionBar.a2, ImageReceive
 
     @Override
     public void run(boolean z10) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.f27832b;
-        org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f27833c;
+        TLRPC.Chat chat = (TLRPC.Chat) this.f27770b;
+        org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f27771c;
         org.telegram.ui.Components.voip.f2.l(chat, null, true, null, n2Var.getParentActivity(), n2Var, (AccountInstance) this.d);
     }
 
     @Override
-    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, dg1 dg1Var) {
-        return yh.y3.X((yh.y3) this.f27832b, (TL_stars.TL_starGiftUnique) this.f27833c, (org.telegram.ui.uy) this.d, arrayList);
+    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
+        return yh.y3.X((yh.y3) this.f27770b, (TL_stars.TL_starGiftUnique) this.f27771c, (org.telegram.ui.uy) this.d, arrayList);
     }
 }

@@ -5,22 +5,22 @@ import java.util.AbstractList;
 import java.util.Collections;
 import java.util.List;
 import java.util.RandomAccess;
-import v7.t6;
-import v7.y7;
+import v7.u6;
+import v7.z7;
 public final class b extends AbstractList implements RandomAccess, Serializable {
-    public final int[] f10158a;
-    public final int f10159b;
-    public final int f10160c;
+    public final int[] f10159a;
+    public final int f10160b;
+    public final int f10161c;
 
     public b(int i10, int i11, int[] iArr) {
-        this.f10158a = iArr;
-        this.f10159b = i10;
-        this.f10160c = i11;
+        this.f10159a = iArr;
+        this.f10160b = i10;
+        this.f10161c = i11;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if ((obj instanceof Integer) && y7.d(((Integer) obj).intValue(), this.f10159b, this.f10160c, this.f10158a) != -1) {
+        if ((obj instanceof Integer) && z7.d(((Integer) obj).intValue(), this.f10160b, this.f10161c, this.f10159a) != -1) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
                 return false;
             }
             for (int i10 = 0; i10 < size; i10++) {
-                if (this.f10158a[this.f10159b + i10] != bVar.f10158a[bVar.f10159b + i10]) {
+                if (this.f10159a[this.f10160b + i10] != bVar.f10159a[bVar.f10160b + i10]) {
                     return false;
                 }
             }
@@ -49,15 +49,15 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
 
     @Override
     public final Object get(int i10) {
-        t6.c(i10, size());
-        return Integer.valueOf(this.f10158a[this.f10159b + i10]);
+        u6.c(i10, size());
+        return Integer.valueOf(this.f10159a[this.f10160b + i10]);
     }
 
     @Override
     public final int hashCode() {
         int i10 = 1;
-        for (int i11 = this.f10159b; i11 < this.f10160c; i11++) {
-            i10 = (i10 * 31) + this.f10158a[i11];
+        for (int i11 = this.f10160b; i11 < this.f10161c; i11++) {
+            i10 = (i10 * 31) + this.f10159a[i11];
         }
         return i10;
     }
@@ -66,9 +66,9 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
     public final int indexOf(Object obj) {
         if (obj instanceof Integer) {
             int intValue = ((Integer) obj).intValue();
-            int i10 = this.f10160c;
-            int i11 = this.f10159b;
-            int d = y7.d(intValue, i11, i10, this.f10158a);
+            int i10 = this.f10161c;
+            int i11 = this.f10160b;
+            int d = z7.d(intValue, i11, i10, this.f10159a);
             if (d >= 0) {
                 return d - i11;
             }
@@ -87,12 +87,12 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
         int i10;
         if (obj instanceof Integer) {
             int intValue = ((Integer) obj).intValue();
-            int i11 = this.f10160c;
+            int i11 = this.f10161c;
             while (true) {
                 i11--;
-                i10 = this.f10159b;
+                i10 = this.f10160b;
                 if (i11 >= i10) {
-                    if (this.f10158a[i11] == intValue) {
+                    if (this.f10159a[i11] == intValue) {
                         break;
                     }
                 } else {
@@ -110,9 +110,9 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
     @Override
     public final Object set(int i10, Object obj) {
         Integer num = (Integer) obj;
-        t6.c(i10, size());
-        int i11 = this.f10159b + i10;
-        int[] iArr = this.f10158a;
+        u6.c(i10, size());
+        int i11 = this.f10160b + i10;
+        int[] iArr = this.f10159a;
         int i12 = iArr[i11];
         num.getClass();
         iArr[i11] = num.intValue();
@@ -121,29 +121,29 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
 
     @Override
     public final int size() {
-        return this.f10160c - this.f10159b;
+        return this.f10161c - this.f10160b;
     }
 
     @Override
     public final List subList(int i10, int i11) {
-        t6.f(i10, i11, size());
+        u6.f(i10, i11, size());
         if (i10 == i11) {
             return Collections.EMPTY_LIST;
         }
-        int i12 = this.f10159b;
-        return new b(i10 + i12, i12 + i11, this.f10158a);
+        int i12 = this.f10160b;
+        return new b(i10 + i12, i12 + i11, this.f10159a);
     }
 
     @Override
     public final String toString() {
         StringBuilder sb2 = new StringBuilder(size() * 5);
         sb2.append('[');
-        int[] iArr = this.f10158a;
-        int i10 = this.f10159b;
+        int[] iArr = this.f10159a;
+        int i10 = this.f10160b;
         sb2.append(iArr[i10]);
         while (true) {
             i10++;
-            if (i10 < this.f10160c) {
+            if (i10 < this.f10161c) {
                 sb2.append(", ");
                 sb2.append(iArr[i10]);
             } else {

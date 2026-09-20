@@ -11,50 +11,50 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.i11;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.v9;
+import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.x51;
-import yh.v7;
-public final class i1 extends w51 {
-    public static final int f46151a = 0;
+import yh.w7;
+public final class i1 extends v51 {
+    public static final int f46198a = 0;
 
     static {
-        w51.setup(new w51());
+        v51.setup(new v51());
     }
 
-    public static x51 a(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        x51 J = x51.J(i1.class);
-        J.f30257u = 1;
-        J.f30261z = i10;
+    public static w51 a(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
+        w51 J = w51.J(i1.class);
+        J.f29957u = 1;
+        J.f29961z = i10;
         J.G = starGift;
         J.e = z10;
         J.H = Boolean.valueOf(z11);
-        J.f30254r = z13;
-        J.f30253q = z12;
-        J.f30256t = z14;
+        J.f29954r = z13;
+        J.f29953q = z12;
+        J.f29956t = z14;
         return J;
     }
 
     @Override
-    public final void attachedView(wl0 wl0Var, View view, x51 x51Var) {
-        ((j1) view).d(x51Var.h, false);
+    public final void attachedView(vl0 vl0Var, View view, w51 w51Var) {
+        ((j1) view).d(w51Var.h, false);
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         boolean z11;
         float f7;
         int i10;
         j1 j1Var = (j1) view;
-        Object obj = x51Var.G;
+        Object obj = w51Var.G;
         boolean z12 = false;
         if (obj instanceof rg.k) {
             rg.k kVar = (rg.k) obj;
@@ -62,12 +62,12 @@ public final class i1 extends w51 {
             TextView textView = j1Var.I;
             TextView textView2 = j1Var.H;
             f1 f1Var = j1Var.e;
-            w9 w9Var = j1Var.f46196y;
+            v9 v9Var = j1Var.f46243y;
             TextView textView3 = j1Var.L;
             TextView textView4 = j1Var.M;
             int d = kVar.d();
-            if (j1Var.f46187h0 != kVar) {
-                i11 c12 = v7.c1(w9Var, w9Var.getImageReceiver(), d);
+            if (j1Var.f46234h0 != kVar) {
+                h11 c12 = w7.c1(v9Var, v9Var.getImageReceiver(), d);
                 j1Var.N = c12;
                 c12.run();
                 j1Var.N = null;
@@ -79,10 +79,10 @@ public final class i1 extends w51 {
             textView.setText(LocaleController.getString(R.string.TelegramPremiumShort));
             textView2.setVisibility(0);
             textView.setVisibility(0);
-            w9Var.setTranslationY(-AndroidUtilities.dp(8.0f));
-            j1Var.f46191n.setVisibility(8);
+            v9Var.setTranslationY(-AndroidUtilities.dp(8.0f));
+            j1Var.f46238n.setVisibility(8);
             j1Var.F.setVisibility(8);
-            if (kVar.f42592c == null && kVar.d == null) {
+            if (kVar.f42636c == null && kVar.d == null) {
                 textView4.setVisibility(8);
             } else {
                 if (j6.I.q()) {
@@ -93,14 +93,14 @@ public final class i1 extends w51 {
                 textView4.setTextColor(i10);
                 textView4.setVisibility(0);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("" + LocaleController.formatNumber(kVar.g(), ','));
-                spannableStringBuilder.setSpan(new u51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
                 oq[] oqVarArr = new oq[1];
-                textView4.setText(v7.X0(false, LocaleController.formatSpannable(R.string.PremiumOrStarsPrice, spannableStringBuilder), 0.48f, oqVarArr));
+                textView4.setText(w7.X0(false, LocaleController.formatSpannable(R.string.PremiumOrStarsPrice, spannableStringBuilder), 0.48f, oqVarArr));
                 oqVarArr[0].spaceScaleX = 0.8f;
             }
             FrameLayout.LayoutParams layoutParams = j1Var.E;
             layoutParams.gravity = 49;
-            w9Var.setLayoutParams(layoutParams);
+            v9Var.setLayoutParams(layoutParams);
             textView3.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
             textView3.setTextSize(1, 12.0f);
             textView3.setText(kVar.c());
@@ -108,89 +108,89 @@ public final class i1 extends w51 {
             textView3.setTextColor(-13397548);
             ((ViewGroup.MarginLayoutParams) h1Var.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
             ((FrameLayout.LayoutParams) h1Var.getLayoutParams()).gravity = 49;
-            j1Var.f46187h0 = kVar;
-            j1Var.f46188i0 = null;
+            j1Var.f46234h0 = kVar;
+            j1Var.f46235i0 = null;
             j1Var.V = kVar;
             j1Var.W = null;
-            j1Var.f46179b0 = false;
-            j1Var.f46181c0 = null;
-            j1Var.f46182d0 = false;
-            j1Var.f46183e0 = false;
-            j1Var.f46185f0 = false;
+            j1Var.f46226b0 = false;
+            j1Var.f46228c0 = null;
+            j1Var.f46229d0 = false;
+            j1Var.f46230e0 = false;
+            j1Var.f46232f0 = false;
             j1Var.O = null;
             j1Var.P = null;
             j1Var.c(false, false);
             j1Var.j();
         } else if (obj instanceof TL_stars.StarGift) {
             TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-            boolean z13 = x51Var.e;
-            Object obj2 = x51Var.H;
+            boolean z13 = w51Var.e;
+            Object obj2 = w51Var.H;
             if (obj2 instanceof Boolean) {
                 z11 = ((Boolean) obj2).booleanValue();
             } else {
                 z11 = false;
             }
-            j1Var.g(starGift, z13, z11, x51Var.f30253q, x51Var.f30254r, x51Var.f30256t);
+            j1Var.g(starGift, z13, z11, w51Var.f29953q, w51Var.f29954r, w51Var.f29956t);
         } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = j1Var.h((TL_stars.SavedStarGift) obj, x51Var.f30253q, x51Var.f30254r);
+            z12 = j1Var.h((TL_stars.SavedStarGift) obj, w51Var.f29953q, w51Var.f29954r);
         }
-        if (x51Var.f30243f) {
-            j1Var.b(x51Var.e, z12);
+        if (w51Var.f29943f) {
+            j1Var.b(w51Var.e, z12);
         }
-        j1Var.d(x51Var.h, z12);
+        j1Var.d(w51Var.h, z12);
         FrameLayout frameLayout = j1Var.d;
         float f10 = 1.0f;
-        if (x51Var.f30244g) {
+        if (w51Var.f29944g) {
             f7 = 1.0f;
         } else {
             f7 = 0.65f;
         }
         frameLayout.setAlpha(f7);
-        k1 k1Var = j1Var.f46184f;
-        if (!x51Var.f30244g) {
+        k1 k1Var = j1Var.f46231f;
+        if (!w51Var.f29944g) {
             f10 = 0.5f;
         }
         k1Var.setAlpha(f10);
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, e6 e6Var) {
-        return new j1(context, i10, e6Var);
+    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
+        return new j1(context, i10, f6Var);
     }
 
     @Override
-    public final boolean equals(x51 x51Var, x51 x51Var2) {
-        if (x51Var.f30253q == x51Var2.f30253q) {
-            Object obj = x51Var.G;
-            if (obj != null || x51Var2.G != null) {
+    public final boolean equals(w51 w51Var, w51 w51Var2) {
+        if (w51Var.f29953q == w51Var2.f29953q) {
+            Object obj = w51Var.G;
+            if (obj != null || w51Var2.G != null) {
                 if (obj instanceof rg.k) {
-                    if (obj == x51Var2.G) {
+                    if (obj == w51Var2.G) {
                         return true;
                     }
                     return false;
                 }
                 if (obj instanceof TL_stars.StarGift) {
-                    Object obj2 = x51Var2.G;
+                    Object obj2 = w51Var2.G;
                     if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f18521id == ((TL_stars.StarGift) obj2).f18521id) {
+                        if (((TL_stars.StarGift) obj).f18553id == ((TL_stars.StarGift) obj2).f18553id) {
                             return true;
                         }
                         return false;
                     }
                 }
                 if (obj instanceof TL_stars.SavedStarGift) {
-                    Object obj3 = x51Var2.G;
+                    Object obj3 = w51Var2.G;
                     if (obj3 instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f18521id == savedStarGift2.gift.f18521id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
+                        if (savedStarGift.gift.f18553id == savedStarGift2.gift.f18553id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
                             return true;
                         }
                         return false;
                     }
                 }
             }
-            if (x51Var.f30261z == x51Var2.f30261z && x51Var.e == x51Var2.e && x51Var.B == x51Var2.B && TextUtils.equals(x51Var.f30248l, x51Var2.f30248l)) {
+            if (w51Var.f29961z == w51Var2.f29961z && w51Var.e == w51Var2.e && w51Var.B == w51Var2.B && TextUtils.equals(w51Var.f29948l, w51Var2.f29948l)) {
                 return true;
             }
             return false;

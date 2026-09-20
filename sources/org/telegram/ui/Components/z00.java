@@ -8,73 +8,73 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class z00 extends FrameLayout {
-    public final p6 f30694a;
-    public final p6 f30695b;
+    public final o6 f30657a;
+    public final o6 f30658b;
 
     public z00(Context context) {
         super(context);
         int i10;
         int i11;
         int i12;
-        p6 p6Var = new p6(context, true, true, false);
-        this.f30694a = p6Var;
-        p6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        p6Var.setTypeface(AndroidUtilities.bold());
+        o6 o6Var = new o6(context, true, true, false);
+        this.f30657a = o6Var;
+        o6Var.setTextSize(AndroidUtilities.dp(15.0f));
+        o6Var.setTypeface(AndroidUtilities.bold());
         int i13 = org.telegram.ui.ActionBar.j6.L6;
-        p6Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
+        o6Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        p6Var.setGravity(i10);
+        o6Var.setGravity(i10);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        addView(p6Var, w7.y5.d(-1, 20.0f, i11 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        p6 p6Var2 = new p6(context, true, true, true);
-        this.f30695b = p6Var2;
-        p6Var2.b(0.45f, 250L, qr.h);
-        p6Var2.setTextSize(AndroidUtilities.dp(15.0f));
-        p6Var2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
+        addView(o6Var, w7.y5.d(-1, 20.0f, i11 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
+        o6 o6Var2 = new o6(context, true, true, true);
+        this.f30658b = o6Var2;
+        o6Var2.b(0.45f, 250L, qr.h);
+        o6Var2.setTextSize(AndroidUtilities.dp(15.0f));
+        o6Var2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
         if (LocaleController.isRTL) {
             i12 = 3;
         } else {
             i12 = 5;
         }
-        p6Var2.setGravity(i12);
-        addView(p6Var2, w7.y5.d(-2, 20.0f, (LocaleController.isRTL ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        WeakHashMap weakHashMap = r0.i0.f42096a;
+        o6Var2.setGravity(i12);
+        addView(o6Var2, w7.y5.d(-2, 20.0f, (LocaleController.isRTL ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
+        WeakHashMap weakHashMap = r0.i0.f42142a;
         new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 
     public final void a(String str, Runnable runnable) {
-        p6 p6Var = this.f30695b;
-        p6Var.c(str, !LocaleController.isRTL, true);
-        p6Var.setOnClickListener(new u6(1, runnable));
+        o6 o6Var = this.f30658b;
+        o6Var.c(str, !LocaleController.isRTL, true);
+        o6Var.setOnClickListener(new t6(1, runnable));
     }
 
     public final void b(String str, boolean z10) {
         boolean z11;
-        p6 p6Var = this.f30694a;
+        o6 o6Var = this.f30657a;
         if (z10) {
-            p6Var.a();
+            o6Var.a();
         }
         if (z10 && !LocaleController.isRTL) {
             z11 = true;
         } else {
             z11 = false;
         }
-        p6Var.c(str, z11, true);
+        o6Var.c(str, z11, true);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f30694a.getText());
+        accessibilityNodeInfo.setText(this.f30657a.getText());
     }
 
     @Override

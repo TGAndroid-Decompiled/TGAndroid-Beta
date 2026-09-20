@@ -4,15 +4,15 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ro0 implements TextWatcher {
-    public final String[] f37108a = {"34", "37"};
-    public final String[] f37109b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
-    public final String[] f37110c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+    public final String[] f37203a = {"34", "37"};
+    public final String[] f37204b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public final String[] f37205c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
     public int d = -1;
     public int e;
-    public final xo0 f37111f;
+    public final xo0 f37206f;
 
     public ro0(xo0 xo0Var) {
-        this.f37111f = xo0Var;
+        this.f37206f = xo0Var;
     }
 
     @Override
@@ -24,11 +24,11 @@ public final class ro0 implements TextWatcher {
         String[] strArr;
         int i12;
         String str;
-        xo0 xo0Var = this.f37111f;
-        if (xo0Var.f39562o0) {
+        xo0 xo0Var = this.f37206f;
+        if (xo0Var.f39667o0) {
             return;
         }
-        EditTextBoldCursor editTextBoldCursor = xo0Var.f39551f[0];
+        EditTextBoldCursor editTextBoldCursor = xo0Var.f39656f[0];
         int selectionStart = editTextBoldCursor.getSelectionStart();
         String obj = editTextBoldCursor.getText().toString();
         int i13 = 3;
@@ -47,7 +47,7 @@ public final class ro0 implements TextWatcher {
             }
             i15 = i16;
         }
-        xo0Var.f39562o0 = true;
+        xo0Var.f39667o0 = true;
         String str2 = null;
         int i17 = 100;
         if (sb2.length() > 0) {
@@ -57,16 +57,16 @@ public final class ro0 implements TextWatcher {
                 if (i18 < i13) {
                     if (i18 != 0) {
                         if (i18 != i14) {
-                            strArr = this.f37109b;
+                            strArr = this.f37204b;
                             i12 = 14;
                             str = "xxxx xxxx xxxx xx";
                         } else {
-                            strArr = this.f37108a;
+                            strArr = this.f37203a;
                             i12 = 15;
                             str = "xxxx xxxx xxxx xxx";
                         }
                     } else {
-                        strArr = this.f37110c;
+                        strArr = this.f37205c;
                         i12 = 16;
                         str = "xxxx xxxx xxxx xxxx";
                     }
@@ -103,7 +103,7 @@ public final class ro0 implements TextWatcher {
         }
         if (str2 != null) {
             if (sb2.length() == i17) {
-                xo0Var.f39551f[c10].requestFocus();
+                xo0Var.f39656f[c10].requestFocus();
             }
             editTextBoldCursor.setTextColor(xo0Var.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
             int i19 = 0;
@@ -136,7 +136,7 @@ public final class ro0 implements TextWatcher {
         if (selectionStart >= 0) {
             editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
         }
-        xo0Var.f39562o0 = z10;
+        xo0Var.f39667o0 = z10;
     }
 
     @Override

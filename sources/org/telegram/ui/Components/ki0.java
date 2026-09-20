@@ -1,55 +1,9 @@
 package org.telegram.ui.Components;
 
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ki0 implements zc0, bd0 {
-    public final int f25728a;
-    public final pi0 f25729b;
-
-    public ki0(pi0 pi0Var, int i10) {
-        this.f25728a = i10;
-        this.f25729b = pi0Var;
-    }
-
+import android.widget.FrameLayout;
+public final class ki0 extends FrameLayout {
     @Override
-    public String j(int i10) {
-        int i11 = this.f25728a;
-        pi0 pi0Var = this.f25729b;
-        switch (i11) {
-            case 0:
-                if (pi0Var.O) {
-                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
-                }
-                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
-            default:
-                if (pi0Var.O) {
-                    if (i10 == 1) {
-                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-                    }
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    Locale locale = Locale.US;
-                    return hg.k0.h(i10, ".");
-                } else if (i10 == 1) {
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
-                } else {
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
-                }
-        }
-    }
-
-    @Override
-    public void q(dd0 dd0Var, int i10) {
-        pi0 pi0Var = this.f25729b;
-        try {
-            pi0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        pi0Var.c(true);
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 }

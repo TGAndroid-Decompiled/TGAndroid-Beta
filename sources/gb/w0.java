@@ -24,9 +24,9 @@ public class w0 extends db.u {
                 } else if (p5 == 1) {
                     z10 = true;
                 } else {
-                    StringBuilder j3 = hg.k0.j(p5, "Invalid bitset value ", ", expected 0 or 1; at path ");
-                    j3.append(aVar.j());
-                    throw new RuntimeException(j3.toString());
+                    StringBuilder k10 = hg.k0.k(p5, "Invalid bitset value ", ", expected 0 or 1; at path ");
+                    k10.append(aVar.j());
+                    throw new RuntimeException(k10.toString());
                 }
             }
             if (z10) {

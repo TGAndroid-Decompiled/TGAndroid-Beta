@@ -1,55 +1,25 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.LinearGradient;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class x60 extends FrameLayout {
-    public final TextView f30262a;
-    public final TextView f30263b;
-    public final a70 f30264c;
+import org.telegram.messenger.LocaleController;
+public final class x60 extends org.telegram.ui.Cells.ab {
+    public final TextView f30178a0;
+    public final TextView f30179b0;
 
-    public x60(a70 a70Var, Context context) {
-        super(context);
-        this.f30264c = a70Var;
-        ImageView imageView = new ImageView(context);
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.R7, false);
-        int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Y7, false);
-        OvalShape ovalShape = new OvalShape();
-        float f7 = 46;
-        ovalShape.resize(f7, f7);
-        ShapeDrawable shapeDrawable = new ShapeDrawable(ovalShape);
-        shapeDrawable.setIntrinsicWidth(46);
-        shapeDrawable.setIntrinsicHeight(46);
-        shapeDrawable.getPaint().setShader(new LinearGradient(0.0f, 0.0f, 0.0f, f7, w02, w03, Shader.TileMode.CLAMP));
-        imageView.setBackground(shapeDrawable);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(R.drawable.large_income);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        addView(imageView, w7.y5.d(46, 46.0f, 19, 13.0f, 0.0f, 0.0f, 0.0f));
+    public x60(Context context) {
+        super(context, 6, 0, true);
+        LinearLayout f7 = org.telegram.messenger.rk.f(context, 1);
         TextView textView = new TextView(context);
-        this.f30262a = textView;
-        com.google.android.gms.internal.vision.e2.l(16.0f, 1, textView);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        addView(textView, w7.y5.d(-1, -2.0f, 51, 72.0f, 9.0f, 0.0f, 0.0f));
+        this.f30178a0 = textView;
+        org.telegram.messenger.l0.p(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), 1, 16.0f);
+        f7.addView(textView, w7.y5.q(-2, -2, 5));
         TextView textView2 = new TextView(context);
-        this.f30263b = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19445y6, false));
-        addView(textView2, w7.y5.d(-1, -2.0f, 51, 72.0f, 32.0f, 0.0f, 0.0f));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
+        this.f30179b0 = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19496z6, false));
+        textView2.setTextSize(1, 13.0f);
+        f7.addView(textView2, w7.y5.t(-2, -2, 5, 0, 1, 0, 0));
+        addView(f7, w7.y5.d(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
     }
 }

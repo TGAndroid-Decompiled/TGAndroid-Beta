@@ -3,19 +3,19 @@ package zg;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 public final class o extends d0 {
     public final q h;
 
-    public o(q qVar, Context context, e6 e6Var, int i10) {
-        super(context, i10, e6Var);
+    public o(q qVar, Context context, f6 f6Var, int i10) {
+        super(context, i10, f6Var);
         this.h = qVar;
     }
 
     @Override
     public final void onLineCountChanged(int i10, int i11) {
         if (i11 > i10) {
-            this.h.f49415y.smoothScrollBy(0, AndroidUtilities.dp(30.0f));
+            this.h.f49461y.smoothScrollBy(0, AndroidUtilities.dp(30.0f));
         }
     }
 

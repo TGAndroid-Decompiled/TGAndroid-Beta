@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.rk;
 public final class p4 extends TextView {
     public final int f1390a;
 
@@ -65,7 +65,7 @@ public final class p4 extends TextView {
     public void onDraw(Canvas canvas) {
         switch (this.f1390a) {
             case 4:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.h4.f34045r1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.h4.f34085r1);
                 super.onDraw(canvas);
                 return;
             default:
@@ -155,7 +155,7 @@ public final class p4 extends TextView {
                 return;
             case 27:
                 if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-                    i10 = wh.y(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
+                    i10 = rk.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
                 }
                 super.onMeasure(i10, i11);
                 return;

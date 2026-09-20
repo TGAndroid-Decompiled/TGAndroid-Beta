@@ -1,7 +1,6 @@
 package w7;
-
-import java.lang.reflect.Field;
 public abstract class o7 {
-    public static Field f45050a;
-    public static boolean f45051b;
+    public static int a(int i10) {
+        return (int) (Integer.rotateLeft((int) (i10 * (-862048943)), 15) * 461845907);
+    }
 }

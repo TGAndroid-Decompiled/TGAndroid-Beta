@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class il implements r91, d5, ml0 {
-    public final int f25012a;
-    public final ChatAttachAlertPhotoLayout f25013b;
+public final class il implements q91, c5, ll0 {
+    public final int f25071a;
+    public final ChatAttachAlertPhotoLayout f25072b;
 
     public il(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f25012a = i10;
-        this.f25013b = chatAttachAlertPhotoLayout;
+        this.f25071a = i10;
+        this.f25072b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        int i12 = this.f25012a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25013b;
+        int i12 = this.f25071a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25072b;
         switch (i12) {
             case 1:
-                boolean z11 = ChatAttachAlertPhotoLayout.f22084q1;
-                vi viVar = chatAttachAlertPhotoLayout.f26688b;
+                boolean z11 = ChatAttachAlertPhotoLayout.f22119q1;
+                vi viVar = chatAttachAlertPhotoLayout.f26655b;
                 viVar.Y0();
-                viVar.Z1.B1(7, false, z10, i10, 0, 0L, viVar.s1(), false, 0L);
+                viVar.Z1.C1(7, false, z10, i10, 0, 0L, viVar.s1(), false, 0L);
                 return;
             default:
-                boolean z12 = ChatAttachAlertPhotoLayout.f22084q1;
-                vi viVar2 = chatAttachAlertPhotoLayout.f26688b;
+                boolean z12 = ChatAttachAlertPhotoLayout.f22119q1;
+                vi viVar2 = chatAttachAlertPhotoLayout.f26655b;
                 viVar2.Y0();
-                viVar2.Z1.B1(4, true, z10, i10, 0, 0L, viVar2.s1(), false, 0L);
+                viVar2.Z1.C1(4, true, z10, i10, 0, 0L, viVar2.s1(), false, 0L);
                 return;
         }
     }
 
     @Override
     public void a(float f7) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25013b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25072b;
         dm dmVar = chatAttachAlertPhotoLayout.P;
         if (dmVar != null) {
             chatAttachAlertPhotoLayout.B0 = f7;
@@ -43,21 +43,21 @@ public final class il implements r91, d5, ml0 {
 
     @Override
     public boolean d(int i10, View view) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f22084q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25013b;
-        vi viVar = chatAttachAlertPhotoLayout.f26688b;
+        boolean z10 = ChatAttachAlertPhotoLayout.f22119q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25072b;
+        vi viVar = chatAttachAlertPhotoLayout.f26655b;
         if (!viVar.T0) {
             if (i10 == 0 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
                 ti tiVar = viVar.Z1;
                 if (tiVar != null) {
-                    tiVar.B1(0, false, true, 0, 0, 0L, viVar.s1(), false, 0L);
+                    tiVar.C1(0, false, true, 0, 0, 0L, viVar.s1(), false, 0L);
                 }
                 return true;
-            } else if (view instanceof org.telegram.ui.Cells.t5) {
-                yl0 yl0Var = chatAttachAlertPhotoLayout.I;
-                boolean z11 = !((org.telegram.ui.Cells.t5) view).a();
+            } else if (view instanceof org.telegram.ui.Cells.u5) {
+                xl0 xl0Var = chatAttachAlertPhotoLayout.I;
+                boolean z11 = !((org.telegram.ui.Cells.u5) view).a();
                 chatAttachAlertPhotoLayout.K = z11;
-                yl0Var.d(view, i10, z11);
+                xl0Var.d(view, i10, z11);
             }
         }
         return false;

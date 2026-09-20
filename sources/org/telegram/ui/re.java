@@ -1,27 +1,27 @@
 package org.telegram.ui;
 public final class re implements Runnable {
-    public final int f37042a;
-    public final org.telegram.ui.Components.nm0 f37043b;
+    public final int f37124a;
+    public final org.telegram.ui.Components.mm0 f37125b;
 
-    public re(org.telegram.ui.Components.nm0 nm0Var, int i10) {
-        this.f37042a = i10;
-        this.f37043b = nm0Var;
+    public re(org.telegram.ui.Components.mm0 mm0Var, int i10) {
+        this.f37124a = i10;
+        this.f37125b = mm0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37042a) {
+        switch (this.f37124a) {
             case 0:
-                org.telegram.ui.Components.nm0 nm0Var = this.f37043b;
-                if (!nm0Var.M) {
-                    nm0Var.M = true;
-                    nm0Var.c(new org.telegram.ui.Components.lm0(nm0Var, 0), false);
-                    nm0Var.f26732s.invalidate();
+                org.telegram.ui.Components.mm0 mm0Var = this.f37125b;
+                if (!mm0Var.M) {
+                    mm0Var.M = true;
+                    mm0Var.c(new org.telegram.ui.Components.km0(mm0Var, 0), false);
+                    mm0Var.f26424s.invalidate();
                     return;
                 }
                 return;
             default:
-                this.f37043b.dismiss();
+                this.f37125b.dismiss();
                 return;
         }
     }

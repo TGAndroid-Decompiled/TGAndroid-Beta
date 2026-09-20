@@ -1,6 +1,6 @@
 package a0;
 
-import w7.u7;
+import w7.v7;
 public final class l {
     public int[] f26a;
     public int f27b;
@@ -13,9 +13,9 @@ public final class l {
             if (i10 == i11) {
                 int[] iArr = this.f26a;
                 int[] iArr2 = lVar.f26a;
-                ud.e a2 = u7.a(0, i11);
-                int i12 = a2.f43939a;
-                int i13 = a2.f43940b;
+                ud.e a2 = v7.a(0, i11);
+                int i12 = a2.f43986a;
+                int i13 = a2.f43987b;
                 if (i12 <= i13) {
                     while (iArr[i12] == iArr2[i12]) {
                         if (i12 != i13) {

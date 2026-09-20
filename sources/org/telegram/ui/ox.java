@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import java.util.ArrayList;
 import org.telegram.messenger.AnimationNotificationsLocker;
-public final class ox extends l41 {
+public final class ox extends m41 {
     public boolean S;
     public ty T;
     public final ny U;
@@ -19,26 +19,26 @@ public final class ox extends l41 {
         this.U = nyVar;
         this.V = context2;
         this.e = 0.0f;
-        this.f35245n = new AnimationNotificationsLocker();
+        this.f35599n = new AnimationNotificationsLocker();
         this.M = true;
     }
 
     @Override
     public final void d(boolean z10) {
         ty tyVar = this.T;
-        tyVar.f37828c.G = true;
-        tyVar.d.O(this.T.f37826a, c());
+        tyVar.f37906c.G = true;
+        tyVar.d.O(this.T.f37904a, c());
         ty tyVar2 = this.T;
         tyVar2.d.G = false;
         tyVar2.G.G = false;
         uy uyVar = this.W;
         uyVar.A4(false, true);
-        this.T.f37826a.setClipChildren(true);
-        this.T.f37826a.invalidate();
+        this.T.f37904a.setClipChildren(true);
+        this.T.f37904a.invalidate();
         this.T.d.l();
         this.T.G.l();
-        this.T.f37826a.z1(null, 0.0f, z10);
-        uyVar.f38249y = false;
+        this.T.f37904a.z1(null, 0.0f, z10);
+        uyVar.f38356y = false;
         this.U.requestLayout();
         if (!c()) {
             uyVar.Q = true;
@@ -62,18 +62,18 @@ public final class ox extends l41 {
         float f7;
         int i10;
         uy uyVar = this.W;
-        uyVar.f38249y = true;
+        uyVar.f38356y = true;
         uyVar.E = z10;
         this.U.requestLayout();
-        ty tyVar = uyVar.f38149e0[0];
+        ty tyVar = uyVar.f38256e0[0];
         this.T = tyVar;
         if (tyVar.F == null) {
-            tyVar.F = new org.telegram.ui.Components.wl0(this.V, null);
+            tyVar.F = new org.telegram.ui.Components.vl0(this.V, null);
             this.T.F.setLayoutManager(new nx(this, this.T));
             ty tyVar2 = this.T;
-            int i11 = this.T.f37832s;
+            int i11 = this.T.f37910s;
             int i12 = uyVar.V2;
-            boolean z11 = uyVar.f38185l2;
+            boolean z11 = uyVar.f38292l2;
             ArrayList arrayList = uyVar.I2;
             i10 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
             tyVar2.G = new gg.m(uyVar, this.V, i11, i12, z11, arrayList, i10, uyVar.G);
@@ -88,17 +88,17 @@ public final class ox extends l41 {
             uyVar.Q = false;
             uyVar.C4(-uyVar.T3());
         }
-        this.T.f37826a.C0();
+        this.T.f37904a.C0();
         ty tyVar5 = this.T;
         gg.m mVar2 = tyVar5.G;
-        mVar2.h = tyVar5.f37832s;
+        mVar2.h = tyVar5.f37910s;
         mVar2.l();
         ty tyVar6 = this.T;
-        tyVar6.d.O(tyVar6.f37826a, false);
+        tyVar6.d.O(tyVar6.f37904a, false);
         ty tyVar7 = this.T;
         tyVar7.d.G = true;
         tyVar7.G.G = true;
-        tyVar7.f37828c.H = false;
+        tyVar7.f37906c.H = false;
         uyVar.A4(true, true);
         uyVar.c4(this.S);
         this.T.d.l();
@@ -109,9 +109,9 @@ public final class ox extends l41 {
             f7 = -uyVar.N;
         }
         ty tyVar8 = this.T;
-        tyVar8.f37826a.z1(tyVar8.F, f7, false);
-        this.T.f37826a.setClipChildren(false);
-        this.T.f37826a.C0();
+        tyVar8.f37904a.z1(tyVar8.F, f7, false);
+        this.T.f37904a.setClipChildren(false);
+        this.T.f37904a.C0();
         uyVar.D3();
         uyVar.U4();
     }
@@ -176,20 +176,20 @@ public final class ox extends l41 {
             backButton.setAlpha(f10);
         }
         if (uyVar.V2 != 0 || uyVar.X2 != 0) {
-            Paint paint = uyVar.f38156f1;
-            int i10 = org.telegram.ui.ActionBar.j6.f19062d6;
+            Paint paint = uyVar.f38263f1;
+            int i10 = org.telegram.ui.ActionBar.j6.f19094d6;
             paint.setColor(i0.a.d(f7, uyVar.getThemedColor(i10), uyVar.getThemedColor(i10)));
         }
         ty tyVar = this.T;
         if (tyVar != null) {
-            tyVar.f37826a.setOpenRightFragmentProgress(f7);
+            tyVar.f37904a.setOpenRightFragmentProgress(f7);
         }
         uyVar.C3();
         uyVar.H3();
         uyVar.u3();
         uyVar.E3();
-        ty tyVar2 = uyVar.f38149e0[0];
-        if (tyVar2 != null && (qyVar = tyVar2.f37826a) != null) {
+        ty tyVar2 = uyVar.f38256e0[0];
+        if (tyVar2 != null && (qyVar = tyVar2.f37904a) != null) {
             qyVar.requestLayout();
         }
         View view2 = uyVar.fragmentView;

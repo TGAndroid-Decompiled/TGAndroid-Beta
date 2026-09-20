@@ -25,10 +25,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.kn;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.tv0;
 public final class m2 implements NotificationCenter.NotificationCenterDelegate, rf.a {
-    public static final uv0 X = new uv0(new w1(1), new w1(2));
-    public static final uv0 Y = new uv0(new w1(3), new w1(4));
+    public static final tv0 X = new tv0(new w1(1), new w1(2));
+    public static final tv0 Y = new tv0(new w1(3), new w1(4));
     public static final m2 Z;
     public boolean E;
     public boolean F;
@@ -56,7 +56,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
     public f0 e;
     public ci.l4 f1235f;
     public FrameLayout h;
-    public org.telegram.ui.Components.w9 f1236n;
+    public org.telegram.ui.Components.v9 f1236n;
     public kn f1237r;
     public boolean f1238s;
     public d2 v;
@@ -94,13 +94,13 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             o1.l lVar = new o1.l();
             lVar.a(0.75f);
             lVar.b(650.0f);
-            kVar.f15490u = lVar;
+            kVar.f15522u = lVar;
             m2Var.P = kVar;
             o1.k kVar2 = new o1.k(m2Var, Y);
             o1.l lVar2 = new o1.l();
             lVar2.a(0.75f);
             lVar2.b(650.0f);
-            kVar2.f15490u = lVar2;
+            kVar2.f15522u = lVar2;
             m2Var.Q = kVar2;
             if (activity != null) {
                 context = activity;
@@ -124,10 +124,10 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             viewGroup.addView(m2Var.e, w7.y5.c(-1.0f, -1));
             m2Var.e.setOutlineProvider(new k2(0));
             m2Var.e.setClipToOutline(true);
-            m2Var.e.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19125gg, false));
-            org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-            m2Var.f1236n = w9Var;
-            m2Var.e.addView(w9Var, w7.y5.c(-1.0f, -1));
+            m2Var.e.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19157gg, false));
+            org.telegram.ui.Components.v9 v9Var = new org.telegram.ui.Components.v9(context);
+            m2Var.f1236n = v9Var;
+            m2Var.e.addView(v9Var, w7.y5.c(-1.0f, -1));
             ci.l4 l4Var = new ci.l4(context, m2Var.f1239w);
             m2Var.f1235f = l4Var;
             l4Var.setAlpha(0.0f);
@@ -147,9 +147,9 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             int dp = AndroidUtilities.dp(8.0f);
             ImageView imageView = new ImageView(context);
             imageView.setImageResource(R.drawable.pip_video_close);
-            int i12 = org.telegram.ui.ActionBar.j6.f19142hg;
+            int i12 = org.telegram.ui.ActionBar.j6.f19174hg;
             imageView.setColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
-            int i13 = org.telegram.ui.ActionBar.j6.f19152i6;
+            int i13 = org.telegram.ui.ActionBar.j6.f19184i6;
             imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, i13, false), 1, -1));
             imageView.setPadding(dp, dp, dp, dp);
             imageView.setOnClickListener(new e2(0));
@@ -187,7 +187,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             m2Var.f1233b.addView(m2Var.d, m2Var.f1234c);
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(qr.f27715f);
+            animatorSet.setInterpolator(qr.f27642f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(m2Var.d, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(m2Var.d, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(m2Var.d, View.SCALE_Y, 1.0f));
             animatorSet.addListener(new l2(0));
             animatorSet.start();
@@ -200,11 +200,11 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             }
             if (activity != null && sf.c.a(activity) == 1) {
                 pf.d dVar = new pf.d(activity, m2Var);
-                dVar.f41040c = "pip-live-story";
+                dVar.f41081c = "pip-live-story";
                 dVar.e = 1;
                 dVar.d = AndroidUtilities.dp(10.0f);
-                dVar.f41044j = m2Var.d;
-                dVar.f41045k = m2Var.f1235f.getPlaceholderView();
+                dVar.f41085j = m2Var.d;
+                dVar.f41086k = m2Var.f1235f.getPlaceholderView();
                 m2Var.L = dVar.a();
             }
         }
@@ -223,11 +223,11 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         pf.e eVar = this.L;
         if (eVar != null && eVar.h.b()) {
             WindowManager.LayoutParams layoutParams = this.f1234c;
-            int width = this.L.h.f43162a.width();
+            int width = this.L.h.f43206a.width();
             this.J = width;
             layoutParams.width = width;
             WindowManager.LayoutParams layoutParams2 = this.f1234c;
-            int height = this.L.h.f43162a.height();
+            int height = this.L.h.f43206a.height();
             this.K = height;
             layoutParams2.height = height;
         }
@@ -297,7 +297,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.f1238s) {
             this.f1237r.animate().cancel();
             ViewPropertyAnimator duration = this.f1237r.animate().alpha(0.0f).setDuration(150L);
-            qr qrVar = qr.f27715f;
+            qr qrVar = qr.f27642f;
             duration.setInterpolator(qrVar).start();
             this.f1236n.animate().cancel();
             this.f1236n.animate().alpha(0.0f).setDuration(150L).setInterpolator(qrVar).start();
@@ -319,9 +319,9 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         AndroidUtilities.updateViewLayout(this.f1233b, this.d, this.f1234c);
         o1.k kVar = this.P;
         float f10 = this.N;
-        kVar.f15481b = f10;
-        kVar.f15482c = true;
-        o1.l lVar = kVar.f15490u;
+        kVar.f15513b = f10;
+        kVar.f15514c = true;
+        o1.l lVar = kVar.f15522u;
         float A = a4.a.A(n(), this.M, 2.0f, f10);
         float f11 = AndroidUtilities.displaySize.x;
         if (A >= f11 / 2.0f) {
@@ -329,12 +329,12 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
-        lVar.f15496i = dp;
+        lVar.f15528i = dp;
         this.P.f();
         o1.k kVar2 = this.Q;
-        kVar2.f15481b = this.O;
-        kVar2.f15482c = true;
-        kVar2.f15490u.f15496i = w7.q.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
+        kVar2.f15513b = this.O;
+        kVar2.f15514c = true;
+        kVar2.f15522u.f15528i = w7.q.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
         this.Q.f();
     }
 
@@ -353,7 +353,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
             }
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(qr.f27715f);
+            animatorSet.setInterpolator(qr.f27642f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new n(2, this, z10));
             animatorSet.start();
@@ -406,7 +406,7 @@ public final class m2 implements NotificationCenter.NotificationCenterDelegate, 
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.I = duration;
-        duration.setInterpolator(qr.f27715f);
+        duration.setInterpolator(qr.f27642f);
         this.I.addUpdateListener(new a(this, 6));
         this.I.addListener(new b(this, 3));
         this.I.start();

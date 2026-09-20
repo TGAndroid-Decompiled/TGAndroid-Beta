@@ -8,8 +8,8 @@ public final class z8 extends FragmentContextView {
     public final int P0;
     public final NotificationCenter.NotificationCenterDelegate Q0;
 
-    public z8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.n2 n2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, n2Var, frameLayout, false, e6Var);
+    public z8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.n2 n2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, n2Var, frameLayout, false, f6Var);
         this.P0 = i10;
         this.Q0 = notificationCenterDelegate;
     }
@@ -33,8 +33,8 @@ public final class z8 extends FragmentContextView {
                 return;
             case 1:
                 org.telegram.ui.Components.gj gjVar = (org.telegram.ui.Components.gj) this.Q0;
-                org.telegram.ui.Components.ks ksVar2 = gjVar.f24420x;
-                FrameLayout frameLayout2 = gjVar.f24421y;
+                org.telegram.ui.Components.ks ksVar2 = gjVar.f24377x;
+                FrameLayout frameLayout2 = gjVar.f24378y;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
@@ -43,9 +43,9 @@ public final class z8 extends FragmentContextView {
                 ksVar2.i(frameLayout2, z11, true);
                 return;
             default:
-                dg1 dg1Var = (dg1) this.Q0;
-                org.telegram.ui.Components.ks ksVar3 = dg1Var.U0;
-                FrameLayout frameLayout3 = dg1Var.F0;
+                fg1 fg1Var = (fg1) this.Q0;
+                org.telegram.ui.Components.ks ksVar3 = fg1Var.U0;
+                FrameLayout frameLayout3 = fg1Var.F0;
                 if (i10 == 0) {
                     z12 = true;
                 } else {
@@ -56,9 +56,9 @@ public final class z8 extends FragmentContextView {
         }
     }
 
-    public z8(dg1 dg1Var, Context context, dg1 dg1Var2) {
-        super(context, dg1Var2, null, false, null);
+    public z8(fg1 fg1Var, Context context, fg1 fg1Var2) {
+        super(context, fg1Var2, null, false, null);
         this.P0 = 2;
-        this.Q0 = dg1Var;
+        this.Q0 = fg1Var;
     }
 }

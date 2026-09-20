@@ -26,7 +26,6 @@ import androidx.fragment.app.k0;
 import androidx.fragment.app.l0;
 import androidx.lifecycle.a0;
 import androidx.lifecycle.z;
-import c3.j0;
 import c6.e0;
 import c6.y;
 import ci.a7;
@@ -81,16 +80,18 @@ import lg.o;
 import org.chromium.support_lib_boundary.WebMessageListenerBoundaryInterface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.d5;
+import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Components.c5;
 import org.telegram.ui.Components.eo0;
-import org.telegram.ui.Components.r71;
-import org.telegram.ui.Components.u71;
+import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.t71;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cj0;
+import org.telegram.ui.dj0;
 import org.telegram.ui.gy;
 import org.telegram.ui.lv0;
-public final class m implements lv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, r71, OnSuccessListener, n, f6.a, fb.n, x, b2, z3.m, d5, h1 {
+import qg.c2;
+import v7.j0;
+public final class m implements lv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, q71, OnSuccessListener, n, f6.a, fb.n, x, b2, z3.m, c5, h1 {
     public final int f306a;
     public final Object f307b;
 
@@ -99,10 +100,10 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         this.f307b = strArr;
     }
 
-    public static int I(int i10, String str) {
+    public static int B(int i10, String str) {
         int Q = Q(i10);
-        int u10 = u(str);
-        return R(u10) + u10 + Q;
+        int m10 = m(str);
+        return R(m10) + m10 + Q;
     }
 
     public static void N(CharSequence charSequence, ByteBuffer byteBuffer) {
@@ -281,7 +282,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         return 5;
     }
 
-    public static int u(CharSequence charSequence) {
+    public static int m(CharSequence charSequence) {
         int length = charSequence.length();
         int i10 = 0;
         int i11 = 0;
@@ -330,17 +331,24 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         throw new IllegalArgumentException(sb3.toString());
     }
 
-    @Override
-    public int A() {
-        return 2;
+    public void A(int i10) {
+        while ((i10 & (-128)) != 0) {
+            x((i10 & 127) | 128);
+            i10 >>>= 7;
+        }
+        x(i10);
+    }
+
+    public void C(int i10, int i11) {
+        A((i10 << 3) | i11);
     }
 
     @Override
-    public void B(i1 i1Var, int i10, int i11) {
+    public void D(i1 i1Var, int i10, int i11) {
         c3 c3Var;
-        q9 textSelectionHelper;
+        r9 textSelectionHelper;
         o5 o5Var = (o5) this.f307b;
-        if (!o5Var.G && i10 != i11 && (c3Var = o5Var.E) != null && (textSelectionHelper = c3Var.f11286a.getTextSelectionHelper()) != null) {
+        if (!o5Var.G && i10 != i11 && (c3Var = o5Var.E) != null && (textSelectionHelper = c3Var.f11287a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.y() || textSelectionHelper.W != o5Var) {
                 o5Var.post(new x4(this, i1Var, i11, textSelectionHelper, i10, 4));
             }
@@ -348,7 +356,92 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void C(byte[] bArr, int i10, int i11, z3.l lVar, e2.h hVar) {
+    public void D0(MessageObject messageObject) {
+        ((ac) ((f6) this.f307b).Q1).f(true);
+    }
+
+    @Override
+    public void E(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: a6.m.E(java.lang.String, long, int, java.lang.Object, long, long):void");
+    }
+
+    @Override
+    public boolean F(int i10) {
+        switch (this.f306a) {
+            case 22:
+                if (i10 == ((eo0) this.f307b).f9766d0) {
+                    return true;
+                }
+                return false;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public void G(ArrayList arrayList) {
+        boolean z10;
+        switch (this.f306a) {
+            case 22:
+                eo0 eo0Var = (eo0) this.f307b;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    eo0Var.J.add(((a2) arrayList.get(i10)).f9674a);
+                }
+                gy gyVar = eo0Var.U;
+                if (gyVar != null) {
+                    if (eo0Var.D0 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    gyVar.d(z10, false);
+                }
+                eo0Var.l();
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void H(MessageObject messageObject) {
+        ((ac) ((f6) this.f307b).Q1).f(false);
+    }
+
+    @Override
+    public int I() {
+        return 2;
+    }
+
+    @Override
+    public void J(int i10, int i11, boolean z10) {
+        switch (this.f306a) {
+            case 26:
+                ((ii.r) this.f307b).I(i10, z10, i11, false, 0L);
+                ii.r rVar = (ii.r) this.f307b;
+                dj0 dj0Var = rVar.O;
+                if (dj0Var != null) {
+                    dj0Var.i();
+                    rVar.O = null;
+                    return;
+                }
+                return;
+            default:
+                ((d2) this.f307b).s0(i10, i11, z10);
+                return;
+        }
+    }
+
+    @Override
+    public void K(CharSequence charSequence) {
+        c3 c3Var = ((o5) this.f307b).E;
+        if (c3Var != null && charSequence != null && charSequence.length() > 0) {
+            c3Var.f11287a.u4(charSequence.toString());
+        }
+    }
+
+    @Override
+    public void M(byte[] bArr, int i10, int i11, z3.l lVar, e2.h hVar) {
         boolean z10;
         d2.b a2;
         boolean z11;
@@ -378,9 +471,9 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     int j10 = vVar.j();
                     int j11 = vVar.j();
                     int i13 = j10 - 8;
-                    byte[] bArr2 = vVar.f7933a;
-                    int i14 = vVar.f7934b;
-                    String str = d0.f7887a;
+                    byte[] bArr2 = vVar.f7934a;
+                    int i14 = vVar.f7935b;
+                    String str = d0.f7888a;
                     String str2 = new String(bArr2, i14, i13, StandardCharsets.UTF_8);
                     vVar.K(i13);
                     i12 = (i12 - 8) - i13;
@@ -396,13 +489,13 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     charSequence = "";
                 }
                 if (aVar != null) {
-                    aVar.f7413a = charSequence;
-                    aVar.f7414b = null;
+                    aVar.f7414a = charSequence;
+                    aVar.f7415b = null;
                     a2 = aVar.a();
                 } else {
-                    Pattern pattern = i4.h.f10987a;
+                    Pattern pattern = i4.h.f10988a;
                     i4.g gVar2 = new i4.g();
-                    gVar2.f10981c = charSequence;
+                    gVar2.f10982c = charSequence;
                     a2 = gVar2.a().a();
                 }
                 arrayList.add(a2);
@@ -413,127 +506,31 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         hVar.accept(new z3.a(-9223372036854775807L, -9223372036854775807L, arrayList));
     }
 
-    public void D(int i10, byte[] bArr) {
-        M(i10, 2);
-        G(bArr.length);
-        int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
-        if (byteBuffer.remaining() >= length) {
-            byteBuffer.put(bArr, 0, length);
-            return;
-        }
-        throw new b5(byteBuffer.position(), byteBuffer.limit());
-    }
-
-    public void E(int i10) {
-        byte b10 = (byte) i10;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
-        if (byteBuffer.hasRemaining()) {
-            byteBuffer.put(b10);
-            return;
-        }
-        throw new b5(byteBuffer.position(), byteBuffer.limit());
-    }
-
-    @Override
-    public void E0(MessageObject messageObject) {
-        ((ac) ((f6) this.f307b).Q1).f(true);
-    }
-
-    @Override
-    public void F(ArrayList arrayList) {
-        boolean z10;
-        switch (this.f306a) {
-            case 22:
-                eo0 eo0Var = (eo0) this.f307b;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    eo0Var.J.add(((a2) arrayList.get(i10)).f9673a);
-                }
-                gy gyVar = eo0Var.U;
-                if (gyVar != null) {
-                    if (eo0Var.D0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    gyVar.d(z10, false);
-                }
-                eo0Var.l();
-                return;
-            default:
-                return;
-        }
-    }
-
-    public void G(int i10) {
-        while ((i10 & (-128)) != 0) {
-            E((i10 & 127) | 128);
-            i10 >>>= 7;
-        }
-        E(i10);
-    }
-
-    @Override
-    public void H(MessageObject messageObject) {
-        ((ac) ((f6) this.f307b).Q1).f(false);
-    }
-
-    @Override
-    public void J(int i10, int i11, boolean z10) {
-        switch (this.f306a) {
-            case 26:
-                ((ii.r) this.f307b).I(i10, z10, i11, false, 0L);
-                ii.r rVar = (ii.r) this.f307b;
-                cj0 cj0Var = rVar.O;
-                if (cj0Var != null) {
-                    cj0Var.i();
-                    rVar.O = null;
-                    return;
-                }
-                return;
-            default:
-                ((d2) this.f307b).s0(i10, i11, z10);
-                return;
-        }
-    }
-
-    @Override
-    public void K(CharSequence charSequence) {
-        c3 c3Var = ((o5) this.f307b).E;
-        if (c3Var != null && charSequence != null && charSequence.length() > 0) {
-            c3Var.f11286a.u4(charSequence.toString());
-        }
-    }
-
-    public void M(int i10, int i11) {
-        G((i10 << 3) | i11);
-    }
-
     public void O(long j3) {
         while (((-128) & j3) != 0) {
-            E((((int) j3) & 127) | 128);
+            x((((int) j3) & 127) | 128);
             j3 >>>= 7;
         }
-        E((int) j3);
+        x((int) j3);
     }
 
     @Override
     public void U(Editable editable) {
         o5 o5Var = (o5) this.f307b;
-        ii.a aVar = o5Var.f11220a;
+        ii.a aVar = o5Var.f11221a;
         if (aVar != null) {
-            aVar.f11218s = true;
-            aVar.f11217r = o5Var.f11543r.E;
+            aVar.f11219s = true;
+            aVar.f11218r = o5Var.f11544r.E;
         }
         o5Var.u();
         c3 c3Var = o5Var.E;
-        if (c3Var != null && o5Var.f11220a != null) {
+        if (c3Var != null && o5Var.f11221a != null) {
             c3Var.a();
         }
     }
 
     @Override
-    public boolean X(boolean z10) {
+    public boolean Y(boolean z10) {
         return false;
     }
 
@@ -544,11 +541,11 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             case 22:
                 eo0 eo0Var = (eo0) this.f307b;
                 eo0Var.D0--;
-                eo0Var.f9766e0 = i10;
-                if (eo0Var.f9768f0 != i10) {
-                    eo0Var.f9782s.clear();
+                eo0Var.f9767e0 = i10;
+                if (eo0Var.f9769f0 != i10) {
+                    eo0Var.f9783s.clear();
                 }
-                if (eo0Var.f9769g0 != i10) {
+                if (eo0Var.f9770g0 != i10) {
                     eo0Var.I.clear();
                 }
                 eo0Var.N = true;
@@ -580,7 +577,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             case 10:
                 w wVar = (w) obj;
                 g6.f fVar = (g6.f) wVar.u();
-                c6.d0 d0Var = ((e0) this.f307b).f3980k;
+                c6.d0 d0Var = ((e0) this.f307b).f3981k;
                 Parcel O0 = fVar.O0();
                 com.google.android.gms.internal.cast.v.d(O0, d0Var);
                 fVar.T0(O0, 18);
@@ -624,7 +621,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             }
             androidx.biometric.x xVar = pVar.f2068l0;
             xVar.f2077f = lVar;
-            int i10 = lVar.f12910a;
+            int i10 = lVar.f12911a;
             if (i10 == 0) {
                 if (tVar != null) {
                     i10 = 15;
@@ -658,9 +655,9 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     public void c(i1 i1Var) {
         c3 c3Var = ((o5) this.f307b).E;
         if (c3Var != null) {
-            w3 w3Var = c3Var.f11286a;
+            w3 w3Var = c3Var.f11287a;
             w3.N1(w3Var, i1Var);
-            w3Var.f11714h3.t(i1Var, true);
+            w3Var.f11715h3.x(i1Var, true);
         }
     }
 
@@ -696,7 +693,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             int[] iArr5 = new int[i10];
             boolean z10 = true;
             for (int i16 = 0; i16 < i10; i16++) {
-                int i17 = aVar.f9053a[aVar.f9057g + i16];
+                int i17 = aVar.f9054a[aVar.f9058g + i16];
                 if (i17 == 0) {
                     i13 = iArr2[iArr2.length - 1];
                 } else {
@@ -725,7 +722,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             }
             fc.b bVar = new fc.b(aVar, iArr5);
             fc.b a2 = aVar.a(i10, 1);
-            fc.b bVar2 = aVar.f9055c;
+            fc.b bVar2 = aVar.f9056c;
             if (a2.d() >= bVar.d()) {
                 a2 = bVar;
                 bVar = a2;
@@ -801,7 +798,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     }
                     int c13 = aVar.c(bVar11.b(b12), aVar.b(i23));
                     iArr7[i22] = c13;
-                    if (aVar.f9057g != 0) {
+                    if (aVar.f9058g != 0) {
                         iArr7[i22] = aVar.c(c13, b12);
                     }
                 }
@@ -809,7 +806,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                     int length4 = iArr.length - 1;
                     int i26 = iArr3[i25];
                     if (i26 != 0) {
-                        int i27 = length4 - aVar.f9054b[i26];
+                        int i27 = length4 - aVar.f9055b[i26];
                         if (i27 >= 0) {
                             iArr[i27] = iArr[i27] ^ iArr7[i25];
                         } else {
@@ -830,8 +827,8 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     public boolean f() {
         o5 o5Var = (o5) this.f307b;
         c3 c3Var = o5Var.E;
-        if (c3Var != null && o5Var.f11220a != null) {
-            return c3Var.f11286a.T4();
+        if (c3Var != null && o5Var.f11221a != null) {
+            return c3Var.f11287a.T4();
         }
         return false;
     }
@@ -855,13 +852,8 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public a0.i i() {
-        switch (this.f306a) {
-            case 22:
-                return null;
-            default:
-                return null;
-        }
+    public TextureView h0() {
+        return null;
     }
 
     @Override
@@ -869,14 +861,9 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         h2 h2Var;
         o5 o5Var = (o5) this.f307b;
         c3 c3Var = o5Var.E;
-        if (c3Var != null && o5Var.f11220a != null && (h2Var = c3Var.f11286a.J3) != null) {
+        if (c3Var != null && o5Var.f11221a != null && (h2Var = c3Var.f11287a.J3) != null) {
             h2Var.f(i10, i11);
         }
-    }
-
-    @Override
-    public TextureView j0() {
-        return null;
     }
 
     @Override
@@ -905,7 +892,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
                 Intent intent = aVar2.f1922b;
-                int i11 = u.e("ProxyBillingActivityV2", intent).f3894a;
+                int i11 = u.e("ProxyBillingActivityV2", intent).f3895a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.M;
                 if (resultReceiver != null) {
                     if (intent == null) {
@@ -921,6 +908,16 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
                 }
                 proxyBillingActivityV2.finish();
                 return;
+        }
+    }
+
+    @Override
+    public a0.i l() {
+        switch (this.f306a) {
+            case 22:
+                return null;
+            default:
+                return null;
         }
     }
 
@@ -963,35 +960,30 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         }
     }
 
-    @Override
-    public void n(Bitmap bitmap) {
-        g6.b bVar = f6.i.v;
-        Bitmap bitmap2 = null;
-        if (bitmap != null) {
-            int width = bitmap.getWidth();
-            float f7 = width;
-            int height = bitmap.getHeight();
-            int A = (int) a4.a.A(f7, 9.0f, 16.0f, 0.5f);
-            float f10 = (A - height) / 2.0f;
-            RectF rectF = new RectF(0.0f, f10, f7, height + f10);
-            Bitmap.Config config = bitmap.getConfig();
-            if (config == null) {
-                config = Bitmap.Config.ARGB_8888;
+    public void o(int i10, String str) {
+        ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
+        C(i10, 2);
+        try {
+            int R = R(str.length());
+            if (R == R(str.length() * 3)) {
+                int position = byteBuffer.position();
+                if (byteBuffer.remaining() >= R) {
+                    byteBuffer.position(position + R);
+                    N(str, byteBuffer);
+                    int position2 = byteBuffer.position();
+                    byteBuffer.position(position);
+                    A((position2 - position) - R);
+                    byteBuffer.position(position2);
+                    return;
+                }
+                throw new b5(position + R, byteBuffer.limit());
             }
-            Bitmap createBitmap = Bitmap.createBitmap(width, A, config);
-            new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, rectF, (Paint) null);
-            bitmap2 = createBitmap;
-        }
-        ((f6.i) this.f307b).e(bitmap2, 0);
-    }
-
-    @Override
-    public a0.i o() {
-        switch (this.f306a) {
-            case 22:
-                return null;
-            default:
-                return null;
+            A(m(str));
+            N(str, byteBuffer);
+        } catch (BufferOverflowException e) {
+            b5 b5Var = new b5(byteBuffer.position(), byteBuffer.limit());
+            b5Var.initCause(e);
+            throw b5Var;
         }
     }
 
@@ -1008,11 +1000,11 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     public void onStateChanged(boolean z10, int i10) {
         d7 d7Var = (d7) this.f307b;
         a7 a7Var = d7Var.M;
-        u71 u71Var = d7Var.f4534x;
-        if (u71Var == null) {
+        t71 t71Var = d7Var.f4535x;
+        if (t71Var == null) {
             return;
         }
-        if (u71Var.y()) {
+        if (t71Var.y()) {
             AndroidUtilities.runOnUIThread(a7Var);
         } else {
             AndroidUtilities.cancelRunOnUIThread(a7Var);
@@ -1027,10 +1019,10 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         f1 b10;
         d6.a aVar = (d6.a) this.f307b;
         Bundle bundle = (Bundle) obj;
-        if (r0.f6478j) {
-            Context context = aVar.f7511a;
-            r rVar = aVar.f7514f;
-            r0 r0Var = new r0(context, rVar, aVar.f7513c, aVar.f7517j, aVar.f7515g);
+        if (r0.f6479j) {
+            Context context = aVar.f7512a;
+            r rVar = aVar.f7515f;
+            r0 r0Var = new r0(context, rVar, aVar.f7514c, aVar.f7518j, aVar.f7516g);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE")) {
                 i10 = bundle.getInt("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE", 0);
             } else if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED") && bundle.getBoolean("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED", false)) {
@@ -1049,7 +1041,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             }
             String packageName = context.getPackageName();
             Locale locale = Locale.ROOT;
-            String v = t8.b.v(packageName, ".client_cast_analytics_data");
+            String s10 = j0.s(packageName, ".client_cast_analytics_data");
             if (bundle.getLong("com.google.android.gms.cast.FLAG_FIRELOG_UPLOAD_MODE") == 0) {
                 i11 = 1;
             } else {
@@ -1057,48 +1049,48 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
             }
             r0Var.h = i11;
             l5.s.b(context);
-            r0Var.f6483g = l5.s.a().c(j5.a.e).a("CAST_SENDER_SDK", new i5.c("proto"), b0.f6258a);
+            r0Var.f6484g = l5.s.a().c(j5.a.e).a("CAST_SENDER_SDK", new i5.c("proto"), b0.f6259a);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE")) {
                 r0Var.e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
             }
-            SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(v, 0);
+            SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(s10, 0);
             if (i10 != 0) {
                 com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
-                e.f6183c = new j0(rVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"});
-                e.d = new k6.c[]{y.f4069c};
-                e.f6182b = false;
-                e.f6181a = 8426;
+                e.f6184c = new c3.j0(rVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"});
+                e.d = new k6.c[]{y.f4070c};
+                e.f6183b = false;
+                e.f6182a = 8426;
                 Task e7 = rVar.e(0, e.a());
                 ?? obj2 = new Object();
-                obj2.f12911b = r0Var;
-                obj2.f12912c = packageName;
-                obj2.f12910a = i10;
+                obj2.f12912b = r0Var;
+                obj2.f12913c = packageName;
+                obj2.f12911a = i10;
                 obj2.d = sharedPreferences;
                 e7.addOnSuccessListener(obj2);
             }
             if (z10) {
                 n6.l.h(sharedPreferences);
-                g6.b bVar = f2.f6374i;
+                g6.b bVar = f2.f6375i;
                 synchronized (f2.class) {
                     try {
-                        if (f2.f6376k == null) {
-                            f2.f6376k = new f2(sharedPreferences, r0Var, packageName);
+                        if (f2.f6377k == null) {
+                            f2.f6377k = new f2(sharedPreferences, r0Var, packageName);
                         }
-                        f2Var = f2.f6376k;
+                        f2Var = f2.f6377k;
                     } catch (Throwable th2) {
                         throw th2;
                     }
                 }
-                String str = f2Var.f6379c;
-                SharedPreferences sharedPreferences2 = f2Var.f6378b;
-                HashSet hashSet = f2Var.f6380f;
+                String str = f2Var.f6380c;
+                SharedPreferences sharedPreferences2 = f2Var.f6379b;
+                HashSet hashSet = f2Var.f6381f;
                 String string = sharedPreferences2.getString("feature_usage_sdk_version", null);
                 String string2 = sharedPreferences2.getString("feature_usage_package_name", null);
                 hashSet.clear();
-                HashSet hashSet2 = f2Var.f6381g;
+                HashSet hashSet2 = f2Var.f6382g;
                 hashSet2.clear();
                 f2Var.h = 0L;
-                String str2 = f2.f6375j;
+                String str2 = f2.f6376j;
                 if (str2.equals(string) && str.equals(string2)) {
                     f2Var.h = sharedPreferences2.getLong("feature_usage_last_report_time", 0L);
                     long currentTimeMillis = System.currentTimeMillis();
@@ -1146,12 +1138,12 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        qg.b2 b2Var = ((d7) this.f307b).f4532w;
-        if (b2Var != null) {
+        c2 c2Var = ((d7) this.f307b).f4533w;
+        if (c2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(b2Var.f41576y0 - f10) >= 1.0E-4f) {
-                b2Var.f41576y0 = f10;
-                b2Var.requestLayout();
+            if (Math.abs(c2Var.f41621y0 - f10) >= 1.0E-4f) {
+                c2Var.f41621y0 = f10;
+                c2Var.requestLayout();
             }
         }
     }
@@ -1175,36 +1167,45 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void q(String str, long j3, long j10, long j11) {
+    public void q(Bitmap bitmap) {
+        g6.b bVar = f6.i.v;
+        Bitmap bitmap2 = null;
+        if (bitmap != null) {
+            int width = bitmap.getWidth();
+            float f7 = width;
+            int height = bitmap.getHeight();
+            int A = (int) a4.a.A(f7, 9.0f, 16.0f, 0.5f);
+            float f10 = (A - height) / 2.0f;
+            RectF rectF = new RectF(0.0f, f10, f7, height + f10);
+            Bitmap.Config config = bitmap.getConfig();
+            if (config == null) {
+                config = Bitmap.Config.ARGB_8888;
+            }
+            Bitmap createBitmap = Bitmap.createBitmap(width, A, config);
+            new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, rectF, (Paint) null);
+            bitmap2 = createBitmap;
+        }
+        ((f6.i) this.f307b).e(bitmap2, 0);
+    }
+
+    @Override
+    public void r(String str, long j3, long j10, long j11) {
         e6.p pVar = (e6.p) this.f307b;
         try {
             pVar.a(new e6.o(new Status(2103, null, null, null), 1));
         } catch (IllegalStateException e) {
-            g6.b bVar = e6.h.f8012k;
-            Log.e(bVar.f9429a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e);
+            g6.b bVar = e6.h.f8013k;
+            Log.e(bVar.f9430a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e);
         }
-        Iterator it = pVar.f8036q.f8018i.iterator();
+        Iterator it = pVar.f8037q.f8019i.iterator();
         while (it.hasNext()) {
             ((e6.g) it.next()).h(str, j3, 2103, j10, j11);
         }
     }
 
     @Override
-    public z3.d r(int i10, int i11, byte[] bArr) {
-        return t8.b.a(this, bArr, i11);
-    }
-
-    @Override
-    public boolean s(int i10) {
-        switch (this.f306a) {
-            case 22:
-                if (i10 == ((eo0) this.f307b).f9765d0) {
-                    return true;
-                }
-                return false;
-            default:
-                return true;
-        }
+    public z3.d s(int i10, int i11, byte[] bArr) {
+        return j0.a(this, bArr, i11);
     }
 
     @Override
@@ -1212,9 +1213,21 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
         return false;
     }
 
+    public void u(int i10, byte[] bArr) {
+        C(i10, 2);
+        A(bArr.length);
+        int length = bArr.length;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
+        if (byteBuffer.remaining() >= length) {
+            byteBuffer.put(bArr, 0, length);
+            return;
+        }
+        throw new b5(byteBuffer.position(), byteBuffer.limit());
+    }
+
     @Override
     public boolean v(l.l lVar) {
-        Window.Callback callback = ((g.s) this.f307b).f9297f.getCallback();
+        Window.Callback callback = ((g.s) this.f307b).f9298f.getCallback();
         if (callback != null) {
             callback.onMenuOpened(108, lVar);
             return true;
@@ -1223,35 +1236,23 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void w(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
-        throw new UnsupportedOperationException("Method not decompiled: a6.m.w(java.lang.String, long, int, java.lang.Object, long, long):void");
+    public a0.i w() {
+        switch (this.f306a) {
+            case 22:
+                return null;
+            default:
+                return null;
+        }
     }
 
-    public void y(int i10, String str) {
+    public void x(int i10) {
+        byte b10 = (byte) i10;
         ByteBuffer byteBuffer = (ByteBuffer) this.f307b;
-        M(i10, 2);
-        try {
-            int R = R(str.length());
-            if (R == R(str.length() * 3)) {
-                int position = byteBuffer.position();
-                if (byteBuffer.remaining() >= R) {
-                    byteBuffer.position(position + R);
-                    N(str, byteBuffer);
-                    int position2 = byteBuffer.position();
-                    byteBuffer.position(position);
-                    G((position2 - position) - R);
-                    byteBuffer.position(position2);
-                    return;
-                }
-                throw new b5(position + R, byteBuffer.limit());
-            }
-            G(u(str));
-            N(str, byteBuffer);
-        } catch (BufferOverflowException e) {
-            b5 b5Var = new b5(byteBuffer.position(), byteBuffer.limit());
-            b5Var.initCause(e);
-            throw b5Var;
+        if (byteBuffer.hasRemaining()) {
+            byteBuffer.put(b10);
+            return;
         }
+        throw new b5(byteBuffer.position(), byteBuffer.limit());
     }
 
     @Override
@@ -1311,7 +1312,7 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void g0() {
+    public void i0() {
     }
 
     @Override
@@ -1319,10 +1320,10 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void x() {
+    public void y() {
     }
 
-    private final void l(ArrayList arrayList) {
+    private final void i(ArrayList arrayList) {
     }
 
     @Override
@@ -1330,11 +1331,11 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void e0(boolean z10) {
+    public void d0(boolean z10) {
     }
 
     @Override
-    public void m(i1 i1Var) {
+    public void n(i1 i1Var) {
     }
 
     @Override
@@ -1350,6 +1351,6 @@ public final class m implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void onError(u71 u71Var, Exception exc) {
+    public void onError(t71 t71Var, Exception exc) {
     }
 }

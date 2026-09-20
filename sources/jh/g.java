@@ -11,11 +11,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.d5;
-import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.f1;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.n1;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.ym0;
+import org.telegram.ui.Components.xm0;
 import org.telegram.ui.az0;
 import org.telegram.ui.e0;
 import org.telegram.ui.qe;
@@ -23,14 +23,14 @@ import org.telegram.ui.rf;
 import org.telegram.ui.rm;
 import org.telegram.ui.zn;
 public final class g implements View.OnLongClickListener {
-    public final int f13032a;
-    public final int f13033b;
-    public final FrameLayout f13034c;
+    public final int f13033a;
+    public final int f13034b;
+    public final FrameLayout f13035c;
 
     public g(FrameLayout frameLayout, int i10, int i11) {
-        this.f13032a = i11;
-        this.f13034c = frameLayout;
-        this.f13033b = i10;
+        this.f13033a = i11;
+        this.f13035c = frameLayout;
+        this.f13034b = i10;
     }
 
     @Override
@@ -38,13 +38,13 @@ public final class g implements View.OnLongClickListener {
         rf rfVar;
         char c10;
         String string;
-        ym0 ym0Var;
-        switch (this.f13032a) {
+        xm0 xm0Var;
+        switch (this.f13033a) {
             case 0:
-                b bVar = ((h) this.f13034c).f13040n;
+                b bVar = ((h) this.f13035c).f13041n;
                 if (bVar != null) {
-                    zn znVar = ((qe) bVar).f36798b;
-                    int i10 = this.f13033b;
+                    zn znVar = ((qe) bVar).f36891b;
+                    int i10 = this.f13034b;
                     if (i10 == 2) {
                         rfVar = new rf(znVar, 9);
                         c10 = 1;
@@ -58,7 +58,7 @@ public final class g implements View.OnLongClickListener {
                     Activity parentActivity = znVar.getParentActivity();
                     d5 parentLayout = znVar.getParentLayout();
                     rm rmVar = znVar.X0;
-                    e6 resourceProvider = znVar.getResourceProvider();
+                    f6 resourceProvider = znVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
                     f1 f1Var = new f1(0, parentActivity, resourceProvider, true, true);
@@ -75,7 +75,7 @@ public final class g implements View.OnLongClickListener {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(f1Var);
                     n1 n1Var = new n1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                     n1Var.e = true;
-                    n1Var.f19609c = 220;
+                    n1Var.f19641c = 220;
                     n1Var.setOutsideTouchable(true);
                     n1Var.setClippingEnabled(true);
                     n1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     n1Var.showAtLocation(rmVar, 51, (int) width, (int) measuredHeight);
                     znVar.Q8 = n1Var;
-                    znVar.f8(znVar.f40314j1, false);
+                    znVar.f8(znVar.f40356j1, false);
                     znVar.Q8.setOnDismissListener(new e0(znVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
@@ -105,8 +105,8 @@ public final class g implements View.OnLongClickListener {
                 }
                 return false;
             default:
-                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f13034c;
-                if (!scrollSlidingTextTabStrip.f22369n0 && (ym0Var = scrollSlidingTextTabStrip.f22354b) != null && ym0Var.n1(this.f13033b, view)) {
+                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f13035c;
+                if (!scrollSlidingTextTabStrip.f22404n0 && (xm0Var = scrollSlidingTextTabStrip.f22389b) != null && xm0Var.m1(this.f13034b, view)) {
                     return true;
                 }
                 return false;

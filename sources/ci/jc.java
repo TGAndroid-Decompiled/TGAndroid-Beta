@@ -6,25 +6,25 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public abstract class jc {
-    public float f4861b;
-    public org.telegram.ui.Cells.f7 d;
+    public float f4862b;
+    public org.telegram.ui.Cells.g7 d;
     public ImageReceiver e;
-    public ai.a5 f4863f;
-    public int f4860a = 0;
-    public final RectF f4862c = new RectF();
+    public ai.a5 f4864f;
+    public int f4861a = 0;
+    public final RectF f4863c = new RectF();
 
-    public static hc b(org.telegram.ui.Cells.g7 g7Var) {
+    public static hc b(org.telegram.ui.Cells.h7 h7Var) {
         int i10;
-        if (g7Var == null) {
+        if (h7Var == null) {
             return null;
         }
-        org.telegram.ui.Components.w9 imageView = g7Var.getImageView();
+        org.telegram.ui.Components.v9 imageView = h7Var.getImageView();
         hc hcVar = new hc(imageView, 2);
         int[] iArr = new int[2];
         imageView.getLocationOnScreen(iArr);
-        hcVar.f4862c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
-        hcVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f20327y);
-        hcVar.f4861b = Math.max(hcVar.f4862c.width(), hcVar.f4862c.height()) / 2.0f;
+        hcVar.f4863c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
+        hcVar.d = new org.telegram.ui.Cells.g7(imageView.getContext(), null, false, h7Var.f20406y);
+        hcVar.f4862b = Math.max(hcVar.f4863c.width(), hcVar.f4863c.height()) / 2.0f;
         return hcVar;
     }
 
@@ -40,9 +40,9 @@ public abstract class jc {
                 AndroidUtilities.getViewPositionInParent(a0Var, (ViewGroup) a0Var.getRootView(), fArr);
                 float imageX = imageReceiver.getImageX() + iArr[0] + fArr[0];
                 float imageY = imageReceiver.getImageY() + iArr[1] + fArr[1];
-                icVar.f4862c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+                icVar.f4863c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
                 icVar.e = imageReceiver;
-                icVar.f4861b = Math.max(icVar.f4862c.width(), icVar.f4862c.height()) / 2.0f;
+                icVar.f4862b = Math.max(icVar.f4863c.width(), icVar.f4863c.height()) / 2.0f;
                 return icVar;
             }
             return null;
@@ -69,12 +69,12 @@ public abstract class jc {
                 if (xbVar2 != null) {
                     f7 = xbVar2.getY();
                 }
-                hcVar.f4862c.set(a5Var.getX() + currentPeerView.getX() + jcVar.X + x10 + jcVar.v.getLeft(), a5Var.getY() + currentPeerView.getY() + jcVar.W + f7 + jcVar.v.getTop(), (((x10 + jcVar.X) + jcVar.v.getRight()) - (jcVar.v.getWidth() - currentPeerView.getRight())) - (currentPeerView.getWidth() - a5Var.getRight()), (((f7 + jcVar.W) + jcVar.v.getBottom()) - (jcVar.v.getHeight() - currentPeerView.getBottom())) - (currentPeerView.getHeight() - a5Var.getBottom()));
-                hcVar.f4860a = 1;
-                hcVar.f4861b = AndroidUtilities.dp(8.0f);
+                hcVar.f4863c.set(a5Var.getX() + currentPeerView.getX() + jcVar.X + x10 + jcVar.v.getLeft(), a5Var.getY() + currentPeerView.getY() + jcVar.W + f7 + jcVar.v.getTop(), (((x10 + jcVar.X) + jcVar.v.getRight()) - (jcVar.v.getWidth() - currentPeerView.getRight())) - (currentPeerView.getWidth() - a5Var.getRight()), (((f7 + jcVar.W) + jcVar.v.getBottom()) - (jcVar.v.getHeight() - currentPeerView.getBottom())) - (currentPeerView.getHeight() - a5Var.getBottom()));
+                hcVar.f4861a = 1;
+                hcVar.f4862b = AndroidUtilities.dp(8.0f);
                 ai.f6 t10 = jcVar.t();
                 if (t10 != null) {
-                    hcVar.f4863f = t10.f803c1;
+                    hcVar.f4864f = t10.f803c1;
                 }
                 return hcVar;
             }

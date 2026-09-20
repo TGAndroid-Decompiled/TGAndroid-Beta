@@ -1,44 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.LeadingMarginSpan;
-public final class cb implements LeadingMarginSpan {
-    public final int f23234a;
-    public final int f23235b;
+import android.widget.FrameLayout;
+public final class cb implements Runnable {
+    public final int f23226a;
+    public final pc f23227b;
 
-    public cb(int i10, int i11) {
-        this.f23234a = i10;
-        this.f23235b = i11;
+    public cb(pc pcVar, int i10) {
+        this.f23226a = i10;
+        this.f23227b = pcVar;
     }
 
     @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
-        int i17;
-        if (((Spanned) charSequence).getSpanStart(this) == i15) {
-            Paint.Style style = paint.getStyle();
-            int color = paint.getColor();
-            paint.setColor(-11491093);
-            paint.setStyle(Paint.Style.FILL);
-            if (layout != null) {
-                if (layout.getLineForOffset(i15) != layout.getLineCount() - 1) {
-                    i17 = (int) layout.getSpacingAdd();
-                } else {
-                    i17 = 0;
+    public final void run() {
+        switch (this.f23226a) {
+            case 0:
+                this.f23227b.b();
+                return;
+            case 1:
+                pc pcVar = this.f23227b;
+                FrameLayout frameLayout = pcVar.h;
+                tb tbVar = pcVar.e;
+                nb nbVar = pcVar.f27258p;
+                if (nbVar != null && !tbVar.top) {
+                    nbVar.c(0.0f);
+                    pcVar.f27258p.d(pcVar);
                 }
-                i14 -= i17;
-            }
-            int i18 = this.f23235b;
-            canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
-            paint.setColor(color);
-            paint.setStyle(style);
+                tbVar.transitionRunningExit = false;
+                tbVar.onExitTransitionEnd();
+                tbVar.onHide();
+                frameLayout.removeView(pcVar.f27249f);
+                frameLayout.removeOnLayoutChangeListener(pcVar.f27248c);
+                tbVar.onDetach();
+                Runnable runnable = pcVar.v;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                pc pcVar2 = this.f23227b;
+                FrameLayout frameLayout2 = pcVar2.h;
+                frameLayout2.removeView(pcVar2.f27249f);
+                frameLayout2.removeOnLayoutChangeListener(pcVar2.f27248c);
+                return;
         }
-    }
-
-    @Override
-    public final int getLeadingMargin(boolean z10) {
-        return (this.f23235b * 2) + this.f23234a;
     }
 }

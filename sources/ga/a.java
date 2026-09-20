@@ -16,10 +16,10 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import q9.d;
 public final class a implements d, a2, b, e, m, n {
-    public final int f9532a;
+    public final int f9533a;
 
     public a(int i10) {
-        this.f9532a = i10;
+        this.f9533a = i10;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class a implements d, a2, b, e, m, n {
 
     @Override
     public Object a(Bitmap bitmap) {
-        switch (this.f9532a) {
+        switch (this.f9533a) {
             case 3:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
@@ -66,20 +66,8 @@ public final class a implements d, a2, b, e, m, n {
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f9532a) {
-            case 1:
-                b2Var.dismiss();
-                return;
-            default:
-                b2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
     public void invoke(Object obj) {
-        switch (this.f9532a) {
+        switch (this.f9533a) {
             case 11:
                 ((z0) obj).onPlayerError(new i2.n(2, new RuntimeException("Player release timed out."), 1003));
                 return;
@@ -136,27 +124,39 @@ public final class a implements d, a2, b, e, m, n {
         }
     }
 
+    @Override
+    public void k(b2 b2Var, int i10) {
+        switch (this.f9533a) {
+            case 1:
+                b2Var.dismiss();
+                return;
+            default:
+                b2Var.dismiss();
+                return;
+        }
+    }
+
     public a(j2.a aVar, int i10, int i11) {
-        this.f9532a = i11;
+        this.f9533a = i11;
     }
 
     public a(j2.a aVar, int i10, int i11, boolean z10) {
-        this.f9532a = 26;
+        this.f9533a = 26;
     }
 
     public a(j2.a aVar, Object obj, int i10) {
-        this.f9532a = i10;
+        this.f9533a = i10;
     }
 
     public a(j2.a aVar, String str, long j3, long j10) {
-        this.f9532a = 20;
+        this.f9533a = 20;
     }
 
     public a(j2.a aVar, boolean z10) {
-        this.f9532a = 19;
+        this.f9533a = 19;
     }
 
     public a(j2.a aVar, boolean z10, int i10, int i11) {
-        this.f9532a = i11;
+        this.f9533a = i11;
     }
 }

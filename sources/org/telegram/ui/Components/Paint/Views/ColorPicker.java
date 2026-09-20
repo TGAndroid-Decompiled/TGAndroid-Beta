@@ -13,9 +13,9 @@ import qg.a;
 public class ColorPicker extends FrameLayout {
     public static final int[] d = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
     public static final float[] e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
-    public float f22263a;
-    public float f22264b;
-    public float f22265c;
+    public float f22298a;
+    public float f22299b;
+    public float f22300c;
 
     public static int a(float f7) {
         float[] fArr;
@@ -56,12 +56,12 @@ public class ColorPicker extends FrameLayout {
     }
 
     private void setDraggingFactor(float f7) {
-        this.f22265c = f7;
+        this.f22300c = f7;
         invalidate();
     }
 
     public float getDraggingFactor() {
-        return this.f22265c;
+        return this.f22300c;
     }
 
     public View getSettingsButton() {
@@ -69,7 +69,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public s1 getSwatch() {
-        return new s1(this.f22263a, this.f22264b, a(this.f22263a));
+        return new s1(this.f22298a, this.f22299b, a(this.f22298a));
     }
 
     @Override
@@ -95,7 +95,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setLocation(float f7) {
-        this.f22263a = f7;
+        this.f22298a = f7;
         a(f7);
         throw null;
     }
@@ -105,8 +105,8 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setSwatch(s1 s1Var) {
-        setLocation(s1Var.f41243b);
-        setWeight(s1Var.f41244c);
+        setLocation(s1Var.f41284b);
+        setWeight(s1Var.f41285c);
     }
 
     public void setUndoEnabled(boolean z10) {
@@ -114,7 +114,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setWeight(float f7) {
-        this.f22264b = f7;
+        this.f22299b = f7;
         invalidate();
     }
 

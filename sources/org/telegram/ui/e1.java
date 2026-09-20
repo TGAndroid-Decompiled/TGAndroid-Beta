@@ -16,12 +16,12 @@ public final class e1 extends s4.t {
     public final boolean B1(int i10) {
         byte b10;
         j1 j1Var = this.S;
-        ArrayList<TL_iv.PageBlock> arrayList = j1Var.f34669s.items;
-        MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) j1Var.v.f34282b.get(arrayList.get((arrayList.size() - i10) - 1));
+        ArrayList<TL_iv.PageBlock> arrayList = j1Var.f34728s.items;
+        MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) j1Var.v.f34330b.get(arrayList.get((arrayList.size() - i10) - 1));
         if (groupedMessagePosition.minX != groupedMessagePosition.maxX && (b10 = groupedMessagePosition.minY) == groupedMessagePosition.maxY && b10 != 0) {
-            int size = j1Var.v.f34281a.size();
+            int size = j1Var.v.f34329a.size();
             for (int i11 = 0; i11 < size; i11++) {
-                MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) j1Var.v.f34281a.get(i11);
+                MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) j1Var.v.f34329a.get(i11);
                 if (groupedMessagePosition2 != groupedMessagePosition) {
                     byte b11 = groupedMessagePosition2.minY;
                     byte b12 = groupedMessagePosition.minY;

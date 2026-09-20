@@ -7,22 +7,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.Components.xc;
 public abstract class k0 {
-    public static String A(int i10) {
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    return "null";
-                }
-                return "LOW";
+    public static void A(n2.h hVar, n2.h hVar2) {
+        if (hVar != hVar2) {
+            if (hVar2 != null) {
+                hVar2.b(null);
             }
-            return "MEDIUM";
+            if (hVar != null) {
+                hVar.a(null);
+            }
         }
-        return "HIGH";
     }
 
     public static String B(int i10) {
@@ -366,17 +365,7 @@ public abstract class k0 {
         }
     }
 
-    public static int d(int i10) {
-        if (i10 != 1) {
-            if (i10 == 2) {
-                return 360;
-            }
-            throw null;
-        }
-        return 480;
-    }
-
-    public static boolean e(int i10, boolean z10) {
+    public static boolean d(int i10, boolean z10) {
         int i11 = i10 & 7;
         if (i11 != 4) {
             if (!z10 || i11 != 3) {
@@ -385,6 +374,10 @@ public abstract class k0 {
             return true;
         }
         return true;
+    }
+
+    public static double e(double d, double d10, double d11) {
+        return (Math.cos(d) * d10) + d11;
     }
 
     public static int f(int i10, int i11, int i12, int i13) {
@@ -403,14 +396,19 @@ public abstract class k0 {
         return str + i10 + str2;
     }
 
-    public static StringBuilder j(int i10, String str, String str2) {
+    public static String j(long j3, char c10, StringBuilder sb2) {
+        sb2.append(LocaleController.formatNumber(j3, c10));
+        return sb2.toString();
+    }
+
+    public static StringBuilder k(int i10, String str, String str2) {
         StringBuilder sb2 = new StringBuilder(str);
         sb2.append(i10);
         sb2.append(str2);
         return sb2;
     }
 
-    public static StringBuilder k(String str, int i10, String str2, int i11, String str3) {
+    public static StringBuilder l(String str, int i10, String str2, int i11, String str3) {
         StringBuilder sb2 = new StringBuilder(str);
         sb2.append(i10);
         sb2.append(str2);
@@ -419,31 +417,31 @@ public abstract class k0 {
         return sb2;
     }
 
-    public static HashMap l(Class cls, la.a aVar) {
+    public static HashMap m(Class cls, la.a aVar) {
         HashMap hashMap = new HashMap();
         hashMap.put(cls, aVar);
         return hashMap;
     }
 
-    public static Map m(HashMap hashMap) {
+    public static Map n(HashMap hashMap) {
         return DesugarCollections.unmodifiableMap(new HashMap(hashMap));
     }
 
-    public static void n(int i10, HashMap hashMap, String str, int i11, String str2) {
+    public static void o(int i10, HashMap hashMap, String str, int i11, String str2) {
         hashMap.put(Integer.valueOf(i10), str);
         hashMap.put(Integer.valueOf(i11), str2);
     }
 
-    public static void o(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
+    public static void p(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
         alertDialog$Builder.h(LocaleController.getString(i10), a2Var);
         alertDialog$Builder.o();
     }
 
-    public static void p(int i10, Object[] objArr, xc xcVar, int i11, int i12) {
+    public static void q(int i10, Object[] objArr, xc xcVar, int i11, int i12) {
         xcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
     }
 
-    public static void q(MediaMetadataRetriever mediaMetadataRetriever) {
+    public static void r(MediaMetadataRetriever mediaMetadataRetriever) {
         if (mediaMetadataRetriever instanceof AutoCloseable) {
             mediaMetadataRetriever.close();
         } else if (mediaMetadataRetriever instanceof ExecutorService) {
@@ -455,55 +453,39 @@ public abstract class k0 {
         }
     }
 
-    public static void r(b2.r rVar, c3.h0 h0Var) {
+    public static void s(b2.r rVar, c3.h0 h0Var) {
         h0Var.b(new b2.s(rVar));
     }
 
-    public static void s(StringBuilder sb2, int i10, String str, int i11, String str2) {
+    public static void t(StringBuilder sb2, int i10, String str, int i11, String str2) {
         sb2.append(i10);
         sb2.append(str);
         sb2.append(i11);
         sb2.append(str2);
     }
 
-    public static void t(boolean z10, org.telegram.ui.ActionBar.k kVar) {
+    public static void u(StringBuilder sb2, long j3) {
+        sb2.append(j3);
+        FileLog.d(sb2.toString());
+    }
+
+    public static void v(boolean z10, org.telegram.ui.ActionBar.k kVar) {
         kVar.setBackButtonDrawable(new g2(z10));
     }
 
-    public static int u(int i10, int i11, int i12, int i13) {
+    public static int w(int i10, int i11, int i12, int i13) {
         return Math.max(i13, Math.min(Math.max(i10, i11), i12));
     }
 
-    public static Object v(int i10, ArrayList arrayList) {
+    public static Object x(int i10, ArrayList arrayList) {
         return arrayList.remove(arrayList.size() - i10);
     }
 
-    public static int w(int i10, int i11, int i12, int i13) {
+    public static int y(int i10, int i11, int i12, int i13) {
         return Math.max(i13, Math.min(Math.min(i10, i11), i12));
     }
 
-    public static int x(int i10, int i11, int i12, int i13) {
+    public static int z(int i10, int i11, int i12, int i13) {
         return ((i10 - i11) / i12) + i13;
-    }
-
-    public static void y(n2.h hVar, n2.h hVar2) {
-        if (hVar != hVar2) {
-            if (hVar2 != null) {
-                hVar2.b(null);
-            }
-            if (hVar != null) {
-                hVar.a(null);
-            }
-        }
-    }
-
-    public static String z(int i10) {
-        if (i10 != 1) {
-            if (i10 != 2) {
-                return "null";
-            }
-            return "BACK";
-        }
-        return "FRONT";
     }
 }

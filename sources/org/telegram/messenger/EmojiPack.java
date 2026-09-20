@@ -57,7 +57,7 @@ public final class EmojiPack {
     }
 
     private static IllegalStateException damaged(String str) {
-        return new IllegalStateException(t8.b.i("Damaged emoji.pack: ", str));
+        return new IllegalStateException(v7.j0.g("Damaged emoji.pack: ", str));
     }
 
     private Bitmap decode(int i10) {

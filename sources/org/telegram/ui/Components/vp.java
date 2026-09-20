@@ -3,7 +3,7 @@ public abstract class vp extends z4.a {
     public abstract int j();
 
     public final int k(int i10) {
-        int size = ((yh0) this).f30581c.size();
+        int size = ((xh0) this).f30266c.size();
         int j3 = j();
         if (i10 < j3) {
             return ((size - (j3 * 2)) - ((j3 - i10) - 1)) - 1;

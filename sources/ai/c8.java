@@ -113,7 +113,7 @@ public final class c8 implements Comparator {
             case 5:
                 return ((Collator) this.f646b).compare((String) obj, (String) obj2);
             default:
-                float[] fArr = ((yh.q2) this.f646b).f47902r;
+                float[] fArr = ((yh.q2) this.f646b).f47939r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
         }
     }

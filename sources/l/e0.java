@@ -8,22 +8,22 @@ import android.view.View;
 import hg.k0;
 public final class e0 extends l implements SubMenu {
     public final n A;
-    public final l f13872z;
+    public final l f13911z;
 
     public e0(Context context, l lVar, n nVar) {
         super(context);
-        this.f13872z = lVar;
+        this.f13911z = lVar;
         this.A = nVar;
     }
 
     @Override
     public final boolean d(n nVar) {
-        return this.f13872z.d(nVar);
+        return this.f13911z.d(nVar);
     }
 
     @Override
     public final boolean e(l lVar, MenuItem menuItem) {
-        if (!super.e(lVar, menuItem) && !this.f13872z.e(lVar, menuItem)) {
+        if (!super.e(lVar, menuItem) && !this.f13911z.e(lVar, menuItem)) {
             return false;
         }
         return true;
@@ -31,7 +31,7 @@ public final class e0 extends l implements SubMenu {
 
     @Override
     public final boolean f(n nVar) {
-        return this.f13872z.f(nVar);
+        return this.f13911z.f(nVar);
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class e0 extends l implements SubMenu {
         int i10;
         n nVar = this.A;
         if (nVar != null) {
-            i10 = nVar.f13916a;
+            i10 = nVar.f13955a;
         } else {
             i10 = 0;
         }
@@ -56,27 +56,27 @@ public final class e0 extends l implements SubMenu {
 
     @Override
     public final l k() {
-        return this.f13872z.k();
+        return this.f13911z.k();
     }
 
     @Override
     public final boolean m() {
-        return this.f13872z.m();
+        return this.f13911z.m();
     }
 
     @Override
     public final boolean n() {
-        return this.f13872z.n();
+        return this.f13911z.n();
     }
 
     @Override
     public final boolean o() {
-        return this.f13872z.o();
+        return this.f13911z.o();
     }
 
     @Override
     public final void setGroupDividerEnabled(boolean z10) {
-        this.f13872z.setGroupDividerEnabled(z10);
+        this.f13911z.setGroupDividerEnabled(z10);
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class e0 extends l implements SubMenu {
 
     @Override
     public final void setQwertyMode(boolean z10) {
-        this.f13872z.setQwertyMode(z10);
+        this.f13911z.setQwertyMode(z10);
     }
 
     @Override

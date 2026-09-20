@@ -1,51 +1,26 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ra0 {
-    public final org.telegram.ui.ActionBar.n2 f27868a;
-    public final wa0 f27869b;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class ra0 extends org.telegram.ui.tu0 {
+    public final va0 f27830a;
 
-    public ra0(wa0 wa0Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f27869b = wa0Var;
-        this.f27868a = n2Var;
+    public ra0(va0 va0Var) {
+        this.f27830a = va0Var;
     }
 
-    public final void a(boolean z10) {
-        wa0 wa0Var = this.f27869b;
-        boolean z11 = false;
-        if (wa0Var.getNeededLayoutManager() != wa0Var.getCurrentLayoutManager() && wa0Var.a()) {
-            if (wa0Var.f30006f.M0 > 0) {
-                wa0Var.N = true;
-                wa0Var.o(false);
-                return;
+    @Override
+    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ra0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        if (i10 >= 0) {
+            va0 va0Var = this.f27830a;
+            if (i10 < va0Var.P.size()) {
+                va0Var.f29053x.f((TLRPC.BotInlineResult) va0Var.P.get(i10), z10, i11);
             }
-            wa0Var.f30004b.setLayoutManager(wa0Var.getNeededLayoutManager());
-        }
-        if (z10 && !wa0Var.a()) {
-            z10 = false;
-        }
-        if (!z10 || wa0Var.f30006f.K() > 0) {
-            z11 = z10;
-        }
-        wa0Var.o(z11);
-    }
-
-    public final void b(boolean z10) {
-        this.f27869b.l(z10);
-    }
-
-    public final void c() {
-        long j3;
-        wa0 wa0Var = this.f27869b;
-        xp xpVar = wa0Var.J;
-        if (wa0Var.f30004b.getLayoutManager() != wa0Var.d && wa0Var.I) {
-            AndroidUtilities.cancelRunOnUIThread(xpVar);
-            if (this.f27868a.getFragmentBeginToShow()) {
-                j3 = 0;
-            } else {
-                j3 = 100;
-            }
-            AndroidUtilities.runOnUIThread(xpVar, j3);
         }
     }
 }

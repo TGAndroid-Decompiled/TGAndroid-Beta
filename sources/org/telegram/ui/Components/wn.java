@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import java.util.concurrent.atomic.AtomicReference;
 public final class wn implements Runnable {
-    public final int f30116a;
-    public final eo f30117b;
+    public final int f30070a;
+    public final eo f30071b;
 
     public wn(eo eoVar, int i10) {
-        this.f30116a = i10;
-        this.f30117b = eoVar;
+        this.f30070a = i10;
+        this.f30071b = eoVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f30116a) {
+        switch (this.f30070a) {
             case 0:
-                eo eoVar = this.f30117b;
-                AtomicReference atomicReference = eoVar.f23929n;
+                eo eoVar = this.f30071b;
+                AtomicReference atomicReference = eoVar.f23901n;
                 org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get();
                 if (j5Var != null) {
                     eoVar.removeView(j5Var);
@@ -24,13 +24,13 @@ public final class wn implements Runnable {
                 }
                 return;
             case 1:
-                eo eoVar2 = this.f30117b;
+                eo eoVar2 = this.f30071b;
                 AtomicReference atomicReference2 = eoVar2.v;
                 org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) atomicReference2.get();
                 if (j5Var2 != null) {
                     eoVar2.removeView(j5Var2);
                     atomicReference2.set(null);
-                    if (!eoVar2.f23915b) {
+                    if (!eoVar2.f23887b) {
                         eoVar2.setClipChildren(true);
                         return;
                     }
@@ -38,9 +38,9 @@ public final class wn implements Runnable {
                 }
                 return;
             default:
-                eo eoVar3 = this.f30117b;
-                eoVar3.f23926j0 = false;
-                eoVar3.f23924h0.c(false);
+                eo eoVar3 = this.f30071b;
+                eoVar3.f23898j0 = false;
+                eoVar3.f23896h0.c(false);
                 if (eoVar3.a()) {
                     eoVar3.f();
                     return;

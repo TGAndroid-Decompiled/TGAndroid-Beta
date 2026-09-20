@@ -2,13 +2,12 @@ package wb;
 
 import com.google.mlkit.vision.common.internal.MobileVisionBase;
 import java.util.concurrent.Callable;
-import lf.g;
 public final class d implements Callable {
-    public static final d f45264a = new Object();
+    public static final d f45308a = new Object();
 
     @Override
     public final Object call() {
-        g gVar = MobileVisionBase.e;
+        c5.a aVar = MobileVisionBase.e;
         return null;
     }
 }

@@ -9,28 +9,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
 public final class y6 implements Runnable {
-    public final int f5831a = 0;
-    public final int f5832b;
-    public final int f5833c;
+    public final int f5832a = 0;
+    public final int f5833b;
+    public final int f5834c;
     public final int d;
     public final Object e;
-    public final Object f5834f;
+    public final Object f5835f;
 
     public y6(int i10, int i11, int i12, Bitmap[] bitmapArr, Utilities.Callback callback) {
-        this.f5832b = i10;
-        this.f5833c = i11;
+        this.f5833b = i10;
+        this.f5834c = i11;
         this.d = i12;
         this.e = bitmapArr;
-        this.f5834f = callback;
+        this.f5835f = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f5831a) {
+        switch (this.f5832a) {
             case 0:
                 Bitmap[] bitmapArr = (Bitmap[]) this.e;
-                Utilities.Callback callback = (Utilities.Callback) this.f5834f;
-                Bitmap createBitmap = Bitmap.createBitmap(this.f5832b, this.f5833c, Bitmap.Config.ARGB_8888);
+                Utilities.Callback callback = (Utilities.Callback) this.f5835f;
+                Bitmap createBitmap = Bitmap.createBitmap(this.f5833b, this.f5834c, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Path path = new Path();
                 RectF rectF = new RectF();
@@ -54,16 +54,16 @@ public final class y6 implements Runnable {
                 AndroidUtilities.runOnUIThread(new ai.ba(19, callback, createBitmap));
                 return;
             default:
-                ((MessagesStorage) this.e).lambda$getDialogs$240(this.f5832b, this.f5833c, this.d, (long[]) this.f5834f);
+                ((MessagesStorage) this.e).lambda$getDialogs$240(this.f5833b, this.f5834c, this.d, (long[]) this.f5835f);
                 return;
         }
     }
 
     public y6(MessagesStorage messagesStorage, int i10, int i11, int i12, long[] jArr) {
         this.e = messagesStorage;
-        this.f5832b = i10;
-        this.f5833c = i11;
+        this.f5833b = i10;
+        this.f5834c = i11;
         this.d = i12;
-        this.f5834f = jArr;
+        this.f5835f = jArr;
     }
 }

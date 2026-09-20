@@ -4,14 +4,14 @@ import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
-import w7.i9;
-import w7.l8;
+import w7.j9;
+import w7.m8;
 public abstract class l1 extends AbstractSet {
-    public final int f8098a;
+    public final int f8099a;
 
     @Override
     public boolean removeAll(Collection collection) {
-        switch (this.f8098a) {
+        switch (this.f8099a) {
             case 0:
                 collection.getClass();
                 if (collection instanceof w0) {
@@ -33,15 +33,15 @@ public abstract class l1 extends AbstractSet {
                 }
                 return z10;
             case 1:
-                return l8.a(this, collection);
+                return m8.a(this, collection);
             default:
-                return i9.a(this, collection);
+                return j9.a(this, collection);
         }
     }
 
     @Override
     public boolean retainAll(Collection collection) {
-        switch (this.f8098a) {
+        switch (this.f8099a) {
             case 0:
                 collection.getClass();
                 return super.retainAll(collection);

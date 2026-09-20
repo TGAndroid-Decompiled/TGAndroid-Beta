@@ -1,6 +1,6 @@
 package org.telegram.ui;
 public interface mm {
-    void S0(int i10);
+    void R0(int i10);
 
     void W(boolean z10, boolean z11);
 

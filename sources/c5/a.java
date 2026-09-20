@@ -1,23 +1,17 @@
 package c5;
-
-import android.content.Context;
-import android.util.Log;
-import java.io.IOException;
-import java.io.InputStream;
-import n7.z0;
 public final class a {
-    public String f3841a;
+    public final int f3841a;
     public String f3842b;
+    public String f3843c;
 
-    public a(String str, String str2) {
-        this.f3841a = str;
-        this.f3842b = str2;
+    public a() {
+        this.f3841a = 1;
     }
 
     public r a() {
-        if (!"first_party".equals(this.f3842b)) {
-            if (this.f3841a != null) {
-                if (this.f3842b != null) {
+        if (!"first_party".equals(this.f3843c)) {
+            if (this.f3842b != null) {
+                if (this.f3843c != null) {
                     return new r(this);
                 }
                 throw new IllegalArgumentException("Product type must be provided.");
@@ -27,39 +21,25 @@ public final class a {
         throw new IllegalArgumentException("Serialized doc id must be provided for first party products.");
     }
 
-    public a(z0 z0Var) {
-        Context context = (Context) z0Var.f15367b;
-        int e = w9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
-        if (e != 0) {
-            this.f3841a = "Unity";
-            String string = context.getResources().getString(e);
-            this.f3842b = string;
-            String i10 = t8.b.i("Unity Editor version is: ", string);
-            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                Log.v("FirebaseCrashlytics", i10, null);
-                return;
-            }
-            return;
+    public String toString() {
+        switch (this.f3841a) {
+            case 3:
+                return this.f3842b + ", " + this.f3843c;
+            default:
+                return super.toString();
         }
-        if (context.getAssets() != null) {
-            try {
-                InputStream open = context.getAssets().open("flutter_assets/NOTICES.Z");
-                if (open != null) {
-                    open.close();
-                }
-                this.f3841a = "Flutter";
-                this.f3842b = null;
-                if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                    Log.v("FirebaseCrashlytics", "Development platform is: Flutter", null);
-                    return;
-                }
-                return;
-            } catch (IOException unused) {
-                this.f3841a = null;
-                this.f3842b = null;
-            }
-        }
-        this.f3841a = null;
-        this.f3842b = null;
+    }
+
+    public a(int i10, String str, String str2) {
+        this.f3841a = i10;
+        this.f3842b = str;
+        this.f3843c = str2;
+    }
+
+    public a(String str, String str2) {
+        this.f3841a = 4;
+        n6.l.c(str.length() <= 23, "tag \"%s\" is longer than the %d character maximum", str, 23);
+        this.f3842b = str;
+        this.f3843c = (str2 == null || str2.length() <= 0) ? null : str2;
     }
 }

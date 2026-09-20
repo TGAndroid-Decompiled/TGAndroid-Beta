@@ -33,7 +33,7 @@ public final class a4 extends ChatActivityEnterView {
     public final void C0(int i10, int i11) {
         f6 f6Var = this.f516r5;
         if (f6Var.f800b2 != null) {
-            this.f21992m3 = true;
+            this.f22027m3 = true;
             this.p5 = this.E0.getMeasuredHeight();
             this.f515q5 = this.E0.getScrollY();
             invalidate();
@@ -65,7 +65,7 @@ public final class a4 extends ChatActivityEnterView {
         long messageMinPrice;
         int i10;
         int i11;
-        if (this.f22060z1.getAlpha() < 0.5f) {
+        if (this.f22095z1.getAlpha() < 0.5f) {
             H0();
             return false;
         }
@@ -84,11 +84,11 @@ public final class a4 extends ChatActivityEnterView {
                 i10 = 400;
             }
             if (length > i10) {
-                NumberTextView numberTextView = this.f21925b0;
+                NumberTextView numberTextView = this.f21960b0;
                 if (numberTextView != null) {
                     AndroidUtilities.shakeViewSpring(numberTextView, 3.5f);
                     try {
-                        this.f21925b0.performHapticFeedback(3, 2);
+                        this.f21960b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
@@ -97,7 +97,7 @@ public final class a4 extends ChatActivityEnterView {
             if (!f6Var.D0(true)) {
                 if (formatTextWithEntities instanceof Spannable) {
                     Spannable spannable = (Spannable) formatTextWithEntities;
-                    i11 = ((org.telegram.ui.Components.z5[]) spannable.getSpans(0, formatTextWithEntities.length(), org.telegram.ui.Components.z5.class)).length + ((Emoji.EmojiSpan[]) spannable.getSpans(0, formatTextWithEntities.length(), Emoji.EmojiSpan.class)).length;
+                    i11 = ((org.telegram.ui.Components.y5[]) spannable.getSpans(0, formatTextWithEntities.length(), org.telegram.ui.Components.y5.class)).length + ((Emoji.EmojiSpan[]) spannable.getSpans(0, formatTextWithEntities.length(), Emoji.EmojiSpan.class)).length;
                 } else {
                     i11 = 0;
                 }
@@ -142,7 +142,7 @@ public final class a4 extends ChatActivityEnterView {
             float width = getWidth();
             f6 f6Var = this.f516r5;
             if (f6Var.f824i2 != null) {
-                f7 = this.f22054y * 1.5f;
+                f7 = this.f22089y * 1.5f;
             } else {
                 f7 = 0.0f;
             }

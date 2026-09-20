@@ -9,8 +9,8 @@ public final class ep0 extends ip0 {
     public int G;
     public final cq0 H;
 
-    public ep0(cq0 cq0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public ep0(cq0 cq0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
         this.H = cq0Var;
         this.G = 0;
     }

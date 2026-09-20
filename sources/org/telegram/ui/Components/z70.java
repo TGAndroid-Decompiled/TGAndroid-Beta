@@ -1,57 +1,92 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class z70 extends LinearLayout {
-    public boolean f30749a;
-    public final f80 f30750b;
+public final class z70 extends FrameLayout {
+    public final e80 f30771a;
 
-    public z70(f80 f80Var, Context context) {
+    public z70(e80 e80Var, Context context) {
         super(context);
-        this.f30750b = f80Var;
+        this.f30771a = e80Var;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        e80 e80Var = this.f30771a;
+        Drawable drawable = e80Var.f23768b;
+        int i11 = e80Var.f23772r;
+        i10 = ((org.telegram.ui.ActionBar.f3) e80Var).backgroundPaddingTop;
+        drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            e80 e80Var = this.f30771a;
+            if (e80Var.f23772r != 0 && motionEvent.getY() < e80Var.f23772r) {
+                e80Var.dismiss();
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        e80.o(this.f30771a);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size;
-        f80 f80Var = this.f30750b;
-        ArrayList arrayList = f80Var.h;
-        if (f80Var.f24053s == 0) {
-            int size2 = View.MeasureSpec.getSize(i10);
-            int dp = AndroidUtilities.dp(95.0f) * arrayList.size();
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) f80Var.d.getLayoutParams();
-            if (dp > size2) {
-                layoutParams.width = -1;
-                layoutParams.gravity = 51;
-                if (!this.f30749a) {
-                    TLRPC.Peer peer = f80Var.v;
-                    if (peer != null) {
-                        arrayList.remove(peer);
-                        arrayList.add(0, f80Var.v);
-                    }
-                    this.f30749a = true;
-                }
-            } else {
-                layoutParams.width = -2;
-                layoutParams.gravity = 49;
-                if (!this.f30749a) {
-                    if (f80Var.v != null) {
-                        if (arrayList.size() % 2 == 0) {
-                            size = Math.max(0, (arrayList.size() / 2) - 1);
-                        } else {
-                            size = arrayList.size() / 2;
-                        }
-                        arrayList.remove(f80Var.v);
-                        arrayList.add(size, f80Var.v);
-                    }
-                    this.f30749a = true;
-                }
-            }
+        int i12;
+        int i13;
+        int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
+        e80 e80Var = this.f30771a;
+        TextView textView = e80Var.f23770f;
+        measureChildWithMargins(textView, i10, 0, i11, 0);
+        int measuredHeight = textView.getMeasuredHeight();
+        a80 a80Var = e80Var.d;
+        ((FrameLayout.LayoutParams) a80Var.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
+        getMeasuredWidth();
+        int D = org.telegram.messenger.l0.D(58.0f, e80Var.h.size(), AndroidUtilities.dp(80.0f));
+        i12 = ((org.telegram.ui.ActionBar.f3) e80Var).backgroundPaddingTop;
+        int C = org.telegram.messenger.l0.C(55.0f, i12 + D, measuredHeight);
+        int i14 = size / 5;
+        if (C < i14 * 3) {
+            i13 = size - C;
+        } else {
+            i13 = i14 * 2;
         }
-        super.onMeasure(i10, i11);
+        if (a80Var.getPaddingTop() != i13) {
+            e80Var.f23771n = true;
+            a80Var.setPadding(0, i13, 0, 0);
+            e80Var.f23771n = false;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f30771a.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f30771a.f23771n) {
+            return;
+        }
+        super.requestLayout();
     }
 }

@@ -5,17 +5,17 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 public final class s4 extends AnimatorListenerAdapter {
-    public final int f19720a;
-    public final v4 f19721b;
+    public final int f19752a;
+    public final v4 f19753b;
 
     public s4(v4 v4Var, int i10) {
-        this.f19720a = i10;
-        this.f19721b = v4Var;
+        this.f19752a = i10;
+        this.f19753b = v4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f19720a) {
+        switch (this.f19752a) {
             case 0:
                 NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new q(this, 13));
                 return;

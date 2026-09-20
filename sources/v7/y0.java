@@ -1,9 +1,9 @@
 package v7;
 public final class y0 implements ia.d {
-    public static final y0 f44436a = new Object();
+    public static final y0 f44481a = new Object();
 
     static {
-        t8.b.t(t8.b.l(h.class, t8.b.p(5, t8.b.l(h.class, t8.b.p(4, t8.b.l(h.class, t8.b.p(3, t8.b.l(h.class, t8.b.p(2, t8.b.l(h.class, new e(1)))))))))));
+        j0.q(org.telegram.ui.Cells.c1.l(h.class, j0.m(3, org.telegram.ui.Cells.c1.l(h.class, j0.m(2, org.telegram.ui.Cells.c1.l(h.class, new e(1)))))));
     }
 
     @Override

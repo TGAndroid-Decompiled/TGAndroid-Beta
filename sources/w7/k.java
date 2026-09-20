@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 public abstract class k {
-    public static a3.z a(File file, ki.o oVar, long j3, long j10, boolean z10) {
+    public static a3.z a(File file, ki.q qVar, long j3, long j10, boolean z10) {
         long e = e(file);
         long max = Math.max(0L, j3 * 1000);
         long min = Math.min(e, Math.max(max, j10 * 1000));
@@ -32,16 +32,16 @@ public abstract class k {
                     int d10 = d(mediaExtractor, true);
                     int d11 = d(mediaExtractor, false);
                     if (d10 >= 0 && (!z10 || d11 >= 0)) {
-                        oVar.f(mediaExtractor.getTrackFormat(d10), true);
+                        qVar.f(mediaExtractor.getTrackFormat(d10), true);
                         if (z10) {
-                            oVar.f(mediaExtractor.getTrackFormat(d11), false);
+                            qVar.f(mediaExtractor.getTrackFormat(d11), false);
                         }
                         mediaExtractor.release();
                         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(2097152);
                         long j12 = j11;
-                        b(file, oVar, true, j12, min, allocateDirect);
+                        b(file, qVar, true, j12, min, allocateDirect);
                         if (z10) {
-                            b(file, oVar, false, j12, min, allocateDirect);
+                            b(file, qVar, false, j12, min, allocateDirect);
                         }
                         return new a3.z(j12 / 1000, (min - j12) / 1000);
                     }
@@ -54,7 +54,7 @@ public abstract class k {
         }
     }
 
-    public static void b(File file, ki.o oVar, boolean z10, long j3, long j10, ByteBuffer byteBuffer) {
+    public static void b(File file, ki.q qVar, boolean z10, long j3, long j10, ByteBuffer byteBuffer) {
         int i10;
         boolean z11 = z10;
         MediaExtractor mediaExtractor = new MediaExtractor();
@@ -78,7 +78,7 @@ public abstract class k {
                     int readSampleData = mediaExtractor.readSampleData(byteBuffer, 0);
                     if (readSampleData >= 0) {
                         bufferInfo.set(0, readSampleData, mediaExtractor.getSampleTime(), mediaExtractor.getSampleFlags());
-                        oVar.g(z11, byteBuffer, bufferInfo, -j3);
+                        qVar.g(z11, byteBuffer, bufferInfo, -j3);
                         mediaExtractor.advance();
                         z11 = z10;
                     }

@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MrzRecognizer;
 public interface u9 {
-    String J0();
+    String I0();
 
     void K(String str);
 

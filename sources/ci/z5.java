@@ -22,7 +22,7 @@ public final class z5 extends t2 {
         if (num.intValue() == 3) {
             int i10 = 0;
             for (int i11 = 0; i11 < k6Var.getChildCount(); i11++) {
-                if (k6Var.getChildAt(i11) instanceof qg.a2) {
+                if (k6Var.getChildAt(i11) instanceof qg.b2) {
                     i10++;
                 }
             }
@@ -60,7 +60,7 @@ public final class z5 extends t2 {
             while (true) {
                 if (i10 >= k6Var.getChildCount()) {
                     break;
-                } else if (k6Var.getChildAt(i10) instanceof qg.v2) {
+                } else if (k6Var.getChildAt(i10) instanceof qg.w2) {
                     z10 = true;
                     break;
                 } else {

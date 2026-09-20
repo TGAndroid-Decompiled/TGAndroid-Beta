@@ -4,10 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.v01;
+import org.telegram.ui.Components.u01;
 public final class f extends Drawable {
     public final int f38897a;
-    public final v01 f38898b;
+    public final u01 f38898b;
     public final h f38899c;
 
     public f(h hVar, String str, int i10) {
@@ -15,11 +15,11 @@ public final class f extends Drawable {
         switch (i10) {
             case 1:
                 this.f38899c = hVar;
-                this.f38898b = new v01(str, 14.0f, AndroidUtilities.bold());
+                this.f38898b = new u01(str, 14.0f, AndroidUtilities.bold());
                 return;
             default:
                 this.f38899c = hVar;
-                this.f38898b = new v01(str, 14.0f, AndroidUtilities.bold());
+                this.f38898b = new u01(str, 14.0f, AndroidUtilities.bold());
                 return;
         }
     }
@@ -28,10 +28,10 @@ public final class f extends Drawable {
     public final void draw(Canvas canvas) {
         switch (this.f38897a) {
             case 0:
-                this.f38898b.c(getBounds().centerX() - (this.f38898b.f28868c / 2.0f), getBounds().centerY(), 1.0f, this.f38899c.f38913s, canvas);
+                this.f38898b.c(getBounds().centerX() - (this.f38898b.f28493c / 2.0f), getBounds().centerY(), 1.0f, this.f38899c.f38915s, canvas);
                 return;
             default:
-                this.f38898b.c(getBounds().centerX() - (this.f38898b.f28868c / 2.0f), getBounds().centerY(), 1.0f, this.f38899c.f38913s, canvas);
+                this.f38898b.c(getBounds().centerX() - (this.f38898b.f28493c / 2.0f), getBounds().centerY(), 1.0f, this.f38899c.f38915s, canvas);
                 return;
         }
     }

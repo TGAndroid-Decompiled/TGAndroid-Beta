@@ -6,26 +6,26 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class cg implements org.telegram.ui.Components.zj0 {
-    public final int f32654a;
-    public final zn f32655b;
-    public final boolean f32656c;
+public final class cg implements org.telegram.ui.Components.yj0 {
+    public final int f32746a;
+    public final zn f32747b;
+    public final boolean f32748c;
     public final MessageObject d;
 
     public cg(zn znVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f32654a = i10;
-        this.f32655b = znVar;
-        this.f32656c = z10;
+        this.f32746a = i10;
+        this.f32747b = znVar;
+        this.f32748c = z10;
         this.d = messageObject;
     }
 
     @Override
     public final void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f32654a) {
+        switch (this.f32746a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final zn znVar = this.f32655b;
-                    if (j3 != znVar.getUserConfig().getClientUserId() && this.f32656c) {
+                    final zn znVar = this.f32747b;
+                    if (j3 != znVar.getUserConfig().getClientUserId() && this.f32748c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = znVar.getMessagesController().getUserOrChat(j3);
@@ -79,9 +79,9 @@ public final class cg implements org.telegram.ui.Components.zj0 {
                 }
                 return;
             default:
-                final zn znVar2 = this.f32655b;
+                final zn znVar2 = this.f32747b;
                 znVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != znVar2.getUserConfig().getClientUserId() && this.f32656c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != znVar2.getUserConfig().getClientUserId() && this.f32748c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = znVar2.getMessagesController().getUserOrChat(j3);

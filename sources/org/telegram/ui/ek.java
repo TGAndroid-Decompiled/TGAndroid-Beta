@@ -10,12 +10,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ek extends org.telegram.ui.Components.wa0 {
+public final class ek extends org.telegram.ui.Components.va0 {
     public boolean V;
     public final zn W;
 
-    public ek(zn znVar, Context context, long j3, long j10, zn znVar2, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, j3, j10, znVar2, e6Var);
+    public ek(zn znVar, Context context, long j3, long j10, zn znVar2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, j3, j10, znVar2, f6Var);
         this.W = znVar;
         this.V = true;
     }
@@ -23,7 +23,7 @@ public final class ek extends org.telegram.ui.Components.wa0 {
     @Override
     public final boolean a() {
         zn znVar = this.W;
-        if (znVar.R.getVisibility() == 0 && !znVar.f40365n3) {
+        if (znVar.R.getVisibility() == 0 && !znVar.f40407n3) {
             return false;
         }
         return true;
@@ -69,11 +69,11 @@ public final class ek extends org.telegram.ui.Components.wa0 {
         lk lkVar = znVar.Y;
         if (lkVar != null) {
             gg.k1 adapter = getAdapter();
-            TLRPC.User user = adapter.f9841w0;
+            TLRPC.User user = adapter.f9842w0;
             if (user != null) {
                 str = user.bot_inline_placeholder;
             } else {
-                String str2 = adapter.f9832q0;
+                String str2 = adapter.f9833q0;
                 if (str2 != null && str2.equals("gif")) {
                     str = LocaleController.getString(R.string.SearchGifsTitle);
                 } else {
@@ -85,7 +85,7 @@ public final class ek extends org.telegram.ui.Components.wa0 {
             if (weVar != null) {
                 if (z10) {
                     weVar.e = true;
-                    weVar.f24198b = System.currentTimeMillis();
+                    weVar.f24148b = System.currentTimeMillis();
                     weVar.invalidateSelf();
                     return;
                 }
@@ -97,14 +97,14 @@ public final class ek extends org.telegram.ui.Components.wa0 {
     @Override
     public final void m() {
         zn znVar = this.W;
-        if (znVar.Z4 && ((getAdapter().R == null || znVar.f40204a5 || znVar.f40218b5) && znVar.h != null && getAdapter().R != null)) {
+        if (znVar.Z4 && ((getAdapter().R == null || znVar.f40246a5 || znVar.f40260b5) && znVar.h != null && getAdapter().R != null)) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar.getParentActivity(), 0, znVar.f40261ea);
-                alertDialog$Builder.f18622a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.f18622a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar.getParentActivity(), 0, znVar.f40303ea);
+                alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f18654a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                znVar.showDialog(alertDialog$Builder.f18622a);
+                znVar.showDialog(alertDialog$Builder.f18654a);
                 globalMainSettings.edit().putBoolean("secretbot", true).commit();
             }
         }
@@ -116,13 +116,13 @@ public final class ek extends org.telegram.ui.Components.wa0 {
         boolean z11;
         if (this.V != z10) {
             zn znVar = this.W;
-            org.telegram.ui.Components.zy0 zy0Var = znVar.f40240d1;
+            org.telegram.ui.Components.yy0 yy0Var = znVar.f40282d1;
             if (!znVar.isInPreviewMode() && z10) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            AndroidUtilities.updateViewShow(zy0Var, z11, false, true);
+            AndroidUtilities.updateViewShow(yy0Var, z11, false, true);
             this.V = z10;
         }
     }

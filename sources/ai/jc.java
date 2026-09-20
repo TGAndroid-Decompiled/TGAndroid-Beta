@@ -179,7 +179,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
 
     public static void J(long j3, TL_stories.StoryItem storyItem, Editable editable) {
         if (j3 != 0 && storyItem != null) {
-            E1.put(j3 + (j3 >> 16) + (storyItem.f18531id << 16), editable);
+            E1.put(j3 + (j3 >> 16) + (storyItem.f18563id << 16), editable);
         }
     }
 
@@ -256,7 +256,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
         if (j3 == 0 || storyItem == null) {
             return "";
         }
-        return (CharSequence) E1.get(j3 + (j3 >> 16) + (storyItem.f18531id << 16), "");
+        return (CharSequence) E1.get(j3 + (j3 >> 16) + (storyItem.f18563id << 16), "");
     }
 
     public static boolean x(MessageObject messageObject) {
@@ -401,8 +401,8 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
             Paint paint = new Paint(1);
             view.f1365a = paint;
             view.f1367c = new q4((Object) view, 2);
-            view.d = new org.telegram.ui.Components.e6((View) view);
-            view.e = new org.telegram.ui.Components.e6((View) view);
+            view.d = new org.telegram.ui.Components.d6((View) view);
+            view.e = new org.telegram.ui.Components.d6((View) view);
             paint.setColor(-1);
             this.f1077d1 = view;
             this.v.addView((View) view, w7.y5.d(-1, -1.0f, 0, 4.0f, 0.0f, 4.0f, 0.0f));
@@ -447,7 +447,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
         this.f1073c = z14;
         yb ybVar = this.v;
         a1.c cVar = new a1.c(this, 10);
-        WeakHashMap weakHashMap = r0.i0.f42096a;
+        WeakHashMap weakHashMap = r0.i0.f42142a;
         r0.a0.j(ybVar, cVar);
         if (this.f1070b) {
             AndroidUtilities.removeFromParent(this.f1107s);
@@ -794,7 +794,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
                     ArrayList arrayList2 = new ArrayList();
                     int i13 = 0;
                     while (i12 < this.O0.f721i.size()) {
-                        if (selectedStory != null && selectedStory.f18531id == ((MessageObject) this.O0.f721i.get(i12)).storyItem.f18531id) {
+                        if (selectedStory != null && selectedStory.f18563id == ((MessageObject) this.O0.f721i.get(i12)).storyItem.f18563id) {
                             i13 = i12;
                         }
                         arrayList2.add(((MessageObject) this.O0.f721i.get(i12)).storyItem);
@@ -845,7 +845,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
                     long longValue = ((Long) objArr[0]).longValue();
                     int intValue = ((Integer) objArr[1]).intValue();
                     TL_stories.StoryItem storyItem = this.T0;
-                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f18531id == intValue) {
+                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f18563id == intValue) {
                         this.S0 = true;
                         return;
                     }
@@ -986,7 +986,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
             ofFloat.addUpdateListener(new qb(this, 2));
             this.H.addListener(new sb(this, 1));
             this.H.setDuration(250L);
-            this.H.setInterpolator(org.telegram.ui.ActionBar.p1.f19667w);
+            this.H.setInterpolator(org.telegram.ui.ActionBar.p1.f19699w);
             this.H.start();
         }
     }
@@ -1025,7 +1025,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
                 this.f1115v1.setInterpolator(qr.h);
             } else {
                 this.f1115v1.setDuration(350L);
-                this.f1115v1.setInterpolator(qr.f27715f);
+                this.f1115v1.setInterpolator(qr.f27642f);
             }
             this.f1115v1.start();
         }
@@ -1052,7 +1052,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
             if (currentPage != null) {
                 p6 p6Var = currentPage.f1052r;
                 x6 x6Var = currentPage.f1050f;
-                if (x6Var != null && x6Var.f30366b) {
+                if (x6Var != null && x6Var.f30354b) {
                     x6Var.a();
                     return true;
                 } else if (Math.abs(currentPage.f1049c.getTranslationY() - p6Var.getPaddingTop()) > AndroidUtilities.dp(2.0f)) {

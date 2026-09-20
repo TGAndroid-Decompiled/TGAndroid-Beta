@@ -4,8 +4,8 @@ import android.content.Context;
 public final class dm extends org.telegram.ui.Cells.h0 {
     public final lm L;
 
-    public dm(lm lmVar, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i10, e6Var);
+    public dm(lm lmVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, f6Var);
         this.L = lmVar;
     }
 

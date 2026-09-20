@@ -1,52 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewPropertyAnimator;
-public final class hc extends nb {
-    public float f24631a;
-    public gc f24632b;
-    public w9 f24633c;
-    public p6 d;
-    public boolean e;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
+import android.widget.ImageView;
+public class hc extends mb {
+    public final ImageView f24604a;
+    public final k90 f24605b;
+
+    public hc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.j6.Hi);
+        ImageView imageView = new ImageView(context);
+        this.f24604a = imageView;
+        imageView.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.y5.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
+        k90 k90Var = new k90(context, null);
+        this.f24605b = k90Var;
+        k90Var.setDisablePaddingsOffsetY(true);
+        k90Var.setSingleLine();
+        k90Var.setTextColor(themedColor);
+        k90Var.setTypeface(Typeface.SANS_SERIF);
+        k90Var.setTextSize(1, 15.0f);
+        addView(k90Var, w7.y5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+    }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.d.getText();
-    }
-
-    public void setProgress(float f7) {
-        boolean z10;
-        float f10;
-        boolean z11 = this.e;
-        boolean z12 = false;
-        float f11 = 1.0f;
-        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        if (i10 < 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z11 != z10) {
-            if (i10 < 0) {
-                z12 = true;
-            }
-            this.e = z12;
-            ViewPropertyAnimator animate = this.f24633c.animate();
-            if (this.e) {
-                f10 = 0.78f;
-            } else {
-                f10 = 1.0f;
-            }
-            ViewPropertyAnimator scaleX = animate.scaleX(f10);
-            if (this.e) {
-                f11 = 0.78f;
-            }
-            scaleX.scaleY(f11).setDuration(320L).setInterpolator(qr.h).start();
-        }
-        this.f24631a = f7;
-        this.f24632b.invalidate();
-    }
-
-    public void setTextColor(int i10) {
-        this.d.setTextColor(i10);
+        return this.f24605b.getText();
     }
 }

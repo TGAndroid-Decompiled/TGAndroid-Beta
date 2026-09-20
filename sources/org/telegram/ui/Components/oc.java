@@ -1,91 +1,76 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.NotificationCenter;
 public final class oc extends mb {
-    public Runnable f26906a;
-    public Runnable f26907b;
-    public qc f26908c;
-    public final TextView d;
-    public boolean e;
+    public final j9 f26885a;
+    public final k90 f26886b;
+    public final k90 f26887c;
+    public final LinearLayout d;
 
-    public oc(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11) {
-        super(context);
-        int w02;
-        int i10 = org.telegram.ui.ActionBar.j6.Gi;
-        if (e6Var != null) {
-            w02 = e6Var.G0(i10);
+    public oc(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        super(context, f6Var);
+        j9 j9Var = new j9(context, false);
+        this.f26885a = j9Var;
+        j9Var.setStyle(11);
+        j9Var.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
+        addView(j9Var, w7.y5.i(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
+        if (!z10) {
+            wb wbVar = new wb(context, 1, null);
+            this.f26886b = wbVar;
+            NotificationCenter.listenEmojiLoading(wbVar);
+            wbVar.setTypeface(Typeface.SANS_SERIF);
+            wbVar.setTextSize(1, 15.0f);
+            wbVar.setEllipsize(TextUtils.TruncateAt.END);
+            wbVar.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+            wbVar.setGravity(LocaleController.isRTL ? 5 : 3);
+            addView(wbVar, w7.y5.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
         } else {
-            w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.d = linearLayout;
+            linearLayout.setOrientation(1);
+            addView(linearLayout, w7.y5.i(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
+            wb wbVar2 = new wb(context, 2, null);
+            this.f26886b = wbVar2;
+            NotificationCenter.listenEmojiLoading(wbVar2);
+            Typeface typeface = Typeface.SANS_SERIF;
+            wbVar2.setTypeface(typeface);
+            wbVar2.setTextSize(1, 14.0f);
+            wbVar2.setTypeface(AndroidUtilities.bold());
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            wbVar2.setEllipsize(truncateAt);
+            wbVar2.setMaxLines(1);
+            linearLayout.addView(wbVar2);
+            k90 k90Var = new k90(context, null);
+            this.f26887c = k90Var;
+            k90Var.setTypeface(typeface);
+            k90Var.setTextSize(1, 12.0f);
+            k90Var.setEllipsize(truncateAt);
+            k90Var.setSingleLine(false);
+            k90Var.setMaxLines(3);
+            k90Var.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
+            linearLayout.addView(k90Var, w7.y5.t(-2, -2, 0, 0, 0, 0, 0));
         }
-        if (z10) {
-            TextView textView = new TextView(context);
-            this.d = textView;
-            textView.setBackground(org.telegram.ui.ActionBar.j6.f0((w02 & 16777215) | 419430400, 7, -1));
-            textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setTextColor(w02);
-            org.telegram.messenger.wh.k(R.string.UndoNoCaps, textView, 16);
-            float f7 = z11 ? 34.0f : 12.0f;
-            boolean z12 = LocaleController.isRTL;
-            w7.e6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
-            addView(textView, w7.y5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
-        }
-        if (z11) {
-            ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource(R.drawable.chats_undo);
-            imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
-            if (!z10) {
-                imageView.setBackground(org.telegram.ui.ActionBar.j6.f0((w02 & 16777215) | 419430400, 1, -1));
-            }
-            w7.e6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, w7.y5.h(56.0f, 48.0f, 16));
-        }
-        setOnClickListener(new f0(this, 6));
+        this.f26886b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
+        setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
     }
 
     @Override
-    public final void a(qc qcVar) {
-        this.f26908c = qcVar;
+    public CharSequence getAccessibilityText() {
+        return this.f26886b.getText();
     }
 
-    @Override
-    public final void b() {
-        this.f26908c = null;
-        Runnable runnable = this.f26907b;
-        if (runnable != null && !this.e) {
-            runnable.run();
+    public void setTextColor(int i10) {
+        this.f26886b.setTextColor(i10);
+        k90 k90Var = this.f26887c;
+        if (k90Var != null) {
+            k90Var.setTextColor(i10);
         }
-    }
-
-    public final void e(CharSequence charSequence) {
-        TextView textView = this.d;
-        if (textView != null) {
-            textView.setText(charSequence);
-        }
-    }
-
-    public final void f() {
-        if (this.f26908c != null) {
-            this.e = true;
-            Runnable runnable = this.f26906a;
-            if (runnable != null) {
-                runnable.run();
-            }
-            qc qcVar = this.f26908c;
-            if (qcVar != null) {
-                qcVar.b();
-            }
-        }
-    }
-
-    public oc(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        this(context, e6Var, z10, !z10);
     }
 }

@@ -5,16 +5,16 @@ import db.v;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.List;
-import v7.m8;
+import v7.n8;
 public final class f implements v, Cloneable {
-    public static final f f9024c = new f();
-    public List f9025a;
-    public final List f9026b;
+    public static final f f9025c = new f();
+    public List f9026a;
+    public final List f9027b;
 
     public f() {
         List list = Collections.EMPTY_LIST;
-        this.f9025a = list;
-        this.f9026b = list;
+        this.f9026a = list;
+        this.f9027b = list;
     }
 
     public final f clone() {
@@ -28,15 +28,15 @@ public final class f implements v, Cloneable {
     public final boolean b(Class cls, boolean z10) {
         List<db.a> list;
         if (!z10 && !Enum.class.isAssignableFrom(cls)) {
-            m8 m8Var = ib.c.f11069a;
+            n8 n8Var = ib.c.f11070a;
             if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
                 return true;
             }
         }
         if (z10) {
-            list = this.f9025a;
+            list = this.f9026a;
         } else {
-            list = this.f9026b;
+            list = this.f9027b;
         }
         for (db.a aVar : list) {
             if (aVar.shouldSkipClass(cls)) {
@@ -48,7 +48,7 @@ public final class f implements v, Cloneable {
 
     @Override
     public final u create(db.g gVar, kb.a aVar) {
-        Class cls = aVar.f13576a;
+        Class cls = aVar.f13577a;
         boolean b10 = b(cls, true);
         boolean b11 = b(cls, false);
         if (!b10 && !b11) {

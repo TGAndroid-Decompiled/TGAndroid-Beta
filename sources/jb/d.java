@@ -4,16 +4,16 @@ import db.u;
 import java.sql.Timestamp;
 import java.util.Date;
 public final class d extends u {
-    public static final c f12947b = new c();
-    public final u f12948a;
+    public static final c f12948b = new c();
+    public final u f12949a;
 
     public d(u uVar) {
-        this.f12948a = uVar;
+        this.f12949a = uVar;
     }
 
     @Override
     public final Object read(lb.a aVar) {
-        Date date = (Date) this.f12948a.read(aVar);
+        Date date = (Date) this.f12949a.read(aVar);
         if (date != null) {
             return new Timestamp(date.getTime());
         }
@@ -22,6 +22,6 @@ public final class d extends u {
 
     @Override
     public final void write(lb.b bVar, Object obj) {
-        this.f12948a.write(bVar, (Timestamp) obj);
+        this.f12949a.write(bVar, (Timestamp) obj);
     }
 }

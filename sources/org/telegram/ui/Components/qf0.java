@@ -1,85 +1,141 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.content.Context;
+import android.graphics.Paint;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class qf0 extends View {
-    public long E;
-    public float F;
-    public float G;
-    public float H;
-    public kc0 I;
-    public TextPaint f27584a;
-    public TextPaint f27585b;
-    public StaticLayout f27586c;
-    public float d;
-    public float e;
-    public StaticLayout f27587f;
-    public float h;
-    public float f27588n;
-    public boolean f27589r;
-    public e6 f27590s;
-    public boolean v;
-    public sf0 f27591w;
-    public ci.ka f27592x;
-    public boolean f27593y;
+public final class qf0 extends ul0 {
+    public final Context f27570c;
+    public final rf0 d;
+
+    public qf0(rf0 rf0Var, Context context) {
+        this.d = rf0Var;
+        this.f27570c = context;
+    }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float e = this.f27590s.e(this.f27589r);
-        if (e > 0.0f && this.f27586c != null && this.f27587f != null) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e * 255.0f), 31);
-            canvas.save();
-            canvas.translate(((getWidth() - this.d) / 2.0f) - this.e, getHeight() * 0.22f);
-            this.f27586c.draw(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f27588n, (getHeight() * 0.22f) + AndroidUtilities.dp(60.0f));
-            this.f27587f.draw(canvas);
-            canvas.restore();
-            canvas.restore();
+    public final boolean D(s4.c1 c1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.F;
+    }
+
+    @Override
+    public final long i(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        rf0 rf0Var = this.d;
+        if (i10 != rf0Var.f27888y && i10 != rf0Var.E) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        int i11 = c1Var.f42977f;
+        View view = c1Var.f42974a;
+        rf0 rf0Var = this.d;
+        if (i11 != 0) {
+            if (i11 == 1) {
+                org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) view;
+                v5Var.setTag(Integer.valueOf(i10));
+                if (i10 == rf0Var.f27888y) {
+                    v5Var.a(rf0Var.N, LocaleController.getString(R.string.TintShadows));
+                    return;
+                } else if (i10 == rf0Var.E) {
+                    v5Var.a(rf0Var.O, LocaleController.getString(R.string.TintHighlights));
+                    return;
+                } else {
+                    return;
+                }
+            }
+            return;
+        }
+        org.telegram.ui.Cells.w5 w5Var = (org.telegram.ui.Cells.w5) view;
+        w5Var.setTag(Integer.valueOf(i10));
+        if (i10 == rf0Var.f27858b) {
+            w5Var.a(LocaleController.getString(R.string.Enhance), 0, rf0Var.G);
+        } else if (i10 == rf0Var.f27877r) {
+            w5Var.a(LocaleController.getString(R.string.Highlights), -100, rf0Var.P);
+        } else if (i10 == rf0Var.d) {
+            w5Var.a(LocaleController.getString(R.string.Contrast), -100, rf0Var.I);
+        } else if (i10 == rf0Var.f27860c) {
+            w5Var.a(LocaleController.getString(R.string.Exposure), -100, rf0Var.H);
+        } else if (i10 == rf0Var.f27864f) {
+            w5Var.a(LocaleController.getString(R.string.Warmth), -100, rf0Var.J);
+        } else if (i10 == rf0Var.e) {
+            w5Var.a(LocaleController.getString(R.string.Saturation), -100, rf0Var.K);
+        } else if (i10 == rf0Var.v) {
+            w5Var.a(LocaleController.getString(R.string.Vignette), 0, rf0Var.R);
+        } else if (i10 == rf0Var.f27879s) {
+            w5Var.a(LocaleController.getString(R.string.Shadows), -100, rf0Var.Q);
+        } else if (i10 == rf0Var.f27884w) {
+            w5Var.a(LocaleController.getString(R.string.Grain), 0, rf0Var.S);
+        } else if (i10 == rf0Var.f27886x) {
+            w5Var.a(LocaleController.getString(R.string.Sharpen), 0, rf0Var.U);
+        } else if (i10 == rf0Var.h) {
+            w5Var.a(LocaleController.getString(R.string.Fade), 0, rf0Var.L);
+        } else if (i10 == rf0Var.f27872n) {
+            w5Var.a(LocaleController.getString(R.string.SoftenSkin), 0, rf0Var.M);
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        TextPaint textPaint = this.f27584a;
-        textPaint.setColor(-1);
-        float f10 = 0.0f;
-        textPaint.setShadowLayer(AndroidUtilities.dp(8.0f), 0.0f, 0.0f, 805306368);
-        textPaint.setTextSize(AndroidUtilities.dp(34.0f));
-        TextPaint textPaint2 = this.f27585b;
-        textPaint2.setColor(-1);
-        textPaint2.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
-        textPaint2.setTextSize(AndroidUtilities.dp(58.0f));
-        if (this.f27586c == null) {
-            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f27586c = staticLayout;
-            if (staticLayout.getLineCount() > 0) {
-                f7 = this.f27586c.getLineWidth(0);
-            } else {
-                f7 = 0.0f;
-            }
-            this.d = f7;
-            if (this.f27586c.getLineCount() > 0) {
-                f10 = this.f27586c.getLineLeft(0);
-            }
-            this.e = f10;
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.v5 v5Var;
+        Context context = this.f27570c;
+        if (i10 == 0) {
+            org.telegram.ui.ActionBar.f6 f6Var = this.d.I0;
+            ?? frameLayout = new FrameLayout(context);
+            frameLayout.e = new ai.q4((Object) frameLayout, 29);
+            TextView textView = new TextView(context);
+            frameLayout.f21791a = textView;
+            textView.setGravity(5);
+            textView.setTextColor(-1);
+            textView.setTextSize(1, 12.0f);
+            textView.setMaxLines(1);
+            textView.setSingleLine(true);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            frameLayout.addView(textView, w7.y5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+            TextView textView2 = new TextView(context);
+            frameLayout.f21792b = textView2;
+            org.telegram.messenger.rk.n(org.telegram.ui.ActionBar.j6.f19505zf, f6Var, textView2, 1, 12.0f);
+            textView2.setGravity(5);
+            textView2.setSingleLine(true);
+            frameLayout.addView(textView2, w7.y5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+            ?? view = new View(context);
+            Paint paint = new Paint();
+            view.f23835a = paint;
+            Paint paint2 = new Paint(1);
+            view.f23836b = paint2;
+            view.f23837c = AndroidUtilities.dp(16.0f);
+            view.d = 0;
+            view.e = 0.0f;
+            view.f23838f = false;
+            paint.setColor(-11711155);
+            paint2.setColor(-1);
+            frameLayout.f21793c = view;
+            frameLayout.addView(view, w7.y5.d(-1, 40.0f, 19, 96.0f, 0.0f, 24.0f, 0.0f));
+            frameLayout.setSeekBarDelegate(new mv(this, 11));
+            v5Var = frameLayout;
+        } else {
+            org.telegram.ui.Cells.v5 v5Var2 = new org.telegram.ui.Cells.v5(context);
+            v5Var2.setOnClickListener(new f80(this, 6));
+            v5Var = v5Var2;
         }
-    }
-
-    public void setAllowTouch(boolean z10) {
-        this.v = z10;
-    }
-
-    public void setFilterView(sf0 sf0Var) {
-        this.f27591w = sf0Var;
+        return new s4.c1(v5Var);
     }
 }

@@ -2,12 +2,12 @@ package z7;
 
 import java.util.Arrays;
 public final class ra {
-    public final qa f48854a;
-    public final Integer f48855b;
+    public final qa f48900a;
+    public final Integer f48901b;
 
-    public ra(n7.z0 z0Var) {
-        this.f48854a = (qa) z0Var.f15367b;
-        this.f48855b = (Integer) z0Var.f15368c;
+    public ra(org.telegram.ui.Cells.f3 f3Var) {
+        this.f48900a = (qa) f3Var.f20269b;
+        this.f48901b = (Integer) f3Var.f20270c;
     }
 
     public final boolean equals(Object obj) {
@@ -18,13 +18,13 @@ public final class ra {
             return false;
         }
         ra raVar = (ra) obj;
-        if (n6.l.l(this.f48854a, raVar.f48854a) && n6.l.l(this.f48855b, raVar.f48855b) && n6.l.l(null, null) && n6.l.l(null, null)) {
+        if (n6.l.l(this.f48900a, raVar.f48900a) && n6.l.l(this.f48901b, raVar.f48901b) && n6.l.l(null, null) && n6.l.l(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f48854a, this.f48855b, null, null});
+        return Arrays.hashCode(new Object[]{this.f48900a, this.f48901b, null, null});
     }
 }

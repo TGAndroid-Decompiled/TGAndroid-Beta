@@ -35,26 +35,26 @@ public final class i implements b {
     public int P;
     public int Q;
     public boolean R;
-    public final Context f12592a;
-    public final h f12594c;
+    public final Context f12593a;
+    public final h f12595c;
     public final PlaybackSession d;
-    public String f12598s;
+    public String f12599s;
     public PlaybackMetrics.Builder v;
-    public int f12599w;
-    public final Executor f12593b = e2.a.g();
-    public final j1 f12595f = new j1();
+    public int f12600w;
+    public final Executor f12594b = e2.a.g();
+    public final j1 f12596f = new j1();
     public final h1 h = new h1();
-    public final HashMap f12597r = new HashMap();
-    public final HashMap f12596n = new HashMap();
+    public final HashMap f12598r = new HashMap();
+    public final HashMap f12597n = new HashMap();
     public final long e = SystemClock.elapsedRealtime();
-    public int f12600x = 0;
-    public int f12601y = 0;
+    public int f12601x = 0;
+    public int f12602y = 0;
 
     public i(Context context, PlaybackSession playbackSession) {
-        this.f12592a = context.getApplicationContext();
+        this.f12593a = context.getApplicationContext();
         this.d = playbackSession;
         h hVar = new h();
-        this.f12594c = hVar;
+        this.f12595c = hVar;
         hVar.d = this;
     }
 
@@ -68,13 +68,13 @@ public final class i implements b {
 
     @Override
     public final void a(i2.g gVar) {
-        this.O += gVar.f10710g;
+        this.O += gVar.f10711g;
         this.P += gVar.e;
     }
 
     @Override
     public final void b(b0 b0Var) {
-        this.M = b0Var.f43589a;
+        this.M = b0Var.f43611a;
     }
 
     @Override
@@ -100,13 +100,13 @@ public final class i implements b {
     public final void e(a aVar, b0 b0Var) {
         f0 f0Var = aVar.d;
         if (f0Var != null) {
-            s sVar = b0Var.f43591c;
+            s sVar = b0Var.f43613c;
             sVar.getClass();
             int i10 = b0Var.d;
-            k1 k1Var = aVar.f12564b;
+            k1 k1Var = aVar.f12565b;
             f0Var.getClass();
-            a5.a aVar2 = new a5.a(sVar, i10, this.f12594c.d(k1Var, f0Var), 9);
-            int i11 = b0Var.f43590b;
+            a5.a aVar2 = new a5.a(sVar, i10, this.f12595c.d(k1Var, f0Var), 9);
+            int i11 = b0Var.f43612b;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -130,10 +130,10 @@ public final class i implements b {
         long longValue;
         f0 f0Var = aVar.d;
         if (f0Var != null) {
-            String d = this.f12594c.d(aVar.f12564b, f0Var);
-            HashMap hashMap = this.f12597r;
+            String d = this.f12595c.d(aVar.f12565b, f0Var);
+            HashMap hashMap = this.f12598r;
             Long l4 = (Long) hashMap.get(d);
-            HashMap hashMap2 = this.f12596n;
+            HashMap hashMap2 = this.f12597n;
             Long l10 = (Long) hashMap2.get(d);
             long j10 = 0;
             if (l4 == null) {
@@ -154,7 +154,7 @@ public final class i implements b {
         if (i10 == 1) {
             this.L = true;
         }
-        this.f12599w = i10;
+        this.f12600w = i10;
     }
 
     @Override
@@ -166,9 +166,9 @@ public final class i implements b {
         String str;
         if (aVar != null) {
             String str2 = (String) aVar.f278c;
-            h hVar = this.f12594c;
+            h hVar = this.f12595c;
             synchronized (hVar) {
-                str = hVar.f12590f;
+                str = hVar.f12591f;
             }
             if (str2.equals(str)) {
                 return true;
@@ -187,7 +187,7 @@ public final class i implements b {
             builder.setAudioUnderrunCount(this.Q);
             this.v.setVideoFramesDropped(this.O);
             this.v.setVideoFramesPlayed(this.P);
-            Long l4 = (Long) this.f12596n.get(this.f12598s);
+            Long l4 = (Long) this.f12597n.get(this.f12599s);
             PlaybackMetrics.Builder builder2 = this.v;
             if (l4 == null) {
                 longValue = 0;
@@ -195,7 +195,7 @@ public final class i implements b {
                 longValue = l4.longValue();
             }
             builder2.setNetworkTransferDurationMillis(longValue);
-            Long l10 = (Long) this.f12597r.get(this.f12598s);
+            Long l10 = (Long) this.f12598r.get(this.f12599s);
             PlaybackMetrics.Builder builder3 = this.v;
             if (l10 == null) {
                 longValue2 = 0;
@@ -210,10 +210,10 @@ public final class i implements b {
                 i10 = 0;
             }
             builder4.setStreamSource(i10);
-            this.f12593b.execute(new gg.x1(23, this, this.v.build()));
+            this.f12594b.execute(new gg.x1(23, this, this.v.build()));
         }
         this.v = null;
-        this.f12598s = null;
+        this.f12599s = null;
         this.Q = 0;
         this.O = 0;
         this.P = 0;
@@ -230,14 +230,14 @@ public final class i implements b {
     public final void r(k1 k1Var, f0 f0Var) {
         int b10;
         PlaybackMetrics.Builder builder = this.v;
-        if (f0Var == null || (b10 = k1Var.b(f0Var.f43612a)) == -1) {
+        if (f0Var == null || (b10 = k1Var.b(f0Var.f43653a)) == -1) {
             return;
         }
         h1 h1Var = this.h;
         int i10 = 0;
         k1Var.f(b10, h1Var, false);
         int i11 = h1Var.f3014c;
-        j1 j1Var = this.f12595f;
+        j1 j1Var = this.f12596f;
         k1Var.n(i11, j1Var);
         b2.f0 f0Var2 = j1Var.f3060c.f3078b;
         int i12 = 2;
@@ -274,18 +274,18 @@ public final class i implements b {
             return;
         }
         p();
-        this.f12598s = str;
+        this.f12599s = str;
         this.v = new PlaybackMetrics.Builder().setPlayerName("AndroidXMedia3").setPlayerVersion("1.8.1");
-        r(aVar.f12564b, f0Var);
+        r(aVar.f12565b, f0Var);
     }
 
     public final void t(a aVar, String str) {
         f0 f0Var = aVar.d;
-        if ((f0Var == null || !f0Var.b()) && str.equals(this.f12598s)) {
+        if ((f0Var == null || !f0Var.b()) && str.equals(this.f12599s)) {
             p();
         }
-        this.f12596n.remove(str);
-        this.f12597r.remove(str);
+        this.f12597n.remove(str);
+        this.f12598r.remove(str);
     }
 
     public final void u(int i10, long j3, s sVar, int i11) {
@@ -341,7 +341,7 @@ public final class i implements b {
             }
             String str5 = sVar.d;
             if (str5 != null) {
-                String str6 = d0.f7887a;
+                String str6 = d0.f7888a;
                 String[] split = str5.split("-", -1);
                 String str7 = split[0];
                 if (split.length >= 2) {
@@ -364,7 +364,7 @@ public final class i implements b {
             timeSinceCreatedMillis.setTrackState(0);
         }
         this.R = true;
-        this.f12593b.execute(new gg.x1(20, this, timeSinceCreatedMillis.build()));
+        this.f12594b.execute(new gg.x1(20, this, timeSinceCreatedMillis.build()));
     }
 
     @Override

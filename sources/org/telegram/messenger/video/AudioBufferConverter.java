@@ -37,7 +37,7 @@ public class AudioBufferConverter {
         checkChannels(i11, i13);
         int L1 = this.mRemixer.L1(shortBuffer.remaining(), i11, i13);
         ShortBuffer createBuffer = createBuffer(L1);
-        this.mRemixer.S0(shortBuffer, i11, createBuffer, i13);
+        this.mRemixer.T0(shortBuffer, i11, createBuffer, i13);
         createBuffer.rewind();
         ShortBuffer createBuffer2 = createBuffer(((int) Math.ceil((L1 * i12) / i10)) + 10);
         this.mResampler.y(createBuffer, i10, createBuffer2, i12, i13);

@@ -2,35 +2,35 @@ package v2;
 
 import b2.s;
 import g2.b0;
-import v7.m7;
+import v7.n7;
 public final class j extends e {
-    public final d f44115s;
-    public o0.a v;
-    public long f44116w;
-    public volatile boolean f44117x;
+    public final d f44159s;
+    public m5.e v;
+    public long f44160w;
+    public volatile boolean f44161x;
 
     public j(g2.h hVar, g2.m mVar, s sVar, int i10, Object obj, d dVar) {
         super(hVar, mVar, 2, sVar, i10, obj, -9223372036854775807L, -9223372036854775807L);
-        this.f44115s = dVar;
+        this.f44159s = dVar;
     }
 
     @Override
-    public final void D() {
-        this.f44117x = true;
+    public final void H() {
+        this.f44161x = true;
     }
 
     @Override
     public final void a() {
         boolean z10;
-        if (this.f44116w == 0) {
-            this.f44115s.a(this.v, -9223372036854775807L, -9223372036854775807L);
+        if (this.f44160w == 0) {
+            this.f44159s.a(this.v, -9223372036854775807L, -9223372036854775807L);
         }
         try {
-            g2.m b10 = this.f44097b.b(this.f44116w);
-            b0 b0Var = this.f44101r;
+            g2.m b10 = this.f44141b.b(this.f44160w);
+            b0 b0Var = this.f44145r;
             c3.l lVar = new c3.l(b0Var, b10.e, b0Var.open(b10));
-            while (!this.f44117x) {
-                int m10 = this.f44115s.f44090a.m(lVar, d.f44089s);
+            while (!this.f44161x) {
+                int m10 = this.f44159s.f44134a.m(lVar, d.f44133s);
                 boolean z11 = false;
                 if (m10 != 1) {
                     z10 = true;
@@ -46,10 +46,10 @@ public final class j extends e {
                     break;
                 }
             }
-            this.f44116w = lVar.d - this.f44097b.e;
-            c3.b0 b0Var2 = this.f44115s.f44094n;
+            this.f44160w = lVar.d - this.f44141b.e;
+            c3.b0 b0Var2 = this.f44159s.f44138n;
         } finally {
-            m7.a(this.f44101r);
+            n7.a(this.f44145r);
         }
     }
 }

@@ -1,6 +1,6 @@
 package cf;
 
-import n7.z0;
+import org.telegram.ui.Cells.f3;
 public interface b {
-    a F1(z0 z0Var);
+    a c0(f3 f3Var);
 }

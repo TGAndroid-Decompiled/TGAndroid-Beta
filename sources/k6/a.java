@@ -5,20 +5,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import hg.k0;
 import java.util.Arrays;
-import n4.y;
 import w7.f0;
 public final class a extends o6.a {
-    public final int f13499a;
-    public final int f13500b;
-    public final PendingIntent f13501c;
+    public final int f13500a;
+    public final int f13501b;
+    public final PendingIntent f13502c;
     public final String d;
     public static final a e = new a(0);
     public static final Parcelable.Creator<a> CREATOR = new g8.j(17);
 
     public a(int i10, int i11, PendingIntent pendingIntent, String str) {
-        this.f13499a = i10;
-        this.f13500b = i11;
-        this.f13501c = pendingIntent;
+        this.f13500a = i10;
+        this.f13501b = i11;
+        this.f13502c = pendingIntent;
         this.d = str;
     }
 
@@ -91,14 +90,14 @@ public final class a extends o6.a {
     }
 
     public final boolean b() {
-        if (this.f13500b != 0 && this.f13501c != null) {
+        if (this.f13501b != 0 && this.f13502c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f13500b == 0) {
+        if (this.f13501b == 0) {
             return true;
         }
         return false;
@@ -112,32 +111,32 @@ public final class a extends o6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f13500b == aVar.f13500b && n6.l.l(this.f13501c, aVar.f13501c) && n6.l.l(this.d, aVar.d)) {
+        if (this.f13501b == aVar.f13501b && n6.l.l(this.f13502c, aVar.f13502c) && n6.l.l(this.d, aVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f13500b), this.f13501c, this.d});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f13501b), this.f13502c, this.d});
     }
 
     public final String toString() {
-        y yVar = new y(this);
-        yVar.k(d(this.f13500b), "statusCode");
-        yVar.k(this.f13501c, "resolution");
-        yVar.k(this.d, "message");
-        return yVar.toString();
+        m5.e eVar = new m5.e(this);
+        eVar.g(d(this.f13501b), "statusCode");
+        eVar.g(this.f13502c, "resolution");
+        eVar.g(this.d, "message");
+        return eVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f13499a);
+        parcel.writeInt(this.f13500a);
         f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f13500b);
-        f0.k(parcel, 3, this.f13501c, i10);
+        parcel.writeInt(this.f13501b);
+        f0.k(parcel, 3, this.f13502c, i10);
         f0.l(parcel, 4, this.d);
         f0.r(parcel, q6);
     }

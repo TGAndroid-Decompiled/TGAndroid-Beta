@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class qs extends org.telegram.ui.Cells.r8 {
+public final class qs extends org.telegram.ui.Cells.s8 {
     public final int Q = 0;
     public final Object R;
 
-    public qs(ss ssVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public qs(ss ssVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
         this.R = ssVar;
     }
 
@@ -33,17 +33,17 @@ public final class qs extends org.telegram.ui.Cells.r8 {
                 int measuredHeight = getMeasuredHeight();
                 ss ssVar = (ss) this.R;
                 int measuredHeight2 = (measuredHeight - ssVar.U.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.w9 w9Var = ssVar.U;
-                w9Var.layout(dp, measuredHeight2, w9Var.getMeasuredWidth() + dp, ssVar.U.getMeasuredHeight() + measuredHeight2);
+                org.telegram.ui.Components.v9 v9Var = ssVar.U;
+                v9Var.layout(dp, measuredHeight2, v9Var.getMeasuredWidth() + dp, ssVar.U.getMeasuredHeight() + measuredHeight2);
                 return;
             case 1:
                 super.onLayout(z10, i10, i11, i12, i13);
                 int dp2 = AndroidUtilities.dp(21.0f);
                 int measuredHeight3 = getMeasuredHeight();
-                yx0 yx0Var = (yx0) this.R;
-                int measuredHeight4 = (measuredHeight3 - yx0Var.d.f31461v0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.w9 w9Var2 = yx0Var.d.f31461v0;
-                w9Var2.layout(dp2, measuredHeight4, w9Var2.getMeasuredWidth() + dp2, yx0Var.d.f31461v0.getMeasuredHeight() + measuredHeight4);
+                zx0 zx0Var = (zx0) this.R;
+                int measuredHeight4 = (measuredHeight3 - zx0Var.d.f31501v0.getMeasuredHeight()) / 2;
+                org.telegram.ui.Components.v9 v9Var2 = zx0Var.d.f31501v0;
+                v9Var2.layout(dp2, measuredHeight4, v9Var2.getMeasuredWidth() + dp2, zx0Var.d.f31501v0.getMeasuredHeight() + measuredHeight4);
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -62,9 +62,9 @@ public final class qs extends org.telegram.ui.Cells.r8 {
                 return;
             case 1:
                 super.onMeasure(i10, i11);
-                yx0 yx0Var = (yx0) this.R;
-                yx0Var.d.f31461v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                yx0Var.d.f31461v0.setRoundRadius(AndroidUtilities.dp(30.0f));
+                zx0 zx0Var = (zx0) this.R;
+                zx0Var.d.f31501v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                zx0Var.d.f31501v0.setRoundRadius(AndroidUtilities.dp(30.0f));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -72,13 +72,13 @@ public final class qs extends org.telegram.ui.Cells.r8 {
         }
     }
 
-    public qs(yx0 yx0Var, Activity activity) {
+    public qs(zx0 zx0Var, Activity activity) {
         super(activity);
-        this.R = yx0Var;
+        this.R = zx0Var;
     }
 
-    public qs(z01 z01Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(18, context, e6Var, false, false);
+    public qs(z01 z01Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(18, context, f6Var, false, false);
         this.R = z01Var;
     }
 }

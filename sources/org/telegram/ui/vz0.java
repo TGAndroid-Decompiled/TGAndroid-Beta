@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class vz0 extends x61 {
+public final class vz0 extends a71 {
     public final ProfileActivity e;
 
     public vz0(ProfileActivity profileActivity, uz0 uz0Var) {

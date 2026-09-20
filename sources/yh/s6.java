@@ -1,20 +1,22 @@
 package yh;
 
-import org.telegram.messenger.NotificationCenter;
-public final class s6 implements NotificationCenter.NotificationCenterDelegate {
-    public final boolean[] f48016a;
-    public final org.telegram.ui.ActionBar.f3[] f48017b;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class s6 extends ClickableSpan {
+    public final x5 f48050a;
 
-    public s6(boolean[] zArr, org.telegram.ui.ActionBar.f3[] f3VarArr) {
-        this.f48016a = zArr;
-        this.f48017b = f3VarArr;
+    public s6(x5 x5Var) {
+        this.f48050a = x5Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        org.telegram.ui.ActionBar.f3 f3Var;
-        if (i10 == NotificationCenter.starSubscriptionsLoaded && this.f48016a[0] && (f3Var = this.f48017b[0]) != null) {
-            f3Var.dismiss();
-        }
+    public final void onClick(View view) {
+        this.f48050a.run();
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
 }

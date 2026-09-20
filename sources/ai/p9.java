@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.hj0;
 public final class p9 extends FrameLayout {
     public final ArrayList f1399a;
     public ValueAnimator f1400b;
@@ -132,16 +132,16 @@ public final class p9 extends FrameLayout {
         ArrayList arrayList = this.f1399a;
         if (i10 != -1) {
             o9 o9Var = (o9) arrayList.get(i10);
-            ij0 ij0Var = o9Var.f1361c;
-            ij0Var.M(0);
-            ij0Var.stop();
+            hj0 hj0Var = o9Var.f1361c;
+            hj0Var.M(0);
+            hj0Var.stop();
             o9Var.f1363n = 0.0f;
             o9Var.invalidate();
         }
         o9 o9Var2 = (o9) arrayList.get(this.d);
-        ij0 ij0Var2 = o9Var2.f1361c;
-        ij0Var2.M(0);
-        ij0Var2.stop();
+        hj0 hj0Var2 = o9Var2.f1361c;
+        hj0Var2.M(0);
+        hj0Var2.stop();
         o9Var2.f1363n = 0.0f;
         o9Var2.invalidate();
         c();

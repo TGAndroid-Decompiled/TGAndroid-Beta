@@ -13,35 +13,35 @@ import android.util.Pair;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.n6;
 import org.telegram.ui.Components.qr;
 public final class a extends ReplacementSpan {
-    public final Drawable f43317a;
-    public final Drawable f43318b;
-    public boolean f43319c;
+    public final Drawable f43361a;
+    public final Drawable f43362b;
+    public boolean f43363c;
     public boolean d;
-    public final o6 e;
-    public final TextPaint f43320f;
+    public final n6 e;
+    public final TextPaint f43364f;
     public final int h;
 
     public a(u1 u1Var, TextPaint textPaint, int i10) {
-        this.f43320f = textPaint;
-        o6 o6Var = new o6(false, false, true, false);
-        this.e = o6Var;
-        o6Var.k(0.3f, 250L, qr.h);
-        o6Var.setCallback(u1Var);
-        o6Var.t(AndroidUtilities.dp(11.5f));
-        o6Var.u(AndroidUtilities.bold());
-        o6Var.q("", true, true);
-        o6Var.f26868b = 17;
+        this.f43364f = textPaint;
+        n6 n6Var = new n6(false, false, true, false);
+        this.e = n6Var;
+        n6Var.k(0.3f, 250L, qr.h);
+        n6Var.setCallback(u1Var);
+        n6Var.t(AndroidUtilities.dp(11.5f));
+        n6Var.u(AndroidUtilities.bold());
+        n6Var.q("", true, true);
+        n6Var.f26575b = 17;
         Drawable mutate = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
-        this.f43317a = mutate;
+        this.f43361a = mutate;
         Drawable mutate2 = u1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
-        this.f43318b = mutate2;
+        this.f43362b = mutate2;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
         this.h = i10;
-        o6Var.q(i10 > 1 ? String.valueOf(i10) : "", false, true);
+        n6Var.q(i10 > 1 ? String.valueOf(i10) : "", false, true);
     }
 
     public static Pair a(u1 u1Var, TextPaint textPaint, int i10) {
@@ -64,21 +64,21 @@ public final class a extends ReplacementSpan {
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         int i15;
-        TextPaint textPaint = this.f43320f;
+        TextPaint textPaint = this.f43364f;
         int color = textPaint.getColor();
-        o6 o6Var = this.e;
-        int color2 = o6Var.f26867a.getColor();
-        Drawable drawable = this.f43318b;
-        Drawable drawable2 = this.f43317a;
+        n6 n6Var = this.e;
+        int color2 = n6Var.f26574a.getColor();
+        Drawable drawable = this.f43362b;
+        Drawable drawable2 = this.f43361a;
         if (color != color2) {
-            o6Var.r(textPaint.getColor());
-            int color3 = o6Var.f26867a.getColor();
+            n6Var.r(textPaint.getColor());
+            int color3 = n6Var.f26574a.getColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(o6Var.f26867a.getColor(), mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(n6Var.f26574a.getColor(), mode));
         }
         canvas.save();
-        if (this.d && !this.f43319c) {
+        if (this.d && !this.f43363c) {
             i15 = AndroidUtilities.dp(8.0f);
         } else {
             i15 = 0;
@@ -92,9 +92,9 @@ public final class a extends ReplacementSpan {
         }
         canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, (int) o6Var.d(), (int) o6Var.e);
-        o6Var.setBounds(rect);
-        o6Var.draw(canvas);
+        rect.set(0, 0, (int) n6Var.d(), (int) n6Var.e);
+        n6Var.setBounds(rect);
+        n6Var.draw(canvas);
         canvas.restore();
     }
 

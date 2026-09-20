@@ -1,59 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public abstract class od extends FrameLayout {
-    public ai.f0 f26915a;
-    public md f26916b;
-    public boolean f26917c;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+public abstract class od extends LinearLayout {
+    public ImageView f26891a;
+    public TextView f26892b;
+    public Space f26893c;
+    public boolean d;
 
-    public final void a(md mdVar, FrameLayout.LayoutParams layoutParams) {
-        if (this.f26916b == null) {
-            this.f26916b = mdVar;
-            mdVar.setVisibility(8);
-            addView(mdVar, layoutParams);
+    public final void a(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
+        if (this.f26891a == null) {
+            this.f26891a = imageView;
+            addView(imageView, layoutParams);
         }
     }
 
-    public final void b(ai.f0 f0Var, FrameLayout.LayoutParams layoutParams) {
-        if (this.f26915a == null) {
-            this.f26915a = f0Var;
-            addView(f0Var, layoutParams);
+    public final void b(Space space, LinearLayout.LayoutParams layoutParams) {
+        if (this.f26893c == null) {
+            this.f26893c = space;
+            addView(space, layoutParams);
         }
     }
 
-    public md getEditView() {
-        return this.f26916b;
+    public final void c(TextView textView, LinearLayout.LayoutParams layoutParams) {
+        if (this.f26892b == null) {
+            this.f26892b = textView;
+            addView(textView, layoutParams);
+        }
     }
 
-    public View getReplyView() {
-        return this.f26915a;
+    public abstract void d();
+
+    public ImageView getImageView() {
+        return this.f26891a;
     }
 
-    public void setEditMode(boolean z10) {
+    public TextView getTextView() {
+        return this.f26892b;
+    }
+
+    public void setEditButton(boolean z10) {
+        this.d = z10;
+    }
+
+    public void setOnlyIconMode(boolean z10) {
         int i10;
-        this.f26917c = z10;
-        ai.f0 f0Var = this.f26915a;
+        TextView textView = this.f26892b;
         int i11 = 0;
-        if (z10) {
-            i10 = 8;
-        } else {
-            i10 = 0;
+        if (textView != null) {
+            if (z10) {
+                i10 = 8;
+            } else {
+                i10 = 0;
+            }
+            textView.setVisibility(i10);
         }
-        f0Var.setVisibility(i10);
-        md mdVar = this.f26916b;
-        if (!z10) {
-            i11 = 8;
+        Space space = this.f26893c;
+        if (space != null) {
+            if (z10) {
+                i11 = 8;
+            }
+            space.setVisibility(i11);
         }
-        mdVar.setVisibility(i11);
-    }
-
-    public void setEditSuggestionMode(boolean z10) {
-        setEditMode(z10);
-        if (z10) {
-            this.f26915a.setVisibility(0);
-        }
-        this.f26916b.f26399a[0].setOnlyIconMode(z10);
-        this.f26916b.f26399a[1].setOnlyIconMode(z10);
     }
 }

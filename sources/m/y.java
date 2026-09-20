@@ -21,19 +21,19 @@ import android.view.inputmethod.InputConnection;
 import android.widget.AbsSeekBar;
 import android.widget.EditText;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import w7.o6;
+import w7.p6;
 public class y {
     public static final int[] d = {16843067, 16843068};
-    public final int f14543a = 2;
-    public View f14544b;
-    public Object f14545c;
+    public final int f14579a = 2;
+    public View f14580b;
+    public Object f14581c;
 
     public y() {
     }
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((n7.z0) ((ka.c) this.f14545c).f13565b).getClass();
+            ((org.telegram.ui.Cells.f3) ((ka.c) this.f14581c).f13566b).getClass();
             if (keyListener instanceof q1.e) {
                 return keyListener;
             }
@@ -50,10 +50,10 @@ public class y {
 
     public void b(AttributeSet attributeSet, int i10) {
         boolean z10 = true;
-        switch (this.f14543a) {
+        switch (this.f14579a) {
             case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f14544b;
-                lf.i Q = lf.i.Q(absSeekBar.getContext(), attributeSet, d, i10);
+                AbsSeekBar absSeekBar = (AbsSeekBar) this.f14580b;
+                lf.h Q = lf.h.Q(absSeekBar.getContext(), attributeSet, d, i10);
                 Drawable G = Q.G(0);
                 if (G != null) {
                     if (G instanceof AnimationDrawable) {
@@ -78,7 +78,7 @@ public class y {
                 Q.R();
                 return;
             default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f14544b).getContext().obtainStyledAttributes(attributeSet, f.a.f8770i, i10, 0);
+                TypedArray obtainStyledAttributes = ((EditText) this.f14580b).getContext().obtainStyledAttributes(attributeSet, f.a.f8771i, i10, 0);
                 try {
                     if (obtainStyledAttributes.hasValue(14)) {
                         z10 = obtainStyledAttributes.getBoolean(14, true);
@@ -94,28 +94,28 @@ public class y {
     }
 
     public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        ka.c cVar = (ka.c) this.f14545c;
+        ka.c cVar = (ka.c) this.f14581c;
         if (inputConnection == null) {
             cVar.getClass();
             inputConnection = null;
         } else {
-            n7.z0 z0Var = (n7.z0) cVar.f13565b;
-            z0Var.getClass();
+            org.telegram.ui.Cells.f3 f3Var = (org.telegram.ui.Cells.f3) cVar.f13566b;
+            f3Var.getClass();
             if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) z0Var.f15367b, inputConnection, editorInfo);
+                inputConnection = new q1.b((EditText) f3Var.f20269b, inputConnection, editorInfo);
             }
         }
         return (q1.b) inputConnection;
     }
 
     public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((n7.z0) ((ka.c) this.f14545c).f13565b).f15368c;
-        if (iVar.f41355c != z10) {
-            if (iVar.f41354b != null) {
+        q1.i iVar = (q1.i) ((org.telegram.ui.Cells.f3) ((ka.c) this.f14581c).f13566b).f20270c;
+        if (iVar.f41396c != z10) {
+            if (iVar.f41395b != null) {
                 androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f41354b;
+                q1.h hVar = iVar.f41395b;
                 a2.getClass();
-                o6.a(hVar, "initCallback cannot be null");
+                p6.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a2.f2338a;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
@@ -124,9 +124,9 @@ public class y {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f41355c = z10;
+            iVar.f41396c = z10;
             if (z10) {
-                q1.i.a(iVar.f41353a, androidx.emoji2.text.l.a().b());
+                q1.i.a(iVar.f41394a, androidx.emoji2.text.l.a().b());
             }
         }
     }
@@ -135,7 +135,7 @@ public class y {
         boolean z11;
         if (drawable instanceof j0.c) {
             j0.d dVar = (j0.d) ((j0.c) drawable);
-            Drawable drawable2 = dVar.f12550f;
+            Drawable drawable2 = dVar.f12551f;
             if (drawable2 != null) {
                 dVar.h(e(drawable2, z10));
                 return drawable;
@@ -165,8 +165,8 @@ public class y {
         } else if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f14545c) == null) {
-                this.f14545c = bitmap;
+            if (((Bitmap) this.f14581c) == null) {
+                this.f14581c = bitmap;
             }
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
             shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
@@ -180,11 +180,11 @@ public class y {
     }
 
     public y(AbsSeekBar absSeekBar) {
-        this.f14544b = absSeekBar;
+        this.f14580b = absSeekBar;
     }
 
     public y(EditText editText) {
-        this.f14544b = editText;
-        this.f14545c = new ka.c(editText);
+        this.f14580b = editText;
+        this.f14581c = new ka.c(editText);
     }
 }

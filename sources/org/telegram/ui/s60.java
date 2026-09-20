@@ -19,7 +19,7 @@ import org.telegram.tgnet.tl.TL_stories;
 public final class s60 extends bd {
     public float A0;
     public boolean B0;
-    public uc f37204z0;
+    public uc f37305z0;
 
     public s60(long j3) {
         super(j3);
@@ -30,8 +30,8 @@ public final class s60 extends bd {
         if (canApplyBoost != null && s60Var.getParentActivity() != null) {
             r60 r60Var = new r60(s60Var, s60Var, s60Var.getParentActivity(), i10, s60Var.currentAccount, s60Var.resourceProvider);
             r60Var.G1(canApplyBoost);
-            r60Var.F1(s60Var.f32314c, true);
-            r60Var.H1(s60Var.f32310a);
+            r60Var.F1(s60Var.f32358c, true);
+            r60Var.H1(s60Var.f32354a);
             r60Var.show();
             return;
         }
@@ -118,14 +118,14 @@ public final class s60 extends bd {
 
     @Override
     public final boolean R0() {
-        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.f32310a)));
+        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.f32354a)));
     }
 
     @Override
     public final void T0(int i10) {
-        if (this.f32314c != null && !this.B0) {
+        if (this.f32358c != null && !this.B0) {
             this.B0 = true;
-            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.f32310a, this.f32314c, new ci.m4(this, i10, 2));
+            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.f32354a, this.f32358c, new ci.m4(this, i10, 2));
         }
     }
 
@@ -133,10 +133,10 @@ public final class s60 extends bd {
     public final void X0(boolean z10) {
         int i10;
         super.X0(z10);
-        uc ucVar = this.f37204z0;
+        uc ucVar = this.f37305z0;
         if (ucVar != null) {
             TextView textView = ucVar.d;
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f32314c;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f32358c;
             if (tL_premium_boostsStatus != null) {
                 i10 = tL_premium_boostsStatus.boosts;
             } else {
@@ -150,14 +150,14 @@ public final class s60 extends bd {
     public final void Z0(boolean z10) {
         super.Z0(z10);
         this.actionBar.setBackgroundColor(0);
-        org.telegram.ui.Components.pq pqVar = new org.telegram.ui.Components.pq(new ColorDrawable(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, this.resourceProvider)), org.telegram.ui.ActionBar.j6.V0(getParentActivity(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f19026b7), 0, 0);
-        pqVar.f27303w = true;
+        org.telegram.ui.Components.pq pqVar = new org.telegram.ui.Components.pq(new ColorDrawable(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19094d6, this.resourceProvider)), org.telegram.ui.ActionBar.j6.V0(getParentActivity(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f19058b7), 0, 0);
+        pqVar.f27426w = true;
         this.O.setBackground(pqVar);
-        uc ucVar = this.f37204z0;
+        uc ucVar = this.f37305z0;
         if (ucVar != null && !z10) {
-            ucVar.f37960a.b(this.currentAccount, this.f32333s, false);
-            this.f37204z0.f37961b.b(this.f32333s, false);
-            this.f37204z0.e();
+            ucVar.f38052a.b(this.currentAccount, this.f32377s, false);
+            this.f37305z0.f38053b.b(this.f32377s, false);
+            this.f37305z0.e();
         }
     }
 
@@ -168,46 +168,46 @@ public final class s60 extends bd {
         this.Z = 0;
         boolean z10 = true;
         int i10 = 1 + 1;
-        this.f32311a0 = 1;
-        this.f32313b0 = i10;
+        this.f32355a0 = 1;
+        this.f32357b0 = i10;
         int i11 = i10 + 2;
         this.R = i11;
-        this.f32315c0 = i10 + 1;
-        if (this.f32338w == 0 && this.f32333s < 0) {
-            int i12 = this.f32317e0;
-            this.f32317e0 = -1;
+        this.f32359c0 = i10 + 1;
+        if (this.f32382w == 0 && this.f32377s < 0) {
+            int i12 = this.f32361e0;
+            this.f32361e0 = -1;
             if (i12 >= 0 && (ocVar2 = this.N) != null) {
                 ocVar2.u(i12);
-                this.N.m(this.f32315c0);
+                this.N.m(this.f32359c0);
             }
         } else {
-            if (this.f32317e0 < 0) {
+            if (this.f32361e0 < 0) {
                 z10 = false;
             }
             this.R = i10 + 3;
-            this.f32317e0 = i11;
+            this.f32361e0 = i11;
             if (!z10 && (ocVar = this.N) != null) {
                 ocVar.o(i11);
-                this.N.m(this.f32315c0);
+                this.N.m(this.f32359c0);
                 this.M.v0(0);
             }
         }
         int i13 = this.R;
-        this.f32316d0 = i13;
-        this.f32321h0 = i13 + 1;
-        this.f32322i0 = i13 + 2;
-        this.f32319f0 = i13 + 3;
+        this.f32360d0 = i13;
+        this.f32365h0 = i13 + 1;
+        this.f32366i0 = i13 + 2;
+        this.f32363f0 = i13 + 3;
         this.R = i13 + 5;
-        this.f32320g0 = i13 + 4;
-        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.f32310a);
+        this.f32364g0 = i13 + 4;
+        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.f32354a);
         if (chatFull != null && chatFull.can_set_stickers) {
             int i14 = this.R;
-            this.f32323j0 = i14;
+            this.f32367j0 = i14;
             this.R = i14 + 2;
-            this.f32324k0 = i14 + 1;
+            this.f32368k0 = i14 + 1;
         } else {
-            this.f32323j0 = -1;
-            this.f32324k0 = -1;
+            this.f32367j0 = -1;
+            this.f32368k0 = -1;
         }
         int i15 = this.R;
         this.S = i15;
@@ -231,7 +231,7 @@ public final class s60 extends bd {
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         super.didReceivedNotification(i10, i11, objArr);
-        if (i10 == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).f18297id == (-this.f32310a)) {
+        if (i10 == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).f18329id == (-this.f32354a)) {
             b1();
         }
     }
@@ -239,7 +239,7 @@ public final class s60 extends bd {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        uc ucVar = this.f37204z0;
+        uc ucVar = this.f37305z0;
         if (ucVar != null) {
             ucVar.a();
         }

@@ -1,61 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class e11 extends MetricAffectingSpan {
-    public final int f23752a;
-    public final d11 f23753b;
-
-    public e11(d11 d11Var, int i10) {
-        this.f23753b = d11Var;
-        if (i10 > 0) {
-            this.f23752a = i10;
-        }
-    }
-
-    public final void a(TextPaint textPaint) {
-        d11 d11Var = this.f23753b;
-        if (w7.d0.a(d11Var.f23395a, 49152)) {
-            float textSize = textPaint.getTextSize();
-            textPaint.setTextSize(0.75f * textSize);
-            if (w7.d0.a(d11Var.f23395a, 32768)) {
-                textPaint.baselineShift -= (int) (textSize * 0.35f);
-            } else if (w7.d0.a(d11Var.f23395a, 16384)) {
-                textPaint.baselineShift += (int) (textSize * 0.12f);
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+public class e11 extends ViewSwitcher {
+    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
+        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
+            if (z10) {
+                getNextView().setText(charSequence);
+                showNext();
+                return;
             }
+            getCurrentView().setText(charSequence);
         }
-    }
-
-    public final d11 b() {
-        return this.f23753b;
-    }
-
-    public final boolean c() {
-        if ((this.f23753b.f23395a & 256) > 0) {
-            return true;
-        }
-        return false;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f23752a;
-        if (i10 != 0) {
-            textPaint.setTextSize(i10);
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        if (view instanceof TextView) {
+            super.addView(view, i10, layoutParams);
+            return;
         }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f23753b.a(textPaint);
+        throw new IllegalArgumentException();
+    }
+
+    public void setText(CharSequence charSequence) {
+        a(charSequence, true, false);
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        int i10 = this.f23752a;
-        if (i10 != 0) {
-            textPaint.setTextSize(i10);
-        }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f23753b.a(textPaint);
+    public TextView getCurrentView() {
+        return (TextView) super.getCurrentView();
+    }
+
+    @Override
+    public TextView getNextView() {
+        return (TextView) super.getNextView();
     }
 }

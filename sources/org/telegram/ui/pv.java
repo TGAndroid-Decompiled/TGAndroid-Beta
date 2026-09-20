@@ -6,22 +6,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pv implements Runnable {
-    public final int f36610a;
-    public final Context f36611b;
+    public final int f36690a;
+    public final Context f36691b;
 
     public pv(Context context, int i10) {
-        this.f36610a = i10;
-        this.f36611b = context;
+        this.f36690a = i10;
+        this.f36691b = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f36610a) {
+        switch (this.f36690a) {
             case 0:
-                org.telegram.ui.ActionBar.j6.J(this.f36611b, false);
+                org.telegram.ui.ActionBar.j6.J(this.f36691b, false);
                 return;
             case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f36611b);
+                Activity findActivity = AndroidUtilities.findActivity(this.f36691b);
                 if (findActivity == null) {
                     findActivity = LaunchActivity.G1;
                 }
@@ -31,25 +31,25 @@ public final class pv implements Runnable {
                 }
                 return;
             case 2:
-                nf.f.s(this.f36611b, "https://promote.telegram.org/guidelines");
+                nf.f.s(this.f36691b, "https://promote.telegram.org/guidelines");
                 return;
             case 3:
-                nf.f.s(this.f36611b, "https://promote.telegram.org/guidelines");
+                nf.f.s(this.f36691b, "https://promote.telegram.org/guidelines");
                 return;
             case 4:
-                nf.f.s(this.f36611b, "https://promote.telegram.org/guidelines");
+                nf.f.s(this.f36691b, "https://promote.telegram.org/guidelines");
                 return;
             case 5:
-                nf.f.s(this.f36611b, "https://promote.telegram.org/guidelines");
+                nf.f.s(this.f36691b, "https://promote.telegram.org/guidelines");
                 return;
             case 6:
-                nf.f.s(this.f36611b, "https://promote.telegram.org/guidelines");
+                nf.f.s(this.f36691b, "https://promote.telegram.org/guidelines");
                 return;
             case 7:
-                nf.f.s(this.f36611b, "https://promote.telegram.org/guidelines");
+                nf.f.s(this.f36691b, "https://promote.telegram.org/guidelines");
                 return;
             default:
-                nf.f.s(this.f36611b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
+                nf.f.s(this.f36691b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
                 return;
         }
     }

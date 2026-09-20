@@ -1,184 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.messenger.TranslateController;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-public final class z41 implements Runnable {
-    public final int f30730a = 1;
-    public final ArrayList f30731b;
-    public final ArrayList f30732c;
-    public final Object d;
-    public final Object e;
-    public final Serializable f30733f;
-    public final Serializable h;
-    public final Object f30734n;
-    public final Object f30735r;
-    public final Object f30736s;
-
-    public z41(org.telegram.ui.yk ykVar, boolean[] zArr, String str, LinearLayout linearLayout, ArrayList arrayList, String str2, TranslateController translateController, org.telegram.ui.ActionBar.n1 n1Var, ArrayList arrayList2) {
-        this.d = ykVar;
-        this.e = zArr;
-        this.f30733f = str;
-        this.f30734n = linearLayout;
-        this.f30731b = arrayList;
-        this.h = str2;
-        this.f30735r = translateController;
-        this.f30736s = n1Var;
-        this.f30732c = arrayList2;
-    }
+import android.widget.ScrollView;
+import org.telegram.messenger.R;
+public final class z41 extends ScrollView {
+    public Drawable f30707a;
+    public d6 f30708b;
+    public boolean f30709c;
 
     @Override
-    public final void run() {
-        boolean z10;
-        org.telegram.ui.ActionBar.f1 f1Var;
-        String y3;
-        switch (this.f30730a) {
-            case 0:
-                final org.telegram.ui.yk ykVar = (org.telegram.ui.yk) this.d;
-                boolean[] zArr = (boolean[]) this.e;
-                String str = (String) this.f30733f;
-                LinearLayout linearLayout = (LinearLayout) this.f30734n;
-                String str2 = (String) this.h;
-                final TranslateController translateController = (TranslateController) this.f30735r;
-                final org.telegram.ui.ActionBar.n1 n1Var = (org.telegram.ui.ActionBar.n1) this.f30736s;
-                boolean z11 = false;
-                if (!zArr[0]) {
-                    if (str != null && (y3 = k41.y(k41.E(str, null, null))) != null) {
-                        org.telegram.ui.ActionBar.f1 f1Var2 = new org.telegram.ui.ActionBar.f1(2, ykVar.getContext(), ykVar.d, false, false);
-                        f1Var2.setChecked(true);
-                        f1Var2.setText(y3);
-                        linearLayout.addView(f1Var2);
-                    }
-                    ArrayList arrayList = this.f30731b;
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        int i11 = i10 + 1;
-                        TranslateController.Language language = (TranslateController.Language) arrayList.get(i10);
-                        final String str3 = language.code;
-                        if (TextUtils.equals(str3, str2)) {
-                            i10 = i11;
-                        } else {
-                            org.telegram.ui.ActionBar.f1 f1Var3 = new org.telegram.ui.ActionBar.f1(2, ykVar.getContext(), ykVar.d, false, false);
-                            if (str != null && str.equals(str3)) {
-                                z11 = true;
-                            }
-                            f1Var3.setChecked(z11);
-                            f1Var3.setText(language.displayName);
-                            if (!z11) {
-                                f1Var = f1Var3;
-                                f1Var.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public final void onClick(View view) {
-                                        switch (r5) {
-                                            case 0:
-                                                org.telegram.ui.yk ykVar2 = ykVar;
-                                                translateController.setDialogTranslateTo(ykVar2.f22820b, str3);
-                                                n1Var.d(true);
-                                                ykVar2.b();
-                                                return;
-                                            default:
-                                                org.telegram.ui.yk ykVar3 = ykVar;
-                                                translateController.setDialogTranslateTo(ykVar3.f22820b, str3);
-                                                n1Var.d(true);
-                                                ykVar3.b();
-                                                return;
-                                        }
-                                    }
-                                });
-                            } else {
-                                f1Var = f1Var3;
-                            }
-                            linearLayout.addView(f1Var);
-                            i10 = i11;
-                            z11 = false;
-                        }
-                    }
-                    linearLayout.addView(new org.telegram.ui.ActionBar.k1(ykVar.getContext(), ykVar.d), w7.y5.n(-1, 8));
-                    ArrayList arrayList2 = this.f30732c;
-                    int size2 = arrayList2.size();
-                    int i12 = 0;
-                    while (i12 < size2) {
-                        int i13 = i12 + 1;
-                        TranslateController.Language language2 = (TranslateController.Language) arrayList2.get(i12);
-                        final String str4 = language2.code;
-                        if (!TextUtils.equals(str4, str2)) {
-                            if (str != null && str.equals(str4)) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            org.telegram.ui.ActionBar.f1 f1Var4 = new org.telegram.ui.ActionBar.f1(2, ykVar.getContext(), ykVar.d, false, false);
-                            f1Var4.setChecked(z10);
-                            f1Var4.setText(language2.displayName);
-                            if (!z10) {
-                                f1Var4.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public final void onClick(View view) {
-                                        switch (r5) {
-                                            case 0:
-                                                org.telegram.ui.yk ykVar2 = ykVar;
-                                                translateController.setDialogTranslateTo(ykVar2.f22820b, str4);
-                                                n1Var.d(true);
-                                                ykVar2.b();
-                                                return;
-                                            default:
-                                                org.telegram.ui.yk ykVar3 = ykVar;
-                                                translateController.setDialogTranslateTo(ykVar3.f22820b, str4);
-                                                n1Var.d(true);
-                                                ykVar3.b();
-                                                return;
-                                        }
-                                    }
-                                });
-                            }
-                            linearLayout.addView(f1Var4);
-                        }
-                        i12 = i13;
-                    }
-                    zArr[0] = true;
-                    return;
-                }
-                return;
-            default:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) this.d;
-                ArrayList arrayList3 = (ArrayList) this.f30733f;
-                ArrayList arrayList4 = (ArrayList) this.h;
-                ArrayList arrayList5 = (ArrayList) this.f30734n;
-                ArrayList arrayList6 = (ArrayList) this.f30735r;
-                ArrayList arrayList7 = (ArrayList) this.f30736s;
-                notificationsCustomSettingsActivity.getMessagesController().putUsers(this.f30731b, true);
-                notificationsCustomSettingsActivity.getMessagesController().putChats(this.f30732c, true);
-                notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.e, true);
-                int i14 = notificationsCustomSettingsActivity.f31114s;
-                if (i14 == 1) {
-                    notificationsCustomSettingsActivity.f31115w = arrayList3;
-                } else if (i14 == 0) {
-                    notificationsCustomSettingsActivity.f31115w = arrayList4;
-                } else if (i14 == 3) {
-                    notificationsCustomSettingsActivity.f31115w = arrayList5;
-                    notificationsCustomSettingsActivity.v = arrayList6;
-                } else {
-                    notificationsCustomSettingsActivity.f31115w = arrayList7;
-                }
-                notificationsCustomSettingsActivity.l0(true);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        super.dispatchDraw(canvas);
+        d6 d6Var = this.f30708b;
+        if (canScrollVertically(-1)) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        float d = d6Var.d(f7, false) * 0.5f;
+        if (d > 0.0f) {
+            if (this.f30707a == null) {
+                this.f30707a = getContext().getResources().getDrawable(R.drawable.header_shadow);
+            }
+            this.f30707a.setBounds(0, getScrollY(), getWidth(), this.f30707a.getIntrinsicHeight() + getScrollY());
+            this.f30707a.setAlpha((int) (d * 255.0f));
+            this.f30707a.draw(canvas);
         }
     }
 
-    public z41(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
-        this.d = notificationsCustomSettingsActivity;
-        this.f30731b = arrayList;
-        this.f30732c = arrayList2;
-        this.e = arrayList3;
-        this.f30733f = arrayList4;
-        this.h = arrayList5;
-        this.f30734n = arrayList6;
-        this.f30735r = arrayList7;
-        this.f30736s = arrayList8;
+    @Override
+    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
+        super.onNestedScroll(view, i10, i11, i12, i13);
+        boolean canScrollVertically = canScrollVertically(-1);
+        if (this.f30709c != canScrollVertically) {
+            invalidate();
+            this.f30709c = canScrollVertically;
+        }
     }
 }

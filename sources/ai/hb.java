@@ -9,7 +9,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.qr;
 public final class hb {
     public final c6 f958a;
-    public final org.telegram.ui.Components.e6 f959b;
+    public final org.telegram.ui.Components.d6 f959b;
     public final TextPaint f960c;
     public final StaticLayout d;
     public final float e;
@@ -21,7 +21,7 @@ public final class hb {
     public hb(f6 f6Var, c6 c6Var) {
         float f7;
         this.f958a = c6Var;
-        this.f959b = new org.telegram.ui.Components.e6(f6Var, 0L, 360L, qr.h);
+        this.f959b = new org.telegram.ui.Components.d6(f6Var, 0L, 360L, qr.h);
         TextPaint textPaint = new TextPaint(1);
         this.f960c = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));

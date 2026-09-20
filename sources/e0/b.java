@@ -197,11 +197,11 @@ public abstract class b {
 
     public static long c(AudioTrack audioTrack, k2.x xVar) {
         boolean z10;
-        if (xVar.f13389c == 0) {
+        if (xVar.f13390c == 0) {
             return e2.d0.W(xVar.e, audioTrack.getBufferSizeInFrames());
         }
         long bufferSizeInFrames = audioTrack.getBufferSizeInFrames();
-        int i10 = c3.b.i(xVar.f13391g);
+        int i10 = c3.b.i(xVar.f13392g);
         if (i10 != -2147483647) {
             z10 = true;
         } else {
@@ -252,11 +252,11 @@ public abstract class b {
 
     public static boolean l(Context context) {
         try {
-            FingerprintManager b10 = s9.b.b(context.getSystemService("fingerprint"));
-            if (b10 == null) {
+            FingerprintManager a2 = x2.h.a(context.getSystemService("fingerprint"));
+            if (a2 == null) {
                 return false;
             }
-            return b10.hasEnrolledFingerprints();
+            return a2.hasEnrolledFingerprints();
         } catch (Exception e) {
             FileLog.e(e);
             return false;
@@ -283,15 +283,15 @@ public abstract class b {
         Integer[] numArr = {8, 7};
         e9.q.d(2, numArr);
         wVar.g(2);
-        System.arraycopy(numArr, 0, wVar.f6186c, wVar.f6184a, 2);
-        wVar.f6184a += 2;
+        System.arraycopy(numArr, 0, wVar.f6187c, wVar.f6185a, 2);
+        wVar.f6185a += 2;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 31) {
             Integer[] numArr2 = {26, 27};
             e9.q.d(2, numArr2);
             wVar.g(2);
-            System.arraycopy(numArr2, 0, wVar.f6186c, wVar.f6184a, 2);
-            wVar.f6184a += 2;
+            System.arraycopy(numArr2, 0, wVar.f6187c, wVar.f6185a, 2);
+            wVar.f6185a += 2;
         }
         if (i10 >= 33) {
             wVar.b(30);
@@ -307,11 +307,11 @@ public abstract class b {
 
     public static boolean p(Context context) {
         try {
-            FingerprintManager b10 = s9.b.b(context.getSystemService("fingerprint"));
-            if (b10 == null) {
+            FingerprintManager a2 = x2.h.a(context.getSystemService("fingerprint"));
+            if (a2 == null) {
                 return false;
             }
-            return b10.isHardwareDetected();
+            return a2.isHardwareDetected();
         } catch (Exception e) {
             FileLog.e(e);
             return false;
@@ -323,7 +323,7 @@ public abstract class b {
     }
 
     public static boolean r(Throwable th2) {
-        return j2.e.e(th2);
+        return j2.e.f(th2);
     }
 
     public static int s(AppOpsManager appOpsManager, String str, String str2) {
@@ -344,43 +344,43 @@ public abstract class b {
 
     public static void w(k2.p pVar, Object obj) {
         a6.m mVar;
-        AudioDeviceInfo b10 = j2.e.b(obj);
+        AudioDeviceInfo d = j2.e.d(obj);
         k2.f0 f0Var = (k2.f0) pVar;
-        if (b10 == null) {
+        if (d == null) {
             mVar = null;
         } else {
             f0Var.getClass();
-            mVar = new a6.m(b10, 29);
+            mVar = new a6.m(d, 29);
         }
-        f0Var.f13259c0 = mVar;
-        g7 g7Var = f0Var.f13288z;
+        f0Var.f13260c0 = mVar;
+        g7 g7Var = f0Var.f13289z;
         if (g7Var != null) {
-            g7Var.c(b10);
+            g7Var.c(d);
         }
-        AudioTrack audioTrack = f0Var.f13286x;
+        AudioTrack audioTrack = f0Var.f13287x;
         if (audioTrack != null) {
-            G(audioTrack, f0Var.f13259c0);
+            G(audioTrack, f0Var.f13260c0);
         }
     }
 
     public static void x(k2.p pVar, Object obj) {
         a6.m mVar;
-        AudioDeviceInfo b10 = j2.e.b(obj);
+        AudioDeviceInfo d = j2.e.d(obj);
         k2.f0 f0Var = (k2.f0) pVar;
-        if (b10 == null) {
+        if (d == null) {
             mVar = null;
         } else {
             f0Var.getClass();
-            mVar = new a6.m(b10, 29);
+            mVar = new a6.m(d, 29);
         }
-        f0Var.f13259c0 = mVar;
-        g7 g7Var = f0Var.f13288z;
+        f0Var.f13260c0 = mVar;
+        g7 g7Var = f0Var.f13289z;
         if (g7Var != null) {
-            g7Var.c(b10);
+            g7Var.c(d);
         }
-        AudioTrack audioTrack = f0Var.f13286x;
+        AudioTrack audioTrack = f0Var.f13287x;
         if (audioTrack != null) {
-            G(audioTrack, f0Var.f13259c0);
+            G(audioTrack, f0Var.f13260c0);
         }
     }
 

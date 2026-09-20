@@ -1,17 +1,17 @@
 package e9;
 public final class r extends t {
-    public final int f8119f;
+    public final int f8120f;
     public final v h;
 
     public r(v vVar, int i10) {
         super(vVar);
-        this.f8119f = i10;
+        this.f8120f = i10;
         this.h = vVar;
     }
 
     @Override
     public final Object a(int i10) {
-        switch (this.f8119f) {
+        switch (this.f8120f) {
             case 0:
                 return this.h.i()[i10];
             case 1:

@@ -4,19 +4,19 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.ui.Components.o81;
 public final class c9 extends o81 {
-    public final int f4436a;
-    public final Context f4437b;
-    public final ia f4438c;
+    public final int f4437a;
+    public final Context f4438b;
+    public final ia f4439c;
 
     public c9(ia iaVar, Context context, int i10) {
-        this.f4436a = i10;
-        this.f4438c = iaVar;
-        this.f4437b = context;
+        this.f4437a = i10;
+        this.f4439c = iaVar;
+        this.f4438b = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        switch (this.f4436a) {
+        switch (this.f4437a) {
             case 0:
                 ((ba) view).b(i11);
                 return;
@@ -28,17 +28,17 @@ public final class c9 extends o81 {
 
     @Override
     public final View d(int i10) {
-        switch (this.f4436a) {
+        switch (this.f4437a) {
             case 0:
-                return new ba(this.f4438c, this.f4437b);
+                return new ba(this.f4439c, this.f4438b);
             default:
-                return new ba(this.f4438c, this.f4437b);
+                return new ba(this.f4439c, this.f4438b);
         }
     }
 
     @Override
     public final int e() {
-        switch (this.f4436a) {
+        switch (this.f4437a) {
             case 0:
                 return 2;
             default:
@@ -48,12 +48,12 @@ public final class c9 extends o81 {
 
     @Override
     public final int h(int i10) {
-        switch (this.f4436a) {
+        switch (this.f4437a) {
             case 0:
                 if (i10 == 0) {
                     return 0;
                 }
-                return this.f4438c.M;
+                return this.f4439c.M;
             default:
                 return 5;
         }

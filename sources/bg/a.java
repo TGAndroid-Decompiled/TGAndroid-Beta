@@ -11,5 +11,5 @@ public interface a {
 
     int L1(int i10, int i11, int i12);
 
-    void S0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
+    void T0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
 }

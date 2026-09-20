@@ -15,17 +15,17 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.rk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class la implements Utilities.Callback {
-    public final int f4979a;
-    public final oc f4980b;
+    public final int f4980a;
+    public final oc f4981b;
 
     public la(oc ocVar, int i10) {
-        this.f4979a = i10;
-        this.f4980b = ocVar;
+        this.f4980a = i10;
+        this.f4981b = ocVar;
     }
 
     @Override
@@ -42,20 +42,20 @@ public final class la implements Utilities.Callback {
         fb fbVar;
         int contentHeight;
         float dp;
-        switch (this.f4979a) {
+        switch (this.f4980a) {
             case 0:
-                y2 y2Var = this.f4980b.f5261s;
-                y2Var.f5818p = ((Float) obj).floatValue();
+                y2 y2Var = this.f4981b.f5262s;
+                y2Var.f5819p = ((Float) obj).floatValue();
                 y2Var.i();
                 return;
             case 1:
                 Bitmap bitmap = (Bitmap) obj;
-                oc ocVar = this.f4980b;
+                oc ocVar = this.f4981b;
                 o8 o8Var = ocVar.K1;
                 if (o8Var != null) {
-                    AndroidUtilities.recycleBitmap(o8Var.f5158g0);
-                    ocVar.K1.f5158g0 = bitmap;
-                    ia iaVar = ocVar.f5254q0;
+                    AndroidUtilities.recycleBitmap(o8Var.f5159g0);
+                    ocVar.K1.f5159g0 = bitmap;
+                    ia iaVar = ocVar.f5255q0;
                     if (iaVar != null) {
                         iaVar.n1(bitmap);
                         return;
@@ -65,16 +65,16 @@ public final class la implements Utilities.Callback {
                 return;
             case 2:
                 o8 o8Var2 = (o8) obj;
-                oc ocVar2 = this.f4980b;
+                oc ocVar2 = this.f4981b;
                 ocVar2.W(o8Var2, false);
-                int i11 = ocVar2.f5211c;
+                int i11 = ocVar2.f5212c;
                 ai.l9 storiesController = MessagesController.getInstance(i11).getStoriesController();
                 a0.i iVar = storiesController.e;
                 int i12 = storiesController.f1193a;
                 ArrayList arrayList = storiesController.h;
                 ArrayList arrayList2 = storiesController.f1197g;
                 ai.k9 k9Var = new ai.k9(storiesController, o8Var2);
-                boolean z14 = o8Var2.f5157g;
+                boolean z14 = o8Var2.f5158g;
                 long j3 = k9Var.J;
                 if (z14) {
                     HashMap hashMap = (HashMap) iVar.f(j3);
@@ -82,7 +82,7 @@ public final class la implements Utilities.Callback {
                         hashMap = new HashMap();
                         iVar.k(hashMap, j3);
                     }
-                    hashMap.put(Integer.valueOf(o8Var2.f5155f), k9Var);
+                    hashMap.put(Integer.valueOf(o8Var2.f5156f), k9Var);
                 } else {
                     storiesController.d(j3, k9Var, storiesController.f1194b, false);
                 }
@@ -124,30 +124,30 @@ public final class la implements Utilities.Callback {
                 }
                 k9Var.d();
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
-                if (o8Var2.f5148c && !o8Var2.f5157g) {
+                if (o8Var2.f5149c && !o8Var2.f5158g) {
                     MessagesController.getInstance(i11).getStoriesController().f1211w.b(o8Var2);
                 }
-                if (o8Var2.f5154e1 != 0) {
-                    ConnectionsManager.getInstance(o8Var2.f5142a).cancelRequest(o8Var2.f5154e1, true);
+                if (o8Var2.f5155e1 != 0) {
+                    ConnectionsManager.getInstance(o8Var2.f5143a).cancelRequest(o8Var2.f5155e1, true);
                     return;
                 }
                 return;
             case 3:
                 f7 f7Var = (f7) obj;
-                oc ocVar3 = this.f4980b;
+                oc ocVar3 = this.f4981b;
                 if (ocVar3.C0 != null) {
                     w7 w7Var = ocVar3.D0;
                     f7 f7Var2 = null;
                     if (f7Var == null) {
                         str = null;
                     } else {
-                        str = f7Var.f4662a;
+                        str = f7Var.f4663a;
                     }
                     w7Var.setLink(str);
                     bc bcVar = ocVar3.A0;
                     if (bcVar != null) {
-                        g7 g7Var = bcVar.f4558c;
-                        if (ocVar3.D0.f5710y) {
+                        g7 g7Var = bcVar.f4559c;
+                        if (ocVar3.D0.f5711y) {
                             f7Var2 = ocVar3.C0.d;
                         }
                         g7Var.b(f7Var2);
@@ -158,7 +158,7 @@ public final class la implements Utilities.Callback {
                 return;
             case 4:
                 Integer num = (Integer) obj;
-                o8 o8Var3 = this.f4980b.K1;
+                o8 o8Var3 = this.f4981b.K1;
                 if (o8Var3 != null) {
                     o8Var3.I0 = num.intValue();
                     MessagesController.getGlobalMainSettings().edit().putInt("story_period", num.intValue()).apply();
@@ -166,30 +166,30 @@ public final class la implements Utilities.Callback {
                 }
                 return;
             case 5:
-                oc ocVar4 = this.f4980b;
-                ai.d dVar = ocVar4.f5204a;
+                oc ocVar4 = this.f4981b;
+                ai.d dVar = ocVar4.f5205a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.lb(ocVar4.f5207b, new d9(1)).f26091a;
-                WindowManager.LayoutParams layout = kbVar.getLayout();
+                org.telegram.ui.Components.jb jbVar = new org.telegram.ui.Components.kb(ocVar4.f5208b, new d9(1)).f25727a;
+                WindowManager.LayoutParams layout = jbVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
-                    layout.width = ocVar4.f5257r.getWidth();
-                    layout.y = (int) (ocVar4.f5257r.getY() + AndroidUtilities.dp(56.0f));
-                    org.telegram.ui.Components.lb lbVar = kbVar.f25673a;
-                    lbVar.getWindow().setAttributes(lbVar.f26092b);
+                    layout.width = ocVar4.f5258r.getWidth();
+                    layout.y = (int) (ocVar4.f5258r.getY() + AndroidUtilities.dp(56.0f));
+                    org.telegram.ui.Components.kb kbVar = jbVar.f25330a;
+                    kbVar.getWindow().setAttributes(kbVar.f25728b);
                 }
-                kbVar.setTouchable(true);
-                new org.telegram.ui.Components.xc(kbVar, dVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.j6.gc, 0, new ka(ocVar4, 27), dVar)).k(true);
+                jbVar.setTouchable(true);
+                new org.telegram.ui.Components.xc(jbVar, dVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.j6.gc, 0, new ka(ocVar4, 27), dVar)).k(true);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
                 boolean booleanValue = bool.booleanValue();
-                oc ocVar5 = this.f4980b;
+                oc ocVar5 = this.f4981b;
                 if (booleanValue && (zcVar = ocVar5.Z0) != null && zcVar.P) {
                     zcVar.P = false;
                     if (zcVar.E && zcVar.h == null) {
                         zcVar.G = true;
-                        sc scVar = zcVar.f5883a;
+                        sc scVar = zcVar.f5884a;
                         if (scVar != null) {
                             scVar.O(true);
                         }
@@ -203,24 +203,24 @@ public final class la implements Utilities.Callback {
                 } else {
                     f7 = 1.0f;
                 }
-                wh.q(animate, f7, 120L);
-                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27543w;
-                if (qcVar != null && qcVar.f27544a == 2) {
-                    qcVar.l();
+                rk.r(animate, f7, 120L);
+                org.telegram.ui.Components.pc pcVar = org.telegram.ui.Components.pc.f27245w;
+                if (pcVar != null && pcVar.f27246a == 2) {
+                    pcVar.l();
                     return;
                 }
                 return;
             case 7:
-                oc ocVar6 = this.f4980b;
+                oc ocVar6 = this.f4981b;
                 ocVar6.l();
                 ocVar6.m();
                 ocVar6.i((Runnable) obj);
                 return;
             case 8:
                 t tVar = (t) obj;
-                oc ocVar7 = this.f4980b;
+                oc ocVar7 = this.f4981b;
                 bc bcVar2 = ocVar7.A0;
-                ocVar7.f5286z0 = tVar;
+                ocVar7.f5287z0 = tVar;
                 bcVar2.o(tVar);
                 ocVar7.I0.setSelected(tVar);
                 rb rbVar = ocVar7.B0;
@@ -244,18 +244,18 @@ public final class la implements Utilities.Callback {
                 }
                 return;
             case 9:
-                oc ocVar8 = this.f4980b;
+                oc ocVar8 = this.f4981b;
                 ocVar8.O = true;
                 ocVar8.q(true);
                 AndroidUtilities.runOnUIThread(new ab(0, (Utilities.Callback) obj), 210L);
                 return;
             case 10:
                 Integer num2 = (Integer) obj;
-                oc ocVar9 = this.f4980b;
+                oc ocVar9 = this.f4981b;
                 if (!ocVar9.P1 && !ocVar9.Q1) {
                     int intValue2 = num2.intValue();
                     ocVar9.O1 = intValue2;
-                    h8 h8Var = ocVar9.f5248o0;
+                    h8 h8Var = ocVar9.f5249o0;
                     if (intValue2 == -1) {
                         z11 = true;
                     } else {
@@ -275,8 +275,8 @@ public final class la implements Utilities.Callback {
                     } else {
                         z13 = false;
                     }
-                    l7Var2.f4957n0 = -1.0f;
-                    l7Var2.f4958o0 = z13;
+                    l7Var2.f4958n0 = -1.0f;
+                    l7Var2.f4959o0 = z13;
                     l7Var2.invalidate();
                     if (num2.intValue() == -1) {
                         rb rbVar2 = ocVar9.B0;
@@ -287,7 +287,7 @@ public final class la implements Utilities.Callback {
                         if (f4Var != null) {
                             f4Var.e(true);
                         }
-                        f4 f4Var2 = ocVar9.f5242m1;
+                        f4 f4Var2 = ocVar9.f5243m1;
                         if (f4Var2 != null) {
                             f4Var2.e(true);
                         }
@@ -310,9 +310,9 @@ public final class la implements Utilities.Callback {
                 return;
             case 11:
                 Float f11 = (Float) obj;
-                oc ocVar10 = this.f4980b;
+                oc ocVar10 = this.f4981b;
                 l7 l7Var3 = ocVar10.O0;
-                l7Var3.f4957n0 = f11.floatValue();
+                l7Var3.f4958n0 = f11.floatValue();
                 l7Var3.invalidate();
                 l7 l7Var4 = ocVar10.O0;
                 int i15 = 8;
@@ -339,9 +339,9 @@ public final class la implements Utilities.Callback {
                 return;
             case 12:
                 Integer num3 = (Integer) obj;
-                oc ocVar11 = this.f4980b;
+                oc ocVar11 = this.f4981b;
                 if (ocVar11.K1 != null) {
-                    ec ecVar = ocVar11.f5213c1;
+                    ec ecVar = ocVar11.f5214c1;
                     if (!ecVar.O1) {
                         ecVar.clearFocus();
                         if (num3.intValue() == 5) {
@@ -349,7 +349,7 @@ public final class la implements Utilities.Callback {
                             return;
                         } else if (num3.intValue() == 0) {
                             ocVar11.l0(0, false, true);
-                            qb qbVar = ocVar11.f5272v1;
+                            qb qbVar = ocVar11.f5273v1;
                             if (qbVar != null) {
                                 qbVar.M0 = false;
                                 qbVar.R0(0);
@@ -359,19 +359,19 @@ public final class la implements Utilities.Callback {
                             return;
                         } else if (num3.intValue() == 1) {
                             ocVar11.l0(0, false, true);
-                            qb qbVar2 = ocVar11.f5272v1;
+                            qb qbVar2 = ocVar11.f5273v1;
                             if (qbVar2 != null) {
                                 qbVar2.R0(2);
-                                qbVar2.f5430l2 = true;
+                                qbVar2.f5431l2 = true;
                                 qbVar2.o0(true);
-                                ocVar11.f5272v1.M0 = true;
+                                ocVar11.f5273v1.M0 = true;
                                 return;
                             }
                             return;
                         } else if (num3.intValue() == 2) {
                             ocVar11.u();
                             ocVar11.H();
-                            qb qbVar3 = ocVar11.f5272v1;
+                            qb qbVar3 = ocVar11.f5273v1;
                             if (qbVar3 != null) {
                                 qbVar3.R0(1);
                                 qbVar3.A0();
@@ -393,19 +393,19 @@ public final class la implements Utilities.Callback {
                 return;
             case 13:
                 Integer num4 = (Integer) obj;
-                oc ocVar12 = this.f4980b;
+                oc ocVar12 = this.f4981b;
                 FrameLayout frameLayout = ocVar12.Y0;
                 if (frameLayout != null) {
-                    if (ocVar12.f5225g0 == 2) {
+                    if (ocVar12.f5226g0 == 2) {
                         dp = AndroidUtilities.dp(68.0f);
                     } else {
-                        dp = AndroidUtilities.dp(64.0f) + (-(AndroidUtilities.dp(12.0f) + ocVar12.f5213c1.getEditTextHeight()));
+                        dp = AndroidUtilities.dp(64.0f) + (-(AndroidUtilities.dp(12.0f) + ocVar12.f5214c1.getEditTextHeight()));
                     }
                     frameLayout.setTranslationY(dp);
                 }
-                fb fbVar2 = ocVar12.f5216d1;
+                fb fbVar2 = ocVar12.f5217d1;
                 if (fbVar2 != null) {
-                    int i16 = -(AndroidUtilities.dp(24.0f) + ocVar12.f5213c1.getEditTextHeight());
+                    int i16 = -(AndroidUtilities.dp(24.0f) + ocVar12.f5214c1.getEditTextHeight());
                     zc zcVar2 = ocVar12.Z0;
                     if (zcVar2 == null) {
                         contentHeight = 0;
@@ -414,18 +414,18 @@ public final class la implements Utilities.Callback {
                     }
                     fbVar2.setTranslationY(i16 - contentHeight);
                 }
-                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f27543w;
-                if (qcVar2 != null && qcVar2.f27544a == 2) {
-                    qcVar2.l();
+                org.telegram.ui.Components.pc pcVar2 = org.telegram.ui.Components.pc.f27245w;
+                if (pcVar2 != null && pcVar2.f27246a == 2) {
+                    pcVar2.l();
                 }
-                if (ocVar12.f5213c1.f5006p0 && (fbVar = ocVar12.f5216d1) != null) {
+                if (ocVar12.f5214c1.f5007p0 && (fbVar = ocVar12.f5217d1) != null) {
                     fbVar.c(false, true);
                     return;
                 }
                 return;
             case 14:
                 ga gaVar = (ga) obj;
-                oc ocVar13 = this.f4980b;
+                oc ocVar13 = this.f4981b;
                 o8 o8Var4 = ocVar13.K1;
                 if (o8Var4 != null) {
                     o8Var4.E0 = gaVar;
@@ -444,13 +444,13 @@ public final class la implements Utilities.Callback {
                 return;
             case 15:
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
-                oc ocVar14 = this.f4980b;
+                oc ocVar14 = this.f4981b;
                 o8 o8Var5 = ocVar14.K1;
                 if (o8Var5 != null) {
                     if (inputPeer == null) {
                         inputPeer = new TLRPC.TL_inputPeerSelf();
                     }
-                    o8Var5.f5185v0 = inputPeer;
+                    o8Var5.f5186v0 = inputPeer;
                     ArrayList arrayList4 = ocVar14.H1;
                     if (arrayList4 != null) {
                         int size2 = arrayList4.size();
@@ -458,7 +458,7 @@ public final class la implements Utilities.Callback {
                         while (i18 < size2) {
                             Object obj3 = arrayList4.get(i18);
                             i18++;
-                            ((o8) obj3).f5185v0 = ocVar14.K1.f5185v0;
+                            ((o8) obj3).f5186v0 = ocVar14.K1.f5186v0;
                         }
                         return;
                     }
@@ -467,10 +467,10 @@ public final class la implements Utilities.Callback {
                 return;
             case 16:
                 HashSet hashSet = (HashSet) obj;
-                oc ocVar15 = this.f4980b;
+                oc ocVar15 = this.f4981b;
                 o8 o8Var6 = ocVar15.K1;
                 if (o8Var6 != null) {
-                    o8Var6.f5187w0 = hashSet;
+                    o8Var6.f5188w0 = hashSet;
                     ArrayList arrayList5 = ocVar15.H1;
                     if (arrayList5 != null) {
                         int size3 = arrayList5.size();
@@ -478,7 +478,7 @@ public final class la implements Utilities.Callback {
                         while (i19 < size3) {
                             Object obj4 = arrayList5.get(i19);
                             i19++;
-                            ((o8) obj4).f5187w0 = hashSet;
+                            ((o8) obj4).f5188w0 = hashSet;
                         }
                         return;
                     }
@@ -487,15 +487,15 @@ public final class la implements Utilities.Callback {
                 return;
             case 17:
                 Bitmap bitmap2 = (Bitmap) obj;
-                oc ocVar16 = this.f4980b;
+                oc ocVar16 = this.f4981b;
                 o8 o8Var7 = ocVar16.K1;
                 if (o8Var7 != null) {
-                    Bitmap bitmap3 = o8Var7.f5158g0;
+                    Bitmap bitmap3 = o8Var7.f5159g0;
                     if (bitmap3 != null) {
                         bitmap3.recycle();
                     }
-                    ocVar16.K1.f5158g0 = bitmap2;
-                    ia iaVar2 = ocVar16.f5254q0;
+                    ocVar16.K1.f5159g0 = bitmap2;
+                    ia iaVar2 = ocVar16.f5255q0;
                     if (iaVar2 != null) {
                         iaVar2.n1(bitmap2);
                         return;
@@ -504,27 +504,27 @@ public final class la implements Utilities.Callback {
                 }
                 return;
             case 18:
-                this.f4980b.f5283y0 = (ga) obj;
+                this.f4981b.f5284y0 = (ga) obj;
                 return;
             case 19:
                 TLRPC.InputPeer inputPeer2 = (TLRPC.InputPeer) obj;
-                oc ocVar17 = this.f4980b;
-                h8 h8Var2 = ocVar17.f5248o0;
-                ocVar17.f5279x0 = inputPeer2;
+                oc ocVar17 = this.f4981b;
+                h8 h8Var2 = ocVar17.f5249o0;
+                ocVar17.f5280x0 = inputPeer2;
                 h8Var2.set(inputPeer2);
                 return;
             case 20:
                 TLRPC.InputPeer inputPeer3 = (TLRPC.InputPeer) obj;
-                oc ocVar18 = this.f4980b;
-                h8 h8Var3 = ocVar18.f5248o0;
-                ocVar18.f5279x0 = inputPeer3;
+                oc ocVar18 = this.f4981b;
+                h8 h8Var3 = ocVar18.f5249o0;
+                ocVar18.f5280x0 = inputPeer3;
                 h8Var3.set(inputPeer3);
                 return;
             default:
-                y2 y2Var2 = this.f4980b.f5261s;
+                y2 y2Var2 = this.f4981b.f5262s;
                 float floatValue = ((Float) obj).floatValue();
-                y2Var2.f5817o = floatValue;
-                y2Var2.f5816n = y2.f(floatValue);
+                y2Var2.f5818o = floatValue;
+                y2Var2.f5817n = y2.f(floatValue);
                 y2Var2.g();
                 return;
         }

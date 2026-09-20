@@ -4,26 +4,26 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.BuildVars;
 public final class t {
-    public static ArrayList f5530f;
-    public final String f5531a;
-    public final int f5532b;
-    public final int f5533c;
+    public static ArrayList f5531f;
+    public final String f5532a;
+    public final int f5533b;
+    public final int f5534c;
     public final int[] d;
     public final ArrayList e = new ArrayList();
 
     public t(String str) {
         str = str == null ? "." : str;
-        this.f5531a = str;
+        this.f5532a = str;
         String[] split = str.split("/");
         int length = split.length;
-        this.f5533c = length;
+        this.f5534c = length;
         this.d = new int[length];
         int i10 = 0;
         for (int i11 = 0; i11 < split.length; i11++) {
             this.d[i11] = split[i11].length();
             i10 = Math.max(i10, split[i11].length());
         }
-        this.f5532b = i10;
+        this.f5533b = i10;
         for (int i12 = 0; i12 < split.length; i12++) {
             for (int i13 = 0; i13 < split[i12].length(); i13++) {
                 this.e.add(new s(this, i13, i12));
@@ -32,27 +32,27 @@ public final class t {
     }
 
     public static ArrayList a() {
-        if (f5530f == null) {
+        if (f5531f == null) {
             ArrayList arrayList = new ArrayList();
-            f5530f = arrayList;
+            f5531f = arrayList;
             arrayList.add(new t("./."));
-            f5530f.add(new t(".."));
-            f5530f.add(new t("../."));
-            f5530f.add(new t("./.."));
-            f5530f.add(new t("././."));
-            f5530f.add(new t("..."));
-            f5530f.add(new t("../.."));
-            f5530f.add(new t("./../.."));
-            f5530f.add(new t("../../."));
-            f5530f.add(new t("../../.."));
+            f5531f.add(new t(".."));
+            f5531f.add(new t("../."));
+            f5531f.add(new t("./.."));
+            f5531f.add(new t("././."));
+            f5531f.add(new t("..."));
+            f5531f.add(new t("../.."));
+            f5531f.add(new t("./../.."));
+            f5531f.add(new t("../../."));
+            f5531f.add(new t("../../.."));
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                f5530f.add(new t("../../../.."));
-                f5530f.add(new t(".../.../..."));
-                f5530f.add(new t("..../..../...."));
-                f5530f.add(new t(".../.../.../..."));
+                f5531f.add(new t("../../../.."));
+                f5531f.add(new t(".../.../..."));
+                f5531f.add(new t("..../..../...."));
+                f5531f.add(new t(".../.../.../..."));
             }
         }
-        return f5530f;
+        return f5531f;
     }
 
     public static int b() {
@@ -70,12 +70,12 @@ public final class t {
 
     public final boolean equals(Object obj) {
         if (obj instanceof t) {
-            return TextUtils.equals(this.f5531a, ((t) obj).f5531a);
+            return TextUtils.equals(this.f5532a, ((t) obj).f5532a);
         }
         return false;
     }
 
     public final String toString() {
-        return this.f5531a;
+        return this.f5532a;
     }
 }

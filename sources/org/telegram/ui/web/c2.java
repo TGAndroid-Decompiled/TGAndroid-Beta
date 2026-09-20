@@ -42,8 +42,8 @@ public final class c2 implements ValueCallback {
                 try {
                     oi.f fVar = new oi.f(file2);
                     j2Var2.f38954b = fVar;
-                    if (!((ArrayList) fVar.f15717b).isEmpty()) {
-                        b2Var.run(((l1) ((ArrayList) j2Var2.f38954b.f15717b).get(0)).a());
+                    if (!((ArrayList) fVar.f15749b).isEmpty()) {
+                        b2Var.run(((m1) ((ArrayList) j2Var2.f38954b.f15749b).get(0)).a());
                         return;
                     }
                 } catch (Exception e) {

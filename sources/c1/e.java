@@ -17,8 +17,8 @@ import org.json.JSONObject;
 import v0.i;
 import v0.n;
 import v0.p;
-import v7.o6;
-import w7.h8;
+import v7.p6;
+import w7.i8;
 public final class e extends b1.d {
     public final Context e;
     public i f3653f;
@@ -77,18 +77,18 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         x5.b bVar2 = bVar;
         boolean z11 = false;
-        for (p pVar : request.f44071a) {
+        for (p pVar : request.f44115a) {
             if ((pVar instanceof p) && !z11) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = f.f7412a;
+                    LinkedHashMap linkedHashMap = f.f7413a;
                     bVar2 = new x5.b(pVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = f.f7412a;
+                    LinkedHashMap linkedHashMap2 = f.f7413a;
                     JSONObject jSONObject = new JSONObject(pVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     kotlin.jvm.internal.i.b(optString);
                     if (optString.length() != 0) {
-                        cVar = new x5.c(true, o6.a(jSONObject), optString);
+                        cVar = new x5.c(true, p6.a(jSONObject), optString);
                     } else {
                         throw new JSONException("GetPublicKeyCredentialOption - rpId not specified in the request or is unexpectedly empty");
                     }
@@ -97,18 +97,18 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z10 = request.f44072b;
+            z10 = request.f44116b;
         } else {
             z10 = false;
         }
-        i7.b a2 = h8.a(context);
+        i7.b a2 = i8.a(context);
         new x5.a(false, null, null, true, null, null, false);
-        x5.e eVar = new x5.e(dVar, aVar, a2.f11017k, false, 0, cVar, bVar2, z10);
+        x5.e eVar = new x5.e(dVar, aVar, a2.f11018k, false, 0, cVar, bVar2, z10);
         v e = w.e();
         e.d = new k6.c[]{new k6.c("auth_api_credentials_begin_sign_in", 8L)};
-        e.f6183c = new a6.i(a2, eVar);
-        e.f6182b = false;
-        e.f6181a = 1553;
+        e.f6184c = new a6.i(a2, eVar);
+        e.f6183b = false;
+        e.f6182a = 1553;
         a2.e(0, e.a()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 13)).addOnFailureListener(new ah.b(4, this, cancellationSignal));
     }
 }

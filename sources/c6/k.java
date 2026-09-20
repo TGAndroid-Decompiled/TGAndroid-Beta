@@ -6,35 +6,35 @@ import com.google.android.gms.cast.MediaInfo;
 import java.util.Arrays;
 import org.json.JSONObject;
 public final class k extends o6.a {
-    public final MediaInfo f4005a;
-    public final n f4006b;
-    public final Boolean f4007c;
+    public final MediaInfo f4006a;
+    public final n f4007b;
+    public final Boolean f4008c;
     public final long d;
     public final double e;
-    public final long[] f4008f;
+    public final long[] f4009f;
     public String h;
-    public final JSONObject f4009n;
-    public final String f4010r;
-    public final String f4011s;
+    public final JSONObject f4010n;
+    public final String f4011r;
+    public final String f4012s;
     public final String v;
-    public final String f4012w;
-    public final long f4013x;
-    public static final g6.b f4004y = new g6.b("MediaLoadRequestData", null);
+    public final String f4013w;
+    public final long f4014x;
+    public static final g6.b f4005y = new g6.b("MediaLoadRequestData", null);
     public static final Parcelable.Creator<k> CREATOR = new v(10);
 
     public k(MediaInfo mediaInfo, n nVar, Boolean bool, long j3, double d, long[] jArr, JSONObject jSONObject, String str, String str2, String str3, String str4, long j10) {
-        this.f4005a = mediaInfo;
-        this.f4006b = nVar;
-        this.f4007c = bool;
+        this.f4006a = mediaInfo;
+        this.f4007b = nVar;
+        this.f4008c = bool;
         this.d = j3;
         this.e = d;
-        this.f4008f = jArr;
-        this.f4009n = jSONObject;
-        this.f4010r = str;
-        this.f4011s = str2;
+        this.f4009f = jArr;
+        this.f4010n = jSONObject;
+        this.f4011r = str;
+        this.f4012s = str2;
         this.v = str3;
-        this.f4012w = str4;
-        this.f4013x = j10;
+        this.f4013w = str4;
+        this.f4014x = j10;
     }
 
     public final boolean equals(Object obj) {
@@ -45,20 +45,20 @@ public final class k extends o6.a {
             return false;
         }
         k kVar = (k) obj;
-        if (u6.c.a(this.f4009n, kVar.f4009n) && n6.l.l(this.f4005a, kVar.f4005a) && n6.l.l(this.f4006b, kVar.f4006b) && n6.l.l(this.f4007c, kVar.f4007c) && this.d == kVar.d && this.e == kVar.e && Arrays.equals(this.f4008f, kVar.f4008f) && n6.l.l(this.f4010r, kVar.f4010r) && n6.l.l(this.f4011s, kVar.f4011s) && n6.l.l(this.v, kVar.v) && n6.l.l(this.f4012w, kVar.f4012w) && this.f4013x == kVar.f4013x) {
+        if (u6.c.a(this.f4010n, kVar.f4010n) && n6.l.l(this.f4006a, kVar.f4006a) && n6.l.l(this.f4007b, kVar.f4007b) && n6.l.l(this.f4008c, kVar.f4008c) && this.d == kVar.d && this.e == kVar.e && Arrays.equals(this.f4009f, kVar.f4009f) && n6.l.l(this.f4011r, kVar.f4011r) && n6.l.l(this.f4012s, kVar.f4012s) && n6.l.l(this.v, kVar.v) && n6.l.l(this.f4013w, kVar.f4013w) && this.f4014x == kVar.f4014x) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4005a, this.f4006b, this.f4007c, Long.valueOf(this.d), Double.valueOf(this.e), this.f4008f, String.valueOf(this.f4009n), this.f4010r, this.f4011s, this.v, this.f4012w, Long.valueOf(this.f4013x)});
+        return Arrays.hashCode(new Object[]{this.f4006a, this.f4007b, this.f4008c, Long.valueOf(this.d), Double.valueOf(this.e), this.f4009f, String.valueOf(this.f4010n), this.f4011r, this.f4012s, this.v, this.f4013w, Long.valueOf(this.f4014x)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         String jSONObject;
-        JSONObject jSONObject2 = this.f4009n;
+        JSONObject jSONObject2 = this.f4010n;
         if (jSONObject2 == null) {
             jSONObject = null;
         } else {
@@ -66,21 +66,21 @@ public final class k extends o6.a {
         }
         this.h = jSONObject;
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.k(parcel, 2, this.f4005a, i10);
-        w7.f0.k(parcel, 3, this.f4006b, i10);
-        w7.f0.a(parcel, 4, this.f4007c);
+        w7.f0.k(parcel, 2, this.f4006a, i10);
+        w7.f0.k(parcel, 3, this.f4007b, i10);
+        w7.f0.a(parcel, 4, this.f4008c);
         w7.f0.s(parcel, 5, 8);
         parcel.writeLong(this.d);
         w7.f0.s(parcel, 6, 8);
         parcel.writeDouble(this.e);
-        w7.f0.j(parcel, 7, this.f4008f);
+        w7.f0.j(parcel, 7, this.f4009f);
         w7.f0.l(parcel, 8, this.h);
-        w7.f0.l(parcel, 9, this.f4010r);
-        w7.f0.l(parcel, 10, this.f4011s);
+        w7.f0.l(parcel, 9, this.f4011r);
+        w7.f0.l(parcel, 10, this.f4012s);
         w7.f0.l(parcel, 11, this.v);
-        w7.f0.l(parcel, 12, this.f4012w);
+        w7.f0.l(parcel, 12, this.f4013w);
         w7.f0.s(parcel, 13, 8);
-        parcel.writeLong(this.f4013x);
+        parcel.writeLong(this.f4014x);
         w7.f0.r(parcel, q6);
     }
 }

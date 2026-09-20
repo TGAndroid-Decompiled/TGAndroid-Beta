@@ -2,31 +2,31 @@ package ei;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.x51;
-public final class c4 extends w51 {
-    public static final int f8286a = 0;
+public final class c4 extends v51 {
+    public static final int f8287a = 0;
 
     static {
-        w51.setup(new w51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         d4 d4Var = (d4) view;
-        CharSequence charSequence = x51Var.f30248l;
-        CharSequence charSequence2 = x51Var.f30249m;
+        CharSequence charSequence = w51Var.f29948l;
+        CharSequence charSequence2 = w51Var.f29949m;
         d4Var.setText(charSequence);
-        d4Var.f8301r.setText(charSequence2);
+        d4Var.f8302r.setText(charSequence2);
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, e6 e6Var) {
-        return new d4(context, e6Var);
+    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
+        return new d4(context, f6Var);
     }
 
     @Override

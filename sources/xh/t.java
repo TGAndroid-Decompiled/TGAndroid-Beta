@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 public final class t extends yh.v3 {
     public final Path A0;
     public final float[] B0;
     public final v C0;
 
-    public t(v vVar, Context context, e6 e6Var, o oVar, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6) {
-        super(context, e6Var, oVar, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
+    public t(v vVar, Context context, f6 f6Var, o oVar, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6) {
+        super(context, f6Var, oVar, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
         this.C0 = vVar;
         this.A0 = new Path();
         this.B0 = new float[8];
@@ -40,9 +40,9 @@ public final class t extends yh.v3 {
     @Override
     public final void j(int i10) {
         v vVar = this.C0;
-        TextView textView = vVar.f46404b0;
+        TextView textView = vVar.f46451b0;
         if (textView != null && j6.B1(textView.getBackground(), i10, false)) {
-            vVar.f46404b0.invalidate();
+            vVar.f46451b0.invalidate();
         }
     }
 

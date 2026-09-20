@@ -1,100 +1,37 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class c91 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f32603a;
-    public final org.telegram.ui.Components.zb0 f32604b;
-    public final FrameLayout f32605c;
-    public final ImageView d;
-    public final TextView e;
-    public final TextView f32606f;
-    public final TextView h;
-    public boolean f32607n;
+public final class c91 extends org.telegram.ui.Components.v51 {
+    public static final int f32683a = 0;
 
-    public c91(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f32603a = e6Var;
-        setOrientation(0);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f32605c = frameLayout;
-        org.telegram.ui.Components.zb0 zb0Var = new org.telegram.ui.Components.zb0(1);
-        this.f32604b = zb0Var;
-        frameLayout.setBackground(zb0Var);
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        frameLayout.addView(imageView, w7.y5.e(24, 24, 17));
-        LinearLayout e = org.telegram.messenger.wh.e(context, 1);
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView h = com.google.android.gms.internal.vision.e2.h(e, textView, w7.y5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f32606f = h;
-        h.setTextSize(1, 13.0f);
-        TextView h10 = com.google.android.gms.internal.vision.e2.h(e, h, w7.y5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2), context);
-        this.h = h10;
-        h10.setTextSize(1, 16.0f);
-        if (LocaleController.isRTL) {
-            addView(h10, w7.y5.t(-2, -2, 16, 20, 0, 0, 0));
-            addView(e, w7.y5.p(0, -2, 1.0f, 23, 20, 0, 18, 0));
-            addView(frameLayout, w7.y5.t(28, 28, 21, 0, 0, 18, 0));
-        } else {
-            addView(frameLayout, w7.y5.t(28, 28, 19, 18, 0, 0, 0));
-            addView(e, w7.y5.p(0, -2, 1.0f, 23, 18, 0, 20, 0));
-            addView(h10, w7.y5.t(-2, -2, 16, 0, 0, 20, 0));
-        }
-        e();
+    static {
+        org.telegram.ui.Components.v51.setup(new org.telegram.ui.Components.v51());
     }
 
     @Override
-    public final void e() {
-        boolean q6;
-        int i10 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f32603a;
-        this.e.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, e6Var));
-        this.f32606f.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19445y6, e6Var));
-        this.h.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19247n6, e6Var));
-        if (e6Var != null) {
-            q6 = e6Var.a();
-        } else {
-            q6 = org.telegram.ui.ActionBar.j6.I.q();
-        }
-        this.f32604b.f30766b = q6;
-    }
-
-    public int[] getColorKeys() {
-        return null;
+    public final void bindView(View view, org.telegram.ui.Components.w51 w51Var, boolean z10, org.telegram.ui.Components.k61 k61Var, org.telegram.ui.Components.s61 s61Var) {
+        ((d91) view).set(w51Var.f29961z);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f32607n) {
-            f7 = 60.0f;
-        } else {
-            f7 = 50.0f;
+    public final boolean contentsEquals(org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.w51 w51Var2) {
+        if (w51Var.f29961z == w51Var2.f29961z) {
+            return true;
         }
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824));
+        return false;
     }
 
-    public void setValue(CharSequence charSequence) {
-        int i10;
-        if (!TextUtils.isEmpty(charSequence)) {
-            i10 = 0;
-        } else {
-            i10 = 8;
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new d91(context, f6Var);
+    }
+
+    @Override
+    public final boolean equals(org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.w51 w51Var2) {
+        if (w51Var.d == w51Var2.d) {
+            return true;
         }
-        TextView textView = this.h;
-        textView.setVisibility(i10);
-        textView.setText(charSequence);
+        return false;
     }
 }

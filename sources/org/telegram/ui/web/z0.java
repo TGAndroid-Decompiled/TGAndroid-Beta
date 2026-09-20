@@ -78,8 +78,8 @@ public final class z0 extends WebView {
                 if (b10.f39004a == null) {
                     b10.f39004a = new HashMap();
                 }
-                if (!TextUtils.isEmpty(a2.f38992b)) {
-                    b10.f39004a.put(a2.f38992b, a2);
+                if (!TextUtils.isEmpty(a2.f38995b)) {
+                    b10.f39004a.put(a2.f38995b, a2);
                     b10.c();
                     b10.d();
                 }
@@ -103,14 +103,14 @@ public final class z0 extends WebView {
                     h0Var.o(i10, true);
                     this.f39129s = true;
                 }
-                int i11 = n2Var.f38994f;
+                int i11 = n2Var.f38997f;
                 if (i11 != 0) {
                     this.Q.f38855c.o(i11, false);
                     this.v = true;
                 } else {
                     i11 = -1;
                 }
-                Bitmap bitmap = n2Var.f38995i;
+                Bitmap bitmap = n2Var.f38998i;
                 if (bitmap != null) {
                     d1 d1Var2 = this.Q;
                     this.O = bitmap;
@@ -348,7 +348,7 @@ public final class z0 extends WebView {
         if (c1Var != null) {
             getScrollX();
             getScrollY();
-            ((l3) ((org.telegram.ui.g) c1Var).f33660b).K.f0();
+            ((l3) ((org.telegram.ui.g) c1Var).f33771b).K.f0();
         }
         getScrollX();
         getScrollY();

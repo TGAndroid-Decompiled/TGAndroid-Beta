@@ -1,69 +1,28 @@
 package org.telegram.ui;
 
-import android.graphics.SurfaceTexture;
-import org.telegram.messenger.AndroidUtilities;
-public final class h51 implements org.telegram.ui.Components.r71, org.telegram.ui.Components.n71 {
-    public final i51 f34082a;
+import android.view.View;
+public final class h51 implements View.OnClickListener {
+    public final int f34124a;
+    public final l51 f34125b;
 
-    public h51(i51 i51Var) {
-        this.f34082a = i51Var;
+    public h51(l51 l51Var, int i10) {
+        this.f34124a = i10;
+        this.f34125b = l51Var;
     }
 
     @Override
-    public boolean needUpdate() {
-        if (this.f34082a.V.f25630i != null) {
-            return true;
+    public final void onClick(View view) {
+        switch (this.f34124a) {
+            case 0:
+                l51 l51Var = this.f34125b;
+                if (l51Var.Y == null) {
+                    l51Var.dismiss();
+                    return;
+                }
+                return;
+            default:
+                this.f34125b.dismiss();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public void onRenderedFirstFrame(j2.a aVar) {
-    }
-
-    @Override
-    public void onStateChanged(boolean z10, int i10) {
-        i51 i51Var = this.f34082a;
-        if (i10 == 4) {
-            i51Var.dismiss();
-            return;
-        }
-        AndroidUtilities.cancelRunOnUIThread(i51Var.Z);
-        AndroidUtilities.runOnUIThread(i51Var.Z, 16L);
-    }
-
-    @Override
-    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        return false;
-    }
-
-    @Override
-    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
-        this.f34082a.V.e(z10, true, fArr);
-    }
-
-    @Override
-    public void onRenderedFirstFrame() {
-        AndroidUtilities.runOnUIThread(new e01(this, 12));
-    }
-
-    @Override
-    public void onSeekFinished(j2.a aVar) {
-    }
-
-    @Override
-    public void onSeekStarted(j2.a aVar) {
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-    }
-
-    @Override
-    public void onError(org.telegram.ui.Components.u71 u71Var, Exception exc) {
-    }
-
-    @Override
-    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
     }
 }

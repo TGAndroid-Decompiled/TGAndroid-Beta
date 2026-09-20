@@ -1,80 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SharedConfig;
-public final class z6 implements org.telegram.ui.ActionBar.r0, ml0 {
-    public final int f30741a;
-    public final j8 f30742b;
+import org.telegram.messenger.Utilities;
+public final class z6 implements Utilities.Callback2 {
+    public final int f30744a;
+    public final i8 f30745b;
 
-    public z6(j8 j8Var, int i10) {
-        this.f30741a = i10;
-        this.f30742b = j8Var;
+    public z6(i8 i8Var, int i10) {
+        this.f30744a = i10;
+        this.f30745b = i8Var;
     }
 
     @Override
-    public boolean d(int i10, View view) {
-        boolean z10 = view instanceof org.telegram.ui.Cells.x;
-        j8 j8Var = this.f30742b;
-        if (z10) {
-            if (!j8Var.s0()) {
-                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) view;
-                j8Var.B0(xVar, xVar.getMessageObject());
-                return true;
-            }
-            return false;
-        }
-        j8Var.getClass();
-        return false;
-    }
-
-    @Override
-    public void m(int i10) {
-        switch (this.f30741a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f30744a) {
             case 0:
-                j8 j8Var = this.f30742b;
-                j8Var.getClass();
-                if (i10 >= 0) {
-                    float[] fArr = j8.U0;
-                    if (i10 < 6) {
-                        MediaController.getInstance().setPlaybackSpeed(true, fArr[i10]);
-                        j8Var.F0(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                j8 j8Var2 = this.f30742b;
-                if (i10 != 1 && i10 != 2) {
-                    if (i10 == 4) {
-                        if (SharedConfig.repeatMode == 1) {
-                            SharedConfig.setRepeatMode(0);
-                        } else {
-                            SharedConfig.setRepeatMode(1);
-                        }
-                    } else if (SharedConfig.repeatMode == 2) {
-                        SharedConfig.setRepeatMode(0);
-                    } else {
-                        SharedConfig.setRepeatMode(2);
-                    }
-                } else {
-                    boolean z10 = SharedConfig.playOrderReversed;
-                    if ((z10 && i10 == 1) || (SharedConfig.shuffleMusic && i10 == 2)) {
-                        MediaController.getInstance().setPlaybackOrderType(0);
-                    } else {
-                        MediaController.getInstance().setPlaybackOrderType(i10);
-                    }
-                    j8Var2.f25222s.l();
-                    if (z10 != SharedConfig.playOrderReversed) {
-                        j8Var2.f25215n.C0();
-                        j8Var2.w0(false);
-                    }
-                }
-                j8Var2.H0();
+                i8 i8Var = this.f30745b;
+                i8Var.Y = !((Boolean) obj2).booleanValue();
+                MediaController mediaController = MediaController.getInstance();
+                org.telegram.ui.ActionBar.b1 b1Var = i8Var.X;
+                float floatValue = ((Float) obj).floatValue();
+                b1Var.getClass();
+                mediaController.setPlaybackSpeed(true, (floatValue * 2.8f) + 0.2f);
                 return;
             default:
-                this.f30742b.t0(i10);
+                Bitmap bitmap = (Bitmap) obj2;
+                this.f30745b.f24920i0.setBackground(new BitmapDrawable((Bitmap) obj));
                 return;
         }
     }

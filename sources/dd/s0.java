@@ -18,7 +18,7 @@ public enum s0 extends b2 {
                         return;
                     }
                 }
-                lVar.a(b2.f7671s);
+                lVar.a(b2.f7672s);
                 return;
             }
             lVar.a(b2.d);

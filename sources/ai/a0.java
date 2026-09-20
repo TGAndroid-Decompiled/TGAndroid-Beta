@@ -16,7 +16,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.lj0;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.lx;
@@ -34,14 +34,14 @@ public final class a0 extends FrameLayout {
     public final ca O;
     public float P;
     public float Q;
-    public mj0 R;
+    public lj0 R;
     public o S;
     public final float T;
     public boolean U;
     public boolean V;
     public boolean W;
     public boolean f495a;
-    public final org.telegram.ui.Components.e6 f496a0;
+    public final org.telegram.ui.Components.d6 f496a0;
     public int f497b;
     public final lx f498b0;
     public boolean f499c;
@@ -49,10 +49,10 @@ public final class a0 extends FrameLayout {
     public da e;
     public TLRPC.User f500f;
     public TLRPC.Chat h;
-    public final org.telegram.ui.Components.h9 f501n;
+    public final org.telegram.ui.Components.g9 f501n;
     public final ImageReceiver f502r;
     public final ImageReceiver f503s;
-    public final org.telegram.ui.Components.h9 v;
+    public final org.telegram.ui.Components.g9 v;
     public boolean f504w;
     public final FrameLayout f505x;
     public org.telegram.ui.ActionBar.j5 f506y;
@@ -61,19 +61,19 @@ public final class a0 extends FrameLayout {
         super(context);
         boolean z10;
         this.f498b0 = lxVar;
-        this.f501n = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
+        this.f501n = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f502r = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
         this.f503s = imageReceiver2;
-        this.v = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
+        this.v = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
         this.f504w = true;
         ca caVar = new ca(null, true);
         this.O = caVar;
         this.P = 1.0f;
         this.Q = 1.0f;
         this.T = 1.0f;
-        this.f496a0 = new org.telegram.ui.Components.e6(this, 0L, 350L, qr.h);
+        this.f496a0 = new org.telegram.ui.Components.d6(this, 0L, 350L, qr.h);
         if (lxVar.f542b == 1) {
             z10 = true;
         } else {
@@ -131,14 +131,14 @@ public final class a0 extends FrameLayout {
             float dp2 = f10 + AndroidUtilities.dp(16.0f);
             paint.setColor(org.telegram.ui.ActionBar.j6.l1(f11, lxVar.f(org.telegram.ui.ActionBar.j6.hl)));
             if (i11 == 0) {
-                paint2.setColor(org.telegram.ui.ActionBar.j6.l1(f11, lxVar.f(org.telegram.ui.ActionBar.j6.f19340s8)));
+                paint2.setColor(org.telegram.ui.ActionBar.j6.l1(f11, lxVar.f(org.telegram.ui.ActionBar.j6.f19372s8)));
             } else {
                 paint2.setColor(org.telegram.ui.ActionBar.j6.l1(f11, lxVar.f(org.telegram.ui.ActionBar.j6.M8)));
             }
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(11.0f), paint2);
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(9.0f), paint);
             if (i11 == 0) {
-                i10 = org.telegram.ui.ActionBar.j6.f19340s8;
+                i10 = org.telegram.ui.ActionBar.j6.f19372s8;
             } else {
                 i10 = org.telegram.ui.ActionBar.j6.M8;
             }
@@ -264,9 +264,9 @@ public final class a0 extends FrameLayout {
                     user = chat;
                 }
                 if (user != null) {
-                    org.telegram.ui.Components.h9 h9Var = this.v;
-                    h9Var.j(i10, user);
-                    imageReceiver.setForUserOrChat(user, h9Var);
+                    org.telegram.ui.Components.g9 g9Var = this.v;
+                    g9Var.j(i10, user);
+                    imageReceiver.setForUserOrChat(user, g9Var);
                     return;
                 }
                 return;

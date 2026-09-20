@@ -5,14 +5,14 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class l0 extends o6.a {
     public static final Parcelable.Creator<l0> CREATOR = new r0(9);
-    public final int f4117a;
-    public final short f4118b;
-    public final short f4119c;
+    public final int f4118a;
+    public final short f4119b;
+    public final short f4120c;
 
     public l0(int i10, short s10, short s11) {
-        this.f4117a = i10;
-        this.f4118b = s10;
-        this.f4119c = s11;
+        this.f4118a = i10;
+        this.f4119b = s10;
+        this.f4120c = s11;
     }
 
     public final boolean equals(Object obj) {
@@ -20,25 +20,25 @@ public final class l0 extends o6.a {
             return false;
         }
         l0 l0Var = (l0) obj;
-        if (this.f4117a != l0Var.f4117a || this.f4118b != l0Var.f4118b || this.f4119c != l0Var.f4119c) {
+        if (this.f4118a != l0Var.f4118a || this.f4119b != l0Var.f4119b || this.f4120c != l0Var.f4120c) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f4117a), Short.valueOf(this.f4118b), Short.valueOf(this.f4119c)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f4118a), Short.valueOf(this.f4119b), Short.valueOf(this.f4120c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
         w7.f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f4117a);
+        parcel.writeInt(this.f4118a);
         w7.f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f4118b);
+        parcel.writeInt(this.f4119b);
         w7.f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f4119c);
+        parcel.writeInt(this.f4120c);
         w7.f0.r(parcel, q6);
     }
 }

@@ -20,16 +20,17 @@ import n6.l;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.ui.Cells.c1;
+import v7.j0;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f43144a;
-    public final pa.b f43145b;
-    public final d f43146c = new d();
+    public final Context f43188a;
+    public final pa.b f43189b;
+    public final d f43190c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f43144a = context;
-        this.f43145b = bVar;
+        this.f43188a = context;
+        this.f43189b = bVar;
     }
 
     public static URL a(String str) {
@@ -41,7 +42,7 @@ public final class c {
     }
 
     public static void b(HttpURLConnection httpURLConnection, String str, String str2, String str3) {
-        String i10;
+        String g10;
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
@@ -73,11 +74,11 @@ public final class c {
         if (!TextUtils.isEmpty(str4)) {
             Log.w("Firebase-Installations", str4);
             if (TextUtils.isEmpty(str)) {
-                i10 = "";
+                g10 = "";
             } else {
-                i10 = t8.b.i(", ", str);
+                g10 = j0.g(", ", str);
             }
-            Log.w("Firebase-Installations", c1.i("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, i10));
+            Log.w("Firebase-Installations", c1.k("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, g10));
         }
     }
 

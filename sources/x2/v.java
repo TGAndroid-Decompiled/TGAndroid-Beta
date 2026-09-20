@@ -1,41 +1,13 @@
 package x2;
 
-import b2.s1;
-import i2.m1;
-import j$.util.Objects;
-public final class v {
-    public final int f45469a;
-    public final m1[] f45470b;
-    public final r[] f45471c;
-    public final s1 d;
-    public final Object e;
+import b2.q1;
+import i2.o0;
+public abstract class v {
+    public o0 f45511a;
+    public y2.c f45512b;
+    public u f45513c;
 
-    public v(m1[] m1VarArr, r[] rVarArr, s1 s1Var, Object obj) {
-        boolean z10;
-        if (m1VarArr.length == rVarArr.length) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        e2.d.b(z10);
-        this.f45470b = m1VarArr;
-        this.f45471c = (r[]) rVarArr.clone();
-        this.d = s1Var;
-        this.e = obj;
-        this.f45469a = m1VarArr.length;
-    }
+    public abstract void a();
 
-    public final boolean a(v vVar, int i10) {
-        if (vVar == null || !Objects.equals(this.f45470b[i10], vVar.f45470b[i10]) || !Objects.equals(this.f45471c[i10], vVar.f45471c[i10])) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean b(int i10) {
-        if (this.f45470b[i10] != null) {
-            return true;
-        }
-        return false;
-    }
+    public abstract void b(q1 q1Var);
 }

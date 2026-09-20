@@ -16,14 +16,14 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 public final class bd extends View implements x2 {
-    public final Drawable f4415a;
-    public final int f4416b;
-    public Bitmap f4417c;
+    public final Drawable f4416a;
+    public final int f4417b;
+    public Bitmap f4418c;
     public final Paint d;
     public final Paint e;
-    public float f4418f;
-    public final org.telegram.ui.Components.e6 h;
-    public final Path f4419n;
+    public float f4419f;
+    public final org.telegram.ui.Components.d6 h;
+    public final Path f4420n;
 
     public bd(Activity activity, int i10, int i11) {
         super(activity);
@@ -31,10 +31,10 @@ public final class bd extends View implements x2 {
         this.d = paint;
         Paint paint2 = new Paint(3);
         this.e = paint2;
-        this.h = new org.telegram.ui.Components.e6(this, 0L, 350L, qr.h);
-        this.f4419n = new Path();
-        this.f4415a = activity.getResources().getDrawable(i10).mutate();
-        this.f4416b = i11;
+        this.h = new org.telegram.ui.Components.d6(this, 0L, 350L, qr.h);
+        this.f4420n = new Path();
+        this.f4416a = activity.getResources().getDrawable(i10).mutate();
+        this.f4417b = i11;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
@@ -42,26 +42,26 @@ public final class bd extends View implements x2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f4417c == null) {
-            this.f4417c = BitmapFactory.decodeResource(getResources(), this.f4416b);
+        if (this.f4418c == null) {
+            this.f4418c = BitmapFactory.decodeResource(getResources(), this.f4417b);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bitmap bitmap = this.f4417c;
+        Bitmap bitmap = this.f4418c;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f4417c = null;
+            this.f4418c = null;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float d = this.h.d(this.f4418f, false);
-        Drawable drawable = this.f4415a;
+        float d = this.h.d(this.f4419f, false);
+        Drawable drawable = this.f4416a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         Rect rect = AndroidUtilities.rectTmp2;
@@ -71,7 +71,7 @@ public final class bd extends View implements x2 {
             drawable.draw(canvas);
         } else if (d < 1.0f) {
             canvas.save();
-            Path path = this.f4419n;
+            Path path = this.f4420n;
             path.rewind();
             path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -83,7 +83,7 @@ public final class bd extends View implements x2 {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, this.d);
             canvas.save();
-            Bitmap bitmap = this.f4417c;
+            Bitmap bitmap = this.f4418c;
             if (bitmap != null) {
                 canvas.drawBitmap(bitmap, (Rect) null, rect, this.e);
             }
@@ -94,7 +94,7 @@ public final class bd extends View implements x2 {
 
     @Override
     public void setInvert(float f7) {
-        this.f4415a.setColorFilter(new PorterDuffColorFilter(i0.a.d(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        this.f4416a.setColorFilter(new PorterDuffColorFilter(i0.a.d(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         this.d.setColor(i0.a.d(f7, -1, -16777216));
     }
 
@@ -105,7 +105,7 @@ public final class bd extends View implements x2 {
         } else {
             f7 = 0.0f;
         }
-        this.f4418f = f7;
+        this.f4419f = f7;
         invalidate();
     }
 }

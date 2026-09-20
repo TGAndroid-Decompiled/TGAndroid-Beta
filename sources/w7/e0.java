@@ -10,7 +10,7 @@ public abstract class e0 {
         if (i10 == i11) {
             return;
         }
-        throw new androidx.car.app.j(a4.a.s(hg.k0.k("Expected size ", i11, " got ", i10, " (0x"), Integer.toHexString(i10), ")"), parcel);
+        throw new androidx.car.app.j(a4.a.s(hg.k0.l("Expected size ", i11, " got ", i10, " (0x"), Integer.toHexString(i10), ")"), parcel);
     }
 
     public static void B(Parcel parcel, int i10, int i11) {
@@ -18,7 +18,7 @@ public abstract class e0 {
         if (x10 == i11) {
             return;
         }
-        throw new androidx.car.app.j(a4.a.s(hg.k0.k("Expected size ", i11, " got ", x10, " (0x"), Integer.toHexString(x10), ")"), parcel);
+        throw new androidx.car.app.j(a4.a.s(hg.k0.l("Expected size ", i11, " got ", x10, " (0x"), Integer.toHexString(x10), ")"), parcel);
     }
 
     public static Bundle a(Parcel parcel, int i10) {

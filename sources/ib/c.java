@@ -4,9 +4,9 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import v7.m8;
+import v7.n8;
 public abstract class c {
-    public static final m8 f11069a;
+    public static final n8 f11070a;
 
     static {
         b bVar;
@@ -15,7 +15,7 @@ public abstract class c {
         } catch (ReflectiveOperationException unused) {
             bVar = new Object();
         }
-        f11069a = bVar;
+        f11070a = bVar;
     }
 
     public static void a(AccessibleObject accessibleObject, StringBuilder sb2) {

@@ -1,22 +1,22 @@
 package org.telegram.ui;
 public final class us implements Runnable {
-    public final int f38097a;
-    public final ContactsActivity f38098b;
+    public final int f38206a;
+    public final ContactsActivity f38207b;
 
     public us(ContactsActivity contactsActivity, int i10) {
-        this.f38097a = i10;
-        this.f38098b = contactsActivity;
+        this.f38206a = i10;
+        this.f38207b = contactsActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f38097a) {
+        switch (this.f38206a) {
             case 0:
-                this.f38098b.g0();
+                this.f38207b.g0();
                 return;
             default:
-                ContactsActivity contactsActivity = this.f38098b;
-                contactsActivity.f30986f.postOnAnimation(new us(contactsActivity, 0));
+                ContactsActivity contactsActivity = this.f38207b;
+                contactsActivity.f31026f.postOnAnimation(new us(contactsActivity, 0));
                 return;
         }
     }

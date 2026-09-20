@@ -3,17 +3,17 @@ package ai;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.kx0;
+import org.telegram.messenger.rk;
+import org.telegram.ui.Components.jx0;
 import org.telegram.ui.Components.ok;
 import org.telegram.ui.Components.t00;
-import org.telegram.ui.dg1;
-public final class d7 extends kx0 {
+import org.telegram.ui.fg1;
+public final class d7 extends jx0 {
     public final int K = 0;
     public final Object L;
 
-    public d7(ok okVar, Context context, t00 t00Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, t00Var, 1, e6Var);
+    public d7(ok okVar, Context context, t00 t00Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, t00Var, 1, f6Var);
         this.L = okVar;
     }
 
@@ -21,19 +21,19 @@ public final class d7 extends kx0 {
     public void e(boolean z10, boolean z11) {
         switch (this.K) {
             case 2:
-                dg1 dg1Var = (dg1) this.L;
+                fg1 fg1Var = (fg1) this.L;
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = dg1Var.f32998n.f37715a.animate();
+                    ViewPropertyAnimator animate = fg1Var.f33624n.f38541a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                dg1Var.f32998n.f37715a.animate().cancel();
-                TextView textView = dg1Var.f32998n.f37715a;
+                fg1Var.f33624n.f38541a.animate().cancel();
+                TextView textView = fg1Var.f33624n.f38541a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -60,7 +60,7 @@ public final class d7 extends kx0 {
         switch (this.K) {
             case 0:
                 j7 j7Var = ((e7) this.L).d;
-                super.onMeasure(i10, wh.y(j7Var.e, j7Var.f1051n - j7Var.f1052r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, rk.c(j7Var.e, j7Var.f1051n - j7Var.f1052r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -85,8 +85,8 @@ public final class d7 extends kx0 {
         this.L = e7Var;
     }
 
-    public d7(dg1 dg1Var, Context context, t00 t00Var) {
+    public d7(fg1 fg1Var, Context context, t00 t00Var) {
         super(context, t00Var, 0, null);
-        this.L = dg1Var;
+        this.L = fg1Var;
     }
 }

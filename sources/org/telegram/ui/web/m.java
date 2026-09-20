@@ -23,7 +23,7 @@ public final class m implements e2.h {
                 }
                 return;
             case 2:
-                ((u2.y0) obj).f43792b.release();
+                ((u2.z0) obj).f43839b.release();
                 return;
             default:
                 ((ExecutorService) obj).shutdown();

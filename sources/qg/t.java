@@ -10,29 +10,29 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
 import w7.y5;
 public final class t implements Runnable {
-    public final int f41914a;
-    public final m0 f41915b;
-    public final j f41916c;
+    public final int f41939a;
+    public final n0 f41940b;
+    public final j f41941c;
 
-    public t(m0 m0Var, j jVar, int i10) {
-        this.f41914a = i10;
-        this.f41915b = m0Var;
-        this.f41916c = jVar;
+    public t(n0 n0Var, j jVar, int i10) {
+        this.f41939a = i10;
+        this.f41940b = n0Var;
+        this.f41941c = jVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41914a) {
+        switch (this.f41939a) {
             case 0:
-                this.f41915b.q0(this.f41916c);
+                this.f41940b.q0(this.f41941c);
                 return;
             default:
-                final m0 m0Var = this.f41915b;
-                LinearLayout linearLayout = new LinearLayout(m0Var.getContext());
+                final n0 n0Var = this.f41940b;
+                LinearLayout linearLayout = new LinearLayout(n0Var.getContext());
                 linearLayout.setOrientation(0);
-                TextView textView = new TextView(m0Var.getContext());
+                TextView textView = new TextView(n0Var.getContext());
                 int i10 = j6.E8;
-                eh.a aVar = m0Var.Q1;
+                eh.a aVar = n0Var.Q1;
                 textView.setTextColor(j6.v0(i10, aVar));
                 textView.setBackground(j6.K0(false));
                 textView.setGravity(16);
@@ -42,28 +42,28 @@ public final class t implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final j jVar = this.f41916c;
+                final j jVar = this.f41941c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         switch (r3) {
                             case 0:
                                 j jVar2 = jVar;
-                                m0 m0Var2 = m0Var;
-                                m0Var2.q0(jVar2);
-                                org.telegram.ui.ActionBar.n1 n1Var = m0Var2.R1;
+                                n0 n0Var2 = n0Var;
+                                n0Var2.q0(jVar2);
+                                org.telegram.ui.ActionBar.n1 n1Var = n0Var2.R1;
                                 if (n1Var != null && n1Var.isShowing()) {
-                                    m0Var2.R1.d(true);
+                                    n0Var2.R1.d(true);
                                     return;
                                 }
                                 return;
                             default:
-                                m0 m0Var3 = m0Var;
-                                m0Var3.getClass();
-                                ((n2) jVar).r(true);
-                                org.telegram.ui.ActionBar.n1 n1Var2 = m0Var3.R1;
+                                n0 n0Var3 = n0Var;
+                                n0Var3.getClass();
+                                ((o2) jVar).r(true);
+                                org.telegram.ui.ActionBar.n1 n1Var2 = n0Var3.R1;
                                 if (n1Var2 != null && n1Var2.isShowing()) {
-                                    m0Var3.R1.d(true);
+                                    n0Var3.R1.d(true);
                                     return;
                                 }
                                 return;
@@ -71,8 +71,8 @@ public final class t implements Runnable {
                     }
                 });
                 linearLayout.addView(textView, y5.n(-2, 48));
-                if (jVar instanceof u2) {
-                    TextView textView2 = new TextView(m0Var.getContext());
+                if (jVar instanceof v2) {
+                    TextView textView2 = new TextView(n0Var.getContext());
                     textView2.setTextColor(j6.v0(i10, aVar));
                     textView2.setBackground(j6.K0(false));
                     textView2.setGravity(16);
@@ -81,11 +81,11 @@ public final class t implements Runnable {
                     textView2.setEllipsize(truncateAt);
                     textView2.setTag(1);
                     textView2.setText(LocaleController.getString(R.string.PaintEdit));
-                    textView2.setOnClickListener(new k(m0Var, 2));
+                    textView2.setOnClickListener(new k(n0Var, 2));
                     linearLayout.addView(textView2, y5.n(-2, 48));
                 }
-                if (jVar instanceof n2) {
-                    TextView textView3 = new TextView(m0Var.getContext());
+                if (jVar instanceof o2) {
+                    TextView textView3 = new TextView(n0Var.getContext());
                     textView3.setTextColor(j6.v0(i10, aVar));
                     textView3.setBackgroundDrawable(j6.K0(false));
                     textView3.setGravity(16);
@@ -100,21 +100,21 @@ public final class t implements Runnable {
                             switch (r3) {
                                 case 0:
                                     j jVar2 = jVar;
-                                    m0 m0Var2 = m0Var;
-                                    m0Var2.q0(jVar2);
-                                    org.telegram.ui.ActionBar.n1 n1Var = m0Var2.R1;
+                                    n0 n0Var2 = n0Var;
+                                    n0Var2.q0(jVar2);
+                                    org.telegram.ui.ActionBar.n1 n1Var = n0Var2.R1;
                                     if (n1Var != null && n1Var.isShowing()) {
-                                        m0Var2.R1.d(true);
+                                        n0Var2.R1.d(true);
                                         return;
                                     }
                                     return;
                                 default:
-                                    m0 m0Var3 = m0Var;
-                                    m0Var3.getClass();
-                                    ((n2) jVar).r(true);
-                                    org.telegram.ui.ActionBar.n1 n1Var2 = m0Var3.R1;
+                                    n0 n0Var3 = n0Var;
+                                    n0Var3.getClass();
+                                    ((o2) jVar).r(true);
+                                    org.telegram.ui.ActionBar.n1 n1Var2 = n0Var3.R1;
                                     if (n1Var2 != null && n1Var2.isShowing()) {
-                                        m0Var3.R1.d(true);
+                                        n0Var3.R1.d(true);
                                         return;
                                     }
                                     return;
@@ -123,8 +123,8 @@ public final class t implements Runnable {
                     });
                     linearLayout.addView(textView3, y5.n(-2, 48));
                 }
-                if (!(jVar instanceof x1)) {
-                    TextView textView4 = new TextView(m0Var.getContext());
+                if (!(jVar instanceof y1)) {
+                    TextView textView4 = new TextView(n0Var.getContext());
                     textView4.setTextColor(j6.v0(i10, aVar));
                     textView4.setBackgroundDrawable(j6.K0(false));
                     textView4.setGravity(16);
@@ -133,10 +133,10 @@ public final class t implements Runnable {
                     textView4.setTextSize(1, 14.0f);
                     textView4.setTag(2);
                     textView4.setText(LocaleController.getString(R.string.PaintDuplicate));
-                    textView4.setOnClickListener(new k(m0Var, 3));
+                    textView4.setOnClickListener(new k(n0Var, 3));
                     linearLayout.addView(textView4, y5.n(-2, 48));
                 }
-                m0Var.S1.addView(linearLayout);
+                n0Var.S1.addView(linearLayout);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
                 layoutParams.width = -2;
                 layoutParams.height = -2;

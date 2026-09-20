@@ -2,7 +2,7 @@ package y2;
 
 import java.io.IOException;
 public interface h {
-    void E(j jVar, long j3, long j10, boolean z10);
+    void F(j jVar, long j3, long j10, boolean z10);
 
     k4.d m(j jVar, long j3, long j10, IOException iOException, int i10);
 

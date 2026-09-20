@@ -3,25 +3,25 @@ package f5;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import w7.t6;
+import w7.u6;
 public final class r extends com.googlecode.mp4parser.c {
-    public static final ka.c f8943f;
+    public static final ka.c f8944f;
     public static final ka.c h;
-    public static final ka.c f8944n;
+    public static final ka.c f8945n;
     public List e;
 
     static {
         re.a aVar = new re.a(r.class, "SampleToChunkBox.java");
-        f8943f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
+        f8944f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
         h = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "java.util.List", "entries", "void"));
-        f8944n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
+        f8945n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("blowup", "com.coremedia.iso.boxes.SampleToChunkBox", "int", "chunkCount", "[J"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a2 = t6.a(e5.b.i(byteBuffer));
+        int a2 = u6.a(e5.b.i(byteBuffer));
         this.e = new ArrayList(a2);
         for (int i10 = 0; i10 < a2; i10++) {
             this.e.add(new q(e5.b.i(byteBuffer), e5.b.i(byteBuffer), e5.b.i(byteBuffer)));
@@ -33,9 +33,9 @@ public final class r extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt(this.e.size());
         for (q qVar : this.e) {
-            byteBuffer.putInt((int) qVar.f8940a);
-            byteBuffer.putInt((int) qVar.f8941b);
-            byteBuffer.putInt((int) qVar.f8942c);
+            byteBuffer.putInt((int) qVar.f8941a);
+            byteBuffer.putInt((int) qVar.f8942b);
+            byteBuffer.putInt((int) qVar.f8943c);
         }
     }
 
@@ -45,7 +45,7 @@ public final class r extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        com.google.firebase.messaging.t b10 = re.a.b(f8944n, this, this);
+        com.google.firebase.messaging.t b10 = re.a.b(f8945n, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         return "SampleToChunkBox[entryCount=" + this.e.size() + "]";

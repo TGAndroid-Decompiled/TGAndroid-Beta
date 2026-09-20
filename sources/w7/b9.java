@@ -1,8 +1,6 @@
 package w7;
 public abstract class b9 {
-    public static final long a(long j3, yd.c sourceUnit, yd.c targetUnit) {
-        kotlin.jvm.internal.i.e(sourceUnit, "sourceUnit");
-        kotlin.jvm.internal.i.e(targetUnit, "targetUnit");
-        return targetUnit.f46963a.convert(j3, sourceUnit.f46963a);
+    public static final long a(int r8, yd.c r9) {
+        throw new UnsupportedOperationException("Method not decompiled: w7.b9.a(int, yd.c):long");
     }
 }

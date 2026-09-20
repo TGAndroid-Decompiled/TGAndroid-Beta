@@ -6,7 +6,7 @@ import com.google.android.gms.location.LocationRequest;
 import w7.f0;
 public final class n extends o6.a {
     public static final Parcelable.Creator<n> CREATOR = new m(1);
-    public final LocationRequest f42337a;
+    public final LocationRequest f42381a;
 
     public n(com.google.android.gms.location.LocationRequest r28, java.util.ArrayList r29, boolean r30, boolean r31, java.lang.String r32, boolean r33, boolean r34, java.lang.String r35, long r36) {
         throw new UnsupportedOperationException("Method not decompiled: r7.n.<init>(com.google.android.gms.location.LocationRequest, java.util.ArrayList, boolean, boolean, java.lang.String, boolean, boolean, java.lang.String, long):void");
@@ -14,23 +14,23 @@ public final class n extends o6.a {
 
     public final boolean equals(Object obj) {
         if (obj instanceof n) {
-            return n6.l.l(this.f42337a, ((n) obj).f42337a);
+            return n6.l.l(this.f42381a, ((n) obj).f42381a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f42337a.hashCode();
+        return this.f42381a.hashCode();
     }
 
     public final String toString() {
-        return this.f42337a.toString();
+        return this.f42381a.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.k(parcel, 1, this.f42337a, i10);
+        f0.k(parcel, 1, this.f42381a, i10);
         f0.r(parcel, q6);
     }
 }

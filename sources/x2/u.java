@@ -1,13 +1,20 @@
 package x2;
 
-import b2.q1;
-import i2.o0;
-public abstract class u {
-    public o0 f45466a;
-    public y2.c f45467b;
-    public t f45468c;
+import u2.p1;
+public final class u {
+    public final int f45507a;
+    public final int[] f45508b;
+    public final p1[] f45509c;
+    public final int[] d;
+    public final int[][][] e;
+    public final p1 f45510f;
 
-    public abstract void a();
-
-    public abstract void b(q1 q1Var);
+    public u(int[] iArr, p1[] p1VarArr, int[] iArr2, int[][][] iArr3, p1 p1Var) {
+        this.f45508b = iArr;
+        this.f45509c = p1VarArr;
+        this.e = iArr3;
+        this.d = iArr2;
+        this.f45510f = p1Var;
+        this.f45507a = iArr.length;
+    }
 }

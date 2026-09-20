@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.pk0;
-public final class u4 implements pk0 {
+import org.telegram.ui.Components.ok0;
+public final class u4 implements ok0 {
     public final f6 f1573a;
 
     public u4(f6 f6Var) {
@@ -18,7 +18,7 @@ public final class u4 implements pk0 {
         if (!z10) {
             f6Var.n0(new s4(this, view, o0Var, z10, z11));
         } else {
-            org.telegram.ui.Components.e5.a0(f6Var.C2, 1, f6Var.B1, new t4(this, z10, o0Var, view));
+            org.telegram.ui.Components.d5.a0(f6Var.C2, 1, f6Var.B1, new t4(this, z10, o0Var, view));
         }
     }
 
@@ -41,16 +41,16 @@ public final class u4 implements pk0 {
         float f13 = -f11;
         nVar.z(f12, f13, f6Var.getMeasuredWidth() + f12, f6Var.getMeasuredHeight() + f13);
         if (f7 > 0.0f) {
-            canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7329a);
+            canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7330a);
             canvas.drawRoundRect(rectF, f7, f7, paint);
             return;
         }
-        canvas.drawRect(rectF, (Paint) nVar.f7329a);
+        canvas.drawRect(rectF, (Paint) nVar.f7330a);
         canvas.drawRect(rectF, paint);
     }
 
     @Override
-    public final void p() {
+    public final void o() {
         ((ac) this.f1573a.Q1).b(false);
     }
 

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f12680a;
-    public final List f12681b;
+    public final int f12681a;
+    public final List f12682b;
 
     public f(int i10, List list) {
-        this.f12680a = i10;
-        this.f12681b = list;
+        this.f12681a = i10;
+        this.f12682b = list;
     }
 
     public j4.g0 a(int r6, j6.l r7) {
@@ -25,14 +25,14 @@ public final class f {
         List list;
         boolean z11;
         boolean c10 = c(32);
-        List list2 = this.f12681b;
+        List list2 = this.f12682b;
         if (c10) {
             return list2;
         }
         e2.v vVar = new e2.v((byte[]) lVar.d);
         while (vVar.a() > 0) {
             int x10 = vVar.x();
-            int x11 = vVar.f7934b + vVar.x();
+            int x11 = vVar.f7935b + vVar.x();
             if (x10 == 134) {
                 ArrayList arrayList = new ArrayList();
                 int x12 = vVar.x() & 31;
@@ -59,7 +59,7 @@ public final class f {
                         } else {
                             z11 = false;
                         }
-                        byte[] bArr = e2.e.f7896a;
+                        byte[] bArr = e2.e.f7897a;
                         list = Collections.singletonList(z11 ? new byte[]{1} : new byte[]{0});
                     } else {
                         list = null;
@@ -79,19 +79,19 @@ public final class f {
     }
 
     public boolean c(int i10) {
-        if ((i10 & this.f12680a) != 0) {
+        if ((i10 & this.f12681a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f12680a = 1;
-        this.f12681b = Collections.singletonList(null);
+        this.f12681a = 1;
+        this.f12682b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f12680a = 0;
-        this.f12681b = arrayList;
+        this.f12681a = 0;
+        this.f12682b = arrayList;
     }
 }

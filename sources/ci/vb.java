@@ -6,18 +6,18 @@ import android.graphics.drawable.Drawable;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class vb extends ImageSpan {
-    public final Drawable f5671a;
+    public final Drawable f5672a;
 
     public vb(Drawable drawable, Drawable drawable2) {
         super(drawable);
-        this.f5671a = drawable2;
+        this.f5672a = drawable2;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         canvas.save();
         canvas.translate(0.0f, AndroidUtilities.dp(1.0f) + ((i14 - i12) / 2));
-        this.f5671a.setAlpha(paint.getAlpha());
+        this.f5672a.setAlpha(paint.getAlpha());
         super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
         canvas.restore();
     }

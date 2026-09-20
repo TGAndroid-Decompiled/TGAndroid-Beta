@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 public final class km implements ViewTreeObserver.OnPreDrawListener {
-    public final org.telegram.ui.Cells.u1 f35146a;
-    public final lm f35147b;
+    public final org.telegram.ui.Cells.u1 f35209a;
+    public final lm f35210b;
 
     public km(lm lmVar, org.telegram.ui.Cells.u1 u1Var) {
-        this.f35147b = lmVar;
-        this.f35146a = u1Var;
+        this.f35210b = lmVar;
+        this.f35209a = u1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         float f7;
         float centerX;
-        zn znVar = this.f35147b.Q;
-        org.telegram.ui.Cells.u1 u1Var = this.f35146a;
+        zn znVar = this.f35210b.Q;
+        org.telegram.ui.Cells.u1 u1Var = this.f35209a;
         u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
         MessageObject.SendAnimationData sendAnimationData = u1Var.getMessageObject().sendAnimationData;
         if (sendAnimationData == null) {
             return true;
         }
-        znVar.f40368n6.add(u1Var);
+        znVar.f40410n6.add(u1Var);
         ImageReceiver photoImage = u1Var.getPhotoImage();
         float imageWidth = photoImage.getImageWidth();
         if (sendAnimationData.fromPreview) {
@@ -35,18 +35,18 @@ public final class km implements ViewTreeObserver.OnPreDrawListener {
         } else {
             f7 = sendAnimationData.width / imageWidth;
         }
-        u1Var.getTransitionParams().f21138x0 = true;
+        u1Var.getTransitionParams().f21177x0 = true;
         u1Var.getLocationInWindow(r8);
         int[] iArr = {0, (int) (iArr[1] - u1Var.getTranslationY())};
         if (znVar.Y.z0()) {
             iArr[1] = AndroidUtilities.dp(48.0f) + iArr[1];
         }
         AnimatorSet animatorSet = new AnimatorSet();
-        org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6("p1", 0);
+        org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6("p1", 0);
         hm hmVar = new hm(this);
         AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(sendAnimationData, r6Var, f7, 1.0f), ObjectAnimator.ofFloat(sendAnimationData, new im(this), 0.0f, 1.0f));
-        float f10 = sendAnimationData.f15788x;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(sendAnimationData, q6Var, f7, 1.0f), ObjectAnimator.ofFloat(sendAnimationData, new im(this), 0.0f, 1.0f));
+        float f10 = sendAnimationData.f15820x;
         float f11 = iArr[0];
         if (sendAnimationData.fromPreview) {
             centerX = 0.0f;

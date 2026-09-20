@@ -16,27 +16,27 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class d implements o {
-    public final int f44126a;
-    public final long f44127b;
-    public final v f44128c;
+    public final int f44170a;
+    public final long f44171b;
+    public final v f44172c;
     public final z d;
     public final w e;
-    public final i f44129f;
-    public final n f44130g;
+    public final i f44173f;
+    public final n f44174g;
     public q h;
-    public h0 f44131i;
-    public h0 f44132j;
-    public int f44133k;
-    public p0 f44134l;
-    public long f44135m;
-    public long f44136n;
-    public long f44137o;
-    public long f44138p;
-    public int f44139q;
-    public f f44140r;
-    public boolean f44141s;
-    public boolean f44142t;
-    public long f44143u;
+    public h0 f44175i;
+    public h0 f44176j;
+    public int f44177k;
+    public p0 f44178l;
+    public long f44179m;
+    public long f44180n;
+    public long f44181o;
+    public long f44182p;
+    public int f44183q;
+    public f f44184r;
+    public boolean f44185s;
+    public boolean f44186t;
+    public long f44187u;
 
     public d(int i10) {
         this(i10, -9223372036854775807L);
@@ -48,17 +48,17 @@ public final class d implements o {
     }
 
     public final void b() {
-        f fVar = this.f44140r;
+        f fVar = this.f44184r;
         if ((fVar instanceof a) && ((k) fVar).f()) {
-            long j3 = this.f44138p;
-            if (j3 != -1 && j3 != this.f44140r.d()) {
-                a aVar = (a) this.f44140r;
-                this.f44140r = new a(this.f44138p, aVar.f44119i, aVar.f44120j, aVar.f44121k, aVar.h);
+            long j3 = this.f44182p;
+            if (j3 != -1 && j3 != this.f44184r.d()) {
+                a aVar = (a) this.f44184r;
+                this.f44184r = new a(this.f44182p, aVar.f44163i, aVar.f44164j, aVar.f44165k, aVar.h);
                 q qVar = this.h;
                 qVar.getClass();
-                qVar.X1(this.f44140r);
-                this.f44131i.getClass();
-                this.f44140r.l();
+                qVar.X1(this.f44184r);
+                this.f44175i.getClass();
+                this.f44184r.l();
             }
         }
     }
@@ -75,19 +75,19 @@ public final class d implements o {
     public final void g(q qVar) {
         this.h = qVar;
         h0 Z1 = qVar.Z1(0, 1);
-        this.f44131i = Z1;
-        this.f44132j = Z1;
-        this.h.e1();
+        this.f44175i = Z1;
+        this.f44176j = Z1;
+        this.h.f1();
     }
 
     @Override
     public final void h(long j3, long j10) {
-        this.f44133k = 0;
-        this.f44135m = -9223372036854775807L;
-        this.f44136n = 0L;
-        this.f44139q = 0;
-        this.f44143u = j10;
-        if (!(this.f44140r instanceof b)) {
+        this.f44177k = 0;
+        this.f44179m = -9223372036854775807L;
+        this.f44180n = 0L;
+        this.f44183q = 0;
+        this.f44187u = j10;
+        if (!(this.f44184r instanceof b)) {
             return;
         }
         throw null;
@@ -95,7 +95,7 @@ public final class d implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8083b;
+        g0 g0Var = i0.f8084b;
         return a1.e;
     }
 
@@ -105,17 +105,17 @@ public final class d implements o {
     }
 
     public d(int i10, long j3) {
-        this.f44126a = i10;
-        this.f44127b = j3;
-        this.f44128c = new v(10);
+        this.f44170a = i10;
+        this.f44171b = j3;
+        this.f44172c = new v(10);
         this.d = new Object();
         this.e = new w();
-        this.f44135m = -9223372036854775807L;
-        this.f44129f = new i(8);
+        this.f44179m = -9223372036854775807L;
+        this.f44173f = new i(8);
         n nVar = new n();
-        this.f44130g = nVar;
-        this.f44132j = nVar;
-        this.f44138p = -1L;
+        this.f44174g = nVar;
+        this.f44176j = nVar;
+        this.f44182p = -1L;
     }
 
     @Override

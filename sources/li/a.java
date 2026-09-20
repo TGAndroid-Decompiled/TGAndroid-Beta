@@ -8,26 +8,26 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.ui.Components.kh;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.vl0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.av;
 import org.telegram.ui.h6;
 import org.telegram.ui.w6;
 import org.telegram.ui.z6;
 public final class a implements bh.a {
-    public final int f14282a;
-    public final Object f14283b;
-    public final Object f14284c;
+    public final int f14318a;
+    public final Object f14319b;
+    public final Object f14320c;
 
     public a(int i10, Object obj, Object obj2) {
-        this.f14282a = i10;
-        this.f14283b = obj;
-        this.f14284c = obj2;
+        this.f14318a = i10;
+        this.f14319b = obj;
+        this.f14320c = obj2;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f14282a) {
+        switch (this.f14318a) {
             case 0:
             case 1:
             case 2:
@@ -39,44 +39,44 @@ public final class a implements bh.a {
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f14282a) {
+        switch (this.f14318a) {
             case 0:
-                wl0 wl0Var = (wl0) this.f14283b;
-                gh.d.a(wl0Var, canvas, rectF, wl0Var, (FrameLayout) this.f14284c);
+                vl0 vl0Var = (vl0) this.f14319b;
+                gh.d.a(vl0Var, canvas, rectF, vl0Var, (FrameLayout) this.f14320c);
                 return;
             case 1:
-                z6 z6Var = (z6) this.f14283b;
-                h6 h6Var = (h6) this.f14284c;
-                w0 w0Var = z6Var.f39984b;
+                z6 z6Var = (z6) this.f14319b;
+                h6 h6Var = (h6) this.f14320c;
+                w0 w0Var = z6Var.f40109b;
                 gh.d.a(w0Var, canvas, rectF, w0Var, h6Var);
                 w6 w6Var = z6Var.M;
                 if (w6Var != null) {
                     int childCount = w6Var.h.getChildCount();
                     for (int i10 = 0; i10 < childCount; i10++) {
                         View childAt = z6Var.M.h.getChildAt(i10);
-                        if (childAt instanceof wl0) {
-                            wl0 wl0Var2 = (wl0) childAt;
-                            gh.d.a(wl0Var2, canvas, rectF, wl0Var2, h6Var);
+                        if (childAt instanceof vl0) {
+                            vl0 vl0Var2 = (vl0) childAt;
+                            gh.d.a(vl0Var2, canvas, rectF, vl0Var2, h6Var);
                         }
                     }
                     return;
                 }
                 return;
             case 2:
-                av avVar = (av) this.f14283b;
-                x5 x5Var = (x5) this.f14284c;
-                int childCount2 = avVar.f32147a.getChildCount();
+                av avVar = (av) this.f14319b;
+                x5 x5Var = (x5) this.f14320c;
+                int childCount2 = avVar.f32164a.getChildCount();
                 for (int i11 = 0; i11 < childCount2; i11++) {
-                    View childAt2 = avVar.f32147a.getChildAt(i11);
-                    if (childAt2 instanceof wl0) {
-                        wl0 wl0Var3 = (wl0) childAt2;
-                        gh.d.a(wl0Var3, canvas, rectF, wl0Var3, x5Var);
+                    View childAt2 = avVar.f32164a.getChildAt(i11);
+                    if (childAt2 instanceof vl0) {
+                        vl0 vl0Var3 = (vl0) childAt2;
+                        gh.d.a(vl0Var3, canvas, rectF, vl0Var3, x5Var);
                     }
                 }
                 return;
             default:
-                ((o) this.f14284c).f(canvas, rectF);
-                kh khVar = ((ProfileActivity) this.f14283b).O.f25808c2;
+                ((o) this.f14320c).f(canvas, rectF);
+                kh khVar = ((ProfileActivity) this.f14319b).O.f25488c2;
                 if (khVar != null) {
                     khVar.f(canvas, rectF);
                     return;

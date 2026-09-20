@@ -1,422 +1,124 @@
 package ki;
 
-import b2.a1;
-import b2.b1;
-import b2.k0;
-import b2.k1;
-import b2.n0;
-import b2.p0;
-import b2.q1;
-import b2.s1;
-import b2.u0;
-import b2.v0;
-import b2.x0;
-import b2.x1;
-import b2.y0;
-import b2.z0;
-import java.util.List;
-import org.telegram.ui.Components.a60;
-import org.telegram.ui.Components.u71;
-public final class d0 implements z0 {
-    public final int f13667a;
-    public final Object f13668b;
+import android.text.TextUtils;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.LaunchActivity;
+import yh.u5;
+public final class d0 implements Runnable {
+    public final int f13667a = 2;
+    public final boolean f13668b;
+    public final boolean f13669c;
+    public final int d;
+    public final Object e;
+    public final Object f13670f;
+    public final Object h;
+    public final Object f13671n;
 
-    public d0(Object obj, int i10) {
-        this.f13667a = i10;
-        this.f13668b = obj;
+    public d0(int i10, ci.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, f3[] f3VarArr) {
+        this.e = dVar;
+        this.f13670f = f3VarArr;
+        this.d = i10;
+        this.f13668b = z10;
+        this.h = starsSubscription;
+        this.f13669c = z11;
+        this.f13671n = tLObject;
     }
 
     @Override
-    public final void onAudioAttributesChanged(b2.e eVar) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onAudioSessionIdChanged(int i10) {
-        int i11 = this.f13667a;
-    }
-
-    @Override
-    public final void onAvailableCommandsChanged(x0 x0Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onCues(d2.d dVar) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onEvents(b1 b1Var, y0 y0Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onIsLoadingChanged(boolean z10) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onIsPlayingChanged(boolean z10) {
+    public final void run() {
+        File file;
+        String formatString;
         switch (this.f13667a) {
             case 0:
-                h0 h0Var = (h0) this.f13668b;
-                if (h0Var.Q == 5) {
-                    h0Var.x(z10);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void onLoadingChanged(boolean z10) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onMediaItemTransition(k0 k0Var, int i10) {
-        int i11 = this.f13667a;
-    }
-
-    @Override
-    public final void onMediaMetadataChanged(n0 n0Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onMetadata(p0 p0Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onPlayWhenReadyChanged(boolean z10, int i10) {
-        int i11 = this.f13667a;
-    }
-
-    @Override
-    public final void onPlaybackParametersChanged(v0 v0Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onPlaybackStateChanged(int i10) {
-        i2.e0 e0Var;
-        switch (this.f13667a) {
-            case 0:
-                h0 h0Var = (h0) this.f13668b;
-                j jVar = h0Var.f13713l;
-                jVar.b("preview playback state=" + i10);
-                if (h0Var.Q == 5 && i10 == 4 && (e0Var = h0Var.L) != null) {
-                    e0Var.W0(5, h0Var.A);
-                    h0Var.L.i();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void onPlaybackSuppressionReasonChanged(int i10) {
-        int i11 = this.f13667a;
-    }
-
-    @Override
-    public final void onPlayerError(u0 u0Var) {
-        switch (this.f13667a) {
-            case 0:
-                h0 h0Var = (h0) this.f13668b;
-                j jVar = h0Var.f13713l;
-                jVar.b("preview player error: code=" + u0Var.f3332a);
-                h0Var.g(u0Var);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void onPlayerErrorChanged(u0 u0Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onPlayerStateChanged(boolean z10, int i10) {
-        switch (this.f13667a) {
-            case 0:
-                return;
-            default:
-                u71 u71Var = (u71) this.f13668b;
-                if (!u71Var.H && i10 == 3) {
-                    u71Var.H = true;
-                    if (u71Var.G && u71Var.I) {
-                        u71Var.C();
-                        return;
+                o0 o0Var = (o0) this.e;
+                q qVar = (q) this.f13670f;
+                boolean z10 = this.f13668b;
+                File file2 = (File) this.h;
+                boolean z11 = this.f13669c;
+                int i10 = this.d;
+                k0 k0Var = (k0) this.f13671n;
+                o0Var.getClass();
+                long nanoTime = System.nanoTime();
+                try {
+                    qVar.c();
+                    k kVar = o0Var.f13808l;
+                    kVar.b("preview output finalized: size=" + qVar.f13825a.length() + ", replace=" + z10 + ", elapsedMs=" + o0.e(nanoTime));
+                    o0Var.f();
+                    if (z10) {
+                        o0Var.r(file2, o0Var.F, o0Var.G, z11, i10);
+                        file = file2;
+                        w7.k.c(qVar.f13825a);
+                    } else {
+                        file = file2;
+                        o0Var.b(k0Var, qVar.f13825a, o0Var.D, true);
                     }
+                    w7.k.c(file);
+                    o0Var.P = null;
+                    return;
+                } catch (Exception e) {
+                    o0Var.h.post(new z(o0Var, e, 0));
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public final void onPlaylistMetadataChanged(n0 n0Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onPositionDiscontinuity(int i10) {
-        int i11 = this.f13667a;
-    }
-
-    @Override
-    public final void onRenderedFirstFrame() {
-        switch (this.f13667a) {
-            case 0:
-                h0 h0Var = (h0) this.f13668b;
-                if (h0Var.Q == 5) {
-                    a60.m((a60) h0Var.f13707c.f13859a);
-                    return;
-                }
+            case 1:
+                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$95(this.f13668b, (TLRPC.Message) this.f13670f, (ArrayList) this.h, this.f13669c, (ArrayList) this.f13671n, this.d);
                 return;
             default:
+                int i11 = this.d;
+                boolean z12 = this.f13668b;
+                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.h;
+                boolean z13 = this.f13669c;
+                TLObject tLObject = (TLObject) this.f13671n;
+                ((ci.d) this.e).setLoading(false);
+                f3 f3Var = ((f3[]) this.f13670f)[0];
+                if (f3Var != null) {
+                    f3Var.dismiss();
+                }
+                u5.y(i11, false).S();
+                n2 U = LaunchActivity.U();
+                if (U != null) {
+                    if (z12 && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBizToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else if (z13 && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBotToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(starsSubscription.until_date));
+                    }
+                    xc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(formatString), null).k(false);
+                    return;
+                }
                 return;
         }
     }
 
-    @Override
-    public final void onRepeatModeChanged(int i10) {
-        int i11 = this.f13667a;
-    }
-
-    @Override
-    public final void onShuffleModeEnabledChanged(boolean z10) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onSkipSilenceEnabledChanged(boolean z10) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onSurfaceSizeChanged(int i10, int i11) {
-        int i12 = this.f13667a;
-    }
-
-    @Override
-    public final void onTimelineChanged(k1 k1Var, int i10) {
-        int i11 = this.f13667a;
-    }
-
-    @Override
-    public final void onTrackSelectionParametersChanged(q1 q1Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onTracksChanged(s1 s1Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onVideoSizeChanged(x1 x1Var) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onVolumeChanged(float f7) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onCues(List list) {
-        int i10 = this.f13667a;
-    }
-
-    @Override
-    public final void onPositionDiscontinuity(a1 a1Var, a1 a1Var2, int i10) {
-        int i11 = this.f13667a;
-    }
-
-    private final void A(v0 v0Var) {
-    }
-
-    private final void B(int i10) {
-    }
-
-    private final void C(int i10) {
-    }
-
-    private final void D(int i10) {
-    }
-
-    private final void E(u0 u0Var) {
-    }
-
-    private final void F(u0 u0Var) {
-    }
-
-    private final void G(u0 u0Var) {
-    }
-
-    private final void I(n0 n0Var) {
-    }
-
-    private final void J(n0 n0Var) {
-    }
-
-    private final void K(int i10) {
-    }
-
-    private final void M(int i10) {
-    }
-
-    private final void P(int i10) {
-    }
-
-    private final void Q(int i10) {
-    }
-
-    private final void R(boolean z10) {
-    }
-
-    private final void S(boolean z10) {
-    }
-
-    private final void T(boolean z10) {
-    }
-
-    private final void U(boolean z10) {
-    }
-
-    private final void Z(q1 q1Var) {
-    }
-
-    private final void a(b2.e eVar) {
-    }
-
-    private final void a0(q1 q1Var) {
-    }
-
-    private final void b(b2.e eVar) {
-    }
-
-    private final void b0(s1 s1Var) {
-    }
-
-    private final void c(int i10) {
-    }
-
-    private final void c0(s1 s1Var) {
-    }
-
-    private final void d(int i10) {
-    }
-
-    private final void d0(x1 x1Var) {
-    }
-
-    private final void e(x0 x0Var) {
-    }
-
-    private final void e0(x1 x1Var) {
-    }
-
-    private final void f(x0 x0Var) {
-    }
-
-    private final void f0(float f7) {
-    }
-
-    private final void g(d2.d dVar) {
-    }
-
-    private final void g0(float f7) {
-    }
-
-    private final void h(List list) {
-    }
-
-    private final void i(d2.d dVar) {
-    }
-
-    private final void j(List list) {
-    }
-
-    private final void m(boolean z10) {
-    }
-
-    private final void n(boolean z10) {
-    }
-
-    private final void o(boolean z10) {
-    }
-
-    private final void p(boolean z10) {
-    }
-
-    private final void q(boolean z10) {
-    }
-
-    private final void t(n0 n0Var) {
-    }
-
-    private final void u(n0 n0Var) {
-    }
-
-    private final void v(p0 p0Var) {
-    }
-
-    private final void w(p0 p0Var) {
-    }
-
-    private final void z(v0 v0Var) {
-    }
-
-    private final void O() {
-    }
-
-    private final void H(int i10, boolean z10) {
-    }
-
-    private final void V(int i10, int i11) {
-    }
-
-    private final void W(int i10, int i11) {
-    }
-
-    private final void X(k1 k1Var, int i10) {
-    }
-
-    private final void Y(k1 k1Var, int i10) {
-    }
-
-    private final void k(b1 b1Var, y0 y0Var) {
-    }
-
-    private final void l(b1 b1Var, y0 y0Var) {
-    }
-
-    private final void r(k0 k0Var, int i10) {
-    }
-
-    private final void s(k0 k0Var, int i10) {
-    }
-
-    private final void x(int i10, boolean z10) {
-    }
-
-    private final void y(int i10, boolean z10) {
-    }
-
-    private final void L(a1 a1Var, a1 a1Var2, int i10) {
-    }
-
-    private final void N(a1 a1Var, a1 a1Var2, int i10) {
+    public d0(o0 o0Var, q qVar, boolean z10, File file, boolean z11, int i10, k0 k0Var) {
+        this.e = o0Var;
+        this.f13670f = qVar;
+        this.f13668b = z10;
+        this.h = file;
+        this.f13669c = z11;
+        this.d = i10;
+        this.f13671n = k0Var;
+    }
+
+    public d0(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
+        this.e = sendMessagesHelper;
+        this.f13668b = z10;
+        this.f13670f = message;
+        this.h = arrayList;
+        this.f13669c = z11;
+        this.f13671n = arrayList2;
+        this.d = i10;
     }
 }

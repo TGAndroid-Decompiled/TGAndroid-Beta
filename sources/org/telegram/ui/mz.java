@@ -7,12 +7,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class mz extends org.telegram.ui.ActionBar.n2 {
-    public long f35776a;
-    public TLRPC.Chat f35777b;
-    public boolean f35778c;
+    public long f35851a;
+    public TLRPC.Chat f35852b;
+    public boolean f35853c;
     public boolean d;
     public jz e;
-    public ai.m0 f35779f;
+    public ai.m0 f35854f;
 
     public final void U() {
         if (this.d && getParentLayout() != null) {
@@ -34,10 +34,10 @@ public final class mz extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setActionBarMenuOnItemClick(new ro(this, 21));
         this.actionBar.setTitle(LocaleController.getString(R.string.TopicsTitle));
         FrameLayout frameLayout = new FrameLayout(context);
-        ?? t61Var = new org.telegram.ui.Components.t61(this, new b5(this, 13), new fu(this, 7), null);
-        this.e = t61Var;
-        t61Var.q1();
-        this.e.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19006a7, this.resourceProvider));
+        ?? s61Var = new org.telegram.ui.Components.s61(this, new b5(this, 13), new fu(this, 7), null);
+        this.e = s61Var;
+        s61Var.q1();
+        this.e.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19038a7, this.resourceProvider));
         frameLayout.addView(this.e, w7.y5.e(-1, -1, 119));
         this.actionBar.setAdaptiveBackground(this.e);
         this.fragmentView = frameLayout;
@@ -46,7 +46,7 @@ public final class mz extends org.telegram.ui.ActionBar.n2 {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f35777b = getMessagesController().getChat(Long.valueOf(-this.f35776a));
+        this.f35852b = getMessagesController().getChat(Long.valueOf(-this.f35851a));
         return super.onFragmentCreate();
     }
 }

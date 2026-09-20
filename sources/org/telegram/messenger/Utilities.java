@@ -97,14 +97,14 @@ public class Utilities {
     static {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
-        long a2 = v7.q6.a(nextLong);
-        random2.f7506a = a2;
-        long a10 = v7.q6.a(a2);
-        random2.f7507b = a10;
-        if (random2.f7506a == 0 && a10 == 0) {
-            long a11 = v7.q6.a(3735928559L);
-            random2.f7506a = a11;
-            random2.f7507b = v7.q6.a(a11);
+        long a2 = v7.r6.a(nextLong);
+        random2.f7507a = a2;
+        long a10 = v7.r6.a(a2);
+        random2.f7508b = a10;
+        if (random2.f7507a == 0 && a10 == 0) {
+            long a11 = v7.r6.a(3735928559L);
+            random2.f7507a = a11;
+            random2.f7508b = v7.r6.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue("stageQueue");

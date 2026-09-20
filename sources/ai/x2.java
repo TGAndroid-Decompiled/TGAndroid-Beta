@@ -22,9 +22,9 @@ public final class x2 extends View {
     public final RectF f1687b;
     public final Path f1688c;
     public final yh.i8 d;
-    public final org.telegram.ui.Components.e6 e;
-    public final org.telegram.ui.Components.e6 f1689f;
-    public final org.telegram.ui.Components.o6 h;
+    public final org.telegram.ui.Components.d6 e;
+    public final org.telegram.ui.Components.d6 f1689f;
+    public final org.telegram.ui.Components.n6 h;
     public final Paint f1690n;
     public final Paint f1691r;
     public final Drawable f1692s;
@@ -38,8 +38,8 @@ public final class x2 extends View {
         this.f1687b = new RectF();
         this.f1688c = new Path();
         qr qrVar = qr.h;
-        this.e = new org.telegram.ui.Components.e6(this, 320L, qrVar);
-        this.f1689f = new org.telegram.ui.Components.e6(this, 320L, qrVar);
+        this.e = new org.telegram.ui.Components.d6(this, 320L, qrVar);
+        this.f1689f = new org.telegram.ui.Components.d6(this, 320L, qrVar);
         Paint paint = new Paint(1);
         this.f1690n = paint;
         Paint paint2 = new Paint(1);
@@ -47,18 +47,18 @@ public final class x2 extends View {
         this.F = new int[2];
         this.G = 1.0f;
         this.f1686a = w2Var;
-        w7.a6.a(this);
+        w7.b6.a(this);
         this.f1692s = context.getResources().getDrawable(R.drawable.star).mutate();
         ah.m mVar = new ah.m();
         this.v = mVar;
         mVar.a(bVar);
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
-        this.h = o6Var;
-        o6Var.r(-9866632);
-        o6Var.t(AndroidUtilities.dp(9.0f));
-        o6Var.setCallback(this);
-        o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
-        o6Var.D = true;
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true, false);
+        this.h = n6Var;
+        n6Var.r(-9866632);
+        n6Var.t(AndroidUtilities.dp(9.0f));
+        n6Var.setCallback(this);
+        n6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
+        n6Var.D = true;
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         new oq(R.drawable.star, 0).setScale(1.8f, 1.8f);
@@ -105,9 +105,9 @@ public final class x2 extends View {
         invalidate();
         canvas.restore();
         if (e7 > 0.0f) {
-            org.telegram.ui.Components.o6 o6Var = this.h;
-            float max = Math.max(AndroidUtilities.dp(12.0f), o6Var.d() + AndroidUtilities.dp(6.0f));
-            float g10 = o6Var.g() * this.G * e7;
+            org.telegram.ui.Components.n6 n6Var = this.h;
+            float max = Math.max(AndroidUtilities.dp(12.0f), n6Var.d() + AndroidUtilities.dp(6.0f));
+            float g10 = n6Var.g() * this.G * e7;
             canvas.save();
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
@@ -116,9 +116,9 @@ public final class x2 extends View {
             canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.f1691r);
             rectF2.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
             canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint);
-            canvas.translate(((max - o6Var.d()) / 2.0f) + rectF2.left, AndroidUtilities.dp(6.33f));
-            o6Var.r(i0.a.d(e, -9866632, -1));
-            o6Var.draw(canvas);
+            canvas.translate(((max - n6Var.d()) / 2.0f) + rectF2.left, AndroidUtilities.dp(6.33f));
+            n6Var.r(i0.a.d(e, -9866632, -1));
+            n6Var.draw(canvas);
             canvas.restore();
         }
     }
@@ -131,11 +131,11 @@ public final class x2 extends View {
 
     public void setCount(int i10) {
         this.f1693w = i10;
-        org.telegram.ui.Components.o6 o6Var = this.h;
+        org.telegram.ui.Components.n6 n6Var = this.h;
         if (i10 > 50000) {
-            o6Var.q(AndroidUtilities.formatWholeNumber(i10, 0), true, true);
+            n6Var.q(AndroidUtilities.formatWholeNumber(i10, 0), true, true);
         } else {
-            o6Var.q(LocaleController.formatNumber(i10, ','), true, true);
+            n6Var.q(LocaleController.formatNumber(i10, ','), true, true);
         }
         invalidate();
         requestLayout();

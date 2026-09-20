@@ -1,260 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import java.lang.ref.WeakReference;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-public final class jw0 extends gj0 {
-    public int f25466b1;
-    public int f25467c1;
-    public int f25468d1;
-    public Bitmap f25469e1;
-    public final RLottieNative[] f25470f1;
-    public final int[] f25471g1;
-    public final int[] f25472h1;
-    public final RLottieNative[] f25473i1;
-    public final int[] f25474j1;
-    public final int[] f25475k1;
-    public boolean l1;
+public class jw0 extends s4.d0 {
+    public final qr f25544r;
+    public int f25545s;
+    public float f25546t;
 
-    public jw0(String str, int i10, int i11) {
-        super(str, i10, i11);
-        this.f25470f1 = new RLottieNative[5];
-        this.f25471g1 = new int[5];
-        this.f25472h1 = new int[5];
-        this.f25473i1 = new RLottieNative[3];
-        this.f25474j1 = new int[3];
-        this.f25475k1 = new int[3];
-    }
-
-    public static int X(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        if (i10 == 1) {
-            return 2;
-        }
-        if (i10 != 2) {
-            return 4;
-        }
-        return 3;
+    public jw0(Context context) {
+        super(context);
+        this.f25544r = qr.f27642f;
+        this.f25546t = 1.0f;
     }
 
     @Override
-    public final int B(Bitmap bitmap, boolean z10) {
-        Runnable runnable;
-        boolean z11;
-        if (this.f25469e1 == null) {
-            try {
-                this.f25469e1 = Bitmap.createBitmap(this.f24973b, this.f24975c, Bitmap.Config.ARGB_8888);
-            } catch (Throwable th2) {
-                FileLog.e(th2);
-                return 2;
-            }
+    public final void g(View view, s4.x0 x0Var) {
+        int j3 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
+        if (m10 > 0) {
+            x0Var.b(-j3, -k10, m10, this.f25544r);
         }
-        int i10 = -1;
-        if (this.J == 1) {
-            int i11 = 0;
-            while (true) {
-                RLottieNative[] rLottieNativeArr = this.f25470f1;
-                if (i11 >= rLottieNativeArr.length) {
-                    break;
-                }
-                RLottieNative rLottieNative = rLottieNativeArr[i11];
-                int i12 = this.f25472h1[i11];
-                Bitmap bitmap2 = this.f25469e1;
-                if (i11 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                i10 = rLottieNative.c(i12, bitmap2, z11);
-                if (i11 != 0) {
-                    int[] iArr = this.f25472h1;
-                    int i13 = iArr[i11] + 1;
-                    if (i13 < this.f25471g1[i11]) {
-                        iArr[i11] = i13;
-                    } else if (i11 != 4) {
-                        iArr[i11] = 0;
-                        this.N = false;
-                        if (this.U0 != null) {
-                            this.J = 2;
-                        }
-                    }
-                }
-                i11++;
-            }
-        } else {
-            if (this.X0) {
-                int i14 = 0;
-                while (true) {
-                    int[] iArr2 = this.f25475k1;
-                    if (i14 >= iArr2.length) {
-                        break;
-                    }
-                    iArr2[i14] = this.f25474j1[i14] - 1;
-                    i14++;
-                }
-            }
-            if (this.l1) {
-                int[] iArr3 = this.f25472h1;
-                int i15 = iArr3[0] + 1;
-                if (i15 < this.f25471g1[0]) {
-                    iArr3[0] = i15;
-                } else {
-                    iArr3[0] = -1;
-                }
-            }
-            this.f25470f1[0].c(Math.max(this.f25472h1[0], 0), this.f25469e1, true);
-            int i16 = 0;
-            while (true) {
-                RLottieNative[] rLottieNativeArr2 = this.f25473i1;
-                if (i16 >= rLottieNativeArr2.length) {
-                    break;
-                }
-                RLottieNative rLottieNative2 = rLottieNativeArr2[i16];
-                int i17 = this.f25475k1[i16];
-                if (i17 < 0) {
-                    i17 = this.f25474j1[i16] - 1;
-                }
-                rLottieNative2.c(i17, this.f25469e1, false);
-                if (!this.N) {
-                    int[] iArr4 = this.f25475k1;
-                    int i18 = iArr4[i16] + 1;
-                    if (i18 < this.f25474j1[i16]) {
-                        iArr4[i16] = i18;
-                    } else {
-                        iArr4[i16] = -1;
-                    }
-                }
-                i16++;
-            }
-            int c10 = this.f25470f1[4].c(this.f25472h1[4], this.f25469e1, false);
-            int[] iArr5 = this.f25472h1;
-            int i19 = iArr5[4] + 1;
-            if (i19 < this.f25471g1[4]) {
-                iArr5[4] = i19;
-            }
-            int[] iArr6 = this.f25475k1;
-            if (iArr6[0] == -1 && iArr6[1] == -1 && iArr6[2] == -1) {
-                this.N = true;
-                this.M++;
-            }
-            int i20 = this.f25466b1;
-            int i21 = this.f25468d1;
-            if (i20 == i21 && i21 == this.f25467c1) {
-                if (this.f25475k1[0] == this.f25474j1[0] - 100) {
-                    this.l1 = true;
-                    if (i20 == 5) {
-                        WeakReference weakReference = this.H;
-                        if (weakReference == null) {
-                            runnable = null;
-                        } else {
-                            runnable = (Runnable) weakReference.get();
-                        }
-                        if (runnable != null) {
-                            AndroidUtilities.runOnUIThread(runnable);
-                        }
-                    }
-                }
-            } else {
-                this.f25472h1[0] = -1;
-            }
-            i10 = c10;
-        }
-        if (i10 < 0) {
-            return 2;
-        }
-        Utilities.copyBitmaps(this.f25469e1, bitmap);
-        return 1;
+        AndroidUtilities.runOnUIThread(new wq0(this, 8), Math.max(0, m10));
     }
 
     @Override
-    public final void C(boolean z10) {
-        this.f24985k0 = false;
-        this.f24986l0 = true;
-        n();
-        l();
-        if (!this.Y0 && !this.V0) {
-            if (this.P == null) {
-                W(true);
-                E();
-                return;
-            }
-            this.V = true;
+    public final int k(int i10, View view) {
+        return super.k(i10, view) - this.f25545s;
+    }
+
+    @Override
+    public final int m(int i10) {
+        return Math.round(Math.min(super.m(i10), 500) * this.f25546t);
+    }
+
+    @Override
+    public final int n(int i10) {
+        return Math.round(Math.min(super.n(i10), 150) * this.f25546t);
+    }
+
+    @Override
+    public final void q(s4.x0 x0Var) {
+        PointF a2 = a(this.f43124a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            s4.y0.b(a2);
+            this.f42997k = a2;
+            this.f43001o = (int) (a2.x * 10000.0f);
+            this.f43002p = (int) (a2.y * 10000.0f);
+            x0Var.b((int) (this.f43001o * 1.2f), (int) (this.f43002p * 1.2f), (int) (n(10000) * 1.2f), this.f25544r);
             return;
         }
-        this.W0 = true;
-    }
-
-    public final void W(boolean z10) {
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            RLottieNative[] rLottieNativeArr = this.f25470f1;
-            if (i11 >= rLottieNativeArr.length) {
-                break;
-            }
-            RLottieNative rLottieNative = rLottieNativeArr[i11];
-            if (rLottieNative != null) {
-                if (z10 && rLottieNative == this.m0) {
-                    this.m0 = null;
-                }
-                this.f25470f1[i11].d();
-                this.f25470f1[i11] = null;
-            }
-            i11++;
-        }
-        while (true) {
-            RLottieNative[] rLottieNativeArr2 = this.f25473i1;
-            if (i10 < rLottieNativeArr2.length) {
-                RLottieNative rLottieNative2 = rLottieNativeArr2[i10];
-                if (rLottieNative2 != null) {
-                    if (z10 && rLottieNative2 == this.U0) {
-                        this.U0 = null;
-                    }
-                    this.f25473i1[i10].d();
-                    this.f25473i1[i10] = null;
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final int j() {
-        if (this.f24986l0) {
-            return 3;
-        }
-        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void p() {
-        if (this.V) {
-            n();
-            if (this.P == null) {
-                W(false);
-            }
-        }
-        if (this.m0 == null && this.U0 == null) {
-            E();
-            return;
-        }
-        this.T = true;
-        if (!v()) {
-            stop();
-        }
-        I();
-    }
-
-    @Override
-    public final void i() {
+        x0Var.d = this.f43124a;
+        h();
     }
 }

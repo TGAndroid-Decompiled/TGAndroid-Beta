@@ -1,13 +1,13 @@
 package ii;
 
-import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
+import org.telegram.ui.Cells.r9;
 public interface k0 {
-    q9 C();
+    r9 B();
 
     void E(CharSequence charSequence);
 
-    p9 I();
+    q9 I();
 
     a M();
 

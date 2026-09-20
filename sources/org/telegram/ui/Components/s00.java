@@ -13,25 +13,25 @@ public final class s00 extends View {
     public RectF F;
     public float G;
     public ValueAnimator H;
-    public boolean f28012a;
-    public boolean f28013b;
-    public boolean f28014c;
+    public boolean f27990a;
+    public boolean f27991b;
+    public boolean f27992c;
     public String d;
     public TextPaint e;
-    public Paint f28015f;
+    public Paint f27993f;
     public Paint h;
-    public Paint f28016n;
-    public int f28017r;
-    public int f28018s;
+    public Paint f27994n;
+    public int f27995r;
+    public int f27996s;
     public int v;
-    public int f28019w;
-    public int f28020x;
-    public int f28021y;
+    public int f27997w;
+    public int f27998x;
+    public int f27999y;
 
     public final void a(boolean z10, boolean z11) {
-        this.f28013b = z10;
+        this.f27991b = z10;
         float f7 = 0.0f;
-        if (this.f28012a && z11) {
+        if (this.f27990a && z11) {
             ValueAnimator valueAnimator = this.H;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -43,7 +43,7 @@ public final class s00 extends View {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
             this.H = ofFloat;
-            ofFloat.addUpdateListener(new k6(this, 24));
+            ofFloat.addUpdateListener(new j6(this, 24));
             this.H.setDuration(300L);
             this.H.start();
             return;
@@ -58,30 +58,30 @@ public final class s00 extends View {
     public final void draw(Canvas canvas) {
         float f7;
         Canvas canvas2;
-        int i10 = this.f28019w;
+        int i10 = this.f27997w;
         RectF rectF = this.F;
         Paint paint = this.h;
-        Paint paint2 = this.f28016n;
-        Paint paint3 = this.f28015f;
+        Paint paint2 = this.f27994n;
+        Paint paint3 = this.f27993f;
         TextPaint textPaint = this.e;
         super.draw(canvas);
         float f10 = this.G;
         if (f10 <= 0.5f) {
             f7 = f10 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f28017r) + ((int) ((Color.red(this.f28018s) - Color.red(this.f28017r)) * f7)), Color.green(this.f28017r) + ((int) ((Color.green(this.f28018s) - Color.green(this.f28017r)) * f7)), Color.blue(this.f28017r) + ((int) ((Color.blue(this.f28018s) - Color.blue(this.f28017r)) * f7))));
-            textPaint.setColor(Color.rgb(Color.red(this.f28018s) + ((int) ((Color.red(this.v) - Color.red(this.f28018s)) * f7)), Color.green(this.f28018s) + ((int) ((Color.green(this.v) - Color.green(this.f28018s)) * f7)), Color.blue(this.f28018s) + ((int) ((Color.blue(this.v) - Color.blue(this.f28018s)) * f7))));
+            paint3.setColor(Color.rgb(Color.red(this.f27995r) + ((int) ((Color.red(this.f27996s) - Color.red(this.f27995r)) * f7)), Color.green(this.f27995r) + ((int) ((Color.green(this.f27996s) - Color.green(this.f27995r)) * f7)), Color.blue(this.f27995r) + ((int) ((Color.blue(this.f27996s) - Color.blue(this.f27995r)) * f7))));
+            textPaint.setColor(Color.rgb(Color.red(this.f27996s) + ((int) ((Color.red(this.v) - Color.red(this.f27996s)) * f7)), Color.green(this.f27996s) + ((int) ((Color.green(this.v) - Color.green(this.f27996s)) * f7)), Color.blue(this.f27996s) + ((int) ((Color.blue(this.v) - Color.blue(this.f27996s)) * f7))));
         } else {
             textPaint.setColor(this.v);
-            paint3.setColor(this.f28018s);
+            paint3.setColor(this.f27996s);
             f7 = 1.0f;
         }
         int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f28018s);
+        paint.setColor(this.f27996s);
         canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint3);
         canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint);
         String str = this.d;
         if (str != null) {
-            canvas.drawText(str, (f7 * this.f28021y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
+            canvas.drawText(str, (f7 * this.f27999y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
         }
         float f11 = 2.0f - (this.G / 0.5f);
         canvas.save();
@@ -102,13 +102,13 @@ public final class s00 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f28012a = true;
+        this.f27990a = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f28012a = false;
+        this.f27990a = false;
     }
 
     @Override
@@ -123,7 +123,7 @@ public final class s00 extends View {
         } else {
             measureText = (int) this.e.measureText(str);
         }
-        setMeasuredDimension((i12 * 2) + measureText + (this.f28020x << 1), AndroidUtilities.dp(4.0f) + this.f28019w);
+        setMeasuredDimension((i12 * 2) + measureText + (this.f27998x << 1), AndroidUtilities.dp(4.0f) + this.f27997w);
         if (getMeasuredWidth() != 0) {
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             rectF.inset((paint.getStrokeWidth() / 2.0f) + i12, (paint.getStrokeWidth() / 2.0f) + i12);

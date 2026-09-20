@@ -1,22 +1,152 @@
 package org.telegram.ui.Cells;
 
-import android.os.Build;
-import android.view.ActionMode;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.text.Spanned;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.ui.Components.vl0;
 public final class l9 implements Runnable {
-    public final da f20580a;
+    public final ea f20630a;
 
-    public l9(da daVar) {
-        this.f20580a = daVar;
+    public l9(ea eaVar) {
+        this.f20630a = eaVar;
     }
 
     @Override
     public final void run() {
-        da daVar;
-        ActionMode actionMode;
-        if (Build.VERSION.SDK_INT >= 23 && (actionMode = (daVar = this.f20580a).Y) != null && !daVar.P) {
-            actionMode.hide(Long.MAX_VALUE);
-            AndroidUtilities.runOnUIThread(daVar.f20152s0, 1000L);
+        ea eaVar = this.f20630a;
+        g gVar = eaVar.f20234r0;
+        Rect rect = eaVar.B;
+        u9 u9Var = eaVar.f20204a0;
+        z9 z9Var = eaVar.X;
+        if (z9Var != null && eaVar.C != null) {
+            z9 z9Var2 = eaVar.W;
+            CharSequence t10 = eaVar.t(z9Var, true);
+            vl0 vl0Var = eaVar.E;
+            if (vl0Var != null) {
+                vl0Var.J0(false);
+            }
+            int i10 = eaVar.f20235s;
+            int i11 = eaVar.f20237t;
+            if (!rect.isEmpty()) {
+                int i12 = rect.right;
+                if (i10 > i12) {
+                    i10 = i12 - 1;
+                }
+                int i13 = rect.left;
+                if (i10 < i13) {
+                    i10 = i13 + 1;
+                }
+                int i14 = rect.top;
+                if (i11 < i14) {
+                    i11 = i14 + 1;
+                }
+                int i15 = rect.bottom;
+                if (i11 > i15) {
+                    i11 = i15 - 1;
+                }
+            }
+            int i16 = i10;
+            int l4 = eaVar.l(i16, i11, eaVar.f20207c, eaVar.d, z9Var, true);
+            if (l4 >= t10.length()) {
+                eaVar.j(l4, u9Var, true);
+                Layout layout = u9Var.f21656b;
+                if (layout == null) {
+                    eaVar.v = -1;
+                    eaVar.f20239u = -1;
+                    return;
+                }
+                int lineCount = layout.getLineCount() - 1;
+                float f7 = i16 - eaVar.f20207c;
+                if (f7 < u9Var.f21656b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > u9Var.f21656b.getLineLeft(lineCount)) {
+                    l4 = t10.length() - 1;
+                }
+            }
+            if (l4 >= 0 && l4 < t10.length() && t10.charAt(l4) != '\n') {
+                int i17 = eaVar.f20207c;
+                int i18 = eaVar.d;
+                eaVar.f(false);
+                eaVar.C.setVisibility(0);
+                eaVar.M(z9Var, z9Var2);
+                eaVar.f20239u = l4;
+                eaVar.v = l4;
+                if (t10 instanceof Spanned) {
+                    Spanned spanned = (Spanned) t10;
+                    Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spanned.getSpans(0, t10.length(), Emoji.EmojiSpan.class);
+                    int length = emojiSpanArr.length;
+                    int i19 = 0;
+                    while (true) {
+                        if (i19 < length) {
+                            Emoji.EmojiSpan emojiSpan = emojiSpanArr[i19];
+                            int spanStart = spanned.getSpanStart(emojiSpan);
+                            int spanEnd = spanned.getSpanEnd(emojiSpan);
+                            if (l4 >= spanStart && l4 <= spanEnd) {
+                                eaVar.f20239u = spanStart;
+                                eaVar.v = spanEnd;
+                                break;
+                            }
+                            i19++;
+                        } else {
+                            org.telegram.ui.Components.y5[] y5VarArr = (org.telegram.ui.Components.y5[]) spanned.getSpans(0, t10.length(), org.telegram.ui.Components.y5.class);
+                            int length2 = y5VarArr.length;
+                            int i20 = 0;
+                            while (true) {
+                                if (i20 >= length2) {
+                                    break;
+                                }
+                                org.telegram.ui.Components.y5 y5Var = y5VarArr[i20];
+                                int spanStart2 = spanned.getSpanStart(y5Var);
+                                int spanEnd2 = spanned.getSpanEnd(y5Var);
+                                if (l4 >= spanStart2 && l4 <= spanEnd2) {
+                                    eaVar.f20239u = spanStart2;
+                                    eaVar.v = spanEnd2;
+                                    break;
+                                }
+                                i20++;
+                            }
+                        }
+                    }
+                }
+                if (eaVar.f20239u == eaVar.v) {
+                    while (true) {
+                        int i21 = eaVar.f20239u;
+                        if (i21 <= 0 || !ea.z(t10.charAt(i21 - 1))) {
+                            break;
+                        }
+                        eaVar.f20239u--;
+                    }
+                    while (eaVar.v < t10.length() && ea.z(t10.charAt(eaVar.v))) {
+                        eaVar.v++;
+                    }
+                }
+                eaVar.f20203a = i17;
+                eaVar.f20205b = i18;
+                eaVar.W = z9Var;
+                try {
+                    eaVar.C.performHapticFeedback(0, 1);
+                } catch (Exception unused) {
+                }
+                AndroidUtilities.cancelRunOnUIThread(gVar);
+                AndroidUtilities.runOnUIThread(gVar);
+                eaVar.V();
+                eaVar.x();
+                if (z9Var2 != null) {
+                    z9Var2.invalidate();
+                }
+                w7.i0 i0Var = eaVar.D;
+                if (i0Var != null) {
+                    i0Var.a(true);
+                }
+                eaVar.f20216i = true;
+                eaVar.R = true;
+                eaVar.f20220k = true;
+                eaVar.f20213g = 0.0f;
+                eaVar.f20211f = 0.0f;
+                eaVar.G();
+            }
+            eaVar.f20243z = false;
+            eaVar.e = false;
         }
     }
 }

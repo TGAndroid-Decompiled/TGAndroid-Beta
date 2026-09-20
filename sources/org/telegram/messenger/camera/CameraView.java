@@ -43,6 +43,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.google.android.gms.internal.vision.e2;
+import hg.k0;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -71,11 +72,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.rk;
 import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.d6;
 import org.telegram.ui.Components.j50;
 import org.telegram.ui.Components.qr;
 import w7.y5;
@@ -202,19 +203,19 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private int blurTextureHandle;
         private int blurTextureMatrixHandle;
         private int blurVertexMatrixHandle;
-        private final e6 camera1Appear;
+        private final d6 camera1Appear;
         private boolean camera1Appeared;
         private long camera1AppearedUntil;
         private final int[] cameraId;
         private int cameraMatrixHandle;
         private final SurfaceTexture[] cameraSurface;
-        private final e6 crossfade;
+        private final d6 crossfade;
         private int crossfadeHandle;
         private boolean crossfading;
         private final CameraSessionWrapper[] currentSession;
         private int drawBlurProgram;
         private int drawProgram;
-        private final e6 dualAppear;
+        private final d6 dualAppear;
         private boolean dualAppeared;
         private int dualHandle;
         private EGL10 egl10;
@@ -238,7 +239,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private boolean recording;
         private int roundRadiusHandle;
         private int scaleHandle;
-        private final e6 shape;
+        private final d6 shape;
         private int shapeFromHandle;
         private int shapeHandle;
         private float shapeTo;
@@ -274,10 +275,10 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.verticesData = new float[]{-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f};
             p pVar = new p(this, 2);
             qr qrVar = qr.h;
-            this.crossfade = new e6(pVar, 560L, qrVar);
-            this.camera1Appear = new e6(1.0f, new p(this, 3), 0L, 420L, qrVar);
-            this.dualAppear = new e6(new p(this, 4), 340L, qrVar);
-            this.shape = new e6(new p(this, 5), 340L, qrVar);
+            this.crossfade = new d6(pVar, 560L, qrVar);
+            this.camera1Appear = new d6(1.0f, new p(this, 3), 0L, 420L, qrVar);
+            this.dualAppear = new d6(new p(this, 4), 340L, qrVar);
+            this.shape = new d6(new p(this, 5), 340L, qrVar);
             this.shapeTo = MessagesController.getGlobalMainSettings().getInt("dualshape", 0);
             this.array = new int[1];
             this.updateTex1 = new Object();
@@ -355,7 +356,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             return true;
                         }
                         if (BuildVars.LOGS_ENABLED) {
-                            wh.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                            rk.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                         }
                         finishBlur();
                         EGL10 egl10 = this.egl10;
@@ -365,7 +366,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         return false;
                     }
                     if (BuildVars.LOGS_ENABLED) {
-                        wh.t(this.egl10, new StringBuilder("createWindowSurface failed "));
+                        rk.u(this.egl10, new StringBuilder("createWindowSurface failed "));
                     }
                     finishBlur();
                     return false;
@@ -375,7 +376,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
             this.eglBlurContext = null;
             if (BuildVars.LOGS_ENABLED) {
-                wh.t(this.egl10, new StringBuilder("eglCreateContext (blur) failed "));
+                rk.u(this.egl10, new StringBuilder("eglCreateContext (blur) failed "));
             }
             return false;
         }
@@ -390,14 +391,14 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.eglDisplay = eglGetDisplay;
             if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 if (BuildVars.LOGS_ENABLED) {
-                    wh.t(this.egl10, new StringBuilder("eglGetDisplay failed "));
+                    rk.u(this.egl10, new StringBuilder("eglGetDisplay failed "));
                 }
                 this.eglDisplay = null;
                 finish();
                 return false;
             } else if (!this.egl10.eglInitialize(eglGetDisplay, new int[2])) {
                 if (BuildVars.LOGS_ENABLED) {
-                    wh.t(this.egl10, new StringBuilder("eglInitialize failed "));
+                    rk.u(this.egl10, new StringBuilder("eglInitialize failed "));
                 }
                 finish();
                 return false;
@@ -406,7 +407,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 EGLConfig[] eGLConfigArr = new EGLConfig[1];
                 if (!this.egl10.eglChooseConfig(this.eglDisplay, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 0, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
                     if (BuildVars.LOGS_ENABLED) {
-                        wh.t(this.egl10, new StringBuilder("eglChooseConfig failed "));
+                        rk.u(this.egl10, new StringBuilder("eglChooseConfig failed "));
                     }
                     finish();
                     return false;
@@ -426,7 +427,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
                                 if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
                                     if (BuildVars.LOGS_ENABLED) {
-                                        wh.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                                        rk.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                                     }
                                     finish();
                                     return false;
@@ -529,7 +530,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                 return false;
                             }
                             if (BuildVars.LOGS_ENABLED) {
-                                wh.t(this.egl10, new StringBuilder("createWindowSurface failed "));
+                                rk.u(this.egl10, new StringBuilder("createWindowSurface failed "));
                             }
                             finish();
                             return false;
@@ -539,7 +540,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     }
                     this.eglContext = null;
                     if (BuildVars.LOGS_ENABLED) {
-                        wh.t(this.egl10, new StringBuilder("eglCreateContext failed "));
+                        rk.u(this.egl10, new StringBuilder("eglCreateContext failed "));
                     }
                     finish();
                     return false;
@@ -603,7 +604,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     EGLSurface eGLSurface = this.eglSurface;
                     if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
                         if (BuildVars.LOGS_ENABLED) {
-                            wh.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                            rk.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                             return;
                         }
                         return;
@@ -682,13 +683,13 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                     }
                                     CameraView.this.shapeValue = this.shape.d(this.shapeTo, false);
                                     float f13 = CameraView.this.lastCrossfadeValue = this.crossfade.d(0.0f, false);
-                                    e6 e6Var = this.dualAppear;
+                                    d6 d6Var = this.dualAppear;
                                     if (this.dualAppeared) {
                                         f7 = 1.0f;
                                     } else {
                                         f7 = 0.0f;
                                     }
-                                    float d = e6Var.d(f7, false);
+                                    float d = d6Var.d(f7, false);
                                     float e = 1.0f - this.camera1Appear.e(this.camera1Appeared);
                                     if (f13 <= 0.0f) {
                                         this.crossfading = false;
@@ -830,7 +831,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                             EGLSurface eGLSurface2 = this.eglBlurSurface;
                                             if (!egl102.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, this.eglBlurContext)) {
                                                 if (BuildVars.LOGS_ENABLED) {
-                                                    wh.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                                                    rk.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                                                 }
                                             }
                                         }
@@ -1565,7 +1566,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             if (this.videoFirst == -1) {
                 this.videoFirst = j3 / 1000;
                 if (BuildVars.LOGS_ENABLED) {
-                    org.telegram.messenger.q.s(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
+                    k0.u(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
                 }
             }
             this.videoLast = j3;
@@ -1844,9 +1845,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                     float f13 = f7 + 0.5f;
                                     float f14 = f10 + 0.5f;
                                     float[] fArr = {f11, f12, f13, f12, f11, f14, f13, f14};
-                                    FloatBuffer h = wh.h(ByteBuffer.allocateDirect(32));
-                                    this.textureBuffer = h;
-                                    h.put(fArr).position(0);
+                                    FloatBuffer i12 = rk.i(ByteBuffer.allocateDirect(32));
+                                    this.textureBuffer = i12;
+                                    i12.put(fArr).position(0);
                                     int loadShader = CameraView.this.loadShader(35633, AndroidUtilities.readRes(R.raw.camera_vert));
                                     int loadShader2 = CameraView.this.loadShader(35632, AndroidUtilities.readRes(R.raw.camera_frag));
                                     if (loadShader != 0 && loadShader2 != 0) {
@@ -2986,7 +2987,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         });
         this.flipAnimator.setDuration(500L);
-        this.flipAnimator.setInterpolator(qr.f27715f);
+        this.flipAnimator.setInterpolator(qr.f27642f);
         this.flipAnimator.start();
         invalidate();
     }

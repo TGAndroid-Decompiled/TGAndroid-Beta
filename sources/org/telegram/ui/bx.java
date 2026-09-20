@@ -9,34 +9,34 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class bx extends gg.m {
-    public final ty f32464d0;
-    public final uy f32465e0;
+    public final ty f32552d0;
+    public final uy f32553e0;
 
     public bx(uy uyVar, uy uyVar2, Context context, int i10, int i11, boolean z10, ArrayList arrayList, int i12, TLRPC.RequestPeerType requestPeerType, ty tyVar) {
         super(uyVar2, context, i10, i11, z10, arrayList, i12, requestPeerType);
-        this.f32465e0 = uyVar;
-        this.f32464d0 = tyVar;
+        this.f32553e0 = uyVar;
+        this.f32552d0 = tyVar;
     }
 
     @Override
     public final void J() {
-        this.f32465e0.presentFragment(new l());
+        this.f32553e0.presentFragment(new l());
     }
 
     @Override
     public final void K() {
         int i10;
-        uy uyVar = this.f32465e0;
+        uy uyVar = this.f32553e0;
         org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(uyVar.getParentActivity(), 3, null);
         TLRPC.RequestPeerType requestPeerType = uyVar.G;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
-            Bundle f7 = org.telegram.ui.Cells.c1.f(0, "step");
+            Bundle g10 = org.telegram.ui.Cells.c1.g(0, "step");
             Boolean bool = uyVar.G.has_username;
             if (bool != null) {
-                f7.putBoolean("forcePublic", bool.booleanValue());
+                g10.putBoolean("forcePublic", bool.booleanValue());
             }
-            md mdVar = new md(f7);
-            mdVar.f35628t0 = new m6(uyVar, mdVar, b2Var, 2);
+            md mdVar = new md(g10);
+            mdVar.f35682t0 = new m6(uyVar, mdVar, b2Var, 2);
             uyVar.presentFragment(mdVar);
         } else if (requestPeerType instanceof TLRPC.TL_requestPeerTypeChat) {
             Bundle bundle = new Bundle();
@@ -59,13 +59,13 @@ public final class bx extends gg.m {
     @Override
     public final void L(TLRPC.User user) {
         int i10;
-        i10 = ((org.telegram.ui.ActionBar.n2) this.f32465e0).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.n2) this.f32553e0).currentAccount;
         MessagesController.getInstance(i10).openApp(user, 0);
     }
 
     @Override
     public final boolean S() {
-        if (this.f32465e0.R0 == 0) {
+        if (this.f32553e0.R0 == 0) {
             return true;
         }
         return false;
@@ -73,21 +73,21 @@ public final class bx extends gg.m {
 
     @Override
     public final void a(org.telegram.ui.Cells.s2 s2Var) {
-        ty tyVar = this.f32464d0;
-        tyVar.f37826a.getClass();
-        this.f32465e0.o4(s2Var, RecyclerView.S(s2Var), 0.0f, tyVar.d);
+        ty tyVar = this.f32552d0;
+        tyVar.f37904a.getClass();
+        this.f32553e0.o4(s2Var, RecyclerView.S(s2Var), 0.0f, tyVar.d);
     }
 
     @Override
     public final void d(org.telegram.ui.Cells.s2 s2Var) {
         int i10;
         if (s2Var.getMessage() != null) {
-            uy uyVar = this.f32465e0;
+            uy uyVar = this.f32553e0;
             i10 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
             TLRPC.TL_forumTopic findTopic = uyVar.getMessagesController().getTopicsController().findTopic(-s2Var.getDialogId(), MessageObject.getTopicId(i10, s2Var.getMessage().messageOwner, true));
             if (findTopic != null) {
-                if (uyVar.f38185l2) {
-                    uyVar.O3(s2Var.getDialogId(), findTopic.f18348id, false, null);
+                if (uyVar.f38292l2) {
+                    uyVar.O3(s2Var.getDialogId(), findTopic.f18380id, false, null);
                 } else {
                     ng.d.m(uyVar, -s2Var.getDialogId(), findTopic, 0);
                 }
@@ -105,9 +105,9 @@ public final class bx extends gg.m {
         } catch (Exception e) {
             FileLog.e(e);
         }
-        uy uyVar = this.f32465e0;
+        uy uyVar = this.f32553e0;
         if (uyVar.R0 == 15) {
-            org.telegram.ui.ActionBar.v0 v0Var = uyVar.f38175j0;
+            org.telegram.ui.ActionBar.v0 v0Var = uyVar.f38282j0;
             if (this.U) {
                 i10 = 8;
             } else {

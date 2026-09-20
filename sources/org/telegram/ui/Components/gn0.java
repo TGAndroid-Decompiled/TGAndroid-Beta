@@ -1,10 +1,29 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaController;
+import android.view.View;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.MessageObject;
-public final class gn0 extends org.telegram.ui.Cells.j7 {
+import org.telegram.messenger.UserConfig;
+public final class gn0 implements View.OnClickListener {
+    public final hn0 f24429a;
+
+    public gn0(hn0 hn0Var) {
+        this.f24429a = hn0Var;
+    }
+
     @Override
-    public final boolean d(MessageObject messageObject) {
-        return MediaController.getInstance().playMessage(messageObject);
+    public final void onClick(View view) {
+        in0 in0Var = this.f24429a.f24726c;
+        for (int i10 = 0; i10 < in0Var.e.size(); i10++) {
+            MessageObject messageObject = (MessageObject) in0Var.e.get(i10);
+            if (in0Var.H) {
+                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
+            } else {
+                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
+                DownloadController.getInstance(in0Var.d).updateFilesLoadingPriority();
+            }
+        }
+        in0Var.d(true);
     }
 }

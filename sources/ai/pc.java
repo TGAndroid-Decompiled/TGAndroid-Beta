@@ -28,7 +28,7 @@ public final class pc extends ReplacementSpan {
         float f10;
         float f11;
         float f12;
-        float y3;
+        float x10;
         TextPaint textPaint = (TextPaint) paint;
         float measureText = paint.measureText("…") / 3.0f;
         if (this.f1410r) {
@@ -69,17 +69,17 @@ public final class pc extends ReplacementSpan {
             float f18 = measureText / 2.0f;
             float f19 = (i16 * measureText) + f7 + f18;
             if (i16 == this.f1406b) {
-                f19 = AndroidUtilities.lerp(f19, t8.b.d(measureText, i16 + 1, f7, f18), this.d);
+                f19 = AndroidUtilities.lerp(f19, org.telegram.ui.Cells.c1.b(measureText, i16 + 1, f7, f18), this.d);
                 float f20 = this.d;
                 if (f20 < 0.5f) {
-                    y3 = f20 / 0.5f;
+                    x10 = f20 / 0.5f;
                 } else {
-                    y3 = org.telegram.messenger.q.y(f20, 0.5f, 0.5f, 1.0f);
+                    x10 = org.telegram.messenger.l0.x(f20, 0.5f, 0.5f, 1.0f);
                 }
-                f12 = AndroidUtilities.lerp(f16, f16 - f18, this.h.getInterpolation(y3));
+                f12 = AndroidUtilities.lerp(f16, f16 - f18, this.h.getInterpolation(x10));
             } else {
                 if (i16 == this.f1407c) {
-                    f19 = AndroidUtilities.lerp(f19, t8.b.d(measureText, i16 - 1, f7, f18), this.d);
+                    f19 = AndroidUtilities.lerp(f19, org.telegram.ui.Cells.c1.b(measureText, i16 - 1, f7, f18), this.d);
                 }
                 f12 = f16;
             }

@@ -2,5 +2,5 @@ package ce;
 
 import java.util.concurrent.atomic.AtomicReference;
 public final class p {
-    public final AtomicReference f4259a = new AtomicReference(null);
+    public final AtomicReference f4260a = new AtomicReference(null);
 }

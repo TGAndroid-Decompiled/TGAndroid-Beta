@@ -1,5 +1,4 @@
 package x7;
-
-import android.os.IInterface;
-public interface ma extends IInterface {
+public abstract class ma extends b8.b implements na {
+    public static final int f45801b = 0;
 }

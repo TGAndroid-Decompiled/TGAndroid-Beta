@@ -2,8 +2,8 @@ package xh;
 
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.o5;
-public final class e1 extends o5 {
+import org.telegram.ui.Components.n5;
+public final class e1 extends n5 {
     public final f1 M;
 
     public e1(f1 f1Var, ViewGroup viewGroup, int i10) {

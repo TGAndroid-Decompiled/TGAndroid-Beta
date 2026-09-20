@@ -3,39 +3,39 @@ package fi;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.zn;
 public final class p0 implements Runnable {
-    public final int f9161a = 0;
-    public final zn f9162b;
-    public final boolean f9163c;
+    public final int f9162a = 0;
+    public final zn f9163b;
+    public final boolean f9164c;
     public final int d;
 
     public p0(int i10, zn znVar, boolean z10) {
         this.d = i10;
-        this.f9162b = znVar;
-        this.f9163c = z10;
+        this.f9163b = znVar;
+        this.f9164c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f9161a) {
+        switch (this.f9162a) {
             case 0:
                 int i10 = this.d;
-                zn znVar = this.f9162b;
+                zn znVar = this.f9163b;
                 if (i10 != 2) {
                     znVar.U9();
                     znVar.Yb();
                 }
-                u0.f(xc.a0(znVar), i10, this.f9163c);
+                u0.f(xc.a0(znVar), i10, this.f9164c);
                 return;
             default:
-                boolean z10 = this.f9163c;
-                this.f9162b.yc(this.d, z10);
+                boolean z10 = this.f9164c;
+                this.f9163b.yc(this.d, z10);
                 return;
         }
     }
 
     public p0(zn znVar, boolean z10, int i10) {
-        this.f9162b = znVar;
-        this.f9163c = z10;
+        this.f9163b = znVar;
+        this.f9164c = z10;
         this.d = i10;
     }
 }

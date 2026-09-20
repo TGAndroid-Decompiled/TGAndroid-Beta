@@ -1,49 +1,59 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class y91 extends s4.s0 {
-    public final int f39762a;
-    public final za1 f39763b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class y91 implements bh.a {
+    public final RectF f39867a = new RectF();
+    public final x8 f39868b;
+    public final bb1 f39869c;
 
-    public y91(za1 za1Var, int i10) {
-        this.f39762a = i10;
-        this.f39763b = za1Var;
+    public y91(bb1 bb1Var, x8 x8Var) {
+        this.f39869c = bb1Var;
+        this.f39868b = x8Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.i iVar;
-        za1 za1Var;
-        ah.i iVar2;
-        za1 za1Var2;
-        ah.i iVar3;
-        switch (this.f39762a) {
-            case 0:
-                za1 za1Var3 = this.f39763b;
-                if (za1Var3.f40054r0.size() != za1Var3.f40056s0.size() && !za1Var3.f40061w0 && za1Var3.U.N0() > za1Var3.X.f33245c0 - 20) {
-                    za1Var3.h0();
+    public final void b(ah.a aVar, RectF rectF) {
+        aVar.f417a = true;
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        ah.o oVar;
+        dc dcVar;
+        dc dcVar2;
+        bb1 bb1Var = this.f39869c;
+        bb1Var.fragmentView.getMeasuredWidth();
+        bb1Var.fragmentView.getMeasuredHeight();
+        canvas.drawColor(bb1Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19094d6));
+        for (int i10 = 0; i10 < 3; i10++) {
+            if (i10 == 0) {
+                oVar = bb1Var.T;
+                dcVar = bb1Var.S;
+            } else if (i10 == 1 && (dcVar2 = bb1Var.f32326j0) != null) {
+                oVar = dcVar2.G;
+                dcVar = dcVar2;
+            } else {
+                ke keVar = bb1Var.f32327k0;
+                if (keVar != null) {
+                    oVar = keVar.f35133b1;
+                    dcVar = keVar;
+                } else {
+                    oVar = null;
+                    dcVar = null;
                 }
-                if (Build.VERSION.SDK_INT >= 31 && (iVar = za1Var3.C0) != null) {
-                    iVar.f(i10, i11);
-                    za1.W(za1Var3);
-                    return;
+            }
+            if (oVar != null && dcVar != null) {
+                x8 x8Var = this.f39868b;
+                RectF rectF2 = this.f39867a;
+                hh.k.c(dcVar, x8Var, rectF2);
+                if (rectF2.right > 0.0f) {
+                    bb1Var.fragmentView.getMeasuredWidth();
                 }
-                return;
-            case 1:
-                if (Build.VERSION.SDK_INT >= 31 && (iVar2 = (za1Var = this.f39763b).C0) != null) {
-                    iVar2.f(i10, i11);
-                    za1.W(za1Var);
-                    return;
-                }
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (iVar3 = (za1Var2 = this.f39763b).C0) != null) {
-                    iVar3.f(i10, i11);
-                    za1.W(za1Var2);
-                    return;
-                }
-                return;
+                canvas.save();
+                oVar.f(canvas, rectF);
+                canvas.restore();
+            }
         }
     }
 }

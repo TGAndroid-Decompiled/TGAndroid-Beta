@@ -177,9 +177,9 @@ public class EglBase14Impl implements EglBase14 {
             if (eglCreatePbufferSurface != EGL14.EGL_NO_SURFACE) {
                 return;
             }
-            StringBuilder k10 = k0.k("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-            k10.append(Integer.toHexString(EGL14.eglGetError()));
-            throw new RuntimeException(k10.toString());
+            StringBuilder l4 = k0.l("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            l4.append(Integer.toHexString(EGL14.eglGetError()));
+            throw new RuntimeException(l4.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }

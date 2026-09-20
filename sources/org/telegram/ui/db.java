@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class db {
-    public final vb f32922a;
+    public final vb f32993a;
 
     public db(vb vbVar) {
-        this.f32922a = vbVar;
+        this.f32993a = vbVar;
     }
 }

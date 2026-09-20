@@ -10,51 +10,51 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.c3;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.v9;
 import w7.y5;
 public final class h extends c3 {
-    public final m f9752f;
+    public final m f9753f;
 
     public h(m mVar, Context context) {
         super(context);
-        this.f9752f = mVar;
-        this.f20048a = UserConfig.selectedAccount;
+        this.f9753f = mVar;
+        this.f20083a = UserConfig.selectedAccount;
         setOrientation(1);
-        setBackgroundColor(j6.w0(null, j6.f19006a7, false));
+        setBackgroundColor(j6.w0(null, j6.f19038a7, false));
         x5 x5Var = new x5(context, 3);
-        x5Var.f5757c = new Path();
+        x5Var.f5758c = new Path();
         Paint paint = new Paint(1);
-        x5Var.f5756b = paint;
-        paint.setColor(j6.w0(null, j6.f19062d6, false));
+        x5Var.f5757b = paint;
+        paint.setColor(j6.w0(null, j6.f19094d6, false));
         paint.setShadowLayer(AndroidUtilities.dp(1.33f), 0.0f, AndroidUtilities.dp(0.33f), 503316480);
         x5Var.setWillNotDraw(false);
         x5Var.setOrientation(1);
         x5Var.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
-        w9 w9Var = new w9(context);
-        this.f20049b = w9Var;
-        w9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final gg.h f20012b;
+        v9 v9Var = new v9(context);
+        this.f20084b = v9Var;
+        v9Var.setOnClickListener(new View.OnClickListener(this) {
+            public final gg.h f20058b;
 
             {
-                this.f20012b = this;
+                this.f20058b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f20012b.f20049b.getImageReceiver().startAnimation();
+                        this.f20058b.f20084b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f20012b.f9752f.K();
+                        this.f20058b.f9753f.K();
                         return;
                 }
             }
         });
         a();
-        x5Var.addView(w9Var, y5.q(130, 130, 49));
+        x5Var.addView(v9Var, y5.q(130, 130, 49));
         TextView textView = new TextView(context);
-        this.f20050c = textView;
+        this.f20085c = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(j6.w0(null, j6.G6, false));
@@ -64,7 +64,7 @@ public final class h extends c3 {
         this.d = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(j6.w0(null, j6.f19445y6, false));
+        textView2.setTextColor(j6.w0(null, j6.f19477y6, false));
         x5Var.addView(textView2, y5.t(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
         this.e = textView3;
@@ -75,20 +75,20 @@ public final class h extends c3 {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final gg.h f20012b;
+            public final gg.h f20058b;
 
             {
-                this.f20012b = this;
+                this.f20058b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f20012b.f20049b.getImageReceiver().startAnimation();
+                        this.f20058b.f20084b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f20012b.f9752f.K();
+                        this.f20058b.f9753f.K();
                         return;
                 }
             }

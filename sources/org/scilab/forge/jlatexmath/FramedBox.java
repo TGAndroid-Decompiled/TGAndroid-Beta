@@ -6,7 +6,7 @@ import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.Stroke;
 import ru.noties.jlatexmath.awt.geom.Rectangle2D;
 public class FramedBox extends Box {
-    private Color f15756bg;
+    private Color f15788bg;
     protected Box box;
     private Color line;
     protected float space;
@@ -28,9 +28,9 @@ public class FramedBox extends Box {
         Stroke stroke = graphics2D.getStroke();
         graphics2D.setStroke(new BasicStroke(this.thickness, 0, 0));
         float f11 = this.thickness / 2.0f;
-        if (this.f15756bg != null) {
+        if (this.f15788bg != null) {
             Color color = graphics2D.getColor();
-            graphics2D.setColor(this.f15756bg);
+            graphics2D.setColor(this.f15788bg);
             float f12 = this.height;
             float f13 = this.width;
             float f14 = this.thickness;
@@ -67,6 +67,6 @@ public class FramedBox extends Box {
     public FramedBox(Box box, float f7, float f10, Color color, Color color2) {
         this(box, f7, f10);
         this.line = color;
-        this.f15756bg = color2;
+        this.f15788bg = color2;
     }
 }

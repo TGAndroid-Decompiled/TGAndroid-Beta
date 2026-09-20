@@ -9,7 +9,7 @@ import android.os.Process;
 import android.util.Log;
 import java.util.Calendar;
 public final class o extends p {
-    public final int f9272c = 1;
+    public final int f9273c = 1;
     public final s d;
     public final Object e;
 
@@ -21,7 +21,7 @@ public final class o extends p {
 
     @Override
     public final IntentFilter d() {
-        switch (this.f9272c) {
+        switch (this.f9273c) {
             case 0:
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -41,7 +41,7 @@ public final class o extends p {
         boolean z10;
         long j3;
         Location location2;
-        switch (this.f9272c) {
+        switch (this.f9273c) {
             case 0:
                 if (((PowerManager) this.e).isPowerSaveMode()) {
                     return 2;
@@ -91,13 +91,13 @@ public final class o extends p {
                         y yVar = y.d;
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (yVar.f9325c == 1) {
+                        if (yVar.f9326c == 1) {
                             z10 = true;
                         }
-                        long j10 = yVar.f9324b;
-                        long j11 = yVar.f9323a;
+                        long j10 = yVar.f9325b;
+                        long j11 = yVar.f9324a;
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j12 = yVar.f9324b;
+                        long j12 = yVar.f9325b;
                         if (j10 != -1 && j11 != -1) {
                             if (currentTimeMillis > j11) {
                                 j10 = j12;
@@ -127,7 +127,7 @@ public final class o extends p {
 
     @Override
     public final void k() {
-        switch (this.f9272c) {
+        switch (this.f9273c) {
             case 0:
                 this.d.d(true);
                 return;

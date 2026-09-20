@@ -35,7 +35,7 @@ public final class m extends Drawable {
             return;
         }
         this.f482b = j6.l1(this.d, aVar.a());
-        this.f483c = j6.l1(this.d, this.f481a.c());
+        this.f483c = j6.l1(this.d, this.f481a.d());
         int i10 = this.f482b;
         Paint paint = this.h;
         paint.setColor(i10);

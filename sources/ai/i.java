@@ -34,7 +34,7 @@ public final class i implements e2.h {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof hg.x1) {
-                    ((hg.x1) view2).f10477c.invalidate();
+                    ((hg.x1) view2).f10478c.invalidate();
                     return;
                 }
                 return;
@@ -119,13 +119,13 @@ public final class i implements e2.h {
                 }
             case 24:
                 View view7 = (View) obj;
-                if (view7 instanceof org.telegram.ui.Cells.h5) {
-                    org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
-                    h5Var.f20358b.invalidate();
-                    h5Var.f20359c.invalidate();
+                if (view7 instanceof org.telegram.ui.Cells.i5) {
+                    org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) view7;
+                    i5Var.f20428b.invalidate();
+                    i5Var.f20429c.invalidate();
                     return;
                 } else if (view7 instanceof hg.x1) {
-                    ((hg.x1) view7).f10477c.invalidate();
+                    ((hg.x1) view7).f10478c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -133,15 +133,15 @@ public final class i implements e2.h {
                 }
             case 25:
                 View view8 = (View) obj;
-                if (view8 instanceof org.telegram.ui.Cells.f8) {
-                    ((org.telegram.ui.Cells.f8) view8).a(true);
+                if (view8 instanceof org.telegram.ui.Cells.g8) {
+                    ((org.telegram.ui.Cells.g8) view8).a(true);
                     return;
                 }
                 return;
             case 26:
                 View view9 = (View) obj;
-                if (view9 instanceof org.telegram.ui.Cells.f8) {
-                    ((org.telegram.ui.Cells.f8) view9).c(true);
+                if (view9 instanceof org.telegram.ui.Cells.g8) {
+                    ((org.telegram.ui.Cells.g8) view9).c(true);
                     return;
                 }
                 return;
@@ -155,7 +155,7 @@ public final class i implements e2.h {
                     }
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new sh(25));
+                AndroidUtilities.runOnUIThread(new sh(27));
                 return;
             case 28:
                 Boolean bool = (Boolean) obj;

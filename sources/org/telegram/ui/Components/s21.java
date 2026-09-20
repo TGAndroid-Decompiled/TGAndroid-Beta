@@ -1,43 +1,35 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class s21 implements MessagesController.IsInChatCheckedCallback, org.telegram.ui.ActionBar.a2 {
-    public final long f28038a;
-    public final Object f28039b;
-    public final Object f28040c;
-    public final Object d;
-    public final TLObject e;
-    public final Object f28041f;
+public final class s21 implements Runnable {
+    public final int f28015a;
+    public final l31 f28016b;
 
-    public s21(m31 m31Var, org.telegram.ui.ActionBar.f1 f1Var, w70 w70Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
-        this.f28039b = m31Var;
-        this.f28040c = f1Var;
-        this.d = w70Var;
-        this.f28038a = j3;
-        this.e = user;
-        this.f28041f = chat;
+    public s21(l31 l31Var, int i10) {
+        this.f28015a = i10;
+        this.f28016b = l31Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        yh.y3.L0((yh.y3) this.f28039b, (TL_stars.TL_starGiftUnique) this.f28040c, (TLRPC.PaymentForm) this.d, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) this.e, this.f28038a, (CharSequence) this.f28041f, b2Var);
-    }
-
-    @Override
-    public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new w21((m31) this.f28039b, z10, (org.telegram.ui.ActionBar.f1) this.f28040c, (w70) this.d, this.f28038a, (TLRPC.User) this.e, (TLRPC.Chat) this.f28041f));
-    }
-
-    public s21(yh.y3 y3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.PaymentForm paymentForm, TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails tL_inputInvoiceStarGiftDropOriginalDetails, long j3, CharSequence charSequence) {
-        this.f28039b = y3Var;
-        this.f28040c = tL_starGiftUnique;
-        this.d = paymentForm;
-        this.e = tL_inputInvoiceStarGiftDropOriginalDetails;
-        this.f28038a = j3;
-        this.f28041f = charSequence;
+    public final void run() {
+        switch (this.f28015a) {
+            case 0:
+                l31 l31Var = this.f28016b;
+                b31 b31Var = l31Var.G;
+                b31Var.x1(true);
+                z21 z21Var = l31Var.f26021s;
+                z21Var.x1(true);
+                l31Var.J.a(true, true);
+                AndroidUtilities.updateVisibleRows(z21Var);
+                AndroidUtilities.updateVisibleRows(b31Var);
+                return;
+            default:
+                l31 l31Var2 = this.f28016b;
+                if (l31Var2.k()) {
+                    l31Var2.l();
+                    return;
+                }
+                return;
+        }
     }
 }

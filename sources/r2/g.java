@@ -2,14 +2,14 @@ package r2;
 
 import java.nio.ByteBuffer;
 public final class g extends h2.h {
-    public long f42209r;
-    public int f42210s;
+    public long f42253r;
+    public int f42254s;
     public int v;
 
     @Override
     public final void clear() {
         super.clear();
-        this.f42210s = 0;
+        this.f42254s = 0;
     }
 
     public final boolean e(h2.h hVar) {
@@ -18,9 +18,9 @@ public final class g extends h2.h {
         e2.d.b(!hVar.hasSupplementalData());
         e2.d.b(!hVar.isEndOfStream());
         if (f()) {
-            if (this.f42210s < this.v) {
-                ByteBuffer byteBuffer2 = hVar.f10096c;
-                if (byteBuffer2 != null && (byteBuffer = this.f10096c) != null) {
+            if (this.f42254s < this.v) {
+                ByteBuffer byteBuffer2 = hVar.f10097c;
+                if (byteBuffer2 != null && (byteBuffer = this.f10097c) != null) {
                     if (byteBuffer2.remaining() + byteBuffer.position() > 3072000) {
                         return false;
                     }
@@ -29,25 +29,25 @@ public final class g extends h2.h {
                 return false;
             }
         }
-        int i10 = this.f42210s;
-        this.f42210s = i10 + 1;
+        int i10 = this.f42254s;
+        this.f42254s = i10 + 1;
         if (i10 == 0) {
             this.e = hVar.e;
             if (hVar.isKeyFrame()) {
                 setFlags(1);
             }
         }
-        ByteBuffer byteBuffer3 = hVar.f10096c;
+        ByteBuffer byteBuffer3 = hVar.f10097c;
         if (byteBuffer3 != null) {
             b(byteBuffer3.remaining());
-            this.f10096c.put(byteBuffer3);
+            this.f10097c.put(byteBuffer3);
         }
-        this.f42209r = hVar.e;
+        this.f42253r = hVar.e;
         return true;
     }
 
     public final boolean f() {
-        if (this.f42210s > 0) {
+        if (this.f42254s > 0) {
             return true;
         }
         return false;

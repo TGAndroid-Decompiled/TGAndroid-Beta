@@ -1,54 +1,39 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-public final class mh implements Runnable {
-    public final int f35667a;
-    public final View f35668b;
+import org.telegram.messenger.Utilities;
+public final class mh implements Utilities.Callback {
+    public final int f35732a;
+    public final long f35733b;
+    public final long f35734c;
+    public final Long d;
+    public final Object e;
 
-    public mh(int i10, View view) {
-        this.f35667a = i10;
-        this.f35668b = view;
+    public mh(Object obj, long j3, long j10, Long l4, int i10) {
+        this.f35732a = i10;
+        this.e = obj;
+        this.f35733b = j3;
+        this.f35734c = j10;
+        this.d = l4;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f35667a;
-        View view = this.f35668b;
-        switch (i10) {
+    public final void run(Object obj) {
+        int i10;
+        boolean z10;
+        switch (this.f35732a) {
             case 0:
-                try {
-                    view.performHapticFeedback(3, 2);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 1:
-                view.setBackgroundDrawable(null);
-                return;
-            case 2:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                AndroidUtilities.removeFromParent(view);
-                return;
-            case 3:
-                Drawable[] drawableArr2 = PhotoViewer.U8;
-                view.setVisibility(8);
-                return;
-            case 4:
-                SharedConfig.setSuggestStickers(0);
-                ((org.telegram.ui.Cells.ea) view).f20221c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
-                return;
-            case 5:
-                SharedConfig.setSuggestStickers(1);
-                ((org.telegram.ui.Cells.ea) view).f20221c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
+                zn.a0((zn) this.e, this.f35733b, this.f35734c, this.d, (Boolean) obj);
                 return;
             default:
-                SharedConfig.setSuggestStickers(2);
-                ((org.telegram.ui.Cells.ea) view).f20221c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
+                Boolean bool = (Boolean) obj;
+                i10 = ((org.telegram.ui.ActionBar.n2) ((mj) this.e).f35746b).currentAccount;
+                yh.u5 y3 = yh.u5.y(i10, false);
+                if (this.d.longValue() > 0 && bool.booleanValue()) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                y3.i0(this.f35733b, this.f35734c, z10, true);
                 return;
         }
     }

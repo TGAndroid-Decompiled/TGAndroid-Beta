@@ -17,9 +17,9 @@ public final class e {
     public final ve a() {
         ?? obj = new Object();
         Boolean bool = Boolean.FALSE;
-        obj.f4260a = bool;
-        obj.f4261b = Boolean.valueOf(this.f385a);
-        obj.f4262c = Boolean.valueOf(this.f386b);
+        obj.f4261a = bool;
+        obj.f4262b = Boolean.valueOf(this.f385a);
+        obj.f4263c = Boolean.valueOf(this.f386b);
         obj.d = bool;
         obj.e = Boolean.valueOf(this.f387c);
         return new ve(obj);

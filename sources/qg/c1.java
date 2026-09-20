@@ -1,23 +1,51 @@
 package qg;
 
+import android.view.View;
 import ci.c6;
+import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-public final class c1 extends g.p {
-    public final c6 f41578c;
+public final class c1 extends s4.t {
+    public final c6 S;
 
     public c1(c6 c6Var) {
-        this.f41578c = c6Var;
+        super(true);
+        this.S = c6Var;
     }
 
     @Override
-    public final int i(int i10) {
+    public final boolean B1(int i10) {
         MessageObject.GroupedMessagePosition position;
-        c6 c6Var = this.f41578c;
-        int size = (c6Var.f41598s0.size() - 1) - i10;
-        MessageObject.GroupedMessages groupedMessages = c6Var.f41599t0;
-        if (groupedMessages != null && size >= 0 && size < groupedMessages.messages.size() && (position = groupedMessages.getPosition(groupedMessages.messages.get(size))) != null) {
-            return position.spanSize;
+        byte b10;
+        c6 c6Var = this.S;
+        ArrayList arrayList = c6Var.f41645s0;
+        int size = (arrayList.size() - 1) - i10;
+        MessageObject.GroupedMessages groupedMessages = c6Var.f41646t0;
+        if (groupedMessages != null && size >= 0 && size < arrayList.size() && (position = groupedMessages.getPosition((MessageObject) arrayList.get(size))) != null && position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+            int size2 = groupedMessages.posArray.size();
+            for (int i11 = 0; i11 < size2; i11++) {
+                MessageObject.GroupedMessagePosition groupedMessagePosition = groupedMessages.posArray.get(i11);
+                if (groupedMessagePosition != position) {
+                    byte b11 = groupedMessagePosition.minY;
+                    byte b12 = position.minY;
+                    if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                        return true;
+                    }
+                }
+            }
         }
-        return 1000;
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class qf implements View.OnKeyListener {
-    public final ChatActivityEnterView f27583a;
+    public final ChatActivityEnterView f27569a;
 
     public qf(ChatActivityEnterView chatActivityEnterView) {
-        this.f27583a = chatActivityEnterView;
+        this.f27569a = chatActivityEnterView;
     }
 
     @Override

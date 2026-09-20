@@ -9,27 +9,27 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class q8 extends b2.g {
-    public final ArrayList f47926b;
-    public final RuntimeShader f47927c;
+    public final ArrayList f47969b;
+    public final RuntimeShader f47970c;
     public RenderEffect d;
     public int e;
-    public int f47928f;
-    public int f47929g;
+    public int f47971f;
+    public int f47972g;
     public float h;
-    public final float[] f47930i;
-    public final float[] f47931j;
-    public final float[] f47932k;
-    public final float[] f47933l;
+    public final float[] f47973i;
+    public final float[] f47974j;
+    public final float[] f47975k;
+    public final float[] f47976l;
 
     public q8(View view) {
         super(view);
-        this.f47926b = new ArrayList();
-        this.f47930i = new float[7];
-        this.f47931j = new float[7];
-        this.f47932k = new float[7];
-        this.f47933l = new float[7];
+        this.f47969b = new ArrayList();
+        this.f47973i = new float[7];
+        this.f47974j = new float[7];
+        this.f47975k = new float[7];
+        this.f47976l = new float[7];
         RuntimeShader runtimeShader = new RuntimeShader(AndroidUtilities.readRes(R.raw.superripple_effect));
-        this.f47927c = runtimeShader;
+        this.f47970c = runtimeShader;
         Z0(true);
         this.d = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
     }
@@ -43,16 +43,16 @@ public final class q8 extends b2.g {
         float f10;
         float radius2;
         View view = (View) this.f3000a;
-        if (!z10 && this.f47928f == view.getWidth() && this.f47929g == view.getHeight() && Math.abs(this.h - AndroidUtilities.density) <= 0.01f) {
+        if (!z10 && this.f47971f == view.getWidth() && this.f47972g == view.getHeight() && Math.abs(this.h - AndroidUtilities.density) <= 0.01f) {
             return;
         }
-        RuntimeShader runtimeShader = this.f47927c;
+        RuntimeShader runtimeShader = this.f47970c;
         int width = view.getWidth();
-        this.f47928f = width;
+        this.f47971f = width;
         int height = view.getHeight();
-        this.f47929g = height;
+        this.f47972g = height;
         runtimeShader.setFloatUniform("size", width, height);
-        RuntimeShader runtimeShader2 = this.f47927c;
+        RuntimeShader runtimeShader2 = this.f47970c;
         float f11 = AndroidUtilities.density;
         this.h = f11;
         runtimeShader2.setFloatUniform("density", f11);
@@ -76,7 +76,7 @@ public final class q8 extends b2.g {
         if (rootWindowInsets != null) {
             roundedCorner4 = rootWindowInsets.getRoundedCorner(2);
         }
-        RuntimeShader runtimeShader3 = this.f47927c;
+        RuntimeShader runtimeShader3 = this.f47970c;
         if (roundedCorner4 != null && (view == view.getRootView() || AndroidUtilities.navigationBarHeight <= 0)) {
             f7 = roundedCorner4.getRadius();
         } else {
@@ -111,7 +111,7 @@ public final class q8 extends b2.g {
         boolean z12;
         boolean z13;
         View view = (View) this.f3000a;
-        ArrayList arrayList = this.f47926b;
+        ArrayList arrayList = this.f47969b;
         boolean z14 = false;
         if (!arrayList.isEmpty()) {
             boolean z15 = true;
@@ -124,10 +124,10 @@ public final class q8 extends b2.g {
             int i10 = 0;
             while (true) {
                 int i11 = this.e;
-                fArr = this.f47933l;
-                fArr2 = this.f47932k;
-                fArr3 = this.f47931j;
-                fArr4 = this.f47930i;
+                fArr = this.f47976l;
+                fArr2 = this.f47975k;
+                fArr3 = this.f47974j;
+                fArr4 = this.f47973i;
                 if (i10 >= i11) {
                     break;
                 }
@@ -138,9 +138,9 @@ public final class q8 extends b2.g {
                     z11 = true;
                 }
                 float f7 = p8Var.d;
-                float f10 = p8Var.f47885c;
-                float f11 = p8Var.f47884b;
-                float f12 = p8Var.f47883a;
+                float f10 = p8Var.f47922c;
+                float f11 = p8Var.f47921b;
+                float f12 = p8Var.f47920a;
                 fArr4[i10] = f7;
                 if (!z11 && Math.abs(fArr3[i10] - f12) <= 0.001f) {
                     z12 = false;
@@ -162,17 +162,17 @@ public final class q8 extends b2.g {
                 fArr[i10] = f10;
                 i10++;
             }
-            if (!z10 && this.f47928f == view.getWidth() && this.f47929g == view.getHeight() && Math.abs(this.h - AndroidUtilities.density) <= 0.01f) {
+            if (!z10 && this.f47971f == view.getWidth() && this.f47972g == view.getHeight() && Math.abs(this.h - AndroidUtilities.density) <= 0.01f) {
                 z15 = false;
             }
             if (z15) {
-                this.f47927c.setIntUniform("count", this.e);
-                this.f47927c.setFloatUniform("t", fArr4);
-                this.f47927c.setFloatUniform("centerX", fArr3);
-                this.f47927c.setFloatUniform("centerY", fArr2);
-                this.f47927c.setFloatUniform("intensity", fArr);
+                this.f47970c.setIntUniform("count", this.e);
+                this.f47970c.setFloatUniform("t", fArr4);
+                this.f47970c.setFloatUniform("centerX", fArr3);
+                this.f47970c.setFloatUniform("centerY", fArr2);
+                this.f47970c.setFloatUniform("intensity", fArr);
                 Z0(false);
-                this.d = RenderEffect.createRuntimeShaderEffect(this.f47927c, "img");
+                this.d = RenderEffect.createRuntimeShaderEffect(this.f47970c, "img");
             }
             z14 = z15;
         }

@@ -4,19 +4,19 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class zk extends s4.s0 {
-    public final gl f30831a;
+    public final gl f30850a;
 
     public zk(gl glVar) {
-        this.f30831a = glVar;
+        this.f30850a = glVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         boolean z10;
-        gl0 gl0Var;
-        gl glVar = this.f30831a;
+        fl0 fl0Var;
+        gl glVar = this.f30850a;
         ai.w0 w0Var = glVar.P;
-        vi viVar = glVar.f26688b;
+        vi viVar = glVar.f26655b;
         if (i10 != 0) {
             z10 = true;
         } else {
@@ -29,10 +29,10 @@ public final class zk extends s4.s0 {
         if (i10 == 0) {
             int dp = AndroidUtilities.dp(13.0f);
             int backgroundPaddingTop = viVar.getBackgroundPaddingTop();
-            if (((viVar.f29009b2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (gl0Var = (gl0) w0Var.L(0)) != null) {
-                View view = gl0Var.f42929a;
-                if (view.getTop() > glVar.A0 - glVar.f24455z0) {
-                    w0Var.w0(0, view.getTop() - (glVar.A0 - glVar.f24455z0), null);
+            if (((viVar.f29086b2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (fl0Var = (fl0) w0Var.L(0)) != null) {
+                View view = fl0Var.f42974a;
+                if (view.getTop() > glVar.A0 - glVar.f24414z0) {
+                    w0Var.w0(0, view.getTop() - (glVar.A0 - glVar.f24414z0), null);
                 }
             }
         }
@@ -40,11 +40,11 @@ public final class zk extends s4.s0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        gl glVar = this.f30831a;
+        gl glVar = this.f30850a;
         glVar.e0();
         if (glVar.J != null) {
             glVar.K += i11;
         }
-        glVar.f26688b.X1(glVar, i11);
+        glVar.f26655b.X1(glVar, i11);
     }
 }

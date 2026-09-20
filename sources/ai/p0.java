@@ -4,7 +4,7 @@ import android.content.Context;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.v70;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.zn;
 public final class p0 implements Runnable {
@@ -16,13 +16,13 @@ public final class p0 implements Runnable {
     public final Object f1382f;
     public final Object h;
 
-    public p0(int i10, Context context, long j3, long j10, org.telegram.ui.ActionBar.f3[] f3VarArr, org.telegram.ui.ActionBar.e6 e6Var) {
+    public p0(int i10, Context context, long j3, long j10, org.telegram.ui.ActionBar.f3[] f3VarArr, org.telegram.ui.ActionBar.f6 f6Var) {
         this.d = i10;
         this.e = context;
         this.f1380b = j3;
         this.f1381c = j10;
         this.f1382f = f3VarArr;
-        this.h = e6Var;
+        this.h = f6Var;
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class p0 implements Runnable {
                     d dVar = new d();
                     long j3 = this.f1381c;
                     long j10 = this.f1380b;
-                    new yh.k7(context, dVar, j10, 17, "", new a3.g0(o1Var, j3, tL_textWithEntities, j10, 1), o1Var.M).show();
+                    new yh.l7(context, dVar, j10, 17, "", new a3.g0(o1Var, j3, tL_textWithEntities, j10, 1), o1Var.M).show();
                     return;
                 } else if ("GROUPCALL_INVALID".equalsIgnoreCase(tL_error.text)) {
                     d2 d2Var = o1Var.P;
@@ -58,8 +58,8 @@ public final class p0 implements Runnable {
                 return;
             case 2:
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f1382f;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.h;
-                ((w70) this.e).u();
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.h;
+                ((v70) this.e).u();
                 int i12 = this.d;
                 MessagesController messagesController = MessagesController.getInstance(i12);
                 long j11 = this.f1380b;
@@ -77,7 +77,7 @@ public final class p0 implements Runnable {
                     } else {
                         i11 = 0;
                     }
-                    xc.z(n2Var, i10, i11, e6Var).j();
+                    xc.z(n2Var, i10, i11, f6Var).j();
                     return;
                 }
                 return;
@@ -86,7 +86,7 @@ public final class p0 implements Runnable {
                 int i13 = this.d;
                 yh.o g10 = yh.o.g(i13);
                 long j13 = this.f1380b;
-                g10.f(context2, j13, this.f1381c, new ei.q3((org.telegram.ui.ActionBar.f3[]) this.f1382f, context2, i13, j13, (org.telegram.ui.ActionBar.e6) this.h, 2));
+                g10.f(context2, j13, this.f1381c, new ei.q3((org.telegram.ui.ActionBar.f3[]) this.f1382f, context2, i13, j13, (org.telegram.ui.ActionBar.f6) this.h, 2));
                 return;
         }
     }
@@ -109,12 +109,12 @@ public final class p0 implements Runnable {
         this.h = iArr;
     }
 
-    public p0(w70 w70Var, int i10, long j3, long j10, zn znVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.e = w70Var;
+    public p0(v70 v70Var, int i10, long j3, long j10, zn znVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.e = v70Var;
         this.d = i10;
         this.f1380b = j3;
         this.f1381c = j10;
         this.f1382f = znVar;
-        this.h = e6Var;
+        this.h = f6Var;
     }
 }

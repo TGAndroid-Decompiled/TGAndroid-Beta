@@ -5,5 +5,5 @@ import org.telegram.tgnet.TLRPC;
 public interface z60 {
     void g(TLRPC.User user);
 
-    void j(int i10, ArrayList arrayList);
+    void i(int i10, ArrayList arrayList);
 }

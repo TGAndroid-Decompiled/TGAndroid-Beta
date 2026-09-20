@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class r81 implements Runnable {
-    public final int f36988a;
-    public final f91 f36989b;
+    public final int f37066a;
+    public final s81 f37067b;
 
-    public r81(f91 f91Var, int i10) {
-        this.f36988a = i10;
-        this.f36989b = f91Var;
+    public r81(s81 s81Var, int i10) {
+        this.f37066a = i10;
+        this.f37067b = s81Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36988a) {
+        String sb2;
+        switch (this.f37066a) {
             case 0:
-                this.f36989b.f33483c.Y2.N(true);
-                return;
-            case 1:
-                nf.f.s(this.f36989b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
-                return;
-            case 2:
-                f91 f91Var = this.f36989b;
-                f91Var.f33483c.postOnAnimation(new r81(f91Var, 3));
-                return;
-            case 3:
-                this.f36989b.i0();
+                s81 s81Var = this.f37067b;
+                String str = s81Var.f37338b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb2 = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
+                } else {
+                    StringBuilder sb3 = new StringBuilder();
+                    org.telegram.ui.Cells.c1.o(R.string.ErrorOccurred, "\n", sb3);
+                    sb3.append(s81Var.f37338b.text);
+                    sb2 = sb3.toString();
+                }
+                org.telegram.ui.Components.d5.u0(s81Var.f37339c, LocaleController.getString(R.string.AuthAnotherClient), sb2, null);
                 return;
             default:
-                MessagesController.getInstance(this.f36989b.currentAccount).deleteUserPhoto(null);
+                org.telegram.ui.Components.d5.u0(this.f37067b.f37339c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
                 return;
         }
     }

@@ -1,30 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class lf0 implements NotificationCenter.NotificationCenterDelegate {
-    public final mf0 f35365a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class lf0 implements Runnable {
+    public final int f35433a;
+    public final nf0 f35434b;
 
-    public lf0(mf0 mf0Var) {
-        this.f35365a = mf0Var;
+    public lf0(nf0 nf0Var, int i10) {
+        this.f35433a = i10;
+        this.f35434b = nf0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        mf0 mf0Var = this.f35365a;
-        int intValue = ((Integer) objArr[0]).intValue();
-        ((Integer) objArr[1]).getClass();
-        Intent intent = (Intent) objArr[2];
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
-        if (intValue == 200) {
-            try {
-                mf0Var.f35656y = (GoogleSignInAccount) w7.e9.b(intent).getResult(com.google.android.gms.common.api.f.class);
-                mf0Var.h(null);
-            } catch (com.google.android.gms.common.api.f e) {
-                FileLog.e(e);
-            }
+    public final void run() {
+        switch (this.f35433a) {
+            case 0:
+                nf0 nf0Var = this.f35434b;
+                org.telegram.ui.Components.kj0 kj0Var = nf0Var.h;
+                kj0Var.getAnimatedDrawable().N(0, false, false);
+                kj0Var.d();
+                EditTextBoldCursor editTextBoldCursor = nf0Var.f36008b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                return;
+            default:
+                this.f35434b.f36008b.requestFocus();
+                return;
         }
     }
 }

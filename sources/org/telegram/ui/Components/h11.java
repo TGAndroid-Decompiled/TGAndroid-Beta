@@ -1,26 +1,31 @@
 package org.telegram.ui.Components;
-public final class h11 implements Runnable {
-    public final int f24526a;
-    public final k11 f24527b;
-    public final j11 f24528c;
 
-    public h11(k11 k11Var, j11 j11Var, int i10) {
-        this.f24526a = i10;
-        this.f24527b = k11Var;
-        this.f24528c = j11Var;
+import org.telegram.messenger.AndroidUtilities;
+public final class h11 implements Runnable {
+    public final int f24522a;
+    public final Runnable f24523b;
+    public final Runnable f24524c;
+
+    public h11(Runnable runnable, Runnable runnable2, int i10) {
+        this.f24522a = i10;
+        this.f24523b = runnable;
+        this.f24524c = runnable2;
     }
 
     @Override
     public final void run() {
-        switch (this.f24526a) {
+        switch (this.f24522a) {
             case 0:
-                this.f24527b.b(this.f24528c);
-                return;
-            case 1:
-                this.f24527b.b(this.f24528c);
+                l11.b(this.f24523b);
+                Runnable runnable = this.f24524c;
+                if (runnable != null) {
+                    AndroidUtilities.runOnUIThread(runnable);
+                    return;
+                }
                 return;
             default:
-                this.f24527b.b(this.f24528c);
+                this.f24523b.run();
+                this.f24524c.run();
                 return;
         }
     }

@@ -19,37 +19,38 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import javax.net.ssl.SSLException;
+import v7.j0;
 public final class d {
-    public final m f46928a;
-    public final OutputStream f46929b;
-    public final BufferedInputStream f46930c;
+    public final m f46975a;
+    public final OutputStream f46976b;
+    public final BufferedInputStream f46977c;
     public int d;
     public int e;
-    public String f46931f;
-    public int f46932g;
+    public String f46978f;
+    public int f46979g;
     public HashMap h;
-    public HashMap f46933i;
-    public c f46934j;
-    public final String f46935k;
-    public String f46936l;
-    public final i f46937m;
+    public HashMap f46980i;
+    public c f46981j;
+    public final String f46982k;
+    public String f46983l;
+    public final i f46984m;
 
     public d(i iVar, m mVar, InputStream inputStream, OutputStream outputStream, InetAddress inetAddress) {
         String str;
-        this.f46937m = iVar;
-        this.f46928a = mVar;
-        this.f46930c = new BufferedInputStream(inputStream, 8192);
-        this.f46929b = outputStream;
+        this.f46984m = iVar;
+        this.f46975a = mVar;
+        this.f46977c = new BufferedInputStream(inputStream, 8192);
+        this.f46976b = outputStream;
         if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
             str = inetAddress.getHostAddress().toString();
         } else {
             str = "127.0.0.1";
         }
-        this.f46935k = str;
+        this.f46982k = str;
         if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
             inetAddress.getHostName().getClass();
         }
-        this.f46933i = new HashMap();
+        this.f46980i = new HashMap();
     }
 
     public static void b(String str, Map map) {
@@ -116,9 +117,9 @@ public final class d {
                         b10 = i.b(nextToken);
                     }
                     if (stringTokenizer.hasMoreTokens()) {
-                        this.f46936l = stringTokenizer.nextToken();
+                        this.f46983l = stringTokenizer.nextToken();
                     } else {
-                        this.f46936l = "HTTP/1.1";
+                        this.f46983l = "HTTP/1.1";
                         i.d.log(Level.FINE, "no protocol version specified, strange. Assuming HTTP/1.1.");
                     }
                     String readLine2 = bufferedReader.readLine();
@@ -143,10 +144,10 @@ public final class d {
     public final void c() {
         boolean z10;
         f fVar = f.INTERNAL_ERROR;
-        i iVar = this.f46937m;
-        m mVar = this.f46928a;
-        BufferedInputStream bufferedInputStream = this.f46930c;
-        OutputStream outputStream = this.f46929b;
+        i iVar = this.f46984m;
+        m mVar = this.f46975a;
+        BufferedInputStream bufferedInputStream = this.f46977c;
+        OutputStream outputStream = this.f46976b;
         try {
             try {
                 try {
@@ -179,35 +180,35 @@ public final class d {
                                 bufferedInputStream.skip(this.d);
                             }
                             this.h = new HashMap();
-                            HashMap hashMap = this.f46933i;
+                            HashMap hashMap = this.f46980i;
                             if (hashMap == null) {
-                                this.f46933i = new HashMap();
+                                this.f46980i = new HashMap();
                             } else {
                                 hashMap.clear();
                             }
                             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bArr, 0, this.e)));
                             HashMap hashMap2 = new HashMap();
-                            a(bufferedReader, hashMap2, this.h, this.f46933i);
-                            String str = this.f46935k;
+                            a(bufferedReader, hashMap2, this.h, this.f46980i);
+                            String str = this.f46982k;
                             if (str != null) {
-                                this.f46933i.put("remote-addr", str);
-                                this.f46933i.put("http-client-ip", str);
+                                this.f46980i.put("remote-addr", str);
+                                this.f46980i.put("http-client-ip", str);
                             }
-                            int b10 = t8.b.b((String) hashMap2.get("method"));
-                            this.f46932g = b10;
+                            int b10 = j0.b((String) hashMap2.get("method"));
+                            this.f46979g = b10;
                             if (b10 != 0) {
-                                this.f46931f = (String) hashMap2.get("uri");
-                                this.f46934j = new c(this.f46933i);
-                                String str2 = (String) this.f46933i.get("connection");
-                                if ("HTTP/1.1".equals(this.f46936l) && (str2 == null || !str2.matches("(?i).*close.*"))) {
+                                this.f46978f = (String) hashMap2.get("uri");
+                                this.f46981j = new c(this.f46980i);
+                                String str2 = (String) this.f46980i.get("connection");
+                                if ("HTTP/1.1".equals(this.f46983l) && (str2 == null || !str2.matches("(?i).*close.*"))) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
                                 g e = iVar.e(this);
-                                String str3 = (String) this.f46933i.get("accept-encoding");
-                                this.f46934j.i();
-                                e.i(this.f46932g);
+                                String str3 = (String) this.f46980i.get("accept-encoding");
+                                this.f46981j.i();
+                                e.i(this.f46979g);
                                 if (i.g(e) && str3 != null && str3.contains("gzip")) {
                                     z11 = true;
                                 }

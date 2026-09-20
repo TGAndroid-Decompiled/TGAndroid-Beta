@@ -17,43 +17,43 @@ public final class g {
     public CharSequence A;
     public CharSequence B;
     public final h E;
-    public final Menu f13119a;
+    public final Menu f13120a;
     public boolean h;
-    public int f13124i;
-    public int f13125j;
-    public CharSequence f13126k;
-    public CharSequence f13127l;
-    public int f13128m;
-    public char f13129n;
-    public int f13130o;
-    public char f13131p;
-    public int f13132q;
-    public int f13133r;
-    public boolean f13134s;
-    public boolean f13135t;
-    public boolean f13136u;
+    public int f13125i;
+    public int f13126j;
+    public CharSequence f13127k;
+    public CharSequence f13128l;
+    public int f13129m;
+    public char f13130n;
+    public int f13131o;
+    public char f13132p;
+    public int f13133q;
+    public int f13134r;
+    public boolean f13135s;
+    public boolean f13136t;
+    public boolean f13137u;
     public int v;
-    public int f13137w;
-    public String f13138x;
-    public String f13139y;
-    public o f13140z;
+    public int f13138w;
+    public String f13139x;
+    public String f13140y;
+    public o f13141z;
     public ColorStateList C = null;
     public PorterDuff.Mode D = null;
-    public int f13120b = 0;
-    public int f13121c = 0;
+    public int f13121b = 0;
+    public int f13122c = 0;
     public int d = 0;
     public int e = 0;
-    public boolean f13122f = true;
-    public boolean f13123g = true;
+    public boolean f13123f = true;
+    public boolean f13124g = true;
 
     public g(h hVar, Menu menu) {
         this.E = hVar;
-        this.f13119a = menu;
+        this.f13120a = menu;
     }
 
     public final Object a(String str, Class[] clsArr, Object[] objArr) {
         try {
-            Constructor<?> constructor = Class.forName(str, false, this.E.f13144c.getClassLoader()).getConstructor(clsArr);
+            Constructor<?> constructor = Class.forName(str, false, this.E.f13145c.getClassLoader()).getConstructor(clsArr);
             constructor.setAccessible(true);
             return constructor.newInstance(objArr);
         } catch (Exception e) {
@@ -65,31 +65,31 @@ public final class g {
     public final void b(MenuItem menuItem) {
         boolean z10;
         h hVar = this.E;
-        Context context = hVar.f13144c;
-        MenuItem enabled = menuItem.setChecked(this.f13134s).setVisible(this.f13135t).setEnabled(this.f13136u);
+        Context context = hVar.f13145c;
+        MenuItem enabled = menuItem.setChecked(this.f13135s).setVisible(this.f13136t).setEnabled(this.f13137u);
         boolean z11 = false;
-        if (this.f13133r >= 1) {
+        if (this.f13134r >= 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        enabled.setCheckable(z10).setTitleCondensed(this.f13127l).setIcon(this.f13128m);
+        enabled.setCheckable(z10).setTitleCondensed(this.f13128l).setIcon(this.f13129m);
         int i10 = this.v;
         if (i10 >= 0) {
             menuItem.setShowAsAction(i10);
         }
-        if (this.f13139y != null) {
+        if (this.f13140y != null) {
             if (!context.isRestricted()) {
                 if (hVar.d == null) {
                     hVar.d = h.a(context);
                 }
                 Object obj = hVar.d;
-                String str = this.f13139y;
+                String str = this.f13140y;
                 ?? obj2 = new Object();
-                obj2.f13117a = obj;
+                obj2.f13118a = obj;
                 Class<?> cls = obj.getClass();
                 try {
-                    obj2.f13118b = cls.getMethod(str, f.f13116c);
+                    obj2.f13119b = cls.getMethod(str, f.f13117c);
                     menuItem.setOnMenuItemClickListener(obj2);
                 } catch (Exception e) {
                     StringBuilder v = a4.a.v("Couldn't resolve menu item onClick handler ", str, " in class ");
@@ -102,13 +102,13 @@ public final class g {
                 throw new IllegalStateException("The android:onClick attribute cannot be used within a restricted context");
             }
         }
-        if (this.f13133r >= 2) {
+        if (this.f13134r >= 2) {
             if (menuItem instanceof n) {
                 n nVar = (n) menuItem;
-                nVar.f13935x = (nVar.f13935x & (-5)) | 4;
+                nVar.f13974x = (nVar.f13974x & (-5)) | 4;
             } else if (menuItem instanceof s) {
                 s sVar = (s) menuItem;
-                l0.a aVar = sVar.f13945c;
+                l0.a aVar = sVar.f13984c;
                 try {
                     if (sVar.d == null) {
                         sVar.d = aVar.getClass().getDeclaredMethod("setExclusiveCheckable", Boolean.TYPE);
@@ -119,12 +119,12 @@ public final class g {
                 }
             }
         }
-        String str2 = this.f13138x;
+        String str2 = this.f13139x;
         if (str2 != null) {
-            menuItem.setActionView((View) a(str2, h.e, hVar.f13142a));
+            menuItem.setActionView((View) a(str2, h.e, hVar.f13143a));
             z11 = true;
         }
-        int i11 = this.f13137w;
+        int i11 = this.f13138w;
         if (i11 > 0) {
             if (!z11) {
                 menuItem.setActionView(i11);
@@ -132,7 +132,7 @@ public final class g {
                 Log.w("SupportMenuInflater", "Ignoring attribute 'itemActionViewLayout'. Action view already specified.");
             }
         }
-        o oVar = this.f13140z;
+        o oVar = this.f13141z;
         if (oVar != null) {
             if (menuItem instanceof l0.a) {
                 ((l0.a) menuItem).a(oVar);
@@ -153,15 +153,15 @@ public final class g {
         } else if (Build.VERSION.SDK_INT >= 26) {
             w6.a.i(menuItem, charSequence2);
         }
-        char c10 = this.f13129n;
-        int i12 = this.f13130o;
+        char c10 = this.f13130n;
+        int i12 = this.f13131o;
         if (z12) {
             ((l0.a) menuItem).setAlphabeticShortcut(c10, i12);
         } else if (Build.VERSION.SDK_INT >= 26) {
             w6.a.d(menuItem, c10, i12);
         }
-        char c11 = this.f13131p;
-        int i13 = this.f13132q;
+        char c11 = this.f13132p;
+        int i13 = this.f13133q;
         if (z12) {
             ((l0.a) menuItem).setNumericShortcut(c11, i13);
         } else if (Build.VERSION.SDK_INT >= 26) {

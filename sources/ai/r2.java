@@ -23,7 +23,7 @@ public final class r2 extends FrameLayout {
 
     public r2(Context context, dh.b bVar) {
         super(context);
-        w7.a6.a(this);
+        w7.b6.a(this);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f1455a = frameLayout;
         ah.m mVar = new ah.m();

@@ -20,10 +20,10 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.dg1;
+import org.telegram.ui.fg1;
 import org.telegram.ui.i50;
 import org.telegram.ui.i60;
-import org.telegram.ui.kk0;
+import org.telegram.ui.lk0;
 public final class s7 implements View.OnClickListener {
     public final int f1508a;
     public final int f1509b;
@@ -43,7 +43,7 @@ public final class s7 implements View.OnClickListener {
     public final void onClick(View view) {
         switch (this.f1508a) {
             case 0:
-                w7.m((w7) this.f1510c, (TLRPC.User) this.d, this.f1509b, (org.telegram.ui.ActionBar.e6) this.e);
+                w7.m((w7) this.f1510c, (TLRPC.User) this.d, this.f1509b, (org.telegram.ui.ActionBar.f6) this.e);
                 return;
             case 1:
                 org.telegram.ui.vb.W((org.telegram.ui.vb) this.f1510c, this.f1509b, (ArrayList) this.d, (Integer) this.e);
@@ -51,7 +51,7 @@ public final class s7 implements View.OnClickListener {
             case 2:
                 int[] iArr = (int[]) this.f1510c;
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
-                kk0 kk0Var = (kk0) this.e;
+                lk0 lk0Var = (lk0) this.e;
                 iArr[0] = ((Integer) view.getTag()).intValue();
                 SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
                 int i10 = this.f1509b;
@@ -63,8 +63,8 @@ public final class s7 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f18622a.L0.run();
-                kk0Var.run();
+                alertDialog$Builder.f18654a.L0.run();
+                lk0Var.run();
                 return;
             case 3:
                 i60 i60Var = (i60) this.f1510c;
@@ -73,12 +73,12 @@ public final class s7 implements View.OnClickListener {
                 int size = arrayList.size();
                 int i11 = this.f1509b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) i60Var.f34329a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) i60Var.f34360a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     i60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    i50 i50Var = i60Var.f34353f3;
+                    i50 i50Var = i60Var.f34384f3;
                     if (i50Var != null) {
                         i50Var.dismiss();
                         return;
@@ -118,16 +118,16 @@ public final class s7 implements View.OnClickListener {
                     return;
                 }
             default:
-                dg1 dg1Var = (dg1) this.f1510c;
+                fg1 fg1Var = (fg1) this.f1510c;
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
-                MessagesController messagesController = dg1Var.getMessagesController();
-                long j3 = -dg1Var.f32970a;
-                if (messagesController.isDialogMuted(j3, tL_forumTopic.f18348id)) {
-                    dg1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18348id, false);
-                    dg1Var.finishPreviewFragment();
-                    if (xc.a(dg1Var)) {
-                        xc.z(dg1Var, 4, 0, dg1Var.getResourceProvider()).j();
+                MessagesController messagesController = fg1Var.getMessagesController();
+                long j3 = -fg1Var.f33596a;
+                if (messagesController.isDialogMuted(j3, tL_forumTopic.f18380id)) {
+                    fg1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18380id, false);
+                    fg1Var.finishPreviewFragment();
+                    if (xc.a(fg1Var)) {
+                        xc.z(fg1Var, 4, 0, fg1Var.getResourceProvider()).j();
                         return;
                     }
                     return;

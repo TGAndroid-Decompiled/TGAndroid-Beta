@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import org.telegram.messenger.R;
 public final class gc implements Runnable {
-    public final int f33801a;
-    public final bd f33802b;
+    public final int f33858a;
+    public final bd f33859b;
 
     public gc(bd bdVar, int i10) {
-        this.f33801a = i10;
-        this.f33802b = bdVar;
+        this.f33858a = i10;
+        this.f33859b = bdVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f33801a) {
+        switch (this.f33858a) {
             case 0:
-                bd.U(this.f33802b);
+                bd.U(this.f33859b);
                 return;
             default:
-                org.telegram.messenger.q.q(R.string.ChannelWallpaperUpdated, org.telegram.ui.Components.xc.a0(this.f33802b), R.raw.done, 36);
+                org.telegram.messenger.l0.o(R.string.ChannelWallpaperUpdated, org.telegram.ui.Components.xc.a0(this.f33859b), R.raw.done, 36);
                 return;
         }
     }

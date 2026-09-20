@@ -1,57 +1,28 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class mw extends wl0 {
-    public boolean X2;
-    public boolean Y2;
-    public final kz Z2;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class mw extends FrameLayout {
+    public final kz f26498a;
 
     public mw(kz kzVar, Context context) {
-        super(context, null);
-        this.Z2 = kzVar;
+        super(context);
+        this.f26498a = kzVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.st q6 = org.telegram.ui.st.q();
-        kz kzVar = this.Z2;
-        boolean r10 = q6.r(motionEvent, kzVar.f25907h0, kzVar.f25906g2, this.f30090p2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-            return false;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        kz kzVar = this.f26498a;
+        qw qwVar = kzVar.f25933o0;
+        if (view == kzVar.f25913h0) {
+            canvas.save();
+            canvas.clipRect(0.0f, qwVar.getY() + qwVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        kz kzVar = this.Z2;
-        if (kzVar.f25933q0 && kzVar.f25924n0.G > 1) {
-            this.X2 = true;
-            kzVar.f25910i0.h1(0, 0);
-            kzVar.f25927o0.setVisibility(0);
-            kzVar.f25930p0.k(0, 0);
-            kzVar.f25933q0 = false;
-            this.X2 = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        kz.f(kzVar, true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (!this.Y2) {
-            this.Z2.f25924n0.l();
-            this.Y2 = true;
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.X2) {
-            return;
-        }
-        super.requestLayout();
+        return super.drawChild(canvas, view, j3);
     }
 }

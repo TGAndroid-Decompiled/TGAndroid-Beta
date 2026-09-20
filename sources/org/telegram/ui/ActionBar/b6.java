@@ -8,41 +8,41 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
 public final class b6 {
-    public String f18693a = "";
-    public String f18694b = "";
-    public String f18695c = "";
+    public String f18725a = "";
+    public String f18726b = "";
+    public String f18727c = "";
     public int d;
     public int e;
-    public int f18696f;
-    public int f18697g;
+    public int f18728f;
+    public int f18729g;
     public int h;
-    public boolean f18698i;
-    public boolean f18699j;
-    public float f18700k;
-    public long f18701l;
-    public long f18702m;
-    public long f18703n;
-    public boolean f18704o;
-    public i6 f18705p;
-    public g6 f18706q;
-    public float f18707r;
-    public ArrayList f18708s;
-    public TLRPC.WallPaper f18709t;
+    public boolean f18730i;
+    public boolean f18731j;
+    public float f18732k;
+    public long f18733l;
+    public long f18734m;
+    public long f18735n;
+    public boolean f18736o;
+    public i6 f18737p;
+    public h6 f18738q;
+    public float f18739r;
+    public ArrayList f18740s;
+    public TLRPC.WallPaper f18741t;
 
     public static void a(b6 b6Var) {
         ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit().remove(b6Var.b()).commit();
-        new File(ApplicationLoader.getFilesDirFixed(), b6Var.f18693a).delete();
-        new File(ApplicationLoader.getFilesDirFixed(), b6Var.f18694b).delete();
+        new File(ApplicationLoader.getFilesDirFixed(), b6Var.f18725a).delete();
+        new File(ApplicationLoader.getFilesDirFixed(), b6Var.f18726b).delete();
     }
 
     public final String b() {
-        if (this.f18706q != null) {
+        if (this.f18738q != null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f18705p.f18941a);
+            sb2.append(this.f18737p.f18973a);
             sb2.append("_");
-            return a4.a.n(this.f18706q.f18877a, "_owp", sb2);
+            return a4.a.n(this.f18738q.f18927a, "_owp", sb2);
         }
-        return a4.a.s(new StringBuilder(), this.f18705p.f18941a, "_owp");
+        return a4.a.s(new StringBuilder(), this.f18737p.f18973a, "_owp");
     }
 
     public final void c() {
@@ -50,21 +50,21 @@ public final class b6 {
             String b10 = b();
             SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("wall", this.f18693a);
-            jSONObject.put("owall", this.f18694b);
+            jSONObject.put("wall", this.f18725a);
+            jSONObject.put("owall", this.f18726b);
             jSONObject.put("pColor", this.d);
             jSONObject.put("pGrColor", this.e);
-            jSONObject.put("pGrColor2", this.f18696f);
-            jSONObject.put("pGrColor3", this.f18697g);
+            jSONObject.put("pGrColor2", this.f18728f);
+            jSONObject.put("pGrColor3", this.f18729g);
             jSONObject.put("pGrAngle", this.h);
-            String str = this.f18695c;
+            String str = this.f18727c;
             if (str == null) {
                 str = "";
             }
             jSONObject.put("wallSlug", str);
-            jSONObject.put("wBlur", this.f18698i);
-            jSONObject.put("wMotion", this.f18699j);
-            jSONObject.put("pIntensity", this.f18700k);
+            jSONObject.put("wBlur", this.f18730i);
+            jSONObject.put("wMotion", this.f18731j);
+            jSONObject.put("pIntensity", this.f18732k);
             edit.putString(b10, jSONObject.toString());
             edit.commit();
         } catch (Throwable th2) {

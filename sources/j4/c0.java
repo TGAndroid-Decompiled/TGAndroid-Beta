@@ -6,24 +6,24 @@ import ei.d5;
 import hg.k0;
 import java.util.List;
 public final class c0 {
-    public final int f12629a;
-    public final List f12630b;
-    public final h0[] f12631c;
+    public final int f12630a;
+    public final List f12631b;
+    public final h0[] f12632c;
     public final e2.c d;
 
     public c0(int i10, List list) {
-        this.f12629a = i10;
+        this.f12630a = i10;
         switch (i10) {
             case 1:
-                this.f12630b = list;
-                this.f12631c = new h0[list.size()];
+                this.f12631b = list;
+                this.f12632c = new h0[list.size()];
                 e2.c cVar = new e2.c(new d5(this, 28));
                 this.d = cVar;
                 cVar.k(3);
                 return;
             default:
-                this.f12630b = list;
-                this.f12631c = new h0[list.size()];
+                this.f12631b = list;
+                this.f12632c = new h0[list.size()];
                 this.d = new e2.c(new d5(this, 27));
                 return;
         }
@@ -43,16 +43,16 @@ public final class c0 {
     public final void b(c3.q qVar, f0 f0Var) {
         boolean z10;
         boolean z11;
-        switch (this.f12629a) {
+        switch (this.f12630a) {
             case 0:
                 int i10 = 0;
                 while (true) {
-                    h0[] h0VarArr = this.f12631c;
+                    h0[] h0VarArr = this.f12632c;
                     if (i10 < h0VarArr.length) {
                         f0Var.a();
                         f0Var.b();
                         h0 Z1 = qVar.Z1(f0Var.d, 3);
-                        b2.s sVar = (b2.s) this.f12630b.get(i10);
+                        b2.s sVar = (b2.s) this.f12631b.get(i10);
                         String str = sVar.f3309r;
                         if (!"application/cea-608".equals(str) && !"application/cea-708".equals(str)) {
                             z10 = false;
@@ -73,7 +73,7 @@ public final class c0 {
                         rVar.d = sVar.d;
                         rVar.N = sVar.O;
                         rVar.f3256t = sVar.f3312u;
-                        k0.r(rVar, Z1);
+                        k0.s(rVar, Z1);
                         h0VarArr[i10] = Z1;
                         i10++;
                     } else {
@@ -84,12 +84,12 @@ public final class c0 {
             default:
                 int i11 = 0;
                 while (true) {
-                    h0[] h0VarArr2 = this.f12631c;
+                    h0[] h0VarArr2 = this.f12632c;
                     if (i11 < h0VarArr2.length) {
                         f0Var.a();
                         f0Var.b();
                         h0 Z12 = qVar.Z1(f0Var.d, 3);
-                        b2.s sVar2 = (b2.s) this.f12630b.get(i11);
+                        b2.s sVar2 = (b2.s) this.f12631b.get(i11);
                         String str3 = sVar2.f3309r;
                         if (!"application/cea-608".equals(str3) && !"application/cea-708".equals(str3)) {
                             z11 = false;
@@ -106,7 +106,7 @@ public final class c0 {
                         rVar2.d = sVar2.d;
                         rVar2.N = sVar2.O;
                         rVar2.f3256t = sVar2.f3312u;
-                        k0.r(rVar2, Z12);
+                        k0.s(rVar2, Z12);
                         h0VarArr2[i11] = Z12;
                         i11++;
                     } else {

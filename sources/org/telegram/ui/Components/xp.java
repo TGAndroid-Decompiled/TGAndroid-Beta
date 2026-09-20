@@ -21,12 +21,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class xp implements Runnable {
-    public final int f30351a;
-    public final Object f30352b;
+    public final int f30333a;
+    public final Object f30334b;
 
     public xp(Object obj, int i10) {
-        this.f30351a = i10;
-        this.f30352b = obj;
+        this.f30333a = i10;
+        this.f30334b = obj;
     }
 
     @Override
@@ -39,13 +39,13 @@ public final class xp implements Runnable {
         float f7;
         int i12;
         float max;
-        final wa0 wa0Var;
+        final va0 va0Var;
         int i13;
         o1.k kVar;
-        int i14 = this.f30351a;
+        int i14 = this.f30333a;
         float f10 = 0.0f;
         Integer num = null;
-        Object obj = this.f30352b;
+        Object obj = this.f30334b;
         switch (i14) {
             case 0:
                 ((cq) obj).dismiss();
@@ -62,10 +62,10 @@ public final class xp implements Runnable {
                 }
                 return;
             case 3:
-                gr grVar = ((er) obj).f23953c;
-                TLRPC.Peer peer = grVar.f24477d0;
-                org.telegram.ui.ActionBar.n2 n2Var = grVar.f24479f0;
-                long j3 = grVar.f24480g0;
+                gr grVar = ((er) obj).f23922c;
+                TLRPC.Peer peer = grVar.f24442d0;
+                org.telegram.ui.ActionBar.n2 n2Var = grVar.f24444f0;
+                long j3 = grVar.f24445g0;
                 if (grVar.Y.size() > 1) {
                     z10 = true;
                 } else {
@@ -84,8 +84,8 @@ public final class xp implements Runnable {
                 return;
             case 5:
                 is isVar = (is) obj;
-                isVar.f25037a.a(!bVar.f14131f, true);
-                AndroidUtilities.runOnUIThread(isVar.f25040f, 3000L);
+                isVar.f25124a.a(!bVar.f14170f, true);
+                AndroidUtilities.runOnUIThread(isVar.f25127f, 3000L);
                 return;
             case 6:
                 ((go0) obj).V(false);
@@ -100,26 +100,26 @@ public final class xp implements Runnable {
                 ((ku) obj).getClass();
                 return;
             case 10:
-                nf.f.s(((qu) obj).f27741a.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                nf.f.s(((qu) obj).f27663a.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
                 return;
             case 11:
-                vu vuVar = ((uu) obj).f28823a;
-                vuVar.f29762n.setVisibility(4);
+                vu vuVar = ((uu) obj).f28856a;
+                vuVar.f29832n.setVisibility(4);
                 vuVar.h.setVisibility(4);
-                ImageView imageView = vuVar.f29766x;
+                ImageView imageView = vuVar.f29836x;
                 imageView.setEnabled(true);
                 imageView.setAlpha(1.0f);
                 return;
             case 12:
-                ((nv) obj).a(true, true);
+                ((ov) obj).a(true, true);
                 return;
             case 13:
                 ix ixVar = (ix) obj;
                 if (ixVar.Y.getEmojiView() != null) {
                     kz emojiView = ixVar.Y.getEmojiView();
-                    if (!emojiView.f25901f0) {
+                    if (!emojiView.f25907f0) {
                         try {
-                            int i15 = emojiView.R.f28492s.get(EmojiData.dataColored.length);
+                            int i15 = emojiView.R.f28470s.get(EmojiData.dataColored.length);
                             if (i15 > 0) {
                                 emojiView.P.C0();
                                 emojiView.U(i15);
@@ -137,7 +137,7 @@ public final class xp implements Runnable {
                 return;
             case 14:
                 cy cyVar = (cy) obj;
-                cyVar.f23366s.f30389f = true;
+                cyVar.f23429s.f30374f = true;
                 cyVar.a(true);
                 return;
             case 15:
@@ -145,26 +145,26 @@ public final class xp implements Runnable {
                 return;
             case 16:
                 dz dzVar = (dz) obj;
-                ArrayList arrayList = dzVar.f23709r;
+                ArrayList arrayList = dzVar.f23671r;
                 ArrayList arrayList2 = dzVar.h;
-                fz fzVar = dzVar.f23711w;
+                fz fzVar = dzVar.f23673w;
                 int i16 = fzVar.M;
                 kz kzVar = fzVar.Q;
-                sw swVar = kzVar.D0;
-                if (i16 == dzVar.f23705b) {
+                tw twVar = kzVar.D0;
+                if (i16 == dzVar.f23667b) {
                     arrayList2.remove(arrayList);
-                    fzVar.E = dzVar.f23706c;
+                    fzVar.E = dzVar.f23668c;
                     fzVar.F = dzVar.d;
                     fzVar.G = dzVar.e;
-                    fzVar.H = dzVar.f23707f;
+                    fzVar.H = dzVar.f23669f;
                     fzVar.I = arrayList2;
-                    fzVar.J = dzVar.f23708n;
+                    fzVar.J = dzVar.f23670n;
                     fzVar.K = new ArrayList(arrayList);
                     kzVar.G0.e(false);
-                    s4.h0 adapter = swVar.getAdapter();
-                    fz fzVar2 = kzVar.f25965z0;
+                    s4.h0 adapter = twVar.getAdapter();
+                    fz fzVar2 = kzVar.f25971z0;
                     if (adapter != fzVar2) {
-                        swVar.setAdapter(fzVar2);
+                        twVar.setAdapter(fzVar2);
                     }
                     fzVar.l();
                     return;
@@ -179,12 +179,12 @@ public final class xp implements Runnable {
                             f00 f00Var = k00Var.I;
                             k00 k00Var2 = f00Var.d;
                             ArrayList arrayList4 = k00Var2.h;
-                            SparseIntArray sparseIntArray = k00Var2.f25502k0;
+                            SparseIntArray sparseIntArray = k00Var2.f25584k0;
                             int size = arrayList4.size();
                             if (i17 >= 0 && i17 < size) {
                                 ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
                                 int i18 = sparseIntArray.get(i17);
-                                int i19 = ((g00) arrayList4.get(i17)).f24280a;
+                                int i19 = ((g00) arrayList4.get(i17)).f24220a;
                                 for (int i20 = i17 - 1; i20 >= 0; i20--) {
                                     sparseIntArray.put(i20 + 1, sparseIntArray.get(i20));
                                 }
@@ -193,9 +193,9 @@ public final class xp implements Runnable {
                                 dialogFilters.add(0, remove);
                                 sparseIntArray.put(0, i18);
                                 arrayList4.add(0, (g00) arrayList4.remove(i17));
-                                ((g00) arrayList4.get(0)).f24280a = i19;
+                                ((g00) arrayList4.get(0)).f24220a = i19;
                                 for (int i21 = 0; i21 <= i17; i21++) {
-                                    ((g00) arrayList4.get(i21)).f24280a = i21;
+                                    ((g00) arrayList4.get(i21)).f24220a = i21;
                                     dialogFilters.get(i21).order = i21;
                                 }
                                 for (int i22 = 0; i22 <= i17; i22++) {
@@ -208,23 +208,23 @@ public final class xp implements Runnable {
                                         k00Var2.L = i11;
                                         k00Var2.K = i11;
                                     }
-                                    if (k00Var2.f25508q0 == i22) {
+                                    if (k00Var2.f25590q0 == i22) {
                                         if (i22 == i17) {
                                             i10 = 0;
                                         } else {
                                             i10 = i22 + 1;
                                         }
-                                        k00Var2.f25510r0 = i10;
-                                        k00Var2.f25508q0 = i10;
+                                        k00Var2.f25592r0 = i10;
+                                        k00Var2.f25590q0 = i10;
                                     }
                                 }
                                 f00Var.p(i17, 0);
                                 e00 e00Var = k00Var2.J;
-                                int i23 = ((g00) arrayList4.get(i17)).f24280a;
-                                org.telegram.ui.tw twVar = (org.telegram.ui.tw) e00Var;
+                                int i23 = ((g00) arrayList4.get(i17)).f24220a;
+                                org.telegram.ui.tw twVar2 = (org.telegram.ui.tw) e00Var;
                                 int i24 = 0;
                                 while (true) {
-                                    org.telegram.ui.ty[] tyVarArr = twVar.f37815b.f38149e0;
+                                    org.telegram.ui.ty[] tyVarArr = twVar2.f37889b.f38256e0;
                                     if (i24 < tyVarArr.length) {
                                         org.telegram.ui.ty tyVar = tyVarArr[i24];
                                         int i25 = tyVar.h;
@@ -236,22 +236,22 @@ public final class xp implements Runnable {
                                         i24++;
                                     } else {
                                         k00Var2.j();
-                                        k00Var2.f25520y = true;
-                                        k00Var2.F.setItemAnimator(k00Var2.f25512s0);
+                                        k00Var2.f25602y = true;
+                                        k00Var2.F.setItemAnimator(k00Var2.f25594s0);
                                     }
                                 }
                             }
                             k00Var.F.v0(0);
-                            org.telegram.ui.sw swVar2 = (org.telegram.ui.sw) k00Var;
-                            org.telegram.ui.uy uyVar = swVar2.B0;
+                            org.telegram.ui.sw swVar = (org.telegram.ui.sw) k00Var;
+                            org.telegram.ui.uy uyVar = swVar.B0;
                             if (!uyVar.getMessagesController().premiumFeaturesBlocked()) {
                                 try {
-                                    swVar2.performHapticFeedback(3, 1);
+                                    swVar.performHapticFeedback(3, 1);
                                 } catch (Exception unused2) {
                                 }
-                                qc I = xc.a0(uyVar).I(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, false, new org.telegram.ui.cj(swVar2, 22));
+                                pc I = xc.a0(uyVar).I(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, false, new org.telegram.ui.cj(swVar, 22));
                                 I.k(true);
-                                uyVar.f38195n3 = I;
+                                uyVar.f38302n3 = I;
                                 return;
                             }
                             return;
@@ -262,7 +262,7 @@ public final class xp implements Runnable {
                 return;
             case 18:
                 r00 r00Var = (r00) obj;
-                if (!r00Var.f27773c) {
+                if (!r00Var.f27711c) {
                     r00Var.setLayerType(0, null);
                     return;
                 }
@@ -271,44 +271,44 @@ public final class xp implements Runnable {
                 ((z20) obj).g(true);
                 return;
             case 20:
-                org.telegram.ui.ey eyVar = ((co0) ((e40) obj)).f23302c0;
-                if (!eyVar.f26225v0.canScrollVertically(-1)) {
-                    eyVar.f26224u0.h1(0, 0);
+                org.telegram.ui.ey eyVar = ((co0) ((e40) obj)).f23374c0;
+                if (!eyVar.f26214v0.canScrollVertically(-1)) {
+                    eyVar.f26213u0.h1(0, 0);
                     return;
                 }
                 return;
             case 21:
-                ((g40) obj).f24304b.b(true);
+                ((g40) obj).f24251b.b(true);
                 return;
             case 22:
-                ((g40) obj).f24304b.b(true);
+                ((g40) obj).f24251b.b(true);
                 return;
             case 23:
                 w40 w40Var = (w40) obj;
-                lj0 lj0Var = w40Var.f29858f;
-                if (w40Var.f29859n) {
-                    lj0Var.getAnimatedDrawable().K(0);
-                    lj0Var.setAnimation(w40Var.f29860r);
-                    lj0Var.d();
+                kj0 kj0Var = w40Var.f29931f;
+                if (w40Var.f29932n) {
+                    kj0Var.getAnimatedDrawable().K(0);
+                    kj0Var.setAnimation(w40Var.f29933r);
+                    kj0Var.d();
                     return;
                 }
                 return;
             case 24:
-                b60 b60Var = (b60) ((ci.p2) obj).f5303b;
+                a60 a60Var = (a60) ((ci.p2) obj).f5304b;
                 try {
-                    u71 u71Var = b60Var.R;
-                    if (u71Var != null && (videoEditedInfo = b60Var.Q) != null) {
+                    t71 t71Var = a60Var.R;
+                    if (t71Var != null && (videoEditedInfo = a60Var.Q) != null) {
                         long j10 = 0;
                         if (videoEditedInfo.endTime > 0) {
-                            long n10 = u71Var.n();
-                            VideoEditedInfo videoEditedInfo2 = b60Var.Q;
+                            long n10 = t71Var.n();
+                            VideoEditedInfo videoEditedInfo2 = a60Var.Q;
                             if (n10 >= videoEditedInfo2.endTime) {
-                                u71 u71Var2 = b60Var.R;
+                                t71 t71Var2 = a60Var.R;
                                 long j11 = videoEditedInfo2.startTime;
                                 if (j11 > 0) {
                                     j10 = j11;
                                 }
-                                u71Var2.K(j10);
+                                t71Var2.K(j10);
                                 return;
                             }
                             return;
@@ -321,21 +321,21 @@ public final class xp implements Runnable {
                     return;
                 }
             case 25:
-                aa0 aa0Var = (aa0) obj;
-                if (aa0Var.d) {
-                    aa0Var.e = true;
-                    aa0Var.f22585r = false;
-                    aa0Var.f22583f = 0.0f;
-                    aa0Var.h = SystemClock.uptimeMillis();
-                    aa0Var.invalidate();
+                z90 z90Var = (z90) obj;
+                if (z90Var.d) {
+                    z90Var.e = true;
+                    z90Var.f30791r = false;
+                    z90Var.f30789f = 0.0f;
+                    z90Var.h = SystemClock.uptimeMillis();
+                    z90Var.invalidate();
                     return;
                 }
                 return;
             case 26:
-                ka0 ka0Var = (ka0) obj;
-                Activity parentActivity = ka0Var.getParentActivity();
-                Activity parentActivity2 = ka0Var.getParentActivity();
-                DispatchQueue dispatchQueue = pg.m1.f41162m;
+                ja0 ja0Var = (ja0) obj;
+                Activity parentActivity = ja0Var.getParentActivity();
+                Activity parentActivity2 = ja0Var.getParentActivity();
+                DispatchQueue dispatchQueue = pg.m1.f41203m;
                 boolean z11 = parentActivity2.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
                 SharedPreferences.Editor edit = parentActivity.getSharedPreferences("shapedetector_conf", 0).edit();
                 if (z11) {
@@ -346,109 +346,109 @@ public final class xp implements Runnable {
                 edit.apply();
                 return;
             case 27:
-                wa0 wa0Var2 = (wa0) obj;
-                boolean z12 = wa0Var2.I;
+                va0 va0Var2 = (va0) obj;
+                boolean z12 = va0Var2.I;
                 boolean z13 = !z12;
-                gg.q1 q1Var = wa0Var2.e;
-                va0 va0Var = wa0Var2.f30004b;
-                if (va0Var != null && q1Var != null) {
-                    if (wa0Var2.L && (kVar = wa0Var2.K) != null && kVar.f15483f && !z12) {
-                        wa0Var2.O = 0;
+                gg.q1 q1Var = va0Var2.e;
+                ua0 ua0Var = va0Var2.f29046b;
+                if (ua0Var != null && q1Var != null) {
+                    if (va0Var2.L && (kVar = va0Var2.K) != null && kVar.f15515f && !z12) {
+                        va0Var2.O = 0;
                         return;
                     }
-                    boolean g10 = wa0Var2.g();
+                    boolean g10 = va0Var2.g();
                     if (!z12) {
-                        f7 = (-wa0Var2.f30009s) - AndroidUtilities.dp(6.0f);
+                        f7 = (-va0Var2.f29051s) - AndroidUtilities.dp(6.0f);
                     } else {
-                        int computeVerticalScrollRange = va0Var.computeVerticalScrollRange();
-                        float f11 = (computeVerticalScrollRange - q1Var.h) + wa0Var2.f30009s;
-                        if (computeVerticalScrollRange <= 0 && wa0Var2.f30006f.K() > 0 && (i12 = wa0Var2.O) < 3) {
-                            wa0Var2.O = i12 + 1;
-                            wa0Var2.o(true);
+                        int computeVerticalScrollRange = ua0Var.computeVerticalScrollRange();
+                        float f11 = (computeVerticalScrollRange - q1Var.h) + va0Var2.f29051s;
+                        if (computeVerticalScrollRange <= 0 && va0Var2.f29048f.K() > 0 && (i12 = va0Var2.O) < 3) {
+                            va0Var2.O = i12 + 1;
+                            va0Var2.o(true);
                             return;
                         }
                         f7 = f11;
                     }
-                    wa0Var2.O = 0;
-                    float f12 = wa0Var2.v;
+                    va0Var2.O = 0;
+                    float f12 = va0Var2.v;
                     if (g10) {
                         max = -Math.max(0.0f, f12 - f7);
                     } else {
                         max = Math.max(0.0f, f12 - f7) + (-f12);
                     }
                     if (!z12 && !g10) {
-                        max += va0Var.computeVerticalScrollOffset();
+                        max += ua0Var.computeVerticalScrollOffset();
                     }
                     final float f13 = max;
-                    o1.k kVar2 = wa0Var2.K;
+                    o1.k kVar2 = va0Var2.K;
                     if (kVar2 != null) {
                         kVar2.c();
                     }
-                    wa0Var2.L = z13;
-                    final float translationY = va0Var.getTranslationY();
-                    final float f14 = wa0Var2.M;
+                    va0Var2.L = z13;
+                    final float translationY = ua0Var.getTranslationY();
+                    final float f14 = va0Var2.M;
                     if (!z12) {
                         f10 = 1.0f;
                     }
                     if (translationY == f13) {
-                        wa0Var2.K = null;
+                        va0Var2.K = null;
                         if (!z12) {
                             i13 = 8;
                         } else {
                             i13 = 0;
                         }
                         num = Integer.valueOf(i13);
-                        if (wa0Var2.N && !z12) {
-                            wa0Var2.N = false;
-                            va0Var.setLayoutManager(wa0Var2.getNeededLayoutManager());
-                            wa0Var2.I = true;
-                            wa0Var2.o(true);
+                        if (va0Var2.N && !z12) {
+                            va0Var2.N = false;
+                            ua0Var.setLayoutManager(va0Var2.getNeededLayoutManager());
+                            va0Var2.I = true;
+                            va0Var2.o(true);
                         }
-                        wa0Var = wa0Var2;
+                        va0Var = va0Var2;
                     } else {
                         o1.k kVar3 = new o1.k(new o1.j(translationY));
                         o1.l lVar = new o1.l(f13);
                         lVar.a(1.0f);
                         lVar.b(550.0f);
-                        kVar3.f15490u = lVar;
-                        wa0Var2.K = kVar3;
-                        wa0Var = wa0Var2;
+                        kVar3.f15522u = lVar;
+                        va0Var2.K = kVar3;
+                        va0Var = va0Var2;
                         final float f15 = f10;
                         kVar3.b(new o1.g() {
                             @Override
                             public final void a(o1.h hVar, float f16, float f17) {
-                                wa0 wa0Var3 = wa0.this;
-                                wa0Var3.f30004b.setTranslationY(f16);
-                                wa0Var3.i();
+                                va0 va0Var3 = va0.this;
+                                va0Var3.f29046b.setTranslationY(f16);
+                                va0Var3.i();
                                 float f18 = translationY;
-                                wa0Var3.M = AndroidUtilities.lerp(f14, f15, (f16 - f18) / (f13 - f18));
+                                va0Var3.M = AndroidUtilities.lerp(f14, f15, (f16 - f18) / (f13 - f18));
                             }
                         });
                         if (!z12) {
-                            wa0Var.K.a(new ci.z4(wa0Var, z13, 2));
+                            va0Var.K.a(new ci.z4(va0Var, z13, 2));
                         }
-                        wa0Var.K.a(new Object());
-                        wa0Var.K.f();
+                        va0Var.K.a(new Object());
+                        va0Var.K.f();
                     }
-                    if (num != null && wa0Var.getVisibility() != num.intValue()) {
-                        wa0Var.setVisibility(num.intValue());
+                    if (num != null && va0Var.getVisibility() != num.intValue()) {
+                        va0Var.setVisibility(num.intValue());
                         return;
                     }
                     return;
                 }
-                wa0Var2.O = 0;
+                va0Var2.O = 0;
                 return;
             case 28:
-                ((lb0) obj).S.f30539n.l();
+                ((kb0) obj).S.f30231n.l();
                 return;
             default:
-                ((ic0) obj).a();
+                ((hc0) obj).a();
                 return;
         }
     }
 
-    public xp(ku kuVar, m90 m90Var, ClickableSpan clickableSpan) {
-        this.f30351a = 9;
-        this.f30352b = kuVar;
+    public xp(ku kuVar, l90 l90Var, ClickableSpan clickableSpan) {
+        this.f30333a = 9;
+        this.f30334b = kuVar;
     }
 }

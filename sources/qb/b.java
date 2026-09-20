@@ -39,31 +39,32 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.c1;
 import org.telegram.ui.Cells.l1;
-import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Cells.s9;
 import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.db;
+import org.telegram.ui.Components.cb;
+import org.telegram.ui.Components.eb;
 import org.telegram.ui.Components.fb;
 import org.telegram.ui.Components.gb;
 import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.hb;
 import org.telegram.ui.Components.ml;
 import org.telegram.ui.Components.og;
+import org.telegram.ui.Components.rb;
 import org.telegram.ui.Components.sb;
 import org.telegram.ui.Components.tb;
 import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.ub;
-import org.telegram.ui.Components.z5;
+import org.telegram.ui.Components.y5;
 import org.telegram.ui.pv0;
 import r2.u;
-public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, l1, u, u5.a, z3.k {
-    public final int f41494a;
+import v7.j0;
+public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, sb, l1, u, u5.a, z3.k {
+    public final int f41536a;
 
     public b(int i10) {
-        this.f41494a = i10;
+        this.f41536a = i10;
     }
 
     public static k4.d K3(y2.g gVar, b0 b0Var) {
-        IOException iOException = (IOException) b0Var.f3847c;
+        IOException iOException = (IOException) b0Var.f3848c;
         if (iOException instanceof x) {
             int i10 = ((x) iOException).d;
             if (i10 == 403 || i10 == 404 || i10 == 410 || i10 == 416 || i10 == 500 || i10 == 503) {
@@ -81,17 +82,17 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     public static long M3(b0 b0Var) {
-        Throwable th2 = (IOException) b0Var.f3847c;
+        Throwable th2 = (IOException) b0Var.f3848c;
         if (!(th2 instanceof b2.s0) && !(th2 instanceof FileNotFoundException) && !(th2 instanceof g2.u) && !(th2 instanceof y2.l)) {
-            int i10 = g2.j.f9368b;
+            int i10 = g2.j.f9369b;
             while (th2 != null) {
-                if (!(th2 instanceof g2.j) || ((g2.j) th2).f9369a != 2008) {
+                if (!(th2 instanceof g2.j) || ((g2.j) th2).f9370a != 2008) {
                     th2 = th2.getCause();
                 } else {
                     return -9223372036854775807L;
                 }
             }
-            return Math.min((b0Var.f3846b - 1) * 1000, 5000);
+            return Math.min((b0Var.f3847b - 1) * 1000, 5000);
         }
         return -9223372036854775807L;
     }
@@ -116,22 +117,12 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public void A(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
-    public void A0(u1 u1Var, TLObject tLObject, boolean z10) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public boolean A1() {
-        switch (this.f41494a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+    public void A0() {
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -140,8 +131,18 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void B0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f41494a;
+    public void B0(u1 u1Var, TLObject tLObject, boolean z10) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public boolean B1() {
+        switch (this.f41536a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
@@ -150,8 +151,8 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void C1(u1 u1Var) {
-        int i10 = this.f41494a;
+    public void C0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -233,37 +234,37 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
                     return 1;
             }
         }
-        throw new IllegalArgumentException(t8.b.i("Unsupported MIME type: ", str));
+        throw new IllegalArgumentException(j0.g("Unsupported MIME type: ", str));
     }
 
     @Override
-    public void D0(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void D1(u1 u1Var, boolean z10) {
-        int i10 = this.f41494a;
+    public void D1(u1 u1Var) {
+        int i10 = this.f41536a;
     }
 
     @Override
     public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void E0(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void E1(u1 u1Var, boolean z10) {
+        int i10 = this.f41536a;
     }
 
     @Override
     public void F(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void F0(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public Object G(cf.c cVar) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 14:
                 return new h();
             default:
@@ -288,8 +289,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
+    public void G0(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
     public boolean G1(u1 u1Var, TLRPC.Chat chat) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -299,7 +305,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public p0 H(Class cls, v1.b bVar) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 3:
                 return a(cls);
             default:
@@ -309,22 +315,17 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public void H1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public void I(MessageObject.TextLayoutBlock textLayoutBlock) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void I0(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public boolean I1() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -338,13 +339,18 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
+    public void J0(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
     public void K1(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public void L(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -361,12 +367,22 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public void M(int i10, u1 u1Var) {
-        int i11 = this.f41494a;
+        int i11 = this.f41536a;
     }
 
     @Override
-    public boolean M0(long j3) {
-        switch (this.f41494a) {
+    public void M1(MessageObject messageObject) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void N(MessageObject messageObject) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public boolean N0(long j3) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -375,23 +391,8 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void M1(MessageObject messageObject) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void N(MessageObject messageObject) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void N0(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
     public void N1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
             default:
                 nf.f.s(u1Var.getContext(), str);
@@ -405,7 +406,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -414,8 +415,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
+    public void O0(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
     public CharacterStyle O1(u1 u1Var) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return null;
             default:
@@ -425,27 +431,22 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public boolean P() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
                 return false;
         }
-    }
-
-    @Override
-    public void P0(int i10, u1 u1Var) {
-        int i11 = this.f41494a;
     }
 
     @Override
     public void P1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        int i12 = this.f41494a;
+        int i12 = this.f41536a;
     }
 
     @Override
     public boolean Q(u1 u1Var) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -454,8 +455,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
+    public void Q0(int i10, u1 u1Var) {
+        int i11 = this.f41536a;
+    }
+
+    @Override
     public boolean Q1(u1 u1Var, MessageObject messageObject) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -465,7 +471,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public boolean R() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -474,22 +480,32 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void R0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
     public void R1() {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f41494a;
+        int i11 = this.f41536a;
     }
 
     @Override
-    public void S0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
+    public void S0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public boolean S1() {
+        return false;
+    }
+
+    @Override
+    public void T(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void T0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
         if (i11 != 1 && i11 != 2) {
             throw new IllegalArgumentException("Output must be 2 or 1 channels");
         }
@@ -508,41 +524,31 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public boolean S1() {
-        return false;
-    }
-
-    @Override
-    public void T(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
     public void T1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
-    public void U(ub ubVar, fb fbVar, og ogVar, ml mlVar) {
-        ubVar.setInOutOffset(ubVar.getMeasuredHeight());
-        mlVar.accept(Float.valueOf(ubVar.getTranslationY()));
-        o1.k kVar = new o1.k(ubVar, ub.IN_OUT_OFFSET_Y, 0.0f);
-        kVar.f15490u.a(0.8f);
-        kVar.f15490u.b(400.0f);
-        kVar.a(new m4(1, ubVar, ogVar));
-        kVar.b(new sb(mlVar, ubVar, 1));
+    public void U(tb tbVar, eb ebVar, og ogVar, ml mlVar) {
+        tbVar.setInOutOffset(tbVar.getMeasuredHeight());
+        mlVar.accept(Float.valueOf(tbVar.getTranslationY()));
+        o1.k kVar = new o1.k(tbVar, tb.IN_OUT_OFFSET_Y, 0.0f);
+        kVar.f15522u.a(0.8f);
+        kVar.f15522u.b(400.0f);
+        kVar.a(new m4(1, tbVar, ogVar));
+        kVar.b(new rb(mlVar, tbVar, 1));
         kVar.f();
-        fbVar.run();
+        ebVar.run();
     }
 
     @Override
     public void U1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public int V() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return 0;
             default:
@@ -551,13 +557,8 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void V0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
     public boolean V1(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -575,13 +576,8 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public boolean W0(u1 u1Var, boolean z10) {
-        switch (this.f41494a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+    public void W0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -590,13 +586,18 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void X0(u1 u1Var) {
-        int i10 = this.f41494a;
+    public boolean X0(u1 u1Var, boolean z10) {
+        switch (this.f41536a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
     public hh.a Y() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return null;
             default:
@@ -605,8 +606,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
+    public void Y0(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
     public pv0 Y1() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return null;
             default:
@@ -620,13 +626,8 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void Z0(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
     public p0 a(Class cls) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 3:
                 return new n0(true);
             default:
@@ -636,7 +637,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public boolean a0(u1 u1Var) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -645,8 +646,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
+    public void a1(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
     public boolean a2(long j3) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -661,7 +667,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public boolean b0(u1 u1Var, TLRPC.User user) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -671,7 +677,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f41494a;
+        int i11 = this.f41536a;
     }
 
     @Override
@@ -680,23 +686,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public boolean c0() {
-        return false;
-    }
-
-    @Override
-    public boolean c1(int i10, u1 u1Var) {
-        switch (this.f41494a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+    public int c0() {
+        return MediaCodecList.getCodecCount();
     }
 
     @Override
     public boolean c2(u1 u1Var, TLRPC.TodoItem todoItem) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -706,12 +702,22 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public void d0(int i10) {
-        int i11 = this.f41494a;
+        int i11 = this.f41536a;
+    }
+
+    @Override
+    public boolean d1(int i10, u1 u1Var) {
+        switch (this.f41536a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
     public boolean e() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -721,7 +727,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public boolean e0() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -731,12 +737,12 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public void e2(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public boolean f() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return true;
             default:
@@ -745,34 +751,34 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void f0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f41494a;
+    public boolean f0() {
+        return false;
     }
 
     @Override
-    public void g(ub ubVar, fb fbVar, db dbVar, gb gbVar) {
-        o1.k kVar = new o1.k(ubVar, ub.IN_OUT_OFFSET_Y, ubVar.getHeight());
-        kVar.f15490u.a(0.8f);
-        kVar.f15490u.b(400.0f);
-        kVar.a(new hb(dbVar, 1));
-        kVar.b(new sb(gbVar, ubVar, 0));
+    public void g(tb tbVar, eb ebVar, cb cbVar, fb fbVar) {
+        o1.k kVar = new o1.k(tbVar, tb.IN_OUT_OFFSET_Y, tbVar.getHeight());
+        kVar.f15522u.a(0.8f);
+        kVar.f15522u.b(400.0f);
+        kVar.a(new gb(cbVar, 1));
+        kVar.b(new rb(fbVar, tbVar, 0));
         kVar.f();
-        fbVar.run();
+        ebVar.run();
     }
 
     @Override
-    public int g0() {
-        return MediaCodecList.getCodecCount();
+    public void g0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f41536a;
     }
 
     @Override
     public void g2(u1 u1Var, long j3) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public Object mo28get() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 12:
                 return new l5.p(Executors.newSingleThreadExecutor());
             default:
@@ -780,13 +786,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
                 HashMap hashMap = new HashMap();
                 Set set = Collections.EMPTY_SET;
                 if (set != null) {
-                    hashMap.put(i5.d.f10996a, new r5.b(30000L, 86400000L, set));
+                    hashMap.put(i5.d.f10997a, new r5.b(30000L, 86400000L, set));
                     if (set != null) {
-                        hashMap.put(i5.d.f10998c, new r5.b(1000L, 86400000L, set));
+                        hashMap.put(i5.d.f10999c, new r5.b(1000L, 86400000L, set));
                         if (set != null) {
-                            Set unmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(r5.c.f42301b)));
+                            Set unmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(r5.c.f42345b)));
                             if (unmodifiableSet != null) {
-                                hashMap.put(i5.d.f10997b, new r5.b(86400000L, 86400000L, unmodifiableSet));
+                                hashMap.put(i5.d.f10998b, new r5.b(86400000L, 86400000L, unmodifiableSet));
                                 if (hashMap.keySet().size() >= i5.d.values().length) {
                                     new HashMap();
                                     return new r5.a(aVar, hashMap);
@@ -805,7 +811,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public String h(u1 u1Var) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return null;
             default:
@@ -814,44 +820,44 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public int h0(u1 u1Var) {
-        switch (this.f41494a) {
-            case 17:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public boolean h1(MessageObject messageObject) {
-        int i10 = this.f41494a;
-        return c1.a(messageObject);
-    }
-
-    @Override
-    public void i(u1 u1Var, bi.f fVar) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void i0(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
-        int i13 = this.f41494a;
-    }
-
-    @Override
-    public void j0(byte[] bArr) {
+    public void h0(byte[] bArr) {
         throw new IllegalStateException();
     }
 
     @Override
+    public void i(u1 u1Var, bi.f fVar) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public int i0(u1 u1Var) {
+        switch (this.f41536a) {
+            case 17:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public boolean i1(MessageObject messageObject) {
+        int i10 = this.f41536a;
+        return c1.a(messageObject);
+    }
+
+    @Override
+    public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+        int i13 = this.f41536a;
+    }
+
+    @Override
+    public void j0(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
     public void k() {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -860,23 +866,18 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void k1() {
-        int i10 = this.f41494a;
+    public int l0() {
+        return 1;
     }
 
     @Override
-    public boolean l0() {
-        switch (this.f41494a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+    public void l1() {
+        int i10 = this.f41536a;
     }
 
     @Override
     public boolean l2(u1 u1Var, TL_iv.PageBlock pageBlock) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -890,38 +891,8 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public int m0() {
-        return 1;
-    }
-
-    @Override
-    public void m1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void m2(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
-        int i11 = this.f41494a;
-    }
-
-    @Override
-    public void n0(String str) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void o(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public boolean o0(z5 z5Var) {
-        switch (this.f41494a) {
+    public boolean m0() {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -930,23 +901,53 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void p() {
-        int i10 = this.f41494a;
+    public void m2(u1 u1Var) {
+        int i10 = this.f41536a;
     }
 
     @Override
-    public boolean p0() {
+    public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+        int i11 = this.f41536a;
+    }
+
+    @Override
+    public boolean n0() {
         return false;
     }
 
     @Override
-    public void p1(u1 u1Var, TLRPC.Document document) {
-        int i10 = this.f41494a;
+    public void n1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void o(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void o0(String str) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void p() {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public boolean p0(y5 y5Var) {
+        switch (this.f41536a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
     public Object p2() {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 8:
                 return new ArrayDeque();
             default:
@@ -960,28 +961,33 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void q0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void q2() {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void r(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public boolean r0(String str, byte[] bArr) {
+    public boolean q0(String str, byte[] bArr) {
         throw new IllegalStateException();
     }
 
     @Override
+    public void q1(u1 u1Var, TLRPC.Document document) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void q2() {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void r(u1 u1Var) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
+    public void r0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f41536a;
+    }
+
+    @Override
     public void s() {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -1012,27 +1018,22 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public void t(u1 u1Var) {
-        int i10 = this.f41494a;
-    }
-
-    @Override
-    public void t0(u1 u1Var, TLRPC.User user, float f7, float f10) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public void t2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public void u(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
-    public void u1(u1 u1Var, float f7, float f10) {
-        int i10 = this.f41494a;
+    public void u0(u1 u1Var, TLRPC.User user, float f7, float f10) {
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -1044,13 +1045,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void v0(u1 u1Var, float f7, float f10, boolean z10) {
-        int i10 = this.f41494a;
+    public void v1(u1 u1Var, float f7, float f10) {
+        int i10 = this.f41536a;
     }
 
     @Override
     public boolean v2(int i10) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return false;
             default:
@@ -1060,7 +1061,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
 
     @Override
     public String w(long j3) {
-        switch (this.f41494a) {
+        switch (this.f41536a) {
             case 17:
                 return null;
             default:
@@ -1069,13 +1070,8 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public boolean w0(MessageObject messageObject) {
-        switch (this.f41494a) {
-            case 17:
-                return true;
-            default:
-                return true;
-        }
+    public void w0(u1 u1Var, float f7, float f10, boolean z10) {
+        int i10 = this.f41536a;
     }
 
     @Override
@@ -1161,25 +1157,30 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
                     return new f4.e();
             }
         }
-        throw new IllegalArgumentException(t8.b.i("Unsupported MIME type: ", str));
+        throw new IllegalArgumentException(j0.g("Unsupported MIME type: ", str));
     }
 
     @Override
-    public void x0(gh ghVar) {
-        ghVar.run();
+    public boolean x0(MessageObject messageObject) {
+        switch (this.f41536a) {
+            case 17:
+                return true;
+            default:
+                return true;
+        }
     }
 
     @Override
     public void x2() {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
     public void y(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
         if (i10 < i11) {
-            cg.a.f4264q.y(shortBuffer, i10, shortBuffer2, i11, i12);
+            cg.a.f4265q.y(shortBuffer, i10, shortBuffer2, i11, i12);
         } else if (i10 > i11) {
-            cg.a.f4263p.y(shortBuffer, i10, shortBuffer2, i11, i12);
+            cg.a.f4264p.y(shortBuffer, i10, shortBuffer2, i11, i12);
         } else if (i10 == i11) {
             shortBuffer2.put(shortBuffer);
         } else {
@@ -1188,28 +1189,28 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void y0(u1 u1Var) {
-        int i10 = this.f41494a;
+    public void y0(gh ghVar) {
+        ghVar.run();
     }
 
     @Override
     public void y2(u1 u1Var, int i10, int i11) {
-        int i12 = this.f41494a;
+        int i12 = this.f41536a;
     }
 
     @Override
     public void z(u1 u1Var) {
-        int i10 = this.f41494a;
+        int i10 = this.f41536a;
     }
 
     @Override
-    public void z0() {
-        int i10 = this.f41494a;
+    public void z0(u1 u1Var) {
+        int i10 = this.f41536a;
     }
 
     @Override
-    public r9 z2() {
-        switch (this.f41494a) {
+    public s9 z2() {
+        switch (this.f41536a) {
             case 17:
                 return null;
             default:
@@ -1226,7 +1227,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void H0() {
     }
 
-    private final void J0() {
+    private final void I0() {
     }
 
     private final void O3() {
@@ -1241,16 +1242,16 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void T3() {
     }
 
+    private final void U0() {
+    }
+
     private final void W3() {
     }
 
     private final void X3() {
     }
 
-    private final void Y0() {
-    }
-
-    private final void a1() {
+    private final void Z0() {
     }
 
     private final void b4() {
@@ -1266,7 +1267,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void K0() {
+    public void L0() {
     }
 
     @Override
@@ -1274,16 +1275,16 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void u0() {
+    public void v0() {
+    }
+
+    private final void A1(u1 u1Var) {
     }
 
     private final void C3(u1 u1Var) {
     }
 
     private final void D3(u1 u1Var) {
-    }
-
-    private final void E1(u1 u1Var) {
     }
 
     private final void E3(u1 u1Var) {
@@ -1301,25 +1302,25 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void J3(u1 u1Var) {
     }
 
-    private final void L0(u1 u1Var) {
+    private final void K0(u1 u1Var) {
     }
 
-    private final void O0(u1 u1Var) {
+    private final void M0(u1 u1Var) {
     }
 
     private final void O2(u1 u1Var) {
     }
 
+    private final void P0(u1 u1Var) {
+    }
+
     private final void P2(u1 u1Var) {
     }
 
-    private final void Q0(u1 u1Var) {
+    private final void R0(u1 u1Var) {
     }
 
     private final void S2(u1 u1Var) {
-    }
-
-    private final void T0(u1 u1Var) {
     }
 
     private final void T2(u1 u1Var) {
@@ -1361,7 +1362,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void b3(u1 u1Var) {
     }
 
-    private final void d1(u1 u1Var) {
+    private final void c1(u1 u1Var) {
     }
 
     private final void d2(u1 u1Var) {
@@ -1370,7 +1371,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void g1(u1 u1Var) {
     }
 
-    private final void i1(u1 u1Var) {
+    private final void h1(u1 u1Var) {
     }
 
     private final void k3(String str) {
@@ -1400,13 +1401,13 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void t1(MessageObject.TextLayoutBlock textLayoutBlock) {
     }
 
+    private final void u1(MessageObject.TextLayoutBlock textLayoutBlock) {
+    }
+
     private final void u2(u1 u1Var) {
     }
 
     private final void u3(u1 u1Var) {
-    }
-
-    private final void v1(MessageObject.TextLayoutBlock textLayoutBlock) {
     }
 
     private final void v3(u1 u1Var) {
@@ -1438,7 +1439,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void U0(Object obj) {
+    public void V0(Object obj) {
     }
 
     @Override
@@ -1446,7 +1447,7 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void j1(TLRPC.User user) {
+    public void k1(TLRPC.User user) {
     }
 
     private final void A3(u1 u1Var, bi.f fVar) {
@@ -1458,16 +1459,16 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void C2(int i10, u1 u1Var) {
     }
 
+    private final void D0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    }
+
     private final void D2(int i10, u1 u1Var) {
     }
 
-    private final void E0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    private final void F0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     private final void F3(u1 u1Var, boolean z10) {
-    }
-
-    private final void G0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     private final void H3(u1 u1Var, boolean z10) {
@@ -1519,9 +1520,6 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     public void l(byte[] bArr, j2.k kVar) {
     }
 
-    private final void C0(u1 u1Var, float f7, float f10) {
-    }
-
     private final void G2(u1 u1Var, float f7, float f10) {
     }
 
@@ -1549,13 +1547,16 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void o1(u1 u1Var, TLObject tLObject, boolean z10) {
     }
 
-    private final void q1(u1 u1Var, TLObject tLObject, boolean z10) {
+    private final void p1(u1 u1Var, TLObject tLObject, boolean z10) {
     }
 
     private final void s0(u1 u1Var, float f7, float f10) {
     }
 
     private final void s3(u1 u1Var, float f7, float f10) {
+    }
+
+    private final void t0(u1 u1Var, float f7, float f10) {
     }
 
     private final void t3(u1 u1Var, float f7, float f10) {
@@ -1603,10 +1604,10 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     private final void p3(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
     }
 
-    private final void l1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    private final void j1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
     }
 
-    private final void n1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    private final void m1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
     }
 
     private final void Q3(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
@@ -1620,6 +1621,6 @@ public class b implements s0, bg.a, cg.a, da.c, fb.n, ti, n5.b, n2.r, q9.d, tb, 
     }
 
     @Override
-    public void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
     }
 }

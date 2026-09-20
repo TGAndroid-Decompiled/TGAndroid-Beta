@@ -21,132 +21,132 @@ import org.telegram.tgnet.TLRPC;
 public final class tj extends vm {
     public int Y2;
     public final ArrayList Z2;
-    public final ArrayList f37744a3;
-    public final ArrayList f37745b3;
-    public final ArrayList f37746c3;
-    public final ArrayList f37747d3;
-    public int f37748e3;
-    public int f37749f3;
-    public int f37750g3;
-    public long f37751h3;
-    public float f37752i3;
+    public final ArrayList f37816a3;
+    public final ArrayList f37817b3;
+    public final ArrayList f37818c3;
+    public final ArrayList f37819d3;
+    public int f37820e3;
+    public int f37821f3;
+    public int f37822g3;
+    public long f37823h3;
+    public float f37824i3;
     public float j3;
-    public boolean f37753k3;
-    public final float f37754l3;
-    public final Paint f37755m3;
-    public final Paint f37756n3;
-    public final o1.j f37757o3;
-    public final o1.k f37758p3;
-    public final o1.j f37759q3;
-    public final o1.k f37760r3;
-    public final o1.j f37761s3;
-    public final o1.k f37762t3;
-    public boolean f37763u3;
-    public final Path f37764v3;
-    public boolean f37765w3;
-    public int f37766x3;
+    public boolean f37825k3;
+    public final float f37826l3;
+    public final Paint f37827m3;
+    public final Paint f37828n3;
+    public final o1.j f37829o3;
+    public final o1.k f37830p3;
+    public final o1.j f37831q3;
+    public final o1.k f37832r3;
+    public final o1.j f37833s3;
+    public final o1.k f37834t3;
+    public boolean f37835u3;
+    public final Path f37836v3;
+    public boolean f37837w3;
+    public int f37838x3;
     public final zn y3;
 
     public tj(zn znVar, Context context, xn xnVar) {
         super(znVar, context, xnVar);
         this.y3 = znVar;
         this.Z2 = new ArrayList();
-        this.f37744a3 = new ArrayList();
-        this.f37745b3 = new ArrayList();
-        this.f37746c3 = new ArrayList();
-        this.f37747d3 = new ArrayList(10);
-        this.f37754l3 = 2000.0f;
+        this.f37816a3 = new ArrayList();
+        this.f37817b3 = new ArrayList();
+        this.f37818c3 = new ArrayList();
+        this.f37819d3 = new ArrayList(10);
+        this.f37826l3 = 2000.0f;
         Paint paint = new Paint(1);
-        this.f37755m3 = paint;
+        this.f37827m3 = paint;
         Paint paint2 = new Paint(1);
-        this.f37756n3 = paint2;
+        this.f37828n3 = paint2;
         o1.j jVar = new o1.j(0.0f);
-        this.f37757o3 = jVar;
+        this.f37829o3 = jVar;
         o1.k kVar = new o1.k(jVar);
         kVar.h = 0.0f;
-        kVar.f15484g = 2000.0f;
-        kVar.f15490u = org.telegram.ui.Cells.c1.j(0.0f, 1500.0f, 1.0f);
+        kVar.f15516g = 2000.0f;
+        kVar.f15522u = org.telegram.ui.Cells.c1.m(0.0f, 1500.0f, 1.0f);
         kVar.b(new o1.g(this) {
-            public final tj f37077b;
+            public final tj f37175b;
 
             {
-                this.f37077b = this;
+                this.f37175b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                     case 1:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                     default:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                 }
             }
         });
-        this.f37758p3 = kVar;
+        this.f37830p3 = kVar;
         o1.j jVar2 = new o1.j(0.0f);
-        this.f37759q3 = jVar2;
+        this.f37831q3 = jVar2;
         o1.k kVar2 = new o1.k(jVar2);
         kVar2.h = 0.0f;
-        kVar2.f15490u = org.telegram.ui.Cells.c1.j(0.0f, 400.0f, 0.5f);
+        kVar2.f15522u = org.telegram.ui.Cells.c1.m(0.0f, 400.0f, 0.5f);
         kVar2.b(new o1.g(this) {
-            public final tj f37077b;
+            public final tj f37175b;
 
             {
-                this.f37077b = this;
+                this.f37175b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                     case 1:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                     default:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                 }
             }
         });
-        this.f37760r3 = kVar2;
+        this.f37832r3 = kVar2;
         o1.j jVar3 = new o1.j(0.0f);
-        this.f37761s3 = jVar3;
+        this.f37833s3 = jVar3;
         o1.k kVar3 = new o1.k(jVar3);
         kVar3.h = 0.0f;
-        kVar3.f15490u = org.telegram.ui.Cells.c1.j(0.0f, 200.0f, 1.0f);
+        kVar3.f15522u = org.telegram.ui.Cells.c1.m(0.0f, 200.0f, 1.0f);
         kVar3.b(new o1.g(this) {
-            public final tj f37077b;
+            public final tj f37175b;
 
             {
-                this.f37077b = this;
+                this.f37175b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                     case 1:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                     default:
-                        this.f37077b.invalidate();
+                        this.f37175b.invalidate();
                         return;
                 }
             }
         });
-        this.f37762t3 = kVar3;
-        this.f37764v3 = new Path();
-        this.f37766x3 = 0;
+        this.f37834t3 = kVar3;
+        this.f37836v3 = new Path();
+        this.f37838x3 = 0;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
@@ -196,7 +196,7 @@ public final class tj extends vm {
     public final void dispatchDraw(Canvas canvas) {
         float f7;
         zn znVar = this.y3;
-        znVar.f40457u8 = null;
+        znVar.f40499u8 = null;
         canvas.save();
         if (znVar.V9 != null && znVar.R9) {
             boolean z10 = znVar.S9;
@@ -205,12 +205,12 @@ public final class tj extends vm {
         if (znVar.N9 != 0.0f) {
             int save = canvas.save();
             if (znVar.U9 != 0.0f) {
-                f7 = (znVar.f40488x0.getMeasuredHeight() - znVar.N9) * znVar.U9;
+                f7 = (znVar.f40530x0.getMeasuredHeight() - znVar.N9) * znVar.U9;
             } else {
                 f7 = 0.0f;
             }
             float f10 = (-znVar.N9) - f7;
-            znVar.f40510ya = f10;
+            znVar.f40552ya = f10;
             canvas.translate(0.0f, f10);
             x1(canvas, null);
             super.dispatchDraw(canvas);
@@ -277,11 +277,11 @@ public final class tj extends vm {
         uh.i iVar;
         org.telegram.ui.ActionBar.k kVar;
         zn znVar = this.y3;
-        sm smVar = znVar.f40236c9;
+        sm smVar = znVar.f40278c9;
         smVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            AndroidUtilities.cancelRunOnUIThread(smVar.f20130g0);
-            smVar.f20159z = false;
+            AndroidUtilities.cancelRunOnUIThread(smVar.f20214g0);
+            smVar.f20243z = false;
         }
         if (this.X1 || ((iVar = znVar.X9) != null && iVar.a())) {
             return false;
@@ -307,20 +307,20 @@ public final class tj extends vm {
             this.Y2 = i15;
         }
         int measuredHeight = getMeasuredHeight();
-        if (this.f37766x3 != measuredHeight) {
-            this.f37765w3 = true;
-            vj vjVar = znVar.f40501y0;
+        if (this.f37838x3 != measuredHeight) {
+            this.f37837w3 = true;
+            vj vjVar = znVar.f40543y0;
             if (vjVar != null) {
                 vjVar.g();
             }
             znVar.W8.a();
-            this.f37765w3 = false;
-            this.f37766x3 = measuredHeight;
+            this.f37837w3 = false;
+            this.f37838x3 = measuredHeight;
         }
         znVar.R5 = false;
-        sm smVar = znVar.f40236c9;
+        sm smVar = znVar.f40278c9;
         if (smVar != null && smVar.y()) {
-            znVar.f40236c9.x();
+            znVar.f40278c9.x();
         }
         znVar.p9();
         znVar.D9();
@@ -331,15 +331,15 @@ public final class tj extends vm {
         org.telegram.ui.ActionBar.k kVar;
         xp xpVar;
         zn znVar = this.y3;
-        le.b bVar = znVar.f40448tc;
-        sm smVar = znVar.f40236c9;
+        le.b bVar = znVar.f40490tc;
+        sm smVar = znVar.f40278c9;
         smVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            AndroidUtilities.cancelRunOnUIThread(smVar.f20130g0);
-            smVar.f20159z = false;
+            AndroidUtilities.cancelRunOnUIThread(smVar.f20214g0);
+            smVar.f20243z = false;
         }
         if (motionEvent.getAction() == 0) {
-            znVar.f40434sa = true;
+            znVar.f40476sa = true;
         }
         if (znVar.N9 != 0.0f && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
             float min = Math.min(1.0f, znVar.N9 / AndroidUtilities.dp(110.0f));
@@ -349,40 +349,40 @@ public final class tj extends vm {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, AndroidUtilities.dp(8.0f) + f7);
                     znVar.Q9 = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final tj f37343b;
+                        public final tj f37417b;
 
                         {
-                            this.f37343b = this;
+                            this.f37417b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    zn znVar2 = this.f37343b.y3;
+                                    zn znVar2 = this.f37417b.y3;
                                     znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar2.f40488x0.invalidate();
+                                    znVar2.f40530x0.invalidate();
                                     return;
                                 case 1:
-                                    zn znVar3 = this.f37343b.y3;
+                                    zn znVar3 = this.f37417b.y3;
                                     znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar3.f40488x0.invalidate();
+                                    znVar3.f40530x0.invalidate();
                                     return;
                                 case 2:
-                                    zn znVar4 = this.f37343b.y3;
+                                    zn znVar4 = this.f37417b.y3;
                                     znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar4.f40488x0.invalidate();
+                                    znVar4.f40530x0.invalidate();
                                     return;
                                 default:
-                                    zn znVar5 = this.f37343b.y3;
+                                    zn znVar5 = this.f37417b.y3;
                                     znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    znVar5.f40488x0.invalidate();
+                                    znVar5.f40530x0.invalidate();
                                     return;
                             }
                         }
                     });
                     ofFloat.setDuration(200L);
-                    org.telegram.ui.Components.qr qrVar = org.telegram.ui.Components.qr.f27715f;
+                    org.telegram.ui.Components.qr qrVar = org.telegram.ui.Components.qr.f27642f;
                     ofFloat.setInterpolator(qrVar);
                     ofFloat.start();
                     final xp xpVar2 = znVar.P9;
@@ -404,7 +404,7 @@ public final class tj extends vm {
                                     xpVar3.getClass();
                                     xpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     xpVar3.T.invalidate();
-                                    View view = xpVar3.f39580a0;
+                                    View view = xpVar3.f39685a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -414,7 +414,7 @@ public final class tj extends vm {
                                     xp xpVar4 = xpVar2;
                                     xpVar4.getClass();
                                     xpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = xpVar4.f39580a0;
+                                    View view2 = xpVar4.f39685a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -433,7 +433,7 @@ public final class tj extends vm {
                                     xpVar3.getClass();
                                     xpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     xpVar3.T.invalidate();
-                                    View view = xpVar3.f39580a0;
+                                    View view = xpVar3.f39685a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -443,7 +443,7 @@ public final class tj extends vm {
                                     xp xpVar4 = xpVar2;
                                     xpVar4.getClass();
                                     xpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = xpVar4.f39580a0;
+                                    View view2 = xpVar4.f39685a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -473,70 +473,70 @@ public final class tj extends vm {
                         }
                         ValueAnimator ofFloat4 = ValueAnimator.ofFloat(znVar.N9, AndroidUtilities.dp(111.0f));
                         ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final tj f37343b;
+                            public final tj f37417b;
 
                             {
-                                this.f37343b = this;
+                                this.f37417b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        zn znVar2 = this.f37343b.y3;
+                                        zn znVar2 = this.f37417b.y3;
                                         znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar2.f40488x0.invalidate();
+                                        znVar2.f40530x0.invalidate();
                                         return;
                                     case 1:
-                                        zn znVar3 = this.f37343b.y3;
+                                        zn znVar3 = this.f37417b.y3;
                                         znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar3.f40488x0.invalidate();
+                                        znVar3.f40530x0.invalidate();
                                         return;
                                     case 2:
-                                        zn znVar4 = this.f37343b.y3;
+                                        zn znVar4 = this.f37417b.y3;
                                         znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar4.f40488x0.invalidate();
+                                        znVar4.f40530x0.invalidate();
                                         return;
                                     default:
-                                        zn znVar5 = this.f37343b.y3;
+                                        zn znVar5 = this.f37417b.y3;
                                         znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar5.f40488x0.invalidate();
+                                        znVar5.f40530x0.invalidate();
                                         return;
                                 }
                             }
                         });
                         ofFloat4.setDuration(400L);
-                        ofFloat4.setInterpolator(org.telegram.ui.Components.qr.f27715f);
+                        ofFloat4.setInterpolator(org.telegram.ui.Components.qr.f27642f);
                         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(AndroidUtilities.dp(111.0f), 0.0f);
                         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final tj f37343b;
+                            public final tj f37417b;
 
                             {
-                                this.f37343b = this;
+                                this.f37417b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        zn znVar2 = this.f37343b.y3;
+                                        zn znVar2 = this.f37417b.y3;
                                         znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar2.f40488x0.invalidate();
+                                        znVar2.f40530x0.invalidate();
                                         return;
                                     case 1:
-                                        zn znVar3 = this.f37343b.y3;
+                                        zn znVar3 = this.f37417b.y3;
                                         znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar3.f40488x0.invalidate();
+                                        znVar3.f40530x0.invalidate();
                                         return;
                                     case 2:
-                                        zn znVar4 = this.f37343b.y3;
+                                        zn znVar4 = this.f37417b.y3;
                                         znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar4.f40488x0.invalidate();
+                                        znVar4.f40530x0.invalidate();
                                         return;
                                     default:
-                                        zn znVar5 = this.f37343b.y3;
+                                        zn znVar5 = this.f37417b.y3;
                                         znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        znVar5.f40488x0.invalidate();
+                                        znVar5.f40530x0.invalidate();
                                         return;
                                 }
                             }
@@ -554,34 +554,34 @@ public final class tj extends vm {
                     bVar.a(false, true);
                 }
                 ofFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final tj f37343b;
+                    public final tj f37417b;
 
                     {
-                        this.f37343b = this;
+                        this.f37417b = this;
                     }
 
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                         switch (r2) {
                             case 0:
-                                zn znVar2 = this.f37343b.y3;
+                                zn znVar2 = this.f37417b.y3;
                                 znVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar2.f40488x0.invalidate();
+                                znVar2.f40530x0.invalidate();
                                 return;
                             case 1:
-                                zn znVar3 = this.f37343b.y3;
+                                zn znVar3 = this.f37417b.y3;
                                 znVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar3.f40488x0.invalidate();
+                                znVar3.f40530x0.invalidate();
                                 return;
                             case 2:
-                                zn znVar4 = this.f37343b.y3;
+                                zn znVar4 = this.f37417b.y3;
                                 znVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar4.f40488x0.invalidate();
+                                znVar4.f40530x0.invalidate();
                                 return;
                             default:
-                                zn znVar5 = this.f37343b.y3;
+                                zn znVar5 = this.f37417b.y3;
                                 znVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                znVar5.f40488x0.invalidate();
+                                znVar5.f40530x0.invalidate();
                                 return;
                         }
                     }
@@ -596,7 +596,7 @@ public final class tj extends vm {
             kVar = ((org.telegram.ui.ActionBar.n2) znVar).actionBar;
             if (!kVar.s() && !znVar.A9()) {
                 z1(motionEvent);
-                if (znVar.f40272f9 || onTouchEvent) {
+                if (znVar.f40314f9 || onTouchEvent) {
                     return true;
                 }
             } else {
@@ -617,21 +617,21 @@ public final class tj extends vm {
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
         super.requestDisallowInterceptTouchEvent(z10);
-        if (this.y3.f40248d9 != null) {
+        if (this.y3.f40290d9 != null) {
             z1(null);
         }
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f37765w3) {
+        if (this.f37837w3) {
             return;
         }
         hh.a aVar = this.y3.Pb;
-        if (aVar.f10498b != 0) {
-            int childCount = aVar.f10497a.getChildCount();
+        if (aVar.f10499b != 0) {
+            int childCount = aVar.f10498a.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
-                aVar.f10497a.getChildAt(i10).forceLayout();
+                aVar.f10498a.getChildAt(i10).forceLayout();
             }
         }
         super.requestLayout();
@@ -690,7 +690,7 @@ public final class tj extends vm {
             }
             arrayList2.clear();
         }
-        ArrayList arrayList3 = this.f37744a3;
+        ArrayList arrayList3 = this.f37816a3;
         int size2 = arrayList3.size();
         if (size2 > 0) {
             for (int i11 = 0; i11 < size2; i11++) {
@@ -713,7 +713,7 @@ public final class tj extends vm {
             }
             arrayList3.clear();
         }
-        ArrayList arrayList4 = this.f37745b3;
+        ArrayList arrayList4 = this.f37817b3;
         int size3 = arrayList4.size();
         if (size3 > 0) {
             int i12 = 0;
@@ -756,7 +756,7 @@ public final class tj extends vm {
                     } else {
                         arrayList = arrayList4;
                     }
-                    if (u1Var3.getTransitionParams().f21130v0) {
+                    if (u1Var3.getTransitionParams().f21169v0) {
                         canvas.translate(E22, y10);
                         u1Var3.setInvalidatesParent(true);
                         u1Var3.I1(f11, canvas, z11);
@@ -774,7 +774,7 @@ public final class tj extends vm {
         } else {
             f7 = 8.0f;
         }
-        ArrayList arrayList5 = this.f37746c3;
+        ArrayList arrayList5 = this.f37818c3;
         int size4 = arrayList5.size();
         if (size4 > 0) {
             for (int i13 = 0; i13 < size4; i13++) {
@@ -807,7 +807,7 @@ public final class tj extends vm {
                         }
                         canvas.clipRect(f18 + AndroidUtilities.dp(f7), f19 + AndroidUtilities.dp(f7), f20 - AndroidUtilities.dp(f7), f21 - AndroidUtilities.dp(f7));
                     }
-                    if (!z10 && u1Var4.getTransitionParams().f21130v0) {
+                    if (!z10 && u1Var4.getTransitionParams().f21169v0) {
                         canvas.translate(E24, y11);
                         u1Var4.setInvalidatesParent(true);
                         u1Var4.d2(canvas, f10, null);
@@ -834,58 +834,58 @@ public final class tj extends vm {
         if (motionEvent != null) {
             znVar.D4 = true;
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !znVar.f40272f9 && !znVar.f40260e9 && znVar.f40248d9 == null) {
+        if (motionEvent != null && motionEvent.getAction() == 0 && !znVar.f40314f9 && !znVar.f40302e9 && znVar.f40290d9 == null) {
             z10 = ((org.telegram.ui.ActionBar.n2) znVar).inPreviewMode;
             if (!z10) {
                 View pressedChildView = getPressedChildView();
                 if (pressedChildView instanceof org.telegram.ui.Cells.u1) {
-                    if (znVar.f40248d9 != null) {
+                    if (znVar.f40290d9 != null) {
                         zn.V1(znVar, 0.0f);
                     }
-                    znVar.f40248d9 = (org.telegram.ui.Cells.u1) pressedChildView;
+                    znVar.f40290d9 = (org.telegram.ui.Cells.u1) pressedChildView;
                     MessageObject T1 = zn.T1(znVar);
                     boolean F6 = znVar.F6(T1);
                     int i10 = znVar.R3;
-                    if ((i10 == 0 || i10 == 5 || i10 == 8 || (i10 == 3 && znVar.f40243d4 == znVar.getUserConfig().getClientUserId())) && (((arrayList = znVar.f40203a4) == null || !arrayList.contains(T1)) && ((znVar.E8(T1) != 1 || (T1.getDialogId() != znVar.L6 && !T1.needDrawBluredPreview())) && ((znVar.h != null || T1.getId() >= 0) && (((chat2 = znVar.e) == null || !ChatObject.isForum(chat2) || F6) && !znVar.b9() && (!T1.isEphemeral() || !T1.isOut())))))) {
-                        this.f37750g3 = motionEvent.getPointerId(0);
-                        znVar.f40260e9 = true;
-                        this.f37748e3 = (int) motionEvent.getX();
-                        this.f37749f3 = (int) motionEvent.getY();
+                    if ((i10 == 0 || i10 == 5 || i10 == 8 || (i10 == 3 && znVar.f40285d4 == znVar.getUserConfig().getClientUserId())) && (((arrayList = znVar.f40245a4) == null || !arrayList.contains(T1)) && ((znVar.E8(T1) != 1 || (T1.getDialogId() != znVar.L6 && !T1.needDrawBluredPreview())) && ((znVar.h != null || T1.getId() >= 0) && (((chat2 = znVar.e) == null || !ChatObject.isForum(chat2) || F6) && !znVar.b9() && (!T1.isEphemeral() || !T1.isOut())))))) {
+                        this.f37822g3 = motionEvent.getPointerId(0);
+                        znVar.f40302e9 = true;
+                        this.f37820e3 = (int) motionEvent.getX();
+                        this.f37821f3 = (int) motionEvent.getY();
                         return;
                     }
                     zn.V1(znVar, 0.0f);
-                    znVar.f40248d9 = null;
+                    znVar.f40290d9 = null;
                     return;
                 }
                 return;
             }
         }
-        if (znVar.f40248d9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f37750g3) {
-            int max = Math.max(AndroidUtilities.dp(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f37748e3)));
-            int abs = Math.abs(((int) motionEvent.getY()) - this.f37749f3);
-            if (getScrollState() == 0 && znVar.f40260e9 && !znVar.f40272f9 && max <= (-AndroidUtilities.getPixelsInCM(0.4f, true)) && Math.abs(max) / 3 > abs) {
+        if (znVar.f40290d9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f37822g3) {
+            int max = Math.max(AndroidUtilities.dp(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f37820e3)));
+            int abs = Math.abs(((int) motionEvent.getY()) - this.f37821f3);
+            if (getScrollState() == 0 && znVar.f40302e9 && !znVar.f40314f9 && max <= (-AndroidUtilities.getPixelsInCM(0.4f, true)) && Math.abs(max) / 3 > abs) {
                 MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                znVar.f40248d9.onTouchEvent(obtain);
+                znVar.f40290d9.onTouchEvent(obtain);
                 super.onInterceptTouchEvent(obtain);
                 obtain.recycle();
-                znVar.f40513z0.R = false;
-                znVar.f40260e9 = false;
-                znVar.f40272f9 = true;
-                this.f37748e3 = (int) motionEvent.getX();
+                znVar.f40555z0.R = false;
+                znVar.f40302e9 = false;
+                znVar.f40314f9 = true;
+                this.f37820e3 = (int) motionEvent.getX();
                 if (getParent() != null) {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
-            } else if (znVar.f40272f9) {
+            } else if (znVar.f40314f9) {
                 if (Math.abs(max) >= AndroidUtilities.dp(50.0f)) {
-                    if (!this.f37753k3) {
+                    if (!this.f37825k3) {
                         try {
                             performHapticFeedback(3, 2);
                         } catch (Exception unused) {
                         }
-                        this.f37753k3 = true;
+                        this.f37825k3 = true;
                     }
                 } else {
-                    this.f37753k3 = false;
+                    this.f37825k3 = false;
                 }
                 float f11 = max;
                 zn.V1(znVar, f11);
@@ -893,15 +893,15 @@ public final class tj extends vm {
                 if (T12 != null && (T12.isRoundVideo() || T12.isVideo())) {
                     znVar.Mc(false, false);
                 }
-                org.telegram.ui.Cells.u1 u1Var = znVar.f40248d9;
+                org.telegram.ui.Cells.u1 u1Var = znVar.f40290d9;
                 if (com.google.android.gms.internal.vision.e2.u(u1Var)) {
                     A1(u1Var, f11);
                 }
                 invalidate();
             }
-        } else if (znVar.f40248d9 != null) {
+        } else if (znVar.f40290d9 != null) {
             if (motionEvent != null) {
-                if (motionEvent.getPointerId(0) == this.f37750g3) {
+                if (motionEvent.getPointerId(0) == this.f37822g3) {
                     if (motionEvent.getAction() != 3 && motionEvent.getAction() != 1 && motionEvent.getAction() != 6) {
                         return;
                     }
@@ -910,7 +910,7 @@ public final class tj extends vm {
                 }
             }
             if (motionEvent != null && motionEvent.getAction() != 3) {
-                org.telegram.ui.Cells.u1 u1Var2 = znVar.f40248d9;
+                org.telegram.ui.Cells.u1 u1Var2 = znVar.f40290d9;
                 if (com.google.android.gms.internal.vision.e2.u(u1Var2)) {
                     f10 = u1Var2.E2(false);
                 } else {
@@ -924,18 +924,18 @@ public final class tj extends vm {
                         if (T13.getGroupId() != 0 && (y82 = znVar.y8(T13.getGroupId())) != null && (messageObject = y82.captionMessage) != null) {
                             T13 = messageObject;
                         }
-                        znVar.f40367n5 = T13;
-                        Bundle d = org.telegram.messenger.wh.d(3, "onlySelect", "dialogsType", true);
-                        d.putBoolean("quote", true);
-                        d.putBoolean("reply_to", true);
+                        znVar.f40409n5 = T13;
+                        Bundle e = org.telegram.messenger.rk.e(3, "onlySelect", "dialogsType", true);
+                        e.putBoolean("quote", true);
+                        e.putBoolean("reply_to", true);
                         long peerDialogId = DialogObject.getPeerDialogId(T13.getFromPeer());
                         int i11 = (peerDialogId > 0L ? 1 : (peerDialogId == 0L ? 0 : -1));
                         if (i11 != 0 && peerDialogId != znVar.a() && peerDialogId != znVar.getUserConfig().getClientUserId() && i11 > 0) {
-                            d.putLong("reply_to_author", peerDialogId);
+                            e.putLong("reply_to_author", peerDialogId);
                         }
-                        d.putInt("messagesCount", 1);
-                        d.putBoolean("canSelectTopics", true);
-                        uy uyVar = new uy(d);
+                        e.putInt("messagesCount", 1);
+                        e.putBoolean("canSelectTopics", true);
+                        uy uyVar = new uy(e);
                         uyVar.C2 = znVar;
                         znVar.presentFragment(uyVar);
                     } else {
@@ -943,7 +943,7 @@ public final class tj extends vm {
                     }
                 }
             }
-            org.telegram.ui.Cells.u1 u1Var3 = znVar.f40248d9;
+            org.telegram.ui.Cells.u1 u1Var3 = znVar.f40290d9;
             if (com.google.android.gms.internal.vision.e2.u(u1Var3)) {
                 f7 = u1Var3.getSlidingOffsetX();
             } else {
@@ -951,14 +951,14 @@ public final class tj extends vm {
             }
             this.j3 = f7;
             if (f7 == 0.0f) {
-                znVar.f40248d9 = null;
+                znVar.f40290d9 = null;
             }
-            this.f37751h3 = System.currentTimeMillis();
-            this.f37752i3 = 0.0f;
+            this.f37823h3 = System.currentTimeMillis();
+            this.f37824i3 = 0.0f;
             invalidate();
-            znVar.f40260e9 = false;
-            znVar.f40272f9 = false;
-            znVar.f40513z0.R = true;
+            znVar.f40302e9 = false;
+            znVar.f40314f9 = false;
+            znVar.f40555z0.R = true;
         }
     }
 }

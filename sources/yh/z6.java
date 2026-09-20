@@ -1,58 +1,29 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.w9;
-public final class z6 extends w9 {
-    public vh.g G;
-    public Path H;
-    public RectF I;
-    public Drawable J;
+import android.app.Activity;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.vl0;
+public final class z6 extends k61 {
+    public final w7 N;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        RectF rectF = this.I;
-        Path path = this.H;
-        Drawable drawable = this.J;
-        super.dispatchDraw(canvas);
-        if (this.G == null) {
-            this.G = vh.g.e(this);
-        }
-        if (this.G != null) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            path.rewind();
-            path.addRoundRect(rectF, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            canvas2 = canvas;
-            this.G.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
-            canvas2.restore();
-        } else {
-            canvas2 = canvas;
-        }
-        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
-        drawable.draw(canvas2);
+    public z6(w7 w7Var, vl0 vl0Var, Activity activity, int i10, int i11, hi.a aVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(vl0Var, activity, i10, i11, true, aVar, f6Var);
+        this.N = w7Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        vh.g gVar = this.G;
-        if (gVar != null) {
-            gVar.a(this);
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.ActionBar.f6 f6Var;
+        if (i10 == 42) {
+            w7 w7Var = this.N;
+            Activity parentActivity = w7Var.getParentActivity();
+            int i11 = org.telegram.ui.ActionBar.j6.L6;
+            f6Var = ((org.telegram.ui.ActionBar.n2) w7Var).resourceProvider;
+            org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(parentActivity, i11, 21, 0, false, f6Var);
+            n4Var.setHeight(25);
+            return new s4.c1(n4Var);
         }
-        super.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        vh.g gVar = this.G;
-        if (gVar != null) {
-            gVar.b(this);
-        }
-        super.onDetachedFromWindow();
+        return super.x(viewGroup, i10);
     }
 }

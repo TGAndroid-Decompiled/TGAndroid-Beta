@@ -12,10 +12,10 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
-import v7.t6;
-import v7.y7;
+import v7.u6;
+import v7.z7;
 public abstract class q {
-    public final int f8116a = 2;
+    public final int f8117a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -92,16 +92,16 @@ public abstract class q {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof j1) {
                 j1 j1Var = (j1) sortedSet;
-                d9.f fVar2 = j1Var.f8090b;
+                d9.f fVar2 = j1Var.f8091b;
                 fVar2.getClass();
-                return new j1((SortedSet) j1Var.f8089a, new d9.g(Arrays.asList(fVar2, fVar)));
+                return new j1((SortedSet) j1Var.f8090a, new d9.g(Arrays.asList(fVar2, fVar)));
             }
             return new j1(sortedSet, fVar);
         } else if (set instanceof j1) {
             j1 j1Var2 = (j1) set;
-            d9.f fVar3 = j1Var2.f8090b;
+            d9.f fVar3 = j1Var2.f8091b;
             fVar3.getClass();
-            return new j1(j1Var2.f8089a, new d9.g(Arrays.asList(fVar3, fVar)));
+            return new j1(j1Var2.f8090a, new d9.g(Arrays.asList(fVar3, fVar)));
         } else {
             set.getClass();
             return new j1(set, fVar);
@@ -121,7 +121,7 @@ public abstract class q {
         if (iterable instanceof List) {
             List list = (List) iterable;
             if (!list.isEmpty()) {
-                return t8.b.h(1, list);
+                return org.telegram.ui.Cells.c1.i(1, list);
             }
             throw new NoSuchElementException();
         }
@@ -147,8 +147,8 @@ public abstract class q {
     }
 
     public static i1 n(Set set, m0 m0Var) {
-        t6.d(set, "set1");
-        t6.d(m0Var, "set2");
+        u6.d(set, "set1");
+        u6.d(m0Var, "set2");
         return new i1(set, m0Var);
     }
 
@@ -159,7 +159,7 @@ public abstract class q {
     public static ArrayList p(Object... objArr) {
         int length = objArr.length;
         e(length, "arraySize");
-        ArrayList arrayList = new ArrayList(y7.e(length + 5 + (length / 10)));
+        ArrayList arrayList = new ArrayList(z7.e(length + 5 + (length / 10)));
         Collections.addAll(arrayList, objArr);
         return arrayList;
     }
@@ -223,7 +223,7 @@ public abstract class q {
     public abstract Object g();
 
     public String toString() {
-        switch (this.f8116a) {
+        switch (this.f8117a) {
             case 2:
                 return g().toString();
             default:

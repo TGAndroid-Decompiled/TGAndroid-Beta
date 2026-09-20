@@ -4,51 +4,53 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public interface ng {
+    void A1();
+
     void A2();
 
     void B(boolean z10);
 
-    boolean C0();
-
     void D();
 
-    void E0(int i10, int i11);
+    boolean D0();
 
-    void E1();
+    void F0(int i10, int i11);
 
-    void G0();
+    void F1();
 
     void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3);
 
-    TLRPC.TL_channels_sendAsPeers J();
+    void H0();
 
-    void J0();
+    TLRPC.TL_channels_sendAsPeers J();
 
     void K(float f7, int i10);
 
-    void T0();
+    void K0();
+
+    void U0();
 
     void W();
 
     void X(boolean z10);
 
-    void a1(int i10);
+    void b1(int i10);
 
-    int b1();
-
-    TL_stories.StoryItem d1();
+    int c1();
 
     void d2();
 
-    boolean f1(long j3);
+    TL_stories.StoryItem e1();
 
     void f2(int i10);
 
     void g();
 
-    boolean i1();
+    boolean g1(long j3);
 
     void i2();
+
+    boolean j1();
 
     void j2(boolean z10);
 
@@ -56,43 +58,41 @@ public interface ng {
 
     void l();
 
-    void l1(CharSequence charSequence, boolean z10, boolean z11);
-
     boolean m();
 
-    void m0();
+    void m1(CharSequence charSequence, boolean z10, boolean z11);
 
-    void n1();
+    void n0();
 
-    boolean o1();
+    void o1();
 
     void o2();
 
-    org.telegram.ui.pn p0();
+    boolean p1();
 
     int q();
 
-    void q1();
+    org.telegram.ui.pn q0();
 
     void r1();
 
-    void s0();
-
     void s1();
 
-    void t1(View view, CharSequence charSequence, boolean z10);
+    void t0();
+
+    void t1();
+
+    void u1(View view, CharSequence charSequence, boolean z10);
 
     TLRPC.Peer v();
 
-    void v1(CharSequence charSequence);
-
-    boolean w1();
+    void w1(CharSequence charSequence);
 
     void w2();
 
     void x();
 
-    void y(float f7);
+    boolean x1();
 
-    void z1();
+    void y(float f7);
 }

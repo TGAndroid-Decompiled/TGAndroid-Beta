@@ -18,11 +18,11 @@ import java.util.concurrent.TimeUnit;
 import v0.p;
 import v7.w;
 public final class h implements androidx.emoji2.text.k {
-    public static h f13515b;
-    public final Context f13516a;
+    public static h f13516b;
+    public final Context f13517a;
 
     public h(Context context, short s10) {
-        this.f13516a = context;
+        this.f13517a = context;
     }
 
     public static v0.j c(h hVar, Object obj) {
@@ -30,10 +30,10 @@ public final class h implements androidx.emoji2.text.k {
             return hVar.f();
         }
         if (obj instanceof v0.n) {
-            for (p pVar : ((v0.n) obj).f44071a) {
+            for (p pVar : ((v0.n) obj).f44115a) {
             }
         }
-        Context ctx = hVar.f13516a;
+        Context ctx = hVar.f13517a;
         kotlin.jvm.internal.i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -60,15 +60,15 @@ public final class h implements androidx.emoji2.text.k {
         n6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f13515b == null) {
+                if (f13516b == null) {
                     o.a(context);
-                    f13515b = new h(context, 0);
+                    f13516b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f13515b;
+        return f13516b;
     }
 
     public static final l g(PackageInfo packageInfo, l... lVarArr) {
@@ -119,18 +119,18 @@ public final class h implements androidx.emoji2.text.k {
         } else {
             cancellationSignal = null;
         }
-        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f13516a)) != null) {
+        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f13517a)) != null) {
             e0.b.a(g10, e0.b.M(aVar), cancellationSignal, new k0.a(mVar));
         }
     }
 
     public PackageInfo e(int i10, String str) {
-        return this.f13516a.getPackageManager().getPackageInfo(str, i10);
+        return this.f13517a.getPackageManager().getPackageInfo(str, i10);
     }
 
     public v0.j f() {
         String string;
-        Context context = this.f13516a;
+        Context context = this.f13517a;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;
@@ -169,18 +169,18 @@ public final class h implements androidx.emoji2.text.k {
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f13516a = context.getApplicationContext();
+                this.f13517a = context.getApplicationContext();
                 return;
             case 2:
-                this.f13516a = context.getApplicationContext();
+                this.f13517a = context.getApplicationContext();
                 return;
             case 3:
             default:
-                this.f13516a = context.getApplicationContext();
+                this.f13517a = context.getApplicationContext();
                 return;
             case 4:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f13516a = context;
+                this.f13517a = context;
                 return;
         }
     }

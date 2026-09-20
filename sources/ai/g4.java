@@ -11,8 +11,8 @@ public final class g4 extends vi {
     public final int P2;
     public final NotificationCenter.NotificationCenterDelegate Q2;
 
-    public g4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(activity, n2Var2, false, false, true, e6Var);
+    public g4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(activity, n2Var2, false, false, true, f6Var);
         this.P2 = i10;
         this.Q2 = (NotificationCenter.NotificationCenterDelegate) n2Var;
     }
@@ -95,8 +95,8 @@ public final class g4 extends vi {
         }
     }
 
-    public g4(f6 f6Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, false, false, true, e6Var);
+    public g4(f6 f6Var, Context context, org.telegram.ui.ActionBar.f6 f6Var2) {
+        super(context, null, false, false, true, f6Var2);
         this.P2 = 0;
         this.Q2 = f6Var;
     }

@@ -8,19 +8,19 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class kr extends w51 {
-    public static final int f25777a = 0;
+public final class kr extends v51 {
+    public static final int f25853a = 0;
 
     static {
-        w51.setup(new w51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
-        org.telegram.ui.Cells.c9 c9Var = (org.telegram.ui.Cells.c9) view;
-        c9Var.c(x51Var.f30248l, x51Var.f30250n, !x51Var.f30246j);
-        vh.o oVar = c9Var.f20070a;
-        if (x51Var.f30248l instanceof SpannableStringBuilder) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
+        org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
+        d9Var.c(w51Var.f29948l, w51Var.f29950n, !w51Var.f29946j);
+        vh.o oVar = d9Var.f20140a;
+        if (w51Var.f29948l instanceof SpannableStringBuilder) {
             oVar.setTextSize(1, 13.0f);
             oVar.setTranslationY(AndroidUtilities.dp(2.0f));
             oVar.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
@@ -28,13 +28,13 @@ public final class kr extends w51 {
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        org.telegram.ui.Cells.c9 c9Var = new org.telegram.ui.Cells.c9(context, e6Var, true);
-        c9Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, e6Var));
+    public final View createView(Context context, vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        org.telegram.ui.Cells.d9 d9Var = new org.telegram.ui.Cells.d9(context, f6Var, true);
+        d9Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19094d6, f6Var));
         Drawable mutate = context.getDrawable(R.drawable.msg_copy).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, e6Var), PorterDuff.Mode.MULTIPLY));
-        c9Var.setImage(mutate);
-        c9Var.setImageClickListener(new ai.d0(this, context, c9Var, 19));
-        return c9Var;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, f6Var), PorterDuff.Mode.MULTIPLY));
+        d9Var.setImage(mutate);
+        d9Var.setImageClickListener(new ai.d0(this, context, d9Var, 19));
+        return d9Var;
     }
 }

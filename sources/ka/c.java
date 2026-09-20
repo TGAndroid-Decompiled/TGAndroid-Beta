@@ -45,7 +45,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import m.k;
 import mg.h;
-import n7.z0;
 import o2.q;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -56,55 +55,61 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.ia;
+import org.telegram.ui.Cells.c1;
+import org.telegram.ui.Cells.f3;
+import org.telegram.ui.Cells.ja;
 import org.telegram.ui.Cells.l1;
-import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Cells.s9;
 import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Components.j71;
 import org.telegram.ui.Components.k20;
-import org.telegram.ui.Components.k71;
 import org.telegram.ui.Components.l20;
-import org.telegram.ui.Components.nm0;
-import org.telegram.ui.Components.pg0;
-import org.telegram.ui.Components.r6;
-import org.telegram.ui.Components.so0;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.og0;
+import org.telegram.ui.Components.q6;
+import org.telegram.ui.Components.ro0;
 import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.z5;
+import org.telegram.ui.Components.y5;
 import org.telegram.ui.au0;
 import org.telegram.ui.pv0;
+import p4.m;
 import p4.u;
-import pg.m;
 import pg.s1;
 import pg.u0;
-import qg.v1;
-import r0.m1;
+import qg.w1;
 import r0.n;
 import r2.l;
 import s4.h1;
 import s4.o0;
 import s4.p0;
-import u2.c1;
 import u2.d1;
-import u2.o1;
-import v7.g5;
-public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s, s0, w2.d, Continuation {
-    public final int f13564a;
-    public Object f13565b;
+import u2.e1;
+import u2.p1;
+import v7.h5;
+public class c implements k, ro0, o0.a, d1, l1, ah.k, j71, n, w1, r2.k, o, h1, s, s0, w2.d, Continuation {
+    public final int f13565a;
+    public Object f13566b;
 
     public c(int i10, boolean z10) {
-        this.f13564a = i10;
+        this.f13565a = i10;
     }
 
     @Override
-    public boolean A1() {
+    public boolean B1() {
         return false;
     }
 
     @Override
-    public int C(View view) {
+    public View C(int i10) {
+        return ((o0) this.f13566b).q(i10);
+    }
+
+    @Override
+    public int D(View view) {
         return o0.v(view) + ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).bottomMargin;
     }
 
-    public void D(int i10, int i11, p pVar) {
+    public void G(int i10, int i11, p pVar) {
         char c10;
         char c11;
         long j3;
@@ -114,11 +119,11 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         int i15;
         byte[] bArr;
         int i16;
-        u3.d dVar = (u3.d) this.f13565b;
-        u3.e eVar = dVar.f43831b;
-        SparseArray sparseArray = dVar.f43833c;
-        v vVar = dVar.f43841k;
-        v vVar2 = dVar.f43839i;
+        u3.d dVar = (u3.d) this.f13566b;
+        u3.e eVar = dVar.f43878b;
+        SparseArray sparseArray = dVar.f43880c;
+        v vVar = dVar.f43888k;
+        v vVar2 = dVar.f43886i;
         int i17 = 1;
         int i18 = 0;
         if (i10 != 161 && i10 != 163) {
@@ -131,7 +136,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                                     if (i10 == 30322) {
                                         dVar.d(i10);
                                         byte[] bArr2 = new byte[i11];
-                                        dVar.f43853x.f43820x = bArr2;
+                                        dVar.f43900x.f43867x = bArr2;
                                         pVar.readFully(bArr2, 0, i11);
                                         return;
                                     }
@@ -139,30 +144,30 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                                 }
                                 dVar.d(i10);
                                 byte[] bArr3 = new byte[i11];
-                                dVar.f43853x.f43809l = bArr3;
+                                dVar.f43900x.f43856l = bArr3;
                                 pVar.readFully(bArr3, 0, i11);
                                 return;
                             }
-                            Arrays.fill(vVar.f7933a, (byte) 0);
-                            pVar.readFully(vVar.f7933a, 4 - i11, i11);
+                            Arrays.fill(vVar.f7934a, (byte) 0);
+                            pVar.readFully(vVar.f7934a, 4 - i11, i11);
                             vVar.J(0);
-                            dVar.f43855z = (int) vVar.z();
+                            dVar.f43902z = (int) vVar.z();
                             return;
                         }
                         byte[] bArr4 = new byte[i11];
                         pVar.readFully(bArr4, 0, i11);
                         dVar.d(i10);
-                        dVar.f43853x.f43808k = new g0(1, 0, 0, bArr4);
+                        dVar.f43900x.f43855k = new g0(1, 0, 0, bArr4);
                         return;
                     }
                     dVar.d(i10);
                     byte[] bArr5 = new byte[i11];
-                    dVar.f43853x.f43807j = bArr5;
+                    dVar.f43900x.f43854j = bArr5;
                     pVar.readFully(bArr5, 0, i11);
                     return;
                 }
                 dVar.d(i10);
-                u3.c cVar = dVar.f43853x;
+                u3.c cVar = dVar.f43900x;
                 int i19 = cVar.h;
                 if (i19 != 1685485123 && i19 != 1685480259) {
                     pVar.q(i11);
@@ -175,10 +180,10 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
             } else if (dVar.J == 2) {
                 u3.c cVar2 = (u3.c) sparseArray.get(dVar.P);
                 int i20 = dVar.S;
-                v vVar3 = dVar.f43846p;
-                if (i20 == 4 && "V_VP9".equals(cVar2.f43803c)) {
+                v vVar3 = dVar.f43893p;
+                if (i20 == 4 && "V_VP9".equals(cVar2.f43850c)) {
                     vVar3.G(i11);
-                    pVar.readFully(vVar3.f7933a, 0, i11);
+                    pVar.readFully(vVar3.f7934a, 0, i11);
                     return;
                 }
                 pVar.q(i11);
@@ -189,7 +194,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         }
         if (dVar.J == 0) {
             dVar.P = (int) eVar.b(pVar, false, true, 8);
-            dVar.Q = eVar.f43858c;
+            dVar.Q = eVar.f43905c;
             dVar.L = -9223372036854775807L;
             dVar.J = 1;
             vVar2.G(0);
@@ -203,7 +208,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         cVar3.Z.getClass();
         if (dVar.J == 1) {
             dVar.j(pVar, 3);
-            int i21 = (vVar2.f7933a[2] & 6) >> 1;
+            int i21 = (vVar2.f7934a[2] & 6) >> 1;
             byte b10 = 255;
             if (i21 == 0) {
                 dVar.N = 1;
@@ -217,7 +222,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                 iArr[0] = (i11 - dVar.Q) - 3;
             } else {
                 dVar.j(pVar, 4);
-                int i22 = (vVar2.f7933a[3] & 255) + 1;
+                int i22 = (vVar2.f7934a[3] & 255) + 1;
                 dVar.N = i22;
                 int[] iArr2 = dVar.O;
                 if (iArr2 == null) {
@@ -242,7 +247,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                         while (true) {
                             i14 = i26 + 1;
                             dVar.j(pVar, i14);
-                            int i27 = vVar2.f7933a[i26] & 255;
+                            int i27 = vVar2.f7934a[i26] & 255;
                             int[] iArr3 = dVar.O;
                             i15 = iArr3[i24] + i27;
                             iArr3[i24] = i15;
@@ -266,17 +271,17 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                             dVar.O[i28] = i18;
                             int i32 = i30 + 1;
                             dVar.j(pVar, i32);
-                            if (vVar2.f7933a[i30] != 0) {
+                            if (vVar2.f7934a[i30] != 0) {
                                 int i33 = 0;
                                 while (true) {
                                     if (i33 < 8) {
                                         int i34 = 1 << (7 - i33);
-                                        if ((vVar2.f7933a[i30] & i34) != 0) {
+                                        if ((vVar2.f7934a[i30] & i34) != 0) {
                                             i12 = i32 + i33;
                                             dVar.j(pVar, i12);
-                                            j3 = vVar2.f7933a[i30] & b10 & (~i34);
+                                            j3 = vVar2.f7934a[i30] & b10 & (~i34);
                                             while (i32 < i12) {
-                                                j3 = (j3 << 8) | (vVar2.f7933a[i32] & b10);
+                                                j3 = (j3 << 8) | (vVar2.f7934a[i32] & b10);
                                                 i32++;
                                                 b10 = 255;
                                             }
@@ -325,9 +330,9 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
             }
             c10 = 1;
             c11 = 0;
-            int i36 = vVar2.f7933a[c10] & 255;
+            int i36 = vVar2.f7934a[c10] & 255;
             dVar.K = dVar.l(i36 | (bArr[c11] << 8)) + dVar.E;
-            if (cVar3.e != 2 && (i10 != 163 || (vVar2.f7933a[2] & 128) != 128)) {
+            if (cVar3.e != 2 && (i10 != 163 || (vVar2.f7934a[2] & 128) != 128)) {
                 i16 = 0;
             } else {
                 i16 = 1;
@@ -340,7 +345,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
             while (true) {
                 int i37 = dVar.M;
                 if (i37 < dVar.N) {
-                    dVar.e(cVar3, ((dVar.M * cVar3.f43804f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
+                    dVar.e(cVar3, ((dVar.M * cVar3.f43851f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
                     dVar.M++;
                 } else {
                     dVar.J = 0;
@@ -361,10 +366,6 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         }
     }
 
-    public n4.a G() {
-        return new n4.a(((AudioAttributes.Builder) this.f13565b).build());
-    }
-
     @Override
     public boolean G1(u1 u1Var, TLRPC.Chat chat) {
         return false;
@@ -373,8 +374,8 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     @Override
     public androidx.lifecycle.p0 H(Class cls, v1.b bVar) {
         m0 m0Var = null;
-        for (v1.c cVar : (v1.c[]) this.f13565b) {
-            if (cVar.f44078a.equals(cls)) {
+        for (v1.c cVar : (v1.c[]) this.f13566b) {
+            if (cVar.f44122a.equals(cls)) {
                 m0Var = new m0();
             }
         }
@@ -389,30 +390,18 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         return false;
     }
 
-    public String J(Object obj) {
-        StringWriter stringWriter = new StringWriter();
-        try {
-            e eVar = (e) this.f13565b;
-            f fVar = new f(stringWriter, eVar.f13569a, eVar.f13570b, eVar.f13571c, eVar.d);
-            fVar.h(obj);
-            fVar.j();
-            fVar.f13573b.flush();
-        } catch (IOException unused) {
-        }
-        return stringWriter.toString();
+    public n4.a J() {
+        return new n4.a(((AudioAttributes.Builder) this.f13566b).build());
     }
 
     @Override
-    public void K(float f7) {
-        au0 au0Var = (au0) this.f13565b;
-        u0.e(au0Var.P1).k(String.valueOf(m.f41158a.indexOf(au0Var.W0.getCurrentBrush())), f7);
-        s1 s1Var = au0Var.K1;
-        s1Var.f41244c = f7;
-        au0Var.s0(s1Var, null);
+    public void K(ah.a aVar) {
+        aVar.a(((vi) this.f13566b).getThemedColor(j6.f19094d6));
+        aVar.b(SharedConfig.chatBlurEnabled());
     }
 
     @Override
-    public boolean M0(long j3) {
+    public boolean N0(long j3) {
         return false;
     }
 
@@ -437,23 +426,20 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void P0(int i10, u1 u1Var) {
-        ia iaVar = (ia) this.f13565b;
-        org.telegram.ui.Cells.g gVar = iaVar.v;
-        if (iaVar.a()) {
-            iaVar.f20435s = 2;
-            u1Var.invalidate();
-            AndroidUtilities.cancelRunOnUIThread(gVar);
-            AndroidUtilities.runOnUIThread(gVar, 5000L);
-        }
+    public r0.l1 P0(View view, r0.l1 l1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        mm0 mm0Var = (mm0) this.f13566b;
+        mm0Var.v.setPadding(defaultWindowInsets.f10592a, defaultWindowInsets.f10593b, defaultWindowInsets.f10594c, defaultWindowInsets.d);
+        mm0Var.f26424s.requestLayout();
+        return r0.l1.f42153b;
     }
 
     @Override
     public void P1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        ia iaVar = (ia) this.f13565b;
-        org.telegram.ui.Cells.g gVar = iaVar.v;
-        if (iaVar.a()) {
-            iaVar.f20435s = 2;
+        ja jaVar = (ja) this.f13566b;
+        org.telegram.ui.Cells.g gVar = jaVar.v;
+        if (jaVar.a()) {
+            jaVar.f20513s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
@@ -465,12 +451,15 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public m1 Q0(View view, m1 m1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        nm0 nm0Var = (nm0) this.f13565b;
-        nm0Var.v.setPadding(defaultWindowInsets.f10591a, defaultWindowInsets.f10592b, defaultWindowInsets.f10593c, defaultWindowInsets.d);
-        nm0Var.f26732s.requestLayout();
-        return m1.f42108b;
+    public void Q0(int i10, u1 u1Var) {
+        ja jaVar = (ja) this.f13566b;
+        org.telegram.ui.Cells.g gVar = jaVar.v;
+        if (jaVar.a()) {
+            jaVar.f20513s = 2;
+            u1Var.invalidate();
+            AndroidUtilities.cancelRunOnUIThread(gVar);
+            AndroidUtilities.runOnUIThread(gVar, 5000L);
+        }
     }
 
     @Override
@@ -483,10 +472,17 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         return false;
     }
 
-    @Override
-    public void U(ah.a aVar) {
-        aVar.a(((vi) this.f13565b).getThemedColor(j6.f19062d6));
-        aVar.b(SharedConfig.chatBlurEnabled());
+    public String U(Object obj) {
+        StringWriter stringWriter = new StringWriter();
+        try {
+            e eVar = (e) this.f13566b;
+            f fVar = new f(stringWriter, eVar.f13570a, eVar.f13571b, eVar.f13572c, eVar.d);
+            fVar.h(obj);
+            fVar.j();
+            fVar.f13574b.flush();
+        } catch (IOException unused) {
+        }
+        return stringWriter.toString();
     }
 
     @Override
@@ -500,18 +496,18 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     public void W(int i10, long j3) {
-        u3.d dVar = (u3.d) this.f13565b;
+        u3.d dVar = (u3.d) this.f13566b;
         if (i10 != 20529) {
             if (i10 != 20530) {
                 boolean z10 = false;
                 switch (i10) {
                     case 131:
                         dVar.d(i10);
-                        dVar.f43853x.e = (int) j3;
+                        dVar.f43900x.e = (int) j3;
                         return;
                     case 136:
                         dVar.d(i10);
-                        u3.c cVar = dVar.f43853x;
+                        u3.c cVar = dVar.f43900x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -522,11 +518,11 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                         return;
                     case 159:
                         dVar.d(i10);
-                        dVar.f43853x.Q = (int) j3;
+                        dVar.f43900x.Q = (int) j3;
                         return;
                     case 176:
                         dVar.d(i10);
-                        dVar.f43853x.f43811n = (int) j3;
+                        dVar.f43900x.f43858n = (int) j3;
                         return;
                     case 179:
                         dVar.b(i10);
@@ -534,11 +530,11 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                         return;
                     case 186:
                         dVar.d(i10);
-                        dVar.f43853x.f43812o = (int) j3;
+                        dVar.f43900x.f43859o = (int) j3;
                         return;
                     case 215:
                         dVar.d(i10);
-                        dVar.f43853x.d = (int) j3;
+                        dVar.f43900x.d = (int) j3;
                         return;
                     case 231:
                         dVar.E = dVar.l(j3);
@@ -559,7 +555,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                         return;
                     case 16871:
                         dVar.d(i10);
-                        dVar.f43853x.h = (int) j3;
+                        dVar.f43900x.h = (int) j3;
                         return;
                     case 16980:
                         if (j3 != 3) {
@@ -587,7 +583,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                         }
                         return;
                     case 21420:
-                        dVar.A = j3 + dVar.f43849s;
+                        dVar.A = j3 + dVar.f43896s;
                         return;
                     case 21432:
                         int i11 = (int) j3;
@@ -596,34 +592,34 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                             if (i11 != 1) {
                                 if (i11 != 3) {
                                     if (i11 == 15) {
-                                        dVar.f43853x.f43821y = 3;
+                                        dVar.f43900x.f43868y = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f43853x.f43821y = 1;
+                                dVar.f43900x.f43868y = 1;
                                 return;
                             }
-                            dVar.f43853x.f43821y = 2;
+                            dVar.f43900x.f43868y = 2;
                             return;
                         }
-                        dVar.f43853x.f43821y = 0;
+                        dVar.f43900x.f43868y = 0;
                         return;
                     case 21680:
                         dVar.d(i10);
-                        dVar.f43853x.f43814q = (int) j3;
+                        dVar.f43900x.f43861q = (int) j3;
                         return;
                     case 21682:
                         dVar.d(i10);
-                        dVar.f43853x.f43816s = (int) j3;
+                        dVar.f43900x.f43863s = (int) j3;
                         return;
                     case 21690:
                         dVar.d(i10);
-                        dVar.f43853x.f43815r = (int) j3;
+                        dVar.f43900x.f43862r = (int) j3;
                         return;
                     case 21930:
                         dVar.d(i10);
-                        u3.c cVar2 = dVar.f43853x;
+                        u3.c cVar2 = dVar.f43900x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -631,25 +627,25 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                         return;
                     case 21938:
                         dVar.d(i10);
-                        u3.c cVar3 = dVar.f43853x;
-                        cVar3.f43822z = true;
-                        cVar3.f43813p = (int) j3;
+                        u3.c cVar3 = dVar.f43900x;
+                        cVar3.f43869z = true;
+                        cVar3.f43860p = (int) j3;
                         return;
                     case 21998:
                         dVar.d(i10);
-                        dVar.f43853x.f43805g = (int) j3;
+                        dVar.f43900x.f43852g = (int) j3;
                         return;
                     case 22186:
                         dVar.d(i10);
-                        dVar.f43853x.T = j3;
+                        dVar.f43900x.T = j3;
                         return;
                     case 22203:
                         dVar.d(i10);
-                        dVar.f43853x.U = j3;
+                        dVar.f43900x.U = j3;
                         return;
                     case 25188:
                         dVar.d(i10);
-                        dVar.f43853x.R = (int) j3;
+                        dVar.f43900x.R = (int) j3;
                         return;
                     case 30114:
                         dVar.U = j3;
@@ -661,25 +657,25 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                             if (i12 != 1) {
                                 if (i12 != 2) {
                                     if (i12 == 3) {
-                                        dVar.f43853x.f43817t = 3;
+                                        dVar.f43900x.f43864t = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f43853x.f43817t = 2;
+                                dVar.f43900x.f43864t = 2;
                                 return;
                             }
-                            dVar.f43853x.f43817t = 1;
+                            dVar.f43900x.f43864t = 1;
                             return;
                         }
-                        dVar.f43853x.f43817t = 0;
+                        dVar.f43900x.f43864t = 0;
                         return;
                     case 2352003:
                         dVar.d(i10);
-                        dVar.f43853x.f43804f = (int) j3;
+                        dVar.f43900x.f43851f = (int) j3;
                         return;
                     case 2807729:
-                        dVar.f43850t = j3;
+                        dVar.f43897t = j3;
                         return;
                     default:
                         switch (i10) {
@@ -688,37 +684,37 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                                 int i13 = (int) j3;
                                 if (i13 != 1) {
                                     if (i13 == 2) {
-                                        dVar.f43853x.C = 1;
+                                        dVar.f43900x.C = 1;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f43853x.C = 2;
+                                dVar.f43900x.C = 2;
                                 return;
                             case 21946:
                                 dVar.d(i10);
                                 int g10 = j.g((int) j3);
                                 if (g10 != -1) {
-                                    dVar.f43853x.B = g10;
+                                    dVar.f43900x.B = g10;
                                     return;
                                 }
                                 return;
                             case 21947:
                                 dVar.d(i10);
-                                dVar.f43853x.f43822z = true;
+                                dVar.f43900x.f43869z = true;
                                 int f7 = j.f((int) j3);
                                 if (f7 != -1) {
-                                    dVar.f43853x.A = f7;
+                                    dVar.f43900x.A = f7;
                                     return;
                                 }
                                 return;
                             case 21948:
                                 dVar.d(i10);
-                                dVar.f43853x.D = (int) j3;
+                                dVar.f43900x.D = (int) j3;
                                 return;
                             case 21949:
                                 dVar.d(i10);
-                                dVar.f43853x.E = (int) j3;
+                                dVar.f43900x.E = (int) j3;
                                 return;
                             default:
                                 return;
@@ -734,22 +730,22 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public boolean W0(u1 u1Var, boolean z10) {
-        return false;
+    public void X(float f7, boolean z10) {
+        h hVar = (h) this.f13566b;
+        float f10 = hVar.f15041b;
+        float z11 = e2.z(hVar.f15042c, f10, f7, f10);
+        hVar.d = z11;
+        if (z10) {
+            q6 q6Var = hVar.e;
+            q6Var.getClass();
+            q6Var.c(null, z11);
+        }
+        hVar.invalidate();
     }
 
     @Override
-    public void X(float f7, boolean z10) {
-        h hVar = (h) this.f13565b;
-        float f10 = hVar.f15002b;
-        float z11 = e2.z(hVar.f15003c, f10, f7, f10);
-        hVar.d = z11;
-        if (z10) {
-            r6 r6Var = hVar.e;
-            r6Var.getClass();
-            r6Var.c(null, z11);
-        }
-        hVar.invalidate();
+    public boolean X0(u1 u1Var, boolean z10) {
+        return false;
     }
 
     @Override
@@ -765,7 +761,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     public void Z() {
         q[] qVarArr;
         q[] qVarArr2;
-        o2.k kVar = (o2.k) this.f13565b;
+        o2.k kVar = (o2.k) this.f13566b;
         int i10 = kVar.H - 1;
         kVar.H = i10;
         if (i10 > 0) {
@@ -774,13 +770,13 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         int i11 = 0;
         for (q qVar : kVar.J) {
             qVar.e();
-            i11 += qVar.Y.f43712a;
+            i11 += qVar.Y.f43765a;
         }
         b2.l1[] l1VarArr = new b2.l1[i11];
         int i12 = 0;
         for (q qVar2 : kVar.J) {
             qVar2.e();
-            int i13 = qVar2.Y.f43712a;
+            int i13 = qVar2.Y.f43765a;
             int i14 = 0;
             while (i14 < i13) {
                 qVar2.e();
@@ -789,7 +785,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                 i12++;
             }
         }
-        kVar.I = new o1(l1VarArr);
+        kVar.I = new p1(l1VarArr);
         kVar.G.b(kVar);
     }
 
@@ -810,18 +806,18 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f13564a) {
+        switch (this.f13565a) {
             case 23:
                 s6.f fVar = new s6.f(1, (TaskCompletionSource) obj2);
                 s6.e eVar = (s6.e) ((s6.h) obj).u();
                 Parcel I0 = eVar.I0();
                 k7.a.d(I0, fVar);
-                k7.a.c(I0, (s6.a) this.f13565b);
+                k7.a.c(I0, (s6.a) this.f13566b);
                 I0.writeStrongBinder(null);
                 eVar.J0(I0, 2);
                 return;
             default:
-                v8.e eVar2 = (v8.e) this.f13565b;
+                v8.e eVar2 = (v8.e) this.f13566b;
                 e8.b bVar = (e8.b) obj;
                 bVar.getClass();
                 e8.a aVar = new e8.a(1, (TaskCompletionSource) obj2);
@@ -830,19 +826,19 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
                     Bundle G = bVar.G();
                     Parcel obtain = Parcel.obtain();
                     obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-                    int i10 = e8.c.f8042a;
+                    int i10 = e8.c.f8043a;
                     obtain.writeInt(1);
                     eVar2.writeToParcel(obtain, 0);
                     obtain.writeInt(1);
                     G.writeToParcel(obtain, 0);
                     obtain.writeStrongBinder(aVar);
-                    iVar.f8050a.transact(14, obtain, null, 1);
+                    iVar.f8051a.transact(14, obtain, null, 1);
                     obtain.recycle();
                     return;
                 } catch (RemoteException e) {
                     Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e);
                     Bundle bundle = Bundle.EMPTY;
-                    g5.a(Status.h, Boolean.FALSE, aVar.f8041b);
+                    h5.a(Status.h, Boolean.FALSE, aVar.f8042b);
                     return;
                 }
         }
@@ -855,10 +851,10 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
 
     @Override
     public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-        ia iaVar = (ia) this.f13565b;
-        org.telegram.ui.Cells.g gVar = iaVar.v;
-        if (iaVar.a()) {
-            iaVar.f20435s = 0;
+        ja jaVar = (ja) this.f13566b;
+        org.telegram.ui.Cells.g gVar = jaVar.v;
+        if (jaVar.a()) {
+            jaVar.f20513s = 0;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -870,17 +866,17 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         return o0.z(view) - ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).topMargin;
     }
 
-    public void c0(p4.p pVar, p4.m mVar, Collection collection) {
-        p4.e eVar = (p4.e) this.f13565b;
-        if (pVar == eVar.f40825y && mVar != null) {
-            u uVar = eVar.f40824x.f40916a;
+    public void c0(p4.p pVar, m mVar, Collection collection) {
+        p4.e eVar = (p4.e) this.f13566b;
+        if (pVar == eVar.f40866y && mVar != null) {
+            u uVar = eVar.f40865x.f40957a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f40825y, 3, eVar.f40824x, collection);
-                eVar.f40824x = null;
-                eVar.f40825y = null;
+                eVar.h(eVar, vVar, eVar.f40866y, 3, eVar.f40865x, collection);
+                eVar.f40865x = null;
+                eVar.f40866y = null;
             }
         } else if (pVar == eVar.e) {
             if (mVar != null) {
@@ -891,21 +887,13 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public boolean c1(int i10, u1 u1Var) {
-        if (i10 == ((ia) this.f13565b).f20435s) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
     public boolean c2(u1 u1Var, TLRPC.TodoItem todoItem) {
         return false;
     }
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f13565b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f13566b;
         if (contentProviderClient != null) {
             if (contentProviderClient instanceof AutoCloseable) {
                 contentProviderClient.close();
@@ -919,16 +907,24 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
 
     @Override
     public void d(Canvas canvas) {
-        vi viVar = (vi) this.f13565b;
-        canvas.drawColor(viVar.getThemedColor(j6.f19062d6));
+        vi viVar = (vi) this.f13566b;
+        canvas.drawColor(viVar.getThemedColor(j6.f19094d6));
         if (SharedConfig.chatBlurEnabled()) {
             viVar.C2.b(canvas, -2);
         }
     }
 
     @Override
+    public boolean d1(int i10, u1 u1Var) {
+        if (i10 == ((ja) this.f13566b).f20513s) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean e() {
-        return ((ia) this.f13565b).a();
+        return ((ja) this.f13566b).a();
     }
 
     @Override
@@ -941,31 +937,31 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         return true;
     }
 
-    @Override
-    public int g() {
-        return ((o0) this.f13565b).G();
+    public boolean f0(android.view.MotionEvent r22) {
+        throw new UnsupportedOperationException("Method not decompiled: ka.c.f0(android.view.MotionEvent):boolean");
     }
 
-    public boolean g0(android.view.MotionEvent r22) {
-        throw new UnsupportedOperationException("Method not decompiled: ka.c.g0(android.view.MotionEvent):boolean");
+    @Override
+    public int g() {
+        return ((o0) this.f13566b).G();
     }
 
     @Override
     public float get() {
-        au0 au0Var = (au0) this.f13565b;
+        au0 au0Var = (au0) this.f13566b;
         int i10 = au0Var.P1;
-        m currentBrush = au0Var.W0.getCurrentBrush();
+        pg.m currentBrush = au0Var.W0.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f41267i;
+            return u0.e(i10).f41308i;
         }
-        return u0.e(i10).f(String.valueOf(m.f41158a.indexOf(currentBrush)), currentBrush.d());
+        return u0.e(i10).f(String.valueOf(pg.m.f41199a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
     public CharSequence getContentDescription() {
-        h hVar = (h) this.f13565b;
-        float f7 = hVar.f15002b;
-        return String.valueOf(Math.round((hVar.f15001a.getProgress() * (hVar.f15003c - f7)) + f7));
+        h hVar = (h) this.f13566b;
+        float f7 = hVar.f15041b;
+        return String.valueOf(Math.round((hVar.f15040a.getProgress() * (hVar.f15042c - f7)) + f7));
     }
 
     @Override
@@ -973,23 +969,8 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         return null;
     }
 
-    @Override
-    public int h0(u1 u1Var) {
-        return 0;
-    }
-
-    @Override
-    public boolean h1(MessageObject messageObject) {
-        return org.telegram.ui.Cells.c1.a(messageObject);
-    }
-
-    @Override
-    public void invalidate() {
-        ((pg0) this.f13565b).h.invalidate();
-    }
-
-    public void j0(int i10) {
-        RecyclerView recyclerView = (RecyclerView) this.f13565b;
+    public void h0(int i10) {
+        RecyclerView recyclerView = (RecyclerView) this.f13566b;
         View childAt = recyclerView.getChildAt(i10);
         if (childAt != null) {
             recyclerView.s(childAt);
@@ -998,22 +979,37 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         recyclerView.removeViewAt(i10);
     }
 
+    @Override
+    public int i0(u1 u1Var) {
+        return 0;
+    }
+
+    @Override
+    public boolean i1(MessageObject messageObject) {
+        return c1.a(messageObject);
+    }
+
+    @Override
+    public void invalidate() {
+        ((og0) this.f13566b).h.invalidate();
+    }
+
     public c k0(int i10) {
         if (i10 == 16) {
             i10 = 12;
         }
-        ((AudioAttributes.Builder) this.f13565b).setUsage(i10);
+        ((AudioAttributes.Builder) this.f13566b).setUsage(i10);
         return this;
     }
 
     @Override
     public void l(Object obj) {
-        ((g8.c) obj).onLocationResult((LocationResult) this.f13565b);
+        ((g8.c) obj).onLocationResult((LocationResult) this.f13566b);
     }
 
     @Override
-    public boolean l0() {
-        return e();
+    public int l0() {
+        return 0;
     }
 
     @Override
@@ -1022,29 +1018,29 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void m(d1 d1Var) {
-        q qVar = (q) d1Var;
-        o2.k kVar = (o2.k) this.f13565b;
+    public void m(e1 e1Var) {
+        q qVar = (q) e1Var;
+        o2.k kVar = (o2.k) this.f13566b;
         kVar.G.m(kVar);
     }
 
     @Override
-    public int m0() {
-        return 0;
+    public boolean m0() {
+        return e();
     }
 
-    @Override
-    public boolean o0(z5 z5Var) {
-        return false;
-    }
-
-    public void p0(int i10) {
+    public void n0(int i10) {
         k0(i10);
     }
 
     @Override
+    public boolean p0(y5 y5Var) {
+        return false;
+    }
+
+    @Override
     public Cursor q(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f13565b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f13566b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -1056,28 +1052,28 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
         }
     }
 
-    public Object r0() {
-        if (n7.a.f15289b == null) {
-            n7.a.f15289b = new Exception();
+    public Object q0() {
+        if (n7.a.f15327b == null) {
+            n7.a.f15327b = new Exception();
         }
-        synchronized (n7.a.f15288a) {
+        synchronized (n7.a.f15326a) {
         }
         throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }
 
     @Override
     public Object then(Task task) {
-        return ((Callable) this.f13565b).call();
+        return ((Callable) this.f13566b).call();
     }
 
     public String toString() {
-        switch (this.f13564a) {
+        switch (this.f13565a) {
             case 19:
                 re.b bVar = re.b.e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((ra.a) this.f13565b).n());
+                stringBuffer.append(((ra.a) this.f13566b).n());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -1089,10 +1085,10 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     public l v(com.google.firebase.messaging.n nVar) {
         Context context;
         int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 23 && (i10 >= 31 || ((context = (Context) this.f13565b) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen")))) {
-            int h = r0.h(((b2.s) nVar.f7331c).f3309r);
+        if (i10 >= 23 && (i10 >= 31 || ((context = (Context) this.f13566b) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen")))) {
+            int h = r0.h(((b2.s) nVar.f7332c).f3309r);
             e2.a.i("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + d0.G(h));
-            return new z0(14, new r2.b(h, 0), new r2.b(h, 1)).v(nVar);
+            return new f3(new r2.b(h, 0), new r2.b(h, 1), false, 11).v(nVar);
         }
         return new rb.a(20).v(nVar);
     }
@@ -1108,72 +1104,80 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public boolean w0(MessageObject messageObject) {
+    public int x() {
+        o0 o0Var = (o0) this.f13566b;
+        return o0Var.f43076n - o0Var.C();
+    }
+
+    @Override
+    public boolean x0(MessageObject messageObject) {
         return true;
     }
 
     @Override
-    public int x() {
-        o0 o0Var = (o0) this.f13565b;
-        return o0Var.f43031n - o0Var.C();
+    public void y(float f7) {
+        au0 au0Var = (au0) this.f13566b;
+        u0.e(au0Var.P1).k(String.valueOf(pg.m.f41199a.indexOf(au0Var.W0.getCurrentBrush())), f7);
+        s1 s1Var = au0Var.K1;
+        s1Var.f41285c = f7;
+        au0Var.s0(s1Var, null);
     }
 
     @Override
-    public View y(int i10) {
-        return ((o0) this.f13565b).q(i10);
-    }
-
-    @Override
-    public r9 z2() {
+    public s9 z2() {
         return null;
     }
 
     public c(Object obj, int i10) {
-        this.f13564a = i10;
-        this.f13565b = obj;
+        this.f13565a = i10;
+        this.f13566b = obj;
     }
 
     public c(s6.g gVar, s6.a aVar) {
-        this.f13564a = 23;
-        this.f13565b = aVar;
+        this.f13565a = 23;
+        this.f13566b = aVar;
     }
 
     public c(v1.c[] initializers) {
-        this.f13564a = 25;
+        this.f13565a = 25;
         kotlin.jvm.internal.i.e(initializers, "initializers");
-        this.f13565b = initializers;
+        this.f13566b = initializers;
     }
 
     public c(ArrayList arrayList) {
-        this.f13564a = 20;
-        this.f13565b = DesugarCollections.unmodifiableList(arrayList);
+        this.f13565a = 20;
+        this.f13566b = DesugarCollections.unmodifiableList(arrayList);
     }
 
     public c(EditText editText) {
-        this.f13564a = 15;
-        this.f13565b = new z0(editText);
+        this.f13565a = 15;
+        this.f13566b = new f3(editText);
     }
 
     public c(Context context, Uri uri) {
-        this.f13564a = 6;
-        this.f13565b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f13565a = 6;
+        this.f13566b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     public c(Context context, l20 l20Var) {
-        this.f13564a = 10;
-        this.f13565b = new k20(context, l20Var);
+        this.f13565a = 10;
+        this.f13566b = new k20(context, l20Var);
     }
 
     public c(int i10) {
-        this.f13564a = i10;
+        this.f13565a = i10;
         switch (i10) {
             case 27:
-                this.f13565b = new qb.b(28);
+                this.f13566b = new qb.b(28);
                 return;
             default:
-                this.f13565b = new AudioAttributes.Builder();
+                this.f13566b = new AudioAttributes.Builder();
                 return;
         }
+    }
+
+    @Override
+    public void A0() {
     }
 
     @Override
@@ -1189,7 +1193,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void k1() {
+    public void l1() {
     }
 
     @Override
@@ -1209,19 +1213,15 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void z0() {
-    }
-
-    @Override
     public void A(u1 u1Var) {
     }
 
     @Override
-    public void C1(u1 u1Var) {
+    public void D1(u1 u1Var) {
     }
 
     @Override
-    public void D0(u1 u1Var) {
+    public void E0(u1 u1Var) {
     }
 
     @Override
@@ -1229,7 +1229,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void F0(u1 u1Var) {
+    public void G0(u1 u1Var) {
     }
 
     @Override
@@ -1237,7 +1237,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void I0(u1 u1Var) {
+    public void J0(u1 u1Var) {
     }
 
     @Override
@@ -1257,7 +1257,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void N0(u1 u1Var) {
+    public void O0(u1 u1Var) {
     }
 
     @Override
@@ -1265,11 +1265,11 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void X0(u1 u1Var) {
+    public void Y0(u1 u1Var) {
     }
 
     @Override
-    public void Z0(u1 u1Var) {
+    public void a1(u1 u1Var) {
     }
 
     @Override
@@ -1281,7 +1281,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void i0(u1 u1Var) {
+    public void j0(u1 u1Var) {
     }
 
     @Override
@@ -1289,11 +1289,11 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void n0(String str) {
+    public void o(u1 u1Var) {
     }
 
     @Override
-    public void o(u1 u1Var) {
+    public void o0(String str) {
     }
 
     @Override
@@ -1309,19 +1309,19 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void y0(u1 u1Var) {
-    }
-
-    @Override
     public void z(u1 u1Var) {
     }
 
     @Override
-    public void D1(u1 u1Var, boolean z10) {
+    public void z0(u1 u1Var) {
     }
 
     @Override
     public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    }
+
+    @Override
+    public void E1(u1 u1Var, boolean z10) {
     }
 
     @Override
@@ -1333,7 +1333,7 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void R0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public void S0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     @Override
@@ -1349,35 +1349,35 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void m1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void n1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void p1(u1 u1Var, TLRPC.Document document) {
+    public void q1(u1 u1Var, TLRPC.Document document) {
     }
 
     @Override
-    public void A0(u1 u1Var, TLObject tLObject, boolean z10) {
+    public void B0(u1 u1Var, TLObject tLObject, boolean z10) {
     }
 
     @Override
-    public void B0(u1 u1Var, float f7, float f10) {
+    public void C0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void V0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
+    public void W0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
     @Override
-    public void f0(u1 u1Var, float f7, float f10) {
+    public void g0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void q0(u1 u1Var, float f7, float f10) {
+    public void r0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void u1(u1 u1Var, float f7, float f10) {
+    public void v1(u1 u1Var, float f7, float f10) {
     }
 
     @Override
@@ -1393,11 +1393,11 @@ public class c implements k, so0, o0.b, c1, l1, ah.k, k71, n, v1, r2.k, o, h1, s
     }
 
     @Override
-    public void t0(u1 u1Var, TLRPC.User user, float f7, float f10) {
+    public void u0(u1 u1Var, TLRPC.User user, float f7, float f10) {
     }
 
     @Override
-    public void v0(u1 u1Var, float f7, float f10, boolean z10) {
+    public void w0(u1 u1Var, float f7, float f10, boolean z10) {
     }
 
     @Override

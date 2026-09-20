@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 public final class d implements Collection {
-    public final Object[] f10188a;
-    public final boolean f10189b;
+    public final Object[] f10189a;
+    public final boolean f10190b;
 
     public d(Object[] values, boolean z10) {
         kotlin.jvm.internal.i.e(values, "values");
-        this.f10188a = values;
-        this.f10189b = z10;
+        this.f10189a = values;
+        this.f10190b = z10;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class d implements Collection {
 
     @Override
     public final boolean contains(Object obj) {
-        return f.a(this.f10188a, obj);
+        return f.a(this.f10189a, obj);
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class d implements Collection {
             return true;
         }
         for (Object obj : collection) {
-            if (!f.a(this.f10188a, obj)) {
+            if (!f.a(this.f10189a, obj)) {
                 return false;
             }
         }
@@ -50,7 +50,7 @@ public final class d implements Collection {
 
     @Override
     public final boolean isEmpty() {
-        if (this.f10188a.length == 0) {
+        if (this.f10189a.length == 0) {
             return true;
         }
         return false;
@@ -58,7 +58,7 @@ public final class d implements Collection {
 
     @Override
     public final Iterator iterator() {
-        Object[] array = this.f10188a;
+        Object[] array = this.f10189a;
         kotlin.jvm.internal.i.e(array, "array");
         return new cd.b(array);
     }
@@ -80,14 +80,14 @@ public final class d implements Collection {
 
     @Override
     public final int size() {
-        return this.f10188a.length;
+        return this.f10189a.length;
     }
 
     @Override
     public final Object[] toArray() {
-        Object[] objArr = this.f10188a;
+        Object[] objArr = this.f10189a;
         kotlin.jvm.internal.i.e(objArr, "<this>");
-        if (this.f10189b && objArr.getClass().equals(Object[].class)) {
+        if (this.f10190b && objArr.getClass().equals(Object[].class)) {
             return objArr;
         }
         Object[] copyOf = Arrays.copyOf(objArr, objArr.length, Object[].class);

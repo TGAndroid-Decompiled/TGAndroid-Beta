@@ -1,38 +1,38 @@
 package org.telegram.ui;
 public final class pi extends org.telegram.ui.ActionBar.n1 {
-    public final org.telegram.ui.Components.qk0 f36492o;
-    public final zn f36493p;
+    public final org.telegram.ui.Components.pk0 f36574o;
+    public final zn f36575p;
 
-    public pi(zn znVar, eb ebVar, org.telegram.ui.Components.qk0 qk0Var) {
+    public pi(zn znVar, eb ebVar, org.telegram.ui.Components.pk0 pk0Var) {
         super(ebVar, -2, -2);
-        this.f36493p = znVar;
-        this.f36492o = qk0Var;
+        this.f36575p = znVar;
+        this.f36574o = pk0Var;
     }
 
     @Override
     public final void d(boolean z10) {
         super.d(true);
-        org.telegram.ui.Components.qk0 qk0Var = this.f36492o;
-        if (qk0Var != null) {
-            qk0Var.d();
+        org.telegram.ui.Components.pk0 pk0Var = this.f36574o;
+        if (pk0Var != null) {
+            pk0Var.d();
         }
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        zn znVar = this.f36493p;
+        zn znVar = this.f36575p;
         if (znVar.Q8 == this) {
-            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27543w;
-            org.telegram.ui.Components.qc qcVar2 = znVar.f40363n1;
-            if (qcVar == qcVar2 && qcVar2 != null) {
-                qcVar2.b();
-                znVar.f40363n1 = null;
+            org.telegram.ui.Components.pc pcVar = org.telegram.ui.Components.pc.f27245w;
+            org.telegram.ui.Components.pc pcVar2 = znVar.f40405n1;
+            if (pcVar == pcVar2 && pcVar2 != null) {
+                pcVar2.b();
+                znVar.f40405n1 = null;
             }
             znVar.Q8 = null;
             znVar.T8 = null;
             znVar.S8 = null;
-            znVar.f40513z0.R = true;
+            znVar.f40555z0.R = true;
             if (znVar.R8) {
                 znVar.g8(false, true, 0.0f);
             } else {

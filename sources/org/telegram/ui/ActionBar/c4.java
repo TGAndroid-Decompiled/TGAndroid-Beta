@@ -4,28 +4,28 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class c4 implements fg.a {
-    public i6 f18733a;
-    public TLRPC.TL_theme f18734b;
-    public TLRPC.TL_chatThemeUniqueGift f18735c;
+    public i6 f18765a;
+    public TLRPC.TL_theme f18766b;
+    public TLRPC.TL_chatThemeUniqueGift f18767c;
     public int d;
     public int e = -1;
-    public SparseIntArray f18736f;
-    public String f18737g;
+    public SparseIntArray f18768f;
+    public String f18769g;
     public int h;
-    public int f18738i;
-    public int f18739j;
-    public int f18740k;
-    public int f18741l;
-    public int f18742m;
-    public int f18743n;
-    public int f18744o;
+    public int f18770i;
+    public int f18771j;
+    public int f18772k;
+    public int f18773l;
+    public int f18774m;
+    public int f18775n;
+    public int f18776o;
 
     public final long a() {
-        TLRPC.TL_theme tL_theme = this.f18734b;
+        TLRPC.TL_theme tL_theme = this.f18766b;
         if (tL_theme != null) {
-            return tL_theme.f18433id;
+            return tL_theme.f18465id;
         }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f18735c;
+        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f18767c;
         if (tL_chatThemeUniqueGift != null) {
             return tL_chatThemeUniqueGift.gift.gift_id;
         }
@@ -34,11 +34,11 @@ public final class c4 implements fg.a {
 
     public final TLRPC.ThemeSettings b(int i10) {
         ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f18734b;
+        TLRPC.TL_theme tL_theme = this.f18766b;
         if (tL_theme != null) {
             arrayList = tL_theme.settings;
         } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f18735c;
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f18767c;
             if (tL_chatThemeUniqueGift != null) {
                 arrayList = tL_chatThemeUniqueGift.theme_settings;
             }

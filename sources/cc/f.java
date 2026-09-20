@@ -2,18 +2,18 @@ package cc;
 
 import hg.k0;
 public final class f extends d {
-    public final int f4206c;
+    public final int f4207c;
     public final int d;
     public final int e;
-    public final int f4207f;
+    public final int f4208f;
 
     public f(int i10, int i11, int i12, int i13, int i14, int i15) {
         super(i14, i15);
         if (i14 + i12 <= i10 && i15 + i13 <= i11) {
-            this.f4206c = i10;
+            this.f4207c = i10;
             this.d = i11;
             this.e = i12;
-            this.f4207f = i13;
+            this.f4208f = i13;
             return;
         }
         throw new IllegalArgumentException("Crop rectangle does not fit within image data.");
@@ -21,15 +21,15 @@ public final class f extends d {
 
     @Override
     public final byte[] a() {
-        int i10 = this.f4203a;
-        int i11 = this.f4204b;
-        int i12 = this.f4206c;
+        int i10 = this.f4204a;
+        int i11 = this.f4205b;
+        int i12 = this.f4207c;
         if (i10 == i12 && i11 == this.d) {
             return null;
         }
         int i13 = i10 * i11;
         byte[] bArr = new byte[i13];
-        int i14 = (this.f4207f * i12) + this.e;
+        int i14 = (this.f4208f * i12) + this.e;
         if (i10 == i12) {
             System.arraycopy(null, i14, bArr, 0, i13);
             return bArr;
@@ -43,12 +43,12 @@ public final class f extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f4204b) {
-            int i11 = this.f4203a;
+        if (i10 >= 0 && i10 < this.f4205b) {
+            int i11 = this.f4204a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(null, ((i10 + this.f4207f) * this.f4206c) + this.e, bArr, 0, i11);
+            System.arraycopy(null, ((i10 + this.f4208f) * this.f4207c) + this.e, bArr, 0, i11);
             return bArr;
         }
         throw new IllegalArgumentException(k0.h(i10, "Requested row is outside the image: "));

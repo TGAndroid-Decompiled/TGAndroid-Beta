@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class my implements Runnable {
-    public final int f35771a;
-    public final ny f35772b;
+    public final int f35846a;
+    public final ny f35847b;
 
     public my(ny nyVar, int i10) {
-        this.f35771a = i10;
-        this.f35772b = nyVar;
+        this.f35846a = i10;
+        this.f35847b = nyVar;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f35771a) {
+        switch (this.f35846a) {
             case 0:
-                ny nyVar = this.f35772b;
+                ny nyVar = this.f35847b;
                 uy uyVar = nyVar.E0;
                 Context context = nyVar.getContext();
                 i10 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
                 uyVar.showDialog(new rg.j0(3, i10, context, uyVar, null));
                 return;
             default:
-                uy uyVar2 = this.f35772b.E0;
+                uy uyVar2 = this.f35847b.E0;
                 qx qxVar = uyVar2.M0;
                 if (qxVar != null) {
                     qxVar.dismiss();

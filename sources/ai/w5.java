@@ -12,12 +12,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.fh0;
+import org.telegram.ui.Components.eh0;
 import org.telegram.ui.Components.xr;
 import org.telegram.ui.vr;
 public final class w5 extends xr {
     public boolean f1652c;
-    public final org.telegram.ui.ActionBar.e6 d;
+    public final org.telegram.ui.ActionBar.f6 d;
     public final jc e;
     public final boolean f1653f;
     public final boolean f1654g;
@@ -27,10 +27,10 @@ public final class w5 extends xr {
     public final boolean[] f1657k;
     public final f6 f1658l;
 
-    public w5(f6 f6Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.e6 e6Var2, jc jcVar, boolean z10, boolean z11, boolean z12, Context context2, c6 c6Var, boolean[] zArr) {
-        super(context, e6Var, true);
+    public w5(f6 f6Var, Context context, org.telegram.ui.ActionBar.f6 f6Var2, org.telegram.ui.ActionBar.f6 f6Var3, jc jcVar, boolean z10, boolean z11, boolean z12, Context context2, c6 c6Var, boolean[] zArr) {
+        super(context, f6Var2, true);
         this.f1658l = f6Var;
-        this.d = e6Var2;
+        this.d = f6Var3;
         this.e = jcVar;
         this.f1653f = z10;
         this.f1654g = z11;
@@ -61,13 +61,13 @@ public final class w5 extends xr {
         f6 f6Var = this.f1658l;
         if (z11 && ((d6Var = f6Var.O1) == null || d6Var.f707b == null)) {
             Context context = f6Var.getContext();
-            fh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
+            eh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
             final of.b bVar = new of.b(2, this, actionBarPopupWindow$ActionBarPopupWindowLayout);
             ?? obj = new Object();
             org.telegram.ui.ActionBar.f1[] f1VarArr = new org.telegram.ui.ActionBar.f1[5];
-            obj.f32128c = f1VarArr;
+            obj.f32152c = f1VarArr;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            obj.f32126a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            obj.f32150a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
             org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
             c10.setOnClickListener(new vr(swipeBack, 1));
@@ -85,7 +85,7 @@ public final class w5 extends xr {
             layoutParams.height = AndroidUtilities.dp(8.0f);
             x5Var.setLayoutParams(layoutParams);
             org.telegram.ui.ActionBar.b1 b1Var = new org.telegram.ui.ActionBar.b1(context, null);
-            obj.f32127b = b1Var;
+            obj.f32151b = b1Var;
             b1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
             b1Var.setDrawShadow(false);
             b1Var.setBackgroundColor(-14540254);
@@ -110,19 +110,19 @@ public final class w5 extends xr {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Q(true, true, 0.2f);
+                            bVar.U(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Q(true, true, 0.5f);
+                            bVar.U(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Q(true, true, 1.0f);
+                            bVar.U(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Q(true, true, 1.5f);
+                            bVar.U(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Q(true, true, 2.0f);
+                            bVar.U(true, true, 2.0f);
                             return;
                     }
                 }
@@ -136,19 +136,19 @@ public final class w5 extends xr {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Q(true, true, 0.2f);
+                            bVar.U(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Q(true, true, 0.5f);
+                            bVar.U(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Q(true, true, 1.0f);
+                            bVar.U(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Q(true, true, 1.5f);
+                            bVar.U(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Q(true, true, 2.0f);
+                            bVar.U(true, true, 2.0f);
                             return;
                     }
                 }
@@ -162,19 +162,19 @@ public final class w5 extends xr {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Q(true, true, 0.2f);
+                            bVar.U(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Q(true, true, 0.5f);
+                            bVar.U(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Q(true, true, 1.0f);
+                            bVar.U(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Q(true, true, 1.5f);
+                            bVar.U(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Q(true, true, 2.0f);
+                            bVar.U(true, true, 2.0f);
                             return;
                     }
                 }
@@ -188,19 +188,19 @@ public final class w5 extends xr {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Q(true, true, 0.2f);
+                            bVar.U(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Q(true, true, 0.5f);
+                            bVar.U(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Q(true, true, 1.0f);
+                            bVar.U(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Q(true, true, 1.5f);
+                            bVar.U(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Q(true, true, 2.0f);
+                            bVar.U(true, true, 2.0f);
                             return;
                     }
                 }
@@ -214,19 +214,19 @@ public final class w5 extends xr {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Q(true, true, 0.2f);
+                            bVar.U(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Q(true, true, 0.5f);
+                            bVar.U(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Q(true, true, 1.0f);
+                            bVar.U(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Q(true, true, 1.5f);
+                            bVar.U(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Q(true, true, 2.0f);
+                            bVar.U(true, true, 2.0f);
                             return;
                     }
                 }
@@ -249,11 +249,11 @@ public final class w5 extends xr {
             layoutParams3.width = -1;
             layoutParams3.height = AndroidUtilities.dp(48.0f);
             f6Var.D3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(f6Var.C3.f32126a);
+            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(f6Var.C3.f32150a);
             org.telegram.ui.ActionBar.f1 f1Var2 = f6Var.D3;
             f1Var2.G = new o5(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
             f1Var2.setOnClickListener(new j5(this, 11));
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f18614c = true;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f18646c = true;
             if (z10) {
                 org.telegram.ui.ActionBar.k1 k1Var = new org.telegram.ui.ActionBar.k1(f6Var.getContext(), org.telegram.ui.ActionBar.j6.H8, this.d);
                 k1Var.setTag(R.id.fit_width_tag, 1);
@@ -270,9 +270,9 @@ public final class w5 extends xr {
         TLRPC.Chat chat;
         f6 f6Var = this.f1658l;
         if (f6Var.D1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (chat = MessagesController.getInstance(f6Var.C2).getChat(Long.valueOf(-f6Var.B1))) != null) {
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(f6Var.C2).getChatFull(chat.f18296id);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(f6Var.C2).getChatFull(chat.f18328id);
             if (chatFull == null) {
-                chatFull = MessagesStorage.getInstance(f6Var.C2).loadChatInfo(chat.f18296id, true, new CountDownLatch(1), false, false);
+                chatFull = MessagesStorage.getInstance(f6Var.C2).loadChatInfo(chat.f18328id, true, new CountDownLatch(1), false, false);
             }
             if (chatFull != null && chatFull.can_view_stats) {
                 org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_stats, LocaleController.getString(R.string.ViewStatistics), false, this.d).setOnClickListener(new p5(this, storyItem, this.e, chat, 0));

@@ -15,24 +15,24 @@ public final class ea {
     public final o20 f778c;
     public int d;
     public int e;
-    public final org.telegram.ui.Components.h5 f779f;
-    public final org.telegram.ui.Components.h5 f780g;
+    public final org.telegram.ui.Components.g5 f779f;
+    public final org.telegram.ui.Components.g5 f780g;
 
     public ea(View view) {
         nu nuVar = new nu(1, view);
         this.f776a = UserConfig.selectedAccount;
         this.f777b = nuVar;
         qr qrVar = qr.h;
-        this.f779f = new org.telegram.ui.Components.h5(nuVar, 350L, qrVar);
-        this.f780g = new org.telegram.ui.Components.h5(nuVar, 350L, qrVar);
+        this.f779f = new org.telegram.ui.Components.g5(nuVar, 350L, qrVar);
+        this.f780g = new org.telegram.ui.Components.g5(nuVar, 350L, qrVar);
         o20 o20Var = new o20();
         this.f778c = o20Var;
-        o20Var.f26823a = true;
-        o20Var.f26824b = true;
+        o20Var.f26785a = true;
+        o20Var.f26786b = true;
         b(false);
-        o20Var.f26825c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        o20Var.f26825c.setStyle(Paint.Style.STROKE);
-        o20Var.f26825c.setStrokeCap(Paint.Cap.ROUND);
+        o20Var.f26787c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+        o20Var.f26787c.setStyle(Paint.Style.STROKE);
+        o20Var.f26787c.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public final Paint a(RectF rectF) {
@@ -41,7 +41,7 @@ public final class ea {
         o20 o20Var = this.f778c;
         o20Var.d(a2, a10, 0, 0);
         o20Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return o20Var.f26825c;
+        return o20Var.f26787c;
     }
 
     public final void b(boolean z10) {

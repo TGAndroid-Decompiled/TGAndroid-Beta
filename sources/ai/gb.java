@@ -19,13 +19,13 @@ public final class gb extends FrameLayout {
     public final TextView d;
     public final TextView e;
 
-    public gb(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public gb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         Paint paint = new Paint(1);
         this.f912a = paint;
         Paint paint2 = new Paint(1);
         this.f913b = paint2;
-        paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19301q7, e6Var));
+        paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19333q7, f6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);

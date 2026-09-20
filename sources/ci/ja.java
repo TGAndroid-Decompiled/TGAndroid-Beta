@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class ja extends View {
-    public static final int f4858a = 0;
+    public static final int f4859a = 0;
 
     public static void a(int i10, o8 o8Var) {
         ga gaVar;
@@ -26,11 +26,11 @@ public abstract class ja extends View {
                     SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                     gaVar = b(serializedData);
                     serializedData.cleanup();
-                    if (gaVar.f4728f.isEmpty() && gaVar.f4726b.isEmpty()) {
+                    if (gaVar.f4729f.isEmpty() && gaVar.f4727b.isEmpty()) {
                         gaVar = new ga();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(gaVar.f4727c);
+                        hashSet.addAll(gaVar.f4728c);
                         for (ArrayList arrayList : gaVar.d.values()) {
                             hashSet.addAll(arrayList);
                         }
@@ -46,7 +46,7 @@ public abstract class ja extends View {
             }
             o8Var.E0 = gaVar;
             o8Var.F0.clear();
-            o8Var.F0.addAll(o8Var.E0.f4726b);
+            o8Var.F0.addAll(o8Var.E0.f4727b);
             if (UserConfig.getInstance(i10).isPremium()) {
                 o8Var.I0 = MessagesController.getInstance(i10).getMainSettings().getInt("story_period", 86400);
             } else {
@@ -91,7 +91,7 @@ public abstract class ja extends View {
                         hashSet.addAll(arrayList4);
                     }
                     ga gaVar = new ga(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = gaVar.f4727c;
+                    ArrayList arrayList5 = gaVar.f4728c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = gaVar.d;
@@ -107,9 +107,9 @@ public abstract class ja extends View {
     }
 
     public static void c(SerializedData serializedData, ga gaVar) {
-        int i10 = gaVar.f4725a;
+        int i10 = gaVar.f4726a;
         HashMap hashMap = gaVar.d;
-        ArrayList arrayList = gaVar.f4727c;
+        ArrayList arrayList = gaVar.f4728c;
         serializedData.writeInt32(i10);
         serializedData.writeInt32(481674261);
         ArrayList arrayList2 = gaVar.e;

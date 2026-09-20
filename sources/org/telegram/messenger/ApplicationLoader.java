@@ -27,9 +27,9 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.g10;
-import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.v70;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.mb0;
+import org.telegram.ui.nb0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -64,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f13512a;
+            AtomicBoolean atomicBoolean = k6.g.f13513a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -503,7 +503,7 @@ public class ApplicationLoader extends Application {
             StringBuilder sb2 = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            q.s(sb2, elapsedRealtime);
+            hg.k0.u(sb2, elapsedRealtime);
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
                 int i11 = packageInfo.versionCode % 10;
@@ -552,16 +552,16 @@ public class ApplicationLoader extends Application {
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
             AndroidUtilities.runOnUIThread(new v1(6));
-            mb0[] values = mb0.values();
+            nb0[] values = nb0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
-                    if (w7.f6.a(values[i10])) {
+                    if (w7.g6.a(values[i10])) {
                         break;
                     }
                     i10++;
                 } else {
-                    w7.f6.b(mb0.h);
+                    w7.g6.b(nb0.h);
                     break;
                 }
             }
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(w70 w70Var) {
+    public void addItemOptions(v70 v70Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

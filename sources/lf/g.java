@@ -1,28 +1,38 @@
 package lf;
-public final class g {
-    public final int f14173a;
-    public final String f14174b;
-    public final String f14175c;
 
-    public g(int i10, String str, String str2) {
-        this.f14173a = i10;
-        this.f14174b = str;
-        this.f14175c = str2;
-    }
+import java.util.logging.Logger;
+public final class g extends jf.a {
+    public static final Logger f14212s = Logger.getLogger(g.class.getName());
+    public byte f14213r;
 
-    public String toString() {
-        switch (this.f14173a) {
-            case 1:
-                return this.f14174b + ", " + this.f14175c;
-            default:
-                return super.toString();
+    public static boolean b(n nVar) {
+        boolean z10;
+        nVar.mark(3);
+        try {
+            if (nVar.read() == 73 && nVar.read() == 68) {
+                if (nVar.read() == 51) {
+                    z10 = true;
+                    return z10;
+                }
+            }
+            z10 = false;
+            return z10;
+        } finally {
+            nVar.reset();
         }
     }
 
-    public g(String str, String str2) {
-        this.f14173a = 2;
-        n6.l.c(str.length() <= 23, "tag \"%s\" is longer than the %d character maximum", str, 23);
-        this.f14174b = str;
-        this.f14175c = (str2 == null || str2.length() <= 0) ? null : str2;
+    public static c5.a c(e eVar) {
+        b b10 = eVar.b();
+        eVar.c(3, b.ISO_8859_1);
+        return new c5.a(2, eVar.d(200, b10), eVar.c((int) eVar.f14204a.e(), b10));
+    }
+
+    public static String e(e eVar) {
+        return eVar.c((int) eVar.f14204a.e(), eVar.b());
+    }
+
+    public final void d(lf.e r12) {
+        throw new UnsupportedOperationException("Method not decompiled: lf.g.d(lf.e):void");
     }
 }

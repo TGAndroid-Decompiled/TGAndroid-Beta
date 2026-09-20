@@ -12,29 +12,29 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.wh;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.messenger.rk;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.l90;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.v9;
 import w7.y5;
 public final class c0 extends FrameLayout {
-    public final TextView f44565a;
-    public final TextView f44566b;
-    public final TextView f44567c;
+    public final TextView f44609a;
+    public final TextView f44610b;
+    public final TextView f44611c;
     public final TextView d;
     public final TextView e;
-    public final w9 f44568f;
-    public final w9 h;
-    public final e6 f44569n;
-    public final Paint f44570r;
-    public final Path f44571s;
+    public final v9 f44612f;
+    public final v9 h;
+    public final f6 f44613n;
+    public final Paint f44614r;
+    public final Path f44615s;
     public final RectF v;
-    public final FrameLayout f44572w;
-    public final FrameLayout f44573x;
-    public final TableRow f44574y;
+    public final FrameLayout f44616w;
+    public final FrameLayout f44617x;
+    public final TableRow f44618y;
 
-    public c0(Context context, e6 e6Var) {
+    public c0(Context context, f6 f6Var) {
         super(context);
         int i10;
         float f7;
@@ -51,35 +51,35 @@ public final class c0 extends FrameLayout {
         float f18;
         boolean z10;
         Paint paint = new Paint();
-        this.f44570r = paint;
-        this.f44571s = new Path();
+        this.f44614r = paint;
+        this.f44615s = new Path();
         this.v = new RectF();
         paint.setStyle(Paint.Style.STROKE);
-        this.f44569n = e6Var;
+        this.f44613n = f6Var;
         TextView a2 = a(LocaleController.getString(R.string.BoostingFrom), false);
         TextView a10 = a(LocaleController.getString(R.string.BoostingTo), false);
         TextView a11 = a(LocaleController.getString(R.string.BoostingGift), false);
         TextView a12 = a(LocaleController.getString(R.string.BoostingReason), false);
         TextView a13 = a(LocaleController.getString(R.string.BoostingDate), false);
         TextView a14 = a(null, true);
-        this.f44565a = a14;
+        this.f44609a = a14;
         TextView a15 = a(null, true);
-        this.f44566b = a15;
+        this.f44610b = a15;
         TextView a16 = a(null, false);
-        this.f44567c = a16;
+        this.f44611c = a16;
         TextView a17 = a(null, true);
         this.d = a17;
         TextView a18 = a(null, false);
         this.e = a18;
-        w9 w9Var = new w9(context);
-        this.f44568f = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(12.0f));
-        w9 w9Var2 = new w9(context);
-        this.h = w9Var2;
-        w9Var2.setRoundRadius(AndroidUtilities.dp(12.0f));
+        v9 v9Var = new v9(context);
+        this.f44612f = v9Var;
+        v9Var.setRoundRadius(AndroidUtilities.dp(12.0f));
+        v9 v9Var2 = new v9(context);
+        this.h = v9Var2;
+        v9Var2.setRoundRadius(AndroidUtilities.dp(12.0f));
         TableRow tableRow = new TableRow(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f44572w = frameLayout;
+        this.f44616w = frameLayout;
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i10 = 5;
@@ -96,7 +96,7 @@ public final class c0 extends FrameLayout {
         } else {
             f10 = 0.0f;
         }
-        frameLayout.addView(w9Var, y5.d(24, 24.0f, i10, f7, 0.0f, f10, 0.0f));
+        frameLayout.addView(v9Var, y5.d(24, 24.0f, i10, f7, 0.0f, f10, 0.0f));
         boolean z12 = LocaleController.isRTL;
         if (z12) {
             i11 = 5;
@@ -132,7 +132,7 @@ public final class c0 extends FrameLayout {
         frameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
         TableRow tableRow2 = new TableRow(context);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f44573x = frameLayout2;
+        this.f44617x = frameLayout2;
         boolean z13 = LocaleController.isRTL;
         if (z13) {
             i12 = 5;
@@ -149,7 +149,7 @@ public final class c0 extends FrameLayout {
         } else {
             f15 = 0.0f;
         }
-        frameLayout2.addView(w9Var2, y5.d(24, 24.0f, i12, f14, 0.0f, f15, 0.0f));
+        frameLayout2.addView(v9Var2, y5.d(24, 24.0f, i12, f14, 0.0f, f15, 0.0f));
         boolean z14 = LocaleController.isRTL;
         int i14 = (z14 ? 5 : 3) | 16;
         if (z14) {
@@ -187,7 +187,7 @@ public final class c0 extends FrameLayout {
             tableRow3.addView(a16, new TableRow.LayoutParams(-2, -2));
         }
         TableRow tableRow4 = new TableRow(context);
-        this.f44574y = tableRow4;
+        this.f44618y = tableRow4;
         if (LocaleController.isRTL) {
             tableRow4.addView(a17, new TableRow.LayoutParams(-2, -2, 1.0f));
             tableRow4.addView(a12, new TableRow.LayoutParams(-2, -2));
@@ -203,7 +203,7 @@ public final class c0 extends FrameLayout {
             tableRow5.addView(a13, new TableRow.LayoutParams(-2, -2));
             tableRow5.addView(a18, new TableRow.LayoutParams(-2, -2));
         }
-        b0 b0Var = new b0(this, context, e6Var);
+        b0 b0Var = new b0(this, context, f6Var);
         b0Var.addView(tableRow);
         b0Var.addView(tableRow2);
         b0Var.addView(tableRow3);
@@ -227,19 +227,19 @@ public final class c0 extends FrameLayout {
         int i10;
         float f7;
         int i11;
-        e6 e6Var = this.f44569n;
+        f6 f6Var = this.f44613n;
         if (z10) {
-            textView = new l90(getContext(), e6Var);
-            textView.setLinkTextColor(j6.v0(j6.J6, e6Var));
+            textView = new k90(getContext(), f6Var);
+            textView.setLinkTextColor(j6.v0(j6.J6, f6Var));
         } else {
             textView = new TextView(getContext());
         }
         if (z10) {
-            i10 = j6.f19226m5;
+            i10 = j6.f19258m5;
         } else {
-            i10 = j6.f19169j5;
+            i10 = j6.f19201j5;
         }
-        wh.m(i10, e6Var, textView, 1, 14.0f);
+        rk.n(i10, f6Var, textView, 1, 14.0f);
         if (!z10) {
             if (LocaleController.isRTL) {
                 i11 = 5;
@@ -251,7 +251,7 @@ public final class c0 extends FrameLayout {
         if (str != null) {
             textView.setTypeface(AndroidUtilities.bold());
             textView.setText(str);
-            textView.setBackgroundColor(j6.v0(j6.e7, e6Var));
+            textView.setBackgroundColor(j6.v0(j6.e7, f6Var));
             float f10 = 12.0f;
             if (LocaleController.isRTL) {
                 f7 = 32.0f;

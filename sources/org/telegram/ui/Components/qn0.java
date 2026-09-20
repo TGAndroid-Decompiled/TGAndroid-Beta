@@ -1,50 +1,33 @@
 package org.telegram.ui.Components;
+public final class qn0 extends s4.o {
+    public final un0 f27618b;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class qn0 implements TextView.OnEditorActionListener {
-    public final pn0 f27694a;
-    public final int f27695b;
-    public final TLRPC.Reaction f27696c;
-    public final org.telegram.ui.ActionBar.b2[] d;
-    public final View e;
-
-    public qn0(pn0 pn0Var, int i10, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.b2[] b2VarArr, View view) {
-        this.f27694a = pn0Var;
-        this.f27695b = i10;
-        this.f27696c = reaction;
-        this.d = b2VarArr;
-        this.e = view;
+    public qn0(un0 un0Var) {
+        this.f27618b = un0Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        if (i10 != 6) {
-            return false;
-        }
-        pn0 pn0Var = this.f27694a;
-        String obj = pn0Var.getText().toString();
-        if (obj.length() > 12) {
-            AndroidUtilities.shakeView(pn0Var);
+    public final boolean a(int i10, int i11) {
+        un0 un0Var = this.f27618b;
+        return ((rn0) un0Var.f28780n.get(i10)).equals(un0Var.f28781r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        un0 un0Var = this.f27618b;
+        if (((rn0) un0Var.f28780n.get(i10)).f27928a.h == ((rn0) un0Var.f28781r.get(i11)).f27928a.h) {
             return true;
         }
-        MessagesController.getInstance(this.f27695b).renameSavedReactionTag(zg.o0.d(this.f27696c), obj);
-        org.telegram.ui.ActionBar.b2[] b2VarArr = this.d;
-        org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-        if (b2Var != null) {
-            b2Var.dismiss();
-        }
-        if (b2VarArr[0] == vn0.H) {
-            vn0.H = null;
-        }
-        View view = this.e;
-        if (view != null) {
-            view.requestFocus();
-        }
-        return true;
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f27618b.f28781r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f27618b.f28780n.size();
     }
 }

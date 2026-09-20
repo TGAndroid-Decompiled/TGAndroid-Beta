@@ -7,29 +7,29 @@ import android.widget.ImageView;
 import ci.e4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.p5;
 import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.x51;
 import org.telegram.ui.rk;
-public final class y1 extends w51 {
+public final class y1 extends v51 {
     public static final int f39119a = 0;
 
     static {
-        w51.setup(new w51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         z1 z1Var = (z1) view;
-        CharSequence charSequence = x51Var.f30250n;
-        String str = (String) x51Var.f30248l;
-        long j3 = x51Var.B;
+        CharSequence charSequence = w51Var.f29950n;
+        String str = (String) w51Var.f29948l;
+        long j3 = w51Var.B;
         ImageView imageView = z1Var.f39133a;
         z1Var.f39134b.setText(charSequence);
         rk rkVar = z1Var.f39135c;
@@ -52,13 +52,13 @@ public final class y1 extends w51 {
             }
         }
         String charSequence2 = charSequence.toString();
-        q5 q5Var = z1Var.d;
-        if (q5Var != null) {
-            q5Var.o(imageView);
+        p5 p5Var = z1Var.d;
+        if (p5Var != null) {
+            p5Var.o(imageView);
             z1Var.d = null;
         }
         if (j3 != 0) {
-            q5 n10 = q5.n(UserConfig.selectedAccount, j3, null, 1);
+            p5 n10 = p5.n(UserConfig.selectedAccount, j3, null, 1);
             z1Var.d = n10;
             n10.a(imageView);
             imageView.setImageDrawable(z1Var.d);
@@ -67,7 +67,7 @@ public final class y1 extends w51 {
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
             pqVar.h = dp;
-            pqVar.f27300n = dp2;
+            pqVar.f27423n = dp2;
             imageView.setImageDrawable(pqVar);
         }
         z1Var.f39136f = z10;
@@ -75,7 +75,7 @@ public final class y1 extends w51 {
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, e6 e6Var) {
+    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
         return new z1(context);
     }
 }

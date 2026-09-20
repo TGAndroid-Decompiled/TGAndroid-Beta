@@ -16,32 +16,32 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.g9;
+import org.telegram.ui.Components.v9;
 import w7.y5;
 import yf.p;
 public final class b extends FrameLayout implements z5 {
-    public final e6 f10018a;
-    public final w9 f10019b;
-    public final TextView f10020c;
+    public final f6 f10019a;
+    public final v9 f10020b;
+    public final TextView f10021c;
     public final TextView d;
     public final ImageView e;
 
-    public b(Context context, e6 e6Var) {
+    public b(Context context, f6 f6Var) {
         super(context);
-        this.f10018a = e6Var;
-        w9 w9Var = new w9(context);
-        this.f10019b = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
-        addView(w9Var, y5.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
+        this.f10019a = f6Var;
+        v9 v9Var = new v9(context);
+        this.f10020b = v9Var;
+        v9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
+        addView(v9Var, y5.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
         TextView textView = new TextView(context);
-        this.f10020c = textView;
+        this.f10021c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -67,7 +67,7 @@ public final class b extends FrameLayout implements z5 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f18296id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f18328id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -75,35 +75,35 @@ public final class b extends FrameLayout implements z5 {
             i11 = 0;
         }
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f10019b.e(chat, new h9(chat));
+        this.f10020b.e(chat, new g9(chat));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Paint paint;
         Drawable drawable = j6.S0;
-        w9 w9Var = this.f10019b;
-        p.a(canvas, drawable, (w9Var.getWidth() / 2.0f) + w9Var.getLeft(), (w9Var.getHeight() / 2.0f) + w9Var.getTop(), w9Var.getHeight());
+        v9 v9Var = this.f10020b;
+        p.a(canvas, drawable, (v9Var.getWidth() / 2.0f) + v9Var.getLeft(), (v9Var.getHeight() / 2.0f) + v9Var.getTop(), v9Var.getHeight());
         super.dispatchDraw(canvas);
-        e6 e6Var = this.f10018a;
-        if (e6Var != null) {
-            paint = e6Var.G("paintDivider");
+        f6 f6Var = this.f10019a;
+        if (f6Var != null) {
+            paint = f6Var.G("paintDivider");
         } else {
             paint = null;
         }
         if (paint == null) {
-            paint = j6.f19184k0;
+            paint = j6.f19216k0;
         }
         canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
 
     @Override
     public final void e() {
-        int i10 = j6.f19464z6;
-        e6 e6Var = this.f10018a;
-        this.e.setColorFilter(j6.v0(i10, e6Var));
-        this.f10020c.setTextColor(j6.v0(j6.G6, e6Var));
-        this.d.setTextColor(j6.v0(i10, e6Var));
+        int i10 = j6.f19496z6;
+        f6 f6Var = this.f10019a;
+        this.e.setColorFilter(j6.v0(i10, f6Var));
+        this.f10021c.setTextColor(j6.v0(j6.G6, f6Var));
+        this.d.setTextColor(j6.v0(i10, f6Var));
     }
 
     public int[] getColorKeys() {
@@ -120,6 +120,6 @@ public final class b extends FrameLayout implements z5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f10020c.setText(charSequence);
+        this.f10021c.setText(charSequence);
     }
 }

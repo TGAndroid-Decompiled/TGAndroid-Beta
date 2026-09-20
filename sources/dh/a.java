@@ -4,7 +4,7 @@ public interface a {
 
     int a();
 
-    int c();
+    int d();
 
     int m();
 }

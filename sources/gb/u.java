@@ -2,30 +2,30 @@ package gb;
 
 import java.lang.reflect.Field;
 public final class u extends t {
-    public final fb.n f9592b;
+    public final fb.n f9593b;
 
     public u(fb.n nVar, v vVar) {
         super(vVar);
-        this.f9592b = nVar;
+        this.f9593b = nVar;
     }
 
     @Override
     public final Object a() {
-        return this.f9592b.p2();
+        return this.f9593b.p2();
     }
 
     @Override
     public final void c(Object obj, lb.a aVar, s sVar) {
-        Field field = sVar.f9587b;
-        Object read = sVar.f9589f.read(aVar);
-        if (read == null && sVar.f9590g) {
+        Field field = sVar.f9588b;
+        Object read = sVar.f9590f.read(aVar);
+        if (read == null && sVar.f9591g) {
             return;
         }
         if (!sVar.h) {
             field.set(obj, read);
             return;
         }
-        throw new RuntimeException(t8.b.i("Cannot set value of 'static final' ", ib.c.d(field, false)));
+        throw new RuntimeException(v7.j0.g("Cannot set value of 'static final' ", ib.c.d(field, false)));
     }
 
     @Override

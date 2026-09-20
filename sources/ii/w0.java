@@ -7,20 +7,20 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.j6;
 public final class w0 extends View implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f11700a;
-    public final Paint f11701b;
-    public a f11702c;
+    public final org.telegram.ui.ActionBar.f6 f11701a;
+    public final Paint f11702b;
+    public a f11703c;
 
-    public w0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public w0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f11701b = new Paint();
-        this.f11700a = e6Var;
+        this.f11702b = new Paint();
+        this.f11701a = f6Var;
         e();
     }
 
     @Override
     public final void e() {
-        this.f11701b.setColor(j6.v0(j6.Fk, this.f11700a));
+        this.f11702b.setColor(j6.v0(j6.Fk, this.f11701a));
     }
 
     public int[] getColorKeys() {
@@ -28,12 +28,12 @@ public final class w0 extends View implements org.telegram.ui.ActionBar.z5 {
     }
 
     public a getRow() {
-        return this.f11702c;
+        return this.f11703c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f11701b);
+        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f11702b);
     }
 
     @Override

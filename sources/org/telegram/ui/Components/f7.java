@@ -1,72 +1,45 @@
 package org.telegram.ui.Components;
-
-import org.telegram.messenger.MessageObject;
 public final class f7 implements Runnable {
-    public final int f24032a;
-    public final j8 f24033b;
-    public final w70 f24034c;
-    public final MessageObject d;
+    public final int f24015a;
+    public final i8 f24016b;
+    public final v70 f24017c;
 
-    public f7(j8 j8Var, MessageObject messageObject, w70 w70Var, int i10) {
-        this.f24032a = i10;
-        this.f24033b = j8Var;
-        this.d = messageObject;
-        this.f24034c = w70Var;
+    public f7(i8 i8Var, v70 v70Var, int i10) {
+        this.f24015a = i10;
+        this.f24016b = i8Var;
+        this.f24017c = v70Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24032a) {
+        switch (this.f24015a) {
             case 0:
-                j8 j8Var = this.f24033b;
-                j8Var.getClass();
-                this.f24034c.u();
-                j8Var.q0(this.d);
+                i8 i8Var = this.f24016b;
+                i8Var.getClass();
+                this.f24017c.u();
+                i8Var.t0(1);
                 return;
             case 1:
-                j8 j8Var2 = this.f24033b;
-                j8Var2.getClass();
-                this.f24034c.u();
-                j8Var2.z0(this.d);
+                i8 i8Var2 = this.f24016b;
+                i8Var2.getClass();
+                this.f24017c.u();
+                i8Var2.t0(2);
                 return;
             case 2:
-                j8 j8Var3 = this.f24033b;
-                MessageObject messageObject = this.d;
-                j8Var3.v0(messageObject, false, new f7(j8Var3, messageObject, this.f24034c, 5), false);
+                i8 i8Var3 = this.f24016b;
+                i8Var3.getClass();
+                this.f24017c.u();
+                i8Var3.t0(4);
                 return;
             case 3:
-                j8 j8Var4 = this.f24033b;
-                j8Var4.getClass();
-                this.f24034c.u();
-                j8Var4.q0(this.d);
-                return;
-            case 4:
-                j8 j8Var5 = this.f24033b;
-                j8Var5.getClass();
-                this.f24034c.u();
-                j8Var5.z0(this.d);
-                return;
-            case 5:
-                j8.v(this.f24033b, this.d, this.f24034c);
-                return;
-            case 6:
-                j8 j8Var6 = this.f24033b;
-                j8Var6.v0(this.d, true, new g7(j8Var6, this.f24034c, 4), false);
-                return;
-            case 7:
-                j8.L(this.f24033b, this.d, this.f24034c);
+                i8 i8Var4 = this.f24016b;
+                i8Var4.getClass();
+                this.f24017c.u();
+                i8Var4.t0(7);
                 return;
             default:
-                this.f24033b.u0(this.d);
-                this.f24034c.u();
+                i8.q(this.f24016b, this.f24017c);
                 return;
         }
-    }
-
-    public f7(j8 j8Var, w70 w70Var, MessageObject messageObject, int i10) {
-        this.f24032a = i10;
-        this.f24033b = j8Var;
-        this.f24034c = w70Var;
-        this.d = messageObject;
     }
 }

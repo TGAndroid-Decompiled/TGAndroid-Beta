@@ -2,27 +2,27 @@ package vg;
 
 import android.content.Context;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.ActionBar.j6;
 import w7.y5;
 public final class i extends c {
-    public final j5 f44582r;
-    public Object f44583s;
+    public final j5 f44626r;
+    public Object f44627s;
 
-    public i(Context context, e6 e6Var) {
-        super(context, e6Var);
+    public i(Context context, f6 f6Var) {
+        super(context, f6Var);
         int i10;
         float f7;
         float f10;
-        this.f44562c.setVisibility(8);
+        this.f44606c.setVisibility(8);
         j5 j5Var = this.e;
         int i11 = j6.B6;
-        j5Var.setTextColor(j6.v0(i11, e6Var));
+        j5Var.setTextColor(j6.v0(i11, f6Var));
         j5 j5Var2 = new j5(context);
-        this.f44582r = j5Var2;
+        this.f44626r = j5Var2;
         j5Var2.setTextSize(16);
-        j5Var2.setTextColor(j6.v0(i11, e6Var));
+        j5Var2.setTextColor(j6.v0(i11, f6Var));
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
@@ -51,6 +51,6 @@ public final class i extends c {
     }
 
     public Object getGifCode() {
-        return this.f44583s;
+        return this.f44627s;
     }
 }

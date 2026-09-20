@@ -6,55 +6,55 @@ import android.os.IBinder;
 import android.text.TextUtils;
 import j$.util.Objects;
 public final class r1 {
-    public static final String f14856i;
-    public static final String f14857j;
-    public static final String f14858k;
-    public static final String f14859l;
-    public static final String f14860m;
-    public static final String f14861n;
-    public static final String f14862o;
-    public static final String f14863p;
-    public static final String f14864q;
-    public static final String f14865r;
-    public final int f14866a;
-    public final int f14867b;
-    public final int f14868c;
+    public static final String f14892i;
+    public static final String f14893j;
+    public static final String f14894k;
+    public static final String f14895l;
+    public static final String f14896m;
+    public static final String f14897n;
+    public static final String f14898o;
+    public static final String f14899p;
+    public static final String f14900q;
+    public static final String f14901r;
+    public final int f14902a;
+    public final int f14903b;
+    public final int f14904c;
     public final String d;
     public final String e;
-    public final IBinder f14869f;
-    public final Bundle f14870g;
+    public final IBinder f14905f;
+    public final Bundle f14906g;
     public final MediaSession.Token h;
 
     static {
-        String str = e2.d0.f7887a;
-        f14856i = Integer.toString(0, 36);
-        f14857j = Integer.toString(1, 36);
-        f14858k = Integer.toString(2, 36);
-        f14859l = Integer.toString(3, 36);
-        f14860m = Integer.toString(4, 36);
-        f14861n = Integer.toString(5, 36);
-        f14862o = Integer.toString(6, 36);
-        f14863p = Integer.toString(7, 36);
-        f14864q = Integer.toString(8, 36);
-        f14865r = Integer.toString(9, 36);
+        String str = e2.d0.f7888a;
+        f14892i = Integer.toString(0, 36);
+        f14893j = Integer.toString(1, 36);
+        f14894k = Integer.toString(2, 36);
+        f14895l = Integer.toString(3, 36);
+        f14896m = Integer.toString(4, 36);
+        f14897n = Integer.toString(5, 36);
+        f14898o = Integer.toString(6, 36);
+        f14899p = Integer.toString(7, 36);
+        f14900q = Integer.toString(8, 36);
+        f14901r = Integer.toString(9, 36);
     }
 
     public r1(int i10, String str, f1 f1Var, Bundle bundle, MediaSession.Token token) {
         str.getClass();
-        this.f14866a = i10;
-        this.f14867b = 1008001300;
-        this.f14868c = 5;
+        this.f14902a = i10;
+        this.f14903b = 1008001300;
+        this.f14904c = 5;
         this.d = str;
         this.e = "";
-        this.f14869f = f1Var;
-        this.f14870g = bundle;
+        this.f14905f = f1Var;
+        this.f14906g = bundle;
         this.h = token;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof r1) {
             r1 r1Var = (r1) obj;
-            if (this.f14866a == r1Var.f14866a && this.f14867b == r1Var.f14867b && this.f14868c == r1Var.f14868c && TextUtils.equals(this.d, r1Var.d) && TextUtils.equals(this.e, r1Var.e) && Objects.equals(this.f14869f, r1Var.f14869f) && Objects.equals(this.h, r1Var.h)) {
+            if (this.f14902a == r1Var.f14902a && this.f14903b == r1Var.f14903b && this.f14904c == r1Var.f14904c && TextUtils.equals(this.d, r1Var.d) && TextUtils.equals(this.e, r1Var.e) && Objects.equals(this.f14905f, r1Var.f14905f) && Objects.equals(this.h, r1Var.h)) {
                 return true;
             }
             return false;
@@ -63,10 +63,10 @@ public final class r1 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f14866a), 0, Integer.valueOf(this.f14867b), Integer.valueOf(this.f14868c), this.d, this.e, null, this.f14869f, this.h);
+        return Objects.hash(Integer.valueOf(this.f14902a), 0, Integer.valueOf(this.f14903b), Integer.valueOf(this.f14904c), this.d, this.e, null, this.f14905f, this.h);
     }
 
     public final String toString() {
-        return "SessionToken {pkg=" + this.d + " type=0 libraryVersion=" + this.f14867b + " interfaceVersion=" + this.f14868c + " service=" + this.e + " IMediaSession=" + this.f14869f + " extras=" + this.f14870g + "}";
+        return "SessionToken {pkg=" + this.d + " type=0 libraryVersion=" + this.f14903b + " interfaceVersion=" + this.f14904c + " service=" + this.e + " IMediaSession=" + this.f14905f + " extras=" + this.f14906g + "}";
     }
 }

@@ -4,15 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class l0 extends o6.a implements x8.h {
     public static final Parcelable.Creator<l0> CREATOR = new c(29);
-    public final String f46639a;
-    public final String f46640b;
-    public final int f46641c;
+    public final String f46686a;
+    public final String f46687b;
+    public final int f46688c;
     public final boolean d;
 
     public l0(int i10, String str, String str2, boolean z10) {
-        this.f46639a = str;
-        this.f46640b = str2;
-        this.f46641c = i10;
+        this.f46686a = str;
+        this.f46687b = str2;
+        this.f46688c = i10;
         this.d = z10;
     }
 
@@ -20,16 +20,16 @@ public final class l0 extends o6.a implements x8.h {
         if (!(obj instanceof l0)) {
             return false;
         }
-        return ((l0) obj).f46639a.equals(this.f46639a);
+        return ((l0) obj).f46686a.equals(this.f46686a);
     }
 
     public final int hashCode() {
-        return this.f46639a.hashCode();
+        return this.f46686a.hashCode();
     }
 
     public final String toString() {
-        StringBuilder w10 = a4.a.w("Node{", this.f46640b, ", id=", this.f46639a, ", hops=");
-        w10.append(this.f46641c);
+        StringBuilder w10 = a4.a.w("Node{", this.f46687b, ", id=", this.f46686a, ", hops=");
+        w10.append(this.f46688c);
         w10.append(", isNearby=");
         w10.append(this.d);
         w10.append("}");
@@ -39,10 +39,10 @@ public final class l0 extends o6.a implements x8.h {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.l(parcel, 2, this.f46639a);
-        w7.f0.l(parcel, 3, this.f46640b);
+        w7.f0.l(parcel, 2, this.f46686a);
+        w7.f0.l(parcel, 3, this.f46687b);
         w7.f0.s(parcel, 4, 4);
-        parcel.writeInt(this.f46641c);
+        parcel.writeInt(this.f46688c);
         w7.f0.s(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
         w7.f0.r(parcel, q6);

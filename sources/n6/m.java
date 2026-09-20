@@ -1,21 +1,21 @@
 package n6;
 public final class m implements k {
-    public static m f15252b;
-    public static final n f15253c = new n(0, 0, 0, false, false);
-    public Object f15254a;
+    public static m f15290b;
+    public static final n f15291c = new n(0, 0, 0, false, false);
+    public Object f15292a;
 
     public m(Object obj) {
-        this.f15254a = obj;
+        this.f15292a = obj;
     }
 
     public static synchronized m a() {
         m mVar;
         synchronized (m.class) {
             try {
-                if (f15252b == null) {
-                    f15252b = new Object();
+                if (f15290b == null) {
+                    f15290b = new Object();
                 }
-                mVar = f15252b;
+                mVar = f15290b;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -25,7 +25,7 @@ public final class m implements k {
 
     @Override
     public Object l(com.google.android.gms.common.api.q qVar) {
-        m8.d dVar = (m8.d) this.f15254a;
+        m8.d dVar = (m8.d) this.f15292a;
         dVar.f3000a = qVar;
         return dVar;
     }

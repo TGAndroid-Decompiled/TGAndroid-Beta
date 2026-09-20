@@ -4,21 +4,21 @@ import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.l20;
-import org.telegram.ui.Components.s91;
+import org.telegram.ui.Components.r91;
 public final class lc extends l20 {
-    public final nc f4984a;
+    public final nc f4985a;
 
     public lc(nc ncVar) {
-        this.f4984a = ncVar;
+        this.f4985a = ncVar;
     }
 
     @Override
     public final boolean a() {
         rb rbVar;
-        oc ocVar = this.f4984a.E0;
-        if (ocVar.f5222f0 == 0 && (rbVar = ocVar.B0) != null && !ocVar.S1 && rbVar.isInited() && !ocVar.P1 && !ocVar.O0.f4971x0) {
+        oc ocVar = this.f4985a.E0;
+        if (ocVar.f5223f0 == 0 && (rbVar = ocVar.B0) != null && !ocVar.S1 && rbVar.isInited() && !ocVar.P1 && !ocVar.O0.f4972x0) {
             w7 w7Var = ocVar.D0;
-            if ((w7Var == null || (!w7Var.f5709x.h && !w7Var.L)) && !ocVar.J() && ocVar.f5253p2 == null) {
+            if ((w7Var == null || (!w7Var.f5710x.h && !w7Var.L)) && !ocVar.J() && ocVar.f5254p2 == null) {
                 return true;
             }
             return false;
@@ -28,17 +28,17 @@ public final class lc extends l20 {
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        oc ocVar = this.f4984a.E0;
+        oc ocVar = this.f4985a.E0;
         rb rbVar = ocVar.B0;
-        if (rbVar != null && !ocVar.S1 && !ocVar.P1 && rbVar.isInited() && ocVar.f5222f0 == 0 && ocVar.O1 != -1) {
+        if (rbVar != null && !ocVar.S1 && !ocVar.P1 && rbVar.isInited() && ocVar.f5223f0 == 0 && ocVar.O1 != -1) {
             ocVar.B0.switchCamera();
             ocVar.O0.d(180.0f);
             oc.a0(ocVar.B0.isFrontface());
             if (ocVar.q0()) {
-                ocVar.f5261s.c(null);
+                ocVar.f5262s.c(null);
                 return true;
             }
-            ocVar.f5261s.d();
+            ocVar.f5262s.d();
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public final class lc extends l20 {
 
     @Override
     public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        rb rbVar = this.f4984a.E0.B0;
+        rb rbVar = this.f4985a.E0.B0;
         if (rbVar != null) {
             rbVar.N = null;
             rbVar.K = -1L;
@@ -57,7 +57,7 @@ public final class lc extends l20 {
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        nc ncVar = this.f4984a;
+        nc ncVar = this.f4985a;
         ncVar.C0 = 0.0f;
         ncVar.D0 = 0.0f;
         return false;
@@ -67,20 +67,20 @@ public final class lc extends l20 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         w7 w7Var;
         rb rbVar;
-        s91 s91Var;
+        r91 r91Var;
         bc bcVar;
         boolean z10;
         boolean z11;
-        nc ncVar = this.f4984a;
+        nc ncVar = this.f4985a;
         oc ocVar = ncVar.E0;
         ValueAnimator valueAnimator = ocVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((w7Var = ocVar.D0) != null && (w7Var.f5709x.h || w7Var.L)) || ocVar.O0.f4971x0 || (((rbVar = ocVar.B0) != null && rbVar.f4484s) || ncVar.A0 || (((s91Var = ocVar.V0) != null && (s91Var.F || s91Var.G)) || ocVar.I())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((w7Var = ocVar.D0) != null && (w7Var.f5710x.h || w7Var.L)) || ocVar.O0.f4972x0 || (((rbVar = ocVar.B0) != null && rbVar.f4485s) || ncVar.A0 || (((r91Var = ocVar.V0) != null && (r91Var.F || r91Var.G)) || ocVar.I())))) {
             return false;
         }
         boolean z12 = true;
-        ncVar.f5100y0 = true;
+        ncVar.f5101y0 = true;
         if (ocVar.W) {
-            if (Math.abs(ocVar.f5257r.f4730a) >= AndroidUtilities.dp(1.0f)) {
+            if (Math.abs(ocVar.f5258r.f4731a) >= AndroidUtilities.dp(1.0f)) {
                 if ((f10 > 0.0f && Math.abs(f10) > 2000.0f && Math.abs(f10) > Math.abs(f7)) || ocVar.K > 0.4f) {
                     ocVar.q(true);
                 } else {
@@ -128,7 +128,7 @@ public final class lc extends l20 {
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        rb rbVar = this.f4984a.E0.B0;
+        rb rbVar = this.f4985a.E0.B0;
         if (rbVar != null) {
             c1 c1Var = rbVar.N;
             if (c1Var != null) {
@@ -143,7 +143,7 @@ public final class lc extends l20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        oc ocVar = this.f4984a.E0;
+        oc ocVar = this.f4985a.E0;
         ocVar.W = false;
         ocVar.X = false;
         if (!a() && onSingleTapConfirmed(motionEvent)) {

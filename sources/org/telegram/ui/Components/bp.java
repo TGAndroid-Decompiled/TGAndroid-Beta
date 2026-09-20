@@ -14,31 +14,31 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.fj1;
+import org.telegram.ui.gj1;
 public final class bp implements ti {
-    public final vi f23052a;
-    public final TL_stories.TL_premium_boostsStatus f23053b;
-    public final org.telegram.ui.ActionBar.e6 f23054c;
+    public final vi f23028a;
+    public final TL_stories.TL_premium_boostsStatus f23029b;
+    public final org.telegram.ui.ActionBar.f6 f23030c;
     public final org.telegram.ui.g d;
     public final long e;
-    public final org.telegram.ui.s3 f23055f;
+    public final org.telegram.ui.s3 f23031f;
     public final org.telegram.ui.bd h;
 
-    public bp(vi viVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.g gVar, long j3, org.telegram.ui.s3 s3Var, org.telegram.ui.bd bdVar) {
-        this.f23052a = viVar;
-        this.f23053b = tL_premium_boostsStatus;
-        this.f23054c = e6Var;
+    public bp(vi viVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.g gVar, long j3, org.telegram.ui.s3 s3Var, org.telegram.ui.bd bdVar) {
+        this.f23028a = viVar;
+        this.f23029b = tL_premium_boostsStatus;
+        this.f23030c = f6Var;
         this.d = gVar;
         this.e = j3;
-        this.f23055f = s3Var;
+        this.f23031f = s3Var;
         this.h = bdVar;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        vi viVar = this.f23052a;
+    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        vi viVar = this.f23028a;
         try {
-            HashMap<Object, Object> selectedPhotos = viVar.f29033j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = viVar.f29110j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -51,17 +51,17 @@ public final class bp implements ti {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    ap apVar = new ap(new fj1(file, file, ""), loadBitmap, false, 0);
-                    apVar.V1 = this.f23053b;
-                    apVar.f38467a.f38453a = this.f23054c;
-                    apVar.f38510p1 = this.d;
+                    ap apVar = new ap(new gj1(file, file, ""), loadBitmap, false, 0);
+                    apVar.V1 = this.f23029b;
+                    apVar.f39470a.f39458a = this.f23030c;
+                    apVar.f39513p1 = this.d;
                     apVar.F1 = false;
                     apVar.E1 = false;
-                    apVar.f38506n1 = 0.2f;
+                    apVar.f39509n1 = 0.2f;
                     apVar.c1(this.e);
-                    apVar.I1 = new zo(viVar, this.f23055f, 0);
+                    apVar.I1 = new zo(viVar, this.f23031f, 0);
                     ?? obj = new Object();
-                    obj.f19545a = true;
+                    obj.f19577a = true;
                     obj.e = true;
                     this.h.showAsSheet(apVar, obj);
                     viVar.dismiss();
@@ -79,39 +79,39 @@ public final class bp implements ti {
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void V0(Object obj) {
         ap apVar = new ap(obj, null, true, 1);
-        apVar.V1 = this.f23053b;
-        apVar.f38467a.f38453a = this.f23054c;
-        apVar.f38510p1 = this.d;
+        apVar.V1 = this.f23029b;
+        apVar.f39470a.f39458a = this.f23030c;
+        apVar.f39513p1 = this.d;
         apVar.c1(this.e);
-        apVar.I1 = new zo(this.f23052a, this.f23055f, 1);
+        apVar.I1 = new zo(this.f23028a, this.f23031f, 1);
         ?? obj2 = new Object();
-        obj2.f19545a = true;
+        obj2.f19577a = true;
         obj2.e = true;
         this.h.showAsSheet(apVar, obj2);
     }
 
     @Override
-    public final boolean c0() {
+    public final boolean f0() {
         return false;
     }
 
     @Override
-    public final void x0(gh ghVar) {
+    public final void y0(gh ghVar) {
         ghVar.run();
     }
 
     @Override
-    public final void K0() {
+    public final void L0() {
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void k1(TLRPC.User user) {
     }
 
     @Override
-    public final void u0() {
+    public final void v0() {
     }
 
     @Override

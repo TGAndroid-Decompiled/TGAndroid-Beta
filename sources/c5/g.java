@@ -7,23 +7,23 @@ import hg.k0;
 import java.lang.reflect.GenericDeclaration;
 import java.util.HashMap;
 public final class g {
-    public boolean f3877a;
-    public Object f3878b;
-    public Object f3879c;
+    public boolean f3878a;
+    public Object f3879b;
+    public Object f3880c;
     public Object d;
     public Object e = new h0(this, true);
-    public Object f3880f = new h0(this, false);
+    public Object f3881f = new h0(this, false);
 
     public g(Context context, q qVar, of.b bVar) {
-        this.f3878b = context;
-        this.f3879c = qVar;
+        this.f3879b = context;
+        this.f3880c = qVar;
         this.d = bVar;
     }
 
     public d9.i a(int i10) {
         d9.i iVar;
         d9.i iVar2;
-        HashMap hashMap = (HashMap) this.f3879c;
+        HashMap hashMap = (HashMap) this.f3880c;
         d9.i iVar3 = (d9.i) hashMap.get(Integer.valueOf(i10));
         if (iVar3 != null) {
             return iVar3;
@@ -46,7 +46,7 @@ public final class g {
                                         case 2:
                                             return p.e((Class) this, bVar);
                                         default:
-                                            return new v0(bVar, (c3.m) ((c5.g) this).f3878b);
+                                            return new w0(bVar, (c3.m) ((c5.g) this).f3879b);
                                     }
                                 }
                             };
@@ -69,7 +69,7 @@ public final class g {
                                 case 2:
                                     return p.e((Class) asSubclass, bVar);
                                 default:
-                                    return new v0(bVar, (c3.m) ((c5.g) asSubclass).f3878b);
+                                    return new w0(bVar, (c3.m) ((c5.g) asSubclass).f3879b);
                             }
                         }
                     };
@@ -87,7 +87,7 @@ public final class g {
                             case 2:
                                 return p.e((Class) asSubclass2, bVar);
                             default:
-                                return new v0(bVar, (c3.m) ((c5.g) asSubclass2).f3878b);
+                                return new w0(bVar, (c3.m) ((c5.g) asSubclass2).f3879b);
                         }
                     }
                 };
@@ -106,7 +106,7 @@ public final class g {
                         case 2:
                             return p.e((Class) asSubclass3, bVar);
                         default:
-                            return new v0(bVar, (c3.m) ((c5.g) asSubclass3).f3878b);
+                            return new w0(bVar, (c3.m) ((c5.g) asSubclass3).f3879b);
                     }
                 }
             };

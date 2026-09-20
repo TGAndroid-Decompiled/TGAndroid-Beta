@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.dj0;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.cj0;
+import org.telegram.ui.Components.d11;
 public abstract class c5 {
     public static Object a(Spanned spanned, int i10, int i11, Class cls) {
         Object[] spans;
@@ -28,8 +28,8 @@ public abstract class c5 {
         Spanned spanned;
         int i10;
         CodeHighlighting.Span span;
-        dj0 dj0Var;
-        dj0 dj0Var2;
+        cj0 cj0Var;
+        cj0 cj0Var2;
         int i11;
         boolean z10;
         Object a2;
@@ -73,20 +73,20 @@ public abstract class c5 {
                 span = (CodeHighlighting.Span) a(spanned, i15, i10, CodeHighlighting.Span.class);
             }
             if (spanned != null && span == null) {
-                dj0Var = (dj0) a(spanned, i15, i10, dj0.class);
+                cj0Var = (cj0) a(spanned, i15, i10, cj0.class);
             } else {
-                dj0Var = null;
+                cj0Var = null;
             }
-            if (span == null && dj0Var == null) {
+            if (span == null && cj0Var == null) {
                 CharSequence subSequence = charSequence.subSequence(i15, i10);
                 TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
                 pageblockparagraph2.text = f6.f(subSequence);
                 arrayList.add(pageblockparagraph2);
             } else {
                 if (span != null) {
-                    dj0Var2 = span;
+                    cj0Var2 = span;
                 } else {
-                    dj0Var2 = dj0Var;
+                    cj0Var2 = cj0Var;
                 }
                 while (true) {
                     if (i14 < size) {
@@ -101,9 +101,9 @@ public abstract class c5 {
                         if (span != null) {
                             a2 = a(spanned, i16, length, CodeHighlighting.Span.class);
                         } else {
-                            a2 = a(spanned, i16, length, dj0.class);
+                            a2 = a(spanned, i16, length, cj0.class);
                         }
-                        if (a2 != dj0Var2) {
+                        if (a2 != cj0Var2) {
                             break;
                         }
                         i10 = length;
@@ -128,7 +128,7 @@ public abstract class c5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = f6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (dj0Var != null && dj0Var.e) {
+                    if (cj0Var != null && cj0Var.e) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -259,7 +259,7 @@ public abstract class c5 {
                                             } else {
                                                 valueOf = String.valueOf(i11);
                                             }
-                                            SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(t8.b.v(valueOf, ".  "));
+                                            SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(v7.j0.s(valueOf, ".  "));
                                             spannableStringBuilder6.append((CharSequence) spannableStringBuilder);
                                             arrayList7.add(spannableStringBuilder6);
                                         }
@@ -391,9 +391,9 @@ public abstract class c5 {
                     e = false;
                     continue;
                 } else {
-                    ArrayList arrayList2 = aVar.f11210k;
-                    if (!aVar.f11208i && aVar.f11205c <= 0) {
-                        TL_iv.PageBlock pageBlock = aVar.f11204b;
+                    ArrayList arrayList2 = aVar.f11211k;
+                    if (!aVar.f11209i && aVar.f11206c <= 0) {
+                        TL_iv.PageBlock pageBlock = aVar.f11205b;
                         if (!(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                             boolean z10 = pageBlock instanceof TL_iv.pageBlockBlockquote;
                             if (arrayList2.size() + (z10 ? 1 : 0) <= 1 && (!z10 || (richText = ((TL_iv.pageBlockBlockquote) pageBlock).caption) == null || (richText instanceof TL_iv.textEmpty) || f6.l(richText).isEmpty())) {
@@ -450,7 +450,7 @@ public abstract class c5 {
         if (spannableStringBuilder2.length() == 0) {
             return null;
         }
-        dj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), false);
+        cj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), false);
         return spannableStringBuilder2;
     }
 
@@ -458,21 +458,21 @@ public abstract class c5 {
         SpannableStringBuilder r10;
         TL_iv.RichText richText = null;
         if (z10) {
-            TL_iv.PageBlock pageBlock = aVar.f11204b;
+            TL_iv.PageBlock pageBlock = aVar.f11205b;
             if (pageBlock != null) {
                 richText = pageBlock.text;
             }
             r10 = f6.r(richText, pageBlock, false);
         } else {
-            TL_iv.PageBlock pageBlock2 = aVar.f11204b;
+            TL_iv.PageBlock pageBlock2 = aVar.f11205b;
             if (pageBlock2 != null) {
                 richText = pageBlock2.text;
             }
             r10 = f6.r(richText, pageBlock2, true);
         }
-        if (aVar.f11204b instanceof TL_iv.pageBlockPreformatted) {
+        if (aVar.f11205b instanceof TL_iv.pageBlockPreformatted) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(r10);
-            spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, ((TL_iv.pageBlockPreformatted) aVar.f11204b).language, spannableStringBuilder.toString()), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, ((TL_iv.pageBlockPreformatted) aVar.f11205b).language, spannableStringBuilder.toString()), 0, spannableStringBuilder.length(), 33);
             return spannableStringBuilder;
         }
         return r10;
@@ -484,11 +484,11 @@ public abstract class c5 {
         int i10 = 0;
         while (list != null && i10 < list.size()) {
             a aVar = (a) list.get(i10);
-            if (!aVar.f11210k.isEmpty()) {
-                long longValue = ((Long) aVar.f11210k.get(0)).longValue();
+            if (!aVar.f11211k.isEmpty()) {
+                long longValue = ((Long) aVar.f11211k.get(0)).longValue();
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 int i11 = i10;
-                while (i11 < list.size() && !((a) list.get(i11)).f11210k.isEmpty() && ((Long) ((a) list.get(i11)).f11210k.get(0)).longValue() == longValue) {
+                while (i11 < list.size() && !((a) list.get(i11)).f11211k.isEmpty() && ((Long) ((a) list.get(i11)).f11211k.get(0)).longValue() == longValue) {
                     if (i11 > i10) {
                         spannableStringBuilder.append('\n');
                     }
@@ -496,12 +496,12 @@ public abstract class c5 {
                     i11++;
                 }
                 if (spannableStringBuilder.length() > 0) {
-                    dj0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
+                    cj0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
                 }
                 arrayList.add(spannableStringBuilder);
                 i10 = i11;
             } else {
-                TL_iv.PageBlock pageBlock = aVar.f11204b;
+                TL_iv.PageBlock pageBlock = aVar.f11205b;
                 if (!(pageBlock instanceof TL_iv.pageBlockBlockquote) && !(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                     arrayList.add(i(aVar, z10));
                 } else {
@@ -512,10 +512,10 @@ public abstract class c5 {
                         r10 = f6.r(pageBlock.text, pageBlock, true);
                     }
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(r10);
-                    TL_iv.PageBlock pageBlock2 = aVar.f11204b;
+                    TL_iv.PageBlock pageBlock2 = aVar.f11205b;
                     z11 = ((pageBlock2 instanceof TL_iv.pageBlockBlockquote) && ((TL_iv.pageBlockBlockquote) pageBlock2).collapsed) ? false : false;
                     if (spannableStringBuilder2.length() > 0) {
-                        dj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);
+                        cj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);
                     }
                     arrayList.add(spannableStringBuilder2);
                 }
@@ -543,8 +543,8 @@ public abstract class c5 {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
         ?? obj = new Object();
-        obj.f23395a = i10;
-        spannableStringBuilder2.setSpan(new e11(obj, 0), 0, spannableStringBuilder2.length(), 33);
+        obj.f23124a = i10;
+        spannableStringBuilder2.setSpan(new d11(obj, 0), 0, spannableStringBuilder2.length(), 33);
         return spannableStringBuilder2;
     }
 }

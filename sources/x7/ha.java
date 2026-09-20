@@ -1,39 +1,31 @@
 package x7;
-public abstract class ha {
-    public static t7.r f45701a;
 
-    public static synchronized fa a(ba baVar) {
-        fa faVar;
-        synchronized (ha.class) {
-            try {
-                if (f45701a == null) {
-                    f45701a = new t7.r(3);
-                }
-                faVar = (fa) f45701a.O0(baVar);
-            } catch (Throwable th2) {
-                throw th2;
-            }
+import android.content.Context;
+public final class ha implements fa {
+    public final q9.n f45745a;
+    public final ca f45746b;
+
+    public ha(Context context, ca caVar) {
+        this.f45746b = caVar;
+        j5.a aVar = j5.a.e;
+        l5.s.b(context);
+        l5.q c10 = l5.s.a().c(aVar);
+        if (j5.a.d.contains(new i5.c("json"))) {
+            new q9.n(new v7.b9(c10, 4));
         }
-        return faVar;
+        this.f45745a = new q9.n(new v7.b9(c10, 5));
     }
 
-    public static synchronized fa b() {
-        fa a2;
-        synchronized (ha.class) {
-            byte b10 = (byte) (((byte) 1) | 2);
-            if (b10 == 3) {
-                a2 = a(new Object());
-            } else {
-                StringBuilder sb2 = new StringBuilder();
-                if ((b10 & 1) == 0) {
-                    sb2.append(" enableFirelog");
-                }
-                if ((b10 & 2) == 0) {
-                    sb2.append(" firelogEventType");
-                }
-                throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
-            }
+    @Override
+    public final void a(a5.a aVar) {
+        i5.a aVar2;
+        this.f45746b.getClass();
+        l5.r rVar = (l5.r) this.f45745a.get();
+        if (aVar.f277b != 0) {
+            aVar2 = new i5.a(null, aVar.B(), i5.d.f10997a, null);
+        } else {
+            aVar2 = new i5.a(null, aVar.B(), i5.d.f10998b, null);
         }
-        return a2;
+        rVar.a(aVar2, new j2.e(22));
     }
 }

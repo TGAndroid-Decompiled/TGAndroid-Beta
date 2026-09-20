@@ -1,85 +1,59 @@
 package org.telegram.messenger;
 
 import java.util.HashMap;
-import java.util.List;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.zn;
-public final class li implements RequestDelegate {
-    public final int f16869a = 2;
-    public final SendMessagesHelper f16870b;
-    public final MessageObject f16871c;
-    public final String d;
-    public final Object e;
-    public final boolean f16872f;
-    public final Object f16873g;
-    public final Object h;
-    public final Object f16874i;
-    public final boolean f16875j;
-    public final Object f16876k;
-    public final Object f16877l;
+public final class li implements Runnable {
+    public final int f16911a;
+    public final SendMessagesHelper f16912b;
+    public final TLObject f16913c;
+    public final MessageObject d;
+    public final String e;
+    public final SendMessagesHelper.DelayedMessage f16914f;
+    public final boolean h;
+    public final SendMessagesHelper.DelayedMessage f16915n;
+    public final Object f16916r;
+    public final HashMap f16917s;
+    public final boolean v;
 
-    public li(SendMessagesHelper sendMessagesHelper, String str, List list, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, zn znVar, TwoStepVerificationActivity twoStepVerificationActivity, TLObject[] tLObjectArr, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, boolean z11) {
-        this.f16870b = sendMessagesHelper;
-        this.d = str;
-        this.f16876k = list;
-        this.f16872f = z10;
-        this.f16871c = messageObject;
-        this.f16877l = keyboardButtonProto;
-        this.e = znVar;
-        this.f16873g = twoStepVerificationActivity;
-        this.h = tLObjectArr;
-        this.f16874i = inputCheckPasswordSRP;
-        this.f16875j = z11;
+    public li(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11, int i10) {
+        this.f16911a = i10;
+        this.f16912b = sendMessagesHelper;
+        this.f16913c = tLObject;
+        this.d = messageObject;
+        this.e = str;
+        this.f16914f = delayedMessage;
+        this.h = z10;
+        this.f16915n = delayedMessage2;
+        this.f16916r = obj;
+        this.f16917s = hashMap;
+        this.v = z11;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16869a) {
+    public final void run() {
+        switch (this.f16911a) {
             case 0:
-                this.f16870b.lambda$performSendMessageRequest$76((TLRPC.TL_messages_addPollAnswer) this.f16876k, (TLRPC.TL_messages_addPollAnswer) this.f16877l, this.f16871c, this.d, (SendMessagesHelper.DelayedMessage) this.e, this.f16872f, (SendMessagesHelper.DelayedMessage) this.f16873g, this.h, (HashMap) this.f16874i, this.f16875j, tLObject, tL_error);
+                HashMap hashMap = this.f16917s;
+                boolean z10 = this.v;
+                Object obj = this.f16916r;
+                String str = this.e;
+                this.f16912b.lambda$performSendMessageRequest$77(this.f16913c, this.d, str, this.f16914f, this.h, this.f16915n, obj, hashMap, z10);
                 return;
             case 1:
-                this.f16870b.lambda$performSendMessageRequest$101((TLObject) this.f16876k, this.f16871c, this.d, (SendMessagesHelper.DelayedMessage) this.e, this.f16872f, (SendMessagesHelper.DelayedMessage) this.f16873g, this.h, (HashMap) this.f16874i, this.f16875j, (TLRPC.Message) this.f16877l, tLObject, tL_error);
+                HashMap hashMap2 = this.f16917s;
+                boolean z11 = this.v;
+                Object obj2 = this.f16916r;
+                String str2 = this.e;
+                this.f16912b.lambda$performSendMessageRequest$78(this.f16913c, this.d, str2, this.f16914f, this.h, this.f16915n, obj2, hashMap2, z11);
                 return;
             default:
-                boolean z10 = this.f16875j;
-                String str = this.d;
-                MessageObject messageObject = this.f16871c;
-                this.f16870b.lambda$sendCallback$46(str, (List) this.f16876k, this.f16872f, messageObject, (TL_keyboard.KeyboardButtonProto) this.f16877l, (zn) this.e, (TwoStepVerificationActivity) this.f16873g, (TLObject[]) this.h, (TLRPC.InputCheckPasswordSRP) this.f16874i, z10, tLObject, tL_error);
+                HashMap hashMap3 = this.f16917s;
+                boolean z12 = this.v;
+                Object obj3 = this.f16916r;
+                String str3 = this.e;
+                this.f16912b.lambda$performSendMessageRequest$82(this.f16913c, this.d, str3, this.f16914f, this.h, this.f16915n, obj3, hashMap3, z12);
                 return;
         }
-    }
-
-    public li(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11, TLRPC.Message message) {
-        this.f16870b = sendMessagesHelper;
-        this.f16876k = tLObject;
-        this.f16871c = messageObject;
-        this.d = str;
-        this.e = delayedMessage;
-        this.f16872f = z10;
-        this.f16873g = delayedMessage2;
-        this.h = obj;
-        this.f16874i = hashMap;
-        this.f16875j = z11;
-        this.f16877l = message;
-    }
-
-    public li(SendMessagesHelper sendMessagesHelper, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer2, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
-        this.f16870b = sendMessagesHelper;
-        this.f16876k = tL_messages_addPollAnswer;
-        this.f16877l = tL_messages_addPollAnswer2;
-        this.f16871c = messageObject;
-        this.d = str;
-        this.e = delayedMessage;
-        this.f16872f = z10;
-        this.f16873g = delayedMessage2;
-        this.h = obj;
-        this.f16874i = hashMap;
-        this.f16875j = z11;
     }
 }

@@ -5,12 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.SparseArray;
-public final class y30 extends kv0 {
-    public final b40 f30470f2;
+public final class y30 extends jv0 {
+    public final b40 f30448f2;
 
-    public y30(b40 b40Var, Context context, cv0 cv0Var, b40 b40Var2, x30 x30Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 0L, cv0Var, 0, null, null, null, 8, 0, b40Var2, x30Var, 0, e6Var, null);
-        this.f30470f2 = b40Var;
+    public y30(b40 b40Var, Context context, bv0 bv0Var, b40 b40Var2, x30 x30Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 0L, bv0Var, 0, null, null, null, 8, 0, b40Var2, x30Var, 0, f6Var, null);
+        this.f30448f2 = b40Var;
     }
 
     @Override
@@ -20,12 +20,12 @@ public final class y30 extends kv0 {
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f30470f2.f22800b;
+        return this.f30448f2.f22877b;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f30470f2.f22801c;
+        return this.f30448f2.f22878c;
     }
 
     @Override

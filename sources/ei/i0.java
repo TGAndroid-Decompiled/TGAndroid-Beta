@@ -11,36 +11,37 @@ import android.widget.ImageView;
 import ci.uc;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
+import org.telegram.messenger.rk;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.d6;
+import org.telegram.ui.Components.hj0;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.tp;
 public final class i0 extends Drawable {
-    public final ImageView f8384a;
-    public final Paint f8385b;
-    public final RectF f8386c;
+    public final ImageView f8385a;
+    public final Paint f8386b;
+    public final RectF f8387c;
     public final long d;
     public final Drawable e;
-    public boolean f8387f;
-    public float f8388g;
+    public boolean f8388f;
+    public float f8389g;
     public boolean h;
-    public final e6 f8389i;
-    public final e6 f8390j;
-    public final e6 f8391k;
-    public ij0 f8392l;
+    public final d6 f8390i;
+    public final d6 f8391j;
+    public final d6 f8392k;
+    public hj0 f8393l;
 
     public i0(Context context, ImageView imageView) {
         Paint paint = new Paint(1);
-        this.f8385b = paint;
-        this.f8386c = new RectF();
+        this.f8386b = paint;
+        this.f8387c = new RectF();
         this.h = false;
         uc ucVar = new uc(this, 7);
         qr qrVar = qr.h;
-        this.f8389i = new e6(ucVar, 320L, qrVar, 0);
-        this.f8390j = new e6(new uc(this, 7), 320L, qrVar, 0);
-        this.f8391k = new e6(new uc(this, 7), 320L, qrVar, 0);
-        this.f8384a = imageView;
+        this.f8390i = new d6(ucVar, 320L, qrVar, 0);
+        this.f8391j = new d6(new uc(this, 7), 320L, qrVar, 0);
+        this.f8392k = new d6(new uc(this, 7), 320L, qrVar, 0);
+        this.f8385a = imageView;
         this.d = System.currentTimeMillis();
         this.e = context.getResources().getDrawable(R.drawable.search_files_filled).mutate();
         paint.setStyle(Paint.Style.STROKE);
@@ -53,13 +54,13 @@ public final class i0 extends Drawable {
     public final void draw(Canvas canvas) {
         float f7;
         float f10;
-        ij0 ij0Var;
+        hj0 hj0Var;
         int i10;
         Canvas canvas2 = canvas;
         Rect bounds = getBounds();
         int centerX = bounds.centerX();
         int centerY = bounds.centerY();
-        float e = this.f8391k.e(this.h);
+        float e = this.f8392k.e(this.h);
         if (e < 1.0f) {
             float f11 = 1.0f - e;
             float f12 = (0.4f * f11) + 0.6f;
@@ -68,12 +69,12 @@ public final class i0 extends Drawable {
             float f14 = centerY;
             canvas2.scale(f12, f12, f13, f14);
             Drawable drawable = this.e;
-            drawable.setBounds(org.telegram.ui.Cells.c1.r(2, centerX, drawable), org.telegram.ui.Cells.c1.c(2, centerY, drawable), org.telegram.ui.Cells.c1.v(2, centerX, drawable), org.telegram.ui.Cells.c1.u(2, centerY, drawable));
+            drawable.setBounds(rk.y(2, centerX, drawable), rk.d(2, centerY, drawable), org.telegram.ui.Cells.c1.d(2, centerX, drawable), rk.A(2, centerY, drawable));
             drawable.setAlpha((int) (f11 * 255.0f));
             drawable.draw(canvas2);
             float dp = AndroidUtilities.dp(14.0f);
             int l1 = j6.l1(0.2f * f11, -1);
-            Paint paint = this.f8385b;
+            Paint paint = this.f8386b;
             paint.setColor(l1);
             canvas2.drawCircle(f13, f14, dp, paint);
             float f15 = f11 * 1.0f;
@@ -83,9 +84,9 @@ public final class i0 extends Drawable {
             float f17 = f14 - dp;
             float f18 = f13 + dp;
             float f19 = f14 + dp;
-            RectF rectF = this.f8386c;
+            RectF rectF = this.f8387c;
             rectF.set(f16, f17, f18, f19);
-            float e7 = this.f8389i.e(this.f8387f);
+            float e7 = this.f8390i.e(this.f8388f);
             paint.setColor(j6.l1((1.0f - e7) * f11 * 0.15f, -1));
             long currentTimeMillis = System.currentTimeMillis();
             long j3 = this.d;
@@ -100,19 +101,19 @@ public final class i0 extends Drawable {
             f10 = 0.0f;
             paint.setColor(j6.l1(f15, -1));
             canvas2 = canvas;
-            canvas2.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, this.f8390j.d(this.f8388g, false)) * (-360.0f) * e7, false, paint);
+            canvas2.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, this.f8391j.d(this.f8389g, false)) * (-360.0f) * e7, false, paint);
             invalidateSelf();
             canvas2.restore();
         } else {
             f7 = 255.0f;
             f10 = 0.0f;
         }
-        if (e > f10 && (ij0Var = this.f8392l) != null) {
-            int i12 = ij0Var.f24973b / 2;
-            int i13 = ij0Var.f24975c / 2;
-            ij0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
-            this.f8392l.setAlpha((int) (e * f7));
-            this.f8392l.draw(canvas2);
+        if (e > f10 && (hj0Var = this.f8393l) != null) {
+            int i12 = hj0Var.f24679b / 2;
+            int i13 = hj0Var.f24681c / 2;
+            hj0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
+            this.f8393l.setAlpha((int) (e * f7));
+            this.f8393l.draw(canvas2);
         }
     }
 

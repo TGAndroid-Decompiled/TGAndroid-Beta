@@ -7,17 +7,17 @@ import android.os.Parcel;
 import android.text.TextUtils;
 import java.lang.ref.WeakReference;
 public final class i extends Binder implements f {
-    public static final int f15137b = 0;
-    public final WeakReference f15138a;
+    public static final int f15176b = 0;
+    public final WeakReference f15177a;
 
     public i() {
         attachInterface(this, "android.support.v4.media.session.IMediaControllerCallback");
-        this.f15138a = new WeakReference(null);
+        this.f15177a = new WeakReference(null);
     }
 
     @Override
     public final void h(int i10) {
-        if (this.f15138a.get() == null) {
+        if (this.f15177a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -25,7 +25,7 @@ public final class i extends Binder implements f {
 
     @Override
     public final void onRepeatModeChanged(int i10) {
-        if (this.f15138a.get() == null) {
+        if (this.f15177a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -95,7 +95,7 @@ public final class i extends Binder implements f {
                 case 11:
                     parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
                     parcel.readInt();
-                    if (this.f15138a.get() != null) {
+                    if (this.f15177a.get() != null) {
                         throw new ClassCastException();
                     }
                     break;
@@ -105,7 +105,7 @@ public final class i extends Binder implements f {
                     return true;
                 case 13:
                     parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                    if (this.f15138a.get() != null) {
+                    if (this.f15177a.get() != null) {
                         throw new ClassCastException();
                     }
                     break;
@@ -121,7 +121,7 @@ public final class i extends Binder implements f {
 
     @Override
     public final void t(h0 h0Var) {
-        if (this.f15138a.get() == null) {
+        if (this.f15177a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -129,7 +129,7 @@ public final class i extends Binder implements f {
 
     @Override
     public final void t0(String str) {
-        if (this.f15138a.get() == null) {
+        if (this.f15177a.get() == null) {
             return;
         }
         throw new ClassCastException();

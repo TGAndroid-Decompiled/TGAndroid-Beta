@@ -37,7 +37,7 @@ public final class c5 implements e2.h {
                 h5 h5Var = (h5) callback;
                 sa saVar = (sa) obj4;
                 jc jcVar = (jc) obj3;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj2;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj2;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
                 if (storyItem != null) {
                     org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
@@ -51,8 +51,8 @@ public final class c5 implements e2.h {
                     }
                     return;
                 }
-                org.telegram.ui.Components.qc Q = new xc(h5Var.f946z0.f803c1, e6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
-                Q.f27544a = 3;
+                org.telegram.ui.Components.pc Q = new xc(h5Var.f946z0.f803c1, f6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
+                Q.f27246a = 3;
                 Q.k(true);
                 return;
             default:

@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class n81 implements Runnable {
-    public final int f35841a;
-    public final o81 f35842b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class n81 implements org.telegram.ui.ActionBar.a2 {
+    public final int f35911a;
+    public final SessionsActivity f35912b;
 
-    public n81(o81 o81Var, int i10) {
-        this.f35841a = i10;
-        this.f35842b = o81Var;
+    public n81(SessionsActivity sessionsActivity, int i10) {
+        this.f35911a = i10;
+        this.f35912b = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        String sb2;
-        switch (this.f35841a) {
+    public final void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f35911a) {
             case 0:
-                o81 o81Var = this.f35842b;
-                String str = o81Var.f36127b.text;
-                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
-                    sb2 = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
-                } else {
-                    StringBuilder sb3 = new StringBuilder();
-                    org.telegram.ui.Cells.c1.l(R.string.ErrorOccurred, "\n", sb3);
-                    sb3.append(o81Var.f36127b.text);
-                    sb2 = sb3.toString();
+                SessionsActivity sessionsActivity = this.f35912b;
+                sessionsActivity.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-                org.telegram.ui.Components.e5.u0(o81Var.f36128c, LocaleController.getString(R.string.AuthAnotherClient), sb2, null);
-                return;
             default:
-                org.telegram.ui.Components.e5.u0(this.f35842b.f36128c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
+                SessionsActivity.W(this.f35912b);
                 return;
         }
     }

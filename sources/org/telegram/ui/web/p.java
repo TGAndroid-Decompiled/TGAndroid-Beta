@@ -13,18 +13,17 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.wh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.NumberTextView;
-import org.telegram.ui.Components.kx0;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.o61;
-import org.telegram.ui.Components.tb0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.jx0;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.n61;
+import org.telegram.ui.Components.sb0;
+import org.telegram.ui.Components.w51;
 import w7.y5;
-public final class p extends o61 {
+public final class p extends n61 {
     public i f39007f;
     public final Runnable h;
     public final org.telegram.ui.r f39008n;
@@ -50,7 +49,7 @@ public final class p extends o61 {
         }
         pVar.f39012x.clear();
         pVar.actionBar.r();
-        pVar.f26891a.Y2.N(true);
+        pVar.f26598a.Y2.N(true);
     }
 
     public static boolean f0(String str, String str2) {
@@ -59,10 +58,10 @@ public final class p extends o61 {
         }
         String lowerCase = str.toLowerCase();
         String lowerCase2 = str2.toLowerCase();
-        if (!lowerCase.startsWith(lowerCase2) && !wh.u(" ", lowerCase2, lowerCase) && !wh.u(".", lowerCase2, lowerCase)) {
+        if (!lowerCase.startsWith(lowerCase2) && !org.telegram.messenger.l0.v(" ", lowerCase2, lowerCase) && !org.telegram.messenger.l0.v(".", lowerCase2, lowerCase)) {
             String translitSafe = AndroidUtilities.translitSafe(lowerCase);
             String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-            if (!translitSafe.startsWith(translitSafe2) && !wh.u(" ", translitSafe2, translitSafe) && !wh.u(".", translitSafe2, translitSafe)) {
+            if (!translitSafe.startsWith(translitSafe2) && !org.telegram.messenger.l0.v(" ", translitSafe2, translitSafe) && !org.telegram.messenger.l0.v(".", translitSafe2, translitSafe)) {
                 return false;
             }
         }
@@ -70,7 +69,7 @@ public final class p extends o61 {
     }
 
     @Override
-    public final void U(ArrayList arrayList, l61 l61Var) {
+    public final void U(ArrayList arrayList, k61 k61Var) {
         CharSequence charSequence;
         TLRPC.WebPage webPage;
         String str;
@@ -81,7 +80,7 @@ public final class p extends o61 {
         boolean isEmpty = TextUtils.isEmpty(this.v);
         i iVar = this.e;
         if (isEmpty) {
-            ArrayList arrayList2 = iVar.f38931a;
+            ArrayList arrayList2 = iVar.f38928a;
             int size = arrayList2.size();
             int i10 = 0;
             while (i10 < size) {
@@ -92,23 +91,23 @@ public final class p extends o61 {
                 if (!TextUtils.isEmpty(a2) && !a2.startsWith("#") && !a2.startsWith("$") && !a2.startsWith("@")) {
                     hashSet.add(a2);
                     int i11 = g.f38903a;
-                    x51 J = x51.J(g.class);
-                    J.f30261z = 3;
-                    J.f30253q = false;
+                    w51 J = w51.J(g.class);
+                    J.f29961z = 3;
+                    J.f29953q = false;
                     J.H = messageObject;
                     J.K(e0(messageObject));
                     arrayList.add(J);
                 }
             }
             charSequence = null;
-            if (!iVar.f38934f) {
-                arrayList.add(x51.o(arrayList.size(), 32));
-                arrayList.add(x51.o(arrayList.size(), 32));
-                arrayList.add(x51.o(arrayList.size(), 32));
+            if (!iVar.f38931f) {
+                arrayList.add(w51.o(arrayList.size(), 32));
+                arrayList.add(w51.o(arrayList.size(), 32));
+                arrayList.add(w51.o(arrayList.size(), 32));
             }
         } else {
             charSequence = null;
-            ArrayList arrayList3 = iVar.f38931a;
+            ArrayList arrayList3 = iVar.f38928a;
             int size2 = arrayList3.size();
             int i12 = 0;
             while (i12 < size2) {
@@ -141,17 +140,17 @@ public final class p extends o61 {
                     if (f0(hostAuthority, this.v) || f0(str, this.v) || f0(str2, this.v)) {
                         String str3 = this.v;
                         int i13 = g.f38903a;
-                        x51 J2 = x51.J(g.class);
-                        J2.f30261z = 3;
-                        J2.f30253q = false;
+                        w51 J2 = w51.J(g.class);
+                        J2.f29961z = 3;
+                        J2.f29953q = false;
                         J2.H = messageObject2;
-                        J2.f30249m = str3;
+                        J2.f29949m = str3;
                         J2.K(e0(messageObject2));
                         arrayList.add(J2);
                     }
                 }
             }
-            ArrayList arrayList4 = this.f39007f.f38931a;
+            ArrayList arrayList4 = this.f39007f.f38928a;
             int size3 = arrayList4.size();
             int i14 = 0;
             while (i14 < size3) {
@@ -163,23 +162,23 @@ public final class p extends o61 {
                     hashSet.add(a12);
                     String str4 = this.v;
                     int i15 = g.f38903a;
-                    x51 J3 = x51.J(g.class);
-                    J3.f30261z = 3;
-                    J3.f30253q = false;
+                    w51 J3 = w51.J(g.class);
+                    J3.f29961z = 3;
+                    J3.f29953q = false;
                     J3.H = messageObject3;
-                    J3.f30249m = str4;
+                    J3.f29949m = str4;
                     J3.K(e0(messageObject3));
                     arrayList.add(J3);
                 }
             }
-            if (!this.f39007f.f38934f) {
-                arrayList.add(x51.o(arrayList.size(), 32));
-                arrayList.add(x51.o(arrayList.size(), 32));
-                arrayList.add(x51.o(arrayList.size(), 32));
+            if (!this.f39007f.f38931f) {
+                arrayList.add(w51.o(arrayList.size(), 32));
+                arrayList.add(w51.o(arrayList.size(), 32));
+                arrayList.add(w51.o(arrayList.size(), 32));
             }
         }
         if (!arrayList.isEmpty()) {
-            arrayList.add(x51.B(charSequence));
+            arrayList.add(w51.B(charSequence));
         }
     }
 
@@ -189,29 +188,29 @@ public final class p extends o61 {
     }
 
     @Override
-    public final void W(x51 x51Var, View view) {
-        if (x51Var.G(g.class)) {
+    public final void W(w51 w51Var, View view) {
+        if (w51Var.G(g.class)) {
             if (this.actionBar.s()) {
-                c0(x51Var, view);
+                c0(w51Var, view);
                 return;
             }
             finishFragment();
-            this.f39008n.run(k.a((MessageObject) x51Var.H));
+            this.f39008n.run(k.a((MessageObject) w51Var.H));
         }
     }
 
     @Override
-    public final boolean X(x51 x51Var, View view) {
-        if (x51Var.G(g.class)) {
-            c0(x51Var, view);
+    public final boolean X(w51 w51Var, View view) {
+        if (w51Var.G(g.class)) {
+            c0(w51Var, view);
             return true;
         }
         return false;
     }
 
-    public final void c0(x51 x51Var, View view) {
+    public final void c0(w51 w51Var, View view) {
         h hVar = (h) view;
-        MessageObject messageObject = (MessageObject) x51Var.H;
+        MessageObject messageObject = (MessageObject) w51Var.H;
         boolean e02 = e0(messageObject);
         HashSet hashSet = this.f39012x;
         boolean z10 = false;
@@ -243,14 +242,14 @@ public final class p extends o61 {
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i10 = j6.f19062d6;
+        int i10 = j6.f19094d6;
         kVar.setBackgroundColor(getThemedColor(i10));
         this.actionBar.setActionModeColor(j6.w0(null, i10, false));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i11 = j6.G6;
         kVar2.setTitleColor(getThemedColor(i11));
-        this.actionBar.A(getThemedColor(j6.f19466z8), false);
+        this.actionBar.A(getThemedColor(j6.f19498z8), false);
         this.actionBar.B(getThemedColor(i11), false);
         this.actionBar.B(getThemedColor(i11), true);
         this.actionBar.setCastShadows(true);
@@ -260,7 +259,7 @@ public final class p extends o61 {
         this.f39011w = numberTextView;
         numberTextView.setTextSize(18);
         this.f39011w.setTypeface(AndroidUtilities.bold());
-        this.f39011w.setTextColor(getThemedColor(j6.f19447y8));
+        this.f39011w.setTextColor(getThemedColor(j6.f19479y8));
         this.f39011w.setOnTouchListener(new bi.d(2));
         j3.addView(this.f39011w, y5.m(1.0f, 0, -1, 65, 0, 0));
         this.f39010s = j3.h(R.id.menu_link, R.drawable.msg_message, LocaleController.getString(R.string.AccDescrGoToMessage), AndroidUtilities.dp(54.0f));
@@ -275,14 +274,14 @@ public final class p extends o61 {
         searchField.setTextColor(getThemedColor(i11));
         searchField.setHintTextColor(getThemedColor(j6.Si));
         searchField.setCursorColor(getThemedColor(i11));
-        this.f26891a.j(new tb0(this, 11));
-        kx0 kx0Var = new kx0(context, null, 1, null);
-        kx0Var.d.setText(LocaleController.getString(R.string.WebNoBookmarks));
-        kx0Var.e.setVisibility(8);
-        kx0Var.e(false, false);
-        kx0Var.setAnimateLayoutChange(true);
-        ((FrameLayout) this.fragmentView).addView(kx0Var, y5.c(-1.0f, -1));
-        this.f26891a.setEmptyView(kx0Var);
+        this.f26598a.j(new sb0(this, 11));
+        jx0 jx0Var = new jx0(context, null, 1, null);
+        jx0Var.d.setText(LocaleController.getString(R.string.WebNoBookmarks));
+        jx0Var.e.setVisibility(8);
+        jx0Var.e(false, false);
+        jx0Var.setAnimateLayoutChange(true);
+        ((FrameLayout) this.fragmentView).addView(jx0Var, y5.c(-1.0f, -1));
+        this.f26598a.setEmptyView(jx0Var);
         return this.fragmentView;
     }
 
@@ -316,9 +315,9 @@ public final class p extends o61 {
         int i11 = -1;
         int i12 = 0;
         while (true) {
-            if (i12 < this.f26891a.getChildCount()) {
-                View childAt = this.f26891a.getChildAt(i12);
-                this.f26891a.getClass();
+            if (i12 < this.f26598a.getChildCount()) {
+                View childAt = this.f26598a.getChildAt(i12);
+                this.f26598a.getClass();
                 int S = RecyclerView.S(childAt);
                 if (S < 0) {
                     i12++;
@@ -333,17 +332,17 @@ public final class p extends o61 {
                 break;
             }
         }
-        this.f26891a.Y2.N(true);
+        this.f26598a.Y2.N(true);
         if (i11 >= 0) {
-            this.f26891a.X2.h1(i11, i10);
+            this.f26598a.X2.h1(i11, i10);
         } else {
-            this.f26891a.X2.h1(0, 0);
+            this.f26598a.X2.h1(0, 0);
         }
     }
 
     @Override
     public final boolean isLightStatusBar() {
-        if (AndroidUtilities.computePerceivedBrightness(getThemedColor(j6.f19062d6)) > 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(getThemedColor(j6.f19094d6)) > 0.721f) {
             return true;
         }
         return false;

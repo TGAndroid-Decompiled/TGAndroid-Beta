@@ -1,30 +1,55 @@
 package org.telegram.ui;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ig1 extends og.a {
-    public final TLRPC.TL_forumTopic f34527c;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ig1 implements org.telegram.ui.Components.jl0 {
+    public final lg1 f34562a;
 
-    public ig1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i10, false);
-        this.f34527c = tL_forumTopic;
+    public ig1(lg1 lg1Var) {
+        this.f34562a = lg1Var;
     }
 
-    public final boolean equals(Object obj) {
-        TLRPC.TL_forumTopic tL_forumTopic;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void d(int i10, View view) {
+        lg1 lg1Var = this.f34562a;
+        ArrayList arrayList = lg1Var.d;
+        if (((kg1) arrayList.get(i10)).f15704a == 1) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -lg1Var.f35444c);
+            bundle.putBoolean("for_select", true);
+            fg1 fg1Var = new fg1(bundle);
+            fg1Var.A0 = lg1Var.e;
+            fg1Var.v = new gg1(this);
+            lg1Var.presentFragment(fg1Var);
         }
-        if (obj == null || ig1.class != obj.getClass()) {
-            return false;
+        if (((kg1) arrayList.get(i10)).f15704a == 2) {
+            TLRPC.TL_forumTopic tL_forumTopic = ((kg1) arrayList.get(i10)).f35181c;
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("dialog_id", lg1Var.f35444c);
+            bundle2.putLong("topic_id", tL_forumTopic.f18380id);
+            bundle2.putBoolean("exception", false);
+            w11 w11Var = new w11(bundle2, null);
+            w11Var.f38651r = new hg1(this, tL_forumTopic);
+            lg1Var.presentFragment(w11Var);
         }
-        ig1 ig1Var = (ig1) obj;
-        if (this.f15672a != ig1Var.f15672a) {
-            return false;
+        if (((kg1) arrayList.get(i10)).f15704a == 4) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lg1Var.getParentActivity());
+            alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle);
+            alertDialog$Builder.f18654a.T = LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new gg1(this));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
+            lg1Var.showDialog(b2Var);
+            TextView textView = (TextView) b2Var.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19333q7, false));
+            }
         }
-        TLRPC.TL_forumTopic tL_forumTopic2 = this.f34527c;
-        if (tL_forumTopic2 == null || (tL_forumTopic = ig1Var.f34527c) == null || tL_forumTopic2.f18348id == tL_forumTopic.f18348id) {
-            return true;
-        }
-        return false;
     }
 }

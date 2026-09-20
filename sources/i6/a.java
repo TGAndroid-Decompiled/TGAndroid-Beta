@@ -11,37 +11,37 @@ import com.google.android.gms.internal.clearcut.c2;
 import com.google.android.gms.internal.clearcut.q1;
 import com.google.android.gms.internal.clearcut.v0;
 public final class a {
-    public static final e f10999j = new e("ClearcutLogger.API", new d(5), new Object());
-    public final Context f11000a;
-    public final String f11001b;
-    public final int f11002c;
+    public static final e f11000j = new e("ClearcutLogger.API", new d(5), new Object());
+    public final Context f11001a;
+    public final String f11002b;
+    public final int f11003c;
     public final String d;
     public final int e;
-    public final q1 f11003f;
-    public final v0 f11004g;
+    public final q1 f11004f;
+    public final v0 f11005g;
     public final u6.a h;
-    public final c2 f11005i;
+    public final c2 f11006i;
 
     public a(Context context) {
-        ?? jVar = new j(context, f10999j, (com.google.android.gms.common.api.a) null, (t) new Object());
+        ?? jVar = new j(context, f11000j, (com.google.android.gms.common.api.a) null, (t) new Object());
         c2 c2Var = new c2(context);
         this.e = -1;
         q1 q1Var = q1.DEFAULT;
-        this.f11003f = q1Var;
-        this.f11000a = context;
-        this.f11001b = context.getPackageName();
+        this.f11004f = q1Var;
+        this.f11001a = context;
+        this.f11002b = context.getPackageName();
         int i10 = 0;
         try {
             i10 = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             Log.wtf("ClearcutLogger", "This can't happen.", e);
         }
-        this.f11002c = i10;
+        this.f11003c = i10;
         this.e = -1;
         this.d = "VISION";
-        this.f11004g = jVar;
-        this.h = u6.a.f43879a;
-        this.f11003f = q1Var;
-        this.f11005i = c2Var;
+        this.f11005g = jVar;
+        this.h = u6.a.f43926a;
+        this.f11004f = q1Var;
+        this.f11006i = c2Var;
     }
 }

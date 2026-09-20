@@ -15,31 +15,31 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ef extends jp0 {
+public final class ef extends ip0 {
     public final ChatActivityEnterView H;
 
-    public ef(ChatActivityEnterView chatActivityEnterView, final Context context, final org.telegram.ui.zn znVar, MessagesController messagesController, final boolean z10, TLRPC.Peer peer, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final ai.r5 r5Var, org.telegram.ui.ActionBar.e6 e6Var) {
+    public ef(ChatActivityEnterView chatActivityEnterView, final Context context, final org.telegram.ui.zn znVar, MessagesController messagesController, final boolean z10, TLRPC.Peer peer, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final ai.r5 r5Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int width;
         this.H = chatActivityEnterView;
-        this.f19608b = true;
-        this.f19609c = 150;
-        this.f19610f = -1L;
-        this.f19613j = new AnimationNotificationsLocker();
+        this.f19640b = true;
+        this.f19641c = 150;
+        this.f19642f = -1L;
+        this.f19645j = new AnimationNotificationsLocker();
         e();
-        this.f25413z = new ArrayList();
+        this.f25110z = new ArrayList();
         this.G = new ArrayList();
-        this.f25406r = peer;
-        this.f25407s = tL_channels_sendAsPeers;
+        this.f25103r = peer;
+        this.f25104s = tL_channels_sendAsPeers;
         ai.f0 f0Var = new ai.f0(this, context, 18);
-        this.f25408t = f0Var;
+        this.f25105t = f0Var;
         f0Var.setLayoutParams(w7.y5.c(-2.0f, -2));
         setContentView(f0Var);
         setWidth(-2);
         setHeight(-2);
         setBackgroundDrawable(null);
         Drawable mutate = context.getDrawable(R.drawable.popup_fixed_alert4).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, e6Var), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, f6Var), PorterDuff.Mode.MULTIPLY));
         f0Var.setBackground(mutate);
         Rect rect = new Rect();
         mutate.getPadding(rect);
@@ -51,58 +51,58 @@ public final class ef extends jp0 {
             width = znVar.X0.getWidth();
         }
         int i10 = (int) (width * 0.75f);
-        dp0 dp0Var = new dp0(context, i10, dp);
-        this.f25403o = dp0Var;
-        dp0Var.setOrientation(1);
+        cp0 cp0Var = new cp0(context, i10, dp);
+        this.f25100o = cp0Var;
+        cp0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f25404p = textView;
-        org.telegram.messenger.wh.m(org.telegram.ui.ActionBar.j6.f19226m5, e6Var, textView, 1, 16.0f);
+        this.f25101p = textView;
+        org.telegram.messenger.rk.n(org.telegram.ui.ActionBar.j6.f19258m5, f6Var, textView, 1, 16.0f);
         textView.setText(LocaleController.getString(R.string.SendMessageAsTitle));
         textView.setTypeface(AndroidUtilities.bold(), 1);
         int dp2 = AndroidUtilities.dp(18.0f);
         textView.setPadding(dp2, AndroidUtilities.dp(12.0f), dp2, AndroidUtilities.dp(12.0f));
-        dp0Var.addView(textView);
+        cp0Var.addView(textView);
         FrameLayout frameLayout = new FrameLayout(context);
         final ArrayList<TLRPC.TL_sendAsPeer> arrayList = tL_channels_sendAsPeers.peers;
-        wl0 wl0Var = new wl0(context, null);
-        this.v = wl0Var;
+        vl0 vl0Var = new vl0(context, null);
+        this.v = vl0Var;
         s4.c0 c0Var = new s4.c0();
-        this.f25410w = c0Var;
-        wl0Var.setLayoutManager(c0Var);
-        wl0Var.setAdapter(new ep0(e6Var, arrayList, messagesController, i10, peer));
-        wl0Var.j(new fp0(this));
-        wl0Var.setOnItemClickListener(new kl0() {
+        this.f25107w = c0Var;
+        vl0Var.setLayoutManager(c0Var);
+        vl0Var.setAdapter(new dp0(f6Var, arrayList, messagesController, i10, peer));
+        vl0Var.j(new ep0(this));
+        vl0Var.setOnItemClickListener(new jl0() {
             @Override
             public final void d(int i11, View view) {
-                jp0.k(ef.this, arrayList, context, znVar, z10, r5Var, view, i11);
+                ip0.k(ef.this, arrayList, context, znVar, z10, r5Var, view, i11);
             }
         });
-        wl0Var.setOverScrollMode(2);
-        frameLayout.addView(wl0Var);
+        vl0Var.setOverScrollMode(2);
+        frameLayout.addView(vl0Var);
         View view = new View(context);
-        this.f25409u = view;
+        this.f25106u = view;
         Drawable drawable = context.getDrawable(R.drawable.header_shadow);
         drawable.setAlpha(153);
         view.setBackground(drawable);
         view.setAlpha(0.0f);
         frameLayout.addView(view, w7.y5.c(4.0f, -1));
-        dp0Var.addView(frameLayout, w7.y5.c(-2.0f, -1));
-        f0Var.addView(dp0Var);
+        cp0Var.addView(frameLayout, w7.y5.c(-2.0f, -1));
+        f0Var.addView(cp0Var);
     }
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f25413z;
+        ArrayList arrayList = this.f25110z;
         ChatActivityEnterView chatActivityEnterView = this.H;
-        if (chatActivityEnterView.f22010q0 != this) {
+        if (chatActivityEnterView.f22045q0 != this) {
             super.dismiss();
             return;
         }
-        chatActivityEnterView.f22010q0 = null;
+        chatActivityEnterView.f22045q0 = null;
         int i10 = 0;
-        if (!this.f25405q) {
+        if (!this.f25102q) {
             l(new o1.k[0]);
-            chatActivityEnterView.f22005p0.a(true, true, 0.0f);
+            chatActivityEnterView.f22040p0.a(true, true, 0.0f);
             return;
         }
         int size = arrayList.size();

@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 public final class gh implements Runnable {
-    public final int f24386a;
-    public final vi f24387b;
+    public final int f24353a;
+    public final vi f24354b;
 
     public gh(vi viVar, int i10) {
-        this.f24386a = i10;
-        this.f24387b = viVar;
+        this.f24353a = i10;
+        this.f24354b = viVar;
     }
 
     @Override
@@ -16,10 +16,10 @@ public final class gh implements Runnable {
         boolean z10;
         long j3;
         boolean G1;
-        switch (this.f24386a) {
+        switch (this.f24353a) {
             case 0:
-                vi viVar = this.f24387b;
-                if (viVar.f29011c0) {
+                vi viVar = this.f24354b;
+                if (viVar.f29088c0) {
                     juVar = viVar.P0;
                 } else {
                     juVar = viVar.E0;
@@ -32,8 +32,8 @@ public final class gh implements Runnable {
                 viVar.M1(z10);
                 return;
             case 1:
-                vi viVar2 = this.f24387b;
-                mf mfVar = viVar2.f29027h0;
+                vi viVar2 = this.f24354b;
+                mf mfVar = viVar2.f29104h0;
                 if (mfVar != null) {
                     j3 = mfVar.k();
                 } else {
@@ -43,8 +43,8 @@ public final class gh implements Runnable {
                 fi fiVar = viVar2.I0;
                 viVar2.N0 = j10;
                 fiVar.setEffect(j10);
-                ni niVar = viVar2.f29082y0;
-                if (niVar != viVar2.f29033j0 && niVar != viVar2.f29053q0) {
+                ni niVar = viVar2.f29159y0;
+                if (niVar != viVar2.f29110j0 && niVar != viVar2.f29130q0) {
                     if (!niVar.I(0, false, 0, viVar2.s1(), j10)) {
                         viVar2.dismiss();
                     }
@@ -52,18 +52,18 @@ public final class gh implements Runnable {
                 } else {
                     G1 = viVar2.G1(0, false, 0, viVar2.s1(), j10);
                 }
-                mf mfVar2 = viVar2.f29027h0;
+                mf mfVar2 = viVar2.f29104h0;
                 if (mfVar2 != null) {
                     mfVar2.h(!G1);
-                    viVar2.f29027h0 = null;
+                    viVar2.f29104h0 = null;
                     return;
                 }
                 return;
             case 2:
-                this.f24387b.F1();
+                this.f24354b.F1();
                 return;
             default:
-                vi.w(this.f24387b);
+                vi.w(this.f24354b);
                 return;
         }
     }

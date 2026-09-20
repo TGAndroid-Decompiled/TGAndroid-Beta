@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 public final class f3 implements e2.h {
     public final int f790a;
     public final Object f791b;
@@ -75,23 +75,23 @@ public final class f3 implements e2.h {
             case 3:
                 ci.u4 u4Var = (ci.u4) this.f791b;
                 View view2 = (View) obj;
-                ci.p4 p4Var = u4Var.f5611b;
+                ci.p4 p4Var = u4Var.f5612b;
                 if (view2 instanceof ci.t4) {
                     p4Var.getClass();
                     int S = RecyclerView.S(view2);
-                    x51 G = p4Var.Y2.G(S);
+                    w51 G = p4Var.Y2.G(S);
                     if (G != null) {
                         ci.t4 t4Var = (ci.t4) view2;
                         t4Var.setPosition(u4Var.b(S));
-                        if (u4Var.f5613f == G.d) {
+                        if (u4Var.f5614f == G.d) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         t4Var.b(z10, true);
                         boolean contains = u4Var.e.contains(Integer.valueOf(G.d));
-                        if (t4Var.f5561f != contains) {
-                            t4Var.f5561f = contains;
+                        if (t4Var.f5562f != contains) {
+                            t4Var.f5562f = contains;
                             t4Var.invalidate();
                         }
                         view2.setPressed(false);
@@ -104,8 +104,8 @@ public final class f3 implements e2.h {
                 ci.p4 p4Var2 = (ci.p4) this.f791b;
                 View view3 = (View) obj;
                 if (view3 instanceof ci.t4) {
-                    ci.fb fbVar = p4Var2.f5305f3;
-                    fbVar.f5611b.getClass();
+                    ci.fb fbVar = p4Var2.f5306f3;
+                    fbVar.f5612b.getClass();
                     ((ci.t4) view3).setPosition(fbVar.b(RecyclerView.S(view3)));
                     view3.setPressed(false);
                     return;
@@ -126,9 +126,9 @@ public final class f3 implements e2.h {
             case 9:
                 z3.h hVar = (z3.h) this.f791b;
                 z3.a aVar = (z3.a) obj;
-                z3.g gVar = new z3.g(aVar.f48335b, ob.a.C2(aVar.f48334a, aVar.f48336c));
-                hVar.f48345c.add(gVar);
-                long j3 = hVar.f48349j;
+                z3.g gVar = new z3.g(aVar.f48381b, ob.a.C2(aVar.f48380a, aVar.f48382c));
+                hVar.f48391c.add(gVar);
+                long j3 = hVar.f48395j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.b(gVar);
                     return;

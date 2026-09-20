@@ -5,27 +5,27 @@ import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class t implements Runnable {
-    public final int f39045a;
-    public final d1 f39046b;
+    public final int f39044a;
+    public final d1 f39045b;
 
     public t(d1 d1Var, int i10) {
-        this.f39045a = i10;
-        this.f39046b = d1Var;
+        this.f39044a = i10;
+        this.f39045b = d1Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f39045a) {
+        switch (this.f39044a) {
             case 0:
-                h0 h0Var = this.f39046b.f38855c;
+                h0 h0Var = this.f39045b.f38855c;
                 if (h0Var != null) {
                     h0Var.b();
                 }
                 LaunchActivity.L();
                 return;
             case 1:
-                d1 d1Var = this.f39046b;
+                d1 d1Var = this.f39045b;
                 da daVar = d1Var.I0;
                 ei.w0 w0Var = d1Var.f38865k0;
                 w0Var.getClass();
@@ -49,7 +49,7 @@ public final class t implements Runnable {
                 d1Var.y(daVar, "location_checked", jSONObject);
                 return;
             default:
-                d1 d1Var2 = this.f39046b;
+                d1 d1Var2 = this.f39045b;
                 if (d1Var2.S) {
                     d1Var2.S = false;
                     h0 h0Var2 = d1Var2.f38855c;

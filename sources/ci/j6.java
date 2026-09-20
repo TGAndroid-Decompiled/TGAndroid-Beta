@@ -1,18 +1,18 @@
 package ci;
 public final class j6 implements qg.c {
-    public final qb f4851a;
+    public final qb f4852a;
 
     public j6(qb qbVar) {
-        this.f4851a = qbVar;
+        this.f4852a = qbVar;
     }
 
     @Override
     public final void a() {
-        qb qbVar = this.f4851a;
+        qb qbVar = this.f4852a;
         qbVar.D0(null, true);
         if (qbVar.M0) {
             oc ocVar = qbVar.A2;
-            ocVar.f5213c1.f4995f.d();
+            ocVar.f5214c1.f4996f.d();
             ocVar.l0(-1, false, true);
             qbVar.M0 = false;
         }
@@ -21,6 +21,6 @@ public final class j6 implements qg.c {
 
     @Override
     public final qg.j b() {
-        return this.f4851a.J0;
+        return this.f4852a.J0;
     }
 }

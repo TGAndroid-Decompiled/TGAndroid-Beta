@@ -1,128 +1,171 @@
 package rg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.RectF;
+import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
+import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-public class u1 {
-    public boolean B;
-    public Matrix[] C;
-    public float[][] D;
-    public int[] E;
-    public float[] F;
-    public boolean G;
-    public e6 O;
-    public long Q;
-    public long R;
-    public boolean f42754g;
-    public boolean h;
-    public Utilities.CallbackReturn f42758l;
-    public boolean f42759m;
-    public final int f42762p;
-    public boolean f42763q;
-    public int f42771z;
-    public final RectF f42750a = new RectF();
-    public final RectF f42751b = new RectF();
-    public final RectF f42752c = new RectF();
-    public Bitmap[] d = new Bitmap[3];
-    public boolean[] e = new boolean[3];
-    public boolean[] f42753f = new boolean[3];
-    public final Paint f42755i = new Paint();
-    public float f42756j = 0.0f;
-    public float f42757k = 0.0f;
-    public final ArrayList f42760n = new ArrayList();
-    public float f42761o = 1.0f;
-    public int f42764r = 14;
-    public int f42765s = 12;
-    public int f42766t = 10;
-    public float f42767u = 0.85f;
-    public float v = 0.85f;
-    public float f42768w = 0.9f;
-    public long f42769x = 2000;
-    public int f42770y = 1000;
-    public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
-    public boolean H = false;
-    public boolean I = true;
-    public boolean J = true;
-    public boolean K = false;
-    public boolean L = false;
-    public boolean M = true;
-    public int N = -1;
-    public int P = j6.Uj;
-    public int S = 0;
+public final class u1 {
+    public long f42781a;
+    public final int f42782b;
+    public float d;
+    public float e;
+    public float f42784f;
+    public float f42785g;
+    public float h;
+    public float f42786i;
+    public float f42787j;
+    public float f42788k;
+    public int f42789l;
+    public int f42790m;
+    public float f42791n;
+    public float f42792o;
+    public float f42793p;
+    public final v1 f42795r;
+    public float f42783c = 1.0f;
+    public boolean f42794q = true;
 
-    public u1(int i10) {
-        this.f42762p = i10;
-        this.B = i10 < 50;
+    public u1(v1 v1Var) {
+        this.f42795r = v1Var;
+        int i10 = v1Var.S;
+        v1Var.S = i10 + 1;
+        this.f42782b = i10;
     }
 
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: rg.u1.a():void");
+    public final void a(android.graphics.Canvas r11, long r12, float r14) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.u1.a(android.graphics.Canvas, long, float):void");
     }
 
-    public int b() {
-        if (this.N == 100) {
-            return i0.a.k(j6.v0(this.P, this.O), 200);
-        }
-        return j6.v0(this.P, this.O);
-    }
-
-    public final void c() {
-        a();
-        boolean z10 = this.G;
-        int i10 = this.f42762p;
-        if (z10) {
-            int length = this.d.length;
-            this.C = new Matrix[length];
-            this.D = new float[length];
-            this.E = new int[length];
-            this.F = new float[length];
-            for (int i11 = 0; i11 < length; i11++) {
-                this.C[i11] = new Matrix();
-                this.D[i11] = new float[i10 * 2];
-            }
-        }
-        ArrayList arrayList = this.f42760n;
-        if (arrayList.isEmpty()) {
-            for (int i12 = 0; i12 < i10; i12++) {
-                arrayList.add(new t1(this));
-            }
-        }
-    }
-
-    public final void d(Canvas canvas) {
-        e(canvas, 1.0f);
-    }
-
-    public final void e(android.graphics.Canvas r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.u1.e(android.graphics.Canvas, float):void");
-    }
-
-    public final void f() {
-        long currentTimeMillis = System.currentTimeMillis();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f42760n;
-            if (i10 < arrayList.size()) {
-                ((t1) arrayList.get(i10)).b(currentTimeMillis);
-                i10++;
+    public final void b(long j3) {
+        int i10;
+        float f7;
+        float f10;
+        float f11;
+        double atan2;
+        int i11;
+        float f12;
+        float f13;
+        float nextFloat;
+        v1 v1Var = this.f42795r;
+        int i12 = v1Var.N;
+        ArrayList arrayList = v1Var.f42810n;
+        RectF rectF = v1Var.f42800a;
+        int i13 = 0;
+        if (i12 == 28) {
+            if (Utilities.fastRandom.nextFloat() < 0.13f) {
+                this.f42789l = 0;
             } else {
-                return;
+                this.f42789l = (int) Math.floor((nextFloat * (v1Var.d.length - 2)) + 1.0f);
+            }
+        } else {
+            this.f42789l = Math.abs(Utilities.fastRandom.nextInt() % v1Var.d.length);
+        }
+        long j10 = j3 + v1Var.f42819x;
+        Random random = Utilities.fastRandom;
+        int i14 = v1Var.f42820y;
+        if (v1Var.f42803f[this.f42789l]) {
+            i10 = 3;
+        } else {
+            i10 = 1;
+        }
+        this.f42781a = j10 + random.nextInt(i14 * i10);
+        this.f42791n = 0.0f;
+        if (v1Var.f42809m) {
+            this.f42783c = (Utilities.fastRandom.nextFloat() * 0.6f) + 0.4f;
+        }
+        if (v1Var.B) {
+            float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+            float abs2 = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
+            int i15 = 0;
+            float f14 = 0.0f;
+            while (i15 < 10) {
+                float abs3 = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+                float abs4 = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
+                float f15 = 2.1474836E9f;
+                while (i13 < arrayList.size()) {
+                    if (v1Var.h) {
+                        f12 = ((u1) arrayList.get(i13)).f42784f - abs3;
+                        f13 = ((u1) arrayList.get(i13)).f42785g;
+                    } else {
+                        f12 = ((u1) arrayList.get(i13)).d - abs3;
+                        f13 = ((u1) arrayList.get(i13)).e;
+                    }
+                    float f16 = f13 - abs4;
+                    float f17 = (f16 * f16) + (f12 * f12);
+                    if (f17 < f15) {
+                        f15 = f17;
+                    }
+                    i13++;
+                }
+                if (f15 > f14) {
+                    abs2 = abs4;
+                    f14 = f15;
+                    abs = abs3;
+                }
+                i15++;
+                i13 = 0;
+            }
+            f7 = 0.6f;
+            f10 = 0.0f;
+            this.d = abs;
+            this.e = abs2;
+        } else {
+            f7 = 0.6f;
+            f10 = 0.0f;
+            if (v1Var.J) {
+                float width = rectF.width();
+                float f18 = v1Var.f42806j;
+                float z10 = e2.z(width, f18, org.telegram.ui.Cells.c1.e(Utilities.fastRandom, 1000) / 1000.0f, f18);
+                float e = org.telegram.ui.Cells.c1.e(Utilities.fastRandom, 360);
+                if (v1Var.f42803f[this.f42789l] && !this.f42794q) {
+                    z10 = Math.min(z10, AndroidUtilities.dp(10.0f));
+                    f11 = AndroidUtilities.dp(30.0f) + 0.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                double d = z10;
+                double d10 = e;
+                this.d = rectF.centerX() + 0.0f + ((float) (Math.sin(Math.toRadians(d10)) * d));
+                this.e = rectF.centerY() + f11 + v1Var.f42807k + ((float) (Math.cos(Math.toRadians(d10)) * d));
+            } else {
+                this.d = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+                this.e = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
             }
         }
-    }
-
-    public final void g() {
-        int v02 = j6.v0(this.P, this.O);
-        if (this.f42771z != v02) {
-            this.f42771z = v02;
-            a();
+        if (v1Var.f42803f[this.f42789l]) {
+            this.f42793p = Math.abs(Utilities.fastRandom.nextFloat() * 2.0f);
         }
+        if (v1Var.f42803f[this.f42789l]) {
+            atan2 = Math.toRadians(280.0f - (Utilities.fastRandom.nextFloat() * 200.0f));
+        } else if (v1Var.h) {
+            atan2 = Utilities.fastRandom.nextDouble() * 3.141592653589793d * 2.0d;
+        } else {
+            atan2 = Math.atan2(this.e - (rectF.centerY() + v1Var.f42807k), this.d - (rectF.centerX() + f10));
+        }
+        this.f42787j = (float) Math.cos(atan2);
+        this.f42788k = (float) Math.sin(atan2);
+        if (v1Var.e[this.f42789l]) {
+            this.f42790m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 120.0f);
+        } else {
+            this.f42790m = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
+        }
+        int i16 = v1Var.N;
+        if ((i16 == 6 && ((i11 = this.f42789l) == 1 || i11 == 2)) || i16 == 9 || i16 == 3 || i16 == 7 || i16 == 24 || i16 == 11 || i16 == 22 || i16 == 4) {
+            this.f42791n = (int) (((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 45.0f);
+        }
+        if (v1Var.N != 101) {
+            this.f42792o = 0.0f;
+        }
+        if (v1Var.h) {
+            float min = (Math.min(rectF.width(), rectF.height()) * ((Utilities.fastRandom.nextFloat() * 1.2f) + f7)) / 2.0f;
+            float cos = (((float) Math.cos(atan2)) * min) + rectF.centerX() + 0.0f;
+            this.d = cos;
+            this.f42784f = cos;
+            float sin = (((float) Math.sin(atan2)) * min) + rectF.centerY() + v1Var.f42807k;
+            this.e = sin;
+            this.f42785g = sin;
+        }
+        this.f42794q = false;
     }
 }

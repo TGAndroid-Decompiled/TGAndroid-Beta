@@ -3,8 +3,8 @@ package ai;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wl0;
-public final class p6 extends wl0 implements s9 {
+import org.telegram.ui.Components.vl0;
+public final class p6 extends vl0 implements s9 {
     public final j7 X2;
     public final j7 Y2;
 

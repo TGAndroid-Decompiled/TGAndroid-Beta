@@ -1,6 +1,21 @@
 package org.telegram.ui.Components;
-public interface kq0 {
-    void U();
 
-    void u0();
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class kq0 extends org.telegram.ui.Cells.h7 {
+    public final mq0 N;
+
+    public kq0(mq0 mq0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 0, f6Var);
+        this.N = mq0Var;
+    }
+
+    @Override
+    public final String a() {
+        if (this.N.f26479f.f28804a0) {
+            return LocaleController.getString(R.string.RepostToStory);
+        }
+        return LocaleController.getString(R.string.FwdMyStory);
+    }
 }

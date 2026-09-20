@@ -5,33 +5,33 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class ir0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34615a;
-    public final PhotoViewer f34616b;
+    public final int f34674a;
+    public final PhotoViewer f34675b;
 
     public ir0(PhotoViewer photoViewer, int i10) {
-        this.f34615a = i10;
-        this.f34616b = photoViewer;
+        this.f34674a = i10;
+        this.f34675b = photoViewer;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f34615a;
-        PhotoViewer photoViewer = this.f34616b;
+        int i10 = this.f34674a;
+        PhotoViewer photoViewer = this.f34675b;
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;
                 photoViewer.getClass();
-                photoViewer.f31219i3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                photoViewer.f31259i3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                CropAreaView cropAreaView = photoViewer.C1.f23571b.f14256a;
-                float lerp = AndroidUtilities.lerp(photoViewer.f31149a6, photoViewer.f31187e6, photoViewer.f31246l6);
-                float lerp2 = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f31169c6, photoViewer.f31246l6);
-                float lerp3 = AndroidUtilities.lerp(photoViewer.Y5, photoViewer.f31178d6, photoViewer.f31246l6);
-                cropAreaView.f22206n0 = 0.0f;
-                cropAreaView.f22207o0 = lerp;
-                cropAreaView.f22208p0 = lerp2;
-                cropAreaView.f22209q0 = lerp3;
+                CropAreaView cropAreaView = photoViewer.C1.f23278b.f14292a;
+                float lerp = AndroidUtilities.lerp(photoViewer.f31189a6, photoViewer.f31227e6, photoViewer.f31286l6);
+                float lerp2 = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f31209c6, photoViewer.f31286l6);
+                float lerp3 = AndroidUtilities.lerp(photoViewer.Y5, photoViewer.f31218d6, photoViewer.f31286l6);
+                cropAreaView.f22241n0 = 0.0f;
+                cropAreaView.f22242o0 = lerp;
+                cropAreaView.f22243p0 = lerp2;
+                cropAreaView.f22244q0 = lerp3;
                 cropAreaView.invalidate();
                 return;
             case 2:
@@ -43,7 +43,7 @@ public final class ir0 implements ValueAnimator.AnimatorUpdateListener {
             case 4:
                 Drawable[] drawableArr2 = PhotoViewer.U8;
                 photoViewer.getClass();
-                photoViewer.f31254m6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f31294m6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 5:
                 Drawable[] drawableArr3 = PhotoViewer.U8;
@@ -58,7 +58,7 @@ public final class ir0 implements ValueAnimator.AnimatorUpdateListener {
             case 8:
                 au0 au0Var = photoViewer.L1;
                 if (au0Var != null) {
-                    au0Var.f41742d1.invalidate();
+                    au0Var.f41789d1.invalidate();
                     return;
                 }
                 return;
@@ -71,23 +71,23 @@ public final class ir0 implements ValueAnimator.AnimatorUpdateListener {
                     au0Var2.X1 = floatValue;
                     au0Var2.v0(au0Var2.I0, au0Var2.J0, au0Var2.K0, au0Var2.N0, au0Var2.O0);
                 }
-                photoViewer.f31181e0.invalidate();
+                photoViewer.f31221e0.invalidate();
                 return;
             case 10:
                 Drawable[] drawableArr5 = PhotoViewer.U8;
                 photoViewer.getClass();
-                photoViewer.f31254m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f31294m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 photoViewer.F1();
                 return;
             case 11:
                 Drawable[] drawableArr6 = PhotoViewer.U8;
                 photoViewer.getClass();
-                photoViewer.f31254m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f31294m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 12:
                 Drawable[] drawableArr7 = PhotoViewer.U8;
                 photoViewer.getClass();
-                photoViewer.f31254m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f31294m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 13:
                 photoViewer.W0[0].e(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
@@ -95,7 +95,7 @@ public final class ir0 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 Drawable[] drawableArr8 = PhotoViewer.U8;
                 photoViewer.getClass();
-                photoViewer.f31254m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f31294m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
         }
     }

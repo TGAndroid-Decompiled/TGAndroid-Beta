@@ -19,9 +19,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.ui.Components.rv0;
 import org.telegram.ui.Components.sv0;
-import org.telegram.ui.Components.tv0;
-public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
+public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
     public final int f1640a;
 
     public w1(int i10) {
@@ -128,7 +128,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, o
                 b2.r rVar = new b2.r();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e2.d.class.getClassLoader();
-                    String str5 = e2.d0.f7887a;
+                    String str5 = e2.d0.f7888a;
                     bundle4.setClassLoader(classLoader);
                 }
                 String string5 = bundle4.getString(b2.s.V);
@@ -230,7 +230,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, o
                 bundle8.getClass();
                 ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(b2.l1.f3089f);
                 if (parcelableArrayList2 == null) {
-                    e9.g0 g0Var = e9.i0.f8083b;
+                    e9.g0 g0Var = e9.i0.f8084b;
                     j3 = e9.a1.e;
                 } else {
                     j3 = e2.d.j(new w1(14), parcelableArrayList2);
@@ -238,7 +238,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, o
                 b2.l1 l1Var = new b2.l1(bundle8.getString(b2.l1.f3090g, ""), (b2.s[]) j3.toArray(new b2.s[0]));
                 int[] intArray = bundle7.getIntArray(b2.m1.d);
                 intArray.getClass();
-                return new b2.m1(l1Var, v7.y7.a(intArray));
+                return new b2.m1(l1Var, v7.z7.a(intArray));
             case 16:
                 b2.r1 r1Var = (b2.r1) obj;
                 r1Var.getClass();
@@ -254,7 +254,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, o
             default:
                 wa.e eVar = (wa.e) obj;
                 eVar.getClass();
-                aa.a aVar = com.google.firebase.messaging.r.f7340a;
+                aa.a aVar = com.google.firebase.messaging.r.f7341a;
                 aVar.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
@@ -263,8 +263,8 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, o
                 }
                 return byteArrayOutputStream.toByteArray();
             case 20:
-                ca.a.f4182b.getClass();
-                return z9.a.f48993a.J((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
+                ca.a.f4183b.getClass();
+                return z9.a.f49039a.U((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
@@ -288,18 +288,6 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, o
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f1640a) {
-            case 5:
-                b2Var.dismiss();
-                return;
-            default:
-                b2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
     public float get(Object obj) {
         m2 m2Var = (m2) obj;
         switch (this.f1640a) {
@@ -311,9 +299,21 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, sv0, tv0, o
     }
 
     @Override
+    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f1640a) {
+            case 5:
+                b2Var.dismiss();
+                return;
+            default:
+                b2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = ci.x3.f5732j0;
+        MediaController.AlbumEntry albumEntry = ci.x3.f5733j0;
         return 0;
     }
 

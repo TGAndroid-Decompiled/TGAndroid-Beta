@@ -7,27 +7,27 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class eq extends Drawable {
-    public final Drawable f23946a;
-    public Path f23947b;
-    public final RectF f23948c;
+    public final Drawable f23917a;
+    public Path f23918b;
+    public final RectF f23919c;
     public final RectF d;
     public boolean e;
-    public final float[] f23949f;
+    public final float[] f23920f;
 
     public eq(Drawable drawable) {
         ah.d dVar = new ah.d(this, 3);
-        this.f23948c = new RectF();
+        this.f23919c = new RectF();
         this.d = new RectF();
         this.e = false;
-        this.f23949f = new float[8];
-        Drawable drawable2 = this.f23946a;
+        this.f23920f = new float[8];
+        Drawable drawable2 = this.f23917a;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f23946a = drawable;
+        this.f23917a = drawable;
         if (drawable != null) {
             drawable.setBounds(getBounds());
-            this.f23946a.setCallback(dVar);
+            this.f23917a.setCallback(dVar);
         }
     }
 
@@ -35,14 +35,14 @@ public final class eq extends Drawable {
         if (!this.e) {
             return;
         }
-        Path path = this.f23947b;
+        Path path = this.f23918b;
         if (path == null) {
-            this.f23947b = new Path();
+            this.f23918b = new Path();
         } else {
             path.rewind();
         }
         Rect bounds = getBounds();
-        RectF rectF = this.f23948c;
+        RectF rectF = this.f23919c;
         rectF.set(bounds);
         float f7 = rectF.left;
         RectF rectF2 = this.d;
@@ -50,32 +50,32 @@ public final class eq extends Drawable {
         rectF.top += rectF2.top;
         rectF.right -= rectF2.right;
         rectF.bottom -= rectF2.bottom;
-        this.f23947b.addRoundRect(rectF, this.f23949f, Path.Direction.CW);
+        this.f23918b.addRoundRect(rectF, this.f23920f, Path.Direction.CW);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f23946a;
+        Drawable drawable = this.f23917a;
         if (drawable != null) {
             drawable.setBounds(getBounds());
             if (!this.e) {
                 canvas.save();
                 canvas.clipRect(getBounds());
-                this.f23946a.draw(canvas);
+                this.f23917a.draw(canvas);
                 canvas.restore();
                 return;
             }
             canvas.save();
             a();
-            canvas.clipPath(this.f23947b);
-            this.f23946a.draw(canvas);
+            canvas.clipPath(this.f23918b);
+            this.f23917a.draw(canvas);
             canvas.restore();
         }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Drawable drawable = this.f23946a;
+        Drawable drawable = this.f23917a;
         if (drawable != null) {
             return drawable.getIntrinsicHeight();
         }
@@ -84,7 +84,7 @@ public final class eq extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        Drawable drawable = this.f23946a;
+        Drawable drawable = this.f23917a;
         if (drawable != null) {
             return drawable.getIntrinsicWidth();
         }
@@ -98,7 +98,7 @@ public final class eq extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        Drawable drawable = this.f23946a;
+        Drawable drawable = this.f23917a;
         if (drawable != null) {
             drawable.setAlpha(i10);
         }
@@ -106,7 +106,7 @@ public final class eq extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f23946a;
+        Drawable drawable = this.f23917a;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
         }

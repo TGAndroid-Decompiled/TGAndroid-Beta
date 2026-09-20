@@ -4,16 +4,16 @@ import android.net.Uri;
 import java.util.Arrays;
 public final class g0 {
     public static final Uri d = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
-    public final String f15225a;
-    public final String f15226b;
-    public final boolean f15227c;
+    public final String f15263a;
+    public final String f15264b;
+    public final boolean f15265c;
 
     public g0(String str, String str2, boolean z10) {
         l.f(str);
-        this.f15225a = str;
+        this.f15263a = str;
         l.f(str2);
-        this.f15226b = str2;
-        this.f15227c = z10;
+        this.f15264b = str2;
+        this.f15265c = z10;
     }
 
     public final android.content.Intent a(android.content.Context r6) {
@@ -28,18 +28,18 @@ public final class g0 {
             return false;
         }
         g0 g0Var = (g0) obj;
-        if (l.l(this.f15225a, g0Var.f15225a) && l.l(this.f15226b, g0Var.f15226b) && l.l(null, null) && this.f15227c == g0Var.f15227c) {
+        if (l.l(this.f15263a, g0Var.f15263a) && l.l(this.f15264b, g0Var.f15264b) && l.l(null, null) && this.f15265c == g0Var.f15265c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f15225a, this.f15226b, null, 4225, Boolean.valueOf(this.f15227c)});
+        return Arrays.hashCode(new Object[]{this.f15263a, this.f15264b, null, 4225, Boolean.valueOf(this.f15265c)});
     }
 
     public final String toString() {
-        String str = this.f15225a;
+        String str = this.f15263a;
         if (str != null) {
             return str;
         }

@@ -6,7 +6,7 @@ import android.view.SurfaceView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.lj0;
 public final class sb extends AnimatorListenerAdapter {
     public final int f1533a;
     public final jc f1534b;
@@ -19,7 +19,7 @@ public final class sb extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         f6 t10;
-        mj0 mj0Var;
+        lj0 lj0Var;
         switch (this.f1533a) {
             case 0:
                 super.onAnimationEnd(animator);
@@ -47,14 +47,14 @@ public final class sb extends AnimatorListenerAdapter {
                     imageReceiver2.setAlpha(1.0f);
                     gcVar.f917c.setVisible(true, true);
                 }
-                if (gcVar.d != null && (t10 = jcVar.t()) != null && (mj0Var = t10.f839o1.d) != null) {
-                    mj0 mj0Var2 = gcVar.d;
-                    mj0Var2.getClass();
-                    mj0Var2.f26425c = mj0Var.f26425c;
-                    mj0Var2.f26426f = mj0Var.f26426f;
-                    mj0Var2.f26424b = mj0Var.f26424b;
-                    mj0Var2.f26423a = System.currentTimeMillis();
-                    mj0Var2.c();
+                if (gcVar.d != null && (t10 = jcVar.t()) != null && (lj0Var = t10.f839o1.d) != null) {
+                    lj0 lj0Var2 = gcVar.d;
+                    lj0Var2.getClass();
+                    lj0Var2.f26153c = lj0Var.f26153c;
+                    lj0Var2.f26154f = lj0Var.f26154f;
+                    lj0Var2.f26152b = lj0Var.f26152b;
+                    lj0Var2.f26151a = System.currentTimeMillis();
+                    lj0Var2.c();
                 }
                 e6 e6Var = jcVar.G0;
                 if (e6Var != null) {

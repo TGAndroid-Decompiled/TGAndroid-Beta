@@ -7,11 +7,11 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class aj implements org.telegram.ui.Components.ll0 {
-    public final zn f32081a;
+public final class aj implements org.telegram.ui.Components.kl0 {
+    public final zn f32107a;
 
     public aj(zn znVar) {
-        this.f32081a = znVar;
+        this.f32107a = znVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class aj implements org.telegram.ui.Components.ll0 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
-        zn znVar = this.f32081a;
+        zn znVar = this.f32107a;
         z10 = ((org.telegram.ui.ActionBar.n2) znVar).inPreviewMode;
         if (!z10) {
             znVar.D4 = true;
@@ -53,7 +53,7 @@ public final class aj implements org.telegram.ui.Components.ll0 {
             if (z11) {
                 org.telegram.ui.Cells.w0 w0Var3 = (org.telegram.ui.Cells.w0) view;
                 if (w0Var3.getMessageObject() != null && (w0Var3.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
-                    AndroidUtilities.runOnUIThread(new ai.n8(this, w0Var3.getMessageObject().getReplyMsgId(), 21), 16L);
+                    AndroidUtilities.runOnUIThread(new ai.n8(this, w0Var3.getMessageObject().getReplyMsgId(), 19), 16L);
                     return;
                 }
             }
@@ -75,7 +75,7 @@ public final class aj implements org.telegram.ui.Components.ll0 {
             }
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-                if (znVar.f40236c9.A(u1Var2.getMessageObject())) {
+                if (znVar.f40278c9.A(u1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !u1Var2.i3(f7);
@@ -85,14 +85,14 @@ public final class aj implements org.telegram.ui.Components.ll0 {
     }
 
     @Override
-    public final boolean d1(View view) {
+    public final boolean c1(View view) {
         String doubleTapReaction;
         TLRPC.TL_availableReaction tL_availableReaction;
         boolean z10;
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        zn znVar = this.f32081a;
+        zn znVar = this.f32107a;
         if (!znVar.z9() && ((tL_availableReaction = znVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = znVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (znVar.T5 >= 0) {
                 z10 = true;
@@ -123,11 +123,11 @@ public final class aj implements org.telegram.ui.Components.ll0 {
     }
 
     @Override
-    public final void r0(View view, float f7, float f10) {
+    public final void q0(View view, float f7, float f10) {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        zn znVar = this.f32081a;
+        zn znVar = this.f32107a;
         if (znVar.getParentActivity() != null && !znVar.v() && !znVar.c() && !znVar.isInPreviewMode() && !znVar.z9()) {
             if (view instanceof org.telegram.ui.Cells.u1) {
                 messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();

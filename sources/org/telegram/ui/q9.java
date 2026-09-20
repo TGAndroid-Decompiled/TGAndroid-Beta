@@ -1,20 +1,20 @@
 package org.telegram.ui;
 public final class q9 extends v9 {
-    public final r9 f36728f0;
+    public final r9 f36795f0;
 
     public q9(r9 r9Var, int i10) {
         super(i10);
-        this.f36728f0 = r9Var;
+        this.f36795f0 = r9Var;
     }
 
     @Override
     public final void finishFragment() {
         setFinishing(true);
-        this.f36728f0.dismiss();
+        this.f36795f0.dismiss();
     }
 
     @Override
     public final void removeSelfFromStack() {
-        this.f36728f0.dismiss();
+        this.f36795f0.dismiss();
     }
 }

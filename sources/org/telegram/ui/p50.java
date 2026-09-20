@@ -5,21 +5,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class p50 implements org.telegram.ui.Components.t40 {
-    public float f36342a;
-    public TLRPC.FileLocation f36343b;
-    public TLRPC.FileLocation f36344c;
+    public float f36469a;
+    public TLRPC.FileLocation f36470b;
+    public TLRPC.FileLocation f36471c;
     public ImageLocation d;
     public final long e;
-    public final i60 f36345f;
+    public final i60 f36472f;
 
     public p50(i60 i60Var, long j3) {
-        this.f36345f = i60Var;
+        this.f36472f = i60Var;
         this.e = j3;
     }
 
     @Override
     public final void B(float f7) {
-        this.f36345f.f34331b.O(this.d, f7);
+        this.f36472f.f34362b.O(this.d, f7);
         a(f7);
     }
 
@@ -29,20 +29,20 @@ public final class p50 implements org.telegram.ui.Components.t40 {
     }
 
     public final void a(float f7) {
-        this.f36342a = f7;
-        o50 o50Var = this.f36345f.Q;
+        this.f36469a = f7;
+        o50 o50Var = this.f36472f.Q;
         if (o50Var != null) {
             for (int i10 = 0; i10 < o50Var.getChildCount(); i10++) {
                 View childAt = o50Var.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.e4) {
-                    org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) childAt;
-                    if (e4Var.c()) {
-                        org.telegram.ui.Cells.z3 z3Var = e4Var.f20202x;
-                        z3Var.setProgress(f7);
+                if (childAt instanceof org.telegram.ui.Cells.f4) {
+                    org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) childAt;
+                    if (f4Var.c()) {
+                        org.telegram.ui.Cells.a4 a4Var = f4Var.f20284x;
+                        a4Var.setProgress(f7);
                         if (f7 < 1.0f) {
-                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, true, 1.0f, true);
+                            AndroidUtilities.updateViewVisibilityAnimated(a4Var, true, 1.0f, true);
                         } else {
-                            AndroidUtilities.updateViewVisibilityAnimated(z3Var, false, 1.0f, true);
+                            AndroidUtilities.updateViewVisibilityAnimated(a4Var, false, 1.0f, true);
                         }
                     }
                 }

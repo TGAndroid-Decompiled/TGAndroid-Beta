@@ -1,46 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class n60 extends wl0 {
-    public int X2;
-    public final a70 Y2;
+import androidx.recyclerview.widget.RecyclerView;
+public final class n60 extends s4.s0 {
+    public final s4.c0 f26596a;
+    public final z60 f26597b;
 
-    public n60(a70 a70Var, Context context) {
-        super(context, null);
-        this.Y2 = a70Var;
+    public n60(z60 z60Var, s4.c0 c0Var) {
+        this.f26597b = z60Var;
+        this.f26596a = c0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        a70 a70Var = this.Y2;
-        n60 n60Var = a70Var.V;
-        if (this.X2 != View.MeasureSpec.getSize(i11)) {
-            this.X2 = View.MeasureSpec.getSize(i11);
-            a70Var.f22535a0 = true;
-            n60Var.setPadding(0, 0, 0, 0);
-            a70Var.f22535a0 = false;
-            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-            int measuredHeight = getMeasuredHeight();
-            int i12 = this.X2;
-            int i13 = (int) ((i12 / 5.0f) * 2.0f);
-            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
-                i13 = this.X2 - measuredHeight;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        z60 z60Var = this.f26597b;
+        z60.O(z60Var);
+        if (z60Var.R && !z60Var.Q) {
+            if (z60Var.S - this.f26596a.N0() < 10) {
+                z60Var.X();
             }
-            a70Var.f22535a0 = true;
-            n60Var.setPadding(0, i13, 0, 0);
-            a70Var.f22535a0 = false;
-            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.Y2.f22535a0) {
-            return;
-        }
-        super.requestLayout();
     }
 }

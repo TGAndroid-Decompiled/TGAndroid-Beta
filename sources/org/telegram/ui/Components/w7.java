@@ -1,45 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class w7 extends AnimatorListenerAdapter {
-    public final int f29891a;
-    public final j8 f29892b;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class w7 extends FrameLayout {
+    public final RectF f29967a;
+    public boolean f29968b;
+    public int f29969c;
+    public int d;
+    public final i8 e;
 
-    public w7(j8 j8Var, int i10) {
-        this.f29891a = i10;
-        this.f29892b = j8Var;
+    public w7(i8 i8Var, Context context) {
+        super(context);
+        this.e = i8Var;
+        this.f29967a = new RectF();
+        this.f29968b = false;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f29891a) {
-            case 2:
-                this.f29892b.C0 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        pc.a(this, new ai.w4(this, 4));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29891a) {
-            case 0:
-                this.f29892b.m0 = false;
-                return;
-            case 1:
-                j8 j8Var = this.f29892b;
-                j8Var.f25211i0.setVisibility(4);
-                j8Var.f25212j0.setImageBitmap(null);
-                j8Var.m0 = false;
-                return;
-            default:
-                return;
-        }
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        pc.h(this);
     }
 
-    private final void a(Animator animator) {
+    @Override
+    public final void onDraw(android.graphics.Canvas r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(android.view.MotionEvent r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onInterceptTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        i8 i8Var = this.e;
+        i8.P(i8Var);
+        i8Var.E0();
+    }
+
+    @Override
+    public final void onMeasure(int r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f29968b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

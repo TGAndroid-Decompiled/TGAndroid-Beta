@@ -24,7 +24,7 @@ public abstract class h {
 
     public static void b(Context context) {
         i.T(context).U();
-        Set<com.google.android.gms.common.api.m> set = com.google.android.gms.common.api.m.f6216a;
+        Set<com.google.android.gms.common.api.m> set = com.google.android.gms.common.api.m.f6217a;
         synchronized (set) {
         }
         for (com.google.android.gms.common.api.m mVar : set) {

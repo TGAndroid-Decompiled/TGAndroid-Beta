@@ -13,8 +13,8 @@ public final class m0 extends v3 {
     public final float[] C0;
     public final s0 D0;
 
-    public m0(s0 s0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, k0 k0Var, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6) {
-        super(context, e6Var, k0Var, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
+    public m0(s0 s0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, k0 k0Var, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6) {
+        super(context, f6Var, k0Var, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
         this.D0 = s0Var;
         this.A0 = new float[3];
         this.B0 = new Path();
@@ -53,13 +53,13 @@ public final class m0 extends v3 {
         if (imageView != null && org.telegram.ui.ActionBar.j6.B1(imageView.getBackground(), i10, false)) {
             s0Var.m0.invalidate();
         }
-        ImageView imageView2 = s0Var.f47973n0;
+        ImageView imageView2 = s0Var.f48019n0;
         if (imageView2 != null && org.telegram.ui.ActionBar.j6.B1(imageView2.getBackground(), i10, false)) {
-            s0Var.f47973n0.invalidate();
+            s0Var.f48019n0.invalidate();
         }
         for (ai.v7 v7Var : s0Var.Z) {
             Drawable background = v7Var.getBackground();
-            org.telegram.ui.Components.p6 p6Var = (org.telegram.ui.Components.p6) v7Var.d;
+            org.telegram.ui.Components.o6 o6Var = (org.telegram.ui.Components.o6) v7Var.d;
             if (org.telegram.ui.ActionBar.j6.B1(background, i10, false)) {
                 v7Var.invalidate();
             }
@@ -69,11 +69,11 @@ public final class m0 extends v3 {
             fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
             fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
             int HSVToColor = Color.HSVToColor(fArr);
-            if (p6Var.getSizeableBackground() instanceof l3) {
-                ((l3) p6Var.getSizeableBackground()).f47638b.setColor(HSVToColor);
-                p6Var.invalidate();
-            } else if (org.telegram.ui.ActionBar.j6.B1(p6Var.getSizeableBackground(), HSVToColor, false)) {
-                p6Var.invalidate();
+            if (o6Var.getSizeableBackground() instanceof l3) {
+                ((l3) o6Var.getSizeableBackground()).f47678b.setColor(HSVToColor);
+                o6Var.invalidate();
+            } else if (org.telegram.ui.ActionBar.j6.B1(o6Var.getSizeableBackground(), HSVToColor, false)) {
+                o6Var.invalidate();
             }
         }
     }

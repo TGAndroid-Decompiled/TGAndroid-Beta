@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class hj extends s4.d0 {
-    public final bi.l f24682r;
+    public final bi.l f24676r;
 
     public hj(bi.l lVar, Context context) {
         super(context);
-        this.f24682r = lVar;
+        this.f24676r = lVar;
     }
 
     @Override
     public final int k(int i10, View view) {
-        return org.telegram.messenger.q.B(7.0f, ((jj) this.f24682r.R).f25348n.getPaddingTop(), super.k(i10, view));
+        return org.telegram.messenger.l0.A(7.0f, ((jj) this.f24676r.R).f25373n.getPaddingTop(), super.k(i10, view));
     }
 
     @Override

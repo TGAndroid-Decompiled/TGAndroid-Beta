@@ -5,9 +5,9 @@ import java.sql.Timestamp;
 import jb.a;
 import jb.b;
 public abstract class f {
-    public static final boolean f12950a;
-    public static final a.C0000a f12951b;
-    public static final b.a f12952c;
+    public static final boolean f12951a;
+    public static final a.C0000a f12952b;
+    public static final b.a f12953c;
     public static final c d;
 
     static {
@@ -18,17 +18,17 @@ public abstract class f {
         } catch (ClassNotFoundException unused) {
             z10 = false;
         }
-        f12950a = z10;
+        f12951a = z10;
         if (z10) {
             new e(Date.class, 0);
             new e(Timestamp.class, 1);
-            f12951b = a.f12943b;
-            f12952c = b.f12945b;
-            d = d.f12947b;
+            f12952b = a.f12944b;
+            f12953c = b.f12946b;
+            d = d.f12948b;
             return;
         }
-        f12951b = null;
-        f12952c = null;
+        f12952b = null;
+        f12953c = null;
         d = null;
     }
 }

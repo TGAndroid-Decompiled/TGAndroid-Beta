@@ -21,14 +21,14 @@ public final class uu extends og.b {
     public final boolean D(s4.c1 c1Var) {
         switch (this.d) {
             case 0:
-                ru ruVar = (ru) ((wu) this.e).f39245c3.get(c1Var.b());
-                int i10 = ruVar.f15672a;
+                ru ruVar = (ru) ((wu) this.e).f39235c3.get(c1Var.b());
+                int i10 = ruVar.f15704a;
                 if (i10 != 5 && (i10 != 2 || ruVar.h == -1)) {
                     return false;
                 }
                 return true;
             default:
-                int i11 = c1Var.f42932f;
+                int i11 = c1Var.f42977f;
                 if (i11 != 4 && i11 != 3 && i11 != 5) {
                     return false;
                 }
@@ -40,9 +40,9 @@ public final class uu extends og.b {
     public final int h() {
         switch (this.d) {
             case 0:
-                return ((wu) this.e).f39245c3.size();
+                return ((wu) this.e).f39235c3.size();
             default:
-                return ((oc0) this.e).f36170s.size();
+                return ((pc0) this.e).f36537s.size();
         }
     }
 
@@ -50,11 +50,11 @@ public final class uu extends og.b {
     public final int j(int i10) {
         switch (this.d) {
             case 0:
-                return ((ru) ((wu) this.e).f39245c3.get(i10)).f15672a;
+                return ((ru) ((wu) this.e).f39235c3.get(i10)).f15704a;
             default:
-                oc0 oc0Var = (oc0) this.e;
-                if (i10 >= 0 && i10 < oc0Var.f36170s.size()) {
-                    return ((ic0) oc0Var.f36170s.get(i10)).f15672a;
+                pc0 pc0Var = (pc0) this.e;
+                if (i10 >= 0 && i10 < pc0Var.f36537s.size()) {
+                    return ((jc0) pc0Var.f36537s.get(i10)).f15704a;
                 }
                 return 2;
         }
@@ -67,15 +67,15 @@ public final class uu extends og.b {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.r8 r8Var;
+        org.telegram.ui.Cells.s8 s8Var;
         int i11 = this.d;
         View view = null;
         Object obj = this.e;
         switch (i11) {
             case 0:
                 wu wuVar = (wu) obj;
-                av avVar = wuVar.f39256o3;
-                org.telegram.ui.ActionBar.e6 e6Var = wuVar.f30090p2;
+                av avVar = wuVar.f39246o3;
+                org.telegram.ui.ActionBar.f6 f6Var = wuVar.f29207p2;
                 if (i10 != 0) {
                     if (i10 != 1) {
                         if (i10 != 3) {
@@ -83,76 +83,76 @@ public final class uu extends og.b {
                                 if (i10 != 5) {
                                     if (i10 != 6) {
                                         if (i10 != 7) {
-                                            r8Var = new pu(avVar, wuVar.getContext());
+                                            s8Var = new pu(avVar, wuVar.getContext());
                                         } else {
                                             View knVar = new org.telegram.ui.Components.kn(wuVar.getContext(), 14);
-                                            int i12 = org.telegram.ui.ActionBar.j6.f19062d6;
-                                            int i13 = wu.f39242p3;
-                                            knVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i12, wuVar.f30090p2));
-                                            r8Var = knVar;
+                                            int i12 = org.telegram.ui.ActionBar.j6.f19094d6;
+                                            int i13 = wu.f39232p3;
+                                            knVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i12, wuVar.f29207p2));
+                                            s8Var = knVar;
                                         }
                                     } else {
                                         ?? view2 = new View(wuVar.getContext());
-                                        view2.f39899a = new Path();
+                                        view2.f40014a = new Path();
                                         Paint paint = new Paint(1);
-                                        view2.f39900b = paint;
-                                        view2.f39901c = true;
+                                        view2.f40015b = paint;
+                                        view2.f40016c = true;
                                         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(-0.66f), 251658240);
-                                        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19062d6, false));
-                                        r8Var = view2;
+                                        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+                                        s8Var = view2;
                                     }
                                 } else {
-                                    org.telegram.ui.Cells.r8 r8Var2 = new org.telegram.ui.Cells.r8(wuVar.getContext());
-                                    r8Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19283p7, e6Var));
-                                    r8Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, e6Var));
-                                    r8Var = r8Var2;
+                                    org.telegram.ui.Cells.s8 s8Var2 = new org.telegram.ui.Cells.s8(wuVar.getContext());
+                                    s8Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19315p7, f6Var));
+                                    s8Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19094d6, f6Var));
+                                    s8Var = s8Var2;
                                 }
                             } else {
-                                View m4Var = new org.telegram.ui.Cells.m4(wuVar.getContext());
-                                m4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19062d6, e6Var));
-                                r8Var = m4Var;
+                                View n4Var = new org.telegram.ui.Cells.n4(wuVar.getContext());
+                                n4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19094d6, f6Var));
+                                s8Var = n4Var;
                             }
                         } else {
-                            r8Var = new org.telegram.ui.Cells.e9(wuVar.getContext());
+                            s8Var = new org.telegram.ui.Cells.f9(wuVar.getContext());
                         }
                     } else {
                         Context context = wuVar.getContext();
                         ?? frameLayout = new FrameLayout(context);
                         TextView textView = new TextView(context);
-                        frameLayout.f40557a = textView;
+                        frameLayout.f40601a = textView;
                         textView.setGravity(17);
                         textView.setTextSize(1, 13.0f);
-                        textView.setTextColor(avVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19445y6));
+                        textView.setTextColor(avVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19477y6));
                         frameLayout.addView(textView, w7.y5.d(-1, -2.0f, 119, 24.0f, 0.0f, 24.0f, 14.0f));
                         frameLayout.setTag(-33024);
-                        r8Var = frameLayout;
+                        s8Var = frameLayout;
                     }
                 } else {
                     Context context2 = wuVar.getContext();
-                    int[] iArr = av.f32144s;
+                    int[] iArr = av.f32161s;
                     tu tuVar = new tu(this, context2, iArr.length, iArr, av.v);
-                    wuVar.f39255n3 = tuVar;
+                    wuVar.f39245n3 = tuVar;
                     tuVar.setInterceptTouch(false);
-                    View view3 = wuVar.f39255n3;
+                    View view3 = wuVar.f39245n3;
                     view3.setTag(-33024);
-                    r8Var = view3;
+                    s8Var = view3;
                 }
-                return new s4.c1(r8Var);
+                return new s4.c1(s8Var);
             default:
-                oc0 oc0Var = (oc0) obj;
+                pc0 pc0Var = (pc0) obj;
                 Context context3 = viewGroup.getContext();
                 if (i10 == 0) {
-                    view = new org.telegram.ui.Cells.m4(context3);
+                    view = new org.telegram.ui.Cells.n4(context3);
                 } else if (i10 == 1) {
-                    view = new mc0(oc0Var, context3);
+                    view = new nc0(pc0Var, context3);
                 } else if (i10 == 2) {
-                    view = new org.telegram.ui.Cells.e9(context3);
+                    view = new org.telegram.ui.Cells.f9(context3);
                 } else if (i10 != 3 && i10 != 4) {
                     if (i10 == 5) {
-                        view = new org.telegram.ui.Cells.r8(23, context3, null, false, true);
+                        view = new org.telegram.ui.Cells.s8(23, context3, null, false, true);
                     }
                 } else {
-                    view = new nc0(oc0Var, context3);
+                    view = new oc0(pc0Var, context3);
                 }
                 return new s4.c1(view);
         }

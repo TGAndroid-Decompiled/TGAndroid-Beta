@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class iw implements Runnable {
-    public final int f34628a;
-    public final uy f34629b;
-    public final long f34630c;
+    public final int f34687a;
+    public final uy f34688b;
+    public final long f34689c;
     public final boolean d;
 
     public iw(uy uyVar, long j3, boolean z10, int i10) {
-        this.f34628a = i10;
-        this.f34629b = uyVar;
-        this.f34630c = j3;
+        this.f34687a = i10;
+        this.f34688b = uyVar;
+        this.f34689c = j3;
         this.d = z10;
     }
 
@@ -25,20 +25,20 @@ public final class iw implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder replaceTags;
-        int i10 = this.f34628a;
+        int i10 = this.f34687a;
         boolean z10 = this.d;
-        long j3 = this.f34630c;
-        uy uyVar = this.f34629b;
+        long j3 = this.f34689c;
+        uy uyVar = this.f34688b;
         switch (i10) {
             case 0:
-                uy uyVar2 = this.f34629b;
+                uy uyVar2 = this.f34688b;
                 ai.l9 storiesController = uyVar2.getMessagesController().getStoriesController();
-                long j10 = this.f34630c;
+                long j10 = this.f34689c;
                 boolean z11 = this.d;
                 storiesController.i0(j10, z11, false);
-                o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f15439b = new iw(uyVar2, j10, z11, 1);
-                aVar.f15440c = new iw(uyVar2, j10, z11, 2);
+                m5.e eVar = new m5.e((char) 0, 7);
+                eVar.f14953b = new iw(uyVar2, j10, z11, 1);
+                eVar.f14954c = new iw(uyVar2, j10, z11, 2);
                 if (j10 >= 0) {
                     TLRPC.User user = uyVar2.getMessagesController().getUser(Long.valueOf(j10));
                     str = ContactsController.formatName(user.first_name, null, 15);
@@ -53,7 +53,7 @@ public final class iw implements Runnable {
                 } else {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
                 }
-                uyVar2.S = org.telegram.ui.Components.xc.X().V(Collections.singletonList(chat), replaceTags, null, aVar).j();
+                uyVar2.S = org.telegram.ui.Components.xc.X().V(Collections.singletonList(chat), replaceTags, null, eVar).j();
                 return;
             case 1:
                 uyVar.getMessagesController().getStoriesController().i0(j3, !z10, false);

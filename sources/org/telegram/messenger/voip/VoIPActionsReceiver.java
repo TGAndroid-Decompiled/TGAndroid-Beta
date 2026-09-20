@@ -11,25 +11,25 @@ public class VoIPActionsReceiver extends BroadcastReceiver {
             return;
         }
         String packageName = context.getPackageName();
-        if (t8.b.v(packageName, ".END_CALL").equals(intent.getAction())) {
+        if (v7.j0.s(packageName, ".END_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.decline(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
             } else {
                 VoIPPreNotificationService.decline(context, 1);
             }
-        } else if (t8.b.v(packageName, ".DECLINE_CALL").equals(intent.getAction())) {
+        } else if (v7.j0.s(packageName, ".DECLINE_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.decline(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
             } else {
                 VoIPPreNotificationService.decline(context, 4);
             }
-        } else if (t8.b.v(packageName, ".ANSWER_CALL").equals(intent.getAction())) {
+        } else if (v7.j0.s(packageName, ".ANSWER_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.answer(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
             } else {
                 VoIPPreNotificationService.answer(context);
             }
-        } else if (t8.b.v(packageName, ".HIDE_CALL").equals(intent.getAction())) {
+        } else if (v7.j0.s(packageName, ".HIDE_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.hide(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
             } else {

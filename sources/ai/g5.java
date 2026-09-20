@@ -3,8 +3,8 @@ package ai;
 import android.content.DialogInterface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.fg0;
-import org.telegram.ui.m31;
+import org.telegram.ui.gg0;
+import org.telegram.ui.n31;
 public final class g5 implements DialogInterface.OnDismissListener {
     public final int f898a;
     public final Object f899b;
@@ -66,30 +66,30 @@ public final class g5 implements DialogInterface.OnDismissListener {
                 return;
             case 9:
                 rg.j0 j0Var = (rg.j0) this.f899b;
-                j0Var.f42569f0 = false;
-                j0Var.f42586x0.f22293d0 = true;
+                j0Var.f42613f0 = false;
+                j0Var.f42630x0.f22328d0 = true;
                 j0Var.E0.invalidate();
-                j0Var.f42586x0.invalidate();
+                j0Var.f42630x0.invalidate();
                 return;
             case 10:
                 rg.k1 k1Var = (rg.k1) this.f899b;
-                fg0 fg0Var = k1Var.f42614r0;
-                if (fg0Var != null) {
-                    fg0Var.setDialogVisible(false);
+                gg0 gg0Var = k1Var.f42658r0;
+                if (gg0Var != null) {
+                    gg0Var.setDialogVisible(false);
                 }
-                k1Var.f42613q0.setPaused(false);
+                k1Var.f42657q0.setPaused(false);
                 return;
             case 11:
-                ((wh.n) this.f899b).f45377s = null;
+                ((wh.n) this.f899b).f45421s = null;
                 return;
             case 12:
-                ((m31) this.f899b).run();
+                ((n31) this.f899b).run();
                 return;
             case 13:
                 AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f899b);
                 return;
             default:
-                ((uf.b) this.f899b).run();
+                ((u2.j0) this.f899b).run();
                 return;
         }
     }

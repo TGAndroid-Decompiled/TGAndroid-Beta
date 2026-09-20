@@ -1,8 +1,8 @@
 package ii;
 
 import java.util.ArrayList;
-import org.telegram.ui.Cells.q9;
-public final class j3 extends q9 {
+import org.telegram.ui.Cells.r9;
+public final class j3 extends r9 {
     public final u3 K0;
     public final w3 L0;
 
@@ -14,7 +14,7 @@ public final class j3 extends q9 {
     @Override
     public final boolean D() {
         w3 w3Var = this.L0;
-        CharSequence s10 = w3Var.f11724n3.s();
+        CharSequence s10 = w3Var.f11725n3.s();
         if (s10 != null && s10.length() != 0) {
             w3Var.c5(s10);
             return true;
@@ -25,7 +25,7 @@ public final class j3 extends q9 {
     @Override
     public final void E() {
         w3 w3Var = this.L0;
-        CharSequence s10 = w3Var.f11724n3.s();
+        CharSequence s10 = w3Var.f11725n3.s();
         if (s10 != null && s10.length() > 0) {
             w3Var.c5(s10);
         }
@@ -35,7 +35,7 @@ public final class j3 extends q9 {
     @Override
     public final void G() {
         super.G();
-        this.K0.l();
+        this.K0.n();
     }
 
     @Override
@@ -54,9 +54,9 @@ public final class j3 extends q9 {
     @Override
     public final void L(float f7, float f10) {
         w3 w3Var = this.L0;
-        w3Var.f11734s3 = true;
-        w3Var.f11735t3 = f7;
-        w3Var.f11736u3 = f10;
+        w3Var.f11735s3 = true;
+        w3Var.f11736t3 = f7;
+        w3Var.f11737u3 = f10;
     }
 
     @Override
@@ -66,23 +66,23 @@ public final class j3 extends q9 {
         String str;
         int length;
         w3 w3Var = this.L0;
-        j3 j3Var = w3Var.f11724n3;
-        ArrayList arrayList = w3Var.f11721l3;
-        if (!arrayList.isEmpty() && j3Var.y() && j3Var.f20814u0 == 0 && j3Var.f20815v0 == 0 && j3Var.f20816w0 <= 0 && j3Var.f20817x0 == (size = arrayList.size() - 1)) {
+        j3 j3Var = w3Var.f11725n3;
+        ArrayList arrayList = w3Var.f11722l3;
+        if (!arrayList.isEmpty() && j3Var.y() && j3Var.f20889u0 == 0 && j3Var.f20890v0 == 0 && j3Var.f20891w0 <= 0 && j3Var.f20892x0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (d6.p(aVar.f11204b)) {
-                str = f6.l(d6.k(aVar.f11204b));
+            if (d6.p(aVar.f11205b)) {
+                str = f6.l(d6.k(aVar.f11205b));
             } else {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (j3Var.f20818y0 == i10) {
+            if (j3Var.f20893y0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
-                    length = d6.z(aVar.f11204b).length();
+                    length = d6.z(aVar.f11205b).length();
                 }
-                if (j3Var.f20819z0 >= length) {
+                if (j3Var.f20894z0 >= length) {
                     z10 = true;
                     return !z10;
                 }

@@ -3,9 +3,10 @@ package s2;
 import b2.s;
 import q3.i;
 import s3.c;
+import v7.j0;
 import w7.m;
 public final class a {
-    public static final a f42882a = new Object();
+    public static final a f42927a = new Object();
 
     public final m a(s sVar) {
         String str = sVar.f3309r;
@@ -56,7 +57,7 @@ public final class a {
                     return new c();
             }
         }
-        throw new IllegalArgumentException(t8.b.i("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(j0.g("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
     public final boolean b(s sVar) {

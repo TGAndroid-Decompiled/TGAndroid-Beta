@@ -10,7 +10,7 @@ import java.security.MessageDigest;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.bz;
 import org.telegram.ui.Components.ed;
 import org.telegram.ui.Components.ng;
@@ -51,8 +51,8 @@ public final class a implements m0, qx {
         bz bzVar;
         pf pfVar;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3658c;
-        if (chatActivityEnterView.f22046w3) {
-            if ((chatActivityEnterView.y3 || (pfVar = chatActivityEnterView.E0) == null || pfVar.length() <= 0) && (bzVar = chatActivityEnterView.U0.f25962y0) != null && bzVar.h() > 0 && !chatActivityEnterView.j3) {
+        if (chatActivityEnterView.f22081w3) {
+            if ((chatActivityEnterView.y3 || (pfVar = chatActivityEnterView.E0) == null || pfVar.length() <= 0) && (bzVar = chatActivityEnterView.U0.f25968y0) != null && bzVar.h() > 0 && !chatActivityEnterView.j3) {
                 return true;
             }
             return false;
@@ -63,7 +63,7 @@ public final class a implements m0, qx {
     public void e() {
         int i10;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3658c;
-        bw0 bw0Var = chatActivityEnterView.l1;
+        aw0 aw0Var = chatActivityEnterView.l1;
         if (d()) {
             AnimatorSet animatorSet = chatActivityEnterView.A3;
             if (animatorSet != null) {
@@ -73,30 +73,30 @@ public final class a implements m0, qx {
             this.f3656a = chatActivityEnterView.y3;
             chatActivityEnterView.y3 = true;
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 1);
-            int height = ((((bw0Var.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
+            int height = ((((aw0Var.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
             chatActivityEnterView.C3 = height;
             if (chatActivityEnterView.Q1 == 2) {
                 int dp = AndroidUtilities.dp(175.0f);
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
-                    i10 = chatActivityEnterView.f22051x2;
+                    i10 = chatActivityEnterView.f22086x2;
                 } else {
-                    i10 = chatActivityEnterView.f22045w2;
+                    i10 = chatActivityEnterView.f22080w2;
                 }
                 chatActivityEnterView.C3 = Math.min(height, dp + i10);
             }
-            if (chatActivityEnterView.f21937c5 == null) {
+            if (chatActivityEnterView.f21972c5 == null) {
                 chatActivityEnterView.U0.getLayoutParams().height = chatActivityEnterView.C3;
             }
             chatActivityEnterView.U0.setLayerType(2, null);
-            bw0Var.requestLayout();
-            if (chatActivityEnterView.f22053x4) {
-                bw0Var.setForeground(new ed(chatActivityEnterView));
+            aw0Var.requestLayout();
+            if (chatActivityEnterView.f22088x4) {
+                aw0Var.setForeground(new ed(chatActivityEnterView));
             }
             this.f3657b = (int) chatActivityEnterView.getTranslationY();
             ng ngVar = chatActivityEnterView.Y2;
             if (ngVar != null) {
-                ngVar.s1();
+                ngVar.t1();
             }
         }
     }

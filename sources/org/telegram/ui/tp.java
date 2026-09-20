@@ -9,16 +9,16 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class tp extends org.telegram.ui.Components.vl0 {
-    public final Context f37787c;
+public final class tp extends org.telegram.ui.Components.ul0 {
+    public final Context f37861c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public sp f37788f;
+    public sp f37862f;
     public final up h;
 
     public tp(up upVar, Context context) {
         this.h = upVar;
-        this.f37787c = context;
+        this.f37861c = context;
     }
 
     public static void E(tp tpVar, ArrayList arrayList, ArrayList arrayList2) {
@@ -28,7 +28,7 @@ public final class tp extends org.telegram.ui.Components.vl0 {
         }
         tpVar.d = arrayList;
         tpVar.e = arrayList2;
-        if (upVar.f38071b.getAdapter() == upVar.e) {
+        if (upVar.f38180b.getAdapter() == upVar.e) {
             upVar.d.c();
         }
         super.l();
@@ -36,24 +36,24 @@ public final class tp extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final void A(s4.c1 c1Var) {
-        View view = c1Var.f42929a;
-        if (view instanceof org.telegram.ui.Cells.b5) {
-            ((org.telegram.ui.Cells.b5) view).a();
+        View view = c1Var.f42974a;
+        if (view instanceof org.telegram.ui.Cells.c5) {
+            ((org.telegram.ui.Cells.c5) view).a();
         }
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42932f != 1) {
+        if (c1Var.f42977f != 1) {
             return true;
         }
         return false;
     }
 
     public final void F(String str) {
-        if (this.f37788f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f37788f);
-            this.f37788f = null;
+        if (this.f37862f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f37862f);
+            this.f37862f = null;
         }
         if (TextUtils.isEmpty(str)) {
             this.d.clear();
@@ -63,7 +63,7 @@ public final class tp extends org.telegram.ui.Components.vl0 {
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         sp spVar = new sp(this, str, 0);
-        this.f37788f = spVar;
+        this.f37862f = spVar;
         dispatchQueue.postRunnable(spVar, 300L);
     }
 
@@ -89,15 +89,15 @@ public final class tp extends org.telegram.ui.Components.vl0 {
                 charSequence = null;
             }
         }
-        org.telegram.ui.Cells.b5 b5Var = (org.telegram.ui.Cells.b5) c1Var.f42929a;
-        b5Var.setTag(Integer.valueOf(i10));
-        b5Var.b(chat, charSequence, charSequence2, false);
+        org.telegram.ui.Cells.c5 c5Var = (org.telegram.ui.Cells.c5) c1Var.f42974a;
+        c5Var.setTag(Integer.valueOf(i10));
+        c5Var.b(chat, charSequence, charSequence2, false);
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f37787c, null, false);
-        b5Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19062d6, false));
-        return new s4.c1(b5Var);
+        org.telegram.ui.Cells.c5 c5Var = new org.telegram.ui.Cells.c5(6, 2, this.f37861c, null, false);
+        c5Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+        return new s4.c1(c5Var);
     }
 }

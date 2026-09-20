@@ -230,8 +230,8 @@ public class SharedConfig {
             if (readString == null) {
                 readString = "";
             }
-            a2.f15699b = readString;
-            a2.f15700c = inputSerializedData.readInt32(false);
+            a2.f15731b = readString;
+            a2.f15732c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -246,7 +246,7 @@ public class SharedConfig {
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f15701f = str;
+            a2.f15733f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -260,12 +260,12 @@ public class SharedConfig {
                 if (e == 0) {
                     e = 1;
                 }
-                a2.f15698a = e;
+                a2.f15730a = e;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f15698a = i11;
+                a2.f15730a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -278,14 +278,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f15705b);
-            outputSerializedData.writeInt32(this.settings.f15706c);
+            outputSerializedData.writeString(this.settings.f15737b);
+            outputSerializedData.writeInt32(this.settings.f15738c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f15707f);
+            outputSerializedData.writeString(this.settings.f15739f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f15704a);
+            int c10 = m1.j.c(this.settings.f15736a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -911,10 +911,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new v1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f18622a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f18622a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f18654a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }
@@ -1050,17 +1050,17 @@ public class SharedConfig {
             i12 = (i11 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i11 == 8 && i10 <= 23)) ? 1 : 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            StringBuilder k10 = hg.k0.k("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
-            hg.k0.s(k10, ceil, ", memoryClass = ", memoryClass, ", android version ");
-            k10.append(i10);
-            k10.append(", manufacture ");
-            k10.append(Build.MANUFACTURER);
-            k10.append(", screenRefreshRate=");
-            k10.append(AndroidUtilities.screenRefreshRate);
-            k10.append(", screenMaxRefreshRate=");
-            k10.append(AndroidUtilities.screenMaxRefreshRate);
-            k10.append(")");
-            FileLog.d(k10.toString());
+            StringBuilder l4 = hg.k0.l("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
+            hg.k0.t(l4, ceil, ", memoryClass = ", memoryClass, ", android version ");
+            l4.append(i10);
+            l4.append(", manufacture ");
+            l4.append(Build.MANUFACTURER);
+            l4.append(", screenRefreshRate=");
+            l4.append(AndroidUtilities.screenRefreshRate);
+            l4.append(", screenMaxRefreshRate=");
+            l4.append(AndroidUtilities.screenMaxRefreshRate);
+            l4.append(")");
+            FileLog.d(l4.toString());
         }
         return i12;
     }
@@ -1210,7 +1210,7 @@ public class SharedConfig {
 
     public static void saveProxyList() {
         ArrayList arrayList = new ArrayList(proxyList);
-        Collections.sort(arrayList, new ci(3));
+        Collections.sort(arrayList, new bi(3));
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(-1);
         serializedData.writeByte(3);

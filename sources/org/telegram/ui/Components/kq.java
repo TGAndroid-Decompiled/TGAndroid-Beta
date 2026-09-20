@@ -4,15 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.R;
 public final class kq extends AnimatorListenerAdapter {
-    public final mq f25776a;
+    public final mq f25852a;
 
     public kq(mq mqVar) {
-        this.f25776a = mqVar;
+        this.f25852a = mqVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        mq mqVar = this.f25776a;
+        mq mqVar = this.f25852a;
         ColorPicker$RadioButton[] colorPicker$RadioButtonArr = mqVar.v;
         if (mqVar.K == 1) {
             mqVar.F.setVisibility(4);
@@ -22,6 +22,6 @@ public final class kq extends AnimatorListenerAdapter {
                 colorPicker$RadioButtonArr[i10].setVisibility(4);
             }
         }
-        mqVar.f26508y = null;
+        mqVar.f26477y = null;
     }
 }

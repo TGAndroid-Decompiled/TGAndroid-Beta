@@ -63,13 +63,13 @@ public abstract class h0 {
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
-            ((MediaFormat) nVar.f7330b).setString("log-session-id", a2.getStringId());
+            ((MediaFormat) nVar.f7331b).setString("log-session-id", a2.getStringId());
         }
     }
 
     public static void g(n4.y yVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.r) yVar.f15179b).f15160a;
+            MediaSession mediaSession = ((n4.r) yVar.f15217a).f15199a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e) {

@@ -15,34 +15,34 @@ import e9.i0;
 import java.util.ArrayList;
 import java.util.List;
 public final class h implements c3.o {
-    public final m f48343a;
-    public final s f48344b;
-    public final ArrayList f48345c;
-    public h0 f48346f;
-    public int f48347g;
+    public final m f48389a;
+    public final s f48390b;
+    public final ArrayList f48391c;
+    public h0 f48392f;
+    public int f48393g;
     public int h;
-    public long[] f48348i;
-    public long f48349j;
-    public byte[] e = d0.f7888b;
+    public long[] f48394i;
+    public long f48395j;
+    public byte[] e = d0.f7889b;
     public final v d = new v();
 
     public h(m mVar, s sVar) {
         s sVar2;
-        this.f48343a = mVar;
+        this.f48389a = mVar;
         if (sVar != null) {
             r a2 = sVar.a();
             a2.f3253q = r0.n("application/x-media3-cues");
             a2.f3246j = sVar.f3309r;
-            a2.O = mVar.A();
+            a2.O = mVar.I();
             sVar2 = new s(a2);
         } else {
             sVar2 = null;
         }
-        this.f48344b = sVar2;
-        this.f48345c = new ArrayList();
+        this.f48390b = sVar2;
+        this.f48391c = new ArrayList();
         this.h = 0;
-        this.f48348i = d0.f7889c;
-        this.f48349j = -9223372036854775807L;
+        this.f48394i = d0.f7890c;
+        this.f48395j = -9223372036854775807L;
     }
 
     @Override
@@ -51,14 +51,14 @@ public final class h implements c3.o {
     }
 
     public final void b(g gVar) {
-        e2.d.h(this.f48346f);
-        byte[] bArr = gVar.f48342b;
+        e2.d.h(this.f48392f);
+        byte[] bArr = gVar.f48388b;
         int length = bArr.length;
         v vVar = this.d;
         vVar.getClass();
         vVar.H(bArr.length, bArr);
-        this.f48346f.d(length, vVar);
-        this.f48346f.c(gVar.f48341a, 1, length, 0, null);
+        this.f48392f.d(length, vVar);
+        this.f48392f.c(gVar.f48387a, 1, length, 0, null);
     }
 
     @Override
@@ -71,11 +71,11 @@ public final class h implements c3.o {
         }
         e2.d.g(z10);
         h0 Z1 = qVar.Z1(0, 3);
-        this.f48346f = Z1;
-        s sVar = this.f48344b;
+        this.f48392f = Z1;
+        s sVar = this.f48390b;
         if (sVar != null) {
             Z1.b(sVar);
-            qVar.e1();
+            qVar.f1();
             qVar.X1(new y(-9223372036854775807L, new long[]{0}, new long[]{0}));
         }
         this.h = 1;
@@ -91,7 +91,7 @@ public final class h implements c3.o {
             z10 = false;
         }
         e2.d.g(z10);
-        this.f48349j = j10;
+        this.f48395j = j10;
         if (this.h == 2) {
             this.h = 1;
         }
@@ -102,7 +102,7 @@ public final class h implements c3.o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8083b;
+        g0 g0Var = i0.f8084b;
         return a1.e;
     }
 
@@ -116,7 +116,7 @@ public final class h implements c3.o {
         if (this.h == 5) {
             return;
         }
-        this.f48343a.reset();
+        this.f48389a.reset();
         this.h = 5;
     }
 

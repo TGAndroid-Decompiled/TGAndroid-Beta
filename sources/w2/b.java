@@ -8,14 +8,14 @@ import z3.i;
 import z3.j;
 import z3.m;
 public final class b extends l implements z3.e {
-    public final String f44728o;
-    public final m f44729p;
+    public final String f44772o;
+    public final m f44773p;
 
     public b(String str, m mVar) {
         super(new i[2], new j[2]);
-        this.f44728o = str;
+        this.f44772o = str;
         o(1024);
-        this.f44729p = mVar;
+        this.f44773p = mVar;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class b extends l implements z3.e {
 
     @Override
     public final String getName() {
-        return this.f44728o;
+        return this.f44772o;
     }
 
     @Override
@@ -43,23 +43,23 @@ public final class b extends l implements z3.e {
         i iVar = (i) hVar;
         j jVar2 = (j) jVar;
         try {
-            ByteBuffer byteBuffer = iVar.f10096c;
+            ByteBuffer byteBuffer = iVar.f10097c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            m mVar = this.f44729p;
+            m mVar = this.f44773p;
             if (z10) {
                 mVar.reset();
             }
-            z3.d r10 = mVar.r(0, limit, array);
+            z3.d s10 = mVar.s(0, limit, array);
             long j3 = iVar.e;
-            long j10 = iVar.f48350r;
+            long j10 = iVar.f48396r;
             jVar2.timeUs = j3;
-            jVar2.f48351a = r10;
+            jVar2.f48397a = s10;
             if (j10 != Long.MAX_VALUE) {
                 j3 = j10;
             }
-            jVar2.f48352b = j3;
+            jVar2.f48398b = j3;
             jVar2.shouldBeSkipped = false;
             return null;
         } catch (z3.f e) {

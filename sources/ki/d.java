@@ -1,47 +1,44 @@
 package ki;
 
-import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraDevice;
-import android.os.SystemClock;
-import java.util.Arrays;
 public final class d extends CameraDevice.StateCallback {
-    public final g f13666a;
+    public final h f13666a;
 
-    public d(g gVar) {
-        this.f13666a = gVar;
+    public d(h hVar) {
+        this.f13666a = hVar;
     }
 
     @Override
     public final void onClosed(CameraDevice cameraDevice) {
-        g gVar = this.f13666a;
-        if (gVar.D) {
-            gVar.D = false;
-            if (gVar.B) {
-                gVar.i();
+        h hVar = this.f13666a;
+        if (hVar.O) {
+            hVar.O = false;
+            if (hVar.M) {
+                hVar.q();
             }
         }
     }
 
     @Override
     public final void onDisconnected(CameraDevice cameraDevice) {
-        g gVar = this.f13666a;
-        gVar.C = false;
-        j jVar = gVar.f13680f;
-        jVar.b("camera disconnected: id=" + cameraDevice.getId());
+        h hVar = this.f13666a;
+        hVar.N = false;
+        k kVar = hVar.f13707j;
+        kVar.b("camera disconnected: id=" + cameraDevice.getId());
         cameraDevice.close();
-        if (gVar.f13693t == cameraDevice) {
-            gVar.f13693t = null;
+        if (hVar.f13723x == cameraDevice) {
+            hVar.f13723x = null;
         }
     }
 
     @Override
     public final void onError(CameraDevice cameraDevice, int i10) {
         String str;
-        g gVar = this.f13666a;
-        gVar.C = false;
+        h hVar = this.f13666a;
+        hVar.N = false;
         cameraDevice.close();
-        if (gVar.f13693t == cameraDevice) {
-            gVar.f13693t = null;
+        if (hVar.f13723x == cameraDevice) {
+            hVar.f13723x = null;
         }
         StringBuilder sb2 = new StringBuilder("Camera device error: ");
         if (i10 != 1) {
@@ -69,28 +66,18 @@ public final class d extends CameraDevice.StateCallback {
         sb2.append(" (");
         sb2.append(i10);
         sb2.append(")");
-        gVar.k(new IllegalStateException(sb2.toString()));
+        hVar.s(new IllegalStateException(sb2.toString()));
     }
 
     @Override
     public final void onOpened(CameraDevice cameraDevice) {
-        g gVar = this.f13666a;
-        gVar.C = false;
-        j jVar = gVar.f13680f;
-        jVar.b("camera opened: id=" + cameraDevice.getId() + ", elapsedMs=" + g.g(gVar.J));
-        if (gVar.B && !gVar.D) {
-            gVar.f13693t = cameraDevice;
-            if (gVar.f13689p != null && gVar.f13690q != null) {
-                try {
-                    gVar.K = SystemClock.elapsedRealtimeNanos();
-                    jVar.b("capture session requested: preview=" + gVar.f13686m + ", recording=" + gVar.f13687n);
-                    cameraDevice.createCaptureSession(Arrays.asList(gVar.f13689p, gVar.f13690q), gVar.Q, gVar.f13683j);
-                    return;
-                } catch (CameraAccessException e) {
-                    gVar.k(e);
-                    return;
-                }
-            }
+        h hVar = this.f13666a;
+        hVar.N = false;
+        k kVar = hVar.f13707j;
+        kVar.b("camera opened: id=" + cameraDevice.getId() + ", elapsedMs=" + h.l(hVar.Y));
+        if (hVar.M && !hVar.O) {
+            hVar.f13723x = cameraDevice;
+            hVar.j();
             return;
         }
         cameraDevice.close();

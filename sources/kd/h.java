@@ -2,13 +2,13 @@ package kd;
 public abstract class h extends a {
     public h(id.c cVar) {
         super(cVar);
-        if (cVar != null && cVar.getContext() != id.i.f11084a) {
+        if (cVar != null && cVar.getContext() != id.i.f11085a) {
             throw new IllegalArgumentException("Coroutines with restricted suspension must have EmptyCoroutineContext");
         }
     }
 
     @Override
     public final id.h getContext() {
-        return id.i.f11084a;
+        return id.i.f11085a;
     }
 }

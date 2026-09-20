@@ -8,23 +8,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ew implements View.OnLongClickListener {
-    public final int f33365a;
-    public final uy f33366b;
+    public final int f33409a;
+    public final uy f33410b;
 
     public ew(uy uyVar, int i10) {
-        this.f33365a = i10;
-        this.f33366b = uyVar;
+        this.f33409a = i10;
+        this.f33410b = uyVar;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f33365a) {
+        switch (this.f33409a) {
             case 0:
-                uy uyVar = this.f33366b;
+                uy uyVar = this.f33410b;
                 uyVar.r4(uyVar.I2, 104, true, true, null);
                 return true;
             case 1:
-                uy uyVar2 = this.f33366b;
+                uy uyVar2 = this.f33410b;
                 ArrayList arrayList = uyVar2.I2;
                 if (uyVar2.getParentActivity() == null) {
                     return false;
@@ -40,16 +40,16 @@ public final class ew implements View.OnLongClickListener {
                         z10 = false;
                     }
                 }
-                org.telegram.ui.Components.w70 H = org.telegram.ui.Components.w70.H(uyVar2, view);
+                org.telegram.ui.Components.v70 H = org.telegram.ui.Components.v70.H(uyVar2, view);
                 H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new qv(uyVar2, 19), false);
                 H.l(R.drawable.msg_calendar2, LocaleController.getString(R.string.ScheduleMessage), new qv(uyVar2, 20), z10);
                 H.Z();
                 return true;
             case 2:
-                this.f33366b.p4(view);
+                this.f33410b.p4(view);
                 return true;
             default:
-                uy uyVar3 = this.f33366b;
+                uy uyVar3 = this.f33410b;
                 uyVar3.getContactsController().loadGlobalPrivacySetting();
                 uyVar3.K4();
                 return true;

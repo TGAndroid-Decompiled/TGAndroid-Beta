@@ -1,36 +1,22 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-public final class m61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35533a;
-    public final p61 f35534b;
-
-    public m61(p61 p61Var, int i10) {
-        this.f35533a = i10;
-        this.f35534b = p61Var;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class m61 extends FrameLayout {
+    public FrameLayout f35616a;
+    public org.telegram.ui.Cells.v3 f35617b;
+    public rg.p0 f35618c;
+    public String d;
+    public ValueAnimator e;
+    public float f35619f;
+    public Boolean h;
+    public ValueAnimator f35620n;
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35533a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p61 p61Var = this.f35534b;
-                p61Var.N = floatValue;
-                p61Var.V.f33728h0.invalidate();
-                return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p61 p61Var2 = this.f35534b;
-                p61Var2.N = floatValue2;
-                p61Var2.V.f33728h0.invalidate();
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p61 p61Var3 = this.f35534b;
-                p61Var3.N = floatValue3;
-                p61Var3.V.f33728h0.invalidate();
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
     }
 }

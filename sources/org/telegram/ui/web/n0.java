@@ -29,24 +29,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 public final class n0 extends WebViewClient {
-    public boolean f38988a = true;
-    public final m0 f38989b = new m0(this, 0);
-    public final boolean f38990c;
+    public boolean f38989a = true;
+    public final m0 f38990b = new m0(this, 0);
+    public final boolean f38991c;
     public final Context d;
     public final z0 e;
 
     public n0(z0 z0Var, boolean z10, Context context) {
         this.e = z0Var;
-        this.f38990c = z10;
+        this.f38991c = z10;
         this.d = context;
     }
 
     @Override
     public final void doUpdateVisitedHistory(WebView webView, String str, boolean z10) {
         e1 e1Var;
-        boolean z11 = this.f38990c;
+        boolean z11 = this.f38991c;
         z0 z0Var = this.e;
         if (!z11 && ((e1Var = z0Var.e) == null || !TextUtils.equals(e1Var.f38893c, str))) {
             ?? tLObject = new TLObject();
@@ -70,7 +70,7 @@ public final class n0 extends WebViewClient {
         d1 d1Var;
         z0 z0Var = this.e;
         z0Var.c("onPageCommitVisible " + str);
-        boolean z10 = this.f38990c;
+        boolean z10 = this.f38991c;
         if (z10 && !com.google.android.gms.internal.cast.o.a("DOCUMENT_START_SCRIPT") && (d1Var = z0Var.Q) != null) {
             boolean z11 = d1.P0;
             if (d1Var.r()) {
@@ -94,7 +94,7 @@ public final class n0 extends WebViewClient {
         z0 z0Var = this.e;
         z0Var.f39124b = true;
         z0Var.c("onPageFinished");
-        boolean z10 = this.f38990c;
+        boolean z10 = this.f38991c;
         if (z10 && !com.google.android.gms.internal.cast.o.a("DOCUMENT_START_SCRIPT") && (d1Var = z0Var.Q) != null) {
             boolean z11 = d1.P0;
             if (d1Var.r()) {
@@ -138,7 +138,7 @@ public final class n0 extends WebViewClient {
             z0 z0Var = this.e;
             z0Var.c("onReceivedError: " + webResourceError.getErrorCode() + " " + ((Object) webResourceError.getDescription()));
             if (z0Var.Q != null && (webResourceRequest == null || webResourceRequest.isForMainFrame())) {
-                AndroidUtilities.cancelRunOnUIThread(this.f38989b);
+                AndroidUtilities.cancelRunOnUIThread(this.f38990b);
                 z0Var.f39128r = null;
                 z0Var.f39129s = false;
                 z0Var.v = false;
@@ -185,7 +185,7 @@ public final class n0 extends WebViewClient {
         z0Var.c(sb3);
         if (z0Var.Q != null) {
             if ((webResourceRequest == null || webResourceRequest.isForMainFrame()) && webResourceResponse != null && TextUtils.isEmpty(webResourceResponse.getMimeType())) {
-                AndroidUtilities.cancelRunOnUIThread(this.f38989b);
+                AndroidUtilities.cancelRunOnUIThread(this.f38990b);
                 z0Var.f39128r = null;
                 z0Var.f39129s = false;
                 z0Var.v = false;
@@ -230,7 +230,7 @@ public final class n0 extends WebViewClient {
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        e6 e6Var;
+        f6 f6Var;
         Integer valueOf;
         Boolean valueOf2;
         int i10 = Build.VERSION.SDK_INT;
@@ -261,15 +261,15 @@ public final class n0 extends WebViewClient {
             Context context = z0Var.getContext();
             d1 d1Var = z0Var.Q;
             if (d1Var == null) {
-                e6Var = null;
+                f6Var = null;
             } else {
-                e6Var = d1Var.e;
+                f6Var = d1Var.e;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
-            alertDialog$Builder.f18622a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f18622a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new m0(this, 2));
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
+            alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f18654a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new m0(this, 2));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.f18622a.setOnDismissListener(new g5(this, 7));
+            alertDialog$Builder.f18654a.setOnDismissListener(new g5(this, 7));
             alertDialog$Builder.o();
             return true;
         } catch (Exception e) {
@@ -290,10 +290,10 @@ public final class n0 extends WebViewClient {
         z0Var.c(sb3);
         if (webResourceRequest != null && d1.q(webResourceRequest.getUrl())) {
             z0Var.c("proxying ton");
-            this.f38988a = false;
+            this.f38989a = false;
             return d1.N(webResourceRequest.getMethod(), webResourceRequest.getUrl().toString(), webResourceRequest.getRequestHeaders());
         }
-        if (!this.f38990c && z0Var.f39126f != null && this.f38988a) {
+        if (!this.f38991c && z0Var.f39126f != null && this.f38989a) {
             try {
                 httpURLConnection = (HttpURLConnection) new URL(webResourceRequest.getUrl().toString()).openConnection();
             } catch (Exception e) {
@@ -347,7 +347,7 @@ public final class n0 extends WebViewClient {
                         }
                     }
                 }
-                this.f38988a = false;
+                this.f38989a = false;
                 return new WebResourceResponse(contentType, contentEncoding, httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage(), hashMap, httpURLConnection.getInputStream());
             } catch (Exception e7) {
                 e = e7;
@@ -356,11 +356,11 @@ public final class n0 extends WebViewClient {
                 if (httpURLConnection2 != null) {
                     httpURLConnection2.disconnect();
                 }
-                this.f38988a = false;
+                this.f38989a = false;
                 return super.shouldInterceptRequest(webView, webResourceRequest);
             }
         }
-        this.f38988a = false;
+        this.f38989a = false;
         return super.shouldInterceptRequest(webView, webResourceRequest);
     }
 
@@ -388,7 +388,7 @@ public final class n0 extends WebViewClient {
                 return true;
             }
             Uri parse = Uri.parse(str);
-            boolean z10 = this.f38990c;
+            boolean z10 = this.f38991c;
             if (!z10) {
                 if (nf.f.l(context, str, true)) {
                     z0Var.c("shouldOverrideUrlLoading(" + str + ") = true (openInExternalBrowser)");
@@ -464,7 +464,7 @@ public final class n0 extends WebViewClient {
         z0 z0Var = this.e;
         z0Var.c("onReceivedError: " + i10 + " " + str + " url=" + str2);
         if (Build.VERSION.SDK_INT < 23 && z0Var.Q != null) {
-            AndroidUtilities.cancelRunOnUIThread(this.f38989b);
+            AndroidUtilities.cancelRunOnUIThread(this.f38990b);
             z0Var.f39128r = null;
             z0Var.f39129s = false;
             z0Var.v = false;

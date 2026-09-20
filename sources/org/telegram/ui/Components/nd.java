@@ -1,68 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.widget.ImageView;
+import android.content.Context;
 import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TextView;
-public abstract class nd extends LinearLayout {
-    public ImageView f26662a;
-    public TextView f26663b;
-    public Space f26664c;
-    public boolean d;
+public final class nd extends LinearLayout {
+    public final od[] f26625a;
 
-    public final void a(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
-        if (this.f26662a == null) {
-            this.f26662a = imageView;
-            addView(imageView, layoutParams);
+    public nd(Context context) {
+        super(context);
+        this.f26625a = new od[2];
+    }
+
+    public final void a(org.telegram.ui.ok okVar, LinearLayout.LayoutParams layoutParams) {
+        int childCount = getChildCount();
+        if (childCount < 2) {
+            this.f26625a[childCount] = okVar;
+            addView(okVar, layoutParams);
         }
     }
 
-    public final void b(Space space, LinearLayout.LayoutParams layoutParams) {
-        if (this.f26664c == null) {
-            this.f26664c = space;
-            addView(space, layoutParams);
-        }
-    }
-
-    public final void c(TextView textView, LinearLayout.LayoutParams layoutParams) {
-        if (this.f26663b == null) {
-            this.f26663b = textView;
-            addView(textView, layoutParams);
-        }
-    }
-
-    public abstract void d();
-
-    public ImageView getImageView() {
-        return this.f26662a;
-    }
-
-    public TextView getTextView() {
-        return this.f26663b;
-    }
-
-    public void setEditButton(boolean z10) {
-        this.d = z10;
-    }
-
-    public void setOnlyIconMode(boolean z10) {
-        int i10;
-        TextView textView = this.f26663b;
-        int i11 = 0;
-        if (textView != null) {
-            if (z10) {
-                i10 = 8;
-            } else {
-                i10 = 0;
-            }
-            textView.setVisibility(i10);
-        }
-        Space space = this.f26664c;
-        if (space != null) {
-            if (z10) {
-                i11 = 8;
-            }
-            space.setVisibility(i11);
-        }
+    public od[] getButtons() {
+        return this.f26625a;
     }
 }

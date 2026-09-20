@@ -1,62 +1,62 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.text.TextPaint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class dh0 extends ReplacementSpan {
-    public final String f33020a;
-    public final boolean f33021b;
-    public final TextPaint f33022c;
-    public final Paint d;
-    public final float e;
-    public final fh0 f33023f;
+import android.util.SparseArray;
+import android.view.View;
+import org.telegram.messenger.SharedConfig;
+public final class dh0 implements ah.k {
+    public final gh0 f33046a;
 
-    public dh0(fh0 fh0Var, int i10, boolean z10) {
-        this.f33023f = fh0Var;
-        TextPaint textPaint = new TextPaint(1);
-        this.f33022c = textPaint;
-        this.d = new Paint(1);
-        String valueOf = String.valueOf(i10);
-        this.f33020a = valueOf;
-        this.f33021b = z10;
-        textPaint.setTextSize(AndroidUtilities.dpf2(11.0f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        this.e = Math.max(AndroidUtilities.dp(7.333f), textPaint.measureText(valueOf)) + AndroidUtilities.dp(10.0f);
+    public dh0(gh0 gh0Var) {
+        this.f33046a = gh0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15;
-        float dp = f7 + AndroidUtilities.dp(5.0f);
-        float dp2 = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
-        float dp3 = AndroidUtilities.dp(17.333f) / 2.0f;
-        if (this.f33021b) {
-            i15 = org.telegram.ui.ActionBar.j6.Oh;
-        } else {
-            i15 = org.telegram.ui.ActionBar.j6.U9;
+    public void K(ah.a aVar) {
+        gh0 gh0Var = this.f33046a;
+        RectF rectF = gh0Var.T;
+        aVar.a(gh0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19094d6));
+        aVar.b(SharedConfig.chatBlurEnabled());
+        SparseArray sparseArray = gh0Var.f32100a;
+        int size = sparseArray.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            org.telegram.ui.ActionBar.n2 n2Var = ((yh1) sparseArray.valueAt(i10)).f39943a;
+            View view = n2Var.fragmentView;
+            if (view != null && hh.k.c(view, gh0Var.f32101b, rectF) && rectF.right > 0.0f && rectF.left < gh0Var.fragmentView.getMeasuredWidth() && (n2Var instanceof fh0) && ((fh0) n2Var).x() != null) {
+                aVar.c(rectF.left);
+                aVar.c(rectF.top);
+                aVar.a(n2Var.getClassGuid());
+            }
         }
-        fh0 fh0Var = this.f33023f;
-        int themedColor = fh0Var.getThemedColor(i15);
-        Paint paint2 = this.d;
-        paint2.setColor(themedColor);
-        int themedColor2 = fh0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19340s8);
-        TextPaint textPaint = this.f33022c;
-        textPaint.setColor(themedColor2);
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f10 = this.e;
-        rectF.set(dp, dp2 - dp3, dp + f10, dp2 + dp3);
-        canvas.drawRoundRect(rectF, dp3, dp3, paint2);
-        Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
-        float f11 = dp2 - ((fontMetrics.ascent + fontMetrics.descent) / 2.0f);
-        String str = this.f33020a;
-        canvas.drawText(str, ((f10 - textPaint.measureText(str)) / 2.0f) + dp, f11, textPaint);
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) Math.ceil(AndroidUtilities.dp(5.0f) + this.e);
+    public void d(Canvas canvas) {
+        fh.d x10;
+        Canvas canvas2;
+        gh0 gh0Var = this.f33046a;
+        RectF rectF = gh0Var.T;
+        int measuredWidth = gh0Var.fragmentView.getMeasuredWidth();
+        int measuredHeight = gh0Var.fragmentView.getMeasuredHeight();
+        canvas.drawColor(gh0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19094d6));
+        SparseArray sparseArray = gh0Var.f32100a;
+        int size = sparseArray.size();
+        int i10 = 0;
+        while (i10 < size) {
+            org.telegram.ui.ActionBar.n2 n2Var = ((yh1) sparseArray.valueAt(i10)).f39943a;
+            View view = n2Var.fragmentView;
+            if (view == null || !hh.k.c(view, gh0Var.f32101b, rectF) || rectF.right <= 0.0f || rectF.left >= gh0Var.fragmentView.getMeasuredWidth() || !(n2Var instanceof fh0) || (x10 = ((fh0) n2Var).x()) == null) {
+                canvas2 = canvas;
+            } else {
+                canvas.save();
+                canvas.translate(rectF.left, rectF.top);
+                canvas2 = canvas;
+                x10.y(canvas2, 0.0f, 0.0f, measuredWidth, measuredHeight);
+                canvas2.restore();
+            }
+            i10++;
+            canvas = canvas2;
+        }
     }
 }

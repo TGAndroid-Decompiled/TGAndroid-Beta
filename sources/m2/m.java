@@ -7,19 +7,19 @@ import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.List;
 public abstract class m {
-    public final b2.s f14615a;
-    public final i0 f14616b;
-    public final long f14617c;
+    public final b2.s f14651a;
+    public final i0 f14652b;
+    public final long f14653c;
     public final List d;
     public final List e;
-    public final List f14618f;
+    public final List f14654f;
     public final j h;
 
     public m(b2.s sVar, List list, s sVar2, List list2, List list3, List list4) {
         List unmodifiableList;
         e2.d.b(!list.isEmpty());
-        this.f14615a = sVar;
-        this.f14616b = i0.v(list);
+        this.f14651a = sVar;
+        this.f14652b = i0.v(list);
         if (list2 == null) {
             unmodifiableList = Collections.EMPTY_LIST;
         } else {
@@ -27,17 +27,17 @@ public abstract class m {
         }
         this.d = unmodifiableList;
         this.e = list3;
-        this.f14618f = list4;
+        this.f14654f = list4;
         this.h = sVar2.a(this);
-        long j3 = sVar2.f14630c;
-        long j10 = sVar2.f14629b;
-        String str = d0.f7887a;
-        this.f14617c = d0.Y(j3, 1000000L, j10, RoundingMode.DOWN);
+        long j3 = sVar2.f14666c;
+        long j10 = sVar2.f14665b;
+        String str = d0.f7888a;
+        this.f14653c = d0.Y(j3, 1000000L, j10, RoundingMode.DOWN);
     }
 
     public abstract String a();
 
     public abstract l2.h d();
 
-    public abstract j e();
+    public abstract j f();
 }

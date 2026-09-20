@@ -5,7 +5,7 @@ import java.util.List;
 import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
 public final class qy extends nz {
-    public final vv0 X;
+    public final uv0 X;
     public final kz Y;
 
     public qy(kz kzVar) {
@@ -18,29 +18,29 @@ public final class qy extends nz {
     @Override
     public final int A() {
         kz kzVar = this.Y;
-        s4.h0 adapter = kzVar.f25907h0.getAdapter();
-        py pyVar = kzVar.f25913j0;
-        if (adapter == pyVar && pyVar.f27351x.isEmpty()) {
+        s4.h0 adapter = kzVar.f25913h0.getAdapter();
+        py pyVar = kzVar.f25919j0;
+        if (adapter == pyVar && pyVar.f27465x.isEmpty()) {
             return 0;
         }
         return B() - 1;
     }
 
     @Override
-    public final vv0 D1(int i10) {
+    public final uv0 D1(int i10) {
         ArrayList<TLRPC.DocumentAttribute> arrayList;
         TLRPC.Document document;
         kz kzVar = this.Y;
-        py pyVar = kzVar.f25913j0;
-        s4.h0 adapter = kzVar.f25907h0.getAdapter();
-        py pyVar2 = kzVar.f25924n0;
+        py pyVar = kzVar.f25919j0;
+        s4.h0 adapter = kzVar.f25913h0.getAdapter();
+        py pyVar2 = kzVar.f25930n0;
         TLRPC.Document document2 = null;
         r4 = null;
         ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
         if (adapter == pyVar2) {
             int i11 = pyVar2.H;
             if (i10 > i11) {
-                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) pyVar2.f27351x.get((i10 - i11) - 1);
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) pyVar2.f27465x.get((i10 - i11) - 1);
                 document = botInlineResult.document;
                 if (document != null) {
                     arrayList2 = document.attributes;
@@ -61,12 +61,12 @@ public final class qy extends nz {
             } else if (i10 == i11) {
                 return null;
             } else {
-                document2 = (TLRPC.Document) kzVar.f25911i1.get(i10);
+                document2 = (TLRPC.Document) kzVar.f25917i1.get(i10);
                 arrayList = document2.attributes;
                 return F1(document2, arrayList);
             }
-        } else if (!pyVar.f27351x.isEmpty()) {
-            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) pyVar.f27351x.get(i10);
+        } else if (!pyVar.f27465x.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) pyVar.f27465x.get(i10);
             document = botInlineResult2.document;
             if (document != null) {
                 arrayList2 = document.attributes;
@@ -90,27 +90,27 @@ public final class qy extends nz {
         }
     }
 
-    public final vv0 F1(TLRPC.Document document, List list) {
+    public final uv0 F1(TLRPC.Document document, List list) {
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         int i10;
         int i11;
-        vv0 vv0Var = this.X;
-        vv0Var.f29777b = 100.0f;
-        vv0Var.f29776a = 100.0f;
-        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i10 = closestPhotoSizeWithSize.f18321w) != 0 && (i11 = closestPhotoSizeWithSize.h) != 0) {
-            vv0Var.f29776a = i10;
-            vv0Var.f29777b = i11;
+        uv0 uv0Var = this.X;
+        uv0Var.f28869b = 100.0f;
+        uv0Var.f28868a = 100.0f;
+        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i10 = closestPhotoSizeWithSize.f18353w) != 0 && (i11 = closestPhotoSizeWithSize.h) != 0) {
+            uv0Var.f28868a = i10;
+            uv0Var.f28869b = i11;
         }
         if (list != null) {
             for (int i12 = 0; i12 < list.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    vv0Var.f29776a = documentAttribute.f18303w;
-                    vv0Var.f29777b = documentAttribute.h;
+                    uv0Var.f28868a = documentAttribute.f18335w;
+                    uv0Var.f28869b = documentAttribute.h;
                     break;
                 }
             }
         }
-        return vv0Var;
+        return uv0Var;
     }
 }

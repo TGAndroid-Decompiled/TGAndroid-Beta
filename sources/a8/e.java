@@ -9,7 +9,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import hg.k0;
 import kotlin.jvm.internal.i;
-import v7.g5;
+import v7.h5;
 public final class e extends Binder implements b, IInterface {
     public final int f311a;
     public final TaskCompletionSource f312b;
@@ -25,7 +25,7 @@ public final class e extends Binder implements b, IInterface {
         switch (this.f311a) {
             case 0:
                 i.e(status, "status");
-                g5.a(status, bVar, this.f312b);
+                h5.a(status, bVar, this.f312b);
                 return;
             default:
                 return;
@@ -71,7 +71,7 @@ public final class e extends Binder implements b, IInterface {
                 return;
             default:
                 i.e(status, "status");
-                g5.a(status, dVar, this.f312b);
+                h5.a(status, dVar, this.f312b);
                 return;
         }
     }

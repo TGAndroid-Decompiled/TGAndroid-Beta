@@ -12,24 +12,24 @@ import java.util.List;
 import w7.f0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(19);
-    public final String f13530a;
-    public final byte[] f13531b;
-    public final byte[][] f13532c;
+    public final String f13531a;
+    public final byte[] f13532b;
+    public final byte[][] f13533c;
     public final byte[][] d;
     public final byte[][] e;
-    public final byte[][] f13533f;
+    public final byte[][] f13534f;
     public final int[] h;
-    public final byte[][] f13534n;
+    public final byte[][] f13535n;
 
     public a(String str, byte[] bArr, byte[][] bArr2, byte[][] bArr3, byte[][] bArr4, byte[][] bArr5, int[] iArr, byte[][] bArr6) {
-        this.f13530a = str;
-        this.f13531b = bArr;
-        this.f13532c = bArr2;
+        this.f13531a = str;
+        this.f13532b = bArr;
+        this.f13533c = bArr2;
         this.d = bArr3;
         this.e = bArr4;
-        this.f13533f = bArr5;
+        this.f13534f = bArr5;
         this.h = iArr;
-        this.f13534n = bArr6;
+        this.f13535n = bArr6;
     }
 
     public static List b(int[] iArr) {
@@ -88,7 +88,7 @@ public final class a extends o6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (w7.j.a(this.f13530a, aVar.f13530a) && Arrays.equals(this.f13531b, aVar.f13531b) && w7.j.a(c(this.f13532c), c(aVar.f13532c)) && w7.j.a(c(this.d), c(aVar.d)) && w7.j.a(c(this.e), c(aVar.e)) && w7.j.a(c(this.f13533f), c(aVar.f13533f)) && w7.j.a(b(this.h), b(aVar.h)) && w7.j.a(c(this.f13534n), c(aVar.f13534n))) {
+            if (w7.j.a(this.f13531a, aVar.f13531a) && Arrays.equals(this.f13532b, aVar.f13532b) && w7.j.a(c(this.f13533c), c(aVar.f13533c)) && w7.j.a(c(this.d), c(aVar.d)) && w7.j.a(c(this.e), c(aVar.e)) && w7.j.a(c(this.f13534f), c(aVar.f13534f)) && w7.j.a(b(this.h), b(aVar.h)) && w7.j.a(c(this.f13535n), c(aVar.f13535n))) {
                 return true;
             }
         }
@@ -99,7 +99,7 @@ public final class a extends o6.a {
         String sb2;
         StringBuilder sb3 = new StringBuilder("ExperimentTokens");
         sb3.append("(");
-        String str = this.f13530a;
+        String str = this.f13531a;
         if (str == null) {
             sb2 = "null";
         } else {
@@ -111,7 +111,7 @@ public final class a extends o6.a {
         }
         sb3.append(sb2);
         sb3.append(", direct=");
-        byte[] bArr = this.f13531b;
+        byte[] bArr = this.f13532b;
         if (bArr == null) {
             sb3.append("null");
         } else {
@@ -120,13 +120,13 @@ public final class a extends o6.a {
             sb3.append("'");
         }
         sb3.append(", ");
-        d(sb3, "GAIA", this.f13532c);
+        d(sb3, "GAIA", this.f13533c);
         sb3.append(", ");
         d(sb3, "PSEUDO", this.d);
         sb3.append(", ");
         d(sb3, "ALWAYS", this.e);
         sb3.append(", ");
-        d(sb3, "OTHER", this.f13533f);
+        d(sb3, "OTHER", this.f13534f);
         sb3.append(", ");
         sb3.append("weak");
         sb3.append("=");
@@ -150,7 +150,7 @@ public final class a extends o6.a {
             sb3.append(")");
         }
         sb3.append(", ");
-        d(sb3, "directs", this.f13534n);
+        d(sb3, "directs", this.f13535n);
         sb3.append(")");
         return sb3.toString();
     }
@@ -158,14 +158,14 @@ public final class a extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 2, this.f13530a);
-        f0.c(parcel, 3, this.f13531b);
-        f0.d(parcel, 4, this.f13532c);
+        f0.l(parcel, 2, this.f13531a);
+        f0.c(parcel, 3, this.f13532b);
+        f0.d(parcel, 4, this.f13533c);
         f0.d(parcel, 5, this.d);
         f0.d(parcel, 6, this.e);
-        f0.d(parcel, 7, this.f13533f);
+        f0.d(parcel, 7, this.f13534f);
         f0.g(parcel, 8, this.h);
-        f0.d(parcel, 9, this.f13534n);
+        f0.d(parcel, 9, this.f13535n);
         f0.r(parcel, q6);
     }
 }

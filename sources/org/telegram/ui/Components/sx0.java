@@ -1,33 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 public final class sx0 implements Runnable {
-    public final int f28246a;
-    public final hy0 f28247b;
+    public final int f28220a;
+    public final TLObject f28221b;
+    public final Utilities.Callback f28222c;
 
-    public sx0(hy0 hy0Var, int i10) {
-        this.f28246a = i10;
-        this.f28247b = hy0Var;
+    public sx0(TLObject tLObject, Utilities.Callback callback, int i10) {
+        this.f28220a = i10;
+        this.f28221b = tLObject;
+        this.f28222c = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f28246a) {
+        boolean z10;
+        switch (this.f28220a) {
             case 0:
-                this.f28247b.d.l();
-                return;
-            case 1:
-                this.f28247b.d.l();
-                return;
-            case 2:
-                hy0.t(this.f28247b);
-                return;
-            case 3:
-                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f28247b.L, 1);
+                TLObject tLObject = this.f28221b;
+                if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
+                    MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
+                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f18355id)) {
+                        MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
+                    }
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                this.f28222c.run(Boolean.valueOf(z10));
                 return;
             default:
-                hy0.s(this.f28247b);
-                return;
+                TLObject tLObject2 = this.f28221b;
+                boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
+                Utilities.Callback callback = this.f28222c;
+                if (z11) {
+                    callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
+                    return;
+                } else {
+                    callback.run(0L);
+                    return;
+                }
         }
     }
 }

@@ -5,30 +5,30 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.List;
 public final class k extends GestureDetector.SimpleOnGestureListener {
-    public final View f44696a;
-    public final List f44697b;
-    public final l f44698c;
+    public final View f44740a;
+    public final List f44741b;
+    public final l f44742c;
     public final m d;
 
     public k(m mVar, View view, List list, l lVar) {
         this.d = mVar;
-        this.f44696a = view;
-        this.f44697b = list;
-        this.f44698c = lVar;
+        this.f44740a = view;
+        this.f44741b = list;
+        this.f44742c = lVar;
     }
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        View view = this.f44696a;
+        View view = this.f44740a;
         int scrollY = view.getScrollY() + ((int) motionEvent.getY());
         int x10 = ((int) motionEvent.getX()) - view.getPaddingLeft();
         int paddingTop = scrollY - view.getPaddingTop();
         m mVar = this.d;
-        int i10 = x10 - mVar.f44701c;
+        int i10 = x10 - mVar.f44745c;
         int i11 = paddingTop - mVar.d;
-        for (h hVar : this.f44697b) {
+        for (h hVar : this.f44741b) {
             if (hVar.getBounds().contains(i10, i11)) {
-                mVar.f44700b = true;
+                mVar.f44744b = true;
                 return true;
             }
         }
@@ -38,18 +38,18 @@ public final class k extends GestureDetector.SimpleOnGestureListener {
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
         m mVar = this.d;
-        if (mVar.f44700b) {
-            View view = this.f44696a;
+        if (mVar.f44744b) {
+            View view = this.f44740a;
             view.playSoundEffect(0);
-            mVar.f44700b = false;
+            mVar.f44744b = false;
             int scrollY = view.getScrollY() + ((int) motionEvent.getY());
             int x10 = ((int) motionEvent.getX()) - view.getPaddingLeft();
             int paddingTop = scrollY - view.getPaddingTop();
-            int i10 = x10 - mVar.f44701c;
+            int i10 = x10 - mVar.f44745c;
             int i11 = paddingTop - mVar.d;
-            for (h hVar : this.f44697b) {
+            for (h hVar : this.f44741b) {
                 if (hVar.getBounds().contains(i10, i11)) {
-                    this.f44698c.l(hVar, i10, i11);
+                    this.f44742c.l(hVar, i10, i11);
                     return true;
                 }
             }

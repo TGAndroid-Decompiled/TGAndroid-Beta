@@ -1,61 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class c51 extends s4.s0 {
-    public final int f23205a;
-    public int f23206b;
-    public final Object f23207c;
+public final class c51 implements zv0 {
+    public int f23141a;
+    public boolean f23142b;
+    public final d51 f23143c;
 
-    public c51(f51 f51Var) {
-        this.f23205a = 0;
-        this.f23207c = f51Var;
+    public c51(d51 d51Var) {
+        this.f23143c = d51Var;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f23205a) {
-            case 0:
-                if (i10 == 0) {
-                    this.f23206b = 0;
-                    return;
+    public final void H(int i10, boolean z10) {
+        if (this.f23141a != i10 || this.f23142b != z10) {
+            this.f23141a = i10;
+            this.f23142b = z10;
+            if (i10 > AndroidUtilities.dp(20.0f)) {
+                d51 d51Var = this.f23143c;
+                if (!d51Var.f23496x0) {
+                    d51Var.E0.setAllowNestedScroll(false);
+                    d51Var.f23496x0 = true;
                 }
-                return;
-            default:
-                return;
+            }
         }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f23205a) {
-            case 0:
-                f51 f51Var = (f51) this.f23207c;
-                this.f23206b += i11;
-                if (recyclerView.getScrollState() == 1 && Math.abs(this.f23206b) > AndroidUtilities.dp(96.0f)) {
-                    View findFocus = f51Var.e.findFocus();
-                    if (findFocus == null) {
-                        findFocus = f51Var.e;
-                    }
-                    AndroidUtilities.hideKeyboard(findFocus);
-                }
-                if (i11 != 0) {
-                    f51.m(f51Var);
-                    return;
-                }
-                return;
-            default:
-                int i12 = this.f23206b + i11;
-                this.f23206b = i12;
-                ((org.telegram.ui.d31) this.f23207c).H.setAlpha((i12 * 1.0f) / AndroidUtilities.dp(6.0f));
-                return;
-        }
-    }
-
-    public c51(org.telegram.ui.d31 d31Var) {
-        this.f23205a = 1;
-        this.f23207c = d31Var;
-        this.f23206b = 0;
     }
 }

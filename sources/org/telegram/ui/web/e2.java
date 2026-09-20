@@ -26,11 +26,11 @@ public final class e2 extends WebViewClient {
 
     @Override
     public final WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
-        l1 l1Var;
+        m1 m1Var;
         String str2;
         InputStream a2;
         String str3;
-        l1 l1Var2;
+        m1 m1Var2;
         if (this.f38894a) {
             this.f38894a = false;
             return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a4.a.p("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
@@ -41,15 +41,15 @@ public final class e2 extends WebViewClient {
             if (this.f38895b) {
                 oi.f fVar = j2Var.f38954b;
                 if (fVar != null) {
-                    l1Var2 = (l1) ((ArrayList) fVar.f15717b).get(0);
+                    m1Var2 = (m1) ((ArrayList) fVar.f15749b).get(0);
                 } else {
-                    l1Var2 = null;
+                    m1Var2 = null;
                 }
-                if (l1Var2 == null) {
+                if (m1Var2 == null) {
                     return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
                 }
                 try {
-                    a2 = l1Var2.a();
+                    a2 = m1Var2.a();
                 } catch (IOException e) {
                     FileLog.e(e);
                     return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
@@ -61,24 +61,24 @@ public final class e2 extends WebViewClient {
         } else {
             oi.f fVar2 = j2Var.f38954b;
             if (fVar2 != null) {
-                l1Var = (l1) ((HashMap) fVar2.f15718c).get(str);
+                m1Var = (m1) ((HashMap) fVar2.f15750c).get(str);
             } else {
-                l1Var = null;
+                m1Var = null;
             }
-            if (l1Var == null) {
+            if (m1Var == null) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
             }
-            m1 m1Var = (m1) l1Var.f38975a.get("content-type");
-            if (m1Var == null) {
+            n1 n1Var = (n1) m1Var.f38984a.get("content-type");
+            if (n1Var == null) {
                 str2 = null;
             } else {
-                str2 = m1Var.f38984a;
+                str2 = n1Var.f38992a;
             }
             if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
             }
             try {
-                a2 = l1Var.a();
+                a2 = m1Var.a();
                 str3 = str2;
             } catch (IOException e7) {
                 FileLog.e(e7);

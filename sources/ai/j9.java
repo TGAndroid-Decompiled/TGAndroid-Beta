@@ -22,9 +22,9 @@ public final class j9 implements Utilities.Callback {
             case 0:
                 k9 k9Var = this.f1061b;
                 ci.o8 o8Var = k9Var.f1143c;
-                o8Var.f5149c0 = (TLRPC.Document) obj;
+                o8Var.f5150c0 = (TLRPC.Document) obj;
                 TLRPC.TL_inputFileStoryDocument tL_inputFileStoryDocument = new TLRPC.TL_inputFileStoryDocument();
-                tL_inputFileStoryDocument.doc = MessagesController.toInputDocument(o8Var.f5149c0);
+                tL_inputFileStoryDocument.doc = MessagesController.toInputDocument(o8Var.f5150c0);
                 k9Var.c(tL_inputFileStoryDocument);
                 return;
             default:

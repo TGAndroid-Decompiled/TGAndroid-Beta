@@ -11,9 +11,9 @@ import java.io.Closeable;
 import java.io.IOException;
 import k6.h;
 public abstract class b {
-    public static final char[] f43880a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f43881b;
-    public static Boolean f43882c;
+    public static final char[] f43927a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static Boolean f43928b;
+    public static Boolean f43929c;
     public static Boolean d;
     public static Boolean e;
 
@@ -56,7 +56,7 @@ public abstract class b {
                 if (packageInfo != null) {
                     if (!h.h(packageInfo, false)) {
                         if (h.h(packageInfo, true)) {
-                            if (!k6.g.a(d10.f13516a)) {
+                            if (!k6.g.a(d10.f13517a)) {
                                 Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
                             }
                         }
@@ -75,14 +75,14 @@ public abstract class b {
 
     public static boolean f(Context context) {
         PackageManager packageManager = context.getPackageManager();
-        if (f43881b == null) {
-            f43881b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+        if (f43928b == null) {
+            f43928b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
         }
-        if (!f43881b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f43882c == null) {
-                f43882c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+        if (!f43928b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            if (f43929c == null) {
+                f43929c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
             }
-            if (f43882c.booleanValue()) {
+            if (f43929c.booleanValue()) {
                 if (!d() || Build.VERSION.SDK_INT >= 30) {
                     return true;
                 }
@@ -97,7 +97,7 @@ public abstract class b {
         h a2 = w6.b.a(context);
         a2.getClass();
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) a2.f13516a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) a2.f13517a.getSystemService("appops");
             if (appOpsManager != null) {
                 appOpsManager.checkPackage(i10, str);
                 return true;

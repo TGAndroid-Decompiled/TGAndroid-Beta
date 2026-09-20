@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fk implements qt {
-    public final zn f33571a;
+    public final zn f33671a;
 
     public fk(zn znVar) {
-        this.f33571a = znVar;
+        this.f33671a = znVar;
     }
 
     @Override
@@ -49,15 +49,15 @@ public final class fk implements qt {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            zn znVar = this.f33571a;
+            zn znVar = this.f33671a;
             if (znVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f18316id = inputStickerSet.f18316id;
-                org.telegram.ui.Components.hy0 hy0Var = new org.telegram.ui.Components.hy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f40261ea);
-                hy0Var.setCalcMandatoryInsets(znVar.x9());
-                hy0Var.f24763i0 = z10;
-                znVar.showDialog(hy0Var);
+                tL_inputStickerSetID.f18348id = inputStickerSet.f18348id;
+                org.telegram.ui.Components.gy0 gy0Var = new org.telegram.ui.Components.gy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f40303ea);
+                gy0Var.setCalcMandatoryInsets(znVar.x9());
+                gy0Var.f24487i0 = z10;
+                znVar.showDialog(gy0Var);
             }
         }
     }
@@ -79,17 +79,17 @@ public final class fk implements qt {
 
     @Override
     public final long a() {
-        return this.f33571a.T5;
+        return this.f33671a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f33571a.D6();
+        return this.f33671a.D6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f33571a.R3 == 1) {
+        if (this.f33671a.R3 == 1) {
             return true;
         }
         return false;
@@ -121,7 +121,7 @@ public final class fk implements qt {
     }
 
     @Override
-    public final org.telegram.ui.Components.w70 i(ci.n6 n6Var) {
+    public final org.telegram.ui.Components.v70 i(ci.n6 n6Var) {
         return null;
     }
 
@@ -137,7 +137,7 @@ public final class fk implements qt {
 
     @Override
     public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f33571a.Y.d(document, str, obj, null, true, z10, i10, i11);
+        this.f33671a.Y.d(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

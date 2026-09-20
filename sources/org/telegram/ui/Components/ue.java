@@ -18,23 +18,23 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ue extends FrameLayout {
-    public final Paint f28678a;
-    public final RectF f28679b;
-    public final org.telegram.ui.ActionBar.e6 f28680c;
+    public final Paint f28649a;
+    public final RectF f28650b;
+    public final org.telegram.ui.ActionBar.f6 f28651c;
     public final ChatActivityEnterView d;
 
-    public ue(ChatActivityEnterView chatActivityEnterView, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
+    public ue(ChatActivityEnterView chatActivityEnterView, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
         this.d = chatActivityEnterView;
-        this.f28680c = e6Var;
-        this.f28678a = new Paint(1);
-        this.f28679b = new RectF();
+        this.f28651c = f6Var;
+        this.f28649a = new Paint(1);
+        this.f28650b = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (!chatActivityEnterView.f21920a1) {
+        if (!chatActivityEnterView.f21955a1) {
             bf bfVar = chatActivityEnterView.S0;
             float f7 = 1.0f;
             if (bfVar != null && bfVar.getVisibility() == 0) {
@@ -42,7 +42,7 @@ public final class ue extends FrameLayout {
             }
             float dpf2 = AndroidUtilities.dpf2(19.0f);
             int i02 = chatActivityEnterView.i0(org.telegram.ui.ActionBar.j6.Yd);
-            Paint paint = this.f28678a;
+            Paint paint = this.f28649a;
             paint.setColor(i02);
             float dpf22 = AndroidUtilities.dpf2(3.0f);
             float dpf23 = AndroidUtilities.dpf2(38.0f);
@@ -50,7 +50,7 @@ public final class ue extends FrameLayout {
             float measuredHeight = (getMeasuredHeight() - dpf23) - dpf22;
             float measuredWidth2 = getMeasuredWidth() - dpf22;
             float measuredHeight2 = getMeasuredHeight() - dpf22;
-            RectF rectF = this.f28679b;
+            RectF rectF = this.f28650b;
             rectF.set(measuredWidth, measuredHeight, measuredWidth2, measuredHeight2);
             canvas.save();
             canvas.scale(f7, f7, rectF.centerX(), rectF.centerY());
@@ -62,7 +62,7 @@ public final class ue extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.d.f21985k5) {
+        if (this.d.f22020k5) {
             return false;
         }
         return true;
@@ -92,25 +92,25 @@ public final class ue extends FrameLayout {
         af afVar = chatActivityEnterView.G3;
         ig igVar = chatActivityEnterView.J3;
         xe xeVar = chatActivityEnterView.J0;
-        if (!chatActivityEnterView.f21985k5) {
+        if (!chatActivityEnterView.f22020k5) {
             chatActivityEnterView.Y();
             if (motionEvent.getAction() == 0) {
-                if (ChatActivityEnterView.this.f22020r4) {
-                    boolean z10 = chatActivityEnterView.f21940d2;
+                if (ChatActivityEnterView.this.f22055r4) {
+                    boolean z10 = chatActivityEnterView.f21975d2;
                     if (!z10 || chatActivityEnterView.I3) {
                         chatActivityEnterView.C2 = -1.0f;
-                        if (z10 && chatActivityEnterView.f21933c1) {
-                            if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
-                                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f21976j1;
+                        if (z10 && chatActivityEnterView.f21968c1) {
+                            if (d5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
+                                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22011j1;
                                 if (slideTextView != null) {
                                     slideTextView.setEnabled(false);
                                 }
-                                chatActivityEnterView.Y2.n1();
-                                e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
-                                    public final ue f28128b;
+                                chatActivityEnterView.Y2.o1();
+                                d5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
+                                    public final ue f28099b;
 
                                     {
-                                        this.f28128b = this;
+                                        this.f28099b = this;
                                     }
 
                                     @Override
@@ -118,16 +118,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -147,35 +147,35 @@ public final class ue extends FrameLayout {
                             if (chatActivityEnterView.E2 && chatActivityEnterView.c()) {
                                 Activity activity = chatActivityEnterView.N2;
                                 long a2 = znVar.a();
-                                j2 j2Var = new j2(10);
+                                i2 i2Var = new i2(12);
                                 ai.f fVar = new ai.f(28);
-                                Pattern pattern = e5.f23785a;
-                                org.telegram.ui.ActionBar.e6 e6Var = this.f28680c;
-                                e5.K(activity, a2, -1L, 0, false, j2Var, fVar, new c5(e6Var), e6Var);
+                                Pattern pattern = d5.f23492a;
+                                org.telegram.ui.ActionBar.f6 f6Var = this.f28651c;
+                                d5.K(activity, a2, -1L, 0, false, i2Var, fVar, new b5(f6Var), f6Var);
                             }
-                            if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
-                                if (chatActivityEnterView.f21933c1) {
-                                    ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f21976j1;
+                            if (d5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
+                                if (chatActivityEnterView.f21968c1) {
+                                    ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f22011j1;
                                     if (slideTextView2 != null) {
                                         slideTextView2.setEnabled(false);
                                     }
-                                    chatActivityEnterView.Y2.n1();
+                                    chatActivityEnterView.Y2.o1();
                                 } else {
-                                    if (chatActivityEnterView.f22020r4) {
+                                    if (chatActivityEnterView.f22055r4) {
                                         chatActivityEnterView.I3 = true;
                                     }
                                     MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.O);
-                                    chatActivityEnterView.Y2.a1(0);
-                                    ChatActivityEnterView.SlideTextView slideTextView3 = chatActivityEnterView.f21976j1;
+                                    chatActivityEnterView.Y2.b1(0);
+                                    ChatActivityEnterView.SlideTextView slideTextView3 = chatActivityEnterView.f22011j1;
                                     if (slideTextView3 != null) {
                                         slideTextView3.setEnabled(false);
                                     }
                                 }
-                                e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
-                                    public final ue f28128b;
+                                d5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
+                                    public final ue f28099b;
 
                                     {
-                                        this.f28128b = this;
+                                        this.f28099b = this;
                                     }
 
                                     @Override
@@ -183,16 +183,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -206,34 +206,34 @@ public final class ue extends FrameLayout {
                                 i15 = 1;
                             }
                             mediaController.stopRecording(i15, true, 0, chatActivityEnterView.O, 0L);
-                            chatActivityEnterView.Y2.a1(0);
+                            chatActivityEnterView.Y2.b1(0);
                         }
                         chatActivityEnterView.E2 = false;
-                        chatActivityEnterView.f21957g0 = false;
+                        chatActivityEnterView.f21992g0 = false;
                         Runnable runnable = new Runnable(this) {
-                            public final ue f28373b;
+                            public final ue f28364b;
 
                             {
-                                this.f28373b = this;
+                                this.f28364b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView2 = this.f28373b.d;
-                                        chatActivityEnterView2.f21951f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView2 = this.f28364b.d;
+                                        chatActivityEnterView2.f21986f0 = null;
                                         chatActivityEnterView2.K1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView3 = this.f28373b.d;
-                                        chatActivityEnterView3.f21951f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView3 = this.f28364b.d;
+                                        chatActivityEnterView3.f21986f0 = null;
                                         chatActivityEnterView3.K1(1, true);
                                         return;
                                 }
                             }
                         };
-                        chatActivityEnterView.f21951f0 = runnable;
+                        chatActivityEnterView.f21986f0 = runnable;
                         AndroidUtilities.runOnUIThread(runnable, 200L);
                     }
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -247,12 +247,12 @@ public final class ue extends FrameLayout {
                 if (znVar == null) {
                     userFull = chatActivityEnterView.K;
                 } else {
-                    userFull = znVar.f40207a8;
+                    userFull = znVar.f40249a8;
                 }
-                if ((chat != null && !ChatObject.canSendVoice(chat) && (!ChatObject.canSendRoundVideo(chat) || !chatActivityEnterView.f21940d2)) || (userFull != null && userFull.voice_messages_forbidden)) {
+                if ((chat != null && !ChatObject.canSendVoice(chat) && (!ChatObject.canSendRoundVideo(chat) || !chatActivityEnterView.f21975d2)) || (userFull != null && userFull.voice_messages_forbidden)) {
                     chatActivityEnterView.Y2.i2();
                     return true;
-                } else if (chatActivityEnterView.f21940d2) {
+                } else if (chatActivityEnterView.f21975d2) {
                     chatActivityEnterView.I3 = false;
                     chatActivityEnterView.H3 = true;
                     AndroidUtilities.runOnUIThread(igVar, 150L);
@@ -267,28 +267,28 @@ public final class ue extends FrameLayout {
                     float y3 = motionEvent.getY();
                     ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.M1;
                     ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
-                    boolean z11 = chatActivityEnterView2.f22020r4;
+                    boolean z11 = chatActivityEnterView2.f22055r4;
                     if (!z11) {
                         if (!z11) {
-                            if (chatActivityEnterView2.f21984k4 == -1.0f) {
-                                chatActivityEnterView2.f21978j4 = y3;
+                            if (chatActivityEnterView2.f22019k4 == -1.0f) {
+                                chatActivityEnterView2.f22013j4 = y3;
                             }
-                            chatActivityEnterView2.f21984k4 = y3;
+                            chatActivityEnterView2.f22019k4 = y3;
                             recordCircle.invalidate();
-                            if (!chatActivityEnterView2.f22014q4 && chatActivityEnterView2.f21973i4 >= 0.7f && chatActivityEnterView2.f21978j4 - chatActivityEnterView2.f21984k4 >= AndroidUtilities.dp(57.0f)) {
-                                chatActivityEnterView2.f22020r4 = true;
+                            if (!chatActivityEnterView2.f22049q4 && chatActivityEnterView2.f22008i4 >= 0.7f && chatActivityEnterView2.f22013j4 - chatActivityEnterView2.f22019k4 >= AndroidUtilities.dp(57.0f)) {
+                                chatActivityEnterView2.f22055r4 = true;
                                 rg rgVar = chatActivityEnterView2.N1;
                                 if (rgVar != null && MessagesController.getGlobalMainSettings().getInt("voicepausehint", 0) <= 3) {
                                     rgVar.a();
                                     ci.f4 f4Var = new ci.f4(rgVar.getContext(), 2);
-                                    rgVar.f27885a = f4Var;
+                                    rgVar.f27891a = f4Var;
                                     f4Var.l(1.0f, 0.0f);
-                                    rgVar.f27885a.p(true);
-                                    rgVar.f27885a.s(LocaleController.getString(R.string.VoicePauseHint));
+                                    rgVar.f27891a.p(true);
+                                    rgVar.f27891a.s(LocaleController.getString(R.string.VoicePauseHint));
                                     MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", MessagesController.getGlobalMainSettings().getInt("voicepausehint", 0) + 1).apply();
-                                    rgVar.addView(rgVar.f27885a, w7.y5.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
-                                    ci.f4 f4Var2 = rgVar.f27885a;
-                                    f4Var2.f4638l0 = new pg(rgVar, f4Var2, 3);
+                                    rgVar.addView(rgVar.f27891a, w7.y5.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
+                                    ci.f4 f4Var2 = rgVar.f27891a;
+                                    f4Var2.f4639l0 = new pg(rgVar, f4Var2, 3);
                                     f4Var2.u();
                                 }
                             } else {
@@ -299,9 +299,9 @@ public final class ue extends FrameLayout {
                                 recordCircle2.G = y3;
                                 recordCircle2.F = x10;
                                 ChatActivityEnterView chatActivityEnterView3 = ChatActivityEnterView.this;
-                                if (chatActivityEnterView3.f21942d4 && chatActivityEnterView3.f21955f4 == 0.0f && f13 > recordCircle2.E) {
+                                if (chatActivityEnterView3.f21977d4 && chatActivityEnterView3.f21990f4 == 0.0f && f13 > recordCircle2.E) {
                                     f7 = 1.0f;
-                                    chatActivityEnterView3.f21948e4 = System.currentTimeMillis();
+                                    chatActivityEnterView3.f21983e4 = System.currentTimeMillis();
                                 } else {
                                     f7 = 1.0f;
                                 }
@@ -324,15 +324,15 @@ public final class ue extends FrameLayout {
                                     } else {
                                         f10 = f15;
                                     }
-                                    ChatActivityEnterView.SlideTextView slideTextView4 = chatActivityEnterView.f21976j1;
+                                    ChatActivityEnterView.SlideTextView slideTextView4 = chatActivityEnterView.f22011j1;
                                     if (slideTextView4 != null) {
-                                        slideTextView4.f22079r = f10;
+                                        slideTextView4.f22114r = f10;
                                     }
                                     chatActivityEnterView.setSlideToCancelProgress(f10);
                                     f15 = f10;
                                 }
                                 if (f15 == 0.0f) {
-                                    if (chatActivityEnterView.f21940d2 && chatActivityEnterView.f21933c1) {
+                                    if (chatActivityEnterView.f21975d2 && chatActivityEnterView.f21968c1) {
                                         CameraController.getInstance().cancelOnInitRunnable(afVar);
                                         ng ngVar2 = chatActivityEnterView.Y2;
                                         if (chatActivityEnterView.O) {
@@ -344,7 +344,7 @@ public final class ue extends FrameLayout {
                                         chatActivityEnterView.R4 = 0L;
                                         xeVar.setEffect(0L);
                                     } else {
-                                        chatActivityEnterView.Y2.a1(0);
+                                        chatActivityEnterView.Y2.b1(0);
                                         MediaController.getInstance().stopRecording(0, false, 0, chatActivityEnterView.O, 0L);
                                     }
                                     chatActivityEnterView.E2 = false;
@@ -359,8 +359,8 @@ public final class ue extends FrameLayout {
                 }
                 return true;
             } else if (motionEvent.getAction() == 3 && chatActivityEnterView.E2) {
-                if (chatActivityEnterView.f21973i4 < 0.7f) {
-                    if (chatActivityEnterView.f21940d2 && chatActivityEnterView.f21933c1) {
+                if (chatActivityEnterView.f22008i4 < 0.7f) {
+                    if (chatActivityEnterView.f21975d2 && chatActivityEnterView.f21968c1) {
                         CameraController.getInstance().cancelOnInitRunnable(afVar);
                         ng ngVar3 = chatActivityEnterView.Y2;
                         if (chatActivityEnterView.O) {
@@ -373,26 +373,26 @@ public final class ue extends FrameLayout {
                         chatActivityEnterView.R4 = 0L;
                         xeVar.setEffect(0L);
                     } else {
-                        chatActivityEnterView.Y2.a1(0);
+                        chatActivityEnterView.Y2.b1(0);
                         MediaController.getInstance().stopRecording(0, false, 0, chatActivityEnterView.O, 0L);
                         j12 = 0;
                     }
-                    chatActivityEnterView.f21970i1 = j12;
+                    chatActivityEnterView.f22005i1 = j12;
                     chatActivityEnterView.E2 = false;
                     chatActivityEnterView.K1(5, true);
                     return false;
                 }
-                chatActivityEnterView.f22020r4 = true;
+                chatActivityEnterView.f22055r4 = true;
                 ChatActivityEnterView.m(chatActivityEnterView);
                 return false;
             } else {
                 ChatActivityEnterView.RecordCircle recordCircle3 = chatActivityEnterView.M1;
-                if ((recordCircle3 != null && ChatActivityEnterView.this.f22020r4) || ((keVar = chatActivityEnterView.f21945e1) != null && keVar.getVisibility() == 0)) {
+                if ((recordCircle3 != null && ChatActivityEnterView.this.f22055r4) || ((keVar = chatActivityEnterView.f21980e1) != null && keVar.getVisibility() == 0)) {
                     if (chatActivityEnterView.H3) {
                         AndroidUtilities.cancelRunOnUIThread(igVar);
                     }
                 } else if ((((ueVar.getX() + motionEvent.getX()) - chatActivityEnterView.C2) / chatActivityEnterView.D2) + 1.0f < 0.45d) {
-                    if (chatActivityEnterView.f21940d2 && chatActivityEnterView.f21933c1) {
+                    if (chatActivityEnterView.f21975d2 && chatActivityEnterView.f21968c1) {
                         CameraController.getInstance().cancelOnInitRunnable(afVar);
                         ng ngVar4 = chatActivityEnterView.Y2;
                         if (chatActivityEnterView.O) {
@@ -405,19 +405,19 @@ public final class ue extends FrameLayout {
                         chatActivityEnterView.R4 = 0L;
                         xeVar.setEffect(0L);
                     } else {
-                        chatActivityEnterView.Y2.a1(0);
+                        chatActivityEnterView.Y2.b1(0);
                         MediaController.getInstance().stopRecording(0, false, 0, chatActivityEnterView.O, 0L);
                         j11 = 0;
                     }
-                    chatActivityEnterView.f21970i1 = j11;
+                    chatActivityEnterView.f22005i1 = j11;
                     chatActivityEnterView.E2 = false;
                     chatActivityEnterView.K1(5, true);
                     return true;
                 } else if (chatActivityEnterView.H3) {
                     AndroidUtilities.cancelRunOnUIThread(igVar);
-                    if (chatActivityEnterView.f22055y0 && chatActivityEnterView.f22049x0) {
-                        chatActivityEnterView.Y2.X(!chatActivityEnterView.f21933c1);
-                        chatActivityEnterView.j1(!chatActivityEnterView.f21933c1, true);
+                    if (chatActivityEnterView.f22090y0 && chatActivityEnterView.f22084x0) {
+                        chatActivityEnterView.Y2.X(!chatActivityEnterView.f21968c1);
+                        chatActivityEnterView.j1(!chatActivityEnterView.f21968c1, true);
                     } else {
                         chatActivityEnterView.Y2.i2();
                     }
@@ -425,21 +425,21 @@ public final class ue extends FrameLayout {
                     sendAccessibilityEvent(1);
                     return true;
                 } else {
-                    boolean z12 = chatActivityEnterView.f21940d2;
+                    boolean z12 = chatActivityEnterView.f21975d2;
                     if (!z12 || chatActivityEnterView.I3) {
                         chatActivityEnterView.C2 = -1.0f;
-                        if (z12 && chatActivityEnterView.f21933c1) {
-                            if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
-                                ChatActivityEnterView.SlideTextView slideTextView5 = chatActivityEnterView.f21976j1;
+                        if (z12 && chatActivityEnterView.f21968c1) {
+                            if (d5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
+                                ChatActivityEnterView.SlideTextView slideTextView5 = chatActivityEnterView.f22011j1;
                                 if (slideTextView5 != null) {
                                     slideTextView5.setEnabled(false);
                                 }
-                                chatActivityEnterView.Y2.n1();
-                                e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
-                                    public final ue f28128b;
+                                chatActivityEnterView.Y2.o1();
+                                d5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
+                                    public final ue f28099b;
 
                                     {
-                                        this.f28128b = this;
+                                        this.f28099b = this;
                                     }
 
                                     @Override
@@ -447,16 +447,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -476,23 +476,23 @@ public final class ue extends FrameLayout {
                             xeVar.setEffect(0L);
                         } else {
                             j3 = 0;
-                            if (!chatActivityEnterView.f22055y0) {
+                            if (!chatActivityEnterView.f22090y0) {
                                 chatActivityEnterView.Y2.i2();
-                            } else if (e5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
-                                if (chatActivityEnterView.f22020r4) {
+                            } else if (d5.d0(chatActivityEnterView.Q, chatActivityEnterView.P2)) {
+                                if (chatActivityEnterView.f22055r4) {
                                     chatActivityEnterView.I3 = true;
                                 }
                                 MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.O);
-                                chatActivityEnterView.Y2.a1(0);
-                                ChatActivityEnterView.SlideTextView slideTextView6 = chatActivityEnterView.f21976j1;
+                                chatActivityEnterView.Y2.b1(0);
+                                ChatActivityEnterView.SlideTextView slideTextView6 = chatActivityEnterView.f22011j1;
                                 if (slideTextView6 != null) {
                                     slideTextView6.setEnabled(false);
                                 }
-                                e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
-                                    public final ue f28128b;
+                                d5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new Utilities.Callback(this) {
+                                    public final ue f28099b;
 
                                     {
-                                        this.f28128b = this;
+                                        this.f28099b = this;
                                     }
 
                                     @Override
@@ -500,16 +500,16 @@ public final class ue extends FrameLayout {
                                         Long l4 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 1:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             case 2:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                             default:
-                                                this.f28128b.d.T0(0, true, 0, false, l4.longValue());
+                                                this.f28099b.d.T0(0, true, 0, false, l4.longValue());
                                                 return;
                                         }
                                     }
@@ -519,12 +519,12 @@ public final class ue extends FrameLayout {
                                 if (chatActivityEnterView.E2 && chatActivityEnterView.c()) {
                                     Activity activity2 = chatActivityEnterView.N2;
                                     long a10 = znVar.a();
-                                    j2 j2Var2 = new j2(11);
+                                    i2 i2Var2 = new i2(13);
                                     ai.f fVar2 = new ai.f(29);
-                                    org.telegram.ui.ActionBar.e6 e6Var2 = this.f28680c;
-                                    e5.K(activity2, a10, -1L, 0, false, j2Var2, fVar2, new c5(e6Var2), e6Var2);
+                                    org.telegram.ui.ActionBar.f6 f6Var2 = this.f28651c;
+                                    d5.K(activity2, a10, -1L, 0, false, i2Var2, fVar2, new b5(f6Var2), f6Var2);
                                 }
-                                chatActivityEnterView.Y2.a1(0);
+                                chatActivityEnterView.Y2.b1(0);
                                 MediaController mediaController2 = MediaController.getInstance();
                                 if (chatActivityEnterView.c()) {
                                     i10 = 3;
@@ -535,32 +535,32 @@ public final class ue extends FrameLayout {
                             }
                         }
                         chatActivityEnterView.E2 = false;
-                        chatActivityEnterView.f21957g0 = false;
+                        chatActivityEnterView.f21992g0 = false;
                         Runnable runnable2 = new Runnable(this) {
-                            public final ue f28373b;
+                            public final ue f28364b;
 
                             {
-                                this.f28373b = this;
+                                this.f28364b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView22 = this.f28373b.d;
-                                        chatActivityEnterView22.f21951f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView22 = this.f28364b.d;
+                                        chatActivityEnterView22.f21986f0 = null;
                                         chatActivityEnterView22.K1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView32 = this.f28373b.d;
-                                        chatActivityEnterView32.f21951f0 = null;
+                                        ChatActivityEnterView chatActivityEnterView32 = this.f28364b.d;
+                                        chatActivityEnterView32.f21986f0 = null;
                                         chatActivityEnterView32.K1(1, true);
                                         return;
                                 }
                             }
                         };
-                        chatActivityEnterView.f21951f0 = runnable2;
-                        if (chatActivityEnterView.f22053x4) {
+                        chatActivityEnterView.f21986f0 = runnable2;
+                        if (chatActivityEnterView.f22088x4) {
                             j10 = 500;
                         } else {
                             j10 = j3;

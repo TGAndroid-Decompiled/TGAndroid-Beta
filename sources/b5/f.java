@@ -17,7 +17,7 @@ public final class f implements p {
     }
 
     @Override
-    public final String[] n() {
+    public final String[] q() {
         return f3418a;
     }
 }

@@ -9,42 +9,42 @@ import ci.i2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.bu;
 import w7.y5;
 public final class l extends LinearLayout {
-    public final bu f44585a;
-    public final TextView f44586b;
-    public k f44587c;
+    public final bu f44629a;
+    public final TextView f44630b;
+    public k f44631c;
 
-    public l(Context context, e6 e6Var) {
+    public l(Context context, f6 f6Var) {
         super(context);
         setOrientation(0);
-        bu buVar = new bu(context, e6Var);
-        this.f44585a = buVar;
+        bu buVar = new bu(context, f6Var);
+        this.f44629a = buVar;
         buVar.setLines(1);
         buVar.setSingleLine(true);
         InputFilter[] inputFilterArr = {new j(this)};
         buVar.setInputType(16384);
         buVar.setFilters(inputFilterArr);
         buVar.setTextSize(1, 16.0f);
-        buVar.setTextColor(j6.v0(j6.Ud, e6Var));
-        buVar.setLinkTextColor(j6.v0(j6.f19139hc, e6Var));
-        buVar.setHighlightColor(j6.v0(j6.f19384uf, e6Var));
+        buVar.setTextColor(j6.v0(j6.Ud, f6Var));
+        buVar.setLinkTextColor(j6.v0(j6.f19171hc, f6Var));
+        buVar.setHighlightColor(j6.v0(j6.f19416uf, f6Var));
         int i10 = j6.Vd;
-        buVar.setHintColor(j6.v0(i10, e6Var));
-        buVar.setHintTextColor(j6.v0(i10, e6Var));
-        buVar.setCursorColor(j6.v0(j6.Wd, e6Var));
-        buVar.setHandlesColor(j6.v0(j6.f19401vf, e6Var));
+        buVar.setHintColor(j6.v0(i10, f6Var));
+        buVar.setHintTextColor(j6.v0(i10, f6Var));
+        buVar.setCursorColor(j6.v0(j6.Wd, f6Var));
+        buVar.setHandlesColor(j6.v0(j6.f19433vf, f6Var));
         buVar.setBackground(null);
         buVar.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
         buVar.addTextChangedListener(new i2(this, 18));
         buVar.setImeOptions(6);
         TextView textView = new TextView(context);
-        this.f44586b = textView;
+        this.f44630b = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(j6.v0(j6.f19169j5, e6Var));
+        textView.setTextColor(j6.v0(j6.f19201j5, f6Var));
         if (LocaleController.isRTL) {
             LinearLayout.LayoutParams t10 = y5.t(-1, -2, 16, 20, 0, 36, 0);
             t10.weight = 1.0f;
@@ -62,10 +62,10 @@ public final class l extends LinearLayout {
     }
 
     public void setAfterTextChangedListener(k kVar) {
-        this.f44587c = kVar;
+        this.f44631c = kVar;
     }
 
     public void setCount(int i10) {
-        this.f44586b.setText(String.valueOf(i10));
+        this.f44630b.setText(String.valueOf(i10));
     }
 }

@@ -7,25 +7,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class vo implements RequestDelegate {
-    public final int f38600a;
-    public final ip f38601b;
+    public final int f38580a;
+    public final ip f38581b;
 
     public vo(ip ipVar, int i10) {
-        this.f38600a = i10;
-        this.f38601b = ipVar;
+        this.f38580a = i10;
+        this.f38581b = ipVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38600a) {
+        switch (this.f38580a) {
             case 0:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new xo(this.f38601b, 3));
+                    AndroidUtilities.runOnUIThread(new xo(this.f38581b, 3));
                     return;
                 }
                 return;
             case 1:
-                final ip ipVar = this.f38601b;
+                final ip ipVar = this.f38581b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -41,13 +41,13 @@ public final class vo implements RequestDelegate {
                                         }
                                     }
                                 }
-                                ipVar2.f34595t0 = false;
+                                ipVar2.f34654t0 = false;
                                 AndroidUtilities.runOnUIThread(new xo(ipVar2, 4));
                                 return;
                             default:
                                 ip ipVar3 = ipVar;
-                                ArrayList arrayList = ipVar3.f34579f0;
-                                ipVar3.f34576d0 = false;
+                                ArrayList arrayList = ipVar3.f34638f0;
+                                ipVar3.f34635d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && ipVar3.getParentActivity() != null) {
                                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -64,7 +64,7 @@ public final class vo implements RequestDelegate {
                                         }
                                         nVar.a(chat, z11);
                                         arrayList.add(nVar);
-                                        ipVar3.f34597x.addView(nVar, w7.y5.n(-1, 72));
+                                        ipVar3.f34656x.addView(nVar, w7.y5.n(-1, 72));
                                     }
                                     ipVar3.b0();
                                     return;
@@ -75,7 +75,7 @@ public final class vo implements RequestDelegate {
                 });
                 return;
             case 2:
-                final ip ipVar2 = this.f38601b;
+                final ip ipVar2 = this.f38581b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -91,13 +91,13 @@ public final class vo implements RequestDelegate {
                                         }
                                     }
                                 }
-                                ipVar22.f34595t0 = false;
+                                ipVar22.f34654t0 = false;
                                 AndroidUtilities.runOnUIThread(new xo(ipVar22, 4));
                                 return;
                             default:
                                 ip ipVar3 = ipVar2;
-                                ArrayList arrayList = ipVar3.f34579f0;
-                                ipVar3.f34576d0 = false;
+                                ArrayList arrayList = ipVar3.f34638f0;
+                                ipVar3.f34635d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && ipVar3.getParentActivity() != null) {
                                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -114,7 +114,7 @@ public final class vo implements RequestDelegate {
                                         }
                                         nVar.a(chat, z11);
                                         arrayList.add(nVar);
-                                        ipVar3.f34597x.addView(nVar, w7.y5.n(-1, 72));
+                                        ipVar3.f34656x.addView(nVar, w7.y5.n(-1, 72));
                                     }
                                     ipVar3.b0();
                                     return;
@@ -125,7 +125,7 @@ public final class vo implements RequestDelegate {
                 });
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new qh(14, this.f38601b, tL_error));
+                AndroidUtilities.runOnUIThread(new gh(16, this.f38581b, tL_error));
                 return;
         }
     }

@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class m4 implements Runnable {
-    public final p4 f35517a;
+    public final p4 f35593a;
 
     public m4(p4 p4Var) {
-        this.f35517a = p4Var;
+        this.f35593a = p4Var;
     }
 
     @Override
@@ -13,11 +13,11 @@ public final class m4 implements Runnable {
         ?? n2Var = new org.telegram.ui.ActionBar.n2(null);
         n2Var.N = new a0.i();
         n2Var.O = new ArrayList();
-        n2Var.f31860x = 1;
+        n2Var.f31900x = 1;
         n2Var.G = false;
-        p4 p4Var = this.f35517a;
+        p4 p4Var = this.f35593a;
         n2Var.R = p4Var.U();
-        n2Var.f31856n = new y0(this, 2);
+        n2Var.f31896n = new y0(this, 2);
         p4Var.presentFragment((org.telegram.ui.ActionBar.n2) n2Var);
     }
 }

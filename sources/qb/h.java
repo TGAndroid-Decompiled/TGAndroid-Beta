@@ -7,8 +7,8 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 public final class h extends t7.m {
-    public static final ThreadLocal f41503b = new ThreadLocal();
-    public final ThreadPoolExecutor f41504a;
+    public static final ThreadLocal f41545b = new ThreadLocal();
+    public final ThreadPoolExecutor f41546a;
 
     public h() {
         final ThreadFactory defaultThreadFactory = Executors.defaultThreadFactory();
@@ -19,13 +19,13 @@ public final class h extends t7.m {
                 return defaultThreadFactory.newThread(new n(1, runnable));
             }
         });
-        this.f41504a = threadPoolExecutor;
+        this.f41546a = threadPoolExecutor;
         threadPoolExecutor.allowCoreThreadTimeOut(true);
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        Deque deque = (Deque) f41503b.get();
+        Deque deque = (Deque) f41545b.get();
         if (deque != null && deque.size() <= 1) {
             deque.add(runnable);
             if (deque.size() <= 1) {
@@ -38,6 +38,6 @@ public final class h extends t7.m {
             }
             return;
         }
-        this.f41504a.execute(new n(0, runnable));
+        this.f41546a.execute(new n(0, runnable));
     }
 }

@@ -26,20 +26,20 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.ThemeEditorView;
 import org.telegram.ui.LaunchActivity;
 public class ThemeEditorView {
-    public static volatile ThemeEditorView f22394n;
-    public n11 f22395a;
-    public Activity f22396b;
-    public ArrayList f22397c;
+    public static volatile ThemeEditorView f22429n;
+    public m11 f22430a;
+    public Activity f22431b;
+    public ArrayList f22432c;
     public int d;
     public final int e = AndroidUtilities.dp(54.0f);
-    public final int f22398f = AndroidUtilities.dp(54.0f);
-    public WindowManager.LayoutParams f22399g;
+    public final int f22433f = AndroidUtilities.dp(54.0f);
+    public WindowManager.LayoutParams f22434g;
     public WindowManager h;
-    public DecelerateInterpolator f22400i;
-    public SharedPreferences f22401j;
-    public e91 f22402k;
-    public EditorAlert f22403l;
-    public org.telegram.ui.ActionBar.i6 f22404m;
+    public DecelerateInterpolator f22435i;
+    public SharedPreferences f22436j;
+    public e91 f22437k;
+    public EditorAlert f22438l;
+    public org.telegram.ui.ActionBar.i6 f22439m;
 
     public class EditorAlert extends org.telegram.ui.ActionBar.f3 {
         public static final int M = 0;
@@ -50,57 +50,57 @@ public class ThemeEditorView {
         public AnimatorSet I;
         public boolean J;
         public boolean K;
-        public final y11 f22405b;
-        public final s11 f22406c;
+        public final x11 f22440b;
+        public final r11 f22441c;
         public final FrameLayout d;
         public final mz e;
-        public final e21 f22407f;
+        public final d21 f22442f;
         public final s4.c0 h;
-        public final z11 f22408n;
-        public final a21 f22409r;
-        public final FrameLayout f22410s;
+        public final y11 f22443n;
+        public final z11 f22444r;
+        public final FrameLayout f22445s;
         public final FrameLayout v;
-        public final View[] f22411w;
-        public final AnimatorSet[] f22412x;
-        public final Drawable f22413y;
+        public final View[] f22446w;
+        public final AnimatorSet[] f22447x;
+        public final Drawable f22448y;
 
         public EditorAlert(Context context, ArrayList arrayList) {
             super(context, true);
-            this.f22411w = new View[2];
-            this.f22412x = new AnimatorSet[2];
-            this.f22413y = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-            r11 r11Var = new r11(this, context);
-            this.containerView = r11Var;
-            r11Var.setWillNotDraw(false);
+            this.f22446w = new View[2];
+            this.f22447x = new AnimatorSet[2];
+            this.f22448y = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+            q11 q11Var = new q11(this, context);
+            this.containerView = q11Var;
+            q11Var.setWillNotDraw(false);
             ViewGroup viewGroup = this.containerView;
             int i10 = this.backgroundPaddingLeft;
             viewGroup.setPadding(i10, 0, i10, 0);
             FrameLayout frameLayout = new FrameLayout(context);
             this.d = frameLayout;
             frameLayout.setBackgroundColor(-1);
-            e21 e21Var = new e21(this, context);
-            this.f22407f = e21Var;
-            frameLayout.addView(e21Var, w7.y5.e(-1, -1, 51));
-            s11 s11Var = new s11(this, context);
-            this.f22406c = s11Var;
-            s11Var.setSelectorDrawableColor(251658240);
-            s11Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
-            s11Var.setClipToPadding(false);
+            d21 d21Var = new d21(this, context);
+            this.f22442f = d21Var;
+            frameLayout.addView(d21Var, w7.y5.e(-1, -1, 51));
+            r11 r11Var = new r11(this, context);
+            this.f22441c = r11Var;
+            r11Var.setSelectorDrawableColor(251658240);
+            r11Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
+            r11Var.setClipToPadding(false);
             getContext();
             s4.c0 c0Var = new s4.c0();
             this.h = c0Var;
-            s11Var.setLayoutManager(c0Var);
-            s11Var.setHorizontalScrollBarEnabled(false);
-            s11Var.setVerticalScrollBarEnabled(false);
-            this.containerView.addView(s11Var, w7.y5.e(-1, -1, 51));
+            r11Var.setLayoutManager(c0Var);
+            r11Var.setHorizontalScrollBarEnabled(false);
+            r11Var.setVerticalScrollBarEnabled(false);
+            this.containerView.addView(r11Var, w7.y5.e(-1, -1, 51));
             ?? h0Var = new s4.h0();
             h0Var.d = new ArrayList();
-            h0Var.f30705c = context;
+            h0Var.f30437c = context;
             HashMap hashMap = new HashMap();
             int size = arrayList.size();
             for (int i11 = 0; i11 < size; i11++) {
                 org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) arrayList.get(i11);
-                int i12 = l6Var.f19577f;
+                int i12 = l6Var.f19609f;
                 ArrayList arrayList2 = (ArrayList) hashMap.get(Integer.valueOf(i12));
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
@@ -110,47 +110,47 @@ public class ThemeEditorView {
                 arrayList2.add(l6Var);
             }
             if (Build.VERSION.SDK_INT >= 26) {
-                int i13 = org.telegram.ui.ActionBar.j6.f19006a7;
+                int i13 = org.telegram.ui.ActionBar.j6.f19038a7;
                 if (!hashMap.containsKey(Integer.valueOf(i13))) {
                     ArrayList arrayList3 = new ArrayList();
                     arrayList3.add(new org.telegram.ui.ActionBar.l6(null, 0, null, null, null, null, i13));
                     h0Var.d.add(arrayList3);
                 }
             }
-            this.f22408n = h0Var;
-            s11Var.setAdapter(h0Var);
-            this.f22409r = new a21(this, context);
-            this.f22406c.setGlowColor(-657673);
-            this.f22406c.setItemAnimator(null);
-            this.f22406c.setLayoutAnimation(null);
-            this.f22406c.setOnItemClickListener(new j(this, 18));
-            this.f22406c.setOnScrollListener(new t11(this));
+            this.f22443n = h0Var;
+            r11Var.setAdapter(h0Var);
+            this.f22444r = new z11(this, context);
+            this.f22441c.setGlowColor(-657673);
+            this.f22441c.setItemAnimator(null);
+            this.f22441c.setLayoutAnimation(null);
+            this.f22441c.setOnItemClickListener(new j(this, 18));
+            this.f22441c.setOnScrollListener(new s11(this));
             mz mzVar = new mz(context, null);
             this.e = mzVar;
             mzVar.setShowAtCenter(true);
             mzVar.c();
             mzVar.setText(LocaleController.getString(R.string.NoResult));
-            this.f22406c.setEmptyView(mzVar);
+            this.f22441c.setEmptyView(mzVar);
             this.containerView.addView(mzVar, w7.y5.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
             layoutParams.topMargin = AndroidUtilities.dp(58.0f);
-            this.f22411w[0] = new View(context);
-            this.f22411w[0].setBackgroundColor(301989888);
-            this.f22411w[0].setAlpha(0.0f);
-            this.f22411w[0].setTag(1);
-            this.containerView.addView(this.f22411w[0], layoutParams);
+            this.f22446w[0] = new View(context);
+            this.f22446w[0].setBackgroundColor(301989888);
+            this.f22446w[0].setAlpha(0.0f);
+            this.f22446w[0].setTag(1);
+            this.containerView.addView(this.f22446w[0], layoutParams);
             this.containerView.addView(this.d, w7.y5.e(-1, 58, 51));
-            y11 y11Var = new y11(this, context);
-            this.f22405b = y11Var;
-            y11Var.setVisibility(8);
-            this.containerView.addView(y11Var, w7.y5.e(-1, -1, 1));
+            x11 x11Var = new x11(this, context);
+            this.f22440b = x11Var;
+            x11Var.setVisibility(8);
+            this.containerView.addView(x11Var, w7.y5.e(-1, -1, 1));
             FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
             layoutParams2.bottomMargin = AndroidUtilities.dp(48.0f);
-            this.f22411w[1] = new View(context);
-            this.f22411w[1].setBackgroundColor(301989888);
-            this.containerView.addView(this.f22411w[1], layoutParams2);
+            this.f22446w[1] = new View(context);
+            this.f22446w[1].setBackgroundColor(301989888);
+            this.containerView.addView(this.f22446w[1], layoutParams2);
             FrameLayout frameLayout2 = new FrameLayout(context);
-            this.f22410s = frameLayout2;
+            this.f22445s = frameLayout2;
             frameLayout2.setBackgroundColor(-1);
             this.containerView.addView(frameLayout2, w7.y5.e(-1, 48, 83));
             TextView textView = new TextView(context);
@@ -163,16 +163,16 @@ public class ThemeEditorView {
             textView.setTypeface(AndroidUtilities.bold());
             frameLayout2.addView(textView, w7.y5.e(-2, -1, 51));
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f27407b;
+                public final ThemeEditorView.EditorAlert f27113b;
 
                 {
-                    this.f27407b = this;
+                    this.f27113b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f27407b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27113b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -180,28 +180,28 @@ public class ThemeEditorView {
                             return;
                         case 1:
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22404m, true, false, false);
+                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22439m, true, false, false);
                             editorAlert.setOnDismissListener((DialogInterface.OnDismissListener) null);
                             editorAlert.dismiss();
                             try {
-                                themeEditorView.h.removeView(themeEditorView.f22395a);
+                                themeEditorView.h.removeView(themeEditorView.f22430a);
                             } catch (Exception unused) {
                             }
-                            themeEditorView.f22396b = null;
+                            themeEditorView.f22431b = null;
                             return;
                         case 2:
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
-                            for (int i16 = 0; i16 < themeEditorView2.f22397c.size(); i16++) {
-                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22397c.get(i16);
-                                l6Var2.d(l6Var2.f19579i, l6Var2.f19580j[0], true);
+                            for (int i16 = 0; i16 < themeEditorView2.f22432c.size(); i16++) {
+                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22432c.get(i16);
+                                l6Var2.d(l6Var2.f19611i, l6Var2.f19612j[0], true);
                             }
                             editorAlert.L(false);
                             return;
                         case 3:
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
-                            for (int i17 = 0; i17 < themeEditorView3.f22397c.size(); i17++) {
-                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22397c.get(i17);
-                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19577f), true, true);
+                            for (int i17 = 0; i17 < themeEditorView3.f22432c.size(); i17++) {
+                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22432c.get(i17);
+                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19609f), true, true);
                             }
                             editorAlert.L(false);
                             return;
@@ -222,16 +222,16 @@ public class ThemeEditorView {
             textView2.setTypeface(AndroidUtilities.bold());
             frameLayout2.addView(textView2, w7.y5.e(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f27407b;
+                public final ThemeEditorView.EditorAlert f27113b;
 
                 {
-                    this.f27407b = this;
+                    this.f27113b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f27407b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27113b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -239,28 +239,28 @@ public class ThemeEditorView {
                             return;
                         case 1:
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22404m, true, false, false);
+                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22439m, true, false, false);
                             editorAlert.setOnDismissListener((DialogInterface.OnDismissListener) null);
                             editorAlert.dismiss();
                             try {
-                                themeEditorView.h.removeView(themeEditorView.f22395a);
+                                themeEditorView.h.removeView(themeEditorView.f22430a);
                             } catch (Exception unused) {
                             }
-                            themeEditorView.f22396b = null;
+                            themeEditorView.f22431b = null;
                             return;
                         case 2:
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
-                            for (int i16 = 0; i16 < themeEditorView2.f22397c.size(); i16++) {
-                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22397c.get(i16);
-                                l6Var2.d(l6Var2.f19579i, l6Var2.f19580j[0], true);
+                            for (int i16 = 0; i16 < themeEditorView2.f22432c.size(); i16++) {
+                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22432c.get(i16);
+                                l6Var2.d(l6Var2.f19611i, l6Var2.f19612j[0], true);
                             }
                             editorAlert.L(false);
                             return;
                         case 3:
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
-                            for (int i17 = 0; i17 < themeEditorView3.f22397c.size(); i17++) {
-                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22397c.get(i17);
-                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19577f), true, true);
+                            for (int i17 = 0; i17 < themeEditorView3.f22432c.size(); i17++) {
+                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22432c.get(i17);
+                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19609f), true, true);
                             }
                             editorAlert.L(false);
                             return;
@@ -286,16 +286,16 @@ public class ThemeEditorView {
             textView3.setTypeface(AndroidUtilities.bold());
             frameLayout3.addView(textView3, w7.y5.e(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f27407b;
+                public final ThemeEditorView.EditorAlert f27113b;
 
                 {
-                    this.f27407b = this;
+                    this.f27113b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f27407b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27113b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -303,28 +303,28 @@ public class ThemeEditorView {
                             return;
                         case 1:
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22404m, true, false, false);
+                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22439m, true, false, false);
                             editorAlert.setOnDismissListener((DialogInterface.OnDismissListener) null);
                             editorAlert.dismiss();
                             try {
-                                themeEditorView.h.removeView(themeEditorView.f22395a);
+                                themeEditorView.h.removeView(themeEditorView.f22430a);
                             } catch (Exception unused) {
                             }
-                            themeEditorView.f22396b = null;
+                            themeEditorView.f22431b = null;
                             return;
                         case 2:
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
-                            for (int i16 = 0; i16 < themeEditorView2.f22397c.size(); i16++) {
-                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22397c.get(i16);
-                                l6Var2.d(l6Var2.f19579i, l6Var2.f19580j[0], true);
+                            for (int i16 = 0; i16 < themeEditorView2.f22432c.size(); i16++) {
+                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22432c.get(i16);
+                                l6Var2.d(l6Var2.f19611i, l6Var2.f19612j[0], true);
                             }
                             editorAlert.L(false);
                             return;
                         case 3:
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
-                            for (int i17 = 0; i17 < themeEditorView3.f22397c.size(); i17++) {
-                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22397c.get(i17);
-                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19577f), true, true);
+                            for (int i17 = 0; i17 < themeEditorView3.f22432c.size(); i17++) {
+                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22432c.get(i17);
+                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19609f), true, true);
                             }
                             editorAlert.L(false);
                             return;
@@ -348,16 +348,16 @@ public class ThemeEditorView {
             textView4.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView4, w7.y5.e(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f27407b;
+                public final ThemeEditorView.EditorAlert f27113b;
 
                 {
-                    this.f27407b = this;
+                    this.f27113b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f27407b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27113b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -365,28 +365,28 @@ public class ThemeEditorView {
                             return;
                         case 1:
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22404m, true, false, false);
+                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22439m, true, false, false);
                             editorAlert.setOnDismissListener((DialogInterface.OnDismissListener) null);
                             editorAlert.dismiss();
                             try {
-                                themeEditorView.h.removeView(themeEditorView.f22395a);
+                                themeEditorView.h.removeView(themeEditorView.f22430a);
                             } catch (Exception unused) {
                             }
-                            themeEditorView.f22396b = null;
+                            themeEditorView.f22431b = null;
                             return;
                         case 2:
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
-                            for (int i16 = 0; i16 < themeEditorView2.f22397c.size(); i16++) {
-                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22397c.get(i16);
-                                l6Var2.d(l6Var2.f19579i, l6Var2.f19580j[0], true);
+                            for (int i16 = 0; i16 < themeEditorView2.f22432c.size(); i16++) {
+                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22432c.get(i16);
+                                l6Var2.d(l6Var2.f19611i, l6Var2.f19612j[0], true);
                             }
                             editorAlert.L(false);
                             return;
                         case 3:
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
-                            for (int i17 = 0; i17 < themeEditorView3.f22397c.size(); i17++) {
-                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22397c.get(i17);
-                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19577f), true, true);
+                            for (int i17 = 0; i17 < themeEditorView3.f22432c.size(); i17++) {
+                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22432c.get(i17);
+                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19609f), true, true);
                             }
                             editorAlert.L(false);
                             return;
@@ -407,16 +407,16 @@ public class ThemeEditorView {
             textView5.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView5, w7.y5.e(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f27407b;
+                public final ThemeEditorView.EditorAlert f27113b;
 
                 {
-                    this.f27407b = this;
+                    this.f27113b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f27407b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27113b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -424,28 +424,28 @@ public class ThemeEditorView {
                             return;
                         case 1:
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22404m, true, false, false);
+                            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22439m, true, false, false);
                             editorAlert.setOnDismissListener((DialogInterface.OnDismissListener) null);
                             editorAlert.dismiss();
                             try {
-                                themeEditorView.h.removeView(themeEditorView.f22395a);
+                                themeEditorView.h.removeView(themeEditorView.f22430a);
                             } catch (Exception unused) {
                             }
-                            themeEditorView.f22396b = null;
+                            themeEditorView.f22431b = null;
                             return;
                         case 2:
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
-                            for (int i16 = 0; i16 < themeEditorView2.f22397c.size(); i16++) {
-                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22397c.get(i16);
-                                l6Var2.d(l6Var2.f19579i, l6Var2.f19580j[0], true);
+                            for (int i16 = 0; i16 < themeEditorView2.f22432c.size(); i16++) {
+                                org.telegram.ui.ActionBar.l6 l6Var2 = (org.telegram.ui.ActionBar.l6) themeEditorView2.f22432c.get(i16);
+                                l6Var2.d(l6Var2.f19611i, l6Var2.f19612j[0], true);
                             }
                             editorAlert.L(false);
                             return;
                         case 3:
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
-                            for (int i17 = 0; i17 < themeEditorView3.f22397c.size(); i17++) {
-                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22397c.get(i17);
-                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19577f), true, true);
+                            for (int i17 = 0; i17 < themeEditorView3.f22432c.size(); i17++) {
+                                org.telegram.ui.ActionBar.l6 l6Var3 = (org.telegram.ui.ActionBar.l6) themeEditorView3.f22432c.get(i17);
+                                l6Var3.d(org.telegram.ui.ActionBar.j6.C0(l6Var3.f19609f), true, true);
                             }
                             editorAlert.L(false);
                             return;
@@ -459,14 +459,14 @@ public class ThemeEditorView {
         }
 
         public static int J(EditorAlert editorAlert) {
-            s11 s11Var = editorAlert.f22406c;
-            if (s11Var.getChildCount() != 0) {
+            r11 r11Var = editorAlert.f22441c;
+            if (r11Var.getChildCount() != 0) {
                 int i10 = 0;
-                View childAt = s11Var.getChildAt(0);
-                gl0 gl0Var = (gl0) s11Var.H(childAt);
-                if (gl0Var != null) {
-                    int paddingTop = s11Var.getPaddingTop();
-                    if (gl0Var.b() == 0 && childAt.getTop() >= 0) {
+                View childAt = r11Var.getChildAt(0);
+                fl0 fl0Var = (fl0) r11Var.H(childAt);
+                if (fl0Var != null) {
+                    int paddingTop = r11Var.getPaddingTop();
+                    if (fl0Var.b() == 0 && childAt.getTop() >= 0) {
                         i10 = childAt.getTop();
                     }
                     return paddingTop - i10;
@@ -478,17 +478,17 @@ public class ThemeEditorView {
 
         public static void s(EditorAlert editorAlert) {
             int paddingTop;
-            s11 s11Var = editorAlert.f22406c;
-            if (s11Var.getChildCount() > 0 && s11Var.getVisibility() == 0 && !editorAlert.H) {
+            r11 r11Var = editorAlert.f22441c;
+            if (r11Var.getChildCount() > 0 && r11Var.getVisibility() == 0 && !editorAlert.H) {
                 int i10 = 0;
-                View childAt = s11Var.getChildAt(0);
-                gl0 gl0Var = (gl0) s11Var.H(childAt);
-                if (s11Var.getVisibility() == 0 && !editorAlert.H) {
+                View childAt = r11Var.getChildAt(0);
+                fl0 fl0Var = (fl0) r11Var.H(childAt);
+                if (r11Var.getVisibility() == 0 && !editorAlert.H) {
                     paddingTop = childAt.getTop() - AndroidUtilities.dp(8.0f);
                 } else {
-                    paddingTop = s11Var.getPaddingTop();
+                    paddingTop = r11Var.getPaddingTop();
                 }
-                if (paddingTop > (-AndroidUtilities.dp(1.0f)) && gl0Var != null && gl0Var.b() == 0) {
+                if (paddingTop > (-AndroidUtilities.dp(1.0f)) && fl0Var != null && fl0Var.b() == 0) {
                     editorAlert.K(false);
                     i10 = paddingTop;
                 } else {
@@ -503,7 +503,7 @@ public class ThemeEditorView {
         public final void K(boolean z10) {
             Integer num;
             float f7;
-            View[] viewArr = this.f22411w;
+            View[] viewArr = this.f22446w;
             if ((z10 && viewArr[0].getTag() != null) || (!z10 && viewArr[0].getTag() == null)) {
                 View view = viewArr[0];
                 if (z10) {
@@ -515,7 +515,7 @@ public class ThemeEditorView {
                 if (z10) {
                     viewArr[0].setVisibility(0);
                 }
-                AnimatorSet[] animatorSetArr = this.f22412x;
+                AnimatorSet[] animatorSetArr = this.f22447x;
                 AnimatorSet animatorSet = animatorSetArr[0];
                 if (animatorSet != null) {
                     animatorSet.cancel();
@@ -531,7 +531,7 @@ public class ThemeEditorView {
                 }
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(view2, property, f7));
                 animatorSetArr[0].setDuration(150L);
-                animatorSetArr[0].addListener(new u11(this, z10));
+                animatorSetArr[0].addListener(new t11(this, z10));
                 animatorSetArr[0].start();
             }
         }
@@ -539,57 +539,57 @@ public class ThemeEditorView {
         public final void L(boolean z10) {
             ?? r62;
             mz mzVar = this.e;
-            View[] viewArr = this.f22411w;
+            View[] viewArr = this.f22446w;
             FrameLayout frameLayout = this.d;
-            FrameLayout frameLayout2 = this.f22410s;
+            FrameLayout frameLayout2 = this.f22445s;
             FrameLayout frameLayout3 = this.v;
-            y11 y11Var = this.f22405b;
+            x11 x11Var = this.f22440b;
             ThemeEditorView themeEditorView = ThemeEditorView.this;
-            s11 s11Var = this.f22406c;
+            r11 r11Var = this.f22441c;
             if (z10) {
                 this.H = true;
-                y11Var.setVisibility(0);
+                x11Var.setVisibility(0);
                 frameLayout3.setVisibility(0);
-                y11Var.setAlpha(0.0f);
+                x11Var.setAlpha(0.0f);
                 frameLayout3.setAlpha(0.0f);
                 this.G = this.E;
                 AnimatorSet animatorSet = new AnimatorSet();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(y11Var, property, 1.0f), ObjectAnimator.ofFloat(frameLayout3, property, 1.0f), ObjectAnimator.ofFloat(s11Var, property, 0.0f), ObjectAnimator.ofFloat(frameLayout, property, 0.0f), ObjectAnimator.ofFloat(viewArr[0], property, 0.0f), ObjectAnimator.ofFloat(mzVar, property, 0.0f), ObjectAnimator.ofFloat(frameLayout2, property, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", s11Var.getPaddingTop()));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(x11Var, property, 1.0f), ObjectAnimator.ofFloat(frameLayout3, property, 1.0f), ObjectAnimator.ofFloat(r11Var, property, 0.0f), ObjectAnimator.ofFloat(frameLayout, property, 0.0f), ObjectAnimator.ofFloat(viewArr[0], property, 0.0f), ObjectAnimator.ofFloat(mzVar, property, 0.0f), ObjectAnimator.ofFloat(frameLayout2, property, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", r11Var.getPaddingTop()));
                 animatorSet.setDuration(150L);
-                animatorSet.setInterpolator(themeEditorView.f22400i);
-                animatorSet.addListener(new v11(this));
+                animatorSet.setInterpolator(themeEditorView.f22435i);
+                animatorSet.addListener(new u11(this));
                 animatorSet.start();
                 return;
             }
-            Activity activity = themeEditorView.f22396b;
+            Activity activity = themeEditorView.f22431b;
             if (activity != null) {
                 r62 = 0;
                 ((LaunchActivity) activity).u0(false);
             } else {
                 r62 = 0;
             }
-            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22404m, r62, r62, r62);
-            if (s11Var.getAdapter() == this.f22408n) {
+            org.telegram.ui.ActionBar.j6.r1(themeEditorView.f22439m, r62, r62, r62);
+            if (r11Var.getAdapter() == this.f22443n) {
                 AndroidUtilities.hideKeyboard(getCurrentFocus());
             }
             this.H = true;
-            s11Var.setVisibility(r62);
+            r11Var.setVisibility(r62);
             frameLayout2.setVisibility(r62);
-            this.f22407f.setVisibility(r62);
-            s11Var.setAlpha(0.0f);
+            this.f22442f.setVisibility(r62);
+            r11Var.setAlpha(0.0f);
             AnimatorSet animatorSet2 = new AnimatorSet();
             Property property2 = View.ALPHA;
             float f7 = 0.0f;
             float[] fArr = new float[1];
             fArr[r62] = 0.0f;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(y11Var, property2, fArr);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(x11Var, property2, fArr);
             float[] fArr2 = new float[1];
             fArr2[r62] = 0.0f;
             ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(frameLayout3, property2, fArr2);
             float[] fArr3 = new float[1];
             fArr3[r62] = 1.0f;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(s11Var, property2, fArr3);
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(r11Var, property2, fArr3);
             ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(frameLayout, property2, 1.0f);
             View view = viewArr[0];
             if (view.getTag() == null) {
@@ -597,10 +597,10 @@ public class ThemeEditorView {
             }
             animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ObjectAnimator.ofFloat(view, property2, f7), ObjectAnimator.ofFloat(mzVar, property2, 1.0f), ObjectAnimator.ofFloat(frameLayout2, property2, 1.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.G));
             animatorSet2.setDuration(150L);
-            animatorSet2.setInterpolator(themeEditorView.f22400i);
-            animatorSet2.addListener(new w11(this));
+            animatorSet2.setInterpolator(themeEditorView.f22435i);
+            animatorSet2.addListener(new v11(this));
             animatorSet2.start();
-            s11Var.getAdapter().m(themeEditorView.d);
+            r11Var.getAdapter().m(themeEditorView.d);
         }
 
         @Override
@@ -611,9 +611,9 @@ public class ThemeEditorView {
         @Override
         public final void dismissInternal() {
             super.dismissInternal();
-            e21 e21Var = this.f22407f;
-            if (e21Var.f23767b.isFocused()) {
-                AndroidUtilities.hideKeyboard(e21Var.f23767b);
+            d21 d21Var = this.f22442f;
+            if (d21Var.f23471b.isFocused()) {
+                AndroidUtilities.hideKeyboard(d21Var.f23471b);
             }
         }
 
@@ -623,9 +623,9 @@ public class ThemeEditorView {
 
         public void setScrollOffsetY(int i10) {
             this.E = i10;
-            this.f22406c.setTopGlowOffset(i10);
+            this.f22441c.setTopGlowOffset(i10);
             this.d.setTranslationY(this.E);
-            this.f22405b.setTranslationY(this.E);
+            this.f22440b.setTranslationY(this.E);
             this.e.setTranslationY(this.E);
             this.containerView.invalidate();
         }
@@ -655,60 +655,60 @@ public class ThemeEditorView {
     }
 
     public final void a() {
-        n11 n11Var;
-        this.f22402k.getClass();
-        if (this.f22396b != null && (n11Var = this.f22395a) != null) {
+        m11 m11Var;
+        this.f22437k.getClass();
+        if (this.f22431b != null && (m11Var = this.f22430a) != null) {
             try {
-                this.h.removeViewImmediate(n11Var);
-                this.f22395a = null;
+                this.h.removeViewImmediate(m11Var);
+                this.f22430a = null;
             } catch (Exception e) {
                 FileLog.e((Throwable) e, false);
             }
             try {
-                EditorAlert editorAlert = this.f22403l;
+                EditorAlert editorAlert = this.f22438l;
                 if (editorAlert != null) {
                     editorAlert.dismiss();
-                    this.f22403l = null;
+                    this.f22438l = null;
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);
             }
-            this.f22396b = null;
-            f22394n = null;
+            this.f22431b = null;
+            f22429n = null;
         }
     }
 
     public final void c(Activity activity, org.telegram.ui.ActionBar.i6 i6Var) {
-        if (f22394n != null) {
-            f22394n.a();
+        if (f22429n != null) {
+            f22429n.a();
         }
-        this.f22404m = i6Var;
-        this.f22395a = new n11(this, activity);
+        this.f22439m = i6Var;
+        this.f22430a = new m11(this, activity);
         this.h = (WindowManager) activity.getSystemService("window");
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
-        this.f22401j = sharedPreferences;
+        this.f22436j = sharedPreferences;
         int i10 = sharedPreferences.getInt("sidex", 1);
-        int i11 = this.f22401j.getInt("sidey", 0);
-        float f7 = this.f22401j.getFloat("px", 0.0f);
-        float f10 = this.f22401j.getFloat("py", 0.0f);
+        int i11 = this.f22436j.getInt("sidey", 0);
+        float f7 = this.f22436j.getFloat("px", 0.0f);
+        float f10 = this.f22436j.getFloat("py", 0.0f);
         try {
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-            this.f22399g = layoutParams;
+            this.f22434g = layoutParams;
             int i12 = this.e;
             layoutParams.width = i12;
-            layoutParams.height = this.f22398f;
+            layoutParams.height = this.f22433f;
             layoutParams.x = b(true, i10, f7, i12);
-            this.f22399g.y = b(false, i11, f10, this.f22398f);
-            WindowManager.LayoutParams layoutParams2 = this.f22399g;
+            this.f22434g.y = b(false, i11, f10, this.f22433f);
+            WindowManager.LayoutParams layoutParams2 = this.f22434g;
             layoutParams2.format = -3;
             layoutParams2.gravity = 51;
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
-            AndroidUtilities.setPreferredMaxRefreshRate(this.h, this.f22395a, layoutParams2);
-            this.h.addView(this.f22395a, this.f22399g);
-            this.f22402k = new e91(activity, null, new o11(this));
-            f22394n = this;
-            this.f22396b = activity;
+            AndroidUtilities.setPreferredMaxRefreshRate(this.h, this.f22430a, layoutParams2);
+            this.h.addView(this.f22430a, this.f22434g);
+            this.f22437k = new e91(activity, null, new n11(this));
+            f22429n = this;
+            this.f22431b = activity;
             d();
         } catch (Exception e) {
             FileLog.e(e);
@@ -716,31 +716,31 @@ public class ThemeEditorView {
     }
 
     public final void d() {
-        this.f22395a.setBackgroundResource(R.drawable.theme_picker);
+        this.f22430a.setBackgroundResource(R.drawable.theme_picker);
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.f22395a, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.f22395a, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.f22395a, View.SCALE_Y, 0.0f, 1.0f));
-        animatorSet.setInterpolator(this.f22400i);
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.f22430a, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.f22430a, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.f22430a, View.SCALE_Y, 0.0f, 1.0f));
+        animatorSet.setInterpolator(this.f22435i);
         animatorSet.setDuration(150L);
         animatorSet.start();
     }
 
     public int getX() {
-        return this.f22399g.x;
+        return this.f22434g.x;
     }
 
     public int getY() {
-        return this.f22399g.y;
+        return this.f22434g.y;
     }
 
     public void setX(int i10) {
-        WindowManager.LayoutParams layoutParams = this.f22399g;
+        WindowManager.LayoutParams layoutParams = this.f22434g;
         layoutParams.x = i10;
-        this.h.updateViewLayout(this.f22395a, layoutParams);
+        this.h.updateViewLayout(this.f22430a, layoutParams);
     }
 
     public void setY(int i10) {
-        WindowManager.LayoutParams layoutParams = this.f22399g;
+        WindowManager.LayoutParams layoutParams = this.f22434g;
         layoutParams.y = i10;
-        this.h.updateViewLayout(this.f22395a, layoutParams);
+        this.h.updateViewLayout(this.f22430a, layoutParams);
     }
 }

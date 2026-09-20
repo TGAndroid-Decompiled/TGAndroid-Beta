@@ -2,43 +2,43 @@ package y9;
 
 import java.util.List;
 public final class g0 {
-    public String f46774a;
-    public String f46775b;
-    public String f46776c;
+    public String f46821a;
+    public String f46822b;
+    public String f46823c;
     public Long d;
     public Long e;
-    public Boolean f46777f;
-    public l1 f46778g;
+    public Boolean f46824f;
+    public l1 f46825g;
     public c2 h;
-    public b2 f46779i;
-    public m1 f46780j;
-    public List f46781k;
-    public Integer f46782l;
+    public b2 f46826i;
+    public m1 f46827j;
+    public List f46828k;
+    public Integer f46829l;
 
     public final h0 a() {
         String str;
-        if (this.f46774a == null) {
+        if (this.f46821a == null) {
             str = " generator";
         } else {
             str = "";
         }
-        if (this.f46775b == null) {
+        if (this.f46822b == null) {
             str = str.concat(" identifier");
         }
         if (this.d == null) {
-            str = t8.b.v(str, " startedAt");
+            str = v7.j0.s(str, " startedAt");
         }
-        if (this.f46777f == null) {
-            str = t8.b.v(str, " crashed");
+        if (this.f46824f == null) {
+            str = v7.j0.s(str, " crashed");
         }
-        if (this.f46778g == null) {
-            str = t8.b.v(str, " app");
+        if (this.f46825g == null) {
+            str = v7.j0.s(str, " app");
         }
-        if (this.f46782l == null) {
-            str = t8.b.v(str, " generatorType");
+        if (this.f46829l == null) {
+            str = v7.j0.s(str, " generatorType");
         }
         if (str.isEmpty()) {
-            return new h0(this.f46774a, this.f46775b, this.f46776c, this.d.longValue(), this.e, this.f46777f.booleanValue(), this.f46778g, this.h, this.f46779i, this.f46780j, this.f46781k, this.f46782l.intValue());
+            return new h0(this.f46821a, this.f46822b, this.f46823c, this.d.longValue(), this.e, this.f46824f.booleanValue(), this.f46825g, this.h, this.f46826i, this.f46827j, this.f46828k, this.f46829l.intValue());
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }

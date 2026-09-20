@@ -13,7 +13,7 @@ public final class i1 extends LinearLayout {
     public final Path f971b;
     public final Paint f972c;
     public long d;
-    public final org.telegram.ui.Components.e6 e;
+    public final org.telegram.ui.Components.d6 e;
     public final l1 f973f;
 
     public i1(l1 l1Var, Context context) {
@@ -22,7 +22,7 @@ public final class i1 extends LinearLayout {
         this.f971b = new Path();
         this.f972c = new Paint(1);
         this.d = 0L;
-        this.e = new org.telegram.ui.Components.e6(this, 0L, 1000L, new LinearInterpolator());
+        this.e = new org.telegram.ui.Components.d6(this, 0L, 1000L, new LinearInterpolator());
     }
 
     @Override
@@ -45,11 +45,11 @@ public final class i1 extends LinearLayout {
             long j3 = this.d;
             n1 n1Var3 = l1Var.f1174f;
             long j10 = n1Var3.f1280b;
-            org.telegram.ui.Components.e6 e6Var = this.e;
+            org.telegram.ui.Components.d6 d6Var = this.e;
             if (j3 != j10) {
-                e6Var.d(n1Var3.a(), true);
+                d6Var.d(n1Var3.a(), true);
             }
-            float d = e6Var.d(l1Var.f1174f.a(), false);
+            float d = d6Var.d(l1Var.f1174f.a(), false);
             this.d = l1Var.f1174f.f1280b;
             Paint paint = this.f972c;
             paint.setColor(b11);

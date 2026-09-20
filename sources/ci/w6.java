@@ -18,23 +18,23 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class w6 extends FrameLayout {
-    public final int f5697a;
-    public int f5698b;
-    public final ai.v7 f5699c;
+    public final int f5698a;
+    public int f5699b;
+    public final ai.v7 f5700c;
     public final FrameLayout d;
     public final ai.xa e;
-    public boolean f5700f;
+    public boolean f5701f;
     public boolean h;
 
     public w6(Activity activity, int i10, ai.d dVar) {
         super(activity);
-        this.f5698b = 1;
-        this.f5700f = false;
+        this.f5699b = 1;
+        this.f5701f = false;
         this.h = false;
-        this.f5697a = i10;
+        this.f5698a = i10;
         TLRPC.User currentUser = UserConfig.getInstance(i10).getCurrentUser();
         ai.v7 v7Var = new ai.v7(this, getContext());
-        this.f5699c = v7Var;
+        this.f5700c = v7Var;
         ai.b6 b6Var = new ai.b6(getContext(), null);
         b6Var.f582a.getAvatarDrawable().m(i10, currentUser);
         ai.z5 z5Var = b6Var.f582a;
@@ -81,8 +81,8 @@ public final class w6 extends FrameLayout {
         View view;
         float f7;
         if (z10) {
-            if (this.f5700f != z11) {
-                this.f5700f = z11;
+            if (this.f5701f != z11) {
+                this.f5701f = z11;
             } else {
                 return;
             }
@@ -92,7 +92,7 @@ public final class w6 extends FrameLayout {
             return;
         }
         if (z10) {
-            view = this.f5699c;
+            view = this.f5700c;
         } else {
             view = this.d;
         }
@@ -120,7 +120,7 @@ public final class w6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.e.f1717b0.b(org.telegram.ui.Components.z5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.e.f1717b0.b(org.telegram.ui.Components.y5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

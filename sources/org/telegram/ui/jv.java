@@ -10,44 +10,44 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-public final class jv extends org.telegram.ui.Components.py0 {
-    public final o0.a I;
+public final class jv extends org.telegram.ui.Components.oy0 {
+    public final m5.e I;
 
-    public jv(Context context, long j3, o0.a aVar) {
+    public jv(Context context, long j3, m5.e eVar) {
         super(context);
-        this.I = aVar;
-        this.f27353a = new RectF();
-        this.f27356f = 0.0f;
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
-        this.f27358r = o6Var;
-        org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(false, true, false, false);
-        this.f27359s = o6Var2;
-        o6Var.setCallback(this);
-        o6Var2.setCallback(this);
-        this.f27357n = Long.valueOf(j3);
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
-        h9Var.f24604p = 1.5f;
+        this.I = eVar;
+        this.f27074a = new RectF();
+        this.f27077f = 0.0f;
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true, false);
+        this.f27079r = n6Var;
+        org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(false, true, false, false);
+        this.f27080s = n6Var2;
+        n6Var.setCallback(this);
+        n6Var2.setCallback(this);
+        this.f27078n = Long.valueOf(j3);
+        org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
+        g9Var.f24302p = 1.5f;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.h = imageReceiver;
         imageReceiver.setParentView(this);
         if (j3 == Long.MAX_VALUE) {
             this.v = LocaleController.getString(R.string.CacheOtherChats);
-            h9Var.g(14);
-            imageReceiver.setForUserOrChat(null, h9Var);
+            g9Var.g(14);
+            imageReceiver.setForUserOrChat(null, g9Var);
             return;
         }
-        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, h9Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j3));
+        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, g9Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j3));
         this.v = dialogPhotoTitle;
         this.v = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
     }
 
     @Override
     public final void b() {
-        o0.a aVar = this.I;
-        z6 z6Var = (z6) aVar.f15440c;
+        m5.e eVar = this.I;
+        z6 z6Var = (z6) eVar.f14954c;
         z6Var.X.dismiss();
         Bundle bundle = new Bundle();
-        long j3 = ((s6) aVar.f15439b).f37201a;
+        long j3 = ((s6) eVar.f14953b).f37302a;
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
         } else {

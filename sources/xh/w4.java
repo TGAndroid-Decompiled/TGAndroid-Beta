@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 public final class w4 extends View {
-    public final TL_stars.StarGift f46451a;
-    public final float f46452b;
+    public final TL_stars.StarGift f46498a;
+    public final float f46499b;
 
     public w4(Context context, TL_stars.StarGift starGift, float f7) {
         super(context);
-        this.f46451a = starGift;
-        this.f46452b = f7;
+        this.f46498a = starGift;
+        this.f46499b = f7;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f46451a == null) {
+        if (this.f46498a == null) {
             super.onMeasure(i10, i11);
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i10) * this.f46452b), 1073741824), i11);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i10) * this.f46499b), 1073741824), i11);
         }
     }
 }

@@ -4,17 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.FrameLayout;
 public final class x4 extends FrameLayout {
-    public final float f46458a;
+    public final float f46505a;
 
     public x4(Context context, float f7) {
         super(context);
-        this.f46458a = f7;
+        this.f46505a = f7;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth() * this.f46458a, getHeight());
+        canvas.clipRect(0.0f, 0.0f, getWidth() * this.f46505a, getHeight());
         super.dispatchDraw(canvas);
         canvas.restore();
     }

@@ -3,16 +3,16 @@ package tg;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class k1 extends s4.s0 {
-    public final m1 f43398a;
+    public final m1 f43442a;
 
     public k1(m1 m1Var) {
-        this.f43398a = m1Var;
+        this.f43442a = m1Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 1) {
-            AndroidUtilities.hideKeyboard(this.f43398a.Z.getEditText());
+            AndroidUtilities.hideKeyboard(this.f43442a.Z.getEditText());
         }
     }
 }

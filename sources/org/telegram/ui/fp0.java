@@ -2,20 +2,20 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class fp0 extends org.telegram.ui.Components.o81 {
-    public final cq0 f33592a;
+    public final cq0 f33703a;
 
     public fp0(cq0 cq0Var) {
-        this.f33592a = cq0Var;
+        this.f33703a = cq0Var;
     }
 
     @Override
     public final View d(int i10) {
-        cq0 cq0Var = this.f33592a;
+        cq0 cq0Var = this.f33703a;
         if (i10 == 1) {
             return cq0Var.h;
         }
         if (i10 == 0) {
-            return cq0Var.f32751n;
+            return cq0Var.f32823n;
         }
         return null;
     }

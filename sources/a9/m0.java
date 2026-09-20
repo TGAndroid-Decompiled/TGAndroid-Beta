@@ -20,7 +20,7 @@ public final class m0 extends k0 {
                 e eVar = this.f347r;
                 TaskCompletionSource taskCompletionSource = this.h;
                 eVar.e.add(taskCompletionSource);
-                taskCompletionSource.getTask().addOnCompleteListener(new n4.y(2, eVar, taskCompletionSource));
+                taskCompletionSource.getTask().addOnCompleteListener(new n4.y(eVar, taskCompletionSource));
                 if (this.f347r.f331l.getAndIncrement() > 0) {
                     this.f347r.f324b.b("Already connected to the service.", new Object[0]);
                 }

@@ -3,17 +3,17 @@ package yb;
 import n6.l;
 import xb.c;
 public final class a extends c {
-    public static final a f46918b;
+    public static final a f46965b;
 
     static {
         ?? obj = new Object();
-        obj.f15489a = -1.0f;
+        obj.f15521a = -1.0f;
         boolean z10 = false;
         if (Float.compare(0.5f, 0.0f) >= 0 && Float.compare(0.5f, 1.0f) <= 0) {
             z10 = true;
         }
         l.a("Confidence Threshold should be in range [0.0f, 1.0f].", z10);
-        obj.f15489a = 0.5f;
-        f46918b = new c(obj);
+        obj.f15521a = 0.5f;
+        f46965b = new c(obj);
     }
 }

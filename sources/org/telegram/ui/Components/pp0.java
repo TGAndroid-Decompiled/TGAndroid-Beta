@@ -1,50 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.WindowInsets;
-public final class pp0 implements r0.n, org.telegram.ui.ActionBar.l1 {
-    public final int f27294a;
-    public final vq0 f27295b;
+import org.telegram.messenger.AndroidUtilities;
+public final class pp0 implements Runnable {
+    public final int f27417a;
+    public final uq0 f27418b;
 
-    public pp0(vq0 vq0Var, int i10) {
-        this.f27294a = i10;
-        this.f27295b = vq0Var;
+    public pp0(uq0 uq0Var, int i10) {
+        this.f27417a = i10;
+        this.f27418b = uq0Var;
     }
 
     @Override
-    public r0.m1 Q0(View view, r0.m1 m1Var) {
-        WindowInsets g10 = m1Var.g();
-        vq0 vq0Var = this.f27295b;
-        vq0Var.processLegacyContainerInsets(g10);
-        i0.b f7 = m1Var.f42109a.f(519);
-        if (!vq0Var.G0.equals(f7)) {
-            vq0Var.G0 = f7;
-            vq0Var.container.requestLayout();
-        }
-        return r0.m1.f42108b;
-    }
-
-    @Override
-    public void p(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f27294a) {
-            case 1:
-                vq0 vq0Var = this.f27295b;
-                vq0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = vq0Var.J0) != null && n1Var.isShowing()) {
-                    vq0Var.J0.d(true);
-                    return;
-                }
+    public final void run() {
+        switch (this.f27417a) {
+            case 0:
+                uq0 uq0Var = this.f27418b;
+                uq0Var.A0 = true;
+                b20 b20Var = uq0Var.f28836y0;
+                b20Var.f22856r.setText("");
+                AndroidUtilities.showKeyboard(b20Var.f22856r);
                 return;
             default:
-                vq0 vq0Var2 = this.f27295b;
-                vq0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var2 = vq0Var2.J0) != null && n1Var2.isShowing()) {
-                    vq0Var2.J0.d(true);
+                sh shVar = new sh(9);
+                uq0 uq0Var2 = this.f27418b;
+                if (uq0Var2.isKeyboardVisible()) {
+                    b20 b20Var2 = uq0Var2.f28836y0;
+                    if (b20Var2 != null) {
+                        AndroidUtilities.hideKeyboard(b20Var2.f22856r);
+                    }
+                    AndroidUtilities.runOnUIThread(shVar, 300L);
                     return;
                 }
+                shVar.run();
                 return;
         }
     }

@@ -6,20 +6,20 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class bj implements TextWatcher {
-    public final gj f23022a;
+    public final gj f23007a;
 
     public bj(gj gjVar) {
-        this.f23022a = gjVar;
+        this.f23007a = gjVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
-        gj gjVar = this.f23022a;
-        wi wiVar = gjVar.f24409g0;
+        gj gjVar = this.f23007a;
+        wi wiVar = gjVar.f24366g0;
         TextUtils.isEmpty(gjVar.E);
         gjVar.E = editable.toString().trim();
-        wi wiVar2 = gjVar.f24404b0;
+        wi wiVar2 = gjVar.f24361b0;
         AndroidUtilities.cancelRunOnUIThread(wiVar2);
         boolean z11 = true;
         if (!TextUtils.isEmpty(gjVar.E)) {
@@ -29,21 +29,21 @@ public final class bj implements TextWatcher {
             } else {
                 z10 = false;
             }
-            gjVar.f24403a0 = z10;
+            gjVar.f24360a0 = z10;
             if (!TextUtils.equals(gjVar.W, gjVar.E)) {
                 gjVar.M.clear();
-                gjVar.f24405c0 = 0;
-                gjVar.f24406d0 = false;
+                gjVar.f24362c0 = 0;
+                gjVar.f24363d0 = false;
             }
             AndroidUtilities.runOnUIThread(wiVar2, 1500L);
         }
         AndroidUtilities.cancelRunOnUIThread(wiVar);
         if (!TextUtils.isEmpty(gjVar.E)) {
             String str2 = gjVar.E;
-            gjVar.f24416n0 = (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(gjVar.f26688b.J1).config.musicSearchUsername.get())) ? false : false;
-            if (!TextUtils.equals(gjVar.f24408f0, gjVar.E)) {
+            gjVar.f24373n0 = (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(gjVar.f26655b.J1).config.musicSearchUsername.get())) ? false : false;
+            if (!TextUtils.equals(gjVar.f24365f0, gjVar.E)) {
                 gjVar.N.clear();
-                gjVar.f24410h0 = false;
+                gjVar.f24367h0 = false;
             }
             AndroidUtilities.runOnUIThread(wiVar, 1500L);
         }

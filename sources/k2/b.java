@@ -5,11 +5,11 @@ import android.content.IntentFilter;
 import android.util.SparseArray;
 import e9.a1;
 public final class b {
-    public static final b f13229c = new b(e9.i0.z(a.d));
+    public static final b f13230c = new b(e9.i0.z(a.d));
     public static final a1 d;
     public static final e9.k0 e;
-    public final SparseArray f13230a = new SparseArray();
-    public final int f13231b;
+    public final SparseArray f13231a = new SparseArray();
+    public final int f13232b;
 
     static {
         Object[] objArr = {2, 5, 6};
@@ -30,13 +30,13 @@ public final class b {
     public b(a1 a1Var) {
         for (int i10 = 0; i10 < a1Var.d; i10++) {
             a aVar = (a) a1Var.get(i10);
-            this.f13230a.put(aVar.f13223a, aVar);
+            this.f13231a.put(aVar.f13224a, aVar);
         }
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f13230a.size(); i12++) {
-            i11 = Math.max(i11, ((a) this.f13230a.valueAt(i12)).f13224b);
+        for (int i12 = 0; i12 < this.f13231a.size(); i12++) {
+            i11 = Math.max(i11, ((a) this.f13231a.valueAt(i12)).f13225b);
         }
-        this.f13231b = i11;
+        this.f13232b = i11;
     }
 
     public static a1 a(int i10, int[] iArr) {
@@ -66,7 +66,7 @@ public final class b {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (e2.d0.l(this.f13230a, bVar.f13230a) && this.f13231b == bVar.f13231b) {
+                if (e2.d0.l(this.f13231a, bVar.f13231a) && this.f13232b == bVar.f13232b) {
                     return true;
                 }
                 return false;
@@ -77,10 +77,10 @@ public final class b {
     }
 
     public final int hashCode() {
-        return (e2.d0.m(this.f13230a) * 31) + this.f13231b;
+        return (e2.d0.m(this.f13231a) * 31) + this.f13232b;
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f13231b + ", audioProfiles=" + this.f13230a + "]";
+        return "AudioCapabilities[maxChannelCount=" + this.f13232b + ", audioProfiles=" + this.f13231a + "]";
     }
 }

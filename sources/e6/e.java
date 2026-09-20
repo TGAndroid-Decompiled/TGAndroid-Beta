@@ -8,48 +8,48 @@ public abstract class e {
         int length;
         int length2;
         int indexOf;
-        String i10;
+        String k10;
+        int i10 = 0;
         int i11 = 0;
-        int i12 = 0;
         while (true) {
             length = objArr.length;
-            if (i12 >= length) {
+            if (i11 >= length) {
                 break;
             }
-            Object obj = objArr[i12];
+            Object obj = objArr[i11];
             if (obj == null) {
-                i10 = "null";
+                k10 = "null";
             } else {
                 try {
-                    i10 = obj.toString();
+                    k10 = obj.toString();
                 } catch (Exception e) {
                     String C = a4.a.C(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
                     Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e);
-                    i10 = c1.i("<", C, " threw ", e.getClass().getName(), ">");
+                    k10 = c1.k("<", C, " threw ", e.getClass().getName(), ">");
                 }
             }
-            objArr[i12] = i10;
-            i12++;
+            objArr[i11] = k10;
+            i11++;
         }
         StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
-        int i13 = 0;
+        int i12 = 0;
         while (true) {
             length2 = objArr.length;
-            if (i11 >= length2 || (indexOf = str.indexOf("%s", i13)) == -1) {
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
                 break;
             }
-            sb2.append((CharSequence) str, i13, indexOf);
-            sb2.append(objArr[i11]);
-            i11++;
-            i13 = indexOf + 2;
+            sb2.append((CharSequence) str, i12, indexOf);
+            sb2.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
         }
-        sb2.append((CharSequence) str, i13, str.length());
-        if (i11 < length2) {
+        sb2.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
             sb2.append(" [");
-            sb2.append(objArr[i11]);
-            for (int i14 = i11 + 1; i14 < objArr.length; i14++) {
+            sb2.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
                 sb2.append(", ");
-                sb2.append(objArr[i14]);
+                sb2.append(objArr[i13]);
             }
             sb2.append(']');
         }

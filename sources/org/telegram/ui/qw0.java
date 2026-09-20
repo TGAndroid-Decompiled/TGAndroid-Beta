@@ -6,20 +6,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class qw0 implements org.telegram.ui.Components.ng {
-    public final PopupNotificationActivity f36892a;
+    public final PopupNotificationActivity f36978a;
 
     public qw0(PopupNotificationActivity popupNotificationActivity) {
-        this.f36892a = popupNotificationActivity;
+        this.f36978a = popupNotificationActivity;
     }
 
     @Override
-    public final boolean C0() {
+    public final boolean D0() {
         return true;
     }
 
     @Override
-    public final void E1() {
-        PopupNotificationActivity popupNotificationActivity = this.f36892a;
+    public final void F1() {
+        PopupNotificationActivity popupNotificationActivity = this.f36978a;
         MessageObject messageObject = popupNotificationActivity.Q;
         if (messageObject != null) {
             MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
@@ -28,13 +28,13 @@ public final class qw0 implements org.telegram.ui.Components.ng {
 
     @Override
     public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f36892a;
+        PopupNotificationActivity popupNotificationActivity = this.f36978a;
         if (popupNotificationActivity.Q == null) {
             return;
         }
         int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f31389a0.size()) {
-            popupNotificationActivity.f31389a0.remove(popupNotificationActivity.S);
+        if (i12 >= 0 && i12 < popupNotificationActivity.f31429a0.size()) {
+            popupNotificationActivity.f31429a0.remove(popupNotificationActivity.S);
         }
         MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
         popupNotificationActivity.Q = null;
@@ -47,22 +47,22 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final int b1() {
+    public final int c1() {
         return 0;
     }
 
     @Override
-    public final TL_stories.StoryItem d1() {
+    public final TL_stories.StoryItem e1() {
         return null;
     }
 
     @Override
-    public final boolean f1(long j3) {
+    public final boolean g1(long j3) {
         return false;
     }
 
     @Override
-    public final boolean i1() {
+    public final boolean j1() {
         return false;
     }
 
@@ -72,13 +72,8 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final boolean o1() {
+    public final boolean p1() {
         return false;
-    }
-
-    @Override
-    public final pn p0() {
-        return null;
     }
 
     @Override
@@ -87,13 +82,22 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
+    public final pn q0() {
+        return null;
+    }
+
+    @Override
     public final TLRPC.Peer v() {
         return null;
     }
 
     @Override
-    public final boolean w1() {
+    public final boolean x1() {
         return false;
+    }
+
+    @Override
+    public final void A1() {
     }
 
     @Override
@@ -109,15 +113,15 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final void G0() {
+    public final void H0() {
     }
 
     @Override
-    public final void J0() {
+    public final void K0() {
     }
 
     @Override
-    public final void T0() {
+    public final void U0() {
     }
 
     @Override
@@ -129,7 +133,7 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final void a1(int i10) {
+    public final void b1(int i10) {
     }
 
     @Override
@@ -157,11 +161,11 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final void m0() {
+    public final void n0() {
     }
 
     @Override
-    public final void n1() {
+    public final void o1() {
     }
 
     @Override
@@ -169,15 +173,7 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final void q1() {
-    }
-
-    @Override
     public final void r1() {
-    }
-
-    @Override
-    public final void s0() {
     }
 
     @Override
@@ -185,7 +181,15 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final void v1(CharSequence charSequence) {
+    public final void t0() {
+    }
+
+    @Override
+    public final void t1() {
+    }
+
+    @Override
+    public final void w1(CharSequence charSequence) {
     }
 
     @Override
@@ -201,11 +205,7 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final void z1() {
-    }
-
-    @Override
-    public final void E0(int i10, int i11) {
+    public final void F0(int i10, int i11) {
     }
 
     @Override
@@ -213,11 +213,11 @@ public final class qw0 implements org.telegram.ui.Components.ng {
     }
 
     @Override
-    public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
+    public final void m1(CharSequence charSequence, boolean z10, boolean z11) {
     }
 
     @Override
-    public final void t1(View view, CharSequence charSequence, boolean z10) {
+    public final void u1(View view, CharSequence charSequence, boolean z10) {
     }
 
     @Override

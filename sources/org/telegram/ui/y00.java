@@ -18,20 +18,20 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_chatlists;
 public abstract class y00 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.n2 f39654a;
-    public final int f39655b;
-    public final int f39656c;
+    public final org.telegram.ui.ActionBar.n2 f39759a;
+    public final int f39760b;
+    public final int f39761c;
     public final Drawable d;
     public final Drawable e;
-    public final org.telegram.ui.Components.p6 f39657f;
-    public final org.telegram.ui.Components.p6 h;
-    public final Paint f39658n;
-    public final Paint f39659r;
-    public float f39660s;
+    public final org.telegram.ui.Components.o6 f39762f;
+    public final org.telegram.ui.Components.o6 h;
+    public final Paint f39763n;
+    public final Paint f39764r;
+    public float f39765s;
     public boolean v;
-    public ValueAnimator f39661w;
-    public String f39662x;
-    public TL_chatlists.TL_exportedChatlistInvite f39663y;
+    public ValueAnimator f39766w;
+    public String f39767x;
+    public TL_chatlists.TL_exportedChatlistInvite f39768y;
 
     public y00(Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, int i11) {
         super(context);
@@ -43,21 +43,21 @@ public abstract class y00 extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        this.f39654a = n2Var;
-        this.f39655b = i10;
-        this.f39656c = i11;
+        this.f39759a = n2Var;
+        this.f39760b = i10;
+        this.f39761c = i11;
         setImportantForAccessibility(1);
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, true, true, false);
-        this.f39657f = p6Var;
-        p6Var.setTextSize(AndroidUtilities.dp(15.66f));
-        p6Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, true, true, false);
+        this.f39762f = o6Var;
+        o6Var.setTextSize(AndroidUtilities.dp(15.66f));
+        o6Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
             i12 = 3;
         }
-        p6Var.setGravity(i12);
-        p6Var.setEllipsizeByGradient(true);
+        o6Var.setGravity(i12);
+        o6Var.setEllipsizeByGradient(true);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             f7 = 56.0f;
@@ -69,17 +69,17 @@ public abstract class y00 extends FrameLayout {
         } else {
             f10 = 56.0f;
         }
-        addView(p6Var, w7.y5.d(-1, 20.0f, 55, f7, 10.33f, f10, 0.0f));
-        org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(context, false, false, false);
-        this.h = p6Var2;
-        p6Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        p6Var2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19464z6, false));
+        addView(o6Var, w7.y5.d(-1, 20.0f, 55, f7, 10.33f, f10, 0.0f));
+        org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(context, false, false, false);
+        this.h = o6Var2;
+        o6Var2.setTextSize(AndroidUtilities.dp(13.0f));
+        o6Var2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19496z6, false));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
             i13 = 3;
         }
-        p6Var2.setGravity(i13);
+        o6Var2.setGravity(i13);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             f11 = 56.0f;
@@ -91,11 +91,11 @@ public abstract class y00 extends FrameLayout {
         } else {
             f12 = 56.0f;
         }
-        addView(p6Var2, w7.y5.d(-1, 16.0f, 55, f11, 33.33f, f12, 0.0f));
+        addView(o6Var2, w7.y5.d(-1, 16.0f, 55, f11, 33.33f, f12, 0.0f));
         ImageView imageView = new ImageView(context);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_ab_other));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19152i6, false), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19184i6, false), 1, -1));
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Uh, false);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(w02, mode));
@@ -115,10 +115,10 @@ public abstract class y00 extends FrameLayout {
         }
         addView(imageView, w7.y5.d(40, 40.0f, i14, f13, 4.0f, f14, 4.0f));
         Paint paint = new Paint();
-        this.f39658n = paint;
+        this.f39763n = paint;
         paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false));
         Paint paint2 = new Paint();
-        this.f39659r = paint2;
+        this.f39764r = paint2;
         paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.wj, false));
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_link_1).mutate();
         this.d = mutate;
@@ -131,7 +131,7 @@ public abstract class y00 extends FrameLayout {
 
     public final void a() {
         String substring;
-        String str = this.f39662x;
+        String str = this.f39767x;
         if (str == null) {
             substring = null;
         } else {
@@ -143,50 +143,50 @@ public abstract class y00 extends FrameLayout {
         TL_chatlists.TL_chatlists_deleteExportedInvite tL_chatlists_deleteExportedInvite = new TL_chatlists.TL_chatlists_deleteExportedInvite();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_deleteExportedInvite.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = this.f39656c;
+        tL_inputChatlistDialogFilter.filter_id = this.f39761c;
         tL_chatlists_deleteExportedInvite.slug = substring;
         x00 x00Var = new x00(this, 2);
-        ConnectionsManager.getInstance(this.f39655b).sendRequest(tL_chatlists_deleteExportedInvite, new oo(21, this, x00Var));
+        ConnectionsManager.getInstance(this.f39760b).sendRequest(tL_chatlists_deleteExportedInvite, new oo(21, this, x00Var));
         AndroidUtilities.runOnUIThread(x00Var, 150L);
     }
 
     public abstract void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite);
 
     public void c() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f39654a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f39759a;
         if (!(n2Var instanceof f10)) {
             return;
         }
-        ai.w0 w0Var = ((f10) n2Var).f33390a;
-        org.telegram.ui.Components.w70 H = org.telegram.ui.Components.w70.H(n2Var, this);
+        ai.w0 w0Var = ((f10) n2Var).f33434a;
+        org.telegram.ui.Components.v70 H = org.telegram.ui.Components.v70.H(n2Var, this);
         H.W(w0Var.W0(this, false));
         H.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new x00(this, 0), false);
         H.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new x00(this, 1), true);
         if (LocaleController.isRTL) {
-            H.f29906i = 3;
+            H.f28976i = 3;
         }
         H.Z();
     }
 
     public final void d() {
-        if (this.f39662x == null) {
+        if (this.f39767x == null) {
             return;
         }
-        org.telegram.ui.Components.ui0 ui0Var = new org.telegram.ui.Components.ui0(getContext(), LocaleController.getString(R.string.InviteByQRCode), this.f39662x, LocaleController.getString(R.string.QRCodeLinkHelpFolder), false);
-        ui0Var.m(R.raw.qr_code_logo);
-        ui0Var.show();
+        org.telegram.ui.Components.ti0 ti0Var = new org.telegram.ui.Components.ti0(getContext(), LocaleController.getString(R.string.InviteByQRCode), this.f39767x, LocaleController.getString(R.string.QRCodeLinkHelpFolder), false);
+        ti0Var.m(R.raw.qr_code_logo);
+        ti0Var.show();
     }
 
     public final void e(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite, boolean z10) {
         boolean z11;
-        if (this.f39663y == tL_exportedChatlistInvite) {
+        if (this.f39768y == tL_exportedChatlistInvite) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f39663y = tL_exportedChatlistInvite;
+        this.f39768y = tL_exportedChatlistInvite;
         String str = tL_exportedChatlistInvite.url;
-        this.f39662x = str;
+        this.f39767x = str;
         if (str.startsWith("http://")) {
             str = str.substring(7);
         }
@@ -194,11 +194,11 @@ public abstract class y00 extends FrameLayout {
             str = str.substring(8);
         }
         boolean isEmpty = TextUtils.isEmpty(tL_exportedChatlistInvite.title);
-        org.telegram.ui.Components.p6 p6Var = this.f39657f;
+        org.telegram.ui.Components.o6 o6Var = this.f39762f;
         if (isEmpty) {
-            p6Var.c(str, z11, true);
+            o6Var.c(str, z11, true);
         } else {
-            p6Var.c(tL_exportedChatlistInvite.title, z11, true);
+            o6Var.c(tL_exportedChatlistInvite.title, z11, true);
         }
         this.h.c(LocaleController.formatPluralString("FilterInviteChats", tL_exportedChatlistInvite.peers.size(), new Object[0]), z11, true);
         if (this.v != z10) {
@@ -206,31 +206,31 @@ public abstract class y00 extends FrameLayout {
             invalidate();
         }
         boolean z12 = tL_exportedChatlistInvite.revoked;
-        if ((z12 ? 1.0f : 0.0f) != this.f39660s) {
-            ValueAnimator valueAnimator = this.f39661w;
+        if ((z12 ? 1.0f : 0.0f) != this.f39765s) {
+            ValueAnimator valueAnimator = this.f39766w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f39661w = null;
+                this.f39766w = null;
             }
             float f7 = 0.0f;
             if (z11) {
-                float f10 = this.f39660s;
+                float f10 = this.f39765s;
                 if (z12) {
                     f7 = 1.0f;
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                this.f39661w = ofFloat;
+                this.f39766w = ofFloat;
                 ofFloat.addUpdateListener(new b3(this, 12));
-                this.f39661w.addListener(new org.telegram.ui.Components.ca(28, this, z12));
-                this.f39661w.setInterpolator(org.telegram.ui.Components.qr.h);
-                this.f39661w.setDuration(350L);
-                this.f39661w.start();
+                this.f39766w.addListener(new org.telegram.ui.Components.ba(28, this, z12));
+                this.f39766w.setInterpolator(org.telegram.ui.Components.qr.h);
+                this.f39766w.setDuration(350L);
+                this.f39766w.start();
                 return;
             }
             if (z12) {
                 f7 = 1.0f;
             }
-            this.f39660s = f7;
+            this.f39765s = f7;
             invalidate();
         }
     }
@@ -247,18 +247,18 @@ public abstract class y00 extends FrameLayout {
             dp = AndroidUtilities.dp(32.0f);
         }
         float f7 = dp;
-        canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f), this.f39658n);
-        if (this.f39660s > 0.0f) {
-            canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f) * this.f39660s, this.f39659r);
+        canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f), this.f39763n);
+        if (this.f39765s > 0.0f) {
+            canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f) * this.f39765s, this.f39764r);
         }
-        float f10 = this.f39660s;
+        float f10 = this.f39765s;
         if (f10 < 1.0f) {
             Drawable drawable = this.d;
             drawable.setAlpha((int) ((1.0f - f10) * 255.0f));
             drawable.setBounds(dp - AndroidUtilities.dp(14.0f), (getMeasuredHeight() / 2) - AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f) + dp, AndroidUtilities.dp(14.0f) + (getMeasuredHeight() / 2));
             drawable.draw(canvas);
         }
-        float f11 = this.f39660s;
+        float f11 = this.f39765s;
         if (f11 > 0.0f) {
             Drawable drawable2 = this.e;
             drawable2.setAlpha((int) (f11 * 255.0f));
@@ -278,7 +278,7 @@ public abstract class y00 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(dp2, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f19184k0);
+            canvas.drawRect(dp2, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f19216k0);
         }
     }
 
@@ -287,19 +287,19 @@ public abstract class y00 extends FrameLayout {
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         StringBuilder sb2 = new StringBuilder();
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = this.f39663y;
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = this.f39768y;
         String str2 = "";
         if (tL_exportedChatlistInvite == null || TextUtils.isEmpty(tL_exportedChatlistInvite.title)) {
             str = "";
         } else {
-            str = a4.a.s(new StringBuilder(), this.f39663y.title, "\n ");
+            str = a4.a.s(new StringBuilder(), this.f39768y.title, "\n ");
         }
         sb2.append(str);
-        org.telegram.ui.Cells.c1.l(R.string.InviteLink, ", ", sb2);
+        org.telegram.ui.Cells.c1.o(R.string.InviteLink, ", ", sb2);
         sb2.append((Object) this.h.getText());
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2 = this.f39663y;
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2 = this.f39768y;
         if (tL_exportedChatlistInvite2 != null && TextUtils.isEmpty(tL_exportedChatlistInvite2.title)) {
-            str2 = "\n\n" + this.f39663y.url;
+            str2 = "\n\n" + this.f39768y.url;
         }
         sb2.append(str2);
         accessibilityNodeInfo.setContentDescription(sb2.toString());

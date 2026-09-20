@@ -37,18 +37,18 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
     public int X;
     public boolean Y;
     public int Z;
-    public final ArrayList f38288a0;
-    public int f38289b0;
-    public LimitPreviewView f38290c0;
-    public final o5 f38291d0;
-    public boolean f38292e0;
-    public LinearLayout f38293f0;
-    public final TLRPC.Chat f38294g0;
-    public String f38295h0;
-    public String f38296i0;
-    public int f38297j0;
-    public int f38298k0;
-    public int f38299l0;
+    public final ArrayList f38393a0;
+    public int f38394b0;
+    public LimitPreviewView f38395c0;
+    public final o5 f38396d0;
+    public boolean f38397e0;
+    public LinearLayout f38398f0;
+    public final TLRPC.Chat f38399g0;
+    public String f38400h0;
+    public String f38401i0;
+    public int f38402j0;
+    public int f38403k0;
+    public int f38404l0;
     public int m0;
 
     public v5(long j3) {
@@ -56,15 +56,15 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
         this.Q = i10;
         this.U = new ArrayList();
         this.V = new ArrayList();
-        this.f38288a0 = new ArrayList();
-        this.f38289b0 = 0;
-        this.f38291d0 = new o5(this);
-        this.f38295h0 = "";
-        this.f38296i0 = "";
-        this.f38297j0 = 5;
-        this.f38298k0 = 5;
+        this.f38393a0 = new ArrayList();
+        this.f38394b0 = 0;
+        this.f38396d0 = new o5(this);
+        this.f38400h0 = "";
+        this.f38401i0 = "";
+        this.f38402j0 = 5;
+        this.f38403k0 = 5;
         this.P = j3;
-        this.f38294g0 = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
+        this.f38399g0 = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
     }
 
     public static void x0(v5 v5Var, Context context, View view, int i10) {
@@ -75,17 +75,17 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
             TL_stories.Boost boost = bVar.getBoost();
             boolean z11 = boost.giveaway;
             if (z11 && boost.stars > 0) {
-                yh.v7.e1(context, v5Var.Q, v5Var.P, boost, v5Var.getResourceProvider());
+                yh.w7.e1(context, v5Var.Q, v5Var.P, boost, v5Var.getResourceProvider());
             } else {
                 boolean z12 = boost.gift;
                 if (((!z12 && !z11) || boost.user_id < 0) && !boost.unclaimed) {
                     if (z11 && boost.user_id == -1) {
-                        org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(v5Var.getParentActivity(), v5Var.getResourceProvider());
-                        ybVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
-                        ybVar.f30530b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                        ybVar.f30530b.setSingleLine(false);
-                        ybVar.f30530b.setMaxLines(2);
-                        org.telegram.ui.Components.qc.g(v5Var, ybVar, 2750).j();
+                        org.telegram.ui.Components.xb xbVar = new org.telegram.ui.Components.xb(v5Var.getParentActivity(), v5Var.getResourceProvider());
+                        xbVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
+                        xbVar.f30222b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
+                        xbVar.f30222b.setSingleLine(false);
+                        xbVar.f30222b.setMaxLines(2);
+                        org.telegram.ui.Components.pc.g(v5Var, xbVar, 2750).j();
                     } else if (!z12 && !z11) {
                         v5Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));
                     }
@@ -93,7 +93,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
                     TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
                     tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
                     tL_payments_checkedGiftCode.to_id = boost.user_id;
-                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-v5Var.f38294g0.f18296id);
+                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-v5Var.f38399g0.f18328id);
                     int i11 = boost.date;
                     tL_payments_checkedGiftCode.date = i11;
                     tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
@@ -110,14 +110,14 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
                 }
             }
         }
-        if (view instanceof org.telegram.ui.Cells.r8) {
+        if (view instanceof org.telegram.ui.Cells.s8) {
             tg.m.m(v5Var, v5Var.resourceProvider, j3, null);
         }
         if (view instanceof yg.c) {
             tg.m.m(v5Var, v5Var.resourceProvider, j3, ((yg.c) view).getPrepaidGiveaway());
         }
-        if (((u5) v5Var.f38288a0.get(i10)).f15672a == 9) {
-            if (v5Var.f38289b0 == 1) {
+        if (((u5) v5Var.f38393a0.get(i10)).f15704a == 9) {
+            if (v5Var.f38394b0 == 1) {
                 z10 = true;
             }
             v5Var.E0(Boolean.valueOf(z10));
@@ -126,8 +126,8 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
 
     public final void C0(CountDownLatch countDownLatch, l5 l5Var) {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
-        tL_premium_getBoostsList.limit = this.f38298k0;
-        tL_premium_getBoostsList.offset = this.f38295h0;
+        tL_premium_getBoostsList.limit = this.f38403k0;
+        tL_premium_getBoostsList.offset = this.f38400h0;
         int i10 = this.Q;
         tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.P);
         ConnectionsManager.getInstance(i10).sendRequest(tL_premium_getBoostsList, new j5(this, countDownLatch, l5Var, 0), 2);
@@ -135,19 +135,19 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
 
     public final void D0(CountDownLatch countDownLatch, l5 l5Var) {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
-        tL_premium_getBoostsList.limit = this.f38297j0;
+        tL_premium_getBoostsList.limit = this.f38402j0;
         tL_premium_getBoostsList.gifts = true;
-        tL_premium_getBoostsList.offset = this.f38296i0;
+        tL_premium_getBoostsList.offset = this.f38401i0;
         int i10 = this.Q;
         tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.P);
         ConnectionsManager.getInstance(i10).sendRequest(tL_premium_getBoostsList, new j5(this, countDownLatch, l5Var, 1), 2);
     }
 
     public final void E0(Boolean bool) {
-        if (this.f38292e0) {
+        if (this.f38397e0) {
             return;
         }
-        this.f38292e0 = true;
+        this.f38397e0 = true;
         if (bool == null) {
             Utilities.globalQueue.postRunnable(new l5(this, 1));
         } else if (bool.booleanValue()) {
@@ -165,24 +165,24 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
         if (getParentActivity() == null) {
             return;
         }
-        if (this.f38290c0 == null) {
+        if (this.f38395c0 == null) {
             LimitPreviewView limitPreviewView = new LimitPreviewView(getParentActivity(), R.drawable.filled_limit_boost, 0, this.resourceProvider, 0);
-            this.f38290c0 = limitPreviewView;
-            limitPreviewView.f22292c0 = true;
+            this.f38395c0 = limitPreviewView;
+            limitPreviewView.f22327c0 = true;
             limitPreviewView.setDarkGradientProvider(new y0(this, 5));
         }
-        if (this.f38290c0.getParent() != null) {
-            ((ViewGroup) this.f38290c0.getParent()).removeView(this.f38290c0);
+        if (this.f38395c0.getParent() != null) {
+            ((ViewGroup) this.f38395c0.getParent()).removeView(this.f38395c0);
         }
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.R;
         if (tL_premium_boostsStatus != null) {
-            this.f38290c0.e(tL_premium_boostsStatus, false);
+            this.f38395c0.e(tL_premium_boostsStatus, false);
             if (z10) {
-                this.f38290c0.setAlpha(0.0f);
-                this.f38290c0.animate().alpha(1.0f).start();
+                this.f38395c0.setAlpha(0.0f);
+                this.f38395c0.animate().alpha(1.0f).start();
             }
         }
-        TLRPC.Chat chat = this.f38294g0;
+        TLRPC.Chat chat = this.f38399g0;
         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
             i10 = R.string.BoostingBoostForChannels;
         } else {
@@ -197,7 +197,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i11));
         FrameLayout frameLayout = new FrameLayout(getParentActivity());
         if (this.R != null) {
-            view = this.f38290c0;
+            view = this.f38395c0;
         } else {
             view = new View(frameLayout.getContext());
         }
@@ -218,7 +218,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
         int i13;
         boolean z12;
         boolean z13;
-        ArrayList arrayList = this.f38288a0;
+        ArrayList arrayList = this.f38393a0;
         ArrayList arrayList2 = new ArrayList(arrayList);
         arrayList.clear();
         arrayList.add(new og.a(14, false));
@@ -237,14 +237,14 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
                     }
                     ?? aVar = new og.a(11, true);
                     aVar.e = prepaidGiveaway;
-                    aVar.f37881f = z13;
+                    aVar.f37957f = z13;
                     arrayList.add(aVar);
                 }
                 arrayList.add(new u5(6, LocaleController.getString(R.string.BoostingSelectPaidGiveaway)));
             }
             arrayList.add(new u5(13, LocaleController.getString(R.string.Boosters)));
-            int i15 = this.f38289b0;
-            TLRPC.Chat chat = this.f38294g0;
+            int i15 = this.f38394b0;
+            TLRPC.Chat chat = this.f38399g0;
             if (i15 == 0) {
                 ArrayList arrayList3 = this.U;
                 if (arrayList3.isEmpty()) {
@@ -258,7 +258,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
                         } else {
                             z12 = false;
                         }
-                        arrayList.add(new u5(boost, z12, this.f38289b0));
+                        arrayList.add(new u5(boost, z12, this.f38394b0));
                     }
                     if (this.W) {
                         arrayList.add(new og.a(9, true));
@@ -285,7 +285,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
                         } else {
                             z11 = false;
                         }
-                        arrayList.add(new u5(boost2, z11, this.f38289b0));
+                        arrayList.add(new u5(boost2, z11, this.f38394b0));
                     }
                     if (this.Y) {
                         arrayList.add(new og.a(9, true));
@@ -321,7 +321,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
             }
             arrayList.add(new og.a(15, false));
         }
-        o5 o5Var = this.f38291d0;
+        o5 o5Var = this.f38396d0;
         if (z10) {
             o5Var.E(arrayList2, arrayList);
         } else {
@@ -334,22 +334,22 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
         View createView = super.createView(context);
         F0(false);
         s4.j jVar = new s4.j();
-        jVar.f42964m = false;
+        jVar.f43009m = false;
         jVar.C = false;
-        this.f36938c.setItemAnimator(jVar);
-        this.f36938c.setOnItemClickListener(new ai.o6(3, this, context));
+        this.f37024c.setItemAnimator(jVar);
+        this.f37024c.setOnItemClickListener(new ai.o6(3, this, context));
         Activity parentActivity = getParentActivity();
         LinearLayout linearLayout = new LinearLayout(parentActivity);
-        this.f38293f0 = linearLayout;
+        this.f38398f0 = linearLayout;
         linearLayout.setOrientation(1);
-        this.f38293f0.addView(new ai.q2(parentActivity), w7.y5.t(100, 100, 17, 0, 120, 0, 0));
-        ((ViewGroup) this.fragmentView).addView(this.f38293f0, w7.y5.e(-1, -2, 17));
-        this.f38293f0.setAlpha(0.0f);
+        this.f38398f0.addView(new ai.q2(parentActivity), w7.y5.t(100, 100, 17, 0, 120, 0, 0));
+        ((ViewGroup) this.fragmentView).addView(this.f38398f0, w7.y5.e(-1, -2, 17));
+        this.f38398f0.setAlpha(0.0f);
         if (this.R == null) {
-            this.f38293f0.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
+            this.f38398f0.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
             getMessagesController().getBoostsController().getBoostsStats(this.P, new m5(this, 1));
         } else {
-            this.f38293f0.setVisibility(8);
+            this.f38398f0.setVisibility(8);
             E0(null);
         }
         G0(false);
@@ -366,7 +366,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
             List fragmentStack = getParentLayout().getFragmentStack();
             org.telegram.ui.ActionBar.n2 n2Var3 = null;
             if (fragmentStack.size() >= 2) {
-                n2Var = (org.telegram.ui.ActionBar.n2) t8.b.h(2, fragmentStack);
+                n2Var = (org.telegram.ui.ActionBar.n2) org.telegram.ui.Cells.c1.i(2, fragmentStack);
             } else {
                 n2Var = null;
             }
@@ -375,13 +375,13 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
             }
             List fragmentStack2 = getParentLayout().getFragmentStack();
             if (fragmentStack2.size() >= 2) {
-                n2Var2 = (org.telegram.ui.ActionBar.n2) t8.b.h(2, fragmentStack2);
+                n2Var2 = (org.telegram.ui.ActionBar.n2) org.telegram.ui.Cells.c1.i(2, fragmentStack2);
             } else {
                 n2Var2 = null;
             }
             if (booleanValue) {
                 if (fragmentStack2.size() >= 3) {
-                    n2Var3 = (org.telegram.ui.ActionBar.n2) t8.b.h(3, fragmentStack2);
+                    n2Var3 = (org.telegram.ui.ActionBar.n2) org.telegram.ui.Cells.c1.i(3, fragmentStack2);
                 }
                 if (n2Var2 instanceof ProfileActivity) {
                     ((ActionBarLayout) getParentLayout()).a0(n2Var2, false);
@@ -410,7 +410,7 @@ public final class v5 extends r20 implements NotificationCenter.NotificationCent
 
     @Override
     public final s4.h0 n0() {
-        return this.f38291d0;
+        return this.f38396d0;
     }
 
     @Override

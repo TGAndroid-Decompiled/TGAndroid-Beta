@@ -5,18 +5,18 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class jy0 implements View.OnClickListener {
-    public final int f34960a;
-    public final ProfileActivity f34961b;
+    public final int f35005a;
+    public final ProfileActivity f35006b;
 
     public jy0(ProfileActivity profileActivity, int i10) {
-        this.f34960a = i10;
-        this.f34961b = profileActivity;
+        this.f35005a = i10;
+        this.f35006b = profileActivity;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f34960a;
-        ProfileActivity profileActivity = this.f34961b;
+        int i10 = this.f35005a;
+        ProfileActivity profileActivity = this.f35006b;
         switch (i10) {
             case 0:
                 ProfileActivity.i0(profileActivity);
@@ -42,9 +42,9 @@ public final class jy0 implements View.OnClickListener {
             case 6:
                 profileActivity.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f31521f1);
-                bundle.putLong("user_id", profileActivity.f31513e1);
-                profileActivity.presentFragment(new e31(bundle));
+                bundle.putLong("chat_id", profileActivity.f31561f1);
+                bundle.putLong("user_id", profileActivity.f31553e1);
+                profileActivity.presentFragment(new f31(bundle));
                 return;
             case 7:
                 ProfileActivity.h0(profileActivity);
@@ -65,7 +65,7 @@ public final class jy0 implements View.OnClickListener {
                             ox oxVar = uyVar.F3;
                             if (oxVar != null) {
                                 org.telegram.ui.ActionBar.n2 fragment = oxVar.getFragment();
-                                if ((fragment instanceof dg1) && (-((dg1) fragment).f32970a) == profileActivity.a()) {
+                                if ((fragment instanceof fg1) && (-((fg1) fragment).f33596a) == profileActivity.a()) {
                                     uyVar.F3.a();
                                 }
                             }
@@ -74,14 +74,14 @@ public final class jy0 implements View.OnClickListener {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).a0(n2Var, false);
                                 i11--;
                             }
-                        } else if (n2Var instanceof dg1) {
-                            if ((-((dg1) n2Var).f32970a) == profileActivity.a()) {
+                        } else if (n2Var instanceof fg1) {
+                            if ((-((fg1) n2Var).f33596a) == profileActivity.a()) {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).a0(n2Var, false);
                                 i11--;
                             }
                         } else if ((n2Var instanceof ProfileActivity) && n2Var != profileActivity) {
                             ProfileActivity profileActivity2 = (ProfileActivity) n2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f31594q1) {
+                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f31634q1) {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).a0(n2Var, false);
                                 i11--;
                             }
@@ -91,9 +91,9 @@ public final class jy0 implements View.OnClickListener {
                 }
                 profileActivity.J1 = 0;
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f31521f1);
-                HashSet hashSet = dg1.f32969n1;
-                profileActivity.presentFragment(dg1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
+                bundle2.putLong("chat_id", profileActivity.f31561f1);
+                HashSet hashSet = fg1.f33595n1;
+                profileActivity.presentFragment(fg1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
                 return;
             case 11:
                 profileActivity.t4(view);

@@ -34,7 +34,7 @@ public final class g implements Callable {
             }
         }
         if (z10) {
-            ((x9.f) p3Var.f14467a).i((String) p3Var.f14469c, str);
+            ((x9.f) p3Var.f14503a).i((String) p3Var.f14505c, str);
         }
         return null;
     }
@@ -49,12 +49,12 @@ public final class g implements Callable {
                 return a();
             default:
                 com.google.firebase.messaging.m mVar = (com.google.firebase.messaging.m) this.f3420b;
-                ((AtomicReference) mVar.f7328c).set(null);
+                ((AtomicReference) mVar.f7329c).set(null);
                 synchronized (mVar) {
                     try {
-                        if (((AtomicMarkableReference) mVar.f7327b).isMarked()) {
-                            map = ((x9.d) ((AtomicMarkableReference) mVar.f7327b).getReference()).a();
-                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) mVar.f7327b;
+                        if (((AtomicMarkableReference) mVar.f7328b).isMarked()) {
+                            map = ((x9.d) ((AtomicMarkableReference) mVar.f7328b).getReference()).a();
+                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) mVar.f7328b;
                             atomicMarkableReference.set((x9.d) atomicMarkableReference.getReference(), false);
                         } else {
                             map = null;
@@ -65,7 +65,7 @@ public final class g implements Callable {
                 }
                 if (map != null) {
                     p3 p3Var = (p3) mVar.d;
-                    ((x9.f) p3Var.f14467a).g((String) p3Var.f14469c, map, mVar.f7326a);
+                    ((x9.f) p3Var.f14503a).g((String) p3Var.f14505c, map, mVar.f7327a);
                 }
                 return null;
         }

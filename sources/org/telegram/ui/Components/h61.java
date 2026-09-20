@@ -1,19 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class h61 implements Utilities.Callback0Return {
-    public final int f24567a;
-    public final Object f24568b;
-    public final Object f24569c;
-
-    public h61(int i10, Object obj, Object obj2) {
-        this.f24567a = i10;
-        this.f24568b = obj;
-        this.f24569c = obj2;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+public final class h61 extends FrameLayout {
+    public int f24556a;
+    public boolean f24557b;
 
     @Override
-    public final java.lang.Object run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h61.run():java.lang.Object");
+    public final void onMeasure(int i10, int i11) {
+        View view;
+        int i12 = this.f24556a;
+        if (getParent() instanceof View) {
+            view = (View) getParent();
+        } else {
+            view = null;
+        }
+        if (this.f24557b && view != null) {
+            i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
+        }
+        if (view != null && view.getMeasuredHeight() > 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i12, 1073741824));
+        } else if (View.MeasureSpec.getMode(i11) != 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11) - i12, 1073741824));
+        } else {
+            int size = View.MeasureSpec.getSize(i11);
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+            measureChildren(makeMeasureSpec, i11);
+            int i13 = 0;
+            for (int i14 = 0; i14 < getChildCount(); i14++) {
+                i13 = Math.max(i13, getChildAt(i14).getMeasuredHeight());
+            }
+            if (size > 0) {
+                i13 = Math.min(i13, size - i12);
+            }
+            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
+        }
     }
 }

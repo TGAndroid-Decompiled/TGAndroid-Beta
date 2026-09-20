@@ -10,16 +10,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.kz;
-import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.v70;
 import org.telegram.ui.Components.yg;
-import org.telegram.ui.cj0;
+import org.telegram.ui.dj0;
 public final class k1 implements View.OnClickListener {
-    public final int f11468a;
-    public final d2 f11469b;
+    public final int f11469a;
+    public final d2 f11470b;
 
     public k1(d2 d2Var, int i10) {
-        this.f11468a = i10;
-        this.f11469b = d2Var;
+        this.f11469a = i10;
+        this.f11470b = d2Var;
     }
 
     @Override
@@ -32,36 +32,36 @@ public final class k1 implements View.OnClickListener {
         o5 S2;
         r5 o9;
         String str;
-        switch (this.f11468a) {
+        switch (this.f11469a) {
             case 0:
-                this.f11469b.r0();
+                this.f11470b.r0();
                 return;
             case 1:
-                d2 d2Var = this.f11469b;
+                d2 d2Var = this.f11470b;
                 if (!d2Var.P.G2()) {
                     d2Var.finishFragment();
                     return;
                 }
                 return;
             case 2:
-                h2 h2Var = this.f11469b.P.J3;
+                h2 h2Var = this.f11470b.P.J3;
                 if (h2Var != null) {
                     h2Var.k();
                     return;
                 }
                 return;
             case 3:
-                h2 h2Var2 = this.f11469b.P.J3;
+                h2 h2Var2 = this.f11470b.P.J3;
                 if (h2Var2 != null) {
                     h2Var2.i();
                     return;
                 }
                 return;
             case 4:
-                d2.U(this.f11469b);
+                d2.U(this.f11470b);
                 return;
             case 5:
-                d2 d2Var2 = this.f11469b;
+                d2 d2Var2 = this.f11470b;
                 if (d2Var2.B0) {
                     d2Var2.k0(true);
                     i1 Q2 = d2Var2.P.Q2();
@@ -77,9 +77,9 @@ public final class k1 implements View.OnClickListener {
                     d2Var2.A0 = kzVar;
                     kzVar.setVisibility(8);
                     kz kzVar2 = d2Var2.A0;
-                    kzVar2.f25956w2 = false;
+                    kzVar2.f25962w2 = false;
                     kzVar2.setDelegate(new u1(d2Var2));
-                    int indexOfChild = d2Var2.O.indexOfChild(d2Var2.f11299a0);
+                    int indexOfChild = d2Var2.O.indexOfChild(d2Var2.f11300a0);
                     if (indexOfChild < 0) {
                         indexOfChild = d2Var2.O.getChildCount();
                     }
@@ -104,16 +104,16 @@ public final class k1 implements View.OnClickListener {
                     AndroidUtilities.hideKeyboard(Q22);
                 }
                 d2Var2.h0();
-                d2Var2.f11301b0.j(yg.d, true);
+                d2Var2.f11302b0.j(yg.d, true);
                 return;
             case 6:
-                final d2 d2Var3 = this.f11469b;
-                w70 w70Var = d2Var3.f11329x0;
-                if (w70Var != null) {
-                    w70Var.u();
-                    d2Var3.f11329x0 = null;
+                final d2 d2Var3 = this.f11470b;
+                v70 v70Var = d2Var3.f11330x0;
+                if (v70Var != null) {
+                    v70Var.u();
+                    d2Var3.f11330x0 = null;
                 }
-                final w70 H = w70.H(d2Var3, view);
+                final v70 H = v70.H(d2Var3, view);
                 H.Q = true;
                 a R2 = d2Var3.P.R2();
                 if (R2 != null && R2.b()) {
@@ -140,7 +140,7 @@ public final class k1 implements View.OnClickListener {
                     z13 = false;
                 }
                 H.j(z13, R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListChecklist), new n1(d2Var3, R2, 8));
-                if (R2 != null && (R2.f11204b instanceof TL_iv.pageBlockDetails)) {
+                if (R2 != null && (R2.f11205b instanceof TL_iv.pageBlockDetails)) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -191,22 +191,22 @@ public final class k1 implements View.OnClickListener {
                 }
                 H.U = true;
                 H.Z();
-                d2Var3.f11329x0 = H;
+                d2Var3.f11330x0 = H;
                 return;
             case 7:
-                d2 d2Var4 = this.f11469b;
-                w70 w70Var2 = d2Var4.f11329x0;
+                d2 d2Var4 = this.f11470b;
+                v70 v70Var2 = d2Var4.f11330x0;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (w70Var2 != null) {
-                    w70Var2.u();
-                    d2Var4.f11329x0 = null;
+                if (v70Var2 != null) {
+                    v70Var2.u();
+                    d2Var4.f11330x0 = null;
                 }
                 w3 w3Var2 = d2Var4.P;
-                o5 o5Var = w3Var2.f11717i4;
+                o5 o5Var = w3Var2.f11718i4;
                 if (o5Var == null && (S2 = w3Var2.S2()) != null && S2.getModel() != null) {
                     View findFocus = d2Var4.P.findFocus();
                     if ((findFocus instanceof i1) && (o9 = S2.o((i1) findFocus)) != null) {
-                        pagetablecell = o9.f11607b;
+                        pagetablecell = o9.f11608b;
                     }
                     if (pagetablecell != null) {
                         d2Var4.P.h2(S2);
@@ -225,16 +225,16 @@ public final class k1 implements View.OnClickListener {
                     return;
                 }
             case 8:
-                d2 d2Var5 = this.f11469b;
-                w70 w70Var3 = d2Var5.f11329x0;
+                d2 d2Var5 = this.f11470b;
+                v70 v70Var3 = d2Var5.f11330x0;
                 TL_iv.pageBlockMath pageblockmath = null;
-                if (w70Var3 != null) {
-                    w70Var3.u();
-                    d2Var5.f11329x0 = null;
+                if (v70Var3 != null) {
+                    v70Var3.u();
+                    d2Var5.f11330x0 = null;
                 }
                 a R22 = d2Var5.P.R2();
                 if (R22 != null) {
-                    TL_iv.PageBlock pageBlock = R22.f11204b;
+                    TL_iv.PageBlock pageBlock = R22.f11205b;
                     if (pageBlock instanceof TL_iv.pageBlockMath) {
                         pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                     }
@@ -248,39 +248,39 @@ public final class k1 implements View.OnClickListener {
                 r.U(parentActivity, str, new ci.m2(20, d2Var5, pageblockmath), d2Var5.getResourceProvider());
                 return;
             case 9:
-                d2 d2Var6 = this.f11469b;
-                d2Var6.P.f11706b4 = null;
+                d2 d2Var6 = this.f11470b;
+                d2Var6.P.f11707b4 = null;
                 d2Var6.o0(90, 0);
                 return;
             case 10:
-                d2 d2Var7 = this.f11469b;
+                d2 d2Var7 = this.f11470b;
                 d2Var7.r0();
-                cj0 cj0Var = d2Var7.O0;
-                if (cj0Var != null) {
-                    cj0Var.h(true);
+                dj0 dj0Var = d2Var7.O0;
+                if (dj0Var != null) {
+                    dj0Var.h(true);
                     d2Var7.O0 = null;
                     return;
                 }
                 return;
             case 11:
-                d2 d2Var8 = this.f11469b;
+                d2 d2Var8 = this.f11470b;
                 d2Var8.P.R4();
                 d2Var8.y0();
                 return;
             case 12:
-                this.f11469b.P.a4(view);
+                this.f11470b.P.a4(view);
                 return;
             case 13:
-                this.f11469b.P.b4();
+                this.f11470b.P.b4();
                 return;
             case 14:
-                this.f11469b.P.Y3();
+                this.f11470b.P.Y3();
                 return;
             case 15:
-                this.f11469b.P.c4();
+                this.f11470b.P.c4();
                 return;
             default:
-                this.f11469b.n0();
+                this.f11470b.n0();
                 return;
         }
     }

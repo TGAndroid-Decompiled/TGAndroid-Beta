@@ -12,14 +12,14 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.p5;
 import org.telegram.ui.rk;
 import w7.y5;
 public final class z1 extends FrameLayout {
     public final ImageView f39133a;
     public final TextView f39134b;
     public final rk f39135c;
-    public q5 d;
+    public p5 d;
     public String e;
     public boolean f39136f;
 
@@ -38,7 +38,7 @@ public final class z1 extends FrameLayout {
         addView(textView, y5.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
         rk rkVar = new rk(this, context, 6);
         this.f39135c = rkVar;
-        rkVar.setTextColor(j6.w0(null, j6.f19445y6, false));
+        rkVar.setTextColor(j6.w0(null, j6.f19477y6, false));
         rkVar.setTextSize(1, 13.0f);
         rkVar.setMaxLines(1);
         rkVar.setEllipsize(truncateAt);
@@ -55,7 +55,7 @@ public final class z1 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.f39136f) {
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), j6.f19184k0);
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), j6.f19216k0);
         }
     }
 

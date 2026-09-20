@@ -4,28 +4,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-public final class u0 extends d1 {
-    public final m f15352a;
-    public final int f15353b;
+public final class u0 extends c1 {
+    public final m f15388a;
+    public final int f15389b;
 
     public u0(x xVar) {
         xVar.getClass();
-        this.f15352a = xVar;
+        this.f15388a = xVar;
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            m mVar = this.f15352a;
+            m mVar = this.f15388a;
             if (i10 >= mVar.size()) {
                 break;
             }
-            int a2 = ((d1) mVar.get(i10)).a();
+            int a2 = ((c1) mVar.get(i10)).a();
             if (i11 < a2) {
                 i11 = a2;
             }
             i10++;
         }
         int i12 = i11 + 1;
-        this.f15353b = i12;
+        this.f15389b = i12;
         if (i12 <= 8) {
             return;
         }
@@ -34,24 +34,24 @@ public final class u0 extends d1 {
 
     @Override
     public final int a() {
-        return this.f15353b;
+        return this.f15389b;
     }
 
     @Override
     public final int compareTo(Object obj) {
-        d1 d1Var = (d1) obj;
-        int zza = d1Var.zza();
-        int c10 = d1.c(Byte.MIN_VALUE);
+        c1 c1Var = (c1) obj;
+        int zza = c1Var.zza();
+        int c10 = c1.c(Byte.MIN_VALUE);
         if (c10 != zza) {
-            return c10 - d1Var.zza();
+            return c10 - c1Var.zza();
         }
-        m mVar = ((u0) d1Var).f15352a;
-        m mVar2 = this.f15352a;
+        m mVar = ((u0) c1Var).f15388a;
+        m mVar2 = this.f15388a;
         if (mVar2.size() != mVar.size()) {
             return mVar2.size() - mVar.size();
         }
         for (int i10 = 0; i10 < mVar2.size(); i10++) {
-            int compareTo = ((d1) mVar2.get(i10)).compareTo((d1) mVar.get(i10));
+            int compareTo = ((c1) mVar2.get(i10)).compareTo((c1) mVar.get(i10));
             if (compareTo != 0) {
                 return compareTo;
             }
@@ -66,22 +66,22 @@ public final class u0 extends d1 {
         if (obj == null || u0.class != obj.getClass()) {
             return false;
         }
-        return this.f15352a.equals(((u0) obj).f15352a);
+        return this.f15388a.equals(((u0) obj).f15388a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c(Byte.MIN_VALUE)), this.f15352a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c(Byte.MIN_VALUE)), this.f15388a});
     }
 
     public final String toString() {
-        m mVar = this.f15352a;
+        m mVar = this.f15388a;
         if (mVar.isEmpty()) {
             return "[]";
         }
         ArrayList arrayList = new ArrayList();
         int size = mVar.size();
         for (int i10 = 0; i10 < size; i10++) {
-            arrayList.add(((d1) mVar.get(i10)).toString().replace("\n", "\n  "));
+            arrayList.add(((c1) mVar.get(i10)).toString().replace("\n", "\n  "));
         }
         StringBuilder sb2 = new StringBuilder("[\n  ");
         Iterator it = arrayList.iterator();
@@ -102,6 +102,6 @@ public final class u0 extends d1 {
 
     @Override
     public final int zza() {
-        return d1.c(Byte.MIN_VALUE);
+        return c1.c(Byte.MIN_VALUE);
     }
 }

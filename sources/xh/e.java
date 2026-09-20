@@ -13,25 +13,25 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.ab;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.ul0;
 import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.w51;
 import w7.y5;
-public final class e extends bb implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final x51 X;
+public final class e extends ab implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
+    public final w51 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f46088a0;
-    public l61 f46089b0;
+    public boolean f46135a0;
+    public k61 f46136b0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        setBackgroundColor(j6.w0(null, j6.f19006a7, false));
+        setBackgroundColor(j6.w0(null, j6.f19038a7, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
@@ -41,10 +41,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.X = x51.j(-1, linearLayout);
+        this.X = w51.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f46089b0.N(false);
+        this.f46136b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,7 +52,7 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f46079a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            dVar.f46126a.setOnClickListener(new xg.e(this, context, auction2, 1));
             linearLayout.addView(dVar, y5.n(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
@@ -81,10 +81,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f46088a0);
+                dVar.b(this.f46135a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f46088a0);
-                dVar.f46082f.a(max);
+                dVar.a(max, this.f46135a0);
+                dVar.f46129f.a(max);
             }
         }
     }
@@ -92,15 +92,15 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f46088a0 = true;
+        this.f46135a0 = true;
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f46089b0 = l61Var;
-        l61Var.f26042r = false;
-        return l61Var;
+    public final ul0 v(vl0 vl0Var) {
+        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
+        this.f46136b0 = k61Var;
+        k61Var.f25678r = false;
+        return k61Var;
     }
 
     @Override

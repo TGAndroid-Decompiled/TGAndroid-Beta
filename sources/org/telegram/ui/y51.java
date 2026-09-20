@@ -2,35 +2,22 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class y51 extends View {
-    public final int f39704a;
-    public final Integer f39705b;
+import org.telegram.tgnet.tl.TL_stars;
+public final class y51 extends f71 {
+    public final View Q;
+    public final TL_stars.TL_starGiftUnique R;
+    public final z51 S;
 
-    public y51(Context context, Integer num, int i10) {
-        super(context);
-        this.f39704a = i10;
-        this.f39705b = num;
+    public y51(z51 z51Var, Context context, Runnable runnable, View view, s61 s61Var, org.telegram.ui.ActionBar.f6 f6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        super(z51Var.e, context, runnable, view, s61Var, f6Var);
+        this.S = z51Var;
+        this.Q = view2;
+        this.R = tL_starGiftUnique;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f39704a) {
-            case 0:
-                super.onMeasure(i10, i11);
-                Integer num = this.f39705b;
-                if (num != null) {
-                    setPivotX(num.intValue());
-                    return;
-                }
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                Integer num2 = this.f39705b;
-                if (num2 != null) {
-                    setPivotX(num2.intValue());
-                    return;
-                }
-                return;
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.S.e.X0 = null;
     }
 }

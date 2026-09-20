@@ -98,7 +98,7 @@ public abstract class n6 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new l6(this, 0));
             this.M.addListener(new b(this, 7));
-            this.M.setInterpolator(qr.f27715f);
+            this.M.setInterpolator(qr.f27642f);
             this.M.setDuration(200L);
             this.M.start();
         }
@@ -228,20 +228,20 @@ public abstract class n6 extends View {
                 float f19 = this.f1295r;
                 float f20 = f10 * f19;
                 f11 = measuredWidth;
-                float y3 = org.telegram.messenger.q.y(f18, f17, 2.0f, z10);
-                float y10 = org.telegram.messenger.q.y(f20, f19, 2.0f, this.f1298x);
+                float x10 = org.telegram.messenger.l0.x(f18, f17, 2.0f, z10);
+                float x11 = org.telegram.messenger.l0.x(f20, f19, 2.0f, this.f1298x);
                 if (this.f1299y == 0.0f || i14 == (i12 = this.K)) {
                     arrayList2 = arrayList3;
                     arrayList = arrayList4;
                     f12 = f14;
                     i11 = i15;
-                    m6Var.f1251a.setImageCoords(y3, y10, f18, f20);
+                    m6Var.f1251a.setImageCoords(x10, x11, f18, f20);
                 } else {
                     f12 = f14;
                     i11 = i15;
                     arrayList = arrayList4;
                     arrayList2 = arrayList3;
-                    m6Var.f1251a.setImageCoords(AndroidUtilities.lerp(getMeasuredWidth() * (i14 - i12), y3, this.f1299y), AndroidUtilities.lerp(this.f1290a, y10, this.f1299y), AndroidUtilities.lerp(this.f1291b, f18, this.f1299y), AndroidUtilities.lerp(this.f1292c, f20, this.f1299y));
+                    m6Var.f1251a.setImageCoords(AndroidUtilities.lerp(getMeasuredWidth() * (i14 - i12), x10, this.f1299y), AndroidUtilities.lerp(this.f1290a, x11, this.f1299y), AndroidUtilities.lerp(this.f1291b, f18, this.f1299y), AndroidUtilities.lerp(this.f1292c, f20, this.f1299y));
                 }
                 if (this.f1299y != 1.0f && i14 == this.K) {
                     arrayList3 = arrayList2;

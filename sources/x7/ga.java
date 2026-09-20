@@ -1,31 +1,74 @@
 package x7;
 
 import android.content.Context;
-public final class ga implements ea {
-    public final q9.n f45691a;
-    public final ba f45692b;
+import com.google.android.gms.tasks.Task;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+public final class ga {
+    public static s f45724k;
+    public static final x f45725l;
+    public final String f45726a;
+    public final String f45727b;
+    public final da f45728c;
+    public final qb.k d;
+    public final Task e;
+    public final Task f45729f;
+    public final String f45730g;
+    public final int h;
+    public final HashMap f45731i = new HashMap();
+    public final HashMap f45732j = new HashMap();
 
-    public ga(Context context, ba baVar) {
-        this.f45692b = baVar;
-        j5.a aVar = j5.a.e;
-        l5.s.b(context);
-        l5.q c10 = l5.s.a().c(aVar);
-        if (j5.a.d.contains(new i5.c("json"))) {
-            new q9.n(new v7.a9(c10, 4));
-        }
-        this.f45691a = new q9.n(new v7.a9(c10, 5));
+    static {
+        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
+        objArr[0].getClass();
+        objArr[1].getClass();
+        f45725l = new x(objArr);
     }
 
-    @Override
-    public final void a(a5.a aVar) {
-        i5.a aVar2;
-        this.f45692b.getClass();
-        l5.r rVar = (l5.r) this.f45691a.get();
-        if (aVar.f277b != 0) {
-            aVar2 = new i5.a(null, aVar.B(), i5.d.f10996a, null);
+    public ga(Context context, qb.k kVar, da daVar) {
+        int i10;
+        this.f45726a = context.getPackageName();
+        this.f45727b = qb.c.a(context);
+        this.d = kVar;
+        this.f45728c = daVar;
+        ja.b();
+        this.f45730g = "play-services-mlkit-image-labeling";
+        qb.f a2 = qb.f.a();
+        c5.x xVar = new c5.x(this, 9);
+        a2.getClass();
+        this.e = qb.f.b(xVar);
+        qb.f a10 = qb.f.a();
+        kVar.getClass();
+        t7.p pVar = new t7.p(kVar, 3);
+        a10.getClass();
+        this.f45729f = qb.f.b(pVar);
+        x xVar2 = f45725l;
+        if (xVar2.containsKey("play-services-mlkit-image-labeling")) {
+            i10 = y6.e.d(context, (String) xVar2.get("play-services-mlkit-image-labeling"), false);
         } else {
-            aVar2 = new i5.a(null, aVar.B(), i5.d.f10997b, null);
+            i10 = -1;
         }
-        rVar.a(aVar2, new j2.e(20));
+        this.h = i10;
+    }
+
+    public static long a(ArrayList arrayList, double d) {
+        return ((Long) arrayList.get(Math.max(((int) Math.ceil((d / 100.0d) * arrayList.size())) - 1, 0))).longValue();
+    }
+
+    public final String b() {
+        Task task = this.e;
+        if (task.isSuccessful()) {
+            return (String) task.getResult();
+        }
+        return n6.i.f15271c.a(this.f45730g);
+    }
+
+    public final boolean c(p7 p7Var, long j3) {
+        HashMap hashMap = this.f45731i;
+        if (hashMap.get(p7Var) == null || j3 - ((Long) hashMap.get(p7Var)).longValue() > TimeUnit.SECONDS.toMillis(30L)) {
+            return true;
+        }
+        return false;
     }
 }

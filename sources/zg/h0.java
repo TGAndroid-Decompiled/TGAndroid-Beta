@@ -7,35 +7,35 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.zn;
 public final class h0 extends FrameLayout {
-    public final n2 f49293a;
-    public final View f49294b;
-    public final boolean f49295c;
+    public final n2 f49339a;
+    public final View f49340b;
+    public final boolean f49341c;
     public final MessageObject d;
     public final zn e;
-    public final int f49296f;
+    public final int f49342f;
     public final int h;
-    public final boolean f49297n;
-    public final float f49298r;
-    public final float f49299s;
+    public final boolean f49343n;
+    public final float f49344r;
+    public final float f49345s;
     public final float v;
-    public final o0 f49300w;
-    public final k0 f49301x;
+    public final o0 f49346w;
+    public final k0 f49347x;
 
     public h0(k0 k0Var, Context context, n2 n2Var, View view, boolean z10, MessageObject messageObject, zn znVar, int i10, int i11, boolean z11, float f7, float f10, float f11, o0 o0Var) {
         super(context);
-        this.f49301x = k0Var;
-        this.f49293a = n2Var;
-        this.f49294b = view;
-        this.f49295c = z10;
+        this.f49347x = k0Var;
+        this.f49339a = n2Var;
+        this.f49340b = view;
+        this.f49341c = z10;
         this.d = messageObject;
         this.e = znVar;
-        this.f49296f = i10;
+        this.f49342f = i10;
         this.h = i11;
-        this.f49297n = z11;
-        this.f49298r = f7;
-        this.f49299s = f10;
+        this.f49343n = z11;
+        this.f49344r = f7;
+        this.f49345s = f10;
         this.v = f11;
-        this.f49300w = o0Var;
+        this.f49346w = o0Var;
     }
 
     @Override
@@ -48,9 +48,9 @@ public final class h0 extends FrameLayout {
         super.onAttachedToWindow();
         int i10 = 0;
         while (true) {
-            k0 k0Var = this.f49301x;
-            if (i10 < k0Var.f49336x.size()) {
-                ((j0) k0Var.f49336x.get(i10)).f49306a.onAttachedToWindow();
+            k0 k0Var = this.f49347x;
+            if (i10 < k0Var.f49382x.size()) {
+                ((j0) k0Var.f49382x.get(i10)).f49352a.onAttachedToWindow();
                 i10++;
             } else {
                 return;
@@ -63,9 +63,9 @@ public final class h0 extends FrameLayout {
         super.onDetachedFromWindow();
         int i10 = 0;
         while (true) {
-            k0 k0Var = this.f49301x;
-            if (i10 < k0Var.f49336x.size()) {
-                ((j0) k0Var.f49336x.get(i10)).f49306a.onDetachedFromWindow();
+            k0 k0Var = this.f49347x;
+            if (i10 < k0Var.f49382x.size()) {
+                ((j0) k0Var.f49382x.get(i10)).f49352a.onDetachedFromWindow();
                 i10++;
             } else {
                 return;

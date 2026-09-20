@@ -14,12 +14,12 @@ public final class h0 implements w {
 
     public final AudioTrack a(k kVar, b2.e eVar, int i10, Context context) {
         boolean z10 = kVar.d;
-        int i11 = kVar.f13314a;
-        int i12 = kVar.f13316c;
-        int i13 = kVar.f13315b;
+        int i11 = kVar.f13315a;
+        int i12 = kVar.f13317c;
+        int i13 = kVar.f13316b;
         int i14 = Build.VERSION.SDK_INT;
         if (i14 >= 23) {
-            AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(b(eVar, z10)).setAudioFormat(e2.d0.r(i13, i12, i11)).setTransferMode(1).setBufferSizeInBytes(kVar.f13317f).setSessionId(i10);
+            AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(b(eVar, z10)).setAudioFormat(e2.d0.r(i13, i12, i11)).setTransferMode(1).setBufferSizeInBytes(kVar.f13318f).setSessionId(i10);
             if (i14 >= 29) {
                 sessionId.setOffloadedPlayback(kVar.e);
             }
@@ -28,6 +28,6 @@ public final class h0 implements w {
             }
             return sessionId.build();
         }
-        return new AudioTrack(b(eVar, z10), e2.d0.r(i13, i12, i11), kVar.f13317f, 1, i10);
+        return new AudioTrack(b(eVar, z10), e2.d0.r(i13, i12, i11), kVar.f13318f, 1, i10);
     }
 }

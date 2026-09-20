@@ -1,17 +1,16 @@
 package v7;
 public abstract class u8 {
-    public static String a(String str, String str2) {
-        int length = str.length() - str2.length();
-        if (length >= 0 && length <= 1) {
-            StringBuilder sb2 = new StringBuilder(str2.length() + str.length());
-            for (int i10 = 0; i10 < str.length(); i10++) {
-                sb2.append(str.charAt(i10));
-                if (str2.length() > i10) {
-                    sb2.append(str2.charAt(i10));
-                }
-            }
-            return sb2.toString();
+    public static long a(e2.v vVar, int i10, int i11) {
+        vVar.J(i10);
+        if (vVar.a() < 5) {
+            return -9223372036854775807L;
         }
-        throw new IllegalArgumentException("Invalid input received");
+        int j3 = vVar.j();
+        if ((8388608 & j3) != 0 || ((2096896 & j3) >> 8) != i11 || (j3 & 32) == 0 || vVar.x() < 7 || vVar.a() < 7 || (vVar.x() & 16) != 16) {
+            return -9223372036854775807L;
+        }
+        byte[] bArr = new byte[6];
+        vVar.h(0, 6, bArr);
+        return ((bArr[0] & 255) << 25) | ((bArr[1] & 255) << 17) | ((bArr[2] & 255) << 9) | ((bArr[3] & 255) << 1) | ((255 & bArr[4]) >> 7);
     }
 }

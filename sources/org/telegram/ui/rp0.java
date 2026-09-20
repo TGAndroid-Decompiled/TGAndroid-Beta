@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-public final class rp0 extends org.telegram.ui.Cells.ia {
+public final class rp0 extends org.telegram.ui.Cells.ja {
     public static void b(rp0 rp0Var, Canvas canvas) {
         super.draw(canvas);
     }
@@ -11,7 +11,7 @@ public final class rp0 extends org.telegram.ui.Cells.ia {
         if (canvas.isHardwareAccelerated()) {
             super.draw(canvas);
         } else {
-            yf.k0.a(canvas, this, new s3(this, 12));
+            yf.j0.a(canvas, this, new s3(this, 12));
         }
     }
 }

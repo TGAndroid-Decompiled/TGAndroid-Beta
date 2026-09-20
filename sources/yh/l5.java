@@ -9,29 +9,29 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.kb1;
+import org.telegram.ui.mb1;
 public final class l5 implements m5 {
-    public final int f47642a;
-    public final long f47643b;
+    public final int f47682a;
+    public final long f47683b;
     public int d;
     public Boolean h;
-    public boolean f47647i;
-    public boolean f47648j;
-    public String f47649k;
-    public int f47652n;
-    public boolean f47653o;
-    public ArrayList f47655q;
-    public boolean f47644c = false;
+    public boolean f47687i;
+    public boolean f47688j;
+    public String f47689k;
+    public int f47692n;
+    public boolean f47693o;
+    public ArrayList f47695q;
+    public boolean f47684c = false;
     public boolean e = true;
-    public boolean f47645f = false;
-    public int f47646g = 783;
-    public final ArrayList f47650l = new ArrayList();
-    public int f47651m = -1;
-    public long f47654p = 0;
+    public boolean f47685f = false;
+    public int f47686g = 783;
+    public final ArrayList f47690l = new ArrayList();
+    public int f47691m = -1;
+    public long f47694p = 0;
 
     public l5(int i10, long j3, boolean z10) {
-        this.f47642a = i10;
-        this.f47643b = j3;
+        this.f47682a = i10;
+        this.f47683b = j3;
         if (z10) {
             a();
         }
@@ -41,22 +41,22 @@ public final class l5 implements m5 {
     public final void a() {
         boolean z10;
         TL_stars.getSavedStarGifts getsavedstargifts;
-        if (!this.f47647i && !this.f47648j) {
-            if (this.f47649k == null) {
+        if (!this.f47687i && !this.f47688j) {
+            if (this.f47689k == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f47647i = true;
-            long j3 = this.f47654p;
+            this.f47687i = true;
+            long j3 = this.f47694p;
             int i10 = 30;
             String str = "";
-            int i11 = this.f47642a;
+            int i11 = this.f47682a;
             if (j3 != 0) {
                 TL_stars.getCraftStarGifts getcraftstargifts = new TL_stars.getCraftStarGifts();
-                getcraftstargifts.gift_id = this.f47654p;
+                getcraftstargifts.gift_id = this.f47694p;
                 if (!z10) {
-                    str = this.f47649k;
+                    str = this.f47689k;
                 }
                 getcraftstargifts.offset = str;
                 if (z10) {
@@ -67,21 +67,21 @@ public final class l5 implements m5 {
             } else {
                 TL_stars.getSavedStarGifts getsavedstargifts2 = new TL_stars.getSavedStarGifts();
                 getsavedstargifts2.sort_by_value = !this.e;
-                getsavedstargifts2.exclude_unupgradable = !TLObject.hasFlag(this.f47646g, 2);
-                getsavedstargifts2.exclude_upgradable = !TLObject.hasFlag(this.f47646g, 4);
-                getsavedstargifts2.exclude_unlimited = !TLObject.hasFlag(this.f47646g, 1);
-                getsavedstargifts2.exclude_unique = !TLObject.hasFlag(this.f47646g, 8);
-                getsavedstargifts2.exclude_saved = !TLObject.hasFlag(this.f47646g, 256);
-                getsavedstargifts2.exclude_unsaved = !TLObject.hasFlag(this.f47646g, 512);
-                getsavedstargifts2.peer_color_available = this.f47645f;
-                long j10 = this.f47643b;
+                getsavedstargifts2.exclude_unupgradable = !TLObject.hasFlag(this.f47686g, 2);
+                getsavedstargifts2.exclude_upgradable = !TLObject.hasFlag(this.f47686g, 4);
+                getsavedstargifts2.exclude_unlimited = !TLObject.hasFlag(this.f47686g, 1);
+                getsavedstargifts2.exclude_unique = !TLObject.hasFlag(this.f47686g, 8);
+                getsavedstargifts2.exclude_saved = !TLObject.hasFlag(this.f47686g, 256);
+                getsavedstargifts2.exclude_unsaved = !TLObject.hasFlag(this.f47686g, 512);
+                getsavedstargifts2.peer_color_available = this.f47685f;
+                long j10 = this.f47683b;
                 if (j10 == 0) {
                     getsavedstargifts2.peer = new TLRPC.TL_inputPeerSelf();
                 } else {
                     getsavedstargifts2.peer = MessagesController.getInstance(i11).getInputPeer(j10);
                 }
                 if (!z10) {
-                    str = this.f47649k;
+                    str = this.f47689k;
                 }
                 getsavedstargifts2.offset = str;
                 if (z10) {
@@ -89,26 +89,26 @@ public final class l5 implements m5 {
                 }
                 getsavedstargifts2.limit = i10;
                 getsavedstargifts = getsavedstargifts2;
-                if (this.f47644c) {
+                if (this.f47684c) {
                     getsavedstargifts2.flags |= 64;
                     getsavedstargifts2.collection_id = this.d;
                     getsavedstargifts = getsavedstargifts2;
                 }
             }
             int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(getsavedstargifts, new ci.v1(this, r2, z10, 8));
-            this.f47651m = sendRequest;
+            this.f47691m = sendRequest;
             int[] iArr = {sendRequest};
         }
     }
 
     @Override
     public final int b(int i10) {
-        if (!y3.O1(this.f47642a, this.f47643b)) {
+        if (!y3.O1(this.f47682a, this.f47683b)) {
             return -1;
         }
         int i11 = i10 + 1;
         while (true) {
-            ArrayList arrayList = this.f47650l;
+            ArrayList arrayList = this.f47690l;
             if (i11 < arrayList.size()) {
                 if (((TL_stars.SavedStarGift) arrayList.get(i11)).can_upgrade) {
                     return i11;
@@ -127,17 +127,17 @@ public final class l5 implements m5 {
 
     @Override
     public final int c() {
-        return this.f47652n;
+        return this.f47692n;
     }
 
     @Override
     public final void d() {
-        NotificationCenter.getInstance(this.f47642a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47643b), this);
+        NotificationCenter.getInstance(this.f47682a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47683b), this);
     }
 
     @Override
     public final int e() {
-        return this.f47650l.size();
+        return this.f47690l.size();
     }
 
     public final void f(int i10, boolean z10) {
@@ -149,10 +149,10 @@ public final class l5 implements m5 {
         } else {
             i11 = 0;
         }
-        int i12 = this.f47646g;
+        int i12 = this.f47686g;
         int i13 = i10 | ((~i11) & i12);
         if (i12 != i13) {
-            this.f47646g = i13;
+            this.f47686g = i13;
             if (z10) {
                 i(true);
             }
@@ -169,7 +169,7 @@ public final class l5 implements m5 {
             return tL_inputSavedStarGiftUser;
         }
         TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = new TL_stars.TL_inputSavedStarGiftChat();
-        tL_inputSavedStarGiftChat.peer = MessagesController.getInstance(this.f47642a).getInputPeer(this.f47643b);
+        tL_inputSavedStarGiftChat.peer = MessagesController.getInstance(this.f47682a).getInputPeer(this.f47683b);
         tL_inputSavedStarGiftChat.saved_id = savedStarGift.saved_id;
         return tL_inputSavedStarGiftChat;
     }
@@ -177,7 +177,7 @@ public final class l5 implements m5 {
     @Override
     public final Object get(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f47650l;
+            ArrayList arrayList = this.f47690l;
             if (i10 < arrayList.size()) {
                 return arrayList.get(i10);
             }
@@ -190,7 +190,7 @@ public final class l5 implements m5 {
         ArrayList arrayList = new ArrayList();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f47650l;
+            ArrayList arrayList2 = this.f47690l;
             if (i10 < arrayList2.size()) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList2.get(i10);
                 if (savedStarGift.pinned_to_top && !savedStarGift.unsaved) {
@@ -204,15 +204,15 @@ public final class l5 implements m5 {
     }
 
     public final void i(boolean z10) {
-        if (this.f47651m != -1) {
-            ConnectionsManager.getInstance(this.f47642a).cancelRequest(this.f47651m, true);
-            this.f47651m = -1;
+        if (this.f47691m != -1) {
+            ConnectionsManager.getInstance(this.f47682a).cancelRequest(this.f47691m, true);
+            this.f47691m = -1;
         }
-        this.f47647i = false;
-        this.f47650l.clear();
-        this.f47649k = null;
-        this.f47648j = false;
-        if (!z10 && !this.f47653o) {
+        this.f47687i = false;
+        this.f47690l.clear();
+        this.f47689k = null;
+        this.f47688j = false;
+        if (!z10 && !this.f47693o) {
             return;
         }
         a();
@@ -220,11 +220,11 @@ public final class l5 implements m5 {
 
     @Override
     public final int indexOf(Object obj) {
-        return this.f47650l.indexOf(obj);
+        return this.f47690l.indexOf(obj);
     }
 
     public final void j(ArrayList arrayList, TL_stars.StarGift starGift) {
-        int i10 = this.f47642a;
+        int i10 = this.f47682a;
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = arrayList.size();
             boolean z10 = false;
@@ -235,12 +235,12 @@ public final class l5 implements m5 {
                 TL_stars.StarGift starGift2 = (TL_stars.StarGift) obj;
                 int i12 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f47650l;
+                    ArrayList arrayList2 = this.f47690l;
                     if (i12 < arrayList2.size()) {
                         TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) arrayList2.get(i12)).gift;
-                        if (starGift3 != null && starGift3.f18521id == starGift2.f18521id) {
+                        if (starGift3 != null && starGift3.f18553id == starGift2.f18553id) {
                             arrayList2.remove(i12);
-                            this.f47652n = Math.max(0, this.f47652n - 1);
+                            this.f47692n = Math.max(0, this.f47692n - 1);
                             z10 = true;
                             break;
                         }
@@ -251,7 +251,7 @@ public final class l5 implements m5 {
                 }
             }
             if (z10) {
-                NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47643b), this);
+                NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47683b), this);
             }
         }
         if (starGift != null) {
@@ -264,7 +264,7 @@ public final class l5 implements m5 {
     }
 
     public final void k(int i10, int i11) {
-        ArrayList arrayList = this.f47650l;
+        ArrayList arrayList = this.f47690l;
         int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
         if (clamp >= 0 && clamp < arrayList.size()) {
             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.remove(clamp);
@@ -276,16 +276,16 @@ public final class l5 implements m5 {
     }
 
     public final void l() {
-        boolean z10 = this.f47644c;
+        boolean z10 = this.f47684c;
         int i10 = 0;
-        long j3 = this.f47643b;
-        int i11 = this.f47642a;
+        long j3 = this.f47683b;
+        int i11 = this.f47682a;
         if (z10) {
             TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
             updatestargiftcollection.peer = MessagesController.getInstance(i11).getInputPeer(j3);
             updatestargiftcollection.collection_id = this.d;
             updatestargiftcollection.flags |= 8;
-            ArrayList arrayList = this.f47650l;
+            ArrayList arrayList = this.f47690l;
             int size = arrayList.size();
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
@@ -313,19 +313,19 @@ public final class l5 implements m5 {
         if (savedStarGift != null) {
             ArrayList h = h();
             boolean contains = h.contains(savedStarGift);
-            int i10 = this.f47642a;
+            int i10 = this.f47682a;
             if (contains) {
                 if (!z10) {
                     h.remove(savedStarGift);
                     z12 = false;
                     savedStarGift.pinned_to_top = z10;
-                    arrayList = this.f47650l;
+                    arrayList = this.f47690l;
                     arrayList.removeAll(h);
-                    if (this.e && !this.f47644c) {
-                        Collections.sort(arrayList, new kb1(21));
+                    if (this.e && !this.f47684c) {
+                        Collections.sort(arrayList, new mb1(21));
                     }
                     arrayList.addAll(0, h);
-                    NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47643b), this);
+                    NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47683b), this);
                     l();
                     return z12;
                 }
@@ -335,7 +335,7 @@ public final class l5 implements m5 {
                         return true;
                     }
                     while (h.size() > 0 && h.size() + 1 > MessagesController.getInstance(i10).stargiftsPinnedToTopLimit) {
-                        ((TL_stars.SavedStarGift) hg.k0.v(1, h)).pinned_to_top = false;
+                        ((TL_stars.SavedStarGift) hg.k0.x(1, h)).pinned_to_top = false;
                     }
                     z12 = true;
                 } else {
@@ -343,13 +343,13 @@ public final class l5 implements m5 {
                 }
                 h.add(savedStarGift);
                 savedStarGift.pinned_to_top = z10;
-                arrayList = this.f47650l;
+                arrayList = this.f47690l;
                 arrayList.removeAll(h);
                 if (this.e) {
-                    Collections.sort(arrayList, new kb1(21));
+                    Collections.sort(arrayList, new mb1(21));
                 }
                 arrayList.addAll(0, h);
-                NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47643b), this);
+                NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47683b), this);
                 l();
                 return z12;
             }
@@ -358,14 +358,14 @@ public final class l5 implements m5 {
     }
 
     public final void n(TL_stars.SavedStarGift savedStarGift, int i10, boolean z10) {
-        ArrayList arrayList = this.f47650l;
+        ArrayList arrayList = this.f47690l;
         int size = arrayList.size();
         int i11 = 0;
         while (i11 < size) {
             Object obj = arrayList.get(i11);
             i11++;
             TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj;
-            if (t5.k(savedStarGift2, savedStarGift)) {
+            if (u5.k(savedStarGift2, savedStarGift)) {
                 if (z10) {
                     if (!savedStarGift2.collection_id.contains(Integer.valueOf(i10))) {
                         savedStarGift2.collection_id.add(Integer.valueOf(i10));
@@ -378,7 +378,7 @@ public final class l5 implements m5 {
     }
 
     public final void o(TL_stars.SavedStarGift savedStarGift, boolean z10) {
-        ArrayList arrayList = this.f47650l;
+        ArrayList arrayList = this.f47690l;
         int size = arrayList.size();
         boolean z11 = false;
         int i10 = 0;
@@ -386,13 +386,13 @@ public final class l5 implements m5 {
             Object obj = arrayList.get(i10);
             i10++;
             TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj;
-            if (t5.k(savedStarGift2, savedStarGift) && savedStarGift2.unsaved != z10) {
+            if (u5.k(savedStarGift2, savedStarGift) && savedStarGift2.unsaved != z10) {
                 savedStarGift2.unsaved = z10;
                 z11 = true;
             }
         }
         if (z11) {
-            NotificationCenter.getInstance(this.f47642a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47643b), this);
+            NotificationCenter.getInstance(this.f47682a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.f47683b), this);
         }
     }
 }

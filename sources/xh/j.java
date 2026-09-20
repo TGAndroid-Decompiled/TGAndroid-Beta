@@ -6,21 +6,21 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import org.telegram.messenger.FileLog;
 public final class j implements TextWatcher {
-    public final View[] f46164a;
-    public final m f46165b;
+    public final View[] f46211a;
+    public final m f46212b;
 
     public j(m mVar, View[] viewArr) {
-        this.f46165b = mVar;
-        this.f46164a = viewArr;
+        this.f46212b = mVar;
+        this.f46211a = viewArr;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
         float f7;
-        View[] viewArr = this.f46164a;
+        View[] viewArr = this.f46211a;
         try {
-            if (Integer.parseInt(editable.toString()) >= this.f46165b.f46244l0.getMinimumBid()) {
+            if (Integer.parseInt(editable.toString()) >= this.f46212b.f46291l0.getMinimumBid()) {
                 z10 = true;
             } else {
                 z10 = false;

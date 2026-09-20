@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ActionMode;
 import java.util.ArrayList;
-public final class vv0 extends org.telegram.ui.Cells.d6 {
+public final class vv0 extends org.telegram.ui.Cells.e6 {
     public final yv0 F;
 
     public vv0(yv0 yv0Var, Context context, int i10) {
@@ -17,8 +17,8 @@ public final class vv0 extends org.telegram.ui.Cells.d6 {
     }
 
     @Override
-    public final void j(org.telegram.ui.Cells.d6 d6Var) {
-        aw0.e0(this.F.d, d6Var);
+    public final void j(org.telegram.ui.Cells.e6 e6Var) {
+        aw0.e0(this.F.d, e6Var);
     }
 
     @Override
@@ -27,25 +27,25 @@ public final class vv0 extends org.telegram.ui.Cells.d6 {
         if (arrayList.isEmpty()) {
             return false;
         }
-        org.telegram.ui.Cells.c6 c6Var = this.d;
-        c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        org.telegram.ui.Cells.d6 d6Var = this.d;
+        d6Var.getText().replace(d6Var.getSelectionStart(), d6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
         int i10 = 0;
-        while (!arrayList.isEmpty() && i10 < aw0Var.f32177n) {
+        while (!arrayList.isEmpty() && i10 < aw0Var.f32194n) {
             for (int length = aw0Var.v.length - 1; length > i10; length--) {
                 CharSequence[] charSequenceArr = aw0Var.v;
                 charSequenceArr[length] = charSequenceArr[length - 1];
             }
             aw0Var.v[i10] = (CharSequence) arrayList.remove(0);
-            aw0Var.f32193y++;
+            aw0Var.f32210y++;
             i10++;
         }
         aw0Var.r0();
-        aw0Var.f32171g0 = (aw0Var.f32178n0 + i10) - 1;
-        aw0Var.f32163b.l();
+        aw0Var.f32188g0 = (aw0Var.f32195n0 + i10) - 1;
+        aw0Var.f32180b.l();
         return true;
     }
 
     @Override
-    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
+    public final void g(org.telegram.ui.Cells.d6 d6Var, ActionMode actionMode) {
     }
 }

@@ -8,32 +8,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.x51;
-public final class d extends w51 {
+public final class d extends v51 {
     public static final int f38847a = 0;
 
     static {
-        w51.setup(new w51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         int i10;
         e eVar = (e) view;
-        if (x51Var.G == null) {
-            eVar.setAsShowMore((k) x51Var.H);
+        if (w51Var.G == null) {
+            eVar.setAsShowMore((k) w51Var.H);
             return;
         }
-        int i11 = x51Var.f30261z;
-        String charSequence = x51Var.f30248l.toString();
-        View.OnClickListener onClickListener = x51Var.D;
-        k kVar = (k) x51Var.H;
+        int i11 = w51Var.f29961z;
+        String charSequence = w51Var.f29948l.toString();
+        View.OnClickListener onClickListener = w51Var.D;
+        k kVar = (k) w51Var.H;
         ImageView imageView = eVar.f38886a;
         imageView.setVisibility(0);
         int i12 = kVar.F;
@@ -60,7 +60,7 @@ public final class d extends w51 {
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, e6 e6Var) {
+    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
         return new e(context);
     }
 }

@@ -9,27 +9,27 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.n6;
 import org.telegram.ui.Components.qr;
 public final class b extends View {
-    public final o6 f43347a;
-    public float f43348b;
-    public ValueAnimator f43349c;
+    public final n6 f43391a;
+    public float f43392b;
+    public ValueAnimator f43393c;
     public int d;
     public final Paint e;
 
     public b(Context context) {
         super(context);
-        this.f43348b = 1.0f;
-        o6 o6Var = new o6(false, false, true, false);
-        this.f43347a = o6Var;
-        o6Var.k(0.3f, 250L, qr.h);
-        o6Var.setCallback(this);
-        o6Var.t(AndroidUtilities.dp(11.5f));
-        o6Var.u(AndroidUtilities.bold());
-        o6Var.r(-1);
-        o6Var.q("", true, true);
-        o6Var.f26868b = 17;
+        this.f43392b = 1.0f;
+        n6 n6Var = new n6(false, false, true, false);
+        this.f43391a = n6Var;
+        n6Var.k(0.3f, 250L, qr.h);
+        n6Var.setCallback(this);
+        n6Var.t(AndroidUtilities.dp(11.5f));
+        n6Var.u(AndroidUtilities.bold());
+        n6Var.r(-1);
+        n6Var.q("", true, true);
+        n6Var.f26575b = 17;
         Paint paint = new Paint(1);
         this.e = paint;
         paint.setColor(-6915073);
@@ -43,28 +43,28 @@ public final class b extends View {
         if (i10 > 0) {
             setVisibility(0);
         }
-        o6 o6Var = this.f43347a;
+        n6 n6Var = this.f43391a;
         if (z10) {
-            o6Var.b();
+            n6Var.b();
         }
         if (z10 && i10 != this.d && i10 > 0) {
-            ValueAnimator valueAnimator = this.f43349c;
+            ValueAnimator valueAnimator = this.f43393c;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f43349c = null;
+                this.f43393c = null;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f43349c = ofFloat;
+            this.f43393c = ofFloat;
             ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(this, 18));
-            this.f43349c.addListener(new pg.d0(this, 7));
-            this.f43349c.setInterpolator(new OvershootInterpolator(2.0f));
-            this.f43349c.setDuration(200L);
-            this.f43349c.start();
+            this.f43393c.addListener(new pg.d0(this, 7));
+            this.f43393c.setInterpolator(new OvershootInterpolator(2.0f));
+            this.f43393c.setDuration(200L);
+            this.f43393c.start();
         }
         this.d = i10;
-        int length = o6Var.f26871g.length();
-        o6Var.q("x" + i10, z10, true);
-        int length2 = o6Var.f26871g.length();
+        int length = n6Var.f26578g.length();
+        n6Var.q("x" + i10, z10, true);
+        int length2 = n6Var.f26578g.length();
         invalidate();
         if (length != length2) {
             requestLayout();
@@ -78,20 +78,20 @@ public final class b extends View {
         canvas.translate(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         Rect rect = AndroidUtilities.rectTmp2;
         int dp = AndroidUtilities.dp(8.0f);
-        o6 o6Var = this.f43347a;
-        rect.set(0, 0, dp + ((int) o6Var.d()), AndroidUtilities.dp(20.0f));
+        n6 n6Var = this.f43391a;
+        rect.set(0, 0, dp + ((int) n6Var.d()), AndroidUtilities.dp(20.0f));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
-        if (this.f43348b != 1.0f) {
+        if (this.f43392b != 1.0f) {
             canvas.save();
-            float f7 = this.f43348b;
+            float f7 = this.f43392b;
             canvas.scale(f7, f7, rect.centerX(), rect.centerY());
         }
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.e);
         rect.set(0, 0, (int) rectF.width(), AndroidUtilities.dp(19.0f));
-        o6Var.setBounds(rect);
-        o6Var.draw(canvas);
-        if (this.f43348b != 1.0f) {
+        n6Var.setBounds(rect);
+        n6Var.draw(canvas);
+        if (this.f43392b != 1.0f) {
             canvas.restore();
         }
         canvas.restore();
@@ -99,6 +99,6 @@ public final class b extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.f43347a.e() + AndroidUtilities.dp(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.f43391a.e() + AndroidUtilities.dp(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
     }
 }

@@ -1,204 +1,527 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.Random;
-import org.telegram.messenger.LiteMode;
-public class ba {
-    public float f22900a;
-    public float f22901b;
-    public final Path f22902c;
-    public final Paint d;
-    public final float[] e;
-    public final float[] f22903f;
-    public final float[] f22904g;
-    public final float[] h;
-    public final float[] f22905i;
-    public final float[] f22906j;
-    public final float[] f22907k;
-    public final float[] f22908l;
-    public final Random f22909m;
-    public final float f22910n;
-    public final float f22911o;
-    public final float f22912p;
-    public final Matrix f22913q;
-    public final int f22914r;
-    public float f22915s;
-    public float f22916t;
-    public float f22917u;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagePreviewParams;
+public final class ba extends AnimatorListenerAdapter {
+    public final int f22937a;
+    public boolean f22938b;
+    public final Object f22939c;
 
-    public ba(int i10) {
-        this(i10, 512);
+    public ba(int i10, Object obj, boolean z10) {
+        this.f22937a = i10;
+        this.f22939c = obj;
+        this.f22938b = z10;
     }
 
-    public final void a(float f7, float f10, Canvas canvas, Paint paint) {
-        int i10;
-        if (!LiteMode.isEnabled(this.f22914r)) {
-            return;
-        }
-        Path path = this.f22902c;
-        path.reset();
-        int i11 = 0;
-        while (true) {
-            float f11 = this.f22910n;
-            if (i11 < f11) {
-                float[] fArr = this.f22905i;
-                float f12 = fArr[i11];
-                int i12 = i11 + 1;
-                if (i12 < f11) {
-                    i10 = i12;
-                } else {
-                    i10 = 0;
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f22937a) {
+            case 0:
+                ca caVar = (ca) this.f22939c;
+                AnimatorSet animatorSet = caVar.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    caVar.h = null;
+                    return;
                 }
-                float f13 = fArr[i10];
-                float[] fArr2 = this.e;
-                float f14 = 1.0f - f12;
-                float[] fArr3 = this.f22904g;
-                float f15 = (fArr3[i11] * f12) + (fArr2[i11] * f14);
-                float f16 = 1.0f - f13;
-                float f17 = (fArr3[i10] * f13) + (fArr2[i10] * f16);
-                float[] fArr4 = this.f22903f;
-                float f18 = fArr4[i11] * f14;
-                float[] fArr5 = this.h;
-                float f19 = (fArr5[i10] * f13) + (fArr4[i10] * f16);
-                float max = (((Math.max(f15, f17) - Math.min(f15, f17)) / 2.0f) + Math.min(f15, f17)) * this.f22911o * this.f22912p;
-                Matrix matrix = this.f22913q;
-                matrix.reset();
-                matrix.setRotate((fArr5[i11] * f12) + f18, f7, f10);
-                float[] fArr6 = this.f22907k;
-                fArr6[0] = f7;
-                float f20 = f10 - f15;
-                fArr6[1] = f20;
-                fArr6[2] = f7 + max;
-                fArr6[3] = f20;
-                matrix.mapPoints(fArr6);
-                float[] fArr7 = this.f22908l;
-                fArr7[0] = f7;
-                float f21 = f10 - f17;
-                fArr7[1] = f21;
-                fArr7[2] = f7 - max;
-                fArr7[3] = f21;
-                matrix.reset();
-                matrix.setRotate(f19, f7, f10);
-                matrix.mapPoints(fArr7);
-                if (i11 == 0) {
-                    path.moveTo(fArr6[0], fArr6[1]);
-                }
-                path.cubicTo(fArr6[2], fArr6[3], fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
-                i11 = i12;
-            } else {
-                canvas.save();
-                canvas.drawPath(path, paint);
-                canvas.restore();
                 return;
-            }
-        }
-    }
-
-    public final void b() {
-        for (int i10 = 0; i10 < this.f22910n; i10++) {
-            c(this.e, this.f22903f, i10);
-            c(this.f22904g, this.h, i10);
-            this.f22905i[i10] = 0.0f;
-        }
-    }
-
-    public final void c(float[] fArr, float[] fArr2, int i10) {
-        float f7 = this.f22910n;
-        float f10 = this.f22901b;
-        float f11 = this.f22900a;
-        Random random = this.f22909m;
-        fArr[i10] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f10 - f11)) + f11;
-        fArr2[i10] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f7) * 0.05f) + ((360.0f / f7) * i10);
-        this.f22906j[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
-    }
-
-    public final void d(float f7, boolean z10) {
-        this.f22915s = f7;
-        if (!LiteMode.isEnabled(this.f22914r)) {
-            return;
-        }
-        if (z10) {
-            float f10 = this.f22915s;
-            float f11 = this.f22916t;
-            if (f10 > f11) {
-                this.f22917u = (f10 - f11) / 205.0f;
+            case 2:
+                ((vi) this.f22939c).Y0 = null;
                 return;
-            } else {
-                this.f22917u = (f10 - f11) / 275.0f;
+            case 3:
+                this.f22938b = true;
                 return;
-            }
-        }
-        float f12 = this.f22915s;
-        float f13 = this.f22916t;
-        if (f12 > f13) {
-            this.f22917u = (f12 - f13) / 320.0f;
-        } else {
-            this.f22917u = (f12 - f13) / 375.0f;
-        }
-    }
-
-    public final void e(float f7, float f10) {
-        if (LiteMode.isEnabled(this.f22914r)) {
-            for (int i10 = 0; i10 < this.f22910n; i10++) {
-                float[] fArr = this.f22905i;
-                float f11 = fArr[i10];
-                float f12 = this.f22906j[i10];
-                float f13 = (f12 * f7 * 8.2f * f10) + (0.8f * f12) + f11;
-                fArr[i10] = f13;
-                if (f13 >= 1.0f) {
-                    fArr[i10] = 0.0f;
-                    float[] fArr2 = this.f22904g;
-                    this.e[i10] = fArr2[i10];
-                    float[] fArr3 = this.h;
-                    this.f22903f[i10] = fArr3[i10];
-                    c(fArr2, fArr3, i10);
+            case 8:
+                n00 n00Var = (n00) this.f22939c;
+                AnimatorSet animatorSet2 = n00Var.e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    n00Var.e = null;
+                    return;
                 }
-            }
-        }
-    }
-
-    public final void f(long j3) {
-        float f7 = this.f22915s;
-        float f10 = this.f22916t;
-        if (f7 != f10) {
-            float f11 = this.f22917u;
-            float f12 = (((float) j3) * f11) + f10;
-            this.f22916t = f12;
-            if (f11 > 0.0f) {
-                if (f12 > f7) {
-                    this.f22916t = f7;
+                return;
+            case 12:
+                z60 z60Var = (z60) this.f22939c;
+                AnimatorSet animatorSet3 = z60Var.X;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    z60Var.X = null;
+                    return;
                 }
-            } else if (f12 < f7) {
-                this.f22916t = f7;
-            }
+                return;
+            case 17:
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f22939c;
+                if (animator.equals(pipRoundVideoView.f22306r)) {
+                    pipRoundVideoView.f22306r = null;
+                    return;
+                }
+                return;
+            case 19:
+                ((jv0) this.f22939c).N1 = null;
+                return;
+            case 23:
+                y61 y61Var = (y61) this.f22939c;
+                AnimatorSet animatorSet4 = y61Var.d;
+                if (animatorSet4 != null && animatorSet4.equals(animator)) {
+                    y61Var.d = null;
+                    return;
+                }
+                return;
+            case 24:
+                c71 c71Var = (c71) this.f22939c;
+                AnimatorSet animatorSet5 = c71Var.f23188r;
+                if (animatorSet5 != null && animatorSet5.equals(animator)) {
+                    c71Var.f23188r = null;
+                    return;
+                }
+                return;
+            case 26:
+                ((org.telegram.ui.ss) this.f22939c).f37517w = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
-    public ba(int i10, int i11) {
+    @Override
+    public final void onAnimationEnd(Animator animator) {
         float f7;
-        this.f22902c = new Path();
-        this.d = new Paint(1);
-        this.f22907k = new float[4];
-        this.f22908l = new float[4];
-        this.f22909m = new Random();
-        this.f22912p = 1.0f;
-        this.f22913q = new Matrix();
-        this.f22910n = i10;
-        this.f22911o = (float) (Math.tan(3.141592653589793d / (f7 * 2.0f)) * 1.3333333333333333d);
-        this.e = new float[i10];
-        this.f22903f = new float[i10];
-        this.f22904g = new float[i10];
-        this.h = new float[i10];
-        this.f22905i = new float[i10];
-        this.f22906j = new float[i10];
-        for (int i12 = 0; i12 < this.f22910n; i12++) {
-            c(this.e, this.f22903f, i12);
-            c(this.f22904g, this.h, i12);
-            this.f22905i[i12] = 0.0f;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        int i10;
+        float f14;
+        float f15;
+        float f16;
+        float f17;
+        float f18;
+        float f19;
+        Drawable[] drawableArr;
+        Drawable drawable;
+        RadialProgressView radialProgressView;
+        float f20;
+        float f21;
+        float dp;
+        switch (this.f22937a) {
+            case 0:
+                ca caVar = (ca) this.f22939c;
+                AnimatorSet animatorSet = caVar.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f22938b) {
+                        caVar.f23218c.setVisibility(4);
+                        return;
+                    } else {
+                        caVar.f23217b.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                yc ycVar = (yc) this.f22939c;
+                if (animator == ycVar.f30500g) {
+                    ycVar.f30500g = null;
+                    if (this.f22938b) {
+                        f7 = 1.0f;
+                    } else {
+                        f7 = 0.0f;
+                    }
+                    ycVar.f30501i = f7;
+                    ycVar.b();
+                    return;
+                }
+                return;
+            case 2:
+                vi viVar = (vi) this.f22939c;
+                if (viVar.Y0 != null) {
+                    if (this.f22938b) {
+                        if (viVar.S0) {
+                            ni niVar = viVar.f29159y0;
+                            if (niVar == null || niVar.J()) {
+                                viVar.f29156x1.setVisibility(4);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    org.telegram.ui.ActionBar.v0 v0Var = viVar.f29095e1;
+                    if (v0Var != null) {
+                        v0Var.setVisibility(4);
+                    }
+                    if (viVar.Q0 != 0 || !viVar.f29131q1) {
+                        viVar.f29082a1.setVisibility(4);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                jo joVar = (jo) this.f22939c;
+                if (!this.f22938b) {
+                    v9 v9Var = joVar.h;
+                    joVar.h = joVar.f25410n;
+                    joVar.f25410n = v9Var;
+                    v9Var.setVisibility(8);
+                    joVar.f25410n.setAlpha(0.0f);
+                    joVar.h.setVisibility(0);
+                    joVar.h.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 4:
+                boolean z10 = this.f22938b;
+                to toVar = (to) this.f22939c;
+                if (animator == toVar.e) {
+                    if (z10) {
+                        f10 = 1.0f;
+                    } else {
+                        f10 = 0.0f;
+                    }
+                    toVar.d = f10;
+                    toVar.setShown(f10);
+                    if (!z10) {
+                        toVar.setVisibility(8);
+                    }
+                    toVar.a(true);
+                    return;
+                }
+                return;
+            case 5:
+                mp mpVar = (mp) this.f22939c;
+                if (this.f22938b) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                mpVar.f26452g0 = f11;
+                mpVar.J.setTranslationY((-AndroidUtilities.dp(7.0f)) * mpVar.f26452g0);
+                return;
+            case 6:
+                if (!this.f22938b) {
+                    ((mq) this.f22939c).H.setVisibility(8);
+                    return;
+                }
+                return;
+            case 7:
+                zv zvVar = (zv) this.f22939c;
+                dw dwVar = zvVar.J;
+                if (dwVar.U && !zvVar.h) {
+                    if (!this.f22938b && !zvVar.f30944n) {
+                        zvVar.setBackground(null);
+                        return;
+                    } else if (zvVar.getBackground() == null) {
+                        zvVar.setBackground(org.telegram.ui.ActionBar.j6.Y(dwVar.k(), 8, 8));
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            case 8:
+                n00 n00Var = (n00) this.f22939c;
+                AnimatorSet animatorSet2 = n00Var.e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f22938b) {
+                        n00Var.f26523f.setVisibility(4);
+                    }
+                    n00Var.e = null;
+                    return;
+                }
+                return;
+            case 9:
+                y00 y00Var = (y00) this.f22939c;
+                if (this.f22938b) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                y00Var.h = f12;
+                y00Var.invalidate();
+                return;
+            case 10:
+                z20 z20Var = (z20) this.f22939c;
+                x20 x20Var = z20Var.f30675a;
+                if (!z20Var.F) {
+                    if (this.f22938b) {
+                        f13 = 1.0f;
+                    } else {
+                        f13 = 0.0f;
+                    }
+                    z20Var.f30678b0 = f13;
+                    z20Var.U.setPinnedProgress(f13);
+                    x20Var.setScaleX(1.0f - (z20Var.f30678b0 * 0.6f));
+                    x20Var.setScaleY(1.0f - (z20Var.f30678b0 * 0.6f));
+                    if (z20Var.W) {
+                        z20Var.i();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 11:
+                super.onAnimationEnd(animator);
+                View view = (View) this.f22939c;
+                if (this.f22938b) {
+                    i10 = 8;
+                } else {
+                    i10 = 4;
+                }
+                view.setVisibility(i10);
+                return;
+            case 12:
+                z60 z60Var = (z60) this.f22939c;
+                AnimatorSet animatorSet3 = z60Var.X;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    if (!this.f22938b) {
+                        z60Var.Y.setVisibility(4);
+                    }
+                    z60Var.X = null;
+                    return;
+                }
+                return;
+            case 13:
+                j70 j70Var = (j70) this.f22939c;
+                boolean z11 = this.f22938b;
+                if (z11) {
+                    f14 = 1.0f;
+                } else {
+                    f14 = 0.0f;
+                }
+                j70Var.f25256h0 = f14;
+                j70.W(j70Var).invalidate();
+                if (!z11) {
+                    j70Var.V.setVisibility(8);
+                    return;
+                }
+                return;
+            case 14:
+                dc0 dc0Var = (dc0) this.f22939c;
+                if (dc0Var.getParent() != null) {
+                    ((ViewGroup) dc0Var.getParent()).removeView(dc0Var);
+                }
+                boolean z12 = this.f22938b;
+                org.telegram.ui.fl flVar = (org.telegram.ui.fl) dc0Var;
+                MessagePreviewParams messagePreviewParams = flVar.H.f40311f5;
+                if (messagePreviewParams != null) {
+                    messagePreviewParams.attach(null);
+                }
+                if (z12) {
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.el(flVar, 1), 15L);
+                    return;
+                }
+                return;
+            case 15:
+                xb0 xb0Var = (xb0) this.f22939c;
+                xb0Var.P = null;
+                xb0Var.g(this.f22938b, false);
+                return;
+            case 16:
+                ae0 ae0Var = (ae0) this.f22939c;
+                TextView textView = ae0Var.f22663w;
+                ai.x5 x5Var = ae0Var.e;
+                if (this.f22938b) {
+                    f15 = 1.0f;
+                } else {
+                    f15 = 0.0f;
+                }
+                x5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f15));
+                x5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f15));
+                x5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, f15));
+                textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, f15));
+                textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, f15));
+                textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, f15));
+                ae0Var.f22662s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, f15));
+                return;
+            case 17:
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f22939c;
+                if (animator.equals(pipRoundVideoView.f22306r)) {
+                    if (!this.f22938b) {
+                        pipRoundVideoView.a(false);
+                    }
+                    pipRoundVideoView.f22306r = null;
+                    return;
+                }
+                return;
+            case 18:
+                boolean z13 = this.f22938b;
+                un0 un0Var = (un0) this.f22939c;
+                if (animator == un0Var.G) {
+                    if (z13) {
+                        f16 = 1.0f;
+                    } else {
+                        f16 = 0.0f;
+                    }
+                    un0Var.F = f16;
+                    un0Var.setShown(f16);
+                    if (!z13) {
+                        un0Var.setVisibility(8);
+                    }
+                    un0Var.b(true);
+                    return;
+                }
+                return;
+            case 19:
+                jv0 jv0Var = (jv0) this.f22939c;
+                if (jv0Var.N1 != null) {
+                    jv0Var.N1 = null;
+                    if (!this.f22938b) {
+                        jv0Var.B0.setVisibility(4);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 20:
+                super.onAnimationEnd(animator);
+                i21 i21Var = (i21) this.f22939c;
+                if (this.f22938b) {
+                    f17 = 1.0f;
+                } else {
+                    f17 = 0.0f;
+                }
+                i21Var.M = f17;
+                i21Var.invalidate();
+                return;
+            case 21:
+                g31 g31Var = (g31) this.f22939c;
+                if (this.f22938b) {
+                    f18 = 1.0f;
+                } else {
+                    f18 = 0.0f;
+                }
+                g31Var.F = f18;
+                g31Var.h();
+                return;
+            case 22:
+                k31 k31Var = (k31) this.f22939c;
+                if (this.f22938b) {
+                    f19 = 1.0f;
+                } else {
+                    f19 = 0.0f;
+                }
+                k31Var.Q = f19;
+                k31Var.h();
+                k31Var.g();
+                return;
+            case 23:
+                y61 y61Var = (y61) this.f22939c;
+                AnimatorSet animatorSet4 = y61Var.d;
+                if (animatorSet4 != null && animatorSet4.equals(animator)) {
+                    if (!this.f22938b) {
+                        y61Var.e.setVisibility(4);
+                    }
+                    y61Var.d = null;
+                    return;
+                }
+                return;
+            case 24:
+                c71 c71Var = (c71) this.f22939c;
+                AnimatorSet animatorSet5 = c71Var.f23188r;
+                if (animatorSet5 != null && animatorSet5.equals(animator)) {
+                    if (!this.f22938b) {
+                        c71Var.f23187n.setVisibility(4);
+                    }
+                    c71Var.f23188r = null;
+                    return;
+                }
+                return;
+            case 25:
+                org.telegram.ui.Components.voip.v2 v2Var = (org.telegram.ui.Components.voip.v2) this.f22939c;
+                v2Var.v = null;
+                if (this.f22938b) {
+                    TextView[] textViewArr = v2Var.h;
+                    TextView textView2 = textViewArr[0];
+                    textViewArr[0] = textViewArr[1];
+                    textViewArr[1] = textView2;
+                    textView2.setVisibility(8);
+                }
+                if (!v2Var.G && (drawable = (drawableArr = v2Var.e)[1]) != null) {
+                    drawableArr[0] = drawable;
+                    drawableArr[1] = null;
+                }
+                v2Var.G = false;
+                if (!v2Var.O) {
+                    v2Var.f29719n = v2Var.f29720r;
+                }
+                v2Var.f29721s = 0.0f;
+                v2Var.invalidate();
+                return;
+            case 26:
+                org.telegram.ui.ss ssVar = (org.telegram.ui.ss) this.f22939c;
+                if (ssVar.f37517w != null && (radialProgressView = ssVar.f37516s) != null) {
+                    if (!this.f22938b) {
+                        radialProgressView.setVisibility(4);
+                        ssVar.v.setVisibility(4);
+                    }
+                    ssVar.f37517w = null;
+                    return;
+                }
+                return;
+            case 27:
+                org.telegram.ui.lz lzVar = (org.telegram.ui.lz) this.f22939c;
+                if (this.f22938b) {
+                    f20 = 1.0f;
+                } else {
+                    f20 = 0.0f;
+                }
+                lzVar.f35548r = f20;
+                v9 v9Var2 = lzVar.f35545c;
+                int i11 = org.telegram.ui.ActionBar.j6.C6;
+                int v02 = org.telegram.ui.ActionBar.j6.v0(i11, lzVar.f35543a);
+                int i12 = org.telegram.ui.ActionBar.j6.Oh;
+                int d = i0.a.d(lzVar.f35548r, v02, org.telegram.ui.ActionBar.j6.v0(i12, lzVar.f35543a));
+                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                v9Var2.setColorFilter(new PorterDuffColorFilter(d, mode));
+                lzVar.f35545c.invalidate();
+                lzVar.f35546f.setColorFilter(new PorterDuffColorFilter(i0.a.d(1.0f - lzVar.f35548r, org.telegram.ui.ActionBar.j6.v0(i11, lzVar.f35543a), org.telegram.ui.ActionBar.j6.v0(i12, lzVar.f35543a)), mode));
+                lzVar.f35546f.invalidate();
+                return;
+            case 28:
+                org.telegram.ui.y00 y00Var2 = (org.telegram.ui.y00) this.f22939c;
+                if (this.f22938b) {
+                    f21 = 1.0f;
+                } else {
+                    f21 = 0.0f;
+                }
+                y00Var2.f39765s = f21;
+                y00Var2.invalidate();
+                return;
+            default:
+                org.telegram.ui.i60 i60Var = (org.telegram.ui.i60) this.f22939c;
+                i60Var.U2 = null;
+                org.telegram.ui.ActionBar.j5 subtitleTextView = i60Var.O.getSubtitleTextView();
+                if (this.f22938b) {
+                    dp = 0.0f;
+                } else {
+                    dp = AndroidUtilities.dp(20.0f);
+                }
+                subtitleTextView.setTranslationY(dp);
+                return;
         }
-        this.f22914r = i11;
+    }
+
+    public ba(View view) {
+        this.f22937a = 11;
+        this.f22939c = view;
+        this.f22938b = true;
+    }
+
+    public ba(View view, boolean z10) {
+        this.f22937a = 11;
+        this.f22939c = view;
+        this.f22938b = z10;
+    }
+
+    public ba(jo joVar) {
+        this.f22937a = 3;
+        this.f22939c = joVar;
     }
 }

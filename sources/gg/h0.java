@@ -2,7 +2,7 @@ package gg;
 
 import org.telegram.tgnet.TLObject;
 public final class h0 {
-    public TLObject f9753a;
-    public int f9754b;
-    public long f9755c;
+    public TLObject f9754a;
+    public int f9755b;
+    public long f9756c;
 }

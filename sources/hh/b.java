@@ -7,15 +7,15 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.fs;
 public final class b implements Utilities.Callback2 {
-    public final int f10500a;
+    public final int f10501a;
 
     public b(int i10) {
-        this.f10500a = i10;
+        this.f10501a = i10;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f10500a) {
+        switch (this.f10501a) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;

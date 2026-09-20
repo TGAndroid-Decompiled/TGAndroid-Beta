@@ -11,27 +11,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import w7.y5;
 public final class f extends FrameLayout {
     public static final int e = 0;
-    public final e f49276a;
-    public boolean f49277b;
-    public boolean f49278c;
+    public final e f49322a;
+    public boolean f49323b;
+    public boolean f49324c;
     public Utilities.Callback d;
 
-    public f(Activity activity, e6 e6Var) {
+    public f(Activity activity, f6 f6Var) {
         super(activity);
         int w02;
         int w03;
         e eVar = new e(this, activity);
-        this.f49276a = eVar;
+        this.f49322a = eVar;
         eVar.setHapticFeedbackEnabled(true);
         eVar.setImageResource(R.drawable.smiles_tab_clear);
         int i10 = j6.Re;
-        if (e6Var != null) {
-            w02 = e6Var.G0(i10);
+        if (f6Var != null) {
+            w02 = f6Var.F0(i10);
         } else {
             w02 = j6.w0(null, i10, false);
         }
@@ -41,11 +41,11 @@ public final class f extends FrameLayout {
         eVar.setFocusable(true);
         eVar.setOnClickListener(new e2(28));
         addView(eVar, y5.e(36, 36, 17));
-        int w04 = j6.w0(null, j6.f19152i6, false);
+        int w04 = j6.w0(null, j6.f19184i6, false);
         int dp = AndroidUtilities.dp(36.0f);
-        int i11 = j6.f19062d6;
-        if (e6Var != null) {
-            w03 = e6Var.G0(i11);
+        int i11 = j6.f19094d6;
+        if (f6Var != null) {
+            w03 = f6Var.F0(i11);
         } else {
             w03 = j6.w0(null, i11, false);
         }

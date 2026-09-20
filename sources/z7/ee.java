@@ -1,15 +1,15 @@
 package z7;
 public final class ee {
-    public final va f48487a;
-    public final ra f48488b;
-    public final ve f48489c;
+    public final va f48533a;
+    public final ra f48534b;
+    public final ve f48535c;
     public final m d;
     public final m e;
 
     public ee(cf.c cVar) {
-        this.f48487a = (va) cVar.f4260a;
-        this.f48488b = (ra) cVar.f4261b;
-        this.f48489c = (ve) cVar.f4262c;
+        this.f48533a = (va) cVar.f4261a;
+        this.f48534b = (ra) cVar.f4262b;
+        this.f48535c = (ve) cVar.f4263c;
         this.d = (m) cVar.d;
         this.e = (m) cVar.e;
     }

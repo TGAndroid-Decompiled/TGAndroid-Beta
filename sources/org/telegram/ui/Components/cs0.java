@@ -1,86 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class cs0 extends Drawable {
-    public final int f23320a;
-    public final ShapeDrawable f23321b;
-    public final Rect f23322c;
+import android.content.Context;
+public final class cs0 {
+    public final Context f23393a;
+    public final org.telegram.ui.ActionBar.n2 f23394b;
+    public final org.telegram.ui.ActionBar.f6 f23395c;
+    public final jv0 d;
 
-    public cs0(zr0 zr0Var) {
-        this.f23320a = 1;
-        this.f23321b = org.telegram.ui.ActionBar.j6.c0(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), 0);
-        this.f23322c = new Rect();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f23320a) {
-            case 0:
-                Rect bounds = getBounds();
-                Rect rect = this.f23322c;
-                rect.set(bounds);
-                rect.inset(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.0f));
-                ShapeDrawable shapeDrawable = this.f23321b;
-                shapeDrawable.setBounds(rect);
-                shapeDrawable.draw(canvas);
-                return;
-            default:
-                Rect bounds2 = getBounds();
-                Rect rect2 = this.f23322c;
-                rect2.set(bounds2);
-                rect2.inset(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.0f));
-                ShapeDrawable shapeDrawable2 = this.f23321b;
-                shapeDrawable2.setBounds(rect2);
-                shapeDrawable2.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f23320a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f23320a) {
-            case 0:
-                this.f23321b.setAlpha(i10);
-                return;
-            default:
-                this.f23321b.setAlpha(i10);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f23320a;
-    }
-
-    public cs0(ds0 ds0Var) {
-        this.f23320a = 0;
-        int dp = AndroidUtilities.dp(16.0f);
-        int dp2 = AndroidUtilities.dp(16.0f);
-        int i10 = org.telegram.ui.ActionBar.j6.f19062d6;
-        org.telegram.ui.ActionBar.e6 e6Var = ds0Var.f23674c;
-        this.f23321b = org.telegram.ui.ActionBar.j6.c0(dp, dp2, org.telegram.ui.ActionBar.j6.v(org.telegram.ui.ActionBar.j6.v0(i10, e6Var), org.telegram.ui.ActionBar.j6.l1(0.04f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, e6Var))));
-        this.f23322c = new Rect();
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
+    public cs0(jv0 jv0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.d = jv0Var;
+        this.f23393a = context;
+        this.f23394b = n2Var;
+        this.f23395c = f6Var;
     }
 }

@@ -2,6 +2,6 @@ package yh;
 
 import android.widget.FrameLayout;
 public final class r2 extends FrameLayout {
-    public org.telegram.ui.Components.p6 f47944a;
-    public s2 f47945b;
+    public org.telegram.ui.Components.o6 f47987a;
+    public t2 f47988b;
 }

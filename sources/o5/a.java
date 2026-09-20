@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 public final class a {
     public static final int e = 0;
-    public final g f15611a;
-    public final List f15612b;
-    public final b f15613c;
+    public final g f15643a;
+    public final List f15644b;
+    public final b f15645c;
     public final String d;
 
     static {
@@ -15,9 +15,9 @@ public final class a {
     }
 
     public a(g gVar, List list, b bVar, String str) {
-        this.f15611a = gVar;
-        this.f15612b = list;
-        this.f15613c = bVar;
+        this.f15643a = gVar;
+        this.f15644b = list;
+        this.f15645c = bVar;
         this.d = str;
     }
 }

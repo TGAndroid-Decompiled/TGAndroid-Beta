@@ -7,16 +7,16 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class um0 implements org.telegram.ui.Components.ti {
-    public final pn0 f38030a;
+    public final pn0 f38139a;
 
     public um0(pn0 pn0Var) {
-        this.f38030a = pn0Var;
+        this.f38139a = pn0Var;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         org.telegram.ui.Components.vi viVar;
-        pn0 pn0Var = this.f38030a;
+        pn0 pn0Var = this.f38139a;
         if (pn0Var.getParentActivity() != null && (viVar = pn0Var.R0) != null) {
             if (i10 != 8 && i10 != 7) {
                 viVar.dismissWithButtonClick(i10);
@@ -26,8 +26,8 @@ public final class um0 implements org.telegram.ui.Components.ti {
             if (i10 != 8) {
                 viVar.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = pn0Var.R0.f29033j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = pn0Var.R0.f29033j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = pn0Var.R0.f29110j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = pn0Var.R0.f29110j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
                 for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -48,8 +48,8 @@ public final class um0 implements org.telegram.ui.Components.ti {
     }
 
     @Override
-    public final void K0() {
-        AndroidUtilities.hideKeyboard(this.f38030a.fragmentView.findFocus());
+    public final void L0() {
+        AndroidUtilities.hideKeyboard(this.f38139a.fragmentView.findFocus());
     }
 
     @Override
@@ -58,25 +58,25 @@ public final class um0 implements org.telegram.ui.Components.ti {
     }
 
     @Override
-    public final boolean c0() {
+    public final boolean f0() {
         return false;
     }
 
     @Override
-    public final void x0(org.telegram.ui.Components.gh ghVar) {
+    public final void y0(org.telegram.ui.Components.gh ghVar) {
         ghVar.run();
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void V0(Object obj) {
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void k1(TLRPC.User user) {
     }
 
     @Override
-    public final void u0() {
+    public final void v0() {
     }
 
     @Override

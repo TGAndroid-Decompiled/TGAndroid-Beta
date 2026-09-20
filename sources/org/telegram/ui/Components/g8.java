@@ -2,33 +2,120 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 public final class g8 implements Runnable {
-    public final int f24329a;
-    public final i8 f24330b;
-    public final String f24331c;
+    public final int f24284a = 0;
+    public final h8 f24285b;
+    public final ArrayList f24286c;
+    public final String d;
 
-    public g8(i8 i8Var, String str, int i10) {
-        this.f24329a = i10;
-        this.f24330b = i8Var;
-        this.f24331c = str;
+    public g8(h8 h8Var, String str, ArrayList arrayList) {
+        this.f24285b = h8Var;
+        this.d = str;
+        this.f24286c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f24329a) {
+        int i10;
+        TLRPC.Document document;
+        boolean z10;
+        String str;
+        int i11 = this.f24284a;
+        String str2 = this.d;
+        ArrayList arrayList = this.f24286c;
+        h8 h8Var = this.f24285b;
+        switch (i11) {
             case 0:
-                i8 i8Var = this.f24330b;
-                String str = this.f24331c;
-                i8Var.f24866f = null;
-                AndroidUtilities.runOnUIThread(new g8(i8Var, str, 1));
+                h8Var.getClass();
+                String lowerCase = str2.trim().toLowerCase();
+                if (lowerCase.length() == 0) {
+                    AndroidUtilities.runOnUIThread(new g8(h8Var, new ArrayList(), str2));
+                    return;
+                }
+                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+                translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
+                if (translitString != null) {
+                    i10 = 1;
+                } else {
+                    i10 = 0;
+                }
+                int i12 = i10 + 1;
+                String[] strArr = new String[i12];
+                strArr[0] = lowerCase;
+                if (translitString != null) {
+                    strArr[1] = translitString;
+                }
+                ArrayList arrayList2 = new ArrayList();
+                for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                    MessageObject messageObject = (MessageObject) arrayList.get(i13);
+                    int i14 = 0;
+                    while (true) {
+                        if (i14 < i12) {
+                            String str3 = strArr[i14];
+                            String documentName = messageObject.getDocumentName();
+                            if (documentName != null && documentName.length() != 0) {
+                                if (documentName.toLowerCase().contains(str3)) {
+                                    arrayList2.add(messageObject);
+                                } else {
+                                    if (messageObject.type == 0) {
+                                        document = messageObject.messageOwner.media.webpage.document;
+                                    } else {
+                                        document = messageObject.messageOwner.media.document;
+                                    }
+                                    int i15 = 0;
+                                    while (true) {
+                                        if (i15 < document.attributes.size()) {
+                                            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i15);
+                                            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                                                String str4 = documentAttribute.performer;
+                                                if (str4 != null) {
+                                                    z10 = str4.toLowerCase().contains(str3);
+                                                } else {
+                                                    z10 = false;
+                                                }
+                                                if (!z10 && (str = documentAttribute.title) != null) {
+                                                    z10 = str.toLowerCase().contains(str3);
+                                                }
+                                            } else {
+                                                i15++;
+                                            }
+                                        } else {
+                                            z10 = false;
+                                        }
+                                    }
+                                    if (z10) {
+                                        arrayList2.add(messageObject);
+                                    }
+                                }
+                            }
+                            i14++;
+                        }
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new g8(h8Var, arrayList2, str2));
                 return;
             default:
-                i8 i8Var2 = this.f24330b;
-                String str2 = this.f24331c;
-                i8Var2.getClass();
-                Utilities.searchQueue.postRunnable(new h8(i8Var2, str2, new ArrayList(i8Var2.f24867n.f25230x0)));
+                i8 i8Var = h8Var.f24565n;
+                if (i8Var.h) {
+                    i8Var.f24916f = true;
+                    h8Var.d = arrayList;
+                    h8Var.e = str2;
+                    h8Var.l();
+                    i8Var.f24929r.n0(0);
+                    org.telegram.messenger.rk.q(R.string.NoAudioFoundPlayerInfo, new Object[]{str2}, i8Var.f24940y);
+                    return;
+                }
                 return;
         }
+    }
+
+    public g8(h8 h8Var, ArrayList arrayList, String str) {
+        this.f24285b = h8Var;
+        this.f24286c = arrayList;
+        this.d = str;
     }
 }

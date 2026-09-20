@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.util.SparseIntArray;
 public final class m81 extends w81 {
-    public final x81 f26356t0;
+    public final x81 f26347t0;
 
-    public m81(x81 x81Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(i10, context, e6Var, z10);
-        this.f26356t0 = x81Var;
+    public m81(x81 x81Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(i10, context, f6Var, z10);
+        this.f26347t0 = x81Var;
     }
 
     @Override
@@ -23,12 +23,12 @@ public final class m81 extends w81 {
             f10 = f7;
         }
         this.F = i10;
-        SparseIntArray sparseIntArray = this.f29963b0;
+        SparseIntArray sparseIntArray = this.f29984b0;
         this.G = sparseIntArray.get(i10);
         if (f10 > 0.0f) {
-            v81 v81Var = this.f29986y;
+            v81 v81Var = this.f30007y;
             if (v81Var != null) {
-                o81 o81Var = ((x81) ((l.d) v81Var).f13859a).L;
+                o81 o81Var = ((x81) ((l.d) v81Var).f13898a).L;
             }
             this.L = i11;
             this.M = sparseIntArray.get(i11);
@@ -46,9 +46,9 @@ public final class m81 extends w81 {
             this.F = i11;
             this.G = sparseIntArray.get(i11);
         }
-        v81 v81Var2 = this.f29986y;
+        v81 v81Var2 = this.f30007y;
         if (v81Var2 != null) {
-            ((x81) ((l.d) v81Var2).f13859a).s();
+            ((x81) ((l.d) v81Var2).f13898a).s();
         }
         if (f7 <= 0.5f) {
             i12 = i10;
@@ -60,6 +60,6 @@ public final class m81 extends w81 {
         } else {
             z10 = false;
         }
-        this.f26356t0.z(i12, z10);
+        this.f26347t0.z(i12, z10);
     }
 }

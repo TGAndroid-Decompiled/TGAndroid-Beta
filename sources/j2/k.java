@@ -4,9 +4,9 @@ import android.media.metrics.LogSessionId;
 import android.os.Build;
 import j$.util.Objects;
 public final class k {
-    public final String f12604a;
-    public final j f12605b;
-    public final Object f12606c;
+    public final String f12605a;
+    public final j f12606b;
+    public final Object f12607c;
 
     static {
         new k("");
@@ -14,21 +14,21 @@ public final class k {
 
     public k(String str) {
         j jVar;
-        this.f12604a = str;
+        this.f12605a = str;
         if (Build.VERSION.SDK_INT >= 31) {
             jVar = new j();
         } else {
             jVar = null;
         }
-        this.f12605b = jVar;
-        this.f12606c = new Object();
+        this.f12606b = jVar;
+        this.f12607c = new Object();
     }
 
     public final synchronized LogSessionId a() {
         j jVar;
-        jVar = this.f12605b;
+        jVar = this.f12606b;
         jVar.getClass();
-        return (LogSessionId) jVar.f12603b;
+        return (LogSessionId) jVar.f12604b;
     }
 
     public final boolean equals(Object obj) {
@@ -39,13 +39,13 @@ public final class k {
             return false;
         }
         k kVar = (k) obj;
-        if (Objects.equals(this.f12604a, kVar.f12604a) && Objects.equals(this.f12605b, kVar.f12605b) && Objects.equals(this.f12606c, kVar.f12606c)) {
+        if (Objects.equals(this.f12605a, kVar.f12605a) && Objects.equals(this.f12606b, kVar.f12606b) && Objects.equals(this.f12607c, kVar.f12607c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f12604a, this.f12605b, this.f12606c);
+        return Objects.hash(this.f12605a, this.f12606b, this.f12607c);
     }
 }

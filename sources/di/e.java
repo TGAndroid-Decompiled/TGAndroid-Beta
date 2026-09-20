@@ -3,32 +3,32 @@ package di;
 import android.app.Activity;
 import android.view.ViewGroup;
 import bi.v;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Cells.n4;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.vl0;
 import s4.c1;
-public final class e extends l61 {
+public final class e extends k61 {
     public final i N;
 
-    public e(i iVar, wl0 wl0Var, Activity activity, int i10, int i11, v vVar, e6 e6Var) {
-        super(wl0Var, activity, i10, i11, true, vVar, e6Var);
+    public e(i iVar, vl0 vl0Var, Activity activity, int i10, int i11, v vVar, f6 f6Var) {
+        super(vl0Var, activity, i10, i11, true, vVar, f6Var);
         this.N = iVar;
     }
 
     @Override
     public final c1 x(ViewGroup viewGroup, int i10) {
-        e6 e6Var;
+        f6 f6Var;
         if (i10 == 42) {
             i iVar = this.N;
             Activity parentActivity = iVar.getParentActivity();
             int i11 = j6.L6;
-            e6Var = ((n2) iVar).resourceProvider;
-            m4 m4Var = new m4(parentActivity, i11, 21, 0, false, e6Var);
-            m4Var.setHeight(25);
-            return new c1(m4Var);
+            f6Var = ((n2) iVar).resourceProvider;
+            n4 n4Var = new n4(parentActivity, i11, 21, 0, false, f6Var);
+            n4Var.setHeight(25);
+            return new c1(n4Var);
         }
         return super.x(viewGroup, i10);
     }

@@ -1,30 +1,41 @@
 package ki;
 
 import android.opengl.GLES20;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class u extends r {
-    public final int e;
-    public final int f13797f;
-    public final int f13798g;
+public class u {
+    public final int f13837a;
+    public final int f13838b;
+    public final int f13839c;
+    public final int d;
 
-    public u() {
-        super(AndroidUtilities.readRes(R.raw.round_blur_vert), "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nuniform sampler2D nTexture;\nuniform sampler2D obTexture;\nuniform sampler2D nbTexture;\nuniform sampler2D oldBackground;\nuniform sampler2D newBackground;\nuniform sampler2D maskTexture;\nuniform float oldBlur;\nuniform float newBlur;\nuniform float mixValue;\nvoid main() {\n    vec4 oldFrame = mix(texture2D(sTexture, vTextureCoord),\n            texture2D(obTexture, vTextureCoord), oldBlur);\n    vec4 newFrame = mix(texture2D(nTexture, vTextureCoord),\n            texture2D(nbTexture, vTextureCoord), newBlur);\n    vec3 camera = mix(oldFrame.rgb, newFrame.rgb, mixValue);\n    vec3 background = mix(texture2D(oldBackground, vTextureCoord).rgb,\n            texture2D(newBackground, vTextureCoord).rgb, mixValue) * 0.25;\n    float mask = texture2D(maskTexture, vTextureCoord).a;\n    gl_FragColor = vec4(mix(background, camera, mask), 1.0);\n}\n");
-        int glGetUniformLocation = GLES20.glGetUniformLocation(this.f13792a, "nTexture");
-        int glGetUniformLocation2 = GLES20.glGetUniformLocation(this.f13792a, "obTexture");
-        int glGetUniformLocation3 = GLES20.glGetUniformLocation(this.f13792a, "nbTexture");
-        int glGetUniformLocation4 = GLES20.glGetUniformLocation(this.f13792a, "oldBackground");
-        int glGetUniformLocation5 = GLES20.glGetUniformLocation(this.f13792a, "newBackground");
-        int glGetUniformLocation6 = GLES20.glGetUniformLocation(this.f13792a, "maskTexture");
-        this.e = GLES20.glGetUniformLocation(this.f13792a, "oldBlur");
-        this.f13797f = GLES20.glGetUniformLocation(this.f13792a, "newBlur");
-        this.f13798g = GLES20.glGetUniformLocation(this.f13792a, "mixValue");
-        GLES20.glUseProgram(this.f13792a);
-        GLES20.glUniform1i(glGetUniformLocation, 1);
-        GLES20.glUniform1i(glGetUniformLocation2, 2);
-        GLES20.glUniform1i(glGetUniformLocation3, 3);
-        GLES20.glUniform1i(glGetUniformLocation4, 4);
-        GLES20.glUniform1i(glGetUniformLocation5, 5);
-        GLES20.glUniform1i(glGetUniformLocation6, 6);
+    public u(String str, String str2) {
+        int a2 = x.a(35633, str);
+        this.f13838b = a2;
+        int a10 = x.a(35632, str2);
+        this.f13839c = a10;
+        int glCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(glCreateProgram, a2);
+        GLES20.glAttachShader(glCreateProgram, a10);
+        GLES20.glBindAttribLocation(glCreateProgram, 0, "aPosition");
+        GLES20.glBindAttribLocation(glCreateProgram, 1, "aTextureCoord");
+        GLES20.glLinkProgram(glCreateProgram);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+        if (iArr[0] != 0) {
+            this.f13837a = glCreateProgram;
+            this.d = 1;
+            int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
+            GLES20.glUseProgram(glCreateProgram);
+            GLES20.glUniform1i(glGetUniformLocation, 0);
+            return;
+        }
+        String glGetProgramInfoLog = GLES20.glGetProgramInfoLog(glCreateProgram);
+        GLES20.glDeleteProgram(glCreateProgram);
+        throw new IllegalStateException(v7.j0.g("Unable to link program: ", glGetProgramInfoLog));
+    }
+
+    public final void a() {
+        GLES20.glDeleteProgram(this.f13837a);
+        GLES20.glDeleteShader(this.f13838b);
+        GLES20.glDeleteShader(this.f13839c);
     }
 }

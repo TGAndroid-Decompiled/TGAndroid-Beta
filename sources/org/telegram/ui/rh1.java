@@ -1,55 +1,50 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class rh1 implements TextWatcher {
-    public final UsersSelectActivity f37070a;
+import android.content.Context;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class rh1 extends LinearLayout {
+    public final org.telegram.ui.ActionBar.f6 f37168a;
+    public final ImageView f37169b;
+    public final LinearLayout f37170c;
+    public final TextView d;
+    public final TextView e;
+    public final ImageView f37171f;
+    public boolean h;
+    public boolean f37172n;
 
-    public rh1(UsersSelectActivity usersSelectActivity) {
-        this.f37070a = usersSelectActivity;
+    public rh1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        setOrientation(0);
+        this.f37168a = f6Var;
+        ImageView imageView = new ImageView(context);
+        this.f37169b = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        addView(imageView, w7.y5.t(40, 40, 19, 12, 0, 12, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f37170c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(linearLayout, w7.y5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.y5.t(-1, -2, 7, 0, 0, 0, 0), context);
+        this.e = h;
+        h.setTextSize(1, 13.0f);
+        linearLayout.addView(h, w7.y5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f37171f = imageView2;
+        imageView2.setScaleType(scaleType);
+        addView(imageView2, w7.y5.t(40, 40, 21, 12, 0, 12, 0));
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        UsersSelectActivity usersSelectActivity = this.f37070a;
-        if (usersSelectActivity.f31854c.length() != 0) {
-            uh1 uh1Var = usersSelectActivity.h;
-            boolean z10 = uh1Var.f38007n;
-            if (!z10) {
-                usersSelectActivity.M = true;
-                usersSelectActivity.L = true;
-                if (!z10) {
-                    uh1Var.f38007n = true;
-                    uh1Var.l();
-                }
-                usersSelectActivity.d.setFastScrollVisible(false);
-                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
-                usersSelectActivity.f31855f.d.setText(LocaleController.getString(R.string.NoResult));
-            }
-            usersSelectActivity.f31855f.e(true, true);
-            usersSelectActivity.h.L(usersSelectActivity.f31854c.getText().toString());
-            return;
-        }
-        usersSelectActivity.M = false;
-        usersSelectActivity.L = false;
-        uh1 uh1Var2 = usersSelectActivity.h;
-        if (uh1Var2.f38007n) {
-            uh1Var2.f38007n = false;
-            uh1Var2.l();
-        }
-        usersSelectActivity.h.L(null);
-        usersSelectActivity.d.setFastScrollVisible(true);
-        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
-        usersSelectActivity.f31855f.d.setText(LocaleController.getString(R.string.NoContacts));
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

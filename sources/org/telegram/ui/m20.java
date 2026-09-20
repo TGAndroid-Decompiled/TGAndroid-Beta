@@ -7,37 +7,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class m20 implements Utilities.CallbackReturn {
-    public final int f35507a;
-    public final Object f35508b;
+    public final int f35581a;
+    public final Object f35582b;
 
     public m20(Object obj, int i10) {
-        this.f35507a = i10;
-        this.f35508b = obj;
+        this.f35581a = i10;
+        this.f35582b = obj;
     }
 
     @Override
     public final Object run(Object obj) {
-        switch (this.f35507a) {
+        switch (this.f35581a) {
             case 0:
-                r20 r20Var = (r20) this.f35508b;
+                r20 r20Var = (r20) this.f35582b;
                 View view = (View) obj;
                 r20Var.getClass();
                 ViewParent parent = view.getParent();
-                org.telegram.ui.Components.wl0 wl0Var = r20Var.f36938c;
-                if (parent != wl0Var) {
+                org.telegram.ui.Components.vl0 vl0Var = r20Var.f37024c;
+                if (parent != vl0Var) {
                     return Boolean.FALSE;
                 }
-                return Boolean.valueOf(!org.telegram.ui.Components.l61.K(wl0Var.U(view).f42932f));
+                return Boolean.valueOf(!org.telegram.ui.Components.k61.K(vl0Var.U(view).f42977f));
             case 1:
-                gg0 gg0Var = (gg0) this.f35508b;
+                hg0 hg0Var = (hg0) this.f35582b;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
                 if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new cg0(gg0Var, 1));
+                    AndroidUtilities.runOnUIThread(new dg0(hg0Var, 1));
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
             default:
-                ProfileActivity profileActivity = (ProfileActivity) this.f35508b;
+                ProfileActivity profileActivity = (ProfileActivity) this.f35582b;
                 URLSpan uRLSpan = (URLSpan) obj;
                 if (uRLSpan != null) {
                     profileActivity.B4(uRLSpan.getURL(), null);

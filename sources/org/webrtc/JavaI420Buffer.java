@@ -49,9 +49,9 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         if (byteBuffer.capacity() >= f7) {
             return;
         }
-        StringBuilder j3 = k0.j(f7, "Buffer must be at least ", " bytes, but was ");
-        j3.append(byteBuffer.capacity());
-        throw new IllegalArgumentException(j3.toString());
+        StringBuilder k10 = k0.k(f7, "Buffer must be at least ", " bytes, but was ");
+        k10.append(byteBuffer.capacity());
+        throw new IllegalArgumentException(k10.toString());
     }
 
     public static VideoFrame.Buffer cropAndScaleI420(VideoFrame.I420Buffer i420Buffer, int i10, int i11, int i12, int i13, int i14, int i15) {

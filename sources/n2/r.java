@@ -18,17 +18,17 @@ public interface r {
 
     void d(l.d dVar);
 
-    void j0(byte[] bArr);
+    void h0(byte[] bArr);
 
     p k0(byte[] bArr, List list, int i10, HashMap hashMap);
 
     void l(byte[] bArr, j2.k kVar);
 
+    int l0();
+
     q m();
 
-    int m0();
-
-    boolean r0(String str, byte[] bArr);
+    boolean q0(String str, byte[] bArr);
 
     void release();
 }

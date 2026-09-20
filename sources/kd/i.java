@@ -3,22 +3,22 @@ package kd;
 import kotlin.jvm.internal.q;
 import kotlin.jvm.internal.r;
 public abstract class i extends h implements kotlin.jvm.internal.f {
-    public final int f13587a;
+    public final int f13588a;
 
     public i(id.c cVar) {
         super(cVar);
-        this.f13587a = 2;
+        this.f13588a = 2;
     }
 
     @Override
     public final int getArity() {
-        return this.f13587a;
+        return this.f13588a;
     }
 
     @Override
     public final String toString() {
         if (getCompletion() == null) {
-            q.f13843a.getClass();
+            q.f13882a.getClass();
             String a2 = r.a(this);
             kotlin.jvm.internal.i.d(a2, "renderLambdaToString(...)");
             return a2;

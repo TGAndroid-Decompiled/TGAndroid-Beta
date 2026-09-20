@@ -11,44 +11,44 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class gl0 implements Utilities.Callback2 {
-    public final int f33894a;
-    public final Serializable f33895b;
-    public final Object f33896c;
+    public final int f33930a;
+    public final Serializable f33931b;
+    public final Object f33932c;
     public final Object d;
     public final Object e;
 
     public gl0(Object obj, Object obj2, Serializable serializable, Object obj3, int i10) {
-        this.f33894a = i10;
-        this.f33896c = obj;
+        this.f33930a = i10;
+        this.f33932c = obj;
         this.d = obj2;
-        this.f33895b = serializable;
+        this.f33931b = serializable;
         this.e = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         CharSequence replaceSingleLinkBold;
-        int i10 = this.f33894a;
+        int i10 = this.f33930a;
         Object obj3 = this.e;
-        Serializable serializable = this.f33895b;
+        Serializable serializable = this.f33931b;
         Object obj4 = this.d;
-        Object obj5 = this.f33896c;
+        Object obj5 = this.f33932c;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj4;
                 String str = (String) serializable;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj3;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj3;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 ((org.telegram.ui.ActionBar.b2) obj5).dismiss();
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
-                    ll0.f35398a = f3Var;
+                    ll0.f35472a = f3Var;
                     f3Var.show();
                     return;
                 }
-                org.telegram.ui.ActionBar.f3 f3Var2 = ll0.f35398a;
+                org.telegram.ui.ActionBar.f3 f3Var2 = ll0.f35472a;
                 if (f3Var2 != null) {
                     f3Var2.dismiss();
-                    ll0.f35398a = null;
+                    ll0.f35472a = null;
                 }
                 org.telegram.ui.Components.xc a2 = ll0.a();
                 int i11 = R.raw.error;
@@ -56,7 +56,7 @@ public final class gl0 implements Utilities.Callback2 {
                 if (TextUtils.isEmpty(str)) {
                     replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
                 } else {
-                    replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, e6Var));
+                    replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, f6Var));
                 }
                 a2.M(string, replaceSingleLinkBold, i11).j();
                 return;
@@ -67,13 +67,13 @@ public final class gl0 implements Utilities.Callback2 {
                 TLRPC.User user = (TLRPC.User) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.ActionBar.e6 e6Var2 = d1Var.e;
+                org.telegram.ui.ActionBar.f6 f6Var2 = d1Var.e;
                 if (updates != null) {
                     MessagesController.getInstance(d1Var.M).processUpdates(updates, false);
                     d1Var.y(daVar, "requested_chat_sent", org.telegram.ui.web.d1.B(str2, "req_id"));
-                    long j3 = d1Var.U.f18443id;
+                    long j3 = d1Var.U.f18475id;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f18443id);
+                    bundle.putLong("user_id", user.f18475id);
                     org.telegram.ui.web.f0 f0Var = new org.telegram.ui.web.f0(d1Var, bundle, user, j3);
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                     if (U != null) {
@@ -86,11 +86,11 @@ public final class gl0 implements Utilities.Callback2 {
                     }
                     return;
                 } else if (tL_error2 != null) {
-                    new org.telegram.ui.Components.xc(d1Var, e6Var2).d0(tL_error2, false);
+                    new org.telegram.ui.Components.xc(d1Var, f6Var2).d0(tL_error2, false);
                     d1Var.y(daVar, "requested_chat_failed", org.telegram.ui.web.d1.B(str2, "req_id"));
                     return;
                 } else {
-                    new org.telegram.ui.Components.xc(d1Var, e6Var2).c0("UNKNOWN_BUTTON", false);
+                    new org.telegram.ui.Components.xc(d1Var, f6Var2).c0("UNKNOWN_BUTTON", false);
                     d1Var.y(daVar, "requested_chat_failed", org.telegram.ui.web.d1.B(str2, "req_id"));
                     return;
                 }

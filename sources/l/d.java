@@ -25,90 +25,100 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import m.e2;
-import n7.z0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.e9;
+import org.telegram.ui.Cells.f3;
+import org.telegram.ui.Cells.f9;
 import org.telegram.ui.Cells.k0;
-import org.telegram.ui.Components.a60;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.m9;
+import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.o81;
-import org.telegram.ui.Components.so0;
+import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.uq0;
 import org.telegram.ui.Components.v81;
-import org.telegram.ui.Components.vq0;
 import org.telegram.ui.Components.x81;
 import org.telegram.ui.ThemeActivity;
-import org.telegram.ui.ac1;
-import qg.m2;
-import qg.v1;
-import w7.y8;
-public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, com.google.android.gms.common.api.internal.s, v1, r4.c, com.google.android.gms.common.api.internal.o, n5.b, OnCompleteListener {
-    public Object f13859a;
+import org.telegram.ui.cc1;
+import qg.n2;
+import qg.w1;
+import w7.z8;
+public final class d implements e2, y2.h, le.d, j, l2.h, ro0, le.f, ah.k, v81, com.google.android.gms.common.api.internal.s, w1, r4.c, com.google.android.gms.common.api.internal.o, n5.b, OnCompleteListener {
+    public Object f13898a;
 
     public d(Object obj) {
-        this.f13859a = obj;
+        this.f13898a = obj;
     }
 
     @Override
-    public long A(long j3, long j10) {
-        return 1L;
+    public void A() {
+        ((l9) this.f13898a).f26057a.invalidate();
     }
 
     @Override
     public void C(float f7, int i10) {
-        ((le.j) this.f13859a).i(f7);
+        ((le.j) this.f13898a).i(f7);
     }
 
     @Override
     public void D(int i10, float f7, float f10, le.e eVar) {
-        ((le.j) this.f13859a).i(f7);
+        ((le.j) this.f13898a).i(f7);
     }
 
     @Override
-    public void E(y2.j jVar, long j3, long j10, boolean z10) {
-        ((l2.g) this.f13859a).w((y2.p) jVar, j10);
+    public long E(long j3, long j10) {
+        return 1L;
     }
 
-    public void F(HashMap hashMap) {
-        if (((SparseArray) this.f13859a) == null) {
-            this.f13859a = new SparseArray(hashMap.size());
+    @Override
+    public void F(y2.j jVar, long j3, long j10, boolean z10) {
+        ((l2.g) this.f13898a).w((y2.p) jVar, j10);
+    }
+
+    public void G(HashMap hashMap) {
+        if (((SparseArray) this.f13898a) == null) {
+            this.f13898a = new SparseArray(hashMap.size());
         }
         for (Map.Entry entry : hashMap.entrySet()) {
-            ((SparseArray) this.f13859a).put(((String) entry.getKey()).hashCode(), (String) entry.getValue());
+            ((SparseArray) this.f13898a).put(((String) entry.getKey()).hashCode(), (String) entry.getValue());
         }
     }
 
-    public boolean G(int i10) {
-        o81 o81Var = ((x81) this.f13859a).L;
+    public boolean H(int i10) {
+        o81 o81Var = ((x81) this.f13898a).L;
         if (o81Var == null) {
             return false;
         }
         return o81Var.c(i10);
     }
 
-    public void H(Runnable runnable) {
-        Runnable runnable2 = (Runnable) ((HashMap) this.f13859a).remove(runnable);
+    public void I(Runnable runnable) {
+        Runnable runnable2 = (Runnable) ((HashMap) this.f13898a).remove(runnable);
         if (runnable2 != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable2);
         }
     }
 
-    public void I() {
-        HashMap hashMap = (HashMap) this.f13859a;
+    public void J() {
+        HashMap hashMap = (HashMap) this.f13898a;
         for (Map.Entry entry : hashMap.entrySet()) {
             AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
         }
         hashMap.clear();
     }
 
-    public StringBuilder J() {
-        df.a aVar = (df.a) this.f13859a;
+    @Override
+    public void K(ah.a aVar) {
+        aVar.a(((uq0) this.f13898a).getThemedColor(j6.f19094d6));
+        aVar.b(SharedConfig.chatBlurEnabled());
+    }
+
+    public StringBuilder L() {
+        df.a aVar = (df.a) this.f13898a;
         if (aVar instanceof ye.m) {
-            StringBuilder sb2 = ((ye.m) aVar).f47027b.f47013b;
+            StringBuilder sb2 = ((ye.m) aVar).f47074b.f47060b;
             if (sb2.length() != 0) {
                 return sb2;
             }
@@ -117,24 +127,19 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         return null;
     }
 
-    @Override
-    public void K(float f7) {
-        ((m2) this.f13859a).setOutlineWidth(f7);
-    }
-
-    public void L(float f7) {
-        x81 x81Var = (x81) this.f13859a;
+    public void M(float f7) {
+        x81 x81Var = (x81) this.f13898a;
         if (f7 == 1.0f) {
             View[] viewArr = x81Var.e;
             View[] viewArr2 = x81Var.e;
             if (viewArr[1] != null) {
                 x81Var.G();
-                x81Var.h.put(x81Var.f30283f[1], viewArr2[1]);
+                x81Var.h.put(x81Var.f30195f[1], viewArr2[1]);
                 x81Var.removeView(viewArr2[1]);
                 x81Var.F(viewArr2[0], 0.0f);
                 viewArr2[1] = null;
             }
-            x81Var.A(x81Var.f30281b);
+            x81Var.A(x81Var.f30193b);
             return;
         }
         View[] viewArr3 = x81Var.e;
@@ -143,7 +148,7 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         if (view == null) {
             return;
         }
-        if (x81Var.f30289y) {
+        if (x81Var.f30201y) {
             x81Var.F(view, (1.0f - f7) * viewArr3[0].getMeasuredWidth());
             View view2 = viewArr4[0];
             x81Var.F(view2, (-view2.getMeasuredWidth()) * f7);
@@ -155,27 +160,17 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         x81Var.x(false);
     }
 
-    public void M(long j3) {
-        ((a60) this.f13859a).f22526s.setPlaybackProgress(((float) j3) / 60000.0f);
-    }
-
-    @Override
-    public void U(ah.a aVar) {
-        aVar.a(((vq0) this.f13859a).getThemedColor(j6.f19062d6));
-        aVar.b(SharedConfig.chatBlurEnabled());
-    }
-
     @Override
     public void X(float f7, boolean z10) {
-        ac1 ac1Var = (ac1) ((k0) this.f13859a);
-        int i10 = (int) (j6.f19294q * 100.0f);
+        cc1 cc1Var = (cc1) ((k0) this.f13898a);
+        int i10 = (int) (j6.f19326q * 100.0f);
         int i11 = (int) (f7 * 100.0f);
-        j6.f19294q = f7;
+        j6.f19326q = f7;
         if (i10 != i11) {
-            ThemeActivity themeActivity = ac1Var.e.e;
-            gl0 gl0Var = (gl0) themeActivity.f31795b.L(themeActivity.f31802f0);
-            if (gl0Var != null) {
-                ((e9) gl0Var.f42929a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (j6.f19294q * 100.0f))));
+            ThemeActivity themeActivity = cc1Var.e.e;
+            fl0 fl0Var = (fl0) themeActivity.f31835b.L(themeActivity.f31842f0);
+            if (fl0Var != null) {
+                ((f9) fl0Var.f42974a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (j6.f19326q * 100.0f))));
             }
             j6.E(true);
         }
@@ -186,7 +181,7 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
         p6.a aVar = (p6.a) ((p6.c) obj).u();
         Parcel I0 = aVar.I0();
-        k7.a.c(I0, (n6.o) this.f13859a);
+        k7.a.c(I0, (n6.o) this.f13898a);
         try {
             aVar.f315b.transact(1, I0, null, 1);
             I0.recycle();
@@ -204,26 +199,26 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
 
     @Override
     public void d(Canvas canvas) {
-        vq0 vq0Var = (vq0) this.f13859a;
-        canvas.drawColor(vq0Var.getThemedColor(j6.f19062d6));
+        uq0 uq0Var = (uq0) this.f13898a;
+        canvas.drawColor(uq0Var.getThemedColor(j6.f19094d6));
         if (SharedConfig.chatBlurEnabled()) {
-            vq0Var.O0.b(canvas, -3);
+            uq0Var.O0.b(canvas, -3);
         }
     }
 
     @Override
-    public long f(long j3, long j10) {
+    public long e(long j3, long j10) {
         return 0L;
     }
 
     @Override
-    public boolean g() {
-        return false;
+    public long g(long j3, long j10) {
+        return -9223372036854775807L;
     }
 
     @Override
     public Object mo28get() {
-        return new s5.j((Context) ((fd.a) this.f13859a).mo28get(), "com.google.android.datatransport.events", Integer.valueOf(s5.j.d).intValue());
+        return new s5.j((Context) ((fd.a) this.f13898a).mo28get(), "com.google.android.datatransport.events", Integer.valueOf(s5.j.d).intValue());
     }
 
     @Override
@@ -232,32 +227,37 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
     }
 
     @Override
-    public boolean h(float f7) {
+    public boolean h() {
         return false;
     }
 
     @Override
-    public long j(long j3, long j10) {
-        return -9223372036854775807L;
+    public boolean i(float f7) {
+        return false;
     }
 
     @Override
     public m2.j k(long j3) {
-        return (m2.j) this.f13859a;
+        return (m2.j) this.f13898a;
     }
 
     @Override
     public void l(Object obj) {
         com.google.android.gms.common.api.internal.n nVar;
         g8.c cVar = (g8.c) obj;
-        androidx.activity.n nVar2 = ((r7.i) this.f13859a).f42326b;
+        androidx.activity.n nVar2 = ((r7.i) this.f13898a).f42370b;
         synchronized (nVar2) {
             nVar2.f1908b = false;
-            nVar = ((com.google.android.gms.common.api.internal.p) nVar2.f1909c).f6145c;
+            nVar = ((com.google.android.gms.common.api.internal.p) nVar2.f1909c).f6146c;
         }
         if (nVar != null) {
             ((r7.c) nVar2.d).c(nVar, 2441);
         }
+    }
+
+    @Override
+    public int l0() {
+        return 0;
     }
 
     @Override
@@ -266,24 +266,19 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
     }
 
     @Override
-    public int m0() {
-        return 0;
-    }
-
-    @Override
     public void n(y2.j jVar, long j3, long j10, int i10) {
         u2.t tVar;
         y2.p pVar = (y2.p) jVar;
-        l2.g gVar = (l2.g) this.f13859a;
+        l2.g gVar = (l2.g) this.f13898a;
         if (i10 == 0) {
-            long j11 = pVar.f46553a;
-            tVar = new u2.t(pVar.f46554b);
+            long j11 = pVar.f46600a;
+            tVar = new u2.t(pVar.f46601b);
         } else {
-            long j12 = pVar.f46553a;
-            Uri uri = pVar.d.f9351c;
+            long j12 = pVar.f46600a;
+            Uri uri = pVar.d.f9352c;
             tVar = new u2.t(j10);
         }
-        gVar.f13991q.s(tVar, pVar.f46555c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+        gVar.f14030q.s(tVar, pVar.f46602c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
     }
 
     @Override
@@ -292,26 +287,26 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         int i10;
         long j11;
         y2.p pVar = (y2.p) jVar;
-        l2.g gVar = (l2.g) this.f13859a;
-        long j12 = pVar.f46553a;
-        Uri uri = pVar.d.f9351c;
+        l2.g gVar = (l2.g) this.f13898a;
+        long j12 = pVar.f46600a;
+        Uri uri = pVar.d.f9352c;
         u2.t tVar = new u2.t(j10);
-        gVar.f13987m.getClass();
-        gVar.f13991q.p(tVar, pVar.f46555c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        m2.c cVar = (m2.c) pVar.f46556f;
+        gVar.f14026m.getClass();
+        gVar.f14030q.p(tVar, pVar.f46602c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        m2.c cVar = (m2.c) pVar.f46603f;
         m2.c cVar2 = gVar.H;
         if (cVar2 == null) {
             size = 0;
         } else {
-            size = cVar2.f14587m.size();
+            size = cVar2.f14623m.size();
         }
-        long j13 = cVar.b(0).f14604b;
+        long j13 = cVar.b(0).f14640b;
         int i11 = 0;
-        while (i11 < size && gVar.H.b(i11).f14604b < j13) {
+        while (i11 < size && gVar.H.b(i11).f14640b < j13) {
             i11++;
         }
         if (cVar.d) {
-            if (size - i11 > cVar.f14587m.size()) {
+            if (size - i11 > cVar.f14623m.size()) {
                 e2.a.n("DashMediaSource", "Loaded out of sync manifest");
             } else {
                 j11 = -9223372036854775807L;
@@ -328,7 +323,7 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
             }
             int i12 = gVar.M;
             gVar.M = i12 + 1;
-            if (i12 < gVar.f13987m.L3(pVar.f46555c)) {
+            if (i12 < gVar.f14026m.L3(pVar.f46602c)) {
                 gVar.D.postDelayed(gVar.v, Math.min((gVar.M - 1) * 1000, 5000));
                 return;
             }
@@ -342,12 +337,12 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         gVar.J = j3 - j10;
         gVar.K = j3;
         gVar.O += i10;
-        synchronized (gVar.f13994t) {
+        synchronized (gVar.f14033t) {
             try {
-                if (pVar.f46554b.f9379a.equals(gVar.F)) {
-                    Uri uri2 = gVar.H.f14585k;
+                if (pVar.f46601b.f9380a.equals(gVar.F)) {
+                    Uri uri2 = gVar.H.f14621k;
                     if (uri2 == null) {
-                        uri2 = y8.a(pVar.d.f9351c);
+                        uri2 = z8.a(pVar.d.f9352c);
                     }
                     gVar.F = uri2;
                 }
@@ -357,9 +352,9 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         }
         m2.c cVar3 = gVar.H;
         if (cVar3.d && gVar.L == j11) {
-            lf.g gVar2 = cVar3.f14583i;
-            if (gVar2 != null) {
-                String str = gVar2.f14174b;
+            c5.a aVar = cVar3.f14619i;
+            if (aVar != null) {
+                String str = aVar.f3842b;
                 if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {
                     if (!Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2012")) {
                         if (!Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2012")) {
@@ -371,14 +366,14 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
                                 return;
                             }
                         }
-                        gVar.z(gVar2, new ob.a(12));
+                        gVar.z(aVar, new ob.a(12));
                         return;
                     }
-                    gVar.z(gVar2, new Object());
+                    gVar.z(aVar, new Object());
                     return;
                 }
                 try {
-                    gVar.L = e2.d0.T(gVar2.f14175c) - gVar.K;
+                    gVar.L = e2.d0.T(aVar.f3843c) - gVar.K;
                     gVar.y(true);
                     return;
                 } catch (s0 e) {
@@ -394,7 +389,7 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
 
     @Override
     public void onComplete(Task task) {
-        y8.e0 e0Var = (y8.e0) this.f13859a;
+        y8.e0 e0Var = (y8.e0) this.f13898a;
         if (task.isSuccessful()) {
             x8.m.M0(e0Var, true, (byte[]) task.getResult());
             return;
@@ -405,7 +400,7 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
 
     @Override
     public void p(l lVar, MenuItem menuItem) {
-        ((f) this.f13859a).f13875f.removeCallbacksAndMessages(lVar);
+        ((f) this.f13898a).f13914f.removeCallbacksAndMessages(lVar);
     }
 
     @Override
@@ -415,7 +410,7 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
 
     @Override
     public void r(l lVar) {
-        k2.u uVar = ((ActionMenuView) this.f13859a).K;
+        k2.u uVar = ((ActionMenuView) this.f13898a).K;
         if (uVar != null) {
             uVar.r(lVar);
         }
@@ -428,9 +423,9 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
 
     @Override
     public boolean t(l lVar, MenuItem menuItem) {
-        m.k kVar = ((ActionMenuView) this.f13859a).P;
+        m.k kVar = ((ActionMenuView) this.f13898a).P;
         if (kVar != null) {
-            Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((ka.c) kVar).f13565b).W.f14180c).iterator();
+            Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((ka.c) kVar).f13566b).W.f14216c).iterator();
             while (it.hasNext()) {
                 if (((androidx.fragment.app.c0) it.next()).f2402a.p()) {
                     return true;
@@ -442,22 +437,17 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
     }
 
     @Override
-    public void u() {
-        ((m9) this.f13859a).f26357a.invalidate();
-    }
-
-    @Override
-    public void v(l lVar, n nVar) {
-        f fVar = (f) this.f13859a;
-        Handler handler = fVar.f13875f;
+    public void u(l lVar, n nVar) {
+        f fVar = (f) this.f13898a;
+        Handler handler = fVar.f13914f;
         e eVar = null;
         handler.removeCallbacksAndMessages(null);
-        ArrayList arrayList = fVar.f13876n;
+        ArrayList arrayList = fVar.f13915n;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
             if (i10 < size) {
-                if (lVar == ((e) arrayList.get(i10)).f13870b) {
+                if (lVar == ((e) arrayList.get(i10)).f13909b) {
                     break;
                 }
                 i10++;
@@ -477,8 +467,13 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
     }
 
     @Override
-    public boolean w() {
+    public boolean v() {
         return true;
+    }
+
+    @Override
+    public long w() {
+        return 0L;
     }
 
     @Override
@@ -525,12 +520,12 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
         } else {
             Log.e("ProfileInstaller", str, (Throwable) obj);
         }
-        ((ProfileInstallReceiver) this.f13859a).setResultCode(i10);
+        ((ProfileInstallReceiver) this.f13898a).setResultCode(i10);
     }
 
     @Override
-    public long y() {
-        return 0L;
+    public void y(float f7) {
+        ((n2) this.f13898a).setOutlineWidth(f7);
     }
 
     @Override
@@ -541,17 +536,17 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
     public d(int i10) {
         switch (i10) {
             case 27:
-                this.f13859a = new z0[zf.b.values().length];
+                this.f13898a = new f3[zf.b.values().length];
                 return;
             default:
-                this.f13859a = new HashMap();
+                this.f13898a = new HashMap();
                 return;
         }
     }
 
     @Override
     public float get() {
-        return ((m2) this.f13859a).F;
+        return ((n2) this.f13898a).F;
     }
 
     @Override
@@ -563,11 +558,11 @@ public final class d implements e2, y2.h, le.d, j, l2.h, so0, le.f, ah.k, v81, c
     }
 
     @Override
-    public void i() {
+    public void j() {
     }
 
     @Override
-    public void e(boolean z10) {
+    public void f(boolean z10) {
     }
 
     @Override

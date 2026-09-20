@@ -1,115 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Calendar;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class ru0 extends vl0 {
-    public final Context f27970c;
-    public final int d;
-    public final org.telegram.ui.ActionBar.e6 e;
-    public final pu0 f27971f;
-    public final ArrayList h = new ArrayList(10);
-    public final ArrayList f27972n = new ArrayList();
-    public cu0 f27973r;
-    public final kv0 f27974s;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SavedMessagesController;
+public final class ru0 extends s4.v {
+    public final tu0 d;
 
-    public ru0(kv0 kv0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f27974s = kv0Var;
-        this.f27970c = context;
-        this.d = i10;
-        this.e = e6Var;
-        this.f27971f = new pu0(this, i10, e6Var);
-        E();
+    public ru0(tu0 tu0Var) {
+        this.d = tu0Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f42974a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        SavedMessagesController.SavedDialog r10;
+        int l4 = s4.v.l(0, 0);
+        jv0 jv0Var = this.d.f28449x;
+        if (jv0Var.C1 && recyclerView.getAdapter() != jv0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
+            return s4.v.l(3, 0);
+        }
+        return l4;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        tu0 tu0Var = this.d;
+        ArrayList arrayList = tu0Var.f28444f;
+        jv0 jv0Var = tu0Var.f28449x;
+        if (jv0Var.C1 && recyclerView.getAdapter() != jv0Var.S) {
+            SavedMessagesController.SavedDialog r10 = r(c1Var);
+            SavedMessagesController.SavedDialog r11 = r(c1Var2);
+            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
+                int b10 = c1Var.b();
+                int b11 = c1Var2.b();
+                arrayList.remove(b10);
+                arrayList.add(b11, r10);
+                tu0Var.p(b10, b11);
+                tu0Var.h = true;
+                return true;
+            }
+            return false;
+        }
         return false;
     }
 
-    public final void E() {
-        ArrayList arrayList = this.f27972n;
-        arrayList.clear();
-        ArrayList c10 = this.f27974s.f25844t1[8].c();
-        int i10 = 0;
-        for (int i11 = 0; i11 < c10.size(); i11++) {
-            MessageObject messageObject = (MessageObject) c10.get(i11);
-            if (messageObject.dateKeyInt != i10) {
-                int i12 = messageObject.messageOwner.date;
-                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                long j3 = i12;
-                tL_message.message = LocaleController.formatDateChat(j3);
-                tL_message.f18317id = 0;
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(j3 * 1000);
-                calendar.set(11, 0);
-                calendar.set(12, 0);
-                calendar.set(13, 0);
-                calendar.set(14, 0);
-                tL_message.date = (int) (calendar.getTimeInMillis() / 1000);
-                MessageObject messageObject2 = new MessageObject(this.d, tL_message, false, false);
-                messageObject2.type = 10;
-                messageObject2.contentType = 1;
-                messageObject2.isDateObject = true;
-                arrayList.add(messageObject2);
-                i10 = messageObject.dateKeyInt;
-            }
-            arrayList.add(messageObject);
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        bu0 bu0Var;
+        tu0 tu0Var = this.d;
+        wq0 wq0Var = tu0Var.f28445n;
+        if (c1Var != null && (bu0Var = tu0Var.f28447s) != null) {
+            bu0Var.e1(false);
         }
-    }
-
-    @Override
-    public final int h() {
-        return this.f27972n.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f27972n;
-            if (i10 < arrayList.size()) {
-                return ((MessageObject) arrayList.get(i10)).contentType;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void l() {
-        E();
-        super.l();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f27972n;
-            if (i10 < arrayList.size()) {
-                MessageObject messageObject = (MessageObject) arrayList.get(i10);
-                int i11 = c1Var.f42932f;
-                View view = c1Var.f42929a;
-                if (i11 == 0) {
-                    ((org.telegram.ui.Cells.u1) view).X3(messageObject, null, false, false, false, false);
-                } else {
-                    ((org.telegram.ui.Cells.w0) view).setMessageObject(messageObject);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
         if (i10 == 0) {
-            qu0 qu0Var = new qu0(this.f27970c, this.d, false, null, this.e);
-            qu0Var.setDelegate(this.f27971f);
-            return new s4.c1(qu0Var);
+            AndroidUtilities.cancelRunOnUIThread(wq0Var);
+            AndroidUtilities.runOnUIThread(wq0Var, 300L);
         }
-        return new s4.c1(new org.telegram.ui.Cells.w0(this.f27970c, this.e, false));
+    }
+
+    public final SavedMessagesController.SavedDialog r(s4.c1 c1Var) {
+        int b10;
+        if (c1Var != null && (b10 = c1Var.b()) >= 0) {
+            tu0 tu0Var = this.d;
+            if (b10 < tu0Var.f28444f.size()) {
+                return (SavedMessagesController.SavedDialog) tu0Var.f28444f.get(b10);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

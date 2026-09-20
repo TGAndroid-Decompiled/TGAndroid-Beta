@@ -1,73 +1,44 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class m60 extends FrameLayout {
-    public final RectF f26342a;
-    public boolean f26343b;
-    public Boolean f26344c;
-    public final a70 d;
+public final class m60 extends vl0 {
+    public int X2;
+    public final z60 Y2;
 
-    public m60(a70 a70Var, Context context) {
-        super(context);
-        this.d = a70Var;
-        this.f26342a = new RectF();
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m60.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            a70 a70Var = this.d;
-            if (a70Var.Z != 0 && motionEvent.getY() < a70Var.Z) {
-                a70Var.dismiss();
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        a70.O(this.d);
+    public m60(z60 z60Var, Context context) {
+        super(context, null);
+        this.Y2 = z60Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        int size = View.MeasureSpec.getSize(i11);
-        a70 a70Var = this.d;
-        a70Var.f22535a0 = true;
-        i12 = ((org.telegram.ui.ActionBar.f3) a70Var).backgroundPaddingLeft;
-        int i14 = AndroidUtilities.statusBarHeight;
-        i13 = ((org.telegram.ui.ActionBar.f3) a70Var).backgroundPaddingLeft;
-        setPadding(i12, i14, i13, 0);
-        a70Var.f22535a0 = false;
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        this.f26343b = true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.d.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
+        z60 z60Var = this.Y2;
+        m60 m60Var = z60Var.V;
+        if (this.X2 != View.MeasureSpec.getSize(i11)) {
+            this.X2 = View.MeasureSpec.getSize(i11);
+            z60Var.f30746a0 = true;
+            m60Var.setPadding(0, 0, 0, 0);
+            z60Var.f30746a0 = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+            int measuredHeight = getMeasuredHeight();
+            int i12 = this.X2;
+            int i13 = (int) ((i12 / 5.0f) * 2.0f);
+            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
+                i13 = this.X2 - measuredHeight;
+            }
+            z60Var.f30746a0 = true;
+            m60Var.setPadding(0, i13, 0, 0);
+            z60Var.f30746a0 = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
-        return false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.d.f22535a0) {
+        if (this.Y2.f30746a0) {
             return;
         }
         super.requestLayout();

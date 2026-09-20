@@ -3,27 +3,27 @@ package org.telegram.ui.Components;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 public final class xg extends HashMap {
-    public final int f30316a;
-    public final Object f30317b;
+    public final int f30259a;
+    public final Object f30260b;
 
     public xg(Object obj, int i10) {
-        this.f30316a = i10;
-        this.f30317b = obj;
+        this.f30259a = i10;
+        this.f30260b = obj;
     }
 
     @Override
     public Object get(Object obj) {
-        switch (this.f30316a) {
+        switch (this.f30259a) {
             case 0:
-                int i10 = ((ah) this.f30317b).v;
-                ij0 ij0Var = (ij0) super.get(obj);
-                if (ij0Var == null) {
+                int i10 = ((ah) this.f30260b).v;
+                hj0 hj0Var = (hj0) super.get(obj);
+                if (hj0Var == null) {
                     zg zgVar = (zg) obj;
-                    ij0 ij0Var2 = new ij0(zgVar.f30796c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
-                    put(zgVar, ij0Var2);
-                    return ij0Var2;
+                    hj0 hj0Var2 = new hj0(zgVar.f30815c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
+                    put(zgVar, hj0Var2);
+                    return hj0Var2;
                 }
-                return ij0Var;
+                return hj0Var;
             default:
                 return super.get(obj);
         }
@@ -32,11 +32,11 @@ public final class xg extends HashMap {
     @Override
     public Object put(Object obj, Object obj2) {
         String lowerCase;
-        switch (this.f30316a) {
+        switch (this.f30259a) {
             case 1:
                 String str = (String) obj;
                 String str2 = (String) obj2;
-                HashMap hashMap = ((yc.g) this.f30317b).f46947f;
+                HashMap hashMap = ((yc.g) this.f30260b).f46994f;
                 if (str == null) {
                     lowerCase = str;
                 } else {

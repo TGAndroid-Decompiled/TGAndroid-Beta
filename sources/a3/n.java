@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
-import u2.b1;
+import u2.c1;
 public final class n extends r2.r {
     public static final int[] N1 = {1920, 1600, 1440, 1280, 960, 854, 640, 540, 480};
     public static boolean O1;
@@ -93,7 +93,7 @@ public final class n extends r2.r {
         this.f150c1 = new a0(applicationContext, this, kVar.d);
         this.f151d1 = new z();
         this.f149b1 = "NVIDIA".equals(Build.MANUFACTURER);
-        this.f162p1 = e2.w.f7936c;
+        this.f162p1 = e2.w.f7937c;
         this.f164r1 = 1;
         this.f165s1 = 0;
         this.C1 = x1.d;
@@ -163,7 +163,7 @@ public final class n extends r2.r {
             i11 |= 64;
         }
         int i12 = i11;
-        String str = oVar.f42218a;
+        String str = oVar.f42262a;
         if (i12 != 0) {
             i10 = 0;
         } else {
@@ -206,7 +206,7 @@ public final class n extends r2.r {
             return true;
         }
         long j3 = this.K1;
-        if (j3 == -9223372036854775807L || j3 - (hVar.e - this.P0.f42232c) <= 100000) {
+        if (j3 == -9223372036854775807L || j3 - (hVar.e - this.P0.f42276c) <= 100000) {
             return true;
         }
         return false;
@@ -219,7 +219,7 @@ public final class n extends r2.r {
             long j3 = elapsedRealtime - this.f166t1;
             int i10 = this.f167u1;
             of.b bVar = this.Z0;
-            Handler handler = (Handler) bVar.f15650b;
+            Handler handler = (Handler) bVar.f15682b;
             if (handler != null) {
                 handler.post(new i0(bVar, i10, j3));
             }
@@ -231,7 +231,7 @@ public final class n extends r2.r {
     public final void H0() {
         int i10;
         r2.l lVar;
-        if (this.F1 && (i10 = Build.VERSION.SDK_INT) >= 23 && (lVar = this.f42234b0) != null) {
+        if (this.F1 && (i10 = Build.VERSION.SDK_INT) >= 23 && (lVar = this.f42278b0) != null) {
             this.H1 = new m(this, lVar);
             if (i10 >= 33) {
                 Bundle bundle = new Bundle();
@@ -255,7 +255,7 @@ public final class n extends r2.r {
             of.b bVar = this.Z0;
             if (!equals && !x1Var.equals(this.D1)) {
                 this.D1 = x1Var;
-                bVar.W(x1Var);
+                bVar.Z(x1Var);
             }
             a0 a0Var = this.f150c1;
             if (a0Var.e != 3) {
@@ -265,7 +265,7 @@ public final class n extends r2.r {
             a0Var.f67l.getClass();
             a0Var.f63g = e2.d0.Q(SystemClock.elapsedRealtime());
             if (z10 && (surface = this.f160n1) != null) {
-                bVar.S(surface);
+                bVar.V(surface);
                 this.f163q1 = true;
             }
         }
@@ -288,10 +288,10 @@ public final class n extends r2.r {
                 a0Var.h(surface);
             }
             this.f163q1 = false;
-            int i10 = this.f10688n;
-            r2.l lVar = this.f42234b0;
+            int i10 = this.f10689n;
+            r2.l lVar = this.f42278b0;
             if (lVar != null && this.f157j1 == null) {
-                r2.o oVar = this.f42241i0;
+                r2.o oVar = this.f42285i0;
                 oVar.getClass();
                 boolean E0 = E0(oVar);
                 int i11 = Build.VERSION.SDK_INT;
@@ -317,7 +317,7 @@ public final class n extends r2.r {
             if (surface != null) {
                 x1 x1Var = this.D1;
                 if (x1Var != null) {
-                    bVar.W(x1Var);
+                    bVar.Z(x1Var);
                 }
             } else {
                 this.D1 = null;
@@ -338,11 +338,11 @@ public final class n extends r2.r {
         } else if (surface != null) {
             x1 x1Var2 = this.D1;
             if (x1Var2 != null) {
-                bVar.W(x1Var2);
+                bVar.Z(x1Var2);
             }
             Surface surface3 = this.f160n1;
             if (surface3 != null && this.f163q1) {
-                bVar.S(surface3);
+                bVar.V(surface3);
             }
         }
     }
@@ -352,19 +352,19 @@ public final class n extends r2.r {
             j10 -= -this.J1;
         }
         if (j3 < -500000 && !z10) {
-            b1 b1Var = this.f10689r;
-            b1Var.getClass();
-            int j11 = b1Var.j(j10 - this.v);
+            c1 c1Var = this.f10690r;
+            c1Var.getClass();
+            int j11 = c1Var.j(j10 - this.v);
             if (j11 != 0) {
                 PriorityQueue priorityQueue = this.f153f1;
                 if (z11) {
                     i2.g gVar = this.O0;
                     int i10 = gVar.d + j11;
                     gVar.d = i10;
-                    gVar.f10709f += this.f169w1;
+                    gVar.f10710f += this.f169w1;
                     gVar.d = priorityQueue.size() + i10;
                 } else {
-                    this.O0.f10712j++;
+                    this.O0.f10713j++;
                     N0(priorityQueue.size() + j11, this.f169w1);
                 }
                 if (J()) {
@@ -383,7 +383,7 @@ public final class n extends r2.r {
     @Override
     public final int L(h2.h hVar) {
         if (Build.VERSION.SDK_INT >= 34) {
-            if ((this.f170x1 != null || this.F1) && hVar.e < this.f10691w && !F0(hVar)) {
+            if ((this.f170x1 != null || this.F1) && hVar.e < this.f10692w && !F0(hVar)) {
                 return 32;
             }
             return 0;
@@ -392,8 +392,8 @@ public final class n extends r2.r {
     }
 
     public final boolean L0(r2.o oVar) {
-        if (Build.VERSION.SDK_INT >= 23 && !this.F1 && !z0(oVar.f42218a)) {
-            if (!oVar.f42221f || p.b(this.X0)) {
+        if (Build.VERSION.SDK_INT >= 23 && !this.F1 && !z0(oVar.f42262a)) {
+            if (!oVar.f42265f || p.b(this.X0)) {
                 return true;
             }
             return false;
@@ -413,7 +413,7 @@ public final class n extends r2.r {
         Trace.beginSection("skipVideoBuffer");
         lVar.c(i10);
         Trace.endSection();
-        this.O0.f10709f++;
+        this.O0.f10710f++;
     }
 
     @Override
@@ -432,13 +432,13 @@ public final class n extends r2.r {
         } else {
             f10 = f11 * f7;
         }
-        if (this.f170x1 != null && (oVar = this.f42241i0) != null) {
+        if (this.f170x1 != null && (oVar = this.f42285i0) != null) {
             int i10 = sVar.f3315y;
             int i11 = sVar.f3316z;
             float f13 = -3.4028235E38f;
-            if (oVar.f42223i) {
-                float f14 = oVar.f42226l;
-                if (f14 != -3.4028235E38f && oVar.f42224j == i10 && oVar.f42225k == i11) {
+            if (oVar.f42267i) {
+                float f14 = oVar.f42270l;
+                if (f14 != -3.4028235E38f && oVar.f42268j == i10 && oVar.f42269k == i11) {
                     f13 = f14;
                 } else {
                     float f15 = 1024.0f;
@@ -459,9 +459,9 @@ public final class n extends r2.r {
                             }
                         }
                     }
-                    oVar.f42226l = f13;
-                    oVar.f42224j = i10;
-                    oVar.f42225k = i11;
+                    oVar.f42270l = f13;
+                    oVar.f42268j = i10;
+                    oVar.f42269k = i11;
                 }
             }
             if (f10 != -1.0f) {
@@ -476,11 +476,11 @@ public final class n extends r2.r {
         i2.g gVar = this.O0;
         gVar.h += i10;
         int i12 = i10 + i11;
-        gVar.f10710g += i12;
+        gVar.f10711g += i12;
         this.f167u1 += i12;
         int i13 = this.f168v1 + i12;
         this.f168v1 = i13;
-        gVar.f10711i = Math.max(i13, gVar.f10711i);
+        gVar.f10712i = Math.max(i13, gVar.f10712i);
         int i14 = this.f148a1;
         if (i14 > 0 && this.f167u1 >= i14) {
             G0();
@@ -490,7 +490,7 @@ public final class n extends r2.r {
     @Override
     public final ArrayList O(r2.i iVar, b2.s sVar, boolean z10) {
         List B0 = B0(this.X0, iVar, sVar, z10, this.F1);
-        HashMap hashMap = r2.w.f42261a;
+        HashMap hashMap = r2.w.f42305a;
         ArrayList arrayList = new ArrayList(B0);
         Collections.sort(arrayList, new c8(new k2.v(sVar, 28), 3));
         return arrayList;
@@ -498,8 +498,8 @@ public final class n extends r2.r {
 
     public final void O0(long j3) {
         i2.g gVar = this.O0;
-        gVar.f10713k += j3;
-        gVar.f10714l++;
+        gVar.f10714k += j3;
+        gVar.f10715l++;
         this.f172z1 += j3;
         this.A1++;
     }
@@ -520,8 +520,8 @@ public final class n extends r2.r {
         int i15;
         boolean z12;
         int A0;
-        String str = oVar.f42220c;
-        b2.s[] sVarArr = this.f10690s;
+        String str = oVar.f42264c;
+        b2.s[] sVarArr = this.f10691s;
         sVarArr.getClass();
         int i16 = sVar.f3315y;
         float f10 = sVar.C;
@@ -676,7 +676,7 @@ public final class n extends r2.r {
             }
         }
         if ("video/dolby-vision".equals(sVar.f3309r)) {
-            HashMap hashMap = r2.w.f42261a;
+            HashMap hashMap = r2.w.f42305a;
             Pair b11 = e2.e.b(sVar);
             if (b11 != null) {
                 e2.d.n(mediaFormat, "profile", ((Integer) b11.first).intValue());
@@ -716,7 +716,7 @@ public final class n extends r2.r {
     @Override
     public final void R(h2.h hVar) {
         if (this.f156i1) {
-            ByteBuffer byteBuffer = hVar.f10097f;
+            ByteBuffer byteBuffer = hVar.f10098f;
             byteBuffer.getClass();
             if (byteBuffer.remaining() >= 7) {
                 byte b10 = byteBuffer.get();
@@ -730,7 +730,7 @@ public final class n extends r2.r {
                         byte[] bArr = new byte[byteBuffer.remaining()];
                         byteBuffer.get(bArr);
                         byteBuffer.position(0);
-                        r2.l lVar = this.f42234b0;
+                        r2.l lVar = this.f42278b0;
                         lVar.getClass();
                         Bundle bundle = new Bundle();
                         bundle.putByteArray("hdr10-plus-info", bArr);
@@ -758,7 +758,7 @@ public final class n extends r2.r {
     public final void X(Exception exc) {
         e2.a.f("MediaCodecVideoRenderer", "Video codec error", exc);
         of.b bVar = this.Z0;
-        Handler handler = (Handler) bVar.f15650b;
+        Handler handler = (Handler) bVar.f15682b;
         if (handler != null) {
             handler.post(new a1.e(3, bVar, exc));
         }
@@ -769,7 +769,7 @@ public final class n extends r2.r {
         String str2;
         MediaCodecInfo.CodecProfileLevel[] codecProfileLevelArr;
         of.b bVar = this.Z0;
-        Handler handler = (Handler) bVar.f15650b;
+        Handler handler = (Handler) bVar.f15682b;
         if (handler != null) {
             str2 = str;
             handler.post(new g0(bVar, str2, j3, j10, 0));
@@ -777,10 +777,10 @@ public final class n extends r2.r {
             str2 = str;
         }
         this.f155h1 = z0(str2);
-        r2.o oVar = this.f42241i0;
+        r2.o oVar = this.f42285i0;
         oVar.getClass();
         boolean z10 = false;
-        if (Build.VERSION.SDK_INT >= 29 && "video/x-vnd.on2.vp9".equals(oVar.f42219b)) {
+        if (Build.VERSION.SDK_INT >= 29 && "video/x-vnd.on2.vp9".equals(oVar.f42263b)) {
             MediaCodecInfo.CodecCapabilities codecCapabilities = oVar.d;
             if (codecCapabilities == null || (codecProfileLevelArr = codecCapabilities.profileLevels) == null) {
                 codecProfileLevelArr = new MediaCodecInfo.CodecProfileLevel[0];
@@ -805,7 +805,7 @@ public final class n extends r2.r {
     @Override
     public final void Z(String str) {
         of.b bVar = this.Z0;
-        Handler handler = (Handler) bVar.f15650b;
+        Handler handler = (Handler) bVar.f15682b;
         if (handler != null) {
             handler.post(new a1.e(4, bVar, str));
         }
@@ -814,10 +814,10 @@ public final class n extends r2.r {
     @Override
     public final i2.h a0(n4.y yVar) {
         i2.h a02 = super.a0(yVar);
-        b2.s sVar = (b2.s) yVar.f15180c;
+        b2.s sVar = (b2.s) yVar.f15218b;
         sVar.getClass();
         of.b bVar = this.Z0;
-        Handler handler = (Handler) bVar.f15650b;
+        Handler handler = (Handler) bVar.f15682b;
         if (handler != null) {
             handler.post(new k0(bVar, sVar, a02, 0));
         }
@@ -831,7 +831,7 @@ public final class n extends r2.r {
         int integer2;
         int i10;
         int i11;
-        r2.l lVar = this.f42234b0;
+        r2.l lVar = this.f42278b0;
         if (lVar != null) {
             lVar.i(this.f164r1);
         }
@@ -878,10 +878,10 @@ public final class n extends r2.r {
             int i15 = this.l1;
             List list = this.f159m1;
             if (list == null) {
-                e9.g0 g0Var = e9.i0.f8083b;
+                e9.g0 g0Var = e9.i0.f8084b;
                 list = a1.e;
             }
-            o0Var.l(sVar2, this.P0.f42231b, i15, list);
+            o0Var.l(sVar2, this.P0.f42275b, i15, list);
             this.l1 = 2;
         } else {
             this.f150c1.g(sVar.C);
@@ -904,7 +904,7 @@ public final class n extends r2.r {
                                         case 16:
                                             obj.getClass();
                                             this.E1 = ((Integer) obj).intValue();
-                                            r2.l lVar = this.f42234b0;
+                                            r2.l lVar = this.f42278b0;
                                             if (lVar != null && Build.VERSION.SDK_INT >= 35) {
                                                 Bundle bundle = new Bundle();
                                                 bundle.putInt("importance", Math.max(0, -this.E1));
@@ -930,7 +930,7 @@ public final class n extends r2.r {
                                                 z11 = false;
                                             }
                                             if (z10 != z11) {
-                                                w0(this.f42235c0);
+                                                w0(this.f42279c0);
                                                 return;
                                             }
                                             return;
@@ -946,7 +946,7 @@ public final class n extends r2.r {
                                 }
                                 obj.getClass();
                                 e2.w wVar = (e2.w) obj;
-                                if (wVar.f7937a != 0 && wVar.f7938b != 0) {
+                                if (wVar.f7938a != 0 && wVar.f7939b != 0) {
                                     this.f162p1 = wVar;
                                     o0 o0Var = this.f157j1;
                                     if (o0Var != null) {
@@ -996,7 +996,7 @@ public final class n extends r2.r {
                     obj.getClass();
                     int intValue2 = ((Integer) obj).intValue();
                     this.f164r1 = intValue2;
-                    r2.l lVar2 = this.f42234b0;
+                    r2.l lVar2 = this.f42278b0;
                     if (lVar2 != null) {
                         lVar2.i(intValue2);
                         return;
@@ -1061,7 +1061,7 @@ public final class n extends r2.r {
         if (o0Var != null) {
             o0Var.i();
             if (this.J1 == -9223372036854775807L) {
-                this.J1 = this.P0.f42231b;
+                this.J1 = this.P0.f42275b;
             }
             this.f157j1.h(-this.J1);
         } else {
@@ -1089,7 +1089,7 @@ public final class n extends r2.r {
             of.b bVar = this.Z0;
             if (!equals && !x1Var.equals(this.D1)) {
                 this.D1 = x1Var;
-                bVar.W(x1Var);
+                bVar.Z(x1Var);
             }
             this.O0.e++;
             a0 a0Var = this.f150c1;
@@ -1100,7 +1100,7 @@ public final class n extends r2.r {
             a0Var.f67l.getClass();
             a0Var.f63g = e2.d0.Q(SystemClock.elapsedRealtime());
             if (z10 && (surface = this.f160n1) != null) {
-                bVar.S(surface);
+                bVar.V(surface);
                 this.f163q1 = true;
             }
             d0(j3);
@@ -1111,7 +1111,7 @@ public final class n extends r2.r {
     public final boolean h0(long j3, long j10, r2.l lVar, ByteBuffer byteBuffer, int i10, int i11, int i12, long j11, boolean z10, boolean z11, b2.s sVar) {
         int i13;
         lVar.getClass();
-        long j12 = j11 - this.P0.f42232c;
+        long j12 = j11 - this.P0.f42276c;
         int i14 = 0;
         while (true) {
             PriorityQueue priorityQueue = this.f153f1;
@@ -1131,7 +1131,7 @@ public final class n extends r2.r {
             }
             return o0Var.n(j11, new j(this, lVar, i10, j12));
         }
-        int a2 = this.f150c1.a(j11, j3, j10, this.P0.f42231b, z10, z11, this.f151d1);
+        int a2 = this.f150c1.a(j11, j3, j10, this.P0.f42275b, z10, z11, this.f151d1);
         z zVar = this.f151d1;
         if (a2 != 0) {
             if (a2 != 1) {
@@ -1161,7 +1161,7 @@ public final class n extends r2.r {
                 y yVar = this.I1;
                 if (yVar != null) {
                     i13 = i10;
-                    yVar.a(j12, j13, sVar, this.f42236d0);
+                    yVar.a(j12, j13, sVar, this.f42280d0);
                 } else {
                     i13 = i10;
                 }
@@ -1175,7 +1175,7 @@ public final class n extends r2.r {
         long nanoTime = System.nanoTime();
         y yVar2 = this.I1;
         if (yVar2 != null) {
-            yVar2.a(j12, nanoTime, sVar, this.f42236d0);
+            yVar2.a(j12, nanoTime, sVar, this.f42280d0);
         }
         I0(lVar, i10, nanoTime);
         O0(zVar.f202a);
@@ -1214,7 +1214,7 @@ public final class n extends r2.r {
         if (o0Var != null) {
             return o0Var.r(m10);
         }
-        if (m10 && (this.f42234b0 == null || this.F1)) {
+        if (m10 && (this.f42278b0 == null || this.F1)) {
             return true;
         }
         return this.f150c1.b(m10);
@@ -1241,8 +1241,8 @@ public final class n extends r2.r {
         try {
             super.o();
         } finally {
-            bVar.H(this.O0);
-            bVar.W(x1.d);
+            bVar.P(this.O0);
+            bVar.Z(x1.d);
         }
     }
 
@@ -1253,7 +1253,7 @@ public final class n extends r2.r {
         this.O0 = new Object();
         m1 m1Var = this.d;
         m1Var.getClass();
-        boolean z13 = m1Var.f10791b;
+        boolean z13 = m1Var.f10792b;
         if (z13 && this.G1 == 0) {
             z12 = false;
         } else {
@@ -1266,7 +1266,7 @@ public final class n extends r2.r {
         }
         i2.g gVar = this.O0;
         of.b bVar = this.Z0;
-        Handler handler = (Handler) bVar.f15650b;
+        Handler handler = (Handler) bVar.f15682b;
         if (handler != null) {
             handler.post(new j0(bVar, gVar, 0));
         }
@@ -1306,7 +1306,7 @@ public final class n extends r2.r {
             if (yVar != null) {
                 this.f157j1.u(yVar);
             }
-            if (this.f160n1 != null && !this.f162p1.equals(e2.w.f7936c)) {
+            if (this.f160n1 != null && !this.f162p1.equals(e2.w.f7937c)) {
                 this.f157j1.s(this.f160n1, this.f162p1);
             }
             this.f157j1.j(this.f165s1);
@@ -1361,7 +1361,7 @@ public final class n extends r2.r {
         boolean z10;
         boolean z11 = false;
         if (!F0(hVar)) {
-            if (hVar.e < this.f10691w) {
+            if (hVar.e < this.f10692w) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1395,7 +1395,7 @@ public final class n extends r2.r {
 
     @Override
     public final boolean r0() {
-        b2.s sVar = this.f42235c0;
+        b2.s sVar = this.f42279c0;
         if (this.f170x1 != null && !this.f171y1 && !this.F1) {
             if ((sVar == null || sVar.f3311t <= 0) && !this.T0 && this.I0 == -9223372036854775807L) {
                 return false;
@@ -1408,10 +1408,10 @@ public final class n extends r2.r {
     @Override
     public final void s() {
         try {
-            this.f42255x0 = false;
+            this.f42299x0 = false;
             l0();
             j0();
-            hg.k0.y(this.V, null);
+            hg.k0.A(this.V, null);
             this.V = null;
         } finally {
             this.f158k1 = false;
@@ -1446,9 +1446,9 @@ public final class n extends r2.r {
 
     @Override
     public final boolean t0() {
-        r2.o oVar = this.f42241i0;
+        r2.o oVar = this.f42285i0;
         if (this.f157j1 != null && oVar != null) {
-            String str = oVar.f42218a;
+            String str = oVar.f42262a;
             if (str.equals("c2.mtk.avc.decoder") || str.equals("c2.mtk.hevc.decoder")) {
                 return true;
             }
@@ -1463,7 +1463,7 @@ public final class n extends r2.r {
         if (i10 != 0) {
             long j3 = this.f172z1;
             of.b bVar = this.Z0;
-            Handler handler = (Handler) bVar.f15650b;
+            Handler handler = (Handler) bVar.f15682b;
             if (handler != null) {
                 handler.post(new i0(bVar, j3, i10));
             }
@@ -1487,7 +1487,7 @@ public final class n extends r2.r {
             return;
         }
         f0Var.getClass();
-        this.K1 = k1Var.g(f0Var.f43612a, new h1()).d;
+        this.K1 = k1Var.g(f0Var.f43653a, new h1()).d;
     }
 
     @Override
@@ -1543,7 +1543,7 @@ public final class n extends r2.r {
         } else {
             i11 = 8;
         }
-        if (oVar.f42222g) {
+        if (oVar.f42266g) {
             i12 = 64;
         } else {
             i12 = 0;
@@ -1559,7 +1559,7 @@ public final class n extends r2.r {
         if (e) {
             List B02 = B0(context, iVar, sVar, z10, true);
             if (!B02.isEmpty()) {
-                HashMap hashMap = r2.w.f42261a;
+                HashMap hashMap = r2.w.f42305a;
                 ArrayList arrayList = new ArrayList(B02);
                 Collections.sort(arrayList, new c8(new k2.v(sVar, 28), 3));
                 r2.o oVar3 = (r2.o) arrayList.get(0);

@@ -9,46 +9,46 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class p implements r0.n, l1, a2 {
-    public final int f19663a;
-    public final Object f19664b;
+    public final int f19695a;
+    public final Object f19696b;
 
     public p(Object obj, int i10) {
-        this.f19663a = i10;
-        this.f19664b = obj;
+        this.f19695a = i10;
+        this.f19696b = obj;
     }
 
     @Override
-    public r0.m1 Q0(View view, r0.m1 m1Var) {
-        int i10 = this.f19663a;
+    public r0.l1 P0(View view, r0.l1 l1Var) {
+        int i10 = this.f19695a;
         int i11 = 0;
-        Object obj = this.f19664b;
+        Object obj = this.f19696b;
         switch (i10) {
             case 0:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                Drawable drawable = ActionBarLayout.f18560p1;
-                i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-                i0.b defaultWindowInsets2 = AndroidUtilities.getDefaultWindowInsets(m1Var, true);
-                actionBarLayout.f18593n1 = defaultWindowInsets;
-                actionBarLayout.f18595o1 = defaultWindowInsets2;
-                actionBarLayout.f18590m1 = m1Var;
+                Drawable drawable = ActionBarLayout.f18592p1;
+                i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+                i0.b defaultWindowInsets2 = AndroidUtilities.getDefaultWindowInsets(l1Var, true);
+                actionBarLayout.f18625n1 = defaultWindowInsets;
+                actionBarLayout.f18627o1 = defaultWindowInsets2;
+                actionBarLayout.f18622m1 = l1Var;
                 int childCount = actionBarLayout.getChildCount();
                 while (i11 < childCount) {
-                    actionBarLayout.o(actionBarLayout.getChildAt(i11), m1Var);
+                    actionBarLayout.o(actionBarLayout.getChildAt(i11), l1Var);
                     i11++;
                 }
-                return r0.m1.f42108b;
+                return r0.l1.f42153b;
             case 1:
             case 2:
             case 4:
             default:
                 z3 z3Var = (z3) obj;
-                z3Var.e = m1Var;
-                i0.b defaultWindowInsets3 = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-                i0.b defaultWindowInsets4 = AndroidUtilities.getDefaultWindowInsets(m1Var, true);
-                if (!z3Var.f19935f.equals(defaultWindowInsets3) || !z3Var.h.equals(defaultWindowInsets4)) {
-                    AndroidUtilities.statusBarHeight = defaultWindowInsets3.f10592b;
+                z3Var.e = l1Var;
+                i0.b defaultWindowInsets3 = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+                i0.b defaultWindowInsets4 = AndroidUtilities.getDefaultWindowInsets(l1Var, true);
+                if (!z3Var.f19967f.equals(defaultWindowInsets3) || !z3Var.h.equals(defaultWindowInsets4)) {
+                    AndroidUtilities.statusBarHeight = defaultWindowInsets3.f10593b;
                     AndroidUtilities.navigationBarHeight = defaultWindowInsets3.d;
-                    z3Var.f19935f = defaultWindowInsets3;
+                    z3Var.f19967f = defaultWindowInsets3;
                     z3Var.h = defaultWindowInsets4;
                     z3Var.requestLayout();
                 }
@@ -56,38 +56,38 @@ public final class p implements r0.n, l1, a2 {
                 while (i11 < childCount2) {
                     View childAt = z3Var.getChildAt(i11);
                     if ((childAt instanceof ActionBarLayout) || childAt.getTag() == null) {
-                        r0.i0.b(childAt, m1Var);
+                        r0.i0.b(childAt, l1Var);
                     }
                     i11++;
                 }
                 z3Var.invalidate();
-                return r0.m1.f42108b;
+                return r0.l1.f42153b;
             case 3:
-                r0.j1 j1Var = m1Var.f42109a;
+                r0.i1 i1Var = l1Var.f42154a;
                 FrameLayout frameLayout = (FrameLayout) obj;
                 Rect rect = new Rect();
                 if (Build.VERSION.SDK_INT >= 30) {
-                    i0.b f7 = j1Var.f(527);
-                    rect.set(f7.f10591a, f7.f10592b, f7.f10593c, f7.d);
+                    i0.b f7 = i1Var.f(527);
+                    rect.set(f7.f10592a, f7.f10593b, f7.f10594c, f7.d);
                 } else {
-                    rect.set(j1Var.i().f10591a, j1Var.i().f10592b, j1Var.i().f10593c, j1Var.i().d);
+                    rect.set(i1Var.i().f10592a, i1Var.i().f10593b, i1Var.i().f10594c, i1Var.i().d);
                 }
                 frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
                 frameLayout.requestLayout();
-                return m1Var;
+                return l1Var;
             case 5:
-                return ((f3) obj).onApplyWindowInsetsToRoot(view, m1Var);
+                return ((f3) obj).onApplyWindowInsetsToRoot(view, l1Var);
             case 6:
                 x3 x3Var = (x3) obj;
-                x3Var.f19880s = m1Var.f42109a.f(2).d;
+                x3Var.f19912s = l1Var.f42154a.f(2).d;
                 x3Var.invalidate();
-                return r0.m1.f42108b;
+                return r0.l1.f42153b;
         }
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        b2 b2Var2 = (b2) this.f19664b;
+    public void k(b2 b2Var, int i10) {
+        b2 b2Var2 = (b2) this.f19696b;
         DialogInterface.OnCancelListener onCancelListener = b2Var2.J;
         if (onCancelListener != null) {
             onCancelListener.onCancel(b2Var2);
@@ -96,9 +96,9 @@ public final class p implements r0.n, l1, a2 {
     }
 
     @Override
-    public void p(KeyEvent keyEvent) {
+    public void o(KeyEvent keyEvent) {
         n1 n1Var;
-        v0 v0Var = (v0) this.f19664b;
+        v0 v0Var = (v0) this.f19696b;
         v0Var.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = v0Var.d) != null && n1Var.isShowing()) {
             v0Var.d.d(true);

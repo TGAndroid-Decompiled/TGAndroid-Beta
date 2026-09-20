@@ -6,25 +6,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 public final class g30 extends s4.s0 {
-    public final i60 f33681a;
+    public final i60 f33792a;
 
     public g30(i60 i60Var) {
-        this.f33681a = i60Var;
+        this.f33792a = i60Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         int i11;
-        i60 i60Var = this.f33681a;
+        i60 i60Var = this.f33792a;
         o50 o50Var = i60Var.Q;
         if (i10 == 0) {
             int dp = AndroidUtilities.dp(74.0f);
             i11 = ((org.telegram.ui.ActionBar.f3) i60Var).backgroundPaddingTop;
-            if ((i60Var.f34429y0 - dp) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && o50Var.canScrollVertically(1)) {
+            if ((i60Var.f34460y0 - dp) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && o50Var.canScrollVertically(1)) {
                 o50Var.getChildAt(0);
-                org.telegram.ui.Components.gl0 gl0Var = (org.telegram.ui.Components.gl0) o50Var.L(0);
-                if (gl0Var != null) {
-                    View view = gl0Var.f42929a;
+                org.telegram.ui.Components.fl0 fl0Var = (org.telegram.ui.Components.fl0) o50Var.L(0);
+                if (fl0Var != null) {
+                    View view = fl0Var.f42974a;
                     if (view.getTop() > 0) {
                         o50Var.w0(0, view.getTop(), null);
                         return;
@@ -39,7 +39,7 @@ public final class g30 extends s4.s0 {
         if (i40Var != null) {
             i40Var.b(true);
         }
-        org.telegram.ui.Components.i40 i40Var2 = i60Var.f34380n0;
+        org.telegram.ui.Components.i40 i40Var2 = i60Var.f34411n0;
         if (i40Var2 != null) {
             i40Var2.b(true);
         }
@@ -49,10 +49,10 @@ public final class g30 extends s4.s0 {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ChatObject.Call call;
         ViewGroup viewGroup;
-        i60 i60Var = this.f33681a;
-        if (i60Var.Q.getChildCount() > 0 && (call = i60Var.f34329a1) != null) {
+        i60 i60Var = this.f33792a;
+        if (i60Var.Q.getChildCount() > 0 && (call = i60Var.f34360a1) != null) {
             if (!call.loadingMembers && !call.membersLoadEndReached && i60Var.Y.N0() > i60Var.P.F - 5) {
-                i60Var.f34329a1.loadMembers(false);
+                i60Var.f34360a1.loadMembers(false);
             }
             i60.J0(i60Var);
             x50 x50Var = i60Var.U0;

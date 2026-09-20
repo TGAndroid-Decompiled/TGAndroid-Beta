@@ -1,77 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.R;
-public final class v7 extends s4.v {
-    public final j8 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class v7 extends AnimatorListenerAdapter {
+    public final int f28961a;
+    public final i8 f28962b;
 
-    public v7(j8 j8Var) {
-        this.d = j8Var;
+    public v7(i8 i8Var, int i10) {
+        this.f28961a = i10;
+        this.f28962b = i8Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        View view = c1Var.f42929a;
-        view.setPressed(false);
-        view.setTag(R.id.dragging, null);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f42932f != 0) {
-            return 0;
-        }
-        return s4.v.l(3, 0);
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        int b10 = c1Var.b();
-        int b11 = c1Var2.b();
-        j8 j8Var = this.d;
-        if (j8Var.f25226v0) {
-            if (b10 > 0 && b11 > 0) {
-                j8Var.f25228w0.move(b10 - 1, b11 - 1);
-            } else {
-                return false;
-            }
-        } else {
-            j8Var.f25228w0.move(b10, b11);
-        }
-        j8Var.f25230x0.clear();
-        j8Var.f25230x0.addAll(j8Var.f25228w0.list);
-        j8Var.f25222s.p(b10, b11);
-        return true;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        Boolean bool;
-        u7 u7Var = this.d.f25215n;
-        if (c1Var != null) {
-            u7Var.e1(false);
-        }
-        if (i10 != 0) {
-            u7Var.J0(false);
-            if (c1Var != null) {
-                c1Var.f42929a.setPressed(true);
-            }
-        }
-        if (c1Var != null) {
-            View view = c1Var.f42929a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f28961a) {
+            case 2:
+                this.f28962b.C0 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final void q(s4.c1 c1Var) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28961a) {
+            case 0:
+                this.f28962b.m0 = false;
+                return;
+            case 1:
+                i8 i8Var = this.f28962b;
+                i8Var.f24920i0.setVisibility(4);
+                i8Var.f24921j0.setImageBitmap(null);
+                i8Var.m0 = false;
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void a(Animator animator) {
     }
 }

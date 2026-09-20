@@ -4,30 +4,30 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class my0 implements Runnable {
-    public final int f35773a;
-    public final ProfileActivity f35774b;
-    public final TLRPC.TL_error f35775c;
+    public final int f35848a;
+    public final ProfileActivity f35849b;
+    public final TLRPC.TL_error f35850c;
     public final TLObject d;
     public final TLRPC.TL_channels_getParticipants e;
 
     public my0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
-        this.f35773a = i10;
-        this.f35774b = profileActivity;
-        this.f35775c = tL_error;
+        this.f35848a = i10;
+        this.f35849b = profileActivity;
+        this.f35850c = tL_error;
         this.d = tLObject;
         this.e = tL_channels_getParticipants;
     }
 
     @Override
     public final void run() {
-        switch (this.f35773a) {
+        switch (this.f35848a) {
             case 0:
-                ProfileActivity profileActivity = this.f35774b;
-                profileActivity.getNotificationCenter().doOnIdle(new my0(profileActivity, this.f35775c, this.d, this.e, 1));
+                ProfileActivity profileActivity = this.f35849b;
+                profileActivity.getNotificationCenter().doOnIdle(new my0(profileActivity, this.f35850c, this.d, this.e, 1));
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f35774b;
-                if (this.f35775c == null) {
+                ProfileActivity profileActivity2 = this.f35849b;
+                if (this.f35850c == null) {
                     profileActivity2.getClass();
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
                     profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
@@ -37,9 +37,9 @@ public final class my0 implements Runnable {
                     }
                     if (this.e.offset == 0) {
                         profileActivity2.C1.b();
-                        profileActivity2.f31624u2.participants = new TLRPC.TL_chatParticipants();
+                        profileActivity2.f31664u2.participants = new TLRPC.TL_chatParticipants();
                         profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
-                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f31521f1, tL_channels_channelParticipants.participants);
+                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f31561f1, tL_channels_channelParticipants.participants);
                     }
                     for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
@@ -50,11 +50,11 @@ public final class my0 implements Runnable {
                         tL_chatChannelParticipant.user_id = peerId;
                         tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
                         if (profileActivity2.C1.h(peerId) < 0) {
-                            TLRPC.ChatFull chatFull = profileActivity2.f31624u2;
+                            TLRPC.ChatFull chatFull = profileActivity2.f31664u2;
                             if (chatFull.participants == null) {
                                 chatFull.participants = new TLRPC.TL_chatParticipants();
                             }
-                            profileActivity2.f31624u2.participants.participants.add(tL_chatChannelParticipant);
+                            profileActivity2.f31664u2.participants.participants.add(tL_chatChannelParticipant);
                             profileActivity2.C1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
                         }
                     }

@@ -13,51 +13,51 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 public final class u0 {
-    public TextPaint f21216a;
-    public float f21217b;
-    public final ArrayList f21218c;
+    public TextPaint f21219a;
+    public float f21220b;
+    public final ArrayList f21221c;
     public int d;
     public float e;
-    public Object f21219f;
-    public final Object f21220g;
+    public Object f21222f;
+    public final Object f21223g;
     public Object h;
-    public final Object f21221i;
+    public final Object f21224i;
 
     public u0() {
         TextPaint textPaint = new TextPaint(1);
-        this.f21216a = textPaint;
-        this.f21217b = 1.0f;
-        this.f21219f = new HashMap();
-        this.f21220g = new RectF();
+        this.f21219a = textPaint;
+        this.f21220b = 1.0f;
+        this.f21222f = new HashMap();
+        this.f21223g = new RectF();
         this.h = new RectF();
         Paint paint = new Paint();
-        this.f21221i = paint;
-        this.f21218c = new ArrayList();
+        this.f21224i = paint;
+        this.f21221c = new ArrayList();
         this.e = 1000.0f / AndroidUtilities.screenRefreshRate;
         this.d = 25;
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setColor(-1);
         int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
         if (devicePerformanceClass == 0) {
-            this.f21217b = 0.25f;
+            this.f21220b = 0.25f;
         } else if (devicePerformanceClass != 1) {
-            this.f21217b = 0.75f;
+            this.f21220b = 0.75f;
         } else {
-            this.f21217b = 0.5f;
+            this.f21220b = 0.5f;
         }
-        textPaint.setTextSize(AndroidUtilities.dp(this.f21217b * 24.0f));
+        textPaint.setTextSize(AndroidUtilities.dp(this.f21220b * 24.0f));
         paint.setColor(-1);
     }
 
     public void a(CharSequence charSequence, TextPaint textPaint, int i10) {
         w0 w0Var;
-        this.f21216a = textPaint;
+        this.f21219a = textPaint;
         this.d = i10;
         StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i10, Layout.Alignment.ALIGN_CENTER, 1.1f, 0.0f, false);
-        this.f21219f = staticLayout;
-        w0 w0Var2 = (w0) this.f21221i;
+        this.f21222f = staticLayout;
+        w0 w0Var2 = (w0) this.f21224i;
         MessageObject messageObject = w0Var2.H0;
-        ArrayList arrayList = this.f21218c;
+        ArrayList arrayList = this.f21221c;
         if (messageObject != null && messageObject.isSpoilersRevealed) {
             if (arrayList != null) {
                 arrayList.clear();
@@ -67,12 +67,12 @@ public final class u0 {
             w0Var = w0Var2;
             vh.h.b(w0Var, staticLayout, -1, i10, null, arrayList);
         }
-        this.h = org.telegram.ui.Components.z5.update(0, (View) w0Var, false, (org.telegram.ui.Components.v5) this.h, (StaticLayout) this.f21219f);
+        this.h = org.telegram.ui.Components.y5.update(0, (View) w0Var, false, (org.telegram.ui.Components.u5) this.h, (StaticLayout) this.f21222f);
     }
 
     public u0(w0 w0Var) {
-        this.f21221i = w0Var;
-        this.f21218c = new ArrayList();
-        this.f21220g = new AtomicReference();
+        this.f21224i = w0Var;
+        this.f21221c = new ArrayList();
+        this.f21223g = new AtomicReference();
     }
 }

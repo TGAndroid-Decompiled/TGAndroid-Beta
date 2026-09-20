@@ -1,195 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.util.SparseArray;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class yr0 extends bi.z {
-    public final kv0 G;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+public final class yr0 extends xh.s2 {
+    public final jv0 U;
 
-    public yr0(kv0 kv0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, long j3) {
-        super(context, n2Var, j3);
-        this.G = kv0Var;
+    public yr0(int i10, long j3, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var, jv0 jv0Var) {
+        super(i10, j3, context, n2Var, f6Var);
+        this.U = jv0Var;
     }
 
     @Override
-    public final boolean c(MessageObject messageObject) {
-        char c10;
-        kv0 kv0Var = this.G;
-        SparseArray[] sparseArrayArr = kv0Var.Z0;
-        if (messageObject.getDialogId() == kv0Var.f25823j1) {
-            c10 = 0;
+    public final void p(boolean z10) {
+        float f7;
+        float f10;
+        jv0 jv0Var = this.U;
+        TextView textView = jv0Var.f25515q0;
+        textView.setVisibility(0);
+        ViewPropertyAnimator animate = textView.animate();
+        float f11 = 1.0f;
+        if (z10) {
+            f7 = 1.0f;
         } else {
-            c10 = 1;
+            f7 = 0.0f;
         }
-        if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
-            return true;
+        ViewPropertyAnimator alpha = animate.alpha(f7);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.4f;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean e(MessageObject messageObject) {
-        char c10;
-        int i10;
-        int i11;
-        kv0 kv0Var = this.G;
-        ArrayList arrayList = kv0Var.N0;
-        NumberTextView numberTextView = kv0Var.A0;
-        SparseArray[] sparseArrayArr = kv0Var.Z0;
-        if (messageObject != null) {
-            if (messageObject.getDialogId() == kv0Var.f25823j1) {
-                c10 = 0;
-            } else {
-                c10 = 1;
-            }
-            if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) < 0) {
-                if (sparseArrayArr[1].size() + sparseArrayArr[0].size() < 100) {
-                    sparseArrayArr[c10].put(messageObject.getId(), messageObject);
-                    if (!messageObject.canDeleteMessage(false, null)) {
-                        kv0Var.f25800a1++;
-                    }
-                    if (!kv0Var.C1) {
-                        AndroidUtilities.hideKeyboard(kv0Var.f25848v1.getParentActivity().getCurrentFocus());
-                        org.telegram.ui.ActionBar.v0 v0Var = kv0Var.f25826l0;
-                        int i12 = 8;
-                        if (kv0Var.f25800a1 == 0) {
-                            i10 = 0;
-                        } else {
-                            i10 = 8;
-                        }
-                        v0Var.setVisibility(i10);
-                        org.telegram.ui.ActionBar.v0 v0Var2 = kv0Var.f25845u0;
-                        if (v0Var2 != null) {
-                            if (kv0Var.getClosestTab() != 8 && kv0Var.getClosestTab() != 13) {
-                                i11 = 0;
-                            } else {
-                                i11 = 8;
-                            }
-                            v0Var2.setVisibility(i11);
-                        }
-                        org.telegram.ui.ActionBar.v0 v0Var3 = kv0Var.f25847v0;
-                        if (v0Var3 != null) {
-                            v0Var3.setVisibility(8);
-                        }
-                        org.telegram.ui.ActionBar.v0 v0Var4 = kv0Var.f25850w0;
-                        if (v0Var4 != null) {
-                            v0Var4.setVisibility(8);
-                        }
-                        org.telegram.ui.ActionBar.v0 v0Var5 = kv0Var.f25843t0;
-                        if (v0Var5 != null) {
-                            if (kv0Var.getClosestTab() != 8 && kv0Var.getClosestTab() != 13) {
-                                i12 = 0;
-                            }
-                            v0Var5.setVisibility(i12);
-                        }
-                        numberTextView.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), false);
-                        AnimatorSet animatorSet = new AnimatorSet();
-                        ArrayList arrayList2 = new ArrayList();
-                        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                            View view = (View) arrayList.get(i13);
-                            AndroidUtilities.clearDrawableAnimation(view);
-                            arrayList2.add(ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.1f, 1.0f));
-                        }
-                        animatorSet.playTogether(arrayList2);
-                        animatorSet.setDuration(250L);
-                        animatorSet.start();
-                        kv0Var.f25803b1 = false;
-                        kv0Var.b1(true);
-                    } else {
-                        numberTextView.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
-                    }
-                    j();
-                    return true;
-                }
-            }
+        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
+        if (!z10) {
+            f11 = 0.4f;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean g(MessageObject messageObject) {
-        char c10;
-        int i10;
-        int i11;
-        kv0 kv0Var = this.G;
-        ArrayList arrayList = kv0Var.N0;
-        SparseArray[] sparseArrayArr = kv0Var.Z0;
-        if (messageObject != null) {
-            if (messageObject.getDialogId() == kv0Var.f25823j1) {
-                c10 = 0;
-            } else {
-                c10 = 1;
-            }
-            if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
-                sparseArrayArr[c10].remove(messageObject.getId());
-                if (!messageObject.canDeleteMessage(false, null)) {
-                    kv0Var.f25800a1--;
-                }
-                if (sparseArrayArr[0].size() == 0 && sparseArrayArr[1].size() == 0) {
-                    AndroidUtilities.hideKeyboard(kv0Var.f25848v1.getParentActivity().getCurrentFocus());
-                    sparseArrayArr[0].clear();
-                    sparseArrayArr[1].clear();
-                    org.telegram.ui.ActionBar.v0 v0Var = kv0Var.f25826l0;
-                    int i12 = 8;
-                    if (kv0Var.f25800a1 == 0) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
-                    }
-                    v0Var.setVisibility(i10);
-                    org.telegram.ui.ActionBar.v0 v0Var2 = kv0Var.f25845u0;
-                    if (v0Var2 != null) {
-                        if (kv0Var.getClosestTab() != 8 && kv0Var.getClosestTab() != 13) {
-                            i11 = 0;
-                        } else {
-                            i11 = 8;
-                        }
-                        v0Var2.setVisibility(i11);
-                    }
-                    org.telegram.ui.ActionBar.v0 v0Var3 = kv0Var.f25847v0;
-                    if (v0Var3 != null) {
-                        v0Var3.setVisibility(8);
-                    }
-                    org.telegram.ui.ActionBar.v0 v0Var4 = kv0Var.f25850w0;
-                    if (v0Var4 != null) {
-                        v0Var4.setVisibility(8);
-                    }
-                    org.telegram.ui.ActionBar.v0 v0Var5 = kv0Var.f25843t0;
-                    if (v0Var5 != null) {
-                        if (kv0Var.getClosestTab() != 8 && kv0Var.getClosestTab() != 13) {
-                            i12 = 0;
-                        }
-                        v0Var5.setVisibility(i12);
-                    }
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                        View view = (View) arrayList.get(i13);
-                        AndroidUtilities.clearDrawableAnimation(view);
-                        arrayList2.add(ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f, 0.1f));
-                    }
-                    animatorSet.playTogether(arrayList2);
-                    animatorSet.setDuration(250L);
-                    animatorSet.start();
-                    kv0Var.f25803b1 = false;
-                    AndroidUtilities.runOnUIThread(new xq0(this, 1), 20L);
-                } else {
-                    kv0Var.A0.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
-                }
-                j();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int getStartedTrackingX() {
-        return this.G.f25859z1;
+        scaleX.scaleY(f11).withEndAction(new bi.f(29, this, z10)).start();
+        jv0Var.q1(true);
     }
 }

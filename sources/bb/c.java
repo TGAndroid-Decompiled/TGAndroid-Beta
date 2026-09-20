@@ -2,7 +2,7 @@ package bb;
 
 import android.util.Log;
 import rd.p;
-import v7.t7;
+import v7.u7;
 public final class c extends kd.j implements p {
     public Object f3462a;
 
@@ -15,16 +15,16 @@ public final class c extends kd.j implements p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        gd.i iVar = gd.i.f9620a;
+        gd.i iVar = gd.i.f9621a;
         ((c) create((String) obj, (id.c) obj2)).invokeSuspend(iVar);
         return iVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        jd.a aVar = jd.a.f12970a;
-        t7.b(obj);
+        jd.a aVar = jd.a.f12971a;
+        u7.b(obj);
         Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f3462a));
-        return gd.i.f9620a;
+        return gd.i.f9621a;
     }
 }

@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.x81;
@@ -21,18 +21,18 @@ import org.telegram.ui.q6;
 import org.telegram.ui.vy0;
 import w7.y5;
 public final class x extends f3 {
-    public static final int f41290s = 0;
-    public final ai.d1 f41291b;
-    public final ImageView f41292c;
+    public static final int f41331s = 0;
+    public final ai.d1 f41332b;
+    public final ImageView f41333c;
     public final q6 d;
     public final Path e;
-    public int f41293f;
+    public int f41334f;
     public q0.a h;
-    public u f41294n;
-    public boolean f41295r;
+    public u f41335n;
+    public boolean f41336r;
 
-    public x(Context context, e6 e6Var) {
-        super(1, context, e6Var, true);
+    public x(Context context, f6 f6Var) {
+        super(1, context, f6Var, true);
         this.e = new Path();
         fixNavigationBar(-14342875);
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
@@ -42,7 +42,7 @@ public final class x extends f3 {
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
         ImageView imageView = new ImageView(context);
-        this.f41292c = imageView;
+        this.f41333c = imageView;
         imageView.setImageResource(R.drawable.picker);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -62,7 +62,7 @@ public final class x extends f3 {
         d1Var.setOrientation(1);
         t tVar = new t(this, context);
         d1Var.f686b = tVar;
-        tVar.a(this.f41293f);
+        tVar.a(this.f41334f);
         d1Var.f687c = new s(this, context);
         d1Var.d = new w(this, context);
         x81 x81Var = new x81(context, this.resourcesProvider);
@@ -76,7 +76,7 @@ public final class x extends f3 {
         linearLayout2.addView(x81Var.n(8, false), y5.p(-1, 40, 1.0f, 16, 12, 0, 12, 0));
         linearLayout2.addView(imageView2, y5.n(28, 28));
         d1Var.addView(linearLayout2, y5.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.f41291b = d1Var;
+        this.f41332b = d1Var;
         linearLayout.addView(d1Var, y5.n(-1, 0));
         o oVar = new o(this, context, linearLayout);
         oVar.addView(linearLayout);
@@ -88,7 +88,7 @@ public final class x extends f3 {
         super.dismiss();
         q0.a aVar = this.h;
         if (aVar != null) {
-            aVar.accept(Integer.valueOf(this.f41293f));
+            aVar.accept(Integer.valueOf(this.f41334f));
         }
     }
 
@@ -96,13 +96,13 @@ public final class x extends f3 {
         boolean z10;
         float b10;
         View findFocus;
-        if (!this.f41295r) {
+        if (!this.f41336r) {
             if (i11 != 2) {
                 return;
             }
-            this.f41295r = true;
+            this.f41336r = true;
         }
-        ai.d1 d1Var = this.f41291b;
+        ai.d1 d1Var = this.f41332b;
         if (i11 != 5 && (findFocus = d1Var.findFocus()) != null) {
             findFocus.clearFocus();
             AndroidUtilities.hideKeyboard(findFocus);
@@ -117,7 +117,7 @@ public final class x extends f3 {
             } else {
                 z10 = false;
             }
-            sVar.f41219n.f41293f = i10;
+            sVar.f41260n.f41334f = i10;
             float[] fArr = sVar.h;
             Color.colorToHSV(i10, fArr);
             if (z10) {
@@ -142,14 +142,14 @@ public final class x extends f3 {
         }
         w wVar = (w) d1Var.d;
         wVar.e = true;
-        wVar.f41283a.b();
-        wVar.f41284b.b();
-        wVar.f41285c.b();
+        wVar.f41324a.b();
+        wVar.f41325b.b();
+        wVar.f41326c.b();
         EditTextBoldCursor editTextBoldCursor = wVar.d;
         if (!editTextBoldCursor.isFocused()) {
             int selectionStart = editTextBoldCursor.getSelectionStart();
             int selectionEnd = editTextBoldCursor.getSelectionEnd();
-            StringBuilder sb2 = new StringBuilder(Integer.toHexString(wVar.f41286f.f41293f));
+            StringBuilder sb2 = new StringBuilder(Integer.toHexString(wVar.f41327f.f41334f));
             while (sb2.length() < 8) {
                 sb2.insert(0, "0");
             }
@@ -161,8 +161,8 @@ public final class x extends f3 {
 
     @Override
     public final void show() {
-        if (!this.f41294n.g()) {
-            this.f41292c.setVisibility(8);
+        if (!this.f41335n.g()) {
+            this.f41333c.setVisibility(8);
         }
         super.show();
     }

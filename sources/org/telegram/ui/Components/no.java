@@ -11,8 +11,8 @@ public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     public final int T;
     public Object U;
 
-    public no(Context context, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var, int i12) {
-        super(i10, i11, context, e6Var);
+    public no(Context context, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var, int i12) {
+        super(i10, i11, context, f6Var);
         this.T = i12;
     }
 
@@ -51,8 +51,8 @@ public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         int i12;
         switch (this.T) {
             case 2:
-                w70 w70Var = (w70) this.U;
-                if (this == w70Var.A && (i12 = w70Var.X) > 0) {
+                v70 v70Var = (v70) this.U;
+                if (this == v70Var.A && (i12 = v70Var.X) > 0) {
                     i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
                 }
                 super.onMeasure(i10, i11);
@@ -63,9 +63,9 @@ public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         }
     }
 
-    public no(w70 w70Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(i10, i11, context, e6Var);
+    public no(v70 v70Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(i10, i11, context, f6Var);
         this.T = 2;
-        this.U = w70Var;
+        this.U = v70Var;
     }
 }

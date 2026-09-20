@@ -21,15 +21,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class w70 extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
-    public TextView f38707a;
-    public TextView f38708b;
-    public TextView f38709c;
+    public TextView f38684a;
+    public TextView f38685b;
+    public TextView f38686c;
     public j0 d;
     public LinearLayout e;
-    public LinearLayout f38710f;
+    public LinearLayout f38687f;
     public int h;
-    public AnimatorSet f38711n;
-    public String f38712r;
+    public AnimatorSet f38688n;
+    public String f38689r;
 
     @Override
     public final View createView(Context context) {
@@ -39,61 +39,61 @@ public final class w70 extends org.telegram.ui.ActionBar.n2 implements Notificat
         this.actionBar.setActionBarMenuOnItemClick(new v70(this, 0));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19006a7, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19038a7, false));
         this.fragmentView.setOnTouchListener(new bi.d(2));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f38710f = linearLayout;
+        this.f38687f = linearLayout;
         linearLayout.setOrientation(1);
-        this.f38710f.setWeightSum(100.0f);
-        frameLayout.addView(this.f38710f, w7.y5.c(-1.0f, -1));
+        this.f38687f.setWeightSum(100.0f);
+        frameLayout.addView(this.f38687f, w7.y5.c(-1.0f, -1));
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
-        this.f38710f.addView(frameLayout2, w7.y5.l(50.0f, -1, -1));
+        this.f38687f.addView(frameLayout2, w7.y5.l(50.0f, -1, -1));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         frameLayout2.addView(imageView, w7.y5.c(-1.0f, -1));
         j0 j0Var = new j0(this, context, 7);
         this.d = j0Var;
-        j0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19062d6, false));
-        this.f38710f.addView(this.d, w7.y5.l(50.0f, -1, -1));
+        j0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+        this.f38687f.addView(this.d, w7.y5.l(50.0f, -1, -1));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.e = linearLayout2;
         linearLayout2.setOrientation(1);
         this.e.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
         this.d.addView(this.e, w7.y5.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f38708b = textView;
+        this.f38685b = textView;
         int i10 = org.telegram.ui.ActionBar.j6.B6;
         textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        this.f38708b.setGravity(17);
-        this.f38708b.setTypeface(Typeface.MONOSPACE);
-        this.f38708b.setTextSize(1, 16.0f);
-        this.e.addView(this.f38708b, w7.y5.q(-2, -2, 1));
+        this.f38685b.setGravity(17);
+        this.f38685b.setTypeface(Typeface.MONOSPACE);
+        this.f38685b.setTextSize(1, 16.0f);
+        this.e.addView(this.f38685b, w7.y5.q(-2, -2, 1));
         TextView textView2 = new TextView(context);
-        this.f38707a = textView2;
+        this.f38684a = textView2;
         textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        this.f38707a.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.J6, false));
-        this.f38707a.setTextSize(1, 16.0f);
-        this.f38707a.setLinksClickable(true);
-        this.f38707a.setClickable(true);
-        this.f38707a.setGravity(17);
-        this.f38707a.setMovementMethod(new org.telegram.ui.Components.qv(1));
-        this.e.addView(this.f38707a, w7.y5.e(-2, -2, 1));
+        this.f38684a.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.J6, false));
+        this.f38684a.setTextSize(1, 16.0f);
+        this.f38684a.setLinksClickable(true);
+        this.f38684a.setClickable(true);
+        this.f38684a.setGravity(17);
+        this.f38684a.setMovementMethod(new org.telegram.ui.Components.rv(1));
+        this.e.addView(this.f38684a, w7.y5.e(-2, -2, 1));
         TextView textView3 = new TextView(context);
-        this.f38709c = textView3;
+        this.f38686c = textView3;
         textView3.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        this.f38709c.setGravity(17);
-        this.f38709c.setTextSize(1, 32.0f);
-        this.d.addView(this.f38709c, w7.y5.c(-2.0f, -2));
+        this.f38686c.setGravity(17);
+        this.f38686c.setTextSize(1, 32.0f);
+        this.d.addView(this.f38686c, w7.y5.c(-2.0f, -2));
         TLRPC.EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(this.h));
         if (encryptedChat != null) {
             org.telegram.ui.Components.m40 m40Var = new org.telegram.ui.Components.m40();
             imageView.setImageDrawable(m40Var);
             byte[] bArr = encryptedChat.key_hash;
-            m40Var.f26323a = bArr;
+            m40Var.f26321a = bArr;
             if (bArr == null) {
                 byte[] calcAuthKeyHash = AndroidUtilities.calcAuthKeyHash(encryptedChat.auth_key);
-                m40Var.f26323a = calcAuthKeyHash;
+                m40Var.f26321a = calcAuthKeyHash;
                 encryptedChat.key_hash = calcAuthKeyHash;
             }
             m40Var.invalidateSelf();
@@ -126,38 +126,38 @@ public final class w70 extends org.telegram.ui.ActionBar.n2 implements Notificat
                     String[] strArr = EmojiData.emojiSecret;
                     sb2.append(strArr[i15 % strArr.length]);
                 }
-                this.f38712r = sb2.toString();
+                this.f38689r = sb2.toString();
             }
-            this.f38708b.setText(spannableStringBuilder.toString());
+            this.f38685b.setText(spannableStringBuilder.toString());
             spannableStringBuilder.clear();
             int i16 = R.string.EncryptionKeyDescription;
             String str = user.first_name;
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("EncryptionKeyDescription", i16, str, str)));
             int indexOf = spannableStringBuilder.toString().indexOf("telegram.org");
             if (indexOf != -1) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Components.d61(LocaleController.getString(R.string.EncryptionKeyLink), null), indexOf, indexOf + 12, 33);
+                spannableStringBuilder.setSpan(new org.telegram.ui.Components.c61(LocaleController.getString(R.string.EncryptionKeyLink), null), indexOf, indexOf + 12, 33);
             }
-            this.f38707a.setText(spannableStringBuilder);
+            this.f38684a.setText(spannableStringBuilder);
         }
-        AnimatorSet animatorSet = this.f38711n;
+        AnimatorSet animatorSet = this.f38688n;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f38711n = null;
+            this.f38688n = null;
         }
-        this.f38709c.setAlpha(0.0f);
-        this.f38708b.setAlpha(1.0f);
-        this.f38709c.setScaleX(0.0f);
-        this.f38709c.setScaleY(0.0f);
-        this.f38708b.setScaleX(1.0f);
-        this.f38708b.setScaleY(1.0f);
-        this.f38709c.setTag(Integer.valueOf(org.telegram.ui.ActionBar.j6.Me));
+        this.f38686c.setAlpha(0.0f);
+        this.f38685b.setAlpha(1.0f);
+        this.f38686c.setScaleX(0.0f);
+        this.f38686c.setScaleY(0.0f);
+        this.f38685b.setScaleX(1.0f);
+        this.f38685b.setScaleY(1.0f);
+        this.f38686c.setTag(Integer.valueOf(org.telegram.ui.ActionBar.j6.Me));
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         TextView textView;
-        if (i10 == NotificationCenter.emojiLoaded && (textView = this.f38709c) != null) {
+        if (i10 == NotificationCenter.emojiLoaded && (textView = this.f38686c) != null) {
             textView.invalidate();
         }
     }
@@ -165,17 +165,17 @@ public final class w70 extends org.telegram.ui.ActionBar.n2 implements Notificat
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.d, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f19062d6));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f19006a7));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f19340s8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.j6.f19395v8));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.d, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f19094d6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f19038a7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f19372s8));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.j6.f19427v8));
         arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.j6.A8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.j6.f19359t8));
-        TextView textView = this.f38707a;
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.j6.f19391t8));
+        TextView textView = this.f38684a;
         int i10 = org.telegram.ui.ActionBar.j6.B6;
         arrayList.add(new org.telegram.ui.ActionBar.l6(textView, 4, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f38708b, 4, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f38707a, 2, null, null, null, null, org.telegram.ui.ActionBar.j6.J6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f38685b, 4, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f38684a, 2, null, null, null, null, org.telegram.ui.ActionBar.j6.J6));
         return arrayList;
     }
 
@@ -207,8 +207,8 @@ public final class w70 extends org.telegram.ui.ActionBar.n2 implements Notificat
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         String str;
-        if (z10 && !z11 && (str = this.f38712r) != null) {
-            TextView textView = this.f38709c;
+        if (z10 && !z11 && (str = this.f38689r) != null) {
+            TextView textView = this.f38686c;
             textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), false));
         }
     }

@@ -8,8 +8,8 @@ public final class lb extends ji.n {
     public mu0 X;
     public final vb Y;
 
-    public lb(vb vbVar, kb kbVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(null, kbVar, e6Var);
+    public lb(vb vbVar, kb kbVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(null, kbVar, f6Var);
         this.Y = vbVar;
         this.W = -1;
     }

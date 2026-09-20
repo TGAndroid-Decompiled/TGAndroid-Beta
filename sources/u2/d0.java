@@ -1,5 +1,5 @@
 package u2;
-public interface d0 extends d1 {
+public interface d0 extends e1 {
     void g();
 
     long h(long j3);
@@ -10,9 +10,9 @@ public interface d0 extends d1 {
 
     long l();
 
-    long q(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3);
+    long q(x2.s[] sVarArr, boolean[] zArr, c1[] c1VarArr, boolean[] zArr2, long j3);
 
-    o1 r();
+    p1 r();
 
     long t(long j3, i2.p1 p1Var);
 }

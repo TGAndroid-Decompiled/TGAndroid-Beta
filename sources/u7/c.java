@@ -1,31 +1,31 @@
 package u7;
 
-import w7.s7;
+import w7.t7;
 public final class c extends d {
-    public final transient int f43893c;
+    public final transient int f43940c;
     public final transient int d;
     public final d e;
 
     public c(d dVar, int i10, int i11) {
         this.e = dVar;
-        this.f43893c = i10;
+        this.f43940c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        s7.a(i10, this.d);
-        return this.e.get(i10 + this.f43893c);
+        t7.a(i10, this.d);
+        return this.e.get(i10 + this.f43940c);
     }
 
     @Override
     public final int n() {
-        return this.e.o() + this.f43893c + this.d;
+        return this.e.o() + this.f43940c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.e.o() + this.f43893c;
+        return this.e.o() + this.f43940c;
     }
 
     @Override
@@ -35,8 +35,8 @@ public final class c extends d {
 
     @Override
     public final d subList(int i10, int i11) {
-        s7.b(i10, i11, this.d);
-        int i12 = this.f43893c;
+        t7.b(i10, i11, this.d);
+        int i12 = this.f43940c;
         return this.e.subList(i10 + i12, i11 + i12);
     }
 

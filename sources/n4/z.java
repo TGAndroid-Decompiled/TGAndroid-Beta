@@ -3,19 +3,19 @@ package n4;
 import android.content.ContentResolver;
 import android.content.Context;
 public final class z {
-    public static final boolean f15181c = d0.f15118b;
-    public Context f15182a;
-    public ContentResolver f15183b;
+    public static final boolean f15219c = d0.f15157b;
+    public Context f15220a;
+    public ContentResolver f15221b;
 
     public final boolean a(c0 c0Var, String str) {
-        Context context = this.f15182a;
-        int i10 = c0Var.f15116b;
+        Context context = this.f15220a;
+        int i10 = c0Var.f15155b;
         if (i10 < 0) {
-            if (context.getPackageManager().checkPermission(str, c0Var.f15115a) == 0) {
+            if (context.getPackageManager().checkPermission(str, c0Var.f15154a) == 0) {
                 return true;
             }
             return false;
-        } else if (context.checkPermission(str, i10, c0Var.f15117c) == 0) {
+        } else if (context.checkPermission(str, i10, c0Var.f15156c) == 0) {
             return true;
         } else {
             return false;

@@ -7,31 +7,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.vq0;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.pc;
+import org.telegram.ui.Components.uq0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.zr0;
-public final class z1 extends vq0 {
-    public final org.telegram.ui.ActionBar.n2 f46474b1;
-    public final zr0 f46475c1;
+import org.telegram.ui.Components.yr0;
+public final class z1 extends uq0 {
+    public final org.telegram.ui.ActionBar.n2 f46521b1;
+    public final yr0 f46522c1;
 
-    public z1(zr0 zr0Var, Context context, String str, String str2, e6 e6Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(context, null, str, false, str2, false, e6Var);
-        this.f46475c1 = zr0Var;
-        this.f46474b1 = n2Var;
+    public z1(yr0 yr0Var, Context context, String str, String str2, f6 f6Var, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(context, null, str, false, str2, false, f6Var);
+        this.f46522c1 = yr0Var;
+        this.f46521b1 = n2Var;
     }
 
     @Override
     public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         xc a02;
         String str;
-        if (z10 && (a02 = xc.a0(this.f46474b1)) != null) {
+        if (z10 && (a02 = xc.a0(this.f46521b1)) != null) {
             if (iVar.m() == 1) {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    qc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
-                    G.f27558r = false;
+                    pc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
+                    G.f27260r = false;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -42,21 +42,21 @@ public final class z1 extends vq0 {
                     } else {
                         str = chat.title;
                     }
-                    qc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f27558r = false;
+                    pc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f27260r = false;
                     G2.j();
                 } else {
-                    qc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f27558r = false;
+                    pc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
+                    G3.f27260r = false;
                     G3.j();
                 }
             } else {
-                qc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f27558r = false;
+                pc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
+                Q.f27260r = false;
                 Q.j();
             }
             try {
-                this.f46475c1.performHapticFeedback(3);
+                this.f46522c1.performHapticFeedback(3);
             } catch (Exception unused) {
             }
         }

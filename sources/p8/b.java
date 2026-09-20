@@ -3,12 +3,12 @@ package p8;
 import z7.hb;
 import z7.wf;
 public final class b implements Runnable {
-    public final int f40991a;
-    public final Object f40992b;
+    public final int f41032a;
+    public final Object f41033b;
 
     public b(Object obj, int i10) {
-        this.f40991a = i10;
-        this.f40992b = obj;
+        this.f41032a = i10;
+        this.f41033b = obj;
     }
 
     private final void a() {
@@ -21,8 +21,8 @@ public final class b implements Runnable {
     }
 
     public b(wf wfVar) {
-        this.f40991a = 14;
+        this.f41032a = 14;
         hb hbVar = hb.UNKNOWN_EVENT;
-        this.f40992b = wfVar;
+        this.f41033b = wfVar;
     }
 }

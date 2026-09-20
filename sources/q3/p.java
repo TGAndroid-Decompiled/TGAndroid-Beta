@@ -2,13 +2,13 @@ package q3;
 
 import j$.util.Objects;
 public final class p extends j {
-    public final String f41398b;
-    public final String f41399c;
+    public final String f41439b;
+    public final String f41440c;
 
     public p(String str, String str2, String str3) {
         super(str);
-        this.f41398b = str2;
-        this.f41399c = str3;
+        this.f41439b = str2;
+        this.f41440c = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -17,7 +17,7 @@ public final class p extends j {
         }
         if (obj != null && p.class == obj.getClass()) {
             p pVar = (p) obj;
-            if (this.f41387a.equals(pVar.f41387a) && Objects.equals(this.f41398b, pVar.f41398b) && Objects.equals(this.f41399c, pVar.f41399c)) {
+            if (this.f41428a.equals(pVar.f41428a) && Objects.equals(this.f41439b, pVar.f41439b) && Objects.equals(this.f41440c, pVar.f41440c)) {
                 return true;
             }
         }
@@ -26,16 +26,16 @@ public final class p extends j {
 
     public final int hashCode() {
         int i10;
-        int h = a4.a.h(527, 31, this.f41387a);
+        int h = a4.a.h(527, 31, this.f41428a);
         int i11 = 0;
-        String str = this.f41398b;
+        String str = this.f41439b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i12 = (h + i10) * 31;
-        String str2 = this.f41399c;
+        String str2 = this.f41440c;
         if (str2 != null) {
             i11 = str2.hashCode();
         }
@@ -44,6 +44,6 @@ public final class p extends j {
 
     @Override
     public final String toString() {
-        return this.f41387a + ": url=" + this.f41399c;
+        return this.f41428a + ": url=" + this.f41440c;
     }
 }

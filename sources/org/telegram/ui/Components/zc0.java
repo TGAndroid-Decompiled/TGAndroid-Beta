@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface zc0 {
-    String j(int i10);
+    void n(int i10);
 }

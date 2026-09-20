@@ -1,28 +1,28 @@
 package tg;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.ab0;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.za0;
 public final class j1 extends ci.d {
-    public final m1 f43391h0;
+    public final m1 f43435h0;
 
-    public j1(m1 m1Var, Context context, e6 e6Var) {
-        super(context, e6Var, true);
-        this.f43391h0 = m1Var;
+    public j1(m1 m1Var, Context context, f6 f6Var) {
+        super(context, f6Var, true);
+        this.f43435h0 = m1Var;
     }
 
     @Override
     public final float a(float f7, float f10) {
         boolean z10;
-        m1 m1Var = this.f43391h0;
-        if (m1Var.f43425t0 == 0.0f) {
+        m1 m1Var = this.f43435h0;
+        if (m1Var.f43469t0 == 0.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
-        m1Var.f43425t0 = f7;
+        m1Var.f43469t0 = f7;
         if (z10) {
-            m1Var.f43426u0 = new ab0(m1Var, 2);
+            m1Var.f43470u0 = new za0(m1Var, 2);
             m1Var.g0(false);
         }
         return f7;

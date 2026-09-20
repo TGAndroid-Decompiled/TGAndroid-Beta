@@ -4,30 +4,30 @@ import ai.da;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
 public final class s implements Utilities.Callback {
-    public final int f39037a;
-    public final d1 f39038b;
-    public final da f39039c;
+    public final int f39036a;
+    public final d1 f39037b;
+    public final da f39038c;
 
     public s(d1 d1Var, da daVar, int i10) {
-        this.f39037a = i10;
-        this.f39038b = d1Var;
-        this.f39039c = daVar;
+        this.f39036a = i10;
+        this.f39037b = d1Var;
+        this.f39038c = daVar;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f39037a) {
+        switch (this.f39036a) {
             case 0:
-                this.f39038b.y(this.f39039c, "location_requested", (JSONObject) obj);
+                this.f39037b.y(this.f39038c, "location_requested", (JSONObject) obj);
                 return;
             case 1:
-                this.f39038b.y(this.f39039c, "location_requested", (JSONObject) obj);
+                this.f39037b.y(this.f39038c, "location_requested", (JSONObject) obj);
                 return;
             default:
-                d1 d1Var = this.f39038b;
+                d1 d1Var = this.f39037b;
                 d1Var.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                da daVar = this.f39039c;
+                da daVar = this.f39038c;
                 if (booleanValue) {
                     d1Var.y(daVar, "home_screen_added", null);
                     return;

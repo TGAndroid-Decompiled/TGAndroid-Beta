@@ -394,10 +394,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f15793id;
+        private int f15825id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f15793id = i10;
+            this.f15825id = i10;
             this.args = objArr;
         }
     }
@@ -475,9 +475,9 @@ public class NotificationCenter {
                 } else {
                     lVar.getClass();
                 }
-                StringBuilder j3 = hg.k0.j(i11, "Index ", " must be in 0..");
-                j3.append(lVar.f27b - 1);
-                throw new IndexOutOfBoundsException(j3.toString());
+                StringBuilder k10 = hg.k0.k(i11, "Index ", " must be in 0..");
+                k10.append(lVar.f27b - 1);
+                throw new IndexOutOfBoundsException(k10.toString());
             }
             this.ids.f27b = 0;
             this.notificationCenter = null;
@@ -959,18 +959,18 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder k10 = hg.k0.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
-                k10.append(intValue2);
-                Log.i("ObserverDiff", k10.toString());
+                StringBuilder l4 = hg.k0.l("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                l4.append(intValue2);
+                Log.i("ObserverDiff", l4.toString());
             }
         }
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder j3 = hg.k0.j(keyAt2, "key=", " ADDED (size=");
-                j3.append(sparseArray2.valueAt(i11));
-                j3.append(")");
-                Log.i("ObserverDiff", j3.toString());
+                StringBuilder k10 = hg.k0.k(keyAt2, "key=", " ADDED (size=");
+                k10.append(sparseArray2.valueAt(i11));
+                k10.append(")");
+                Log.i("ObserverDiff", k10.toString());
             }
         }
     }
@@ -1391,7 +1391,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f15793id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f15825id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

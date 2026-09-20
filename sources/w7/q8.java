@@ -1,11 +1,20 @@
 package w7;
 
-import java.util.Locale;
+import android.content.Context;
 public abstract class q8 {
-    public static int a(int i10) {
-        if (i10 < 100 && i10 >= 0) {
-            return Integer.parseInt(String.format(Locale.US, "%s%02d", com.google.android.gms.internal.vision.e2.i(2, 0, String.valueOf(ob.a.D2().get(1))), Integer.valueOf(i10)));
-        }
-        return i10;
+    public static q9.a a(String str, String str2) {
+        xa.a aVar = new xa.a(str, str2);
+        b2.i0 a2 = q9.a.a(xa.a.class);
+        a2.f3021b = 1;
+        a2.f3023f = new k2.v(aVar, 18);
+        return a2.b();
+    }
+
+    public static q9.a b(String str, j2.e eVar) {
+        b2.i0 a2 = q9.a.a(xa.a.class);
+        a2.f3021b = 1;
+        a2.a(q9.j.a(Context.class));
+        a2.f3023f = new s5.e(9, str, eVar);
+        return a2.b();
     }
 }

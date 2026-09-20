@@ -1,84 +1,81 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public class yb extends nb {
-    public final lj0 f30529a;
-    public TextView f30530b;
-    public int f30531c;
+import android.view.MotionEvent;
+import android.view.WindowManager;
+import org.telegram.messenger.FileLog;
+public final class yb extends pk0 {
+    public final int l1 = 0;
+    public final Object f30492m1;
 
-    public yb(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        ?? imageView = new ImageView(context);
-        this.f30529a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, w7.y5.h(56.0f, 48.0f, 8388627));
-        xb xbVar = new xb(context, 0, null);
-        xbVar.setDisablePaddingsOffset(true);
-        this.f30530b = xbVar;
-        NotificationCenter.listenEmojiLoading(xbVar);
-        this.f30530b.setSingleLine();
-        this.f30530b.setTypeface(Typeface.SANS_SERIF);
-        this.f30530b.setTextSize(1, 15.0f);
-        this.f30530b.setEllipsize(TextUtils.TruncateAt.END);
-        this.f30530b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        addView(this.f30530b, w7.y5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        this.f30530b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
-        setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
+    public yb(org.telegram.ui.st stVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(4, i10, context, null, f6Var);
+        this.f30492m1 = stVar;
     }
 
-    public final void c(int i10, int i11, int i12, String... strArr) {
-        lj0 lj0Var = this.f30529a;
-        lj0Var.f(i10, i11, i12, null);
-        for (String str : strArr) {
-            lj0Var.h(this.f30531c, str);
-        }
-    }
-
-    public final void d(int i10, String... strArr) {
-        c(i10, 32, 32, strArr);
-    }
-
-    public final void e(TLRPC.Document document, String... strArr) {
-        lj0 lj0Var = this.f30529a;
-        lj0Var.setAutoRepeat(true);
-        lj0Var.g(36, 36, document);
-        for (String str : strArr) {
-            lj0Var.h(this.f30531c, str);
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        pc pcVar;
+        switch (this.l1) {
+            case 0:
+                ac acVar = (ac) this.f30492m1;
+                if (motionEvent.getAction() == 0) {
+                    pc pcVar2 = acVar.f22646n;
+                    if (pcVar2 != null) {
+                        pcVar2.i(false);
+                    }
+                } else if (motionEvent.getAction() == 1 && (pcVar = acVar.f22646n) != null) {
+                    pcVar.i(true);
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f30530b.getText();
+    public void j() {
+        switch (this.l1) {
+            case 1:
+                super.j();
+                org.telegram.ui.st stVar = (org.telegram.ui.st) this.f30492m1;
+                if (getReactionsWindow() != null) {
+                    WindowManager.LayoutParams layoutParams = stVar.f37548x;
+                    layoutParams.flags &= -131073;
+                    layoutParams.softInputMode = 16;
+                } else {
+                    stVar.f37548x.flags |= 131072;
+                }
+                try {
+                    ((WindowManager) stVar.f37547w.getSystemService("window")).updateViewLayout(stVar.f37549y, stVar.f37548x);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            default:
+                super.j();
+                return;
+        }
     }
 
     @Override
-    public final void onShow() {
-        super.onShow();
-        this.f30529a.d();
+    public void m() {
+        switch (this.l1) {
+            case 0:
+                pc pcVar = pc.f27245w;
+                if (pcVar != null) {
+                    pcVar.i(false);
+                }
+                ((ac) this.f30492m1).d.getReactionsWindow().f49274c.setOnClickListener(new f0(this, 5));
+                return;
+            default:
+                return;
+        }
     }
 
-    public void setIconPaddingBottom(int i10) {
-        this.f30529a.setLayoutParams(w7.y5.i(56.0f, 48 - i10, 8388627, 0.0f, 0.0f, 0.0f, i10));
-    }
-
-    public void setTextColor(int i10) {
-        this.f30531c = i10;
-        this.f30530b.setTextColor(i10);
-    }
-
-    public yb(int i10, int i11, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        this(context, e6Var);
-        setBackground(i10);
-        setTextColor(i11);
+    public yb(ac acVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(3, i10, context, n2Var, f6Var);
+        this.f30492m1 = acVar;
     }
 }

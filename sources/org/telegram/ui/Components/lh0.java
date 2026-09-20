@@ -1,124 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 public final class lh0 {
-    public int f26141a;
-    public final yc f26142b;
-    public final e6 e;
-    public Drawable f26146i;
-    public Drawable f26147j;
-    public ij0 f26148k;
-    public v01 f26149l;
-    public p90 f26155r;
-    public boolean f26156s;
-    public boolean f26157t;
-    public int f26158u;
-    public long f26159w;
-    public int f26160x;
-    public final oh0 f26161y;
-    public final RectF f26143c = new RectF();
-    public final RectF d = new RectF();
-    public final RectF f26144f = new RectF();
-    public final RectF f26145g = new RectF();
-    public final Rect h = new Rect();
-    public float f26150m = 1.0f;
-    public boolean f26151n = false;
-    public boolean f26152o = false;
-    public boolean f26153p = false;
-    public final float f26154q = 1.0f;
-    public int v = 0;
+    public static final lh0 E;
+    public static final lh0 F;
+    public static final lh0 G;
+    public static final lh0 H;
+    public static final lh0 I;
+    public static final lh0 J;
+    public static final lh0 K;
+    public static final lh0[] L;
+    public static final lh0 d;
+    public static final lh0 e;
+    public static final lh0 f26131f;
+    public static final lh0 h;
+    public static final lh0 f26132n;
+    public static final lh0 f26133r;
+    public static final lh0 f26134s;
+    public static final lh0 v;
+    public static final lh0 f26135w;
+    public static final lh0 f26136x;
+    public static final lh0 f26137y;
+    public final int f26138a;
+    public final int f26139b;
+    public final int f26140c;
 
-    public lh0(oh0 oh0Var) {
-        this.f26161y = oh0Var;
-        this.f26142b = new yc(oh0Var);
-        this.e = new e6(oh0Var, 0L, 250L, qr.f27715f);
+    static {
+        int i10 = R.string.ProfileActionsMessage;
+        int i11 = R.drawable.filled_profile_message_24;
+        int i12 = R.drawable.outline_profile_message_24;
+        lh0 lh0Var = new lh0("MESSAGE", 0, i10, i11, i12);
+        d = lh0Var;
+        lh0 lh0Var2 = new lh0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
+        e = lh0Var2;
+        lh0 lh0Var3 = new lh0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
+        f26131f = lh0Var3;
+        lh0 lh0Var4 = new lh0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
+        h = lh0Var4;
+        lh0 lh0Var5 = new lh0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
+        f26132n = lh0Var5;
+        lh0 lh0Var6 = new lh0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
+        f26133r = lh0Var6;
+        lh0 lh0Var7 = new lh0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
+        f26134s = lh0Var7;
+        lh0 lh0Var8 = new lh0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
+        v = lh0Var8;
+        lh0 lh0Var9 = new lh0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
+        f26135w = lh0Var9;
+        lh0 lh0Var10 = new lh0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
+        f26136x = lh0Var10;
+        int i13 = R.string.ProfileActionsLeave;
+        int i14 = R.drawable.leave;
+        lh0 lh0Var11 = new lh0("LEAVE", 10, i13, i14, i14);
+        f26137y = lh0Var11;
+        int i15 = R.string.ProfileActionsVoiceChat;
+        int i16 = R.drawable.live_stream;
+        lh0 lh0Var12 = new lh0("VOICE_CHAT", 11, i15, i16, i16);
+        E = lh0Var12;
+        lh0 lh0Var13 = new lh0("STREAM", 12, R.string.ProfileActionsLiveStream, i16, i16);
+        F = lh0Var13;
+        lh0 lh0Var14 = new lh0("STORY", 13, R.string.ProfileActionsAddStory, R.drawable.filled_profile_story, R.drawable.outline_profile_story);
+        G = lh0Var14;
+        lh0 lh0Var15 = new lh0("STOP", 14, R.string.ProfileActionsStop, R.drawable.filled_profile_stop_24, R.drawable.outline_profile_stop_24);
+        H = lh0Var15;
+        lh0 lh0Var16 = new lh0("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto2, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
+        I = lh0Var16;
+        int i17 = R.string.ProfileActionsEditUsername;
+        int i18 = R.drawable.filled_profile_edit_24;
+        int i19 = R.drawable.outline_profile_edit_24;
+        lh0 lh0Var17 = new lh0("EDIT_USERNAME", 16, i17, i18, i19);
+        lh0 lh0Var18 = new lh0("EDIT_INFO", 17, R.string.ProfileActionsEditInfo, i18, i19);
+        J = lh0Var18;
+        lh0 lh0Var19 = new lh0("SETTINGS", 18, R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings);
+        K = lh0Var19;
+        L = new lh0[]{lh0Var, lh0Var2, lh0Var3, lh0Var4, lh0Var5, lh0Var6, lh0Var7, lh0Var8, lh0Var9, lh0Var10, lh0Var11, lh0Var12, lh0Var13, lh0Var14, lh0Var15, lh0Var16, lh0Var17, lh0Var18, lh0Var19};
     }
 
-    public final void a() {
-        float d = this.e.d(1.0f, false);
-        if (d != 1.0f) {
-            RectF rectF = this.f26145g;
-            float f7 = rectF.left;
-            RectF rectF2 = this.f26144f;
-            float lerp = AndroidUtilities.lerp(f7, rectF2.left, d);
-            RectF rectF3 = this.d;
-            rectF3.left = lerp;
-            rectF3.right = AndroidUtilities.lerp(rectF.right, rectF2.right, d);
-            return;
-        }
-        this.f26151n = false;
-        if (this.f26152o) {
-            this.f26153p = true;
-        }
+    public lh0(String str, int i10, int i11, int i12, int i13) {
+        this.f26138a = i11;
+        this.f26139b = i12;
+        this.f26140c = i13;
     }
 
-    public final float b() {
-        boolean z10 = this.f26152o;
-        e6 e6Var = this.e;
-        if (z10) {
-            return 1.0f - e6Var.d(1.0f, false);
-        }
-        if (!this.f26151n) {
-            return 1.0f;
-        }
-        return e6Var.d(1.0f, false);
+    public static lh0 valueOf(String str) {
+        return (lh0) Enum.valueOf(lh0.class, str);
     }
 
-    public final void c(String str) {
-        v01 v01Var = new v01(str, 11.0f, AndroidUtilities.bold());
-        v01Var.n(3);
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        v01Var.a();
-        this.f26149l = v01Var;
-    }
-
-    public final void d(int i10, int i11, int i12) {
-        Drawable drawable;
-        Drawable drawable2 = null;
-        oh0 oh0Var = this.f26161y;
-        if (i10 != 0) {
-            ij0 ij0Var = new ij0(i10, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
-            ij0Var.R(oh0Var);
-            ij0Var.start();
-            this.f26148k = ij0Var;
-        } else {
-            this.f26148k = null;
-        }
-        if (i11 != 0) {
-            drawable = oh0Var.getResources().getDrawable(i11).mutate();
-        } else {
-            drawable = null;
-        }
-        this.f26146i = drawable;
-        if (i12 != 0) {
-            drawable2 = oh0Var.getResources().getDrawable(i12).mutate();
-        }
-        this.f26147j = drawable2;
-        ij0 ij0Var2 = this.f26148k;
-        Rect rect = this.h;
-        if (ij0Var2 != null) {
-            ij0Var2.setBounds(rect);
-        }
-        Drawable drawable3 = this.f26146i;
-        if (drawable3 != null) {
-            drawable3.setBounds(rect);
-        }
-        Drawable drawable4 = this.f26147j;
-        if (drawable4 != null) {
-            drawable4.setBounds(rect);
-        }
-    }
-
-    public lh0(oh0 oh0Var, mh0 mh0Var) {
-        this.f26161y = oh0Var;
-        this.f26142b = new yc(oh0Var);
-        this.e = new e6(oh0Var, 0L, 250L, qr.f27715f);
-        d(0, mh0Var.f26417b, mh0Var.f26418c);
-        c(LocaleController.getString(mh0Var.f26416a));
+    public static lh0[] values() {
+        return (lh0[]) L.clone();
     }
 }

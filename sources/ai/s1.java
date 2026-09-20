@@ -31,8 +31,8 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 import org.telegram.ui.cm;
 import org.telegram.ui.lm;
-import org.telegram.ui.oh;
-import org.telegram.ui.va0;
+import org.telegram.ui.ph;
+import org.telegram.ui.wa0;
 import org.telegram.ui.zn;
 public final class s1 implements Runnable {
     public final int f1494a;
@@ -58,7 +58,7 @@ public final class s1 implements Runnable {
             case 1:
                 TLObject tLObject = (TLObject) this.f1496c;
                 int i12 = this.f1495b;
-                va0 va0Var = (va0) this.d;
+                wa0 wa0Var = (wa0) this.d;
                 if (tLObject instanceof TL_stories.TL_albums) {
                     ArrayList<TL_stories.TL_storyAlbum> arrayList = ((TL_stories.TL_albums) tLObject).albums;
                     int size = arrayList.size();
@@ -68,12 +68,12 @@ public final class s1 implements Runnable {
                         i13++;
                         TL_stories.TL_storyAlbum tL_storyAlbum2 = tL_storyAlbum;
                         if (tL_storyAlbum2.album_id == i12) {
-                            va0Var.accept(tL_storyAlbum2);
+                            wa0Var.accept(tL_storyAlbum2);
                             return;
                         }
                     }
                 }
-                va0Var.accept(null);
+                wa0Var.accept(null);
                 return;
             case 2:
                 int i14 = this.f1495b;
@@ -98,14 +98,14 @@ public final class s1 implements Runnable {
                 pg.l lVar = (pg.l) this.d;
                 int i16 = this.f1495b;
                 if (r6Var.O0.getCurrentBrush() instanceof pg.l) {
-                    r6Var.f5412c1 = true;
+                    r6Var.f5413c1 = true;
                 }
                 r6Var.b(lVar);
-                qg.r1 r1Var = r6Var.f5428k1;
-                int i17 = r1Var.d + 1;
-                r1Var.a(i17);
-                AndroidUtilities.updateImageViewImageAnimated(r1Var.f41884a[i17], i16);
-                r1Var.e = true;
+                qg.s1 s1Var = r6Var.f5429k1;
+                int i17 = s1Var.d + 1;
+                s1Var.a(i17);
+                AndroidUtilities.updateImageViewImageAnimated(s1Var.f41932a[i17], i16);
+                s1Var.e = true;
                 return;
             case 6:
                 AndroidUtilities.runOnUIThread(new n8(this.f1495b, ((MessagesStorage) this.f1496c).getUsers(new ArrayList<>((HashSet) this.d)), 5));
@@ -121,10 +121,10 @@ public final class s1 implements Runnable {
                     e2.o oVar = (e2.o) it.next();
                     if (!oVar.d) {
                         if (i18 != -1) {
-                            oVar.f7913b.b(i18);
+                            oVar.f7914b.b(i18);
                         }
-                        oVar.f7914c = true;
-                        mVar.invoke(oVar.f7912a);
+                        oVar.f7915c = true;
+                        mVar.invoke(oVar.f7913a);
                     }
                 }
                 return;
@@ -148,8 +148,8 @@ public final class s1 implements Runnable {
                 int i20 = this.f1495b;
                 if (tLObject2 instanceof TLRPC.TL_webViewResultUrl) {
                     TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject2;
-                    q4Var.f8573x = tL_webViewResultUrl.query_id;
-                    q4Var.f8569n.u(i20, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
+                    q4Var.f8574x = tL_webViewResultUrl.query_id;
+                    q4Var.f8570n.u(i20, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
                     AndroidUtilities.runOnUIThread(q4Var.U);
                     return;
                 }
@@ -158,35 +158,35 @@ public final class s1 implements Runnable {
                 gg.i0 i0Var = (gg.i0) this.f1496c;
                 int i21 = this.f1495b;
                 String str = (String) this.d;
-                int i22 = i0Var.f9783s0;
-                i0Var.f9780r = null;
-                if (i21 == i0Var.f9765d0) {
-                    if (i0Var.f9775n >= 0) {
-                        ConnectionsManager.getInstance(i22).cancelRequest(i0Var.f9775n, true);
+                int i22 = i0Var.f9784s0;
+                i0Var.f9781r = null;
+                if (i21 == i0Var.f9766d0) {
+                    if (i0Var.f9776n >= 0) {
+                        ConnectionsManager.getInstance(i22).cancelRequest(i0Var.f9776n, true);
                     }
                     TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
                     tL_channels_searchPosts.flags = 1 | tL_channels_searchPosts.flags;
                     tL_channels_searchPosts.hashtag = str;
                     tL_channels_searchPosts.limit = 3;
                     tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                    i0Var.f9775n = ConnectionsManager.getInstance(i22).sendRequest(tL_channels_searchPosts, new gg.u(i0Var, i21, str, 0));
+                    i0Var.f9776n = ConnectionsManager.getInstance(i22).sendRequest(tL_channels_searchPosts, new gg.u(i0Var, i21, str, 0));
                     return;
                 }
                 return;
             case 12:
                 hg.y yVar = (hg.y) this.f1496c;
-                yVar.f10483b.add(this.f1495b, (TL_account.TL_businessChatLink) this.d);
-                NotificationCenter.getInstance(yVar.f10482a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                yVar.f10484b.add(this.f1495b, (TL_account.TL_businessChatLink) this.d);
+                NotificationCenter.getInstance(yVar.f10483a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                 return;
             case 13:
                 Pair pair = (Pair) this.d;
-                ((i2.c1) this.f1496c).f10633b.h.a(((Integer) pair.first).intValue(), (u2.f0) pair.second, this.f1495b);
+                ((i2.c1) this.f1496c).f10634b.h.a(((Integer) pair.first).intValue(), (u2.f0) pair.second, this.f1495b);
                 return;
             case 14:
                 int i23 = this.f1495b;
                 ii.r5 m10 = ((ii.o5) this.f1496c).getGrid().m((TL_iv.pageTableCell) this.d);
                 if (m10 != null) {
-                    ii.i1 i1Var = m10.f11606a;
+                    ii.i1 i1Var = m10.f11607a;
                     i1Var.r();
                     i1Var.setSelection(Math.max(0, Math.min(i23, i1Var.length())));
                     return;
@@ -195,19 +195,19 @@ public final class s1 implements Runnable {
             case 15:
                 ii.a aVar = (ii.a) this.d;
                 int i24 = this.f1495b;
-                ii.d6 d6Var = ((ii.x5) this.f1496c).f11770a;
-                if (d6Var.f11346y != null) {
-                    ii.d6.f(aVar.f11204b, "");
-                    ((ii.e3) d6Var.f11346y).c(aVar, i24);
+                ii.d6 d6Var = ((ii.x5) this.f1496c).f11771a;
+                if (d6Var.f11347y != null) {
+                    ii.d6.f(aVar.f11205b, "");
+                    ((ii.e3) d6Var.f11347y).c(aVar, i24);
                     return;
                 }
                 return;
             case 16:
                 n2.k kVar = (n2.k) this.f1496c;
-                this.d.a(kVar.f15090a, kVar.f15091b, this.f1495b);
+                this.d.a(kVar.f15129a, kVar.f15130b, this.f1495b);
                 return;
             case 17:
-                ((View) this.d).postOnAnimation(new n8((nh.a) this.f1496c, this.f1495b, 15));
+                ((View) this.d).postOnAnimation(new n8((nh.a) this.f1496c, this.f1495b, 13));
                 return;
             case 18:
                 ((CameraView) this.f1496c).lambda$createCamera$13(this.f1495b, (SurfaceTexture) this.d);
@@ -233,8 +233,8 @@ public final class s1 implements Runnable {
                 org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) this.f1496c;
                 String str3 = (String) this.d;
                 int i26 = this.f1495b;
-                HashMap hashMap = new HashMap(h4Var.f34074u0[0].f35225c.f33429w);
-                ArrayList arrayList2 = new ArrayList(h4Var.f34074u0[0].f35225c.f33430x);
+                HashMap hashMap = new HashMap(h4Var.f34114u0[0].f35288c.f33482w);
+                ArrayList arrayList2 = new ArrayList(h4Var.f34114u0[0].f35288c.f33483x);
                 h4Var.V0 = null;
                 Utilities.searchQueue.postRunnable(new ei.l3(h4Var, arrayList2, hashMap, str3, i26, 14));
                 return;
@@ -255,7 +255,7 @@ public final class s1 implements Runnable {
                 int i28 = this.f1495b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f1496c;
                 MessagesController.getInstance(i28).putUsers(tL_chatInviteJoinResultWebView.users, false);
-                BotGuardHelper.getInstance(i28).openGuardBotWebApp(-((TLRPC.Chat) this.d).f18296id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+                BotGuardHelper.getInstance(i28).openGuardBotWebApp(-((TLRPC.Chat) this.d).f18328id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
                 return;
             case 25:
                 org.telegram.ui.f4 f4Var = (org.telegram.ui.f4) this.f1496c;
@@ -278,19 +278,19 @@ public final class s1 implements Runnable {
             case 28:
                 int i30 = this.f1495b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                ((zn) this.f1496c).f40488x0.w0(0, i30, null);
+                ((zn) this.f1496c).f40530x0.w0(0, i30, null);
                 if (!AndroidUtilities.showKeyboard(editTextBoldCursor)) {
                     editTextBoldCursor.clearFocus();
                     editTextBoldCursor.requestFocus();
                 }
-                AndroidUtilities.runOnUIThread(new oh(0, editTextBoldCursor), 100L);
+                AndroidUtilities.runOnUIThread(new ph(0, editTextBoldCursor), 100L);
                 return;
             default:
                 cm cmVar = (cm) this.f1496c;
                 int i31 = this.f1495b;
                 cmVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.w0) this.d).getMessageObject();
-                lm lmVar = cmVar.f32716a;
+                lm lmVar = cmVar.f32788a;
                 zn znVar = lmVar.Q;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == lmVar.Q.L6) {

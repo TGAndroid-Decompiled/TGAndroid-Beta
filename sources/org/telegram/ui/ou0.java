@@ -16,57 +16,57 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public abstract class ou0 extends NestedScrollView {
     public final Paint W;
-    public final o1.k f36240a0;
-    public boolean f36241b0;
-    public float f36242c0;
-    public float f36243d0;
-    public float f36244e0;
-    public final Method f36245f0;
-    public final OverScroller f36246g0;
-    public boolean f36247h0;
-    public int f36248i0;
-    public int f36249j0;
-    public float f36250k0;
-    public boolean f36251l0;
+    public final o1.k f36368a0;
+    public boolean f36369b0;
+    public float f36370c0;
+    public float f36371d0;
+    public float f36372e0;
+    public final Method f36373f0;
+    public final OverScroller f36374g0;
+    public boolean f36375h0;
+    public int f36376i0;
+    public int f36377j0;
+    public float f36378k0;
+    public boolean f36379l0;
     public int m0;
-    public final ru0 f36252n0;
-    public final FrameLayout f36253o0;
+    public final ru0 f36380n0;
+    public final FrameLayout f36381o0;
 
     public ou0(Context context, ru0 ru0Var, FrameLayout frameLayout) {
         super(context);
         Paint paint = new Paint(1);
         this.W = paint;
-        this.f36250k0 = 1.0f;
+        this.f36378k0 = 1.0f;
         this.m0 = -1;
-        this.f36252n0 = ru0Var;
-        this.f36253o0 = frameLayout;
+        this.f36380n0 = ru0Var;
+        this.f36381o0 = frameLayout;
         setClipChildren(false);
         setOverScrollMode(2);
         paint.setColor(-16777216);
         setFadingEdgeLength(AndroidUtilities.dp(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        o1.k kVar = new o1.k(ru0Var, o1.h.f15473n, 0.0f);
-        this.f36240a0 = kVar;
-        kVar.f15490u.b(100.0f);
-        kVar.f15486j = 1.0f;
-        kVar.b(new ud0(this, 2));
+        o1.k kVar = new o1.k(ru0Var, o1.h.f15505n, 0.0f);
+        this.f36368a0 = kVar;
+        kVar.f15522u.b(100.0f);
+        kVar.f15518j = 1.0f;
+        kVar.b(new vd0(this, 2));
         kVar.a(new o9(this, 2));
-        kVar.f15490u.a(1.0f);
+        kVar.f15522u.a(1.0f);
         try {
             Method declaredMethod = NestedScrollView.class.getDeclaredMethod("d", null);
-            this.f36245f0 = declaredMethod;
+            this.f36373f0 = declaredMethod;
             declaredMethod.setAccessible(true);
         } catch (Exception e) {
-            this.f36245f0 = null;
+            this.f36373f0 = null;
             FileLog.e(e);
         }
         try {
             Field declaredField = NestedScrollView.class.getDeclaredField("d");
             declaredField.setAccessible(true);
-            this.f36246g0 = (OverScroller) declaredField.get(this);
+            this.f36374g0 = (OverScroller) declaredField.get(this);
         } catch (Exception e7) {
-            this.f36246g0 = null;
+            this.f36374g0 = null;
             FileLog.e(e7);
         }
     }
@@ -74,13 +74,13 @@ public abstract class ou0 extends NestedScrollView {
     @Override
     public final void B(int i10) {
         OverScroller overScroller;
-        if (this.f36241b0 && i10 == 0) {
-            this.f36241b0 = false;
-            if (this.f36242c0 != 0.0f && (overScroller = this.f36246g0) != null && overScroller.isFinished()) {
-                float f7 = this.f36244e0;
-                o1.k kVar = this.f36240a0;
-                if (!kVar.f15483f) {
-                    kVar.f15480a = f7;
+        if (this.f36369b0 && i10 == 0) {
+            this.f36369b0 = false;
+            if (this.f36370c0 != 0.0f && (overScroller = this.f36374g0) != null && overScroller.isFinished()) {
+                float f7 = this.f36372e0;
+                o1.k kVar = this.f36368a0;
+                if (!kVar.f15515f) {
+                    kVar.f15512a = f7;
                     kVar.f();
                 }
             }
@@ -100,10 +100,10 @@ public abstract class ou0 extends NestedScrollView {
     public final void computeScroll() {
         OverScroller overScroller;
         super.computeScroll();
-        if (!this.f36241b0 && this.f36242c0 != 0.0f && (overScroller = this.f36246g0) != null && overScroller.isFinished()) {
-            o1.k kVar = this.f36240a0;
-            if (!kVar.f15483f) {
-                kVar.f15480a = 0.0f;
+        if (!this.f36369b0 && this.f36370c0 != 0.0f && (overScroller = this.f36374g0) != null && overScroller.isFinished()) {
+            o1.k kVar = this.f36368a0;
+            if (!kVar.f15515f) {
+                kVar.f15512a = 0.0f;
                 kVar.f();
             }
         }
@@ -119,8 +119,8 @@ public abstract class ou0 extends NestedScrollView {
         int i10 = height + scrollY;
         canvas.clipRect(0, scrollY, width, i10);
         Paint paint = this.W;
-        paint.setAlpha((int) (this.f36250k0 * 127.0f));
-        canvas.drawRect(0.0f, this.f36252n0.getTranslationY() + this.f36253o0.getTop(), width, i10, paint);
+        paint.setAlpha((int) (this.f36378k0 * 127.0f));
+        canvas.drawRect(0.0f, this.f36380n0.getTranslationY() + this.f36381o0.getTop(), width, i10, paint);
         super.draw(canvas);
         canvas.restoreToCount(save);
     }
@@ -130,28 +130,28 @@ public abstract class ou0 extends NestedScrollView {
         float f7;
         int i13;
         iArr[1] = 0;
-        if (!this.f36241b0 || (((this.f36242c0) <= 0.0f || i11 <= 0) && (f7 >= 0.0f || i11 >= 0))) {
+        if (!this.f36369b0 || (((this.f36370c0) <= 0.0f || i11 <= 0) && (f7 >= 0.0f || i11 >= 0))) {
             return false;
         }
         float f10 = i11;
         float f11 = f7 - f10;
         if (i13 > 0) {
             if (f11 < 0.0f) {
-                this.f36242c0 = 0.0f;
+                this.f36370c0 = 0.0f;
                 iArr[1] = (int) (f10 + f11 + 0);
             } else {
-                this.f36242c0 = f11;
+                this.f36370c0 = f11;
                 iArr[1] = i11;
             }
         } else if (f11 > 0.0f) {
-            this.f36242c0 = 0.0f;
+            this.f36370c0 = 0.0f;
             iArr[1] = (int) (f10 + f11 + 0);
         } else {
-            this.f36242c0 = f11;
+            this.f36370c0 = f11;
             iArr[1] = i11;
         }
         G();
-        this.f36252n0.setTranslationY(this.f36242c0);
+        this.f36380n0.setTranslationY(this.f36370c0);
         return true;
     }
 
@@ -163,7 +163,7 @@ public abstract class ou0 extends NestedScrollView {
     public int getPendingMarginTopDiff() {
         int i10 = this.m0;
         if (i10 >= 0) {
-            return i10 - ((ViewGroup.MarginLayoutParams) this.f36253o0.getLayoutParams()).topMargin;
+            return i10 - ((ViewGroup.MarginLayoutParams) this.f36381o0.getLayoutParams()).topMargin;
         }
         return 0;
     }
@@ -186,14 +186,14 @@ public abstract class ou0 extends NestedScrollView {
                 i15 = 0;
             }
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i15;
-            int round = Math.round((1.0f - Math.abs((-this.f36242c0) / (this.f36253o0.getTop() - currentActionBarHeight))) * i13);
+            int round = Math.round((1.0f - Math.abs((-this.f36370c0) / (this.f36381o0.getTop() - currentActionBarHeight))) * i13);
             if (round != 0) {
-                boolean z10 = this.f36241b0;
-                ru0 ru0Var = this.f36252n0;
+                boolean z10 = this.f36369b0;
+                ru0 ru0Var = this.f36380n0;
                 if (!z10) {
-                    o1.k kVar = this.f36240a0;
-                    if (!kVar.f15483f) {
-                        OverScroller overScroller = this.f36246g0;
+                    o1.k kVar = this.f36368a0;
+                    if (!kVar.f15515f) {
+                        OverScroller overScroller = this.f36374g0;
                         if (overScroller != null) {
                             f7 = overScroller.getCurrVelocity();
                         } else {
@@ -208,23 +208,23 @@ public abstract class ou0 extends NestedScrollView {
                             }
                             float min = Math.min(f11, f7);
                             round = (int) ((round * min) / f7);
-                            f10 = min * (-this.f36243d0);
+                            f10 = min * (-this.f36371d0);
                         } else {
                             f10 = 0.0f;
                         }
                         if (round != 0) {
-                            float f12 = this.f36242c0 - round;
-                            this.f36242c0 = f12;
+                            float f12 = this.f36370c0 - round;
+                            this.f36370c0 = f12;
                             ru0Var.setTranslationY(f12);
                         }
-                        if (!kVar.f15483f) {
-                            kVar.f15480a = f10;
+                        if (!kVar.f15515f) {
+                            kVar.f15512a = f10;
                             kVar.f();
                         }
                     }
                 } else {
-                    float f13 = this.f36242c0 - round;
-                    this.f36242c0 = f13;
+                    float f13 = this.f36370c0 - round;
+                    this.f36370c0 = f13;
                     ru0Var.setTranslationY(f13);
                 }
             }
@@ -235,8 +235,8 @@ public abstract class ou0 extends NestedScrollView {
     @Override
     public final void k(int i10) {
         super.k(i10);
-        this.f36243d0 = Math.signum(i10);
-        this.f36244e0 = 0.0f;
+        this.f36371d0 = Math.signum(i10);
+        this.f36372e0 = 0.0f;
     }
 
     @Override
@@ -248,7 +248,7 @@ public abstract class ou0 extends NestedScrollView {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            if (motionEvent.getY() < this.f36252n0.getTranslationY() + (this.f36253o0.getTop() - getScrollY())) {
+            if (motionEvent.getY() < this.f36380n0.getTranslationY() + (this.f36381o0.getTop() - getScrollY())) {
                 return false;
             }
         }
@@ -258,9 +258,9 @@ public abstract class ou0 extends NestedScrollView {
     @Override
     public final boolean z(int i10, int i11) {
         if (i11 == 0) {
-            this.f36240a0.c();
-            this.f36241b0 = true;
-            this.f36242c0 = this.f36252n0.getTranslationY();
+            this.f36368a0.c();
+            this.f36369b0 = true;
+            this.f36370c0 = this.f36380n0.getTranslationY();
             F();
         }
         return true;

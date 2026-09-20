@@ -1,32 +1,27 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
 public final class ib0 implements Runnable {
-    public final int f24898a;
-    public final yb0 f24899b;
-    public final Context f24900c;
+    public final int f24985a;
+    public final xb0 f24986b;
 
-    public ib0(yb0 yb0Var, Context context, int i10) {
-        this.f24898a = i10;
-        this.f24899b = yb0Var;
-        this.f24900c = context;
+    public ib0(xb0 xb0Var, int i10) {
+        this.f24985a = i10;
+        this.f24986b = xb0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24898a) {
+        switch (this.f24985a) {
             case 0:
-                yb0 yb0Var = this.f24899b;
-                yb0Var.f30537c0.a(false);
-                AndroidUtilities.runOnUIThread(new ib0(yb0Var, this.f24900c, 1));
-                return;
-            default:
-                Context context = this.f24900c;
-                if (AndroidUtilities.isContextSafe(context)) {
-                    new rg.x0(context, 43, this.f24899b.f30537c0.F).show();
+                xb0 xb0Var = this.f24986b;
+                pb0 pb0Var = xb0Var.f30230f;
+                if (xb0Var.f30229c0.d.webpageTop) {
+                    pb0Var.x0(-pb0Var.computeVerticalScrollOffset(), 250, ji.n.V);
                     return;
                 }
+                pb0Var.x0(pb0Var.computeVerticalScrollRange() - (pb0Var.computeVerticalScrollExtent() + pb0Var.computeVerticalScrollOffset()), 250, ji.n.V);
+                return;
+            default:
+                this.f24986b.g(true, false);
                 return;
         }
     }

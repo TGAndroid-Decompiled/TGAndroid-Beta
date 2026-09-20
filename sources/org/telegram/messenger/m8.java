@@ -6,36 +6,36 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.Timer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.h21;
+import org.telegram.ui.Components.g21;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ab0;
 import org.telegram.ui.nq;
 import org.telegram.ui.uy;
-import org.telegram.ui.za0;
 public final class m8 implements Runnable {
-    public final int f16919a = 0;
-    public final boolean f16920b;
-    public final int f16921c;
+    public final int f16964a = 0;
+    public final boolean f16965b;
+    public final int f16966c;
     public final long d;
     public final Object e;
-    public final Object f16922f;
+    public final Object f16967f;
     public final Object h;
-    public final Object f16923n;
-    public final Object f16924r;
-    public final Object f16925s;
+    public final Object f16968n;
+    public final Object f16969r;
+    public final Object f16970s;
     public final Object v;
-    public final Object f16926w;
+    public final Object f16971w;
 
     public m8(MediaDataController mediaDataController, Timer.Task task, a0.i iVar, AtomicInteger atomicInteger, Runnable runnable, int i10, Timer timer, a0.i iVar2, a0.i iVar3, boolean z10, long j3) {
         this.e = mediaDataController;
-        this.f16922f = task;
+        this.f16967f = task;
         this.h = iVar;
-        this.f16925s = atomicInteger;
+        this.f16970s = atomicInteger;
         this.v = runnable;
-        this.f16921c = i10;
-        this.f16926w = timer;
-        this.f16923n = iVar2;
-        this.f16924r = iVar3;
-        this.f16920b = z10;
+        this.f16966c = i10;
+        this.f16971w = timer;
+        this.f16968n = iVar2;
+        this.f16969r = iVar3;
+        this.f16965b = z10;
         this.d = j3;
     }
 
@@ -53,18 +53,18 @@ public final class m8 implements Runnable {
         boolean z18;
         boolean z19;
         boolean z20;
-        int i10 = this.f16919a;
-        Object obj = this.f16926w;
+        int i10 = this.f16964a;
+        Object obj = this.f16971w;
         Object obj2 = this.v;
-        Object obj3 = this.f16925s;
-        Object obj4 = this.f16924r;
-        Object obj5 = this.f16923n;
+        Object obj3 = this.f16970s;
+        Object obj4 = this.f16969r;
+        Object obj5 = this.f16968n;
         Object obj6 = this.h;
-        Object obj7 = this.f16922f;
+        Object obj7 = this.f16967f;
         Object obj8 = this.e;
         switch (i10) {
             case 0:
-                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.i) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f16921c, (Timer) obj, (a0.i) obj5, (a0.i) obj4, this.f16920b, this.d);
+                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.i) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f16966c, (Timer) obj, (a0.i) obj5, (a0.i) obj4, this.f16965b, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj8;
@@ -307,14 +307,14 @@ public final class m8 implements Runnable {
                         tL_chatAdminRights2.other = z20;
                     }
                 }
-                boolean z21 = this.f16920b;
-                int i11 = this.f16921c;
+                boolean z21 = this.f16965b;
+                int i11 = this.f16966c;
                 if (z21 && tL_chatAdminRights == null && !TextUtils.isEmpty(str2)) {
-                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f18296id, user, 0, str2, uyVar, true, new h21(launchActivity, i11, chat, uyVar, 3), null);
+                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f18328id, user, 0, str2, uyVar, true, new g21(launchActivity, i11, chat, uyVar, 3), null);
                     return;
                 }
-                nq nqVar = new nq(user.f18443id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
-                nqVar.X0 = new za0(uyVar, i11);
+                nq nqVar = new nq(user.f18475id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
+                nqVar.X0 = new ab0(uyVar, i11);
                 ((ActionBarLayout) launchActivity.O()).Q(nqVar, false);
                 return;
         }
@@ -322,15 +322,15 @@ public final class m8 implements Runnable {
 
     public m8(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z10, String str2, int i10, TLRPC.Chat chat, uy uyVar, TLRPC.User user, long j3, String str3) {
         this.e = launchActivity;
-        this.f16922f = str;
+        this.f16967f = str;
         this.h = tL_chatAdminRights;
-        this.f16920b = z10;
-        this.f16923n = str2;
-        this.f16921c = i10;
-        this.f16924r = chat;
-        this.f16925s = uyVar;
+        this.f16965b = z10;
+        this.f16968n = str2;
+        this.f16966c = i10;
+        this.f16969r = chat;
+        this.f16970s = uyVar;
         this.v = user;
         this.d = j3;
-        this.f16926w = str3;
+        this.f16971w = str3;
     }
 }

@@ -1,4 +1,4 @@
 package m4;
 public interface j0 {
-    void g(r rVar);
+    void f(r rVar);
 }

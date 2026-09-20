@@ -6,23 +6,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.rk;
 import org.telegram.ui.Components.cy;
 import org.telegram.ui.Components.kz;
-import org.telegram.ui.Components.rv;
 import org.telegram.ui.Components.sv;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.tv;
+import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.wx;
-import org.telegram.ui.gi0;
-import org.telegram.ui.sj0;
+import org.telegram.ui.hi0;
+import org.telegram.ui.uj0;
 import org.telegram.ui.wp0;
 public final class r1 extends s4.n0 {
-    public final int f5398a;
-    public final Object f5399b;
+    public final int f5399a;
+    public final Object f5400b;
 
     public r1(Object obj, int i10) {
-        this.f5398a = i10;
-        this.f5399b = obj;
+        this.f5399a = i10;
+        this.f5400b = obj;
     }
 
     @Override
@@ -34,9 +34,9 @@ public final class r1 extends s4.n0 {
         int i10;
         int i11;
         int i12;
-        switch (this.f5398a) {
+        switch (this.f5399a) {
             case 0:
-                y1 y1Var = ((z1) this.f5399b).e;
+                y1 y1Var = ((z1) this.f5400b).e;
                 recyclerView.getClass();
                 if (y1Var.E1(RecyclerView.S(view))) {
                     dp = 0;
@@ -47,7 +47,7 @@ public final class r1 extends s4.n0 {
                 rect.bottom = AndroidUtilities.dp(4.0f);
                 return;
             case 1:
-                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f5399b;
+                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f5400b;
                 int b10 = recyclerView.U(view).b();
                 if (b10 == 0) {
                     rect.left = AndroidUtilities.dp(18.0f);
@@ -58,15 +58,15 @@ public final class r1 extends s4.n0 {
                 }
                 int h = tVar.getAdapter().h();
                 if (h == 4) {
-                    rect.right = wh.B(58.0f, h, tVar.getWidth() - AndroidUtilities.dp(36.0f)) / (h - 1);
+                    rect.right = rk.B(58.0f, h, tVar.getWidth() - AndroidUtilities.dp(36.0f)) / (h - 1);
                     return;
                 } else {
                     rect.right = AndroidUtilities.dp(24.0f);
                     return;
                 }
             case 2:
-                v vVar = ((sv) this.f5399b).h;
-                if (view instanceof rv) {
+                v vVar = ((tv) this.f5400b).h;
+                if (view instanceof sv) {
                     rect.left = -vVar.getPaddingLeft();
                     rect.right = -vVar.getPaddingRight();
                     return;
@@ -78,19 +78,19 @@ public final class r1 extends s4.n0 {
                 }
                 return;
             case 3:
-                kz kzVar = (kz) this.f5399b;
+                kz kzVar = (kz) this.f5400b;
                 wx wxVar = kzVar.P;
-                if (view instanceof org.telegram.ui.Cells.o8) {
+                if (view instanceof org.telegram.ui.Cells.p8) {
                     rect.left = AndroidUtilities.dp(5.0f);
                     rect.right = AndroidUtilities.dp(5.0f);
                     recyclerView.getClass();
-                    if (RecyclerView.S(view) + 1 > kzVar.R.E && !UserConfig.getInstance(kzVar.f25892c1).isPremium() && !kzVar.U0) {
+                    if (RecyclerView.S(view) + 1 > kzVar.R.E && !UserConfig.getInstance(kzVar.f25898c1).isPremium() && !kzVar.U0) {
                         rect.top = AndroidUtilities.dp(10.0f);
                         return;
                     }
                     return;
-                } else if (!(view instanceof wl0) && !(view instanceof cy)) {
-                    if (view instanceof org.telegram.ui.Components.w9) {
+                } else if (!(view instanceof vl0) && !(view instanceof cy)) {
+                    if (view instanceof org.telegram.ui.Components.v9) {
                         rect.bottom = AndroidUtilities.dp(12.0f);
                         return;
                     }
@@ -106,14 +106,14 @@ public final class r1 extends s4.n0 {
                 }
             case 4:
                 recyclerView.getClass();
-                if (RecyclerView.S(view) == ((ArrayList) this.f5399b).size() - 1) {
+                if (RecyclerView.S(view) == ((ArrayList) this.f5400b).size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                     return;
                 }
                 return;
             case 5:
                 recyclerView.getClass();
-                if (RecyclerView.S(view) == ((gi0) this.f5399b).f33879c.size() - 1) {
+                if (RecyclerView.S(view) == ((hi0) this.f5400b).f34216c.size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                     return;
                 }
@@ -122,19 +122,19 @@ public final class r1 extends s4.n0 {
                 super.a(rect, view, recyclerView, z0Var);
                 recyclerView.getClass();
                 int S = RecyclerView.S(view);
-                sj0 sj0Var = (sj0) this.f5399b;
-                if (S == sj0Var.f37347c0.size()) {
-                    rect.bottom = sj0Var.f37356l0;
+                uj0 uj0Var = (uj0) this.f5400b;
+                if (S == uj0Var.f38116c0.size()) {
+                    rect.bottom = uj0Var.f38125l0;
                     return;
                 }
                 return;
             case 7:
                 recyclerView.getClass();
                 int S2 = RecyclerView.S(view);
-                wp0 wp0Var = (wp0) this.f5399b;
-                int i13 = wp0Var.f39205b0;
+                wp0 wp0Var = (wp0) this.f5400b;
+                int i13 = wp0Var.f39195b0;
                 if (S2 >= i13) {
-                    int i14 = wp0Var.f39211f0;
+                    int i14 = wp0Var.f39201f0;
                     if (S2 < i13 + i14) {
                         int i15 = S2 - i13;
                         int i16 = i15 / 3;
@@ -190,9 +190,9 @@ public final class r1 extends s4.n0 {
                 super.a(rect, view, recyclerView, z0Var);
                 recyclerView.getClass();
                 int S3 = RecyclerView.S(view);
-                tg.z0 z0Var2 = (tg.z0) this.f5399b;
-                if (S3 == z0Var2.f43485d0.size()) {
-                    rect.bottom = z0Var2.f43496p0;
+                tg.z0 z0Var2 = (tg.z0) this.f5400b;
+                if (S3 == z0Var2.f43529d0.size()) {
+                    rect.bottom = z0Var2.f43540p0;
                     return;
                 }
                 return;

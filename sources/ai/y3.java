@@ -11,8 +11,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.cy;
 import org.telegram.ui.Components.gu;
 import org.telegram.ui.Components.hu;
-import org.telegram.ui.Components.jd0;
-import org.telegram.ui.Components.nv;
+import org.telegram.ui.Components.id0;
+import org.telegram.ui.Components.ov;
 import org.telegram.ui.LaunchActivity;
 public final class y3 extends org.telegram.ui.ActionBar.n2 {
     public final int f1748a;
@@ -46,7 +46,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             case 3:
                 return ((ci.r6) this.f1749b).getContext();
             case 4:
-                return ((hu) this.f1749b).f24737a.getContext();
+                return ((hu) this.f1749b).f24759a.getContext();
             case 12:
                 return ((yh.y3) this.f1749b).getContext();
             default:
@@ -73,7 +73,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             case 5:
                 return this.currentAccount;
             case 6:
-                return ((cy) this.f1749b).E.f25892c1;
+                return ((cy) this.f1749b).E.f25898c1;
             case 9:
                 return this.currentAccount;
             case 12:
@@ -87,10 +87,10 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
         ViewGroup viewGroup2;
         switch (this.f1748a) {
             case 5:
-                viewGroup = ((org.telegram.ui.ActionBar.f3) ((nv) this.f1749b).f26776x).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.f3) ((ov) this.f1749b).f27053x).containerView;
                 return viewGroup;
             case 6:
-                return ((cy) this.f1749b).E.f25936r;
+                return ((cy) this.f1749b).E.f25942r;
             case 7:
             case 8:
             default:
@@ -106,10 +106,10 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
         ViewGroup viewGroup;
         switch (this.f1748a) {
             case 5:
-                viewGroup = ((org.telegram.ui.ActionBar.f3) ((nv) this.f1749b).f26776x).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.f3) ((ov) this.f1749b).f27053x).containerView;
                 return (FrameLayout) viewGroup;
             case 6:
-                return ((cy) this.f1749b).E.f25936r;
+                return ((cy) this.f1749b).E.f25942r;
             case 7:
             case 8:
             default:
@@ -148,7 +148,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             case 8:
                 return ((org.telegram.ui.web.d1) this.f1749b).W;
             case 9:
-                org.telegram.ui.ActionBar.n2 n2Var = ((rg.k1) this.f1749b).f42616t0;
+                org.telegram.ui.ActionBar.n2 n2Var = ((rg.k1) this.f1749b).f42660t0;
                 if (n2Var == null) {
                     return null;
                 }
@@ -176,18 +176,18 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
     }
 
     @Override
-    public org.telegram.ui.ActionBar.e6 getResourceProvider() {
-        org.telegram.ui.ActionBar.e6 e6Var;
-        org.telegram.ui.ActionBar.e6 e6Var2;
-        org.telegram.ui.ActionBar.e6 e6Var3;
+    public org.telegram.ui.ActionBar.f6 getResourceProvider() {
+        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.f6 f6Var2;
+        org.telegram.ui.ActionBar.f6 f6Var3;
         switch (this.f1748a) {
             case 0:
                 return new x3(0, ((f6) this.f1749b).B0);
             case 1:
                 return ((s6) this.f1749b).f1507b.f1053s;
             case 2:
-                e6Var = ((org.telegram.ui.ActionBar.f3) ((ci.z5) this.f1749b)).resourcesProvider;
-                return new x3(5, e6Var);
+                f6Var = ((org.telegram.ui.ActionBar.f3) ((ci.z5) this.f1749b)).resourcesProvider;
+                return new x3(5, f6Var);
             case 3:
                 return ((ci.r6) this.f1749b).G1;
             case 4:
@@ -196,17 +196,17 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
             default:
                 return super.getResourceProvider();
             case 5:
-                e6Var2 = ((org.telegram.ui.ActionBar.f3) ((nv) this.f1749b).f26776x).resourcesProvider;
-                return e6Var2;
+                f6Var2 = ((org.telegram.ui.ActionBar.f3) ((ov) this.f1749b).f27053x).resourcesProvider;
+                return f6Var2;
             case 6:
                 return ((cy) this.f1749b).E.Z1;
             case 8:
                 return new x3(9, ((org.telegram.ui.web.d1) this.f1749b).e);
             case 10:
-                return new o0.a(new d());
+                return new m5.e((org.telegram.ui.ActionBar.f6) new d());
             case 11:
-                e6Var3 = ((org.telegram.ui.ActionBar.f3) ((xh.z4) this.f1749b)).resourcesProvider;
-                return e6Var3;
+                f6Var3 = ((org.telegram.ui.ActionBar.f3) ((xh.z4) this.f1749b)).resourcesProvider;
+                return f6Var3;
         }
     }
 
@@ -214,7 +214,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
     public Dialog getVisibleDialog() {
         switch (this.f1748a) {
             case 4:
-                return new gu(this, ((hu) this.f1749b).f24737a.getContext());
+                return new gu(this, ((hu) this.f1749b).f24759a.getContext());
             default:
                 return super.getVisibleDialog();
         }
@@ -241,7 +241,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
         switch (this.f1748a) {
             case 7:
                 if (z10 && z11) {
-                    ((jd0) this.f1749b).dismiss();
+                    ((id0) this.f1749b).dismiss();
                     return;
                 }
                 return;
@@ -267,7 +267,7 @@ public final class y3 extends org.telegram.ui.ActionBar.n2 {
                     return false;
                 }
                 ?? obj = new Object();
-                obj.f19545a = true;
+                obj.f19577a = true;
                 R.showAsSheet(n2Var, obj);
                 return true;
             case 10:

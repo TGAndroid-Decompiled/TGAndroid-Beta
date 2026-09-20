@@ -8,14 +8,14 @@ import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.zc;
 import org.telegram.ui.fm0;
 public final class o3 extends zc {
-    public final org.telegram.ui.ActionBar.e6 N;
+    public final org.telegram.ui.ActionBar.f6 N;
     public String O;
     public int P;
 
-    public o3(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public o3(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null);
-        this.N = e6Var;
-        setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, e6Var));
+        this.N = f6Var;
+        setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
         setTextSize(1, 14.0f);
         setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
     }

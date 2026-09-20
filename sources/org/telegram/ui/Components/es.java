@@ -9,34 +9,34 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class es {
-    public final int f23956a;
-    public String f23957b;
-    public final ArrayList f23958c;
+    public final int f23924a;
+    public String f23925b;
+    public final ArrayList f23926c;
     public final boolean[] d;
     public boolean[] e;
-    public boolean f23959f;
-    public final int f23960g;
+    public boolean f23927f;
+    public final int f23928g;
     public int h;
-    public int f23961i;
-    public final fs f23962j;
+    public int f23929i;
+    public final fs f23930j;
 
     public es(fs fsVar, int i10, ArrayList arrayList) {
-        this.f23962j = fsVar;
-        this.f23956a = i10;
+        this.f23930j = fsVar;
+        this.f23924a = i10;
         int size = arrayList.size();
-        this.f23960g = size;
-        this.f23961i = 0;
+        this.f23928g = size;
+        this.f23929i = 0;
         if (size > 0) {
-            this.f23958c = arrayList;
+            this.f23926c = arrayList;
             this.d = new boolean[size];
-            this.f23959f = true;
+            this.f23927f = true;
             g();
         }
     }
 
     public final boolean a() {
         boolean[] zArr;
-        for (int i10 = 0; i10 < this.f23960g; i10++) {
+        for (int i10 = 0; i10 < this.f23928g; i10++) {
             if (!this.d[i10] || ((zArr = this.e) != null && !zArr[i10])) {
                 return false;
             }
@@ -49,7 +49,7 @@ public final class es {
         if (this.e != null) {
             i10 = this.h;
         } else {
-            i10 = this.f23960g;
+            i10 = this.f23928g;
         }
         if (i10 > 1) {
             return true;
@@ -62,7 +62,7 @@ public final class es {
         if (this.e != null) {
             i10 = this.h;
         } else {
-            i10 = this.f23960g;
+            i10 = this.f23928g;
         }
         if (i10 > 0) {
             return true;
@@ -76,7 +76,7 @@ public final class es {
         boolean z10 = false;
         int i10 = 0;
         while (true) {
-            int i11 = this.f23960g;
+            int i11 = this.f23928g;
             zArr = this.d;
             if (i10 >= i11) {
                 break;
@@ -87,7 +87,7 @@ public final class es {
         z10 = true;
         Arrays.fill(zArr, !z10);
         f();
-        this.f23962j.X.N(true);
+        this.f23930j.X.N(true);
     }
 
     public final void e(int i10) {
@@ -99,27 +99,27 @@ public final class es {
         boolean z10 = zArr2[i10];
         zArr2[i10] = !z10;
         if (!z10) {
-            this.f23961i++;
+            this.f23929i++;
         } else {
-            this.f23961i--;
+            this.f23929i--;
         }
-        this.f23962j.X.N(true);
+        this.f23930j.X.N(true);
     }
 
     public final void f() {
-        this.f23961i = 0;
+        this.f23929i = 0;
         this.h = 0;
-        for (int i10 = 0; i10 < this.f23960g; i10++) {
+        for (int i10 = 0; i10 < this.f23928g; i10++) {
             boolean[] zArr = this.e;
             boolean[] zArr2 = this.d;
             if (zArr == null) {
                 if (zArr2[i10]) {
-                    this.f23961i++;
+                    this.f23929i++;
                 }
             } else if (zArr[i10]) {
                 this.h++;
                 if (zArr2[i10]) {
-                    this.f23961i++;
+                    this.f23929i++;
                 }
             }
         }
@@ -132,12 +132,12 @@ public final class es {
         String formatString2;
         String formatString3;
         String formatString4;
-        int i10 = this.f23960g;
+        int i10 = this.f23928g;
         if (i10 != 0) {
             for (int i11 = 0; i11 < i10; i11++) {
                 boolean[] zArr = this.e;
                 if (zArr == null || zArr[i11]) {
-                    tLObject = (TLObject) this.f23958c.get(i11);
+                    tLObject = (TLObject) this.f23926c.get(i11);
                     break;
                 }
             }
@@ -147,31 +147,31 @@ public final class es {
             } else {
                 formatName = ContactsController.formatName(tLObject);
             }
-            int i12 = this.f23956a;
+            int i12 = this.f23924a;
             if (i12 == 0) {
-                this.f23957b = LocaleController.getString(R.string.DeleteReportSpam);
+                this.f23925b = LocaleController.getString(R.string.DeleteReportSpam);
             } else if (i12 == 1) {
                 if (b()) {
                     formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
                 } else {
                     formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
                 }
-                this.f23957b = formatString4;
+                this.f23925b = formatString4;
             } else if (i12 == 3) {
                 if (b()) {
                     formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
                 } else {
                     formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
                 }
-                this.f23957b = formatString3;
+                this.f23925b = formatString3;
             } else if (i12 == 2) {
-                if (this.f23962j.f24210g0) {
+                if (this.f23930j.f24164g0) {
                     if (b()) {
                         formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
                     } else {
                         formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
                     }
-                    this.f23957b = formatString2;
+                    this.f23925b = formatString2;
                     return;
                 }
                 if (b()) {
@@ -179,7 +179,7 @@ public final class es {
                 } else {
                     formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
                 }
-                this.f23957b = formatString;
+                this.f23925b = formatString;
             }
         }
     }

@@ -1,18 +1,105 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-public interface xy0 {
-    void a(ci.i2 i2Var);
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+public final class xy0 extends View {
+    public String f30388a;
+    public Drawable f30389b;
+    public boolean f30390c;
+    public int d;
+    public final d6 e;
+    public final yy0 f30391f;
 
-    EditTextBoldCursor getEditField();
+    public xy0(yy0 yy0Var, Context context) {
+        super(context);
+        this.f30391f = yy0Var;
+        this.d = 0;
+        this.e = new d6(this, 350L, new OvershootInterpolator(5.0f));
+    }
 
-    Editable getEditText();
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        if (isPressed()) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        float d = ((1.0f - this.e.d(f7, false)) * 0.2f) + 0.8f;
+        if (this.f30389b != null) {
+            int height = getHeight() - getPaddingBottom();
+            this.f30389b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
+            Drawable drawable = this.f30389b;
+            if (drawable instanceof p5) {
+                ((p5) drawable).q(System.currentTimeMillis());
+            }
+            this.f30389b.draw(canvas);
+        }
+    }
 
-    CharSequence getFieldText();
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Drawable drawable = this.f30389b;
+        if (drawable instanceof p5) {
+            ((p5) drawable).a(this);
+        }
+        this.f30390c = true;
+    }
 
-    org.telegram.ui.ActionBar.n2 getParentFragment();
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Drawable drawable = this.f30389b;
+        if (drawable instanceof p5) {
+            ((p5) drawable).o(this);
+        }
+        this.f30390c = false;
+    }
 
-    int getVisibility();
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int dp = AndroidUtilities.dp(3.0f);
+        float f10 = 6.66f;
+        if (this.d == 0) {
+            f7 = 0.0f;
+        } else {
+            f7 = 6.66f;
+        }
+        int dp2 = AndroidUtilities.dp(f7 + 3.0f);
+        int dp3 = AndroidUtilities.dp(3.0f);
+        if (this.d != 0) {
+            f10 = 0.0f;
+        }
+        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f10 + 3.0f));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+    }
 
-    void setFieldText(CharSequence charSequence);
+    public void setDirection(int i10) {
+        this.d = i10;
+        invalidate();
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f30389b;
+        if (drawable2 instanceof p5) {
+            ((p5) drawable2).o(this);
+        }
+        this.f30389b = drawable;
+        if ((drawable instanceof p5) && this.f30390c) {
+            ((p5) drawable).a(this);
+        }
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        super.setPressed(z10);
+        invalidate();
+    }
 }

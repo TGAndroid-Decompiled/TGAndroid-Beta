@@ -11,14 +11,14 @@ public enum t extends b2 {
             if (d != '/') {
                 lVar.h("<");
                 aVar.q();
-                lVar.f7698c = b2.f7656f;
+                lVar.f7699c = b2.f7657f;
                 return;
             }
             lVar.e();
-            lVar.f7698c = b2.G;
+            lVar.f7699c = b2.G;
             return;
         }
         lVar.h("<!");
-        lVar.f7698c = b2.I;
+        lVar.f7699c = b2.I;
     }
 }

@@ -1,38 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
+import android.view.View;
 import android.widget.FrameLayout;
-public final class ib extends FrameLayout {
-    public final ub f24888a;
-    public final Rect f24889b;
-    public final GestureDetector f24890c;
-    public boolean d;
-    public boolean e;
-    public float f24891f;
-    public float h;
-    public float f24892n;
-    public boolean f24893r;
-    public boolean f24894s;
-    public boolean v;
-    public boolean f24895w;
-    public final FrameLayout f24896x;
-    public final qc f24897y;
+import j$.util.Objects;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ai1;
+public final class ib implements View.OnLayoutChangeListener {
+    public final boolean f24983a;
+    public final pc f24984b;
 
-    public ib(qc qcVar, ub ubVar, FrameLayout frameLayout) {
-        super(ubVar.getContext());
-        this.f24897y = qcVar;
-        this.f24896x = frameLayout;
-        this.f24889b = new Rect();
-        this.f24888a = ubVar;
-        GestureDetector gestureDetector = new GestureDetector(ubVar.getContext(), new fc(this, ubVar));
-        this.f24890c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(ubVar);
+    public ib(pc pcVar, boolean z10) {
+        this.f24984b = pcVar;
+        this.f24983a = z10;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ib.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        nb nbVar;
+        int i18;
+        pc pcVar = this.f24984b;
+        tb tbVar = pcVar.e;
+        tbVar.removeOnLayoutChangeListener(this);
+        if (pcVar.f27254l) {
+            tbVar.onShow();
+            org.telegram.ui.ActionBar.n2 n2Var = pcVar.f27250g;
+            boolean z10 = this.f24983a;
+            if (z10 && (n2Var instanceof ai1)) {
+                n2Var = ((ai1) n2Var).X();
+            }
+            FrameLayout frameLayout = pcVar.h;
+            if (n2Var == null || (nbVar = n2Var.getBulletinDelegate()) == null) {
+                if (frameLayout != null) {
+                    Object tag = frameLayout.getTag(R.id.bulletin_delegate_tag);
+                    if (tag instanceof nb) {
+                        nbVar = (nb) tag;
+                    }
+                }
+                nbVar = null;
+            }
+            pcVar.f27258p = nbVar;
+            if (nbVar == null && n2Var != null) {
+                pcVar.f27258p = new ai.w4(n2Var, 5);
+            }
+            o1.k kVar = pcVar.d;
+            if (kVar == null || !kVar.f15515f) {
+                nb nbVar2 = pcVar.f27258p;
+                if (nbVar2 != null) {
+                    i18 = nbVar2.f(pcVar.f27246a);
+                } else {
+                    i18 = 0;
+                }
+                pcVar.f27257o = i18;
+            }
+            nb nbVar3 = pcVar.f27258p;
+            if (nbVar3 != null) {
+                nbVar3.b(pcVar);
+            }
+            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !pcVar.f27261s) {
+                if (tbVar != null && pcVar.f27259q == null) {
+                    pcVar.f27259q = tbVar.createTransition();
+                }
+                tbVar.transitionRunningEnter = true;
+                tbVar.delegate = pcVar.f27258p;
+                tbVar.invalidate();
+                sb sbVar = pcVar.f27259q;
+                Objects.requireNonNull(tbVar);
+                sbVar.U(tbVar, new eb(tbVar, 1), new og(this, 15), new ml(2, this, z10));
+                return;
+            }
+            nb nbVar4 = pcVar.f27258p;
+            tbVar.delegate = nbVar4;
+            if (nbVar4 != null && !z10) {
+                nbVar4.c(tbVar.getHeight());
+            }
+            pcVar.l();
+            tbVar.onEnterTransitionStart();
+            tbVar.onEnterTransitionEnd();
+            if (pcVar.f27263u) {
+                pcVar.i(true);
+            }
+        }
     }
 }

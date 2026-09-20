@@ -14,8 +14,8 @@ public final class kw0 extends org.telegram.ui.Cells.u1 {
     public final int Ke;
     public final mw0 Le;
 
-    public kw0(mw0 mw0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, byte[] bArr, int i11, int i12) {
-        super(context, i10, false, null, e6Var);
+    public kw0(mw0 mw0Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, byte[] bArr, int i11, int i12) {
+        super(context, i10, false, null, f6Var);
         this.Le = mw0Var;
         this.Ie = bArr;
         this.Je = i11;
@@ -26,9 +26,9 @@ public final class kw0 extends org.telegram.ui.Cells.u1 {
 
     @Override
     public final void Y1(Canvas canvas) {
-        this.f21340i6 = 0;
-        this.f21354j6 = this.Y5.size() - 1;
-        this.f21369k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f35768y;
+        this.f21343i6 = 0;
+        this.f21357j6 = this.Y5.size() - 1;
+        this.f21372k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f35843y;
         super.Y1(canvas);
     }
 
@@ -49,12 +49,12 @@ public final class kw0 extends org.telegram.ui.Cells.u1 {
         } else {
             f7 = 0.0f;
         }
-        rectF.top = AndroidUtilities.lerp(dp, f7, mw0Var.f35768y) + f10;
+        rectF.top = AndroidUtilities.lerp(dp, f7, mw0Var.f35843y) + f10;
         float f11 = rectF.bottom;
         boolean z10 = mw0Var.V;
         float dp2 = AndroidUtilities.dp(3.0f);
         if (!z10) {
-            dp2 = AndroidUtilities.lerp(dp2, 0.0f, mw0Var.f35768y);
+            dp2 = AndroidUtilities.lerp(dp2, 0.0f, mw0Var.f35843y);
         }
         rectF.bottom = f11 + dp2;
         Path path = this.Ge;
@@ -62,7 +62,7 @@ public final class kw0 extends org.telegram.ui.Cells.u1 {
         path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
         Paint paint = this.He;
         paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.j6.l1(mw0Var.f35768y * 0.2f, -16777216));
+        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.j6.l1(mw0Var.f35843y * 0.2f, -16777216));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
         canvas.clipPath(path);
         S1(canvas);

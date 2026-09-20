@@ -6,27 +6,27 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class bm0 implements View.OnTouchListener {
-    public final int f32413a;
-    public final pn0 f32414b;
+    public final int f32496a;
+    public final pn0 f32497b;
 
     public bm0(pn0 pn0Var, int i10) {
-        this.f32413a = i10;
-        this.f32414b = pn0Var;
+        this.f32496a = i10;
+        this.f32497b = pn0Var;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f32413a;
-        pn0 pn0Var = this.f32414b;
+        int i10 = this.f32496a;
+        pn0 pn0Var = this.f32497b;
         switch (i10) {
             case 0:
                 if (pn0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    au auVar = new au(null, false);
-                    auVar.f32140r = new z10(23, pn0Var, view);
-                    pn0Var.presentFragment(auVar);
+                    bu buVar = new bu(null, false);
+                    buVar.f32544r = new z10(23, pn0Var, view);
+                    pn0Var.presentFragment(buVar);
                 }
                 return true;
             case 1:
@@ -36,7 +36,7 @@ public final class bm0 implements View.OnTouchListener {
                 if (motionEvent.getAction() == 1) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pn0Var.getParentActivity());
                     String string = LocaleController.getString(R.string.PassportSelectGender);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18622a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
                     b2Var.R = string;
                     alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new vv(pn0Var, 2));
                     alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
@@ -48,9 +48,9 @@ public final class bm0 implements View.OnTouchListener {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    au auVar2 = new au(null, false);
-                    auVar2.f32140r = new cm0(pn0Var, 2);
-                    pn0Var.presentFragment(auVar2);
+                    bu buVar2 = new bu(null, false);
+                    buVar2.f32544r = new cm0(pn0Var, 2);
+                    pn0Var.presentFragment(buVar2);
                 }
                 return true;
             default:
@@ -58,9 +58,9 @@ public final class bm0 implements View.OnTouchListener {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    au auVar3 = new au(null, false);
-                    auVar3.f32140r = new cm0(pn0Var, 3);
-                    pn0Var.presentFragment(auVar3);
+                    bu buVar3 = new bu(null, false);
+                    buVar3.f32544r = new cm0(pn0Var, 3);
+                    pn0Var.presentFragment(buVar3);
                 }
                 return true;
         }

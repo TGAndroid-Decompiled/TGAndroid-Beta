@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class u7 implements Runnable {
-    public final int f17621a;
-    public final MediaDataController f17622b;
-    public final ArrayList f17623c;
+    public final int f17658a;
+    public final MediaDataController f17659b;
+    public final ArrayList f17660c;
 
     public u7(MediaDataController mediaDataController, ArrayList arrayList, int i10) {
-        this.f17621a = i10;
-        this.f17622b = mediaDataController;
-        this.f17623c = arrayList;
+        this.f17658a = i10;
+        this.f17659b = mediaDataController;
+        this.f17660c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f17621a) {
+        switch (this.f17658a) {
             case 0:
-                this.f17622b.lambda$loadRepliesOfDraftReplies$0(this.f17623c);
+                this.f17659b.lambda$loadRepliesOfDraftReplies$0(this.f17660c);
                 return;
             default:
-                this.f17622b.lambda$broadcastPinnedMessage$168(this.f17623c);
+                this.f17659b.lambda$broadcastPinnedMessage$168(this.f17660c);
                 return;
         }
     }

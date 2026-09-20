@@ -5,21 +5,21 @@ import android.util.Log;
 import java.util.HashMap;
 import org.json.JSONObject;
 public final class i {
-    public String f3900a;
+    public String f3901a;
 
     public static void a(aa.a aVar, da.d dVar) {
-        String str = dVar.f7586a;
+        String str = dVar.f7587a;
         if (str != null) {
             aVar.r("X-CRASHLYTICS-GOOGLE-APP-ID", str);
         }
         aVar.r("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
         aVar.r("X-CRASHLYTICS-API-CLIENT-VERSION", "18.6.0");
         aVar.r("Accept", "application/json");
-        String str2 = dVar.f7587b;
+        String str2 = dVar.f7588b;
         if (str2 != null) {
             aVar.r("X-CRASHLYTICS-DEVICE-MODEL", str2);
         }
-        String str3 = dVar.f7588c;
+        String str3 = dVar.f7589c;
         if (str3 != null) {
             aVar.r("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
         }
@@ -27,7 +27,7 @@ public final class i {
         if (str4 != null) {
             aVar.r("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = dVar.e.b().f45168a;
+        String str5 = dVar.e.b().f45212a;
         if (str5 != null) {
             aVar.r("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -36,9 +36,9 @@ public final class i {
     public static HashMap b(da.d dVar) {
         HashMap hashMap = new HashMap();
         hashMap.put("build_version", dVar.h);
-        hashMap.put("display_version", dVar.f7590g);
-        hashMap.put("source", Integer.toString(dVar.f7591i));
-        String str = dVar.f7589f;
+        hashMap.put("display_version", dVar.f7591g);
+        hashMap.put("source", Integer.toString(dVar.f7592i));
+        String str = dVar.f7590f;
         if (!TextUtils.isEmpty(str)) {
             hashMap.put("instance", str);
         }
@@ -46,9 +46,9 @@ public final class i {
     }
 
     public JSONObject c(aa.b bVar) {
-        String str = this.f3900a;
+        String str = this.f3901a;
         int i10 = bVar.f363c;
-        t9.b bVar2 = t9.b.f43308a;
+        t9.b bVar2 = t9.b.f43352a;
         bVar2.c("Settings response code was: " + i10);
         if (i10 != 200 && i10 != 201 && i10 != 202 && i10 != 203) {
             String str2 = "Settings request failed; (status: " + i10 + ") from " + str;

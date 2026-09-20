@@ -3,7 +3,7 @@ package ai;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class h0 extends org.telegram.ui.Components.k9 {
+public final class h0 extends org.telegram.ui.Components.j9 {
     public final int e;
 
     public h0(int i10, Context context, boolean z10) {
@@ -33,7 +33,7 @@ public final class h0 extends org.telegram.ui.Components.k9 {
         int f7;
         switch (this.e) {
             case 1:
-                int i12 = this.f25645a.f25257n;
+                int i12 = this.f25302a.f24956n;
                 if (i12 == 0) {
                     f7 = 0;
                 } else {

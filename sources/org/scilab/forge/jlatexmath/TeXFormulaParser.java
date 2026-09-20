@@ -45,7 +45,7 @@ public class TeXFormulaParser {
             if ("false".equals(str)) {
                 return Boolean.FALSE;
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.i("has an invalid '", str2, "'-value : '", str, "'!"));
+            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.k("has an invalid '", str2, "'-value : '", str, "'!"));
         }
     }
 
@@ -145,7 +145,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Float.parseFloat(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.i("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.k("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
@@ -160,7 +160,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Integer.parseInt(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.i("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.k("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }

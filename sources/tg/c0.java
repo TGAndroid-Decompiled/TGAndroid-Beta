@@ -14,17 +14,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d3;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.bw0;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.ab;
+import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.pc;
+import org.telegram.ui.Components.ul0;
 import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.wl0;
 import org.telegram.ui.LaunchActivity;
-public final class c0 extends bb {
+public final class c0 extends ab {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public b0 Z;
-    public final String f43355a0;
+    public final String f43399a0;
 
     public c0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(n2Var, true);
@@ -36,7 +36,7 @@ public final class c0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f43355a0 = str;
+        this.f43399a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -46,9 +46,9 @@ public final class c0 extends bb {
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
         b0Var.e = n2Var;
-        b0Var.f43979f = tL_payments_checkedGiftCode;
+        b0Var.f44023f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f43980n = d3Var;
+        b0Var.f44024n = d3Var;
     }
 
     public static boolean S(Intent intent, nf.e eVar) {
@@ -89,7 +89,7 @@ public final class c0 extends bb {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (eVar != null) {
             eVar.d();
-            eVar.f15394b = new d(atomicBoolean, 1);
+            eVar.f15429b = new d(atomicBoolean, 1);
         }
         e4 e4Var = new e4(atomicBoolean, n2Var, str, eVar, 15);
         f fVar = new f(atomicBoolean, eVar, 1);
@@ -101,12 +101,12 @@ public final class c0 extends bb {
     }
 
     @Override
-    public final void G(bw0 bw0Var) {
-        qc.a(this.container, new d9(14));
+    public final void G(aw0 aw0Var) {
+        pc.a(this.container, new d9(14));
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
+    public final ul0 v(vl0 vl0Var) {
         b0 b0Var = new b0(this, this.resourcesProvider);
         this.Z = b0Var;
         return b0Var;

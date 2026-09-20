@@ -1,62 +1,29 @@
 package yf;
 
-import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.gh1;
-import yh.y3;
-public final class q implements Vector.TLDeserializer, a2, d9.e, q9.d {
-    public final int f47107a;
+import org.telegram.tgnet.tl.TL_ephemeral;
+public class q {
+    public final ArrayList f47152a = new ArrayList();
+    public final a0.i f47153b = new a0.i();
+    public final a0.i f47154c = new a0.i();
 
-    public q(int i10) {
-        this.f47107a = i10;
-    }
-
-    @Override
-    public Object G(cf.c cVar) {
-        switch (this.f47107a) {
-            case 12:
-                return FirebaseSessionsRegistrar.e(cVar);
-            case 13:
-                return FirebaseSessionsRegistrar.f(cVar);
-            case 14:
-                return FirebaseSessionsRegistrar.a(cVar);
-            case 15:
-                return FirebaseSessionsRegistrar.b(cVar);
-            case 16:
-                return FirebaseSessionsRegistrar.d(cVar);
-            default:
-                return FirebaseSessionsRegistrar.c(cVar);
+    public static void a(q qVar, TL_ephemeral.EphemeralMessage ephemeralMessage, TLRPC.TL_message tL_message, MessageObject messageObject) {
+        a0.i iVar = qVar.f47154c;
+        long dialogId = MessageObject.getDialogId(tL_message);
+        qVar.f47152a.add(ephemeralMessage);
+        a0.i iVar2 = qVar.f47153b;
+        TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) iVar2.f(dialogId);
+        if (tL_messages_messages == null) {
+            tL_messages_messages = new TLRPC.TL_messages_messages();
+            iVar2.k(tL_messages_messages, dialogId);
         }
-    }
-
-    @Override
-    public java.lang.Object apply(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: yf.q.apply(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i10, z10);
-    }
-
-    @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f47107a) {
-            case 1:
-                y3.d2(new gh1(6, null));
-                return;
-            default:
-                int i11 = y3.f48255q1;
-                return;
+        tL_messages_messages.messages.add(tL_message);
+        ArrayList arrayList = (ArrayList) iVar.f(dialogId);
+        if (arrayList == null) {
+            arrayList = org.telegram.messenger.l0.i(dialogId, iVar);
         }
-    }
-
-    public q(y3 y3Var) {
-        this.f47107a = 1;
+        arrayList.add(messageObject);
     }
 }

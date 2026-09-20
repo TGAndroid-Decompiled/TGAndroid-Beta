@@ -1,20 +1,11 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class n71 extends s4.s0 {
-    public final q71 f35838a;
-
-    public n71(q71 q71Var) {
-        this.f35838a = q71Var;
-    }
-
+public final class n71 extends FrameLayout {
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        q71 q71Var = this.f35838a;
-        if (q71Var.d.K1) {
-            AndroidUtilities.hideKeyboard(q71Var.f36712c0);
-        }
-        q71.S(q71Var);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(240.0f), 1073741824));
     }
 }

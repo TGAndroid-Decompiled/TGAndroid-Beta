@@ -30,7 +30,7 @@ public final class d0 implements o {
         }
         e2.d.g(z10);
         e2.v vVar = new e2.v(i10);
-        ((l) pVar).h(vVar.f7933a, 0, i10, false);
+        ((l) pVar).i(vVar.f7934a, 0, i10, false);
         if (vVar.D() == i11) {
             return true;
         }
@@ -46,8 +46,8 @@ public final class d0 implements o {
         String str = this.f3753c;
         rVar.f3252p = r0.n(str);
         rVar.f3253q = r0.n(str);
-        hg.k0.r(rVar, Z1);
-        this.f3754f.e1();
+        hg.k0.s(rVar, Z1);
+        this.f3754f.f1();
         this.f3754f.X1(new Object());
         this.e = 1;
     }
@@ -63,7 +63,7 @@ public final class d0 implements o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = e9.i0.f8083b;
+        e9.g0 g0Var = e9.i0.f8084b;
         return a1.e;
     }
 

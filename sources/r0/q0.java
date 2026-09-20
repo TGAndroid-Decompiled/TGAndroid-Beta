@@ -7,28 +7,28 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.PathInterpolator;
 import java.util.Iterator;
 import java.util.List;
-public final class q0 extends v0 {
+public final class q0 extends u0 {
     public static final PathInterpolator e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final u1.a f42119f = new u1.b(u1.a.f43551c);
-    public static final DecelerateInterpolator f42120g = new DecelerateInterpolator(1.5f);
+    public static final u1.a f42164f = new u1.b(u1.a.f43595c);
+    public static final DecelerateInterpolator f42165g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 
-    public static void e(View view, w0 w0Var) {
+    public static void e(View view, v0 v0Var) {
         b2.g i10 = i(view);
         if (i10 != null) {
             i10.S0();
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
-                e(viewGroup.getChildAt(i11), w0Var);
+                e(viewGroup.getChildAt(i11), v0Var);
             }
         }
     }
 
-    public static void f(View view, m1 m1Var, boolean z10) {
+    public static void f(View view, l1 l1Var, boolean z10) {
         b2.g i10 = i(view);
         if (i10 != null) {
-            i10.f3000a = m1Var;
+            i10.f3000a = l1Var;
             if (!z10) {
                 z10 = true;
             }
@@ -36,38 +36,38 @@ public final class q0 extends v0 {
         if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
-                f(viewGroup.getChildAt(i11), m1Var, z10);
+                f(viewGroup.getChildAt(i11), l1Var, z10);
             }
         }
     }
 
-    public static void g(View view, m1 m1Var, List list) {
+    public static void g(View view, l1 l1Var, List list) {
         b2.g i10 = i(view);
         if (i10 != null) {
-            i10.T0(m1Var, list);
+            i10.T0(l1Var, list);
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
-                g(viewGroup.getChildAt(i11), m1Var, list);
+                g(viewGroup.getChildAt(i11), l1Var, list);
             }
         }
     }
 
-    public static void h(View view, w0 w0Var, o0.a aVar) {
+    public static void h(View view, v0 v0Var, m5.e eVar) {
         b2.g i10 = i(view);
         if (i10 != null) {
-            ph.e eVar = (ph.e) i10;
-            if (eVar.f41322c == 0) {
-                Iterator it = eVar.d.iterator();
+            ph.e eVar2 = (ph.e) i10;
+            if (eVar2.f41363c == 0) {
+                Iterator it = eVar2.d.iterator();
                 while (it.hasNext()) {
                     ((ph.d) it.next()).s();
                 }
             }
-            eVar.f41322c++;
+            eVar2.f41363c++;
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
-                h(viewGroup.getChildAt(i11), w0Var, aVar);
+                h(viewGroup.getChildAt(i11), v0Var, eVar);
             }
         }
     }
@@ -75,7 +75,7 @@ public final class q0 extends v0 {
     public static b2.g i(View view) {
         Object tag = view.getTag(2131296698);
         if (tag instanceof p0) {
-            return ((p0) tag).f42116a;
+            return ((p0) tag).f42161a;
         }
         return null;
     }

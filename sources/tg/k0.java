@@ -1,9 +1,9 @@
 package tg;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ob;
-import org.telegram.ui.Components.qc;
-public final class k0 implements ob {
+import org.telegram.ui.Components.nb;
+import org.telegram.ui.Components.pc;
+public final class k0 implements nb {
     @Override
     public final boolean a() {
         return true;
@@ -30,7 +30,7 @@ public final class k0 implements ob {
     }
 
     @Override
-    public final void b(qc qcVar) {
+    public final void b(pc pcVar) {
     }
 
     @Override
@@ -38,6 +38,6 @@ public final class k0 implements ob {
     }
 
     @Override
-    public final void d(qc qcVar) {
+    public final void d(pc pcVar) {
     }
 }

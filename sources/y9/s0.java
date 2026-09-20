@@ -1,15 +1,15 @@
 package y9;
 public final class s0 extends q1 {
-    public final long f46878a;
-    public final String f46879b;
-    public final String f46880c;
+    public final long f46925a;
+    public final String f46926b;
+    public final String f46927c;
     public final long d;
     public final int e;
 
     public s0(long j3, String str, String str2, long j10, int i10) {
-        this.f46878a = j3;
-        this.f46879b = str;
-        this.f46880c = str2;
+        this.f46925a = j3;
+        this.f46926b = str;
+        this.f46927c = str2;
         this.d = j10;
         this.e = i10;
     }
@@ -21,8 +21,8 @@ public final class s0 extends q1 {
         }
         if (obj instanceof q1) {
             s0 s0Var = (s0) ((q1) obj);
-            String str2 = s0Var.f46880c;
-            if (this.f46878a == s0Var.f46878a && this.f46879b.equals(s0Var.f46879b) && ((str = this.f46880c) != null ? str.equals(str2) : str2 == null) && this.d == s0Var.d && this.e == s0Var.e) {
+            String str2 = s0Var.f46927c;
+            if (this.f46925a == s0Var.f46925a && this.f46926b.equals(s0Var.f46926b) && ((str = this.f46927c) != null ? str.equals(str2) : str2 == null) && this.d == s0Var.d && this.e == s0Var.e) {
                 return true;
             }
         }
@@ -31,9 +31,9 @@ public final class s0 extends q1 {
 
     public final int hashCode() {
         int hashCode;
-        long j3 = this.f46878a;
-        int hashCode2 = (((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f46879b.hashCode()) * 1000003;
-        String str = this.f46880c;
+        long j3 = this.f46925a;
+        int hashCode2 = (((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f46926b.hashCode()) * 1000003;
+        String str = this.f46927c;
         if (str == null) {
             hashCode = 0;
         } else {
@@ -45,11 +45,11 @@ public final class s0 extends q1 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Frame{pc=");
-        sb2.append(this.f46878a);
+        sb2.append(this.f46925a);
         sb2.append(", symbol=");
-        sb2.append(this.f46879b);
+        sb2.append(this.f46926b);
         sb2.append(", file=");
-        sb2.append(this.f46880c);
+        sb2.append(this.f46927c);
         sb2.append(", offset=");
         sb2.append(this.d);
         sb2.append(", importance=");

@@ -9,10 +9,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ig implements Runnable {
-    public final ChatActivityEnterView f24952a;
+    public final ChatActivityEnterView f25042a;
 
     public ig(ChatActivityEnterView chatActivityEnterView) {
-        this.f24952a = chatActivityEnterView;
+        this.f25042a = chatActivityEnterView;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class ig implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f24952a;
+        ChatActivityEnterView chatActivityEnterView = this.f25042a;
         af afVar = chatActivityEnterView.G3;
         Activity activity = chatActivityEnterView.N2;
         ng ngVar = chatActivityEnterView.Y2;
@@ -30,15 +30,15 @@ public final class ig implements Runnable {
             ngVar.D();
             chatActivityEnterView.I3 = true;
             chatActivityEnterView.H3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f21976j1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22011j1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f21976j1.setTranslationY(0.0f);
+                chatActivityEnterView.f22011j1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f21928b3 = null;
-            chatActivityEnterView.f21921a3 = null;
-            if (chatActivityEnterView.f21933c1) {
+            chatActivityEnterView.f21963b3 = null;
+            chatActivityEnterView.f21956a3 = null;
+            if (chatActivityEnterView.f21968c1) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                         z10 = true;
@@ -84,20 +84,20 @@ public final class ig implements Runnable {
                     }
                     wg wgVar = chatActivityEnterView.Y0;
                     if (wgVar != null) {
-                        wgVar.f30035a = false;
+                        wgVar.f30039a = false;
                         wgVar.d = 0L;
                         wgVar.e = 0L;
-                        wgVar.f30036b = false;
+                        wgVar.f30040b = false;
                     }
                 }
             } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
             } else {
-                chatActivityEnterView.Y2.a1(1);
+                chatActivityEnterView.Y2.b1(1);
                 chatActivityEnterView.C2 = -1.0f;
                 ng ngVar2 = chatActivityEnterView.Y2;
                 if (ngVar2 != null) {
-                    storyItem = ngVar2.d1();
+                    storyItem = ngVar2.e1();
                 } else {
                     storyItem = null;
                 }
@@ -118,7 +118,7 @@ public final class ig implements Runnable {
                 if (wgVar2 != null) {
                     wgVar2.a(0L);
                 }
-                tg tgVar = chatActivityEnterView.f21981k1;
+                tg tgVar = chatActivityEnterView.f22016k1;
                 if (tgVar != null) {
                     tgVar.h = false;
                 }

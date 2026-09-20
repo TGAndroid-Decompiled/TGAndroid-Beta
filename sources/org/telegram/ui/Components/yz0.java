@@ -7,17 +7,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class yz0 extends FrameLayout {
-    public final b01 f30689a;
-    public boolean f30690b;
-    public boolean f30691c;
+    public final a01 f30652a;
+    public boolean f30653b;
+    public boolean f30654c;
     public boolean d;
-    public boolean e;
 
-    public yz0(b01 b01Var, View view, boolean z10) {
-        super(b01Var.getContext());
-        this.d = false;
-        this.e = true;
-        this.f30689a = b01Var;
+    public yz0(a01 a01Var, View view, boolean z10) {
+        super(a01Var.getContext());
+        this.f30652a = a01Var;
         setWillNotDraw(false);
         if (!z10) {
             setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
@@ -32,60 +29,72 @@ public final class yz0 extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        boolean z10 = this.f30690b;
-        b01 b01Var = this.f30689a;
-        if (z10 || this.f30691c) {
+        boolean z10 = this.f30654c;
+        a01 a01Var = this.f30652a;
+        if (z10 || this.d) {
             canvas2 = canvas;
             float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = b01Var.f22771c;
-            boolean z11 = this.f30690b;
-            if (z11 && this.d) {
+            float[] fArr = a01Var.f22473c;
+            boolean z11 = this.f30654c;
+            if (z11) {
                 f7 = dp;
             } else {
                 f7 = 0.0f;
             }
             fArr[1] = f7;
             fArr[0] = f7;
-            if (z11 && this.e) {
+            if (z11) {
                 f10 = dp;
             } else {
                 f10 = 0.0f;
             }
             fArr[3] = f10;
             fArr[2] = f10;
-            boolean z12 = this.f30691c;
-            if (z12 && this.e) {
+            boolean z12 = this.d;
+            if (z12) {
                 f11 = dp;
             } else {
                 f11 = 0.0f;
             }
             fArr[5] = f11;
             fArr[4] = f11;
-            dp = (z12 && this.d) ? 0.0f : 0.0f;
+            if (!z12) {
+                dp = 0.0f;
+            }
             fArr[7] = dp;
             fArr[6] = dp;
-            b01Var.f22770b.rewind();
+            a01Var.f22472b.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = b01Var.h;
-            float width = getWidth() - b01Var.h;
+            float f13 = a01Var.h;
+            float width = getWidth() - a01Var.h;
             float height = getHeight();
-            float f14 = b01Var.h;
-            if (this.f30691c) {
+            float f14 = a01Var.h;
+            if (this.d) {
                 f12 = -1.0f;
             } else {
                 f12 = 1.0f;
             }
             rectF.set(f13, f13, width, (f14 * AndroidUtilities.dp(f12)) + height);
-            if (!this.e) {
-                rectF.right += b01Var.f22772f;
+            a01Var.f22472b.addRoundRect(rectF, a01Var.f22473c, Path.Direction.CW);
+            if (this.f30653b) {
+                canvas2.drawPath(a01Var.f22472b, a01Var.d);
             }
-            b01Var.f22770b.addRoundRect(rectF, b01Var.f22771c, Path.Direction.CW);
-            canvas2.drawPath(b01Var.f22770b, b01Var.e);
+            canvas2.drawPath(a01Var.f22472b, a01Var.e);
         } else {
-            float f15 = b01Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f15, f15, getWidth() - b01Var.h, getHeight() + b01Var.h, b01Var.e);
+            if (this.f30653b) {
+                float f15 = a01Var.h;
+                canvas2 = canvas;
+                canvas2.drawRect(f15, f15, getWidth() + a01Var.h, getHeight() + a01Var.h, a01Var.d);
+            } else {
+                canvas2 = canvas;
+            }
+            float f16 = a01Var.h;
+            canvas2.drawRect(f16, f16, getWidth() - a01Var.h, getHeight() + a01Var.h, a01Var.e);
         }
         super.onDraw(canvas2);
+    }
+
+    public void setFilled(boolean z10) {
+        this.f30653b = z10;
     }
 }

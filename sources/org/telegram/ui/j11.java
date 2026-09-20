@@ -21,27 +21,27 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-public class j11 extends org.telegram.ui.Components.vl0 {
+public class j11 extends org.telegram.ui.Components.ul0 {
     public TLRPC.WebPage E;
     public boolean F;
-    public i11[] f34681c;
+    public i11[] f34740c;
     public final org.telegram.ui.ActionBar.n2 e;
-    public final int f34682f;
+    public final int f34741f;
     public final Context h;
-    public boolean f34686w;
-    public cy0 f34687x;
-    public String f34688y;
+    public boolean f34745w;
+    public rx0 f34746x;
+    public String f34747y;
     public final ArrayList d = new ArrayList();
-    public ArrayList f34683n = new ArrayList();
-    public ArrayList f34684r = new ArrayList();
-    public ArrayList f34685s = new ArrayList();
+    public ArrayList f34742n = new ArrayList();
+    public ArrayList f34743r = new ArrayList();
+    public ArrayList f34744s = new ArrayList();
     public final ArrayList v = new ArrayList();
 
     public j11(Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         this.e = n2Var;
-        this.f34682f = n2Var.getCurrentAccount();
+        this.f34741f = n2Var.getCurrentAccount();
         this.h = context;
-        this.f34681c = H(n2Var);
+        this.f34740c = H(n2Var);
         J();
     }
 
@@ -80,65 +80,65 @@ public class j11 extends org.telegram.ui.Components.vl0 {
         i11 i11Var22;
         i11 i11Var23;
         final int currentAccount = n2Var.getCurrentAccount();
-        i11 i11Var24 = new i11(LocaleController.getString(R.string.EditName), 500, 0, new cy0(14, n2Var, n2Var.getResourceProvider()));
+        i11 i11Var24 = new i11(LocaleController.getString(R.string.EditName), 500, 0, new rx0(16, n2Var, n2Var.getResourceProvider()));
         i11 i11Var25 = new i11(LocaleController.getString(R.string.ChangePhoneNumber), 501, 0, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -163,7 +163,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -256,7 +256,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -378,7 +378,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -500,7 +500,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -653,9 +653,9 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             }
         });
         i11Var29.a("tg://settings/notifications/groups");
-        i11 i11Var30 = new i11(4, LocaleController.getString(R.string.NotificationsChannels), LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new ri0(7, n2Var));
+        i11 i11Var30 = new i11(4, LocaleController.getString(R.string.NotificationsChannels), LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new si0(7, n2Var));
         i11Var30.a("tg://settings/notifications/channels");
-        i11 i11Var31 = new i11(5, LocaleController.getString(R.string.VoipNotificationSettings), "callsSectionRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new ri0(19, n2Var));
+        i11 i11Var31 = new i11(5, LocaleController.getString(R.string.VoipNotificationSettings), "callsSectionRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new si0(19, n2Var));
         i11 i11Var32 = new i11(6, LocaleController.getString(R.string.BadgeNumber), "badgeNumberSection", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new Runnable() {
             @Override
             public final void run() {
@@ -697,7 +697,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -730,64 +730,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -833,7 +833,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -866,69 +866,69 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
         });
-        i11 i11Var34 = new i11(8, LocaleController.getString(R.string.ContactJoined), "contactJoinedRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new ri0(23, n2Var));
+        i11 i11Var34 = new i11(8, LocaleController.getString(R.string.ContactJoined), "contactJoinedRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new si0(23, n2Var));
         i11Var34.a("tg://settings/notifications/new-contacts");
         i11 i11Var35 = new i11(9, LocaleController.getString(R.string.PinnedMessages), "pinnedMessageRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new Runnable() {
             @Override
@@ -971,7 +971,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -1004,64 +1004,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -1072,59 +1072,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1149,7 +1149,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -1210,59 +1210,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1287,7 +1287,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -1347,59 +1347,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1424,7 +1424,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -1484,59 +1484,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1561,7 +1561,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -1621,59 +1621,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1698,7 +1698,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -1759,59 +1759,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1836,7 +1836,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -1908,8 +1908,8 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         if (!isPremium) {
                             org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(n2Var2);
                             a02.getClass();
-                            org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(a02.W(), null);
-                            ybVar.d(R.raw.voip_muted, new String[0]);
+                            org.telegram.ui.Components.xb xbVar = new org.telegram.ui.Components.xb(a02.W(), null);
+                            xbVar.d(R.raw.voip_muted, new String[0]);
                             String string = LocaleController.getString(R.string.PrivacyVoiceMessagesPremiumOnly);
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
                             int indexOf = string.indexOf(42);
@@ -1918,10 +1918,10 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ci.dc(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            ybVar.f30530b.setText(spannableStringBuilder);
-                            ybVar.f30530b.setSingleLine(false);
-                            ybVar.f30530b.setMaxLines(2);
-                            a02.b(ybVar, 2750).j();
+                            xbVar.f30222b.setText(spannableStringBuilder);
+                            xbVar.f30222b.setSingleLine(false);
+                            xbVar.f30222b.setMaxLines(2);
+                            a02.b(xbVar, 2750).j();
                             return;
                         }
                         n2Var2.presentFragment(new PrivacyControlActivity(8, true));
@@ -1935,59 +1935,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2012,7 +2012,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -2076,59 +2076,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.W(360928);
-                            oc0Var.V(64);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.W(360928);
+                            pc0Var.V(64);
                             return;
                         case 1:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(360928);
-                            oc0Var2.V(128);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(360928);
+                            pc0Var2.V(128);
                             return;
                         case 2:
                             n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(360928);
-                            oc0Var3.V(256);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(360928);
+                            pc0Var3.V(256);
                             return;
                         case 4:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.W(360928);
-                            oc0Var4.V(32768);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.W(360928);
+                            pc0Var4.V(32768);
                             return;
                         case 5:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.V(512);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.V(512);
                             return;
                         case 6:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.V(1024);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.V(1024);
                             return;
                         case 8:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.V(2048);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.V(2048);
                             return;
                         case 9:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = oc0Var8.f36170s;
+                                ArrayList arrayList = pc0Var8.f36537s;
                                 if (i10 < arrayList.size()) {
-                                    if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                        oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                    if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                        pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -2153,7 +2153,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                            n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                             return;
                         case 15:
                             nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -2218,59 +2218,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2295,7 +2295,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -2356,59 +2356,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2433,7 +2433,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -2494,59 +2494,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2571,7 +2571,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -2632,59 +2632,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2709,7 +2709,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -2802,7 +2802,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -2924,7 +2924,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -3046,7 +3046,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -3168,7 +3168,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -3290,7 +3290,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -3391,8 +3391,8 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         if (!isPremium) {
                             org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(n2Var2);
                             a02.getClass();
-                            org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(a02.W(), null);
-                            ybVar.d(R.raw.voip_muted, new String[0]);
+                            org.telegram.ui.Components.xb xbVar = new org.telegram.ui.Components.xb(a02.W(), null);
+                            xbVar.d(R.raw.voip_muted, new String[0]);
                             String string = LocaleController.getString(R.string.PrivacyVoiceMessagesPremiumOnly);
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
                             int indexOf = string.indexOf(42);
@@ -3401,10 +3401,10 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ci.dc(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            ybVar.f30530b.setText(spannableStringBuilder);
-                            ybVar.f30530b.setSingleLine(false);
-                            ybVar.f30530b.setMaxLines(2);
-                            a02.b(ybVar, 2750).j();
+                            xbVar.f30222b.setText(spannableStringBuilder);
+                            xbVar.f30222b.setSingleLine(false);
+                            xbVar.f30222b.setMaxLines(2);
+                            a02.b(xbVar, 2750).j();
                             return;
                         }
                         n2Var2.presentFragment(new PrivacyControlActivity(8, true));
@@ -3452,7 +3452,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new xg0(i10));
+                                n2Var.presentFragment(new yg0(i10));
                                 return;
                             }
                             return;
@@ -3578,7 +3578,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -3700,7 +3700,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -3822,7 +3822,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -3944,7 +3944,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4066,7 +4066,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4188,7 +4188,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4310,7 +4310,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4432,7 +4432,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4554,7 +4554,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4676,7 +4676,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4798,7 +4798,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -4920,7 +4920,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -5042,7 +5042,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -5163,7 +5163,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -5285,7 +5285,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -5406,7 +5406,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -5527,7 +5527,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -5648,7 +5648,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new xg0(i10));
+                            n2Var.presentFragment(new yg0(i10));
                             return;
                         }
                         return;
@@ -6744,42 +6744,42 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             }
         });
         i11Var87.a("tg://settings/data/save-to-photos/groups");
-        i11 i11Var88 = new i11(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(R.string.DataSettings), LocaleController.getString(R.string.SaveToGallery), R.drawable.msg2_data, new ri0(2, n2Var));
+        i11 i11Var88 = new i11(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(R.string.DataSettings), LocaleController.getString(R.string.SaveToGallery), R.drawable.msg2_data, new si0(2, n2Var));
         i11Var88.a("tg://settings/data/save-to-photos/channels");
-        i11 i11Var89 = new i11(LocaleController.getString(R.string.ChatSettings), 300, R.drawable.msg2_discussion, new ri0(3, n2Var));
+        i11 i11Var89 = new i11(LocaleController.getString(R.string.ChatSettings), 300, R.drawable.msg2_discussion, new si0(3, n2Var));
         i11Var89.a("tg://settings/appearance/themes");
-        i11 i11Var90 = new i11(301, LocaleController.getString(R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(4, n2Var));
+        i11 i11Var90 = new i11(301, LocaleController.getString(R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(4, n2Var));
         i11Var90.a("tg://settings/appearance/text-size");
-        i11 i11Var91 = new i11(302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(5, n2Var));
+        i11 i11Var91 = new i11(302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(5, n2Var));
         i11Var91.a("tg://settings/appearance/wallpapers");
-        i11 i11Var92 = new i11(303, LocaleController.getString(R.string.SetColor), null, LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new ri0(6, n2Var));
-        i11 i11Var93 = new i11(304, LocaleController.getString(R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new ri0(8, n2Var));
-        i11 i11Var94 = new i11(306, LocaleController.getString(R.string.ColorTheme), "themeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(9, n2Var));
-        i11 i11Var95 = new i11(319, LocaleController.getString(R.string.BrowseThemes), null, LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(10, n2Var));
-        i11 i11Var96 = new i11(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.BrowseThemes), R.drawable.msg2_discussion, new ri0(11, n2Var));
+        i11 i11Var92 = new i11(303, LocaleController.getString(R.string.SetColor), null, LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new si0(6, n2Var));
+        i11 i11Var93 = new i11(304, LocaleController.getString(R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new si0(8, n2Var));
+        i11 i11Var94 = new i11(306, LocaleController.getString(R.string.ColorTheme), "themeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(9, n2Var));
+        i11 i11Var95 = new i11(319, LocaleController.getString(R.string.BrowseThemes), null, LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(10, n2Var));
+        i11 i11Var96 = new i11(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.BrowseThemes), R.drawable.msg2_discussion, new si0(11, n2Var));
         i11Var96.a("tg://settings/appearance/themes/create");
-        i11 i11Var97 = new i11(321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(13, n2Var));
+        i11 i11Var97 = new i11(321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(13, n2Var));
         i11Var97.a("tg://settings/appearance/message-corners");
-        i11 i11Var98 = new i11(322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(14, n2Var));
-        i11 i11Var99 = new i11(323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(15, n2Var));
-        i11 i11Var100 = new i11(324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(16, n2Var));
+        i11 i11Var98 = new i11(322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(14, n2Var));
+        i11 i11Var99 = new i11(323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(15, n2Var));
+        i11 i11Var100 = new i11(324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(16, n2Var));
         i11Var100.a("tg://settings/appearance/app-icon");
-        i11 i11Var101 = new i11(305, LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(17, n2Var));
-        i11 i11Var102 = new i11(328, LocaleController.getString(R.string.NextMediaTap), "nextMediaTapRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(18, n2Var));
+        i11 i11Var101 = new i11(305, LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(17, n2Var));
+        i11 i11Var102 = new i11(328, LocaleController.getString(R.string.NextMediaTap), "nextMediaTapRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(18, n2Var));
         i11Var102.a("tg://settings/appearance/tap-for-next-media");
-        i11 i11Var103 = new i11(327, LocaleController.getString(R.string.RaiseToListen), "raiseToListenRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(20, n2Var));
+        i11 i11Var103 = new i11(327, LocaleController.getString(R.string.RaiseToListen), "raiseToListenRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(20, n2Var));
         i11Var103.a("tg://settings/data/raise-to-listen");
-        i11 i11Var104 = new i11(310, LocaleController.getString(R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(21, n2Var));
+        i11 i11Var104 = new i11(310, LocaleController.getString(R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(21, n2Var));
         i11Var104.a("tg://settings/data/raise-to-speak");
-        i11 i11Var105 = new i11(326, LocaleController.getString(R.string.PauseMusicOnMedia), "pauseOnMediaRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(22, n2Var));
+        i11 i11Var105 = new i11(326, LocaleController.getString(R.string.PauseMusicOnMedia), "pauseOnMediaRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(22, n2Var));
         i11Var105.a("tg://settings/data/pause-music");
-        i11 i11Var106 = new i11(325, LocaleController.getString(R.string.MicrophoneForVoiceMessages), "bluetoothScoRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(24, n2Var));
-        i11 i11Var107 = new i11(308, LocaleController.getString(R.string.DirectShare), "directShareRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(25, n2Var));
-        i11 i11Var108 = new i11(311, LocaleController.getString(R.string.SendByEnter), "sendByEnterRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(26, n2Var));
-        i11 i11Var109 = new i11(318, LocaleController.getString(R.string.DistanceUnits), "distanceRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ri0(27, n2Var));
-        i11 i11Var110 = new i11(LocaleController.getString(R.string.StickersName), 600, R.drawable.msg2_sticker, new ri0(28, n2Var));
+        i11 i11Var106 = new i11(325, LocaleController.getString(R.string.MicrophoneForVoiceMessages), "bluetoothScoRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(24, n2Var));
+        i11 i11Var107 = new i11(308, LocaleController.getString(R.string.DirectShare), "directShareRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(25, n2Var));
+        i11 i11Var108 = new i11(311, LocaleController.getString(R.string.SendByEnter), "sendByEnterRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(26, n2Var));
+        i11 i11Var109 = new i11(318, LocaleController.getString(R.string.DistanceUnits), "distanceRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new si0(27, n2Var));
+        i11 i11Var110 = new i11(LocaleController.getString(R.string.StickersName), 600, R.drawable.msg2_sticker, new si0(28, n2Var));
         i11Var110.a("tg://settings/appearance/stickers-and-emoji");
-        i11 i11Var111 = new i11(601, LocaleController.getString(R.string.SuggestStickers), "suggestRow", LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, new ri0(29, n2Var));
+        i11 i11Var111 = new i11(601, LocaleController.getString(R.string.SuggestStickers), "suggestRow", LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, new si0(29, n2Var));
         i11 i11Var112 = new i11(602, LocaleController.getString(R.string.FeaturedStickers), "featuredStickersHeaderRow", LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, new Runnable() {
             @Override
             public final void run() {
@@ -6821,7 +6821,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -6854,64 +6854,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -6957,7 +6957,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -6990,64 +6990,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -7093,7 +7093,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7126,64 +7126,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -7230,7 +7230,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7263,64 +7263,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -7366,7 +7366,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7399,64 +7399,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -7503,7 +7503,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7536,64 +7536,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -7639,7 +7639,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7672,64 +7672,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -7776,7 +7776,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7809,64 +7809,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -7913,7 +7913,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -7946,64 +7946,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -8049,7 +8049,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -8082,64 +8082,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -8186,7 +8186,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -8219,64 +8219,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -8323,7 +8323,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -8356,64 +8356,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -8429,59 +8429,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.W(360928);
-                            oc0Var.V(64);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.W(360928);
+                            pc0Var.V(64);
                             return;
                         case 1:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(360928);
-                            oc0Var2.V(128);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(360928);
+                            pc0Var2.V(128);
                             return;
                         case 2:
                             n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(360928);
-                            oc0Var3.V(256);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(360928);
+                            pc0Var3.V(256);
                             return;
                         case 4:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.W(360928);
-                            oc0Var4.V(32768);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.W(360928);
+                            pc0Var4.V(32768);
                             return;
                         case 5:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.V(512);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.V(512);
                             return;
                         case 6:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.V(1024);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.V(1024);
                             return;
                         case 8:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.V(2048);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.V(2048);
                             return;
                         case 9:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = oc0Var8.f36170s;
+                                ArrayList arrayList = pc0Var8.f36537s;
                                 if (i10 < arrayList.size()) {
-                                    if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                        oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                    if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                        pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8506,7 +8506,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                            n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                             return;
                         case 15:
                             nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -8574,59 +8574,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.W(360928);
-                            oc0Var.V(64);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.W(360928);
+                            pc0Var.V(64);
                             return;
                         case 1:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(360928);
-                            oc0Var2.V(128);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(360928);
+                            pc0Var2.V(128);
                             return;
                         case 2:
                             n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(360928);
-                            oc0Var3.V(256);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(360928);
+                            pc0Var3.V(256);
                             return;
                         case 4:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.W(360928);
-                            oc0Var4.V(32768);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.W(360928);
+                            pc0Var4.V(32768);
                             return;
                         case 5:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.V(512);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.V(512);
                             return;
                         case 6:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.V(1024);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.V(1024);
                             return;
                         case 8:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.V(2048);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.V(2048);
                             return;
                         case 9:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = oc0Var8.f36170s;
+                                ArrayList arrayList = pc0Var8.f36537s;
                                 if (i10 < arrayList.size()) {
-                                    if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                        oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                    if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                        pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8651,7 +8651,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                            n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                             return;
                         case 15:
                             nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -8715,59 +8715,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.W(360928);
-                            oc0Var.V(64);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.W(360928);
+                            pc0Var.V(64);
                             return;
                         case 1:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(360928);
-                            oc0Var2.V(128);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(360928);
+                            pc0Var2.V(128);
                             return;
                         case 2:
                             n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(360928);
-                            oc0Var3.V(256);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(360928);
+                            pc0Var3.V(256);
                             return;
                         case 4:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.W(360928);
-                            oc0Var4.V(32768);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.W(360928);
+                            pc0Var4.V(32768);
                             return;
                         case 5:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.V(512);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.V(512);
                             return;
                         case 6:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.V(1024);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.V(1024);
                             return;
                         case 8:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.V(2048);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.V(2048);
                             return;
                         case 9:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = oc0Var8.f36170s;
+                                ArrayList arrayList = pc0Var8.f36537s;
                                 if (i10 < arrayList.size()) {
-                                    if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                        oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                    if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                        pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8792,7 +8792,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                            n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                             return;
                         case 15:
                             nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -8888,7 +8888,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new xg0(i10));
+                                n2Var.presentFragment(new yg0(i10));
                                 return;
                             }
                             return;
@@ -9013,7 +9013,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new xg0(i10));
+                                n2Var.presentFragment(new yg0(i10));
                                 return;
                             }
                             return;
@@ -9138,7 +9138,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new xg0(i10));
+                                n2Var.presentFragment(new yg0(i10));
                                 return;
                             }
                             return;
@@ -9368,7 +9368,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             i11Var16 = null;
         }
         if (F(currentAccount, 5)) {
-            i11Var17 = new i11(808, LocaleController.getString(R.string.PremiumPreviewStickers), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new ri0(12, n2Var));
+            i11Var17 = new i11(808, LocaleController.getString(R.string.PremiumPreviewStickers), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new si0(12, n2Var));
         } else {
             i11Var17 = null;
         }
@@ -9414,7 +9414,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new l31());
+                            n2Var.presentFragment(new m31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9447,64 +9447,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var6.showDialog(x0Var5);
                             return;
                         case 18:
-                            n2Var.presentFragment(new oc0());
+                            n2Var.presentFragment(new pc0());
                             return;
                         case 19:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.V(3);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.V(3);
                             return;
                         case 20:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(3);
-                            oc0Var2.V(1);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(3);
+                            pc0Var2.V(1);
                             return;
                         case 21:
                             n2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(3);
-                            oc0Var3.V(2);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(3);
+                            pc0Var3.V(2);
                             return;
                         case 23:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.V(28700);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.V(28700);
                             return;
                         case 24:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.W(28700);
-                            oc0Var5.V(16388);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.W(28700);
+                            pc0Var5.V(16388);
                             return;
                         case 26:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.W(28700);
-                            oc0Var6.V(8200);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.W(28700);
+                            pc0Var6.V(8200);
                             return;
                         case 27:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.W(28700);
-                            oc0Var7.V(4112);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.W(28700);
+                            pc0Var7.V(4112);
                             return;
                         case 28:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
-                            oc0Var8.V(360928);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
+                            pc0Var8.V(360928);
                             return;
                         default:
-                            oc0 oc0Var9 = new oc0();
-                            n2Var.presentFragment(oc0Var9);
-                            oc0Var9.W(360928);
-                            oc0Var9.V(32);
+                            pc0 pc0Var9 = new pc0();
+                            n2Var.presentFragment(pc0Var9);
+                            pc0Var9.W(360928);
+                            pc0Var9.V(32);
                             return;
                     }
                 }
@@ -9554,7 +9554,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new l31());
+                            n2Var.presentFragment(new m31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9587,64 +9587,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var6.showDialog(x0Var5);
                             return;
                         case 18:
-                            n2Var.presentFragment(new oc0());
+                            n2Var.presentFragment(new pc0());
                             return;
                         case 19:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.V(3);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.V(3);
                             return;
                         case 20:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(3);
-                            oc0Var2.V(1);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(3);
+                            pc0Var2.V(1);
                             return;
                         case 21:
                             n2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(3);
-                            oc0Var3.V(2);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(3);
+                            pc0Var3.V(2);
                             return;
                         case 23:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.V(28700);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.V(28700);
                             return;
                         case 24:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.W(28700);
-                            oc0Var5.V(16388);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.W(28700);
+                            pc0Var5.V(16388);
                             return;
                         case 26:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.W(28700);
-                            oc0Var6.V(8200);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.W(28700);
+                            pc0Var6.V(8200);
                             return;
                         case 27:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.W(28700);
-                            oc0Var7.V(4112);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.W(28700);
+                            pc0Var7.V(4112);
                             return;
                         case 28:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
-                            oc0Var8.V(360928);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
+                            pc0Var8.V(360928);
                             return;
                         default:
-                            oc0 oc0Var9 = new oc0();
-                            n2Var.presentFragment(oc0Var9);
-                            oc0Var9.W(360928);
-                            oc0Var9.V(32);
+                            pc0 pc0Var9 = new pc0();
+                            n2Var.presentFragment(pc0Var9);
+                            pc0Var9.W(360928);
+                            pc0Var9.V(32);
                             return;
                     }
                 }
@@ -9694,7 +9694,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new l31());
+                            n2Var.presentFragment(new m31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9727,64 +9727,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var6.showDialog(x0Var5);
                             return;
                         case 18:
-                            n2Var.presentFragment(new oc0());
+                            n2Var.presentFragment(new pc0());
                             return;
                         case 19:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.V(3);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.V(3);
                             return;
                         case 20:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(3);
-                            oc0Var2.V(1);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(3);
+                            pc0Var2.V(1);
                             return;
                         case 21:
                             n2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(3);
-                            oc0Var3.V(2);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(3);
+                            pc0Var3.V(2);
                             return;
                         case 23:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.V(28700);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.V(28700);
                             return;
                         case 24:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.W(28700);
-                            oc0Var5.V(16388);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.W(28700);
+                            pc0Var5.V(16388);
                             return;
                         case 26:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.W(28700);
-                            oc0Var6.V(8200);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.W(28700);
+                            pc0Var6.V(8200);
                             return;
                         case 27:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.W(28700);
-                            oc0Var7.V(4112);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.W(28700);
+                            pc0Var7.V(4112);
                             return;
                         case 28:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
-                            oc0Var8.V(360928);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
+                            pc0Var8.V(360928);
                             return;
                         default:
-                            oc0 oc0Var9 = new oc0();
-                            n2Var.presentFragment(oc0Var9);
-                            oc0Var9.W(360928);
-                            oc0Var9.V(32);
+                            pc0 pc0Var9 = new pc0();
+                            n2Var.presentFragment(pc0Var9);
+                            pc0Var9.W(360928);
+                            pc0Var9.V(32);
                             return;
                     }
                 }
@@ -9834,7 +9834,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new l31());
+                            n2Var.presentFragment(new m31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -9867,64 +9867,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var6.showDialog(x0Var5);
                             return;
                         case 18:
-                            n2Var.presentFragment(new oc0());
+                            n2Var.presentFragment(new pc0());
                             return;
                         case 19:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.V(3);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.V(3);
                             return;
                         case 20:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(3);
-                            oc0Var2.V(1);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(3);
+                            pc0Var2.V(1);
                             return;
                         case 21:
                             n2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(3);
-                            oc0Var3.V(2);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(3);
+                            pc0Var3.V(2);
                             return;
                         case 23:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.V(28700);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.V(28700);
                             return;
                         case 24:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.W(28700);
-                            oc0Var5.V(16388);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.W(28700);
+                            pc0Var5.V(16388);
                             return;
                         case 26:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.W(28700);
-                            oc0Var6.V(8200);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.W(28700);
+                            pc0Var6.V(8200);
                             return;
                         case 27:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.W(28700);
-                            oc0Var7.V(4112);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.W(28700);
+                            pc0Var7.V(4112);
                             return;
                         case 28:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
-                            oc0Var8.V(360928);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
+                            pc0Var8.V(360928);
                             return;
                         default:
-                            oc0 oc0Var9 = new oc0();
-                            n2Var.presentFragment(oc0Var9);
-                            oc0Var9.W(360928);
-                            oc0Var9.V(32);
+                            pc0 pc0Var9 = new pc0();
+                            n2Var.presentFragment(pc0Var9);
+                            pc0Var9.W(360928);
+                            pc0Var9.V(32);
                             return;
                     }
                 }
@@ -9974,7 +9974,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            n2Var.presentFragment(new l31());
+                            n2Var.presentFragment(new m31());
                             return;
                         case 12:
                             n2Var.presentFragment(new FiltersSetupActivity());
@@ -10007,64 +10007,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             n2Var6.showDialog(x0Var5);
                             return;
                         case 18:
-                            n2Var.presentFragment(new oc0());
+                            n2Var.presentFragment(new pc0());
                             return;
                         case 19:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.V(3);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.V(3);
                             return;
                         case 20:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(3);
-                            oc0Var2.V(1);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(3);
+                            pc0Var2.V(1);
                             return;
                         case 21:
                             n2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(3);
-                            oc0Var3.V(2);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(3);
+                            pc0Var3.V(2);
                             return;
                         case 23:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.V(28700);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.V(28700);
                             return;
                         case 24:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.W(28700);
-                            oc0Var5.V(16388);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.W(28700);
+                            pc0Var5.V(16388);
                             return;
                         case 26:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.W(28700);
-                            oc0Var6.V(8200);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.W(28700);
+                            pc0Var6.V(8200);
                             return;
                         case 27:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.W(28700);
-                            oc0Var7.V(4112);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.W(28700);
+                            pc0Var7.V(4112);
                             return;
                         case 28:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
-                            oc0Var8.V(360928);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
+                            pc0Var8.V(360928);
                             return;
                         default:
-                            oc0 oc0Var9 = new oc0();
-                            n2Var.presentFragment(oc0Var9);
-                            oc0Var9.W(360928);
-                            oc0Var9.V(32);
+                            pc0 pc0Var9 = new pc0();
+                            n2Var.presentFragment(pc0Var9);
+                            pc0Var9.W(360928);
+                            pc0Var9.V(32);
                             return;
                     }
                 }
@@ -10113,7 +10113,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10146,64 +10146,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -10250,7 +10250,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10283,64 +10283,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -10387,7 +10387,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10420,64 +10420,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -10523,7 +10523,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10556,64 +10556,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -10659,7 +10659,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10692,64 +10692,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -10796,7 +10796,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10829,64 +10829,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -10932,7 +10932,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -10965,64 +10965,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -11068,7 +11068,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -11101,64 +11101,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -11204,7 +11204,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -11237,64 +11237,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -11341,7 +11341,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        n2Var.presentFragment(new l31());
+                        n2Var.presentFragment(new m31());
                         return;
                     case 12:
                         n2Var.presentFragment(new FiltersSetupActivity());
@@ -11374,64 +11374,64 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         n2Var6.showDialog(x0Var5);
                         return;
                     case 18:
-                        n2Var.presentFragment(new oc0());
+                        n2Var.presentFragment(new pc0());
                         return;
                     case 19:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.V(3);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.V(3);
                         return;
                     case 20:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(3);
-                        oc0Var2.V(1);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(3);
+                        pc0Var2.V(1);
                         return;
                     case 21:
                         n2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(3);
-                        oc0Var3.V(2);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(3);
+                        pc0Var3.V(2);
                         return;
                     case 23:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.V(28700);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.V(28700);
                         return;
                     case 24:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.W(28700);
-                        oc0Var5.V(16388);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.W(28700);
+                        pc0Var5.V(16388);
                         return;
                     case 26:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.W(28700);
-                        oc0Var6.V(8200);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.W(28700);
+                        pc0Var6.V(8200);
                         return;
                     case 27:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.W(28700);
-                        oc0Var7.V(4112);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.W(28700);
+                        pc0Var7.V(4112);
                         return;
                     case 28:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
-                        oc0Var8.V(360928);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
+                        pc0Var8.V(360928);
                         return;
                     default:
-                        oc0 oc0Var9 = new oc0();
-                        n2Var.presentFragment(oc0Var9);
-                        oc0Var9.W(360928);
-                        oc0Var9.V(32);
+                        pc0 pc0Var9 = new pc0();
+                        n2Var.presentFragment(pc0Var9);
+                        pc0Var9.W(360928);
+                        pc0Var9.V(32);
                         return;
                 }
             }
@@ -11442,59 +11442,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11519,7 +11519,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -11579,59 +11579,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11656,7 +11656,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -11717,59 +11717,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.W(360928);
-                            oc0Var.V(64);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.W(360928);
+                            pc0Var.V(64);
                             return;
                         case 1:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(360928);
-                            oc0Var2.V(128);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(360928);
+                            pc0Var2.V(128);
                             return;
                         case 2:
                             n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(360928);
-                            oc0Var3.V(256);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(360928);
+                            pc0Var3.V(256);
                             return;
                         case 4:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.W(360928);
-                            oc0Var4.V(32768);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.W(360928);
+                            pc0Var4.V(32768);
                             return;
                         case 5:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.V(512);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.V(512);
                             return;
                         case 6:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.V(1024);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.V(1024);
                             return;
                         case 8:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.V(2048);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.V(2048);
                             return;
                         case 9:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = oc0Var8.f36170s;
+                                ArrayList arrayList = pc0Var8.f36537s;
                                 if (i10 < arrayList.size()) {
-                                    if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                        oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                    if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                        pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -11794,7 +11794,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                            n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                             return;
                         case 15:
                             nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -11857,59 +11857,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11934,7 +11934,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -11994,59 +11994,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12071,7 +12071,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -12132,59 +12132,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12209,7 +12209,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -12270,59 +12270,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12347,7 +12347,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -12408,59 +12408,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12485,7 +12485,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -12546,59 +12546,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12623,7 +12623,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -12684,59 +12684,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12761,7 +12761,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -12823,59 +12823,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            oc0 oc0Var = new oc0();
-                            n2Var.presentFragment(oc0Var);
-                            oc0Var.W(360928);
-                            oc0Var.V(64);
+                            pc0 pc0Var = new pc0();
+                            n2Var.presentFragment(pc0Var);
+                            pc0Var.W(360928);
+                            pc0Var.V(64);
                             return;
                         case 1:
-                            oc0 oc0Var2 = new oc0();
-                            n2Var.presentFragment(oc0Var2);
-                            oc0Var2.W(360928);
-                            oc0Var2.V(128);
+                            pc0 pc0Var2 = new pc0();
+                            n2Var.presentFragment(pc0Var2);
+                            pc0Var2.W(360928);
+                            pc0Var2.V(128);
                             return;
                         case 2:
                             n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
-                            oc0 oc0Var3 = new oc0();
-                            n2Var.presentFragment(oc0Var3);
-                            oc0Var3.W(360928);
-                            oc0Var3.V(256);
+                            pc0 pc0Var3 = new pc0();
+                            n2Var.presentFragment(pc0Var3);
+                            pc0Var3.W(360928);
+                            pc0Var3.V(256);
                             return;
                         case 4:
-                            oc0 oc0Var4 = new oc0();
-                            n2Var.presentFragment(oc0Var4);
-                            oc0Var4.W(360928);
-                            oc0Var4.V(32768);
+                            pc0 pc0Var4 = new pc0();
+                            n2Var.presentFragment(pc0Var4);
+                            pc0Var4.W(360928);
+                            pc0Var4.V(32768);
                             return;
                         case 5:
-                            oc0 oc0Var5 = new oc0();
-                            n2Var.presentFragment(oc0Var5);
-                            oc0Var5.V(512);
+                            pc0 pc0Var5 = new pc0();
+                            n2Var.presentFragment(pc0Var5);
+                            pc0Var5.V(512);
                             return;
                         case 6:
                             n2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
-                            oc0 oc0Var6 = new oc0();
-                            n2Var.presentFragment(oc0Var6);
-                            oc0Var6.V(1024);
+                            pc0 pc0Var6 = new pc0();
+                            n2Var.presentFragment(pc0Var6);
+                            pc0Var6.V(1024);
                             return;
                         case 8:
-                            oc0 oc0Var7 = new oc0();
-                            n2Var.presentFragment(oc0Var7);
-                            oc0Var7.V(2048);
+                            pc0 pc0Var7 = new pc0();
+                            n2Var.presentFragment(pc0Var7);
+                            pc0Var7.V(2048);
                             return;
                         case 9:
-                            oc0 oc0Var8 = new oc0();
-                            n2Var.presentFragment(oc0Var8);
+                            pc0 pc0Var8 = new pc0();
+                            n2Var.presentFragment(pc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = oc0Var8.f36170s;
+                                ArrayList arrayList = pc0Var8.f36537s;
                                 if (i10 < arrayList.size()) {
-                                    if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                        oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                    if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                        pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -12900,7 +12900,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                            n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                             return;
                         case 15:
                             nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -12963,59 +12963,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13040,7 +13040,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -13101,59 +13101,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13178,7 +13178,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -13239,59 +13239,59 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             public final void run() {
                 switch (r1) {
                     case 0:
-                        oc0 oc0Var = new oc0();
-                        n2Var.presentFragment(oc0Var);
-                        oc0Var.W(360928);
-                        oc0Var.V(64);
+                        pc0 pc0Var = new pc0();
+                        n2Var.presentFragment(pc0Var);
+                        pc0Var.W(360928);
+                        pc0Var.V(64);
                         return;
                     case 1:
-                        oc0 oc0Var2 = new oc0();
-                        n2Var.presentFragment(oc0Var2);
-                        oc0Var2.W(360928);
-                        oc0Var2.V(128);
+                        pc0 pc0Var2 = new pc0();
+                        n2Var.presentFragment(pc0Var2);
+                        pc0Var2.W(360928);
+                        pc0Var2.V(128);
                         return;
                     case 2:
                         n2Var.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
-                        oc0 oc0Var3 = new oc0();
-                        n2Var.presentFragment(oc0Var3);
-                        oc0Var3.W(360928);
-                        oc0Var3.V(256);
+                        pc0 pc0Var3 = new pc0();
+                        n2Var.presentFragment(pc0Var3);
+                        pc0Var3.W(360928);
+                        pc0Var3.V(256);
                         return;
                     case 4:
-                        oc0 oc0Var4 = new oc0();
-                        n2Var.presentFragment(oc0Var4);
-                        oc0Var4.W(360928);
-                        oc0Var4.V(32768);
+                        pc0 pc0Var4 = new pc0();
+                        n2Var.presentFragment(pc0Var4);
+                        pc0Var4.W(360928);
+                        pc0Var4.V(32768);
                         return;
                     case 5:
-                        oc0 oc0Var5 = new oc0();
-                        n2Var.presentFragment(oc0Var5);
-                        oc0Var5.V(512);
+                        pc0 pc0Var5 = new pc0();
+                        n2Var.presentFragment(pc0Var5);
+                        pc0Var5.V(512);
                         return;
                     case 6:
                         n2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
-                        oc0 oc0Var6 = new oc0();
-                        n2Var.presentFragment(oc0Var6);
-                        oc0Var6.V(1024);
+                        pc0 pc0Var6 = new pc0();
+                        n2Var.presentFragment(pc0Var6);
+                        pc0Var6.V(1024);
                         return;
                     case 8:
-                        oc0 oc0Var7 = new oc0();
-                        n2Var.presentFragment(oc0Var7);
-                        oc0Var7.V(2048);
+                        pc0 pc0Var7 = new pc0();
+                        n2Var.presentFragment(pc0Var7);
+                        pc0Var7.V(2048);
                         return;
                     case 9:
-                        oc0 oc0Var8 = new oc0();
-                        n2Var.presentFragment(oc0Var8);
+                        pc0 pc0Var8 = new pc0();
+                        n2Var.presentFragment(pc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = oc0Var8.f36170s;
+                            ArrayList arrayList = pc0Var8.f36537s;
                             if (i10 < arrayList.size()) {
-                                if (((ic0) arrayList.get(i10)).f34492f == 1) {
-                                    oc0Var8.f36165b.f1(new i2.s(oc0Var8, i10, 12), 700, true);
+                                if (((jc0) arrayList.get(i10)).f34890f == 1) {
+                                    pc0Var8.f36532b.f1(new i2.s(pc0Var8, i10, 12), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13316,7 +13316,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        n2Var3.showDialog(org.telegram.ui.Components.e5.U(n2Var3, null));
+                        n2Var3.showDialog(org.telegram.ui.Components.d5.U(n2Var3, null));
                         return;
                     case 15:
                         nf.f.s(n2Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
@@ -13377,7 +13377,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42932f == 0) {
+        if (c1Var.f42977f == 0) {
             return true;
         }
         return false;
@@ -13390,7 +13390,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             arrayList.remove(indexOf);
         }
         arrayList.add(0, obj);
-        if (!this.f34686w) {
+        if (!this.f34745w) {
             l();
         }
         if (arrayList.size() > 20) {
@@ -13401,7 +13401,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
         for (int i10 = 0; i10 < size; i10++) {
             Object obj2 = arrayList.get(i10);
             if (obj2 instanceof i11) {
-                ((i11) obj2).f34295g = i10;
+                ((i11) obj2).f34343g = i10;
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                 ((MessagesController.FaqSearchResult) obj2).num = i10;
             }
@@ -13411,7 +13411,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
     }
 
     public final void G() {
-        int i10 = this.f34682f;
+        int i10 = this.f34741f;
         TLRPC.WebPage webPage = MessagesController.getInstance(i10).faqWebPage;
         this.E = webPage;
         if (webPage != null) {
@@ -13427,20 +13427,20 @@ public class j11 extends org.telegram.ui.Components.vl0 {
     }
 
     public final void I(String str) {
-        this.f34688y = str;
-        if (this.f34687x != null) {
-            Utilities.searchQueue.cancelRunnable(this.f34687x);
-            this.f34687x = null;
+        this.f34747y = str;
+        if (this.f34746x != null) {
+            Utilities.searchQueue.cancelRunnable(this.f34746x);
+            this.f34746x = null;
         }
         if (TextUtils.isEmpty(str)) {
-            this.f34686w = false;
-            this.f34684r.clear();
-            this.f34685s.clear();
-            this.f34683n.clear();
+            this.f34745w = false;
+            this.f34743r.clear();
+            this.f34744s.clear();
+            this.f34742n.clear();
             org.telegram.ui.ActionBar.n2 n2Var = this.e;
             if (n2Var instanceof ProfileActivity) {
                 try {
-                    ((ProfileActivity) n2Var).P.f25865b.getImageReceiver().startAnimation();
+                    ((ProfileActivity) n2Var).P.f25549b.getImageReceiver().startAnimation();
                     ((ProfileActivity) this.e).P.d.setText(LocaleController.getString(R.string.SettingsNoRecent));
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -13450,9 +13450,9 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             return;
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
-        cy0 cy0Var = new cy0(15, this, str);
-        this.f34687x = cy0Var;
-        dispatchQueue.postRunnable(cy0Var, 300L);
+        rx0 rx0Var = new rx0(17, this, str);
+        this.f34746x = rx0Var;
+        dispatchQueue.postRunnable(rx0Var, 300L);
     }
 
     public final void J() {
@@ -13461,13 +13461,13 @@ public class j11 extends org.telegram.ui.Components.vl0 {
         HashMap hashMap = new HashMap();
         int i10 = 0;
         while (true) {
-            i11[] i11VarArr = this.f34681c;
+            i11[] i11VarArr = this.f34740c;
             if (i10 >= i11VarArr.length) {
                 break;
             }
             i11 i11Var2 = i11VarArr[i10];
             if (i11Var2 != null) {
-                hashMap.put(Integer.valueOf(i11Var2.f34294f), this.f34681c[i10]);
+                hashMap.put(Integer.valueOf(i11Var2.f34342f), this.f34740c[i10]);
             }
             i10++;
         }
@@ -13494,7 +13494,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                         faqSearchResult.num = readInt32;
                         arrayList.add(faqSearchResult);
                     } else if (readInt322 == 1 && (i11Var = (i11) hashMap.get(Integer.valueOf(serializedData.readInt32(false)))) != null) {
-                        i11Var.f34295g = readInt32;
+                        i11Var.f34343g = readInt32;
                         arrayList.add(i11Var);
                     }
                 } catch (Exception unused) {
@@ -13508,10 +13508,10 @@ public class j11 extends org.telegram.ui.Components.vl0 {
     public final int h() {
         int size;
         int i10 = 0;
-        if (this.f34686w) {
-            int size2 = this.f34684r.size();
-            if (!this.f34685s.isEmpty()) {
-                i10 = this.f34685s.size() + 1;
+        if (this.f34745w) {
+            int size2 = this.f34743r.size();
+            if (!this.f34744s.isEmpty()) {
+                i10 = this.f34744s.size() + 1;
             }
             return size2 + i10;
         }
@@ -13530,8 +13530,8 @@ public class j11 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final int j(int i10) {
-        if (this.f34686w) {
-            if (i10 < this.f34684r.size() || i10 != this.f34684r.size()) {
+        if (this.f34745w) {
+            if (i10 < this.f34743r.size() || i10 != this.f34743r.size()) {
                 return 0;
             }
         } else {
@@ -13551,27 +13551,27 @@ public class j11 extends org.telegram.ui.Components.vl0 {
     public final void v(s4.c1 c1Var, int i10) {
         i11 i11Var;
         int i11;
-        int i12 = c1Var.f42932f;
-        View view = c1Var.f42929a;
+        int i12 = c1Var.f42977f;
+        View view = c1Var.f42974a;
         boolean z10 = true;
         if (i12 != 0) {
             if (i12 != 1) {
                 if (i12 == 2) {
-                    ((org.telegram.ui.Cells.m4) view).setText(LocaleController.getString(R.string.SettingsRecent));
+                    ((org.telegram.ui.Cells.n4) view).setText(LocaleController.getString(R.string.SettingsRecent));
                     return;
                 }
                 return;
             }
-            ((org.telegram.ui.Cells.v3) view).setText(LocaleController.getString(R.string.SettingsFaqSearchTitle));
+            ((org.telegram.ui.Cells.w3) view).setText(LocaleController.getString(R.string.SettingsFaqSearchTitle));
             return;
         }
-        org.telegram.ui.Cells.y6 y6Var = (org.telegram.ui.Cells.y6) view;
+        org.telegram.ui.Cells.z6 z6Var = (org.telegram.ui.Cells.z6) view;
         boolean z11 = false;
-        if (this.f34686w) {
-            if (i10 < this.f34684r.size()) {
-                i11 i11Var2 = (i11) this.f34684r.get(i10);
+        if (this.f34745w) {
+            if (i10 < this.f34743r.size()) {
+                i11 i11Var2 = (i11) this.f34743r.get(i10);
                 if (i10 > 0) {
-                    i11Var = (i11) this.f34684r.get(i10 - 1);
+                    i11Var = (i11) this.f34743r.get(i10 - 1);
                 } else {
                     i11Var = null;
                 }
@@ -13580,21 +13580,21 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 } else {
                     i11 = i11Var2.e;
                 }
-                CharSequence charSequence = (CharSequence) this.f34683n.get(i10);
+                CharSequence charSequence = (CharSequence) this.f34742n.get(i10);
                 String[] strArr = i11Var2.d;
-                if (i10 >= this.f34684r.size() - 1) {
+                if (i10 >= this.f34743r.size() - 1) {
                     z10 = false;
                 }
-                y6Var.b(charSequence, strArr, i11, z10);
+                z6Var.b(charSequence, strArr, i11, z10);
                 return;
             }
-            int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.f34684r);
-            CharSequence charSequence2 = (CharSequence) this.f34683n.get(this.f34684r.size() + f7);
-            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f34685s.get(f7)).path;
-            if (f7 < this.f34684r.size() - 1) {
+            int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.f34743r);
+            CharSequence charSequence2 = (CharSequence) this.f34742n.get(this.f34743r.size() + f7);
+            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f34744s.get(f7)).path;
+            if (f7 < this.f34743r.size() - 1) {
                 z11 = true;
             }
-            y6Var.a(charSequence2, strArr2, true, z11);
+            z6Var.a(charSequence2, strArr2, true, z11);
             return;
         }
         ArrayList arrayList = this.v;
@@ -13605,12 +13605,12 @@ public class j11 extends org.telegram.ui.Components.vl0 {
             Object obj = arrayList.get(i10);
             if (obj instanceof i11) {
                 i11 i11Var3 = (i11) obj;
-                String str = i11Var3.f34291a;
+                String str = i11Var3.f34339a;
                 String[] strArr3 = i11Var3.d;
                 if (i10 >= arrayList.size() - 1) {
                     z10 = false;
                 }
-                y6Var.a(str, strArr3, false, z10);
+                z6Var.a(str, strArr3, false, z10);
                 return;
             } else if (obj instanceof MessagesController.FaqSearchResult) {
                 MessagesController.FaqSearchResult faqSearchResult = (MessagesController.FaqSearchResult) obj;
@@ -13619,7 +13619,7 @@ public class j11 extends org.telegram.ui.Components.vl0 {
                 if (i10 < arrayList.size() - 1) {
                     z11 = true;
                 }
-                y6Var.a(str2, strArr4, true, z11);
+                z6Var.a(str2, strArr4, true, z11);
                 return;
             } else {
                 return;
@@ -13632,23 +13632,23 @@ public class j11 extends org.telegram.ui.Components.vl0 {
         if (f10 < arrayList.size() - 1) {
             z11 = true;
         }
-        y6Var.a(str3, strArr5, true, z11);
+        z6Var.a(str3, strArr5, true, z11);
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View y6Var;
+        View z6Var;
         Context context = this.h;
         if (i10 != 0) {
             if (i10 != 1) {
-                y6Var = new org.telegram.ui.Cells.m4(context, 16);
+                z6Var = new org.telegram.ui.Cells.n4(context, 16);
             } else {
-                y6Var = new org.telegram.ui.Cells.v3(context, null);
+                z6Var = new org.telegram.ui.Cells.w3(context, null);
             }
         } else {
-            y6Var = new org.telegram.ui.Cells.y6(context);
+            z6Var = new org.telegram.ui.Cells.z6(context);
         }
-        y6Var.setLayoutParams(new s4.p0(-1, -2));
-        return new s4.c1(y6Var);
+        z6Var.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(z6Var);
     }
 }

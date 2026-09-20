@@ -1,6 +1,6 @@
 package s8;
 public final class a {
-    public final Object f43130b = new Object();
-    public long f43131c = Long.MIN_VALUE;
-    public final long f43129a = Math.round(30000.0d);
+    public final Object f43175b = new Object();
+    public long f43176c = Long.MIN_VALUE;
+    public final long f43174a = Math.round(30000.0d);
 }

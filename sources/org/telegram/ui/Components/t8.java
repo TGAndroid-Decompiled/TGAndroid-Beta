@@ -1,33 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class t8 extends AnimatorListenerAdapter {
-    public final int f28345a;
-    public final e9 f28346b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class t8 extends mq {
+    public final int f28337f0;
 
-    public t8(e9 e9Var, int i10) {
-        this.f28345a = i10;
-        this.f28346b = e9Var;
+    public t8(Context context, boolean z10, lq lqVar, int i10) {
+        super(context, z10, lqVar);
+        this.f28337f0 = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        switch (this.f28345a) {
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f28337f0) {
             case 0:
-                super.onAnimationEnd(animator);
-                this.f28346b.f23816f = false;
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                 return;
             default:
-                e9 e9Var = this.f28346b;
-                if (e9Var.F) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                e9Var.i0(f7, false);
-                e9Var.F = false;
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                 return;
         }
     }

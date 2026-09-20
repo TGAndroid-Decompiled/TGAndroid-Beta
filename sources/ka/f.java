@@ -6,39 +6,39 @@ import java.io.Writer;
 import java.util.Collection;
 import java.util.Map;
 public final class f implements ia.e, ia.g {
-    public final boolean f13572a = true;
-    public final JsonWriter f13573b;
-    public final Map f13574c;
+    public final boolean f13573a = true;
+    public final JsonWriter f13574b;
+    public final Map f13575c;
     public final Map d;
     public final ia.d e;
-    public final boolean f13575f;
+    public final boolean f13576f;
 
     public f(Writer writer, Map map, Map map2, ia.d dVar, boolean z10) {
-        this.f13573b = new JsonWriter(writer);
-        this.f13574c = map;
+        this.f13574b = new JsonWriter(writer);
+        this.f13575c = map;
         this.d = map2;
         this.e = dVar;
-        this.f13575f = z10;
+        this.f13576f = z10;
     }
 
     @Override
     public final ia.e a(ia.c cVar, Object obj) {
-        i(obj, cVar.f11064a);
+        i(obj, cVar.f11065a);
         return this;
     }
 
     @Override
     public final ia.g b(String str) {
         j();
-        this.f13573b.value(str);
+        this.f13574b.value(str);
         return this;
     }
 
     @Override
     public final ia.e c(ia.c cVar, boolean z10) {
-        String str = cVar.f11064a;
+        String str = cVar.f11065a;
         j();
-        JsonWriter jsonWriter = this.f13573b;
+        JsonWriter jsonWriter = this.f13574b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(z10);
@@ -48,15 +48,15 @@ public final class f implements ia.e, ia.g {
     @Override
     public final ia.g d(boolean z10) {
         j();
-        this.f13573b.value(z10);
+        this.f13574b.value(z10);
         return this;
     }
 
     @Override
     public final ia.e e(ia.c cVar, int i10) {
-        String str = cVar.f11064a;
+        String str = cVar.f11065a;
         j();
-        JsonWriter jsonWriter = this.f13573b;
+        JsonWriter jsonWriter = this.f13574b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(i10);
@@ -65,9 +65,9 @@ public final class f implements ia.e, ia.g {
 
     @Override
     public final ia.e f(ia.c cVar, long j3) {
-        String str = cVar.f11064a;
+        String str = cVar.f11065a;
         j();
-        JsonWriter jsonWriter = this.f13573b;
+        JsonWriter jsonWriter = this.f13574b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(j3);
@@ -76,9 +76,9 @@ public final class f implements ia.e, ia.g {
 
     @Override
     public final ia.e g(ia.c cVar, double d) {
-        String str = cVar.f11064a;
+        String str = cVar.f11065a;
         j();
-        JsonWriter jsonWriter = this.f13573b;
+        JsonWriter jsonWriter = this.f13574b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(d);
@@ -86,7 +86,7 @@ public final class f implements ia.e, ia.g {
     }
 
     public final f h(Object obj) {
-        JsonWriter jsonWriter = this.f13573b;
+        JsonWriter jsonWriter = this.f13574b;
         if (obj == null) {
             jsonWriter.nullValue();
             return this;
@@ -169,7 +169,7 @@ public final class f implements ia.e, ia.g {
                 jsonWriter.endObject();
                 return this;
             } else {
-                ia.d dVar = (ia.d) this.f13574c.get(obj.getClass());
+                ia.d dVar = (ia.d) this.f13575c.get(obj.getClass());
                 if (dVar != null) {
                     jsonWriter.beginObject();
                     dVar.a(obj, this);
@@ -202,8 +202,8 @@ public final class f implements ia.e, ia.g {
     }
 
     public final f i(Object obj, String str) {
-        boolean z10 = this.f13575f;
-        JsonWriter jsonWriter = this.f13573b;
+        boolean z10 = this.f13576f;
+        JsonWriter jsonWriter = this.f13574b;
         if (z10) {
             if (obj == null) {
                 return this;
@@ -224,7 +224,7 @@ public final class f implements ia.e, ia.g {
     }
 
     public final void j() {
-        if (this.f13572a) {
+        if (this.f13573a) {
             return;
         }
         throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");

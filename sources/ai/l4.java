@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.rk;
 import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.PhotoViewer;
@@ -24,14 +24,14 @@ public final class l4 extends ImageReceiver {
     public void invalidate() {
         switch (this.f1179a) {
             case 3:
-                View view = ((co) this.f1180b).f32721b;
+                View view = ((co) this.f1180b).f32793b;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 4:
-                ((org.telegram.ui.Components.q5) this.f1180b).k();
+                ((org.telegram.ui.Components.p5) this.f1180b).k();
                 super.invalidate();
                 return;
             default:
@@ -56,7 +56,7 @@ public final class l4 extends ImageReceiver {
                 return imageBitmapByKey;
             case 1:
                 if (drawable != null && i10 != 1) {
-                    wh.r(((hg.e1) ((z5) obj).H).f10270n.animate().alpha(1.0f).translationY(0.0f), qr.f27719k, 250L);
+                    rk.s(((hg.e1) ((z5) obj).H).f10271n.animate().alpha(1.0f).translationY(0.0f), qr.f27646k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 2:
@@ -64,12 +64,12 @@ public final class l4 extends ImageReceiver {
             default:
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 4:
-                org.telegram.ui.Components.q5 q5Var = (org.telegram.ui.Components.q5) obj;
-                q5Var.k();
+                org.telegram.ui.Components.p5 p5Var = (org.telegram.ui.Components.p5) obj;
+                p5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (q5Var.f27463m && hasImageLoaded()) {
-                    q5Var.f27463m = false;
-                    AndroidUtilities.runOnUIThread(new og(q5Var, 4));
+                if (p5Var.f27164m && hasImageLoaded()) {
+                    p5Var.f27164m = false;
+                    AndroidUtilities.runOnUIThread(new og(p5Var, 4));
                 }
                 return imageBitmapByKey2;
             case 5:
@@ -97,9 +97,9 @@ public final class l4 extends ImageReceiver {
                 int dp = AndroidUtilities.dp(6.0f);
                 iArr2[3] = dp;
                 iArr2[2] = dp;
-                qh.g gVar = u1Var.f21242b6;
+                qh.g gVar = u1Var.f21245b6;
                 if (gVar != null) {
-                    gVar.f42023b.setRoundRadius(u1Var.R0);
+                    gVar.f42068b.setRoundRadius(u1Var.R0);
                     return;
                 }
                 return;

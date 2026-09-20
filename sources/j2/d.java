@@ -24,31 +24,56 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.jv0;
 public final class d implements m, c1, e1, RequestDelegateTimestamp, a2, MessagesStorage.StringCallback {
-    public final int f12571a;
-    public final int f12572b;
-    public final long f12573c;
+    public final int f12572a;
+    public final int f12573b;
+    public final long f12574c;
     public final Object d;
 
     public d(long j3, int i10, Object obj, int i11) {
-        this.f12571a = i11;
-        this.f12573c = j3;
-        this.f12572b = i10;
+        this.f12572a = i11;
+        this.f12574c = j3;
+        this.f12573b = i10;
         this.d = obj;
     }
 
     @Override
     public void d(j1 j1Var, r rVar) {
-        j1Var.s(((f1) this.d).K0(rVar, j1Var, this.f12572b), this.f12573c);
+        j1Var.s(((f1) this.d).K0(rVar, j1Var, this.f12573b), this.f12574c);
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        int i11 = this.f12571a;
+    public Object h(a0 a0Var, r rVar, int i10) {
+        int i11;
+        long j3;
+        List list = (List) this.d;
+        int i12 = this.f12573b;
+        if (i12 == -1) {
+            i11 = a0Var.f14687t.l0();
+        } else {
+            i11 = i12;
+        }
+        if (i12 == -1) {
+            j3 = a0Var.f14687t.J0();
+        } else {
+            j3 = this.f12574c;
+        }
+        return a0Var.q(rVar, list, i11, j3);
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        b bVar = (b) obj;
+        bVar.f((a) this.d, this.f12573b, this.f12574c);
+    }
+
+    @Override
+    public void k(b2 b2Var, int i10) {
+        int i11 = this.f12572a;
         Object obj = this.d;
-        int i12 = this.f12572b;
-        long j3 = this.f12573c;
+        int i12 = this.f12573b;
+        long j3 = this.f12574c;
         switch (i11) {
             case 4:
                 EditText editText = (EditText) obj;
@@ -125,58 +150,33 @@ public final class d implements m, c1, e1, RequestDelegateTimestamp, a2, Message
     }
 
     @Override
-    public Object i(a0 a0Var, r rVar, int i10) {
-        int i11;
-        long j3;
-        List list = (List) this.d;
-        int i12 = this.f12572b;
-        if (i12 == -1) {
-            i11 = a0Var.f14651t.l0();
-        } else {
-            i11 = i12;
-        }
-        if (i12 == -1) {
-            j3 = a0Var.f14651t.J0();
-        } else {
-            j3 = this.f12573c;
-        }
-        return a0Var.q(rVar, list, i11, j3);
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        b bVar = (b) obj;
-        bVar.f((a) this.d, this.f12572b, this.f12573c);
-    }
-
-    @Override
     public void run(String str) {
-        kv0.i((kv0) this.d, this.f12573c, this.f12572b, str);
+        jv0.i((jv0) this.d, this.f12574c, this.f12573b, str);
     }
 
     public d(a aVar, int i10, long j3, long j10) {
-        this.f12571a = 0;
+        this.f12572a = 0;
         this.d = aVar;
-        this.f12572b = i10;
-        this.f12573c = j3;
+        this.f12573b = i10;
+        this.f12574c = j3;
     }
 
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
-        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f12572b, this.f12573c, tLObject, tL_error, j3);
+        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f12573b, this.f12574c, tLObject, tL_error, j3);
     }
 
     public d(Object obj, int i10, long j3, int i11) {
-        this.f12571a = i11;
+        this.f12572a = i11;
         this.d = obj;
-        this.f12572b = i10;
-        this.f12573c = j3;
+        this.f12573b = i10;
+        this.f12574c = j3;
     }
 
-    public d(kv0 kv0Var, long j3, int i10) {
-        this.f12571a = 6;
-        this.d = kv0Var;
-        this.f12573c = j3;
-        this.f12572b = i10;
+    public d(jv0 jv0Var, long j3, int i10) {
+        this.f12572a = 6;
+        this.d = jv0Var;
+        this.f12574c = j3;
+        this.f12573b = i10;
     }
 }

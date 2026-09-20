@@ -9,27 +9,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.qr;
 public final class d0 {
-    public int f4464a;
-    public final org.telegram.ui.Components.e6 f4465b;
-    public final ImageReceiver f4466c;
+    public int f4465a;
+    public final org.telegram.ui.Components.d6 f4466b;
+    public final ImageReceiver f4467c;
     public c0 d;
     public TextureView e;
-    public boolean f4467f;
+    public boolean f4468f;
     public s h;
-    public boolean f4473m;
-    public o8 f4474n;
-    public ValueAnimator f4475o;
-    public final e0 f4476p;
-    public volatile long f4468g = -1;
-    public boolean f4469i = false;
-    public final RectF f4470j = new RectF();
-    public final RectF f4471k = new RectF();
-    public float f4472l = 1.0f;
+    public boolean f4474m;
+    public o8 f4475n;
+    public ValueAnimator f4476o;
+    public final e0 f4477p;
+    public volatile long f4469g = -1;
+    public boolean f4470i = false;
+    public final RectF f4471j = new RectF();
+    public final RectF f4472k = new RectF();
+    public float f4473l = 1.0f;
 
     public d0(e0 e0Var) {
-        this.f4476p = e0Var;
-        this.f4465b = new org.telegram.ui.Components.e6(e0Var, 0L, 1200L, qr.f27716g);
-        this.f4466c = new ImageReceiver(e0Var);
+        this.f4477p = e0Var;
+        this.f4466b = new org.telegram.ui.Components.d6(e0Var, 0L, 1200L, qr.f27643g);
+        this.f4467c = new ImageReceiver(e0Var);
     }
 
     public final void a(o8 o8Var) {
@@ -46,8 +46,8 @@ public final class d0 {
             AndroidUtilities.removeFromParent(textureView);
             this.e = null;
         }
-        this.f4467f = false;
-        this.f4474n = o8Var;
+        this.f4468f = false;
+        this.f4475n = o8Var;
         StringBuilder sb2 = new StringBuilder();
         sb2.append((int) Math.ceil(AndroidUtilities.displaySize.x / AndroidUtilities.density));
         sb2.append("_");
@@ -58,9 +58,9 @@ public final class d0 {
             str = "";
         }
         String s10 = a4.a.s(sb2, str, "_exif");
-        o8 o8Var2 = this.f4474n;
-        e0 e0Var = this.f4476p;
-        ImageReceiver imageReceiver = this.f4466c;
+        o8 o8Var2 = this.f4475n;
+        e0 e0Var = this.f4477p;
+        ImageReceiver imageReceiver = this.f4467c;
         if (o8Var2 == null) {
             imageReceiver.clearImage();
         } else if (o8Var2.K) {
@@ -68,7 +68,7 @@ public final class d0 {
             if (bitmap != null) {
                 imageReceiver.setImageBitmap(bitmap);
             } else {
-                Bitmap bitmap2 = o8Var2.f5147b1;
+                Bitmap bitmap2 = o8Var2.f5148b1;
                 if (bitmap2 != null) {
                     imageReceiver.setImageBitmap(bitmap2);
                 } else {
@@ -87,14 +87,14 @@ public final class d0 {
             this.d = c0Var2;
             c0Var2.allowMultipleInstances(true);
             this.d.with(this.e);
-            this.d.preparePlayer(Uri.fromFile(this.f4474n.L), false, 1.0f);
+            this.d.preparePlayer(Uri.fromFile(this.f4475n.L), false, 1.0f);
             c0 c0Var3 = this.d;
-            if (!e0Var.f4581v0) {
-                o8 o8Var3 = this.f4474n;
-                if (!o8Var3.Y && e0Var.f4571n0) {
+            if (!e0Var.f4582v0) {
+                o8 o8Var3 = this.f4475n;
+                if (!o8Var3.Y && e0Var.f4572n0) {
                     f7 = o8Var3.P;
                     c0Var3.setVolume(f7);
-                    if (!e0Var.f4571n0 && !e0Var.f4574q0) {
+                    if (!e0Var.f4572n0 && !e0Var.f4575q0) {
                         this.d.pause();
                     } else {
                         this.d.play();
@@ -103,7 +103,7 @@ public final class d0 {
             }
             f7 = 0.0f;
             c0Var3.setVolume(f7);
-            if (!e0Var.f4571n0) {
+            if (!e0Var.f4572n0) {
             }
             this.d.play();
         } else {
@@ -117,39 +117,39 @@ public final class d0 {
         if (sVar != null) {
             this.h = sVar;
         }
-        ValueAnimator valueAnimator = this.f4475o;
+        ValueAnimator valueAnimator = this.f4476o;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f4475o = null;
+            this.f4476o = null;
         }
-        RectF rectF = this.f4471k;
-        e0 e0Var = this.f4476p;
+        RectF rectF = this.f4472k;
+        e0 e0Var = this.f4477p;
         if (z10) {
-            boolean z11 = this.f4469i;
-            RectF rectF2 = this.f4470j;
+            boolean z11 = this.f4470i;
+            RectF rectF2 = this.f4471j;
             if (!z11) {
                 e0.c(e0Var, rectF2, sVar);
             } else {
-                AndroidUtilities.lerp(rectF2, rectF, this.f4472l, rectF2);
+                AndroidUtilities.lerp(rectF2, rectF, this.f4473l, rectF2);
             }
             if (sVar == null) {
                 e0.c(e0Var, rectF, sVar2);
             } else {
                 e0Var.k(rectF, sVar);
             }
-            this.f4472l = 0.0f;
+            this.f4473l = 0.0f;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f4475o = ofFloat;
+            this.f4476o = ofFloat;
             ofFloat.addUpdateListener(new ai.l6(this, 2));
-            this.f4475o.addListener(new ai.b(this, 12));
-            this.f4475o.setInterpolator(qr.h);
-            this.f4475o.setDuration(360L);
-            this.f4475o.start();
+            this.f4476o.addListener(new ai.b(this, 12));
+            this.f4476o.setInterpolator(qr.h);
+            this.f4476o.setDuration(360L);
+            this.f4476o.start();
         } else {
             e0Var.k(rectF, sVar);
-            this.f4472l = 1.0f;
+            this.f4473l = 1.0f;
         }
         e0Var.invalidate();
-        this.f4469i = true;
+        this.f4470i = true;
     }
 }

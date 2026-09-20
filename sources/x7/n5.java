@@ -3,11 +3,11 @@ package x7;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class n5 implements Parcelable.Creator {
-    public final int f45773a;
+    public final int f45817a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f45773a) {
+        switch (this.f45817a) {
             case 0:
                 int z10 = w7.e0.z(parcel);
                 String str = null;
@@ -94,7 +94,7 @@ public final class n5 implements Parcelable.Creator {
                     }
                 }
                 w7.e0.m(parcel, z12);
-                return new na(f11, i14, str3, str4);
+                return new oa(f11, i14, str3, str4);
             default:
                 int z13 = w7.e0.z(parcel);
                 float f12 = 0.0f;
@@ -113,21 +113,21 @@ public final class n5 implements Parcelable.Creator {
                     }
                 }
                 w7.e0.m(parcel, z13);
-                return new oa(f12, i15);
+                return new pa(f12, i15);
         }
     }
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f45773a) {
+        switch (this.f45817a) {
             case 0:
                 return new m4[i10];
             case 1:
                 return new n6[i10];
             case 2:
-                return new na[i10];
-            default:
                 return new oa[i10];
+            default:
+                return new pa[i10];
         }
     }
 }

@@ -1,23 +1,15 @@
 package org.telegram.ui.Components;
+public final class m61 extends s61 {
+    public final n61 f26339f3;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class m61 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final o61 f26345a;
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(this.f26345a.X((x51) obj, (View) obj2));
+    public m61(n61 n61Var, n61 n61Var2, d dVar, l61 l61Var, l61 l61Var2) {
+        super(n61Var2, dVar, l61Var, l61Var2);
+        this.f26339f3 = n61Var;
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f26345a.W((x51) obj, (View) obj2);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f26339f3.f26600c = -1;
     }
 }

@@ -1,38 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-public final class g61 extends LinkMovementMethod {
-    public final UndoView f24319a;
+import org.telegram.messenger.Utilities;
+public final class g61 implements Utilities.Callback0Return {
+    public final int f24268a;
+    public final Object f24269b;
+    public final Object f24270c;
 
-    public g61(UndoView undoView) {
-        this.f24319a = undoView;
+    public g61(int i10, Object obj, Object obj2) {
+        this.f24268a = i10;
+        this.f24269b = obj;
+        this.f24270c = obj2;
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        CharacterStyle[] characterStyleArr;
-        try {
-            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f24319a.b(characterStyleArr2[0]);
-                    }
-                    Selection.removeSelection(spannable);
-                    return true;
-                }
-                return super.onTouchEvent(textView, spannable, motionEvent);
-            }
-            return false;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
+    public final java.lang.Object run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g61.run():java.lang.Object");
     }
 }

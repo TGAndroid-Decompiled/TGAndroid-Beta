@@ -4,8 +4,8 @@ import android.content.Context;
 public final class qk extends jh.e {
     public final zn L;
 
-    public qk(zn znVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, ij ijVar, ah.c cVar) {
-        super(cVar, context, ijVar, e6Var);
+    public qk(zn znVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, ij ijVar, ah.c cVar) {
+        super(cVar, context, ijVar, f6Var);
         this.L = znVar;
     }
 

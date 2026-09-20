@@ -4,22 +4,22 @@ import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import hg.k0;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.q;
 import org.telegram.ui.ke;
-import yh.v7;
+import yh.w7;
 public final class d {
-    public final long[] f13604a;
-    public final CharSequence[] f13605b;
-    public final CharSequence[] f13606c;
+    public final long[] f13605a;
+    public final CharSequence[] f13606b;
+    public final CharSequence[] f13607c;
     public final StaticLayout[] d;
     public final StaticLayout[] e;
-    public int f13607f;
-    public int f13608g;
+    public int f13608f;
+    public int f13609g;
     public DecimalFormat h;
 
     public d(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
@@ -39,9 +39,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f13605b;
+                charSequenceArr = this.f13606b;
             } else {
-                charSequenceArr = this.f13606c;
+                charSequenceArr = this.f13607c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {
@@ -82,7 +82,7 @@ public final class d {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j3, "USD");
             }
-            return v7.X0(false, q.i(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return w7.X0(false, k0.j(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return AndroidUtilities.formatWholeNumber((int) j3, 0);
         }

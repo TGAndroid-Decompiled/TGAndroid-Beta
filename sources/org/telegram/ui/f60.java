@@ -31,20 +31,20 @@ public final class f60 extends FrameLayout {
     public final float[] I;
     public boolean J;
     public final i60 K;
-    public final org.telegram.ui.Components.lj0 f33443a;
-    public final TextView f33444b;
-    public final TLRPC.GroupCallParticipant f33445c;
-    public final org.telegram.ui.Components.ij0 d;
+    public final org.telegram.ui.Components.kj0 f33505a;
+    public final TextView f33506b;
+    public final TLRPC.GroupCallParticipant f33507c;
+    public final org.telegram.ui.Components.hj0 d;
     public boolean e;
-    public float f33446f;
+    public float f33508f;
     public float h;
-    public int f33447n;
-    public double f33448r;
-    public final Paint f33449s;
+    public int f33509n;
+    public double f33510r;
+    public final Paint f33511s;
     public final Paint v;
-    public final Path f33450w;
-    public final float[] f33451x;
-    public final RectF f33452y;
+    public final Path f33512w;
+    public final float[] f33513x;
+    public final RectF f33514y;
 
     public f60(i60 i60Var, Context context, TLRPC.GroupCallParticipant groupCallParticipant) {
         super(context);
@@ -55,25 +55,25 @@ public final class f60 extends FrameLayout {
         int i12;
         int i13;
         this.K = i60Var;
-        this.f33449s = new Paint(1);
+        this.f33511s = new Paint(1);
         Paint paint = new Paint(1);
         this.v = paint;
-        this.f33450w = new Path();
-        this.f33451x = new float[8];
-        this.f33452y = new RectF();
+        this.f33512w = new Path();
+        this.f33513x = new float[8];
+        this.f33514y = new RectF();
         this.I = new float[3];
         setWillNotDraw(false);
-        this.f33445c = groupCallParticipant;
-        this.f33448r = ChatObject.getParticipantVolume(groupCallParticipant) / 20000.0f;
+        this.f33507c = groupCallParticipant;
+        this.f33510r = ChatObject.getParticipantVolume(groupCallParticipant) / 20000.0f;
         this.G = 1.0f;
         setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        org.telegram.ui.Components.ij0 ij0Var = new org.telegram.ui.Components.ij0(R.raw.speaker, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
-        this.d = ij0Var;
+        org.telegram.ui.Components.hj0 hj0Var = new org.telegram.ui.Components.hj0(R.raw.speaker, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+        this.d = hj0Var;
         ?? imageView = new ImageView(context);
-        this.f33443a = imageView;
+        this.f33505a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setAnimation(ij0Var);
-        if (this.f33448r == 0.0d) {
+        imageView.setAnimation(hj0Var);
+        if (this.f33510r == 0.0d) {
             num = 1;
         } else {
             num = null;
@@ -85,20 +85,20 @@ public final class f60 extends FrameLayout {
             i10 = 3;
         }
         addView((View) imageView, w7.y5.d(-2, 40.0f, i10 | 16, 0.0f, 0.0f, 0.0f, 0.0f));
-        if (this.f33448r == 0.0d) {
+        if (this.f33510r == 0.0d) {
             i11 = 17;
         } else {
             i11 = 34;
         }
-        ij0Var.P(i11);
-        ij0Var.N(ij0Var.f24979f - 1, false, true);
+        hj0Var.P(i11);
+        hj0Var.N(hj0Var.f24685f - 1, false, true);
         TextView textView = new TextView(context);
-        this.f33444b = textView;
+        this.f33506b = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(3);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19142hg, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19174hg, false));
         textView.setTextSize(1, 16.0f);
         double participantVolume = ChatObject.getParticipantVolume(groupCallParticipant) / 100.0d;
         Locale locale = Locale.US;
@@ -152,8 +152,8 @@ public final class f60 extends FrameLayout {
         i60 i60Var = this.K;
         AccountInstance accountInstance = i60Var.d;
         if (VoIPService.getSharedInstance() != null) {
-            this.f33448r = d;
-            TLRPC.GroupCallParticipant groupCallParticipant = this.f33445c;
+            this.f33510r = d;
+            TLRPC.GroupCallParticipant groupCallParticipant = this.f33507c;
             groupCallParticipant.volume = (int) (d * 20000.0d);
             int i12 = 0;
             groupCallParticipant.volume_by_admin = false;
@@ -165,7 +165,7 @@ public final class f60 extends FrameLayout {
             } else {
                 d10 = 0.0d;
             }
-            this.f33444b.setText(((int) d10) + "%");
+            this.f33506b.setText(((int) d10) + "%");
             VoIPService.getSharedInstance().setParticipantVolume(groupCallParticipant, groupCallParticipant.volume);
             Integer num = null;
             if (z10) {
@@ -177,10 +177,10 @@ public final class f60 extends FrameLayout {
                 }
                 TLObject tLObject = chat;
                 if (groupCallParticipant.volume == 0) {
-                    i50 i50Var = i60Var.f34353f3;
+                    i50 i50Var = i60Var.f34384f3;
                     if (i50Var != null) {
                         i50Var.dismiss();
-                        i60Var.f34353f3 = null;
+                        i60Var.f34384f3 = null;
                     }
                     i60Var.d1(true);
                     if (i60Var.Q0()) {
@@ -193,31 +193,31 @@ public final class f60 extends FrameLayout {
                     VoIPService.getSharedInstance().editCallMember(tLObject, null, null, Integer.valueOf(groupCallParticipant.volume), null, null);
                 }
             }
-            if (this.f33448r == 0.0d) {
+            if (this.f33510r == 0.0d) {
                 num = 1;
             }
-            org.telegram.ui.Components.lj0 lj0Var = this.f33443a;
-            if ((lj0Var.getTag() == null && num != null) || (lj0Var.getTag() != null && num == null)) {
-                if (this.f33448r == 0.0d) {
+            org.telegram.ui.Components.kj0 kj0Var = this.f33505a;
+            if ((kj0Var.getTag() == null && num != null) || (kj0Var.getTag() != null && num == null)) {
+                if (this.f33510r == 0.0d) {
                     i10 = 17;
                 } else {
                     i10 = 34;
                 }
-                org.telegram.ui.Components.ij0 ij0Var = this.d;
-                ij0Var.P(i10);
-                if (this.f33448r != 0.0d) {
+                org.telegram.ui.Components.hj0 hj0Var = this.d;
+                hj0Var.P(i10);
+                if (this.f33510r != 0.0d) {
                     i12 = 17;
                 }
-                ij0Var.M(i12);
-                ij0Var.start();
-                lj0Var.setTag(num);
+                hj0Var.M(i12);
+                hj0Var.start();
+                kj0Var.setTag(num);
             }
         }
     }
 
     public final boolean b(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f33446f = motionEvent.getX();
+            this.f33508f = motionEvent.getX();
             this.h = motionEvent.getY();
             return true;
         }
@@ -225,16 +225,16 @@ public final class f60 extends FrameLayout {
             if (motionEvent.getAction() == 2) {
                 if (!this.e) {
                     ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
-                    if (Math.abs(motionEvent.getY() - this.h) <= viewConfiguration.getScaledTouchSlop() && Math.abs(motionEvent.getX() - this.f33446f) > viewConfiguration.getScaledTouchSlop()) {
+                    if (Math.abs(motionEvent.getY() - this.h) <= viewConfiguration.getScaledTouchSlop() && Math.abs(motionEvent.getX() - this.f33508f) > viewConfiguration.getScaledTouchSlop()) {
                         this.e = true;
                         getParent().requestDisallowInterceptTouchEvent(true);
                         if (motionEvent.getY() >= 0.0f && motionEvent.getY() <= getMeasuredHeight()) {
                             int x10 = (int) motionEvent.getX();
-                            this.f33447n = x10;
+                            this.f33509n = x10;
                             if (x10 < 0) {
-                                this.f33447n = 0;
+                                this.f33509n = 0;
                             } else if (x10 > getMeasuredWidth()) {
-                                this.f33447n = getMeasuredWidth();
+                                this.f33509n = getMeasuredWidth();
                             }
                             this.J = true;
                             invalidate();
@@ -243,13 +243,13 @@ public final class f60 extends FrameLayout {
                     }
                 } else if (this.J) {
                     int x11 = (int) motionEvent.getX();
-                    this.f33447n = x11;
+                    this.f33509n = x11;
                     if (x11 < 0) {
-                        this.f33447n = 0;
+                        this.f33509n = 0;
                     } else if (x11 > getMeasuredWidth()) {
-                        this.f33447n = getMeasuredWidth();
+                        this.f33509n = getMeasuredWidth();
                     }
-                    a(this.f33447n / getMeasuredWidth(), false);
+                    a(this.f33509n / getMeasuredWidth(), false);
                     invalidate();
                     return true;
                 }
@@ -259,18 +259,18 @@ public final class f60 extends FrameLayout {
             if (motionEvent.getAction() == 1) {
                 if (Math.abs(motionEvent.getY() - this.h) < ViewConfiguration.get(getContext()).getScaledTouchSlop()) {
                     int x12 = (int) motionEvent.getX();
-                    this.f33447n = x12;
+                    this.f33509n = x12;
                     if (x12 < 0) {
-                        this.f33447n = 0;
+                        this.f33509n = 0;
                     } else if (x12 > getMeasuredWidth()) {
-                        this.f33447n = getMeasuredWidth();
+                        this.f33509n = getMeasuredWidth();
                     }
                     this.J = true;
                 }
             }
             if (this.J) {
                 if (motionEvent.getAction() == 1) {
-                    a(this.f33447n / getMeasuredWidth(), true);
+                    a(this.f33509n / getMeasuredWidth(), true);
                 }
                 this.J = false;
                 invalidate();
@@ -288,7 +288,7 @@ public final class f60 extends FrameLayout {
         int i11;
         f60 f60Var = this;
         int i12 = f60Var.E;
-        double d = f60Var.f33448r;
+        double d = f60Var.f33510r;
         if (d < 0.25d) {
             f60Var.E = -3385513;
         } else if (d > 0.25d && d < 0.5d) {
@@ -309,7 +309,7 @@ public final class f60 extends FrameLayout {
             }
             i10 = offsetColor;
         }
-        Paint paint = f60Var.f33449s;
+        Paint paint = f60Var.f33511s;
         paint.setColor(i10);
         long elapsedRealtime = SystemClock.elapsedRealtime();
         long j3 = elapsedRealtime - f60Var.H;
@@ -327,18 +327,18 @@ public final class f60 extends FrameLayout {
                 f60Var.invalidate();
             }
         }
-        Path path = f60Var.f33450w;
+        Path path = f60Var.f33512w;
         path.reset();
         float f12 = 6.0f;
         float dp2 = AndroidUtilities.dp(6.0f);
-        float[] fArr = f60Var.f33451x;
+        float[] fArr = f60Var.f33513x;
         fArr[7] = dp2;
         fArr[6] = dp2;
         int i13 = 1;
         fArr[1] = dp2;
         fArr[0] = dp2;
-        if (f60Var.f33447n < AndroidUtilities.dp(12.0f)) {
-            f7 = Math.max(0.0f, (f60Var.f33447n - AndroidUtilities.dp(6.0f)) / AndroidUtilities.dp(6.0f));
+        if (f60Var.f33509n < AndroidUtilities.dp(12.0f)) {
+            f7 = Math.max(0.0f, (f60Var.f33509n - AndroidUtilities.dp(6.0f)) / AndroidUtilities.dp(6.0f));
         } else {
             f7 = 1.0f;
         }
@@ -347,16 +347,16 @@ public final class f60 extends FrameLayout {
         fArr[4] = dp3;
         fArr[3] = dp3;
         fArr[2] = dp3;
-        RectF rectF = f60Var.f33452y;
-        rectF.set(0.0f, 0.0f, f60Var.f33447n, f60Var.getMeasuredHeight());
+        RectF rectF = f60Var.f33514y;
+        rectF.set(0.0f, 0.0f, f60Var.f33509n, f60Var.getMeasuredHeight());
         path.addRoundRect(rectF, fArr, Path.Direction.CW);
         path.close();
         Canvas canvas2 = canvas;
         canvas2.drawPath(path, paint);
-        int participantVolume = (int) (ChatObject.getParticipantVolume(f60Var.f33445c) / 100.0d);
-        org.telegram.ui.Components.lj0 lj0Var = f60Var.f33443a;
-        int dp4 = AndroidUtilities.dp(5.0f) + (lj0Var.getMeasuredWidth() / 2) + lj0Var.getLeft();
-        int measuredHeight = (lj0Var.getMeasuredHeight() / 2) + lj0Var.getTop();
+        int participantVolume = (int) (ChatObject.getParticipantVolume(f60Var.f33507c) / 100.0d);
+        org.telegram.ui.Components.kj0 kj0Var = f60Var.f33505a;
+        int dp4 = AndroidUtilities.dp(5.0f) + (kj0Var.getMeasuredWidth() / 2) + kj0Var.getLeft();
+        int measuredHeight = (kj0Var.getMeasuredHeight() / 2) + kj0Var.getTop();
         int i14 = 0;
         while (true) {
             float[] fArr2 = f60Var.I;
@@ -419,7 +419,7 @@ public final class f60 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-        this.f33447n = (int) (View.MeasureSpec.getSize(i10) * this.f33448r);
+        this.f33509n = (int) (View.MeasureSpec.getSize(i10) * this.f33510r);
     }
 
     @Override

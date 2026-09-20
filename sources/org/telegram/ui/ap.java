@@ -6,16 +6,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ap extends org.telegram.ui.Components.mo0 {
-    public final ip f32108r;
+    public final ip f32132r;
 
-    public ap(ip ipVar, Context context, yd ydVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, ydVar, e6Var, false);
-        this.f32108r = ipVar;
+    public ap(ip ipVar, Context context, yd ydVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, ydVar, f6Var, false);
+        this.f32132r = ipVar;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.f32108r.L && super.onInterceptTouchEvent(motionEvent)) {
+        if (!this.f32132r.L && super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -26,7 +26,7 @@ public final class ap extends org.telegram.ui.Components.mo0 {
         if (motionEvent.getAction() != 0) {
             return super.onTouchEvent(motionEvent);
         }
-        if (!this.f32108r.L && super.onTouchEvent(motionEvent)) {
+        if (!this.f32132r.L && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

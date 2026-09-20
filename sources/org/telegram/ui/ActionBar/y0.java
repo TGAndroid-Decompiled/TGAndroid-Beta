@@ -1,7 +1,7 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.ui.Components.o6;
-public final class y0 extends o6 {
+import org.telegram.ui.Components.n6;
+public final class y0 extends n6 {
     public final int W;
     public final c1 X;
 

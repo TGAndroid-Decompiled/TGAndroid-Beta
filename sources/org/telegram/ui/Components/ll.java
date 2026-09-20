@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 public final class ll implements Runnable {
-    public final int f26179a;
-    public final ChatAttachAlertPhotoLayout f26180b;
+    public final int f26176a;
+    public final ChatAttachAlertPhotoLayout f26177b;
 
     public ll(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f26179a = i10;
-        this.f26180b = chatAttachAlertPhotoLayout;
+        this.f26176a = i10;
+        this.f26177b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f26179a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26180b;
+        int i10 = this.f26176a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26177b;
         switch (i10) {
             case 0:
-                boolean z10 = ChatAttachAlertPhotoLayout.f22084q1;
-                chatAttachAlertPhotoLayout.f26688b.getContainer().removeView(chatAttachAlertPhotoLayout.P);
+                boolean z10 = ChatAttachAlertPhotoLayout.f22119q1;
+                chatAttachAlertPhotoLayout.f26655b.getContainer().removeView(chatAttachAlertPhotoLayout.P);
                 chatAttachAlertPhotoLayout.P = null;
                 return;
             case 1:
-                chatAttachAlertPhotoLayout.f22128w.setVisibility(8);
+                chatAttachAlertPhotoLayout.f22163w.setVisibility(8);
                 return;
             case 2:
                 chatAttachAlertPhotoLayout.G.l();
                 return;
             case 3:
-                boolean z11 = ChatAttachAlertPhotoLayout.f22084q1;
+                boolean z11 = ChatAttachAlertPhotoLayout.f22119q1;
                 chatAttachAlertPhotoLayout.t0(false);
-                chatAttachAlertPhotoLayout.f22114n0 = null;
+                chatAttachAlertPhotoLayout.f22149n0 = null;
                 return;
             case 4:
-                boolean z12 = ChatAttachAlertPhotoLayout.f22084q1;
+                boolean z12 = ChatAttachAlertPhotoLayout.f22119q1;
                 chatAttachAlertPhotoLayout.t0(false);
-                chatAttachAlertPhotoLayout.f22114n0 = null;
+                chatAttachAlertPhotoLayout.f22149n0 = null;
                 return;
             case 5:
                 ChatAttachAlertPhotoLayout.P(chatAttachAlertPhotoLayout);

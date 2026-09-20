@@ -4,33 +4,33 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 public final class mi implements View.OnTouchListener {
-    public final int f35675a;
-    public final int[] f35676b;
-    public final Rect f35677c;
+    public final int f35741a;
+    public final int[] f35742b;
+    public final Rect f35743c;
     public final Object d;
 
     public mi(i60 i60Var, Rect rect) {
-        this.f35675a = 1;
+        this.f35741a = 1;
         this.d = i60Var;
-        this.f35677c = rect;
-        this.f35676b = new int[2];
+        this.f35743c = rect;
+        this.f35742b = new int[2];
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         i50 i50Var;
-        switch (this.f35675a) {
+        switch (this.f35741a) {
             case 0:
                 zn znVar = (zn) this.d;
                 if (motionEvent.getActionMasked() == 0) {
                     org.telegram.ui.ActionBar.n1 n1Var = znVar.Q8;
                     if (n1Var != null && n1Var.isShowing()) {
                         View contentView = znVar.Q8.getContentView();
-                        int[] iArr = this.f35676b;
+                        int[] iArr = this.f35742b;
                         contentView.getLocationInWindow(iArr);
                         int i10 = iArr[0];
                         int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
-                        Rect rect = this.f35677c;
+                        Rect rect = this.f35743c;
                         rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
                         if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                             znVar.A7(true);
@@ -43,30 +43,30 @@ public final class mi implements View.OnTouchListener {
             default:
                 i60 i60Var = (i60) this.d;
                 if (motionEvent.getActionMasked() == 0) {
-                    i50 i50Var2 = i60Var.f34353f3;
+                    i50 i50Var2 = i60Var.f34384f3;
                     if (i50Var2 != null && i50Var2.isShowing()) {
-                        View contentView2 = i60Var.f34353f3.getContentView();
-                        int[] iArr2 = this.f35676b;
+                        View contentView2 = i60Var.f34384f3.getContentView();
+                        int[] iArr2 = this.f35742b;
                         contentView2.getLocationInWindow(iArr2);
                         int i11 = iArr2[0];
                         int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
-                        Rect rect2 = this.f35677c;
+                        Rect rect2 = this.f35743c;
                         rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
                         if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            i60Var.f34353f3.dismiss();
+                            i60Var.f34384f3.dismiss();
                         }
                     }
-                } else if (motionEvent.getActionMasked() == 4 && (i50Var = i60Var.f34353f3) != null && i50Var.isShowing()) {
-                    i60Var.f34353f3.dismiss();
+                } else if (motionEvent.getActionMasked() == 4 && (i50Var = i60Var.f34384f3) != null && i50Var.isShowing()) {
+                    i60Var.f34384f3.dismiss();
                 }
                 return false;
         }
     }
 
     public mi(zn znVar, Rect rect) {
-        this.f35675a = 0;
+        this.f35741a = 0;
         this.d = znVar;
-        this.f35677c = rect;
-        this.f35676b = new int[2];
+        this.f35743c = rect;
+        this.f35742b = new int[2];
     }
 }

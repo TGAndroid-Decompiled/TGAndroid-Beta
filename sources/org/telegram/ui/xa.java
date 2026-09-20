@@ -7,21 +7,21 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class xa implements RequestDelegate {
-    public final int f39416a;
-    public final vb f39417b;
+    public final int f39402a;
+    public final vb f39403b;
 
     public xa(vb vbVar, int i10) {
-        this.f39416a = i10;
-        this.f39417b = vbVar;
+        this.f39402a = i10;
+        this.f39403b = vbVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39416a) {
+        switch (this.f39402a) {
             case 0:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final vb vbVar = this.f39417b;
+                    final vb vbVar = this.f39403b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -39,7 +39,7 @@ public final class xa implements RequestDelegate {
                 }
                 return;
             case 1:
-                vb vbVar2 = this.f39417b;
+                vb vbVar2 = this.f39403b;
                 vbVar2.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList = ((Vector) tLObject).objects;
@@ -54,12 +54,12 @@ public final class xa implements RequestDelegate {
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.h6(15, this.f39417b, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(17, this.f39403b, tLObject));
                 return;
             case 3:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final vb vbVar3 = this.f39417b;
+                    final vb vbVar3 = this.f39403b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -77,7 +77,7 @@ public final class xa implements RequestDelegate {
                 }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new q1(this.f39417b, tL_error, tLObject, 9));
+                AndroidUtilities.runOnUIThread(new q1(this.f39403b, tL_error, tLObject, 9));
                 return;
         }
     }

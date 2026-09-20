@@ -13,32 +13,32 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class je extends FrameLayout {
-    public final org.telegram.ui.ActionBar.e6 f34847a;
-    public final org.telegram.ui.Components.y5 f34848b;
-    public final TextView f34849c;
+    public final org.telegram.ui.ActionBar.f6 f34899a;
+    public final org.telegram.ui.Components.x5 f34900b;
+    public final TextView f34901c;
     public final TextView d;
     public final DecimalFormat e;
-    public boolean f34850f;
+    public boolean f34902f;
 
-    public je(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public je(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f34847a = e6Var;
-        LinearLayout e = org.telegram.messenger.wh.e(context, 1);
-        addView(e, w7.y5.d(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
+        this.f34899a = f6Var;
+        LinearLayout f7 = org.telegram.messenger.rk.f(context, 1);
+        addView(f7, w7.y5.d(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
         TextView textView = new TextView(context);
-        this.f34849c = textView;
+        this.f34901c = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, e6Var));
-        TextView h = com.google.android.gms.internal.vision.e2.h(e, textView, w7.y5.n(-1, -2), context);
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        TextView h = com.google.android.gms.internal.vision.e2.h(f7, textView, w7.y5.n(-1, -2), context);
         this.d = h;
         h.setTextSize(1, 13.0f);
-        h.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19445y6, e6Var));
-        e.addView(h, w7.y5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
-        org.telegram.ui.Components.y5 y5Var = new org.telegram.ui.Components.y5(context);
-        this.f34848b = y5Var;
-        y5Var.setTypeface(AndroidUtilities.bold());
-        y5Var.setTextSize(1, 13.0f);
-        addView(y5Var, w7.y5.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+        h.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19477y6, f6Var));
+        f7.addView(h, w7.y5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
+        org.telegram.ui.Components.x5 x5Var = new org.telegram.ui.Components.x5(context);
+        this.f34900b = x5Var;
+        x5Var.setTypeface(AndroidUtilities.bold());
+        x5Var.setTextSize(1, 13.0f);
+        addView(x5Var, w7.y5.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
         DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
         decimalFormatSymbols.setDecimalSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
@@ -54,12 +54,12 @@ public final class je extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f34850f) {
-            org.telegram.ui.ActionBar.e6 e6Var = this.f34847a;
-            if (e6Var != null) {
-                paint = e6Var.G("paintDivider");
+        if (this.f34902f) {
+            org.telegram.ui.ActionBar.f6 f6Var = this.f34899a;
+            if (f6Var != null) {
+                paint = f6Var.G("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.j6.f19184k0;
+                paint = org.telegram.ui.ActionBar.j6.f19216k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {

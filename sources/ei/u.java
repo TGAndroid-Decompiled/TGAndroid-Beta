@@ -13,25 +13,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.g5;
 import w7.y5;
 public final class u extends org.telegram.ui.ActionBar.n2 {
-    public t61 f8636a;
-    public final ArrayList f8637b;
-    public final HashMap f8638c;
+    public s61 f8637a;
+    public final ArrayList f8638b;
+    public final HashMap f8639c;
 
     public u() {
         super(null);
-        this.f8637b = new ArrayList();
-        this.f8638c = new HashMap();
+        this.f8638b = new ArrayList();
+        this.f8639c = new HashMap();
     }
 
     public static void U(u uVar, ArrayList arrayList) {
-        HashMap hashMap = uVar.f8638c;
-        ArrayList arrayList2 = uVar.f8637b;
+        HashMap hashMap = uVar.f8639c;
+        ArrayList arrayList2 = uVar.f8638b;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             q qVar = (q) arrayList2.get(i10);
             SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) hashMap.get(qVar);
@@ -39,30 +39,30 @@ public final class u extends org.telegram.ui.ActionBar.n2 {
                 spannableStringBuilder = new SpannableStringBuilder();
                 spannableStringBuilder.append((CharSequence) "a   ");
                 g5 g5Var = new g5(null, 24.0f, uVar.currentAccount);
-                g5Var.e(qVar.f8557a);
+                g5Var.e(qVar.f8558a);
                 spannableStringBuilder.setSpan(g5Var, 0, 1, 33);
-                spannableStringBuilder.append((CharSequence) UserObject.getUserName(qVar.f8557a));
+                spannableStringBuilder.append((CharSequence) UserObject.getUserName(qVar.f8558a));
                 hashMap.put(qVar, spannableStringBuilder);
             }
-            x51 i11 = x51.i(i10, spannableStringBuilder);
-            i11.K(!qVar.f8558b);
+            w51 i11 = w51.i(i10, spannableStringBuilder);
+            i11.K(!qVar.f8559b);
             arrayList.add(i11);
         }
         com.google.android.gms.internal.vision.e2.w(R.string.PrivacyBiometryBotsInfo, arrayList);
     }
 
-    public static void V(u uVar, x51 x51Var) {
+    public static void V(u uVar, w51 w51Var) {
         int i10;
-        l61 l61Var;
-        ArrayList arrayList = uVar.f8637b;
-        if (x51Var.f15672a == 4 && (i10 = x51Var.d) >= 0 && i10 < arrayList.size()) {
-            q qVar = (q) arrayList.get(x51Var.d);
-            qVar.f8558b = !qVar.f8558b;
+        k61 k61Var;
+        ArrayList arrayList = uVar.f8638b;
+        if (w51Var.f15704a == 4 && (i10 = w51Var.d) >= 0 && i10 < arrayList.size()) {
+            q qVar = (q) arrayList.get(w51Var.d);
+            qVar.f8559b = !qVar.f8559b;
             Activity parentActivity = uVar.getParentActivity();
             int i11 = uVar.currentAccount;
-            long j3 = qVar.f8557a.f18443id;
-            boolean z10 = qVar.f8558b;
-            WeakHashMap weakHashMap = r.f8575k;
+            long j3 = qVar.f8558a.f18475id;
+            boolean z10 = qVar.f8559b;
+            WeakHashMap weakHashMap = r.f8576k;
             SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i11, 0);
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putBoolean(j3 + "_disabled", z10);
@@ -70,24 +70,24 @@ public final class u extends org.telegram.ui.ActionBar.n2 {
                 edit.putString(String.valueOf(j3), "");
             }
             edit.apply();
-            t61 t61Var = uVar.f8636a;
-            if (t61Var != null && (l61Var = t61Var.Y2) != null) {
-                l61Var.N(true);
+            s61 s61Var = uVar.f8637a;
+            if (s61Var != null && (k61Var = s61Var.Y2) != null) {
+                k61Var.N(true);
             }
         }
     }
 
     @Override
     public final View createView(Context context) {
-        hg.k0.t(false, this.actionBar);
+        hg.k0.v(false, this.actionBar);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.PrivacyBiometryBots));
         this.actionBar.setActionBarMenuOnItemClick(new t(this, 0));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.v0(j6.f19006a7, this.resourceProvider));
-        t61 t61Var = new t61(this, new bi.v(this, 13), new s(this), new s(this));
-        this.f8636a = t61Var;
-        frameLayout.addView(t61Var, y5.e(-1, -1, 119));
+        frameLayout.setBackgroundColor(j6.v0(j6.f19038a7, this.resourceProvider));
+        s61 s61Var = new s61(this, new bi.v(this, 13), new s(this), new s(this));
+        this.f8637a = s61Var;
+        frameLayout.addView(s61Var, y5.e(-1, -1, 119));
         r.d(getParentActivity(), this.currentAccount, new ai.y1(this, 15));
         this.fragmentView = frameLayout;
         return frameLayout;

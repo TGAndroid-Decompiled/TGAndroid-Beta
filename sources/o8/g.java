@@ -6,20 +6,20 @@ import n6.u;
 import w7.f0;
 public final class g extends o6.a {
     public static final Parcelable.Creator<g> CREATOR = new m8.h(24);
-    public final int f15636a;
-    public final u f15637b;
+    public final int f15668a;
+    public final u f15669b;
 
     public g(int i10, u uVar) {
-        this.f15636a = i10;
-        this.f15637b = uVar;
+        this.f15668a = i10;
+        this.f15669b = uVar;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f15636a);
-        f0.k(parcel, 2, this.f15637b, i10);
+        parcel.writeInt(this.f15668a);
+        f0.k(parcel, 2, this.f15669b, i10);
         f0.r(parcel, q6);
     }
 }

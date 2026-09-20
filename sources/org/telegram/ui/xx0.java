@@ -1,38 +1,58 @@
 package org.telegram.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.text.style.ClickableSpan;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class xx0 extends ClickableSpan {
-    public final String f39638a;
-    public final yx0 f39639b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class xx0 implements Utilities.Callback {
+    public final int f39743a;
+    public final zx0 f39744b;
 
-    public xx0(yx0 yx0Var, String str) {
-        this.f39639b = yx0Var;
-        this.f39638a = str;
+    public xx0(zx0 zx0Var, int i10) {
+        this.f39743a = i10;
+        this.f39744b = zx0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Components.qc b10;
-        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.f39638a));
-        org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(this.f39639b.d);
-        String string = LocaleController.getString(R.string.LinkCopied);
-        org.telegram.ui.ActionBar.e6 resourceProvider = this.f39639b.d.getResourceProvider();
-        a02.getClass();
-        if (!AndroidUtilities.shouldShowClipboardToast()) {
-            b10 = new org.telegram.ui.Components.qc();
-        } else {
-            org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(a02.W(), resourceProvider);
-            ybVar.c(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-            ybVar.f30530b.setText(string);
-            b10 = a02.b(ybVar, 1500);
+    public final void run(Object obj) {
+        TL_account.TL_birthday tL_birthday;
+        int i10;
+        int i11;
+        switch (this.f39743a) {
+            case 0:
+                PrivacyControlActivity privacyControlActivity = this.f39744b.d;
+                privacyControlActivity.L = ((Integer) obj).intValue();
+                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f31487j0);
+                privacyControlActivity.E0();
+                return;
+            default:
+                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
+                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
+                updatebirthday.flags |= 1;
+                updatebirthday.birthday = tL_birthday2;
+                zx0 zx0Var = this.f39744b;
+                PrivacyControlActivity privacyControlActivity2 = zx0Var.d;
+                TLRPC.UserFull userFull = privacyControlActivity2.getMessagesController().getUserFull(privacyControlActivity2.getUserConfig().getClientUserId());
+                if (userFull != null) {
+                    tL_birthday = userFull.birthday;
+                } else {
+                    tL_birthday = null;
+                }
+                if (userFull != null) {
+                    userFull.flags2 |= 32;
+                    userFull.birthday = tL_birthday2;
+                    privacyControlActivity2.getMessagesStorage().updateUserInfo(userFull, false);
+                }
+                privacyControlActivity2.getMessagesController().invalidateContentSettings();
+                privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new ns0(zx0Var, userFull, tL_birthday, 1), 1024);
+                i10 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
+                MessagesController.getInstance(i10).removeSuggestion(0L, "BIRTHDAY_SETUP");
+                i11 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
+                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+                privacyControlActivity2.F0(true);
+                return;
         }
-        b10.j();
     }
 }

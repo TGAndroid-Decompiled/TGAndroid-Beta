@@ -1,68 +1,27 @@
 package qg;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import org.telegram.ui.au0;
-import org.telegram.ui.jr0;
-public final class d0 implements pg.d1 {
-    public final jr0 f41589a;
-    public final au0 f41590b;
+public final class d0 extends pg.e1 {
+    public final Bitmap E;
+    public final au0 F;
 
-    public d0(au0 au0Var, jr0 jr0Var) {
-        this.f41590b = au0Var;
-        this.f41589a = jr0Var;
+    public d0(au0 au0Var, Context context, pg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, s0Var, bitmap, null, null);
+        this.F = au0Var;
+        this.E = bitmap2;
     }
 
     @Override
-    public final void a() {
-        this.f41589a.run();
-    }
-
-    @Override
-    public final void b() {
-        e0 e0Var = this.f41590b.X0;
-        if (e0Var != null) {
-            e0Var.invalidate();
+    public final void g(pg.m mVar) {
+        int indexOf = pg.m.f41199a.indexOf(mVar);
+        int i10 = indexOf + 1;
+        if (i10 <= 1 || this.E != null) {
+            indexOf = i10;
         }
-    }
-
-    @Override
-    public final void c() {
-        au0 au0Var = this.f41590b;
-        if (au0Var.f41756k1) {
-            au0Var.f41756k1 = false;
-            return;
-        }
-        au0Var.f41768t1.b(1);
-        au0Var.b((pg.m) pg.m.f41158a.get(0));
-    }
-
-    @Override
-    public final boolean d() {
-        boolean z10;
-        au0 au0Var = this.f41590b;
-        if (au0Var.S0 == null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10) {
-            au0Var.r0(null, true);
-        }
-        return z10;
-    }
-
-    @Override
-    public final void e() {
-        au0 au0Var = this.f41590b;
-        au0Var.F0.f41280a.e();
-        au0Var.l1.setViewHidden(false);
-    }
-
-    @Override
-    public final void f() {
-        au0 au0Var = this.f41590b;
-        if (au0Var.S0 != null) {
-            au0Var.r0(null, true);
-        }
-        au0Var.l1.setViewHidden(true);
+        au0 au0Var = this.F;
+        au0Var.f41815t1.b(indexOf);
+        au0Var.b(mVar);
     }
 }

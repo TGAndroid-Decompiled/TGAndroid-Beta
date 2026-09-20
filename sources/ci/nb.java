@@ -6,27 +6,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 public final class nb extends x3 {
-    public final oc f5097k0;
+    public final oc f5098k0;
 
     public nb(oc ocVar, int i10, Context context, ai.d dVar, MediaController.AlbumEntry albumEntry, boolean z10, boolean z11, boolean z12) {
         super(i10, context, dVar, albumEntry, z10, 1.39f, z11, z12);
-        this.f5097k0 = ocVar;
+        this.f5098k0 = ocVar;
     }
 
     @Override
     public final void a() {
-        oc ocVar = this.f5097k0;
-        ocVar.M0.setTranslationY(ocVar.f5244n.getMeasuredHeight() - ocVar.M0.g());
-        ua uaVar = ocVar.f5256q2;
+        oc ocVar = this.f5098k0;
+        ocVar.M0.setTranslationY(ocVar.f5245n.getMeasuredHeight() - ocVar.M0.g());
+        ua uaVar = ocVar.f5257q2;
         if (uaVar != null) {
             uaVar.run();
-            ocVar.f5256q2 = null;
+            ocVar.f5257q2 = null;
         }
     }
 
     @Override
     public final void c(boolean z10) {
-        if (this.f5097k0.f5222f0 == 0 && z10) {
+        if (this.f5098k0.f5223f0 == 0 && z10) {
             AndroidUtilities.runOnUIThread(new androidx.fragment.app.a0(this, 24));
         }
     }
@@ -34,7 +34,7 @@ public final class nb extends x3 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
-            oc ocVar = this.f5097k0;
+            oc ocVar = this.f5098k0;
             ocVar.L0 = true;
             ocVar.f(false);
             return true;
@@ -45,12 +45,12 @@ public final class nb extends x3 {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        oc ocVar = this.f5097k0;
-        if (ocVar.f5239k2) {
-            float clamp = Utilities.clamp(1.0f - (f7 / (ocVar.f5244n.getMeasuredHeight() - ocVar.M0.g())), 1.0f, 0.0f);
-            ocVar.f5257r.b(AndroidUtilities.dp(-32.0f) * clamp);
-            ocVar.f5257r.setAlpha(1.0f - (0.6f * clamp));
-            ocVar.f5231i0.setAlpha(1.0f - clamp);
+        oc ocVar = this.f5098k0;
+        if (ocVar.f5240k2) {
+            float clamp = Utilities.clamp(1.0f - (f7 / (ocVar.f5245n.getMeasuredHeight() - ocVar.M0.g())), 1.0f, 0.0f);
+            ocVar.f5258r.b(AndroidUtilities.dp(-32.0f) * clamp);
+            ocVar.f5258r.setAlpha(1.0f - (0.6f * clamp));
+            ocVar.f5232i0.setAlpha(1.0f - clamp);
         }
     }
 }

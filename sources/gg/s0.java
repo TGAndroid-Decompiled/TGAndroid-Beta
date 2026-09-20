@@ -18,30 +18,30 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.wl0;
-public final class s0 extends wl0 {
-    public static final q0[] f9914c3 = {new q0(R.drawable.search_media_filled, R.string.SharedMediaTab2, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new q0(R.drawable.search_links_filled, R.string.SharedLinksTab2, new TLRPC.TL_inputMessagesFilterUrl(), 2), new q0(R.drawable.search_files_filled, R.string.SharedFilesTab2, new TLRPC.TL_inputMessagesFilterDocument(), 1), new q0(R.drawable.search_music_filled, R.string.SharedMusicTab2, new TLRPC.TL_inputMessagesFilterMusic(), 3), new q0(R.drawable.search_voice_filled, R.string.SharedVoiceTab2, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
-    public static final Pattern f9915d3 = Pattern.compile("20[0-9]{1,2}");
-    public static final Pattern f9916e3 = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
-    public static final Pattern f9917f3 = Pattern.compile("([0-9]{0,4}) (\\w{2,})");
-    public static final Pattern f9918g3 = Pattern.compile("^([0-9]{1,4})(\\.| |/|\\-)([0-9]{1,4})$");
-    public static final Pattern f9919h3 = Pattern.compile("^([0-9]{1,2})(\\.| |/|\\-)([0-9]{1,2})(\\.| |/|\\-)([0-9]{1,4})$");
-    public static final int[] f9920i3 = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+import org.telegram.ui.Components.vl0;
+public final class s0 extends vl0 {
+    public static final q0[] f9915c3 = {new q0(R.drawable.search_media_filled, R.string.SharedMediaTab2, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new q0(R.drawable.search_links_filled, R.string.SharedLinksTab2, new TLRPC.TL_inputMessagesFilterUrl(), 2), new q0(R.drawable.search_files_filled, R.string.SharedFilesTab2, new TLRPC.TL_inputMessagesFilterDocument(), 1), new q0(R.drawable.search_music_filled, R.string.SharedMusicTab2, new TLRPC.TL_inputMessagesFilterMusic(), 3), new q0(R.drawable.search_voice_filled, R.string.SharedVoiceTab2, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
+    public static final Pattern f9916d3 = Pattern.compile("20[0-9]{1,2}");
+    public static final Pattern f9917e3 = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
+    public static final Pattern f9918f3 = Pattern.compile("([0-9]{0,4}) (\\w{2,})");
+    public static final Pattern f9919g3 = Pattern.compile("^([0-9]{1,4})(\\.| |/|\\-)([0-9]{1,4})$");
+    public static final Pattern f9920h3 = Pattern.compile("^([0-9]{1,2})(\\.| |/|\\-)([0-9]{1,2})(\\.| |/|\\-)([0-9]{1,4})$");
+    public static final int[] f9921i3 = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     public final ArrayList X2;
     public final ArrayList Y2;
     public final j0 Z2;
-    public boolean f9921a3;
-    public final m0 f9922b3;
+    public boolean f9922a3;
+    public final m0 f9923b3;
 
-    public s0(Context context, e6 e6Var) {
-        super(context, e6Var);
+    public s0(Context context, f6 f6Var) {
+        super(context, f6Var);
         this.X2 = new ArrayList();
         this.Y2 = new ArrayList();
-        this.f9921a3 = true;
-        this.f9922b3 = new m0(this);
+        this.f9922a3 = true;
+        this.f9923b3 = new m0(this);
         j0 j0Var = new j0((Object) this, 0);
         this.Z2 = j0Var;
         j0Var.j1(0);
@@ -52,7 +52,7 @@ public final class s0 extends wl0 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        setSelectorDrawableColor(j6.v0(j6.f19152i6, this.f30090p2));
+        setSelectorDrawableColor(j6.v0(j6.f19184i6, this.f29207p2));
     }
 
     public static int A1(String str) {
@@ -74,7 +74,7 @@ public final class s0 extends wl0 {
 
     public static void x1(int i10, int i11, ArrayList arrayList) {
         int i12 = i11;
-        if (i12 >= 0 && i12 < 12 && i10 >= 0 && i10 < f9920i3[i12]) {
+        if (i12 >= 0 && i12 < 12 && i10 >= 0 && i10 < f9921i3[i12]) {
             int i13 = Calendar.getInstance().get(1);
             long timeInMillis = Calendar.getInstance().getTimeInMillis();
             GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
@@ -149,7 +149,7 @@ public final class s0 extends wl0 {
                             arrayList.add(new o0(timeInMillis2, calendar2.getTimeInMillis() - 1, LocaleController.getInstance().getFormatterWeekLong().format(timeInMillis2)));
                             return;
                         }
-                        Matcher matcher = f9918g3.matcher(trim);
+                        Matcher matcher = f9919g3.matcher(trim);
                         if (matcher.matches()) {
                             String group = matcher.group(1);
                             String group2 = matcher.group(3);
@@ -172,7 +172,7 @@ public final class s0 extends wl0 {
                                 return;
                             }
                         }
-                        Matcher matcher2 = f9919h3.matcher(trim);
+                        Matcher matcher2 = f9920h3.matcher(trim);
                         if (matcher2.matches()) {
                             String group3 = matcher2.group(1);
                             String group4 = matcher2.group(3);
@@ -187,7 +187,7 @@ public final class s0 extends wl0 {
                                 int i15 = parseInt5;
                                 int i16 = Calendar.getInstance().get(1);
                                 int i17 = parseInt3 - 1;
-                                if (parseInt4 >= 0 && parseInt4 < 12 && i17 >= 0 && i17 < f9920i3[parseInt4] && i15 >= 2013 && i15 <= i16) {
+                                if (parseInt4 >= 0 && parseInt4 < 12 && i17 >= 0 && i17 < f9921i3[parseInt4] && i15 >= 2013 && i15 <= i16) {
                                     Calendar calendar3 = Calendar.getInstance();
                                     calendar3.set(i15, parseInt4, parseInt3, 0, 0, 0);
                                     long timeInMillis3 = calendar3.getTimeInMillis();
@@ -198,7 +198,7 @@ public final class s0 extends wl0 {
                                 return;
                             }
                             return;
-                        } else if (f9915d3.matcher(trim).matches()) {
+                        } else if (f9916d3.matcher(trim).matches()) {
                             int intValue = Integer.valueOf(trim).intValue();
                             int i18 = Calendar.getInstance().get(1);
                             if (intValue < 2013) {
@@ -222,7 +222,7 @@ public final class s0 extends wl0 {
                                 return;
                             }
                         } else {
-                            Matcher matcher3 = f9916e3.matcher(trim);
+                            Matcher matcher3 = f9917e3.matcher(trim);
                             if (matcher3.matches()) {
                                 String group6 = matcher3.group(1);
                                 String group7 = matcher3.group(2);
@@ -238,7 +238,7 @@ public final class s0 extends wl0 {
                                     }
                                 }
                             }
-                            Matcher matcher4 = f9917f3.matcher(trim);
+                            Matcher matcher4 = f9918f3.matcher(trim);
                             if (matcher4.matches()) {
                                 String group8 = matcher4.group(1);
                                 int A12 = A1(matcher4.group(2));
@@ -305,22 +305,22 @@ public final class s0 extends wl0 {
                 Object obj = arrayList.get(i10);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18443id == user.f18443id) {
+                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18475id == user.f18475id) {
                         formatName = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         formatName = ContactsController.formatName(user.first_name, user.last_name, 10);
                     }
                     q0 q0Var = new q0(R.drawable.search_users_filled, 4, formatName);
-                    q0Var.f9899f = user;
+                    q0Var.f9900f = user;
                     arrayList4.add(q0Var);
                 } else if (obj instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) obj;
                     String str = chat.title;
                     if (str.length() > 12) {
-                        str = t8.b.v(str.substring(0, 10), "...");
+                        str = v7.j0.s(str.substring(0, 10), "...");
                     }
                     q0 q0Var2 = new q0(R.drawable.search_users_filled, 4, str);
-                    q0Var2.f9899f = chat;
+                    q0Var2.f9900f = chat;
                     arrayList4.add(q0Var2);
                 }
             }
@@ -328,8 +328,8 @@ public final class s0 extends wl0 {
         if (arrayList2 != null) {
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                 o0 o0Var = (o0) arrayList2.get(i11);
-                q0 q0Var3 = new q0(R.drawable.search_date_filled, 6, o0Var.f9873a);
-                q0Var3.f9900g = o0Var;
+                q0 q0Var3 = new q0(R.drawable.search_date_filled, 6, o0Var.f9874a);
+                q0Var3.f9901g = o0Var;
                 arrayList4.add(q0Var3);
             }
         }
@@ -338,7 +338,7 @@ public final class s0 extends wl0 {
         }
         if (getAdapter() != null) {
             b2.p pVar = new b2.p(getAdapter(), 2);
-            s4.o.c(this.f9922b3, true).a(pVar);
+            s4.o.c(this.f9923b3, true).a(pVar);
             if (!arrayList4.isEmpty() && pVar.f3176b) {
                 this.Z2.h1(0, 0);
             }
@@ -350,25 +350,25 @@ public final class s0 extends wl0 {
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             View childAt = getChildAt(i10);
             if (childAt instanceof p0) {
-                int i11 = p0.f9887f;
+                int i11 = p0.f9888f;
                 ((p0) childAt).a();
             }
         }
         for (int i12 = 0; i12 < getCachedChildCount(); i12++) {
             View Q = Q(i12);
             if (Q instanceof p0) {
-                int i13 = p0.f9887f;
+                int i13 = p0.f9888f;
                 ((p0) Q).a();
             }
         }
         for (int i14 = 0; i14 < getAttachedScrapChildCount(); i14++) {
             View P = P(i14);
             if (P instanceof p0) {
-                int i15 = p0.f9887f;
+                int i15 = p0.f9888f;
                 ((p0) P).a();
             }
         }
-        setSelectorDrawableColor(j6.v0(j6.f19152i6, this.f30090p2));
+        setSelectorDrawableColor(j6.v0(j6.f19184i6, this.f29207p2));
     }
 
     public ArrayList<l6> getThemeDescriptions() {
@@ -381,8 +381,8 @@ public final class s0 extends wl0 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f9921a3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), j6.f19184k0);
+        if (this.f9922a3) {
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), j6.f19216k0);
         }
     }
 

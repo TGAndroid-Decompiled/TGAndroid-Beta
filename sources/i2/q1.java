@@ -4,24 +4,24 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 public final class q1 implements s0 {
-    public long f10866a;
-    public long f10867b;
-    public boolean f10868c;
+    public long f10867a;
+    public long f10868b;
+    public boolean f10869c;
     public final Object d;
     public Object e;
 
-    public q1(org.telegram.ui.web.u0 u0Var) {
+    public q1(org.telegram.ui.web.r0 r0Var) {
         this.d = new Handler(Looper.getMainLooper());
-        this.e = u0Var;
+        this.e = r0Var;
     }
 
     @Override
     public long a() {
         long j3;
-        long j10 = this.f10866a;
-        if (this.f10868c) {
+        long j10 = this.f10867a;
+        if (this.f10869c) {
             ((e2.x) this.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f10867b;
+            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f10868b;
             b2.v0 v0Var = (b2.v0) this.e;
             if (v0Var.f3336a == 1.0f) {
                 j3 = e2.d0.Q(elapsedRealtime);
@@ -39,24 +39,24 @@ public final class q1 implements s0 {
     }
 
     public void c(long j3) {
-        this.f10866a = j3;
-        if (this.f10868c) {
+        this.f10867a = j3;
+        if (this.f10869c) {
             ((e2.x) this.d).getClass();
-            this.f10867b = SystemClock.elapsedRealtime();
+            this.f10868b = SystemClock.elapsedRealtime();
         }
     }
 
     public void d() {
-        if (!this.f10868c) {
+        if (!this.f10869c) {
             ((e2.x) this.d).getClass();
-            this.f10867b = SystemClock.elapsedRealtime();
-            this.f10868c = true;
+            this.f10868b = SystemClock.elapsedRealtime();
+            this.f10869c = true;
         }
     }
 
     @Override
     public void f(b2.v0 v0Var) {
-        if (this.f10868c) {
+        if (this.f10869c) {
             c(a());
         }
         this.e = v0Var;

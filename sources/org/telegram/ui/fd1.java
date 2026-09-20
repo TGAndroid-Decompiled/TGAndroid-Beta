@@ -1,28 +1,50 @@
 package org.telegram.ui;
-public final class fd1 implements md1 {
-    public boolean f33515a;
-    public final zn f33516b;
 
-    public fd1(zn znVar, boolean z10) {
-        this.f33516b = znVar;
-        this.f33515a = z10;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class fd1 extends w7.j0 {
+    public final int f33574a;
+    public final NotificationCenter.NotificationCenterDelegate f33575b;
+
+    public fd1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f33574a = i10;
+        this.f33575b = notificationCenterDelegate;
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
+    public void a() {
+        switch (this.f33574a) {
+            case 1:
+                ((ti1) this.f33575b).v.invalidate();
+                return;
+            default:
+                return;
+        }
     }
 
     @Override
-    public final boolean a() {
-        return this.f33515a;
-    }
-
-    @Override
-    public final void o1(boolean z10) {
-        boolean z11 = !this.f33515a;
-        this.f33515a = z11;
-        xn xnVar = this.f33516b.f40261ea;
-        xnVar.i(xnVar.f39525f, xnVar.h, z10, Boolean.valueOf(z11), false);
+    public void b(int i10, int i11) {
+        boolean z10;
+        switch (this.f33574a) {
+            case 0:
+                Point point = AndroidUtilities.displaySize;
+                boolean z11 = false;
+                if (point.x <= point.y) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (i10 <= i11) {
+                    z11 = true;
+                }
+                if (z10 == z11) {
+                    ((xd1) this.f33575b).f39532x0.invalidate();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
     }
 }

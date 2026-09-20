@@ -55,7 +55,7 @@ public interface qt {
 
     boolean h();
 
-    org.telegram.ui.Components.w70 i(ci.n6 n6Var);
+    org.telegram.ui.Components.v70 i(ci.n6 n6Var);
 
     void j(SendMessagesHelper.ImportingSticker importingSticker);
 

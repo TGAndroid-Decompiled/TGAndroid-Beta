@@ -38,27 +38,27 @@ public class SvgHelper {
 
     public static class Circle {
         float rad;
-        float f15803x1;
-        float f15804y1;
+        float f15835x1;
+        float f15836y1;
 
         public Circle(float f7, float f10, float f11) {
-            this.f15803x1 = f7;
-            this.f15804y1 = f10;
+            this.f15835x1 = f7;
+            this.f15836y1 = f10;
             this.rad = f11;
         }
     }
 
     public static class Line {
-        float f15805x1;
-        float f15806x2;
-        float f15807y1;
-        float f15808y2;
+        float f15837x1;
+        float f15838x2;
+        float f15839y1;
+        float f15840y2;
 
         public Line(float f7, float f10, float f11, float f12) {
-            this.f15805x1 = f7;
-            this.f15807y1 = f10;
-            this.f15806x2 = f11;
-            this.f15808y2 = f12;
+            this.f15837x1 = f7;
+            this.f15839y1 = f10;
+            this.f15838x2 = f11;
+            this.f15840y2 = f12;
         }
     }
 
@@ -90,20 +90,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f15809n;
+        private int f15841n;
         public int pos;
-        private CharSequence f15810s;
+        private CharSequence f15842s;
 
         public ParserHelper(CharSequence charSequence, int i10) {
-            this.f15810s = charSequence;
+            this.f15842s = charSequence;
             this.pos = i10;
-            this.f15809n = charSequence.length();
+            this.f15841n = charSequence.length();
             this.current = charSequence.charAt(i10);
         }
 
         private char read() {
             int i10 = this.pos;
-            int i11 = this.f15809n;
+            int i11 = this.f15841n;
             if (i10 < i11) {
                 this.pos = i10 + 1;
             }
@@ -111,7 +111,7 @@ public class SvgHelper {
             if (i12 == i11) {
                 return (char) 0;
             }
-            return this.f15810s.charAt(i12);
+            return this.f15842s.charAt(i12);
         }
 
         private void reportUnexpectedCharacterError(char c10) {
@@ -163,8 +163,8 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f15809n) {
-                    char charAt = this.f15810s.charAt(i10);
+                if (i10 < this.f15841n) {
+                    char charAt = this.f15842s.charAt(i10);
                     if (charAt == '\t' || charAt == '\n' || charAt == ' ' || charAt == ',') {
                         advance();
                     } else {
@@ -179,7 +179,7 @@ public class SvgHelper {
         public void skipWhitespace() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f15809n && Character.isWhitespace(this.f15810s.charAt(i10))) {
+                if (i10 < this.f15841n && Character.isWhitespace(this.f15842s.charAt(i10))) {
                     advance();
                 } else {
                     return;
@@ -314,7 +314,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private org.telegram.ui.ActionBar.e6 currentResourcesProvider;
+        private org.telegram.ui.ActionBar.f6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -475,10 +475,10 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f15805x1, line.f15807y1, line.f15806x2, line.f15808y2, paint);
+                        canvas.drawLine(line.f15837x1, line.f15839y1, line.f15838x2, line.f15840y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f15803x1, circle.f15804y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f15835x1, circle.f15836y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
@@ -575,20 +575,20 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        public void setColorKey(int i10, org.telegram.ui.ActionBar.f6 f6Var) {
             this.currentColorKey = i10;
-            this.currentResourcesProvider = e6Var;
+            this.currentResourcesProvider = f6Var;
         }
 
         public void setPaint(Paint paint, int i10) {
             this.overridePaintByPosition.put(i10, paint);
         }
 
-        public void setupGradient(int i10, org.telegram.ui.ActionBar.e6 e6Var, float f7, boolean z10) {
+        public void setupGradient(int i10, org.telegram.ui.ActionBar.f6 f6Var, float f7, boolean z10) {
             BitmapShader bitmapShader;
             Integer num = this.overrideColor;
-            int v02 = num == null ? org.telegram.ui.ActionBar.j6.v0(i10, e6Var) : num.intValue();
-            this.currentResourcesProvider = e6Var;
+            int v02 = num == null ? org.telegram.ui.ActionBar.j6.v0(i10, f6Var) : num.intValue();
+            this.currentResourcesProvider = f6Var;
             int[] iArr = this.currentColor;
             if (iArr[z10 ? 1 : 0] != v02) {
                 this.colorAlpha = f7;

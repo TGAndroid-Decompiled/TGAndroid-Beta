@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface sv0 {
-    float get(Object obj);
+    void b(Object obj, float f7);
 }

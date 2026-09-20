@@ -16,7 +16,7 @@ public final class a1 {
         switch (string.hashCode()) {
             case -1829997182:
                 if (string.equals("destructive")) {
-                    this.f38823c = j6.f19301q7;
+                    this.f38823c = j6.f19333q7;
                     break;
                 }
                 break;

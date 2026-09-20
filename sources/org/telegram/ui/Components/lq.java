@@ -4,7 +4,7 @@ public interface lq {
 
     void l(boolean z10);
 
-    void x0(int i10, int i11, boolean z10);
+    void v0(int i10, int i11, boolean z10);
 
     void y();
 }

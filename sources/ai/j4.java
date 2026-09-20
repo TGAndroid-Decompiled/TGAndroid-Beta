@@ -8,9 +8,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vq0;
+import org.telegram.ui.Components.uq0;
 import org.telegram.ui.Components.xc;
-public final class j4 extends vq0 {
+public final class j4 extends uq0 {
     public final f6 f1042b1;
 
     public j4(f6 f6Var, Context context, String str, String str2, boolean z10, x3 x3Var) {
@@ -29,8 +29,8 @@ public final class j4 extends vq0 {
         if (iVar.m() == 1) {
             long j3 = iVar.j(0);
             if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                org.telegram.ui.Components.qc G = xcVar.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedToSavedMessages, new Object[0])));
-                G.f27558r = false;
+                org.telegram.ui.Components.pc G = xcVar.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedToSavedMessages, new Object[0])));
+                G.f27260r = false;
                 G.j();
             } else if (j3 < 0) {
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -41,17 +41,17 @@ public final class j4 extends vq0 {
                 } else {
                     str = chat.title;
                 }
-                org.telegram.ui.Components.qc G2 = xcVar.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                G2.f27558r = false;
+                org.telegram.ui.Components.pc G2 = xcVar.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                G2.f27260r = false;
                 G2.j();
             } else {
-                org.telegram.ui.Components.qc G3 = xcVar.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                G3.f27558r = false;
+                org.telegram.ui.Components.pc G3 = xcVar.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
+                G3.f27260r = false;
                 G3.j();
             }
         } else {
-            org.telegram.ui.Components.qc Q = xcVar.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StorySharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-            Q.f27558r = false;
+            org.telegram.ui.Components.pc Q = xcVar.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StorySharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
+            Q.f27260r = false;
             Q.j();
         }
         try {

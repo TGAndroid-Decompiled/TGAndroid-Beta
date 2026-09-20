@@ -37,7 +37,7 @@ public final class c extends g {
 
     @Override
     public final k6.c[] r() {
-        return k7.b.f13527b;
+        return k7.b.f13528b;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class c extends g {
         p pVar = this.U;
         pVar.getClass();
         Bundle bundle = new Bundle();
-        String str = pVar.f15261a;
+        String str = pVar.f15299a;
         if (str != null) {
             bundle.putString("api", str);
         }

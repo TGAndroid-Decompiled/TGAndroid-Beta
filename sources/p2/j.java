@@ -1,28 +1,28 @@
 package p2;
 public abstract class j implements Comparable {
-    public final String f40708a;
-    public final i f40709b;
-    public final long f40710c;
+    public final String f40749a;
+    public final i f40750b;
+    public final long f40751c;
     public final int d;
     public final long e;
-    public final b2.o f40711f;
+    public final b2.o f40752f;
     public final String h;
-    public final String f40712n;
-    public final long f40713r;
-    public final long f40714s;
+    public final String f40753n;
+    public final long f40754r;
+    public final long f40755s;
     public final boolean v;
 
     public j(String str, i iVar, long j3, int i10, long j10, b2.o oVar, String str2, String str3, long j11, long j12, boolean z10) {
-        this.f40708a = str;
-        this.f40709b = iVar;
-        this.f40710c = j3;
+        this.f40749a = str;
+        this.f40750b = iVar;
+        this.f40751c = j3;
         this.d = i10;
         this.e = j10;
-        this.f40711f = oVar;
+        this.f40752f = oVar;
         this.h = str2;
-        this.f40712n = str3;
-        this.f40713r = j11;
-        this.f40714s = j12;
+        this.f40753n = str3;
+        this.f40754r = j11;
+        this.f40755s = j12;
         this.v = z10;
     }
 

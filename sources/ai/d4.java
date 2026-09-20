@@ -34,17 +34,17 @@ public final class d4 implements Utilities.Callback {
                 TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) this.e;
                 Long l4 = (Long) obj;
                 f6 f6Var = ((f4) this.d).f792a;
-                TLRPC.User user = f6Var.f809d3.getAdapter().f9841w0;
+                TLRPC.User user = f6Var.f809d3.getAdapter().f9842w0;
                 if (user != null) {
-                    j3 = user.f18443id;
+                    j3 = user.f18475id;
                 } else {
                     j3 = 0;
                 }
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", botInlineResult.f18294id);
+                hashMap.put("id", botInlineResult.f18326id);
                 hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + j3);
-                TLRPC.User user2 = f6Var.f809d3.getAdapter().f9841w0;
+                TLRPC.User user2 = f6Var.f809d3.getAdapter().f9842w0;
                 if (user2 == null) {
                     str = "";
                 } else {

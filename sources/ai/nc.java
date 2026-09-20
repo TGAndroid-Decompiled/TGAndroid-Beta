@@ -17,13 +17,13 @@ public final class nc extends kc {
         this.d = ocVar;
         this.f1321b = tL_mediaAreaWeather;
         ?? tLObject = new TLObject();
-        tLObject.f5104c = tL_mediaAreaWeather.emoji;
+        tLObject.f5105c = tL_mediaAreaWeather.emoji;
         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
         mc mcVar = new mc(this, ApplicationLoader.applicationContext, AndroidUtilities.density);
         this.f1320a = mcVar;
         mcVar.setMaxWidth(AndroidUtilities.displaySize.x);
         mcVar.setIsVideo(false);
-        mcVar.d(UserConfig.selectedAccount, tLObject.f5104c);
+        mcVar.d(UserConfig.selectedAccount, tLObject.f5105c);
         mcVar.setText(tLObject.a());
         mcVar.e(3, tL_mediaAreaWeather.color);
         mcVar.f();
@@ -37,10 +37,10 @@ public final class nc extends kc {
         double d = ocVar.d;
         TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f1321b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d10 = (mediaAreaCoordinates.f18528x * d) / 100.0d;
+        double d10 = (mediaAreaCoordinates.f18560x * d) / 100.0d;
         double d11 = ocVar.e;
-        double d12 = (mediaAreaCoordinates.f18529y * d11) / 100.0d;
-        float f10 = (float) ((d * mediaAreaCoordinates.f18527w) / 100.0d);
+        double d12 = (mediaAreaCoordinates.f18561y * d11) / 100.0d;
+        float f10 = (float) ((d * mediaAreaCoordinates.f18559w) / 100.0d);
         canvas.save();
         canvas.translate((float) (d10 + ocVar.f1377b), (float) (d12 + ocVar.f1378c));
         mc mcVar = this.f1320a;
@@ -61,16 +61,16 @@ public final class nc extends kc {
         if (z10) {
             mcVar.K = true;
             if (mcVar.L) {
-                mcVar.f41900s.onAttachedToWindow();
+                mcVar.f41948s.onAttachedToWindow();
                 return;
             } else {
-                mcVar.f41899r.onAttachedToWindow();
+                mcVar.f41947r.onAttachedToWindow();
                 return;
             }
         }
         mcVar.K = false;
-        mcVar.f41899r.onDetachedFromWindow();
-        mcVar.f41900s.onDetachedFromWindow();
+        mcVar.f41947r.onDetachedFromWindow();
+        mcVar.f41948s.onDetachedFromWindow();
     }
 
     @Override

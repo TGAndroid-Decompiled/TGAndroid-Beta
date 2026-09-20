@@ -740,7 +740,7 @@ public class Emoji {
         int i11;
         EmojiSpanRange emojiSpanRange;
         TLRPC.Document document;
-        org.telegram.ui.Components.z5 z5Var;
+        org.telegram.ui.Components.y5 y5Var;
         int i12;
         if (SharedConfig.useSystemEmoji || charSequence == null || charSequence.length() == 0) {
             return charSequence;
@@ -758,15 +758,15 @@ public class Emoji {
         if (parseEmojis.isEmpty()) {
             return charSequence;
         }
-        org.telegram.ui.Components.z5[] z5VarArr = (org.telegram.ui.Components.z5[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.z5.class);
+        org.telegram.ui.Components.y5[] y5VarArr = (org.telegram.ui.Components.y5[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.y5.class);
         int i14 = SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50;
         for (int i15 = 0; i15 < parseEmojis.size(); i15++) {
             try {
                 emojiSpanRange = parseEmojis.get(i15);
-                if (z5VarArr != null) {
-                    while (i12 < z5VarArr.length) {
-                        org.telegram.ui.Components.z5 z5Var2 = z5VarArr[i12];
-                        i12 = (z5Var2 != null && newSpannable.getSpanStart(z5Var2) == emojiSpanRange.start && newSpannable.getSpanEnd(z5Var2) == emojiSpanRange.end) ? 0 : i12 + 1;
+                if (y5VarArr != null) {
+                    while (i12 < y5VarArr.length) {
+                        org.telegram.ui.Components.y5 y5Var2 = y5VarArr[i12];
+                        i12 = (y5Var2 != null && newSpannable.getSpanStart(y5Var2) == emojiSpanRange.start && newSpannable.getSpanEnd(y5Var2) == emojiSpanRange.end) ? 0 : i12 + 1;
                     }
                 }
                 if (stickerSet != null) {
@@ -784,17 +784,17 @@ public class Emoji {
                 }
                 document = null;
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document, fontMetricsInt);
+                    y5Var = new org.telegram.ui.Components.y5(document, fontMetricsInt);
                 } else {
-                    z5Var = new org.telegram.ui.Components.z5(0L, fontMetricsInt);
+                    y5Var = new org.telegram.ui.Components.y5(0L, fontMetricsInt);
                 }
-                z5Var.emoji = emojiSpanRange.code.toString();
+                y5Var.emoji = emojiSpanRange.code.toString();
             } catch (Exception e) {
                 e = e;
             }
             try {
-                z5Var.cacheType = i10;
-                newSpannable.setSpan(z5Var, emojiSpanRange.start, emojiSpanRange.end, 33);
+                y5Var.cacheType = i10;
+                newSpannable.setSpan(y5Var, emojiSpanRange.start, emojiSpanRange.end, 33);
             } catch (Exception e7) {
                 e = e7;
                 FileLog.e(e);
@@ -832,16 +832,16 @@ public class Emoji {
         if (parseEmojis.isEmpty()) {
             return charSequence;
         }
-        org.telegram.ui.Components.z5[] z5VarArr = (org.telegram.ui.Components.z5[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.z5.class);
+        org.telegram.ui.Components.y5[] y5VarArr = (org.telegram.ui.Components.y5[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.y5.class);
         oq[] oqVarArr = (oq[]) newSpannable.getSpans(0, newSpannable.length(), oq.class);
         int i14 = (SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50) - i11;
         for (int i15 = 0; i15 < parseEmojis.size(); i15++) {
             try {
                 EmojiSpanRange emojiSpanRange = parseEmojis.get(i15);
-                if (z5VarArr != null && z5VarArr.length > 0) {
-                    while (i13 < z5VarArr.length) {
-                        org.telegram.ui.Components.z5 z5Var = z5VarArr[i13];
-                        i13 = (z5Var != null && newSpannable.getSpanStart(z5Var) == emojiSpanRange.start && newSpannable.getSpanEnd(z5Var) == emojiSpanRange.end) ? 0 : i13 + 1;
+                if (y5VarArr != null && y5VarArr.length > 0) {
+                    while (i13 < y5VarArr.length) {
+                        org.telegram.ui.Components.y5 y5Var = y5VarArr[i13];
+                        i13 = (y5Var != null && newSpannable.getSpanStart(y5Var) == emojiSpanRange.start && newSpannable.getSpanEnd(y5Var) == emojiSpanRange.end) ? 0 : i13 + 1;
                     }
                 }
                 if (oqVarArr != null && oqVarArr.length > 0) {

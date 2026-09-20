@@ -1,121 +1,25 @@
 package org.telegram.ui.Components;
+public final class za {
+    public boolean f30793a;
+    public int f30794b;
+    public boolean f30795c;
+    public boolean d;
+    public boolean e;
+    public int f30796f;
+    public org.telegram.ui.ActionBar.f6 f30797g;
 
-import android.content.Context;
-import android.view.KeyEvent;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class za extends vl0 {
-    public final int f30761c;
-    public final Context d;
-    public final Object e;
-    public final KeyEvent.Callback f30762f;
-
-    public za(jj jjVar, Context context) {
-        this.f30761c = 1;
-        this.f30762f = jjVar;
-        this.e = new ArrayList();
-        this.d = context;
+    public za(za zaVar) {
+        this.f30793a = zaVar.f30793a;
+        this.f30794b = zaVar.f30794b;
+        this.f30795c = zaVar.f30795c;
+        this.d = zaVar.d;
+        this.e = zaVar.e;
+        this.f30796f = zaVar.f30796f;
+        this.f30797g = zaVar.f30797g;
     }
 
-    @Override
-    public void B(s4.j0 j0Var) {
-        switch (this.f30761c) {
-            case 0:
-                ((vl0) this.e).B(new ya(this, j0Var));
-                return;
-            default:
-                super.B(j0Var);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        switch (this.f30761c) {
-            case 0:
-                return ((vl0) this.e).D(c1Var);
-            default:
-                if (c1Var.f42932f == 0) {
-                    return true;
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public final int h() {
-        switch (this.f30761c) {
-            case 0:
-                return ((vl0) this.e).h() + 1;
-            default:
-                return ((ArrayList) this.e).size();
-        }
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        switch (this.f30761c) {
-            case 0:
-                bb bbVar = (bb) this.f30762f;
-                if (bbVar.P) {
-                    i11 = h() - 1;
-                } else {
-                    i11 = 0;
-                }
-                if (i10 == i11) {
-                    return -1000;
-                }
-                return ((vl0) this.e).j(i10 - (!bbVar.P ? 1 : 0));
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        switch (this.f30761c) {
-            case 0:
-                bb bbVar = (bb) this.f30762f;
-                if (bbVar.P) {
-                    i11 = h() - 1;
-                } else {
-                    i11 = 0;
-                }
-                if (i10 != i11) {
-                    ((vl0) this.e).v(c1Var, i10 - (!bbVar.P ? 1 : 0));
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Cells.eb ebVar = (org.telegram.ui.Cells.eb) c1Var.f42929a;
-                ebVar.d(1, false, false);
-                ebVar.setSize(((jj) this.f30762f).f25349r);
-                ebVar.e(1, ((ArrayList) this.e).get(i10), null, 0);
-                return;
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        switch (this.f30761c) {
-            case 0:
-                if (i10 == -1000) {
-                    return new s4.c1(new ci.eb((bb) this.f30762f, this.d));
-                }
-                return ((vl0) this.e).x(viewGroup, i10);
-            default:
-                ij ijVar = new ij(this, this.d);
-                ijVar.f20230b = false;
-                return new s4.c1(ijVar);
-        }
-    }
-
-    public za(bb bbVar, vl0 vl0Var, Context context) {
-        this.f30761c = 0;
-        this.f30762f = bbVar;
-        this.e = vl0Var;
-        this.d = context;
+    public za() {
+        this.f30794b = 1;
+        this.f30796f = 1;
     }
 }

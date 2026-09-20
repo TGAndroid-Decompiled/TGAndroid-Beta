@@ -5,8 +5,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 public abstract class l1 {
-    public static final int[] f14405a = {16842912};
-    public static final int[] f14406b = new int[0];
+    public static final int[] f14441a = {16842912};
+    public static final int[] f14442b = new int[0];
 
     static {
         new Rect();
@@ -15,8 +15,8 @@ public abstract class l1 {
     public static void a(Drawable drawable) {
         String name = drawable.getClass().getName();
         int i10 = Build.VERSION.SDK_INT;
-        int[] iArr = f14405a;
-        int[] iArr2 = f14406b;
+        int[] iArr = f14441a;
+        int[] iArr2 = f14442b;
         if (i10 == 21 && "android.graphics.drawable.VectorDrawable".equals(name)) {
             int[] state = drawable.getState();
             if (state != null && state.length != 0) {

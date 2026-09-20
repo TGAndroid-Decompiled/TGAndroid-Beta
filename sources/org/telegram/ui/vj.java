@@ -7,8 +7,8 @@ public final class vj extends ji.n {
     public Runnable W;
     public final zn X;
 
-    public vj(zn znVar, zn znVar2, tj tjVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(znVar2, tjVar, e6Var);
+    public vj(zn znVar, zn znVar2, tj tjVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(znVar2, tjVar, f6Var);
         this.X = znVar;
     }
 

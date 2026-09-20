@@ -18,7 +18,7 @@ public final class h4 implements ti {
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         TL_stories.StoryItem storyItem;
         boolean z14;
         boolean z15;
@@ -28,7 +28,7 @@ public final class h4 implements ti {
         String str2;
         f6 f6Var = this.f943a;
         if (f6Var.J0.m0 && (storyItem = f6Var.O1.f706a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f29033j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f29110j0.getSelectedPhotos().isEmpty())) {
                 g4 g4Var = f6Var.I2;
                 if (g4Var != null) {
                     g4Var.dismissWithButtonClick(i10);
@@ -39,8 +39,8 @@ public final class h4 implements ti {
             if (i10 != 8) {
                 f6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = f6Var.I2.f29033j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f29033j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = f6Var.I2.f29110j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f29110j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -115,7 +115,7 @@ public final class h4 implements ti {
     }
 
     @Override
-    public final void K0() {
+    public final void L0() {
         this.f943a.f800b2.P();
     }
 
@@ -149,24 +149,24 @@ public final class h4 implements ti {
     }
 
     @Override
-    public final boolean c0() {
+    public final boolean f0() {
         return this.f943a.N0();
     }
 
     @Override
-    public final void x0(gh ghVar) {
+    public final void y0(gh ghVar) {
         NotificationCenter.getInstance(this.f943a.C2).doOnIdle(ghVar);
     }
 
     @Override
-    public final void U0(Object obj) {
+    public final void V0(Object obj) {
     }
 
     @Override
-    public final void j1(TLRPC.User user) {
+    public final void k1(TLRPC.User user) {
     }
 
     @Override
-    public final void u0() {
+    public final void v0() {
     }
 }

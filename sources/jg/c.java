@@ -1,6 +1,6 @@
 package jg;
 public final class c extends b {
-    public float[] f13009l;
+    public float[] f13010l;
 
     @Override
     public final void e() {
@@ -13,13 +13,13 @@ public final class c extends b {
                 j3 = j10;
             }
         }
-        this.f13009l = new float[size];
+        this.f13010l = new float[size];
         for (int i11 = 0; i11 < size; i11++) {
             long j11 = ((a) this.d.get(i11)).e;
             if (j3 == j11) {
-                this.f13009l[i11] = 1.0f;
+                this.f13010l[i11] = 1.0f;
             } else {
-                this.f13009l[i11] = (float) (j3 / j11);
+                this.f13010l[i11] = (float) (j3 / j11);
             }
         }
     }

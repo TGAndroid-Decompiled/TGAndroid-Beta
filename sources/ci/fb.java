@@ -6,8 +6,8 @@ public final class fb extends u4 {
     public final Path N;
     public final oc O;
 
-    public fb(oc ocVar, Activity activity, ai.d dVar, org.telegram.ui.Components.ja jaVar) {
-        super(activity, dVar, jaVar);
+    public fb(oc ocVar, Activity activity, ai.d dVar, org.telegram.ui.Components.ia iaVar) {
+        super(activity, dVar, iaVar);
         this.O = ocVar;
         this.N = new Path();
     }

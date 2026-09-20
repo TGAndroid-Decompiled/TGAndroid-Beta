@@ -6,5 +6,5 @@ public interface q {
 
     h0 Z1(int i10, int i11);
 
-    void e1();
+    void f1();
 }

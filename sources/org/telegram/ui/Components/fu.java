@@ -8,8 +8,8 @@ public final class fu extends kz {
     public boolean R2;
     public final ju S2;
 
-    public fu(ju juVar, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, Context context, boolean z11, boolean z12, org.telegram.ui.ActionBar.e6 e6Var, boolean z13) {
-        super(n2Var, z10, false, false, context, z11, null, null, z12, e6Var, false, z13);
+    public fu(ju juVar, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, Context context, boolean z11, boolean z12, org.telegram.ui.ActionBar.f6 f6Var, boolean z13) {
+        super(n2Var, z10, false, false, context, z11, null, null, z12, f6Var, false, z13);
         this.S2 = juVar;
     }
 
@@ -30,15 +30,15 @@ public final class fu extends kz {
         ju juVar = this.S2;
         if (juVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && juVar.f25458x) {
+            if (!this.Q2 && juVar.f25461x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.wh.r(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f19667w, 250L);
+                org.telegram.messenger.rk.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f19699w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = juVar.f25458x;
+            this.Q2 = juVar.f25461x;
             this.P2 = i15;
         }
     }

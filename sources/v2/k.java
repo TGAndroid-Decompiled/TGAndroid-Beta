@@ -2,16 +2,16 @@ package v2;
 
 import b2.s;
 public abstract class k extends e {
-    public final long f44118s;
+    public final long f44162s;
 
     public k(g2.h hVar, g2.m mVar, s sVar, int i10, Object obj, long j3, long j10, long j11) {
         super(hVar, mVar, 1, sVar, i10, obj, j3, j10);
         sVar.getClass();
-        this.f44118s = j11;
+        this.f44162s = j11;
     }
 
     public long b() {
-        long j3 = this.f44118s;
+        long j3 = this.f44162s;
         if (j3 == -1) {
             return -1L;
         }

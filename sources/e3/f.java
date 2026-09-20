@@ -15,12 +15,12 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class f implements a {
-    public final i0 f7974a;
-    public final int f7975b;
+    public final i0 f7975a;
+    public final int f7976b;
 
     public f(int i10, a1 a1Var) {
-        this.f7975b = i10;
-        this.f7974a = a1Var;
+        this.f7976b = i10;
+        this.f7975a = a1Var;
     }
 
     public static f b(int i10, v vVar) {
@@ -31,12 +31,12 @@ public final class f implements a {
         int i12 = 4;
         q.e(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i13 = vVar.f7935c;
+        int i13 = vVar.f7936c;
         int i14 = -2;
         int i15 = 0;
         while (vVar.a() > 8) {
             int l4 = vVar.l();
-            int l10 = vVar.f7934b + vVar.l();
+            int l10 = vVar.f7935b + vVar.l();
             vVar.I(l10);
             if (l4 == 1414744396) {
                 gVar = b(vVar.l(), vVar);
@@ -118,7 +118,7 @@ public final class f implements a {
                                     int l14 = vVar.l();
                                     vVar.K(6);
                                     int q11 = vVar.q();
-                                    String str3 = d0.f7887a;
+                                    String str3 = d0.f7888a;
                                     int B = d0.B(q11, ByteOrder.LITTLE_ENDIAN);
                                     if (vVar.a() > 0) {
                                         i11 = vVar.q();
@@ -196,7 +196,7 @@ public final class f implements a {
     }
 
     public final a a(Class cls) {
-        g0 listIterator = this.f7974a.listIterator(0);
+        g0 listIterator = this.f7975a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -208,6 +208,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f7975b;
+        return this.f7976b;
     }
 }

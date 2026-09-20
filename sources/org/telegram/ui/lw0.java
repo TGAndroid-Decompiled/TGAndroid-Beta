@@ -7,8 +7,8 @@ public final class lw0 extends org.telegram.ui.Cells.u1 {
     public final int He;
     public final int Ie;
 
-    public lw0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, int i12, int i13) {
-        super(context, i10, false, null, e6Var);
+    public lw0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12, int i13) {
+        super(context, i10, false, null, f6Var);
         this.Ge = i13;
         this.He = i11;
         this.Ie = i12;
@@ -18,13 +18,13 @@ public final class lw0 extends org.telegram.ui.Cells.u1 {
     public final void Y1(Canvas canvas) {
         switch (this.Ge) {
             case 0:
-                this.f21340i6 = 0;
-                this.f21354j6 = this.Y5.size() - 1;
+                this.f21343i6 = 0;
+                this.f21357j6 = this.Y5.size() - 1;
                 super.Y1(canvas);
                 return;
             default:
-                this.f21340i6 = 0;
-                this.f21354j6 = this.Y5.size() - 1;
+                this.f21343i6 = 0;
+                this.f21357j6 = this.Y5.size() - 1;
                 super.Y1(canvas);
                 return;
         }

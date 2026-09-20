@@ -2,18 +2,18 @@ package xb;
 
 import java.util.Arrays;
 import n6.l;
-import v7.r1;
+import v7.s1;
 public final class a {
-    public final String f45989a;
-    public final float f45990b;
-    public final int f45991c;
+    public final String f46036a;
+    public final float f46037b;
+    public final int f46038c;
     public final String d;
 
     public a(float f7, int i10, String str, String str2) {
-        int i11 = y7.b.f46587a;
-        this.f45989a = str == null ? "" : str;
-        this.f45990b = f7;
-        this.f45991c = i10;
+        int i11 = y7.b.f46634a;
+        this.f46036a = str == null ? "" : str;
+        this.f46037b = f7;
+        this.f46038c = i10;
         this.d = str2;
     }
 
@@ -25,39 +25,39 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (l.l(this.f45989a, aVar.f45989a) && Float.compare(this.f45990b, aVar.f45990b) == 0 && this.f45991c == aVar.f45991c && l.l(this.d, aVar.d)) {
+        if (l.l(this.f46036a, aVar.f46036a) && Float.compare(this.f46037b, aVar.f46037b) == 0 && this.f46038c == aVar.f46038c && l.l(this.d, aVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f45989a, Float.valueOf(this.f45990b), Integer.valueOf(this.f45991c), this.d});
+        return Arrays.hashCode(new Object[]{this.f46036a, Float.valueOf(this.f46037b), Integer.valueOf(this.f46038c), this.d});
     }
 
     public final String toString() {
-        r1 r1Var = new r1(a.class.getSimpleName(), 11);
-        r1 r1Var2 = new r1(10, false);
-        ((r1) r1Var.f44333c).f44333c = r1Var2;
-        r1Var.f44333c = r1Var2;
-        r1Var2.d = this.f45989a;
-        r1Var2.f44332b = "text";
-        String valueOf = String.valueOf(this.f45990b);
-        r1 r1Var3 = new r1(10, false);
-        ((r1) r1Var.f44333c).f44333c = r1Var3;
-        r1Var.f44333c = r1Var3;
-        r1Var3.d = valueOf;
-        r1Var3.f44332b = "confidence";
-        String valueOf2 = String.valueOf(this.f45991c);
-        r1 r1Var4 = new r1(10, false);
-        ((r1) r1Var.f44333c).f44333c = r1Var4;
-        r1Var4.d = valueOf2;
-        r1Var4.f44332b = "index";
-        r1 r1Var5 = new r1(10, false);
-        r1Var4.f44333c = r1Var5;
-        r1Var.f44333c = r1Var5;
-        r1Var5.d = this.d;
-        r1Var5.f44332b = "mid";
-        return r1Var.toString();
+        s1 s1Var = new s1(a.class.getSimpleName(), 11);
+        s1 s1Var2 = new s1(10, false);
+        ((s1) s1Var.f44384c).f44384c = s1Var2;
+        s1Var.f44384c = s1Var2;
+        s1Var2.d = this.f46036a;
+        s1Var2.f44383b = "text";
+        String valueOf = String.valueOf(this.f46037b);
+        s1 s1Var3 = new s1(10, false);
+        ((s1) s1Var.f44384c).f44384c = s1Var3;
+        s1Var.f44384c = s1Var3;
+        s1Var3.d = valueOf;
+        s1Var3.f44383b = "confidence";
+        String valueOf2 = String.valueOf(this.f46038c);
+        s1 s1Var4 = new s1(10, false);
+        ((s1) s1Var.f44384c).f44384c = s1Var4;
+        s1Var4.d = valueOf2;
+        s1Var4.f44383b = "index";
+        s1 s1Var5 = new s1(10, false);
+        s1Var4.f44384c = s1Var5;
+        s1Var.f44384c = s1Var5;
+        s1Var5.d = this.d;
+        s1Var5.f44383b = "mid";
+        return s1Var.toString();
     }
 }

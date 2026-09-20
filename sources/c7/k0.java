@@ -10,23 +10,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 public final class k0 extends o6.a {
     public static final Parcelable.Creator<k0> CREATOR = new r0(8);
-    public final List f4116a;
+    public final List f4117a;
 
     public k0(ArrayList arrayList) {
-        this.f4116a = arrayList;
+        this.f4117a = arrayList;
     }
 
     public final JSONArray b() {
         try {
             JSONArray jSONArray = new JSONArray();
-            List list = this.f4116a;
+            List list = this.f4117a;
             if (list != null) {
                 for (int i10 = 0; i10 < list.size(); i10++) {
                     l0 l0Var = (l0) list.get(i10);
                     JSONArray jSONArray2 = new JSONArray();
-                    jSONArray2.put((int) l0Var.f4119c);
-                    jSONArray2.put((int) l0Var.f4118b);
-                    jSONArray2.put((int) l0Var.f4119c);
+                    jSONArray2.put((int) l0Var.f4120c);
+                    jSONArray2.put((int) l0Var.f4119b);
+                    jSONArray2.put((int) l0Var.f4120c);
                     jSONArray.put(i10, jSONArray2);
                 }
             }
@@ -40,8 +40,8 @@ public final class k0 extends o6.a {
         if (!(obj instanceof k0)) {
             return false;
         }
-        List list = ((k0) obj).f4116a;
-        List list2 = this.f4116a;
+        List list = ((k0) obj).f4117a;
+        List list2 = this.f4117a;
         if (list2 == null && list == null) {
             return true;
         }
@@ -53,7 +53,7 @@ public final class k0 extends o6.a {
 
     public final int hashCode() {
         HashSet hashSet;
-        List list = this.f4116a;
+        List list = this.f4117a;
         if (list == null) {
             hashSet = null;
         } else {
@@ -65,7 +65,7 @@ public final class k0 extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.p(parcel, 1, this.f4116a);
+        w7.f0.p(parcel, 1, this.f4117a);
         w7.f0.r(parcel, q6);
     }
 }

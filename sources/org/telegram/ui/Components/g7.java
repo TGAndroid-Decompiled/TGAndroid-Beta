@@ -1,45 +1,186 @@
 package org.telegram.ui.Components;
-public final class g7 implements Runnable {
-    public final int f24320a;
-    public final j8 f24321b;
-    public final w70 f24322c;
 
-    public g7(j8 j8Var, w70 w70Var, int i10) {
-        this.f24320a = i10;
-        this.f24321b = j8Var;
-        this.f24322c = w70Var;
+import android.view.KeyEvent;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class g7 implements RequestDelegate {
+    public final int f24271a = 0;
+    public final boolean f24272b;
+    public final boolean f24273c;
+    public final long d;
+    public final KeyEvent.Callback e;
+    public final Object f24274f;
+    public final Object f24275g;
+    public final Object h;
+
+    public g7(i8 i8Var, boolean z10, MessageObject messageObject, boolean z11, Runnable runnable, long j3, TLRPC.Document document) {
+        this.e = i8Var;
+        this.f24272b = z10;
+        this.f24274f = messageObject;
+        this.f24273c = z11;
+        this.f24275g = runnable;
+        this.d = j3;
+        this.h = document;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24320a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f24271a) {
             case 0:
-                j8 j8Var = this.f24321b;
-                j8Var.getClass();
-                this.f24322c.u();
-                j8Var.t0(1);
-                return;
-            case 1:
-                j8 j8Var2 = this.f24321b;
-                j8Var2.getClass();
-                this.f24322c.u();
-                j8Var2.t0(2);
-                return;
-            case 2:
-                j8 j8Var3 = this.f24321b;
-                j8Var3.getClass();
-                this.f24322c.u();
-                j8Var3.t0(4);
-                return;
-            case 3:
-                j8 j8Var4 = this.f24321b;
-                j8Var4.getClass();
-                this.f24322c.u();
-                j8Var4.t0(7);
+                i8.y((i8) this.e, this.f24272b, (MessageObject) this.f24274f, this.f24273c, (Runnable) this.f24275g, this.d, (TLRPC.Document) this.h, tL_error);
                 return;
             default:
-                j8.q(this.f24321b, this.f24322c);
+                final ih0 ih0Var = (ih0) this.e;
+                final MessagesController messagesController = (MessagesController) this.f24274f;
+                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f24275g;
+                final ConnectionsManager connectionsManager = (ConnectionsManager) this.h;
+                final boolean z10 = this.f24272b;
+                final boolean z11 = this.f24273c;
+                final long j3 = this.d;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArrayList arrayList;
+                        boolean z12;
+                        boolean z13;
+                        boolean z14;
+                        ih0 ih0Var2 = ih0.this;
+                        int i10 = ih0Var2.f25048b;
+                        s61 s61Var = ih0Var2.f25049c;
+                        ih0Var2.K = -1;
+                        ih0Var2.v = false;
+                        ih0Var2.H.setLoading(false);
+                        TLObject tLObject2 = tLObject;
+                        boolean z15 = tLObject2 instanceof TLRPC.messages_Messages;
+                        long j10 = j3;
+                        if (z15) {
+                            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
+                            ArrayList<TLRPC.User> arrayList2 = messages_messages.users;
+                            MessagesController messagesController2 = messagesController;
+                            messagesController2.putUsers(arrayList2, false);
+                            messagesController2.putChats(messages_messages.chats, false);
+                            TLRPC.SearchPostsFlood searchPostsFlood = messages_messages.search_flood;
+                            if (searchPostsFlood != null) {
+                                ih0Var2.d = searchPostsFlood;
+                            }
+                            boolean z16 = z10;
+                            if (z16) {
+                                arrayList = ih0Var2.e;
+                            } else {
+                                arrayList = ih0Var2.f25051n;
+                            }
+                            boolean isEmpty = arrayList.isEmpty();
+                            ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
+                            int size = arrayList3.size();
+                            int i11 = 0;
+                            while (i11 < size) {
+                                TLRPC.Message message = arrayList3.get(i11);
+                                i11++;
+                                MessageObject messageObject = new MessageObject(i10, message, false, false);
+                                if (!z16) {
+                                    messageObject.setQuery(tL_channels_searchPosts.query);
+                                }
+                                arrayList.add(messageObject);
+                            }
+                            if (!z16) {
+                                if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
+                                    ih0Var2.f25052r = messages_messages.next_rate;
+                                    if ((messages_messages.flags & 1) == 0) {
+                                        z14 = true;
+                                    } else {
+                                        z14 = false;
+                                    }
+                                    ih0Var2.f25053s = z14;
+                                    z12 = true;
+                                } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
+                                    ih0Var2.f25052r = 0;
+                                    z12 = true;
+                                    ih0Var2.f25053s = true;
+                                } else {
+                                    z12 = true;
+                                    if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
+                                        ih0Var2.f25052r = 0;
+                                        ih0Var2.f25053s = true;
+                                    }
+                                }
+                            } else {
+                                z12 = true;
+                                if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
+                                    ih0Var2.f25050f = messages_messages.next_rate;
+                                    if ((messages_messages.flags & 1) == 0) {
+                                        z13 = true;
+                                    } else {
+                                        z13 = false;
+                                    }
+                                    ih0Var2.h = z13;
+                                } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
+                                    ih0Var2.f25050f = 0;
+                                    ih0Var2.h = true;
+                                } else if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
+                                    ih0Var2.f25050f = 0;
+                                    ih0Var2.h = true;
+                                }
+                            }
+                            ih0Var2.d();
+                            if (isEmpty) {
+                                s61Var.v0(0);
+                            }
+                            s61Var.Y2.N(z12);
+                            if (!arrayList.isEmpty() && (!z16 ? !ih0Var2.f25053s : !ih0Var2.h)) {
+                                AndroidUtilities.runOnUIThread(new ci.y0(ih0Var2, z16, arrayList, 23));
+                            }
+                            if (z11 && j10 > 0 && !z16) {
+                                xc.a0(ih0Var2.f25047a).Q(R.raw.stars_topup, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j10))).j();
+                                return;
+                            }
+                            return;
+                        }
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        if (tL_error2 != null && tL_error2.text.startsWith("FLOOD_WAIT_") && tL_error2.text.contains("_OR_STARS_")) {
+                            Matcher matcher = Pattern.compile("FLOOD_WAIT_(\\d+)_OR_STARS_(\\d+)").matcher(tL_error2.text);
+                            if (matcher != null && matcher.matches()) {
+                                int parseInt = Integer.parseInt(matcher.group(1));
+                                int parseInt2 = Integer.parseInt(matcher.group(2));
+                                TLRPC.SearchPostsFlood searchPostsFlood2 = ih0Var2.d;
+                                if (searchPostsFlood2 != null) {
+                                    searchPostsFlood2.flags = 2 | searchPostsFlood2.flags;
+                                    searchPostsFlood2.wait_till = connectionsManager.getCurrentTime() + parseInt;
+                                    ih0Var2.d.stars_amount = parseInt2;
+                                }
+                                ih0Var2.d();
+                                s61Var.Y2.N(true);
+                            }
+                        } else if (tL_error2 != null && "PREMIUM_ACCOUNT_REQUIRED".equalsIgnoreCase(tL_error2.text)) {
+                            ih0Var2.d();
+                            s61Var.Y2.N(true);
+                        } else if (tL_error2 != null && "BALANCE_TOO_LOW".equalsIgnoreCase(tL_error2.text)) {
+                            ih0Var2.d();
+                            s61Var.Y2.N(true);
+                            yh.u5.y(i10, false).q(true, true, new ai.j(ih0Var2, j10, 22));
+                        }
+                    }
+                });
                 return;
         }
+    }
+
+    public g7(ih0 ih0Var, MessagesController messagesController, boolean z10, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z11, long j3, ConnectionsManager connectionsManager) {
+        this.e = ih0Var;
+        this.f24274f = messagesController;
+        this.f24272b = z10;
+        this.f24275g = tL_channels_searchPosts;
+        this.f24273c = z11;
+        this.d = j3;
+        this.h = connectionsManager;
     }
 }

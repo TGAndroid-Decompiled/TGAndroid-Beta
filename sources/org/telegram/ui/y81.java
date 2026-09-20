@@ -1,21 +1,30 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class y81 extends org.telegram.ui.Components.vq0 {
-    public final f91 f39728b1;
+public final class y81 implements RequestDelegate {
+    public final int f39832a;
+    public final i91 f39833b;
 
-    public y81(f91 f91Var, Activity activity, String str) {
-        super(activity, null, str, false, null, false, null);
-        this.f39728b1 = f91Var;
+    public y81(i91 i91Var, int i10) {
+        this.f39832a = i10;
+        this.f39833b = i91Var;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f39832a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                i91 i91Var = this.f39833b;
+                i91Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new y81(i91Var, 1));
+                return;
+            default:
+                this.f39833b.getMessagesController().loadAppConfig();
+                return;
         }
-        AndroidUtilities.runOnUIThread(new x81(this, iVar, i10), 250L);
     }
 }

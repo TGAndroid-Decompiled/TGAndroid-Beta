@@ -244,7 +244,7 @@ public final class i {
 
     public final void h(mi.a aVar) {
         ArrayList arrayList;
-        this.f461k = aVar.f15018b;
+        this.f461k = aVar.f15057b;
         while (true) {
             int i10 = this.f461k;
             arrayList = this.f460j;

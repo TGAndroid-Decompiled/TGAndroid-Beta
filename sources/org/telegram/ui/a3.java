@@ -11,32 +11,32 @@ import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
-public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.Components.oz0 {
+public final class a3 implements org.telegram.ui.Cells.ca, vj0, org.telegram.ui.Components.nz0 {
     public int E = -1;
     public int F = -1;
     public int G = -1;
-    public org.telegram.ui.Components.v5 H;
+    public org.telegram.ui.Components.u5 H;
     public ArrayList I;
     public Stack J;
     public AtomicReference K;
     public View L;
-    public final u70 f31929a;
-    public View f31930b;
-    public boolean f31931c;
+    public final u70 f31969a;
+    public View f31970b;
+    public boolean f31971c;
     public StaticLayout d;
-    public org.telegram.ui.Components.f90 e;
-    public org.telegram.ui.Components.f90 f31932f;
-    public org.telegram.ui.Components.f90 h;
-    public TL_iv.PageBlock f31933n;
-    public TL_iv.RichText f31934r;
-    public int f31935s;
+    public org.telegram.ui.Components.e90 e;
+    public org.telegram.ui.Components.e90 f31972f;
+    public org.telegram.ui.Components.e90 h;
+    public TL_iv.PageBlock f31973n;
+    public TL_iv.RichText f31974r;
+    public int f31975s;
     public int v;
-    public int f31936w;
-    public CharSequence f31937x;
-    public SpannableStringBuilder f31938y;
+    public int f31976w;
+    public CharSequence f31977x;
+    public SpannableStringBuilder f31978y;
 
     public a3(u70 u70Var) {
-        this.f31929a = u70Var;
+        this.f31969a = u70Var;
     }
 
     public final int a() {
@@ -56,7 +56,7 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
         this.L = view;
         StaticLayout staticLayout = this.d;
         if (staticLayout != null) {
-            this.H = org.telegram.ui.Components.z5.update(0, view, false, this.H, staticLayout);
+            this.H = org.telegram.ui.Components.y5.update(0, view, false, this.H, staticLayout);
         }
     }
 
@@ -91,7 +91,7 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
         if (view == null) {
             view = this.L;
         }
-        org.telegram.ui.Components.z5.release(view, this.H);
+        org.telegram.ui.Components.y5.release(view, this.H);
         this.L = null;
     }
 
@@ -100,23 +100,23 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
         float width;
         Object obj;
         TL_iv.RichText richText;
-        this.f31931c = true;
-        this.f31930b = view;
-        u70 u70Var = this.f31929a;
+        this.f31971c = true;
+        this.f31970b = view;
+        u70 u70Var = this.f31969a;
         float f7 = 0.0f;
         if (!u70Var.E.isEmpty()) {
             q3 q3Var = (q3) u70Var.E.get(u70Var.G);
-            if (q3Var.f36671c == this.f31933n && ((obj = q3Var.f36670b) == (richText = this.f31934r) || ((obj instanceof String) && richText == null))) {
-                if (-1 != q3Var.f36669a) {
-                    org.telegram.ui.Components.f90 f90Var = new org.telegram.ui.Components.f90(0);
-                    this.h = f90Var;
-                    f90Var.f24081n = false;
-                    f90Var.d(this.d, q3Var.f36669a, 0.0f);
-                    this.h.f24082o = 0;
+            if (q3Var.f36751c == this.f31973n && ((obj = q3Var.f36750b) == (richText = this.f31974r) || ((obj instanceof String) && richText == null))) {
+                if (-1 != q3Var.f36749a) {
+                    org.telegram.ui.Components.e90 e90Var = new org.telegram.ui.Components.e90(0);
+                    this.h = e90Var;
+                    e90Var.f23785n = false;
+                    e90Var.d(this.d, q3Var.f36749a, 0.0f);
+                    this.h.f23786o = 0;
                     StaticLayout staticLayout = this.d;
-                    int i10 = q3Var.f36669a;
+                    int i10 = q3Var.f36749a;
                     staticLayout.getSelectionPath(i10, u70Var.F.length() + i10, this.h);
-                    this.h.f24081n = true;
+                    this.h.f23785n = true;
                 }
             } else {
                 this.h = null;
@@ -124,29 +124,29 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
         } else {
             this.h = null;
         }
-        org.telegram.ui.Components.f90 f90Var2 = this.h;
-        if (f90Var2 != null) {
-            canvas.drawPath(f90Var2, h4.f34052y1);
+        org.telegram.ui.Components.e90 e90Var2 = this.h;
+        if (e90Var2 != null) {
+            canvas.drawPath(e90Var2, h4.f34092y1);
         }
-        org.telegram.ui.Components.f90 f90Var3 = this.e;
-        if (f90Var3 != null) {
-            canvas.drawPath(f90Var3, h4.f34051x1);
+        org.telegram.ui.Components.e90 e90Var3 = this.e;
+        if (e90Var3 != null) {
+            canvas.drawPath(e90Var3, h4.f34091x1);
         }
-        org.telegram.ui.Components.f90 f90Var4 = this.f31932f;
-        if (f90Var4 != null) {
-            canvas.drawPath(f90Var4, h4.f34053z1);
+        org.telegram.ui.Components.e90 e90Var4 = this.f31972f;
+        if (e90Var4 != null) {
+            canvas.drawPath(e90Var4, h4.f34093z1);
         }
-        if (u70Var.f37897c.g(canvas, this)) {
+        if (u70Var.f37981c.g(canvas, this)) {
             view.invalidate();
         }
-        if (u70Var.d == this && u70Var.f37896b == null && u70Var.h) {
+        if (u70Var.d == this && u70Var.f37980b == null && u70Var.h) {
             if (this.d.getLineCount() == 1) {
                 width = this.d.getLineWidth(0);
                 f7 = this.d.getLineLeft(0);
             } else {
                 width = this.d.getWidth();
             }
-            canvas.drawRect((-AndroidUtilities.dp(2.0f)) + f7, 0.0f, f7 + width + AndroidUtilities.dp(2.0f), this.d.getHeight(), h4.f34050w1);
+            canvas.drawRect((-AndroidUtilities.dp(2.0f)) + f7, 0.0f, f7 + width + AndroidUtilities.dp(2.0f), this.d.getHeight(), h4.f34090w1);
         }
         ArrayList arrayList = this.I;
         if (arrayList != null && !arrayList.isEmpty()) {
@@ -154,7 +154,7 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
         } else {
             this.d.draw(canvas);
         }
-        this.f31931c = false;
+        this.f31971c = false;
     }
 
     @Override
@@ -173,17 +173,17 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
         if (view != null) {
             return view;
         }
-        return this.f31930b;
+        return this.f31970b;
     }
 
     @Override
     public final CharSequence getPrefix() {
-        return this.f31937x;
+        return this.f31977x;
     }
 
     @Override
     public final int getRow() {
-        return this.f31936w;
+        return this.f31976w;
     }
 
     @Override
@@ -198,7 +198,7 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
 
     @Override
     public final int getX() {
-        return this.f31935s;
+        return this.f31975s;
     }
 
     @Override
@@ -208,12 +208,12 @@ public final class a3 implements org.telegram.ui.Cells.ba, tj0, org.telegram.ui.
 
     @Override
     public final void setRow(int i10) {
-        this.f31936w = i10;
+        this.f31976w = i10;
     }
 
     @Override
     public final void setX(int i10) {
-        this.f31935s = i10;
+        this.f31975s = i10;
     }
 
     @Override

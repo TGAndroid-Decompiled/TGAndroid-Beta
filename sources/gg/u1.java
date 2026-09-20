@@ -9,36 +9,35 @@ import java.util.Timer;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.i6;
-import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Cells.v3;
+import org.telegram.ui.Cells.s8;
+import org.telegram.ui.Cells.w3;
 import org.telegram.ui.Components.kn;
 import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.ul0;
 import org.telegram.ui.zs;
-public abstract class u1 extends vl0 {
+public abstract class u1 extends ul0 {
     public int E;
     public int F;
     public ArrayList G;
     public ArrayList H;
     public String I;
     public int J;
-    public Context f9946c;
+    public Context f9947c;
     public ArrayList d;
     public ArrayList e;
-    public c2 f9947f;
+    public c2 f9948f;
     public a0.i h;
-    public Timer f9948n;
-    public boolean f9949r;
-    public boolean f9950s;
+    public Timer f9949n;
+    public boolean f9950r;
+    public boolean f9951s;
     public boolean v;
-    public boolean f9951w;
-    public long f9952x;
-    public boolean f9953y;
+    public boolean f9952w;
+    public long f9953x;
+    public boolean f9954y;
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42932f;
+        int i10 = c1Var.f42977f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -48,9 +47,9 @@ public abstract class u1 extends vl0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        c2 c2Var = this.f9947f;
+        c2 c2Var = this.f9948f;
         int size3 = c2Var.e.size();
-        int size4 = c2Var.f9695j.size();
+        int size4 = c2Var.f9696j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -65,7 +64,7 @@ public abstract class u1 extends vl0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return c2Var.f9695j.get(i11);
+            return c2Var.f9696j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
@@ -78,7 +77,7 @@ public abstract class u1 extends vl0 {
 
     public final void G(String str) {
         try {
-            Timer timer = this.f9948n;
+            Timer timer = this.f9949n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -88,20 +87,20 @@ public abstract class u1 extends vl0 {
         this.d.clear();
         this.H.clear();
         this.e.clear();
-        if (this.f9949r) {
-            this.f9947f.g(null, true, false, this.f9950s, this.v, this.f9952x, this.f9951w, 0, 0);
+        if (this.f9950r) {
+            this.f9948f.g(null, true, false, this.f9951s, this.v, this.f9953x, this.f9952w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f9948n = timer2;
+            this.f9949n = timer2;
             timer2.schedule(new s1((zs) this, str, 0), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        c2 c2Var = this.f9947f;
+        c2 c2Var = this.f9948f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
@@ -112,7 +111,7 @@ public abstract class u1 extends vl0 {
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = c2Var.f9695j.size();
+        int size3 = c2Var.f9696j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -144,44 +143,44 @@ public abstract class u1 extends vl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        v3 v3Var;
-        Context context = this.f9946c;
+        w3 w3Var;
+        Context context = this.f9947c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
                     if (i10 != 4) {
                         if (i10 != 5) {
-                            v3Var = new r8(16, context, false);
+                            w3Var = new s8(16, context, false);
                         } else {
                             t00 t00Var = new t00(context, null);
                             t00Var.setIsSingleCell(true);
                             t00Var.setViewType(29);
-                            t00Var.setBackgroundColor(j6.w0(null, j6.f19062d6, false));
-                            v3Var = t00Var;
+                            t00Var.setBackgroundColor(j6.w0(null, j6.f19094d6, false));
+                            w3Var = t00Var;
                         }
                     } else {
                         View knVar = new kn(context, 7);
                         knVar.setId(9);
                         knVar.setTag(-33024);
-                        v3Var = knVar;
+                        w3Var = knVar;
                     }
                 } else {
-                    i6 i6Var = new i6(context, null);
-                    i6Var.M0 = true;
-                    i6Var.E0 = true;
-                    v3Var = i6Var;
+                    org.telegram.ui.Cells.j6 j6Var = new org.telegram.ui.Cells.j6(context, null);
+                    j6Var.M0 = true;
+                    j6Var.E0 = true;
+                    w3Var = j6Var;
                 }
             } else {
-                v3 v3Var2 = new v3(context, 26, null);
-                v3Var2.setNoBackground(true);
-                v3Var = v3Var2;
+                w3 w3Var2 = new w3(context, 26, null);
+                w3Var2.setNoBackground(true);
+                w3Var = w3Var2;
             }
         } else {
-            i6 i6Var2 = new i6(context, null);
-            i6Var2.M0 = true;
-            i6Var2.E0 = true;
-            v3Var = i6Var2;
+            org.telegram.ui.Cells.j6 j6Var2 = new org.telegram.ui.Cells.j6(context, null);
+            j6Var2.M0 = true;
+            j6Var2.E0 = true;
+            w3Var = j6Var2;
         }
-        return new s4.c1(v3Var);
+        return new s4.c1(w3Var);
     }
 }

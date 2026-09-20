@@ -1,40 +1,61 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.TextView;
-public final class lc0 extends AnimatorListenerAdapter {
-    public final int f35340a;
-    public final float f35341b;
-    public final mc0 f35342c;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class lc0 extends org.telegram.ui.Components.f60 {
+    public final nc0 d;
 
-    public lc0(mc0 mc0Var, float f7, int i10) {
-        this.f35340a = i10;
-        this.f35342c = mc0Var;
-        this.f35341b = f7;
+    public lc0(nc0 nc0Var) {
+        this.d = nc0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35340a) {
-            case 0:
-                mc0 mc0Var = this.f35342c;
-                TextView textView = mc0Var.f35593f;
-                int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19445y6, false);
-                int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19247n6, false);
-                float f7 = this.f35341b;
-                mc0Var.f35596s = f7;
-                textView.setTextColor(i0.a.d(f7, w02, w03));
-                return;
-            default:
-                mc0 mc0Var2 = this.f35342c;
-                TextView textView2 = mc0Var2.d;
-                int w04 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19445y6, false);
-                int w05 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19247n6, false);
-                float f10 = this.f35341b;
-                mc0Var2.f35597w = f10;
-                textView2.setTextColor(i0.a.d(f10, w04, w05));
-                return;
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final int h() {
+        return 5;
+    }
+
+    @Override
+    public final int i() {
+        return 100;
+    }
+
+    @Override
+    public final int j() {
+        return LiteMode.getPowerSaverLevel();
+    }
+
+    @Override
+    public final void k(int i10) {
+        nc0 nc0Var = this.d;
+        float f7 = i10 / 100.0f;
+        nc0Var.h.f28188w.X(f7, true);
+        nc0Var.h.setProgress(f7);
+    }
+
+    @Override
+    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        super.onPopulateAccessibilityEvent(view, accessibilityEvent);
+        StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
+        sb2.append(", ");
+        int powerSaverLevel = LiteMode.getPowerSaverLevel();
+        if (powerSaverLevel <= 0) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
+        } else if (powerSaverLevel >= 100) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
+        } else {
+            sb2.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
         }
+        accessibilityEvent.setContentDescription(sb2);
+        this.d.setContentDescription(sb2);
     }
 }

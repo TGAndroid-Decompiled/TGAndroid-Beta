@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class m {
-    public final ArrayList f3912a;
+    public final ArrayList f3913a;
 
     public m(JSONArray jSONArray) {
         ArrayList arrayList = new ArrayList();
@@ -18,11 +18,11 @@ public final class m {
                 }
             }
         }
-        this.f3912a = arrayList;
+        this.f3913a = arrayList;
     }
 
     public void a() {
-        ArrayList arrayList = this.f3912a;
+        ArrayList arrayList = this.f3913a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -47,6 +47,6 @@ public final class m {
         if (!file.exists()) {
             file.mkdirs();
         }
-        this.f3912a = new ArrayList();
+        this.f3913a = new ArrayList();
     }
 }

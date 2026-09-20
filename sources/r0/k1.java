@@ -14,7 +14,11 @@ public abstract class k1 {
                                 if (i12 != 16) {
                                     if (i12 != 32) {
                                         if (i12 != 64) {
-                                            if (i12 == 128) {
+                                            if (i12 != 128) {
+                                                if (i12 == 512) {
+                                                    statusBars = WindowInsets.Type.systemOverlays();
+                                                }
+                                            } else {
                                                 statusBars = WindowInsets.Type.displayCutout();
                                             }
                                         } else {

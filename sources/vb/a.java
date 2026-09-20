@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import n6.i;
 import n6.l;
-import n7.z0;
+import org.telegram.ui.Cells.f3;
 import qb.m;
-import v7.r1;
+import v7.s1;
 import w7.d7;
 import w7.e7;
 import w7.j7;
@@ -18,17 +18,17 @@ import w7.la;
 import w7.na;
 import w7.y6;
 public final class a {
-    public volatile Bitmap f44534a;
-    public final int f44535b;
-    public final int f44536c;
+    public volatile Bitmap f44578a;
+    public final int f44579b;
+    public final int f44580c;
     public final int d;
     public final int e;
 
     public a(Bitmap bitmap, int i10) {
         l.h(bitmap);
-        this.f44534a = bitmap;
-        this.f44535b = bitmap.getWidth();
-        this.f44536c = bitmap.getHeight();
+        this.f44578a = bitmap;
+        this.f44579b = bitmap.getWidth();
+        this.f44580c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
@@ -67,7 +67,7 @@ public final class a {
         j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
         Task task2 = a2.e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f45016i;
+        HashMap hashMap = a2.f45060i;
         if (hashMap.get(j7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -80,23 +80,23 @@ public final class a {
         }
         hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f14469c = y6.BITMAP;
-        obj.f14468b = d7.BITMAP;
+        obj.f14505c = y6.BITMAP;
+        obj.f14504b = d7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f14470f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f14506f = Integer.valueOf(height & Integer.MAX_VALUE);
         obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f14467a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f14503a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
         obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
         e7 e7Var = new e7(obj);
-        r1 r1Var = new r1(5, false);
-        r1Var.f44333c = e7Var;
-        z0 z0Var = new z0(r1Var);
+        s1 s1Var = new s1(5, false);
+        s1Var.f44384c = e7Var;
+        f3 f3Var = new f3(s1Var);
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f15233c.a(a2.f45015g);
+            a10 = i.f15271c.a(a2.f45059g);
         }
-        m.f41515a.execute(new v(a2, z0Var, a10));
+        m.f41557a.execute(new v(a2, f3Var, a10));
         return aVar;
     }
 }

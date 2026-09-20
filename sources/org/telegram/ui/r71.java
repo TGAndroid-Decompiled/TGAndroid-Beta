@@ -1,24 +1,29 @@
 package org.telegram.ui;
-public final class r71 extends g.p {
-    public final t71 f36983c;
 
-    public r71(t71 t71Var) {
-        this.f36983c = t71Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class r71 extends View {
+    public final Paint f37059a;
+    public final LinearGradient f37060b;
+
+    public r71(t71 t71Var, Context context) {
+        super(context);
+        this.f37059a = new Paint(1);
+        float dp = AndroidUtilities.dp(68.0f);
+        int i10 = org.telegram.ui.ActionBar.j6.f19165h5;
+        this.f37060b = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{org.telegram.ui.ActionBar.j6.l1(0.0f, t71Var.getThemedColor(i10)), t71Var.getThemedColor(i10)}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        t71 t71Var = this.f36983c;
-        org.telegram.ui.Components.nz nzVar = t71Var.X;
-        org.telegram.ui.Components.l61 l61Var = t71Var.f37609d0;
-        if (l61Var == null) {
-            return nzVar.J;
-        }
-        org.telegram.ui.Components.x51 G = l61Var.G(i10 - 1);
-        if (G != null && (i11 = G.f30257u) != -1) {
-            return i11;
-        }
-        return nzVar.J;
+    public final void onDraw(Canvas canvas) {
+        LinearGradient linearGradient = this.f37060b;
+        Paint paint = this.f37059a;
+        paint.setShader(linearGradient);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

@@ -1,43 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class vy0 extends wl0 {
-    public boolean X2;
-    public boolean Y2;
-    public final zy0 Z2;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+public final class vy0 extends ul0 {
+    public final yy0 f29859c;
+    public final yy0 d;
 
-    public vy0(zy0 zy0Var, Context context) {
-        super(context, null);
-        this.Z2 = zy0Var;
+    public vy0(yy0 yy0Var, yy0 yy0Var2) {
+        this.d = yy0Var;
+        this.f29859c = yy0Var2;
     }
 
     @Override
-    public final void l0(int i10, int i11) {
-        boolean canScrollHorizontally = canScrollHorizontally(-1);
-        boolean canScrollHorizontally2 = canScrollHorizontally(1);
-        if (this.X2 == canScrollHorizontally && this.Y2 == canScrollHorizontally2) {
-            return;
-        }
-        ai.f0 f0Var = this.Z2.d;
-        if (f0Var != null) {
-            f0Var.invalidate();
-        }
-        this.X2 = canScrollHorizontally;
-        this.Y2 = canScrollHorizontally2;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.qt previewDelegate;
-        org.telegram.ui.st q6 = org.telegram.ui.st.q();
-        zy0 zy0Var = this.Z2;
-        vy0 vy0Var = zy0Var.e;
-        previewDelegate = zy0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, vy0Var, previewDelegate, this.f30090p2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-            return false;
-        }
+    public final boolean D(s4.c1 c1Var) {
         return true;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.f29859c.f30649w;
+        if (arrayList == null) {
+            return 0;
+        }
+        return arrayList.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        ArrayList arrayList = this.f29859c.f30649w;
+        if (arrayList == null) {
+            return 0L;
+        }
+        return ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.hashCode();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        String str;
+        xy0 xy0Var = (xy0) c1Var.f42974a;
+        yy0 yy0Var = this.f29859c;
+        ArrayList arrayList = yy0Var.f30649w;
+        if (arrayList == null) {
+            str = null;
+        } else {
+            str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
+        }
+        int direction = yy0Var.getDirection();
+        xy0Var.f30388a = str;
+        if (str != null && str.startsWith("animated_")) {
+            try {
+                long parseLong = Long.parseLong(str.substring(9));
+                Drawable drawable = xy0Var.f30389b;
+                if (!(drawable instanceof p5) || ((p5) drawable).i() != parseLong) {
+                    xy0Var.setImageDrawable(p5.n(UserConfig.selectedAccount, parseLong, null, xy0Var.f30391f.d()));
+                }
+            } catch (Exception unused) {
+                xy0Var.setImageDrawable(null);
+            }
+        } else {
+            xy0Var.setImageDrawable(Emoji.getEmojiBigDrawable(str));
+        }
+        if (xy0Var.d != direction) {
+            xy0Var.d = direction;
+            xy0Var.requestLayout();
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new xy0(this.d, this.f29859c.getContext()));
     }
 }

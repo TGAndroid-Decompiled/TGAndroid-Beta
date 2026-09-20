@@ -38,14 +38,14 @@ public final class c {
         int i10 = this.f423b;
         int i11 = this.f424c;
         d.h = i10;
-        d.f4287i = i11;
+        d.f4288i = i11;
         pe.b bVar = this.e;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
         li.i iVar = this.h;
         if (iVar != null && view != null) {
-            iVar.f14302c.add(new li.h(view, d));
+            iVar.f14338c.add(new li.h(view, d));
         }
         hh.k kVar = this.f425f;
         if (kVar != null && (viewGroup = this.f426g) != null && view != null) {

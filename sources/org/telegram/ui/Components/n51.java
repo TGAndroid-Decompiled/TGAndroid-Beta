@@ -1,26 +1,43 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class n51 implements ey0 {
-    public final t51 f26613a;
+    public final TLRPC.InputStickerSet f26572a;
+    public final s51 f26573b;
 
-    public n51(t51 t51Var) {
-        this.f26613a = t51Var;
+    public n51(s51 s51Var, TLRPC.InputStickerSet inputStickerSet) {
+        this.f26573b = s51Var;
+        this.f26572a = inputStickerSet;
     }
 
     @Override
-    public final boolean b() {
-        return this.f26613a.f28324b.a();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f26613a.f28324b.c();
-    }
-
-    @Override
-    public final void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11) {
-        this.f26613a.f28324b.f(document, obj, z11, i10);
+    public final void a() {
+        s51 s51Var = this.f26573b;
+        s4.h0 adapter = s51Var.f28056n.getAdapter();
+        r51 r51Var = s51Var.f28058s;
+        TLRPC.InputStickerSet inputStickerSet = this.f26572a;
+        int i10 = 0;
+        if (adapter == r51Var) {
+            while (i10 < r51Var.e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) r51Var.e.get(i10);
+                if (stickerSetCovered.set.f18355id == inputStickerSet.f18348id) {
+                    r51Var.F(stickerSetCovered, null);
+                    return;
+                }
+                i10++;
+            }
+            return;
+        }
+        gg.g2 g2Var = s51Var.v;
+        ArrayList arrayList = g2Var.E;
+        while (i10 < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
+            if (stickerSetCovered2.set.f18355id == inputStickerSet.f18348id) {
+                g2Var.F(stickerSetCovered2, null);
+                return;
+            }
+            i10++;
+        }
     }
 }

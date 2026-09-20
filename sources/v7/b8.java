@@ -1,14 +1,13 @@
 package v7;
 public abstract class b8 {
-    public static void a(int i10, int i11, int i12) {
-        if (i10 >= 0 && i11 <= i12) {
-            if (i10 <= i11) {
-                return;
-            }
-            throw new IllegalArgumentException(a4.a.l(i10, i11, "fromIndex: ", " > toIndex: "));
+    public static byte a(long j3) {
+        boolean z10;
+        if ((j3 >> 8) == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        StringBuilder k10 = hg.k0.k("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
-        k10.append(i12);
-        throw new IndexOutOfBoundsException(k10.toString());
+        u6.b(j3, "out of range: %s", z10);
+        return (byte) j3;
     }
 }

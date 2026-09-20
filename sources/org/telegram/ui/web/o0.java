@@ -2,28 +2,28 @@ package org.telegram.ui.web;
 
 import android.webkit.PermissionRequest;
 public final class o0 implements q0.a {
-    public final int f38998a;
-    public final w0 f38999b;
-    public final PermissionRequest f39000c;
+    public final int f39001a;
+    public final w0 f39002b;
+    public final PermissionRequest f39003c;
     public final String d;
 
     public o0(w0 w0Var, PermissionRequest permissionRequest, String str, int i10) {
-        this.f38998a = i10;
-        this.f38999b = w0Var;
-        this.f39000c = permissionRequest;
+        this.f39001a = i10;
+        this.f39002b = w0Var;
+        this.f39003c = permissionRequest;
         this.d = str;
     }
 
     @Override
     public final void accept(Object obj) {
         Boolean bool = (Boolean) obj;
-        switch (this.f38998a) {
+        switch (this.f39001a) {
             case 0:
-                w0 w0Var = this.f38999b;
+                w0 w0Var = this.f39002b;
                 if (w0Var.f39071a != null) {
                     w0Var.f39071a = null;
                     boolean booleanValue = bool.booleanValue();
-                    PermissionRequest permissionRequest = this.f39000c;
+                    PermissionRequest permissionRequest = this.f39003c;
                     if (booleanValue) {
                         d1.a(w0Var.e.Q, new String[]{"android.permission.RECORD_AUDIO"}, new o0(w0Var, permissionRequest, this.d, 2));
                         return;
@@ -34,11 +34,11 @@ public final class o0 implements q0.a {
                 }
                 return;
             case 1:
-                w0 w0Var2 = this.f38999b;
+                w0 w0Var2 = this.f39002b;
                 if (w0Var2.f39071a != null) {
                     w0Var2.f39071a = null;
                     boolean booleanValue2 = bool.booleanValue();
-                    PermissionRequest permissionRequest2 = this.f39000c;
+                    PermissionRequest permissionRequest2 = this.f39003c;
                     if (booleanValue2) {
                         d1.a(w0Var2.e.Q, new String[]{"android.permission.CAMERA"}, new o0(w0Var2, permissionRequest2, this.d, 3));
                         return;
@@ -49,10 +49,10 @@ public final class o0 implements q0.a {
                 }
                 return;
             case 2:
-                w0 w0Var3 = this.f38999b;
+                w0 w0Var3 = this.f39002b;
                 w0Var3.getClass();
                 boolean booleanValue3 = bool.booleanValue();
-                PermissionRequest permissionRequest3 = this.f39000c;
+                PermissionRequest permissionRequest3 = this.f39003c;
                 if (booleanValue3) {
                     permissionRequest3.grant(new String[]{this.d});
                     w0Var3.e.Q.T = true;
@@ -61,10 +61,10 @@ public final class o0 implements q0.a {
                 permissionRequest3.deny();
                 return;
             default:
-                w0 w0Var4 = this.f38999b;
+                w0 w0Var4 = this.f39002b;
                 w0Var4.getClass();
                 boolean booleanValue4 = bool.booleanValue();
-                PermissionRequest permissionRequest4 = this.f39000c;
+                PermissionRequest permissionRequest4 = this.f39003c;
                 if (booleanValue4) {
                     permissionRequest4.grant(new String[]{this.d});
                     w0Var4.e.Q.T = true;

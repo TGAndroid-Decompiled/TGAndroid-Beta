@@ -10,28 +10,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.o81;
-import org.telegram.ui.Components.z5;
-import org.telegram.ui.Components.zr0;
+import org.telegram.ui.Components.y5;
+import org.telegram.ui.Components.yr0;
 import yh.k5;
 import yh.l5;
 public final class y1 extends o81 {
-    public final int f46460a;
-    public final e6 f46461b;
-    public final zr0 f46462c;
+    public final int f46507a;
+    public final f6 f46508b;
+    public final yr0 f46509c;
 
-    public y1(zr0 zr0Var, int i10, e6 e6Var) {
-        this.f46462c = zr0Var;
-        this.f46460a = i10;
-        this.f46461b = e6Var;
+    public y1(yr0 yr0Var, int i10, f6 f6Var) {
+        this.f46509c = yr0Var;
+        this.f46507a = i10;
+        this.f46508b = f6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        zr0 zr0Var = this.f46462c;
-        u1 u1Var = zr0Var.N;
-        k5 k5Var = zr0Var.e;
+        yr0 yr0Var = this.f46509c;
+        u1 u1Var = yr0Var.N;
+        k5 k5Var = yr0Var.e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -72,12 +72,12 @@ public final class y1 extends o81 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         k5Var.j();
-        o2 currentPage = zr0Var.getCurrentPage();
+        o2 currentPage = yr0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
                 i10 = k5Var.f(currentPage.e.d) + 1;
             }
-            zr0Var.f46373n.e(0.0f, i10, i10);
+            yr0Var.f46420n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(u1Var);
         AndroidUtilities.runOnUIThread(u1Var, 1000L);
@@ -87,12 +87,12 @@ public final class y1 extends o81 {
     public final void b(View view, int i10, int i11) {
         l5 l5Var;
         boolean z10;
-        zr0 zr0Var = this.f46462c;
-        k5 k5Var = zr0Var.e;
+        yr0 yr0Var = this.f46509c;
+        k5 k5Var = yr0Var.e;
         o2 o2Var = (o2) view;
         int i12 = 0;
         if (i11 == 0) {
-            l5Var = zr0Var.d;
+            l5Var = yr0Var.d;
             z10 = false;
         } else {
             int i13 = i10 - 1;
@@ -115,12 +115,12 @@ public final class y1 extends o81 {
         o2Var.f(false);
         LinearLayout linearLayout = o2Var.E;
         if (linearLayout != null) {
-            if (!o2Var.f46300a.e.h()) {
+            if (!o2Var.f46347a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
         }
-        o2Var.setVisibleHeight(zr0Var.Q);
+        o2Var.setVisibleHeight(yr0Var.Q);
         o2Var.setHasTabs(!k5Var.d().isEmpty());
     }
 
@@ -137,12 +137,12 @@ public final class y1 extends o81 {
         if (i10 == -1) {
             return null;
         }
-        return new o2(this.f46462c, this.f46460a, this.f46461b);
+        return new o2(this.f46509c, this.f46507a, this.f46508b);
     }
 
     @Override
     public final int e() {
-        return this.f46462c.e.d().size() + 1;
+        return this.f46509c.e.d().size() + 1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class y1 extends o81 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f46462c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f46509c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class y1 extends o81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46462c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46509c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }
@@ -167,7 +167,7 @@ public final class y1 extends o81 {
             TextPaint textPaint = new TextPaint(1);
             textPaint.setTextSize(AndroidUtilities.dp(16.0f));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
-            spannableStringBuilder2.setSpan(new z5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder2.setSpan(new y5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
             spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
         }
         return spannableStringBuilder;

@@ -4,8 +4,8 @@ import android.content.Context;
 public final class x01 extends hg.j1 {
     public final z01 G;
 
-    public x01(z01 z01Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public x01(z01 z01Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
         this.G = z01Var;
     }
 

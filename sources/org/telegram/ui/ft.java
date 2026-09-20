@@ -4,42 +4,42 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class ft implements r0.n, org.telegram.ui.Components.pk0 {
-    public final st f33604a;
+public final class ft implements r0.n, org.telegram.ui.Components.ok0 {
+    public final st f33715a;
 
     public ft(st stVar) {
-        this.f33604a = stVar;
+        this.f33715a = stVar;
     }
 
     @Override
-    public r0.m1 Q0(View view, r0.m1 m1Var) {
-        this.f33604a.f37487q = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        return m1Var;
+    public r0.l1 P0(View view, r0.l1 l1Var) {
+        this.f33715a.f37542q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        return l1Var;
     }
 
     @Override
     public void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
         if (o0Var != null) {
-            st stVar = this.f33604a;
+            st stVar = this.f33715a;
             zg.b0 reactionsWindow = stVar.P.getReactionsWindow();
-            if (stVar.f37485o.contains(o0Var.f49377f)) {
-                if (stVar.f37485o.size() > 1) {
-                    stVar.f37485o.remove(o0Var.f49377f);
+            if (stVar.f37540o.contains(o0Var.f49423f)) {
+                if (stVar.f37540o.size() > 1) {
+                    stVar.f37540o.remove(o0Var.f49423f);
                 } else {
                     return;
                 }
             } else {
-                stVar.f37485o.add(o0Var.f49377f);
-                if (stVar.f37485o.size() > 7) {
-                    stVar.f37485o.remove(0);
+                stVar.f37540o.add(o0Var.f49423f);
+                if (stVar.f37540o.size() > 7) {
+                    stVar.f37540o.remove(0);
                 }
             }
-            stVar.P.setSelectedEmojis(stVar.f37485o);
+            stVar.P.setSelectedEmojis(stVar.f37540o);
             if (reactionsWindow != null) {
-                zg.x xVar = reactionsWindow.f49235m;
+                zg.x xVar = reactionsWindow.f49281m;
                 stVar.P.p(null, null, false);
                 if (xVar != null) {
-                    xVar.setSelectedReactions(stVar.f37485o);
+                    xVar.setSelectedReactions(stVar.f37540o);
                     xVar.setRecentReactions(stVar.P.V);
                 }
                 reactionsWindow.d();
@@ -63,7 +63,7 @@ public final class ft implements r0.n, org.telegram.ui.Components.pk0 {
     }
 
     @Override
-    public void p() {
+    public void o() {
     }
 
     @Override

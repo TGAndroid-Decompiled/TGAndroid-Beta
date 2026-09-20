@@ -30,9 +30,9 @@ public final class m implements r {
                 arrayList.add(new d3.a(1));
                 return;
             case 4:
-                o P = f3792f.P(0);
-                if (P != null) {
-                    arrayList.add(P);
+                o M = f3792f.M(0);
+                if (M != null) {
+                    arrayList.add(M);
                     return;
                 } else {
                     arrayList.add(new h3.b());
@@ -58,7 +58,7 @@ public final class m implements r {
                 } else {
                     i11 = 32;
                 }
-                e9.g0 g0Var = e9.i0.f8083b;
+                e9.g0 g0Var = e9.i0.f8084b;
                 arrayList.add(new w3.i(bVar2, i11, null, a1.e, null));
                 qb.b bVar3 = this.f3795c;
                 if (!this.f3794b) {
@@ -74,17 +74,17 @@ public final class m implements r {
                 return;
             case 11:
                 if (this.f3793a == null) {
-                    e9.g0 g0Var2 = e9.i0.f8083b;
+                    e9.g0 g0Var2 = e9.i0.f8084b;
                     this.f3793a = a1.e;
                 }
                 arrayList.add(new j4.d0(1, !this.f3794b ? 1 : 0, this.f3795c, new e2.b0(0L), new j4.f(0, this.f3793a)));
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f13430c = 0;
+                obj.f13431c = 0;
                 obj.d = -1L;
-                obj.f13431f = -1;
-                obj.f13432g = -1L;
+                obj.f13432f = -1;
+                obj.f13433g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:
@@ -94,9 +94,9 @@ public final class m implements r {
                 arrayList.add(new k3.a(this.d));
                 return;
             case 15:
-                o P2 = h.P(new Object[0]);
-                if (P2 != null) {
-                    arrayList.add(P2);
+                o M2 = h.M(new Object[0]);
+                if (M2 != null) {
+                    arrayList.add(M2);
                     return;
                 }
                 return;

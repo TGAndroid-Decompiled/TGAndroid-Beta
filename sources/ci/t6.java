@@ -7,13 +7,13 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class t6 extends ImageView {
-    public final int f5569a;
-    public final v6 f5570b;
+    public final int f5570a;
+    public final v6 f5571b;
 
     public t6(v6 v6Var, Context context, int i10, int i11) {
         super(context);
-        this.f5570b = v6Var;
-        this.f5569a = i10;
+        this.f5571b = v6Var;
+        this.f5570a = i10;
         setBackground(org.telegram.ui.ActionBar.j6.f0(1090519039, 1, -1));
         setScaleType(ImageView.ScaleType.CENTER);
         setImageResource(i11);

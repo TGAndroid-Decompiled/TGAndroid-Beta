@@ -1,186 +1,70 @@
 package org.telegram.ui.Cells;
 
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.os.Build;
-import android.view.ActionMode;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.util.Property;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.e41;
-public final class n9 implements ActionMode.Callback {
-    public String f20687a = null;
-    public final da f20688b;
+import org.telegram.ui.Components.df0;
+public final class n9 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback, df0 {
+    public final Object f20709a;
+    public final Object f20710b;
 
-    public n9(da daVar) {
-        this.f20688b = daVar;
+    public n9(Object obj, Object obj2) {
+        this.f20709a = obj;
+        this.f20710b = obj2;
     }
 
-    public final void a(Menu menu) {
-        boolean z10;
-        LocaleController.getInstance().getCurrentLocale().getLanguage();
-        MenuItem findItem = menu.findItem(3);
-        if (findItem == null) {
+    @Override
+    public void j(int i10, int i11) {
+        w5 w5Var = (w5) this.f20709a;
+        ai.q4 q4Var = w5Var.e;
+        TextView textView = w5Var.f21792b;
+        ((df0) this.f20710b).j(i10, i11);
+        if (i11 > 0) {
+            textView.setText("+" + i11);
+        } else {
+            textView.setText("" + i11);
+        }
+        if (textView.getTag() == null) {
+            AnimatorSet animatorSet = w5Var.d;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            textView.setTag(1);
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            w5Var.d = animatorSet2;
+            Property property = View.ALPHA;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, property, 1.0f), ObjectAnimator.ofFloat(w5Var.f21791a, property, 0.0f));
+            w5Var.d.setDuration(250L);
+            w5Var.d.setInterpolator(new DecelerateInterpolator());
+            w5Var.d.addListener(new org.telegram.ui.t4(w5Var, 10));
+            w5Var.d.start();
             return;
         }
-        if (this.f20688b.f20139l0 != null && ((this.f20687a != null && !e41.Y().contains(this.f20687a)) || !LanguageDetector.hasSupport())) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        findItem.setVisible(z10);
+        AndroidUtilities.cancelRunOnUIThread(q4Var);
+        AndroidUtilities.runOnUIThread(q4Var, 1000L);
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        MessageObject messageObject;
-        CharSequence t10;
-        da daVar = this.f20688b;
-        g gVar = daVar.f20150r0;
-        if (daVar.y()) {
-            int itemId = menuItem.getItemId();
-            if (itemId == 16908321) {
-                daVar.g();
-                return true;
-            } else if (itemId == 16908319) {
-                if (!daVar.K() && (t10 = daVar.t(daVar.W, false)) != null) {
-                    daVar.f20155u = 0;
-                    daVar.v = t10.length();
-                    daVar.v();
-                    daVar.x();
-                    AndroidUtilities.cancelRunOnUIThread(gVar);
-                    AndroidUtilities.runOnUIThread(gVar);
-                    return true;
-                }
-            } else if (itemId == 3) {
-                if (daVar.f20139l0 != null) {
-                    String language = LocaleController.getInstance().getCurrentLocale().getLanguage();
-                    org.telegram.ui.t tVar = daVar.f20139l0;
-                    CharSequence s10 = daVar.s();
-                    String str = this.f20687a;
-                    g gVar2 = new g(this, 8);
-                    org.telegram.ui.h4 h4Var = tVar.f37521a;
-                    k41.K(h4Var.L, h4Var.M, str, language, s10, null, gVar2);
-                }
-                daVar.v();
-                return true;
-            } else if (itemId == R.id.menu_quote) {
-                if (daVar.y()) {
-                    y9 y9Var = daVar.W;
-                    if (y9Var instanceof u1) {
-                        messageObject = ((u1) y9Var).getMessageObject();
-                    } else {
-                        messageObject = null;
-                    }
-                    if (messageObject != null && daVar.s() != null) {
-                        daVar.J(daVar.f20155u, daVar.v, messageObject);
-                        daVar.f(true);
-                    }
-                }
-                daVar.v();
-                return true;
-            } else if (itemId == 16908320) {
-                daVar.E();
-                daVar.v();
-                return true;
-            } else if (itemId == 16908322) {
-                daVar.I();
-                daVar.v();
-                return true;
-            } else {
-                daVar.f(false);
-                return true;
-            }
-        }
-        return true;
+    public void run(String str) {
+        o9 o9Var = (o9) this.f20709a;
+        o9Var.f20780a = str;
+        o9Var.a((Menu) this.f20710b);
     }
 
     @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        menu.add(0, 16908321, 0, 17039361);
-        menu.add(0, R.id.menu_quote, 1, LocaleController.getString(R.string.Quote));
-        menu.add(0, 3, 2, LocaleController.getString(R.string.TranslateMessage));
-        menu.add(0, 16908320, 3, 17039363);
-        menu.add(0, 16908322, 4, 17039371);
-        menu.add(0, 16908319, 5, 17039373);
-        return true;
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        if (Build.VERSION.SDK_INT < 23) {
-            this.f20688b.f(false);
-        }
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        Context context;
-        ClipboardManager clipboardManager;
-        da daVar;
-        y9 y9Var;
-        MenuItem findItem = menu.findItem(R.id.menu_quote);
-        if (findItem != null) {
-            findItem.setVisible(this.f20688b.e());
-        }
-        MenuItem findItem2 = menu.findItem(16908321);
-        if (findItem2 != null) {
-            findItem2.setVisible(this.f20688b.b());
-        }
-        MenuItem findItem3 = menu.findItem(16908319);
-        boolean z10 = false;
-        if (findItem3 != null && (y9Var = (daVar = this.f20688b).W) != null) {
-            CharSequence t10 = daVar.t(y9Var, false);
-            if (!this.f20688b.b()) {
-                findItem3.setVisible(false);
-            } else if (this.f20688b.k()) {
-                findItem3.setVisible(true);
-            } else {
-                da daVar2 = this.f20688b;
-                if (!daVar2.Z && (daVar2.f20155u > 0 || daVar2.v < t10.length() - 1)) {
-                    findItem3.setVisible(true);
-                } else {
-                    findItem3.setVisible(false);
-                }
-            }
-        }
-        MenuItem findItem4 = menu.findItem(16908320);
-        if (findItem4 != null) {
-            findItem4.setVisible(this.f20688b instanceof ii.j3);
-        }
-        MenuItem findItem5 = menu.findItem(16908322);
-        if (findItem5 != null) {
-            da daVar3 = this.f20688b;
-            if (daVar3 instanceof ii.j3) {
-                try {
-                    ca caVar = daVar3.C;
-                    if (caVar != null) {
-                        context = caVar.getContext();
-                    } else {
-                        context = ApplicationLoader.applicationContext;
-                    }
-                    if (context != null && (clipboardManager = (ClipboardManager) context.getSystemService("clipboard")) != null) {
-                        if (clipboardManager.hasPrimaryClip()) {
-                            z10 = true;
-                        }
-                    }
-                } catch (Exception unused) {
-                }
-            }
-            findItem5.setVisible(z10);
-        }
-        if (this.f20688b.f20139l0 != null && LanguageDetector.hasSupport() && this.f20688b.s() != null) {
-            LanguageDetector.detectLanguage(this.f20688b.s().toString(), new m9(this, menu), new m9(this, menu));
-        } else {
-            this.f20687a = null;
-            a(menu);
-        }
-        return true;
+    public void run(Exception exc) {
+        o9 o9Var = (o9) this.f20709a;
+        o9Var.getClass();
+        FileLog.e("mlkit: failed to detect language in selection");
+        FileLog.e(exc);
+        o9Var.f20780a = null;
+        o9Var.a((Menu) this.f20710b);
     }
 }

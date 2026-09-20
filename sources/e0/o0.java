@@ -2,17 +2,17 @@ package e0;
 
 import androidx.core.graphics.drawable.IconCompat;
 public final class o0 {
-    public CharSequence f7821a;
-    public IconCompat f7822b;
+    public CharSequence f7822a;
+    public IconCompat f7823b;
 
     public final p0 a() {
         ?? obj = new Object();
-        obj.f7823a = this.f7821a;
-        obj.f7824b = this.f7822b;
-        obj.f7825c = null;
+        obj.f7824a = this.f7822a;
+        obj.f7825b = this.f7823b;
+        obj.f7826c = null;
         obj.d = null;
         obj.e = false;
-        obj.f7826f = false;
+        obj.f7827f = false;
         return obj;
     }
 }

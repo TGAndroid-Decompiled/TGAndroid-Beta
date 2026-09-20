@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vn extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.lc0 f38597a;
+    public final org.telegram.ui.Components.kc0 f38577a;
 
-    public vn(org.telegram.ui.Components.lc0 lc0Var) {
-        this.f38597a = lc0Var;
+    public vn(org.telegram.ui.Components.kc0 kc0Var) {
+        this.f38577a = kc0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         super.onAnimationEnd(animator);
-        this.f38597a.s(1.0f);
+        this.f38577a.s(1.0f);
     }
 }

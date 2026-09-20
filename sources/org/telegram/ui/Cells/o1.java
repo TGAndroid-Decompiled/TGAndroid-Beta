@@ -9,47 +9,47 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 public abstract class o1 extends Drawable {
-    public final int f20719a;
-    public final Path f20720b;
-    public final Paint f20721c;
+    public final int f20739a;
+    public final Path f20740b;
+    public final Paint f20741c;
     public final Object d;
 
     public o1(int i10) {
-        this.f20719a = i10;
+        this.f20739a = i10;
         switch (i10) {
             case 1:
-                this.f20720b = new Path();
+                this.f20740b = new Path();
                 Paint paint = new Paint(1);
-                this.f20721c = paint;
+                this.f20741c = paint;
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 paint.setStrokeCap(Paint.Cap.ROUND);
-                this.d = new org.telegram.ui.Components.e6(new org.telegram.ui.web.u0(this, 3), 350L, qr.h, 0);
+                this.d = new org.telegram.ui.Components.d6(new org.telegram.ui.web.r0(this, 4), 350L, qr.h, 0);
                 return;
             default:
                 Paint paint2 = new Paint(1);
-                this.f20721c = paint2;
+                this.f20741c = paint2;
                 paint2.setColor(-1);
                 this.d = new RectF();
-                this.f20720b = new Path();
+                this.f20740b = new Path();
                 return;
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f20719a) {
+        switch (this.f20739a) {
             case 0:
                 e();
-                canvas.drawPath(this.f20720b, this.f20721c);
+                canvas.drawPath(this.f20740b, this.f20741c);
                 return;
             default:
-                float e = ((org.telegram.ui.Components.e6) this.d).e(true);
+                float e = ((org.telegram.ui.Components.d6) this.d).e(true);
                 float centerX = getBounds().centerX();
                 float centerY = getBounds().centerY();
                 float width = getBounds().width();
                 float f7 = 0.57f * width;
-                Path path = this.f20720b;
+                Path path = this.f20740b;
                 path.rewind();
                 float f10 = f7 / 2.0f;
                 path.moveTo(centerX - AndroidUtilities.lerp(f10, (-f7) / 2.0f, e), centerY);
@@ -61,7 +61,7 @@ public abstract class o1 extends Drawable {
                 path.lineTo(f11, centerY);
                 path.lineTo(f12, f13 + centerY);
                 canvas.save();
-                Paint paint = this.f20721c;
+                Paint paint = this.f20741c;
                 paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
                 canvas.translate(0.0f, (-width) * 0.1f * e);
                 canvas.rotate(e * 90.0f, centerX, centerY);
@@ -75,7 +75,7 @@ public abstract class o1 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f20719a) {
+        switch (this.f20739a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -85,7 +85,7 @@ public abstract class o1 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f20719a) {
+        switch (this.f20739a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -95,7 +95,7 @@ public abstract class o1 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f20719a) {
+        switch (this.f20739a) {
             case 0:
                 return -2;
             default:
@@ -105,12 +105,12 @@ public abstract class o1 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f20719a;
+        int i11 = this.f20739a;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f20719a;
+        int i10 = this.f20739a;
     }
 
     private final void a(int i10) {

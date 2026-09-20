@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class x extends org.telegram.ui.x61 {
+public final class x extends org.telegram.ui.a71 {
     public final y e;
 
     public x(y yVar, w wVar) {
@@ -10,6 +10,6 @@ public final class x extends org.telegram.ui.x61 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f30420i0 = null;
+        this.e.f30408i0 = null;
     }
 }

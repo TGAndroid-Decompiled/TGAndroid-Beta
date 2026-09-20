@@ -11,60 +11,60 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.yc;
 public final class w3 {
-    public final RectF f19836a = new RectF();
-    public final x3 f19837b;
-    public final n3 f19838c;
+    public final RectF f19868a = new RectF();
+    public final x3 f19869b;
+    public final n3 f19870c;
     public final l3 d;
     public final Paint e;
-    public final Matrix f19839f;
-    public final float[] f19840g;
+    public final Matrix f19871f;
+    public final float[] f19872g;
     public final float[] h;
-    public float f19841i;
-    public ValueAnimator f19842j;
-    public final yc f19843k;
-    public final Paint f19844l;
-    public final RectF f19845m;
-    public final Path f19846n;
-    public final Paint f19847o;
-    public final RadialGradient f19848p;
-    public final Matrix f19849q;
-    public final Paint f19850r;
+    public float f19873i;
+    public ValueAnimator f19874j;
+    public final yc f19875k;
+    public final Paint f19876l;
+    public final RectF f19877m;
+    public final Path f19878n;
+    public final Paint f19879o;
+    public final RadialGradient f19880p;
+    public final Matrix f19881q;
+    public final Paint f19882r;
 
     public w3(x3 x3Var, n3 n3Var, l3 l3Var) {
         Paint paint = new Paint(1);
         this.e = paint;
-        this.f19839f = new Matrix();
-        this.f19840g = new float[8];
+        this.f19871f = new Matrix();
+        this.f19872g = new float[8];
         this.h = new float[8];
-        this.f19841i = 0.0f;
-        this.f19844l = new Paint(1);
-        this.f19845m = new RectF();
-        this.f19846n = new Path();
-        this.f19847o = new Paint(3);
-        this.f19848p = new RadialGradient(0.0f, 0.0f, 255.0f, new int[]{0, 805306368}, new float[]{0.5f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f19849q = new Matrix();
-        this.f19850r = new Paint(1);
-        this.f19837b = x3Var;
-        this.f19838c = n3Var;
+        this.f19873i = 0.0f;
+        this.f19876l = new Paint(1);
+        this.f19877m = new RectF();
+        this.f19878n = new Path();
+        this.f19879o = new Paint(3);
+        this.f19880p = new RadialGradient(0.0f, 0.0f, 255.0f, new int[]{0, 805306368}, new float[]{0.5f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f19881q = new Matrix();
+        this.f19882r = new Paint(1);
+        this.f19869b = x3Var;
+        this.f19870c = n3Var;
         this.d = l3Var;
-        this.f19843k = new yc(x3Var);
-        paint.setColor(n3Var.f19628r);
+        this.f19875k = new yc(x3Var);
+        paint.setColor(n3Var.f19660r);
     }
 
     public final void a(float f7) {
-        ValueAnimator valueAnimator = this.f19842j;
+        ValueAnimator valueAnimator = this.f19874j;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f19841i, f7);
-        this.f19842j = ofFloat;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f19873i, f7);
+        this.f19874j = ofFloat;
         ofFloat.addUpdateListener(new w0(this, 5));
-        this.f19842j.addListener(new z0(this, f7, 1));
+        this.f19874j.addListener(new z0(this, f7, 1));
         if (Math.abs(f7) < 0.1f) {
-            AndroidUtilities.applySpring(this.f19842j, 285.0d, 20.0d);
+            AndroidUtilities.applySpring(this.f19874j, 285.0d, 20.0d);
         } else {
-            this.f19842j.setInterpolator(qr.h);
+            this.f19874j.setInterpolator(qr.h);
         }
-        this.f19842j.start();
+        this.f19874j.start();
     }
 }

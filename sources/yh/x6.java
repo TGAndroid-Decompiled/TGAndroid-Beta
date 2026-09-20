@@ -1,60 +1,38 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import org.telegram.messenger.AndroidUtilities;
-public final class x6 extends rg.v1 {
-    public Paint[] f48220n;
-    public final int f48221r;
-    public final int f48222s;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.hd0;
+public final class x6 implements TextWatcher {
+    public boolean f48262a;
+    public int f48263b = 2;
+    public final EditTextBoldCursor f48264c;
+    public final hd0 d;
+    public final long e;
+    public final boolean f48265f;
+    public final ci.d h;
+    public final TextView f48266n;
 
-    public x6(Context context, int i10, int i11) {
-        super(context);
-        this.f48221r = i10;
-        this.f48222s = i11;
-        b();
+    public x6(EditTextBoldCursor editTextBoldCursor, hd0 hd0Var, long j3, boolean z10, ci.d dVar, TextView textView) {
+        this.f48264c = editTextBoldCursor;
+        this.d = hd0Var;
+        this.e = j3;
+        this.f48265f = z10;
+        this.h = dVar;
+        this.f48266n = textView;
     }
 
     @Override
-    public final void a() {
-        rg.u1 u1Var = new rg.u1(this.f48221r);
-        this.f42776a = u1Var;
-        u1Var.N = 105;
-        int i10 = 0;
-        u1Var.M = false;
-        u1Var.G = false;
-        u1Var.K = true;
-        u1Var.H = true;
-        u1Var.J = false;
-        u1Var.f42759m = true;
-        u1Var.h = true;
-        if (this.f48222s == 1) {
-            u1Var.f42757k = AndroidUtilities.dp(24.0f);
-        }
-        this.f48220n = new Paint[20];
-        while (true) {
-            Paint[] paintArr = this.f48220n;
-            if (i10 < paintArr.length) {
-                paintArr[i10] = new Paint(1);
-                this.f48220n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f48220n.length - 1), -371690, -14281), PorterDuff.Mode.SRC_IN));
-                i10++;
-            } else {
-                rg.u1 u1Var2 = this.f42776a;
-                u1Var2.f42758l = new ci.a8(this, 5);
-                u1Var2.f42764r = 17;
-                u1Var2.f42765s = 18;
-                u1Var2.f42766t = 19;
-                u1Var2.P = org.telegram.ui.ActionBar.j6.G6;
-                u1Var2.c();
-                return;
-            }
-        }
+    public final void afterTextChanged(android.text.Editable r11) {
+        throw new UnsupportedOperationException("Method not decompiled: yh.x6.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final int getStarsRectWidth() {
-        return getMeasuredWidth();
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

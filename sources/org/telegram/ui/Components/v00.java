@@ -2,13 +2,13 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
 public final class v00 implements Utilities.Callback {
-    public final int f28863a = 1;
-    public final org.telegram.ui.ActionBar.d5 f28864b;
-    public final org.telegram.ui.of f28865c;
+    public final int f28887a = 1;
+    public final org.telegram.ui.ActionBar.d5 f28888b;
+    public final org.telegram.ui.of f28889c;
 
     public v00(org.telegram.ui.ActionBar.d5 d5Var, org.telegram.ui.of ofVar) {
-        this.f28864b = d5Var;
-        this.f28865c = ofVar;
+        this.f28888b = d5Var;
+        this.f28889c = ofVar;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class v00 implements Utilities.Callback {
     }
 
     public v00(org.telegram.ui.of ofVar, org.telegram.ui.ActionBar.d5 d5Var) {
-        this.f28865c = ofVar;
-        this.f28864b = d5Var;
+        this.f28889c = ofVar;
+        this.f28888b = d5Var;
     }
 }

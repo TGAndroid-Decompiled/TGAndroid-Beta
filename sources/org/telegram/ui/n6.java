@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class n6 implements Runnable {
-    public final int f35822a;
-    public final boolean[] f35823b;
-    public final r6 f35824c;
+    public final int f35894a;
+    public final boolean[] f35895b;
+    public final r6 f35896c;
     public final long[] d;
     public final o6 e;
 
     public n6(boolean[] zArr, r6 r6Var, long[] jArr, o6 o6Var, int i10) {
-        this.f35822a = i10;
-        this.f35823b = zArr;
-        this.f35824c = r6Var;
+        this.f35894a = i10;
+        this.f35895b = zArr;
+        this.f35896c = r6Var;
         this.d = jArr;
         this.e = o6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f35822a) {
+        switch (this.f35894a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new n6(this.f35823b, this.f35824c, this.d, this.e, 1));
+                AndroidUtilities.runOnUIThread(new n6(this.f35895b, this.f35896c, this.d, this.e, 1));
                 return;
             default:
-                this.f35823b[0] = true;
-                this.f35824c.a(1.0f);
+                this.f35895b[0] = true;
+                this.f35896c.a(1.0f);
                 long[] jArr = this.d;
                 long j3 = jArr[0];
                 o6 o6Var = this.e;

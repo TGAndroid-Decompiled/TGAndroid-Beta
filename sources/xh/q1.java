@@ -7,40 +7,40 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.d6;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.bc1;
+import org.telegram.ui.dc1;
 import w7.y5;
 public final class q1 extends FrameLayout {
-    public final bc1 f46328a;
-    public int f46329b;
-    public final e6 f46330c;
+    public final dc1 f46375a;
+    public int f46376b;
+    public final d6 f46377c;
     public final ArrayList d;
     public final RectF e;
-    public final RectF f46331f;
+    public final RectF f46378f;
     public final RectF h;
-    public final Paint f46332n;
-    public int f46333r;
+    public final Paint f46379n;
+    public int f46380r;
 
     public q1(Context context) {
         super(context);
         this.d = new ArrayList();
         this.e = new RectF();
-        this.f46331f = new RectF();
+        this.f46378f = new RectF();
         this.h = new RectF();
-        this.f46332n = new Paint(1);
-        this.f46333r = Integer.MIN_VALUE;
-        bc1 bc1Var = new bc1(this, context, 18);
-        this.f46328a = bc1Var;
-        bc1Var.setClipToPadding(false);
-        bc1Var.setClipChildren(false);
-        bc1Var.setOrientation(0);
-        bc1Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(bc1Var, y5.e(-2, -1, 1));
+        this.f46379n = new Paint(1);
+        this.f46380r = Integer.MIN_VALUE;
+        dc1 dc1Var = new dc1(this, context, 18);
+        this.f46375a = dc1Var;
+        dc1Var.setClipToPadding(false);
+        dc1Var.setClipChildren(false);
+        dc1Var.setOrientation(0);
+        dc1Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(dc1Var, y5.e(-2, -1, 1));
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f46330c = new e6(bc1Var, 0L, 320L, qr.h);
+        this.f46377c = new d6(dc1Var, 0L, 320L, qr.h);
     }
 
     @Override

@@ -11,34 +11,34 @@ import android.widget.TextView;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.qr;
 public final class o6 extends LinearLayout {
-    public final TextView f5132a;
-    public final n6 f5133b;
-    public ImageView f5134c;
+    public final TextView f5133a;
+    public final n6 f5134b;
+    public ImageView f5135c;
     public ImageView d;
     public float e;
-    public boolean f5135f;
+    public boolean f5136f;
     public ValueAnimator h;
-    public final ImageView f5136n;
-    public final r6 f5137r;
+    public final ImageView f5137n;
+    public final r6 f5138r;
 
     public o6(r6 r6Var, Context context) {
         super(context);
-        this.f5137r = r6Var;
+        this.f5138r = r6Var;
         setOrientation(0);
-        int i10 = org.telegram.ui.ActionBar.j6.f19152i6;
+        int i10 = org.telegram.ui.ActionBar.j6.f19184i6;
         e6 e6Var = r6Var.G1;
         setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(i10, e6Var), 2, -1));
         n6 n6Var = new n6(this, context);
-        this.f5133b = n6Var;
+        this.f5134b = n6Var;
         addView(n6Var, w7.y5.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.f5134c = imageView;
+        this.f5135c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f5134c;
+        ImageView imageView2 = this.f5135c;
         int i11 = org.telegram.ui.ActionBar.j6.E8;
         imageView2.setColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, e6Var));
-        n6Var.addView(this.f5134c, w7.y5.e(-2, -2, 17));
+        n6Var.addView(this.f5135c, w7.y5.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
@@ -46,15 +46,15 @@ public final class o6 extends LinearLayout {
         this.d.setVisibility(8);
         n6Var.addView(this.d, w7.y5.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f5132a = textView;
+        this.f5133a = textView;
         textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, e6Var));
         textView.setTextSize(1, 16.0f);
         addView(textView, w7.y5.t(-2, -2, 19, 0, 0, 16, 0));
         ImageView imageView4 = new ImageView(context);
-        this.f5136n = imageView4;
+        this.f5137n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19135h7, e6Var), PorterDuff.Mode.MULTIPLY));
+        imageView4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19167h7, e6Var), PorterDuff.Mode.MULTIPLY));
         imageView4.setVisibility(8);
         addView(imageView4, w7.y5.n(50, -1));
     }
@@ -68,7 +68,7 @@ public final class o6 extends LinearLayout {
                 a(i10, false, false);
                 return;
             }
-            this.f5135f = z10;
+            this.f5136f = z10;
             this.d.setImageResource(i10);
             this.d.setVisibility(0);
             this.d.setAlpha(1.0f);
@@ -81,7 +81,7 @@ public final class o6 extends LinearLayout {
             this.h.start();
             return;
         }
-        this.f5134c.setImageResource(i10);
+        this.f5135c.setImageResource(i10);
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class o6 extends LinearLayout {
 
     @Override
     public final boolean performClick() {
-        r6 r6Var = this.f5137r;
+        r6 r6Var = this.f5138r;
         org.telegram.ui.ActionBar.n1 n1Var = r6Var.H1;
         if (n1Var != null && n1Var.isShowing()) {
             r6Var.H1.d(true);
@@ -111,10 +111,10 @@ public final class o6 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f5136n.setVisibility(i10);
+        this.f5137n.setVisibility(i10);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f5132a.setText(charSequence);
+        this.f5133a.setText(charSequence);
     }
 }

@@ -1,8 +1,8 @@
 package gb;
 public final class z implements db.v {
-    public final kb.a f9607a;
-    public final boolean f9608b;
-    public final Class f9609c;
+    public final kb.a f9608a;
+    public final boolean f9609b;
+    public final Class f9610c;
     public final db.o d;
 
     public z(Object obj, kb.a aVar, boolean z10, Class cls) {
@@ -20,23 +20,23 @@ public final class z implements db.v {
             z11 = true;
         }
         fb.d.b(z11);
-        this.f9607a = aVar;
-        this.f9608b = z10;
-        this.f9609c = cls;
+        this.f9608a = aVar;
+        this.f9609b = z10;
+        this.f9610c = cls;
     }
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
         boolean isAssignableFrom;
-        kb.a aVar2 = this.f9607a;
+        kb.a aVar2 = this.f9608a;
         if (aVar2 != null) {
-            if (!aVar2.equals(aVar) && (!this.f9608b || aVar2.f13577b != aVar.f13576a)) {
+            if (!aVar2.equals(aVar) && (!this.f9609b || aVar2.f13578b != aVar.f13577a)) {
                 isAssignableFrom = false;
             } else {
                 isAssignableFrom = true;
             }
         } else {
-            isAssignableFrom = this.f9609c.isAssignableFrom(aVar.f13576a);
+            isAssignableFrom = this.f9610c.isAssignableFrom(aVar.f13577a);
         }
         if (isAssignableFrom) {
             return new a0(this.d, gVar, aVar, this, true);

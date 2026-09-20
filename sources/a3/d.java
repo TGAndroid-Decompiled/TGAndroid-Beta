@@ -39,12 +39,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.i90;
+import org.telegram.ui.Components.h90;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.lx;
 import org.telegram.ui.uy;
 import v7.i8;
-import w7.a8;
+import v7.j8;
+import w7.b8;
 public final class d implements Runnable {
     public final int f76a;
     public final Object f77b;
@@ -118,7 +119,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31762s0;
+                int i10 = ProfileStoriesView.f31802s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -137,8 +138,8 @@ public final class d implements Runnable {
                 return;
             case 13:
                 b1 b1Var = (b1) this.f77b;
-                b1Var.c(b1Var.f4382b);
-                b1Var.f4383c = false;
+                b1Var.c(b1Var.f4383b);
+                b1Var.f4384c = false;
                 return;
             case 14:
                 ai.p9 p9Var = (ai.p9) this.f77b;
@@ -180,7 +181,7 @@ public final class d implements Runnable {
                 }
                 return;
             case 18:
-                ((i90) this.f77b).d(true);
+                ((h90) this.f77b).d(true);
                 return;
             case 19:
                 ((db) this.f77b).requestLayout();
@@ -250,25 +251,25 @@ public final class d implements Runnable {
                     try {
                         if (pVar.h != null) {
                             try {
-                                o0.i d = pVar.d();
+                                o0.h d = pVar.d();
                                 int i11 = d.e;
                                 if (i11 == 2) {
                                     synchronized (pVar.d) {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f15036a;
+                                    int i12 = n0.g.f15075a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     t7.u uVar = pVar.f2354c;
                                     Context context = pVar.f2352a;
                                     uVar.getClass();
-                                    o0.i[] iVarArr = {d};
-                                    v7.h8 h8Var = i0.e.f10597a;
-                                    a8.a("TypefaceCompat.createFromFontInfo");
+                                    o0.h[] hVarArr = {d};
+                                    i8 i8Var = i0.e.f10598a;
+                                    b8.a("TypefaceCompat.createFromFontInfo");
                                     try {
-                                        Typeface b10 = i0.e.f10597a.b(context, iVarArr, 0);
+                                        Typeface b10 = i0.e.f10598a.b(context, hVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e = i8.e(pVar.f2352a, d.f15457a);
+                                        MappedByteBuffer e = j8.e(pVar.f2352a, d.f15489a);
                                         if (e != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -283,7 +284,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f15036a;
+                                                int i13 = n0.g.f15075a;
                                                 throw th2;
                                             }
                                         }

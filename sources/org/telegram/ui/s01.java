@@ -7,34 +7,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_fragment;
 public final class s01 extends ClickableSpan {
-    public final TLRPC.TL_username f37167a;
-    public final String f37168b;
-    public final z01 f37169c;
+    public final TLRPC.TL_username f37262a;
+    public final String f37263b;
+    public final z01 f37264c;
 
     public s01(z01 z01Var, TLRPC.TL_username tL_username, String str) {
-        this.f37169c = z01Var;
-        this.f37167a = tL_username;
-        this.f37168b = str;
+        this.f37264c = z01Var;
+        this.f37262a = tL_username;
+        this.f37263b = str;
     }
 
     @Override
     public final void onClick(View view) {
-        ProfileActivity profileActivity = this.f37169c.e;
-        TLRPC.TL_username tL_username = this.f37167a;
+        ProfileActivity profileActivity = this.f37264c.e;
+        TLRPC.TL_username tL_username = this.f37262a;
         if (!tL_username.editable) {
-            if (profileActivity.f31546i5 != this) {
+            if (profileActivity.f31586i5 != this) {
                 profileActivity.M4(this);
                 TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
                 TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
                 tL_inputCollectibleUsername.username = tL_username.username;
                 tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
-                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new cc0(18, this, tL_username)), profileActivity.getClassGuid());
+                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new dc0(18, this, tL_username)), profileActivity.getClassGuid());
                 return;
             }
             return;
         }
         profileActivity.M4(null);
-        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f37168b;
+        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f37263b;
         TLRPC.Chat chat = profileActivity.E2;
         if (chat != null && chat.noforwards) {
             return;

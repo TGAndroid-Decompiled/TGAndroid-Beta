@@ -3,22 +3,22 @@ package org.telegram.ui.Cells;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class b1 implements Runnable {
-    public final int f20006a;
-    public final u1 f20007b;
+    public final int f20052a;
+    public final u1 f20053b;
 
     public b1(int i10, u1 u1Var) {
-        this.f20006a = i10;
-        this.f20007b = u1Var;
+        this.f20052a = i10;
+        this.f20053b = u1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f20006a) {
+        switch (this.f20052a) {
             case 0:
-                this.f20007b.b3();
+                this.f20053b.b3();
                 return;
             case 1:
-                u1 u1Var = this.f20007b;
+                u1 u1Var = this.f20053b;
                 l1 l1Var = u1Var.Jc;
                 if (l1Var != null) {
                     l1Var.r(u1Var);
@@ -26,18 +26,18 @@ public final class b1 implements Runnable {
                 }
                 return;
             case 2:
-                this.f20007b.H3();
+                this.f20053b.H3();
                 return;
             case 3:
-                u1 u1Var2 = this.f20007b;
-                l.d dVar = u1Var2.f21535w;
-                dVar.H(u1Var2.Qd);
-                dVar.H(u1Var2.Rd);
+                u1 u1Var2 = this.f20053b;
+                l.d dVar = u1Var2.f21538w;
+                dVar.I(u1Var2.Qd);
+                dVar.I(u1Var2.Rd);
                 u1Var2.H3();
-                MessageObject messageObject = u1Var2.f21572y7;
+                MessageObject messageObject = u1Var2.f21575y7;
                 if (messageObject != null) {
                     messageObject.generateLayout(null);
-                    MessageObject messageObject2 = u1Var2.f21572y7;
+                    MessageObject messageObject2 = u1Var2.f21575y7;
                     if (messageObject2.caption != null) {
                         messageObject2.caption = null;
                         messageObject2.generateCaption();
@@ -51,29 +51,29 @@ public final class b1 implements Runnable {
                 }
                 return;
             case 4:
-                u1 u1Var3 = this.f20007b;
+                u1 u1Var3 = this.f20053b;
                 if (u1Var3.Q9 && !u1Var3.R9 && u1Var3.S9) {
                     u1Var3.R9 = true;
-                    u1Var3.f21592zc.setState(new int[]{16842919, 16842910});
+                    u1Var3.f21595zc.setState(new int[]{16842919, 16842910});
                     return;
                 }
                 return;
             case 5:
-                u1 u1Var4 = this.f20007b;
-                u1Var4.f21592zc.setState(new int[0]);
+                u1 u1Var4 = this.f20053b;
+                u1Var4.f21595zc.setState(new int[0]);
                 u1Var4.invalidate();
                 return;
             case 6:
-                u1 u1Var5 = this.f20007b;
-                u1Var5.f21592zc.setState(new int[0]);
+                u1 u1Var5 = this.f20053b;
+                u1Var5.f21595zc.setState(new int[0]);
                 u1Var5.invalidate();
                 return;
             case 7:
-                u1 u1Var6 = this.f20007b;
+                u1 u1Var6 = this.f20053b;
                 int i10 = 0;
-                u1Var6.f21558x7 = false;
+                u1Var6.f21561x7 = false;
                 u1Var6.getMessageObject().isSpoilersRevealed = true;
-                MessageObject.TextLayoutBlocks textLayoutBlocks = u1Var6.f21324h4;
+                MessageObject.TextLayoutBlocks textLayoutBlocks = u1Var6.f21327h4;
                 if (textLayoutBlocks != null) {
                     ArrayList<MessageObject.TextLayoutBlock> arrayList = textLayoutBlocks.textLayoutBlocks;
                     int size = arrayList.size();
@@ -84,7 +84,7 @@ public final class b1 implements Runnable {
                         textLayoutBlock.spoilers.clear();
                     }
                 }
-                MessageObject.TextLayoutBlocks textLayoutBlocks2 = u1Var6.f21254c4;
+                MessageObject.TextLayoutBlocks textLayoutBlocks2 = u1Var6.f21257c4;
                 if (textLayoutBlocks2 != null) {
                     ArrayList<MessageObject.TextLayoutBlock> arrayList2 = textLayoutBlocks2.textLayoutBlocks;
                     int size2 = arrayList2.size();
@@ -94,7 +94,7 @@ public final class b1 implements Runnable {
                         textLayoutBlock2.spoilers.clear();
                     }
                 } else {
-                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = u1Var6.f21572y7.textLayoutBlocks;
+                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = u1Var6.f21575y7.textLayoutBlocks;
                     if (arrayList3 != null) {
                         int size3 = arrayList3.size();
                         while (i10 < size3) {
@@ -107,17 +107,17 @@ public final class b1 implements Runnable {
                 u1Var6.invalidate();
                 return;
             case 8:
-                u1 u1Var7 = this.f20007b;
+                u1 u1Var7 = this.f20053b;
                 u1Var7.getMessageObject().replyMessageObject.isSpoilersRevealed = true;
                 u1Var7.Ld.clear();
                 u1Var7.invalidate();
                 return;
             case 9:
-                u1 u1Var8 = this.f20007b;
+                u1 u1Var8 = this.f20053b;
                 u1Var8.post(new b1(7, u1Var8));
                 return;
             default:
-                this.f20007b.a3();
+                this.f20053b.a3();
                 return;
         }
     }

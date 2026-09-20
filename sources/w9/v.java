@@ -4,20 +4,20 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class v implements Continuation {
-    public final int f45239a;
-    public final TaskCompletionSource f45240b;
+    public final int f45283a;
+    public final TaskCompletionSource f45284b;
 
     public v(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f45239a = i10;
-        this.f45240b = taskCompletionSource;
+        this.f45283a = i10;
+        this.f45284b = taskCompletionSource;
     }
 
     @Override
     public final Object then(Task task) {
-        switch (this.f45239a) {
+        switch (this.f45283a) {
             case 0:
                 boolean isSuccessful = task.isSuccessful();
-                TaskCompletionSource taskCompletionSource = this.f45240b;
+                TaskCompletionSource taskCompletionSource = this.f45284b;
                 if (isSuccessful) {
                     taskCompletionSource.trySetResult(task.getResult());
                     return null;
@@ -29,7 +29,7 @@ public final class v implements Continuation {
                 }
             case 1:
                 boolean isSuccessful2 = task.isSuccessful();
-                TaskCompletionSource taskCompletionSource2 = this.f45240b;
+                TaskCompletionSource taskCompletionSource2 = this.f45284b;
                 if (isSuccessful2) {
                     taskCompletionSource2.trySetResult(task.getResult());
                     return null;
@@ -41,7 +41,7 @@ public final class v implements Continuation {
                 }
             default:
                 boolean isSuccessful3 = task.isSuccessful();
-                TaskCompletionSource taskCompletionSource3 = this.f45240b;
+                TaskCompletionSource taskCompletionSource3 = this.f45284b;
                 if (isSuccessful3) {
                     taskCompletionSource3.setResult(task.getResult());
                     return null;

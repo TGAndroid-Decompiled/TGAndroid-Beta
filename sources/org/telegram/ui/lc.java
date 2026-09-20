@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class lc extends x61 {
+public final class lc extends a71 {
     public final bd e;
 
     public lc(bd bdVar, kc kcVar) {

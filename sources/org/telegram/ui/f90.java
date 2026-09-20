@@ -3,20 +3,20 @@ package org.telegram.ui;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.tgnet.tl.TL_stories;
 public final class f90 implements e2.h {
-    public final int f33474a = 0;
-    public final LaunchActivity f33475b;
-    public final nf.e f33476c;
+    public final int f33547a = 0;
+    public final LaunchActivity f33548b;
+    public final nf.e f33549c;
     public final Runnable d;
     public final Long e;
-    public final org.telegram.ui.Cells.u1 f33477f;
-    public final Object f33478g;
+    public final org.telegram.ui.Cells.u1 f33550f;
+    public final Object f33551g;
 
     public f90(LaunchActivity launchActivity, nf.e eVar, Long l4, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.Cells.u1 u1Var, Runnable runnable) {
-        this.f33475b = launchActivity;
-        this.f33476c = eVar;
+        this.f33548b = launchActivity;
+        this.f33549c = eVar;
         this.e = l4;
-        this.f33478g = tL_premium_boostsStatus;
-        this.f33477f = u1Var;
+        this.f33551g = tL_premium_boostsStatus;
+        this.f33550f = u1Var;
         this.d = runnable;
     }
 
@@ -26,11 +26,11 @@ public final class f90 implements e2.h {
     }
 
     public f90(LaunchActivity launchActivity, nf.e eVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.u1 u1Var) {
-        this.f33475b = launchActivity;
-        this.f33476c = eVar;
+        this.f33548b = launchActivity;
+        this.f33549c = eVar;
         this.d = runnable;
-        this.f33478g = channelBoostsController;
+        this.f33551g = channelBoostsController;
         this.e = l4;
-        this.f33477f = u1Var;
+        this.f33550f = u1Var;
     }
 }

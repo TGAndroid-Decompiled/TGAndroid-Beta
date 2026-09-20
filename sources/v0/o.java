@@ -1,8 +1,8 @@
 package v0;
 public final class o {
-    public final b2.g f44073a;
+    public final b2.g f44117a;
 
     public o(b2.g gVar) {
-        this.f44073a = gVar;
+        this.f44117a = gVar;
     }
 }

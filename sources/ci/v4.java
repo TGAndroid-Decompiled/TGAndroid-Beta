@@ -1,23 +1,23 @@
 package ci;
 public final class v4 implements Runnable {
-    public final int f5651a;
-    public final r6 f5652b;
-    public final qg.b2 f5653c;
+    public final int f5652a;
+    public final r6 f5653b;
+    public final qg.c2 f5654c;
 
-    public v4(r6 r6Var, qg.b2 b2Var, int i10) {
-        this.f5651a = i10;
-        this.f5652b = r6Var;
-        this.f5653c = b2Var;
+    public v4(r6 r6Var, qg.c2 c2Var, int i10) {
+        this.f5652a = i10;
+        this.f5653b = r6Var;
+        this.f5654c = c2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f5651a) {
+        switch (this.f5652a) {
             case 0:
-                this.f5652b.D0(this.f5653c, true);
+                this.f5653b.D0(this.f5654c, true);
                 return;
             default:
-                this.f5652b.C0(this.f5653c);
+                this.f5653b.C0(this.f5654c);
                 return;
         }
     }

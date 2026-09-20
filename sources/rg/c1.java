@@ -17,32 +17,32 @@ public final class c1 extends f3 {
     public c1(n2 n2Var) {
         super(n2Var.getParentActivity(), false);
         Activity parentActivity = n2Var.getParentActivity();
-        LinearLayout f7 = org.telegram.messenger.q.f(parentActivity, 1);
+        LinearLayout e = org.telegram.messenger.l0.e(parentActivity, 1);
         TextView textView = new TextView(parentActivity);
         textView.setGravity(8388611);
-        int i10 = j6.f19169j5;
-        org.telegram.messenger.q.r(textView, j6.w0(null, i10, false), 1, 20.0f);
-        f7.addView(textView, y5.d(-1, -2.0f, 0, 21.0f, 16.0f, 21.0f, 0.0f));
+        int i10 = j6.f19201j5;
+        org.telegram.messenger.l0.p(textView, j6.w0(null, i10, false), 1, 20.0f);
+        e.addView(textView, y5.d(-1, -2.0f, 0, 21.0f, 16.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
         textView2.setGravity(8388611);
         textView2.setTextSize(1, 16.0f);
         textView2.setTextColor(j6.w0(null, i10, false));
-        f7.addView(textView2, y5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+        e.addView(textView2, y5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
         TextView textView3 = new TextView(parentActivity);
         textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         textView3.setGravity(17);
-        org.telegram.messenger.q.r(textView3, j6.w0(null, j6.Sh, false), 1, 14.0f);
+        org.telegram.messenger.l0.p(textView3, j6.w0(null, j6.Sh, false), 1, 14.0f);
         textView3.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{8.0f}, j6.Oh));
         textView3.setText(LocaleController.getString(R.string.InstallOfficialApp));
         textView3.setOnClickListener(new e2(23));
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         frameLayout.addView(textView3, y5.d(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        frameLayout.setBackgroundColor(getThemedColor(j6.f19133h5));
-        f7.addView(frameLayout, y5.q(-1, 68, 80));
-        org.telegram.messenger.q.n(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
+        frameLayout.setBackgroundColor(getThemedColor(j6.f19165h5));
+        e.addView(frameLayout, y5.q(-1, 68, 80));
+        org.telegram.messenger.l0.l(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeededDescription)));
         ScrollView scrollView = new ScrollView(parentActivity);
-        scrollView.addView(f7);
+        scrollView.addView(e);
         setCustomView(scrollView);
     }
 }

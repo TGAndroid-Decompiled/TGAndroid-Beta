@@ -4,15 +4,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class xc extends org.telegram.ui.Components.vl0 {
-    public final int f39430c;
-    public final org.telegram.ui.ActionBar.e6 d;
+public final class xc extends org.telegram.ui.Components.ul0 {
+    public final int f39456c;
+    public final org.telegram.ui.ActionBar.f6 d;
     public final zc e;
 
-    public xc(zc zcVar, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+    public xc(zc zcVar, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         this.e = zcVar;
-        this.f39430c = i10;
-        this.d = e6Var;
+        this.f39456c = i10;
+        this.d = f6Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class xc extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final int h() {
-        return this.e.f40076c.size();
+        return this.e.f40172c.size();
     }
 
     @Override
@@ -32,26 +32,26 @@ public final class xc extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new org.telegram.ui.Components.j21(this.f39430c, 3, viewGroup.getContext(), this.d));
+        return new s4.c1(new org.telegram.ui.Components.i21(this.f39456c, 3, viewGroup.getContext(), this.d));
     }
 
     @Override
     public final void y(s4.c1 c1Var) {
         TLRPC.WallPaper wallPaper;
         zc zcVar = this.e;
-        ArrayList arrayList = zcVar.f40076c;
+        ArrayList arrayList = zcVar.f40172c;
         int b10 = c1Var.b();
-        View view = c1Var.f42929a;
+        View view = c1Var.f42974a;
         if (b10 >= 0 && b10 < arrayList.size()) {
             org.telegram.ui.Components.lp lpVar = (org.telegram.ui.Components.lp) arrayList.get(b10);
-            org.telegram.ui.Components.j21 j21Var = (org.telegram.ui.Components.j21) view;
-            j21Var.g(lpVar.d, false);
-            if (lpVar.f26230a.f18775b) {
+            org.telegram.ui.Components.i21 i21Var = (org.telegram.ui.Components.i21) view;
+            i21Var.g(lpVar.d, false);
+            if (lpVar.f26219a.f18808b) {
                 wallPaper = null;
             } else {
                 wallPaper = zcVar.v;
             }
-            j21Var.setFallbackWallpaper(wallPaper);
+            i21Var.setFallbackWallpaper(wallPaper);
         }
     }
 }

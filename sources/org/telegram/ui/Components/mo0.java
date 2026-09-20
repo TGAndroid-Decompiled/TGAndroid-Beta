@@ -13,24 +13,24 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public class mo0 extends ScrollView {
-    public final org.telegram.ui.ActionBar.e6 f26468a;
-    public final LinearLayout f26469b;
-    public final float f26470c;
+    public final org.telegram.ui.ActionBar.f6 f26437a;
+    public final LinearLayout f26438b;
+    public final float f26439c;
     public final float[] d;
     public final float[] e;
-    public final ArrayList f26471f;
+    public final ArrayList f26440f;
     public final ArrayList h;
-    public final Path f26472n;
+    public final Path f26441n;
 
-    public mo0(Context context, LinearLayout linearLayout, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+    public mo0(Context context, LinearLayout linearLayout, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context);
         float f7;
-        this.f26470c = AndroidUtilities.dp(16.0f);
-        this.f26471f = new ArrayList();
+        this.f26439c = AndroidUtilities.dp(16.0f);
+        this.f26440f = new ArrayList();
         this.h = new ArrayList();
-        this.f26472n = new Path();
-        this.f26468a = e6Var;
-        this.f26469b = linearLayout;
+        this.f26441n = new Path();
+        this.f26437a = f6Var;
+        this.f26438b = linearLayout;
         setWillNotDraw(false);
         int dp = AndroidUtilities.dp(12.0f);
         if (z10) {
@@ -44,7 +44,7 @@ public class mo0 extends ScrollView {
     }
 
     public static boolean e(View view) {
-        if (!Objects.equals(view.getTag(), -33024) && !(view instanceof org.telegram.ui.Cells.e9) && !(view instanceof org.telegram.ui.Cells.b7) && !(view instanceof org.telegram.ui.b20)) {
+        if (!Objects.equals(view.getTag(), -33024) && !(view instanceof org.telegram.ui.Cells.f9) && !(view instanceof org.telegram.ui.Cells.c7) && !(view instanceof org.telegram.ui.b20)) {
             return true;
         }
         return false;
@@ -57,7 +57,7 @@ public class mo0 extends ScrollView {
             ViewGroup.LayoutParams layoutParams2 = view2.getLayoutParams();
             ViewParent parent = view.getParent();
             float f10 = 0.0f;
-            LinearLayout linearLayout = this.f26469b;
+            LinearLayout linearLayout = this.f26438b;
             if (parent != linearLayout && (layoutParams instanceof ViewGroup.MarginLayoutParams)) {
                 f7 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
             } else {
@@ -69,7 +69,7 @@ public class mo0 extends ScrollView {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(c(view) + linearLayout.getX(), Math.max(getScrollY() - AndroidUtilities.dp(16.0f), (d(view) + linearLayout.getY()) - f7), c(view) + linearLayout.getX() + view.getWidth(), Math.min(getScrollY() + AndroidUtilities.dp(16.0f) + getHeight(), d(view2) + linearLayout.getY() + view2.getHeight() + f10));
             if (rectF.bottom >= rectF.top) {
-                wl0.P0(canvas, rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), view.getAlpha(), this.f26468a);
+                vl0.P0(canvas, rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), view.getAlpha(), this.f26437a);
             }
         }
     }
@@ -81,7 +81,7 @@ public class mo0 extends ScrollView {
                 if (childAt instanceof LinearLayout) {
                     LinearLayout linearLayout = (LinearLayout) childAt;
                     if (linearLayout.getOrientation() == 1) {
-                        LinearLayout linearLayout2 = this.f26469b;
+                        LinearLayout linearLayout2 = this.f26438b;
                         if (childAt.getX() + f7 <= linearLayout2.getPaddingLeft() && childAt.getX() + f7 + childAt.getWidth() >= linearLayout2.getWidth() - linearLayout2.getPaddingRight()) {
                             b(linearLayout, childAt.getX() + f7, childAt.getY() + f10);
                         }
@@ -93,14 +93,14 @@ public class mo0 extends ScrollView {
     }
 
     public final float c(View view) {
-        if (view != this.f26469b && (view.getParent() instanceof View)) {
+        if (view != this.f26438b && (view.getParent() instanceof View)) {
             return view.getX() + c((View) view.getParent());
         }
         return view.getX();
     }
 
     public final float d(View view) {
-        if (view != this.f26469b && (view.getParent() instanceof View)) {
+        if (view != this.f26438b && (view.getParent() instanceof View)) {
             return view.getY() + d((View) view.getParent());
         }
         return view.getY();
@@ -110,7 +110,7 @@ public class mo0 extends ScrollView {
     public void dispatchDraw(Canvas canvas) {
         ArrayList arrayList = this.h;
         arrayList.clear();
-        b(this.f26469b, 0.0f, 0.0f);
+        b(this.f26438b, 0.0f, 0.0f);
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -147,7 +147,7 @@ public class mo0 extends ScrollView {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        ArrayList arrayList = this.f26471f;
+        ArrayList arrayList = this.f26440f;
         int size = arrayList.size();
         int i14 = 0;
         while (i14 < size) {
@@ -156,6 +156,6 @@ public class mo0 extends ScrollView {
             ((Runnable) obj).run();
         }
         invalidate();
-        this.f26469b.invalidate();
+        this.f26438b.invalidate();
     }
 }

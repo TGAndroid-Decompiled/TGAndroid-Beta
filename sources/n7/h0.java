@@ -1,6 +1,6 @@
 package n7;
 public abstract class h0 {
-    public static final int f15310a = 0;
+    public static final int f15346a = 0;
 
     static {
         System.currentTimeMillis();

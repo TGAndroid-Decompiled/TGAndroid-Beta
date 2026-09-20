@@ -14,24 +14,24 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wh;
-import org.telegram.ui.Components.be0;
+import org.telegram.messenger.rk;
+import org.telegram.ui.Components.ae0;
 import org.telegram.ui.Components.hf;
-import org.telegram.ui.Components.xd0;
+import org.telegram.ui.Components.wd0;
 public final class m9 extends FrameLayout {
-    public final int f5048a = 0;
-    public final Object f5049b;
-    public final Object f5050c;
+    public final int f5049a = 0;
+    public final Object f5050b;
+    public final Object f5051c;
     public final Object d;
     public Object e;
-    public Object f5051f;
+    public Object f5052f;
     public Object h;
 
-    public m9(be0 be0Var, Context context) {
+    public m9(ae0 ae0Var, Context context) {
         super(context);
-        this.h = be0Var;
-        this.f5049b = new ArrayList(4);
-        this.f5050c = new ArrayList(4);
+        this.h = ae0Var;
+        this.f5050b = new ArrayList(4);
+        this.f5051c = new ArrayList(4);
         this.d = new StringBuilder(4);
         for (int i10 = 0; i10 < 4; i10++) {
             TextView textView = new TextView(context);
@@ -43,7 +43,7 @@ public final class m9 extends FrameLayout {
             textView.setPivotX(AndroidUtilities.dp(25.0f));
             textView.setPivotY(AndroidUtilities.dp(25.0f));
             addView(textView, w7.y5.e(50, 50, 51));
-            ((ArrayList) this.f5049b).add(textView);
+            ((ArrayList) this.f5050b).add(textView);
             TextView textView2 = new TextView(context);
             textView2.setTextColor(-1);
             textView2.setTypeface(AndroidUtilities.bold());
@@ -54,21 +54,21 @@ public final class m9 extends FrameLayout {
             textView2.setPivotX(AndroidUtilities.dp(25.0f));
             textView2.setPivotY(AndroidUtilities.dp(25.0f));
             addView(textView2, w7.y5.e(50, 50, 51));
-            ((ArrayList) this.f5050c).add(textView2);
+            ((ArrayList) this.f5051c).add(textView2);
         }
     }
 
     public static void a(m9 m9Var, boolean z10) {
-        ArrayList arrayList = (ArrayList) m9Var.f5050c;
-        ArrayList arrayList2 = (ArrayList) m9Var.f5049b;
+        ArrayList arrayList = (ArrayList) m9Var.f5051c;
+        ArrayList arrayList2 = (ArrayList) m9Var.f5050b;
         StringBuilder sb2 = (StringBuilder) m9Var.d;
         if (sb2.length() == 0) {
             return;
         }
-        hf hfVar = (hf) m9Var.f5051f;
+        hf hfVar = (hf) m9Var.f5052f;
         if (hfVar != null) {
             AndroidUtilities.cancelRunOnUIThread(hfVar);
-            m9Var.f5051f = null;
+            m9Var.f5052f = null;
         }
         AnimatorSet animatorSet = (AnimatorSet) m9Var.e;
         if (animatorSet != null) {
@@ -100,7 +100,7 @@ public final class m9 extends FrameLayout {
             m9Var.e = animatorSet2;
             animatorSet2.setDuration(150L);
             ((AnimatorSet) m9Var.e).playTogether(arrayList3);
-            ((AnimatorSet) m9Var.e).addListener(new xd0(m9Var, 2));
+            ((AnimatorSet) m9Var.e).addListener(new wd0(m9Var, 2));
             ((AnimatorSet) m9Var.e).start();
         } else {
             for (int i11 = 0; i11 < 4; i11++) {
@@ -108,12 +108,12 @@ public final class m9 extends FrameLayout {
                 ((TextView) arrayList.get(i11)).setAlpha(0.0f);
             }
         }
-        be0.a((be0) m9Var.h);
+        ae0.a((ae0) m9Var.h);
     }
 
     public void b(String str) {
-        ArrayList arrayList = (ArrayList) this.f5050c;
-        ArrayList arrayList2 = (ArrayList) this.f5049b;
+        ArrayList arrayList = (ArrayList) this.f5051c;
+        ArrayList arrayList2 = (ArrayList) this.f5050b;
         StringBuilder sb2 = (StringBuilder) this.d;
         if (sb2.length() == 4) {
             return;
@@ -158,12 +158,12 @@ public final class m9 extends FrameLayout {
                 arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
             }
         }
-        hf hfVar = (hf) this.f5051f;
+        hf hfVar = (hf) this.f5052f;
         if (hfVar != null) {
             AndroidUtilities.cancelRunOnUIThread(hfVar);
         }
         hf hfVar2 = new hf(this, length, 2);
-        this.f5051f = hfVar2;
+        this.f5052f = hfVar2;
         AndroidUtilities.runOnUIThread(hfVar2, 1500L);
         for (int i11 = 0; i11 < length; i11++) {
             TextView textView5 = (TextView) arrayList2.get(i11);
@@ -189,20 +189,20 @@ public final class m9 extends FrameLayout {
         this.e = animatorSet2;
         animatorSet2.setDuration(150L);
         ((AnimatorSet) this.e).playTogether(arrayList3);
-        ((AnimatorSet) this.e).addListener(new xd0(this, 0));
+        ((AnimatorSet) this.e).addListener(new wd0(this, 0));
         ((AnimatorSet) this.e).start();
-        be0.a((be0) this.h);
+        ae0.a((ae0) this.h);
     }
 
     public int c(int i10) {
-        return wh.c(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
+        return org.telegram.messenger.l0.D(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
     }
 
     public void d(boolean z10) {
         int i10;
         float f7;
         float f10;
-        ImageView imageView = (ImageView) this.f5050c;
+        ImageView imageView = (ImageView) this.f5051c;
         if (z10) {
             i10 = 0;
         } else {
@@ -226,11 +226,11 @@ public final class m9 extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f5048a) {
+        switch (this.f5049a) {
             case 0:
                 super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.f5051f;
-                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19063d7, (org.telegram.ui.ActionBar.e6) this.f5049b));
+                Paint paint = (Paint) this.f5052f;
+                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19095d7, (org.telegram.ui.ActionBar.f6) this.f5050b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -245,14 +245,14 @@ public final class m9 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f5048a) {
+        switch (this.f5049a) {
             case 1:
-                ArrayList arrayList = (ArrayList) this.f5050c;
-                ArrayList arrayList2 = (ArrayList) this.f5049b;
-                hf hfVar = (hf) this.f5051f;
+                ArrayList arrayList = (ArrayList) this.f5051c;
+                ArrayList arrayList2 = (ArrayList) this.f5050b;
+                hf hfVar = (hf) this.f5052f;
                 if (hfVar != null) {
                     AndroidUtilities.cancelRunOnUIThread(hfVar);
-                    this.f5051f = null;
+                    this.f5052f = null;
                 }
                 AnimatorSet animatorSet = (AnimatorSet) this.e;
                 if (animatorSet != null) {
@@ -288,7 +288,7 @@ public final class m9 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f5048a) {
+        switch (this.f5049a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
                 return;
@@ -298,25 +298,25 @@ public final class m9 extends FrameLayout {
         }
     }
 
-    public m9(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public m9(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f5051f = new Paint(1);
-        this.f5049b = e6Var;
+        this.f5052f = new Paint(1);
+        this.f5050b = f6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        wh.j(20.0f, 1, textView);
+        rk.k(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19169j5, e6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19201j5, f6Var));
         boolean z10 = LocaleController.isRTL;
         addView(textView, w7.y5.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f5050c = imageView;
+        this.f5051c = imageView;
         org.telegram.ui.ActionBar.g2 g2Var = new org.telegram.ui.ActionBar.g2(false);
         this.e = g2Var;
         imageView.setImageDrawable(g2Var);
         g2Var.a(-1);
         g2Var.b(-1);
-        g2Var.f18869k = 220.0f;
+        g2Var.f18901k = 220.0f;
         addView(imageView, w7.y5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new ai.v0(this, 12));
     }

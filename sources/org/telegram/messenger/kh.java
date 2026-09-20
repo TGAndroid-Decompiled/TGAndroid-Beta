@@ -7,36 +7,36 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ij1;
 import org.telegram.ui.jj1;
+import org.telegram.ui.kj1;
 import org.telegram.ui.rv0;
 public final class kh implements Utilities.Callback2 {
-    public final int f16775a = 1;
-    public final int f16776b;
-    public final Object f16777c;
+    public final int f16819a = 1;
+    public final int f16820b;
+    public final Object f16821c;
     public final Object d;
     public final Object e;
-    public final Object f16778f;
+    public final Object f16822f;
 
     public kh(ci.d dVar, org.telegram.ui.ActionBar.f3 f3Var, int i10, View view, cf.c cVar) {
-        this.f16777c = dVar;
+        this.f16821c = dVar;
         this.d = f3Var;
-        this.f16776b = i10;
+        this.f16820b = i10;
         this.e = view;
-        this.f16778f = cVar;
+        this.f16822f = cVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f16775a) {
+        switch (this.f16819a) {
             case 0:
-                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) this.f16777c, (Utilities.Callback2) this.d, (q2.b) this.e, (Context) this.f16778f, this.f16776b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) this.f16821c, (Utilities.Callback2) this.d, (q2.b) this.e, (Context) this.f16822f, this.f16820b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ci.d dVar = (ci.d) this.f16777c;
+                ci.d dVar = (ci.d) this.f16821c;
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.d;
                 View view = (View) this.e;
-                cf.c cVar = (cf.c) this.f16778f;
+                cf.c cVar = (cf.c) this.f16822f;
                 TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 dVar.setLoading(false);
@@ -47,19 +47,19 @@ public final class kh implements Utilities.Callback2 {
                         new org.telegram.ui.Components.xc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0("NO_TOKEN", false);
                         return;
                     }
-                    int i10 = this.f16776b;
+                    int i10 = this.f16820b;
                     int currentDatacenterId = ConnectionsManager.getInstance(i10).getCurrentDatacenterId();
                     boolean isTestBackend = ConnectionsManager.getInstance(i10).isTestBackend();
-                    StringBuilder k10 = hg.k0.k("wear-auth: sending /token account=", i10, " dcId=", currentDatacenterId, " isTest=");
-                    k10.append(isTestBackend);
-                    FileLog.d(k10.toString());
+                    StringBuilder l4 = hg.k0.l("wear-auth: sending /token account=", i10, " dcId=", currentDatacenterId, " isTest=");
+                    l4.append(isTestBackend);
+                    FileLog.d(l4.toString());
                     Context applicationContext = view.getContext().getApplicationContext();
                     try {
-                        byte[] c10 = jj1.c(cVar, queryParameter, currentDatacenterId, isTestBackend);
-                        com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6034c).h;
+                        byte[] c10 = kj1.c(cVar, queryParameter, currentDatacenterId, isTestBackend);
+                        com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6035c).h;
                         b8.e eVar = new b8.e(t0Var, (String) cVar.d, "/tg-wear-auth/token", c10);
-                        t0Var.f6177b.d(0, eVar);
-                        n6.l.n(eVar, y8.j0.f46635a).addOnSuccessListener(new rv0(20, cVar, dVar)).addOnFailureListener(new ij1(dVar, 1));
+                        t0Var.f6178b.d(0, eVar);
+                        n6.l.n(eVar, y8.j0.f46682a).addOnSuccessListener(new rv0(20, cVar, dVar)).addOnFailureListener(new jj1(dVar, 1));
                         f3Var.dismiss();
                         return;
                     } catch (Exception e) {
@@ -68,7 +68,7 @@ public final class kh implements Utilities.Callback2 {
                         return;
                     }
                 } else if (tL_error != null) {
-                    org.telegram.ui.Cells.c1.p(f3Var.topBulletinContainer, f3Var.getResourcesProvider(), tL_error, false);
+                    org.telegram.ui.Cells.c1.s(f3Var.topBulletinContainer, f3Var.getResourcesProvider(), tL_error, false);
                     return;
                 } else {
                     new org.telegram.ui.Components.xc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0("NO_TOKEN", false);
@@ -78,10 +78,10 @@ public final class kh implements Utilities.Callback2 {
     }
 
     public kh(org.telegram.ui.ActionBar.b2 b2Var, Utilities.Callback2 callback2, q2.b bVar, Context context, int i10) {
-        this.f16777c = b2Var;
+        this.f16821c = b2Var;
         this.d = callback2;
         this.e = bVar;
-        this.f16778f = context;
-        this.f16776b = i10;
+        this.f16822f = context;
+        this.f16820b = i10;
     }
 }

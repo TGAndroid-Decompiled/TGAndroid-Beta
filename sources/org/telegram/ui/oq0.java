@@ -13,12 +13,12 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class oq0 extends org.telegram.ui.ActionBar.n2 {
-    public Bitmap f36227a;
-    public BitmapDrawable f36228b;
-    public nq0 f36229c;
+    public Bitmap f36355a;
+    public BitmapDrawable f36356b;
+    public nq0 f36357c;
     public mq0 d;
     public boolean e;
-    public boolean f36230f;
+    public boolean f36358f;
 
     @Override
     public final View createView(Context context) {
@@ -47,13 +47,13 @@ public final class oq0 extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f36227a == null) {
+        if (this.f36355a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
                 return false;
             }
-            if (string != null && !t8.b.u(string)) {
+            if (string != null && !v7.j0.r(string)) {
                 return false;
             }
             if (AndroidUtilities.isTablet()) {
@@ -64,12 +64,12 @@ public final class oq0 extends org.telegram.ui.ActionBar.n2 {
             }
             float f7 = max;
             Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
-            this.f36227a = loadBitmap;
+            this.f36355a = loadBitmap;
             if (loadBitmap == null) {
                 return false;
             }
         }
-        this.f36228b = new BitmapDrawable(this.f36227a);
+        this.f36356b = new BitmapDrawable(this.f36355a);
         super.onFragmentCreate();
         return true;
     }
@@ -77,11 +77,11 @@ public final class oq0 extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f36227a;
+        Bitmap bitmap = this.f36355a;
         if (bitmap != null && !this.e) {
             bitmap.recycle();
-            this.f36227a = null;
+            this.f36355a = null;
         }
-        this.f36228b = null;
+        this.f36356b = null;
     }
 }

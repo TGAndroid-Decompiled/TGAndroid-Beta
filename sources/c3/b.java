@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.wk0;
+import org.telegram.ui.ja0;
 public abstract class b {
     public static final int[] f3713a = {96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350};
     public static final int[] f3714b = {0, 1, 2, 3, 4, 5, 6, 8, -1, -1, -1, 7, 8, -1, 8, -1};
@@ -89,7 +89,7 @@ public abstract class b {
                         break;
                     }
                 }
-                int i14 = vVar.f7934b + i13;
+                int i14 = vVar.f7935b + i13;
                 if (i13 != -1 && i13 <= vVar.a()) {
                     if (i10 == 4 && i13 >= 8) {
                         int x12 = vVar.x();
@@ -120,7 +120,7 @@ public abstract class b {
                     }
                 } else {
                     e2.a.n("CeaUtil", "Skipping remainder of malformed SEI NAL unit.");
-                    i14 = vVar.f7935c;
+                    i14 = vVar.f7936c;
                 }
                 vVar.J(i14);
             } else {
@@ -135,7 +135,7 @@ public abstract class b {
         if ((x10 & 64) != 0) {
             vVar.K(1);
             int i10 = (x10 & 31) * 3;
-            int i11 = vVar.f7934b;
+            int i11 = vVar.f7935b;
             for (h0 h0Var : h0VarArr) {
                 vVar.J(i11);
                 h0Var.d(i10, vVar);
@@ -168,7 +168,7 @@ public abstract class b {
 
     public static void g(int i10, e2.v vVar) {
         vVar.G(7);
-        byte[] bArr = vVar.f7933a;
+        byte[] bArr = vVar.f7934a;
         bArr[0] = -84;
         bArr[1] = 64;
         bArr[2] = -1;
@@ -502,7 +502,7 @@ public abstract class b {
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < list.size(); i10++) {
             String str = (String) list.get(i10);
-            String str2 = e2.d0.f7887a;
+            String str2 = e2.d0.f7888a;
             String[] split = str.split("=", 2);
             if (split.length != 2) {
                 e2.a.n("VorbisUtil", "Failed to parse Vorbis comment: ".concat(str));
@@ -523,18 +523,18 @@ public abstract class b {
     }
 
     public static p0 s(p pVar, boolean z10) {
-        wk0 wk0Var;
+        ja0 ja0Var;
         if (z10) {
-            wk0Var = null;
+            ja0Var = null;
         } else {
-            wk0Var = q3.i.f41385b;
+            ja0Var = q3.i.f41426b;
         }
         e2.v vVar = new e2.v(10);
         p0 p0Var = null;
         int i10 = 0;
         while (true) {
             try {
-                pVar.a(0, 10, vVar.f7933a);
+                pVar.a(0, 10, vVar.f7934a);
                 vVar.J(0);
                 if (vVar.A() != 4801587) {
                     break;
@@ -544,9 +544,9 @@ public abstract class b {
                 int i11 = w10 + 10;
                 if (p0Var == null) {
                     byte[] bArr = new byte[i11];
-                    System.arraycopy(vVar.f7933a, 0, bArr, 0, 10);
+                    System.arraycopy(vVar.f7934a, 0, bArr, 0, 10);
                     pVar.a(10, w10, bArr);
-                    p0Var = new q3.i(wk0Var).c(i11, bArr);
+                    p0Var = new q3.i(ja0Var).c(i11, bArr);
                 } else {
                     pVar.l(w10);
                 }
@@ -592,7 +592,7 @@ public abstract class b {
     public static of.b u(e2.v vVar) {
         vVar.K(1);
         int A = vVar.A();
-        long j3 = vVar.f7934b + A;
+        long j3 = vVar.f7935b + A;
         int i10 = A / 18;
         long[] jArr = new long[i10];
         long[] jArr2 = new long[i10];
@@ -612,7 +612,7 @@ public abstract class b {
             vVar.K(2);
             i11++;
         }
-        vVar.K((int) (j3 - vVar.f7934b));
+        vVar.K((int) (j3 - vVar.f7935b));
         return new of.b(jArr, jArr2, false, 6);
     }
 

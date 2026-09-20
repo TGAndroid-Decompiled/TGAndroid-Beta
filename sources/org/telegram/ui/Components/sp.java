@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class sp {
-    public float f28213g;
-    public float f28216k;
-    public final Path f28209a = new Path();
-    public final float[] f28210b = new float[4];
-    public final float[] f28211c = new float[4];
+    public float f28195g;
+    public float f28198k;
+    public final Path f28191a = new Path();
+    public final float[] f28192b = new float[4];
+    public final float[] f28193c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f28214i = new Random();
-    public final int f28212f = 6;
+    public final Random f28196i = new Random();
+    public final int f28194f = 6;
     public final float e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f28215j = new float[6];
+    public final float[] f28197j = new float[6];
 
     public sp() {
-        for (int i10 = 0; i10 < this.f28212f; i10++) {
-            this.f28215j[i10] = (this.f28214i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f28194f; i10++) {
+            this.f28197j[i10] = (this.f28196i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class sp {
         int i10;
         float f12;
         sp spVar = this;
-        float f13 = spVar.f28213g;
+        float f13 = spVar.f28195g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
         float f16 = spVar.e;
         float f17 = max * f16 * spVar.h;
-        Path path = spVar.f28209a;
+        Path path = spVar.f28191a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = spVar.f28212f;
+            int i12 = spVar.f28194f;
             if (i11 < i12) {
                 Matrix matrix = spVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class sp {
                 } else {
                     f11 = f15;
                 }
-                float f19 = spVar.f28216k;
-                float[] fArr = spVar.f28215j;
+                float f19 = spVar.f28198k;
+                float[] fArr = spVar.f28197j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = spVar.f28210b;
+                float[] fArr2 = spVar.f28192b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class sp {
                 } else {
                     f12 = f22;
                 }
-                float f23 = spVar.f28216k;
-                float[] fArr3 = spVar.f28211c;
+                float f23 = spVar.f28198k;
+                float[] fArr3 = spVar.f28193c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

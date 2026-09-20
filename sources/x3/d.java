@@ -11,9 +11,9 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class d implements o {
-    public q f45483a;
-    public i f45484b;
-    public boolean f45485c;
+    public q f45528a;
+    public i f45529b;
+    public boolean f45530c;
 
     @Override
     public final boolean a(p pVar) {
@@ -27,13 +27,13 @@ public final class d implements o {
     public final boolean b(p pVar) {
         boolean z10;
         f fVar = new f();
-        if (fVar.a(pVar, true) && (fVar.f45489a & 2) == 2) {
+        if (fVar.a(pVar, true) && (fVar.f45534a & 2) == 2) {
             int min = Math.min(fVar.e, 8);
             v vVar = new v(min);
-            pVar.a(0, min, vVar.f7933a);
+            pVar.a(0, min, vVar.f7934a);
             vVar.J(0);
             if (vVar.a() >= 5 && vVar.x() == 127 && vVar.z() == 1179402563) {
-                this.f45484b = new i();
+                this.f45529b = new i();
                 return true;
             }
             vVar.J(0);
@@ -43,11 +43,11 @@ public final class d implements o {
                 z10 = false;
             }
             if (z10) {
-                this.f45484b = new i();
+                this.f45529b = new i();
             } else {
                 vVar.J(0);
-                if (h.e(vVar, h.f45494o)) {
-                    this.f45484b = new i();
+                if (h.e(vVar, h.f45539o)) {
+                    this.f45529b = new i();
                 }
             }
             return true;
@@ -57,30 +57,30 @@ public final class d implements o {
 
     @Override
     public final void g(q qVar) {
-        this.f45483a = qVar;
+        this.f45528a = qVar;
     }
 
     @Override
     public final void h(long j3, long j10) {
-        i iVar = this.f45484b;
+        i iVar = this.f45529b;
         if (iVar != null) {
-            e eVar = iVar.f45497a;
-            f fVar = eVar.f45486a;
-            fVar.f45489a = 0;
-            fVar.f45490b = 0L;
-            fVar.f45491c = 0;
+            e eVar = iVar.f45542a;
+            f fVar = eVar.f45531a;
+            fVar.f45534a = 0;
+            fVar.f45535b = 0L;
+            fVar.f45536c = 0;
             fVar.d = 0;
             fVar.e = 0;
-            eVar.f45487b.G(0);
-            eVar.f45488c = -1;
+            eVar.f45532b.G(0);
+            eVar.f45533c = -1;
             eVar.e = false;
             if (j3 == 0) {
-                iVar.d(!iVar.f45505l);
+                iVar.d(!iVar.f45550l);
             } else if (iVar.h != 0) {
-                long j11 = (iVar.f45502i * j10) / 1000000;
+                long j11 = (iVar.f45547i * j10) / 1000000;
                 iVar.e = j11;
                 g gVar = iVar.d;
-                String str = d0.f7887a;
+                String str = d0.f7888a;
                 gVar.B(j11);
                 iVar.h = 2;
             }
@@ -89,7 +89,7 @@ public final class d implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8083b;
+        g0 g0Var = i0.f8084b;
         return a1.e;
     }
 

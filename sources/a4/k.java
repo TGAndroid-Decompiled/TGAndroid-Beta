@@ -4,6 +4,6 @@ public final class k extends z3.j {
 
     @Override
     public final void release() {
-        this.f268c.h(this);
+        this.f268c.g(this);
     }
 }

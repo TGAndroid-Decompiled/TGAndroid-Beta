@@ -1,45 +1,58 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class s81 implements View.OnClickListener {
-    public final int f37220a;
-    public final f91 f37221b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class s81 implements u9 {
+    public TLObject f37337a = null;
+    public TLRPC.TL_error f37338b = null;
+    public final SessionsActivity f37339c;
 
-    public s81(f91 f91Var, int i10) {
-        this.f37220a = i10;
-        this.f37221b = f91Var;
+    public s81(SessionsActivity sessionsActivity) {
+        this.f37339c = sessionsActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37220a) {
-            case 0:
-                f91 f91Var = this.f37221b;
-                nf.f.s(f91Var.getParentActivity(), f91Var.getMessagesController().premiumManageSubscriptionUrl);
-                f91Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                return;
-            case 1:
-                f91 f91Var2 = this.f37221b;
-                f91Var2.getClass();
-                f91Var2.presentFragment(new h(3));
-                return;
-            case 2:
-                this.f37221b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
-                return;
-            case 3:
-                f91 f91Var3 = this.f37221b;
-                f91Var3.getClass();
-                f91Var3.presentFragment(new gh1(8, null));
-                return;
-            case 4:
-                this.f37221b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                return;
-            case 5:
-                f91.W(this.f37221b);
-                return;
-            default:
-                f91.Z(this.f37221b);
-                return;
+    public final String I0() {
+        return null;
+    }
+
+    @Override
+    public final void K(String str) {
+        TLObject tLObject = this.f37337a;
+        if (tLObject instanceof TLRPC.TL_authorization) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
+            boolean z10 = tL_authorization.password_pending;
+            SessionsActivity sessionsActivity = this.f37339c;
+            if (z10) {
+                sessionsActivity.f31783f.add(0, tL_authorization);
+                sessionsActivity.V = 4;
+                sessionsActivity.k0(false);
+            } else {
+                sessionsActivity.e.add(0, tL_authorization);
+            }
+            sessionsActivity.m0();
+            sessionsActivity.f31780a.l();
+            sessionsActivity.f31786s.m(0L, this.f37337a, 11);
+        } else if (this.f37338b != null) {
+            AndroidUtilities.runOnUIThread(new r81(this, 0));
         }
+    }
+
+    @Override
+    public final boolean e1(String str, m9 m9Var) {
+        this.f37337a = null;
+        this.f37338b = null;
+        AndroidUtilities.runOnUIThread(new rf0(this, str, m9Var, 29), 750L);
+        return true;
+    }
+
+    @Override
+    public final void T0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

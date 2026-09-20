@@ -14,12 +14,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class x0 implements Utilities.Callback3 {
-    public final int f48195a;
-    public final NotificationCenter.NotificationCenterDelegate f48196b;
+    public final int f48237a;
+    public final NotificationCenter.NotificationCenterDelegate f48238b;
 
     public x0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f48195a = i10;
-        this.f48196b = notificationCenterDelegate;
+        this.f48237a = i10;
+        this.f48238b = notificationCenterDelegate;
     }
 
     @Override
@@ -28,19 +28,19 @@ public final class x0 implements Utilities.Callback3 {
         int i10;
         ci.t tVar;
         float f7;
-        switch (this.f48195a) {
+        switch (this.f48237a) {
             case 0:
-                ((y3) this.f48196b).o2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((y3) this.f48238b).o2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                y3.v0((y3) this.f48196b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
+                y3.v0((y3) this.f48238b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
                 return;
             default:
-                oc ocVar = (oc) this.f48196b;
+                oc ocVar = (oc) this.f48238b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj3;
-                if (ocVar.f5222f0 == 0 && arrayList != null && !arrayList.isEmpty() && ocVar.f5253p2 == null && !ocVar.W && ocVar.J()) {
+                if (ocVar.f5223f0 == 0 && arrayList != null && !arrayList.isEmpty() && ocVar.f5254p2 == null && !ocVar.W && ocVar.J()) {
                     ocVar.H1 = null;
                     ocVar.I1 = null;
                     ocVar.J1 = null;
@@ -74,12 +74,12 @@ public final class x0 implements Utilities.Callback3 {
                                 return;
                             }
                             bc bcVar = ocVar.A0;
-                            ocVar.f5286z0 = tVar;
+                            ocVar.f5287z0 = tVar;
                             bcVar.o(tVar);
                             ocVar.I0.setSelected(tVar);
                             int indexOf = ci.t.a().indexOf(tVar);
                             if (indexOf >= 0) {
-                                ocVar.I0.f5799a.v0(indexOf);
+                                ocVar.I0.f5800a.v0(indexOf);
                             }
                             rb rbVar2 = ocVar.B0;
                             if (rbVar2 != null) {
@@ -102,8 +102,8 @@ public final class x0 implements Utilities.Callback3 {
                         if (i12 < arrayList.size()) {
                             ci.o8 l4 = ci.o8.l((MediaController.PhotoEntry) arrayList.get(i12));
                             l4.M0 = (Bitmap) arrayList2.get(i12);
-                            l4.J0 = ocVar.f5271v0;
-                            l4.K0 = ocVar.f5275w0;
+                            l4.J0 = ocVar.f5272v0;
+                            l4.K0 = ocVar.f5276w0;
                             l4.A();
                             if (bool.booleanValue()) {
                                 if (ocVar.A0.l(l4)) {
@@ -137,8 +137,8 @@ public final class x0 implements Utilities.Callback3 {
                         } else {
                             z10 = false;
                         }
-                        l7Var2.f4957n0 = -1.0f;
-                        l7Var2.f4958o0 = z10;
+                        l7Var2.f4958n0 = -1.0f;
+                        l7Var2.f4959o0 = z10;
                         l7Var2.invalidate();
                         ocVar.I1 = new ArrayList();
                         ocVar.J1 = new ArrayList();
@@ -150,7 +150,7 @@ public final class x0 implements Utilities.Callback3 {
                         ocVar.m0(true);
                         ocVar.f(false);
                         ocVar.K(1, true);
-                        fb fbVar = ocVar.f5216d1;
+                        fb fbVar = ocVar.f5217d1;
                         if (fbVar != null) {
                             androidx.fragment.app.a0 a0Var = fbVar.h;
                             if (!fbVar.I && !fbVar.M && (i10 = MessagesController.getGlobalMainSettings().getInt("multistorieshint", 0)) < 3) {
@@ -163,8 +163,8 @@ public final class x0 implements Utilities.Callback3 {
                         }
                         nb nbVar = ocVar.M0;
                         if (nbVar != null) {
-                            ocVar.f5241l2 = nbVar.e.e0();
-                            ocVar.f5243m2 = ocVar.M0.getSelectedAlbum();
+                            ocVar.f5242l2 = nbVar.e.e0();
+                            ocVar.f5244m2 = ocVar.M0.getSelectedAlbum();
                             return;
                         }
                         return;
@@ -178,8 +178,8 @@ public final class x0 implements Utilities.Callback3 {
                     ocVar.f(false);
                     nb nbVar2 = ocVar.M0;
                     if (nbVar2 != null) {
-                        ocVar.f5241l2 = nbVar2.e.e0();
-                        ocVar.f5243m2 = ocVar.M0.getSelectedAlbum();
+                        ocVar.f5242l2 = nbVar2.e.e0();
+                        ocVar.f5244m2 = ocVar.M0.getSelectedAlbum();
                         return;
                     }
                     return;

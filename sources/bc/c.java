@@ -1,7 +1,7 @@
 package bc;
 
 import b2.g;
-import v7.z8;
+import v7.a9;
 import z7.wf;
 import z7.yf;
 public final class c extends g {
@@ -16,6 +16,6 @@ public final class c extends g {
     public final Object N0(Object obj) {
         wf b10 = yf.b();
         qb.g gVar = this.f3495b;
-        return new f(gVar, (ac.e) obj, b10, new z8(gVar.b(), 1));
+        return new f(gVar, (ac.e) obj, b10, new a9(gVar.b(), 1));
     }
 }

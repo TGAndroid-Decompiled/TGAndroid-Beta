@@ -1,30 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class l51 extends g.p {
-    public final t51 f26029c;
+public final class l51 extends s4.s0 {
+    public final s51 f26040a;
 
-    public l51(t51 t51Var) {
-        this.f26029c = t51Var;
+    public l51(s51 s51Var) {
+        this.f26040a = s51Var;
     }
 
     @Override
-    public final int i(int i10) {
-        t51 t51Var = this.f26029c;
-        s4.h0 adapter = t51Var.f28327n.getAdapter();
-        s51 s51Var = t51Var.f28329s;
-        if (adapter == s51Var) {
-            if ((s51Var.d.get(i10) instanceof Integer) || i10 >= s51Var.f28061w) {
-                return s51Var.v;
+    public final void a(RecyclerView recyclerView, int i10) {
+        s4.s0 s0Var = this.f26040a.f28061y;
+        if (s0Var != null) {
+            s0Var.a(recyclerView, i10);
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        s51 s51Var = this.f26040a;
+        r51 r51Var = s51Var.f28058s;
+        i51 i51Var = s51Var.f28056n;
+        s4.s0 s0Var = s51Var.f28061y;
+        if (s0Var != null) {
+            s0Var.b(i51Var, i10, i11);
+        }
+        if (i11 > 0 && i51Var.getAdapter() == r51Var && s51Var.J && !r51Var.f27775r && !r51Var.f27776s) {
+            if (s51Var.f28057r.N0() >= ((r51Var.f27777w + 1) - ((r51Var.v + 1) * 10)) - 1) {
+                s51 s51Var2 = r51Var.f27778x;
+                if (s51Var2.J && !r51Var.f27775r && !r51Var.f27776s) {
+                    r51Var.f27775r = true;
+                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
+                    tL_messages_getOldFeaturedStickers.offset = r51Var.f27774n.size();
+                    tL_messages_getOldFeaturedStickers.limit = 40;
+                    ConnectionsManager.getInstance(s51Var2.f28052a).sendRequest(tL_messages_getOldFeaturedStickers, new x1(r51Var, 17));
+                }
             }
-            return 1;
         }
-        gg.g2 g2Var = t51Var.v;
-        SparseArray sparseArray = g2Var.f9748s;
-        if (i10 != g2Var.f9751y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        }
-        return g2Var.e.a();
     }
 }
